@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftGtk",
+        "repositoryURL": "https://github.com/stackotter/SwiftGtk",
+        "state": {
+          "branch": "main",
+          "revision": "3727a770fc8f05b868bd19877902a5d0312fa4ad",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
