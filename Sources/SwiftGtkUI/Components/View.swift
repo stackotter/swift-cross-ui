@@ -1,5 +1,5 @@
 /// A view composed of components.
-public protocol View {
+public protocol View: Component {
     /// The view's child components.
-    var body: [Component] { get }
+    @ViewBuilder var body: [Component] { get }
 }

@@ -1,5 +1,8 @@
-typealias GtkApplication = SwiftGtk.Application
-typealias GtkBox = SwiftGtk.Box
-typealias GtkContainer = SwiftGtk.Container
-typealias GtkWidget = SwiftGtk.Widget
-typealias GtkButton = SwiftGtk.Button
+import SwiftGtk
+
+public typealias GtkApplication = SwiftGtk.Application
+public typealias GtkBox = SwiftGtk.Box
+public typealias GtkSize = SwiftGtk.Size
+public typealias GtkContainer = SwiftGtk.Container
+public typealias GtkWidget = SwiftGtk.Widget
+public typealias GtkButton = SwiftGtk.Button
