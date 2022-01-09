@@ -1,11 +1,15 @@
 import SwiftGtkUI
 
 struct ContentView: View {
-    var body: [Component] {
+    var body: [View] {
         Button("Hello world")
         HStack {
-            Button("Left")
-            Button("Right")
+            Button("Left") {
+                print("Pressed left")
+            }
+            Button("Right") {
+                print("Pressed right")
+            }
         }
     }
 }

@@ -6,3 +6,4 @@ public typealias GtkSize = SwiftGtk.Size
 public typealias GtkContainer = SwiftGtk.Container
 public typealias GtkWidget = SwiftGtk.Widget
 public typealias GtkButton = SwiftGtk.Button
+public typealias GtkWindow = SwiftGtk.Window

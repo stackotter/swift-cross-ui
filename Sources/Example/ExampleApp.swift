@@ -2,7 +2,9 @@ import SwiftGtkUI
 
 @main
 struct ExampleApp: App {
-    var body: View {
+    var identifier = "dev.stackotter.SwiftGtkUIExample"
+    
+    var body: [View] {
         ContentView()
     }
 }

@@ -1,25 +1,32 @@
 /// An application.
 public protocol App {
+    /// The application's identifier.
+    var identifier: String { get }
+    
+    /// The contents of the application's main window.
+    @ViewBuilder var body: [View] { get }
+    
     /// Creates the application.
     init()
-    
-    /// The root view of the application.
-    var body: View { get }
 }
 
 public extension App {
     /// Runs the application.
     static func main() {
         let app = Self()
-        let gtkApp = GtkApplication(applicationId: "dev.stackotter.SwiftGtkUI.Example")
+        let gtkApp = GtkApplication(applicationId: app.identifier)
+        
         gtkApp.run { window in
             window.title = "Hello, world!"
             window.defaultSize = GtkSize(width: 400, height: 400)
             window.resizable = true
             
-            let box = GtkBox(orientation: .vertical, spacing: 8)
-            box.add(app.body)
-            window.add(box)
+            let container = GtkBox(orientation: .vertical, spacing: 8)
+            for view in app.body {
+                container.add(view.asWidget())
+            }
+            
+            window.add(container)
         }
     }
 }
