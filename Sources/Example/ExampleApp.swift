@@ -6,5 +6,6 @@ struct ExampleApp: App {
     
     var body: [View] {
         ContentView()
+        CounterView()
     }
 }

@@ -1,6 +1,8 @@
+import Foundation
+
 /// A view that can be displayed by SwiftGtkUI.
 public protocol View {
-    /// The view's child components.
+    /// The view's contents.
     @ViewBuilder var body: [View] { get }
     
     /// Converts the view to a Gtk widget for rendering.
