@@ -4,5 +4,5 @@
 
 find Sources -name '*.gyb' | \
     while read file; do \
-        ./gyb/gyb --line-directive '' -o "${file%.gyb}" "$file"; \
+        ./gyb/gyb --line-directive '' -o "$PWD/${file%.gyb}" "$PWD/$file"; \
     done
