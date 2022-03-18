@@ -9,8 +9,16 @@ public struct Text: View {
     public init(_ string: String) {
         self.string = string
     }
+}
+
+extension Text: _View {
+    func build() -> _ViewGraphNode {
+        let widget = GtkLabel(text: string)
+        return _ViewGraphNode(widget: widget, children: [])
+    }
     
-    public func asWidget() -> GtkWidget {
-        return GtkLabel(text: string)
+    func update(_ node: inout _ViewGraphNode) {
+        let widget = node.widget as! GtkLabel
+        widget.text = string
     }
 }

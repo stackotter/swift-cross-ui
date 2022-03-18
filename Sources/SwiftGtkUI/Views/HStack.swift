@@ -6,12 +6,25 @@ public struct HStack: View {
     public init(@ViewBuilder _ content: () -> [View]) {
         body = content()
     }
-    
-    public func asWidget() -> GtkWidget {
-        let container = GtkBox(orientation: .horizontal, spacing: 8)
+}
+
+extension HStack: _View {
+    func build() -> _ViewGraphNode {
+        let widget = GtkBox(orientation: .horizontal, spacing: 8)
+        var children: [_ViewGraphNode] = []
         for view in body {
-            container.add(view.asWidget())
+            let node = _ViewGraphNode.build(from: view)
+            // Add node to the view
+            widget.add(node.widget)
+            // Add node to the view graph
+            children.append(node)
         }
-        return container
+        return _ViewGraphNode(widget: widget, children: children)
+    }
+    
+    func update(_ node: inout _ViewGraphNode) {
+        for (i, view) in body.enumerated() {
+            _ViewGraphNode.update(&node.children[i], view: view)
+        }
     }
 }
