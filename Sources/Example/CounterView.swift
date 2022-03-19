@@ -1,11 +1,11 @@
 import Foundation
 import SwiftGtkUI
 
-class CounterModel: ObservableObject {
+class CounterModel: ViewModel {
     @Published var count = 0
 }
 
-struct CounterView: StatefulView {
+struct CounterView: View {
     var model = CounterModel()
     
     var body: some ViewContent {

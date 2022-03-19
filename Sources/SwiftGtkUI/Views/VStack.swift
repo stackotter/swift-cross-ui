@@ -1,9 +1,11 @@
 /// A vertically oriented container. Similar to a `VStack` in SwiftUI.
 public struct VStack<Content: ViewContent>: View {
+    public var model = EmptyViewModel()
+    
     public var body: Content
     
     /// Creates a new VStack.
-    public init(@ViewBuilder _ content: () -> Content) {
+    public init(@ViewContentBuilder _ content: () -> Content) {
         body = content()
     }
     

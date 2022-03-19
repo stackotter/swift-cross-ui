@@ -6,7 +6,7 @@ public protocol App {
     var identifier: String { get }
     
     /// The contents of the application's main window.
-    @ViewBuilder var body: Content { get }
+    @ViewContentBuilder var body: Content { get }
     
     /// Creates the application.
     init()

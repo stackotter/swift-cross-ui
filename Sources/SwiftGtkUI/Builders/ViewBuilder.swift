@@ -1,6 +1,6 @@
 
 @resultBuilder
-public struct ViewBuilder {
+public struct ViewContentBuilder {
     public static func buildBlock() -> EmptyViewContent {
         return EmptyViewContent()
     }

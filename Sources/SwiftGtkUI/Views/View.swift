@@ -3,9 +3,13 @@ import Foundation
 /// A view that can be displayed by SwiftGtkUI.
 public protocol View {
     associatedtype Content: ViewContent
+    associatedtype Model: ViewModel
+    
+    /// The view's state model.
+    var model: Model { get }
 
     /// The view's contents.
-    @ViewBuilder var body: Content { get }
+    @ViewContentBuilder var body: Content { get }
     
     func asWidget(_ children: Content.Children) -> GtkWidget
     

@@ -1,5 +1,7 @@
 /// A button view.
 public struct Button: View {
+    public var model = EmptyViewModel()
+    
     /// The button's label.
     public var label: String
     /// The action to run when the button is clicked.

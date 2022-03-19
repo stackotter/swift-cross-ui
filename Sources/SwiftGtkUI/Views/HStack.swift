@@ -1,9 +1,11 @@
 /// A horizontally oriented container. Similar to a `HStack` in SwiftUI.
 public struct HStack<Content: ViewContent>: View {
+    public var model = EmptyViewModel()
+    
     public var body: Content
     
     /// Creates a new HStack.
-    public init(@ViewBuilder _ content: () -> Content) {
+    public init(@ViewContentBuilder _ content: () -> Content) {
         body = content()
     }
     
