@@ -4,7 +4,7 @@ import SwiftGtkUI
 struct ExampleApp: App {
     var identifier = "dev.stackotter.SwiftGtkUIExample"
     
-    var body: [View] {
+    var body: some ViewContent {
         ContentView()
         CounterView()
     }

@@ -1,0 +1,41 @@
+%{
+maximum_view_count = 10
+}%
+
+public protocol ViewContent {
+    associatedtype Children: ViewGraphNodeChildren where Children.Content == Self
+}
+
+public struct EmptyViewContent: ViewContent {
+    public typealias Children = EmptyViewGraphNodeChildren
+    
+    public init() {}
+}
+
+% for i in range(maximum_view_count):
+%{
+view = "ViewContent%d" % (i + 1)
+struct_parameters = ", ".join(["View%d: View" % (j) for j in range(i + 1)])
+properties = "\n\t".join(["public var view%d: View%d" % (j, j) for j in range(i + 1)])
+init_parameters = ", ".join(["_ view%d: View%d" % (j, j) for j in range(i + 1)])
+init_body = "\n\t\t".join(["self.view%d = view%d" % (j, j) for j in range(i + 1)])
+}%
+
+public struct ${view}<${struct_parameters}> {
+    ${properties}
+
+    public init(${init_parameters}) {
+        ${init_body}
+    }
+}
+
+%{
+children_type = "ViewGraphNodeChildren%d" % (i + 1)
+children_type_parameters = ", ".join(["View%d" % j for j in range(i + 1)])
+}%
+
+extension ${view}: ViewContent {
+    public typealias Children = ${children_type}<${children_type_parameters}>
+}
+% end
+

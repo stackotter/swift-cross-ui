@@ -1,7 +1,7 @@
 import SwiftGtkUI
 
 struct ContentView: View {
-    var body: [View] {
+    var body: some ViewContent {
         Button("Hello world")
         HStack {
             Button("Left") {

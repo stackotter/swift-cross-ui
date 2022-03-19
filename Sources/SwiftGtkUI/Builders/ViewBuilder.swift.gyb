@@ -1,0 +1,26 @@
+%{
+maximum_view_count = 10
+}%
+
+@resultBuilder
+public struct ViewBuilder {
+    public static func buildBlock() -> EmptyViewContent {
+        return EmptyViewContent()
+    }
+
+% for i in range(maximum_view_count):
+
+%{
+type_parameters = ", ".join(["V%d: View" % j for j in range(i + 1)])
+parameters = ", ".join(["_ view%d: V%d" % (j, j) for j in range(i + 1)])
+
+return_type_parameters = ", ".join(["V%d" % j for j in range(i + 1)])
+return_type = "ViewContent%d<%s>" % (i + 1, return_type_parameters)
+return_type_init_parameters = ", ".join(["view%d" % j for j in range(i + 1)])
+}%
+
+    public static func buildBlock<${type_parameters}>(${parameters}) -> ${return_type} {
+        return ${return_type}(${return_type_init_parameters})
+    }
+% end
+}

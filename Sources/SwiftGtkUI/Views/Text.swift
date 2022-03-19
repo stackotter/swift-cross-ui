@@ -3,22 +3,20 @@ public struct Text: View {
     /// The text view's content.
     public var string: String
     
-    public var body: [View] = []
+    public var body = EmptyViewContent()
     
     /// Creates a new text view with the given content.
     public init(_ string: String) {
         self.string = string
     }
-}
-
-extension Text: _View {
-    func build() -> _ViewGraphNode {
+    
+    public func asWidget(_ children: EmptyViewContent.Children) -> GtkWidget {
         let widget = GtkLabel(text: string)
-        return _ViewGraphNode(widget: widget, children: [])
+        return widget
     }
     
-    func update(_ node: inout _ViewGraphNode) {
-        let widget = node.widget as! GtkLabel
+    public func update(_ widget: GtkWidget) {
+        let widget = widget as! GtkLabel
         widget.text = string
     }
 }

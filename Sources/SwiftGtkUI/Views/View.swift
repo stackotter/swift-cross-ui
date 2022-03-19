@@ -2,11 +2,24 @@ import Foundation
 
 /// A view that can be displayed by SwiftGtkUI.
 public protocol View {
+    associatedtype Content: ViewContent
+
     /// The view's contents.
-    @ViewBuilder var body: [View] { get }
+    @ViewBuilder var body: Content { get }
+    
+    func asWidget(_ children: Content.Children) -> GtkWidget
+    
+    func update(_ widget: GtkWidget)
 }
 
-protocol _View {
-    func build() -> _ViewGraphNode
-    func update(_ node: inout _ViewGraphNode)
+public extension View {
+    func asWidget(_ children: Content.Children) -> GtkWidget {
+        let vStack = GtkBox(orientation: .vertical, spacing: 8)
+        for widget in children.widgets {
+            vStack.add(widget)
+        }
+        return vStack
+    }
+    
+    func update(_ widget: GtkWidget) {}
 }

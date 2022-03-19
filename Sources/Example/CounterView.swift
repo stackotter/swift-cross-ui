@@ -8,7 +8,7 @@ class CounterModel: ObservableObject {
 struct CounterView: StatefulView {
     var model = CounterModel()
     
-    var body: [View] {
+    var body: some ViewContent {
         Text("Count: \(model.count)")
         HStack {
             Button("Decrement") {

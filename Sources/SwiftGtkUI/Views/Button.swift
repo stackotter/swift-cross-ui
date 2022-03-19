@@ -5,25 +5,23 @@ public struct Button: View {
     /// The action to run when the button is clicked.
     public var action: () -> Void
     
-    public var body: [View] = []
+    public var body = EmptyViewContent()
     
     /// Creates a new button.
     public init(_ label: String, action: @escaping () -> Void = { }) {
         self.label = label
         self.action = action
     }
-}
-
-extension Button: _View {
-    func build() -> _ViewGraphNode {
+    
+    public func asWidget(_ children: EmptyViewContent.Children) -> GtkWidget {
         let widget = GtkButton()
         widget.label = label
         widget.clicked = { _ in action() }
-        return _ViewGraphNode(widget: widget, children: [])
+        return widget
     }
     
-    func update(_ node: inout _ViewGraphNode) {
-        let button = node.widget as! GtkButton
+    public func update(_ widget: GtkWidget) {
+        let button = widget as! GtkButton
         button.label = label
         button.clicked = { _ in action() }
     }
