@@ -1,3 +1,3 @@
-import Foundation
+import OpenCombine
 
 public protocol ViewModel: ObservableObject {}

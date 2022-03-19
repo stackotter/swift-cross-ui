@@ -27,3 +27,9 @@ public extension View {
     
     func update(_ widget: GtkWidget) {}
 }
+
+public extension View where Model == EmptyViewModel {
+    var model: Model {
+        EmptyViewModel()
+    }
+}

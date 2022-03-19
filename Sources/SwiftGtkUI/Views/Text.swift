@@ -1,7 +1,5 @@
 /// A text view.
 public struct Text: View {
-    public var model = EmptyViewModel()
-    
     /// The text view's content.
     public var string: String
     
