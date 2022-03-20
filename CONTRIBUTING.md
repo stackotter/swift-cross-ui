@@ -8,7 +8,7 @@
 
 ## How to do something useful
 
-1. Look through the issues on GitHub and choose an issue to work on (or open one if you have an idea)
+1. Look through [the issues on GitHub](https://github.com/stackotter/SwiftGtkUI/issues) and choose an issue to work on (or open one if you have an idea)
 2. Leave a comment on the issue to let people know that you're working on it
 3. Make necessary changes to the codebase
 4. Open a PR, making sure to reference the issue that your changes address
