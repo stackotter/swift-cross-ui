@@ -5,7 +5,6 @@ public protocol View {
     associatedtype Content: ViewContent
     associatedtype Model: ViewModel
     
-    /// The view's state model.
     var model: Model { get set }
 
     /// The view's contents.

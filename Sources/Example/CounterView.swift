@@ -1,8 +1,7 @@
 import SwiftGtkUI
-import OpenCombine
 
 class CounterModel: ViewModel {
-    @Published var count = 0
+    @Observed var count = 0
 }
 
 struct CounterView: View {

@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "OpenCombine",
-        "repositoryURL": "https://github.com/OpenCombine/OpenCombine",
-        "state": {
-          "branch": null,
-          "revision": "9cf67e363738dbab61b47fb5eaed78d3db31e5ee",
-          "version": "0.13.0"
-        }
-      },
-      {
         "package": "SwiftGtk",
         "repositoryURL": "https://github.com/stackotter/SwiftGtk",
         "state": {

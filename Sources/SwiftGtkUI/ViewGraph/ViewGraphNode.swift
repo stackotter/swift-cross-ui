@@ -1,17 +1,15 @@
-import OpenCombine
-
 public class ViewGraphNode<NodeView: View> {
     public var widget: GtkWidget
     public var children: NodeView.Content.Children
     public var view: NodeView
-    public var cancellable: AnyCancellable?
+    public var cancellable: Cancellable?
 
     public init(for view: NodeView) {
         children = NodeView.Content.Children(from: view.body)
         self.view = view
         widget = view.asWidget(children)
         
-        cancellable = view.model.objectWillChange.sink { _ in
+        cancellable = view.model.didChange.observe {
             self.update()
         }
     }

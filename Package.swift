@@ -17,16 +17,13 @@ let package = Package(
         .package(
             url: "https://github.com/stackotter/SwiftGtk",
             .branch("main")),
-        .package(
-            url: "https://github.com/OpenCombine/OpenCombine",
-            from: "0.13.0")
     ],
     targets: [
         .target(
             name: "SwiftGtkUI",
-            dependencies: ["SwiftGtk", "OpenCombine"]),
+            dependencies: ["SwiftGtk"]),
         .executableTarget(
             name: "Example",
-            dependencies: ["SwiftGtkUI", "OpenCombine"]),
+            dependencies: ["SwiftGtkUI"]),
     ]
 )
