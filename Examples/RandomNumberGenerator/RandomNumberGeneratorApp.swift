@@ -1,15 +1,15 @@
 import SwiftGtkUI
 
-class RNGState: AppState {
+class RandomNumberGeneratorState: AppState {
     @Observed var minNum = 0
     @Observed var maxNum = 100
     @Observed var randomNumber = 0
 }
 
 @main
-struct RandomNumberGenerator: App {
-    let identifier = "dev.stackotter.RandomNumberGenerator"
-    let state = RNGState()
+struct RandomNumberGeneratorApp: App {
+    let identifier = "dev.stackotter.RandomNumberGeneratorApp"
+    let state = RandomNumberGeneratorState()
     
     var body: some ViewContent {
         VStack {

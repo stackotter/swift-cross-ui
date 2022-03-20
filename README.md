@@ -33,12 +33,19 @@ struct CounterApp: App {
 }
 ```
 
-To run the example, run these commands:
+To run this example, run these commands:
 
 ```sh
 git clone https://github.com/stackotter/SwiftGtkUI
 cd SwiftGtkUI
-swift run Example
+swift run CounterExample
+```
+
+To see all of the examples, run these commands:
+
+```sh
+swift run CounterExample
+swift run RandomNumberGeneratorExample
 ```
 
 ## Dependencies

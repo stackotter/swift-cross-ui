@@ -10,11 +10,11 @@ let package = Package(
             name: "SwiftGtkUI",
             targets: ["SwiftGtkUI"]),
         .executable(
-            name: "Example",
-            targets: ["Example"]),
+            name: "CounterExample",
+            targets: ["CounterExample"]),
         .executable(
-            name: "RandomNumberGenerator",
-            targets: ["RandomNumberGenerator"]),
+            name: "RandomNumberGeneratorExample",
+            targets: ["RandomNumberGeneratorExample"]),
     ],
     dependencies: [
         .package(
@@ -33,11 +33,14 @@ let package = Package(
                 "ViewGraph/ViewGraphNodeChildren.swift.gyb",
                 "Views/ViewContent.swift.gyb"
             ]),
+        
         .executableTarget(
-            name: "Example",
-            dependencies: ["SwiftGtkUI"]),
+            name: "CounterExample",
+            dependencies: ["SwiftGtkUI"],
+            path: "Examples/Counter"),
         .executableTarget(
-            name: "RandomNumberGenerator",
-            dependencies: ["SwiftGtkUI"]),
+            name: "RandomNumberGeneratorExample",
+            dependencies: ["SwiftGtkUI"],
+            path: "Examples/RandomNumberGenerator"),
     ]
 )
