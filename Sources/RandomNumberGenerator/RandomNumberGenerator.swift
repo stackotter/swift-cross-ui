@@ -8,7 +8,7 @@ class RNGState: AppState {
 
 @main
 struct RandomNumberGenerator: App {
-    let identifier = "com.stackotter.RandomNumberGenerator"
+    let identifier = "dev.stackotter.RandomNumberGenerator"
     let state = RNGState()
     
     var body: some ViewContent {
