@@ -12,6 +12,9 @@ let package = Package(
         .executable(
             name: "Example",
             targets: ["Example"]),
+        .executable(
+            name: "RandomNumberGenerator",
+            targets: ["RandomNumberGenerator"]),
     ],
     dependencies: [
         .package(
@@ -32,6 +35,9 @@ let package = Package(
             ]),
         .executableTarget(
             name: "Example",
+            dependencies: ["SwiftGtkUI"]),
+        .executableTarget(
+            name: "RandomNumberGenerator",
             dependencies: ["SwiftGtkUI"]),
     ]
 )
