@@ -21,7 +21,15 @@ let package = Package(
     targets: [
         .target(
             name: "SwiftGtkUI",
-            dependencies: ["SwiftGtk", .product(name: "CGtk", package: "SwiftGtk")]),
+            dependencies: [
+                "SwiftGtk",
+                .product(name: "CGtk", package: "SwiftGtk")
+            ],
+            exclude: [
+                "Builders/ViewContentBuilder.swift.gyb",
+                "ViewGraph/ViewGraphNodeChildren.swift.gyb",
+                "Views/ViewContent.swift.gyb"
+            ]),
         .executableTarget(
             name: "Example",
             dependencies: ["SwiftGtkUI"]),

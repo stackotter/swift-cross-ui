@@ -9,6 +9,7 @@ struct CounterView: View {
     
     var body: some ViewContent {
         Button("Do nothing") {}
+        
         Text("Count: \(model.count)")
         HStack {
             Button("Decrement") {
