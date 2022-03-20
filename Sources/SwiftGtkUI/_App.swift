@@ -11,7 +11,7 @@ class _App<AppRoot: App> {
         
         gtkApp.run { window in
             window.title = "Hello, world!"
-            window.defaultSize = GtkSize(width: 400, height: 400)
+            window.defaultSize = GtkSize(width: 200, height: 150)
             window.resizable = true
             
             self.viewGraph = ViewGraph(for: self.app)

@@ -2,7 +2,44 @@
 
 A SwiftUI-like framework for creating cross-platform apps in Swift. It uses [SwiftGtk](https://github.com/stackotter/SwiftGtk) as its backend.
 
-**NOTE**: SwiftGtkUI does not attempt to replicate SwiftUI's API, it is merely inspired by SwiftUI. SwiftGtkUI is intended to be simpler than SwiftUI while also overcoming some of the limitations of SwiftUI. To achieve these goals, some fundamentally different design decisions were made which make exactly replicating the API impossible.
+This project is still very much a work-in-progress, proper documentation and tutorials will be created once the project has matured a bit, because otherwise I have to spend too much time keeping the documentation up-to-date.
+
+**NOTE**: SwiftGtkUI does not attempt to replicate SwiftUI's API because SwiftGtkUI is intended to be simpler than SwiftUI. However, many concepts from SwiftUI should still be transferrable.
+
+## Example
+
+Here's a simple example app demonstrate how easy it is to get started with SwiftGtkUI:
+
+```swift
+import SwiftGtkUI
+
+class CounterState: AppState {
+    @Observed var count = 0
+}
+
+@main
+struct CounterApp: App {
+    let identifier = "dev.stackotter.CounterApp"
+    
+    let state = CounterState()
+    
+    var body: some ViewContent {
+        HStack {
+            Button("-") { state.count -= 1 }
+            Text("Count: \(state.count)")
+            Button("+") { state.count += 1 }
+        }
+    }
+}
+```
+
+To run the example, run these commands:
+
+```sh
+git clone https://github.com/stackotter/SwiftGtkUI
+cd SwiftGtkUI
+swift run Example
+```
 
 ## Dependencies
 
@@ -43,15 +80,3 @@ let package = Package(
   ]
 )
 ```
-
-## Example
-
-To run the example:
-
-```sh
-git clone https://github.com/stackotter/SwiftGtkUI
-cd SwiftGtkUI
-swift run Example
-```
-
-The buttons don't do anything yet because support for stateful UIs hasn't been implemented.

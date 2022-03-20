@@ -8,7 +8,7 @@ public struct HStack<Content: ViewContent>: View {
     }
     
     public func asWidget(_ children: Content.Children) -> GtkWidget {
-        let hStack = GtkBox(orientation: .horizontal, spacing: 8)
+        let hStack = GtkButtonBox(orientation: .horizontal)
         for widget in children.widgets {
             hStack.add(widget)
         }
