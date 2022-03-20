@@ -34,7 +34,7 @@ public struct ViewGraphNodeChildren1<Child0: View>: ViewGraphNodeChildren {
     }
 
     public func update(with content: Content) {
-        print("TODO")
+        child0.update(with: content.view0)
     }
 }
 
@@ -57,7 +57,8 @@ public struct ViewGraphNodeChildren2<Child0: View, Child1: View>: ViewGraphNodeC
     }
 
     public func update(with content: Content) {
-        print("TODO")
+        child0.update(with: content.view0)
+        child1.update(with: content.view1)
     }
 }
 
@@ -83,7 +84,9 @@ public struct ViewGraphNodeChildren3<Child0: View, Child1: View, Child2: View>: 
     }
 
     public func update(with content: Content) {
-        print("TODO")
+        child0.update(with: content.view0)
+        child1.update(with: content.view1)
+        child2.update(with: content.view2)
     }
 }
 
@@ -112,7 +115,10 @@ public struct ViewGraphNodeChildren4<Child0: View, Child1: View, Child2: View, C
     }
 
     public func update(with content: Content) {
-        print("TODO")
+        child0.update(with: content.view0)
+        child1.update(with: content.view1)
+        child2.update(with: content.view2)
+        child3.update(with: content.view3)
     }
 }
 
@@ -144,7 +150,11 @@ public struct ViewGraphNodeChildren5<Child0: View, Child1: View, Child2: View, C
     }
 
     public func update(with content: Content) {
-        print("TODO")
+        child0.update(with: content.view0)
+        child1.update(with: content.view1)
+        child2.update(with: content.view2)
+        child3.update(with: content.view3)
+        child4.update(with: content.view4)
     }
 }
 
@@ -179,7 +189,12 @@ public struct ViewGraphNodeChildren6<Child0: View, Child1: View, Child2: View, C
     }
 
     public func update(with content: Content) {
-        print("TODO")
+        child0.update(with: content.view0)
+        child1.update(with: content.view1)
+        child2.update(with: content.view2)
+        child3.update(with: content.view3)
+        child4.update(with: content.view4)
+        child5.update(with: content.view5)
     }
 }
 
@@ -217,7 +232,13 @@ public struct ViewGraphNodeChildren7<Child0: View, Child1: View, Child2: View, C
     }
 
     public func update(with content: Content) {
-        print("TODO")
+        child0.update(with: content.view0)
+        child1.update(with: content.view1)
+        child2.update(with: content.view2)
+        child3.update(with: content.view3)
+        child4.update(with: content.view4)
+        child5.update(with: content.view5)
+        child6.update(with: content.view6)
     }
 }
 
@@ -258,7 +279,14 @@ public struct ViewGraphNodeChildren8<Child0: View, Child1: View, Child2: View, C
     }
 
     public func update(with content: Content) {
-        print("TODO")
+        child0.update(with: content.view0)
+        child1.update(with: content.view1)
+        child2.update(with: content.view2)
+        child3.update(with: content.view3)
+        child4.update(with: content.view4)
+        child5.update(with: content.view5)
+        child6.update(with: content.view6)
+        child7.update(with: content.view7)
     }
 }
 
@@ -302,7 +330,15 @@ public struct ViewGraphNodeChildren9<Child0: View, Child1: View, Child2: View, C
     }
 
     public func update(with content: Content) {
-        print("TODO")
+        child0.update(with: content.view0)
+        child1.update(with: content.view1)
+        child2.update(with: content.view2)
+        child3.update(with: content.view3)
+        child4.update(with: content.view4)
+        child5.update(with: content.view5)
+        child6.update(with: content.view6)
+        child7.update(with: content.view7)
+        child8.update(with: content.view8)
     }
 }
 
@@ -349,6 +385,15 @@ public struct ViewGraphNodeChildren10<Child0: View, Child1: View, Child2: View, 
     }
 
     public func update(with content: Content) {
-        print("TODO")
+        child0.update(with: content.view0)
+        child1.update(with: content.view1)
+        child2.update(with: content.view2)
+        child3.update(with: content.view3)
+        child4.update(with: content.view4)
+        child5.update(with: content.view5)
+        child6.update(with: content.view6)
+        child7.update(with: content.view7)
+        child8.update(with: content.view8)
+        child9.update(with: content.view9)
     }
 }

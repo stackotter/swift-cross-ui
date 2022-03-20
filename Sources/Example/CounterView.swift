@@ -1,5 +1,5 @@
-import Foundation
 import SwiftGtkUI
+import OpenCombine
 
 class CounterModel: ViewModel {
     @Published var count = 0

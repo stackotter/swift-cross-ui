@@ -15,7 +15,7 @@ public struct Text: View {
         return widget
     }
     
-    public func update(_ widget: GtkWidget) {
+    public func update(_ widget: GtkWidget, children: EmptyViewContent.Children) {
         let widget = widget as! GtkLabel
         widget.text = string
     }

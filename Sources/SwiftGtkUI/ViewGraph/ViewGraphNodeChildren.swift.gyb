@@ -49,12 +49,14 @@ public struct ViewGraphNodeChildren${i + 1}<${struct_type_parameters}>: ViewGrap
 
     public init(from content: Content) {
 % for (i, child) in enumerate(children):
-        self.${child.lower()} = ViewGraphNode(for: content.${"view%d" % i})
+        self.${child.lower()} = ViewGraphNode(for: content.view${i})
 % end
     }
 
     public func update(with content: Content) {
-        print("TODO")
+% for (i, child) in enumerate(children):
+        ${child.lower()}.update(with: content.view${i})
+% end
     }
 }
 % end

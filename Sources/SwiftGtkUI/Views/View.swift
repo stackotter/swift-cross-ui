@@ -6,14 +6,14 @@ public protocol View {
     associatedtype Model: ViewModel
     
     /// The view's state model.
-    var model: Model { get }
+    var model: Model { get set }
 
     /// The view's contents.
     @ViewContentBuilder var body: Content { get }
     
     func asWidget(_ children: Content.Children) -> GtkWidget
     
-    func update(_ widget: GtkWidget)
+    func update(_ widget: GtkWidget, children: Content.Children)
 }
 
 public extension View {
@@ -25,11 +25,15 @@ public extension View {
         return vStack
     }
     
-    func update(_ widget: GtkWidget) {}
+    func update(_ widget: GtkWidget, children: Content.Children) {}
 }
 
 public extension View where Model == EmptyViewModel {
     var model: Model {
-        EmptyViewModel()
+        get {
+            EmptyViewModel()
+        } set {
+            return
+        }
     }
 }

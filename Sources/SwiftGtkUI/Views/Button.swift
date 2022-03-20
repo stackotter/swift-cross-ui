@@ -20,7 +20,7 @@ public struct Button: View {
         return widget
     }
     
-    public func update(_ widget: GtkWidget) {
+    public func update(_ widget: GtkWidget, children: EmptyViewContent.Children) {
         let button = widget as! GtkButton
         button.label = label
         button.clicked = { _ in action() }
