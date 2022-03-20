@@ -9,14 +9,14 @@ public class ViewGraphNode<NodeView: View> {
         self.view = view
         widget = view.asWidget(children)
         
-        cancellable = view.model.didChange.observe {
+        cancellable = view.state.didChange.observe {
             self.update()
         }
     }
 
     public func update(with newView: NodeView) {
         var newView = newView
-        newView.model = view.model
+        newView.state = view.state
         view = newView
         
         update()

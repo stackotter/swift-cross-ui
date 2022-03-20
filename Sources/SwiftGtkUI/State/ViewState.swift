@@ -1,10 +1,10 @@
 import Foundation
 
-public protocol ViewModel: AnyObject {
+public protocol ViewState: AnyObject {
     var didChange: Publisher { get }
 }
 
-extension ViewModel {
+extension ViewState {
     public var didChange: Publisher {
         let publisher = Publisher()
         var mirror: Mirror? = Mirror(reflecting: self)

@@ -1,22 +1,22 @@
 import SwiftGtkUI
 
-class CounterModel: ViewModel {
+class CounterState: ViewState {
     @Observed var count = 0
 }
 
 struct CounterView: View {
-    var model = CounterModel()
+    var state = CounterState()
     
     var body: some ViewContent {
         Button("Do nothing") {}
         
-        Text("Count: \(model.count)")
+        Text("Count: \(state.count)")
         HStack {
             Button("Decrement") {
-                model.count -= 1
+                state.count -= 1
             }
             Button("Increment") {
-                model.count += 1
+                state.count += 1
             }
         }
     }

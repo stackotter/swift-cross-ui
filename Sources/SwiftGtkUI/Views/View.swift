@@ -3,9 +3,9 @@ import Foundation
 /// A view that can be displayed by SwiftGtkUI.
 public protocol View {
     associatedtype Content: ViewContent
-    associatedtype Model: ViewModel
+    associatedtype State: ViewState
     
-    var model: Model { get set }
+    var state: State { get set }
 
     /// The view's contents.
     @ViewContentBuilder var body: Content { get }
@@ -27,10 +27,10 @@ public extension View {
     func update(_ widget: GtkWidget, children: Content.Children) {}
 }
 
-public extension View where Model == EmptyViewModel {
-    var model: Model {
+public extension View where State == EmptyViewState {
+    var state: State {
         get {
-            EmptyViewModel()
+            EmptyViewState()
         } set {
             return
         }
