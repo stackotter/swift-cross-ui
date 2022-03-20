@@ -6,6 +6,7 @@ public struct Observed<Value>: PublishedValue {
     
     public var wrappedValue: Value {
         didSet {
+            print("Value did change")
             valueDidChange()
         }
     }

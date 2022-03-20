@@ -16,12 +16,12 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/stackotter/SwiftGtk",
-            .branch("main")),
+            .branch("main"))
     ],
     targets: [
         .target(
             name: "SwiftGtkUI",
-            dependencies: ["SwiftGtk"]),
+            dependencies: ["SwiftGtk", .product(name: "CGtk", package: "SwiftGtk")]),
         .executableTarget(
             name: "Example",
             dependencies: ["SwiftGtkUI"]),
