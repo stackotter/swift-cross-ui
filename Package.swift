@@ -3,12 +3,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "SwiftGtkUI",
+    name: "swift-cross-ui",
     platforms: [.macOS(.v10_15)],
     products: [
         .library(
-            name: "SwiftGtkUI",
-            targets: ["SwiftGtkUI"]),
+            name: "SwiftCrossUI",
+            targets: ["SwiftCrossUI"]),
         .executable(
             name: "CounterExample",
             targets: ["CounterExample"]),
@@ -23,7 +23,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "SwiftGtkUI",
+            name: "SwiftCrossUI",
             dependencies: [
                 "SwiftGtk",
                 .product(name: "CGtk", package: "SwiftGtk")
@@ -36,11 +36,11 @@ let package = Package(
         
         .executableTarget(
             name: "CounterExample",
-            dependencies: ["SwiftGtkUI"],
+            dependencies: ["SwiftCrossUI"],
             path: "Examples/Counter"),
         .executableTarget(
             name: "RandomNumberGeneratorExample",
-            dependencies: ["SwiftGtkUI"],
+            dependencies: ["SwiftCrossUI"],
             path: "Examples/RandomNumberGenerator"),
     ]
 )

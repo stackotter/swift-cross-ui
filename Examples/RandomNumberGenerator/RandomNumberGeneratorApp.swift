@@ -1,4 +1,4 @@
-import SwiftGtkUI
+import SwiftCrossUI
 
 class RandomNumberGeneratorState: AppState {
     @Observed var minNum = 0

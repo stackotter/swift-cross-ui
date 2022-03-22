@@ -1,6 +1,6 @@
 import Foundation
 
-/// A view that can be displayed by SwiftGtkUI.
+/// A view that can be displayed by SwiftCrossUI.
 public protocol View {
     associatedtype Content: ViewContent
     associatedtype State: ViewState

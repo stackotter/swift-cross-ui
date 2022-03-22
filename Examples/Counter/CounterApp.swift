@@ -1,4 +1,4 @@
-import SwiftGtkUI
+import SwiftCrossUI
 
 class CounterState: AppState {
     @Observed var count = 0

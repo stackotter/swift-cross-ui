@@ -2,19 +2,19 @@
 
 ## Environment setup
 
-1. Fork and clone SwiftGtkUI
+1. Fork and clone SwiftCrossUI
 2. Install the required dependencies as detailed in the [readme](README.md)
 3. Open Package.swift to open the package in Xcode and you're ready to code, have fun
 
 ## How to do something useful
 
-1. Look through [the issues on GitHub](https://github.com/stackotter/SwiftGtkUI/issues) and choose an issue to work on (or open one if you have an idea)
+1. Look through [the issues on GitHub](https://github.com/stackotter/swift-cross-ui/issues) and choose an issue to work on (or open one if you have an idea)
 2. Leave a comment on the issue to let people know that you're working on it
 3. Make necessary changes to the codebase
 4. Open a PR, making sure to reference the issue that your changes address
 5. If a maintainer requests changes, implement the changes
 6. A maintainer will merge the changes and the issue can be closed
-7. Thank you for improving SwiftGtkUI
+7. Thank you for improving SwiftCrossUI!
 
 ## Before opening a PR
 
@@ -32,7 +32,7 @@ Here are a few things to keep in mind while working on the code.
 
 ## Codestyle
 
-To make working on SwiftGtk and SwiftGtkUI at the same time easier, SwiftGtkUI uses the same indentation as [SwiftGtk](https://github.com/stackotter/SwiftGtk).
+To make working on SwiftGtk and SwiftCrossUI at the same time easier, SwiftCrossUI uses the same indentation as [SwiftGtk](https://github.com/stackotter/SwiftGtk).
 
 - 4 space tabs
 - Add comments to any code you think would need explaining to other contributors

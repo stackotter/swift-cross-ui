@@ -1,17 +1,17 @@
-# SwiftGtkUI
+# SwiftCrossUI
 
 A SwiftUI-like framework for creating cross-platform apps in Swift. It uses [SwiftGtk](https://github.com/stackotter/SwiftGtk) as its backend.
 
 This project is still very much a work-in-progress, proper documentation and tutorials will be created once the project has matured a bit, because otherwise I have to spend too much time keeping the documentation up-to-date.
 
-**NOTE**: SwiftGtkUI does not attempt to replicate SwiftUI's API because SwiftGtkUI is intended to be simpler than SwiftUI. However, many concepts from SwiftUI should still be transferrable.
+**NOTE**: SwiftCrossUI does not attempt to replicate SwiftUI's API because SwiftCrossUI is intended to be simpler than SwiftUI. However, many concepts from SwiftUI should still be transferrable.
 
 ## Example
 
-Here's a simple example app demonstrate how easy it is to get started with SwiftGtkUI:
+Here's a simple example app demonstrate how easy it is to get started with SwiftCrossUI:
 
 ```swift
-import SwiftGtkUI
+import SwiftCrossUI
 
 class CounterState: AppState {
     @Observed var count = 0
@@ -36,8 +36,8 @@ struct CounterApp: App {
 To run this example, run these commands:
 
 ```sh
-git clone https://github.com/stackotter/SwiftGtkUI
-cd SwiftGtkUI
+git clone https://github.com/stackotter/swift-cross-ui
+cd swift-cross-ui
 swift run CounterExample
 ```
 
@@ -72,7 +72,7 @@ sudo apt install libgtk-3-dev clang
 
 ## Usage
 
-Just add SwiftGtkUI as a dependency in your `Package.swift`. See below for an example package manifest:
+Just add SwiftCrossUI as a dependency in your `Package.swift`. See below for an example package manifest:
 
 ```swift
 import PackageDescription
@@ -80,10 +80,15 @@ import PackageDescription
 let package = Package(
   name: "Example",
   dependencies: [
-    .package(url: "https://github.com/stackotter/SwiftGtkUI", .branch("main"))
+    .package(url: "https://github.com/stackotter/swift-cross-ui", .branch("main"))
   ],
   targets: [
-    .executableTarget(name: "Example", dependencies: ["SwiftGtkUI"])
+    .executableTarget(
+      name: "Example",
+      dependencies: [
+        .product(name: "SwiftCrossUI", package: "swift-cross-ui")
+      ]
+    )
   ]
 )
 ```
