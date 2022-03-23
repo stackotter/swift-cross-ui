@@ -10,7 +10,8 @@ class _App<AppRoot: App> {
         let gtkApp = GtkApplication(applicationId: app.identifier)
         
         gtkApp.run { window in
-            window.title = "Hello, world!"
+            window.title = self.app.windowTitle
+            //window.title = "Hello, world!"
             window.defaultSize = GtkSize(width: 200, height: 150)
             window.resizable = true
             
