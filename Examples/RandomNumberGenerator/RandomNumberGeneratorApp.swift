@@ -9,8 +9,10 @@ class RandomNumberGeneratorState: AppState {
 @main
 struct RandomNumberGeneratorApp: App {
     let identifier = "dev.stackotter.RandomNumberGeneratorApp"
+    
     let state = RandomNumberGeneratorState()
-    let windowTitle = "Random Number Generator"
+    
+    let windowProperties = WindowProperties(title: "Random Number Generator")
     
     var body: some ViewContent {
         VStack {

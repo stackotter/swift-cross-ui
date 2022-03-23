@@ -10,7 +10,7 @@ struct CounterApp: App {
     
     let state = CounterState()
     
-    let windowTitle = "CounterApp"
+    let windowProperties = WindowProperties(title: "CounterApp")
     
     var body: some ViewContent {
         HStack {
