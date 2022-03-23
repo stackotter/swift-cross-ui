@@ -48,6 +48,7 @@ To see all of the examples, run these commands:
 ```sh
 swift run CounterExample
 swift run RandomNumberGeneratorExample
+swift run WindowPropertiesExample
 ```
 
 ## Dependencies
