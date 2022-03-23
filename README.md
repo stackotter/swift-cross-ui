@@ -23,6 +23,8 @@ struct CounterApp: App {
     
     let state = CounterState()
     
+    let windowTitle = "CounterApp"
+    
     var body: some ViewContent {
         HStack {
             Button("-") { state.count -= 1 }
