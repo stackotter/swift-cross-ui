@@ -9,6 +9,9 @@ public protocol App {
     /// The application's state.
     var state: State { get }
     
+    /// The window's properties.
+    var windowProperties: WindowProperties { get }
+    
     /// The contents of the application's main window.
     @ViewContentBuilder var body: Content { get }
     

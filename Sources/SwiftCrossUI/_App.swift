@@ -10,9 +10,14 @@ class _App<AppRoot: App> {
         let gtkApp = GtkApplication(applicationId: app.identifier)
         
         gtkApp.run { window in
-            window.title = "Hello, world!"
-            window.defaultSize = GtkSize(width: 200, height: 150)
-            window.resizable = true
+            /// The title of the window.
+            window.title = self.app.windowProperties.title
+            /// The default width and height of the window.
+            window.defaultSize = GtkSize(
+                width: self.app.windowProperties.defaultWidth,
+                height: self.app.windowProperties.defaultHeight)
+            /// Whether or not the window's size can be changed.
+            window.resizable = self.app.windowProperties.resizable
             
             self.viewGraph = ViewGraph(for: self.app)
             

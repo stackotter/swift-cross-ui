@@ -9,11 +9,14 @@ class RandomNumberGeneratorState: AppState {
 @main
 struct RandomNumberGeneratorApp: App {
     let identifier = "dev.stackotter.RandomNumberGeneratorApp"
+    
     let state = RandomNumberGeneratorState()
+    
+    let windowProperties = WindowProperties(title: "Random Number Generator")
     
     var body: some ViewContent {
         VStack {
-            Text("") // Placeholder until padding is available
+            Text("") // Placeholder until .padding() is available
             Text("Random Number: \(state.randomNumber)")
             Button("Generate") {
                 state.randomNumber = Int.random(in: state.minNum...state.maxNum)
@@ -32,7 +35,7 @@ struct RandomNumberGeneratorApp: App {
                 Button("+1") { state.maxNum += 1 }
                 Button("+5") { state.maxNum += 5 }
             }
-            Text("") // Placeholder until padding is available
+            Text("") // Placeholder until .padding() is available
         }
     }
 }
