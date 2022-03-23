@@ -13,8 +13,9 @@ class _App<AppRoot: App> {
             /// The title of the window.
             window.title = self.app.windowProperties.title
             /// The default width and height of the window.
-            window.defaultSize = GtkSize(width: self.app.windowProperties.defaultWidth,
-                                         height: self.app.windowProperties.defaultHeight)
+            window.defaultSize = GtkSize(
+                width: self.app.windowProperties.defaultWidth,
+                height: self.app.windowProperties.defaultHeight)
             /// Whether or not the window's size can be changed.
             window.resizable = self.app.windowProperties.resizable
             
