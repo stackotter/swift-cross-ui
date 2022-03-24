@@ -2,6 +2,21 @@
 
 import PackageDescription
 
+var dependencies: [Package.Dependency] = [
+    .package(
+        url: "https://github.com/stackotter/SwiftGtk",
+        .branch("main"))
+]
+
+#if swift(>=5.6)
+// Add the documentation compiler plugin if possible
+dependencies.append(
+    .package(
+        url: "https://github.com/apple/swift-docc-plugin",
+        from: "1.0.0")
+)
+#endif
+
 let package = Package(
     name: "swift-cross-ui",
     platforms: [.macOS(.v10_15)],
@@ -16,11 +31,7 @@ let package = Package(
             name: "RandomNumberGeneratorExample",
             targets: ["RandomNumberGeneratorExample"]),
     ],
-    dependencies: [
-        .package(
-            url: "https://github.com/stackotter/SwiftGtk",
-            .branch("main"))
-    ],
+    dependencies: dependencies,
     targets: [
         .target(
             name: "SwiftCrossUI",
