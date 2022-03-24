@@ -23,6 +23,8 @@ struct CounterApp: App {
     
     let state = CounterState()
     
+    let windowProperties = WindowProperties(title: "CounterApp")
+    
     var body: some ViewContent {
         HStack {
             Button("-") { state.count -= 1 }
@@ -46,6 +48,7 @@ To see all of the examples, run these commands:
 ```sh
 swift run CounterExample
 swift run RandomNumberGeneratorExample
+swift run WindowPropertiesExample
 ```
 
 ## Dependencies

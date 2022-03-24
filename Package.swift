@@ -30,6 +30,9 @@ let package = Package(
         .executable(
             name: "RandomNumberGeneratorExample",
             targets: ["RandomNumberGeneratorExample"]),
+        .executable(
+            name: "WindowPropertiesExample",
+            targets: ["WindowPropertiesExample"])
     ],
     dependencies: dependencies,
     targets: [
@@ -53,5 +56,9 @@ let package = Package(
             name: "RandomNumberGeneratorExample",
             dependencies: ["SwiftCrossUI"],
             path: "Examples/RandomNumberGenerator"),
+        .executableTarget(
+            name: "WindowPropertiesExample",
+            dependencies: ["SwiftCrossUI"],
+            path: "Examples/WindowProperties")
     ]
 )
