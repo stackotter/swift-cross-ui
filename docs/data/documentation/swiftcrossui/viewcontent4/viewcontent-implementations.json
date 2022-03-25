@@ -1,1 +1,218 @@
-{"variants":[{"paths":["\/documentation\/swiftcrossui\/viewcontent4\/viewcontent-implementations"],"traits":[{"interfaceLanguage":"swift"}]}],"schemaVersion":{"major":0,"minor":2,"patch":0},"sections":[],"identifier":{"url":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4\/ViewContent-Implementations","interfaceLanguage":"swift"},"abstract":[{"type":"text","text":"No overview available."}],"kind":"article","metadata":{"modules":[{"name":"SwiftCrossUI"}],"role":"collectionGroup","title":"ViewContent Implementations"},"hierarchy":{"paths":[["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4"]]},"topicSections":[{"title":"Type Aliases","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4\/Children"],"generated":true}],"references":{"doc://SwiftCrossUI/documentation/SwiftCrossUI":{"role":"collection","title":"SwiftCrossUI","abstract":[{"type":"text","text":"Create cross-platform desktop apps for macOS, Linux and Windows."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent4":{"role":"symbol","title":"ViewContent4","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContent4"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContent4"}],"url":"\/documentation\/swiftcrossui\/viewcontent4"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent4/Children":{"conformance":{"constraints":[{"type":"codeVoice","code":"View0"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View1"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View2"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", and "},{"type":"codeVoice","code":"View3"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":"."}],"availabilityPrefix":[{"type":"text","text":"Available when"}],"conformancePrefix":[{"type":"text","text":"Conforms when"}]},"role":"symbol","title":"ViewContent4.Children","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"Children"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4\/Children","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"Children"}],"url":"\/documentation\/swiftcrossui\/viewcontent4\/children"}}}
+{
+  "abstract" : [
+    {
+      "text" : "No overview available.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4\/ViewContent-Implementations"
+  },
+  "kind" : "article",
+  "metadata" : {
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "role" : "collectionGroup",
+    "title" : "ViewContent Implementations"
+  },
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4\/Children"
+      ],
+      "title" : "Type Aliases"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/viewcontent4\/viewcontent-implementations"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent4": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent4"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent4"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent4",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent4"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent4/Children": {
+  "abstract" : [
+
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "View0",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ", ",
+        "type" : "text"
+      },
+      {
+        "code" : "View1",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ", ",
+        "type" : "text"
+      },
+      {
+        "code" : "View2",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ", and ",
+        "type" : "text"
+      },
+      {
+        "code" : "View3",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Children"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4\/Children",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Children"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent4.Children",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent4\/children"
+}
+}
+}

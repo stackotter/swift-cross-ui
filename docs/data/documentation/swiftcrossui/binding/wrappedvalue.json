@@ -1,1 +1,213 @@
-{"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"wrappedValue"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Value"},{"kind":"text","text":" { "},{"kind":"keyword","text":"get"},{"kind":"text","text":" "},{"kind":"keyword","text":"set"},{"kind":"text","text":" }"}],"languages":["swift"],"platforms":["macOS"]}]}],"schemaVersion":{"major":0,"minor":2,"patch":0},"sections":[],"variants":[{"paths":["\/documentation\/swiftcrossui\/binding\/wrappedvalue"],"traits":[{"interfaceLanguage":"swift"}]}],"identifier":{"url":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding\/wrappedValue","interfaceLanguage":"swift"},"abstract":[{"type":"text","text":"No overview available."}],"kind":"symbol","metadata":{"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"wrappedValue"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Value"}],"title":"wrappedValue","roleHeading":"Instance Property","role":"symbol","symbolKind":"property","externalID":"s:12SwiftCrossUI7BindingC12wrappedValuexvp","modules":[{"name":"SwiftCrossUI"}]},"hierarchy":{"paths":[["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding"]]},"references":{"doc://SwiftCrossUI/documentation/SwiftCrossUI":{"role":"collection","title":"SwiftCrossUI","abstract":[{"type":"text","text":"Create cross-platform desktop apps for macOS, Linux and Windows."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/Binding/wrappedValue":{"role":"symbol","title":"wrappedValue","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"wrappedValue"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Value"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding\/wrappedValue","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui\/binding\/wrappedvalue"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/Binding":{"role":"symbol","title":"Binding","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"Binding"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"Binding"}],"url":"\/documentation\/swiftcrossui\/binding"}}}
+{
+  "abstract" : [
+    {
+      "text" : "No overview available.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding\/wrappedValue"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:12SwiftCrossUI7BindingC12wrappedValuexvp",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "var"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "wrappedValue"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "Value"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Property",
+    "symbolKind" : "property",
+    "title" : "wrappedValue"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "Linux"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "var"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "wrappedValue"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Value"
+            },
+            {
+              "kind" : "text",
+              "text" : " { "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "get"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "set"
+            },
+            {
+              "kind" : "text",
+              "text" : " }"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/binding\/wrappedvalue"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Binding": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Binding"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Binding"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Binding",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/binding"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Binding/wrappedValue": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "wrappedValue"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Value"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding\/wrappedValue",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "wrappedValue",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/binding\/wrappedvalue"
+}
+}
+}

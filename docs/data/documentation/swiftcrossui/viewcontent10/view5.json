@@ -1,1 +1,193 @@
-{"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"view5"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"View5"}],"languages":["swift"],"platforms":["macOS"]}]}],"schemaVersion":{"major":0,"minor":2,"patch":0},"sections":[],"variants":[{"paths":["\/documentation\/swiftcrossui\/viewcontent10\/view5"],"traits":[{"interfaceLanguage":"swift"}]}],"identifier":{"url":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/view5","interfaceLanguage":"swift"},"abstract":[{"type":"text","text":"No overview available."}],"kind":"symbol","metadata":{"fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"view5"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"View5"}],"title":"view5","roleHeading":"Instance Property","role":"symbol","symbolKind":"property","externalID":"s:12SwiftCrossUI13ViewContent10V5view5q3_vp","modules":[{"name":"SwiftCrossUI"}]},"hierarchy":{"paths":[["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10"]]},"references":{"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10/view5":{"role":"symbol","title":"view5","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"view5"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"View5"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/view5","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui\/viewcontent10\/view5"},"doc://SwiftCrossUI/documentation/SwiftCrossUI":{"role":"collection","title":"SwiftCrossUI","abstract":[{"type":"text","text":"Create cross-platform desktop apps for macOS, Linux and Windows."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10":{"role":"symbol","title":"ViewContent10","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContent10"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContent10"}],"url":"\/documentation\/swiftcrossui\/viewcontent10"}}}
+{
+  "abstract" : [
+    {
+      "text" : "No overview available.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/view5"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:12SwiftCrossUI13ViewContent10V5view5q3_vp",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "var"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "view5"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "View5"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Property",
+    "symbolKind" : "property",
+    "title" : "view5"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "Linux"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "var"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "view5"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "View5"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/viewcontent10\/view5"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent10"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent10"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent10",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent10"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10/view5": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "view5"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "View5"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/view5",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "view5",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent10\/view5"
+}
+}
+}

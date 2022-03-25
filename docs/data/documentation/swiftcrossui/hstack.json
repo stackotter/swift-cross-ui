@@ -1,1 +1,430 @@
-{"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"HStack"},{"kind":"text","text":"<"},{"kind":"genericParameter","text":"Content"},{"kind":"text","text":"> "},{"kind":"keyword","text":"where"},{"kind":"text","text":" "},{"kind":"typeIdentifier","text":"Content"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent","preciseIdentifier":"s:12SwiftCrossUI11ViewContentP","text":"ViewContent"}],"languages":["swift"],"platforms":["macOS"]}]}],"schemaVersion":{"major":0,"minor":2,"patch":0},"sections":[],"variants":[{"paths":["\/documentation\/swiftcrossui\/hstack"],"traits":[{"interfaceLanguage":"swift"}]}],"relationshipsSections":[{"identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View"],"kind":"relationships","title":"Conforms To","type":"conformsTo"}],"identifier":{"url":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack","interfaceLanguage":"swift"},"abstract":[{"type":"text","text":"A horizontally oriented container. Similar to a "},{"type":"codeVoice","code":"HStack"},{"type":"text","text":" in SwiftUI."}],"kind":"symbol","metadata":{"fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"HStack"}],"title":"HStack","roleHeading":"Structure","role":"symbol","symbolKind":"struct","externalID":"s:12SwiftCrossUI6HStackV","modules":[{"name":"SwiftCrossUI"}],"navigatorTitle":[{"kind":"identifier","text":"HStack"}]},"hierarchy":{"paths":[["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"]]},"topicSections":[{"title":"Initializers","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/init(_:)"]},{"title":"Instance Properties","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/body"]},{"title":"Instance Methods","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/asWidget(_:)"]},{"title":"Default Implementations","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/View-Implementations"],"generated":true}],"references":{"doc://SwiftCrossUI/documentation/SwiftCrossUI":{"role":"collection","title":"SwiftCrossUI","abstract":[{"type":"text","text":"Create cross-platform desktop apps for macOS, Linux and Windows."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack/body":{"role":"symbol","title":"body","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"body"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Content"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/body","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui\/hstack\/body"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack/View-Implementations":{"role":"collectionGroup","title":"View Implementations","abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/View-Implementations","kind":"article","type":"topic","url":"\/documentation\/swiftcrossui\/hstack\/view-implementations"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/View":{"role":"symbol","title":"View","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"View"}],"abstract":[{"type":"text","text":"A view that can be displayed by SwiftCrossUI."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"View"}],"url":"\/documentation\/swiftcrossui\/view"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack/init(_:)":{"role":"symbol","title":"init(_:)","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"(() -> "},{"kind":"typeIdentifier","text":"Content"},{"kind":"text","text":")"}],"abstract":[{"type":"text","text":"Creates a new HStack."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/init(_:)","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui\/hstack\/init(_:)"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent":{"role":"symbol","title":"ViewContent","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContent"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContent"}],"url":"\/documentation\/swiftcrossui\/viewcontent"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack/asWidget(_:)":{"role":"symbol","title":"asWidget(_:)","fragments":[{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"asWidget"},{"kind":"text","text":"("},{"kind":"typeIdentifier","text":"Content"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"Children"},{"kind":"text","text":") -> "},{"kind":"typeIdentifier","text":"GtkWidget","preciseIdentifier":"s:12SwiftCrossUI9GtkWidgeta"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/asWidget(_:)","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui\/hstack\/aswidget(_:)"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack":{"role":"symbol","title":"HStack","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"HStack"}],"abstract":[{"type":"text","text":"A horizontally oriented container. Similar to a "},{"type":"codeVoice","code":"HStack"},{"type":"text","text":" in SwiftUI."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"HStack"}],"url":"\/documentation\/swiftcrossui\/hstack"}}}
+{
+  "abstract" : [
+    {
+      "text" : "A horizontally oriented container. Similar to a ",
+      "type" : "text"
+    },
+    {
+      "code" : "HStack",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " in SwiftUI.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:12SwiftCrossUI6HStackV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "struct"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "HStack"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "HStack"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Structure",
+    "symbolKind" : "struct",
+    "title" : "HStack"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "Linux"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "struct"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "HStack"
+            },
+            {
+              "kind" : "text",
+              "text" : "<"
+            },
+            {
+              "kind" : "genericParameter",
+              "text" : "Content"
+            },
+            {
+              "kind" : "text",
+              "text" : "> "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "where"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Content"
+            },
+            {
+              "kind" : "text",
+              "text" : " : "
+            },
+            {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI11ViewContentP",
+              "text" : "ViewContent"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "relationshipsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View"
+      ],
+      "kind" : "relationships",
+      "title" : "Conforms To",
+      "type" : "conformsTo"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/init(_:)"
+      ],
+      "title" : "Initializers"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/body"
+      ],
+      "title" : "Instance Properties"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/asWidget(_:)"
+      ],
+      "title" : "Instance Methods"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/View-Implementations"
+      ],
+      "title" : "Default Implementations"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/hstack"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack": {
+  "abstract" : [
+    {
+      "text" : "A horizontally oriented container. Similar to a ",
+      "type" : "text"
+    },
+    {
+      "code" : "HStack",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " in SwiftUI.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "HStack"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "HStack"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "HStack",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hstack"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack/View-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/View-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "View Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hstack\/view-implementations"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack/asWidget(_:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "asWidget"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Content"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Children"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
+      "text" : "GtkWidget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/asWidget(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "asWidget(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hstack\/aswidget(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack/body": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "body"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Content"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/body",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "body",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hstack\/body"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack/init(_:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a new HStack.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "(() -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Content"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/init(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hstack\/init(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
+  "abstract" : [
+    {
+      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "View"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "View",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent"
+}
+}
+}

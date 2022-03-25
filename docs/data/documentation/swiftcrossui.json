@@ -1,1 +1,1795 @@
-{"variants":[{"paths":["\/documentation\/swiftcrossui"],"traits":[{"interfaceLanguage":"swift"}]}],"schemaVersion":{"major":0,"minor":2,"patch":0},"sections":[],"identifier":{"url":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI","interfaceLanguage":"swift"},"abstract":[{"type":"text","text":"Create cross-platform desktop apps for macOS, Linux and Windows."}],"kind":"symbol","metadata":{"roleHeading":"Framework","externalID":"SwiftCrossUI","title":"SwiftCrossUI","symbolKind":"module","role":"collection","modules":[{"name":"SwiftCrossUI"}]},"hierarchy":{"paths":[[]]},"topicSections":[{"title":"Classes","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Cancellable","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraph","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode"]},{"title":"Protocols","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PublishedValue","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState"]},{"title":"Structures","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent1","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent2","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent3","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent6","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent7","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent8","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent9","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren1","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren2","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren3","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren4","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren5","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren6","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren7","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren8","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren9","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties"]},{"title":"Type Aliases","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppState","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyAppState","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkApplication","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBox","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkButton","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkButtonBox","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkContainer","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkLabel","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkSize","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWindow"]}],"references":{"doc://SwiftCrossUI/documentation/SwiftCrossUI/View":{"role":"symbol","title":"View","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"View"}],"abstract":[{"type":"text","text":"A view that can be displayed by SwiftCrossUI."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"View"}],"url":"\/documentation\/swiftcrossui\/view"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren9":{"role":"symbol","title":"ViewGraphNodeChildren9","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewGraphNodeChildren9"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren9","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewGraphNodeChildren9"}],"url":"\/documentation\/swiftcrossui\/viewgraphnodechildren9"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent7":{"role":"symbol","title":"ViewContent7","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContent7"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent7","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContent7"}],"url":"\/documentation\/swiftcrossui\/viewcontent7"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren6":{"role":"symbol","title":"ViewGraphNodeChildren6","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewGraphNodeChildren6"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren6","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewGraphNodeChildren6"}],"url":"\/documentation\/swiftcrossui\/viewgraphnodechildren6"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent2":{"role":"symbol","title":"ViewContent2","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContent2"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent2","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContent2"}],"url":"\/documentation\/swiftcrossui\/viewcontent2"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkButtonBox":{"role":"symbol","title":"GtkButtonBox","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"GtkButtonBox"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkButtonBox","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"GtkButtonBox"}],"url":"\/documentation\/swiftcrossui\/gtkbuttonbox"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren4":{"role":"symbol","title":"ViewGraphNodeChildren4","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewGraphNodeChildren4"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren4","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewGraphNodeChildren4"}],"url":"\/documentation\/swiftcrossui\/viewgraphnodechildren4"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkContainer":{"role":"symbol","title":"GtkContainer","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"GtkContainer"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkContainer","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"GtkContainer"}],"url":"\/documentation\/swiftcrossui\/gtkcontainer"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/App":{"role":"symbol","title":"App","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"App"}],"abstract":[{"type":"text","text":"An application."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"App"}],"url":"\/documentation\/swiftcrossui\/app"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties":{"role":"symbol","title":"WindowProperties","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"WindowProperties"}],"abstract":[{"type":"text","text":"The basic properties for a window."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"WindowProperties"}],"url":"\/documentation\/swiftcrossui\/windowproperties"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent1":{"role":"symbol","title":"ViewContent1","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContent1"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent1","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContent1"}],"url":"\/documentation\/swiftcrossui\/viewcontent1"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent9":{"role":"symbol","title":"ViewContent9","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContent9"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent9","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContent9"}],"url":"\/documentation\/swiftcrossui\/viewcontent9"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack":{"role":"symbol","title":"HStack","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"HStack"}],"abstract":[{"type":"text","text":"A horizontally oriented container. Similar to a "},{"type":"codeVoice","code":"HStack"},{"type":"text","text":" in SwiftUI."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"HStack"}],"url":"\/documentation\/swiftcrossui\/hstack"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContentBuilder":{"role":"symbol","title":"ViewContentBuilder","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContentBuilder"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContentBuilder"}],"url":"\/documentation\/swiftcrossui\/viewcontentbuilder"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/Button":{"role":"symbol","title":"Button","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"Button"}],"abstract":[{"type":"text","text":"A button view."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"Button"}],"url":"\/documentation\/swiftcrossui\/button"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent6":{"role":"symbol","title":"ViewContent6","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContent6"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent6","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContent6"}],"url":"\/documentation\/swiftcrossui\/viewcontent6"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/Binding":{"role":"symbol","title":"Binding","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"Binding"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"Binding"}],"url":"\/documentation\/swiftcrossui\/binding"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren":{"role":"symbol","title":"ViewGraphNodeChildren","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewGraphNodeChildren"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewGraphNodeChildren"}],"url":"\/documentation\/swiftcrossui\/viewgraphnodechildren"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppState":{"role":"symbol","title":"AppState","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"AppState"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppState","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"AppState"}],"url":"\/documentation\/swiftcrossui\/appstate"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkLabel":{"role":"symbol","title":"GtkLabel","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"GtkLabel"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkLabel","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"GtkLabel"}],"url":"\/documentation\/swiftcrossui\/gtklabel"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack":{"role":"symbol","title":"VStack","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"VStack"}],"abstract":[{"type":"text","text":"A vertically oriented container. Similar to a "},{"type":"codeVoice","code":"VStack"},{"type":"text","text":" in SwiftUI."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"VStack"}],"url":"\/documentation\/swiftcrossui\/vstack"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/PublishedValue":{"role":"symbol","title":"PublishedValue","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"PublishedValue"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PublishedValue","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"PublishedValue"}],"url":"\/documentation\/swiftcrossui\/publishedvalue"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren8":{"role":"symbol","title":"ViewGraphNodeChildren8","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewGraphNodeChildren8"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren8","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewGraphNodeChildren8"}],"url":"\/documentation\/swiftcrossui\/viewgraphnodechildren8"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode":{"role":"symbol","title":"ViewGraphNode","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewGraphNode"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewGraphNode"}],"url":"\/documentation\/swiftcrossui\/viewgraphnode"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkBox":{"role":"symbol","title":"GtkBox","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"GtkBox"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBox","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"GtkBox"}],"url":"\/documentation\/swiftcrossui\/gtkbox"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher":{"role":"symbol","title":"Publisher","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"Publisher"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"Publisher"}],"url":"\/documentation\/swiftcrossui\/publisher"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewState":{"role":"symbol","title":"ViewState","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewState"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewState"}],"url":"\/documentation\/swiftcrossui\/viewstate"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkWindow":{"role":"symbol","title":"GtkWindow","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"GtkWindow"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWindow","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"GtkWindow"}],"url":"\/documentation\/swiftcrossui\/gtkwindow"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed":{"role":"symbol","title":"Observed","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"Observed"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"Observed"}],"url":"\/documentation\/swiftcrossui\/observed"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent5":{"role":"symbol","title":"ViewContent5","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContent5"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContent5"}],"url":"\/documentation\/swiftcrossui\/viewcontent5"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent3":{"role":"symbol","title":"ViewContent3","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContent3"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent3","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContent3"}],"url":"\/documentation\/swiftcrossui\/viewcontent3"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren10":{"role":"symbol","title":"ViewGraphNodeChildren10","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewGraphNodeChildren10"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewGraphNodeChildren10"}],"url":"\/documentation\/swiftcrossui\/viewgraphnodechildren10"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraph":{"role":"symbol","title":"ViewGraph","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewGraph"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraph","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewGraph"}],"url":"\/documentation\/swiftcrossui\/viewgraph"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkApplication":{"role":"symbol","title":"GtkApplication","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"GtkApplication"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkApplication","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"GtkApplication"}],"url":"\/documentation\/swiftcrossui\/gtkapplication"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/Text":{"role":"symbol","title":"Text","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"Text"}],"abstract":[{"type":"text","text":"A text view."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"Text"}],"url":"\/documentation\/swiftcrossui\/text"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewGraphNodeChildren":{"role":"symbol","title":"EmptyViewGraphNodeChildren","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"EmptyViewGraphNodeChildren"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"EmptyViewGraphNodeChildren"}],"url":"\/documentation\/swiftcrossui\/emptyviewgraphnodechildren"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewContent":{"role":"symbol","title":"EmptyViewContent","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"EmptyViewContent"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"EmptyViewContent"}],"url":"\/documentation\/swiftcrossui\/emptyviewcontent"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren1":{"role":"symbol","title":"ViewGraphNodeChildren1","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewGraphNodeChildren1"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren1","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewGraphNodeChildren1"}],"url":"\/documentation\/swiftcrossui\/viewgraphnodechildren1"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren3":{"role":"symbol","title":"ViewGraphNodeChildren3","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewGraphNodeChildren3"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren3","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewGraphNodeChildren3"}],"url":"\/documentation\/swiftcrossui\/viewgraphnodechildren3"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren5":{"role":"symbol","title":"ViewGraphNodeChildren5","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewGraphNodeChildren5"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren5","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewGraphNodeChildren5"}],"url":"\/documentation\/swiftcrossui\/viewgraphnodechildren5"},"doc://SwiftCrossUI/documentation/SwiftCrossUI":{"role":"collection","title":"SwiftCrossUI","abstract":[{"type":"text","text":"Create cross-platform desktop apps for macOS, Linux and Windows."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkSize":{"role":"symbol","title":"GtkSize","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"GtkSize"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkSize","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"GtkSize"}],"url":"\/documentation\/swiftcrossui\/gtksize"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyAppState":{"role":"symbol","title":"EmptyAppState","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"EmptyAppState"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyAppState","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"EmptyAppState"}],"url":"\/documentation\/swiftcrossui\/emptyappstate"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10":{"role":"symbol","title":"ViewContent10","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContent10"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContent10"}],"url":"\/documentation\/swiftcrossui\/viewcontent10"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/Cancellable":{"role":"symbol","title":"Cancellable","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"Cancellable"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Cancellable","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"Cancellable"}],"url":"\/documentation\/swiftcrossui\/cancellable"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkButton":{"role":"symbol","title":"GtkButton","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"GtkButton"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkButton","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"GtkButton"}],"url":"\/documentation\/swiftcrossui\/gtkbutton"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren7":{"role":"symbol","title":"ViewGraphNodeChildren7","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewGraphNodeChildren7"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren7","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewGraphNodeChildren7"}],"url":"\/documentation\/swiftcrossui\/viewgraphnodechildren7"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent8":{"role":"symbol","title":"ViewContent8","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContent8"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent8","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContent8"}],"url":"\/documentation\/swiftcrossui\/viewcontent8"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewState":{"role":"symbol","title":"EmptyViewState","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"EmptyViewState"}],"abstract":[{"type":"text","text":"The view state to use for stateless views."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"EmptyViewState"}],"url":"\/documentation\/swiftcrossui\/emptyviewstate"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren2":{"role":"symbol","title":"ViewGraphNodeChildren2","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewGraphNodeChildren2"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren2","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewGraphNodeChildren2"}],"url":"\/documentation\/swiftcrossui\/viewgraphnodechildren2"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent4":{"role":"symbol","title":"ViewContent4","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContent4"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContent4"}],"url":"\/documentation\/swiftcrossui\/viewcontent4"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkWidget":{"role":"symbol","title":"GtkWidget","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"GtkWidget"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"GtkWidget"}],"url":"\/documentation\/swiftcrossui\/gtkwidget"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent":{"role":"symbol","title":"ViewContent","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContent"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContent"}],"url":"\/documentation\/swiftcrossui\/viewcontent"}}}
+{
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "SwiftCrossUI",
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "role" : "collection",
+    "roleHeading" : "Framework",
+    "symbolKind" : "module",
+    "title" : "SwiftCrossUI"
+  },
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Cancellable",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraph",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode"
+      ],
+      "title" : "Classes"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PublishedValue",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState"
+      ],
+      "title" : "Protocols"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent1",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent2",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent3",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent6",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent7",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent8",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent9",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren1",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren2",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren3",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren4",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren5",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren6",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren7",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren8",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren9",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties"
+      ],
+      "title" : "Structures"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppState",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyAppState",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkApplication",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBox",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkButton",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkButtonBox",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkContainer",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkLabel",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkSize",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWindow"
+      ],
+      "title" : "Type Aliases"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App": {
+  "abstract" : [
+    {
+      "text" : "An application.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "App"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "App"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "App",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/app"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppState": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "AppState"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppState",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "AppState"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "AppState",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appstate"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Binding": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Binding"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Binding"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Binding",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/binding"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Button": {
+  "abstract" : [
+    {
+      "text" : "A button view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Button"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Button"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Button",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/button"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Cancellable": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Cancellable"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Cancellable",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Cancellable"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Cancellable",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/cancellable"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyAppState": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EmptyAppState"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyAppState",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EmptyAppState"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EmptyAppState",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyappstate"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewContent": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EmptyViewContent"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EmptyViewContent"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EmptyViewContent",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyviewcontent"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewGraphNodeChildren": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EmptyViewGraphNodeChildren"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EmptyViewGraphNodeChildren"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EmptyViewGraphNodeChildren",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewState": {
+  "abstract" : [
+    {
+      "text" : "The view state to use for stateless views.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EmptyViewState"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EmptyViewState"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EmptyViewState",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyviewstate"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkApplication": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkApplication"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkApplication",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkApplication"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkApplication",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkapplication"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkBox": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkBox"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBox",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkBox"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkBox",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkbox"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkButton": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkButton"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkButton",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkButton"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkButton",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkbutton"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkButtonBox": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkButtonBox"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkButtonBox",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkButtonBox"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkButtonBox",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkbuttonbox"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkContainer": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkContainer"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkContainer",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkContainer"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkContainer",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkcontainer"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkLabel": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkLabel"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkLabel",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkLabel"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkLabel",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtklabel"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkSize": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkSize"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkSize",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkSize"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkSize",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtksize"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkWidget": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkWidget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkWidget"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkWidget",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkwidget"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkWindow": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkWindow"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWindow",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkWindow"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkWindow",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkwindow"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack": {
+  "abstract" : [
+    {
+      "text" : "A horizontally oriented container. Similar to a ",
+      "type" : "text"
+    },
+    {
+      "code" : "HStack",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " in SwiftUI.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "HStack"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "HStack"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "HStack",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hstack"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Observed"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Observed"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Observed",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/observed"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/PublishedValue": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "PublishedValue"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PublishedValue",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "PublishedValue"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "PublishedValue",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/publishedvalue"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Publisher"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Publisher"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Publisher",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/publisher"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Text": {
+  "abstract" : [
+    {
+      "text" : "A text view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Text"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Text",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/text"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack": {
+  "abstract" : [
+    {
+      "text" : "A vertically oriented container. Similar to a ",
+      "type" : "text"
+    },
+    {
+      "code" : "VStack",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " in SwiftUI.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "VStack"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "VStack"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "VStack",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/vstack"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
+  "abstract" : [
+    {
+      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "View"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "View",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent1": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent1"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent1",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent1"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent1",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent1"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent10"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent10"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent10",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent10"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent2": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent2"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent2",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent2"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent2",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent2"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent3": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent3"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent3",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent3"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent3",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent3"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent4": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent4"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent4"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent4",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent4"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent5": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent5"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent5"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent5",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent5"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent6": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent6"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent6",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent6"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent6",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent6"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent7": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent7"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent7",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent7"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent7",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent7"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent8": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent8"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent8",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent8"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent8",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent8"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent9": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent9"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent9",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent9"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent9",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent9"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContentBuilder": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContentBuilder"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContentBuilder"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContentBuilder",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontentbuilder"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraph": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraph"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraph",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraph"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraph",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraph"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNode"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNode"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNode",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnode"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren1": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren1"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren1",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren1"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren1",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren1"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren10": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren10"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren10"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren10",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren2": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren2"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren2",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren2"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren2",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren2"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren3": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren3"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren3",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren3"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren3",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren3"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren4": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren4"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren4",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren4"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren4",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren4"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren5": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren5"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren5",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren5"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren5",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren6": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren6"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren6",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren6"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren6",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren7": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren7"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren7",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren7"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren7",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren8": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren8"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren8",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren8"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren8",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren9": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren9"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren9",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren9"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren9",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewState": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewState"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewState"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewState",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewstate"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties": {
+  "abstract" : [
+    {
+      "text" : "The basic properties for a window.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "WindowProperties"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "WindowProperties"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "WindowProperties",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowproperties"
+}
+}
+}

@@ -1,1 +1,240 @@
-{"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"EmptyViewState"}],"languages":["swift"],"platforms":["macOS"]}]}],"schemaVersion":{"major":0,"minor":2,"patch":0},"sections":[],"variants":[{"paths":["\/documentation\/swiftcrossui\/emptyviewstate"],"traits":[{"interfaceLanguage":"swift"}]}],"relationshipsSections":[{"identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState"],"kind":"relationships","title":"Conforms To","type":"conformsTo"}],"identifier":{"url":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState","interfaceLanguage":"swift"},"abstract":[{"type":"text","text":"The view state to use for stateless views."}],"kind":"symbol","metadata":{"fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"EmptyViewState"}],"title":"EmptyViewState","roleHeading":"Class","role":"symbol","symbolKind":"class","externalID":"s:12SwiftCrossUI14EmptyViewStateC","modules":[{"name":"SwiftCrossUI"}],"navigatorTitle":[{"kind":"identifier","text":"EmptyViewState"}]},"hierarchy":{"paths":[["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"]]},"topicSections":[{"title":"Initializers","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState\/init()"]},{"title":"Default Implementations","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState\/ViewState-Implementations"],"generated":true}],"references":{"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewState":{"role":"symbol","title":"EmptyViewState","fragments":[{"kind":"keyword","text":"class"},{"kind":"text","text":" "},{"kind":"identifier","text":"EmptyViewState"}],"abstract":[{"type":"text","text":"The view state to use for stateless views."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"EmptyViewState"}],"url":"\/documentation\/swiftcrossui\/emptyviewstate"},"doc://SwiftCrossUI/documentation/SwiftCrossUI":{"role":"collection","title":"SwiftCrossUI","abstract":[{"type":"text","text":"Create cross-platform desktop apps for macOS, Linux and Windows."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewState/init()":{"role":"symbol","title":"init()","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"()"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState\/init()","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui\/emptyviewstate\/init()"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewState/ViewState-Implementations":{"role":"collectionGroup","title":"ViewState Implementations","abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState\/ViewState-Implementations","kind":"article","type":"topic","url":"\/documentation\/swiftcrossui\/emptyviewstate\/viewstate-implementations"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewState":{"role":"symbol","title":"ViewState","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewState"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewState"}],"url":"\/documentation\/swiftcrossui\/viewstate"}}}
+{
+  "abstract" : [
+    {
+      "text" : "The view state to use for stateless views.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:12SwiftCrossUI14EmptyViewStateC",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "class"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "EmptyViewState"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "EmptyViewState"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Class",
+    "symbolKind" : "class",
+    "title" : "EmptyViewState"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "Linux"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "class"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "EmptyViewState"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "relationshipsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState"
+      ],
+      "kind" : "relationships",
+      "title" : "Conforms To",
+      "type" : "conformsTo"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState\/init()"
+      ],
+      "title" : "Initializers"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState\/ViewState-Implementations"
+      ],
+      "title" : "Default Implementations"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/emptyviewstate"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewState": {
+  "abstract" : [
+    {
+      "text" : "The view state to use for stateless views.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EmptyViewState"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EmptyViewState"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EmptyViewState",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyviewstate"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewState/ViewState-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState\/ViewState-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "ViewState Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyviewstate\/viewstate-implementations"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewState/init()": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "()"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState\/init()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init()",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyviewstate\/init()"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewState": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewState"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewState"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewState",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewstate"
+}
+}
+}

@@ -1,1 +1,679 @@
-{"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"Children"},{"kind":"text","text":" = "},{"kind":"typeIdentifier","identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10","preciseIdentifier":"s:12SwiftCrossUI23ViewGraphNodeChildren10V","text":"ViewGraphNodeChildren10"},{"kind":"text","text":"<"},{"kind":"typeIdentifier","text":"View0"},{"kind":"text","text":", "},{"kind":"typeIdentifier","text":"View1"},{"kind":"text","text":", "},{"kind":"typeIdentifier","text":"View2"},{"kind":"text","text":", "},{"kind":"typeIdentifier","text":"View3"},{"kind":"text","text":", "},{"kind":"typeIdentifier","text":"View4"},{"kind":"text","text":", "},{"kind":"typeIdentifier","text":"View5"},{"kind":"text","text":", "},{"kind":"typeIdentifier","text":"View6"},{"kind":"text","text":", "},{"kind":"typeIdentifier","text":"View7"},{"kind":"text","text":", "},{"kind":"typeIdentifier","text":"View8"},{"kind":"text","text":", "},{"kind":"typeIdentifier","text":"View9"},{"kind":"text","text":">"}],"languages":["swift"],"platforms":["macOS"]}]}],"schemaVersion":{"major":0,"minor":2,"patch":0},"sections":[],"variants":[{"paths":["\/documentation\/swiftcrossui\/viewcontent10\/children"],"traits":[{"interfaceLanguage":"swift"}]}],"identifier":{"url":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/Children","interfaceLanguage":"swift"},"abstract":[{"type":"text","text":"Inherited from "},{"type":"codeVoice","code":"ViewContent.Children"},{"type":"text","text":"."}],"kind":"symbol","metadata":{"navigatorTitle":[{"kind":"identifier","text":"Children"}],"conformance":{"constraints":[{"type":"codeVoice","code":"View0"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View1"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View2"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View3"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View4"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View5"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View6"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View7"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View8"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", and "},{"type":"codeVoice","code":"View9"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":"."}],"availabilityPrefix":[{"type":"text","text":"Available when"}],"conformancePrefix":[{"type":"text","text":"Conforms when"}]},"role":"symbol","title":"ViewContent10.Children","roleHeading":"Type Alias","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"Children"}],"symbolKind":"typealias","externalID":"s:12SwiftCrossUI13ViewContent10V8Childrena","extendedModule":"SwiftCrossUI","modules":[{"name":"SwiftCrossUI"}]},"hierarchy":{"paths":[["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/ViewContent-Implementations"]]},"references":{"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10/ViewContent-Implementations":{"role":"collectionGroup","title":"ViewContent Implementations","abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/ViewContent-Implementations","kind":"article","type":"topic","url":"\/documentation\/swiftcrossui\/viewcontent10\/viewcontent-implementations"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10":{"role":"symbol","title":"ViewContent10","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewContent10"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewContent10"}],"url":"\/documentation\/swiftcrossui\/viewcontent10"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10/Children":{"conformance":{"constraints":[{"type":"codeVoice","code":"View0"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View1"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View2"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View3"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View4"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View5"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View6"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View7"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", "},{"type":"codeVoice","code":"View8"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":", and "},{"type":"codeVoice","code":"View9"},{"type":"text","text":" conforms to "},{"type":"codeVoice","code":"View"},{"type":"text","text":"."}],"availabilityPrefix":[{"type":"text","text":"Available when"}],"conformancePrefix":[{"type":"text","text":"Conforms when"}]},"role":"symbol","title":"ViewContent10.Children","fragments":[{"kind":"keyword","text":"typealias"},{"kind":"text","text":" "},{"kind":"identifier","text":"Children"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/Children","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"Children"}],"url":"\/documentation\/swiftcrossui\/viewcontent10\/children"},"doc://SwiftCrossUI/documentation/SwiftCrossUI":{"role":"collection","title":"SwiftCrossUI","abstract":[{"type":"text","text":"Create cross-platform desktop apps for macOS, Linux and Windows."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren10":{"role":"symbol","title":"ViewGraphNodeChildren10","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"ViewGraphNodeChildren10"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"ViewGraphNodeChildren10"}],"url":"\/documentation\/swiftcrossui\/viewgraphnodechildren10"}}}
+{
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "ViewContent.Children",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/ViewContent-Implementations"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/Children"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "conformance" : {
+      "availabilityPrefix" : [
+        {
+          "text" : "Available when",
+          "type" : "text"
+        }
+      ],
+      "conformancePrefix" : [
+        {
+          "text" : "Conforms when",
+          "type" : "text"
+        }
+      ],
+      "constraints" : [
+        {
+          "code" : "View0",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " conforms to ",
+          "type" : "text"
+        },
+        {
+          "code" : "View",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : ", ",
+          "type" : "text"
+        },
+        {
+          "code" : "View1",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " conforms to ",
+          "type" : "text"
+        },
+        {
+          "code" : "View",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : ", ",
+          "type" : "text"
+        },
+        {
+          "code" : "View2",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " conforms to ",
+          "type" : "text"
+        },
+        {
+          "code" : "View",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : ", ",
+          "type" : "text"
+        },
+        {
+          "code" : "View3",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " conforms to ",
+          "type" : "text"
+        },
+        {
+          "code" : "View",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : ", ",
+          "type" : "text"
+        },
+        {
+          "code" : "View4",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " conforms to ",
+          "type" : "text"
+        },
+        {
+          "code" : "View",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : ", ",
+          "type" : "text"
+        },
+        {
+          "code" : "View5",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " conforms to ",
+          "type" : "text"
+        },
+        {
+          "code" : "View",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : ", ",
+          "type" : "text"
+        },
+        {
+          "code" : "View6",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " conforms to ",
+          "type" : "text"
+        },
+        {
+          "code" : "View",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : ", ",
+          "type" : "text"
+        },
+        {
+          "code" : "View7",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " conforms to ",
+          "type" : "text"
+        },
+        {
+          "code" : "View",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : ", ",
+          "type" : "text"
+        },
+        {
+          "code" : "View8",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " conforms to ",
+          "type" : "text"
+        },
+        {
+          "code" : "View",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : ", and ",
+          "type" : "text"
+        },
+        {
+          "code" : "View9",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " conforms to ",
+          "type" : "text"
+        },
+        {
+          "code" : "View",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : ".",
+          "type" : "text"
+        }
+      ]
+    },
+    "extendedModule" : "SwiftCrossUI",
+    "externalID" : "s:12SwiftCrossUI13ViewContent10V8Childrena",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "typealias"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "Children"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "Children"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Type Alias",
+    "symbolKind" : "typealias",
+    "title" : "ViewContent10.Children"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "Linux"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "typealias"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "Children"
+            },
+            {
+              "kind" : "text",
+              "text" : " = "
+            },
+            {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI23ViewGraphNodeChildren10V",
+              "text" : "ViewGraphNodeChildren10"
+            },
+            {
+              "kind" : "text",
+              "text" : "<"
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "View0"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "View1"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "View2"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "View3"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "View4"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "View5"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "View6"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "View7"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "View8"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "View9"
+            },
+            {
+              "kind" : "text",
+              "text" : ">"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/viewcontent10\/children"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent10"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent10"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent10",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent10"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10/Children": {
+  "abstract" : [
+
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "View0",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ", ",
+        "type" : "text"
+      },
+      {
+        "code" : "View1",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ", ",
+        "type" : "text"
+      },
+      {
+        "code" : "View2",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ", ",
+        "type" : "text"
+      },
+      {
+        "code" : "View3",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ", ",
+        "type" : "text"
+      },
+      {
+        "code" : "View4",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ", ",
+        "type" : "text"
+      },
+      {
+        "code" : "View5",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ", ",
+        "type" : "text"
+      },
+      {
+        "code" : "View6",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ", ",
+        "type" : "text"
+      },
+      {
+        "code" : "View7",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ", ",
+        "type" : "text"
+      },
+      {
+        "code" : "View8",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ", and ",
+        "type" : "text"
+      },
+      {
+        "code" : "View9",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Children"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/Children",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Children"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent10.Children",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent10\/children"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10/ViewContent-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/ViewContent-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "ViewContent Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent10\/viewcontent-implementations"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren10": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren10"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren10"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren10",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10"
+}
+}
+}

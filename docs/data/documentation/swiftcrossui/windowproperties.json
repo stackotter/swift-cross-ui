@@ -1,1 +1,405 @@
-{"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"WindowProperties"}],"languages":["swift"],"platforms":["macOS"]}]}],"schemaVersion":{"major":0,"minor":2,"patch":0},"sections":[],"variants":[{"paths":["\/documentation\/swiftcrossui\/windowproperties"],"traits":[{"interfaceLanguage":"swift"}]}],"identifier":{"url":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties","interfaceLanguage":"swift"},"abstract":[{"type":"text","text":"The basic properties for a window."}],"kind":"symbol","metadata":{"fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"WindowProperties"}],"title":"WindowProperties","roleHeading":"Structure","role":"symbol","symbolKind":"struct","externalID":"s:12SwiftCrossUI16WindowPropertiesV","modules":[{"name":"SwiftCrossUI"}],"navigatorTitle":[{"kind":"identifier","text":"WindowProperties"}]},"hierarchy":{"paths":[["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"]]},"topicSections":[{"title":"Initializers","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/init(title:defaultWidth:defaultHeight:resizable:)"]},{"title":"Instance Properties","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/defaultHeight","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/defaultWidth","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/resizable","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/title"]}],"references":{"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/defaultWidth":{"role":"symbol","title":"defaultWidth","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"defaultWidth"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Int","preciseIdentifier":"s:Si"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/defaultWidth","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui\/windowproperties\/defaultwidth"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/defaultHeight":{"role":"symbol","title":"defaultHeight","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"defaultHeight"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Int","preciseIdentifier":"s:Si"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/defaultHeight","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui\/windowproperties\/defaultheight"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/title":{"role":"symbol","title":"title","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"title"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"String","preciseIdentifier":"s:SS"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/title","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui\/windowproperties\/title"},"doc://SwiftCrossUI/documentation/SwiftCrossUI":{"role":"collection","title":"SwiftCrossUI","abstract":[{"type":"text","text":"Create cross-platform desktop apps for macOS, Linux and Windows."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties":{"role":"symbol","title":"WindowProperties","fragments":[{"kind":"keyword","text":"struct"},{"kind":"text","text":" "},{"kind":"identifier","text":"WindowProperties"}],"abstract":[{"type":"text","text":"The basic properties for a window."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"WindowProperties"}],"url":"\/documentation\/swiftcrossui\/windowproperties"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/resizable":{"role":"symbol","title":"resizable","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"resizable"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Bool","preciseIdentifier":"s:Sb"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/resizable","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui\/windowproperties\/resizable"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/init(title:defaultWidth:defaultHeight:resizable:)":{"role":"symbol","title":"init(title:defaultWidth:defaultHeight:resizable:)","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"("},{"kind":"externalParam","text":"title"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"String","preciseIdentifier":"s:SS"},{"kind":"text","text":", "},{"kind":"externalParam","text":"defaultWidth"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Int","preciseIdentifier":"s:Si"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"defaultHeight"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Int","preciseIdentifier":"s:Si"},{"kind":"text","text":"?, "},{"kind":"externalParam","text":"resizable"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Bool","preciseIdentifier":"s:Sb"},{"kind":"text","text":"?)"}],"abstract":[{"type":"text","text":"This custom initalizer is used because the default initializer has the ‘internal’ protection level and can’t be accessed from other files."},{"type":"text","text":" "},{"type":"text","text":"The window’s title is the only required value. All other values will use the previously hard-coded values if not set."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/init(title:defaultWidth:defaultHeight:resizable:)","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui\/windowproperties\/init(title:defaultwidth:defaultheight:resizable:)"}}}
+{
+  "abstract" : [
+    {
+      "text" : "The basic properties for a window.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:12SwiftCrossUI16WindowPropertiesV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "struct"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "WindowProperties"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "WindowProperties"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Structure",
+    "symbolKind" : "struct",
+    "title" : "WindowProperties"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "Linux"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "struct"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "WindowProperties"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/init(title:defaultWidth:defaultHeight:resizable:)"
+      ],
+      "title" : "Initializers"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/defaultHeight",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/defaultWidth",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/resizable",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/title"
+      ],
+      "title" : "Instance Properties"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/windowproperties"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties": {
+  "abstract" : [
+    {
+      "text" : "The basic properties for a window.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "WindowProperties"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "WindowProperties"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "WindowProperties",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowproperties"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/defaultHeight": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "defaultHeight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/defaultHeight",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "defaultHeight",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowproperties\/defaultheight"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/defaultWidth": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "defaultWidth"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/defaultWidth",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "defaultWidth",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowproperties\/defaultwidth"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/init(title:defaultWidth:defaultHeight:resizable:)": {
+  "abstract" : [
+    {
+      "text" : "This custom initalizer is used because the default initializer has the ‘internal’ protection level and can’t be accessed from other files.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "The window’s title is the only required value. All other values will use the previously hard-coded values if not set.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "title"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "defaultWidth"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "defaultHeight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "resizable"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : "?)"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/init(title:defaultWidth:defaultHeight:resizable:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(title:defaultWidth:defaultHeight:resizable:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowproperties\/init(title:defaultwidth:defaultheight:resizable:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/resizable": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "resizable"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/resizable",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "resizable",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowproperties\/resizable"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/title": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "title"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/title",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "title",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowproperties\/title"
+}
+}
+}

@@ -1,1 +1,484 @@
-{"primaryContentSections":[{"kind":"declarations","declarations":[{"tokens":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"App"}],"languages":["swift"],"platforms":["macOS"]}]}],"schemaVersion":{"major":0,"minor":2,"patch":0},"sections":[],"variants":[{"paths":["\/documentation\/swiftcrossui\/app"],"traits":[{"interfaceLanguage":"swift"}]}],"identifier":{"url":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App","interfaceLanguage":"swift"},"abstract":[{"type":"text","text":"An application."}],"kind":"symbol","metadata":{"fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"App"}],"title":"App","roleHeading":"Protocol","role":"symbol","symbolKind":"protocol","externalID":"s:12SwiftCrossUI3AppP","modules":[{"name":"SwiftCrossUI"}],"navigatorTitle":[{"kind":"identifier","text":"App"}]},"hierarchy":{"paths":[["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"]]},"topicSections":[{"title":"Associated Types","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/Content","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/State-swift.associatedtype"]},{"title":"Initializers","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/init()"]},{"title":"Instance Properties","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/body","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/identifier","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/state-swift.property-49rq3","doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/windowProperties"]},{"title":"Type Methods","identifiers":["doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/main()"]}],"references":{"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/State-swift.associatedtype":{"role":"symbol","title":"State","fragments":[{"kind":"keyword","text":"associatedtype"},{"kind":"text","text":" "},{"kind":"identifier","text":"State"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","text":"ViewState","preciseIdentifier":"s:12SwiftCrossUI9ViewStateP"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/State-swift.associatedtype","kind":"symbol","required":true,"type":"topic","url":"\/documentation\/swiftcrossui\/app\/state-swift.associatedtype"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/main()":{"role":"symbol","title":"main()","fragments":[{"kind":"keyword","text":"static"},{"kind":"text","text":" "},{"kind":"keyword","text":"func"},{"kind":"text","text":" "},{"kind":"identifier","text":"main"},{"kind":"text","text":"()"}],"abstract":[{"type":"text","text":"Runs the application."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/main()","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui\/app\/main()"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/windowProperties":{"role":"symbol","title":"windowProperties","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"windowProperties"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"WindowProperties","preciseIdentifier":"s:12SwiftCrossUI16WindowPropertiesV"}],"abstract":[{"type":"text","text":"The window’s properties."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/windowProperties","kind":"symbol","required":true,"type":"topic","url":"\/documentation\/swiftcrossui\/app\/windowproperties"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/identifier":{"role":"symbol","title":"identifier","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"identifier"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"String","preciseIdentifier":"s:SS"}],"abstract":[{"type":"text","text":"The application’s identifier."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/identifier","kind":"symbol","required":true,"type":"topic","url":"\/documentation\/swiftcrossui\/app\/identifier"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/Content":{"role":"symbol","title":"Content","fragments":[{"kind":"keyword","text":"associatedtype"},{"kind":"text","text":" "},{"kind":"identifier","text":"Content"},{"kind":"text","text":" : "},{"kind":"typeIdentifier","text":"ViewContent","preciseIdentifier":"s:12SwiftCrossUI11ViewContentP"}],"abstract":[],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/Content","kind":"symbol","required":true,"type":"topic","url":"\/documentation\/swiftcrossui\/app\/content"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/state-swift.property-49rq3":{"defaultImplementations":1,"role":"symbol","title":"state","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"state"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Self"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"State"}],"abstract":[{"type":"text","text":"The application’s state."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/state-swift.property-49rq3","kind":"symbol","required":true,"type":"topic","url":"\/documentation\/swiftcrossui\/app\/state-swift.property-49rq3"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/App":{"role":"symbol","title":"App","fragments":[{"kind":"keyword","text":"protocol"},{"kind":"text","text":" "},{"kind":"identifier","text":"App"}],"abstract":[{"type":"text","text":"An application."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App","kind":"symbol","type":"topic","navigatorTitle":[{"kind":"identifier","text":"App"}],"url":"\/documentation\/swiftcrossui\/app"},"doc://SwiftCrossUI/documentation/SwiftCrossUI":{"role":"collection","title":"SwiftCrossUI","abstract":[{"type":"text","text":"Create cross-platform desktop apps for macOS, Linux and Windows."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI","kind":"symbol","type":"topic","url":"\/documentation\/swiftcrossui"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/init()":{"role":"symbol","title":"init()","fragments":[{"kind":"identifier","text":"init"},{"kind":"text","text":"()"}],"abstract":[{"type":"text","text":"Creates the application."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/init()","kind":"symbol","required":true,"type":"topic","url":"\/documentation\/swiftcrossui\/app\/init()"},"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/body":{"role":"symbol","title":"body","fragments":[{"kind":"keyword","text":"var"},{"kind":"text","text":" "},{"kind":"identifier","text":"body"},{"kind":"text","text":": "},{"kind":"typeIdentifier","text":"Self"},{"kind":"text","text":"."},{"kind":"typeIdentifier","text":"Content"}],"abstract":[{"type":"text","text":"The contents of the application’s main window."}],"identifier":"doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/body","kind":"symbol","required":true,"type":"topic","url":"\/documentation\/swiftcrossui\/app\/body"}}}
+{
+  "abstract" : [
+    {
+      "text" : "An application.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:12SwiftCrossUI3AppP",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "protocol"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "App"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "App"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Protocol",
+    "symbolKind" : "protocol",
+    "title" : "App"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "Linux"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "protocol"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "App"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 2,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/Content",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/State-swift.associatedtype"
+      ],
+      "title" : "Associated Types"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/init()"
+      ],
+      "title" : "Initializers"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/body",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/identifier",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/state-swift.property-49rq3",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/windowProperties"
+      ],
+      "title" : "Instance Properties"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/main()"
+      ],
+      "title" : "Type Methods"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/app"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App": {
+  "abstract" : [
+    {
+      "text" : "An application.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "App"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "App"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "App",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/app"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/Content": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "associatedtype"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Content"
+    },
+    {
+      "kind" : "text",
+      "text" : " : "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI11ViewContentP",
+      "text" : "ViewContent"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/Content",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "Content",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/app\/content"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/State-swift.associatedtype": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "associatedtype"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "State"
+    },
+    {
+      "kind" : "text",
+      "text" : " : "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI9ViewStateP",
+      "text" : "ViewState"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/State-swift.associatedtype",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "State",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/app\/state-swift.associatedtype"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/body": {
+  "abstract" : [
+    {
+      "text" : "The contents of the application’s main window.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "body"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Content"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/body",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "body",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/app\/body"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/identifier": {
+  "abstract" : [
+    {
+      "text" : "The application’s identifier.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "identifier"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/identifier",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "identifier",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/app\/identifier"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/init()": {
+  "abstract" : [
+    {
+      "text" : "Creates the application.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "()"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/init()",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "init()",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/app\/init()"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/main()": {
+  "abstract" : [
+    {
+      "text" : "Runs the application.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "main"
+    },
+    {
+      "kind" : "text",
+      "text" : "()"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/main()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "main()",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/app\/main()"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/state-swift.property-49rq3": {
+  "abstract" : [
+    {
+      "text" : "The application’s state.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "state"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "State"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/state-swift.property-49rq3",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "state",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/app\/state-swift.property-49rq3"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/windowProperties": {
+  "abstract" : [
+    {
+      "text" : "The window’s properties.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "windowProperties"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI16WindowPropertiesV",
+      "text" : "WindowProperties"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/windowProperties",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "windowProperties",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/app\/windowproperties"
+}
+}
+}
