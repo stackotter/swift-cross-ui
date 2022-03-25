@@ -16,23 +16,18 @@ jobs:
     - uses: fwal/setup-swift@v1
     - name: Prepare Repository
       run: |
+        cd /home/runner/work/swift-cross-ui
         git config --global user.email "58050615+NinjaCheetah@users.noreply.github.com"
         git config --global user.name "NinjaCheetah"
-        git clone --depth 1 https://${{ secrets.ACTIONS_TOKEN }}@github.com/NinjaCheetah/swift-cross-ui.git
+        git clone --depth 1 https://${{ secrets.ACTIONS_TOKEN }}@github.com/NinjaCheetah/swift-cross-ui.git gh-pages
     - name: Compile Docs
       run: |
-        set -eu
-        filepath() {
-          [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
-        }
-
-        SWIFT_DOCC_PLUGIN_ROOT="$(dirname $(dirname $(filepath $0)))"
-
-        cd "$SWIFT_DOCC_PLUGIN_ROOT"
-
         export DOCC_JSON_PRETTYPRINT="YES"
 
         export SWIFTPM_ENABLE_COMMAND_PLUGINS=1 
+
+        cd /home/runner/work/swift-cross-ui/swift-cross-ui
+
         swift package \
           --allow-writing-to-directory gh-pages/docs \
           generate-documentation \
@@ -40,9 +35,9 @@ jobs:
           --disable-indexing \
           --transform-for-static-hosting \
           --hosting-base-path swift-cross-ui \
-          --output-path gh-pages/docs
+          --output-path /home/runner/work/swift-cross-ui/gh-pages/docs
 
-        cd gh-pages
+        cd /home/runner/work/swift-cross-ui/gh-pages
         git stage .
         git commit -m "Update docs"
         git push origin gh-pages
