@@ -235,18 +235,7 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/init(title:defaultWidth:defaultHeight:resizable:)": {
   "abstract" : [
-    {
-      "text" : "This custom initalizer is used because the default initializer has the ‘internal’ protection level and can’t be accessed from other files.",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "The window’s title is the only required value. All other values will use the previously hard-coded values if not set.",
-      "type" : "text"
-    }
+
   ],
   "fragments" : [
     {
@@ -289,7 +278,7 @@
     },
     {
       "kind" : "text",
-      "text" : "?, "
+      "text" : ", "
     },
     {
       "kind" : "externalParam",
@@ -306,7 +295,7 @@
     },
     {
       "kind" : "text",
-      "text" : "?, "
+      "text" : ", "
     },
     {
       "kind" : "externalParam",
@@ -323,7 +312,7 @@
     },
     {
       "kind" : "text",
-      "text" : "?)"
+      "text" : ")"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties\/init(title:defaultWidth:defaultHeight:resizable:)",
