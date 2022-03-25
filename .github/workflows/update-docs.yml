@@ -29,6 +29,8 @@ jobs:
         git fetch && git pull
     - name: Compile Docs
       run: |
+        set -x
+
         export DOCC_JSON_PRETTYPRINT="YES"
 
         export SWIFTPM_ENABLE_COMMAND_PLUGINS=1 
