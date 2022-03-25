@@ -13,6 +13,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Prepare Repository
+      run: |
+        git config --global user.email "58050615+NinjaCheetah@users.noreply.github.com"
+        git config --global user.name "NinjaCheetah"
+        git clone --depth 1 https://${{ secrets.ACTIONS_TOKEN }}@github.com/NinjaCheetah/swift-cross-ui.git
     - name: Compile Docs
       run: |
         set -eu
@@ -23,9 +28,6 @@ jobs:
         SWIFT_DOCC_PLUGIN_ROOT="$(dirname $(dirname $(filepath $0)))"
 
         cd "$SWIFT_DOCC_PLUGIN_ROOT"
-
-        git fetch
-        git worktree add --checkout gh-pages origin/gh-pages
 
         export DOCC_JSON_PRETTYPRINT="YES"
 
@@ -38,15 +40,9 @@ jobs:
           --transform-for-static-hosting \
           --hosting-base-path swift-cross-ui \
           --output-path gh-pages/docs
-        CURRENT_COMMIT_HASH=`git rev-parse --short HEAD`
 
         cd gh-pages
-        git add docs
-
-        if [ -n "$(git status --porcelain)" ]; then
-            echo "Documentation changes found. Commiting the changes to the 'gh-pages' branch and pushing to origin."
-            git commit -m "Update GitHub Pages documentation site to '$CURRENT_COMMIT_HASH'."
-            git push origin HEAD:gh-pages
-        else
-          echo "No documentation changes found."
-        fi
+        git stage .
+        git commit -m "Update docs"
+        git push origin gh-pages
+        
