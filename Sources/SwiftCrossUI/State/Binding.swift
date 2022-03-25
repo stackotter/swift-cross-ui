@@ -8,10 +8,10 @@ public class Binding<Value> {
             setValue(newValue)
         }
     }
-    
+
     private let getValue: () -> Value
     private let setValue: (Value) -> Void
-    
+
     public init(get: @escaping () -> Value, set: @escaping (Value) -> Void) {
         self.getValue = get
         self.setValue = set

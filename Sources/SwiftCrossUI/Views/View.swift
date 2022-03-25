@@ -4,14 +4,14 @@ import Foundation
 public protocol View {
     associatedtype Content: ViewContent
     associatedtype State: ViewState
-    
+
     var state: State { get set }
 
     /// The view's contents.
     @ViewContentBuilder var body: Content { get }
-    
+
     func asWidget(_ children: Content.Children) -> GtkWidget
-    
+
     func update(_ widget: GtkWidget, children: Content.Children)
 }
 
@@ -23,11 +23,12 @@ public extension View {
         }
         return vStack
     }
-    
+
     func update(_ widget: GtkWidget, children: Content.Children) {}
 }
 
 public extension View where State == EmptyViewState {
+    // swiftlint:disable unused_setter_value
     var state: State {
         get {
             EmptyViewState()
@@ -35,4 +36,5 @@ public extension View where State == EmptyViewState {
             return
         }
     }
+    // swiftlint:enable unused_setter_value
 }

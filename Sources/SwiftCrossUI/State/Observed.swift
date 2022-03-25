@@ -7,19 +7,19 @@ public class Observed<Value>: PublishedValue {
             self.wrappedValue = newValue
         })
     }
-    
+
     public var wrappedValue: Value {
         didSet {
             valueDidChange()
         }
     }
-    
+
     public var publisher = Publisher()
-    
+
     public init(wrappedValue: Value) {
         self.wrappedValue = wrappedValue
     }
-    
+
     public func valueDidChange() {
         publisher.send()
     }

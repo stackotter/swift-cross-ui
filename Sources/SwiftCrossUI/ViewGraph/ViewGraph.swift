@@ -8,14 +8,14 @@ public class ViewGraph<Root: App> {
     public init(for app: Root) {
         let vStack = VStack(app.body)
         rootNode = ViewGraphNode(for: vStack)
-        
+
         self.app = app
-        
+
         cancellable = app.state.didChange.observe {
             self.update()
         }
     }
-    
+
     public func update() {
         rootNode.update(with: VStack(app.body))
     }

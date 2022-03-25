@@ -27,7 +27,6 @@ for j in range(i + 1):
     children.append("Child%d" % j)
 
 struct_type_parameters = ", ".join(["%s: View" % child for child in children])
-struct_init_arguments = ", ".join(["_ %s: %s" % (child.lower(), child) for child in children])
 content_type_parameters = ", ".join(children)
 content_type = "ViewContent%d<%s>" % (i + 1, content_type_parameters)
 }%

@@ -1,0 +1,18 @@
+name: Lint
+
+on:
+  push:
+    branches-ignore:
+      - 'gh-pages'
+  
+  pull_request:
+    branches-ignore:
+      - 'gh-pages'
+
+jobs:
+  swift-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: GitHub Action for SwiftLint
+        uses: norio-nomura/action-swiftlint@3.2.1
