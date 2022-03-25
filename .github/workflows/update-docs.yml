@@ -24,6 +24,9 @@ jobs:
 
         cd /home/runner/work/swift-cross-ui/swift-cross-ui
 
+        git config user.email "58050615+NinjaCheetah@users.noreply.github.com"
+        git config user.name "NinjaCheetah"
+
         git fetch
         git worktree add --checkout gh-pages origin/gh-pages
 
