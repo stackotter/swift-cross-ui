@@ -13,7 +13,7 @@ extension ViewState {
                 guard let property = property as? PublishedValue else {
                     continue
                 }
-                
+
                 publisher.link(toDownstream: property.publisher)
             }
             mirror = aClass.superclassMirror

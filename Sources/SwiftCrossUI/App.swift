@@ -5,16 +5,16 @@ public protocol App {
 
     /// The application's identifier.
     var identifier: String { get }
-    
+
     /// The application's state.
     var state: State { get }
-    
+
     /// The window's properties.
     var windowProperties: WindowProperties { get }
-    
+
     /// The contents of the application's main window.
     @ViewContentBuilder var body: Content { get }
-    
+
     /// Creates the application.
     init()
 }
@@ -29,10 +29,6 @@ public extension App {
 
 public extension App where State == EmptyAppState {
     var state: State {
-        get {
-            EmptyAppState()
-        } set {
-            return
-        }
+        EmptyAppState()
     }
 }

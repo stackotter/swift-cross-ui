@@ -4,13 +4,11 @@ public struct WindowProperties {
     public var defaultWidth: Int
     public var defaultHeight: Int
     public var resizable: Bool
-    
-    /// This custom initalizer is used because the default initializer has the 'internal' protection level and can't be accessed from other files.
-    /// The window's title is the only required value. All other values will use the previously hard-coded values if not set.
-    public init(title: String, defaultWidth: Int? = nil, defaultHeight: Int? = nil, resizable: Bool? = nil) {
+
+    public init(title: String, defaultWidth: Int = 200, defaultHeight: Int = 150, resizable: Bool = true) {
         self.title = title
-        self.defaultWidth = defaultWidth ?? 200
-        self.defaultHeight = defaultHeight ?? 150
-        self.resizable = resizable ?? true
+        self.defaultWidth = defaultWidth
+        self.defaultHeight = defaultHeight
+        self.resizable = resizable
     }
 }

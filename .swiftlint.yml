@@ -1,3 +1,9 @@
+disabled_rules:
+  - type_name
+
+line_length:
+  warning: 150
+
 included:
   - Sources
 excluded:
