@@ -15,38 +15,38 @@ jobs:
     - uses: actions/checkout@v2
     - name: Compile Docs
       run: |
-      set -eu
-      filepath() {
-        [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
-      }
+        set -eu
+        filepath() {
+          [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+        }
 
-      SWIFT_DOCC_PLUGIN_ROOT="$(dirname $(dirname $(filepath $0)))"
+        SWIFT_DOCC_PLUGIN_ROOT="$(dirname $(dirname $(filepath $0)))"
 
-      cd "$SWIFT_DOCC_PLUGIN_ROOT"
+        cd "$SWIFT_DOCC_PLUGIN_ROOT"
 
-      git fetch
-      git worktree add --checkout gh-pages origin/gh-pages
+        git fetch
+        git worktree add --checkout gh-pages origin/gh-pages
 
-      export DOCC_JSON_PRETTYPRINT="YES"
+        export DOCC_JSON_PRETTYPRINT="YES"
 
-      export SWIFTPM_ENABLE_COMMAND_PLUGINS=1 
-      swift package \
-        --allow-writing-to-directory gh-pages/docs \
-        generate-documentation \
-        --target SwiftCrossUI \
-        --disable-indexing \
-        --transform-for-static-hosting \
-        --hosting-base-path swift-cross-ui \
-        --output-path gh-pages/docs
-      CURRENT_COMMIT_HASH=`git rev-parse --short HEAD`
+        export SWIFTPM_ENABLE_COMMAND_PLUGINS=1 
+        swift package \
+          --allow-writing-to-directory gh-pages/docs \
+          generate-documentation \
+          --target SwiftCrossUI \
+          --disable-indexing \
+          --transform-for-static-hosting \
+          --hosting-base-path swift-cross-ui \
+          --output-path gh-pages/docs
+        CURRENT_COMMIT_HASH=`git rev-parse --short HEAD`
 
-      cd gh-pages
-      git add docs
+        cd gh-pages
+        git add docs
 
-      if [ -n "$(git status --porcelain)" ]; then
-          echo "Documentation changes found. Commiting the changes to the 'gh-pages' branch and pushing to origin."
-          git commit -m "Update GitHub Pages documentation site to '$CURRENT_COMMIT_HASH'."
-          git push origin HEAD:gh-pages
-      else
-        echo "No documentation changes found."
-      fi
+        if [ -n "$(git status --porcelain)" ]; then
+            echo "Documentation changes found. Commiting the changes to the 'gh-pages' branch and pushing to origin."
+            git commit -m "Update GitHub Pages documentation site to '$CURRENT_COMMIT_HASH'."
+            git push origin HEAD:gh-pages
+        else
+          echo "No documentation changes found."
+        fi
