@@ -1,8 +1,7 @@
 disabled_rules:
   - type_name
 
-line_length:
-  warning: 150
+line_length: 140
 
 included:
   - Sources
