@@ -13,6 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: fwal/setup-swift@v1
     - name: Prepare Repository
       run: |
         git config --global user.email "58050615+NinjaCheetah@users.noreply.github.com"
