@@ -14,6 +14,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: fwal/setup-swift@v1
+    - name: Install Dependencies
+      run: |
+        sudo apt update && \
+        sudo apt install -y libgtk-3-dev clang
     - name: Prepare Repository
       run: |
         cd /home/runner/work/swift-cross-ui
