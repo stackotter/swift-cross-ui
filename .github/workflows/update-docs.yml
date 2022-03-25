@@ -24,7 +24,7 @@ jobs:
         git config --global user.email "58050615+NinjaCheetah@users.noreply.github.com"
         git config --global user.name "NinjaCheetah"
         git clone --depth 1 https://${{ secrets.ACTIONS_TOKEN }}@github.com/NinjaCheetah/swift-cross-ui.git gh-pages
-        cd /home/runner/work/swift-cross-ui
+        cd /home/runner/work/swift-cross-ui/gh-pages
         git checkout -b gh-pages
         git fetch && git pull
     - name: Compile Docs
