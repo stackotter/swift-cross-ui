@@ -2,7 +2,7 @@
 
 A SwiftUI-like framework for creating cross-platform apps in Swift. It uses [SwiftGtk](https://github.com/stackotter/SwiftGtk) as its backend.
 
-This project is still very much a work-in-progress, proper documentation and tutorials will be created once the project has matured a bit, because otherwise I have to spend too much time keeping the documentation up-to-date.
+This package is still quite a work-in-progress so don't expect it to be very useful or stable yet.
 
 **NOTE**: SwiftCrossUI does not attempt to replicate SwiftUI's API because SwiftCrossUI is intended to be simpler than SwiftUI. However, many concepts from SwiftUI should still be transferrable.
 
@@ -50,6 +50,10 @@ swift run CounterExample
 swift run RandomNumberGeneratorExample
 swift run WindowPropertiesExample
 ```
+
+## Documentation
+
+Here's the [documentation site](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui). Keep in mind that the project is still very much a work-in-progress, proper documentation and tutorials will be created once the project has matured a bit, because otherwise I have to spend too much time keeping the documentation up-to-date.
 
 ## Dependencies
 
