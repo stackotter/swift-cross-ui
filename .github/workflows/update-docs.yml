@@ -24,6 +24,9 @@ jobs:
         git config --global user.email "58050615+NinjaCheetah@users.noreply.github.com"
         git config --global user.name "NinjaCheetah"
         git clone --depth 1 https://${{ secrets.ACTIONS_TOKEN }}@github.com/NinjaCheetah/swift-cross-ui.git gh-pages
+        cd /home/runner/work/swift-cross-ui
+        git checkout -b gh-pages
+        git fetch && git pull
     - name: Compile Docs
       run: |
         export DOCC_JSON_PRETTYPRINT="YES"
@@ -44,5 +47,5 @@ jobs:
         cd /home/runner/work/swift-cross-ui/gh-pages
         git stage .
         git commit -m "Update docs"
-        git push origin gh-pages
+        git push
         
