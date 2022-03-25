@@ -18,25 +18,26 @@ jobs:
       run: |
         sudo apt update && \
         sudo apt install -y libgtk-3-dev clang
-    - name: Prepare Repository
-      run: |
-        cd /home/runner/work/swift-cross-ui
-        git config --global user.email "58050615+NinjaCheetah@users.noreply.github.com"
-        git config --global user.name "NinjaCheetah"
-        git clone --depth 1 https://${{ secrets.ACTIONS_TOKEN }}@github.com/NinjaCheetah/swift-cross-ui.git gh-pages
-        cd /home/runner/work/swift-cross-ui/gh-pages
-        git checkout -b gh-pages
-        git fetch && git pull
     - name: Compile Docs
       run: |
-        set -x
+        set -eu
+
+        cd /home/runner/work/swift-cross-ui/swift-cross-ui
+
+        filepath() {
+          [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+        }
+
+        SWIFT_DOCC_PLUGIN_ROOT="$(dirname $(dirname $(filepath $0)))"
+
+        cd "$SWIFT_DOCC_PLUGIN_ROOT"
+
+        git fetch
+        git worktree add --checkout gh-pages origin/gh-pages
 
         export DOCC_JSON_PRETTYPRINT="YES"
 
         export SWIFTPM_ENABLE_COMMAND_PLUGINS=1 
-
-        cd /home/runner/work/swift-cross-ui/swift-cross-ui
-
         swift package \
           --allow-writing-to-directory gh-pages/docs \
           generate-documentation \
@@ -44,10 +45,18 @@ jobs:
           --disable-indexing \
           --transform-for-static-hosting \
           --hosting-base-path swift-cross-ui \
-          --output-path /home/runner/work/swift-cross-ui/gh-pages/docs
+          --output-path gh-pages/docs
 
-        cd /home/runner/work/swift-cross-ui/gh-pages
-        git stage .
-        git commit -m "Update docs"
-        git push
-        
+        CURRENT_COMMIT_HASH=`git rev-parse --short HEAD`
+
+        cd gh-pages
+        git add docs
+
+        if [ -n "$(git status --porcelain)" ]; then
+            echo "Documentation changes found. Commiting the changes to the 'gh-pages' branch and pushing to origin."
+            git commit -m "Update GitHub Pages documentation site to '$CURRENT_COMMIT_HASH'."
+            git push origin HEAD:gh-pages
+        else
+          echo "No documentation changes found."
+        fi
+                
