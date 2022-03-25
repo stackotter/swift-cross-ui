@@ -1,0 +1,6 @@
+included:
+  - Sources
+excluded:
+  - Sources/SwiftCrossUI/ViewGraph/ViewGraphNodeChildren.swift
+  - Sources/SwiftCrossUI/Builders/ViewContentBuilder.swift
+  - Sources/SwiftCrossUI/Views/ViewContent.swift
