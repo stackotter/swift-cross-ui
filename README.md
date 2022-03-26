@@ -1,4 +1,11 @@
-# SwiftCrossUI
+<p align="center">
+    <img width="100%" src="https://user-images.githubusercontent.com/26103979/160219185-edd8355e-62d8-4e67-bebe-8da4ed12ac81.png">
+</p>
+
+<p align="center">
+    <img src="https://img.shields.io/github/workflow/status/stackotter/swift-cross-ui/Swift/main">
+    <img alt="GitHub" src="https://img.shields.io/github/license/stackotter/swift-cross-ui">
+</p>
 
 A SwiftUI-like framework for creating cross-platform apps in Swift. It uses [SwiftGtk](https://github.com/stackotter/SwiftGtk) as its backend.
 
