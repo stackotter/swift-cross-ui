@@ -3,8 +3,8 @@
 </p>
 
 <p align="center">
-    <img src="https://github.com/NinjaCheetah/swift-cross-ui/workflows/Build%20macOS/badge.svg?branch=main">
-    <img src="https://github.com/NinjaCheetah/swift-cross-ui/workflows/Build%20Linux/badge.svg?branch=main">
+    <img src="https://github.com/stackotter/swift-cross-ui/workflows/Build%20macOS/badge.svg?branch=main">
+    <img src="https://github.com/stackotter/swift-cross-ui/workflows/Build%20Linux/badge.svg?branch=main">
     <img alt="GitHub" src="https://img.shields.io/github/license/stackotter/swift-cross-ui">
 </p>
 
