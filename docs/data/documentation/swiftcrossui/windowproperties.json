@@ -167,7 +167,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/defaultHeight": {
   "abstract" : [
-
+    {
+      "text" : "The default height of the window.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -201,7 +204,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/defaultWidth": {
   "abstract" : [
-
+    {
+      "text" : "The default width of the window.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -235,7 +241,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/init(title:defaultWidth:defaultHeight:resizable:)": {
   "abstract" : [
-
+    {
+      "text" : "Defines the properties of the current window.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -324,7 +333,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/resizable": {
   "abstract" : [
-
+    {
+      "text" : "Whether or not the window can be resized from the corners.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -358,7 +370,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/title": {
   "abstract" : [
-
+    {
+      "text" : "The window’s title.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

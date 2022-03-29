@@ -202,7 +202,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Button/action": {
   "abstract" : [
     {
-      "text" : "The action to run when the button is clicked.",
+      "text" : "The action to be performed when the button is clicked.",
       "type" : "text"
     }
   ],
@@ -375,7 +375,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Button/label": {
   "abstract" : [
     {
-      "text" : "The button’s label.",
+      "text" : "The label to show on the button.",
       "type" : "text"
     }
   ],

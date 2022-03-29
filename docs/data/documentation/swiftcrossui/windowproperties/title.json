@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "No overview available.",
+      "text" : "The window’s title.",
       "type" : "text"
     }
   ],
@@ -163,7 +163,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/title": {
   "abstract" : [
-
+    {
+      "text" : "The window’s title.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

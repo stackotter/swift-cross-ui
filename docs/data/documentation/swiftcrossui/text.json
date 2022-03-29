@@ -320,7 +320,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/string": {
   "abstract" : [
     {
-      "text" : "The text view’s content.",
+      "text" : "The string to be shown in the text view.",
       "type" : "text"
     }
   ],

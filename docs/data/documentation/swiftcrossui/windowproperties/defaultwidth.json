@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "No overview available.",
+      "text" : "The default width of the window.",
       "type" : "text"
     }
   ],
@@ -163,7 +163,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/defaultWidth": {
   "abstract" : [
-
+    {
+      "text" : "The default width of the window.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

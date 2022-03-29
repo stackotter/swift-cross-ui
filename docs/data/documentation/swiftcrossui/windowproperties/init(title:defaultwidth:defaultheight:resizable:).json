@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "No overview available.",
+      "text" : "Defines the properties of the current window.",
       "type" : "text"
     }
   ],
@@ -273,7 +273,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/init(title:defaultWidth:defaultHeight:resizable:)": {
   "abstract" : [
-
+    {
+      "text" : "Defines the properties of the current window.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "The button’s label.",
+      "text" : "The label to show on the button.",
       "type" : "text"
     }
   ],
@@ -164,7 +164,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Button/label": {
   "abstract" : [
     {
-      "text" : "The button’s label.",
+      "text" : "The label to show on the button.",
       "type" : "text"
     }
   ],

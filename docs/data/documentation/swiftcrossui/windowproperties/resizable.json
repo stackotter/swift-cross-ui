@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "No overview available.",
+      "text" : "Whether or not the window can be resized from the corners.",
       "type" : "text"
     }
   ],
@@ -163,7 +163,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties/resizable": {
   "abstract" : [
-
+    {
+      "text" : "Whether or not the window can be resized from the corners.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
