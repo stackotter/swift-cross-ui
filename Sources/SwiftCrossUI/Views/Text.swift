@@ -1,4 +1,5 @@
 /// A text view.
+/// - Parameter string: The string to be shown in the text view.
 public struct Text: View {
     /// The text view's content.
     public var string: String

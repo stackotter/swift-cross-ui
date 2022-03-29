@@ -1,4 +1,6 @@
 /// A button view.
+/// - Parameter label: The label to be shown on the button.
+/// - Parameter action: The action to be performed when the button is clicked.
 public struct Button: View {
     /// The button's label.
     public var label: String
