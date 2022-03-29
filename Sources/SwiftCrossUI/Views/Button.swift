@@ -1,10 +1,8 @@
 /// A button view.
-/// - Parameter label: The label to be shown on the button.
-/// - Parameter action: The action to be performed when the button is clicked.
 public struct Button: View {
-    /// The button's label.
+    /// The label to show on the button.
     public var label: String
-    /// The action to run when the button is clicked.
+    /// The action to be performed when the button is clicked.
     public var action: () -> Void
 
     public var body = EmptyViewContent()

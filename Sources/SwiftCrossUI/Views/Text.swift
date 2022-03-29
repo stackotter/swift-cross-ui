@@ -1,7 +1,6 @@
 /// A text view.
-/// - Parameter string: The string to be shown in the text view.
 public struct Text: View {
-    /// The text view's content.
+    /// The string to be shown in the text view.
     public var string: String
 
     public var body = EmptyViewContent()
