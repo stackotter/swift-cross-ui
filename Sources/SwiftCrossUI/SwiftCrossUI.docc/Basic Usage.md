@@ -17,6 +17,8 @@ brew install gtk+3
 
 And you're done!
 
+__Xcode users:__ If Xcode has trouble finding GTK+ after you've installed it, try restarting your computer.
+
 __Note:__ Package managers other than `brew` should also work, as long as they provide a `GTK+` package.
 
 ### Linux
