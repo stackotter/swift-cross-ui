@@ -29,6 +29,28 @@
     "symbolKind" : "module",
     "title" : "SwiftCrossUI"
   },
+  "primaryContentSections" : [
+    {
+      "content" : [
+        {
+          "anchor" : "Overview",
+          "level" : 2,
+          "text" : "Overview",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "SwiftCrossUI implements a simple API similar but not identical to SwiftUI, allowing you to use the basic concepts of SwiftUI to create a cross-platofrm desktop app. SwiftCrossUI runs on SwiftGTK, a Swift wrapper for GTK+.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
+    }
+  ],
   "schemaVersion" : {
     "major" : 0,
     "minor" : 2,
@@ -38,6 +60,13 @@
 
   ],
   "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Basic-Usage",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Examples"
+      ],
+      "title" : "Getting Started"
+    },
     {
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding",
@@ -203,6 +232,20 @@
   "title" : "AppState",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appstate"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Basic-Usage": {
+  "abstract" : [
+    {
+      "text" : "The basics of setting up and using SwiftCrossUI.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Basic-Usage",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "Basic Usage",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/basic-usage"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Binding": {
   "abstract" : [
@@ -426,6 +469,20 @@
   "title" : "EmptyViewState",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/emptyviewstate"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Examples": {
+  "abstract" : [
+    {
+      "text" : "An overview of the examples included with SwiftCrossUI.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Examples",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "Examples",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/examples"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkApplication": {
   "abstract" : [
