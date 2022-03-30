@@ -32,7 +32,10 @@ If your distro uses a different package manager, the package names will likely b
 
 ## Adding SwiftCrossUI to Your Project
 
-To add SwiftCrossUI to your project, add it to your `Package.swift` file as a dependency.
+To add SwiftCrossUI to your project, add the following dependency to your `Package.swift` file.
+```swift
+.package(url: "https://github.com/stackotter/swift-cross-ui", .branch("main"))
+```
 
 Here's an example package file that uses SwiftCrossUI.
 ```swift
