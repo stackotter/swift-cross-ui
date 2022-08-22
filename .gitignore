@@ -1,5 +1,6 @@
 .DS_Store
 /.build
+docker_artifacts/
 /Packages
 /*.xcodeproj
 xcuserdata/
