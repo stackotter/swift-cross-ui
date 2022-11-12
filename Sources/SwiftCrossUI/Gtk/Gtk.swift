@@ -9,3 +9,4 @@ public typealias GtkButton = SwiftGtk.Button
 public typealias GtkWindow = SwiftGtk.Window
 public typealias GtkLabel = SwiftGtk.Label
 public typealias GtkButtonBox = SwiftGtk.ButtonBox
+public typealias GtkEntry = SwiftGtk.Entry

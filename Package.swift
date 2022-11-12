@@ -5,7 +5,8 @@ import PackageDescription
 var dependencies: [Package.Dependency] = [
     .package(
         url: "https://github.com/stackotter/SwiftGtk",
-        .branch("main"))
+        .branch("main")
+    )
 ]
 
 #if swift(>=5.6)
@@ -13,7 +14,8 @@ var dependencies: [Package.Dependency] = [
 dependencies.append(
     .package(
         url: "https://github.com/apple/swift-docc-plugin",
-        from: "1.0.0")
+        from: "1.0.0"
+    )
 )
 #endif
 
@@ -23,16 +25,24 @@ let package = Package(
     products: [
         .library(
             name: "SwiftCrossUI",
-            targets: ["SwiftCrossUI"]),
+            targets: ["SwiftCrossUI"]
+        ),
         .executable(
             name: "CounterExample",
-            targets: ["CounterExample"]),
+            targets: ["CounterExample"]
+        ),
         .executable(
             name: "RandomNumberGeneratorExample",
-            targets: ["RandomNumberGeneratorExample"]),
+            targets: ["RandomNumberGeneratorExample"]
+        ),
         .executable(
             name: "WindowPropertiesExample",
-            targets: ["WindowPropertiesExample"])
+            targets: ["WindowPropertiesExample"]
+        ),
+        .executable(
+            name: "GreetingGeneratorExample",
+            targets: ["GreetingGeneratorExample"]
+        )
     ],
     dependencies: dependencies,
     targets: [
@@ -46,19 +56,28 @@ let package = Package(
                 "Builders/ViewContentBuilder.swift.gyb",
                 "ViewGraph/ViewGraphNodeChildren.swift.gyb",
                 "Views/ViewContent.swift.gyb"
-            ]),
-        
+            ]
+        ),
+
         .executableTarget(
             name: "CounterExample",
             dependencies: ["SwiftCrossUI"],
-            path: "Examples/Counter"),
+            path: "Examples/Counter"
+        ),
         .executableTarget(
             name: "RandomNumberGeneratorExample",
             dependencies: ["SwiftCrossUI"],
-            path: "Examples/RandomNumberGenerator"),
+            path: "Examples/RandomNumberGenerator"
+        ),
         .executableTarget(
             name: "WindowPropertiesExample",
             dependencies: ["SwiftCrossUI"],
-            path: "Examples/WindowProperties")
+            path: "Examples/WindowProperties"
+        ),
+        .executableTarget(
+            name: "GreetingGeneratorExample",
+            dependencies: ["SwiftCrossUI"],
+            path: "Examples/GreetingGenerator"
+        )
     ]
 )

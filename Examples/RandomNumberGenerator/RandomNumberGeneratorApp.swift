@@ -9,11 +9,11 @@ class RandomNumberGeneratorState: AppState {
 @main
 struct RandomNumberGeneratorApp: App {
     let identifier = "dev.stackotter.RandomNumberGeneratorApp"
-    
+
     let state = RandomNumberGeneratorState()
-    
+
     let windowProperties = WindowProperties(title: "Random Number Generator")
-    
+
     var body: some ViewContent {
         VStack {
             Text("") // Placeholder until .padding() is available

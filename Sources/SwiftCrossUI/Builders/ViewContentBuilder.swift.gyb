@@ -23,4 +23,20 @@ return_type_init_parameters = ", ".join(["view%d" % j for j in range(i + 1)])
         return ${return_type}(${return_type_init_parameters})
     }
 % end
+
+    public static func buildEither<A: View, B: View>(first component: A) -> _EitherView<A, B> {
+        return _EitherView(component)
+    }
+
+    public static func buildEither<A: View, B: View>(second component: B) -> _EitherView<A, B> {
+        return _EitherView(component)
+    }
+
+    public static func buildIf<V: View>(_ content: V?) -> _OptionalView<V> {
+        return _OptionalView(content)
+    }
+
+    public static func buildFinalResult<V: View, R: ViewContent>(_ component: V) -> R where V.Content == R {
+        return component.body
+    }
 }
