@@ -1,0 +1,3231 @@
+{
+  "interfaceLanguages" : {
+    "swift" : [
+      {
+        "children" : [
+          {
+            "title" : "Getting Started",
+            "type" : "groupMarker"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/basic-usage",
+            "title" : "Basic Usage",
+            "type" : "article"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/examples",
+            "title" : "Examples",
+            "type" : "article"
+          },
+          {
+            "title" : "Classes",
+            "type" : "groupMarker"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/binding\/init(get:set:)",
+                "title" : "init(get: () -> Value, set: (Value) -> Void)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/binding\/wrappedvalue",
+                "title" : "var wrappedValue: Value",
+                "type" : "property"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/binding",
+            "title" : "Binding",
+            "type" : "class"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/cancellable\/init(closure:)",
+                "title" : "init(closure: () -> Void)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/cancellable\/cancel()",
+                "title" : "func cancel()",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/cancellable",
+            "title" : "Cancellable",
+            "type" : "class"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/emptyviewstate\/init()",
+                "title" : "init()",
+                "type" : "init"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyviewstate\/didchange",
+                    "title" : "var didChange: Publisher",
+                    "type" : "property"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/emptyviewstate\/viewstate-implementations",
+                "title" : "ViewState Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/emptyviewstate",
+            "title" : "EmptyViewState",
+            "type" : "class"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/observed\/init(wrappedvalue:)",
+                "title" : "init(wrappedValue: Value)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/observed\/projectedvalue",
+                "title" : "var projectedValue: Binding<Value>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/observed\/publisher",
+                "title" : "var publisher: Publisher",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/observed\/wrappedvalue",
+                "title" : "var wrappedValue: Value",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/observed\/valuedidchange()",
+                "title" : "func valueDidChange()",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/observed",
+            "title" : "Observed",
+            "type" : "class"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/publisher\/init()",
+                "title" : "init()",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/publisher\/link(todownstream:)",
+                "title" : "func link(toDownstream: Publisher)",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/publisher\/observe(with:)",
+                "title" : "func observe(with: () -> Void) -> Cancellable",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/publisher\/send()",
+                "title" : "func send()",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/publisher",
+            "title" : "Publisher",
+            "type" : "class"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraph\/init(for:)",
+                "title" : "init(for: Root)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraph\/rootnode-swift.property",
+                "title" : "var rootNode: ViewGraph<Root>.RootNode",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraph\/update()",
+                "title" : "func update()",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraph\/rootnode-swift.typealias",
+                "title" : "ViewGraph.RootNode",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewgraph",
+            "title" : "ViewGraph",
+            "type" : "class"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnode\/init(for:)",
+                "title" : "init(for: NodeView)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnode\/children",
+                "title" : "var children: NodeView.Content.Children",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnode\/view",
+                "title" : "var view: NodeView",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnode\/widget",
+                "title" : "var widget: GtkWidget",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnode\/update()",
+                "title" : "func update()",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnode\/update(with:)",
+                "title" : "func update(with: NodeView)",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewgraphnode",
+            "title" : "ViewGraphNode",
+            "type" : "class"
+          },
+          {
+            "title" : "Protocols",
+            "type" : "groupMarker"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Associated Types",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/app\/content",
+                "title" : "Content",
+                "type" : "associatedtype"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/app\/state-swift.associatedtype",
+                "title" : "State",
+                "type" : "associatedtype"
+              },
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/app\/init()",
+                "title" : "init()",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/app\/body",
+                "title" : "var body: Self.Content",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/app\/identifier",
+                "title" : "var identifier: String",
+                "type" : "property"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/app\/state-swift.property-6f6cc",
+                        "title" : "var state: EmptyViewState",
+                        "type" : "property"
+                      }
+                    ],
+                    "title" : "App Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/app\/state-swift.property-49rq3",
+                "title" : "var state: Self.State",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/app\/windowproperties",
+                "title" : "var windowProperties: WindowProperties",
+                "type" : "property"
+              },
+              {
+                "title" : "Type Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/app\/main()",
+                "title" : "static func main()",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/app",
+            "title" : "App",
+            "type" : "protocol"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/publishedvalue\/publisher",
+                "title" : "var publisher: Publisher",
+                "type" : "property"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/publishedvalue",
+            "title" : "PublishedValue",
+            "type" : "protocol"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Associated Types",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/view\/content",
+                "title" : "Content",
+                "type" : "associatedtype"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/view\/state-swift.associatedtype",
+                "title" : "State",
+                "type" : "associatedtype"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/viewcontent\/body",
+                        "title" : "var body: Self",
+                        "type" : "property"
+                      }
+                    ],
+                    "title" : "ViewContent Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/view\/body",
+                "title" : "var body: Self.Content",
+                "type" : "property"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/view\/state-swift.property-7zzwk",
+                        "title" : "var state: EmptyViewState",
+                        "type" : "property"
+                      }
+                    ],
+                    "title" : "View Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/view\/state-swift.property-t2al",
+                "title" : "var state: Self.State",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:)-93skq",
+                        "title" : "func asWidget(Self.Content.Children) -> GtkWidget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "View Implementations",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/viewcontent\/aswidget(_:)",
+                        "title" : "func asWidget(Self.Children) -> GtkWidget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "ViewContent Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:)-5jq4d",
+                "title" : "func asWidget(Self.Content.Children) -> GtkWidget",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:)-9yuam",
+                        "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "View Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:)-y4kr",
+                "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/view",
+            "title" : "View",
+            "type" : "protocol"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Associated Types",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent\/children",
+                "title" : "Children",
+                "type" : "associatedtype"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewcontent",
+            "title" : "ViewContent",
+            "type" : "protocol"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Associated Types",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren\/content",
+                "title" : "Content",
+                "type" : "associatedtype"
+              },
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren\/init(from:)",
+                "title" : "init(from: Self.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren\/update(with:)",
+                "title" : "func update(with: Self.Content)",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren",
+            "title" : "ViewGraphNodeChildren",
+            "type" : "protocol"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/viewstate\/didchange-7w1d8",
+                        "title" : "var didChange: Publisher",
+                        "type" : "property"
+                      }
+                    ],
+                    "title" : "ViewState Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewstate\/didchange-3z4vv",
+                "title" : "var didChange: Publisher",
+                "type" : "property"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewstate",
+            "title" : "ViewState",
+            "type" : "protocol"
+          },
+          {
+            "title" : "Structures",
+            "type" : "groupMarker"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/button\/init(_:action:)",
+                "title" : "init(String, action: () -> Void)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/button\/action",
+                "title" : "var action: () -> Void",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/button\/body",
+                "title" : "var body: EmptyViewContent",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/button\/label",
+                "title" : "var label: String",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/button\/aswidget(_:)",
+                "title" : "func asWidget(EmptyViewContent.Children) -> GtkWidget",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/button\/update(_:children:)",
+                "title" : "func update(GtkWidget, children: EmptyViewContent.Children)",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/button\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/button\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/button",
+            "title" : "Button",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/eitherviewchildren\/init(from:)",
+                "title" : "init(from: EitherViewChildren<A, B>.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/eitherviewchildren\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/eitherviewchildren\/update(with:)",
+                "title" : "func update(with: EitherViewChildren<A, B>.Content)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/eitherviewchildren\/content",
+                "title" : "EitherViewChildren.Content",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/eitherviewchildren",
+            "title" : "EitherViewChildren",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/init(_:)-6b949",
+                "title" : "init(A)",
+                "type" : "init"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/init(_:)-76auz",
+                "title" : "init(B)",
+                "type" : "init"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/children",
+                "title" : "EitherViewContent.Children",
+                "type" : "typealias"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/eitherviewcontent",
+            "title" : "EitherViewContent",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/init()",
+                "title" : "init()",
+                "type" : "init"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/children",
+                "title" : "EmptyViewContent.Children",
+                "type" : "typealias"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/emptyviewcontent",
+            "title" : "EmptyViewContent",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren\/init(from:)",
+                "title" : "init(from: EmptyViewContent)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren\/widgets",
+                "title" : "let widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren\/update(with:)",
+                "title" : "func update(with: EmptyViewContent)",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren",
+            "title" : "EmptyViewGraphNodeChildren",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/hstack\/init(_:)",
+                "title" : "init(() -> Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/hstack\/body",
+                "title" : "var body: Content",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/hstack\/aswidget(_:)",
+                "title" : "func asWidget(Content.Children) -> GtkWidget",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/hstack\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/hstack",
+            "title" : "HStack",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/optionalviewchildren\/init(from:)",
+                "title" : "init(from: OptionalViewChildren<V>.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/optionalviewchildren\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/optionalviewchildren\/update(with:)",
+                "title" : "func update(with: OptionalViewChildren<V>.Content)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/optionalviewchildren\/content",
+                "title" : "OptionalViewChildren.Content",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/optionalviewchildren",
+            "title" : "OptionalViewChildren",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/init(_:)",
+                "title" : "init(V?)",
+                "type" : "init"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/children",
+                "title" : "OptionalViewContent.Children",
+                "type" : "typealias"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/optionalviewcontent",
+            "title" : "OptionalViewContent",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/text\/init(_:)",
+                "title" : "init(String)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/text\/body",
+                "title" : "var body: EmptyViewContent",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/text\/string",
+                "title" : "var string: String",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/text\/aswidget(_:)",
+                "title" : "func asWidget(EmptyViewContent.Children) -> GtkWidget",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/text\/update(_:children:)",
+                "title" : "func update(GtkWidget, children: EmptyViewContent.Children)",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/text\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/text\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/text",
+            "title" : "Text",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/textfield\/init(_:_:)",
+                "title" : "init(String, Binding<String>?)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/textfield\/body",
+                "title" : "var body: EmptyViewContent",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/textfield\/placeholder",
+                "title" : "var placeholder: String",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/textfield\/value",
+                "title" : "var value: Binding<String>?",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/textfield\/aswidget(_:)",
+                "title" : "func asWidget(EmptyViewContent.Children) -> GtkWidget",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/textfield\/update(_:children:)",
+                "title" : "func update(GtkWidget, children: EmptyViewContent.Children)",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/textfield\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/textfield",
+            "title" : "TextField",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/vstack\/init(_:)",
+                "title" : "init(() -> Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/vstack\/body",
+                "title" : "var body: Content",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/vstack\/aswidget(_:)",
+                "title" : "func asWidget(Content.Children) -> GtkWidget",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/vstack\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/vstack",
+            "title" : "VStack",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent1\/init(_:)",
+                "title" : "init(View0)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent1\/view0",
+                "title" : "var view0: View0",
+                "type" : "property"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent1\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "type" : "method"
+                  },
+                  {
+                    "title" : "Type Aliases",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/children",
+                    "title" : "ViewContent1.Children",
+                    "type" : "typealias"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent1\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewcontent1",
+            "title" : "ViewContent1",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent10\/init(_:_:_:_:_:_:_:_:_:_:)",
+                "title" : "init(View0, View1, View2, View3, View4, View5, View6, View7, View8, View9)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent10\/view0",
+                "title" : "var view0: View0",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent10\/view1",
+                "title" : "var view1: View1",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent10\/view2",
+                "title" : "var view2: View2",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent10\/view3",
+                "title" : "var view3: View3",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent10\/view4",
+                "title" : "var view4: View4",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent10\/view5",
+                "title" : "var view5: View5",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent10\/view6",
+                "title" : "var view6: View6",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent10\/view7",
+                "title" : "var view7: View7",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent10\/view8",
+                "title" : "var view8: View8",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent10\/view9",
+                "title" : "var view9: View9",
+                "type" : "property"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent10\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "type" : "method"
+                  },
+                  {
+                    "title" : "Type Aliases",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/children",
+                    "title" : "ViewContent10.Children",
+                    "type" : "typealias"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent10\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewcontent10",
+            "title" : "ViewContent10",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent2\/init(_:_:)",
+                "title" : "init(View0, View1)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent2\/view0",
+                "title" : "var view0: View0",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent2\/view1",
+                "title" : "var view1: View1",
+                "type" : "property"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent2\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "type" : "method"
+                  },
+                  {
+                    "title" : "Type Aliases",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/children",
+                    "title" : "ViewContent2.Children",
+                    "type" : "typealias"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent2\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewcontent2",
+            "title" : "ViewContent2",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent3\/init(_:_:_:)",
+                "title" : "init(View0, View1, View2)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent3\/view0",
+                "title" : "var view0: View0",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent3\/view1",
+                "title" : "var view1: View1",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent3\/view2",
+                "title" : "var view2: View2",
+                "type" : "property"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent3\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "type" : "method"
+                  },
+                  {
+                    "title" : "Type Aliases",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/children",
+                    "title" : "ViewContent3.Children",
+                    "type" : "typealias"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent3\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewcontent3",
+            "title" : "ViewContent3",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent4\/init(_:_:_:_:)",
+                "title" : "init(View0, View1, View2, View3)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent4\/view0",
+                "title" : "var view0: View0",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent4\/view1",
+                "title" : "var view1: View1",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent4\/view2",
+                "title" : "var view2: View2",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent4\/view3",
+                "title" : "var view3: View3",
+                "type" : "property"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent4\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "type" : "method"
+                  },
+                  {
+                    "title" : "Type Aliases",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/children",
+                    "title" : "ViewContent4.Children",
+                    "type" : "typealias"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent4\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewcontent4",
+            "title" : "ViewContent4",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent5\/init(_:_:_:_:_:)",
+                "title" : "init(View0, View1, View2, View3, View4)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent5\/view0",
+                "title" : "var view0: View0",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent5\/view1",
+                "title" : "var view1: View1",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent5\/view2",
+                "title" : "var view2: View2",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent5\/view3",
+                "title" : "var view3: View3",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent5\/view4",
+                "title" : "var view4: View4",
+                "type" : "property"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent5\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "type" : "method"
+                  },
+                  {
+                    "title" : "Type Aliases",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/children",
+                    "title" : "ViewContent5.Children",
+                    "type" : "typealias"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent5\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewcontent5",
+            "title" : "ViewContent5",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent6\/init(_:_:_:_:_:_:)",
+                "title" : "init(View0, View1, View2, View3, View4, View5)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent6\/view0",
+                "title" : "var view0: View0",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent6\/view1",
+                "title" : "var view1: View1",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent6\/view2",
+                "title" : "var view2: View2",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent6\/view3",
+                "title" : "var view3: View3",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent6\/view4",
+                "title" : "var view4: View4",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent6\/view5",
+                "title" : "var view5: View5",
+                "type" : "property"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent6\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "type" : "method"
+                  },
+                  {
+                    "title" : "Type Aliases",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/children",
+                    "title" : "ViewContent6.Children",
+                    "type" : "typealias"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent6\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewcontent6",
+            "title" : "ViewContent6",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent7\/init(_:_:_:_:_:_:_:)",
+                "title" : "init(View0, View1, View2, View3, View4, View5, View6)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent7\/view0",
+                "title" : "var view0: View0",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent7\/view1",
+                "title" : "var view1: View1",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent7\/view2",
+                "title" : "var view2: View2",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent7\/view3",
+                "title" : "var view3: View3",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent7\/view4",
+                "title" : "var view4: View4",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent7\/view5",
+                "title" : "var view5: View5",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent7\/view6",
+                "title" : "var view6: View6",
+                "type" : "property"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent7\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "type" : "method"
+                  },
+                  {
+                    "title" : "Type Aliases",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/children",
+                    "title" : "ViewContent7.Children",
+                    "type" : "typealias"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent7\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewcontent7",
+            "title" : "ViewContent7",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent8\/init(_:_:_:_:_:_:_:_:)",
+                "title" : "init(View0, View1, View2, View3, View4, View5, View6, View7)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent8\/view0",
+                "title" : "var view0: View0",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent8\/view1",
+                "title" : "var view1: View1",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent8\/view2",
+                "title" : "var view2: View2",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent8\/view3",
+                "title" : "var view3: View3",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent8\/view4",
+                "title" : "var view4: View4",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent8\/view5",
+                "title" : "var view5: View5",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent8\/view6",
+                "title" : "var view6: View6",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent8\/view7",
+                "title" : "var view7: View7",
+                "type" : "property"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent8\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "type" : "method"
+                  },
+                  {
+                    "title" : "Type Aliases",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/children",
+                    "title" : "ViewContent8.Children",
+                    "type" : "typealias"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent8\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewcontent8",
+            "title" : "ViewContent8",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent9\/init(_:_:_:_:_:_:_:_:_:)",
+                "title" : "init(View0, View1, View2, View3, View4, View5, View6, View7, View8)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent9\/view0",
+                "title" : "var view0: View0",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent9\/view1",
+                "title" : "var view1: View1",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent9\/view2",
+                "title" : "var view2: View2",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent9\/view3",
+                "title" : "var view3: View3",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent9\/view4",
+                "title" : "var view4: View4",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent9\/view5",
+                "title" : "var view5: View5",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent9\/view6",
+                "title" : "var view6: View6",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent9\/view7",
+                "title" : "var view7: View7",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontent9\/view8",
+                "title" : "var view8: View8",
+                "type" : "property"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent9\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "type" : "method"
+                  },
+                  {
+                    "title" : "Type Aliases",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/children",
+                    "title" : "ViewContent9.Children",
+                    "type" : "typealias"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewcontent9\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewcontent9",
+            "title" : "ViewContent9",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Type Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildblock()",
+                "title" : "static func buildBlock() -> EmptyViewContent",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildblock(_:)",
+                "title" : "static func buildBlock<V0>(V0) -> ViewContent1<V0>",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildblock(_:_:)",
+                "title" : "static func buildBlock<V0, V1>(V0, V1) -> ViewContent2<V0, V1>",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildblock(_:_:_:)",
+                "title" : "static func buildBlock<V0, V1, V2>(V0, V1, V2) -> ViewContent3<V0, V1, V2>",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildblock(_:_:_:_:)",
+                "title" : "static func buildBlock<V0, V1, V2, V3>(V0, V1, V2, V3) -> ViewContent4<V0, V1, V2, V3>",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildblock(_:_:_:_:_:)",
+                "title" : "static func buildBlock<V0, V1, V2, V3, V4>(V0, V1, V2, V3, V4) -> ViewContent5<V0, V1, V2, V3, V4>",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildblock(_:_:_:_:_:_:)",
+                "title" : "static func buildBlock<V0, V1, V2, V3, V4, V5>(V0, V1, V2, V3, V4, V5) -> ViewContent6<V0, V1, V2, V3, V4, V5>",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildblock(_:_:_:_:_:_:_:)",
+                "title" : "static func buildBlock<V0, V1, V2, V3, V4, V5, V6>(V0, V1, V2, V3, V4, V5, V6) -> ViewContent7<V0, V1, V2, V3, V4, V5, V6>",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildblock(_:_:_:_:_:_:_:_:)",
+                "title" : "static func buildBlock<V0, V1, V2, V3, V4, V5, V6, V7>(V0, V1, V2, V3, V4, V5, V6, V7) -> ViewContent8<V0, V1, V2, V3, V4, V5, V6, V7>",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildblock(_:_:_:_:_:_:_:_:_:)",
+                "title" : "static func buildBlock<V0, V1, V2, V3, V4, V5, V6, V7, V8>(V0, V1, V2, V3, V4, V5, V6, V7, V8) -> ViewContent9<V0, V1, V2, V3, V4, V5, V6, V7, V8>",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildblock(_:_:_:_:_:_:_:_:_:_:)",
+                "title" : "static func buildBlock<V0, V1, V2, V3, V4, V5, V6, V7, V8, V9>(V0, V1, V2, V3, V4, V5, V6, V7, V8, V9) -> ViewContent10<V0, V1, V2, V3, V4, V5, V6, V7, V8, V9>",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildeither(first:)",
+                "title" : "static func buildEither<A, B>(first: A) -> _EitherView<A, B>",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildeither(second:)",
+                "title" : "static func buildEither<A, B>(second: B) -> _EitherView<A, B>",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildfinalresult(_:)",
+                "title" : "static func buildFinalResult<V, R>(V) -> R",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildif(_:)",
+                "title" : "static func buildIf<V>(V?) -> _OptionalView<V>",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder",
+            "title" : "ViewContentBuilder",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren1\/init(from:)",
+                "title" : "init(from: ViewGraphNodeChildren1<Child0>.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren1\/child0",
+                "title" : "var child0: ViewGraphNode<Child0>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren1\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren1\/update(with:)",
+                "title" : "func update(with: ViewGraphNodeChildren1<Child0>.Content)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren1\/content",
+                "title" : "ViewGraphNodeChildren1.Content",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren1",
+            "title" : "ViewGraphNodeChildren1",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/init(from:)",
+                "title" : "init(from: ViewGraphNodeChildren10<Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, Child8, Child9>.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/child0",
+                "title" : "var child0: ViewGraphNode<Child0>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/child1",
+                "title" : "var child1: ViewGraphNode<Child1>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/child2",
+                "title" : "var child2: ViewGraphNode<Child2>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/child3",
+                "title" : "var child3: ViewGraphNode<Child3>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/child4",
+                "title" : "var child4: ViewGraphNode<Child4>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/child5",
+                "title" : "var child5: ViewGraphNode<Child5>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/child6",
+                "title" : "var child6: ViewGraphNode<Child6>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/child7",
+                "title" : "var child7: ViewGraphNode<Child7>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/child8",
+                "title" : "var child8: ViewGraphNode<Child8>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/child9",
+                "title" : "var child9: ViewGraphNode<Child9>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/update(with:)",
+                "title" : "func update(with: ViewGraphNodeChildren10<Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, Child8, Child9>.Content)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/content",
+                "title" : "ViewGraphNodeChildren10.Content",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10",
+            "title" : "ViewGraphNodeChildren10",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren2\/init(from:)",
+                "title" : "init(from: ViewGraphNodeChildren2<Child0, Child1>.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren2\/child0",
+                "title" : "var child0: ViewGraphNode<Child0>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren2\/child1",
+                "title" : "var child1: ViewGraphNode<Child1>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren2\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren2\/update(with:)",
+                "title" : "func update(with: ViewGraphNodeChildren2<Child0, Child1>.Content)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren2\/content",
+                "title" : "ViewGraphNodeChildren2.Content",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren2",
+            "title" : "ViewGraphNodeChildren2",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren3\/init(from:)",
+                "title" : "init(from: ViewGraphNodeChildren3<Child0, Child1, Child2>.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren3\/child0",
+                "title" : "var child0: ViewGraphNode<Child0>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren3\/child1",
+                "title" : "var child1: ViewGraphNode<Child1>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren3\/child2",
+                "title" : "var child2: ViewGraphNode<Child2>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren3\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren3\/update(with:)",
+                "title" : "func update(with: ViewGraphNodeChildren3<Child0, Child1, Child2>.Content)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren3\/content",
+                "title" : "ViewGraphNodeChildren3.Content",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren3",
+            "title" : "ViewGraphNodeChildren3",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren4\/init(from:)",
+                "title" : "init(from: ViewGraphNodeChildren4<Child0, Child1, Child2, Child3>.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren4\/child0",
+                "title" : "var child0: ViewGraphNode<Child0>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren4\/child1",
+                "title" : "var child1: ViewGraphNode<Child1>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren4\/child2",
+                "title" : "var child2: ViewGraphNode<Child2>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren4\/child3",
+                "title" : "var child3: ViewGraphNode<Child3>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren4\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren4\/update(with:)",
+                "title" : "func update(with: ViewGraphNodeChildren4<Child0, Child1, Child2, Child3>.Content)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren4\/content",
+                "title" : "ViewGraphNodeChildren4.Content",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren4",
+            "title" : "ViewGraphNodeChildren4",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5\/init(from:)",
+                "title" : "init(from: ViewGraphNodeChildren5<Child0, Child1, Child2, Child3, Child4>.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5\/child0",
+                "title" : "var child0: ViewGraphNode<Child0>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5\/child1",
+                "title" : "var child1: ViewGraphNode<Child1>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5\/child2",
+                "title" : "var child2: ViewGraphNode<Child2>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5\/child3",
+                "title" : "var child3: ViewGraphNode<Child3>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5\/child4",
+                "title" : "var child4: ViewGraphNode<Child4>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5\/update(with:)",
+                "title" : "func update(with: ViewGraphNodeChildren5<Child0, Child1, Child2, Child3, Child4>.Content)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5\/content",
+                "title" : "ViewGraphNodeChildren5.Content",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5",
+            "title" : "ViewGraphNodeChildren5",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6\/init(from:)",
+                "title" : "init(from: ViewGraphNodeChildren6<Child0, Child1, Child2, Child3, Child4, Child5>.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6\/child0",
+                "title" : "var child0: ViewGraphNode<Child0>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6\/child1",
+                "title" : "var child1: ViewGraphNode<Child1>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6\/child2",
+                "title" : "var child2: ViewGraphNode<Child2>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6\/child3",
+                "title" : "var child3: ViewGraphNode<Child3>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6\/child4",
+                "title" : "var child4: ViewGraphNode<Child4>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6\/child5",
+                "title" : "var child5: ViewGraphNode<Child5>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6\/update(with:)",
+                "title" : "func update(with: ViewGraphNodeChildren6<Child0, Child1, Child2, Child3, Child4, Child5>.Content)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6\/content",
+                "title" : "ViewGraphNodeChildren6.Content",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6",
+            "title" : "ViewGraphNodeChildren6",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7\/init(from:)",
+                "title" : "init(from: ViewGraphNodeChildren7<Child0, Child1, Child2, Child3, Child4, Child5, Child6>.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7\/child0",
+                "title" : "var child0: ViewGraphNode<Child0>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7\/child1",
+                "title" : "var child1: ViewGraphNode<Child1>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7\/child2",
+                "title" : "var child2: ViewGraphNode<Child2>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7\/child3",
+                "title" : "var child3: ViewGraphNode<Child3>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7\/child4",
+                "title" : "var child4: ViewGraphNode<Child4>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7\/child5",
+                "title" : "var child5: ViewGraphNode<Child5>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7\/child6",
+                "title" : "var child6: ViewGraphNode<Child6>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7\/update(with:)",
+                "title" : "func update(with: ViewGraphNodeChildren7<Child0, Child1, Child2, Child3, Child4, Child5, Child6>.Content)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7\/content",
+                "title" : "ViewGraphNodeChildren7.Content",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7",
+            "title" : "ViewGraphNodeChildren7",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/init(from:)",
+                "title" : "init(from: ViewGraphNodeChildren8<Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7>.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/child0",
+                "title" : "var child0: ViewGraphNode<Child0>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/child1",
+                "title" : "var child1: ViewGraphNode<Child1>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/child2",
+                "title" : "var child2: ViewGraphNode<Child2>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/child3",
+                "title" : "var child3: ViewGraphNode<Child3>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/child4",
+                "title" : "var child4: ViewGraphNode<Child4>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/child5",
+                "title" : "var child5: ViewGraphNode<Child5>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/child6",
+                "title" : "var child6: ViewGraphNode<Child6>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/child7",
+                "title" : "var child7: ViewGraphNode<Child7>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/update(with:)",
+                "title" : "func update(with: ViewGraphNodeChildren8<Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7>.Content)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/content",
+                "title" : "ViewGraphNodeChildren8.Content",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8",
+            "title" : "ViewGraphNodeChildren8",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/init(from:)",
+                "title" : "init(from: ViewGraphNodeChildren9<Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, Child8>.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/child0",
+                "title" : "var child0: ViewGraphNode<Child0>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/child1",
+                "title" : "var child1: ViewGraphNode<Child1>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/child2",
+                "title" : "var child2: ViewGraphNode<Child2>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/child3",
+                "title" : "var child3: ViewGraphNode<Child3>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/child4",
+                "title" : "var child4: ViewGraphNode<Child4>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/child5",
+                "title" : "var child5: ViewGraphNode<Child5>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/child6",
+                "title" : "var child6: ViewGraphNode<Child6>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/child7",
+                "title" : "var child7: ViewGraphNode<Child7>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/child8",
+                "title" : "var child8: ViewGraphNode<Child8>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/update(with:)",
+                "title" : "func update(with: ViewGraphNodeChildren9<Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, Child8>.Content)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/content",
+                "title" : "ViewGraphNodeChildren9.Content",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9",
+            "title" : "ViewGraphNodeChildren9",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowproperties\/init(title:defaultwidth:defaultheight:resizable:)",
+                "title" : "init(title: String, defaultWidth: Int, defaultHeight: Int, resizable: Bool)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowproperties\/defaultheight",
+                "title" : "var defaultHeight: Int",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowproperties\/defaultwidth",
+                "title" : "var defaultWidth: Int",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowproperties\/resizable",
+                "title" : "var resizable: Bool",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowproperties\/title",
+                "title" : "var title: String",
+                "type" : "property"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/windowproperties",
+            "title" : "WindowProperties",
+            "type" : "struct"
+          },
+          {
+            "title" : "Type Aliases",
+            "type" : "groupMarker"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/appstate",
+            "title" : "AppState",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/emptyappstate",
+            "title" : "EmptyAppState",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkapplication",
+            "title" : "GtkApplication",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkbox",
+            "title" : "GtkBox",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkbutton",
+            "title" : "GtkButton",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkbuttonbox",
+            "title" : "GtkButtonBox",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkcontainer",
+            "title" : "GtkContainer",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkentry",
+            "title" : "GtkEntry",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtklabel",
+            "title" : "GtkLabel",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtksize",
+            "title" : "GtkSize",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkwidget",
+            "title" : "GtkWidget",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkwindow",
+            "title" : "GtkWindow",
+            "type" : "typealias"
+          }
+        ],
+        "path" : "\/documentation\/swiftcrossui",
+        "title" : "SwiftCrossUI",
+        "type" : "module"
+      }
+    ]
+  },
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 1,
+    "patch" : 0
+  }
+}

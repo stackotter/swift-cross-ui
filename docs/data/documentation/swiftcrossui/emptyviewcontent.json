@@ -1,10 +1,4 @@
 {
-  "abstract" : [
-    {
-      "text" : "No overview available.",
-      "type" : "text"
-    }
-  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -81,6 +75,7 @@
   "relationshipsSections" : [
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent"
       ],
       "kind" : "relationships",
@@ -90,7 +85,7 @@
   ],
   "schemaVersion" : {
     "major" : 0,
-    "minor" : 2,
+    "minor" : 3,
     "patch" : 0
   },
   "sections" : [
@@ -108,6 +103,14 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent\/Children"
       ],
       "title" : "Type Aliases"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent\/View-Implementations",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent\/ViewContent-Implementations"
+      ],
+      "title" : "Default Implementations"
     }
   ],
   "variants" : [
@@ -200,6 +203,28 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/emptyviewcontent\/children"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewContent/View-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent\/View-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "View Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyviewcontent\/view-implementations"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewContent/ViewContent-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent\/ViewContent-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "ViewContent Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyviewcontent\/viewcontent-implementations"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewContent/init()": {
   "abstract" : [
 
@@ -220,6 +245,40 @@
   "title" : "init()",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/emptyviewcontent\/init()"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
+  "abstract" : [
+    {
+      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "View"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "View",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent": {
   "abstract" : [

@@ -1,10 +1,4 @@
 {
-  "abstract" : [
-    {
-      "text" : "No overview available.",
-      "type" : "text"
-    }
-  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -88,7 +82,7 @@
   ],
   "schemaVersion" : {
     "major" : 0,
-    "minor" : 2,
+    "minor" : 3,
     "patch" : 0
   },
   "sections" : [
@@ -107,7 +101,11 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder\/buildBlock(_:_:_:_:_:_:_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder\/buildBlock(_:_:_:_:_:_:_:_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder\/buildBlock(_:_:_:_:_:_:_:_:_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder\/buildBlock(_:_:_:_:_:_:_:_:_:_:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder\/buildBlock(_:_:_:_:_:_:_:_:_:_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder\/buildEither(first:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder\/buildEither(second:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder\/buildFinalResult(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder\/buildIf(_:)"
       ],
       "title" : "Type Methods"
     }
@@ -1992,6 +1990,326 @@
   "title" : "buildBlock(_:_:_:_:_:_:_:_:_:_:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildblock(_:_:_:_:_:_:_:_:_:_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContentBuilder/buildEither(first:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "buildEither"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "A"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "B"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "first"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "A"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "_EitherView"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "A"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "B"
+    },
+    {
+      "kind" : "text",
+      "text" : ">"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder\/buildEither(first:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "buildEither(first:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildeither(first:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContentBuilder/buildEither(second:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "buildEither"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "A"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "B"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "second"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "B"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "_EitherView"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "A"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "B"
+    },
+    {
+      "kind" : "text",
+      "text" : ">"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder\/buildEither(second:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "buildEither(second:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildeither(second:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContentBuilder/buildFinalResult(_:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "buildFinalResult"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "V"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "R"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "V"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "R"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder\/buildFinalResult(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "buildFinalResult(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildfinalresult(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContentBuilder/buildIf(_:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "buildIf"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "V"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "V"
+    },
+    {
+      "kind" : "text",
+      "text" : "?) -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "_OptionalView"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "V"
+    },
+    {
+      "kind" : "text",
+      "text" : ">"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder\/buildIf(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "buildIf(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildif(_:)"
 }
 }
 }

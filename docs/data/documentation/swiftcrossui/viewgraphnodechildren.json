@@ -1,10 +1,4 @@
 {
-  "abstract" : [
-    {
-      "text" : "No overview available.",
-      "type" : "text"
-    }
-  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -81,7 +75,9 @@
   "relationshipsSections" : [
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren1",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren2",
@@ -100,7 +96,7 @@
   ],
   "schemaVersion" : {
     "major" : 0,
-    "minor" : 2,
+    "minor" : 3,
     "patch" : 0
   },
   "sections" : [
@@ -160,6 +156,37 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherViewChildren": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EitherViewChildren"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherViewChildren",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EitherViewChildren"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EitherViewChildren",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/eitherviewchildren"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewGraphNodeChildren": {
   "abstract" : [
 
@@ -190,6 +217,37 @@
   "title" : "EmptyViewGraphNodeChildren",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalViewChildren": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "OptionalViewChildren"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewChildren",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "OptionalViewChildren"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "OptionalViewChildren",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/optionalviewchildren"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren": {
   "abstract" : [
