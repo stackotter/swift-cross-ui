@@ -141,13 +141,14 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/init(_:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/init(_:spacing:)"
       ],
       "title" : "Initializers"
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/body"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/body",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/spacing"
       ],
       "title" : "Instance Properties"
     },
@@ -329,7 +330,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/vstack\/body"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/init(_:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/init(_:spacing:)": {
   "abstract" : [
     {
       "text" : "Creates a new VStack.",
@@ -351,15 +352,66 @@
     },
     {
       "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "spacing"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/init(_:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/init(_:spacing:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "init(_:)",
+  "title" : "init(_:spacing:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/vstack\/init(_:)"
+  "url" : "\/documentation\/swiftcrossui\/vstack\/init(_:spacing:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/spacing": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "spacing"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/spacing",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "spacing",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/vstack\/spacing"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

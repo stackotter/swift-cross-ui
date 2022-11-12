@@ -93,13 +93,17 @@
     {
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherViewContent",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewContent",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Padding",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PaddingView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
@@ -144,6 +148,12 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWindow"
       ],
       "title" : "Type Aliases"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Side"
+      ],
+      "title" : "Enumerations"
     }
   ],
   "variants" : [
@@ -348,6 +358,37 @@
   "title" : "Cancellable",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/cancellable"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EitherView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EitherView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EitherView",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/eitherview"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherViewChildren": {
   "abstract" : [
@@ -935,6 +976,37 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/observed"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalView": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "OptionalView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "OptionalView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "OptionalView",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/optionalview"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalViewChildren": {
   "abstract" : [
 
@@ -997,6 +1069,68 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/optionalviewcontent"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Padding": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Padding"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Padding",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Padding"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Padding",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/padding"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/PaddingView": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "PaddingView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PaddingView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "PaddingView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "PaddingView",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/paddingview"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/PublishedValue": {
   "abstract" : [
 
@@ -1058,6 +1192,37 @@
   "title" : "Publisher",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/publisher"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Side": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Side"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Side",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Side"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Side",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/side"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text": {
   "abstract" : [

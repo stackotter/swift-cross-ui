@@ -2054,7 +2054,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "_EitherView"
+      "preciseIdentifier" : "s:12SwiftCrossUI10EitherViewV",
+      "text" : "EitherView"
     },
     {
       "kind" : "text",
@@ -2147,7 +2148,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "_EitherView"
+      "preciseIdentifier" : "s:12SwiftCrossUI10EitherViewV",
+      "text" : "EitherView"
     },
     {
       "kind" : "text",
@@ -2289,7 +2291,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "_OptionalView"
+      "preciseIdentifier" : "s:12SwiftCrossUI12OptionalViewV",
+      "text" : "OptionalView"
     },
     {
       "kind" : "text",

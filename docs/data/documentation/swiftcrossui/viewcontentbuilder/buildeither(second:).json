@@ -13,7 +13,7 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI18ViewContentBuilderV11buildEither6secondAA01_hD0Vyxq_Gq__tAA0D0RzAaIR_r0_lFZ",
+    "externalID" : "s:12SwiftCrossUI18ViewContentBuilderV11buildEither6secondAA0hD0Vyxq_Gq__tAA0D0RzAaIR_r0_lFZ",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -73,7 +73,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "_EitherView"
+        "preciseIdentifier" : "s:12SwiftCrossUI10EitherViewV",
+        "text" : "EitherView"
       },
       {
         "kind" : "text",
@@ -182,8 +183,10 @@
               "text" : ") -> "
             },
             {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
               "kind" : "typeIdentifier",
-              "text" : "_EitherView"
+              "preciseIdentifier" : "s:12SwiftCrossUI10EitherViewV",
+              "text" : "EitherView"
             },
             {
               "kind" : "text",
@@ -286,6 +289,37 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EitherView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EitherView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EitherView",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/eitherview"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
@@ -415,7 +449,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "_EitherView"
+      "preciseIdentifier" : "s:12SwiftCrossUI10EitherViewV",
+      "text" : "EitherView"
     },
     {
       "kind" : "text",

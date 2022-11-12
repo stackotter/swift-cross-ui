@@ -464,6 +464,16 @@
                 "type" : "method"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/view\/padding(_:)",
+                "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/view\/padding(_:_:)",
+                "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                "type" : "method"
+              },
+              {
                 "children" : [
                   {
                     "children" : [
@@ -636,6 +646,20 @@
                     "path" : "\/documentation\/swiftcrossui\/button\/state",
                     "title" : "var state: EmptyViewState",
                     "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/button\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/button\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
                   }
                 ],
                 "path" : "\/documentation\/swiftcrossui\/button\/view-implementations",
@@ -645,6 +669,70 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/button",
             "title" : "Button",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/eitherview\/body",
+                "title" : "var body: EitherViewContent<A, B>",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/eitherview\/aswidget(_:)",
+                "title" : "func asWidget(EitherViewChildren<A, B>) -> GtkWidget",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/eitherview\/update(_:children:)",
+                "title" : "func update(GtkWidget, children: EitherViewChildren<A, B>)",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/eitherview\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/eitherview",
+            "title" : "EitherView",
             "type" : "struct"
           },
           {
@@ -740,6 +828,16 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/update(_:children:)",
                     "title" : "func update(GtkWidget, children: Self.Content.Children)",
                     "type" : "method"
@@ -815,6 +913,16 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/update(_:children:)",
                     "title" : "func update(GtkWidget, children: Self.Content.Children)",
                     "type" : "method"
@@ -886,8 +994,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/hstack\/init(_:)",
-                "title" : "init(() -> Content)",
+                "path" : "\/documentation\/swiftcrossui\/hstack\/init(_:spacing:)",
+                "title" : "init(() -> Content, spacing: Int)",
                 "type" : "init"
               },
               {
@@ -897,6 +1005,11 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/hstack\/body",
                 "title" : "var body: Content",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/hstack\/spacing",
+                "title" : "var spacing: Int",
                 "type" : "property"
               },
               {
@@ -928,6 +1041,16 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/hstack\/update(_:children:)",
                     "title" : "func update(GtkWidget, children: Self.Content.Children)",
                     "type" : "method"
@@ -940,6 +1063,70 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/hstack",
             "title" : "HStack",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/optionalview\/body",
+                "title" : "var body: OptionalViewContent<V>",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/optionalview\/aswidget(_:)",
+                "title" : "func asWidget(OptionalViewChildren<V>) -> GtkWidget",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/optionalview\/update(_:children:)",
+                "title" : "func update(GtkWidget, children: OptionalViewChildren<V>)",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/optionalview\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/optionalview",
+            "title" : "OptionalView",
             "type" : "struct"
           },
           {
@@ -1030,6 +1217,16 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/update(_:children:)",
                     "title" : "func update(GtkWidget, children: Self.Content.Children)",
                     "type" : "method"
@@ -1058,6 +1255,134 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/optionalviewcontent",
             "title" : "OptionalViewContent",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/padding\/init()",
+                "title" : "init()",
+                "type" : "init"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/padding\/init(_:)",
+                "title" : "init(Int)",
+                "type" : "init"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/padding\/init(top:bottom:left:right:)",
+                "title" : "init(top: Int, bottom: Int, left: Int, right: Int)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/padding\/bottom",
+                "title" : "var bottom: Int",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/padding\/left",
+                "title" : "var left: Int",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/padding\/right",
+                "title" : "var right: Int",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/padding\/top",
+                "title" : "var top: Int",
+                "type" : "property"
+              },
+              {
+                "title" : "Subscripts",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/padding\/subscript(_:)",
+                "title" : "subscript(Side) -> Int",
+                "type" : "subscript"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/padding",
+            "title" : "Padding",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/paddingview\/body",
+                "title" : "var body: Content",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/paddingview\/padding",
+                "title" : "var padding: Padding",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/paddingview\/aswidget(_:)",
+                "title" : "func asWidget(Content.Children) -> GtkWidget",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/paddingview\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/paddingview\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/paddingview\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/paddingview\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/paddingview\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/paddingview",
+            "title" : "PaddingView",
             "type" : "struct"
           },
           {
@@ -1113,6 +1438,20 @@
                     "path" : "\/documentation\/swiftcrossui\/text\/state",
                     "title" : "var state: EmptyViewState",
                     "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/text\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/text\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
                   }
                 ],
                 "path" : "\/documentation\/swiftcrossui\/text\/view-implementations",
@@ -1182,6 +1521,20 @@
                     "path" : "\/documentation\/swiftcrossui\/textfield\/state",
                     "title" : "var state: EmptyViewState",
                     "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
                   }
                 ],
                 "path" : "\/documentation\/swiftcrossui\/textfield\/view-implementations",
@@ -1200,8 +1553,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/vstack\/init(_:)",
-                "title" : "init(() -> Content)",
+                "path" : "\/documentation\/swiftcrossui\/vstack\/init(_:spacing:)",
+                "title" : "init(() -> Content, spacing: Int)",
                 "type" : "init"
               },
               {
@@ -1211,6 +1564,11 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/vstack\/body",
                 "title" : "var body: Content",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/vstack\/spacing",
+                "title" : "var spacing: Int",
                 "type" : "property"
               },
               {
@@ -1240,6 +1598,16 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/vstack\/update(_:children:)",
@@ -1299,6 +1667,16 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent1\/update(_:children:)",
@@ -1430,6 +1808,16 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent10\/update(_:children:)",
                     "title" : "func update(GtkWidget, children: Self.Content.Children)",
                     "type" : "method"
@@ -1517,6 +1905,16 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent2\/update(_:children:)",
@@ -1611,6 +2009,16 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent3\/update(_:children:)",
@@ -1710,6 +2118,16 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent4\/update(_:children:)",
@@ -1814,6 +2232,16 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent5\/update(_:children:)",
@@ -1923,6 +2351,16 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent6\/update(_:children:)",
@@ -2037,6 +2475,16 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent7\/update(_:children:)",
@@ -2156,6 +2604,16 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent8\/update(_:children:)",
@@ -2282,6 +2740,16 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent9\/update(_:children:)",
                     "title" : "func update(GtkWidget, children: Self.Content.Children)",
                     "type" : "method"
@@ -2384,12 +2852,12 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildeither(first:)",
-                "title" : "static func buildEither<A, B>(first: A) -> _EitherView<A, B>",
+                "title" : "static func buildEither<A, B>(first: A) -> EitherView<A, B>",
                 "type" : "method"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildeither(second:)",
-                "title" : "static func buildEither<A, B>(second: B) -> _EitherView<A, B>",
+                "title" : "static func buildEither<A, B>(second: B) -> EitherView<A, B>",
                 "type" : "method"
               },
               {
@@ -2399,7 +2867,7 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/viewcontentbuilder\/buildif(_:)",
-                "title" : "static func buildIf<V>(V?) -> _OptionalView<V>",
+                "title" : "static func buildIf<V>(V?) -> OptionalView<V>",
                 "type" : "method"
               }
             ],
@@ -3115,12 +3583,46 @@
           {
             "children" : [
               {
+                "title" : "Structures",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Initializers",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/windowproperties\/size\/init(_:_:)",
+                    "title" : "init(Int, Int)",
+                    "type" : "init"
+                  },
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/windowproperties\/size\/height",
+                    "title" : "var height: Int",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/windowproperties\/size\/width",
+                    "title" : "var width: Int",
+                    "type" : "property"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/windowproperties\/size",
+                "title" : "WindowProperties.Size",
+                "type" : "struct"
+              },
+              {
                 "title" : "Initializers",
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/windowproperties\/init(title:defaultwidth:defaultheight:resizable:)",
-                "title" : "init(title: String, defaultWidth: Int, defaultHeight: Int, resizable: Bool)",
+                "path" : "\/documentation\/swiftcrossui\/windowproperties\/init(title:defaultsize:resizable:)",
+                "title" : "init(title: String, defaultSize: WindowProperties.Size?, resizable: Bool)",
                 "type" : "init"
               },
               {
@@ -3128,13 +3630,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/windowproperties\/defaultheight",
-                "title" : "var defaultHeight: Int",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/windowproperties\/defaultwidth",
-                "title" : "var defaultWidth: Int",
+                "path" : "\/documentation\/swiftcrossui\/windowproperties\/defaultsize",
+                "title" : "var defaultSize: WindowProperties.Size?",
                 "type" : "property"
               },
               {
@@ -3215,6 +3712,61 @@
             "path" : "\/documentation\/swiftcrossui\/gtkwindow",
             "title" : "GtkWindow",
             "type" : "typealias"
+          },
+          {
+            "title" : "Enumerations",
+            "type" : "groupMarker"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Enumeration Cases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/side\/bottom",
+                "title" : "case bottom",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/side\/left",
+                "title" : "case left",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/side\/right",
+                "title" : "case right",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/side\/top",
+                "title" : "case top",
+                "type" : "case"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Operators",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/side\/!=(_:_:)",
+                    "title" : "static func != (Self, Self) -> Bool",
+                    "type" : "op"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/side\/equatable-implementations",
+                "title" : "Equatable Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/side",
+            "title" : "Side",
+            "type" : "enum"
           }
         ],
         "path" : "\/documentation\/swiftcrossui",
