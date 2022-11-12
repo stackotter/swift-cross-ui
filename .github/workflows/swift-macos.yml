@@ -8,15 +8,12 @@ on:
 
 jobs:
   build-mac:
-
-    runs-on: macos-latest
-
+    runs-on: macos-11
     steps:
+    - name: Force Xcode 13.2
+      run: sudo xcode-select -switch /Applications/Xcode_13.2.app
     - uses: actions/checkout@v2
     - name: Install Dependencies
       run: brew install gtk+3
     - name: Build
       run: swift build -v
-    #- name: Run tests
-      #run: swift test -v
-
