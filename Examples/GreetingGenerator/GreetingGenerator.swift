@@ -15,19 +15,22 @@ struct GreetingGeneratorApp: App {
 
     var body: some ViewContent {
         VStack {
-            Text("")
-
             TextField("Name", state.$name)
-            Button("Generate") {
-                state.greeting = "Hello, \(state.name)!"
+            HStack {
+                Button("Generate") {
+                    state.greeting = "Hello, \(state.name)!"
+                }
+                Button("Reset") {
+                    state.greeting = nil
+                    state.name = ""
+                }
             }
 
             if let greeting = state.greeting {
-                Text(greeting)
+                Text(greeting).padding(.top, 10)
             }
-
-            Text("") // Placeholder until .padding() is available
         }
+        .padding(10)
     }
 }
 

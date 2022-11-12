@@ -7,11 +7,11 @@ class CounterState: AppState {
 @main
 struct CounterApp: App {
     let identifier = "dev.stackotter.CounterApp"
-    
+
     let state = CounterState()
-    
+
     let windowProperties = WindowProperties(title: "CounterApp")
-    
+
     var body: some ViewContent {
         HStack {
             Button("-") { state.count -= 1 }

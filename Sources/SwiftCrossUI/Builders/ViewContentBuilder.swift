@@ -56,16 +56,16 @@ public struct ViewContentBuilder {
         return ViewContent10<V0, V1, V2, V3, V4, V5, V6, V7, V8, V9>(view0, view1, view2, view3, view4, view5, view6, view7, view8, view9)
     }
 
-    public static func buildEither<A: View, B: View>(first component: A) -> _EitherView<A, B> {
-        return _EitherView(component)
+    public static func buildEither<A: View, B: View>(first component: A) -> EitherView<A, B> {
+        return EitherView(component)
     }
 
-    public static func buildEither<A: View, B: View>(second component: B) -> _EitherView<A, B> {
-        return _EitherView(component)
+    public static func buildEither<A: View, B: View>(second component: B) -> EitherView<A, B> {
+        return EitherView(component)
     }
 
-    public static func buildIf<V: View>(_ content: V?) -> _OptionalView<V> {
-        return _OptionalView(content)
+    public static func buildIf<V: View>(_ content: V?) -> OptionalView<V> {
+        return OptionalView(content)
     }
 
     public static func buildFinalResult<V: View, R: ViewContent>(_ component: V) -> R where V.Content == R {

@@ -25,6 +25,7 @@ public struct TextField: View {
     public func update(_ widget: GtkWidget, children: EmptyViewContent.Children) {
         let entry = widget as! GtkEntry // swiftlint:disable:this force_cast
         entry.placeholder = placeholder
+        entry.text = value?.wrappedValue ?? entry.text
         entry.changed = { widget in
             self.value?.wrappedValue = widget.text
         }
