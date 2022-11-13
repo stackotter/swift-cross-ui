@@ -33,9 +33,12 @@ struct GreetingGeneratorApp: App {
                 if state.greetings.count > 1 {
                     Text("History:")
                         .padding(.top, 20)
+
                     ForEach(state.greetings.reversed()[1...]) { greeting in
                         Text(greeting)
-                    }.padding(.top, 8)
+                    }
+                    .frame(height: 200)
+                    .padding(.top, 8)
                 }
             }
         }

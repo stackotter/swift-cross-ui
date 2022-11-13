@@ -9,4 +9,15 @@ extension View {
         padding[side] = amount
         return PaddingView(ViewContent1(self), padding)
     }
+
+    public func frame(height: Int) -> FrameView<ViewContent1<Self>> {
+        return FrameView(ViewContent1(self), height: height)
+    }
+
+    public func frame(
+        minimumHeight: Int? = nil,
+        maximumHeight: Int? = nil
+    ) -> FrameView<ViewContent1<Self>> {
+        return FrameView(ViewContent1(self), minimumHeight: minimumHeight, maximumHeight: maximumHeight)
+    }
 }
