@@ -29,7 +29,7 @@
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI4ViewPAAE6update_8childreny0A3Gtk6WidgetC_7Content_8ChildrenQZtF::SYNTHESIZED::s:12SwiftCrossUI12ViewContent9V",
+    "externalID" : "s:12SwiftCrossUI4ViewPAAE6update_8childreny6WidgetQz_7Content_8ChildrenQZtF::SYNTHESIZED::s:12SwiftCrossUI12ViewContent9V",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -49,8 +49,15 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-        "text" : "GtkWidget"
+        "text" : "Self"
+      },
+      {
+        "kind" : "text",
+        "text" : "."
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "Widget"
       },
       {
         "kind" : "text",
@@ -143,10 +150,16 @@
               "text" : ": "
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-              "text" : "GtkWidget"
+              "text" : "Self"
+            },
+            {
+              "kind" : "text",
+              "text" : "."
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Widget"
             },
             {
               "kind" : "text",
@@ -226,37 +239,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkWidget": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "GtkWidget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "GtkWidget"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "GtkWidget",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/gtkwidget"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent9": {
   "abstract" : [
 
@@ -322,8 +304,15 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-      "text" : "GtkWidget"
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
     },
     {
       "kind" : "text",

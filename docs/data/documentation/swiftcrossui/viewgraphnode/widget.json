@@ -13,7 +13,7 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI13ViewGraphNodeC6widget0A3Gtk6WidgetCvp",
+    "externalID" : "s:12SwiftCrossUI13ViewGraphNodeC6widget6WidgetQzvp",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -33,8 +33,15 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-        "text" : "GtkWidget"
+        "text" : "NodeView"
+      },
+      {
+        "kind" : "text",
+        "text" : "."
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "Widget"
       }
     ],
     "modules" : [
@@ -75,10 +82,16 @@
               "text" : ": "
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-              "text" : "GtkWidget"
+              "text" : "NodeView"
+            },
+            {
+              "kind" : "text",
+              "text" : "."
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Widget"
             }
           ]
         }
@@ -121,37 +134,6 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkWidget": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "GtkWidget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "GtkWidget"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "GtkWidget",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/gtkwidget"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode": {
   "abstract" : [
@@ -207,8 +189,15 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-      "text" : "GtkWidget"
+      "text" : "NodeView"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/widget",

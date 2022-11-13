@@ -15,11 +15,11 @@
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/init(_:spacing:)"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/init(_:)"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI6HStackV_7spacingACyxGxyXE_Sitcfc",
+    "externalID" : "s:12SwiftCrossUI6HStackVyACyxGxyXEcfc",
     "fragments" : [
       {
         "kind" : "identifier",
@@ -35,23 +35,6 @@
       },
       {
         "kind" : "text",
-        "text" : ", "
-      },
-      {
-        "kind" : "externalParam",
-        "text" : "spacing"
-      },
-      {
-        "kind" : "text",
-        "text" : ": "
-      },
-      {
-        "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Si",
-        "text" : "Int"
-      },
-      {
-        "kind" : "text",
         "text" : ")"
       }
     ],
@@ -63,7 +46,7 @@
     "role" : "symbol",
     "roleHeading" : "Initializer",
     "symbolKind" : "init",
-    "title" : "init(_:spacing:)"
+    "title" : "init(_:)"
   },
   "primaryContentSections" : [
     {
@@ -106,24 +89,7 @@
             },
             {
               "kind" : "text",
-              "text" : ", "
-            },
-            {
-              "kind" : "externalParam",
-              "text" : "spacing"
-            },
-            {
-              "kind" : "text",
-              "text" : ": "
-            },
-            {
-              "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Si",
-              "text" : "Int"
-            },
-            {
-              "kind" : "text",
-              "text" : " = 8)"
+              "text" : ")"
             }
           ]
         }
@@ -142,7 +108,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/hstack\/init(_:spacing:)"
+        "\/documentation\/swiftcrossui\/hstack\/init(_:)"
       ],
       "traits" : [
         {
@@ -209,7 +175,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/hstack"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack/init(_:spacing:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack/init(_:)": {
   "abstract" : [
     {
       "text" : "Creates a new HStack.",
@@ -231,32 +197,15 @@
     },
     {
       "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "spacing"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/init(_:spacing:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/init(_:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "init(_:spacing:)",
+  "title" : "init(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/hstack\/init(_:spacing:)"
+  "url" : "\/documentation\/swiftcrossui\/hstack\/init(_:)"
 }
 }
 }

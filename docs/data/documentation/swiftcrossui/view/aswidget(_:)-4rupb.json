@@ -1,21 +1,33 @@
 {
+  "defaultImplementationsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/asWidget(_:)-6n4jf"
+      ],
+      "title" : "View Implementations"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent\/asWidget(_:)"
+      ],
+      "title" : "ViewContent Implementations"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/asWidget(_:)-5jq4d"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/asWidget(_:)-93skq"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/asWidget(_:)-4rupb"
   },
   "kind" : "symbol",
   "metadata" : {
-    "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI4ViewPAAE8asWidgety0A3Gtk0F0C7Content_8ChildrenQZF",
+    "externalID" : "s:12SwiftCrossUI4ViewP8asWidgety0F0Qz7Content_8ChildrenQZF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -59,8 +71,15 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-        "text" : "GtkWidget"
+        "text" : "Self"
+      },
+      {
+        "kind" : "text",
+        "text" : "."
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "Widget"
       }
     ],
     "modules" : [
@@ -68,6 +87,7 @@
         "name" : "SwiftCrossUI"
       }
     ],
+    "required" : true,
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
@@ -141,10 +161,16 @@
               "text" : ") -> "
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-              "text" : "GtkWidget"
+              "text" : "Self"
+            },
+            {
+              "kind" : "text",
+              "text" : "."
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Widget"
             }
           ]
         }
@@ -163,7 +189,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/view\/aswidget(_:)-93skq"
+        "\/documentation\/swiftcrossui\/view\/aswidget(_:)-4rupb"
       ],
       "traits" : [
         {
@@ -187,37 +213,6 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkWidget": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "GtkWidget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "GtkWidget"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "GtkWidget",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/gtkwidget"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
@@ -253,7 +248,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/asWidget(_:)-5jq4d": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/asWidget(_:)-4rupb": {
   "abstract" : [
 
   ],
@@ -301,22 +296,61 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-      "text" : "GtkWidget"
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/asWidget(_:)-5jq4d",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/asWidget(_:)-4rupb",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "asWidget(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view\/aswidget(_:)-5jq4d"
+  "url" : "\/documentation\/swiftcrossui\/view\/aswidget(_:)-4rupb"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/asWidget(_:)-93skq": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/asWidget(_:)-6n4jf": {
   "abstract" : [
 
   ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "Widget",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " is ",
+        "type" : "text"
+      },
+      {
+        "code" : "Box",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
   "fragments" : [
     {
       "kind" : "keyword",
@@ -360,16 +394,114 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-      "text" : "GtkWidget"
+      "preciseIdentifier" : "s:12SwiftCrossUI6GtkBoxa",
+      "text" : "GtkBox"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/asWidget(_:)-93skq",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/asWidget(_:)-6n4jf",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view\/aswidget(_:)-93skq"
+  "url" : "\/documentation\/swiftcrossui\/view\/aswidget(_:)-6n4jf"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent/asWidget(_:)": {
+  "abstract" : [
+
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "Self",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " is ",
+        "type" : "text"
+      },
+      {
+        "code" : "Self.Content",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " and ",
+        "type" : "text"
+      },
+      {
+        "code" : "State",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " is ",
+        "type" : "text"
+      },
+      {
+        "code" : "EmptyViewState",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "asWidget"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Children"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI6GtkBoxa",
+      "text" : "GtkBox"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent\/asWidget(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "asWidget(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent\/aswidget(_:)"
 }
 }
 }

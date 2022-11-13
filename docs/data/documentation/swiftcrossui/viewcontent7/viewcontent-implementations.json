@@ -350,8 +350,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-      "text" : "GtkWidget"
+      "preciseIdentifier" : "s:12SwiftCrossUI6GtkBoxa",
+      "text" : "GtkBox"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent7\/asWidget(_:)",

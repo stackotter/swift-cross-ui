@@ -265,7 +265,7 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/viewgraphnode\/widget",
-                "title" : "var widget: GtkWidget",
+                "title" : "var widget: NodeView.Widget",
                 "type" : "property"
               },
               {
@@ -425,6 +425,11 @@
                 "type" : "associatedtype"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/view\/widget",
+                "title" : "Widget",
+                "type" : "associatedtype"
+              },
+              {
                 "title" : "Instance Properties",
                 "type" : "groupMarker"
               },
@@ -473,8 +478,8 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:)-93skq",
-                        "title" : "func asWidget(Self.Content.Children) -> GtkWidget",
+                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:)-6n4jf",
+                        "title" : "func asWidget(Self.Content.Children) -> GtkBox",
                         "type" : "method"
                       }
                     ],
@@ -485,7 +490,7 @@
                     "children" : [
                       {
                         "path" : "\/documentation\/swiftcrossui\/viewcontent\/aswidget(_:)",
-                        "title" : "func asWidget(Self.Children) -> GtkWidget",
+                        "title" : "func asWidget(Self.Children) -> GtkBox",
                         "type" : "method"
                       }
                     ],
@@ -493,8 +498,8 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:)-5jq4d",
-                "title" : "func asWidget(Self.Content.Children) -> GtkWidget",
+                "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:)-4rupb",
+                "title" : "func asWidget(Self.Content.Children) -> Self.Widget",
                 "type" : "method"
               },
               {
@@ -512,8 +517,8 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:)-9yuam",
-                        "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:)-29fkd",
+                        "title" : "func update(Self.Widget, children: Self.Content.Children)",
                         "type" : "method"
                       }
                     ],
@@ -521,8 +526,8 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:)-y4kr",
-                "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:)-18oi5",
+                "title" : "func update(Self.Widget, children: Self.Content.Children)",
                 "type" : "method"
               }
             ],
@@ -658,12 +663,12 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/button\/aswidget(_:)",
-                "title" : "func asWidget(EmptyViewContent.Children) -> GtkWidget",
+                "title" : "func asWidget(EmptyViewContent.Children) -> GtkButton",
                 "type" : "method"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/button\/update(_:children:)",
-                "title" : "func update(GtkWidget, children: EmptyViewContent.Children)",
+                "title" : "func update(GtkButton, children: EmptyViewContent.Children)",
                 "type" : "method"
               },
               {
@@ -722,12 +727,12 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/eitherview\/aswidget(_:)",
-                "title" : "func asWidget(EitherViewChildren<A, B>) -> GtkWidget",
+                "title" : "func asWidget(EitherViewChildren<A, B>) -> GtkBox",
                 "type" : "method"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/eitherview\/update(_:children:)",
-                "title" : "func update(GtkWidget, children: EitherViewChildren<A, B>)",
+                "title" : "func update(GtkBox, children: EitherViewChildren<A, B>)",
                 "type" : "method"
               },
               {
@@ -873,7 +878,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -889,7 +894,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "title" : "func asWidget(Self.Children) -> GtkBox",
                     "type" : "method"
                   }
                 ],
@@ -958,7 +963,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -974,7 +979,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "title" : "func asWidget(Self.Children) -> GtkBox",
                     "type" : "method"
                   }
                 ],
@@ -1047,7 +1052,7 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/foreach\/aswidget(_:)",
-                "title" : "func asWidget(ForEachViewChildren<Items, Child>) -> GtkWidget",
+                "title" : "func asWidget(ForEachViewChildren<Items, Child>) -> GtkBox",
                 "type" : "method"
               },
               {
@@ -1081,7 +1086,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreach\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -1207,7 +1212,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -1223,7 +1228,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "title" : "func asWidget(Self.Children) -> GtkBox",
                     "type" : "method"
                   }
                 ],
@@ -1243,8 +1248,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/hstack\/init(_:spacing:)",
-                "title" : "init(() -> Content, spacing: Int)",
+                "path" : "\/documentation\/swiftcrossui\/hstack\/init(_:)",
+                "title" : "init(() -> Content)",
                 "type" : "init"
               },
               {
@@ -1257,17 +1262,12 @@
                 "type" : "property"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/hstack\/spacing",
-                "title" : "var spacing: Int",
-                "type" : "property"
-              },
-              {
                 "title" : "Instance Methods",
                 "type" : "groupMarker"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/hstack\/aswidget(_:)",
-                "title" : "func asWidget(Content.Children) -> GtkWidget",
+                "title" : "func asWidget(Content.Children) -> GtkButtonBox",
                 "type" : "method"
               },
               {
@@ -1301,7 +1301,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/hstack\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -1345,12 +1345,12 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/image\/aswidget(_:)",
-                "title" : "func asWidget(EmptyViewGraphNodeChildren) -> GtkWidget",
+                "title" : "func asWidget(EmptyViewGraphNodeChildren) -> GtkImage",
                 "type" : "method"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/image\/update(_:children:)",
-                "title" : "func update(GtkWidget, children: EmptyViewGraphNodeChildren)",
+                "title" : "func update(GtkImage, children: EmptyViewGraphNodeChildren)",
                 "type" : "method"
               },
               {
@@ -1409,12 +1409,12 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/optionalview\/aswidget(_:)",
-                "title" : "func asWidget(OptionalViewChildren<V>) -> GtkWidget",
+                "title" : "func asWidget(OptionalViewChildren<V>) -> GtkBox",
                 "type" : "method"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/optionalview\/update(_:children:)",
-                "title" : "func update(GtkWidget, children: OptionalViewChildren<V>)",
+                "title" : "func update(GtkBox, children: OptionalViewChildren<V>)",
                 "type" : "method"
               },
               {
@@ -1555,7 +1555,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -1571,7 +1571,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "title" : "func asWidget(Self.Children) -> GtkBox",
                     "type" : "method"
                   }
                 ],
@@ -1665,7 +1665,7 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/paddingview\/aswidget(_:)",
-                "title" : "func asWidget(Content.Children) -> GtkWidget",
+                "title" : "func asWidget(Content.Children) -> GtkBox",
                 "type" : "method"
               },
               {
@@ -1699,7 +1699,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/paddingview\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -1763,12 +1763,12 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/slider\/aswidget(_:)",
-                "title" : "func asWidget(EmptyViewGraphNodeChildren) -> GtkWidget",
+                "title" : "func asWidget(EmptyViewGraphNodeChildren) -> GtkScale",
                 "type" : "method"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/slider\/update(_:children:)",
-                "title" : "func update(GtkWidget, children: EmptyViewGraphNodeChildren)",
+                "title" : "func update(GtkScale, children: EmptyViewGraphNodeChildren)",
                 "type" : "method"
               },
               {
@@ -1841,12 +1841,12 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/text\/aswidget(_:)",
-                "title" : "func asWidget(EmptyViewContent.Children) -> GtkWidget",
+                "title" : "func asWidget(EmptyViewContent.Children) -> GtkLabel",
                 "type" : "method"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/text\/update(_:children:)",
-                "title" : "func update(GtkWidget, children: EmptyViewContent.Children)",
+                "title" : "func update(GtkLabel, children: EmptyViewContent.Children)",
                 "type" : "method"
               },
               {
@@ -1924,12 +1924,12 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/textfield\/aswidget(_:)",
-                "title" : "func asWidget(EmptyViewContent.Children) -> GtkWidget",
+                "title" : "func asWidget(EmptyViewContent.Children) -> GtkEntry",
                 "type" : "method"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/textfield\/update(_:children:)",
-                "title" : "func update(GtkWidget, children: EmptyViewContent.Children)",
+                "title" : "func update(GtkEntry, children: EmptyViewContent.Children)",
                 "type" : "method"
               },
               {
@@ -2002,7 +2002,7 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/vstack\/aswidget(_:)",
-                "title" : "func asWidget(Content.Children) -> GtkWidget",
+                "title" : "func asWidget(Content.Children) -> GtkBox",
                 "type" : "method"
               },
               {
@@ -2036,7 +2036,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/vstack\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -2105,7 +2105,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent1\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -2121,7 +2121,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent1\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "title" : "func asWidget(Self.Children) -> GtkBox",
                     "type" : "method"
                   },
                   {
@@ -2244,7 +2244,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent10\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -2260,7 +2260,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent10\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "title" : "func asWidget(Self.Children) -> GtkBox",
                     "type" : "method"
                   },
                   {
@@ -2343,7 +2343,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent2\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -2359,7 +2359,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent2\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "title" : "func asWidget(Self.Children) -> GtkBox",
                     "type" : "method"
                   },
                   {
@@ -2447,7 +2447,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent3\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -2463,7 +2463,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent3\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "title" : "func asWidget(Self.Children) -> GtkBox",
                     "type" : "method"
                   },
                   {
@@ -2556,7 +2556,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent4\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -2572,7 +2572,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent4\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "title" : "func asWidget(Self.Children) -> GtkBox",
                     "type" : "method"
                   },
                   {
@@ -2670,7 +2670,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent5\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -2686,7 +2686,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent5\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "title" : "func asWidget(Self.Children) -> GtkBox",
                     "type" : "method"
                   },
                   {
@@ -2789,7 +2789,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent6\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -2805,7 +2805,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent6\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "title" : "func asWidget(Self.Children) -> GtkBox",
                     "type" : "method"
                   },
                   {
@@ -2913,7 +2913,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent7\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -2929,7 +2929,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent7\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "title" : "func asWidget(Self.Children) -> GtkBox",
                     "type" : "method"
                   },
                   {
@@ -3042,7 +3042,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent8\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -3058,7 +3058,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent8\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "title" : "func asWidget(Self.Children) -> GtkBox",
                     "type" : "method"
                   },
                   {
@@ -3176,7 +3176,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent9\/update(_:children:)",
-                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
@@ -3192,7 +3192,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent9\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "title" : "func asWidget(Self.Children) -> GtkBox",
                     "type" : "method"
                   },
                   {

@@ -27,7 +27,7 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI4TextV8asWidgety0A3Gtk0F0CAA26EmptyViewGraphNodeChildrenVF",
+    "externalID" : "s:12SwiftCrossUI4TextV8asWidgety0A3Gtk5LabelCAA26EmptyViewGraphNodeChildrenVF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -65,8 +65,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-        "text" : "GtkWidget"
+        "preciseIdentifier" : "s:12SwiftCrossUI8GtkLabela",
+        "text" : "GtkLabel"
       }
     ],
     "modules" : [
@@ -143,10 +143,10 @@
               "text" : ") -> "
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkLabel",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-              "text" : "GtkWidget"
+              "preciseIdentifier" : "s:12SwiftCrossUI8GtkLabela",
+              "text" : "GtkLabel"
             }
           ]
         }
@@ -252,7 +252,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/emptyviewcontent\/children"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkWidget": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkLabel": {
   "abstract" : [
 
   ],
@@ -267,21 +267,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "GtkWidget"
+      "text" : "GtkLabel"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkLabel",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "GtkWidget"
+      "text" : "GtkLabel"
     }
   ],
   "role" : "symbol",
-  "title" : "GtkWidget",
+  "title" : "GtkLabel",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/gtkwidget"
+  "url" : "\/documentation\/swiftcrossui\/gtklabel"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text": {
   "abstract" : [
@@ -358,8 +358,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-      "text" : "GtkWidget"
+      "preciseIdentifier" : "s:12SwiftCrossUI8GtkLabela",
+      "text" : "GtkLabel"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/asWidget(_:)",

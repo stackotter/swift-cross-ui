@@ -141,14 +141,13 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/init(_:spacing:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/init(_:)"
       ],
       "title" : "Initializers"
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/body",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/spacing"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/body"
       ],
       "title" : "Instance Properties"
     },
@@ -286,8 +285,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-      "text" : "GtkWidget"
+      "preciseIdentifier" : "s:12SwiftCrossUI12GtkButtonBoxa",
+      "text" : "GtkButtonBox"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/asWidget(_:)",
@@ -330,7 +329,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/hstack\/body"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack/init(_:spacing:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack/init(_:)": {
   "abstract" : [
     {
       "text" : "Creates a new HStack.",
@@ -352,66 +351,15 @@
     },
     {
       "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "spacing"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/init(_:spacing:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/init(_:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "init(_:spacing:)",
+  "title" : "init(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/hstack\/init(_:spacing:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack/spacing": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "spacing"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/spacing",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "spacing",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/hstack\/spacing"
+  "url" : "\/documentation\/swiftcrossui\/hstack\/init(_:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

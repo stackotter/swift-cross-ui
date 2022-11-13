@@ -3,21 +3,21 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/spacing"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/Widget"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI6HStackV7spacingSivp",
+    "externalID" : "s:12SwiftCrossUI4ViewP6WidgetQa",
     "fragments" : [
       {
         "kind" : "keyword",
-        "text" : "var"
+        "text" : "associatedtype"
       },
       {
         "kind" : "text",
@@ -25,16 +25,16 @@
       },
       {
         "kind" : "identifier",
-        "text" : "spacing"
+        "text" : "Widget"
       },
       {
         "kind" : "text",
-        "text" : ": "
+        "text" : " : "
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Si",
-        "text" : "Int"
+        "preciseIdentifier" : "s:8SwiftGtk6WidgetC",
+        "text" : "Widget"
       }
     ],
     "modules" : [
@@ -42,10 +42,11 @@
         "name" : "SwiftCrossUI"
       }
     ],
+    "required" : true,
     "role" : "symbol",
-    "roleHeading" : "Instance Property",
-    "symbolKind" : "property",
-    "title" : "spacing"
+    "roleHeading" : "Associated Type",
+    "symbolKind" : "associatedtype",
+    "title" : "Widget"
   },
   "primaryContentSections" : [
     {
@@ -60,7 +61,7 @@
           "tokens" : [
             {
               "kind" : "keyword",
-              "text" : "var"
+              "text" : "associatedtype"
             },
             {
               "kind" : "text",
@@ -68,16 +69,16 @@
             },
             {
               "kind" : "identifier",
-              "text" : "spacing"
+              "text" : "Widget"
             },
             {
               "kind" : "text",
-              "text" : ": "
+              "text" : " : "
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Si",
-              "text" : "Int"
+              "preciseIdentifier" : "s:8SwiftGtk6WidgetC",
+              "text" : "Widget"
             }
           ]
         }
@@ -96,7 +97,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/hstack\/spacing"
+        "\/documentation\/swiftcrossui\/view\/widget"
       ],
       "traits" : [
         {
@@ -121,25 +122,17 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A horizontally oriented container. Similar to a ",
-      "type" : "text"
-    },
-    {
-      "code" : "HStack",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " in SwiftUI.",
+      "text" : "A view that can be displayed by SwiftCrossUI.",
       "type" : "text"
     }
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "struct"
+      "text" : "protocol"
     },
     {
       "kind" : "text",
@@ -147,30 +140,30 @@
     },
     {
       "kind" : "identifier",
-      "text" : "HStack"
+      "text" : "View"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "HStack"
+      "text" : "View"
     }
   ],
   "role" : "symbol",
-  "title" : "HStack",
+  "title" : "View",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/hstack"
+  "url" : "\/documentation\/swiftcrossui\/view"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack/spacing": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/Widget": {
   "abstract" : [
 
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "var"
+      "text" : "associatedtype"
     },
     {
       "kind" : "text",
@@ -178,24 +171,25 @@
     },
     {
       "kind" : "identifier",
-      "text" : "spacing"
+      "text" : "Widget"
     },
     {
       "kind" : "text",
-      "text" : ": "
+      "text" : " : "
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
+      "preciseIdentifier" : "s:8SwiftGtk6WidgetC",
+      "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack\/spacing",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/Widget",
   "kind" : "symbol",
+  "required" : true,
   "role" : "symbol",
-  "title" : "spacing",
+  "title" : "Widget",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/hstack\/spacing"
+  "url" : "\/documentation\/swiftcrossui\/view\/widget"
 }
 }
 }
