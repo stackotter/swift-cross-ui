@@ -12,28 +12,36 @@ struct RandomNumberGeneratorApp: App {
 
     let state = RandomNumberGeneratorState()
 
-    let windowProperties = WindowProperties(title: "Random Number Generator")
+    let windowProperties = WindowProperties(title: "Random Number Generator", defaultSize: .init(500, 0))
 
     var body: some ViewContent {
         VStack {
             Text("Random Number: \(state.randomNumber)")
             Button("Generate") {
-                state.randomNumber = Int.random(in: state.minNum...state.maxNum)
+                state.randomNumber = Int.random(in: Int(state.minNum)...Int(state.maxNum))
             }
-            HStack {
-                Button("-5") { state.minNum -= 5 }
-                Button("-1") { state.minNum -= 1 }
-                Text("Minimum: \(state.minNum)")
-                Button("+1") { state.minNum += 1 }
-                Button("+5") { state.minNum += 5 }
-            }
-            HStack {
-                Button("-5") { state.maxNum -= 5 }
-                Button("-1") { state.maxNum -= 1 }
-                Text("Maximum: \(state.maxNum)")
-                Button("+1") { state.maxNum += 1 }
-                Button("+5") { state.maxNum += 5 }
-            }
+
+            Text("Minimum:")
+            Slider(
+                state.$minNum.onChange { newValue in
+                    if newValue > state.maxNum {
+                        state.minNum = state.maxNum
+                    }
+                },
+                minimum: 0,
+                maximum: 100
+            )
+
+            Text("Maximum:")
+            Slider(
+                state.$maxNum.onChange { newValue in
+                    if newValue < state.minNum {
+                        state.maxNum = state.minNum
+                    }
+                },
+                minimum: 0,
+                maximum: 100
+            )
         }
         .padding(10)
     }
