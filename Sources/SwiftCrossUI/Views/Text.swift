@@ -12,6 +12,7 @@ public struct Text: View {
 
     public func asWidget(_ children: EmptyViewContent.Children) -> GtkLabel {
         let widget = GtkLabel(text: string)
+        widget.horizontalAlignment = .start
         return widget
     }
 
