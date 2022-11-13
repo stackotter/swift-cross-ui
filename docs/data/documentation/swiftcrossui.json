@@ -103,6 +103,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewContent",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewContent",
@@ -147,6 +148,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkButtonBox",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkContainer",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkEntry",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkImage",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkLabel",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkScale",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkSize",
@@ -912,6 +914,37 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/gtkentry"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkImage": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkImage"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkImage",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkImage"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkImage",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkimage"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkLabel": {
   "abstract" : [
 
@@ -1108,6 +1141,40 @@
   "title" : "HStack",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/hstack"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Image": {
+  "abstract" : [
+    {
+      "text" : "An image view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Image"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Image"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Image",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/image"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed": {
   "abstract" : [

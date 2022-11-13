@@ -1317,6 +1317,84 @@
           {
             "children" : [
               {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/image\/init(_:)",
+                "title" : "init(String)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/image\/body",
+                "title" : "var body: EmptyViewContent",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/image\/path",
+                "title" : "var path: String",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/image\/aswidget(_:)",
+                "title" : "func asWidget(EmptyViewGraphNodeChildren) -> GtkWidget",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/image\/update(_:children:)",
+                "title" : "func update(GtkWidget, children: EmptyViewGraphNodeChildren)",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/image\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/image\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/image\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/image\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/image",
+            "title" : "Image",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
                 "title" : "Instance Properties",
                 "type" : "groupMarker"
               },
@@ -4038,6 +4116,11 @@
           {
             "path" : "\/documentation\/swiftcrossui\/gtkentry",
             "title" : "GtkEntry",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkimage",
+            "title" : "GtkImage",
             "type" : "typealias"
           },
           {
