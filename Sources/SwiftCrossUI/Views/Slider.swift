@@ -50,8 +50,8 @@ public struct Slider: View {
                 get: {
                     return Double(value.wrappedValue)
                 },
-                set: {
-                    newValue in value.wrappedValue = T(newValue.rounded())
+                set: { newValue in
+                    value.wrappedValue = T(newValue.rounded())
                 }
             )
         }
@@ -66,8 +66,8 @@ public struct Slider: View {
                 get: {
                     return Double(value.wrappedValue)
                 },
-                set: {
-                    newValue in value.wrappedValue = T(newValue)
+                set: { newValue in
+                    value.wrappedValue = T(newValue)
                 }
             )
         }
