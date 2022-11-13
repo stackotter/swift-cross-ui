@@ -994,6 +994,221 @@
                 "type" : "groupMarker"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/foreach\/init(_:_:)",
+                "title" : "init(Items, (Items.Element) -> Child)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/foreach\/body",
+                "title" : "var body: ForEachViewContent<Items, Child>",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/foreach\/aswidget(_:)",
+                "title" : "func asWidget(ForEachViewChildren<Items, Child>) -> GtkWidget",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/foreach\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/foreach",
+            "title" : "ForEach",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/foreachviewchildren\/init(from:)",
+                "title" : "init(from: ForEachViewChildren<Items, Child>.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/foreachviewchildren\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/foreachviewchildren\/update(with:)",
+                "title" : "func update(with: ForEachViewChildren<Items, Child>.Content)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/foreachviewchildren\/content",
+                "title" : "ForEachViewChildren.Content",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/foreachviewchildren",
+            "title" : "ForEachViewChildren",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/init(_:_:)",
+                "title" : "init(Items, (Items.Element) -> Child)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/child",
+                "title" : "var child: (Items.Element) -> Child",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/elements",
+                "title" : "var elements: Items",
+                "type" : "property"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/children",
+                "title" : "ForEachViewContent.Children",
+                "type" : "typealias"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/update(_:children:)",
+                    "title" : "func update(GtkWidget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkWidget",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/foreachviewcontent",
+            "title" : "ForEachViewContent",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/hstack\/init(_:spacing:)",
                 "title" : "init(() -> Content, spacing: Int)",
                 "type" : "init"
