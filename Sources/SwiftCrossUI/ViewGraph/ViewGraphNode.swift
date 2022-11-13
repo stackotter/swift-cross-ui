@@ -1,5 +1,5 @@
 public class ViewGraphNode<NodeView: View> {
-    public var widget: GtkWidget
+    public var widget: NodeView.Widget
     public var children: NodeView.Content.Children
     public var view: NodeView
 

@@ -7,7 +7,7 @@ public struct PaddingView<Content: ViewContent>: View {
         self.padding = padding
     }
 
-    public func asWidget(_ children: Content.Children) -> GtkWidget {
+    public func asWidget(_ children: Content.Children) -> GtkBox {
         let box = GtkBox(orientation: .vertical, spacing: 0)
         for widget in children.widgets {
             box.add(widget)

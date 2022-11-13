@@ -10,7 +10,7 @@ extension ViewContent where Content == Self, State == EmptyViewState {
         return self
     }
 
-    public func asWidget(_ children: Children) -> GtkWidget {
+    public func asWidget(_ children: Children) -> GtkBox {
         let box = GtkBox(orientation: .vertical, spacing: 0)
         for widget in children.widgets {
             box.add(widget)

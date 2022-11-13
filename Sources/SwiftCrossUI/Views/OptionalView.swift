@@ -54,7 +54,7 @@ public struct OptionalView<V: View>: View {
         body = OptionalViewContent(view)
     }
 
-    public func asWidget(_ children: OptionalViewChildren<V>) -> GtkWidget {
+    public func asWidget(_ children: OptionalViewChildren<V>) -> GtkBox {
         let box = GtkBox(orientation: .vertical, spacing: 0)
         for widget in children.widgets {
             box.add(widget)
@@ -62,14 +62,13 @@ public struct OptionalView<V: View>: View {
         return box
     }
 
-    public func update(_ widget: GtkWidget, children: OptionalViewChildren<V>) {
-        let box = widget as! GtkBox
+    public func update(_ widget: GtkBox, children: OptionalViewChildren<V>) {
         if children.storage.hasToggled {
-            box.removeAll()
-            for widget in children.widgets {
-                box.add(widget)
+            widget.removeAll()
+            for child in children.widgets {
+                widget.add(child)
             }
-            box.showAll()
+            widget.showAll()
         }
     }
 }

@@ -76,7 +76,7 @@ public struct ForEach<Items: Collection, Child: ViewContent>: View where Items.I
         body = ForEachViewContent(elements, child)
     }
 
-    public func asWidget(_ children: ForEachViewChildren<Items, Child>) -> GtkWidget {
+    public func asWidget(_ children: ForEachViewChildren<Items, Child>) -> GtkBox {
         return children.storage.container
     }
 }

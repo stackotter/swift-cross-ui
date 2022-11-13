@@ -78,18 +78,17 @@ public struct EitherView<A: View, B: View>: View {
         body = EitherViewContent(b)
     }
 
-    public func asWidget(_ children: EitherViewChildren<A, B>) -> GtkWidget {
+    public func asWidget(_ children: EitherViewChildren<A, B>) -> GtkBox {
         let box = GtkBox(orientation: .vertical, spacing: 0)
         box.add(children.widgets[0])
         return box
     }
 
-    public func update(_ widget: GtkWidget, children: EitherViewChildren<A, B>) {
-        let box = widget as! GtkBox
+    public func update(_ widget: GtkBox, children: EitherViewChildren<A, B>) {
         if children.storage.hasSwitchedCase {
-            box.removeAll()
-            box.add(children.widgets[0])
-            box.showAll()
+            widget.removeAll()
+            widget.add(children.widgets[0])
+            widget.showAll()
         }
     }
 }

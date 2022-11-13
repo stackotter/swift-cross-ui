@@ -9,12 +9,11 @@ public struct Image: View {
         self.path = path
     }
 
-    public func asWidget(_ children: EmptyViewGraphNodeChildren) -> GtkWidget {
+    public func asWidget(_ children: EmptyViewGraphNodeChildren) -> GtkImage {
         return GtkImage(path: path)
     }
 
-    public func update(_ widget: GtkWidget, children: EmptyViewGraphNodeChildren) {
-        let image = widget as! GtkImage
-        image.setPath(path)
+    public func update(_ widget: GtkImage, children: EmptyViewGraphNodeChildren) {
+        widget.setPath(path)
     }
 }

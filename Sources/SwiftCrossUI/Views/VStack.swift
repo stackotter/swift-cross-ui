@@ -15,7 +15,7 @@ public struct VStack<Content: ViewContent>: View {
         spacing = 8
     }
 
-    public func asWidget(_ children: Content.Children) -> GtkWidget {
+    public func asWidget(_ children: Content.Children) -> GtkBox {
         let vStack = GtkBox(orientation: .vertical, spacing: spacing)
         for widget in children.widgets {
             vStack.add(widget)

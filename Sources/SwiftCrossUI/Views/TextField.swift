@@ -13,7 +13,7 @@ public struct TextField: View {
         self.value = value
     }
 
-    public func asWidget(_ children: EmptyViewContent.Children) -> GtkWidget {
+    public func asWidget(_ children: EmptyViewContent.Children) -> GtkEntry {
         let widget = GtkEntry()
         widget.placeholder = placeholder
         widget.changed = { widget in
@@ -22,11 +22,11 @@ public struct TextField: View {
         return widget
     }
 
-    public func update(_ widget: GtkWidget, children: EmptyViewContent.Children) {
-        let entry = widget as! GtkEntry // swiftlint:disable:this force_cast
-        entry.placeholder = placeholder
-        entry.text = value?.wrappedValue ?? entry.text
-        entry.changed = { widget in
+    public func update(_ widget: GtkEntry, children: EmptyViewContent.Children) {
+        // TODO: Fix code duplication between asWidget and update for all views
+        widget.placeholder = placeholder
+        widget.text = value?.wrappedValue ?? widget.text
+        widget.changed = { widget in
             self.value?.wrappedValue = widget.text
         }
     }

@@ -10,13 +10,12 @@ public struct Text: View {
         self.string = string
     }
 
-    public func asWidget(_ children: EmptyViewContent.Children) -> GtkWidget {
+    public func asWidget(_ children: EmptyViewContent.Children) -> GtkLabel {
         let widget = GtkLabel(text: string)
         return widget
     }
 
-    public func update(_ widget: GtkWidget, children: EmptyViewContent.Children) {
-        let widget = widget as! GtkLabel // swiftlint:disable:this force_cast
+    public func update(_ widget: GtkLabel, children: EmptyViewContent.Children) {
         widget.text = string
     }
 }

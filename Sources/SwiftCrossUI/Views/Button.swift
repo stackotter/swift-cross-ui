@@ -13,16 +13,15 @@ public struct Button: View {
         self.action = action
     }
 
-    public func asWidget(_ children: EmptyViewContent.Children) -> GtkWidget {
+    public func asWidget(_ children: EmptyViewContent.Children) -> GtkButton {
         let widget = GtkButton()
         widget.label = label
         widget.clicked = { _ in action() }
         return widget
     }
 
-    public func update(_ widget: GtkWidget, children: EmptyViewContent.Children) {
-        let button = widget as! GtkButton // swiftlint:disable:this force_cast
-        button.label = label
-        button.clicked = { _ in action() }
+    public func update(_ widget: GtkButton, children: EmptyViewContent.Children) {
+        widget.label = label
+        widget.clicked = { _ in action() }
     }
 }
