@@ -82,6 +82,7 @@
     {
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DoubleConvertible",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PublishedValue",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
@@ -107,6 +108,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewContent",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Padding",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PaddingView",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
@@ -146,6 +148,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkContainer",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkEntry",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkLabel",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkScale",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkSize",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWindow"
@@ -361,6 +364,37 @@
   "title" : "Cancellable",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/cancellable"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/DoubleConvertible": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "DoubleConvertible"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DoubleConvertible",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "DoubleConvertible"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "DoubleConvertible",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/doubleconvertible"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView": {
   "abstract" : [
@@ -909,6 +943,37 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/gtklabel"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkScale": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkScale"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkScale",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkScale"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkScale",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkscale"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkSize": {
   "abstract" : [
 
@@ -1322,6 +1387,40 @@
   "title" : "Side",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/side"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider": {
+  "abstract" : [
+    {
+      "text" : "A slider that allows a user to choose a numeric value.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Slider"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Slider"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Slider",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/slider"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text": {
   "abstract" : [

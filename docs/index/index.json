@@ -40,6 +40,15 @@
                 "path" : "\/documentation\/swiftcrossui\/binding\/wrappedvalue",
                 "title" : "var wrappedValue: Value",
                 "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/binding\/onchange(_:)",
+                "title" : "func onChange((Value) -> Void) -> Binding<Value>",
+                "type" : "method"
               }
             ],
             "path" : "\/documentation\/swiftcrossui\/binding",
@@ -356,6 +365,31 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/app",
             "title" : "App",
+            "type" : "protocol"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/doubleconvertible\/init(_:)",
+                "title" : "init(Double)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/doubleconvertible\/doublerepresentation",
+                "title" : "var doubleRepresentation: Double",
+                "type" : "property"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/doubleconvertible",
+            "title" : "DoubleConvertible",
             "type" : "protocol"
           },
           {
@@ -1598,6 +1632,104 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/paddingview",
             "title" : "PaddingView",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/slider\/init(_:minimum:maximum:)-8qa1u",
+                "title" : "init<T>(Binding<T>?, minimum: T, maximum: T)",
+                "type" : "init"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/slider\/init(_:minimum:maximum:)-bs2t",
+                "title" : "init<T>(Binding<T>?, minimum: T, maximum: T)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/slider\/body",
+                "title" : "var body: EmptyViewContent",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/slider\/decimalplaces",
+                "title" : "var decimalPlaces: Int",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/slider\/maximum",
+                "title" : "var maximum: Double",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/slider\/minimum",
+                "title" : "var minimum: Double",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/slider\/value",
+                "title" : "var value: Binding<Double>?",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/slider\/aswidget(_:)",
+                "title" : "func asWidget(EmptyViewGraphNodeChildren) -> GtkWidget",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/slider\/update(_:children:)",
+                "title" : "func update(GtkWidget, children: EmptyViewGraphNodeChildren)",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/slider\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/slider\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/slider\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/slider\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/slider",
+            "title" : "Slider",
             "type" : "struct"
           },
           {
@@ -3911,6 +4043,11 @@
           {
             "path" : "\/documentation\/swiftcrossui\/gtklabel",
             "title" : "GtkLabel",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkscale",
+            "title" : "GtkScale",
             "type" : "typealias"
           },
           {

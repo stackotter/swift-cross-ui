@@ -99,6 +99,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewContent",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PaddingView",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
@@ -505,6 +506,40 @@
   "title" : "PaddingView",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/paddingview"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider": {
+  "abstract" : [
+    {
+      "text" : "A slider that allows a user to choose a numeric value.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Slider"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Slider"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Slider",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/slider"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text": {
   "abstract" : [
