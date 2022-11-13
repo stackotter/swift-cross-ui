@@ -102,6 +102,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewContent",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FrameView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView",
@@ -151,7 +152,9 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkImage",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkLabel",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkScale",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkScrolledWindow",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkSize",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkViewport",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWindow"
       ],
@@ -728,6 +731,56 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/foreachviewcontent"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/FrameView": {
+  "abstract" : [
+    {
+      "text" : "A view used to manage a child view’s size. It is preferred to use the ",
+      "type" : "text"
+    },
+    {
+      "code" : "frame",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " modifier available",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "on all views (which uses this behind the scenes).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "FrameView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FrameView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "FrameView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "FrameView",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/frameview"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkApplication": {
   "abstract" : [
 
@@ -1007,6 +1060,37 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/gtkscale"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkScrolledWindow": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkScrolledWindow"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkScrolledWindow",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkScrolledWindow"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkScrolledWindow",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkscrolledwindow"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkSize": {
   "abstract" : [
 
@@ -1037,6 +1121,37 @@
   "title" : "GtkSize",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/gtksize"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkViewport": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkViewport"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkViewport",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkViewport"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkViewport",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkviewport"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkWidget": {
   "abstract" : [

@@ -40,6 +40,8 @@
     {
       "generated" : true,
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/frame(height:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/frame(minimumHeight:maximumHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/padding(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/padding(_:_:)"
       ],
@@ -107,6 +109,167 @@
   "title" : "Text",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/text"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/frame(height:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "frame"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "height"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI9FrameViewV",
+      "text" : "FrameView"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI12ViewContent1V",
+      "text" : "ViewContent1"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : ">>"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/frame(height:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "frame(height:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/text\/frame(height:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/frame(minimumHeight:maximumHeight:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "frame"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "minimumHeight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "maximumHeight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : "?) -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI9FrameViewV",
+      "text" : "FrameView"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI12ViewContent1V",
+      "text" : "ViewContent1"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : ">>"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/frame(minimumHeight:maximumHeight:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "frame(minimumHeight:maximumHeight:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/text\/frame(minimumheight:maximumheight:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/padding(_:)": {
   "abstract" : [
