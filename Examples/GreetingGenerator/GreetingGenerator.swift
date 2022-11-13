@@ -2,7 +2,7 @@ import SwiftCrossUI
 
 class GreetingGeneratorState: AppState {
     @Observed var name = ""
-    @Observed var greeting: String?
+    @Observed var greetings: [String] = []
 }
 
 @main
@@ -18,16 +18,25 @@ struct GreetingGeneratorApp: App {
             TextField("Name", state.$name)
             HStack {
                 Button("Generate") {
-                    state.greeting = "Hello, \(state.name)!"
+                    state.greetings.append("Hello, \(state.name)!")
                 }
                 Button("Reset") {
-                    state.greeting = nil
+                    state.greetings = []
                     state.name = ""
                 }
             }
 
-            if let greeting = state.greeting {
-                Text(greeting).padding(.top, 10)
+            if let latest = state.greetings.last {
+                Text(latest)
+                    .padding(.top, 5)
+
+                if state.greetings.count > 1 {
+                    Text("History:")
+                        .padding(.top, 20)
+                    ForEach(state.greetings.reversed()[1...]) { greeting in
+                        Text(greeting)
+                    }.padding(.top, 8)
+                }
             }
         }
         .padding(10)
