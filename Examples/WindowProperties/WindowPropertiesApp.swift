@@ -1,4 +1,5 @@
 import SwiftCrossUI
+import Foundation
 
 class WindowPropertiesAppState: AppState {
     @Observed var count = 0
@@ -26,6 +27,7 @@ struct WindowPropertiesApp: App {
 
                 Button("Click") { state.count += 1 }
                 Text("Count: \(state.count)")
+                Image(Bundle.module.bundleURL.appendingPathComponent("Banner.png").path)
             }.padding(10)
         }
     }

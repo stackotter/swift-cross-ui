@@ -72,7 +72,8 @@ let package = Package(
         .executableTarget(
             name: "WindowPropertiesExample",
             dependencies: ["SwiftCrossUI"],
-            path: "Examples/WindowProperties"
+            path: "Examples/WindowProperties",
+            resources: [.copy("Banner.png")]
         ),
         .executableTarget(
             name: "GreetingGeneratorExample",
