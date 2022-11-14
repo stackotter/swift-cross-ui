@@ -16,4 +16,14 @@ public class Binding<Value> {
         self.getValue = get
         self.setValue = set
     }
+
+    public func onChange(_ action: @escaping (Value) -> Void) -> Binding<Value> {
+        return Binding<Value>(
+            get: getValue,
+            set: { newValue in
+                self.setValue(newValue)
+                action(newValue)
+            }
+        )
+    }
 }

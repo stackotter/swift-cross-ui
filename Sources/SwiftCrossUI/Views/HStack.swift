@@ -4,10 +4,11 @@ public struct HStack<Content: ViewContent>: View {
 
     /// Creates a new HStack.
     public init(@ViewContentBuilder _ content: () -> Content) {
+        // TODO: Add spacing property to HStack
         body = content()
     }
 
-    public func asWidget(_ children: Content.Children) -> GtkWidget {
+    public func asWidget(_ children: Content.Children) -> GtkButtonBox {
         let hStack = GtkButtonBox(orientation: .horizontal)
         for widget in children.widgets {
             hStack.add(widget)

@@ -2,13 +2,29 @@
 maximum_view_count = 10
 }%
 
-public protocol ViewContent {
+// TODO: Remove View conformance from ViewContent because it's just a bit of a hack to get
+// _EitherView and _OptionalView working.
+public protocol ViewContent: View {
     associatedtype Children: ViewGraphNodeChildren where Children.Content == Self
+}
+
+extension ViewContent where Content == Self, State == EmptyViewState {
+    public var body: Self {
+        return self
+    }
+
+    public func asWidget(_ children: Children) -> GtkBox {
+        let box = GtkBox(orientation: .vertical, spacing: 0)
+        for widget in children.widgets {
+            box.add(widget)
+        }
+        return box
+    }
 }
 
 public struct EmptyViewContent: ViewContent {
     public typealias Children = EmptyViewGraphNodeChildren
-    
+
     public init() {}
 }
 
@@ -16,9 +32,9 @@ public struct EmptyViewContent: ViewContent {
 %{
 view = "ViewContent%d" % (i + 1)
 struct_parameters = ", ".join(["View%d: View" % (j) for j in range(i + 1)])
-properties = "\n\t".join(["public var view%d: View%d" % (j, j) for j in range(i + 1)])
+properties = "\n    ".join(["public var view%d: View%d" % (j, j) for j in range(i + 1)])
 init_parameters = ", ".join(["_ view%d: View%d" % (j, j) for j in range(i + 1)])
-init_body = "\n\t\t".join(["self.view%d = view%d" % (j, j) for j in range(i + 1)])
+init_body = "\n        ".join(["self.view%d = view%d" % (j, j) for j in range(i + 1)])
 }%
 
 public struct ${view}<${struct_parameters}> {

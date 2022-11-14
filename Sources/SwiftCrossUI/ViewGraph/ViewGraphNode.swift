@@ -1,5 +1,5 @@
 public class ViewGraphNode<NodeView: View> {
-    public var widget: GtkWidget
+    public var widget: NodeView.Widget
     public var children: NodeView.Content.Children
     public var view: NodeView
 
@@ -10,9 +10,14 @@ public class ViewGraphNode<NodeView: View> {
         self.view = view
         widget = view.asWidget(children)
 
-        cancellable = view.state.didChange.observe {
+        cancellable = view.state.didChange.observe { [weak self] in
+            guard let self = self else { return }
             self.update()
         }
+    }
+
+    deinit {
+        cancellable?.cancel()
     }
 
     public func update(with newView: NodeView) {
