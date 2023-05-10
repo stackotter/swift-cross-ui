@@ -114,7 +114,8 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent6",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent7",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent8",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent9"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent9",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowReader"
       ],
       "kind" : "relationships",
       "title" : "Conforming Types",
@@ -2792,6 +2793,48 @@
   "title" : "ViewContent9",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewcontent9"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowReader": {
+  "abstract" : [
+    {
+      "text" : "A vertically oriented container. Similar to a ",
+      "type" : "text"
+    },
+    {
+      "code" : "VStack",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " in SwiftUI.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "WindowReader"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowReader",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "WindowReader"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "WindowReader",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowreader"
 }
 }
 }

@@ -135,7 +135,8 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren7",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren8",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren9",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowReader"
       ],
       "title" : "Structures"
     },
@@ -143,6 +144,7 @@
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppState",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyAppState",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileChooser",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkApplication",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBox",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkButton",
@@ -634,6 +636,37 @@
   "title" : "Examples",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/examples"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/FileChooser": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "FileChooser"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileChooser",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "FileChooser"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "FileChooser",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/filechooser"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach": {
   "abstract" : [
@@ -2587,6 +2620,48 @@
   "title" : "WindowProperties",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/windowproperties"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowReader": {
+  "abstract" : [
+    {
+      "text" : "A vertically oriented container. Similar to a ",
+      "type" : "text"
+    },
+    {
+      "code" : "VStack",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " in SwiftUI.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "WindowReader"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowReader",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "WindowReader"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "WindowReader",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowreader"
 }
 }
 }

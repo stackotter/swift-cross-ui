@@ -4443,6 +4443,94 @@
             "type" : "struct"
           },
           {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowreader\/init(_:spacing:)",
+                "title" : "init((GtkWindow) -> Content, spacing: Int)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowreader\/body",
+                "title" : "var body: Content",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowreader\/spacing",
+                "title" : "var spacing: Int",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowreader\/aswidget(_:)",
+                "title" : "func asWidget(Content.Children) -> GtkBox",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/windowreader\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/windowreader\/frame(height:)",
+                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/windowreader\/frame(minimumheight:maximumheight:)",
+                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/windowreader\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/windowreader\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/windowreader\/update(_:children:)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/windowreader\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/windowreader",
+            "title" : "WindowReader",
+            "type" : "struct"
+          },
+          {
             "title" : "Type Aliases",
             "type" : "groupMarker"
           },
@@ -4454,6 +4542,11 @@
           {
             "path" : "\/documentation\/swiftcrossui\/emptyappstate",
             "title" : "EmptyAppState",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/filechooser",
+            "title" : "FileChooser",
             "type" : "typealias"
           },
           {
@@ -4591,6 +4684,6 @@
   "schemaVersion" : {
     "major" : 0,
     "minor" : 1,
-    "patch" : 0
+    "patch" : 1
   }
 }
