@@ -95,6 +95,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewContent",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForegroundColorView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FrameView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image",
@@ -149,6 +150,7 @@
     {
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/asWidget(_:)-4rupb",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/frame(height:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/frame(minimumHeight:maximumHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:)",
@@ -377,6 +379,52 @@
   "title" : "ForEachViewContent",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/foreachviewcontent"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForegroundColorView": {
+  "abstract" : [
+    {
+      "text" : "A view used to manage a child view’s font color. It is preferred to use the ",
+      "type" : "text"
+    },
+    {
+      "code" : "foregroundColor",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "modifier available on all views (which uses this behind the scenes).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ForegroundColorView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForegroundColorView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ForegroundColorView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ForegroundColorView",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/foregroundcolorview"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/FrameView": {
   "abstract" : [
@@ -992,6 +1040,70 @@
   "title" : "body",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view\/body"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/foregroundColor(_:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "foregroundColor"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI19ForegroundColorViewV",
+      "text" : "ForegroundColorView"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI12ViewContent1V",
+      "text" : "ViewContent1"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : ">>"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/foregroundColor(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "foregroundColor(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view\/foregroundcolor(_:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/frame(height:)": {
   "abstract" : [

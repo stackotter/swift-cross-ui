@@ -94,6 +94,7 @@
     {
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherViewContent",
@@ -102,6 +103,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewContent",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForegroundColorView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FrameView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image",
@@ -149,6 +151,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBox",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkButton",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkButtonBox",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkColor",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkContainer",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkEntry",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkImage",
@@ -371,6 +374,37 @@
   "title" : "Cancellable",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/cancellable"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Color"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Color"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Color",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/color"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/DoubleConvertible": {
   "abstract" : [
@@ -764,6 +798,52 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/foreachviewcontent"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForegroundColorView": {
+  "abstract" : [
+    {
+      "text" : "A view used to manage a child view’s font color. It is preferred to use the ",
+      "type" : "text"
+    },
+    {
+      "code" : "foregroundColor",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "modifier available on all views (which uses this behind the scenes).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ForegroundColorView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForegroundColorView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ForegroundColorView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ForegroundColorView",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/foregroundcolorview"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/FrameView": {
   "abstract" : [
     {
@@ -937,6 +1017,37 @@
   "title" : "GtkButtonBox",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/gtkbuttonbox"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkColor": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkColor"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkColor",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkColor"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkColor",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkcolor"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkContainer": {
   "abstract" : [

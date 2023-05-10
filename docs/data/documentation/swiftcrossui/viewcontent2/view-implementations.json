@@ -41,6 +41,7 @@
     {
       "generated" : true,
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent2\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent2\/frame(height:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent2\/frame(minimumHeight:maximumHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent2\/padding(_:)",
@@ -189,6 +190,70 @@
   "title" : "body",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewcontent2\/body"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent2/foregroundColor(_:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "foregroundColor"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI19ForegroundColorViewV",
+      "text" : "ForegroundColorView"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI12ViewContent1V",
+      "text" : "ViewContent1"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : ">>"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent2\/foregroundColor(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "foregroundColor(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent2\/foregroundcolor(_:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent2/frame(height:)": {
   "abstract" : [

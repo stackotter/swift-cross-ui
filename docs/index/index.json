@@ -503,6 +503,11 @@
                 "type" : "method"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/view\/foregroundcolor(_:)",
+                "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                "type" : "method"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/view\/frame(height:)",
                 "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
                 "type" : "method"
@@ -701,6 +706,11 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/button\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/button\/frame(height:)",
                     "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
                     "type" : "method"
@@ -728,6 +738,51 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/button",
             "title" : "Button",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/init(_:_:_:_:)",
+                "title" : "init(Double, Double, Double, Double)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/alpha",
+                "title" : "var alpha: Double",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/blue",
+                "title" : "var blue: Double",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/green",
+                "title" : "var green: Double",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/gtkcolor",
+                "title" : "var gtkColor: GtkColor",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/red",
+                "title" : "var red: Double",
+                "type" : "property"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/color",
+            "title" : "Color",
             "type" : "struct"
           },
           {
@@ -773,6 +828,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/eitherview\/frame(height:)",
@@ -897,6 +957,11 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/frame(height:)",
                     "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
                     "type" : "method"
@@ -990,6 +1055,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/frame(height:)",
@@ -1123,6 +1193,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreach\/frame(height:)",
@@ -1261,6 +1336,11 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/frame(height:)",
                     "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
                     "type" : "method"
@@ -1309,6 +1389,99 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/foreachviewcontent",
             "title" : "ForEachViewContent",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/init(_:color:)",
+                "title" : "init(Child, color: Color)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/body",
+                "title" : "var body: ViewContent1<Child>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/color",
+                "title" : "var color: Color",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/aswidget(_:)",
+                "title" : "func asWidget(ViewGraphNodeChildren1<Child>) -> GtkBox",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/update(_:children:)",
+                "title" : "func update(GtkBox, children: ViewGraphNodeChildren1<Child>)",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/state",
+                    "title" : "var state: EmptyViewState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/frame(height:)",
+                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/frame(minimumheight:maximumheight:)",
+                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/padding(_:)",
+                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/padding(_:_:)",
+                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/foregroundcolorview",
+            "title" : "ForegroundColorView",
             "type" : "struct"
           },
           {
@@ -1390,6 +1563,11 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/frameview\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/frameview\/frame(height:)",
                     "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
                     "type" : "method"
@@ -1466,6 +1644,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/hstack\/frame(height:)",
@@ -1561,6 +1744,11 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/image\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/image\/frame(height:)",
                     "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
                     "type" : "method"
@@ -1633,6 +1821,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalview\/frame(height:)",
@@ -1750,6 +1943,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/frame(height:)",
@@ -1906,6 +2104,11 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/paddingview\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/paddingview\/frame(height:)",
                     "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
                     "type" : "method"
@@ -2019,6 +2222,11 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/slider\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/slider\/frame(height:)",
                     "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
                     "type" : "method"
@@ -2105,6 +2313,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/text\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/text\/frame(height:)",
@@ -2200,6 +2413,11 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/textfield\/frame(height:)",
                     "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
                     "type" : "method"
@@ -2283,6 +2501,11 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/vstack\/frame(height:)",
                     "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
                     "type" : "method"
@@ -2360,6 +2583,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent1\/frame(height:)",
@@ -2511,6 +2739,11 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent10\/frame(height:)",
                     "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
                     "type" : "method"
@@ -2618,6 +2851,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent2\/frame(height:)",
@@ -2732,6 +2970,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent3\/frame(height:)",
@@ -2851,6 +3094,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent4\/frame(height:)",
@@ -2975,6 +3223,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent5\/frame(height:)",
@@ -3104,6 +3357,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent6\/frame(height:)",
@@ -3238,6 +3496,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent7\/frame(height:)",
@@ -3377,6 +3640,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent8\/frame(height:)",
@@ -3521,6 +3789,11 @@
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent9\/frame(height:)",
@@ -4496,6 +4769,11 @@
                     "type" : "groupMarker"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/windowreader\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/windowreader\/frame(height:)",
                     "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
                     "type" : "method"
@@ -4567,6 +4845,11 @@
           {
             "path" : "\/documentation\/swiftcrossui\/gtkbuttonbox",
             "title" : "GtkButtonBox",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkcolor",
+            "title" : "GtkColor",
             "type" : "typealias"
           },
           {
