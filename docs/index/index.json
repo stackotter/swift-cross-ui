@@ -761,12 +761,12 @@
                 "type" : "property"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/color\/blue",
+                "path" : "\/documentation\/swiftcrossui\/color\/blue-swift.property",
                 "title" : "var blue: Double",
                 "type" : "property"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/color\/green",
+                "path" : "\/documentation\/swiftcrossui\/color\/green-swift.property",
                 "title" : "var green: Double",
                 "type" : "property"
               },
@@ -776,8 +776,52 @@
                 "type" : "property"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/color\/red",
+                "path" : "\/documentation\/swiftcrossui\/color\/red-swift.property",
                 "title" : "var red: Double",
+                "type" : "property"
+              },
+              {
+                "title" : "Type Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/black",
+                "title" : "static let black: Color",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/blue-swift.type.property",
+                "title" : "static let blue: Color",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/cyan",
+                "title" : "static let cyan: Color",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/green-swift.type.property",
+                "title" : "static let green: Color",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/magenta",
+                "title" : "static let magenta: Color",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/red-swift.type.property",
+                "title" : "static let red: Color",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/white",
+                "title" : "static let white: Color",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/yellow",
+                "title" : "static let yellow: Color",
                 "type" : "property"
               }
             ],

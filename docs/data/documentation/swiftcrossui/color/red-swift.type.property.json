@@ -9,15 +9,23 @@
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/blue"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/red-swift.type.property"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI5ColorV4blueSdvp",
+    "externalID" : "s:12SwiftCrossUI5ColorV3redACvpZ",
     "fragments" : [
       {
         "kind" : "keyword",
-        "text" : "var"
+        "text" : "static"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "keyword",
+        "text" : "let"
       },
       {
         "kind" : "text",
@@ -25,7 +33,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "blue"
+        "text" : "red"
       },
       {
         "kind" : "text",
@@ -33,8 +41,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Sd",
-        "text" : "Double"
+        "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+        "text" : "Color"
       }
     ],
     "modules" : [
@@ -43,9 +51,9 @@
       }
     ],
     "role" : "symbol",
-    "roleHeading" : "Instance Property",
+    "roleHeading" : "Type Property",
     "symbolKind" : "property",
-    "title" : "blue"
+    "title" : "red"
   },
   "primaryContentSections" : [
     {
@@ -60,7 +68,15 @@
           "tokens" : [
             {
               "kind" : "keyword",
-              "text" : "var"
+              "text" : "static"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "let"
             },
             {
               "kind" : "text",
@@ -68,16 +84,17 @@
             },
             {
               "kind" : "identifier",
-              "text" : "blue"
+              "text" : "red"
             },
             {
               "kind" : "text",
               "text" : ": "
             },
             {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Sd",
-              "text" : "Double"
+              "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+              "text" : "Color"
             }
           ]
         }
@@ -96,7 +113,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/color\/blue"
+        "\/documentation\/swiftcrossui\/color\/red-swift.type.property"
       ],
       "traits" : [
         {
@@ -152,14 +169,22 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/color"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/blue": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/red-swift.type.property": {
   "abstract" : [
 
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "var"
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
     },
     {
       "kind" : "text",
@@ -167,7 +192,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "blue"
+      "text" : "red"
     },
     {
       "kind" : "text",
@@ -175,16 +200,16 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/blue",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/red-swift.type.property",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "blue",
+  "title" : "red",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/color\/blue"
+  "url" : "\/documentation\/swiftcrossui\/color\/red-swift.type.property"
 }
 }
 }
