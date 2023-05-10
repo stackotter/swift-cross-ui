@@ -4,7 +4,10 @@ extension View {
         return PaddingView(ViewContent1(self), padding)
     }
 
-    public func padding(_ side: Side, _ amount: Int) -> PaddingView<ViewContent1<Self>> {
+    public func padding(
+        _ side: Side,
+        _ amount: Int
+    ) -> PaddingView<ViewContent1<Self>> {
         var padding = Padding()
         padding[side] = amount
         return PaddingView(ViewContent1(self), padding)
@@ -18,6 +21,10 @@ extension View {
         minimumHeight: Int? = nil,
         maximumHeight: Int? = nil
     ) -> FrameView<ViewContent1<Self>> {
-        return FrameView(ViewContent1(self), minimumHeight: minimumHeight, maximumHeight: maximumHeight)
+        return FrameView(
+            ViewContent1(self),
+            minimumHeight: minimumHeight,
+            maximumHeight: maximumHeight
+        )
     }
 }

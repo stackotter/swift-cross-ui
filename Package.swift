@@ -3,9 +3,10 @@
 import PackageDescription
 
 var dependencies: [Package.Dependency] = [
+    // .package(path: "../SwiftGtk")
     .package(
         url: "https://github.com/stackotter/SwiftGtk",
-        .branch("main")
+        .revision("b09b95560679d8411c01c0394384d557a2287e72")
     )
 ]
 
@@ -42,6 +43,10 @@ let package = Package(
         .executable(
             name: "GreetingGeneratorExample",
             targets: ["GreetingGeneratorExample"]
+        ),
+        .executable(
+            name: "FileViewerExample",
+            targets: ["FileViewerExample"]
         )
     ],
     dependencies: dependencies,
@@ -79,6 +84,11 @@ let package = Package(
             name: "GreetingGeneratorExample",
             dependencies: ["SwiftCrossUI"],
             path: "Examples/GreetingGenerator"
+        ),
+        .executableTarget(
+            name: "FileViewerExample",
+            dependencies: ["SwiftCrossUI"],
+            path: "Examples/FileViewer"
         )
     ]
 )
