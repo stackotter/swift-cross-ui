@@ -15,3 +15,4 @@ public typealias GtkImage = SwiftGtk.Image
 public typealias GtkViewport = SwiftGtk.Viewport
 public typealias GtkScrolledWindow = SwiftGtk.ScrolledWindow
 public typealias FileChooser = SwiftGtk.FileChooser
+public typealias GtkColor = SwiftGtk.Color

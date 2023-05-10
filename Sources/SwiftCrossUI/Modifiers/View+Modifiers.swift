@@ -27,4 +27,8 @@ extension View {
             maximumHeight: maximumHeight
         )
     }
+
+    public func foregroundColor(_ color: Color) -> ForegroundColorView<ViewContent1<Self>> {
+        return ForegroundColorView(ViewContent1(self), color: color)
+    }
 }
