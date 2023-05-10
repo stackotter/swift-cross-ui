@@ -44,7 +44,7 @@ struct RandomNumberGeneratorApp: App {
             )
         }
         .padding(10)
-        .foregroundColor(Color(1, 0, 1))
+        .foregroundColor(.magenta)
     }
 }
 
