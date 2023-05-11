@@ -6,7 +6,6 @@ public struct ForegroundColorView<Child: View>: View {
     public var color: Color
 
     public init(_ child: Child, color: Color) {
-        // TODO: Figure out how to get width working (seems to get ignored)
         body = ViewContent1(child)
         self.color = color
     }
@@ -17,12 +16,12 @@ public struct ForegroundColorView<Child: View>: View {
             box.add(widget)
         }
 
-        box.setForegroundColor(states: [.normal], color: color.gtkColor)
+        box.setForegroundColor(color: color.gtkColor)
 
         return box
     }
 
     public func update(_ widget: GtkBox, children: ViewGraphNodeChildren1<Child>) {
-        widget.setForegroundColor(states: [.normal], color: color.gtkColor)
+        widget.setForegroundColor(color: color.gtkColor)
     }
 }

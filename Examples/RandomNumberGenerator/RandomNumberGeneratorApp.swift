@@ -4,6 +4,10 @@ class RandomNumberGeneratorState: AppState {
     @Observed var minNum = 0
     @Observed var maxNum = 100
     @Observed var randomNumber = 0
+
+    var color: Color {
+        Color(0, Double(minNum) / 100, Double(maxNum) / 100)
+    }
 }
 
 @main
@@ -42,9 +46,10 @@ struct RandomNumberGeneratorApp: App {
                 minimum: 0,
                 maximum: 100
             )
+
+            Text("(Excuse the weird colors, I'm just showing off dynamic styling)").padding(.top, 20)
         }
         .padding(10)
-        .foregroundColor(.magenta)
     }
 }
 
