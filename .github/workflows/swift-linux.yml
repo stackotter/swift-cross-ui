@@ -8,16 +8,11 @@ on:
 
 jobs:
   build-linux:
-
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-lunar
 
     steps:
     - uses: actions/checkout@v2
     - uses: fwal/setup-swift@v1
-    # If you'd rather use a certain version, format it like this: (5.5.3 is the latest as of writing)
-    #- uses: fwal/setup-swift@v1
-      #with:
-        #swift-version: "5.5.3"
     - name: Install Dependencies
       run: |
         sudo apt update && \
