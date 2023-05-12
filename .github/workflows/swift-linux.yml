@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-linux:
-    runs-on: ubuntu-lunar
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
