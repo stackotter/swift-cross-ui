@@ -19,6 +19,7 @@ struct GreetingGeneratorApp: App {
             HStack {
                 Button("Generate") {
                     state.greetings.append("Hello, \(state.name)!")
+                    state.name = ""
                 }
                 Button("Reset") {
                     state.greetings = []
