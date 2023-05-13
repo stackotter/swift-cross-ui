@@ -50,6 +50,7 @@ struct RandomNumberGeneratorApp: App {
             Text("(Excuse the weird colors, I'm just showing off dynamic styling)").padding(.top, 20)
         }
         .padding(10)
+        .foregroundColor(state.color)
     }
 }
 
