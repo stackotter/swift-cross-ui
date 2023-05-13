@@ -22,8 +22,10 @@ class _App<AppRoot: App> {
             self.viewGraph = ViewGraph(for: self.app)
 
             if let widget = self.viewGraph?.rootNode.widget {
-                window.add(widget)
+                window.setChild(widget)
             }
+
+            window.show()
         }
     }
 }

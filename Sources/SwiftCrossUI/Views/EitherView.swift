@@ -88,7 +88,6 @@ public struct EitherView<A: View, B: View>: View {
         if children.storage.hasSwitchedCase {
             widget.removeAll()
             widget.add(children.widgets[0])
-            widget.showAll()
         }
     }
 }

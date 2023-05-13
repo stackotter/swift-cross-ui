@@ -68,7 +68,6 @@ public struct OptionalView<V: View>: View {
             for child in children.widgets {
                 widget.add(child)
             }
-            widget.showAll()
         }
     }
 }

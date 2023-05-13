@@ -22,9 +22,13 @@ struct FileViewerApp: App {
             VStack {
                 Text("Selected file: \(state.file?.path ?? "none")")
 
-                WindowReader { window in
-                    Button("Click") {
-                        state.file = FileChooser.present(window)
+                Button("Click") {
+                    let dialog = GtkFileDialog()
+                    dialog.open { result in
+                        guard case let .success(file) = result else {
+                            return
+                        }
+                        state.file = file
                     }
                 }
             }.padding(10)

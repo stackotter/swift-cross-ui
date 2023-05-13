@@ -6,7 +6,7 @@ class RandomNumberGeneratorState: AppState {
     @Observed var randomNumber = 0
 
     var color: Color {
-        Color(0, Double(minNum) / 100, Double(maxNum) / 100)
+        Color(0, Float(minNum) / 100, Float(maxNum) / 100)
     }
 }
 

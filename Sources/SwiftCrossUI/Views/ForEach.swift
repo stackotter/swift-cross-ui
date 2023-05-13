@@ -48,8 +48,6 @@ public struct ForEachViewChildren<Items: Collection, Child: ViewContent>: ViewGr
             }
             storage.nodes.removeLast(unused)
         }
-
-        storage.container.showAll()
     }
 }
 

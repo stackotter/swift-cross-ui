@@ -41,7 +41,7 @@ public struct FrameView<Child: View>: View {
         for child in children.widgets {
             box.add(child)
         }
-        widget.add(box)
+        widget.setChild(box)
         return widget
     }
 
