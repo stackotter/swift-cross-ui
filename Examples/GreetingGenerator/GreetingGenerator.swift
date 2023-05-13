@@ -19,7 +19,6 @@ struct GreetingGeneratorApp: App {
             HStack {
                 Button("Generate") {
                     state.greetings.append("Hello, \(state.name)!")
-                    state.name = ""
                 }
                 Button("Reset") {
                     state.greetings = []
@@ -35,10 +34,11 @@ struct GreetingGeneratorApp: App {
                     Text("History:")
                         .padding(.top, 20)
 
-                    ForEach(state.greetings.reversed()[1...]) { greeting in
-                        Text(greeting)
+                    ScrollView {
+                        ForEach(state.greetings.reversed()[1...]) { greeting in
+                            Text(greeting)
+                        }
                     }
-                    .frame(height: 200)
                     .padding(.top, 8)
                 }
             }
@@ -46,4 +46,3 @@ struct GreetingGeneratorApp: App {
         .padding(10)
     }
 }
-

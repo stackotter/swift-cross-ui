@@ -6,7 +6,7 @@ var dependencies: [Package.Dependency] = [
     // .package(path: "../SwiftGtk")
     .package(
         url: "https://github.com/stackotter/SwiftGtk",
-        .revision("3c8cc4b309ecaf5b0713f03cd70cb0e5fad810b5")
+        .revision("1c4543b3f1581268aad1738cf24c066b1a65dacc")
     )
 ]
 
