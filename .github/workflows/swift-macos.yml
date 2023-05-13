@@ -14,6 +14,6 @@ jobs:
       run: sudo xcode-select -switch /Applications/Xcode_13.2.app
     - uses: actions/checkout@v2
     - name: Install Dependencies
-      run: brew install gtk+3
+      run: brew install gtk4
     - name: Build
       run: swift build -v

@@ -16,7 +16,7 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt update && \
-        sudo apt install -y libgtk-3-dev clang
+        sudo apt install -y libgtk-4-dev clang
     - name: Build
       run: swift build -v
     #- name: Run tests

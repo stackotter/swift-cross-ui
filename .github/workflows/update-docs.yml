@@ -15,7 +15,7 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt update && \
-        sudo apt install -y libgtk-3-dev clang
+        sudo apt install -y libgtk-4-dev clang
     - name: Compile Docs
       run: |
         set -eux
@@ -30,7 +30,7 @@ jobs:
 
         export DOCC_JSON_PRETTYPRINT="YES"
 
-        export SWIFTPM_ENABLE_COMMAND_PLUGINS=1 
+        export SWIFTPM_ENABLE_COMMAND_PLUGINS=1
         swift package \
           --allow-writing-to-directory gh-pages/docs \
           generate-documentation \
@@ -52,4 +52,3 @@ jobs:
         else
           echo "No documentation changes found."
         fi
-                
