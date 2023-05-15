@@ -43,7 +43,7 @@ public class Window: Widget {
 
             return Size(width: Int(width), height: Int(height))
         }
-        set (size) {
+        set(size) {
             gtk_window_set_default_size(castedPointer(), gint(size.width), gint(size.height))
         }
     }

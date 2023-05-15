@@ -7,10 +7,10 @@ public enum NotebookTab {
 
     func toGtkNotebookTab() -> GtkNotebookTab {
         switch self {
-        case .first:
-            return GTK_NOTEBOOK_TAB_FIRST
-        case .last:
-            return GTK_NOTEBOOK_TAB_LAST
+            case .first:
+                return GTK_NOTEBOOK_TAB_FIRST
+            case .last:
+                return GTK_NOTEBOOK_TAB_LAST
         }
     }
 }
@@ -18,12 +18,12 @@ public enum NotebookTab {
 extension GtkNotebookTab {
     func toNotebookTab() -> NotebookTab {
         switch self {
-        case GTK_NOTEBOOK_TAB_FIRST:
-            return .first
-        case GTK_NOTEBOOK_TAB_LAST:
-            return .last
-        default:
-            fatalError("Unsupported GtkNotebookTab enum value: \(self.rawValue)")
+            case GTK_NOTEBOOK_TAB_FIRST:
+                return .first
+            case GTK_NOTEBOOK_TAB_LAST:
+                return .last
+            default:
+                fatalError("Unsupported GtkNotebookTab enum value: \(self.rawValue)")
         }
     }
 }

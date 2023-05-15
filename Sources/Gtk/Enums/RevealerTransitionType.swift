@@ -1,7 +1,7 @@
 import CGtk
 
 /// These enumeration values describe the possible transitions when the child of a GtkRevealer widget is shown or hidden.
-/// 
+///
 /// [Gtk docs](https://docs.gtk.org/gtk3/enum.RevealerTransitionType.html)
 public enum RevealerTransitionType {
     /// No transition.
@@ -19,18 +19,18 @@ public enum RevealerTransitionType {
 
     func toGtkRevealerTransitionType() -> GtkRevealerTransitionType {
         switch self {
-        case .none:
-            return GTK_REVEALER_TRANSITION_TYPE_NONE
-        case .crossFade:
-            return GTK_REVEALER_TRANSITION_TYPE_CROSSFADE
-        case .slideRight:
-            return GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT
-        case .slideLeft:
-            return GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT
-        case .slideUp:
-            return GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP
-        case .slideDown:
-            return GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN
+            case .none:
+                return GTK_REVEALER_TRANSITION_TYPE_NONE
+            case .crossFade:
+                return GTK_REVEALER_TRANSITION_TYPE_CROSSFADE
+            case .slideRight:
+                return GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT
+            case .slideLeft:
+                return GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT
+            case .slideUp:
+                return GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP
+            case .slideDown:
+                return GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN
         }
     }
 }
@@ -38,20 +38,20 @@ public enum RevealerTransitionType {
 extension GtkRevealerTransitionType {
     func toRevealerTransitionType() -> RevealerTransitionType {
         switch self {
-        case GTK_REVEALER_TRANSITION_TYPE_NONE:
-            return RevealerTransitionType.none
-        case GTK_REVEALER_TRANSITION_TYPE_CROSSFADE:
-            return .crossFade
-        case GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT:
-            return .slideRight
-        case GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT:
-            return .slideLeft
-        case GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP:
-            return .slideUp
-        case GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN:
-            return .slideDown
-        default:
-            fatalError("Unsupported GtkRevealerTransitionType enum value: \(self.rawValue)")
+            case GTK_REVEALER_TRANSITION_TYPE_NONE:
+                return RevealerTransitionType.none
+            case GTK_REVEALER_TRANSITION_TYPE_CROSSFADE:
+                return .crossFade
+            case GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT:
+                return .slideRight
+            case GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT:
+                return .slideLeft
+            case GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP:
+                return .slideUp
+            case GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN:
+                return .slideDown
+            default:
+                fatalError("Unsupported GtkRevealerTransitionType enum value: \(self.rawValue)")
         }
     }
 }

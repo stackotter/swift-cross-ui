@@ -23,6 +23,7 @@
 2. Make sure that you haven't introduced any new warnings
 3. Make sure that the code builds, and the example works correctly
 4. If you are adding a new feature, consider adding an example usage of it to the example
+5. Run `format_and_lint.sh` (requires installing `swift-format` and `swiftlint`)
 
 ## While coding
 

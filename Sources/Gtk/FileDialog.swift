@@ -1,5 +1,5 @@
-import Foundation
 import CGtk
+import Foundation
 
 /// A wrapper for Gtk's file dialog.
 public class FileDialog {
@@ -49,7 +49,12 @@ public class FileDialog {
             pointer,
             nil,
             cancellable.pointer,
-            { (dialog: UnsafeMutablePointer<GObject>?, result: OpaquePointer?, contextPointer: gpointer?) in
+            {
+                (
+                    _,
+                    result: OpaquePointer?,
+                    contextPointer: gpointer?
+                ) in
                 let unmanaged = Unmanaged<CallbackContext>.fromOpaque(contextPointer!)
                 let context = unmanaged.takeUnretainedValue()
 

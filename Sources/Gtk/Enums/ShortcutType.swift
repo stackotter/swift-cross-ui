@@ -1,7 +1,7 @@
 import CGtk
 
 /// GtkShortcutType specifies the kind of shortcut that is being described. More values may be added to this enumeration over time.
-/// 
+///
 /// [Gtk docs](https://docs.gtk.org/gtk3/enum.ShortcutType.html)
 public enum ShortcutType {
     /// The shortcut is a keyboard accelerator. The `GtkShortcutsShortcut:accelerator` property will be used.
@@ -23,22 +23,22 @@ public enum ShortcutType {
 
     func toGtkShortcutType() -> GtkShortcutType {
         switch self {
-        case .accelerator:
-            return GTK_SHORTCUT_ACCELERATOR
-        case .gesturePinch:
-            return GTK_SHORTCUT_GESTURE_PINCH
-        case .gestureStretch:
-            return GTK_SHORTCUT_GESTURE_STRETCH
-        case .gestureRotateClockwise:
-            return GTK_SHORTCUT_GESTURE_ROTATE_CLOCKWISE
-        case .gestureRotateCounterClockwise:
-            return GTK_SHORTCUT_GESTURE_ROTATE_COUNTERCLOCKWISE
-        case .gestureTwoFingerSwipeLeft:
-            return GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT
-        case .gestureTwoFingerSwipeRight:
-            return GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT
-        case .gesture:
-            return GTK_SHORTCUT_GESTURE
+            case .accelerator:
+                return GTK_SHORTCUT_ACCELERATOR
+            case .gesturePinch:
+                return GTK_SHORTCUT_GESTURE_PINCH
+            case .gestureStretch:
+                return GTK_SHORTCUT_GESTURE_STRETCH
+            case .gestureRotateClockwise:
+                return GTK_SHORTCUT_GESTURE_ROTATE_CLOCKWISE
+            case .gestureRotateCounterClockwise:
+                return GTK_SHORTCUT_GESTURE_ROTATE_COUNTERCLOCKWISE
+            case .gestureTwoFingerSwipeLeft:
+                return GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT
+            case .gestureTwoFingerSwipeRight:
+                return GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT
+            case .gesture:
+                return GTK_SHORTCUT_GESTURE
         }
     }
 }
@@ -46,24 +46,24 @@ public enum ShortcutType {
 extension GtkShortcutType {
     func toShortcutType() -> ShortcutType {
         switch self {
-        case GTK_SHORTCUT_ACCELERATOR:
-            return .accelerator
-        case GTK_SHORTCUT_GESTURE_PINCH:
-            return .gesturePinch
-        case GTK_SHORTCUT_GESTURE_STRETCH:
-            return .gestureStretch
-        case GTK_SHORTCUT_GESTURE_ROTATE_CLOCKWISE:
-            return .gestureRotateClockwise
-        case GTK_SHORTCUT_GESTURE_ROTATE_COUNTERCLOCKWISE:
-            return .gestureRotateCounterClockwise
-        case GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT:
-            return .gestureTwoFingerSwipeLeft
-        case GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT:
-            return .gestureTwoFingerSwipeRight
-        case GTK_SHORTCUT_GESTURE:
-            return .gesture
-        default:
-            fatalError("Unsupported GtkShortcutType enum value: \(self.rawValue)")
+            case GTK_SHORTCUT_ACCELERATOR:
+                return .accelerator
+            case GTK_SHORTCUT_GESTURE_PINCH:
+                return .gesturePinch
+            case GTK_SHORTCUT_GESTURE_STRETCH:
+                return .gestureStretch
+            case GTK_SHORTCUT_GESTURE_ROTATE_CLOCKWISE:
+                return .gestureRotateClockwise
+            case GTK_SHORTCUT_GESTURE_ROTATE_COUNTERCLOCKWISE:
+                return .gestureRotateCounterClockwise
+            case GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT:
+                return .gestureTwoFingerSwipeLeft
+            case GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT:
+                return .gestureTwoFingerSwipeRight
+            case GTK_SHORTCUT_GESTURE:
+                return .gesture
+            default:
+                fatalError("Unsupported GtkShortcutType enum value: \(self.rawValue)")
         }
     }
 }

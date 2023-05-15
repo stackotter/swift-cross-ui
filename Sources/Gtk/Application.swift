@@ -19,12 +19,21 @@ public class Application {
     public func run(_ windowCallback: @escaping (ApplicationWindow) -> Void) -> Int {
         self.windowCallback = windowCallback
 
-        let handler: @convention(c) (UnsafeMutableRawPointer, UnsafeMutableRawPointer) -> Void = { sender, data in
-            let app = unsafeBitCast(data, to: Application.self)
-            app.activate()
-        }
+        let handler:
+            @convention(c) (
+                UnsafeMutableRawPointer,
+                UnsafeMutableRawPointer
+            ) -> Void = { _, data in
+                let app = unsafeBitCast(data, to: Application.self)
+                app.activate()
+            }
 
-        connectSignal(applicationPointer, name: "activate", data: Unmanaged.passUnretained(self).toOpaque(), handler: unsafeBitCast(handler, to: GCallback.self))
+        connectSignal(
+            applicationPointer,
+            name: "activate",
+            data: Unmanaged.passUnretained(self).toOpaque(),
+            handler: unsafeBitCast(handler, to: GCallback.self)
+        )
         let status = g_application_run(applicationPointer.cast(), 0, nil)
         g_object_unref(applicationPointer)
         return Int(status)

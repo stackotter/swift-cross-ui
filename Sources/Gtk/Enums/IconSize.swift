@@ -13,12 +13,12 @@ public enum IconSize {
 
     func toGtkIconSize() -> GtkIconSize {
         switch self {
-        case .inherit:
-            return GTK_ICON_SIZE_INHERIT
-        case .normal:
-            return GTK_ICON_SIZE_NORMAL
-        case .large:
-            return GTK_ICON_SIZE_LARGE
+            case .inherit:
+                return GTK_ICON_SIZE_INHERIT
+            case .normal:
+                return GTK_ICON_SIZE_NORMAL
+            case .large:
+                return GTK_ICON_SIZE_LARGE
         }
     }
 }
@@ -26,14 +26,14 @@ public enum IconSize {
 extension GtkIconSize {
     func toIconSize() -> IconSize {
         switch self {
-        case GTK_ICON_SIZE_INHERIT:
-            return .inherit
-        case GTK_ICON_SIZE_NORMAL:
-            return .normal
-        case GTK_ICON_SIZE_LARGE:
-            return .large
-        default:
-            fatalError("Unsupported GtkIconSize enum value: \(self.rawValue)")
+            case GTK_ICON_SIZE_INHERIT:
+                return .inherit
+            case GTK_ICON_SIZE_NORMAL:
+                return .normal
+            case GTK_ICON_SIZE_LARGE:
+                return .large
+            default:
+                fatalError("Unsupported GtkIconSize enum value: \(self.rawValue)")
         }
     }
 }

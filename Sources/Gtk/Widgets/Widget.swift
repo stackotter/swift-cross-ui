@@ -2,8 +2,8 @@
 //  Copyright © 2015 Tomas Linhart. All rights reserved.
 //
 
-import Foundation
 import CGtk
+import Foundation
 
 open class Widget {
     private var signals: [(UInt, Any)] = []
@@ -50,95 +50,163 @@ open class Widget {
     /// Adds a signal that is not carrying any additional information.
     func addSignal(name: String, callback: @escaping SignalCallbackZero) {
         let box = SignalBoxZero(callback: callback)
-        let handler: @convention(c) (UnsafeMutableRawPointer, UnsafeMutableRawPointer) -> Void = { sender, data in
-            let box = unsafeBitCast(data, to: SignalBoxZero.self)
-            box.callback()
-        }
+        let handler:
+            @convention(c) (
+                UnsafeMutableRawPointer,
+                UnsafeMutableRawPointer
+            ) -> Void = { _, data in
+                let box = unsafeBitCast(data, to: SignalBoxZero.self)
+                box.callback()
+            }
 
-        let handlerId = connectSignal(widgetPointer, name: name, data: Unmanaged.passUnretained(box).toOpaque(), handler: unsafeBitCast(handler, to: GCallback.self))
+        let handlerId = connectSignal(
+            widgetPointer,
+            name: name,
+            data: Unmanaged.passUnretained(box).toOpaque(),
+            handler: unsafeBitCast(handler, to: GCallback.self)
+        )
 
         signals.append((handlerId, box))
     }
 
     func addSignal(name: String, callback: @escaping SignalCallbackOne) {
         let box = SignalBoxOne(callback: callback)
-        let handler: @convention(c) (UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer) -> Void = { sender, pointer, data in
-            let box = unsafeBitCast(data, to: SignalBoxOne.self)
-            box.callback(pointer)
-        }
+        let handler:
+            @convention(c) (
+                UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer
+            ) -> Void = { _, pointer, data in
+                let box = unsafeBitCast(data, to: SignalBoxOne.self)
+                box.callback(pointer)
+            }
 
-        let handlerId = connectSignal(widgetPointer, name: name, data: Unmanaged.passUnretained(box).toOpaque(), handler: unsafeBitCast(handler, to: GCallback.self))
+        let handlerId = connectSignal(
+            widgetPointer,
+            name: name,
+            data: Unmanaged.passUnretained(box).toOpaque(),
+            handler: unsafeBitCast(handler, to: GCallback.self)
+        )
 
         signals.append((handlerId, box))
     }
 
     func addSignal(name: String, callback: @escaping SignalCallbackTwo) {
         let box = SignalBoxTwo(callback: callback)
-        let handler: @convention(c) (UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer) -> Void = { sender, pointer1, pointer2, data in
-            let box = unsafeBitCast(data, to: SignalBoxTwo.self)
-            box.callback(pointer1, pointer2)
-        }
+        let handler:
+            @convention(c) (
+                UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer,
+                UnsafeMutableRawPointer
+            ) -> Void = { _, pointer1, pointer2, data in
+                let box = unsafeBitCast(data, to: SignalBoxTwo.self)
+                box.callback(pointer1, pointer2)
+            }
 
-        let handlerId = connectSignal(widgetPointer, name: name, data: Unmanaged.passUnretained(box).toOpaque(), handler: unsafeBitCast(handler, to: GCallback.self))
+        let handlerId = connectSignal(
+            widgetPointer,
+            name: name,
+            data: Unmanaged.passUnretained(box).toOpaque(),
+            handler: unsafeBitCast(handler, to: GCallback.self)
+        )
 
         signals.append((handlerId, box))
     }
 
     func addSignal(name: String, callback: @escaping SignalCallbackThree) {
         let box = SignalBoxThree(callback: callback)
-        let handler: @convention(c) (UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer) -> Void = { sender, pointer1, pointer2, pointer3, data in
-            let box = unsafeBitCast(data, to: SignalBoxThree.self)
-            box.callback(pointer1, pointer2, pointer3)
-        }
+        let handler:
+            @convention(c) (
+                UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer,
+                UnsafeMutableRawPointer, UnsafeMutableRawPointer
+            ) -> Void = { _, pointer1, pointer2, pointer3, data in
+                let box = unsafeBitCast(data, to: SignalBoxThree.self)
+                box.callback(pointer1, pointer2, pointer3)
+            }
 
-        let handlerId = connectSignal(widgetPointer, name: name, data: Unmanaged.passUnretained(box).toOpaque(), handler: unsafeBitCast(handler, to: GCallback.self))
+        let handlerId = connectSignal(
+            widgetPointer,
+            name: name,
+            data: Unmanaged.passUnretained(box).toOpaque(),
+            handler: unsafeBitCast(handler, to: GCallback.self)
+        )
 
         signals.append((handlerId, box))
     }
 
     func addSignal(name: String, callback: @escaping SignalCallbackFour) {
         let box = SignalBoxFour(callback: callback)
-        let handler: @convention(c) (UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer) -> Void = { sender, pointer1, pointer2, pointer3, pointer4, data in
-            let box = unsafeBitCast(data, to: SignalBoxFour.self)
-            box.callback(pointer1, pointer2, pointer3, pointer4)
-        }
+        let handler:
+            @convention(c) (
+                UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer,
+                UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer
+            ) -> Void = { _, pointer1, pointer2, pointer3, pointer4, data in
+                let box = unsafeBitCast(data, to: SignalBoxFour.self)
+                box.callback(pointer1, pointer2, pointer3, pointer4)
+            }
 
-        let handlerId = connectSignal(widgetPointer, name: name, data: Unmanaged.passUnretained(box).toOpaque(), handler: unsafeBitCast(handler, to: GCallback.self))
+        let handlerId = connectSignal(
+            widgetPointer,
+            name: name,
+            data: Unmanaged.passUnretained(box).toOpaque(),
+            handler: unsafeBitCast(handler, to: GCallback.self)
+        )
 
         signals.append((handlerId, box))
     }
 
     func addSignal(name: String, callback: @escaping SignalCallbackFive) {
         let box = SignalBoxFive(callback: callback)
-        let handler: @convention(c) (UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer) -> Void = { sender, pointer1, pointer2, pointer3, pointer4, pointer5, data in
-            let box = unsafeBitCast(data, to: SignalBoxFive.self)
-            box.callback(pointer1, pointer2, pointer3, pointer4, pointer5)
-        }
+        let handler:
+            @convention(c) (
+                UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer,
+                UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer,
+                UnsafeMutableRawPointer
+            ) -> Void = { _, pointer1, pointer2, pointer3, pointer4, pointer5, data in
+                let box = unsafeBitCast(data, to: SignalBoxFive.self)
+                box.callback(pointer1, pointer2, pointer3, pointer4, pointer5)
+            }
 
-        let handlerId = connectSignal(widgetPointer, name: name, data: Unmanaged.passUnretained(box).toOpaque(), handler: unsafeBitCast(handler, to: GCallback.self))
+        let handlerId = connectSignal(
+            widgetPointer,
+            name: name,
+            data: Unmanaged.passUnretained(box).toOpaque(),
+            handler: unsafeBitCast(handler, to: GCallback.self)
+        )
 
         signals.append((handlerId, box))
     }
 
     func addSignal(name: String, callback: @escaping SignalCallbackSix) {
         let box = SignalBoxSix(callback: callback)
-        let handler: @convention(c) (UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer) -> Void = { sender, pointer1, pointer2, pointer3, pointer4, pointer5, pointer6, data in
-            let box = unsafeBitCast(data, to: SignalBoxSix.self)
-            box.callback(pointer1, pointer2, pointer3, pointer4, pointer5, pointer6)
-        }
+        let handler:
+            @convention(c) (
+                UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer,
+                UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer,
+                UnsafeMutableRawPointer, UnsafeMutableRawPointer
+            ) -> Void = { _, pointer1, pointer2, pointer3, pointer4, pointer5, pointer6, data in
+                let box = unsafeBitCast(data, to: SignalBoxSix.self)
+                box.callback(pointer1, pointer2, pointer3, pointer4, pointer5, pointer6)
+            }
 
-        let handlerId = connectSignal(widgetPointer, name: name, data: Unmanaged.passUnretained(box).toOpaque(), handler: unsafeBitCast(handler, to: GCallback.self))
+        let handlerId = connectSignal(
+            widgetPointer,
+            name: name,
+            data: Unmanaged.passUnretained(box).toOpaque(),
+            handler: unsafeBitCast(handler, to: GCallback.self)
+        )
 
         signals.append((handlerId, box))
     }
 
     public func setForegroundColor(color: Color) {
-        let className = String("class-\(UUID().uuidString)").replacingOccurrences(of: "-", with: "_")
+        let className = String("class-\(UUID().uuidString)").replacingOccurrences(
+            of: "-",
+            with: "_"
+        )
         className.withCString { string in
             gtk_widget_add_css_class(widgetPointer, string)
         }
 
-        let css = ".\(className){color:rgba(\(color.red*255),\(color.green*255),\(color.blue*255),\(color.alpha*255));}"
+        let css =
+            ".\(className){color:rgba(\(color.red*255),\(color.green*255),\(color.blue*255),\(color.alpha*255));}"
         let provider = CssProvider()
         provider.loadFromData(css)
         addCssProvider(provider)

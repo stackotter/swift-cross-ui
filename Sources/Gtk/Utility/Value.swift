@@ -4,7 +4,9 @@
 
 import CGtk
 
-// This is from GLib and one day could be moved to GLib binding. It also not very perfect because original GValue heavily depends on macros that are not available in Swift. It might be best to introduce Object superclass and define these methods on it.
+// This is from GLib and one day could be moved to GLib binding. It also not very perfect because
+// original GValue heavily depends on macros that are not available in Swift. It might be best to
+// introduce Object superclass and define these methods on it.
 
 func getProperty(_ pointer: UnsafeMutablePointer<GObject>?, name: String) -> Bool {
     var v = GValue()

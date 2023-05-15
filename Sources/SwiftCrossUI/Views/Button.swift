@@ -8,7 +8,7 @@ public struct Button: View {
     public var body = EmptyViewContent()
 
     /// Creates a new button.
-    public init(_ label: String, action: @escaping () -> Void = { }) {
+    public init(_ label: String, action: @escaping () -> Void = {}) {
         self.label = label
         self.action = action
     }

@@ -1,5 +1,5 @@
-import Foundation
 import CGtk
+import Foundation
 
 public struct GtkError: LocalizedError {
     public var code: Int
@@ -20,7 +20,9 @@ public struct GtkError: LocalizedError {
 /// An easy way to wrap Gtk code that uses error pointers for handling. Passes an error pointer to
 /// your code, which is then checked for an error which is thrown if present.
 @discardableResult
-public func withGtkError<R>(_ action: (UnsafeMutablePointer<UnsafeMutablePointer<GError>?>) -> R) throws -> R {
+public func withGtkError<R>(
+    _ action: (UnsafeMutablePointer<UnsafeMutablePointer<GError>?>) -> R
+) throws -> R {
     var errorPointer: UnsafeMutablePointer<GError>? = nil
     let result = action(&errorPointer)
 

@@ -1,7 +1,7 @@
 import CGtk
 
 /// See also `gtk_print_job_set_pages()`
-/// 
+///
 /// [Gtk docs](https://docs.gtk.org/gtk3/enum.PrintPages.html)
 public enum PrintPages {
     /// All pages.
@@ -15,14 +15,14 @@ public enum PrintPages {
 
     func toGtkPrintPages() -> GtkPrintPages {
         switch self {
-        case .all:
-            return GTK_PRINT_PAGES_ALL
-        case .current:
-            return GTK_PRINT_PAGES_CURRENT
-        case .ranges:
-            return GTK_PRINT_PAGES_RANGES
-        case .selection:
-            return GTK_PRINT_PAGES_SELECTION
+            case .all:
+                return GTK_PRINT_PAGES_ALL
+            case .current:
+                return GTK_PRINT_PAGES_CURRENT
+            case .ranges:
+                return GTK_PRINT_PAGES_RANGES
+            case .selection:
+                return GTK_PRINT_PAGES_SELECTION
         }
     }
 }
@@ -30,16 +30,16 @@ public enum PrintPages {
 extension GtkPrintPages {
     func toPrintPages() -> PrintPages {
         switch self {
-        case GTK_PRINT_PAGES_ALL:
-            return .all
-        case GTK_PRINT_PAGES_CURRENT:
-            return .current
-        case GTK_PRINT_PAGES_RANGES:
-            return .ranges
-        case GTK_PRINT_PAGES_SELECTION:
-            return .selection
-        default:
-            fatalError("Unsupported GtkPrintPages enum value: \(self.rawValue)")
+            case GTK_PRINT_PAGES_ALL:
+                return .all
+            case GTK_PRINT_PAGES_CURRENT:
+                return .current
+            case GTK_PRINT_PAGES_RANGES:
+                return .ranges
+            case GTK_PRINT_PAGES_SELECTION:
+                return .selection
+            default:
+                fatalError("Unsupported GtkPrintPages enum value: \(self.rawValue)")
         }
     }
 }

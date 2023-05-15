@@ -19,16 +19,16 @@ public protocol App {
     init()
 }
 
-public extension App {
+extension App {
     /// Runs the application.
-    static func main() {
+    public static func main() {
         let app = _App(Self())
         app.run()
     }
 }
 
-public extension App where State == EmptyAppState {
-    var state: State {
+extension App where State == EmptyAppState {
+    public var state: State {
         EmptyAppState()
     }
 }

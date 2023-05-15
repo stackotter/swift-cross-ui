@@ -1,7 +1,7 @@
 import CGtk
 
 /// A value of this type is returned by gtk_print_operation_run().
-/// 
+///
 /// [Gtk docs](https://docs.gtk.org/gtk3/enum.PrintOperationResult.html)
 public enum PrintOperationResult {
     /// An error has occurred.
@@ -15,14 +15,14 @@ public enum PrintOperationResult {
 
     func toGtkPrintOperationResult() -> GtkPrintOperationResult {
         switch self {
-        case .error:
-            return GTK_PRINT_OPERATION_RESULT_ERROR
-        case .apply:
-            return GTK_PRINT_OPERATION_RESULT_APPLY
-        case .cancel:
-            return GTK_PRINT_OPERATION_RESULT_CANCEL
-        case .inProgress:
-            return GTK_PRINT_OPERATION_RESULT_IN_PROGRESS
+            case .error:
+                return GTK_PRINT_OPERATION_RESULT_ERROR
+            case .apply:
+                return GTK_PRINT_OPERATION_RESULT_APPLY
+            case .cancel:
+                return GTK_PRINT_OPERATION_RESULT_CANCEL
+            case .inProgress:
+                return GTK_PRINT_OPERATION_RESULT_IN_PROGRESS
         }
     }
 }
@@ -30,16 +30,16 @@ public enum PrintOperationResult {
 extension GtkPrintOperationResult {
     func toPrintOperationResult() -> PrintOperationResult {
         switch self {
-        case GTK_PRINT_OPERATION_RESULT_ERROR:
-            return .error
-        case GTK_PRINT_OPERATION_RESULT_APPLY:
-            return .apply
-        case GTK_PRINT_OPERATION_RESULT_CANCEL:
-            return .cancel
-        case GTK_PRINT_OPERATION_RESULT_IN_PROGRESS:
-            return .inProgress
-        default:
-            fatalError("Unsupported GtkPrintOperationResult enum value: \(self.rawValue)")
+            case GTK_PRINT_OPERATION_RESULT_ERROR:
+                return .error
+            case GTK_PRINT_OPERATION_RESULT_APPLY:
+                return .apply
+            case GTK_PRINT_OPERATION_RESULT_CANCEL:
+                return .cancel
+            case GTK_PRINT_OPERATION_RESULT_IN_PROGRESS:
+                return .inProgress
+            default:
+                fatalError("Unsupported GtkPrintOperationResult enum value: \(self.rawValue)")
         }
     }
 }

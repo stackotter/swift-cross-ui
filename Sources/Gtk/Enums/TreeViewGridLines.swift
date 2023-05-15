@@ -1,7 +1,7 @@
 import CGtk
 
 /// Used to indicate which grid lines to draw in a tree view.
-/// 
+///
 /// [Gtk docs](https://docs.gtk.org/gtk3/enum.TreeViewGridLines.html)
 public enum TreeViewGridLines {
     /// No grid lines.
@@ -15,14 +15,14 @@ public enum TreeViewGridLines {
 
     func toGtkTreeViewGridLines() -> GtkTreeViewGridLines {
         switch self {
-        case .none:
-            return GTK_TREE_VIEW_GRID_LINES_NONE
-        case .horizontal:
-            return GTK_TREE_VIEW_GRID_LINES_HORIZONTAL
-        case .vertical:
-            return GTK_TREE_VIEW_GRID_LINES_VERTICAL
-        case .both:
-            return GTK_TREE_VIEW_GRID_LINES_BOTH
+            case .none:
+                return GTK_TREE_VIEW_GRID_LINES_NONE
+            case .horizontal:
+                return GTK_TREE_VIEW_GRID_LINES_HORIZONTAL
+            case .vertical:
+                return GTK_TREE_VIEW_GRID_LINES_VERTICAL
+            case .both:
+                return GTK_TREE_VIEW_GRID_LINES_BOTH
         }
     }
 }
@@ -30,16 +30,16 @@ public enum TreeViewGridLines {
 extension GtkTreeViewGridLines {
     func toTreeViewGridLines() -> TreeViewGridLines {
         switch self {
-        case GTK_TREE_VIEW_GRID_LINES_NONE:
-            return TreeViewGridLines.none
-        case GTK_TREE_VIEW_GRID_LINES_HORIZONTAL:
-            return .horizontal
-        case GTK_TREE_VIEW_GRID_LINES_VERTICAL:
-            return .vertical
-        case GTK_TREE_VIEW_GRID_LINES_BOTH:
-            return .both
-        default:
-            fatalError("Unsupported GtkTreeViewGridLines enum value: \(self.rawValue)")
+            case GTK_TREE_VIEW_GRID_LINES_NONE:
+                return TreeViewGridLines.none
+            case GTK_TREE_VIEW_GRID_LINES_HORIZONTAL:
+                return .horizontal
+            case GTK_TREE_VIEW_GRID_LINES_VERTICAL:
+                return .vertical
+            case GTK_TREE_VIEW_GRID_LINES_BOTH:
+                return .both
+            default:
+                fatalError("Unsupported GtkTreeViewGridLines enum value: \(self.rawValue)")
         }
     }
 }

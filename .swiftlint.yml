@@ -2,8 +2,13 @@ disabled_rules:
   - type_name
   - identifier_name
   - switch_case_alignment
+  - cyclomatic_complexity # Too many false alarms for enum conversion switch statements
+  - redundant_optional_initialization
+  - closure_parameter_position
+  - opening_brace
 
 line_length: 140
+type_body_length: 400
 
 included:
   - Sources

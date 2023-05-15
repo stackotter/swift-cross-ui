@@ -2,11 +2,13 @@ import CGtk
 
 /// Describes a type of line wrapping.
 public enum WrapMode {
-    /// Wrap text, breaking lines anywhere the cursor can appear (between characters, usually - if you want to be technical, between graphemes, see pango_get_log_attrs())
+    /// Wrap text, breaking lines anywhere the cursor can appear (between characters, usually - if
+    /// you want to be technical, between graphemes, see pango_get_log_attrs())
     case character
     /// Wrap text, breaking lines in between words.
     case word
-    /// Wrap text, breaking lines in between words, or if that is not enough, also between graphemes.
+    /// Wrap text, breaking lines in between words, or if that is not enough, also between
+    /// graphemes.
     case wordCharacter
 
     func toPangoWrapMode() -> PangoWrapMode {

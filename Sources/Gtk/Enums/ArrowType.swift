@@ -17,16 +17,16 @@ public enum ArrowType {
 
     func toGtkArrowType() -> GtkArrowType {
         switch self {
-        case .up:
-            return GTK_ARROW_UP
-        case .down:
-            return GTK_ARROW_DOWN
-        case .left:
-            return GTK_ARROW_LEFT
-        case .right:
-            return GTK_ARROW_RIGHT
-        case .none:
-            return GTK_ARROW_NONE
+            case .up:
+                return GTK_ARROW_UP
+            case .down:
+                return GTK_ARROW_DOWN
+            case .left:
+                return GTK_ARROW_LEFT
+            case .right:
+                return GTK_ARROW_RIGHT
+            case .none:
+                return GTK_ARROW_NONE
         }
     }
 }
@@ -34,18 +34,18 @@ public enum ArrowType {
 extension GtkArrowType {
     func toArrowType() -> ArrowType {
         switch self {
-        case GTK_ARROW_UP:
-            return .up
-        case GTK_ARROW_DOWN:
-            return .down
-        case GTK_ARROW_LEFT:
-            return .left
-        case GTK_ARROW_RIGHT:
-            return .right
-        case GTK_ARROW_NONE:
-            return ArrowType.none
-        default:
-            fatalError("Unsupported GtkArrowType enum value: \(self.rawValue)")
+            case GTK_ARROW_UP:
+                return .up
+            case GTK_ARROW_DOWN:
+                return .down
+            case GTK_ARROW_LEFT:
+                return .left
+            case GTK_ARROW_RIGHT:
+                return .right
+            case GTK_ARROW_NONE:
+                return ArrowType.none
+            default:
+                fatalError("Unsupported GtkArrowType enum value: \(self.rawValue)")
         }
     }
 }

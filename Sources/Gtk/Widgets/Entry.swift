@@ -36,7 +36,11 @@ public class Entry: Widget {
             newValue.withCString { pointer in
                 // TODO: Ensure that the character count is correct (should be number of bytes not number of
                 // characters).
-                gtk_entry_buffer_set_text(gtk_entry_get_buffer(castedPointer()), pointer, Int32(newValue.utf8.count))
+                gtk_entry_buffer_set_text(
+                    gtk_entry_get_buffer(castedPointer()),
+                    pointer,
+                    Int32(newValue.utf8.count)
+                )
             }
         }
     }

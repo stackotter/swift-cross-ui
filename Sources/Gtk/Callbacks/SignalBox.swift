@@ -13,10 +13,21 @@ protocol SignalBox {
 typealias SignalCallbackZero = () -> Void
 typealias SignalCallbackOne = (UnsafeMutableRawPointer) -> Void
 typealias SignalCallbackTwo = (UnsafeMutableRawPointer, UnsafeMutableRawPointer) -> Void
-typealias SignalCallbackThree = (UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer) -> Void
-typealias SignalCallbackFour = (UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer) -> Void
-typealias SignalCallbackFive = (UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer) -> Void
-typealias SignalCallbackSix = (UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer) -> Void
+typealias SignalCallbackThree = (
+    UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer
+) -> Void
+typealias SignalCallbackFour = (
+    UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer,
+    UnsafeMutableRawPointer
+) -> Void
+typealias SignalCallbackFive = (
+    UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer,
+    UnsafeMutableRawPointer, UnsafeMutableRawPointer
+) -> Void
+typealias SignalCallbackSix = (
+    UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer,
+    UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer
+) -> Void
 
 /// Provides a box that captures a callback for a signal so it makes easier to add signals.
 class SignalBoxZero: SignalBox {

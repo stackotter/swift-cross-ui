@@ -1,4 +1,5 @@
-public struct ForEachViewChildren<Items: Collection, Child: ViewContent>: ViewGraphNodeChildren where Items.Index == Int {
+public struct ForEachViewChildren<Items: Collection, Child: ViewContent>: ViewGraphNodeChildren
+where Items.Index == Int {
     public typealias Content = ForEachViewContent<Items, Child>
 
     class Storage {
@@ -51,7 +52,8 @@ public struct ForEachViewChildren<Items: Collection, Child: ViewContent>: ViewGr
     }
 }
 
-public struct ForEachViewContent<Items: Collection, Child: ViewContent>: ViewContent where Items.Index == Int {
+public struct ForEachViewContent<Items: Collection, Child: ViewContent>: ViewContent
+where Items.Index == Int {
     public typealias Children = ForEachViewChildren<Items, Child>
 
     public var elements: Items

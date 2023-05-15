@@ -1,7 +1,7 @@
 import CGtk
 
 /// The mode of the size group determines the directions in which the size group affects the requested sizes of its component widgets.
-/// 
+///
 /// [Gtk docs](https://docs.gtk.org/gtk3/enum.SizeGroupMode.html)
 public enum SizeGroupMode {
     /// Group has no effect.
@@ -15,14 +15,14 @@ public enum SizeGroupMode {
 
     func toGtkSizeGroupMode() -> GtkSizeGroupMode {
         switch self {
-        case .none:
-            return GTK_SIZE_GROUP_NONE
-        case .horizontal:
-            return GTK_SIZE_GROUP_HORIZONTAL
-        case .vertical:
-            return GTK_SIZE_GROUP_VERTICAL
-        case .both:
-            return GTK_SIZE_GROUP_BOTH
+            case .none:
+                return GTK_SIZE_GROUP_NONE
+            case .horizontal:
+                return GTK_SIZE_GROUP_HORIZONTAL
+            case .vertical:
+                return GTK_SIZE_GROUP_VERTICAL
+            case .both:
+                return GTK_SIZE_GROUP_BOTH
         }
     }
 }
@@ -30,16 +30,16 @@ public enum SizeGroupMode {
 extension GtkSizeGroupMode {
     func toSizeGroupMode() -> SizeGroupMode {
         switch self {
-        case GTK_SIZE_GROUP_NONE:
-            return SizeGroupMode.none
-        case GTK_SIZE_GROUP_HORIZONTAL:
-            return .horizontal
-        case GTK_SIZE_GROUP_VERTICAL:
-            return .vertical
-        case GTK_SIZE_GROUP_BOTH:
-            return .both
-        default:
-            fatalError("Unsupported GtkSizeGroupMode enum value: \(self.rawValue)")
+            case GTK_SIZE_GROUP_NONE:
+                return SizeGroupMode.none
+            case GTK_SIZE_GROUP_HORIZONTAL:
+                return .horizontal
+            case GTK_SIZE_GROUP_VERTICAL:
+                return .vertical
+            case GTK_SIZE_GROUP_BOTH:
+                return .both
+            default:
+                fatalError("Unsupported GtkSizeGroupMode enum value: \(self.rawValue)")
         }
     }
 }
