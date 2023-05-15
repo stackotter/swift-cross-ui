@@ -2,6 +2,7 @@ import SwiftGtk
 
 public typealias GtkApplication = SwiftGtk.Application
 public typealias GtkBox = SwiftGtk.Box
+public typealias GtkStack = SwiftGtk.Stack
 public typealias GtkSize = SwiftGtk.Size
 public typealias GtkWidget = SwiftGtk.Widget
 public typealias GtkButton = SwiftGtk.Button
