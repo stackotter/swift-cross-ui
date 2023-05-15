@@ -1,7 +1,6 @@
-
 public protocol ViewGraphNodeChildren {
     associatedtype Content: ViewContent where Content.Children == Self
-    
+
     var widgets: [GtkWidget] { get }
 
     init(from content: Content)
@@ -17,13 +16,12 @@ public struct EmptyViewGraphNodeChildren: ViewGraphNodeChildren {
     public func update(with content: EmptyViewContent) {}
 }
 
-
 public struct ViewGraphNodeChildren1<Child0: View>: ViewGraphNodeChildren {
     public typealias Content = ViewContent1<Child0>
-    
+
     public var widgets: [GtkWidget] {
         return [
-                child0.widget,
+            child0.widget
         ]
     }
 
@@ -40,11 +38,11 @@ public struct ViewGraphNodeChildren1<Child0: View>: ViewGraphNodeChildren {
 
 public struct ViewGraphNodeChildren2<Child0: View, Child1: View>: ViewGraphNodeChildren {
     public typealias Content = ViewContent2<Child0, Child1>
-    
+
     public var widgets: [GtkWidget] {
         return [
-                child0.widget,
-                child1.widget,
+            child0.widget,
+            child1.widget,
         ]
     }
 
@@ -62,14 +60,16 @@ public struct ViewGraphNodeChildren2<Child0: View, Child1: View>: ViewGraphNodeC
     }
 }
 
-public struct ViewGraphNodeChildren3<Child0: View, Child1: View, Child2: View>: ViewGraphNodeChildren {
+public struct ViewGraphNodeChildren3<Child0: View, Child1: View, Child2: View>:
+    ViewGraphNodeChildren
+{
     public typealias Content = ViewContent3<Child0, Child1, Child2>
-    
+
     public var widgets: [GtkWidget] {
         return [
-                child0.widget,
-                child1.widget,
-                child2.widget,
+            child0.widget,
+            child1.widget,
+            child2.widget,
         ]
     }
 
@@ -90,15 +90,17 @@ public struct ViewGraphNodeChildren3<Child0: View, Child1: View, Child2: View>: 
     }
 }
 
-public struct ViewGraphNodeChildren4<Child0: View, Child1: View, Child2: View, Child3: View>: ViewGraphNodeChildren {
+public struct ViewGraphNodeChildren4<Child0: View, Child1: View, Child2: View, Child3: View>:
+    ViewGraphNodeChildren
+{
     public typealias Content = ViewContent4<Child0, Child1, Child2, Child3>
-    
+
     public var widgets: [GtkWidget] {
         return [
-                child0.widget,
-                child1.widget,
-                child2.widget,
-                child3.widget,
+            child0.widget,
+            child1.widget,
+            child2.widget,
+            child3.widget,
         ]
     }
 
@@ -122,16 +124,22 @@ public struct ViewGraphNodeChildren4<Child0: View, Child1: View, Child2: View, C
     }
 }
 
-public struct ViewGraphNodeChildren5<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View>: ViewGraphNodeChildren {
+public struct ViewGraphNodeChildren5<
+    Child0: View,
+    Child1: View,
+    Child2: View,
+    Child3: View,
+    Child4: View
+>: ViewGraphNodeChildren {
     public typealias Content = ViewContent5<Child0, Child1, Child2, Child3, Child4>
-    
+
     public var widgets: [GtkWidget] {
         return [
-                child0.widget,
-                child1.widget,
-                child2.widget,
-                child3.widget,
-                child4.widget,
+            child0.widget,
+            child1.widget,
+            child2.widget,
+            child3.widget,
+            child4.widget,
         ]
     }
 
@@ -158,17 +166,24 @@ public struct ViewGraphNodeChildren5<Child0: View, Child1: View, Child2: View, C
     }
 }
 
-public struct ViewGraphNodeChildren6<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View>: ViewGraphNodeChildren {
+public struct ViewGraphNodeChildren6<
+    Child0: View,
+    Child1: View,
+    Child2: View,
+    Child3: View,
+    Child4: View,
+    Child5: View
+>: ViewGraphNodeChildren {
     public typealias Content = ViewContent6<Child0, Child1, Child2, Child3, Child4, Child5>
-    
+
     public var widgets: [GtkWidget] {
         return [
-                child0.widget,
-                child1.widget,
-                child2.widget,
-                child3.widget,
-                child4.widget,
-                child5.widget,
+            child0.widget,
+            child1.widget,
+            child2.widget,
+            child3.widget,
+            child4.widget,
+            child5.widget,
         ]
     }
 
@@ -198,18 +213,26 @@ public struct ViewGraphNodeChildren6<Child0: View, Child1: View, Child2: View, C
     }
 }
 
-public struct ViewGraphNodeChildren7<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View>: ViewGraphNodeChildren {
+public struct ViewGraphNodeChildren7<
+    Child0: View,
+    Child1: View,
+    Child2: View,
+    Child3: View,
+    Child4: View,
+    Child5: View,
+    Child6: View
+>: ViewGraphNodeChildren {
     public typealias Content = ViewContent7<Child0, Child1, Child2, Child3, Child4, Child5, Child6>
-    
+
     public var widgets: [GtkWidget] {
         return [
-                child0.widget,
-                child1.widget,
-                child2.widget,
-                child3.widget,
-                child4.widget,
-                child5.widget,
-                child6.widget,
+            child0.widget,
+            child1.widget,
+            child2.widget,
+            child3.widget,
+            child4.widget,
+            child5.widget,
+            child6.widget,
         ]
     }
 
@@ -242,19 +265,30 @@ public struct ViewGraphNodeChildren7<Child0: View, Child1: View, Child2: View, C
     }
 }
 
-public struct ViewGraphNodeChildren8<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View>: ViewGraphNodeChildren {
-    public typealias Content = ViewContent8<Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7>
-    
+public struct ViewGraphNodeChildren8<
+    Child0: View,
+    Child1: View,
+    Child2: View,
+    Child3: View,
+    Child4: View,
+    Child5: View,
+    Child6: View,
+    Child7: View
+>: ViewGraphNodeChildren {
+    public typealias Content = ViewContent8<
+        Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7
+    >
+
     public var widgets: [GtkWidget] {
         return [
-                child0.widget,
-                child1.widget,
-                child2.widget,
-                child3.widget,
-                child4.widget,
-                child5.widget,
-                child6.widget,
-                child7.widget,
+            child0.widget,
+            child1.widget,
+            child2.widget,
+            child3.widget,
+            child4.widget,
+            child5.widget,
+            child6.widget,
+            child7.widget,
         ]
     }
 
@@ -290,20 +324,32 @@ public struct ViewGraphNodeChildren8<Child0: View, Child1: View, Child2: View, C
     }
 }
 
-public struct ViewGraphNodeChildren9<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View>: ViewGraphNodeChildren {
-    public typealias Content = ViewContent9<Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, Child8>
-    
+public struct ViewGraphNodeChildren9<
+    Child0: View,
+    Child1: View,
+    Child2: View,
+    Child3: View,
+    Child4: View,
+    Child5: View,
+    Child6: View,
+    Child7: View,
+    Child8: View
+>: ViewGraphNodeChildren {
+    public typealias Content = ViewContent9<
+        Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, Child8
+    >
+
     public var widgets: [GtkWidget] {
         return [
-                child0.widget,
-                child1.widget,
-                child2.widget,
-                child3.widget,
-                child4.widget,
-                child5.widget,
-                child6.widget,
-                child7.widget,
-                child8.widget,
+            child0.widget,
+            child1.widget,
+            child2.widget,
+            child3.widget,
+            child4.widget,
+            child5.widget,
+            child6.widget,
+            child7.widget,
+            child8.widget,
         ]
     }
 
@@ -342,21 +388,34 @@ public struct ViewGraphNodeChildren9<Child0: View, Child1: View, Child2: View, C
     }
 }
 
-public struct ViewGraphNodeChildren10<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View, Child9: View>: ViewGraphNodeChildren {
-    public typealias Content = ViewContent10<Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, Child8, Child9>
-    
+public struct ViewGraphNodeChildren10<
+    Child0: View,
+    Child1: View,
+    Child2: View,
+    Child3: View,
+    Child4: View,
+    Child5: View,
+    Child6: View,
+    Child7: View,
+    Child8: View,
+    Child9: View
+>: ViewGraphNodeChildren {
+    public typealias Content = ViewContent10<
+        Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, Child8, Child9
+    >
+
     public var widgets: [GtkWidget] {
         return [
-                child0.widget,
-                child1.widget,
-                child2.widget,
-                child3.widget,
-                child4.widget,
-                child5.widget,
-                child6.widget,
-                child7.widget,
-                child8.widget,
-                child9.widget,
+            child0.widget,
+            child1.widget,
+            child2.widget,
+            child3.widget,
+            child4.widget,
+            child5.widget,
+            child6.widget,
+            child7.widget,
+            child8.widget,
+            child9.widget,
         ]
     }
 

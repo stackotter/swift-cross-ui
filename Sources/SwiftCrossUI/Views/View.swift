@@ -16,8 +16,8 @@ public protocol View {
     func update(_ widget: Widget, children: Content.Children)
 }
 
-public extension View where Widget == GtkBox {
-    func asWidget(_ children: Content.Children) -> GtkBox {
+extension View where Widget == GtkBox {
+    public func asWidget(_ children: Content.Children) -> GtkBox {
         let vStack = GtkBox(orientation: .vertical, spacing: 8)
         for widget in children.widgets {
             vStack.add(widget)
@@ -26,16 +26,17 @@ public extension View where Widget == GtkBox {
     }
 }
 
-public extension View {
-    func update(_ widget: Widget, children: Content.Children) {}
+extension View {
+    public func update(_ widget: Widget, children: Content.Children) {}
 }
 
-public extension View where State == EmptyViewState {
+extension View where State == EmptyViewState {
     // swiftlint:disable unused_setter_value
-    var state: State {
+    public var state: State {
         get {
             EmptyViewState()
-        } set {
+        }
+        set {
             return
         }
     }

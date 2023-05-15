@@ -1,5 +1,5 @@
-import Foundation
 import CGtk
+import Foundation
 
 public class Publisher {
     private var observations = List<() -> Void>()
@@ -9,19 +9,24 @@ public class Publisher {
 
     public func send() {
         // Publishers are run on the main Gtk thread so that observers can safely update the UI
-        g_idle_add_full(0, { context in
-            guard let context = context else {
-                print("warning: Publisher callback called without context")
+        g_idle_add_full(
+            0,
+            { context in
+                guard let context = context else {
+                    print("warning: Publisher callback called without context")
+                    return 0
+                }
+
+                let observations = context.assumingMemoryBound(to: List<() -> Void>.self).pointee
+                for observation in observations {
+                    observation()
+                }
+
                 return 0
-            }
-
-            let observations = context.assumingMemoryBound(to: List<() -> Void>.self).pointee
-            for observation in observations {
-                observation()
-            }
-
-            return 0
-        }, &observations, { _ in })
+            },
+            &observations,
+            { _ in }
+        )
     }
 
     public func observe(with closure: @escaping () -> Void) -> Cancellable {
@@ -36,8 +41,10 @@ public class Publisher {
     }
 
     public func link(toDownstream publisher: Publisher) {
-        cancellables.append(publisher.observe(with: {
-            self.send()
-        }))
+        cancellables.append(
+            publisher.observe(with: {
+                self.send()
+            })
+        )
     }
 }
