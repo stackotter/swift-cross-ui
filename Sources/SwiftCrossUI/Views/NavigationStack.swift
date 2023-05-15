@@ -1,4 +1,4 @@
-import SwiftGtk
+import Gtk
 
 /// Type to indicate the root of the NavigationStack. This is private to prevent root accidentally showing instead of a detail view.
 private struct NavigationStackRootPath: Hashable {}
