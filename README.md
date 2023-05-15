@@ -8,7 +8,7 @@
     <img alt="GitHub" src="https://img.shields.io/github/license/stackotter/swift-cross-ui">
 </p>
 
-A SwiftUI-like framework for creating cross-platform apps in Swift. It uses [SwiftGtk](https://github.com/stackotter/SwiftGtk) as its backend.
+A SwiftUI-like framework for creating cross-platform apps in Swift. It uses Gtk 4.0 as its backend.
 
 This package is still quite a work-in-progress so don't expect it to be very useful or stable yet.
 

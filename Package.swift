@@ -2,13 +2,7 @@
 
 import PackageDescription
 
-var dependencies: [Package.Dependency] = [
-    // .package(path: "../SwiftGtk")
-    .package(
-        url: "https://github.com/stackotter/SwiftGtk",
-        .revision("1c4543b3f1581268aad1738cf24c066b1a65dacc")
-    )
-]
+var dependencies: [Package.Dependency] = []
 
 #if swift(>=5.6)
 // Add the documentation compiler plugin if possible
@@ -20,6 +14,14 @@ dependencies.append(
 )
 #endif
 
+#if os(macOS)
+let cGtkSources = "Sources/CGtk/MacOS"
+#elseif os(Linux) || os(Windows)
+let cGtkSources = "Sources/CGtk/Linux+Windows"
+#else
+fatalError("Unsupported platform.")
+#endif
+
 let package = Package(
     name: "swift-cross-ui",
     platforms: [.macOS(.v10_15)],
@@ -27,6 +29,10 @@ let package = Package(
         .library(
             name: "SwiftCrossUI",
             targets: ["SwiftCrossUI"]
+        ),
+        .library(
+            name: "Gtk",
+            targets: ["Gtk"]
         ),
         .executable(
             name: "CounterExample",
@@ -47,6 +53,10 @@ let package = Package(
         .executable(
             name: "FileViewerExample",
             targets: ["FileViewerExample"]
+        ),
+        .executable(
+            name: "GtkExample",
+            targets: ["GtkExample"]
         )
     ],
     dependencies: dependencies,
@@ -54,14 +64,33 @@ let package = Package(
         .target(
             name: "SwiftCrossUI",
             dependencies: [
-                "SwiftGtk",
-                .product(name: "CGtk", package: "SwiftGtk")
+                "Gtk",
+                "CGtk"
             ],
             exclude: [
                 "Builders/ViewContentBuilder.swift.gyb",
                 "ViewGraph/ViewGraphNodeChildren.swift.gyb",
                 "Views/ViewContent.swift.gyb"
             ]
+        ),
+
+        .systemLibrary(
+            name: "CGtk",
+            path: cGtkSources,
+            pkgConfig: "gtk4",
+            providers: [
+                .brew(["gtk+4"]),
+                .apt(["libgtk-4-dev clang"])
+            ]
+        ),
+        .target(
+            name: "Gtk",
+            dependencies: ["CGtk"]
+        ),
+        .executableTarget(
+            name: "GtkExample",
+            dependencies: ["Gtk"],
+            resources: [.copy("GTK.png")]
         ),
 
         .executableTarget(

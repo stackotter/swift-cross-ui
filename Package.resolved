@@ -9,15 +9,6 @@
           "revision": "3303b164430d9a7055ba484c8ead67a52f7b74f6",
           "version": "1.0.0"
         }
-      },
-      {
-        "package": "SwiftGtk",
-        "repositoryURL": "https://github.com/stackotter/SwiftGtk",
-        "state": {
-          "branch": null,
-          "revision": "1c4543b3f1581268aad1738cf24c066b1a65dacc",
-          "version": null
-        }
       }
     ]
   },
