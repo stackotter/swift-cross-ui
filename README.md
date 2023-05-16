@@ -8,7 +8,7 @@
     <img alt="GitHub" src="https://img.shields.io/github/license/stackotter/swift-cross-ui">
 </p>
 
-A SwiftUI-like framework for creating cross-platform apps in Swift. It uses Gtk 4.0 as its backend.
+A SwiftUI-like framework for creating cross-platform apps in Swift. It uses [SwiftGtk](https://github.com/stackotter/SwiftGtk) as its backend (GTK 4.10+).
 
 This package is still quite a work-in-progress so don't expect it to be very useful or stable yet.
 
@@ -57,6 +57,9 @@ To see all of the examples, run these commands:
 swift run CounterExample
 swift run RandomNumberGeneratorExample
 swift run WindowPropertiesExample
+swift run GreetingGeneratorExample
+swift run FileViewerExample
+swift run NavigationExample
 ```
 
 ## Documentation
@@ -66,23 +69,24 @@ Here's the [documentation site](https://stackotter.github.io/swift-cross-ui/docu
 ## Dependencies
 
 1. Swift 5.5 or higher
-2. Gtk+ 3
+2. Gtk 4.10+
 3. clang (only required on Linux)
 
-### macOS: Installing Gtk+ 3
+### macOS: Installing Gtk 4.10+
 
-Install Gtk+ 3 using homebrew or the package manager of your choice.
+Install Gtk 4.10+ using homebrew or the package manager of your choice.
 
 ```sh
-brew install gtk+3
+brew install gtk4
 ```
 
-### Linux: Installing Gtk+ 3 and clang
+### Linux: Installing Gtk 4.10+ and clang
 
-Install Gtk+3 and Clang using apt or the package manager of your choice.
+Install Gtk+3 and Clang using apt or the package manager of your choice. Ensure that the installed
+version of Gtk is Gtk 4.10+
 
 ```sh
-sudo apt install libgtk-3-dev clang
+sudo apt install libgtk-4-dev clang
 ```
 
 ## Usage

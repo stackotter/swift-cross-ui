@@ -10,22 +10,22 @@ Before you can add SwiftCrossUI to your project and start working, you'll need t
 
 First, install `brew` if it isn't already installed. Instructions on how to do that can be found at [brew.sh](https://brew.sh).
 
-Next, run the following command to install GTK+:
+Next, run the following command to install GTK 4.10+:
 ```
-brew install gtk+3
+brew install gtk4
 ```
 
 And you're done!
 
-__Xcode users:__ If Xcode has trouble finding GTK+ after you've installed it, try restarting your computer.
+__Xcode users:__ If Xcode has trouble finding GTK 4 after you've installed it, try restarting your computer.
 
-__Note:__ Package managers other than `brew` should also work, as long as they provide a `GTK+` package.
+__Note:__ Package managers other than `brew` should also work, as long as they provide a `gtk4` package.
 
 ### Linux
 
-If you're on a Debian or Ubuntu-based Linux distro, you can use the following command to install GTK+ and Clang:
+If you're on a Debian or Ubuntu-based Linux distro, you can use the following command to install GTK 4.10+ and Clang:
 ```
-sudo apt install libgtk-3-dev clang
+sudo apt install libgtk-4-dev clang
 ```
 
 If your distro uses a different package manager, the package names will likely be similar.
