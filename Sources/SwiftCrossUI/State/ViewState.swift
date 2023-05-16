@@ -7,6 +7,10 @@ public protocol ViewState: AnyObject {
 extension ViewState {
     public var didChange: Publisher {
         let publisher = Publisher()
+        guard type(of: self) != EmptyViewState.self else {
+            return publisher
+        }
+
         var mirror: Mirror? = Mirror(reflecting: self)
         while let aClass = mirror {
             for (_, property) in aClass.children {
