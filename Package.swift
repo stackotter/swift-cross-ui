@@ -3,7 +3,12 @@
 import PackageDescription
 import Foundation
 
-var dependencies: [Package.Dependency] = []
+var dependencies: [Package.Dependency] = [
+    .package(
+        url: "https://github.com/CoreOffice/XMLCoder",
+        from: "0.17.1"
+    )
+]
 
 #if swift(>=5.6)
 // Add the documentation compiler plugin if possible
@@ -116,6 +121,11 @@ let package = Package(
             name: "GtkExample",
             dependencies: gtkExampleDependencies,
             resources: [.copy("GTK.png")]
+        ),
+
+        .executableTarget(
+            name: "GtkCodeGen",
+            dependencies: ["XMLCoder"]
         ),
 
         .executableTarget(
