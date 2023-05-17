@@ -24,6 +24,10 @@ where Items.Index == Int {
     }
 
     public func update(with content: Content) {
+        if let parent = storage.container.parentWidget as? GtkOrientable {
+            storage.container.orientation = parent.orientation
+        }
+
         for (i, node) in storage.nodes.enumerated() {
             guard i < content.elements.count else {
                 break
