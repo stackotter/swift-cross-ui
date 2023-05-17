@@ -16,7 +16,7 @@ jobs:
       run: ls /Applications | grep Xcode
     - uses: actions/checkout@v2
     - name: Install Dependencies
-      run: brew install gtk4
+      run: brew install pkg-config gtk4
     - name: Debug
       run: pkg-config --libs gtk4 && which pkg-config
     - name: Build
