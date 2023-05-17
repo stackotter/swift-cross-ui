@@ -9,11 +9,11 @@ public struct NavigationLink: View {
     }
 
     private let label: String
-    private let value: AnyHashable
+    private let value: any Codable
     private let path: Binding<NavigationPath>
 
     /// Creates a navigation link that presents the view corresponding to a value in the NavigationStack that uses the same path.
-    public init(_ label: String, value: AnyHashable, path: Binding<NavigationPath>) {
+    public init(_ label: String, value: any Codable, path: Binding<NavigationPath>) {
         self.label = label
         self.value = value
         self.path = path

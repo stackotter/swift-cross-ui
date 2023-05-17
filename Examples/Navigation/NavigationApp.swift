@@ -1,16 +1,18 @@
 import SwiftCrossUI
 
-enum SubjectArea: Hashable {
+enum SubjectArea: Codable {
     case science
     case humanities
 }
 
-enum ScienceSubject: Hashable {
-    case physics
-    case chemistry
+struct Science {
+    enum Subject: Codable {
+        case physics
+        case chemistry
+    }
 }
 
-enum HumanitiesSubject: Hashable {
+enum HumanitiesSubject: Codable {
     case english
     case history
 }
@@ -35,6 +37,16 @@ struct NavigationApp: App {
         VStack {
             Text("Change transition duration")
             Slider(state.$transitionDuration, minimum: 0, maximum: 3)
+            Button("Test decoded Path", action: {
+                // You should probably not do this while running your app.
+                // This is just for testing if a decoded path will work for persistence
+                print(state.path)
+                let encodedPath = try! JSONEncoder().encode(state.path)
+                print(String(decoding: encodedPath, as: UTF8.self))
+                let decodedPath = try! JSONDecoder().decode(NavigationPath.self, from: encodedPath)
+                print(decodedPath)
+                state.path = decodedPath
+            })
         }
         .padding(10)
 
@@ -51,8 +63,6 @@ struct NavigationApp: App {
                     Text("Choose a science subject")
                         .padding(.bottom, 10)
 
-                    NavigationLink("Physics", value: ScienceSubject.physics, path: state.$path)
-                    NavigationLink("Chemistry", value: ScienceSubject.chemistry, path: state.$path)
                 case .humanities:
                     Text("Choose a humanities subject")
                         .padding(.bottom, 10)
