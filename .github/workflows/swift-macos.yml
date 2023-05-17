@@ -10,8 +10,8 @@ jobs:
   build-mac:
     runs-on: macos-12
     steps:
-    - name: Force Xcode 13.2
-      run: sudo xcode-select -switch /Applications/Xcode_13.2.app
+    - name: Force Xcode 14.2
+      run: sudo xcode-select -switch /Applications/Xcode_14.2.app
     - name: List Xcodes
       run: ls /Applications | grep Xcode
     - uses: actions/checkout@v2
