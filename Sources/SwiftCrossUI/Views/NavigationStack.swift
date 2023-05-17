@@ -1,7 +1,7 @@
 import Gtk
 
 /// Type to indicate the root of the NavigationStack. This is private to prevent root accidentally showing instead of a detail view.
-private struct NavigationStackRootPath: Hashable {}
+private struct NavigationStackRootPath: Codable {}
 
 /// A view that displays a root view and enables you to present additional views over the root view.
 ///
@@ -39,7 +39,7 @@ public struct NavigationStack<Detail: View>: View {
     /// - Parameters:
     ///   - data: The type of data that this destination matches.
     ///   - destination: A view builder that defines a view to display when the stack’s navigation state contains a value of type data. The closure takes one argument, which is the value of the data to present.
-    public func navigationDestination<D: Hashable, C: View>(for data: D.Type, @ViewContentBuilder destination: @escaping (D) -> C) -> NavigationStack<EitherView<Detail, C>> {
+    public func navigationDestination<D: Codable, C: View>(for data: D.Type, @ViewContentBuilder destination: @escaping (D) -> C) -> NavigationStack<EitherView<Detail, C>> {
         return NavigationStack<EitherView<Detail, C>>(previous: self, destination: {
             return ($0 as? D).flatMap(destination)
         })
@@ -70,7 +70,7 @@ public struct NavigationStack<Detail: View>: View {
     /// Add a destination for a specific path element
     private init<PreviousDetail: View, NewDetail: View>(
         previous: NavigationStack<PreviousDetail>,
-        destination: @escaping (any Hashable) -> NewDetail?
+        destination: @escaping (any Codable) -> NewDetail?
     ) where Detail == EitherView<PreviousDetail, NewDetail> {
         transitionType = previous.transitionType
         transitionDuration = previous.transitionDuration
@@ -92,10 +92,10 @@ public struct NavigationStack<Detail: View>: View {
 public struct NavigationStackContent<Child: View>: ViewContent {
     public typealias Children = NavigationStackChildren<Child>
 
-    public var elements: [any Hashable]
-    public var child: (any Hashable) -> Child?
+    public var elements: [any Codable]
+    public var child: (any Codable) -> Child?
 
-    func childOrCrash(for element: any Hashable) -> Child {
+    func childOrCrash(for element: any Codable) -> Child {
         guard let child = child(element) else {
             fatalError("Failed to find detail view for \"\(element)\", make sure you have called .navigationDestination for this type.")
         }
@@ -103,7 +103,7 @@ public struct NavigationStackContent<Child: View>: ViewContent {
         return child
     }
 
-    internal init(_ elements: [any Hashable], _ child: @escaping (any Hashable) -> Child?) {
+    internal init(_ elements: [any Codable], _ child: @escaping (any Codable) -> Child?) {
         self.elements = elements
         self.child = child
     }
