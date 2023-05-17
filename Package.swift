@@ -7,7 +7,11 @@ var dependencies: [Package.Dependency] = [
     .package(
         url: "https://github.com/CoreOffice/XMLCoder",
         from: "0.17.1"
-    )
+    ),
+    .package(
+        url: "https://github.com/apple/swift-syntax.git",
+        from: "508.0.0"
+    ),
 ]
 
 #if swift(>=5.6)
@@ -125,7 +129,7 @@ let package = Package(
 
         .executableTarget(
             name: "GtkCodeGen",
-            dependencies: ["XMLCoder"]
+            dependencies: ["XMLCoder", .product(name: "SwiftSyntaxBuilder", package: "swift-syntax")]
         ),
 
         .executableTarget(

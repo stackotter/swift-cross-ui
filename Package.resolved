@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "SwiftSyntax",
+        "repositoryURL": "https://github.com/apple/swift-syntax.git",
+        "state": {
+          "branch": null,
+          "revision": "2c49d66d34dfd6f8130afdba889de77504b58ec0",
+          "version": "508.0.1"
+        }
+      },
+      {
         "package": "XMLCoder",
         "repositoryURL": "https://github.com/CoreOffice/XMLCoder",
         "state": {
