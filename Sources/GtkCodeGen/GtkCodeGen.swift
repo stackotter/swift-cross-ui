@@ -12,6 +12,8 @@ struct GtkCodeGen {
     static let cTypeReplacements: [String: String] = [
         "const char*": "String",
         "char*": "String",
+        "gchar*": "String",
+        "gboolean": "Bool",
     ]
 
     static func main() throws {
@@ -23,15 +25,20 @@ struct GtkCodeGen {
     }
 
     static func generateSources(for gir: GIR, to directory: URL) throws {
-        for _class in gir.namespace.classes {
-            if _class.name == "Button" {
+        for class_ in gir.namespace.classes {
+            if class_.name == "Button" {
                 var initializers: [DeclSyntax] = []
-                for constructor in _class.constructors ?? [] {
+                for constructor in class_.constructors ?? [] {
                     initializers.append(generateInitializer(constructor))
                 }
 
+                var properties: [DeclSyntax] = []
+                for property in class_.properties ?? [] {
+                    properties.append(generateProperty(property, namespace: gir.namespace, class_: class_))
+                }
+
                 let conformances: String
-                if let parent = _class.parent {
+                if let parent = class_.parent {
                     conformances = ": \(parent)"
                 } else {
                     conformances = ""
@@ -43,8 +50,10 @@ struct GtkCodeGen {
 
                     DeclSyntax(
                         """
-                        public class \(raw: _class.name)\(raw: conformances) {
+                        public class \(raw: class_.name)\(raw: conformances) {
                             \(raw: initializers.map(\.description).joined(separator: "\n"))
+
+                            \(raw: properties.map(\.description).joined(separator: "\n"))
                         }
                         """
                     )
@@ -54,12 +63,84 @@ struct GtkCodeGen {
         }
     }
 
+    static func generateProperty(_ property: Property, namespace: Namespace, class_: Class) -> DeclSyntax {
+        guard let girType = property.type, let getterName = property.getter else {
+            fatalError("Missing type for '\(class_.name).\(property.name)'")
+        }
+
+        var type = swiftType(girType, namespace: namespace)
+        let getterFunction = "\(namespace.cSymbolPrefix)_\(class_.cSymbolPrefix)_\(getterName)"
+        guard let method = class_.methods?.first(where: { method in
+            method.cIdentifier == getterFunction
+        }) else {
+            fatalError("'\(class_.name)' is missing method matching '\(getterFunction)'")
+        }
+
+        if method.returnValue?.nullable == true {
+            type = type + "?"
+        }
+
+        let getter =
+            """
+            get {
+                return \(generateGtkToSwiftConversion("\(getterFunction)(castedPointer())", swiftType: type))
+            }
+            """
+
+        let setter = property.setter.map { setter in
+            return
+                """
+                set {
+                    \(namespace.cSymbolPrefix)_\(class_.cSymbolPrefix)_\(setter)(castedPointer(), \(generateSwiftToGtkConversion("newValue", swiftType: type)))
+                }
+                """
+        }
+
+        return DeclSyntax(
+            """
+            public var \(raw: convertPropertyName(property.name)): \(raw: type) {
+                \(raw: getter)
+                \(raw: setter ?? "")
+            }
+            """
+        )
+    }
+
+    static func generateSwiftToGtkConversion(_ value: String, swiftType: String) -> String {
+        switch swiftType {
+            case "Bool":
+                return "\(value).toGBoolean()"
+            default:
+                return value
+        }
+    }
+
+    static func generateGtkToSwiftConversion(_ value: String, swiftType: String) -> String {
+        switch swiftType {
+            case "String?":
+                return "\(value).map(String.init(cString:))"
+            case "Bool":
+                return "\(value).toBool()"
+            default:
+                return value
+        }
+    }
+
+    static func swiftType(_ type: GIRType, namespace: Namespace) -> String {
+        if let cType = type.cType {
+            return convertCType(cType)
+        } else if let name = type.name {
+            return namespace.cIdentifierPrefix + name
+        } else {
+            fatalError("Type has no valid name")
+        }
+    }
+
     static func generateInitializer(_ constructor: Constructor) -> DeclSyntax {
         return DeclSyntax(
             """
             public init(\(raw: generateParameters(constructor.parameters, constructorName: constructor.name))) {
-                super.init()
-                var widgetPointer = \(raw: constructor.cIdentifier)(\(raw: generateArguments(constructor.parameters)))
+                widgetPointer = \(raw: constructor.cIdentifier)(\(raw: generateArguments(constructor.parameters)))
             }
             """)
     }
@@ -103,7 +184,15 @@ struct GtkCodeGen {
     }
 
     static func convertCIdentifier(_ identifier: String) -> String {
-        var parts = identifier.split(separator: "_")
+        return convertDelimitedCasingToCamel(identifier, delimiter: "_")
+    }
+
+    static func convertPropertyName(_ name: String) -> String {
+        return convertDelimitedCasingToCamel(name, delimiter: "-")
+    }
+
+    static func convertDelimitedCasingToCamel(_ identifier: String, delimiter: Character) -> String {
+        var parts = identifier.split(separator: delimiter)
         let first = parts.removeFirst()
         return first + parts.map(\.capitalized).joined()
     }
