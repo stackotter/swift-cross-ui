@@ -1,16 +1,16 @@
 import SwiftCrossUI
 
-enum SubjectArea: Hashable {
+enum SubjectArea: Codable {
     case science
     case humanities
 }
 
-enum ScienceSubject: Hashable {
+enum ScienceSubject: Codable {
     case physics
     case chemistry
 }
 
-enum HumanitiesSubject: Hashable {
+enum HumanitiesSubject: Codable {
     case english
     case history
 }
