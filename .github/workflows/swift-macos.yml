@@ -8,10 +8,12 @@ on:
 
 jobs:
   build-mac:
-    runs-on: macos-11
+    runs-on: macos-13
     steps:
-    - name: Force Xcode 13.2
-      run: sudo xcode-select -switch /Applications/Xcode_13.2.app
+    - name: Force Xcode 14.2
+      run: sudo xcode-select -switch /Applications/Xcode_14.2.app
+    - name: List Xcodes
+      run: ls /Applications | grep Xcode
     - uses: actions/checkout@v2
     - name: Install Dependencies
       run: brew install gtk4
