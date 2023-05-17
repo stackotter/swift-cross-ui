@@ -81,6 +81,7 @@ public class Grid: Widget {
     /// The new row or column is placed next to `sibling`, on the side determined by `side`. If
     /// `side` is `.top` or `.bottom`, a row is inserted. If side is `.left` or `.right`, a column
     /// is inserted.
+    ///
     /// - Parameters:
     ///   - sibling: The child of `grid` that the new row or column will be placed next to.
     ///   - side: The side of `sibling` that `child` is positioned next to.

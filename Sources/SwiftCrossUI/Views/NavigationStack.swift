@@ -6,7 +6,7 @@ private struct NavigationStackRootPath: Hashable {}
 /// A view that displays a root view and enables you to present additional views over the root view.
 ///
 /// Use .navigationDestination(for:destination:) on this view instead of its children unlike Apples SwiftUI API.
-public struct NavigationStack<Detail: ViewContent>: View {
+public struct NavigationStack<Detail: View>: View {
     public var body: NavigationStackContent<Detail>
     private var transitionType: StackTransitionType
     private var transitionDuration: Int
@@ -33,14 +33,14 @@ public struct NavigationStack<Detail: ViewContent>: View {
 
     /// Associates a destination view with a presented data type for use within a navigation stack.
     ///
+    /// Add this view modifer to describe the view that the stack displays when presenting a particular kind of data. Use a `NavigationLink` to present the data.
+    /// You can add more than one navigation destination modifier to the stack if it needs to present more than one kind of data.
+    ///
     /// - Parameters:
     ///   - data: The type of data that this destination matches.
     ///   - destination: A view builder that defines a view to display when the stack’s navigation state contains a value of type data. The closure takes one argument, which is the value of the data to present.
-    ///
-    /// Add this view modifer to describe the view that the stack displays when presenting a particular kind of data. Use a `NavigationLink` to present the data.
-    /// You can add more than one navigation destination modifier to the stack if it needs to present more than one kind of data.
-    public func navigationDestination<D: Hashable, C: View>(for data: D.Type, @ViewContentBuilder destination: @escaping (D) -> C) -> NavigationStack<EitherViewContent<Detail, C>> {
-        return NavigationStack<EitherViewContent<Detail, C>>(previous: self, destination: {
+    public func navigationDestination<D: Hashable, C: View>(for data: D.Type, @ViewContentBuilder destination: @escaping (D) -> C) -> NavigationStack<EitherView<Detail, C>> {
+        return NavigationStack<EitherView<Detail, C>>(previous: self, destination: {
             return ($0 as? D).flatMap(destination)
         })
     }
@@ -68,39 +68,39 @@ public struct NavigationStack<Detail: ViewContent>: View {
     }
 
     /// Add a destination for a specific path element
-    private init<PreviousDetail: ViewContent, NewDetail: View>(
+    private init<PreviousDetail: View, NewDetail: View>(
         previous: NavigationStack<PreviousDetail>,
         destination: @escaping (any Hashable) -> NewDetail?
-    ) where Detail == EitherViewContent<PreviousDetail, NewDetail> {
+    ) where Detail == EitherView<PreviousDetail, NewDetail> {
         transitionType = previous.transitionType
         transitionDuration = previous.transitionDuration
         body = NavigationStackContent(previous.body.elements) {
             if let previous = previous.body.child($0) {
                 // Either root or previously defined destination returned a view
-                return EitherViewContent(previous)
+                return EitherView(previous)
             } else if let new = destination($0) {
                 // This destination returned a detail view for the current element
-                return EitherViewContent(new)
+                return EitherView(new)
             } else {
-                // Possibly a comming .navigationDestination will handle this path element
+                // Possibly a future .navigationDestination will handle this path element
                 return nil
             }
         }
     }
 }
 
-public struct NavigationStackContent<Child: ViewContent>: ViewContent {
+public struct NavigationStackContent<Child: View>: ViewContent {
     public typealias Children = NavigationStackChildren<Child>
 
     public var elements: [any Hashable]
     public var child: (any Hashable) -> Child?
 
     func childOrCrash(for element: any Hashable) -> Child {
-        assert(child(element) != nil, """
-            Failed to find detail view for "\(element)",
-            make sure you have called .navigationDestination for this type.
-        """)
-        return child(element)!
+        guard let child = child(element) else {
+            fatalError("Failed to find detail view for \"\(element)\", make sure you have called .navigationDestination for this type.")
+        }
+
+        return child
     }
 
     internal init(_ elements: [any Hashable], _ child: @escaping (any Hashable) -> Child?) {
@@ -109,7 +109,7 @@ public struct NavigationStackContent<Child: ViewContent>: ViewContent {
     }
 }
 
-public struct NavigationStackChildren<Child: ViewContent>: ViewGraphNodeChildren {
+public struct NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
     public typealias Content = NavigationStackContent<Child>
 
     class Storage {
@@ -133,12 +133,18 @@ public struct NavigationStackChildren<Child: ViewContent>: ViewGraphNodeChildren
             .map(content.childOrCrash)
             .map(ViewGraphNode.init)
 
-        for (node, name) in zip(storage.nodes, content.elements) {
-            storage.container.add(node.widget, named: String(describing: name))
+        for (index, node) in storage.nodes.enumerated() {
+            storage.container.add(node.widget, named: pageName(for: index))
         }
     }
 
     public func update(with content: Content) {
+        // Remove queued pages
+        for widget in storage.widgetsQueuedForRemoval {
+            storage.container.remove(widget)
+        }
+        storage.widgetsQueuedForRemoval = []
+
         // Update pages
         for (i, node) in storage.nodes.enumerated() {
             guard i < content.elements.count else {
@@ -150,21 +156,13 @@ public struct NavigationStackChildren<Child: ViewContent>: ViewGraphNodeChildren
 
         let remaining = content.elements.count - storage.nodes.count
         if remaining > 0 {
-            // Remove queued pages
-            for widget in storage.widgetsQueuedForRemoval {
-                storage.container.remove(widget)
-            }
-            storage.widgetsQueuedForRemoval = []
             // Add new pages
-            for i in 0..<remaining {
-                let index = content.elements.startIndex.advanced(by: i + storage.nodes.count)
+            for i in storage.nodes.count..<(storage.nodes.count + remaining) {
                 let node = ViewGraphNode(
-                    for: content.childOrCrash(for: content.elements[index])
+                    for: content.childOrCrash(for: content.elements[i])
                 )
                 storage.nodes.append(node)
-                // Shouldn't use element as name here as we never update it. So when we for example go from
-                // ["root", "detail1"] to ["root", "detail2"] the name will stay as "detail1".
-                storage.container.add(node.widget, named: "NavigationStack page \(index)")
+                storage.container.add(node.widget, named: pageName(for: i))
             }
             // Animate showing the new top page
             if alwaysShowTopView, let top = storage.nodes.last?.widget {
@@ -184,5 +182,9 @@ public struct NavigationStackChildren<Child: ViewContent>: ViewGraphNodeChildren
             }
             storage.nodes.removeLast(unused)
         }
+    }
+
+    private func pageName(for index: Int) -> String {
+        return "NavigationStack page \(index)"
     }
 }

@@ -1,11 +1,6 @@
 /// A type-erased list of data representing the content of a navigation stack.
 public struct NavigationPath {
-    internal private(set) var previousPath: [any Hashable]?
-    internal private(set) var path: [any Hashable] = [] {
-        willSet {
-            previousPath = path
-        }
-    }
+    internal private(set) var path: [any Hashable] = []
 
     /// A Boolean that indicates whether this path is empty.
     public var isEmpty: Bool {
@@ -17,6 +12,7 @@ public struct NavigationPath {
         path.count
     }
 
+    /// Creates an empty navigation path
     public init() {}
 
     /// Appends a new value to the end of this path.
