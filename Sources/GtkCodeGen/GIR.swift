@@ -55,16 +55,16 @@ struct Namespace: Decodable {
     var name: String
     var version: String
     var sharedLibrary: String
-    var identifierPrefix: String
-    var symbolPrefix: String
+    var cIdentifierPrefix: String
+    var cSymbolPrefix: String
 
     var aliases: [Alias]
     var classes: [Class]
 
     enum CodingKeys: String, CodingKey {
         case name, version, sharedLibrary
-        case identifierPrefix = "cIdentifierPrefixes"
-        case symbolPrefix = "cSymbolPrefixes"
+        case cIdentifierPrefix = "cIdentifierPrefixes"
+        case cSymbolPrefix = "cSymbolPrefixes"
         case aliases = "alias"
         case classes = "class"
     }
@@ -87,11 +87,13 @@ struct Class: Decodable {
     var doc: String
     var constructors: [Constructor]?
     var methods: [Method]?
+    var properties: [Property]?
 
     enum CodingKeys: String, CodingKey {
         case name, cSymbolPrefix, cType, parent, abstract, doc
         case constructors = "constructor"
         case methods = "method"
+        case properties = "property"
     }
 }
 
@@ -111,6 +113,16 @@ struct Method: Decodable {
     var doc: String?
     var returnValue: ReturnValue?
     var parameters: MethodParameters?
+}
+
+struct Property: Decodable {
+    var name: String
+    var getter: String?
+    var setter: String?
+    var defaultValue: String?
+    var transferOwnership: String
+    var writable: Bool?
+    var type: GIRType?
 }
 
 struct MethodParameters: Decodable {
@@ -150,8 +162,8 @@ struct ReturnValue: Decodable {
 }
 
 struct GIRType: Decodable {
-    var name: String
-    var cType: String
+    var name: String?
+    var cType: String?
 }
 
 struct Package: Decodable {
