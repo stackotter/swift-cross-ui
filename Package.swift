@@ -55,6 +55,10 @@ let package = Package(
             targets: ["FileViewerExample"]
         ),
         .executable(
+            name: "NavigationExample",
+            targets: ["NavigationExample"]
+        ),
+        .executable(
             name: "GtkExample",
             targets: ["GtkExample"]
         )
@@ -118,6 +122,11 @@ let package = Package(
             name: "FileViewerExample",
             dependencies: ["SwiftCrossUI"],
             path: "Examples/FileViewer"
+        ),
+        .executableTarget(
+            name: "NavigationExample",
+            dependencies: ["SwiftCrossUI"],
+            path: "Examples/Navigation"
         )
     ]
 )

@@ -2,6 +2,7 @@ import Gtk
 
 public typealias GtkApplication = Gtk.Application
 public typealias GtkBox = Gtk.Box
+public typealias GtkStack = Gtk.Stack
 public typealias GtkSingleChildBox = Gtk.SingleChildBox
 public typealias GtkOrientable = Gtk.Orientable
 public typealias GtkSize = Gtk.Size
