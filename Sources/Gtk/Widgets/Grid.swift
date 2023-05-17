@@ -12,7 +12,7 @@ import CGtk
 /// `attach(nextTo:sibling:side:width:height:)`. The behaviour of Grid when several children occupy
 /// the same grid cell is undefined. Grid can be used like a Box by just using `add(_:)`, which will
 /// place children next to each other in the direction determined by the "orientation" property.
-public class Grid: Widget {
+public class Grid: Widget, Orientable {
     var widgets: [Widget] = []
 
     override init() {

@@ -10,8 +10,7 @@ public struct OptionalViewChildren<V: View>: ViewGraphNodeChildren {
     let storage: Storage
 
     public var widgets: [GtkWidget] {
-        let arr = [storage.view?.widget].compactMap { $0 }
-        return arr
+        return [storage.view?.widget].compactMap { $0 }
     }
 
     public init(from content: Content) {
@@ -54,20 +53,15 @@ public struct OptionalView<V: View>: View {
         body = OptionalViewContent(view)
     }
 
-    public func asWidget(_ children: OptionalViewChildren<V>) -> GtkBox {
-        let box = GtkBox(orientation: .vertical, spacing: 0)
-        for widget in children.widgets {
-            box.add(widget)
-        }
+    public func asWidget(_ children: OptionalViewChildren<V>) -> GtkSingleChildBox {
+        let box = GtkSingleChildBox()
+        box.setOnlyChild(children.widgets.first)
         return box
     }
 
-    public func update(_ widget: GtkBox, children: OptionalViewChildren<V>) {
+    public func update(_ widget: GtkSingleChildBox, children: OptionalViewChildren<V>) {
         if children.storage.hasToggled {
-            widget.removeAll()
-            for child in children.widgets {
-                widget.add(child)
-            }
+            widget.setOnlyChild(children.widgets.first)
         }
     }
 }
