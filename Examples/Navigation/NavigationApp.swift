@@ -1,3 +1,4 @@
+import Foundation
 import SwiftCrossUI
 
 enum SubjectArea: Codable {
