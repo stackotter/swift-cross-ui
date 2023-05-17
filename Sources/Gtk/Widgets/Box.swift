@@ -4,7 +4,7 @@
 
 import CGtk
 
-open class Box: Widget {
+open class Box: Widget, Orientable {
     var widgets: [Widget] = []
 
     public init(orientation: Orientation, spacing: Int) {
