@@ -10,7 +10,7 @@ public struct HStack<Content: ViewContent>: View {
     }
 
     public func asWidget(_ children: Content.Children) -> GtkBox {
-        let hStack = GtkBox(orientation: .horizontal, spacing: spacing)
+        let hStack = GtkBox(orientation: .horizontal)
         for widget in children.widgets {
             hStack.add(widget)
         }

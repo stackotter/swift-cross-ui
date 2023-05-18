@@ -80,7 +80,7 @@ public struct EitherView<A: View, B: View>: View {
 
     public func asWidget(_ children: EitherViewChildren<A, B>) -> GtkSingleChildBox {
         let box = GtkSingleChildBox()
-        box.setChild(children.widgets[0])
+        box.setChild(children.widgets.first)
         return box
     }
 

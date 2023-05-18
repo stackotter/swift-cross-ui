@@ -21,8 +21,4 @@ public struct NavigationLink: View {
         self.value = value
         self.path = path
     }
-
-    public func asWidget(_ children: ViewContent1<Button>.Children) -> Button.Widget {
-        return children.child0.widget
-    }
 }

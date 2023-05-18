@@ -14,16 +14,10 @@ public struct TextField: View {
     }
 
     public func asWidget(_ children: EmptyViewContent.Children) -> GtkEntry {
-        let widget = GtkEntry()
-        widget.placeholder = placeholder
-        widget.changed = { widget in
-            self.value?.wrappedValue = widget.text
-        }
-        return widget
+        return GtkEntry()
     }
 
     public func update(_ widget: GtkEntry, children: EmptyViewContent.Children) {
-        // TODO: Fix code duplication between asWidget and update for all views
         widget.placeholder = placeholder
         widget.text = value?.wrappedValue ?? widget.text
         widget.changed = { widget in

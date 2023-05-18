@@ -77,15 +77,7 @@ public struct Slider: View {
     }
 
     public func asWidget(_ children: EmptyViewGraphNodeChildren) -> GtkScale {
-        let slider = GtkScale()
-        slider.minimum = minimum
-        slider.maximum = maximum
-        slider.value = value?.wrappedValue ?? slider.value
-        slider.decimalPlaces = decimalPlaces
-        slider.changed = { widget in
-            self.value?.wrappedValue = widget.value
-        }
-        return slider
+        return GtkScale()
     }
 
     public func update(_ widget: GtkScale, children: EmptyViewGraphNodeChildren) {

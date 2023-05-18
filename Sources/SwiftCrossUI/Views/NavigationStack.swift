@@ -64,10 +64,7 @@ public struct NavigationStack<Detail: View>: View {
     }
 
     public func asWidget(_ children: NavigationStackChildren<Detail>) -> GtkStack {
-        let stack = children.storage.container
-        stack.transitionType = transitionType
-        stack.transitionDuration = transitionDuration
-        return stack
+        return children.storage.container
     }
 
     public func update(_ widget: GtkStack, children: Content.Children) {

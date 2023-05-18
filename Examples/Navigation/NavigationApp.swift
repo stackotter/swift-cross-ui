@@ -18,6 +18,10 @@ enum HumanitiesSubject: Hashable {
 class NavigationAppState: Observable {
     @Observed var path = NavigationPath()
     @Observed var transitionDuration = 0.3
+
+    var pathWrapper: Observed<NavigationPath> {
+        _path
+    }
 }
 
 @main

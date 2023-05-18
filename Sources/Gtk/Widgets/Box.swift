@@ -7,7 +7,7 @@ import CGtk
 open class Box: Widget, Orientable {
     var widgets: [Widget] = []
 
-    public init(orientation: Orientation, spacing: Int) {
+    public init(orientation: Orientation = .vertical, spacing: Int = 0) {
         super.init()
 
         widgetPointer = gtk_box_new(orientation.toGtkOrientation(), gint(spacing))

@@ -16,7 +16,7 @@ struct CounterApp: App {
     var body: some ViewContent {
         HStack(spacing: 20) {
             Button("-") { state.count -= 1 }
-            Text("Count: \(state.count)")
+            Text("Count: \(state.count)", wrap: false)
             Button("+") { state.count += 1 }
         }
         .padding(10)
