@@ -25,15 +25,6 @@ jobs:
         pkg-config --cflags libffi
         mv /Library/Developer/CommandLineTools/SDKs/MacOSX13.sdk /Library/Developer/CommandLineTools/SDKs/MacOSX13.sdk.orig
     - name: Patch libffi
-      run: |
-        echo "exec_prefix=/usr
-libdir=${exec_prefix}/lib
-toolexeclibdir=${libdir}
-
-Name: libffi
-Description: Library supporting Foreign Function Interfaces
-Version: 3.4-rc1
-Libs: -L${toolexeclibdir} -lffi
-Cflags: " > /opt/homebrew/Library/Homebrew/os/mac/pkgconfig/13/libffi.pc
+      run: sed -i '' 's/-I..includedir.//g' /opt/homebrew/Library/Homebrew/os/mac/pkgconfig/13/libffi.pc
     - name: Build
       run: swift build -v
