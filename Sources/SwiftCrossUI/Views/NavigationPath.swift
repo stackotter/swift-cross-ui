@@ -1,6 +1,6 @@
 /// A type-erased list of data representing the content of a navigation stack.
 public struct NavigationPath {
-    internal private(set) var path: [any Hashable] = []
+    private(set) var path: [any Hashable] = []
 
     /// A Boolean that indicates whether this path is empty.
     public var isEmpty: Bool {

@@ -1,5 +1,7 @@
-public struct ForEachViewChildren<Items: Collection, Child: ViewContent>: ViewGraphNodeChildren
-where Items.Index == Int {
+public struct ForEachViewChildren<
+    Items: Collection,
+    Child: ViewContent
+>: ViewGraphNodeChildren where Items.Index == Int {
     public typealias Content = ForEachViewContent<Items, Child>
 
     class Storage {
@@ -55,21 +57,29 @@ where Items.Index == Int {
     }
 }
 
-public struct ForEachViewContent<Items: Collection, Child: ViewContent>: ViewContent
-where Items.Index == Int {
+public struct ForEachViewContent<
+    Items: Collection,
+    Child: ViewContent
+>: ViewContent where Items.Index == Int {
     public typealias Children = ForEachViewChildren<Items, Child>
 
     public var elements: Items
     public var child: (Items.Element) -> Child
 
-    public init(_ elements: Items, _ child: @escaping (Items.Element) -> Child) {
+    public init(
+        _ elements: Items,
+        _ child: @escaping (Items.Element) -> Child
+    ) {
         self.elements = elements
         self.child = child
     }
 }
 
 /// A view that displays a variable amount of children.
-public struct ForEach<Items: Collection, Child: ViewContent>: View where Items.Index == Int {
+public struct ForEach<
+    Items: Collection,
+    Child: ViewContent
+>: View where Items.Index == Int {
     public var body: ForEachViewContent<Items, Child>
 
     public init(
@@ -79,7 +89,9 @@ public struct ForEach<Items: Collection, Child: ViewContent>: View where Items.I
         body = ForEachViewContent(elements, child)
     }
 
-    public func asWidget(_ children: ForEachViewChildren<Items, Child>) -> GtkBox {
+    public func asWidget(
+        _ children: ForEachViewChildren<Items, Child>
+    ) -> GtkBox {
         return children.storage.container
     }
 }
