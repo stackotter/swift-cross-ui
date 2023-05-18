@@ -23,7 +23,6 @@ jobs:
         which pkg-config
         brew --version
         pkg-config --cflags libffi
-        mv /Library/Developer/CommandLineTools/SDKs/MacOSX13.sdk /Library/Developer/CommandLineTools/SDKs/MacOSX13.sdk.orig
     - name: Patch libffi
       run: sed -i '' 's/-I..includedir.//g' /opt/homebrew/Library/Homebrew/os/mac/pkgconfig/13/libffi.pc
     - name: Build
