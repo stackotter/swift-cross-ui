@@ -15,7 +15,7 @@ enum HumanitiesSubject: Hashable {
     case history
 }
 
-class NavigationAppState: AppState {
+class NavigationAppState: Observable {
     @Observed var path = NavigationPath()
     @Observed var transitionDuration = 0.3
 }

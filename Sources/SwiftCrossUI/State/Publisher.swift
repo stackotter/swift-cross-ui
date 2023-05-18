@@ -13,8 +13,7 @@ public class Publisher {
             0,
             { context in
                 guard let context = context else {
-                    print("warning: Publisher callback called without context")
-                    return 0
+                    fatalError("Publisher callback called without context")
                 }
 
                 let observations = context.assumingMemoryBound(to: List<() -> Void>.self).pointee
@@ -40,11 +39,11 @@ public class Publisher {
         }
     }
 
-    public func link(toDownstream publisher: Publisher) {
-        cancellables.append(
-            publisher.observe(with: {
-                self.send()
-            })
-        )
+    public func link(toDownstream publisher: Publisher) -> Cancellable {
+        let cancellable = publisher.observe(with: {
+            self.send()
+        })
+        cancellables.append(cancellable)
+        return cancellable
     }
 }

@@ -3,7 +3,7 @@ import Foundation
 /// A view that can be displayed by SwiftCrossUI.
 public protocol View {
     associatedtype Content: ViewContent
-    associatedtype State: ViewState
+    associatedtype State: Observable
     associatedtype Widget: GtkWidget
 
     var state: State { get set }
@@ -30,11 +30,11 @@ extension View {
     public func update(_ widget: Widget, children: Content.Children) {}
 }
 
-extension View where State == EmptyViewState {
+extension View where State == EmptyState {
     // swiftlint:disable unused_setter_value
     public var state: State {
         get {
-            EmptyViewState()
+            EmptyState()
         }
         set {
             return

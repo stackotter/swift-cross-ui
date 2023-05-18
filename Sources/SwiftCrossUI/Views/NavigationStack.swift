@@ -39,16 +39,24 @@ public struct NavigationStack<Detail: View>: View {
     /// - Parameters:
     ///   - data: The type of data that this destination matches.
     ///   - destination: A view builder that defines a view to display when the stack’s navigation state contains a value of type data. The closure takes one argument, which is the value of the data to present.
-    public func navigationDestination<D: Hashable, C: View>(for data: D.Type, @ViewContentBuilder destination: @escaping (D) -> C) -> NavigationStack<EitherView<Detail, C>> {
-        return NavigationStack<EitherView<Detail, C>>(previous: self, destination: {
-            return ($0 as? D).flatMap(destination)
-        })
+    public func navigationDestination<D: Hashable, C: View>(
+        for data: D.Type, @ViewContentBuilder destination: @escaping (D) -> C
+    ) -> NavigationStack<EitherView<Detail, C>> {
+        return NavigationStack<EitherView<Detail, C>>(
+            previous: self,
+            destination: {
+                return ($0 as? D).flatMap(destination)
+            }
+        )
     }
 
     /// - Parameters:
     ///   - transition: The type of animation that will be used for transitions between pages in the stack
     ///   - duration: Duration of the transition animation in seconds
-    public func navigationTransition(_ transition: StackTransitionType, duration: Double) -> some View {
+    public func navigationTransition(
+        _ transition: StackTransitionType,
+        duration: Double
+    ) -> some View {
         var view = self
         view.transitionType = transition
         view.transitionDuration = Int(duration * 1000)
@@ -97,7 +105,9 @@ public struct NavigationStackContent<Child: View>: ViewContent {
 
     func childOrCrash(for element: any Hashable) -> Child {
         guard let child = child(element) else {
-            fatalError("Failed to find detail view for \"\(element)\", make sure you have called .navigationDestination for this type.")
+            fatalError(
+                "Failed to find detail view for \"\(element)\", make sure you have called .navigationDestination for this type."
+            )
         }
 
         return child

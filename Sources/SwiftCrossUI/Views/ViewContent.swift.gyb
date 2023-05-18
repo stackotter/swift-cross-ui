@@ -8,7 +8,7 @@ public protocol ViewContent: View {
     associatedtype Children: ViewGraphNodeChildren where Children.Content == Self
 }
 
-extension ViewContent where Content == Self, State == EmptyViewState {
+extension ViewContent where Content == Self, State == EmptyState {
     public var body: Self {
         return self
     }

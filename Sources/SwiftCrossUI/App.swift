@@ -1,7 +1,7 @@
 /// An application.
 public protocol App {
     associatedtype Content: ViewContent
-    associatedtype State: AppState
+    associatedtype State: Observable
 
     /// The application's identifier.
     var identifier: String { get }
@@ -27,8 +27,8 @@ extension App {
     }
 }
 
-extension App where State == EmptyAppState {
+extension App where State == EmptyState {
     public var state: State {
-        EmptyAppState()
+        EmptyState()
     }
 }

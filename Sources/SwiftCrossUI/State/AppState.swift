@@ -1,1 +1,2 @@
-public typealias AppState = ViewState
+@available(*, deprecated, message: "Replace with Observable")
+public typealias AppState = Observable
