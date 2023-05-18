@@ -54,7 +54,9 @@ public struct OptionalView<V: View>: View {
     }
 
     public func asWidget(_ children: OptionalViewChildren<V>) -> GtkSingleChildBox {
-        return GtkSingleChildBox()
+        let box = GtkSingleChildBox()
+        box.setChild(children.widgets.first)
+        return box
     }
 
     public func update(_ widget: GtkSingleChildBox, children: OptionalViewChildren<V>) {
