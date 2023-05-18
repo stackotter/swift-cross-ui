@@ -37,12 +37,16 @@ struct IntegerValue<Value: BinaryInteger>: DoubleConvertible {
 
 /// A slider that allows a user to choose a numeric value.
 public struct Slider: View {
-    public var value: Binding<Double>?
-    public var minimum: Double
-    public var maximum: Double
-    public var decimalPlaces: Int
-
     public var body = EmptyViewContent()
+
+    /// A binding to the current value.
+    private var value: Binding<Double>?
+    /// The slider's minimum value.
+    private var minimum: Double
+    /// The slider's maximum value.
+    private var maximum: Double
+    /// The number of decimal places used when displaying the value.
+    private var decimalPlaces: Int
 
     public init<T: BinaryInteger>(_ value: Binding<T>? = nil, minimum: T, maximum: T) {
         if let value = value {

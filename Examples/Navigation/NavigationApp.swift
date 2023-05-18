@@ -87,7 +87,7 @@ struct NavigationApp: App {
 
             backButton
         }
-        .navigationTransition(.slideLeftRight, duration: state.transitionDuration)
+        .navigationTransition(.slideLeftRight, seconds: state.transitionDuration)
         .padding(10)
     }
 

@@ -1,6 +1,8 @@
 public struct PaddingView<Child: View>: View {
     public var body: ViewContent1<Child>
-    public var padding: Padding
+
+    /// The padding to apply to the child view.
+    private var padding: Padding
 
     init(_ content: Child, _ padding: Padding) {
         body = ViewContent1(content)

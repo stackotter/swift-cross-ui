@@ -1,7 +1,9 @@
 /// A vertically oriented container. Similar to a `VStack` in SwiftUI.
 public struct VStack<Content: ViewContent>: View {
     public var body: Content
-    public var spacing: Int
+
+    /// The amount of spacing to apply between children.
+    private var spacing: Int
 
     /// Creates a new VStack.
     public init(@ViewContentBuilder _ content: () -> Content, spacing: Int = 8) {

@@ -1,9 +1,9 @@
 /// An image view.
 public struct Image: View {
-    /// The path to the image.
-    public var path: String
-
     public var body = EmptyViewContent()
+
+    /// The path to the image.
+    private var path: String
 
     public init(_ path: String) {
         self.path = path

@@ -8,8 +8,11 @@ private struct NavigationStackRootPath: Hashable {}
 /// Use .navigationDestination(for:destination:) on this view instead of its children unlike Apples SwiftUI API.
 public struct NavigationStack<Detail: View>: View {
     public var body: NavigationStackContent<Detail>
+
+    /// The type of transition to use when a new navigation destination is displayed.
     private var transitionType: StackTransitionType
-    private var transitionDuration: Int
+    /// The duration of transition to use (in milliseconds).
+    private var transitionMilliseconds: Int
 
     /// Creates a navigation stack with heterogeneous navigation state that you can control.
     ///
@@ -21,7 +24,7 @@ public struct NavigationStack<Detail: View>: View {
         @ViewContentBuilder _ root: @escaping () -> Detail
     ) {
         transitionType = .slideLeftRight
-        transitionDuration = 300
+        transitionMilliseconds = 300
         body = NavigationStackContent([NavigationStackRootPath()] + path.wrappedValue.path) {
             if $0 is NavigationStackRootPath {
                 return root()
@@ -50,16 +53,18 @@ public struct NavigationStack<Detail: View>: View {
         )
     }
 
+    /// Sets the transition to use when changing navigation destinations.
     /// - Parameters:
-    ///   - transition: The type of animation that will be used for transitions between pages in the stack
-    ///   - duration: Duration of the transition animation in seconds
+    ///   - transition: The type of animation that will be used for transitions between pages in the
+    ///     stack.
+    ///   - duration: Duration of the transition animation in seconds.
     public func navigationTransition(
         _ transition: StackTransitionType,
-        duration: Double
+        seconds: Double
     ) -> some View {
         var view = self
         view.transitionType = transition
-        view.transitionDuration = Int(duration * 1000)
+        view.transitionMilliseconds = Int(seconds * 1000)
         return view
     }
 
@@ -69,7 +74,7 @@ public struct NavigationStack<Detail: View>: View {
 
     public func update(_ widget: GtkStack, children: Content.Children) {
         widget.transitionType = transitionType
-        widget.transitionDuration = transitionDuration
+        widget.transitionDuration = transitionMilliseconds
     }
 
     /// Add a destination for a specific path element
@@ -78,7 +83,7 @@ public struct NavigationStack<Detail: View>: View {
         destination: @escaping (any Hashable) -> NewDetail?
     ) where Detail == EitherView<PreviousDetail, NewDetail> {
         transitionType = previous.transitionType
-        transitionDuration = previous.transitionDuration
+        transitionMilliseconds = previous.transitionMilliseconds
         body = NavigationStackContent(previous.body.elements) {
             if let previous = previous.body.child($0) {
                 // Either root or previously defined destination returned a view

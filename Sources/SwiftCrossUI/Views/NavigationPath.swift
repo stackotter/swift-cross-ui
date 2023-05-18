@@ -1,5 +1,6 @@
 /// A type-erased list of data representing the content of a navigation stack.
 public struct NavigationPath {
+    /// The current navigation path.
     private(set) var path: [any Hashable] = []
 
     /// A Boolean that indicates whether this path is empty.
@@ -12,7 +13,7 @@ public struct NavigationPath {
         path.count
     }
 
-    /// Creates an empty navigation path
+    /// Creates an empty navigation path.
     public init() {}
 
     /// Appends a new value to the end of this path.

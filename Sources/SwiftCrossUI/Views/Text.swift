@@ -1,11 +1,11 @@
 /// A text view.
 public struct Text: View {
-    /// The string to be shown in the text view.
-    public var string: String
-    /// Specifies whether the text should be wrapped if wider than its container.
-    public var wrap: Bool
-
     public var body = EmptyViewContent()
+
+    /// The string to be shown in the text view.
+    private var string: String
+    /// Specifies whether the text should be wrapped if wider than its container.
+    private var wrap: Bool
 
     /// Creates a new text view with the given content.
     public init(_ string: String, wrap: Bool = true) {

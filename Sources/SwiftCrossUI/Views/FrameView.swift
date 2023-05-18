@@ -3,10 +3,10 @@
 public struct FrameView<Child: View>: View {
     public var body: ViewContent1<Child>
 
-    public var minimumWidth: Int?
-    public var maximumWidth: Int?
-    public var minimumHeight: Int?
-    public var maximumHeight: Int?
+    private var minimumWidth: Int?
+    private var maximumWidth: Int?
+    private var minimumHeight: Int?
+    private var maximumHeight: Int?
 
     public init(_ child: Child, height: Int) {
         // TODO: Figure out how to get width working (seems to get ignored)
