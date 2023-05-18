@@ -1,13 +1,8 @@
 import SwiftCrossUI
 
-class Nested: Observable {
-    @Observed
-    var count = 0
-}
-
 class CounterState: Observable {
     @Observed
-    var nested = Nested()
+    var count = 0
 }
 
 @main
@@ -19,10 +14,11 @@ struct CounterApp: App {
     let windowProperties = WindowProperties(title: "CounterApp", resizable: true)
 
     var body: some ViewContent {
-        HStack {
-            Button("-") { state.nested.count -= 1 }
-            Text("Count: \(state.nested.count)")
-            Button("+") { state.nested.count += 1 }
+        HStack(spacing: 20) {
+            Button("-") { state.count -= 1 }
+            Text("Count: \(state.count)")
+            Button("+") { state.count += 1 }
         }
+        .padding(10)
     }
 }

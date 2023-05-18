@@ -22,4 +22,8 @@ public struct VStack<Content: ViewContent>: View {
         }
         return vStack
     }
+
+    public func update(_ widget: GtkBox, children: Content.Children) {
+        widget.spacing = spacing
+    }
 }
