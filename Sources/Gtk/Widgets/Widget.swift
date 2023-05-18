@@ -9,6 +9,10 @@ open class Widget {
     private var signals: [(UInt, Any)] = []
     var widgetPointer: UnsafeMutablePointer<GtkWidget>?
 
+    public var prefersFill: Bool {
+        return self is FillPreferringWidget
+    }
+
     public var opaquePointer: OpaquePointer? {
         return OpaquePointer(widgetPointer)
     }

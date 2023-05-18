@@ -7,6 +7,12 @@ import CGtk
 open class Box: Widget, Orientable {
     var widgets: [Widget] = []
 
+    public override var prefersFill: Bool {
+        return widgets.contains { widget in
+            return widget.prefersFill
+        }
+    }
+
     public init(orientation: Orientation = .vertical, spacing: Int = 0) {
         super.init()
 

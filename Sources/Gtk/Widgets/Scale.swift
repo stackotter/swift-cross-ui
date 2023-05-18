@@ -1,6 +1,6 @@
 import CGtk
 
-public class Scale: Widget {
+public class Scale: Widget, FillPreferringWidget {
     public override init() {
         super.init()
         widgetPointer = gtk_scale_new(Orientation.horizontal.toGtkOrientation(), nil)

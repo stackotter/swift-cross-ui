@@ -39,6 +39,7 @@ public class Publisher {
         }
     }
 
+    @discardableResult
     public func link(toDownstream publisher: Publisher) -> Cancellable {
         let cancellable = publisher.observe(with: {
             self.send()

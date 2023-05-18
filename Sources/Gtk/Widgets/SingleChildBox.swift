@@ -22,6 +22,10 @@ open class SingleChildBox: Widget, Orientable {
         }
     }
 
+    public override var prefersFill: Bool {
+        return child?.prefersFill ?? false
+    }
+
     /// This removes the previous child if it existed and shows the new child.
     /// - Parameter newChild: The child to show, use `nil` to remove previous child.
     public func setChild(_ newChild: Widget?) {
