@@ -40,9 +40,10 @@ public struct ForEachViewChildren<
 
         let remaining = content.elements.count - storage.nodes.count
         if remaining > 0 {
-            for i in storage.nodes.count..<(storage.nodes.count + remaining) {
+            let startIndex = content.elements.startIndex.advanced(by: storage.nodes.count)
+            for i in 0..<remaining {
                 let node = ViewGraphNode(
-                    for: content.child(content.elements[i])
+                    for: content.child(content.elements[startIndex.advanced(by: i)])
                 )
                 storage.nodes.append(node)
                 storage.container.add(node.widget)
