@@ -18,6 +18,6 @@ jobs:
     - name: Install Dependencies
       run: brew install pkg-config gtk4
     - name: Debug
-      run: pkg-config --libs gtk4 && which pkg-config
+      run: pkg-config --libs gtk4; which pkg-config; brew --version; pkg-config --cflags libffi; mv /Library/Developer/CommandLineTools/SDKs/MacOSX13.sdk /Library/Developer/CommandLineTools/SDKs/MacOSX13.sdk.orig
     - name: Build
       run: swift build -v
