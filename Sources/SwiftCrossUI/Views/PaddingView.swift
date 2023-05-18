@@ -9,7 +9,7 @@ public struct PaddingView<Child: View>: View {
 
     public func asWidget(_ children: ViewGraphNodeChildren1<Child>) -> GtkSingleChildBox {
         let box = GtkSingleChildBox()
-        box.setOnlyChild(children.child0.widget)
+        box.setChild(children.child0.widget)
 
         box.topMargin = padding.top
         box.bottomMargin = padding.bottom
