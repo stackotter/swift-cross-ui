@@ -6,11 +6,9 @@ enum SubjectArea: Codable {
     case humanities
 }
 
-struct Science {
-    enum Subject: Codable {
-        case physics
-        case chemistry
-    }
+enum ScienceSubject: Codable {
+    case physics
+    case chemistry
 }
 
 enum HumanitiesSubject: Codable {
@@ -58,8 +56,8 @@ struct NavigationApp: App {
                     Text("Choose a science subject")
                         .padding(.bottom, 10)
 
-                    NavigationLink("Physics", value: Science.Subject.physics, path: state.$path)
-                    NavigationLink("Chemistry", value: Science.Subject.chemistry, path: state.$path)
+                    NavigationLink("Physics", value: ScienceSubject.physics, path: state.$path)
+                    NavigationLink("Chemistry", value: ScienceSubject.chemistry, path: state.$path)
                 case .humanities:
                     Text("Choose a humanities subject")
                         .padding(.bottom, 10)
@@ -70,7 +68,7 @@ struct NavigationApp: App {
 
             backButton
         }
-        .navigationDestination(for: Science.Subject.self) { subject in
+        .navigationDestination(for: ScienceSubject.self) { subject in
             switch subject {
                 case .physics:
                     Text("Physics is applied maths")
