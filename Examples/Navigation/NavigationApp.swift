@@ -42,16 +42,6 @@ struct NavigationApp: App {
         VStack {
             Text("Change transition duration")
             Slider(state.$transitionDuration, minimum: 0, maximum: 3)
-            Button("Test decoded Path", action: {
-                // You should probably not do this while running your app.
-                // This is just for testing if a decoded path will work for persistence
-                print(state.path)
-                let encodedPath = try! JSONEncoder().encode(state.path)
-                print(String(decoding: encodedPath, as: UTF8.self))
-                let decodedPath = try! JSONDecoder().decode(NavigationPath.self, from: encodedPath)
-                print(decodedPath)
-                state.path = decodedPath
-            })
         }
         .padding(10)
 
