@@ -1,6 +1,10 @@
 import Foundation
 
 /// A type-erased list of data representing the content of a navigation stack.
+///
+/// If you are persisting a path using the ``Codable`` implementation, you must
+/// not change type definitions in a non-backwards compatible way. Otherwise,
+/// the path may fail to decode.
 public struct NavigationPath {
     /// A storage class used so that we have control over exactly which changes are published (to
     /// avoid infinite loops).

@@ -13,7 +13,7 @@ public struct NavigationLink: View {
     private let path: Binding<NavigationPath>
 
     /// Creates a navigation link that presents the view corresponding to a value in the NavigationStack that uses the same path.
-    public init(_ label: String, value: any Codable, path: Binding<NavigationPath>) {
+    public init<C: Codable>(_ label: String, value: C, path: Binding<NavigationPath>) {
         self.label = label
         self.value = value
         self.path = path
