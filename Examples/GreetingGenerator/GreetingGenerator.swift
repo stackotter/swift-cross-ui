@@ -1,6 +1,6 @@
 import SwiftCrossUI
 
-class GreetingGeneratorState: AppState {
+class GreetingGeneratorState: Observable {
     @Observed var name = ""
     @Observed var greetings: [String] = []
 }

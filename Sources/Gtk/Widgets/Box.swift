@@ -7,7 +7,7 @@ import CGtk
 open class Box: Widget, Orientable {
     var widgets: [Widget] = []
 
-    public init(orientation: Orientation, spacing: Int) {
+    public init(orientation: Orientation = .vertical, spacing: Int = 0) {
         super.init()
 
         widgetPointer = gtk_box_new(orientation.toGtkOrientation(), gint(spacing))
@@ -33,5 +33,14 @@ open class Box: Widget, Orientable {
             widget.parentWidget = nil
         }
         widgets = []
+    }
+
+    public var spacing: Int {
+        get {
+            Int(gtk_box_get_spacing(castedPointer()))
+        }
+        set {
+            gtk_box_set_spacing(castedPointer(), gint(newValue))
+        }
     }
 }

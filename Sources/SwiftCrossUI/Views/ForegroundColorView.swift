@@ -3,7 +3,8 @@
 public struct ForegroundColorView<Child: View>: View {
     public var body: ViewContent1<Child>
 
-    public var color: Color
+    /// The foreground color to apply to the child view.
+    private var color: Color
 
     public init(_ child: Child, color: Color) {
         body = ViewContent1(child)
@@ -12,8 +13,7 @@ public struct ForegroundColorView<Child: View>: View {
 
     public func asWidget(_ children: ViewGraphNodeChildren1<Child>) -> GtkSingleChildBox {
         let box = GtkSingleChildBox()
-        box.setOnlyChild(children.child0.widget)
-        box.setForegroundColor(color: color.gtkColor)
+        box.setChild(children.child0.widget)
         return box
     }
 

@@ -18,9 +18,13 @@ enum HumanitiesSubject: Codable {
     case history
 }
 
-class NavigationAppState: AppState {
+class NavigationAppState: Observable {
     @Observed var path = NavigationPath()
     @Observed var transitionDuration = 0.3
+
+    var pathWrapper: Observed<NavigationPath> {
+        _path
+    }
 }
 
 @main
@@ -96,7 +100,7 @@ struct NavigationApp: App {
 
             backButton
         }
-        .navigationTransition(.slideLeftRight, duration: state.transitionDuration)
+        .navigationTransition(.slideLeftRight, seconds: state.transitionDuration)
         .padding(10)
     }
 

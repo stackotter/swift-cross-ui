@@ -42,10 +42,8 @@ public struct NavigationPath {
         storage.encodedEntries.count + storage.path.count
     }
 
-    /// Creates an empty navigation path
-    public init() {
-        storage.path = []
-    }
+    /// Creates an empty navigation path.
+    public init() {}
 
     /// Appends a new value to the end of the path.
     public mutating func append<C: Codable>(_ component: C) {

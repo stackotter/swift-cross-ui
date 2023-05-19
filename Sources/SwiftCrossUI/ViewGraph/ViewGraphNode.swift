@@ -6,9 +6,11 @@ public class ViewGraphNode<NodeView: View> {
     private var cancellable: Cancellable?
 
     public init(for view: NodeView) {
-        children = NodeView.Content.Children(from: view.body)
+        let content = view.body
+        children = NodeView.Content.Children(from: content)
         self.view = view
         widget = view.asWidget(children)
+        update(with: content)
 
         cancellable = view.state.didChange.observe { [weak self] in
             guard let self = self else { return }
@@ -28,8 +30,9 @@ public class ViewGraphNode<NodeView: View> {
         update()
     }
 
-    public func update() {
-        children.update(with: view.body)
+    public func update(with content: NodeView.Content? = nil) {
+        children.update(with: content ?? view.body)
         view.update(widget, children: children)
+        widget.show()
     }
 }

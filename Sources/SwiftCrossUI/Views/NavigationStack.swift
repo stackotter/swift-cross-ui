@@ -8,8 +8,11 @@ struct NavigationStackRootPath: Codable {}
 /// Use .navigationDestination(for:destination:) on this view instead of its children unlike Apples SwiftUI API.
 public struct NavigationStack<Detail: View>: View {
     public var body: NavigationStackContent<Detail>
+
+    /// The type of transition to use when a new navigation destination is displayed.
     private var transitionType: StackTransitionType
-    private var transitionDuration: Int
+    /// The duration of transition to use (in milliseconds).
+    private var transitionMilliseconds: Int
     private var path: Binding<NavigationPath>
 
     /// Creates a navigation stack with heterogeneous navigation state that you can control.
@@ -23,7 +26,7 @@ public struct NavigationStack<Detail: View>: View {
     ) {
         self.path = path
         transitionType = .slideLeftRight
-        transitionDuration = 300
+        transitionMilliseconds = 300
         body = NavigationStackContent(path, []) { element in
             if element is NavigationStackRootPath {
                 return root()
@@ -50,28 +53,27 @@ public struct NavigationStack<Detail: View>: View {
         )
     }
 
+    /// Sets the transition to use when changing navigation destinations.
     /// - Parameters:
-    ///   - transition: The type of animation that will be used for transitions between pages in the stack
-    ///   - duration: Duration of the transition animation in seconds
+    ///   - transition: The type of animation that will be used for transitions between pages in the
+    ///     stack.
+    ///   - duration: Duration of the transition animation in seconds.
     public func navigationTransition(_ transition: StackTransitionType, duration: Double)
         -> some View
     {
         var view = self
         view.transitionType = transition
-        view.transitionDuration = Int(duration * 1000)
+        view.transitionMilliseconds = Int(duration * 1000)
         return view
     }
 
     public func asWidget(_ children: NavigationStackChildren<Detail>) -> GtkStack {
-        let stack = children.storage.container
-        stack.transitionType = transitionType
-        stack.transitionDuration = transitionDuration
-        return stack
+        return children.storage.container
     }
 
     public func update(_ widget: GtkStack, children: Content.Children) {
         widget.transitionType = transitionType
-        widget.transitionDuration = transitionDuration
+        widget.transitionDuration = transitionMilliseconds
     }
 
     /// Add a destination for a specific path element
@@ -81,7 +83,7 @@ public struct NavigationStack<Detail: View>: View {
     ) where Detail == EitherView<PreviousDetail, NewDetail> {
         path = previous.path
         transitionType = previous.transitionType
-        transitionDuration = previous.transitionDuration
+        transitionMilliseconds = previous.transitionMilliseconds
         body = NavigationStackContent(path, previous.body.destinationTypes + [Component.self]) {
             if let previous = previous.body.child($0) {
                 // Either root or previously defined destination returned a view

@@ -9,9 +9,10 @@ open class SingleChildBox: Widget, Orientable {
         widgetPointer = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0)
     }
 
-    /// This gets and sets the orientation of the parentWidget
+    /// This gets and sets the orientation of the parentWidget.
     ///
-    /// Some parents are not Orientable (ScrollableWindow, Window, Viewport, Stack) in which case this does nothing.
+    /// Some parents are not Orientable (ScrollableWindow, Window, Viewport, Stack) in which case
+    /// this does nothing.
     public var orientation: Orientation {
         get {
             (parentWidget as? Orientable)?.orientation ?? .vertical
@@ -21,10 +22,9 @@ open class SingleChildBox: Widget, Orientable {
         }
     }
 
-    /// This removes the previous child if it existed and shows the new child
-    ///
-    /// - Parameter newChild: The child to show, use `nil` to remove previous child
-    public func setOnlyChild(_ newChild: Widget?) {
+    /// This removes the previous child if it existed and shows the new child.
+    /// - Parameter newChild: The child to show, use `nil` to remove previous child.
+    public func setChild(_ newChild: Widget?) {
         if let child {
             gtk_box_remove(castedPointer(), child.widgetPointer)
             child.parentWidget = nil

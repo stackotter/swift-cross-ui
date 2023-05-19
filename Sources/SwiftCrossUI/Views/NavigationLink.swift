@@ -8,8 +8,11 @@ public struct NavigationLink: View {
         }
     }
 
+    /// The label to display on the button.
     private let label: String
+    /// The value to append to the navigation path when clicked.
     private let value: any Codable
+    /// The navigation path to append to when clicked.
     private let path: Binding<NavigationPath>
 
     /// Creates a navigation link that presents the view corresponding to a value in the NavigationStack that uses the same path.
@@ -17,9 +20,5 @@ public struct NavigationLink: View {
         self.label = label
         self.value = value
         self.path = path
-    }
-
-    public func asWidget(_ children: ViewContent1<Button>.Children) -> Button.Widget {
-        return children.child0.widget
     }
 }
