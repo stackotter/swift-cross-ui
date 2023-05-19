@@ -103,7 +103,7 @@ struct NavigationApp: App {
     @ViewContentBuilder
     var backButton: some ViewContent {
         Button("Back") {
-            state.path.pop()
+            state.path.removeLast()
         }
         .padding(.top, 10)
     }
