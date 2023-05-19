@@ -2,118 +2,159 @@ import Foundation
 
 /// A type-erased list of data representing the content of a navigation stack.
 public struct NavigationPath {
-    internal var hasPendingDecodableEntries = false
-    private var entries: [any NavigationPathEntry] = []
-    internal var path: [any Codable] {
-        return entries.compactMap {
-            if $0 is LazyDecodableEntry {
-                return nil
-            }
-            return $0.data
+    /// A storage class used so that we have control over exactly which changes are published (to
+    /// avoid infinite loops).
+    private class Storage {
+        /// An entry that will be decoded next time it is used by a ``NavigationStack`` (we need to
+        /// wait until we know what concrete entry types are available).
+        struct EncodedEntry: Codable {
+            var type: String
+            var value: Data
         }
+
+        /// The current path. If both this and `encodedEntries` are non-empty, the elements in path
+        /// were added before the navigation path was even used to render a view. By design they
+        /// come after the encodedEntries (because they can only be the result of appending and
+        /// maybe popping).
+        var path: [any Codable] = []
+        /// Entries that will be encoded when this navigation path is first used by a
+        /// ``NavigationStack``. It is not possible to decode the entries without first knowing
+        /// what types the path can possibly contain (which only the ``NavigationStack`` will know).
+        var encodedEntries: [EncodedEntry]?
     }
 
-    /// A Boolean that indicates whether this path is empty.
-    public var isEmpty: Bool {
-        path.isEmpty
+    /// The path and any elements waiting to be decoded are stored in a class so that changes are
+    /// triggered from within NavigationStack when decoding the elements (which causes an infinite
+    /// loop of updates).
+    private var storage = Storage()
+
+    /// A dummy used to trigger changes detectable by `Observed`.
+    private var dummy = false
+
+    /// Indicates whether this path is empty.
+    var isEmpty: Bool {
+        count == 0
     }
 
-    /// The number of elements in this path.
-    public var count: Int {
-        path.count
+    /// The number of elements in the path.
+    var count: Int {
+        (storage.encodedEntries?.count ?? 0) + storage.path.count
     }
 
     /// Creates an empty navigation path
-    public init() {}
+    public init() {
+        storage.path = []
+    }
 
-    /// Appends a new value to the end of this path.
-
+    /// Appends a new value to the end of the path.
     public mutating func append<C: Codable>(_ component: C) {
-        entries.append(Entry(
-            type: typeName(for: C.self),
-            data: component
-        ))
+        storage.path.append(component)
+        triggerUpdate()
     }
 
     /// Removes values from the end of this path.
-    public mutating func removeLast(_ k: Int = 1) {
-        entries.removeLast(k)
+    public mutating func pop(_ k: Int = 1) {
+        if storage.path.count == 0 && !isEmpty {
+            storage.encodedEntries?.removeLast(k)
+            if storage.encodedEntries?.count == 0 {
+                storage.encodedEntries = nil
+            }
+        } else if !isEmpty {
+            storage.path.removeLast()
+        } else {
+            fatalError("Attempted to pop from empty navigation path")
+        }
+        triggerUpdate()
     }
 
     /// Removes all values from this path.
     public mutating func removeAll() {
-        entries.removeAll()
+        storage.path.removeAll()
+        storage.encodedEntries = nil
+        triggerUpdate()
     }
 
-    internal func afterDecodingEntries<T: Codable>(ofType type: T.Type) -> NavigationPath? {
-        guard hasPendingDecodableEntries else {
-            return nil
+    /// Causes the path to count as mutated so that any observers can know that it changed. Should
+    /// be called whenever `storage` is updated except for when decoding entries (which doesn't
+    /// change what is displayed and would cause an infinite loop of updates).
+    private mutating func triggerUpdate() {
+        dummy = !dummy
+    }
+
+    /// Gets the path's current entries. If the path was decoded from a stored representation and
+    /// has not been used by a ``NavigationStack`` yet, the ``destinationTypes`` will be used to
+    /// decode all elements in the path. Without knowing the ``destinationTypes``, the entries
+    /// cannot be decoded (after macOS 11 they can be decoded by using `_typeByName`, but we can't
+    /// use that because of backwards compatibility).
+    func path(destinationTypes: [any Codable.Type]) -> [any Codable] {
+        guard let encodedEntries = storage.encodedEntries else {
+            return storage.path
         }
 
-        let name = typeName(for: type)
-        var didDecodeAnEntry = false
-        var didFindDecodableEntry = false
-        var updated = self
-        updated.entries = entries.map {
-            if let decodable = $0 as? LazyDecodableEntry {
-                didFindDecodableEntry = true
-                if decodable.type == name, let data = try? JSONDecoder().decode(type, from: decodable.data) {
-                    didDecodeAnEntry = true
-                    return Entry(type: name, data: data)
+        var decodedEntries: [Int: any Codable] = [:]
+        for destinationType in destinationTypes {
+            let type = String(reflecting: destinationType)
+            for (i, entry) in encodedEntries.enumerated() where entry.type == type {
+                do {
+                    let value = try JSONDecoder().decode(
+                        destinationType,
+                        from: entry.value
+                    )
+                    decodedEntries[i] = value
+                } catch {
+                    let data = String(data: entry.value, encoding: .utf8) ?? "Invalid encoding"
+                    fatalError("Failed to decode item in encoded navigation path: '\(data)'")
                 }
             }
-
-            return $0
         }
 
-        if didDecodeAnEntry || !didFindDecodableEntry {
-            updated.hasPendingDecodableEntries = didFindDecodableEntry
-            return updated
+        var entries: [any Codable] = []
+        for i in 0..<encodedEntries.count {
+            guard let entry = decodedEntries[i] else {
+                // This should not be possible to reach
+                fatalError("Failed to decode navigation path")
+            }
+            entries.append(entry)
         }
 
-        return nil
-    }
+        self.storage.encodedEntries = nil
+        storage.path = entries + storage.path
 
-    private func typeName<T>(for: T.Type) -> String {
-        // If this also does not work we can do String(describing:) but that wont
-        // include parent of nested class and module
-        return _typeName(T.self)
+        return storage.path
     }
-}
-
-private protocol NavigationPathEntry {
-    var type: String { get }
-    var data: C { get }
-    associatedtype C: Codable
-}
-private struct LazyDecodableEntry: NavigationPathEntry, Codable {
-    var type: String
-    var data: Data
-}
-private struct Entry<C: Codable>: NavigationPathEntry {
-    var type: String
-    var data: C
 }
 
 extension NavigationPath: Codable {
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.unkeyedContainer()
-        for entry in entries.reversed() {
-            try container.encode(entry.type)
-            let string = try String(decoding: JSONEncoder().encode(entry.data), as: UTF8.self)
-            try container.encode(string)
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let entries = try container.decode([Storage.EncodedEntry].self)
+        guard !entries.isEmpty else {
+            return
         }
+
+        storage.encodedEntries = entries
     }
 
-    public init(from decoder: Decoder) throws {
-        var container = try decoder.unkeyedContainer()
-        self.entries = []
-        while !container.isAtEnd {
-            self.entries.insert(LazyDecodableEntry(
-               type: try container.decode(String.self),
-               data: Data(try container.decode(String.self).utf8)
-            ), at: 0)
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+
+        // Combine any remaining encoded entries with the current decoded entries in the path.
+        var entries = storage.encodedEntries ?? []
+        entries += storage.path.map { entry in
+            let type = String(reflecting: type(of: entry))
+            let value: Data
+            do {
+                value = try JSONEncoder().encode(entry)
+            } catch {
+                fatalError("Failed to encode navigation path entry of type \(type)")
+            }
+
+            return Storage.EncodedEntry(
+                type: type,
+                value: value
+            )
         }
-        self.hasPendingDecodableEntries = !entries.isEmpty
+
+        try container.encode(entries)
     }
 }

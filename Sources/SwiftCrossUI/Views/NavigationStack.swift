@@ -1,7 +1,7 @@
 import Gtk
 
-/// Type to indicate the root of the NavigationStack. This is private to prevent root accidentally showing instead of a detail view.
-private struct NavigationStackRootPath: Codable {}
+/// Type to indicate the root of the NavigationStack. This is internal to prevent root accidentally showing instead of a detail view.
+struct NavigationStackRootPath: Codable {}
 
 /// A view that displays a root view and enables you to present additional views over the root view.
 ///
@@ -24,8 +24,8 @@ public struct NavigationStack<Detail: View>: View {
         self.path = path
         transitionType = .slideLeftRight
         transitionDuration = 300
-        body = NavigationStackContent([NavigationStackRootPath()] + path.wrappedValue.path) {
-            if $0 is NavigationStackRootPath {
+        body = NavigationStackContent(path, []) { element in
+            if element is NavigationStackRootPath {
                 return root()
             } else {
                 return nil
@@ -41,19 +41,21 @@ public struct NavigationStack<Detail: View>: View {
     /// - Parameters:
     ///   - data: The type of data that this destination matches.
     ///   - destination: A view builder that defines a view to display when the stack’s navigation state contains a value of type data. The closure takes one argument, which is the value of the data to present.
-    public func navigationDestination<D: Codable, C: View>(for data: D.Type, @ViewContentBuilder destination: @escaping (D) -> C) -> NavigationStack<EitherView<Detail, C>> {
-        if let newPath = path.wrappedValue.afterDecodingEntries(ofType: data) {
-            path.wrappedValue = newPath
-        }
-        return NavigationStack<EitherView<Detail, C>>(previous: self, destination: {
-            return ($0 as? D).flatMap(destination)
-        })
+    public func navigationDestination<D: Codable, C: View>(
+        for data: D.Type, @ViewContentBuilder destination: @escaping (D) -> C
+    ) -> NavigationStack<EitherView<Detail, C>> {
+        return NavigationStack<EitherView<Detail, C>>(
+            previous: self,
+            destination: destination
+        )
     }
 
     /// - Parameters:
     ///   - transition: The type of animation that will be used for transitions between pages in the stack
     ///   - duration: Duration of the transition animation in seconds
-    public func navigationTransition(_ transition: StackTransitionType, duration: Double) -> some View {
+    public func navigationTransition(_ transition: StackTransitionType, duration: Double)
+        -> some View
+    {
         var view = self
         view.transitionType = transition
         view.transitionDuration = Int(duration * 1000)
@@ -73,18 +75,18 @@ public struct NavigationStack<Detail: View>: View {
     }
 
     /// Add a destination for a specific path element
-    private init<PreviousDetail: View, NewDetail: View>(
+    private init<PreviousDetail: View, NewDetail: View, Component: Codable>(
         previous: NavigationStack<PreviousDetail>,
-        destination: @escaping (any Codable) -> NewDetail?
+        destination: @escaping (Component) -> NewDetail?
     ) where Detail == EitherView<PreviousDetail, NewDetail> {
         path = previous.path
         transitionType = previous.transitionType
         transitionDuration = previous.transitionDuration
-        body = NavigationStackContent(previous.body.elements) {
+        body = NavigationStackContent(path, previous.body.destinationTypes + [Component.self]) {
             if let previous = previous.body.child($0) {
                 // Either root or previously defined destination returned a view
                 return EitherView(previous)
-            } else if let new = destination($0) {
+            } else if let component = $0 as? Component, let new = destination(component) {
                 // This destination returned a detail view for the current element
                 return EitherView(new)
             } else {
@@ -98,19 +100,37 @@ public struct NavigationStack<Detail: View>: View {
 public struct NavigationStackContent<Child: View>: ViewContent {
     public typealias Children = NavigationStackChildren<Child>
 
-    public var elements: [any Codable]
+    public var path: Binding<NavigationPath>
+
+    public var destinationTypes: [any Codable.Type]
+
     public var child: (any Codable) -> Child?
+
+    public var elements: [any Codable] {
+        let resolvedPath = path.wrappedValue.path(
+            destinationTypes: destinationTypes
+        )
+        print(resolvedPath)
+        return [NavigationStackRootPath()] + resolvedPath
+    }
 
     func childOrCrash(for element: any Codable) -> Child {
         guard let child = child(element) else {
-            fatalError("Failed to find detail view for \"\(element)\", make sure you have called .navigationDestination for this type.")
+            fatalError(
+                "Failed to find detail view for \"\(element)\", make sure you have called .navigationDestination for this type."
+            )
         }
 
         return child
     }
 
-    internal init(_ elements: [any Codable], _ child: @escaping (any Codable) -> Child?) {
-        self.elements = elements
+    internal init(
+        _ path: Binding<NavigationPath>,
+        _ destinationTypes: [any Codable.Type],
+        _ child: @escaping (any Codable) -> Child?
+    ) {
+        self.path = path
+        self.destinationTypes = destinationTypes
         self.child = child
     }
 }
