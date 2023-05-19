@@ -110,7 +110,6 @@ public struct NavigationStackContent<Child: View>: ViewContent {
         let resolvedPath = path.wrappedValue.path(
             destinationTypes: destinationTypes
         )
-        print(resolvedPath)
         return [NavigationStackRootPath()] + resolvedPath
     }
 
@@ -165,6 +164,9 @@ public struct NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
     }
 
     public func update(with content: Content) {
+        // content.elements is a computed property so only get it once
+        let contentElements = content.elements
+
         // Remove queued pages
         for widget in storage.widgetsQueuedForRemoval {
             storage.container.remove(widget)
@@ -173,19 +175,20 @@ public struct NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
 
         // Update pages
         for (i, node) in storage.nodes.enumerated() {
-            guard i < content.elements.count else {
+
+            guard i < contentElements.count else {
                 break
             }
-            let index = content.elements.startIndex.advanced(by: i)
-            node.update(with: content.childOrCrash(for: content.elements[index]))
+            let index = contentElements.startIndex.advanced(by: i)
+            node.update(with: content.childOrCrash(for: contentElements[index]))
         }
 
-        let remaining = content.elements.count - storage.nodes.count
+        let remaining = contentElements.count - storage.nodes.count
         if remaining > 0 {
             // Add new pages
             for i in storage.nodes.count..<(storage.nodes.count + remaining) {
                 let node = ViewGraphNode(
-                    for: content.childOrCrash(for: content.elements[i])
+                    for: content.childOrCrash(for: contentElements[i])
                 )
                 storage.nodes.append(node)
                 storage.container.add(node.widget, named: pageName(for: i))
@@ -196,8 +199,8 @@ public struct NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
             }
         } else if remaining < 0 {
             // Animate back to the last page that was not popped
-            if alwaysShowTopView, !content.elements.isEmpty {
-                let top = storage.nodes[content.elements.count - 1]
+            if alwaysShowTopView, !contentElements.isEmpty {
+                let top = storage.nodes[contentElements.count - 1]
                 storage.container.setVisible(top.widget)
             }
 

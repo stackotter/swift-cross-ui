@@ -20,7 +20,7 @@ public struct NavigationPath {
         /// Entries that will be encoded when this navigation path is first used by a
         /// ``NavigationStack``. It is not possible to decode the entries without first knowing
         /// what types the path can possibly contain (which only the ``NavigationStack`` will know).
-        var encodedEntries: [EncodedEntry]?
+        var encodedEntries: [EncodedEntry] = []
     }
 
     /// The path and any elements waiting to be decoded are stored in a class so that changes are
@@ -28,17 +28,14 @@ public struct NavigationPath {
     /// loop of updates).
     private var storage = Storage()
 
-    /// A dummy used to trigger changes detectable by `Observed`.
-    private var dummy = false
-
     /// Indicates whether this path is empty.
     var isEmpty: Bool {
-        count == 0
+        storage.encodedEntries.isEmpty && storage.path.isEmpty
     }
 
     /// The number of elements in the path.
     var count: Int {
-        (storage.encodedEntries?.count ?? 0) + storage.path.count
+        storage.encodedEntries.count + storage.path.count
     }
 
     /// Creates an empty navigation path
@@ -49,36 +46,27 @@ public struct NavigationPath {
     /// Appends a new value to the end of the path.
     public mutating func append<C: Codable>(_ component: C) {
         storage.path.append(component)
-        triggerUpdate()
     }
 
     /// Removes values from the end of this path.
-    public mutating func pop(_ k: Int = 1) {
-        if storage.path.count == 0 && !isEmpty {
-            storage.encodedEntries?.removeLast(k)
-            if storage.encodedEntries?.count == 0 {
-                storage.encodedEntries = nil
-            }
-        } else if !isEmpty {
-            storage.path.removeLast()
+    ///
+    /// - Parameter k: The number of elements to remove from the path. ``k`` must be greater than or equal to zero.
+    public mutating func removeLast(_ k: Int = 1) {
+        precondition(k >= 0, "`k` must be greater than or equal to zero")
+        if k < storage.path.count {
+            storage.path.removeLast(k)
+        } else if k < count {
+            storage.encodedEntries.removeLast(k - storage.path.count)
+            storage.path.removeAll()
         } else {
-            fatalError("Attempted to pop from empty navigation path")
+            removeAll()
         }
-        triggerUpdate()
     }
 
     /// Removes all values from this path.
     public mutating func removeAll() {
         storage.path.removeAll()
-        storage.encodedEntries = nil
-        triggerUpdate()
-    }
-
-    /// Causes the path to count as mutated so that any observers can know that it changed. Should
-    /// be called whenever `storage` is updated except for when decoding entries (which doesn't
-    /// change what is displayed and would cause an infinite loop of updates).
-    private mutating func triggerUpdate() {
-        dummy = !dummy
+        storage.encodedEntries.removeAll()
     }
 
     /// Gets the path's current entries. If the path was decoded from a stored representation and
@@ -87,14 +75,14 @@ public struct NavigationPath {
     /// cannot be decoded (after macOS 11 they can be decoded by using `_typeByName`, but we can't
     /// use that because of backwards compatibility).
     func path(destinationTypes: [any Codable.Type]) -> [any Codable] {
-        guard let encodedEntries = storage.encodedEntries else {
+        guard !storage.encodedEntries.isEmpty else {
             return storage.path
         }
 
         var decodedEntries: [Int: any Codable] = [:]
         for destinationType in destinationTypes {
             let type = String(reflecting: destinationType)
-            for (i, entry) in encodedEntries.enumerated() where entry.type == type {
+            for (i, entry) in storage.encodedEntries.enumerated() where entry.type == type {
                 do {
                     let value = try JSONDecoder().decode(
                         destinationType,
@@ -109,7 +97,7 @@ public struct NavigationPath {
         }
 
         var entries: [any Codable] = []
-        for i in 0..<encodedEntries.count {
+        for i in 0..<storage.encodedEntries.count {
             guard let entry = decodedEntries[i] else {
                 // This should not be possible to reach
                 fatalError("Failed to decode navigation path")
@@ -117,7 +105,7 @@ public struct NavigationPath {
             entries.append(entry)
         }
 
-        self.storage.encodedEntries = nil
+        storage.encodedEntries = []
         storage.path = entries + storage.path
 
         return storage.path
@@ -139,7 +127,7 @@ extension NavigationPath: Codable {
         var container = encoder.singleValueContainer()
 
         // Combine any remaining encoded entries with the current decoded entries in the path.
-        var entries = storage.encodedEntries ?? []
+        var entries = storage.encodedEntries
         entries += storage.path.map { entry in
             let type = String(reflecting: type(of: entry))
             let value: Data
