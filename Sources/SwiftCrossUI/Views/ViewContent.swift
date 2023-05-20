@@ -4,7 +4,7 @@ public protocol ViewContent: View {
     associatedtype Children: ViewGraphNodeChildren where Children.Content == Self
 }
 
-extension ViewContent where Content == Self, State == EmptyViewState {
+extension ViewContent where Content == Self, State == EmptyState {
     public var body: Self {
         return self
     }
@@ -105,12 +105,7 @@ extension ViewContent5: ViewContent {
 }
 
 public struct ViewContent6<
-    View0: View,
-    View1: View,
-    View2: View,
-    View3: View,
-    View4: View,
-    View5: View
+    View0: View, View1: View, View2: View, View3: View, View4: View, View5: View
 > {
     public var view0: View0
     public var view1: View1
@@ -120,11 +115,7 @@ public struct ViewContent6<
     public var view5: View5
 
     public init(
-        _ view0: View0,
-        _ view1: View1,
-        _ view2: View2,
-        _ view3: View3,
-        _ view4: View4,
+        _ view0: View0, _ view1: View1, _ view2: View2, _ view3: View3, _ view4: View4,
         _ view5: View5
     ) {
         self.view0 = view0
@@ -141,13 +132,7 @@ extension ViewContent6: ViewContent {
 }
 
 public struct ViewContent7<
-    View0: View,
-    View1: View,
-    View2: View,
-    View3: View,
-    View4: View,
-    View5: View,
-    View6: View
+    View0: View, View1: View, View2: View, View3: View, View4: View, View5: View, View6: View
 > {
     public var view0: View0
     public var view1: View1
@@ -158,13 +143,8 @@ public struct ViewContent7<
     public var view6: View6
 
     public init(
-        _ view0: View0,
-        _ view1: View1,
-        _ view2: View2,
-        _ view3: View3,
-        _ view4: View4,
-        _ view5: View5,
-        _ view6: View6
+        _ view0: View0, _ view1: View1, _ view2: View2, _ view3: View3, _ view4: View4,
+        _ view5: View5, _ view6: View6
     ) {
         self.view0 = view0
         self.view1 = view1
@@ -183,13 +163,7 @@ extension ViewContent7: ViewContent {
 }
 
 public struct ViewContent8<
-    View0: View,
-    View1: View,
-    View2: View,
-    View3: View,
-    View4: View,
-    View5: View,
-    View6: View,
+    View0: View, View1: View, View2: View, View3: View, View4: View, View5: View, View6: View,
     View7: View
 > {
     public var view0: View0
@@ -202,14 +176,8 @@ public struct ViewContent8<
     public var view7: View7
 
     public init(
-        _ view0: View0,
-        _ view1: View1,
-        _ view2: View2,
-        _ view3: View3,
-        _ view4: View4,
-        _ view5: View5,
-        _ view6: View6,
-        _ view7: View7
+        _ view0: View0, _ view1: View1, _ view2: View2, _ view3: View3, _ view4: View4,
+        _ view5: View5, _ view6: View6, _ view7: View7
     ) {
         self.view0 = view0
         self.view1 = view1
@@ -229,15 +197,8 @@ extension ViewContent8: ViewContent {
 }
 
 public struct ViewContent9<
-    View0: View,
-    View1: View,
-    View2: View,
-    View3: View,
-    View4: View,
-    View5: View,
-    View6: View,
-    View7: View,
-    View8: View
+    View0: View, View1: View, View2: View, View3: View, View4: View, View5: View, View6: View,
+    View7: View, View8: View
 > {
     public var view0: View0
     public var view1: View1
@@ -250,15 +211,8 @@ public struct ViewContent9<
     public var view8: View8
 
     public init(
-        _ view0: View0,
-        _ view1: View1,
-        _ view2: View2,
-        _ view3: View3,
-        _ view4: View4,
-        _ view5: View5,
-        _ view6: View6,
-        _ view7: View7,
-        _ view8: View8
+        _ view0: View0, _ view1: View1, _ view2: View2, _ view3: View3, _ view4: View4,
+        _ view5: View5, _ view6: View6, _ view7: View7, _ view8: View8
     ) {
         self.view0 = view0
         self.view1 = view1
@@ -279,16 +233,8 @@ extension ViewContent9: ViewContent {
 }
 
 public struct ViewContent10<
-    View0: View,
-    View1: View,
-    View2: View,
-    View3: View,
-    View4: View,
-    View5: View,
-    View6: View,
-    View7: View,
-    View8: View,
-    View9: View
+    View0: View, View1: View, View2: View, View3: View, View4: View, View5: View, View6: View,
+    View7: View, View8: View, View9: View
 > {
     public var view0: View0
     public var view1: View1
@@ -302,16 +248,8 @@ public struct ViewContent10<
     public var view9: View9
 
     public init(
-        _ view0: View0,
-        _ view1: View1,
-        _ view2: View2,
-        _ view3: View3,
-        _ view4: View4,
-        _ view5: View5,
-        _ view6: View6,
-        _ view7: View7,
-        _ view8: View8,
-        _ view9: View9
+        _ view0: View0, _ view1: View1, _ view2: View2, _ view3: View3, _ view4: View4,
+        _ view5: View5, _ view6: View6, _ view7: View7, _ view8: View8, _ view9: View9
     ) {
         self.view0 = view0
         self.view1 = view1

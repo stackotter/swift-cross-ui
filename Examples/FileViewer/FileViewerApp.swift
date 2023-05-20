@@ -1,7 +1,7 @@
 import SwiftCrossUI
 import Foundation
 
-class FileViewerAppState: AppState {
+class FileViewerAppState: Observable {
     @Observed var file: URL? = nil
 }
 

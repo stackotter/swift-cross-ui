@@ -125,11 +125,7 @@ public struct ViewGraphNodeChildren4<Child0: View, Child1: View, Child2: View, C
 }
 
 public struct ViewGraphNodeChildren5<
-    Child0: View,
-    Child1: View,
-    Child2: View,
-    Child3: View,
-    Child4: View
+    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View
 >: ViewGraphNodeChildren {
     public typealias Content = ViewContent5<Child0, Child1, Child2, Child3, Child4>
 
@@ -167,12 +163,7 @@ public struct ViewGraphNodeChildren5<
 }
 
 public struct ViewGraphNodeChildren6<
-    Child0: View,
-    Child1: View,
-    Child2: View,
-    Child3: View,
-    Child4: View,
-    Child5: View
+    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View
 >: ViewGraphNodeChildren {
     public typealias Content = ViewContent6<Child0, Child1, Child2, Child3, Child4, Child5>
 
@@ -214,13 +205,7 @@ public struct ViewGraphNodeChildren6<
 }
 
 public struct ViewGraphNodeChildren7<
-    Child0: View,
-    Child1: View,
-    Child2: View,
-    Child3: View,
-    Child4: View,
-    Child5: View,
-    Child6: View
+    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View
 >: ViewGraphNodeChildren {
     public typealias Content = ViewContent7<Child0, Child1, Child2, Child3, Child4, Child5, Child6>
 
@@ -266,14 +251,8 @@ public struct ViewGraphNodeChildren7<
 }
 
 public struct ViewGraphNodeChildren8<
-    Child0: View,
-    Child1: View,
-    Child2: View,
-    Child3: View,
-    Child4: View,
-    Child5: View,
-    Child6: View,
-    Child7: View
+    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
+    Child6: View, Child7: View
 >: ViewGraphNodeChildren {
     public typealias Content = ViewContent8<
         Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7
@@ -325,15 +304,8 @@ public struct ViewGraphNodeChildren8<
 }
 
 public struct ViewGraphNodeChildren9<
-    Child0: View,
-    Child1: View,
-    Child2: View,
-    Child3: View,
-    Child4: View,
-    Child5: View,
-    Child6: View,
-    Child7: View,
-    Child8: View
+    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
+    Child6: View, Child7: View, Child8: View
 >: ViewGraphNodeChildren {
     public typealias Content = ViewContent9<
         Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, Child8
@@ -389,16 +361,8 @@ public struct ViewGraphNodeChildren9<
 }
 
 public struct ViewGraphNodeChildren10<
-    Child0: View,
-    Child1: View,
-    Child2: View,
-    Child3: View,
-    Child4: View,
-    Child5: View,
-    Child6: View,
-    Child7: View,
-    Child8: View,
-    Child9: View
+    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
+    Child6: View, Child7: View, Child8: View, Child9: View
 >: ViewGraphNodeChildren {
     public typealias Content = ViewContent10<
         Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, Child8, Child9

@@ -1,7 +1,8 @@
 import SwiftCrossUI
 
-class CounterState: AppState {
-    @Observed var count = 0
+class CounterState: Observable {
+    @Observed
+    var count = 0
 }
 
 @main
@@ -10,13 +11,14 @@ struct CounterApp: App {
 
     let state = CounterState()
 
-    let windowProperties = WindowProperties(title: "CounterApp")
+    let windowProperties = WindowProperties(title: "CounterApp", resizable: true)
 
     var body: some ViewContent {
-        HStack {
+        HStack(spacing: 20) {
             Button("-") { state.count -= 1 }
-            Text("Count: \(state.count)")
+            Text("Count: \(state.count)", wrap: false)
             Button("+") { state.count += 1 }
         }
+        .padding(10)
     }
 }

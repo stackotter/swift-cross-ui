@@ -55,13 +55,13 @@ public struct OptionalView<V: View>: View {
 
     public func asWidget(_ children: OptionalViewChildren<V>) -> GtkSingleChildBox {
         let box = GtkSingleChildBox()
-        box.setOnlyChild(children.widgets.first)
+        box.setChild(children.widgets.first)
         return box
     }
 
     public func update(_ widget: GtkSingleChildBox, children: OptionalViewChildren<V>) {
         if children.storage.hasToggled {
-            widget.setOnlyChild(children.widgets.first)
+            widget.setChild(children.widgets.first)
         }
     }
 }

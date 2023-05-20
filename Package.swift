@@ -83,7 +83,7 @@ let package = Package(
             path: cGtkSources,
             pkgConfig: "gtk4",
             providers: [
-                .brew(["gtk+4"]),
+                .brew(["gtk4"]),
                 .apt(["libgtk-4-dev clang"])
             ]
         ),

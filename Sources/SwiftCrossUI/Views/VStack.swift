@@ -1,7 +1,9 @@
 /// A vertically oriented container. Similar to a `VStack` in SwiftUI.
 public struct VStack<Content: ViewContent>: View {
     public var body: Content
-    public var spacing: Int
+
+    /// The amount of spacing to apply between children.
+    private var spacing: Int
 
     /// Creates a new VStack.
     public init(@ViewContentBuilder _ content: () -> Content, spacing: Int = 8) {
@@ -16,10 +18,14 @@ public struct VStack<Content: ViewContent>: View {
     }
 
     public func asWidget(_ children: Content.Children) -> GtkBox {
-        let vStack = GtkBox(orientation: .vertical, spacing: spacing)
+        let vStack = GtkBox(orientation: .vertical)
         for widget in children.widgets {
             vStack.add(widget)
         }
         return vStack
+    }
+
+    public func update(_ widget: GtkBox, children: Content.Children) {
+        widget.spacing = spacing
     }
 }

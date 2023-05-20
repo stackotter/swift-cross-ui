@@ -3,10 +3,10 @@
 public struct FrameView<Child: View>: View {
     public var body: ViewContent1<Child>
 
-    public var minimumWidth: Int?
-    public var maximumWidth: Int?
-    public var minimumHeight: Int?
-    public var maximumHeight: Int?
+    private var minimumWidth: Int?
+    private var maximumWidth: Int?
+    private var minimumHeight: Int?
+    private var maximumHeight: Int?
 
     public init(_ child: Child, height: Int) {
         // TODO: Figure out how to get width working (seems to get ignored)
@@ -23,20 +23,6 @@ public struct FrameView<Child: View>: View {
 
     public func asWidget(_ children: ViewGraphNodeChildren1<Child>) -> GtkScrolledWindow {
         let widget = GtkScrolledWindow()
-
-        if let minimumWidth = minimumWidth {
-            widget.minimumContentWidth = minimumWidth
-        }
-        if let maximumWidth = maximumWidth {
-            widget.maximumContentWidth = maximumWidth
-        }
-        if let minimumHeight = minimumHeight {
-            widget.minimumContentHeight = minimumHeight
-        }
-        if let maximumHeight = maximumHeight {
-            widget.maximumContentHeight = maximumHeight
-        }
-
         let box = GtkBox(orientation: .vertical, spacing: 0)
         for child in children.widgets {
             box.add(child)

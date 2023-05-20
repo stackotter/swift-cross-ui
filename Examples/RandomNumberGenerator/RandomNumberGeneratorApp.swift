@@ -1,6 +1,6 @@
 import SwiftCrossUI
 
-class RandomNumberGeneratorState: AppState {
+class RandomNumberGeneratorState: Observable {
     @Observed var minNum = 0
     @Observed var maxNum = 100
     @Observed var randomNumber = 0
