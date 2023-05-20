@@ -1,7 +1,7 @@
 import Gtk
 
-/// Type to indicate the root of the NavigationStack. This is private to prevent root accidentally showing instead of a detail view.
-private struct NavigationStackRootPath: Hashable {}
+/// Type to indicate the root of the NavigationStack. This is internal to prevent root accidentally showing instead of a detail view.
+struct NavigationStackRootPath: Codable {}
 
 /// A view that displays a root view and enables you to present additional views over the root view.
 ///
@@ -13,6 +13,7 @@ public struct NavigationStack<Detail: View>: View {
     private var transitionType: StackTransitionType
     /// The duration of transition to use (in milliseconds).
     private var transitionMilliseconds: Int
+    private var path: Binding<NavigationPath>
 
     /// Creates a navigation stack with heterogeneous navigation state that you can control.
     ///
@@ -23,10 +24,11 @@ public struct NavigationStack<Detail: View>: View {
         path: Binding<NavigationPath>,
         @ViewContentBuilder _ root: @escaping () -> Detail
     ) {
+        self.path = path
         transitionType = .slideLeftRight
         transitionMilliseconds = 300
-        body = NavigationStackContent([NavigationStackRootPath()] + path.wrappedValue.path) {
-            if $0 is NavigationStackRootPath {
+        body = NavigationStackContent(path, []) { element in
+            if element is NavigationStackRootPath {
                 return root()
             } else {
                 return nil
@@ -42,14 +44,12 @@ public struct NavigationStack<Detail: View>: View {
     /// - Parameters:
     ///   - data: The type of data that this destination matches.
     ///   - destination: A view builder that defines a view to display when the stack’s navigation state contains a value of type data. The closure takes one argument, which is the value of the data to present.
-    public func navigationDestination<D: Hashable, C: View>(
+    public func navigationDestination<D: Codable, C: View>(
         for data: D.Type, @ViewContentBuilder destination: @escaping (D) -> C
     ) -> NavigationStack<EitherView<Detail, C>> {
         return NavigationStack<EitherView<Detail, C>>(
             previous: self,
-            destination: {
-                return ($0 as? D).flatMap(destination)
-            }
+            destination: destination
         )
     }
 
@@ -58,13 +58,12 @@ public struct NavigationStack<Detail: View>: View {
     ///   - transition: The type of animation that will be used for transitions between pages in the
     ///     stack.
     ///   - duration: Duration of the transition animation in seconds.
-    public func navigationTransition(
-        _ transition: StackTransitionType,
-        seconds: Double
-    ) -> some View {
+    public func navigationTransition(_ transition: StackTransitionType, duration: Double)
+        -> some View
+    {
         var view = self
         view.transitionType = transition
-        view.transitionMilliseconds = Int(seconds * 1000)
+        view.transitionMilliseconds = Int(duration * 1000)
         return view
     }
 
@@ -78,17 +77,18 @@ public struct NavigationStack<Detail: View>: View {
     }
 
     /// Add a destination for a specific path element
-    private init<PreviousDetail: View, NewDetail: View>(
+    private init<PreviousDetail: View, NewDetail: View, Component: Codable>(
         previous: NavigationStack<PreviousDetail>,
-        destination: @escaping (any Hashable) -> NewDetail?
+        destination: @escaping (Component) -> NewDetail?
     ) where Detail == EitherView<PreviousDetail, NewDetail> {
+        path = previous.path
         transitionType = previous.transitionType
         transitionMilliseconds = previous.transitionMilliseconds
-        body = NavigationStackContent(previous.body.elements) {
+        body = NavigationStackContent(path, previous.body.destinationTypes + [Component.self]) {
             if let previous = previous.body.child($0) {
                 // Either root or previously defined destination returned a view
                 return EitherView(previous)
-            } else if let new = destination($0) {
+            } else if let component = $0 as? Component, let new = destination(component) {
                 // This destination returned a detail view for the current element
                 return EitherView(new)
             } else {
@@ -102,10 +102,20 @@ public struct NavigationStack<Detail: View>: View {
 public struct NavigationStackContent<Child: View>: ViewContent {
     public typealias Children = NavigationStackChildren<Child>
 
-    public var elements: [any Hashable]
-    public var child: (any Hashable) -> Child?
+    public var path: Binding<NavigationPath>
 
-    func childOrCrash(for element: any Hashable) -> Child {
+    public var destinationTypes: [any Codable.Type]
+
+    public var child: (any Codable) -> Child?
+
+    public var elements: [any Codable] {
+        let resolvedPath = path.wrappedValue.path(
+            destinationTypes: destinationTypes
+        )
+        return [NavigationStackRootPath()] + resolvedPath
+    }
+
+    func childOrCrash(for element: any Codable) -> Child {
         guard let child = child(element) else {
             fatalError(
                 "Failed to find detail view for \"\(element)\", make sure you have called .navigationDestination for this type."
@@ -115,8 +125,13 @@ public struct NavigationStackContent<Child: View>: ViewContent {
         return child
     }
 
-    internal init(_ elements: [any Hashable], _ child: @escaping (any Hashable) -> Child?) {
-        self.elements = elements
+    internal init(
+        _ path: Binding<NavigationPath>,
+        _ destinationTypes: [any Codable.Type],
+        _ child: @escaping (any Codable) -> Child?
+    ) {
+        self.path = path
+        self.destinationTypes = destinationTypes
         self.child = child
     }
 }
@@ -151,6 +166,9 @@ public struct NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
     }
 
     public func update(with content: Content) {
+        // content.elements is a computed property so only get it once
+        let contentElements = content.elements
+
         // Remove queued pages
         for widget in storage.widgetsQueuedForRemoval {
             storage.container.remove(widget)
@@ -159,19 +177,20 @@ public struct NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
 
         // Update pages
         for (i, node) in storage.nodes.enumerated() {
-            guard i < content.elements.count else {
+
+            guard i < contentElements.count else {
                 break
             }
-            let index = content.elements.startIndex.advanced(by: i)
-            node.update(with: content.childOrCrash(for: content.elements[index]))
+            let index = contentElements.startIndex.advanced(by: i)
+            node.update(with: content.childOrCrash(for: contentElements[index]))
         }
 
-        let remaining = content.elements.count - storage.nodes.count
+        let remaining = contentElements.count - storage.nodes.count
         if remaining > 0 {
             // Add new pages
             for i in storage.nodes.count..<(storage.nodes.count + remaining) {
                 let node = ViewGraphNode(
-                    for: content.childOrCrash(for: content.elements[i])
+                    for: content.childOrCrash(for: contentElements[i])
                 )
                 storage.nodes.append(node)
                 storage.container.add(node.widget, named: pageName(for: i))
@@ -182,8 +201,8 @@ public struct NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
             }
         } else if remaining < 0 {
             // Animate back to the last page that was not popped
-            if alwaysShowTopView, !content.elements.isEmpty {
-                let top = storage.nodes[content.elements.count - 1]
+            if alwaysShowTopView, !contentElements.isEmpty {
+                let top = storage.nodes[contentElements.count - 1]
                 storage.container.setVisible(top.widget)
             }
 
