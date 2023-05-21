@@ -18,6 +18,6 @@ jobs:
         sudo apt update && \
         sudo apt install -y libgtk-4-dev clang
     - name: Build
-      run: swift build -v
+      run: swift build
     #- name: Run tests
       #run: swift test -v

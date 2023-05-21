@@ -13,11 +13,11 @@ jobs:
     - name: Force Xcode 14.3
       run: sudo xcode-select -switch /Applications/Xcode_14.3.app
     - uses: actions/checkout@v2
-    - name: Debug
-      run: gtk4-launch --version
     - name: Install Dependencies
       run: brew install pkg-config gtk4
     - name: Patch libffi
       run: sed -i '' 's/-I..includedir.//g' /usr/local/Homebrew/Library/Homebrew/os/mac/pkgconfig/13/libffi.pc
+    - name: Debug
+      run: gtk4-launch --version
     - name: Build
-      run: swift build -v
+      run: swift build
