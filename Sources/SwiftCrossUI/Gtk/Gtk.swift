@@ -1,5 +1,14 @@
 import Gtk
 
+#if canImport(FileDialog)
+import FileDialog
+
+public typealias GtkFileDialog = FileDialog
+#else
+@available(*, unavailable, message: "File dialog requires Gtk 4.10")
+public class GtkFileDialog {}
+#endif
+
 public typealias GtkApplication = Gtk.Application
 public typealias GtkBox = Gtk.Box
 public typealias GtkStack = Gtk.Stack
@@ -15,5 +24,4 @@ public typealias GtkScale = Gtk.Scale
 public typealias GtkImage = Gtk.Image
 public typealias GtkViewport = Gtk.Viewport
 public typealias GtkScrolledWindow = Gtk.ScrolledWindow
-public typealias GtkFileDialog = Gtk.FileDialog
 public typealias GtkColor = Gtk.Color
