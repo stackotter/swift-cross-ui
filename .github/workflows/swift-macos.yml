@@ -17,7 +17,5 @@ jobs:
       run: brew install pkg-config gtk4
     - name: Patch libffi
       run: sed -i '' 's/-I..includedir.//g' /usr/local/Homebrew/Library/Homebrew/os/mac/pkgconfig/13/libffi.pc
-    - name: Debug
-      run: gtk4-launch --version
     - name: Build
-      run: swift build
+      run: swift build -v

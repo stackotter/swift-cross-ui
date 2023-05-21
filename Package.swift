@@ -27,6 +27,7 @@ fatalError("Unsupported platform.")
 var conditionalTargets: [Target] = []
 var swiftCrossUIDependencies: [Target.Dependency] = ["Gtk"]
 var gtkExampleDependencies: [Target.Dependency] = ["Gtk"]
+var gtkSwiftSettings: [SwiftSetting] = []
 if getGtk4MinorVersion() >= 10 {
     conditionalTargets.append(
         .target(
@@ -37,6 +38,7 @@ if getGtk4MinorVersion() >= 10 {
 
     swiftCrossUIDependencies.append("FileDialog")
     gtkExampleDependencies.append("FileDialog")
+    gtkSwiftSettings.append(.define("GTK_4_10_PLUS"))
 }
 
 let package = Package(
@@ -103,7 +105,8 @@ let package = Package(
         ),
         .target(
             name: "Gtk",
-            dependencies: ["CGtk"]
+            dependencies: ["CGtk"],
+            swiftSettings: gtkSwiftSettings
         ),
         .executableTarget(
             name: "GtkExample",
