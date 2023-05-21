@@ -154,7 +154,7 @@ func getGtk4MinorVersion() -> Int {
     }
 
     let process = Process()
-    process.launchPath = "/bin/bash"
+    process.executableURL = URL(fileURLWithPath: "/bin/bash")
     process.arguments = ["-c", "gtk4-launch --version"]
     let pipe = Pipe()
     process.standardOutput = pipe
