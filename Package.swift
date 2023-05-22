@@ -1,6 +1,7 @@
 // swift-tools-version:5.5
 
 import PackageDescription
+import Foundation
 
 var dependencies: [Package.Dependency] = []
 
@@ -21,6 +22,24 @@ let cGtkSources = "Sources/CGtk/Linux+Windows"
 #else
 fatalError("Unsupported platform.")
 #endif
+
+// Conditionally enable features that rely on Gtk 4.10
+var conditionalTargets: [Target] = []
+var swiftCrossUIDependencies: [Target.Dependency] = ["Gtk"]
+var gtkExampleDependencies: [Target.Dependency] = ["Gtk"]
+var gtkSwiftSettings: [SwiftSetting] = []
+if getGtk4MinorVersion() >= 10 {
+    conditionalTargets.append(
+        .target(
+            name: "FileDialog",
+            dependencies: ["CGtk", "Gtk"]
+        )
+    )
+
+    swiftCrossUIDependencies.append("FileDialog")
+    gtkExampleDependencies.append("FileDialog")
+    gtkSwiftSettings.append(.define("GTK_4_10_PLUS"))
+}
 
 let package = Package(
     name: "swift-cross-ui",
@@ -67,10 +86,7 @@ let package = Package(
     targets: [
         .target(
             name: "SwiftCrossUI",
-            dependencies: [
-                "Gtk",
-                "CGtk"
-            ],
+            dependencies: swiftCrossUIDependencies,
             exclude: [
                 "Builders/ViewContentBuilder.swift.gyb",
                 "ViewGraph/ViewGraphNodeChildren.swift.gyb",
@@ -89,11 +105,12 @@ let package = Package(
         ),
         .target(
             name: "Gtk",
-            dependencies: ["CGtk"]
+            dependencies: ["CGtk"],
+            swiftSettings: gtkSwiftSettings
         ),
         .executableTarget(
             name: "GtkExample",
-            dependencies: ["Gtk"],
+            dependencies: gtkExampleDependencies,
             resources: [.copy("GTK.png")]
         ),
 
@@ -128,5 +145,36 @@ let package = Package(
             dependencies: ["SwiftCrossUI"],
             path: "Examples/Navigation"
         )
-    ]
+    ] + conditionalTargets
 )
+
+func getGtk4MinorVersion() -> Int {
+    func fail() -> Never {
+        fatalError("Failed to get gtk version")
+    }
+
+    let process = Process()
+    process.executableURL = URL(fileURLWithPath: "/bin/bash")
+    process.arguments = ["-c", "gtk4-launch --version"]
+    let pipe = Pipe()
+    process.standardOutput = pipe
+
+    do {
+        try process.run()
+        guard let data = try pipe.fileHandleForReading.readToEnd() else {
+            fail()
+        }
+        process.waitUntilExit()
+
+        guard
+            let version = String(data: data, encoding: .utf8)?.split(separator: "."),
+            version.count >= 2,
+            let minor = Int(version[1])
+        else {
+            fail()
+        }
+        return minor
+    } catch {
+        fail()
+    }
+}

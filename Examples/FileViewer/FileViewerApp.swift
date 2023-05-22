@@ -18,6 +18,7 @@ struct FileViewerApp: App {
     )
 
     var body: some ViewContent {
+        #if canImport(FileDialog)
         HStack {
             VStack {
                 Text("Selected file: \(state.file?.path ?? "none")")
@@ -33,5 +34,8 @@ struct FileViewerApp: App {
                 }
             }.padding(10)
         }
+        #else
+        Text("FileDialog requires Gtk 4.10")
+        #endif
     }
 }
