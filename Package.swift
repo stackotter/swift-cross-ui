@@ -28,7 +28,7 @@ var conditionalTargets: [Target] = []
 var swiftCrossUIDependencies: [Target.Dependency] = ["Gtk"]
 var gtkExampleDependencies: [Target.Dependency] = ["Gtk"]
 var gtkSwiftSettings: [SwiftSetting] = []
-if getGtk4MinorVersion() >= 10 {
+if let version = getGtk4MinorVersion(), version >= 10 {
     conditionalTargets.append(
         .target(
             name: "FileDialog",
@@ -148,11 +148,7 @@ let package = Package(
     ] + conditionalTargets
 )
 
-func getGtk4MinorVersion() -> Int {
-    func fail() -> Never {
-        fatalError("Failed to get gtk version")
-    }
-
+func getGtk4MinorVersion() -> Int? {
     let process = Process()
     process.executableURL = URL(fileURLWithPath: "/bin/bash")
     process.arguments = ["-c", "gtk4-launch --version"]
@@ -162,7 +158,8 @@ func getGtk4MinorVersion() -> Int {
     do {
         try process.run()
         guard let data = try pipe.fileHandleForReading.readToEnd() else {
-            fail()
+            print("Failed to get gtk version")
+            return nil
         }
         process.waitUntilExit()
 
@@ -171,10 +168,12 @@ func getGtk4MinorVersion() -> Int {
             version.count >= 2,
             let minor = Int(version[1])
         else {
-            fail()
+            print("Failed to get gtk version")
+            return nil
         }
         return minor
     } catch {
-        fail()
+        print("Failed to get gtk version")
+        return nil
     }
 }
