@@ -1,7 +1,8 @@
 /// A view used to manage a child view's size. It is preferred to use the `frame` modifier available
 /// on all views (which uses this behind the scenes).
+@available(macOS 99.99.0, *)
 public struct FrameView<Child: View>: View {
-    public var body: ViewContent1<Child>
+    public var body: ViewContentVariadic<Child>
 
     private var minimumWidth: Int?
     private var maximumWidth: Int?
@@ -10,18 +11,18 @@ public struct FrameView<Child: View>: View {
 
     public init(_ child: Child, height: Int) {
         // TODO: Figure out how to get width working (seems to get ignored)
-        body = ViewContent1(child)
+        body = ViewContentVariadic(child)
         minimumHeight = height
         maximumHeight = height
     }
 
     public init(_ child: Child, minimumHeight: Int?, maximumHeight: Int?) {
-        body = ViewContent1(child)
+        body = ViewContentVariadic(child)
         self.minimumHeight = minimumHeight
         self.maximumHeight = maximumHeight
     }
 
-    public func asWidget(_ children: ViewGraphNodeChildren1<Child>) -> GtkScrolledWindow {
+    public func asWidget(_ children: ViewGraphNodeChildrenVariadic<Child>) -> GtkScrolledWindow {
         let widget = GtkScrolledWindow()
         let box = GtkBox(orientation: .vertical, spacing: 0)
         for child in children.widgets {
@@ -31,7 +32,7 @@ public struct FrameView<Child: View>: View {
         return widget
     }
 
-    public func update(_ widget: GtkScrolledWindow, children: ViewGraphNodeChildren1<Child>) {
+    public func update(_ widget: GtkScrolledWindow, children: ViewGraphNodeChildrenVariadic<Child>) {
         if let minimumWidth = minimumWidth {
             widget.minimumContentWidth = minimumWidth
         }

@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.9
 
 import PackageDescription
 import Foundation
@@ -43,7 +43,7 @@ if getGtk4MinorVersion() >= 10 {
 
 let package = Package(
     name: "swift-cross-ui",
-    platforms: [.macOS(.v10_15)],
+    platforms: [.macOS(.v13)],
     products: [
         .library(
             name: "SwiftCrossUI",

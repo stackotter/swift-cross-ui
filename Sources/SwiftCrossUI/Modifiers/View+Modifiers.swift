@@ -1,34 +1,39 @@
 extension View {
-    public func padding(_ amount: Int) -> PaddingView<ViewContent1<Self>> {
+    @available(macOS 99.99.0, *)
+    public func padding(_ amount: Int) -> PaddingView<ViewContentVariadic<Self>> {
         let padding = Padding(amount)
-        return PaddingView(ViewContent1(self), padding)
+        return PaddingView(ViewContentVariadic(self), padding)
     }
 
+    @available(macOS 99.99.0, *)
     public func padding(
         _ side: Side,
         _ amount: Int
-    ) -> PaddingView<ViewContent1<Self>> {
+    ) -> PaddingView<ViewContentVariadic<Self>> {
         var padding = Padding()
         padding[side] = amount
-        return PaddingView(ViewContent1(self), padding)
+        return PaddingView(ViewContentVariadic(self), padding)
     }
 
-    public func frame(height: Int) -> FrameView<ViewContent1<Self>> {
-        return FrameView(ViewContent1(self), height: height)
+    @available(macOS 99.99.0, *)
+    public func frame(height: Int) -> FrameView<ViewContentVariadic<Self>> {
+        return FrameView(ViewContentVariadic(self), height: height)
     }
 
+    @available(macOS 99.99.0, *)
     public func frame(
         minimumHeight: Int? = nil,
         maximumHeight: Int? = nil
-    ) -> FrameView<ViewContent1<Self>> {
+    ) -> FrameView<ViewContentVariadic<Self>> {
         return FrameView(
-            ViewContent1(self),
+            ViewContentVariadic(self),
             minimumHeight: minimumHeight,
             maximumHeight: maximumHeight
         )
     }
 
-    public func foregroundColor(_ color: Color) -> ForegroundColorView<ViewContent1<Self>> {
-        return ForegroundColorView(ViewContent1(self), color: color)
+    @available(macOS 99.99.0, *)
+    public func foregroundColor(_ color: Color) -> ForegroundColorView<ViewContentVariadic<Self>> {
+        return ForegroundColorView(ViewContentVariadic(self), color: color)
     }
 }

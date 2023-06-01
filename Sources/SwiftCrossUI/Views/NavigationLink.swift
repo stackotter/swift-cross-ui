@@ -1,8 +1,9 @@
 /// A navigation primitive that appends a value to the current navigation path on click.
 ///
 /// Unlike Apples SwiftUI API a `NavigationLink` can be outside of a `NavigationStack` as long as they share the same `NavigationPath`
+@available(macOS 99.99.0, *)
 public struct NavigationLink: View {
-    public var body: ViewContent1<Button> {
+    public var body: ViewContentVariadic<Button> {
         Button(label) {
             path.wrappedValue.append(value)
         }
