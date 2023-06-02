@@ -78,6 +78,10 @@ let package = Package(
             targets: ["NavigationExample"]
         ),
         .executable(
+            name: "SplitExample",
+            targets: ["SplitExample"]
+        ),
+        .executable(
             name: "GtkExample",
             targets: ["GtkExample"]
         )
@@ -144,6 +148,11 @@ let package = Package(
             name: "NavigationExample",
             dependencies: ["SwiftCrossUI"],
             path: "Examples/Navigation"
+        ),
+        .executableTarget(
+            name: "SplitExample",
+            dependencies: ["SwiftCrossUI"],
+            path: "Examples/Split"
         )
     ] + conditionalTargets
 )
