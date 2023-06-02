@@ -1,3 +1,4 @@
+import Gtk
 import CGtk
 import Foundation
 

@@ -1,7 +1,7 @@
 import CGtk
 
 public struct Cancellable {
-    var pointer: UnsafeMutablePointer<GCancellable>?
+    public var pointer: UnsafeMutablePointer<GCancellable>?
 
     public init() {
         pointer = g_cancellable_new()
