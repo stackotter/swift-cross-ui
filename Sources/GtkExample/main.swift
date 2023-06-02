@@ -5,6 +5,10 @@
 import Foundation
 import Gtk
 
+#if canImport(FileDialog)
+import FileDialog
+#endif
+
 let app = Application(applicationId: "com.tomaslinhart.swiftgtk.example")
 app.run { window in
     window.title = "Hello World"
@@ -88,6 +92,7 @@ app.run { window in
     }
     box.add(imageButton)
 
+    #if canImport(FileDialog)
     let fileButton = Button(label: "Select file")
     fileButton.label = "Select file"
     fileButton.clicked = { [weak label] _ in
@@ -107,6 +112,7 @@ app.run { window in
         }
     }
     box.add(fileButton)
+    #endif
 
     let textView = TextView()
     textView.backspace = { _ in
