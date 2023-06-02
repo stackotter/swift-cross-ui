@@ -255,7 +255,7 @@ open class Widget {
         }
     }
 
-    public var leftMargin: Int {
+    public var leadingMargin: Int {
         get {
             return Int(gtk_widget_get_margin_start(widgetPointer))
         }
@@ -264,7 +264,7 @@ open class Widget {
         }
     }
 
-    public var rightMargin: Int {
+    public var trailingMargin: Int {
         get {
             return Int(gtk_widget_get_margin_end(widgetPointer))
         }
@@ -306,6 +306,19 @@ open class Widget {
         }
         set {
             gtk_widget_set_vexpand(castedPointer(), newValue ? 1 : 0)
+        }
+    }
+
+
+    /// -1 for no min size request
+    public var sizeRequest: (width: Int, height: Int) {
+        get {
+            var w: Int32 = -1, h: Int32 = -1
+            gtk_widget_get_size_request(castedPointer(), &w, &h)
+            return (Int(w), Int(h))
+        }
+        set {
+            gtk_widget_set_size_request(castedPointer(), Int32(newValue.width), Int32(newValue.height))
         }
     }
 }
