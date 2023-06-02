@@ -2,8 +2,6 @@ import Gtk
 import CGtk
 import Foundation
 
-#if canImport(gtk_file_dialog_new)
-
 /// A wrapper for Gtk's file dialog.
 public class FileDialog {
     var pointer: OpaquePointer?
@@ -87,10 +85,3 @@ public class FileDialog {
         self.cancellable = nil
     }
 }
-
-#else
-
-@available(*, unavailable, message: "Introduced in gtk4.10")
-public class FileDialog {}
-
-#endif
