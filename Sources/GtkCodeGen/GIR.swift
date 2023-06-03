@@ -88,13 +88,24 @@ struct Class: Decodable {
     var constructors: [Constructor]?
     var methods: [Method]?
     var properties: [Property]?
+    var signals: [Signal]?
 
     enum CodingKeys: String, CodingKey {
         case name, cSymbolPrefix, cType, parent, abstract, doc
         case constructors = "constructor"
         case methods = "method"
         case properties = "property"
+        case signals = "glibSignal"
     }
+}
+
+struct Signal: Decodable {
+    var name: String
+    var when: String
+    var noRecurse: Bool?
+    var doc: String?
+    var returnValue: ReturnValue
+    var parameters: Parameters?
 }
 
 struct Constructor: Decodable {

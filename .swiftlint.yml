@@ -7,6 +7,7 @@ disabled_rules:
   - closure_parameter_position
   - opening_brace
   - nesting # Sometimes it just makes sense to nest 2 levels deep
+  - trailing_comma # Conflicts with swift-format
 
 line_length: 140
 type_body_length: 400

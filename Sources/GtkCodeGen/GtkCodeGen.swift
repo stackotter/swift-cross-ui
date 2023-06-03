@@ -25,59 +25,118 @@ struct GtkCodeGen {
     }
 
     static func generateSources(for gir: GIR, to directory: URL) throws {
-        for class_ in gir.namespace.classes {
-            if class_.name == "Button" {
-                var initializers: [DeclSyntax] = []
-                for constructor in class_.constructors ?? [] {
-                    initializers.append(generateInitializer(constructor))
-                }
-
-                var properties: [DeclSyntax] = []
-                for property in class_.properties ?? [] {
-                    properties.append(generateProperty(property, namespace: gir.namespace, class_: class_))
-                }
-
-                let conformances: String
-                if let parent = class_.parent {
-                    conformances = ": \(parent)"
-                } else {
-                    conformances = ""
-                }
-
-                let source = SourceFileSyntax {
-                    DeclSyntax("import CGtk")
-                        .withTrailingTrivia(Trivia.newline)
-
-                    DeclSyntax(
-                        """
-                        public class \(raw: class_.name)\(raw: conformances) {
-                            \(raw: initializers.map(\.description).joined(separator: "\n"))
-
-                            \(raw: properties.map(\.description).joined(separator: "\n"))
-                        }
-                        """
-                    )
-                }
-                print(source.description)
+        for class_ in gir.namespace.classes where class_.name == "Button" {
+            var initializers: [DeclSyntax] = []
+            for constructor in class_.constructors ?? [] {
+                initializers.append(generateInitializer(constructor))
             }
+
+            var properties: [DeclSyntax] = []
+            for property in class_.properties ?? [] {
+                properties.append(
+                    generateProperty(property, namespace: gir.namespace, class_: class_)
+                )
+            }
+
+            let signals = class_.signals ?? []
+            for signal in signals {
+                properties.append(
+                    generateSignalHandlerProperty(signal, class_: class_)
+                )
+            }
+
+            var methods: [DeclSyntax] = []
+            if !signals.isEmpty {
+                methods.append(
+                    generateDidMoveToParent(signals)
+                )
+            }
+
+            let conformances: String
+            if let parent = class_.parent {
+                conformances = ": \(parent)"
+            } else {
+                conformances = ""
+            }
+
+            let source = SourceFileSyntax {
+                DeclSyntax("import CGtk")
+                    .withTrailingTrivia(Trivia.newline)
+
+                DeclSyntax(
+                    """
+                    public class \(raw: class_.name)\(raw: conformances) {
+                        \(raw: initializers.map(\.description).joined(separator: "\n"))
+
+                        \(raw: methods.map(\.description).joined(separator: "\n"))
+
+                        \(raw: properties.map(\.description).joined(separator: "\n"))
+                    }
+                    """
+                )
+            }
+            print(source.description)
         }
     }
 
-    static func generateProperty(_ property: Property, namespace: Namespace, class_: Class) -> DeclSyntax {
+    static func generateDidMoveToParent(_ signals: [Signal]) -> DeclSyntax {
+        var exprs: [ExprSyntax] = []
+
+        for signal in signals {
+            let name = convertDelimitedCasingToCamel(signal.name, delimiter: "-")
+            exprs.append(
+                ExprSyntax(
+                    """
+                    addSignal(name: \(literal: signal.name)) { [weak self] in
+                        guard let self = self else { return }
+                        self.\(raw: name)?(self)
+                    }
+                    """
+                )
+            )
+        }
+
+        return DeclSyntax(
+            """
+            override func didMoveToParent() {
+                super.didMoveToParent()
+
+                \(raw: exprs.map(\.description).joined(separator: "\n"))
+            }
+            """
+        )
+    }
+
+    static func generateSignalHandlerProperty(_ signal: Signal, class_: Class) -> DeclSyntax {
+        let name = convertDelimitedCasingToCamel(signal.name, delimiter: "-")
+        return DeclSyntax(
+            """
+            public var \(raw: name): ((\(raw: class_.name)) -> Void)?
+            """
+        )
+    }
+
+    static func generateProperty(
+        _ property: Property,
+        namespace: Namespace,
+        class_: Class
+    ) -> DeclSyntax {
         guard let girType = property.type, let getterName = property.getter else {
             fatalError("Missing type for '\(class_.name).\(property.name)'")
         }
 
         var type = swiftType(girType, namespace: namespace)
         let getterFunction = "\(namespace.cSymbolPrefix)_\(class_.cSymbolPrefix)_\(getterName)"
-        guard let method = class_.methods?.first(where: { method in
-            method.cIdentifier == getterFunction
-        }) else {
+        guard
+            let method = class_.methods?.first(where: { method in
+                method.cIdentifier == getterFunction
+            })
+        else {
             fatalError("'\(class_.name)' is missing method matching '\(getterFunction)'")
         }
 
         if method.returnValue?.nullable == true {
-            type = type + "?"
+            type += "?"
         }
 
         let getter =
@@ -88,10 +147,11 @@ struct GtkCodeGen {
             """
 
         let setter = property.setter.map { setter in
+            let conversion = generateSwiftToGtkConversion("newValue", swiftType: type)
             return
                 """
                 set {
-                    \(namespace.cSymbolPrefix)_\(class_.cSymbolPrefix)_\(setter)(castedPointer(), \(generateSwiftToGtkConversion("newValue", swiftType: type)))
+                    \(namespace.cSymbolPrefix)_\(class_.cSymbolPrefix)_\(setter)(castedPointer(), \(conversion))
                 }
                 """
         }
@@ -191,7 +251,10 @@ struct GtkCodeGen {
         return convertDelimitedCasingToCamel(name, delimiter: "-")
     }
 
-    static func convertDelimitedCasingToCamel(_ identifier: String, delimiter: Character) -> String {
+    static func convertDelimitedCasingToCamel(
+        _ identifier: String,
+        delimiter: Character
+    ) -> String {
         var parts = identifier.split(separator: delimiter)
         let first = parts.removeFirst()
         return first + parts.map(\.capitalized).joined()
