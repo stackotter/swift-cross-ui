@@ -11,8 +11,8 @@ public enum Edge: Int8, CaseIterable, Hashable {
         public init(rawValue: Int8) {
             self.rawValue = rawValue
         }
-        public init(_ e: Edge) {
-            self.rawValue = 1 << e.rawValue
+        public init(_ edge: Edge) {
+            self.rawValue = 1 << edge.rawValue
         }
 
         public static let top = Set(.top)
