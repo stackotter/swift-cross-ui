@@ -1,6 +1,7 @@
 import Gtk
 
-/// Type to indicate the root of the NavigationStack. This is internal to prevent root accidentally showing instead of a detail view.
+/// Type to indicate the root of the NavigationStack. This is internal to prevent root accidentally showing instead
+/// of a detail view.
 struct NavigationStackRootPath: Codable {}
 
 /// A view that displays a root view and enables you to present additional views over the root view.
@@ -38,12 +39,15 @@ public struct NavigationStack<Detail: View>: View {
 
     /// Associates a destination view with a presented data type for use within a navigation stack.
     ///
-    /// Add this view modifer to describe the view that the stack displays when presenting a particular kind of data. Use a `NavigationLink` to present the data.
-    /// You can add more than one navigation destination modifier to the stack if it needs to present more than one kind of data.
+    /// Add this view modifer to describe the view that the stack displays when presenting a particular
+    /// kind of data. Use a `NavigationLink` to present the data. You can add more than one navigation
+    /// destination modifier to the stack if it needs to present more than one kind of data.
     ///
     /// - Parameters:
     ///   - data: The type of data that this destination matches.
-    ///   - destination: A view builder that defines a view to display when the stack’s navigation state contains a value of type data. The closure takes one argument, which is the value of the data to present.
+    ///   - destination: A view builder that defines a view to display when the stack’s navigation
+    ///     state contains a value of type data. The closure takes one argument, which is the value
+    ///     of the data to present.
     public func navigationDestination<D: Codable, C: View>(
         for data: D.Type, @ViewContentBuilder destination: @escaping (D) -> C
     ) -> NavigationStack<EitherView<Detail, C>> {

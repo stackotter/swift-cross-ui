@@ -1,5 +1,5 @@
-import SwiftCrossUI
 import Foundation
+import SwiftCrossUI
 
 class FileViewerAppState: Observable {
     @Observed var file: URL? = nil
@@ -19,23 +19,23 @@ struct FileViewerApp: App {
 
     var body: some ViewContent {
         #if canImport(FileDialog)
-        HStack {
-            VStack {
-                Text("Selected file: \(state.file?.path ?? "none")")
+            HStack {
+                VStack {
+                    Text("Selected file: \(state.file?.path ?? "none")")
 
-                Button("Click") {
-                    let dialog = GtkFileDialog()
-                    dialog.open { result in
-                        guard case let .success(file) = result else {
-                            return
+                    Button("Click") {
+                        let dialog = GtkFileDialog()
+                        dialog.open { result in
+                            guard case let .success(file) = result else {
+                                return
+                            }
+                            state.file = file
                         }
-                        state.file = file
                     }
-                }
-            }.padding(10)
-        }
+                }.padding(10)
+            }
         #else
-        Text("FileDialog requires Gtk 4.10")
+            Text("FileDialog requires Gtk 4.10")
         #endif
     }
 }

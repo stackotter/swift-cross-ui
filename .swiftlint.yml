@@ -6,12 +6,14 @@ disabled_rules:
   - redundant_optional_initialization
   - closure_parameter_position
   - opening_brace
+  - nesting # Sometimes it just makes sense to nest 2 levels deep
 
 line_length: 140
 type_body_length: 400
 
 included:
   - Sources
+  - Examples
 excluded:
   - Sources/SwiftCrossUI/ViewGraph/ViewGraphNodeChildren.swift
   - Sources/SwiftCrossUI/Builders/ViewContentBuilder.swift
