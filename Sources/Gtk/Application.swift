@@ -13,9 +13,9 @@ public class Application {
         // Ignore the deprecation warning, making the change breaks support for platforms such as
         // Ubuntu (before Lunar). This is due to Ubuntu coming with an older version of Gtk in apt.
         #if GTK_4_10_PLUS
-        applicationPointer = gtk_application_new(applicationId, G_APPLICATION_DEFAULT_FLAGS)
+            applicationPointer = gtk_application_new(applicationId, G_APPLICATION_DEFAULT_FLAGS)
         #else
-        applicationPointer = gtk_application_new(applicationId, G_APPLICATION_FLAGS_NONE)
+            applicationPointer = gtk_application_new(applicationId, G_APPLICATION_FLAGS_NONE)
         #endif
     }
 

@@ -17,17 +17,17 @@ public struct Spacer: View {
         let orientableParent = widget.parentWidget as? GtkOrientable
 
         switch orientableParent?.orientation {
-        case .horizontal:
-            widget.leftMargin = minLength ?? 0
-            widget.expandHorizontally = true
-        case .vertical:
-            widget.topMargin = minLength ?? 0
-            widget.expandVertically = true
-        case nil:
-            widget.leftMargin = minLength ?? 0
-            widget.topMargin = minLength ?? 0
-            widget.expandHorizontally = true
-            widget.expandVertically = true
+            case .horizontal:
+                widget.leftMargin = minLength ?? 0
+                widget.expandHorizontally = true
+            case .vertical:
+                widget.topMargin = minLength ?? 0
+                widget.expandVertically = true
+            case nil:
+                widget.leftMargin = minLength ?? 0
+                widget.topMargin = minLength ?? 0
+                widget.expandHorizontally = true
+                widget.expandVertically = true
         }
     }
 }

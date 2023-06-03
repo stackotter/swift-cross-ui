@@ -20,7 +20,9 @@ extension NavigationSplitView {
         body = ViewContent3(sidebar(), content(), detail())
     }
 
-    public func asWidget(_ children: ViewGraphNodeChildren3<SideBar, MiddleBar, Detail>) -> GtkPaned {
+    public func asWidget(
+        _ children: ViewGraphNodeChildren3<SideBar, MiddleBar, Detail>
+    ) -> GtkPaned {
         let widget = GtkPaned(orientation: .horizontal)
         widget.startChild = children.child0.widget
 
@@ -42,7 +44,7 @@ extension NavigationSplitView {
         widget.shrinkEndChild = false
         // Set the position to the farthest left possible.
         // TODO: Allow setting the default offset (SwiftUI api: `navigationSplitViewColumnWidth(min:ideal:max:)`).
-        //       This needs frame modifier to be fledged out first
+        //   This needs frame modifier to be fledged out first
         widget.position = 0
         widget.expandVertically = true
 

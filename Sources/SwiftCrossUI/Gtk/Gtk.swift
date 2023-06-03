@@ -1,14 +1,14 @@
 import Gtk
 
 #if canImport(FileDialog)
-import FileDialog
+    import FileDialog
 
-public typealias GtkFileDialog = FileDialog
+    public typealias GtkFileDialog = FileDialog
 #else
-@available(*, unavailable, message: "File dialog requires Gtk 4.10")
-public class GtkFileDialog {
-    public init() {}
-}
+    @available(*, unavailable, message: "File dialog requires Gtk 4.10")
+    public class GtkFileDialog {
+        public init() {}
+    }
 #endif
 
 public typealias GtkApplication = Gtk.Application

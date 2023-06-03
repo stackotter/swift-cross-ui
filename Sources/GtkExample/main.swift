@@ -6,7 +6,7 @@ import Foundation
 import Gtk
 
 #if canImport(FileDialog)
-import FileDialog
+    import FileDialog
 #endif
 
 let app = Application(applicationId: "com.tomaslinhart.swiftgtk.example")
@@ -93,25 +93,25 @@ app.run { window in
     box.add(imageButton)
 
     #if canImport(FileDialog)
-    let fileButton = Button(label: "Select file")
-    fileButton.label = "Select file"
-    fileButton.clicked = { [weak label] _ in
-        label?.text = "Selecting file"
+        let fileButton = Button(label: "Select file")
+        fileButton.label = "Select file"
+        fileButton.clicked = { [weak label] _ in
+            label?.text = "Selecting file"
 
-        let dialog = FileDialog()
-        dialog.title = "File dialog"
-        dialog.acceptLabel = "Fire away"
+            let dialog = FileDialog()
+            dialog.title = "File dialog"
+            dialog.acceptLabel = "Fire away"
 
-        dialog.open { result in
-            switch result {
-                case .success(let file):
-                    label?.text = "Selected file: \(file.path)"
-                case .failure(let error):
-                    label?.text = "Cancelled selection: \(error.localizedDescription)"
+            dialog.open { result in
+                switch result {
+                    case .success(let file):
+                        label?.text = "Selected file: \(file.path)"
+                    case .failure(let error):
+                        label?.text = "Cancelled selection: \(error.localizedDescription)"
+                }
             }
         }
-    }
-    box.add(fileButton)
+        box.add(fileButton)
     #endif
 
     let textView = TextView()

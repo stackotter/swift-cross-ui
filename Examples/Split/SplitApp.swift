@@ -40,10 +40,10 @@ struct SplitApp: App {
 
     var body: some ViewContent {
         switch state.columns {
-        case .two:
-            doubleColumn
-        case .three:
-            tripleColumn
+            case .two:
+                doubleColumn
+            case .three:
+                tripleColumn
         }
     }
 
@@ -59,15 +59,15 @@ struct SplitApp: App {
         } detail: {
             VStack {
                 switch state.selectedArea {
-                case .science:
-                    Text("Science")
-                        .padding(.bottom, 10)
-                case .humanities:
-                    Text("Humanities")
-                        .padding(.bottom, 10)
-                case nil:
-                    Text("Select an area")
-                        .padding(.bottom, 10)
+                    case .science:
+                        Text("Science")
+                            .padding(.bottom, 10)
+                    case .humanities:
+                        Text("Humanities")
+                            .padding(.bottom, 10)
+                    case nil:
+                        Text("Select an area")
+                            .padding(.bottom, 10)
                 }
             }.padding(10)
         }
@@ -85,18 +85,18 @@ struct SplitApp: App {
         } content: {
             VStack {
                 switch state.selectedArea {
-                case .science:
-                    Text("Choose a science subject")
-                        .padding(.bottom, 10)
-                    Button("Physics") { state.selectedDetail = ScienceSubject.physics }
-                    Button("Chemistry") { state.selectedDetail = ScienceSubject.chemistry }
-                case .humanities:
-                    Text("Choose a humanities subject")
-                        .padding(.bottom, 10)
-                    Button("English") { state.selectedDetail = HumanitiesSubject.english }
-                    Button("History") { state.selectedDetail = HumanitiesSubject.history }
-                case nil:
-                    Text("Select an area")
+                    case .science:
+                        Text("Choose a science subject")
+                            .padding(.bottom, 10)
+                        Button("Physics") { state.selectedDetail = ScienceSubject.physics }
+                        Button("Chemistry") { state.selectedDetail = ScienceSubject.chemistry }
+                    case .humanities:
+                        Text("Choose a humanities subject")
+                            .padding(.bottom, 10)
+                        Button("English") { state.selectedDetail = HumanitiesSubject.english }
+                        Button("History") { state.selectedDetail = HumanitiesSubject.history }
+                    case nil:
+                        Text("Select an area")
                 }
                 // TODO: Exchange this for a proper .frame(minWidth:) once .frame is fixed
                 HStack { Spacer(minLength: 200) }
@@ -104,22 +104,22 @@ struct SplitApp: App {
         } detail: {
             VStack {
                 switch state.selectedDetail {
-                case let subject as ScienceSubject:
-                    switch subject {
-                    case .physics:
-                        Text("Physics is applied maths")
-                    case .chemistry:
-                        Text("Chemistry is applied physics")
-                    }
-                case let subject as HumanitiesSubject:
-                    switch subject {
-                    case .english:
-                        Text("I don't like essays")
-                    case .history:
-                        Text("Don't repeat it")
-                    }
-                default:
-                    Text("Select a subject")
+                    case let subject as ScienceSubject:
+                        switch subject {
+                            case .physics:
+                                Text("Physics is applied maths")
+                            case .chemistry:
+                                Text("Chemistry is applied physics")
+                        }
+                    case let subject as HumanitiesSubject:
+                        switch subject {
+                            case .english:
+                                Text("I don't like essays")
+                            case .history:
+                                Text("Don't repeat it")
+                        }
+                    default:
+                        Text("Select a subject")
                 }
             }.padding(10)
         }
