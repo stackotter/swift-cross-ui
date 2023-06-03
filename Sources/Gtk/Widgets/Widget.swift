@@ -6,7 +6,6 @@ import CGtk
 import Foundation
 
 open class Widget: GObjectRepresentable {
-    internal var constraints: [Constraint] = []
     private var signals: [(UInt, Any)] = []
     var widgetPointer: UnsafeMutablePointer<GtkWidget>?
 
