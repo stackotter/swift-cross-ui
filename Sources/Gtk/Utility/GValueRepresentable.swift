@@ -13,7 +13,10 @@ public protocol GValueRepresentable {
 
 // MARK: - GValueRepresentable Implementations
 
-extension Int: GValueRepresentable {
+extension Int: GValueRepresentable {}
+extension Int32: GValueRepresentable {}
+
+extension GValueRepresentable where Self: BinaryInteger {
     public static var type: GType {
         GType(6 << G_TYPE_FUNDAMENTAL_SHIFT)
     }
