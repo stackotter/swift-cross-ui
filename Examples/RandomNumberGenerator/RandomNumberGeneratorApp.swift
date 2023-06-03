@@ -16,7 +16,10 @@ struct RandomNumberGeneratorApp: App {
 
     let state = RandomNumberGeneratorState()
 
-    let windowProperties = WindowProperties(title: "Random Number Generator", defaultSize: .init(500, 0))
+    let windowProperties = WindowProperties(
+        title: "Random Number Generator",
+        defaultSize: .init(500, 0)
+    )
 
     var body: some ViewContent {
         VStack {
@@ -47,10 +50,10 @@ struct RandomNumberGeneratorApp: App {
                 maximum: 100
             )
 
-            Text("(Excuse the weird colors, I'm just showing off dynamic styling)").padding(.top, 20)
+            Text("(Excuse the weird colors, I'm just showing off dynamic styling)")
+                .padding(.top, 20)
         }
         .padding(10)
         .foregroundColor(state.color)
     }
 }
-

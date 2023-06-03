@@ -1,5 +1,5 @@
-import SwiftCrossUI
 import Foundation
+import SwiftCrossUI
 
 class WindowPropertiesAppState: Observable {
     @Observed var count = 0

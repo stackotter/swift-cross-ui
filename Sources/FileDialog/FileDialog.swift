@@ -1,6 +1,6 @@
-import Gtk
 import CGtk
 import Foundation
+import Gtk
 
 /// A wrapper for Gtk's file dialog.
 public class FileDialog {
