@@ -21,6 +21,11 @@ struct GtkCodeGen {
         let data = try loadGIRFileContents(arguments.girFile)
         let gir = try decodeGIR(data)
 
+        try? FileManager.default.removeItem(at: arguments.outputDirectory)
+        try FileManager.default.createDirectory(
+            at: arguments.outputDirectory, withIntermediateDirectories: true
+        )
+
         try generateSources(for: gir, to: arguments.outputDirectory)
     }
 
@@ -32,7 +37,7 @@ struct GtkCodeGen {
             }
 
             var properties: [DeclSyntax] = []
-            for property in class_.properties ?? [] {
+            for property in class_.properties ?? [] where property.name != "child" {
                 properties.append(
                     generateProperty(property, namespace: gir.namespace, class_: class_)
                 )
@@ -66,17 +71,23 @@ struct GtkCodeGen {
                 DeclSyntax(
                     """
                     public class \(raw: class_.name)\(raw: conformances) {
-                        \(raw: initializers.map(\.description).joined(separator: "\n"))
+                        \(raw: initializers.map(\.description).joined(separator: "\n\n"))
 
-                        \(raw: methods.map(\.description).joined(separator: "\n"))
+                        \(raw: methods.map(\.description).joined(separator: "\n\n"))
 
-                        \(raw: properties.map(\.description).joined(separator: "\n"))
+                        \(raw: properties.map(\.description).joined(separator: "\n\n"))
                     }
                     """
                 )
             }
-            print(source.description)
+
+            try save(source.description, to: directory, class_: class_)
         }
+    }
+
+    static func save(_ source: String, to directory: URL, class_: Class) throws {
+        let file = directory.appendingPathComponent("\(class_.name).swift")
+        try source.write(to: file, atomically: false, encoding: .utf8)
     }
 
     static func generateDidMoveToParent(_ signals: [Signal]) -> DeclSyntax {
@@ -101,7 +112,7 @@ struct GtkCodeGen {
             override func didMoveToParent() {
                 super.didMoveToParent()
 
-                \(raw: exprs.map(\.description).joined(separator: "\n"))
+                \(raw: exprs.map(\.description).joined(separator: "\n\n"))
             }
             """
         )
@@ -127,6 +138,7 @@ struct GtkCodeGen {
 
         var type = swiftType(girType, namespace: namespace)
         let getterFunction = "\(namespace.cSymbolPrefix)_\(class_.cSymbolPrefix)_\(getterName)"
+
         guard
             let method = class_.methods?.first(where: { method in
                 method.cIdentifier == getterFunction
@@ -197,17 +209,26 @@ struct GtkCodeGen {
     }
 
     static func generateInitializer(_ constructor: Constructor) -> DeclSyntax {
+        let parameters = generateParameters(
+            constructor.parameters,
+            constructorName: constructor.name
+        )
+        let modifiers = parameters.isEmpty ? "override " : ""
+
         return DeclSyntax(
             """
-            public init(\(raw: generateParameters(constructor.parameters, constructorName: constructor.name))) {
+            \(raw: modifiers)public init(\(raw: parameters)) {
+                super.init()
                 widgetPointer = \(raw: constructor.cIdentifier)(\(raw: generateArguments(constructor.parameters)))
             }
-            """)
+            """
+        )
     }
 
-    static func generateParameters(_ parameters: Parameters?, constructorName: String? = nil)
-        -> String
-    {
+    static func generateParameters(
+        _ parameters: Parameters?,
+        constructorName: String? = nil
+    ) -> String {
         guard var parameters = parameters?.parameters, !parameters.isEmpty else {
             return ""
         }
