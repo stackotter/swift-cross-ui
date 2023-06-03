@@ -1,10 +1,10 @@
 extension View {
     /// Positions this view within an invisible frame having the specified size constraints.
     public func frame(minWidth: Int? = nil, minHeight: Int? = nil) -> some View {
-        return FrameModifierView(
+        return SimpleFrameModifierView(
             body: ViewContent1(self),
-            minimumWidth: minWidth,
-            minimumHeight: minHeight
+            minWidth: minWidth,
+            minHeight: minHeight
         )
     }
 
@@ -27,13 +27,11 @@ extension View {
 }
 
 /// A view used to manage a child view's size.
-private struct FrameModifierView<Child: View>: View {
+private struct SimpleFrameModifierView<Child: View>: View {
     var body: ViewContent1<Child>
 
-    var minimumWidth: Int?
-    var maximumWidth: Int?
-    var minimumHeight: Int?
-    var maximumHeight: Int?
+    var minWidth: Int?
+    var minHeight: Int?
 
     func asWidget(_ children: ViewGraphNodeChildren1<Child>) -> GtkSingleChildBox {
         let widget = GtkSingleChildBox()
@@ -42,6 +40,6 @@ private struct FrameModifierView<Child: View>: View {
     }
 
     func update(_ widget: GtkSingleChildBox, children: ViewGraphNodeChildren1<Child>) {
-        widget.sizeRequest = (minimumWidth ?? -1, minimumHeight ?? -1)
+        widget.sizeRequest = (minWidth ?? -1, minHeight ?? -1)
     }
 }
