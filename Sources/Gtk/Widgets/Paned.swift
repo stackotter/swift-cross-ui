@@ -8,6 +8,7 @@ open class Paned: Widget, Orientable {
 
     public var startChild: Widget? {
         didSet {
+            oldValue?.parentWidget = nil
             gtk_paned_set_start_child(opaquePointer, startChild?.castedPointer())
             startChild?.parentWidget = self
         }
@@ -15,6 +16,7 @@ open class Paned: Widget, Orientable {
 
     public var endChild: Widget? {
         didSet {
+            oldValue?.parentWidget = nil
             gtk_paned_set_end_child(opaquePointer, endChild?.castedPointer())
             endChild?.parentWidget = self
         }
