@@ -5,9 +5,14 @@
 import CGtk
 import Foundation
 
-open class Widget {
+open class Widget: GObjectRepresentable {
+    internal var constraints: [Constraint] = []
     private var signals: [(UInt, Any)] = []
     var widgetPointer: UnsafeMutablePointer<GtkWidget>?
+
+    public var gobjectPointer: UnsafeMutablePointer<GObject> {
+        return widgetPointer!.cast()
+    }
 
     public var opaquePointer: OpaquePointer? {
         return OpaquePointer(widgetPointer)
@@ -237,41 +242,10 @@ open class Widget {
         }
     }
 
-    public var topMargin: Int {
-        get {
-            return Int(gtk_widget_get_margin_top(widgetPointer))
-        }
-        set {
-            gtk_widget_set_margin_top(widgetPointer, gint(newValue))
-        }
-    }
-
-    public var bottomMargin: Int {
-        get {
-            return Int(gtk_widget_get_margin_bottom(widgetPointer))
-        }
-        set {
-            gtk_widget_set_margin_bottom(widgetPointer, gint(newValue))
-        }
-    }
-
-    public var leadingMargin: Int {
-        get {
-            return Int(gtk_widget_get_margin_start(widgetPointer))
-        }
-        set {
-            gtk_widget_set_margin_start(widgetPointer, gint(newValue))
-        }
-    }
-
-    public var trailingMargin: Int {
-        get {
-            return Int(gtk_widget_get_margin_end(widgetPointer))
-        }
-        set {
-            gtk_widget_set_margin_end(widgetPointer, gint(newValue))
-        }
-    }
+    @GObjectProperty(named: "margin-top") public var topMargin: Int
+    @GObjectProperty(named: "margin-bottom") public var bottomMargin: Int
+    @GObjectProperty(named: "margin-start") public var leadingMargin: Int
+    @GObjectProperty(named: "margin-end") public var trailingMargin: Int
 
     public var horizontalAlignment: Align {
         get {
