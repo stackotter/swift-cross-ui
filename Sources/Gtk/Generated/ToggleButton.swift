@@ -1,25 +1,18 @@
-//
-//  Copyright © 2017 Tomas Linhart. All rights reserved.
-//
-
 import CGtk
 
 public class ToggleButton: Button {
-    public override init() {
+    override public init() {
         super.init()
-
         widgetPointer = gtk_toggle_button_new()
     }
 
-    public override init(label: String) {
+    override public init(label: String) {
         super.init()
-
         widgetPointer = gtk_toggle_button_new_with_label(label)
     }
 
-    public init(mnemonicLabel label: String) {
+    override public init(mnemonic label: String) {
         super.init()
-
         widgetPointer = gtk_toggle_button_new_with_mnemonic(label)
     }
 

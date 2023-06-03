@@ -30,7 +30,8 @@ struct GtkCodeGen {
     }
 
     static func generateSources(for gir: GIR, to directory: URL) throws {
-        for class_ in gir.namespace.classes where class_.name == "Button" {
+        let allowListedClasses = ["Button", "ToggleButton"]
+        for class_ in gir.namespace.classes where allowListedClasses.contains(class_.name) {
             var initializers: [DeclSyntax] = []
             for constructor in class_.constructors ?? [] {
                 initializers.append(generateInitializer(constructor))
@@ -38,9 +39,12 @@ struct GtkCodeGen {
 
             var properties: [DeclSyntax] = []
             for property in class_.properties ?? [] where property.name != "child" {
-                properties.append(
-                    generateProperty(property, namespace: gir.namespace, class_: class_)
-                )
+                guard
+                    let decl = generateProperty(property, namespace: gir.namespace, class_: class_)
+                else {
+                    continue
+                }
+                properties.append(decl)
             }
 
             let signals = class_.signals ?? []
@@ -131,8 +135,12 @@ struct GtkCodeGen {
         _ property: Property,
         namespace: Namespace,
         class_: Class
-    ) -> DeclSyntax {
-        guard let girType = property.type, let getterName = property.getter else {
+    ) -> DeclSyntax? {
+        guard let getterName = property.getter else {
+            return nil
+        }
+
+        guard let girType = property.type else {
             fatalError("Missing type for '\(class_.name).\(property.name)'")
         }
 
