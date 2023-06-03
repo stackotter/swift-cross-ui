@@ -283,7 +283,6 @@ open class Widget: GObjectRepresentable {
         }
     }
 
-
     /// -1 for no min size request
     public var sizeRequest: (width: Int, height: Int) {
         get {

@@ -7,7 +7,7 @@ public enum Edge: Int8, CaseIterable, Hashable {
 
     /// An efficient set of Edges.
     public struct Set: OptionSet, Hashable {
-        public let rawValue : Int8
+        public let rawValue: Int8
         public init(rawValue: Int8) {
             self.rawValue = rawValue
         }
