@@ -11,21 +11,7 @@ public class Calendar: Widget {
         widgetPointer = gtk_calendar_new()
     }
 
-    public var year: Int {
-        get {
-            return getProperty(castedPointer(), name: "year")
-        }
-        set {
-            setProperty(castedPointer(), name: "year", newValue: newValue)
-        }
-    }
+    @GObjectProperty(named: "year") public var year: Int
 
-    public var showHeading: Bool {
-        get {
-            return getProperty(castedPointer(), name: "show-heading")
-        }
-        set {
-            setProperty(castedPointer(), name: "show-heading", newValue: newValue)
-        }
-    }
+    @GObjectProperty(named: "show-heading") public var showHeading: Bool
 }
