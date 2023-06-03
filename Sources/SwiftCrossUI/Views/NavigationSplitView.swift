@@ -3,16 +3,20 @@ public struct NavigationSplitView<SideBar: View, MiddleBar: View, Detail: View>:
 }
 
 extension NavigationSplitView where MiddleBar == EmptyViewContent {
-    public init(@ViewContentBuilder sidebar: () -> SideBar,
-                @ViewContentBuilder detail: () -> Detail) {
+    public init(
+        @ViewContentBuilder sidebar: () -> SideBar,
+        @ViewContentBuilder detail: () -> Detail
+    ) {
         body = ViewContent3(sidebar(), EmptyViewContent(), detail())
     }
 }
 
 extension NavigationSplitView {
-    public init(@ViewContentBuilder sidebar: () -> SideBar,
-                @ViewContentBuilder content: () -> MiddleBar,
-                @ViewContentBuilder detail: () -> Detail) {
+    public init(
+        @ViewContentBuilder sidebar: () -> SideBar,
+        @ViewContentBuilder content: () -> MiddleBar,
+        @ViewContentBuilder detail: () -> Detail
+    ) {
         body = ViewContent3(sidebar(), content(), detail())
     }
 
@@ -36,7 +40,10 @@ extension NavigationSplitView {
 
         widget.shrinkStartChild = false
         widget.shrinkEndChild = false
-        widget.position = 0 // sets
+        // Set the position to the farthest left possible.
+        // TODO: Allow setting the default offset (SwiftUI api: `navigationSplitViewColumnWidth(min:ideal:max:)`).
+        //       This needs frame modifier to be fledged out first
+        widget.position = 0
         widget.expandVertically = true
 
         return widget

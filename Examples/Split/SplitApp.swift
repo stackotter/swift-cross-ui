@@ -21,20 +21,20 @@ enum Columns {
     case three
 }
 
-class NavigationAppState: Observable {
+class SplitAppState: Observable {
     @Observed var selectedArea: SubjectArea?
     @Observed var selectedDetail: Any?
     @Observed var columns: Columns = .two
 }
 
 @main
-struct NavigationApp: App {
-    let identifier = "dev.stackotter.SplitNavigationApp"
+struct SplitApp: App {
+    let identifier = "dev.stackotter.SplitApp"
 
-    let state = NavigationAppState()
+    let state = SplitAppState()
 
     let windowProperties = WindowProperties(
-        title: "SplitNavigation",
+        title: "Split",
         defaultSize: WindowProperties.Size(600, 250)
     )
 
