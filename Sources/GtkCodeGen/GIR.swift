@@ -60,6 +60,7 @@ struct Namespace: Decodable {
 
     var aliases: [Alias]
     var classes: [Class]
+    var enumerations: [Enumeration]
 
     enum CodingKeys: String, CodingKey {
         case name, version, sharedLibrary
@@ -67,6 +68,25 @@ struct Namespace: Decodable {
         case cSymbolPrefix = "cSymbolPrefixes"
         case aliases = "alias"
         case classes = "class"
+        case enumerations = "enumeration"
+    }
+}
+
+struct Enumeration: Decodable {
+    var name: String
+    var cType: String
+    var doc: String
+    var members: [Member]
+
+    enum CodingKeys: String, CodingKey {
+        case name, cType, doc
+        case members = "member"
+    }
+
+    struct Member: Decodable {
+        var name: String
+        var cIdentifier: String
+        var doc: String
     }
 }
 
