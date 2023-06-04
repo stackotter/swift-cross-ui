@@ -148,6 +148,7 @@ struct Method: Decodable {
 
 struct Property: Decodable {
     var name: String
+    var doc: String?
     var getter: String?
     var setter: String?
     var defaultValue: String?
