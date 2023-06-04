@@ -16,6 +16,10 @@ struct GtkCodeGen {
         "gboolean": "Bool",
     ]
 
+    static let unshorteningMap: [String: String] = [
+        "char": "character"
+    ]
+
     static func main() throws {
         let arguments = parseCommandLineArguments()
         let data = try loadGIRFileContents(arguments.girFile)
@@ -30,67 +34,165 @@ struct GtkCodeGen {
     }
 
     static func generateSources(for gir: GIR, to directory: URL) throws {
-        let allowListedClasses = ["Button", "ToggleButton"]
+        let allowListedClasses = ["Button"]
         for class_ in gir.namespace.classes where allowListedClasses.contains(class_.name) {
-            var initializers: [DeclSyntax] = []
-            for constructor in class_.constructors ?? [] {
-                initializers.append(generateInitializer(constructor))
-            }
+            let source = generateClass(class_, namespace: gir.namespace)
+            try save(source.description, to: directory, declName: class_.name)
+        }
 
-            var properties: [DeclSyntax] = []
-            for property in class_.properties ?? [] where property.name != "child" {
-                guard
-                    let decl = generateProperty(property, namespace: gir.namespace, class_: class_)
-                else {
-                    continue
-                }
-                properties.append(decl)
-            }
-
-            let signals = class_.signals ?? []
-            for signal in signals {
-                properties.append(
-                    generateSignalHandlerProperty(signal, class_: class_)
-                )
-            }
-
-            var methods: [DeclSyntax] = []
-            if !signals.isEmpty {
-                methods.append(
-                    generateDidMoveToParent(signals)
-                )
-            }
-
-            let conformances: String
-            if let parent = class_.parent {
-                conformances = ": \(parent)"
-            } else {
-                conformances = ""
-            }
-
-            let source = SourceFileSyntax {
-                DeclSyntax("import CGtk")
-                    .withTrailingTrivia(Trivia.newline)
-
-                DeclSyntax(
-                    """
-                    public class \(raw: class_.name)\(raw: conformances) {
-                        \(raw: initializers.map(\.description).joined(separator: "\n\n"))
-
-                        \(raw: methods.map(\.description).joined(separator: "\n\n"))
-
-                        \(raw: properties.map(\.description).joined(separator: "\n\n"))
-                    }
-                    """
-                )
-            }
-
-            try save(source.description, to: directory, class_: class_)
+        for enumeration in gir.namespace.enumerations {
+            let source = generateEnum(enumeration)
+            try save(source.description, to: directory, declName: enumeration.name)
         }
     }
 
-    static func save(_ source: String, to directory: URL, class_: Class) throws {
-        let file = directory.appendingPathComponent("\(class_.name).swift")
+    static func generateEnum(_ enumeration: Enumeration) -> String {
+        var cases: [DeclSyntax] = []
+        for case_ in enumeration.members {
+            let name = convertCIdentifier(case_.name)
+            cases.append(
+                DeclSyntax(
+                    """
+                    \(raw: docComment(case_.doc))
+                    case \(raw: name)
+                    """
+                )
+            )
+        }
+
+        var toGtkConversionSwitchCases: [SwitchCaseSyntax] = []
+        for case_ in enumeration.members {
+            let name = convertCIdentifier(case_.name)
+            toGtkConversionSwitchCases.append(
+                SwitchCaseSyntax(
+                    """
+                    case .\(raw: name):
+                        return \(raw: case_.cIdentifier)
+                    """
+                )
+            )
+        }
+
+        var fromGtkConversionSwitchCases: [SwitchCaseSyntax] = []
+        for case_ in enumeration.members {
+            let name = convertCIdentifier(case_.name)
+            fromGtkConversionSwitchCases.append(
+                SwitchCaseSyntax(
+                    """
+                    case \(raw: case_.cIdentifier):
+                        return .\(raw: name)
+                    """
+                )
+            )
+        }
+
+        let source = SourceFileSyntax(
+            """
+            import CGtk
+
+            \(raw: docComment(enumeration.doc))
+            public enum \(raw: enumeration.name) {
+                \(raw: cases.map(\.description).joined(separator: "\n"))
+
+                /// Converts the value to its corresponding Gtk representation.
+                func to\(raw: enumeration.cType)() -> \(raw: enumeration.cType) {
+                    switch self {
+                        \(raw: toGtkConversionSwitchCases.map(\.description).joined(separator: "\n"))
+                    }
+                }
+            }
+
+            extension \(raw: enumeration.cType) {
+                /// Converts a Gtk value to its corresponding swift representation.
+                func to\(raw: enumeration.name)() -> \(raw: enumeration.name) {
+                    switch self {
+                        \(raw: fromGtkConversionSwitchCases.map(\.description).joined(separator: "\n"))
+                        default:
+                            fatalError("Unsupported \(raw: enumeration.cType) enum value: \\(self.rawValue)")
+                    }
+                }
+            }
+            """
+        )
+        return source.description
+    }
+
+    static func docComment(_ doc: String?) -> String {
+        if let doc {
+            return
+                doc
+                .split(separator: "\n", omittingEmptySubsequences: false)
+                .map { $0.trimmingCharacters(in: .whitespaces) }
+                .enumerated()
+                .map {
+                    $0.offset == 0
+                        ? $0.element.prefix(1).capitalized + $0.element.dropFirst() : $0.element
+                }
+                .map { "/// \($0)" }
+                .joined(separator: "\n")
+        } else {
+            return ""
+        }
+    }
+
+    static func generateClass(_ class_: Class, namespace: Namespace) -> String {
+        var initializers: [DeclSyntax] = []
+        for constructor in class_.constructors ?? [] {
+            initializers.append(generateInitializer(constructor))
+        }
+
+        var properties: [DeclSyntax] = []
+        for property in class_.properties ?? [] where property.name != "child" {
+            guard
+                let decl = generateProperty(property, namespace: namespace, class_: class_)
+            else {
+                continue
+            }
+            properties.append(decl)
+        }
+
+        let signals = class_.signals ?? []
+        for signal in signals {
+            properties.append(
+                generateSignalHandlerProperty(signal, class_: class_)
+            )
+        }
+
+        var methods: [DeclSyntax] = []
+        if !signals.isEmpty {
+            methods.append(
+                generateDidMoveToParent(signals)
+            )
+        }
+
+        let conformances: String
+        if let parent = class_.parent {
+            conformances = ": \(parent)"
+        } else {
+            conformances = ""
+        }
+
+        let source = SourceFileSyntax {
+            DeclSyntax("import CGtk")
+                .withTrailingTrivia(Trivia.newline)
+
+            DeclSyntax(
+                """
+                public class \(raw: class_.name)\(raw: conformances) {
+                    \(raw: initializers.map(\.description).joined(separator: "\n\n"))
+
+                    \(raw: methods.map(\.description).joined(separator: "\n\n"))
+
+                    \(raw: properties.map(\.description).joined(separator: "\n\n"))
+                }
+                """
+            )
+        }
+        return source.description
+    }
+
+    static func save(_ source: String, to directory: URL, declName: String) throws {
+        let file = directory.appendingPathComponent("\(declName).swift")
         try source.write(to: file, atomically: false, encoding: .utf8)
     }
 
@@ -273,18 +375,28 @@ struct GtkCodeGen {
     }
 
     static func convertCIdentifier(_ identifier: String) -> String {
+        let keywords = ["true", "false", "default", "switch", "import"]
+        if keywords.contains(identifier) {
+            return "\(identifier)_"
+        }
         return convertDelimitedCasingToCamel(identifier, delimiter: "_")
     }
 
     static func convertPropertyName(_ name: String) -> String {
-        return convertDelimitedCasingToCamel(name, delimiter: "-")
+        return convertDelimitedCasingToCamel(name, delimiter: "-", unshorten: true)
     }
 
     static func convertDelimitedCasingToCamel(
         _ identifier: String,
-        delimiter: Character
+        delimiter: Character,
+        unshorten: Bool = false
     ) -> String {
-        var parts = identifier.split(separator: delimiter)
+        var parts = identifier.split(separator: delimiter).map(String.init)
+        for (i, part) in parts.enumerated() {
+            if let replacement = unshorteningMap[part] {
+                parts[i] = replacement
+            }
+        }
         let first = parts.removeFirst()
         return first + parts.map(\.capitalized).joined()
     }
