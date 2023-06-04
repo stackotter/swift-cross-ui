@@ -118,6 +118,7 @@ struct GtkCodeGen {
     }
 
     static func docComment(_ doc: String?) -> String {
+        // TODO: Parse comment format to replace image includes, links, and similar
         if let doc {
             return
                 doc
@@ -172,22 +173,20 @@ struct GtkCodeGen {
             conformances = ""
         }
 
-        let source = SourceFileSyntax {
-            DeclSyntax("import CGtk")
-                .withTrailingTrivia(Trivia.newline)
+        let source = SourceFileSyntax(
+            """
+            import CGtk
 
-            DeclSyntax(
-                """
-                public class \(raw: class_.name)\(raw: conformances) {
-                    \(raw: initializers.map(\.description).joined(separator: "\n\n"))
+            \(raw: docComment(class_.doc))
+            public class \(raw: class_.name)\(raw: conformances) {
+                \(raw: initializers.map(\.description).joined(separator: "\n\n"))
 
-                    \(raw: methods.map(\.description).joined(separator: "\n\n"))
+                \(raw: methods.map(\.description).joined(separator: "\n\n"))
 
-                    \(raw: properties.map(\.description).joined(separator: "\n\n"))
-                }
-                """
-            )
-        }
+                \(raw: properties.map(\.description).joined(separator: "\n\n"))
+            }
+            """
+        )
         return source.description
     }
 
@@ -228,6 +227,7 @@ struct GtkCodeGen {
         let name = convertDelimitedCasingToCamel(signal.name, delimiter: "-")
         return DeclSyntax(
             """
+            \(raw: docComment(signal.doc))
             public var \(raw: name): ((\(raw: class_.name)) -> Void)?
             """
         )
@@ -280,6 +280,7 @@ struct GtkCodeGen {
 
         return DeclSyntax(
             """
+            \(raw: docComment(property.doc))
             public var \(raw: convertPropertyName(property.name)): \(raw: type) {
                 \(raw: getter)
                 \(raw: setter ?? "")
@@ -327,6 +328,7 @@ struct GtkCodeGen {
 
         return DeclSyntax(
             """
+            \(raw: docComment(constructor.doc))
             \(raw: modifiers)public init(\(raw: parameters)) {
                 super.init()
                 widgetPointer = \(raw: constructor.cIdentifier)(\(raw: generateArguments(constructor.parameters)))
