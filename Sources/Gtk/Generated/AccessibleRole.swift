@@ -181,10 +181,6 @@ public enum AccessibleRole {
     case widget
     /// An application window.
     case window
-    /// A type of push button
-    /// which stays pressed until depressed by a second activation.
-    /// Since: 4.10
-    case toggleButton
 
     /// Converts the value to its corresponding Gtk representation.
     func toGtkAccessibleRole() -> GtkAccessibleRole {
@@ -345,8 +341,6 @@ public enum AccessibleRole {
                 return GTK_ACCESSIBLE_ROLE_WIDGET
             case .window:
                 return GTK_ACCESSIBLE_ROLE_WINDOW
-            case .toggleButton:
-                return GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON
         }
     }
 }
@@ -511,8 +505,6 @@ extension GtkAccessibleRole {
                 return .widget
             case GTK_ACCESSIBLE_ROLE_WINDOW:
                 return .window
-            case GTK_ACCESSIBLE_ROLE_TOGGLE_BUTTON:
-                return .toggleButton
             default:
                 fatalError("Unsupported GtkAccessibleRole enum value: \(self.rawValue)")
         }

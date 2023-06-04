@@ -52,8 +52,11 @@ struct GtkCodeGen {
     }
 
     static func generateEnum(_ enumeration: Enumeration) -> String {
+        // Filter out members which were introduced after 4.0
+        let members = enumeration.members.filter { !$0.doc.contains("Since: ") }
+
         var cases: [DeclSyntax] = []
-        for case_ in enumeration.members {
+        for case_ in members {
             let name = convertCIdentifier(case_.name)
             cases.append(
                 DeclSyntax(
@@ -66,7 +69,7 @@ struct GtkCodeGen {
         }
 
         var toGtkConversionSwitchCases: [SwitchCaseSyntax] = []
-        for case_ in enumeration.members {
+        for case_ in members {
             let name = convertCIdentifier(case_.name)
             toGtkConversionSwitchCases.append(
                 SwitchCaseSyntax(
@@ -79,7 +82,7 @@ struct GtkCodeGen {
         }
 
         var fromGtkConversionSwitchCases: [SwitchCaseSyntax] = []
-        for case_ in enumeration.members {
+        for case_ in members {
             let name = convertCIdentifier(case_.name)
             fromGtkConversionSwitchCases.append(
                 SwitchCaseSyntax(
