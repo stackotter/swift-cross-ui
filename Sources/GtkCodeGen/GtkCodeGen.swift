@@ -41,6 +41,11 @@ struct GtkCodeGen {
         }
 
         for enumeration in gir.namespace.enumerations {
+            // Enums that aren't available in base 4.10 shouldn't be generated.
+            guard enumeration.version == nil else {
+                continue
+            }
+
             let source = generateEnum(enumeration)
             try save(source.description, to: directory, declName: enumeration.name)
         }
