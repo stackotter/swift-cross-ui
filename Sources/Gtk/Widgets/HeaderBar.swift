@@ -24,12 +24,7 @@ public class HeaderBar: Widget {
         }
     }
 
-    public var decorationLayout: String? {
-        get { return gtk_header_bar_get_decoration_layout(opaquePointer)?.toString() }
-        set { gtk_header_bar_set_decoration_layout(opaquePointer, newValue) }
-    }
-
-    @GObjectProperty(named: "spacing") public var spacing: Int
+    @GObjectProperty(named: "decoration-layout") public var decorationLayout: String?
 
     public func packChild(atStart child: Widget) {
         widgets.append(child)

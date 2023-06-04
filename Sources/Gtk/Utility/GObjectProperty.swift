@@ -1,7 +1,3 @@
-//
-//  Copyright © 2016 Tomas Linhart. All rights reserved.
-//
-
 import CGtk
 
 @propertyWrapper public struct GObjectProperty<Value: GValueRepresentable> {
@@ -22,7 +18,7 @@ import CGtk
         wrapped _: ReferenceWritableKeyPath<EnclosingSelf, Value>,
         storage storageKeyPath: ReferenceWritableKeyPath<EnclosingSelf, Self>
     ) -> Value {
-        get { instance.getProperty(name: instance[keyPath: storageKeyPath].name) }
-        set { instance.setProperty(name: instance[keyPath: storageKeyPath].name, newValue: newValue) }
+        get { instance.getProperty(named: instance[keyPath: storageKeyPath].name) }
+        set { instance.setProperty(named: instance[keyPath: storageKeyPath].name, newValue: newValue) }
     }
 }

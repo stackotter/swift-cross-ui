@@ -232,14 +232,7 @@ open class Widget: GObjectRepresentable {
         gtk_widget_set_visible(widgetPointer, false.toGBoolean())
     }
 
-    public var opacity: Double {
-        get {
-            return gtk_widget_get_opacity(widgetPointer)
-        }
-        set {
-            gtk_widget_set_opacity(widgetPointer, newValue)
-        }
-    }
+    @GObjectProperty(named: "opacity") public var opacity: Double
 
     @GObjectProperty(named: "margin-top") public var topMargin: Int
     @GObjectProperty(named: "margin-bottom") public var bottomMargin: Int
@@ -264,33 +257,17 @@ open class Widget: GObjectRepresentable {
         }
     }
 
-    public var expandHorizontally: Bool {
-        get {
-            return gtk_widget_get_hexpand(castedPointer()) != 0
-        }
-        set {
-            gtk_widget_set_hexpand(castedPointer(), newValue ? 1 : 0)
-        }
-    }
+    /// Whether to expand horizontally.
+    @GObjectProperty(named: "hexpand") public var expandHorizontally: Bool
+    /// Whether to use the expandHorizontally property.
+    @GObjectProperty(named: "hexpand-set") public var useExpandHorizontally: Bool
+    /// Whether to expand vertically.
+    @GObjectProperty(named: "vexpand") public var expandVertically: Bool
+    /// Whether to use the expandVertically property.
+    @GObjectProperty(named: "vexpand-set") public var useExpandVertically: Bool
 
-    public var expandVertically: Bool {
-        get {
-            return gtk_widget_get_vexpand(castedPointer()) != 0
-        }
-        set {
-            gtk_widget_set_vexpand(castedPointer(), newValue ? 1 : 0)
-        }
-    }
-
-    /// -1 for no min size request
-    public var sizeRequest: (width: Int, height: Int) {
-        get {
-            var w: Int32 = -1, h: Int32 = -1
-            gtk_widget_get_size_request(castedPointer(), &w, &h)
-            return (Int(w), Int(h))
-        }
-        set {
-            gtk_widget_set_size_request(castedPointer(), Int32(newValue.width), Int32(newValue.height))
-        }
-    }
+    /// Set to -1 for no min width request
+    @GObjectProperty(named: "width-request") public var minWidth: Int
+    /// Set to -1 for no min heigth request
+    @GObjectProperty(named: "height-request") public var minHeight: Int
 }

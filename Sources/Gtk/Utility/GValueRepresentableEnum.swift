@@ -1,7 +1,3 @@
-//
-//  Copyright © 2016 Tomas Linhart. All rights reserved.
-//
-
 import CGtk
 
 public protocol GValueRepresentableEnum: GValueRepresentable {

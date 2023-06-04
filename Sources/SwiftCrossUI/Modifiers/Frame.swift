@@ -40,6 +40,7 @@ private struct SimpleFrameModifierView<Child: View>: View {
     }
 
     func update(_ widget: GtkSingleChildBox, children: ViewGraphNodeChildren1<Child>) {
-        widget.sizeRequest = (minWidth ?? -1, minHeight ?? -1)
+        widget.minWidth = minWidth ?? -1
+        widget.minHeight = minHeight ?? -1
     }
 }

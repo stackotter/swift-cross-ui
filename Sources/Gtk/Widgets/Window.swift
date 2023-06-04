@@ -22,18 +22,7 @@ public class Window: Widget {
     //     return Window(pointer: UnsafeMutablePointer<GtkWidget>(gdk_screen_get_root_window(gdk_screen_get_default())))
     // }
 
-    public var title: String? {
-        get {
-            return String(cString: gtk_window_get_title(castedPointer()))
-        }
-        set {
-            if let title = newValue {
-                gtk_window_set_title(castedPointer(), title)
-            } else {
-                gtk_window_set_title(castedPointer(), nil)
-            }
-        }
-    }
+    @GObjectProperty(named: "title") public var title: String?
 
     public var defaultSize: Size {
         get {
@@ -48,14 +37,7 @@ public class Window: Widget {
         }
     }
 
-    public var resizable: Bool {
-        get {
-            return gtk_window_get_resizable(castedPointer()).toBool()
-        }
-        set {
-            gtk_window_set_resizable(castedPointer(), newValue.toGBoolean())
-        }
-    }
+    @GObjectProperty(named: "resizable") public var resizable: Bool
 
     private var _titleBar: Widget?
     public var titlebar: Widget? {

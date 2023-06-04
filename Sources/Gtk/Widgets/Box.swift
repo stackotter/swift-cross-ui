@@ -35,12 +35,5 @@ open class Box: Widget, Orientable {
         widgets = []
     }
 
-    public var spacing: Int {
-        get {
-            Int(gtk_box_get_spacing(castedPointer()))
-        }
-        set {
-            gtk_box_set_spacing(castedPointer(), gint(newValue))
-        }
-    }
+    @GObjectProperty(named: "spacing") public var spacing: Int
 }

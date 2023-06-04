@@ -1,13 +1,9 @@
-//
-//  Copyright © 2016 Tomas Linhart. All rights reserved.
-//
-
 import CGtk
 
 /// Implement to support @GObjectProperty wrapper
 public protocol GValueRepresentable {
     static var type: GType { get }
-    init(_ pointer: UnsafeMutablePointer<GValue>)
+    init?(_ pointer: UnsafeMutablePointer<GValue>)
     func apply(to pointer: UnsafeMutablePointer<GValue>)
 }
 
@@ -49,7 +45,7 @@ extension Double: GValueRepresentable {
         GType(15 << G_TYPE_FUNDAMENTAL_SHIFT)
     }
 
-    public init(_ pointer: UnsafeMutablePointer<GValue>) {
+    public init?(_ pointer: UnsafeMutablePointer<GValue>) {
         self.init(g_value_get_double(pointer))
     }
 
@@ -63,13 +59,37 @@ extension String: GValueRepresentable {
         GType(16 << G_TYPE_FUNDAMENTAL_SHIFT)
     }
 
-    public init(_ pointer: UnsafeMutablePointer<GValue>) {
-        self.init(g_value_get_string(pointer).toString())
+    public init?(_ pointer: UnsafeMutablePointer<GValue>) {
+        guard let cString = g_value_get_string(pointer) else { return nil }
+        self.init(cString.toString())
     }
 
     public func apply(to pointer: UnsafeMutablePointer<GValue>) {
         withCString {
             g_value_set_string(pointer, $0)
+        }
+    }
+}
+
+/// Currently this is pinned to String as `g_value_get_string` is the only
+/// optional returning getter we use, if there is other g_value_get_x functions
+/// that return an optional we can probably replace String with GValueRepresentable.
+extension Optional: GValueRepresentable where Wrapped == String {
+    public static var type: GType {
+        Wrapped.type
+    }
+
+    public init?(_ pointer: UnsafeMutablePointer<GValue>) {
+        if let wrapped = Wrapped(pointer) {
+            self = .some(wrapped)
+        } else {
+            self = nil
+        }
+    }
+
+    public func apply(to pointer: UnsafeMutablePointer<GValue>) {
+        if let unwrapped = self {
+            unwrapped.apply(to: pointer)
         }
     }
 }
