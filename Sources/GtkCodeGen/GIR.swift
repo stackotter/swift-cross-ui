@@ -74,12 +74,13 @@ struct Namespace: Decodable {
 
 struct Enumeration: Decodable {
     var name: String
+    var version: String?
     var cType: String
     var doc: String
     var members: [Member]
 
     enum CodingKeys: String, CodingKey {
-        case name, cType, doc
+        case name, cType, doc, version
         case members = "member"
     }
 
