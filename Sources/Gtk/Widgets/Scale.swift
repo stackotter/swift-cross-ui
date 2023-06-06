@@ -4,6 +4,7 @@ public class Scale: Widget {
     public override init() {
         super.init()
         widgetPointer = gtk_scale_new(Orientation.horizontal.toGtkOrientation(), nil)
+        expandHorizontally = true
     }
 
     override func didMoveToParent() {
