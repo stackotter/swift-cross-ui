@@ -28,14 +28,7 @@ public class Label: Widget {
         }
     }
 
-    public var selectable: Bool {
-        get {
-            return gtk_label_get_selectable(opaquePointer) == 1
-        }
-        set {
-            gtk_label_set_selectable(opaquePointer, newValue ? 1 : 0)
-        }
-    }
+    @GObjectProperty(named: "selectable") public var selectable: Bool
 
     public var justification: Justification {
         get {
@@ -46,14 +39,7 @@ public class Label: Widget {
         }
     }
 
-    public var lineWrap: Bool {
-        get {
-            return gtk_label_get_wrap(opaquePointer).toBool()
-        }
-        set {
-            gtk_label_set_wrap(opaquePointer, newValue.toGBoolean())
-        }
-    }
+    @GObjectProperty(named: "wrap") public var lineWrap: Bool
 
     public var lineWrapMode: WrapMode {
         get {

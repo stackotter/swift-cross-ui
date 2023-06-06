@@ -15,7 +15,7 @@ public class Scale: Widget {
         }
     }
 
-    public var value: Double {
+    public var value: Double { // has no property
         get {
             return gtk_range_get_value(castedPointer())
         }
@@ -46,14 +46,7 @@ public class Scale: Widget {
         }
     }
 
-    public var decimalPlaces: Int {
-        get {
-            return Int(gtk_scale_get_digits(castedPointer()))
-        }
-        set {
-            gtk_scale_set_digits(castedPointer(), gint(newValue))
-        }
-    }
+    @GObjectProperty(named: "digits") public var decimalPlaces: Int
 
     public var changed: ((Scale) -> Void)?
 }

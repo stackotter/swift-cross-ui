@@ -22,30 +22,11 @@ open class Paned: Widget, Orientable {
         }
     }
 
-    public var position: Int {
-        get {
-            Int(gtk_paned_get_position(opaquePointer))
-        }
-        set {
-            gtk_paned_set_position(opaquePointer, gint(newValue))
-        }
-    }
-
-    public var shrinkStartChild: Bool {
-        get {
-            gtk_paned_get_shrink_start_child(opaquePointer).toBool()
-        }
-        set {
-            gtk_paned_set_shrink_start_child(opaquePointer, newValue.toGBoolean())
-        }
-    }
-
-    public var shrinkEndChild: Bool {
-        get {
-            gtk_paned_get_shrink_end_child(opaquePointer).toBool()
-        }
-        set {
-            gtk_paned_set_shrink_end_child(opaquePointer, newValue.toGBoolean())
-        }
-    }
+    @GObjectProperty(named: "position") public var position: Int
+    @GObjectProperty(named: "max-position") public var maxPosition: Int
+    @GObjectProperty(named: "min-position") public var minPosition: Int
+    @GObjectProperty(named: "shrink-start-child") public var shrinkStartChild: Bool
+    @GObjectProperty(named: "shrink-end-child") public var shrinkEndChild: Bool
+    @GObjectProperty(named: "resize-start-child") public var resizeStartChild: Bool
+    @GObjectProperty(named: "resize-end-child") public var resizeEndChild: Bool
 }

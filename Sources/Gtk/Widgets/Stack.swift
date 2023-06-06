@@ -17,14 +17,7 @@ open class Stack: Widget {
     }
 
     /// Transition duration in milliseconds
-    public var transitionDuration: Int {
-        get {
-            return Int(gtk_stack_get_transition_duration(opaquePointer))
-        }
-        set {
-            gtk_stack_set_transition_duration(opaquePointer, guint(newValue))
-        }
-    }
+    @GObjectProperty(named: "transition-duration") public var transitionDuration: Int
 
     /// Transition type
     public var transitionType: StackTransitionType {

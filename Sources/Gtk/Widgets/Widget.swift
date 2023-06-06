@@ -5,9 +5,13 @@
 import CGtk
 import Foundation
 
-open class Widget {
+open class Widget: GObjectRepresentable {
     private var signals: [(UInt, Any)] = []
     var widgetPointer: UnsafeMutablePointer<GtkWidget>?
+
+    public var gobjectPointer: UnsafeMutablePointer<GObject> {
+        return widgetPointer!.cast()
+    }
 
     public var opaquePointer: OpaquePointer? {
         return OpaquePointer(widgetPointer)
@@ -228,50 +232,12 @@ open class Widget {
         gtk_widget_set_visible(widgetPointer, false.toGBoolean())
     }
 
-    public var opacity: Double {
-        get {
-            return gtk_widget_get_opacity(widgetPointer)
-        }
-        set {
-            gtk_widget_set_opacity(widgetPointer, newValue)
-        }
-    }
+    @GObjectProperty(named: "opacity") public var opacity: Double
 
-    public var topMargin: Int {
-        get {
-            return Int(gtk_widget_get_margin_top(widgetPointer))
-        }
-        set {
-            gtk_widget_set_margin_top(widgetPointer, gint(newValue))
-        }
-    }
-
-    public var bottomMargin: Int {
-        get {
-            return Int(gtk_widget_get_margin_bottom(widgetPointer))
-        }
-        set {
-            gtk_widget_set_margin_bottom(widgetPointer, gint(newValue))
-        }
-    }
-
-    public var leftMargin: Int {
-        get {
-            return Int(gtk_widget_get_margin_start(widgetPointer))
-        }
-        set {
-            gtk_widget_set_margin_start(widgetPointer, gint(newValue))
-        }
-    }
-
-    public var rightMargin: Int {
-        get {
-            return Int(gtk_widget_get_margin_end(widgetPointer))
-        }
-        set {
-            gtk_widget_set_margin_end(widgetPointer, gint(newValue))
-        }
-    }
+    @GObjectProperty(named: "margin-top") public var topMargin: Int
+    @GObjectProperty(named: "margin-bottom") public var bottomMargin: Int
+    @GObjectProperty(named: "margin-start") public var leadingMargin: Int
+    @GObjectProperty(named: "margin-end") public var trailingMargin: Int
 
     public var horizontalAlignment: Align {
         get {
@@ -291,21 +257,17 @@ open class Widget {
         }
     }
 
-    public var expandHorizontally: Bool {
-        get {
-            return gtk_widget_get_hexpand(castedPointer()) != 0
-        }
-        set {
-            gtk_widget_set_hexpand(castedPointer(), newValue ? 1 : 0)
-        }
-    }
+    /// Whether to expand horizontally.
+    @GObjectProperty(named: "hexpand") public var expandHorizontally: Bool
+    /// Whether to use the expandHorizontally property.
+    @GObjectProperty(named: "hexpand-set") public var useExpandHorizontally: Bool
+    /// Whether to expand vertically.
+    @GObjectProperty(named: "vexpand") public var expandVertically: Bool
+    /// Whether to use the expandVertically property.
+    @GObjectProperty(named: "vexpand-set") public var useExpandVertically: Bool
 
-    public var expandVertically: Bool {
-        get {
-            return gtk_widget_get_vexpand(castedPointer()) != 0
-        }
-        set {
-            gtk_widget_set_vexpand(castedPointer(), newValue ? 1 : 0)
-        }
-    }
+    /// Set to -1 for no min width request
+    @GObjectProperty(named: "width-request") public var minWidth: Int
+    /// Set to -1 for no min heigth request
+    @GObjectProperty(named: "height-request") public var minHeight: Int
 }

@@ -90,51 +90,19 @@ public class Grid: Widget, Orientable {
     }
 
     /// Whether all rows of `grid` will have the same height.
-    public var rowHomogeneous: Bool {
-        get {
-            return gtk_grid_get_row_homogeneous(castedPointer()).toBool()
-        }
-        set {
-            gtk_grid_set_row_homogeneous(castedPointer(), newValue.toGBoolean())
-        }
-    }
+    @GObjectProperty(named: "row-homogeneous") public var rowHomogeneous: Bool
 
     /// The amount of space between rows of `grid`.
-    public var rowSpacing: Int {
-        get {
-            return Int(gtk_grid_get_row_spacing(castedPointer()))
-        }
-        set {
-            gtk_grid_set_row_spacing(castedPointer(), guint(newValue))
-        }
-    }
+    @GObjectProperty(named: "row-spacing") public var rowSpacing: Int
 
-    public var columnHomogeneous: Bool {
-        get {
-            return gtk_grid_get_column_homogeneous(castedPointer()).toBool()
-        }
-        set {
-            gtk_grid_set_column_homogeneous(castedPointer(), newValue.toGBoolean())
-        }
-    }
+    /// If `true`, the columns are all the same width.
+    @GObjectProperty(named: "column-homogeneous") public var columnHomogeneous: Bool
 
-    public var columnSpacing: Int {
-        get {
-            return Int(gtk_grid_get_column_spacing(castedPointer()))
-        }
-        set {
-            gtk_grid_set_column_spacing(castedPointer(), guint(newValue))
-        }
-    }
+    /// The amount of space between two consecutive columns.
+    @GObjectProperty(named: "column-spacing") public var columnSpacing: Int
 
-    public var baselineRow: Int {
-        get {
-            return Int(gtk_grid_get_baseline_row(castedPointer()))
-        }
-        set {
-            gtk_grid_set_baseline_row(castedPointer(), gint(newValue))
-        }
-    }
+    /// The row to align to the baseline when valign is using baseline alignment.
+    @GObjectProperty(named: "baseline-row") public var baselineRow: Int
 
     public func getRowBaselinePosition(forRow row: Int) -> BaselinePosition {
         return gtk_grid_get_row_baseline_position(castedPointer(), gint(row)).toBaselinePosition()

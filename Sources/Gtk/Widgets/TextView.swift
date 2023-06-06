@@ -53,14 +53,7 @@ public class TextView: Widget {
         }
     }
 
-    public var editable: Bool {
-        get {
-            return gtk_text_view_get_editable(castedPointer()).toBool()
-        }
-        set {
-            gtk_text_view_set_editable(castedPointer(), newValue.toGBoolean())
-        }
-    }
+    @GObjectProperty(named: "editable") public var editable: Bool
 
     // MARK: - Signals
 

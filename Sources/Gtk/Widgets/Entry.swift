@@ -45,14 +45,8 @@ public class Entry: Widget {
         }
     }
 
-    public var placeholder: String {
-        get {
-            String(cString: gtk_entry_get_placeholder_text(castedPointer()))
-        }
-        set {
-            gtk_entry_set_placeholder_text(castedPointer(), newValue)
-        }
-    }
+    /// The text that will be displayed in the `GtkEntry` when it is empty and unfocused.
+    @GObjectProperty(named: "placeholder-text") public var placeholder: String?
 
     public var changed: ((Entry) -> Void)?
 }
