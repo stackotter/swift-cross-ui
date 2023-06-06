@@ -3,7 +3,9 @@ import CGtk
 /// Possible transitions between pages in a `GtkStack` widget.
 ///
 /// New values may be added to this enumeration over time.
-public enum StackTransitionType {
+public enum StackTransitionType: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkStackTransitionType
+
     /// No transition
     case none
     /// A cross-fade
@@ -51,8 +53,62 @@ public enum StackTransitionType {
     /// Pretend the pages are sides of a cube and rotate that cube to the left or right according to the children order
     case rotateLeftRight
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkStackTransitionType) {
+        switch gtkEnum {
+            case GTK_STACK_TRANSITION_TYPE_NONE:
+                self = .none
+            case GTK_STACK_TRANSITION_TYPE_CROSSFADE:
+                self = .crossfade
+            case GTK_STACK_TRANSITION_TYPE_SLIDE_RIGHT:
+                self = .slideRight
+            case GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT:
+                self = .slideLeft
+            case GTK_STACK_TRANSITION_TYPE_SLIDE_UP:
+                self = .slideUp
+            case GTK_STACK_TRANSITION_TYPE_SLIDE_DOWN:
+                self = .slideDown
+            case GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT:
+                self = .slideLeftRight
+            case GTK_STACK_TRANSITION_TYPE_SLIDE_UP_DOWN:
+                self = .slideUpDown
+            case GTK_STACK_TRANSITION_TYPE_OVER_UP:
+                self = .overUp
+            case GTK_STACK_TRANSITION_TYPE_OVER_DOWN:
+                self = .overDown
+            case GTK_STACK_TRANSITION_TYPE_OVER_LEFT:
+                self = .overLeft
+            case GTK_STACK_TRANSITION_TYPE_OVER_RIGHT:
+                self = .overRight
+            case GTK_STACK_TRANSITION_TYPE_UNDER_UP:
+                self = .underUp
+            case GTK_STACK_TRANSITION_TYPE_UNDER_DOWN:
+                self = .underDown
+            case GTK_STACK_TRANSITION_TYPE_UNDER_LEFT:
+                self = .underLeft
+            case GTK_STACK_TRANSITION_TYPE_UNDER_RIGHT:
+                self = .underRight
+            case GTK_STACK_TRANSITION_TYPE_OVER_UP_DOWN:
+                self = .overUpDown
+            case GTK_STACK_TRANSITION_TYPE_OVER_DOWN_UP:
+                self = .overDownUp
+            case GTK_STACK_TRANSITION_TYPE_OVER_LEFT_RIGHT:
+                self = .overLeftRight
+            case GTK_STACK_TRANSITION_TYPE_OVER_RIGHT_LEFT:
+                self = .overRightLeft
+            case GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT:
+                self = .rotateLeft
+            case GTK_STACK_TRANSITION_TYPE_ROTATE_RIGHT:
+                self = .rotateRight
+            case GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT_RIGHT:
+                self = .rotateLeftRight
+            default:
+                fatalError("Unsupported GtkStackTransitionType enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkStackTransitionType() -> GtkStackTransitionType {
+    public func toGtk() -> GtkStackTransitionType {
         switch self {
             case .none:
                 return GTK_STACK_TRANSITION_TYPE_NONE
@@ -100,62 +156,6 @@ public enum StackTransitionType {
                 return GTK_STACK_TRANSITION_TYPE_ROTATE_RIGHT
             case .rotateLeftRight:
                 return GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT_RIGHT
-        }
-    }
-}
-
-extension GtkStackTransitionType {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toStackTransitionType() -> StackTransitionType {
-        switch self {
-            case GTK_STACK_TRANSITION_TYPE_NONE:
-                return .none
-            case GTK_STACK_TRANSITION_TYPE_CROSSFADE:
-                return .crossfade
-            case GTK_STACK_TRANSITION_TYPE_SLIDE_RIGHT:
-                return .slideRight
-            case GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT:
-                return .slideLeft
-            case GTK_STACK_TRANSITION_TYPE_SLIDE_UP:
-                return .slideUp
-            case GTK_STACK_TRANSITION_TYPE_SLIDE_DOWN:
-                return .slideDown
-            case GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT:
-                return .slideLeftRight
-            case GTK_STACK_TRANSITION_TYPE_SLIDE_UP_DOWN:
-                return .slideUpDown
-            case GTK_STACK_TRANSITION_TYPE_OVER_UP:
-                return .overUp
-            case GTK_STACK_TRANSITION_TYPE_OVER_DOWN:
-                return .overDown
-            case GTK_STACK_TRANSITION_TYPE_OVER_LEFT:
-                return .overLeft
-            case GTK_STACK_TRANSITION_TYPE_OVER_RIGHT:
-                return .overRight
-            case GTK_STACK_TRANSITION_TYPE_UNDER_UP:
-                return .underUp
-            case GTK_STACK_TRANSITION_TYPE_UNDER_DOWN:
-                return .underDown
-            case GTK_STACK_TRANSITION_TYPE_UNDER_LEFT:
-                return .underLeft
-            case GTK_STACK_TRANSITION_TYPE_UNDER_RIGHT:
-                return .underRight
-            case GTK_STACK_TRANSITION_TYPE_OVER_UP_DOWN:
-                return .overUpDown
-            case GTK_STACK_TRANSITION_TYPE_OVER_DOWN_UP:
-                return .overDownUp
-            case GTK_STACK_TRANSITION_TYPE_OVER_LEFT_RIGHT:
-                return .overLeftRight
-            case GTK_STACK_TRANSITION_TYPE_OVER_RIGHT_LEFT:
-                return .overRightLeft
-            case GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT:
-                return .rotateLeft
-            case GTK_STACK_TRANSITION_TYPE_ROTATE_RIGHT:
-                return .rotateRight
-            case GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT_RIGHT:
-                return .rotateLeftRight
-            default:
-                fatalError("Unsupported GtkStackTransitionType enum value: \(self.rawValue)")
         }
     }
 }

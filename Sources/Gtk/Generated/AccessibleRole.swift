@@ -4,7 +4,9 @@ import CGtk
 ///
 /// Abstract roles are only used as part of the ontology; application
 /// developers must not use abstract roles in their code.
-public enum AccessibleRole {
+public enum AccessibleRole: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkAccessibleRole
+
     /// An element with important, and usually
     /// time-sensitive, information
     case alert
@@ -182,8 +184,172 @@ public enum AccessibleRole {
     /// An application window.
     case window
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkAccessibleRole) {
+        switch gtkEnum {
+            case GTK_ACCESSIBLE_ROLE_ALERT:
+                self = .alert
+            case GTK_ACCESSIBLE_ROLE_ALERT_DIALOG:
+                self = .alertDialog
+            case GTK_ACCESSIBLE_ROLE_BANNER:
+                self = .banner
+            case GTK_ACCESSIBLE_ROLE_BUTTON:
+                self = .button
+            case GTK_ACCESSIBLE_ROLE_CAPTION:
+                self = .caption
+            case GTK_ACCESSIBLE_ROLE_CELL:
+                self = .cell
+            case GTK_ACCESSIBLE_ROLE_CHECKBOX:
+                self = .checkbox
+            case GTK_ACCESSIBLE_ROLE_COLUMN_HEADER:
+                self = .columnHeader
+            case GTK_ACCESSIBLE_ROLE_COMBO_BOX:
+                self = .comboBox
+            case GTK_ACCESSIBLE_ROLE_COMMAND:
+                self = .command
+            case GTK_ACCESSIBLE_ROLE_COMPOSITE:
+                self = .composite
+            case GTK_ACCESSIBLE_ROLE_DIALOG:
+                self = .dialog
+            case GTK_ACCESSIBLE_ROLE_DOCUMENT:
+                self = .document
+            case GTK_ACCESSIBLE_ROLE_FEED:
+                self = .feed
+            case GTK_ACCESSIBLE_ROLE_FORM:
+                self = .form
+            case GTK_ACCESSIBLE_ROLE_GENERIC:
+                self = .generic
+            case GTK_ACCESSIBLE_ROLE_GRID:
+                self = .grid
+            case GTK_ACCESSIBLE_ROLE_GRID_CELL:
+                self = .gridCell
+            case GTK_ACCESSIBLE_ROLE_GROUP:
+                self = .group
+            case GTK_ACCESSIBLE_ROLE_HEADING:
+                self = .heading
+            case GTK_ACCESSIBLE_ROLE_IMG:
+                self = .img
+            case GTK_ACCESSIBLE_ROLE_INPUT:
+                self = .input
+            case GTK_ACCESSIBLE_ROLE_LABEL:
+                self = .label
+            case GTK_ACCESSIBLE_ROLE_LANDMARK:
+                self = .landmark
+            case GTK_ACCESSIBLE_ROLE_LEGEND:
+                self = .legend
+            case GTK_ACCESSIBLE_ROLE_LINK:
+                self = .link
+            case GTK_ACCESSIBLE_ROLE_LIST:
+                self = .list
+            case GTK_ACCESSIBLE_ROLE_LIST_BOX:
+                self = .listBox
+            case GTK_ACCESSIBLE_ROLE_LIST_ITEM:
+                self = .listItem
+            case GTK_ACCESSIBLE_ROLE_LOG:
+                self = .log
+            case GTK_ACCESSIBLE_ROLE_MAIN:
+                self = .main
+            case GTK_ACCESSIBLE_ROLE_MARQUEE:
+                self = .marquee
+            case GTK_ACCESSIBLE_ROLE_MATH:
+                self = .math
+            case GTK_ACCESSIBLE_ROLE_METER:
+                self = .meter
+            case GTK_ACCESSIBLE_ROLE_MENU:
+                self = .menu
+            case GTK_ACCESSIBLE_ROLE_MENU_BAR:
+                self = .menuBar
+            case GTK_ACCESSIBLE_ROLE_MENU_ITEM:
+                self = .menuItem
+            case GTK_ACCESSIBLE_ROLE_MENU_ITEM_CHECKBOX:
+                self = .menuItemCheckbox
+            case GTK_ACCESSIBLE_ROLE_MENU_ITEM_RADIO:
+                self = .menuItemRadio
+            case GTK_ACCESSIBLE_ROLE_NAVIGATION:
+                self = .navigation
+            case GTK_ACCESSIBLE_ROLE_NONE:
+                self = .none
+            case GTK_ACCESSIBLE_ROLE_NOTE:
+                self = .note
+            case GTK_ACCESSIBLE_ROLE_OPTION:
+                self = .option
+            case GTK_ACCESSIBLE_ROLE_PRESENTATION:
+                self = .presentation
+            case GTK_ACCESSIBLE_ROLE_PROGRESS_BAR:
+                self = .progressBar
+            case GTK_ACCESSIBLE_ROLE_RADIO:
+                self = .radio
+            case GTK_ACCESSIBLE_ROLE_RADIO_GROUP:
+                self = .radioGroup
+            case GTK_ACCESSIBLE_ROLE_RANGE:
+                self = .range
+            case GTK_ACCESSIBLE_ROLE_REGION:
+                self = .region
+            case GTK_ACCESSIBLE_ROLE_ROW:
+                self = .row
+            case GTK_ACCESSIBLE_ROLE_ROW_GROUP:
+                self = .rowGroup
+            case GTK_ACCESSIBLE_ROLE_ROW_HEADER:
+                self = .rowHeader
+            case GTK_ACCESSIBLE_ROLE_SCROLLBAR:
+                self = .scrollbar
+            case GTK_ACCESSIBLE_ROLE_SEARCH:
+                self = .search
+            case GTK_ACCESSIBLE_ROLE_SEARCH_BOX:
+                self = .searchBox
+            case GTK_ACCESSIBLE_ROLE_SECTION:
+                self = .section
+            case GTK_ACCESSIBLE_ROLE_SECTION_HEAD:
+                self = .sectionHead
+            case GTK_ACCESSIBLE_ROLE_SELECT:
+                self = .select
+            case GTK_ACCESSIBLE_ROLE_SEPARATOR:
+                self = .separator
+            case GTK_ACCESSIBLE_ROLE_SLIDER:
+                self = .slider
+            case GTK_ACCESSIBLE_ROLE_SPIN_BUTTON:
+                self = .spinButton
+            case GTK_ACCESSIBLE_ROLE_STATUS:
+                self = .status
+            case GTK_ACCESSIBLE_ROLE_STRUCTURE:
+                self = .structure
+            case GTK_ACCESSIBLE_ROLE_SWITCH:
+                self = .switch_
+            case GTK_ACCESSIBLE_ROLE_TAB:
+                self = .tab
+            case GTK_ACCESSIBLE_ROLE_TABLE:
+                self = .table
+            case GTK_ACCESSIBLE_ROLE_TAB_LIST:
+                self = .tabList
+            case GTK_ACCESSIBLE_ROLE_TAB_PANEL:
+                self = .tabPanel
+            case GTK_ACCESSIBLE_ROLE_TEXT_BOX:
+                self = .textBox
+            case GTK_ACCESSIBLE_ROLE_TIME:
+                self = .time
+            case GTK_ACCESSIBLE_ROLE_TIMER:
+                self = .timer
+            case GTK_ACCESSIBLE_ROLE_TOOLBAR:
+                self = .toolbar
+            case GTK_ACCESSIBLE_ROLE_TOOLTIP:
+                self = .tooltip
+            case GTK_ACCESSIBLE_ROLE_TREE:
+                self = .tree
+            case GTK_ACCESSIBLE_ROLE_TREE_GRID:
+                self = .treeGrid
+            case GTK_ACCESSIBLE_ROLE_TREE_ITEM:
+                self = .treeItem
+            case GTK_ACCESSIBLE_ROLE_WIDGET:
+                self = .widget
+            case GTK_ACCESSIBLE_ROLE_WINDOW:
+                self = .window
+            default:
+                fatalError("Unsupported GtkAccessibleRole enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkAccessibleRole() -> GtkAccessibleRole {
+    public func toGtk() -> GtkAccessibleRole {
         switch self {
             case .alert:
                 return GTK_ACCESSIBLE_ROLE_ALERT
@@ -341,172 +507,6 @@ public enum AccessibleRole {
                 return GTK_ACCESSIBLE_ROLE_WIDGET
             case .window:
                 return GTK_ACCESSIBLE_ROLE_WINDOW
-        }
-    }
-}
-
-extension GtkAccessibleRole {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toAccessibleRole() -> AccessibleRole {
-        switch self {
-            case GTK_ACCESSIBLE_ROLE_ALERT:
-                return .alert
-            case GTK_ACCESSIBLE_ROLE_ALERT_DIALOG:
-                return .alertDialog
-            case GTK_ACCESSIBLE_ROLE_BANNER:
-                return .banner
-            case GTK_ACCESSIBLE_ROLE_BUTTON:
-                return .button
-            case GTK_ACCESSIBLE_ROLE_CAPTION:
-                return .caption
-            case GTK_ACCESSIBLE_ROLE_CELL:
-                return .cell
-            case GTK_ACCESSIBLE_ROLE_CHECKBOX:
-                return .checkbox
-            case GTK_ACCESSIBLE_ROLE_COLUMN_HEADER:
-                return .columnHeader
-            case GTK_ACCESSIBLE_ROLE_COMBO_BOX:
-                return .comboBox
-            case GTK_ACCESSIBLE_ROLE_COMMAND:
-                return .command
-            case GTK_ACCESSIBLE_ROLE_COMPOSITE:
-                return .composite
-            case GTK_ACCESSIBLE_ROLE_DIALOG:
-                return .dialog
-            case GTK_ACCESSIBLE_ROLE_DOCUMENT:
-                return .document
-            case GTK_ACCESSIBLE_ROLE_FEED:
-                return .feed
-            case GTK_ACCESSIBLE_ROLE_FORM:
-                return .form
-            case GTK_ACCESSIBLE_ROLE_GENERIC:
-                return .generic
-            case GTK_ACCESSIBLE_ROLE_GRID:
-                return .grid
-            case GTK_ACCESSIBLE_ROLE_GRID_CELL:
-                return .gridCell
-            case GTK_ACCESSIBLE_ROLE_GROUP:
-                return .group
-            case GTK_ACCESSIBLE_ROLE_HEADING:
-                return .heading
-            case GTK_ACCESSIBLE_ROLE_IMG:
-                return .img
-            case GTK_ACCESSIBLE_ROLE_INPUT:
-                return .input
-            case GTK_ACCESSIBLE_ROLE_LABEL:
-                return .label
-            case GTK_ACCESSIBLE_ROLE_LANDMARK:
-                return .landmark
-            case GTK_ACCESSIBLE_ROLE_LEGEND:
-                return .legend
-            case GTK_ACCESSIBLE_ROLE_LINK:
-                return .link
-            case GTK_ACCESSIBLE_ROLE_LIST:
-                return .list
-            case GTK_ACCESSIBLE_ROLE_LIST_BOX:
-                return .listBox
-            case GTK_ACCESSIBLE_ROLE_LIST_ITEM:
-                return .listItem
-            case GTK_ACCESSIBLE_ROLE_LOG:
-                return .log
-            case GTK_ACCESSIBLE_ROLE_MAIN:
-                return .main
-            case GTK_ACCESSIBLE_ROLE_MARQUEE:
-                return .marquee
-            case GTK_ACCESSIBLE_ROLE_MATH:
-                return .math
-            case GTK_ACCESSIBLE_ROLE_METER:
-                return .meter
-            case GTK_ACCESSIBLE_ROLE_MENU:
-                return .menu
-            case GTK_ACCESSIBLE_ROLE_MENU_BAR:
-                return .menuBar
-            case GTK_ACCESSIBLE_ROLE_MENU_ITEM:
-                return .menuItem
-            case GTK_ACCESSIBLE_ROLE_MENU_ITEM_CHECKBOX:
-                return .menuItemCheckbox
-            case GTK_ACCESSIBLE_ROLE_MENU_ITEM_RADIO:
-                return .menuItemRadio
-            case GTK_ACCESSIBLE_ROLE_NAVIGATION:
-                return .navigation
-            case GTK_ACCESSIBLE_ROLE_NONE:
-                return .none
-            case GTK_ACCESSIBLE_ROLE_NOTE:
-                return .note
-            case GTK_ACCESSIBLE_ROLE_OPTION:
-                return .option
-            case GTK_ACCESSIBLE_ROLE_PRESENTATION:
-                return .presentation
-            case GTK_ACCESSIBLE_ROLE_PROGRESS_BAR:
-                return .progressBar
-            case GTK_ACCESSIBLE_ROLE_RADIO:
-                return .radio
-            case GTK_ACCESSIBLE_ROLE_RADIO_GROUP:
-                return .radioGroup
-            case GTK_ACCESSIBLE_ROLE_RANGE:
-                return .range
-            case GTK_ACCESSIBLE_ROLE_REGION:
-                return .region
-            case GTK_ACCESSIBLE_ROLE_ROW:
-                return .row
-            case GTK_ACCESSIBLE_ROLE_ROW_GROUP:
-                return .rowGroup
-            case GTK_ACCESSIBLE_ROLE_ROW_HEADER:
-                return .rowHeader
-            case GTK_ACCESSIBLE_ROLE_SCROLLBAR:
-                return .scrollbar
-            case GTK_ACCESSIBLE_ROLE_SEARCH:
-                return .search
-            case GTK_ACCESSIBLE_ROLE_SEARCH_BOX:
-                return .searchBox
-            case GTK_ACCESSIBLE_ROLE_SECTION:
-                return .section
-            case GTK_ACCESSIBLE_ROLE_SECTION_HEAD:
-                return .sectionHead
-            case GTK_ACCESSIBLE_ROLE_SELECT:
-                return .select
-            case GTK_ACCESSIBLE_ROLE_SEPARATOR:
-                return .separator
-            case GTK_ACCESSIBLE_ROLE_SLIDER:
-                return .slider
-            case GTK_ACCESSIBLE_ROLE_SPIN_BUTTON:
-                return .spinButton
-            case GTK_ACCESSIBLE_ROLE_STATUS:
-                return .status
-            case GTK_ACCESSIBLE_ROLE_STRUCTURE:
-                return .structure
-            case GTK_ACCESSIBLE_ROLE_SWITCH:
-                return .switch_
-            case GTK_ACCESSIBLE_ROLE_TAB:
-                return .tab
-            case GTK_ACCESSIBLE_ROLE_TABLE:
-                return .table
-            case GTK_ACCESSIBLE_ROLE_TAB_LIST:
-                return .tabList
-            case GTK_ACCESSIBLE_ROLE_TAB_PANEL:
-                return .tabPanel
-            case GTK_ACCESSIBLE_ROLE_TEXT_BOX:
-                return .textBox
-            case GTK_ACCESSIBLE_ROLE_TIME:
-                return .time
-            case GTK_ACCESSIBLE_ROLE_TIMER:
-                return .timer
-            case GTK_ACCESSIBLE_ROLE_TOOLBAR:
-                return .toolbar
-            case GTK_ACCESSIBLE_ROLE_TOOLTIP:
-                return .tooltip
-            case GTK_ACCESSIBLE_ROLE_TREE:
-                return .tree
-            case GTK_ACCESSIBLE_ROLE_TREE_GRID:
-                return .treeGrid
-            case GTK_ACCESSIBLE_ROLE_TREE_ITEM:
-                return .treeItem
-            case GTK_ACCESSIBLE_ROLE_WIDGET:
-                return .widget
-            case GTK_ACCESSIBLE_ROLE_WINDOW:
-                return .window
-            default:
-                fatalError("Unsupported GtkAccessibleRole enum value: \(self.rawValue)")
         }
     }
 }

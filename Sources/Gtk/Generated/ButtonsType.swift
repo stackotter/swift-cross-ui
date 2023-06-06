@@ -8,7 +8,9 @@ import CGtk
 /// > Please note that %GTK_BUTTONS_OK, %GTK_BUTTONS_YES_NO
 /// > and %GTK_BUTTONS_OK_CANCEL are discouraged by the
 /// > [GNOME Human Interface Guidelines](http://library.gnome.org/devel/hig-book/stable/).
-public enum ButtonsType {
+public enum ButtonsType: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkButtonsType
+
     /// No buttons at all
     case none
     /// An OK button
@@ -22,8 +24,28 @@ public enum ButtonsType {
     /// OK and Cancel buttons
     case okCancel
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkButtonsType) {
+        switch gtkEnum {
+            case GTK_BUTTONS_NONE:
+                self = .none
+            case GTK_BUTTONS_OK:
+                self = .ok
+            case GTK_BUTTONS_CLOSE:
+                self = .close
+            case GTK_BUTTONS_CANCEL:
+                self = .cancel
+            case GTK_BUTTONS_YES_NO:
+                self = .yesNo
+            case GTK_BUTTONS_OK_CANCEL:
+                self = .okCancel
+            default:
+                fatalError("Unsupported GtkButtonsType enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkButtonsType() -> GtkButtonsType {
+    public func toGtk() -> GtkButtonsType {
         switch self {
             case .none:
                 return GTK_BUTTONS_NONE
@@ -37,28 +59,6 @@ public enum ButtonsType {
                 return GTK_BUTTONS_YES_NO
             case .okCancel:
                 return GTK_BUTTONS_OK_CANCEL
-        }
-    }
-}
-
-extension GtkButtonsType {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toButtonsType() -> ButtonsType {
-        switch self {
-            case GTK_BUTTONS_NONE:
-                return .none
-            case GTK_BUTTONS_OK:
-                return .ok
-            case GTK_BUTTONS_CLOSE:
-                return .close
-            case GTK_BUTTONS_CANCEL:
-                return .cancel
-            case GTK_BUTTONS_YES_NO:
-                return .yesNo
-            case GTK_BUTTONS_OK_CANCEL:
-                return .okCancel
-            default:
-                fatalError("Unsupported GtkButtonsType enum value: \(self.rawValue)")
         }
     }
 }

@@ -5,7 +5,9 @@ import CGtk
 /// Note that for filters where the strictness is not known,
 /// %GTK_FILTER_MATCH_SOME is always an acceptable value,
 /// even if a filter does match all or no items.
-public enum FilterMatch {
+public enum FilterMatch: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkFilterMatch
+
     /// The filter matches some items,
     /// gtk_filter_match() may return %TRUE or %FALSE
     case some
@@ -16,8 +18,22 @@ public enum FilterMatch {
     /// gtk_filter_match() will alays return %TRUE.
     case all
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkFilterMatch) {
+        switch gtkEnum {
+            case GTK_FILTER_MATCH_SOME:
+                self = .some
+            case GTK_FILTER_MATCH_NONE:
+                self = .none
+            case GTK_FILTER_MATCH_ALL:
+                self = .all
+            default:
+                fatalError("Unsupported GtkFilterMatch enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkFilterMatch() -> GtkFilterMatch {
+    public func toGtk() -> GtkFilterMatch {
         switch self {
             case .some:
                 return GTK_FILTER_MATCH_SOME
@@ -25,22 +41,6 @@ public enum FilterMatch {
                 return GTK_FILTER_MATCH_NONE
             case .all:
                 return GTK_FILTER_MATCH_ALL
-        }
-    }
-}
-
-extension GtkFilterMatch {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toFilterMatch() -> FilterMatch {
-        switch self {
-            case GTK_FILTER_MATCH_SOME:
-                return .some
-            case GTK_FILTER_MATCH_NONE:
-                return .none
-            case GTK_FILTER_MATCH_ALL:
-                return .all
-            default:
-                fatalError("Unsupported GtkFilterMatch enum value: \(self.rawValue)")
         }
     }
 }

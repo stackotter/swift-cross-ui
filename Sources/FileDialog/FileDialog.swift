@@ -3,35 +3,21 @@ import Foundation
 import Gtk
 
 /// A wrapper for Gtk's file dialog.
-public class FileDialog {
+public class FileDialog: GObjectRepresentable {
     var pointer: OpaquePointer?
     var cancellable: Cancellable?
+
+    public var gobjectPointer: UnsafeMutablePointer<GObject> {
+        return UnsafeMutablePointer<GObject>(pointer!)
+    }
 
     public init() {
         pointer = gtk_file_dialog_new()
     }
 
-    public var title: String {
-        get {
-            String(cString: gtk_file_dialog_get_title(pointer))
-        }
-        set {
-            newValue.withCString { newTitle in
-                gtk_file_dialog_set_title(pointer, newTitle)
-            }
-        }
-    }
+    @GObjectProperty(named: "title") public var title: String?
 
-    public var acceptLabel: String {
-        get {
-            String(cString: gtk_file_dialog_get_accept_label(pointer))
-        }
-        set {
-            newValue.withCString { newTitle in
-                gtk_file_dialog_set_accept_label(pointer, newTitle)
-            }
-        }
-    }
+    @GObjectProperty(named: "accept-label") public var acceptLabel: String?
 
     private class CallbackContext {
         var dialog: FileDialog

@@ -1,7 +1,9 @@
 import CGtk
 
 /// Used to indicate the direction in which an arrow should point.
-public enum ArrowType {
+public enum ArrowType: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkArrowType
+
     /// Represents an upward pointing arrow.
     case up
     /// Represents a downward pointing arrow.
@@ -13,8 +15,26 @@ public enum ArrowType {
     /// No arrow.
     case none
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkArrowType) {
+        switch gtkEnum {
+            case GTK_ARROW_UP:
+                self = .up
+            case GTK_ARROW_DOWN:
+                self = .down
+            case GTK_ARROW_LEFT:
+                self = .left
+            case GTK_ARROW_RIGHT:
+                self = .right
+            case GTK_ARROW_NONE:
+                self = .none
+            default:
+                fatalError("Unsupported GtkArrowType enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkArrowType() -> GtkArrowType {
+    public func toGtk() -> GtkArrowType {
         switch self {
             case .up:
                 return GTK_ARROW_UP
@@ -26,26 +46,6 @@ public enum ArrowType {
                 return GTK_ARROW_RIGHT
             case .none:
                 return GTK_ARROW_NONE
-        }
-    }
-}
-
-extension GtkArrowType {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toArrowType() -> ArrowType {
-        switch self {
-            case GTK_ARROW_UP:
-                return .up
-            case GTK_ARROW_DOWN:
-                return .down
-            case GTK_ARROW_LEFT:
-                return .left
-            case GTK_ARROW_RIGHT:
-                return .right
-            case GTK_ARROW_NONE:
-                return .none
-            default:
-                fatalError("Unsupported GtkArrowType enum value: \(self.rawValue)")
         }
     }
 }

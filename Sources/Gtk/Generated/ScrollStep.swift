@@ -1,7 +1,9 @@
 import CGtk
 
 /// Passed as argument to various keybinding signals.
-public enum ScrollStep {
+public enum ScrollStep: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkScrollStep
+
     /// Scroll in steps.
     case steps
     /// Scroll by pages.
@@ -15,8 +17,28 @@ public enum ScrollStep {
     /// Scroll to the horizontal ends.
     case horizontalEnds
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkScrollStep) {
+        switch gtkEnum {
+            case GTK_SCROLL_STEPS:
+                self = .steps
+            case GTK_SCROLL_PAGES:
+                self = .pages
+            case GTK_SCROLL_ENDS:
+                self = .ends
+            case GTK_SCROLL_HORIZONTAL_STEPS:
+                self = .horizontalSteps
+            case GTK_SCROLL_HORIZONTAL_PAGES:
+                self = .horizontalPages
+            case GTK_SCROLL_HORIZONTAL_ENDS:
+                self = .horizontalEnds
+            default:
+                fatalError("Unsupported GtkScrollStep enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkScrollStep() -> GtkScrollStep {
+    public func toGtk() -> GtkScrollStep {
         switch self {
             case .steps:
                 return GTK_SCROLL_STEPS
@@ -30,28 +52,6 @@ public enum ScrollStep {
                 return GTK_SCROLL_HORIZONTAL_PAGES
             case .horizontalEnds:
                 return GTK_SCROLL_HORIZONTAL_ENDS
-        }
-    }
-}
-
-extension GtkScrollStep {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toScrollStep() -> ScrollStep {
-        switch self {
-            case GTK_SCROLL_STEPS:
-                return .steps
-            case GTK_SCROLL_PAGES:
-                return .pages
-            case GTK_SCROLL_ENDS:
-                return .ends
-            case GTK_SCROLL_HORIZONTAL_STEPS:
-                return .horizontalSteps
-            case GTK_SCROLL_HORIZONTAL_PAGES:
-                return .horizontalPages
-            case GTK_SCROLL_HORIZONTAL_ENDS:
-                return .horizontalEnds
-            default:
-                fatalError("Unsupported GtkScrollStep enum value: \(self.rawValue)")
         }
     }
 }

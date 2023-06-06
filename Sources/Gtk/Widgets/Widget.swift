@@ -241,23 +241,9 @@ open class Widget: GObjectRepresentable {
     @GObjectProperty(named: "margin-start") public var leadingMargin: Int
     @GObjectProperty(named: "margin-end") public var trailingMargin: Int
 
-    public var horizontalAlignment: Align {
-        get {
-            return gtk_widget_get_halign(castedPointer()).toAlign()
-        }
-        set {
-            gtk_widget_set_halign(castedPointer(), newValue.toGtkAlign())
-        }
-    }
+    @GObjectProperty(named: "halign") public var horizontalAlignment: Align
 
-    public var verticalAlignment: Align {
-        get {
-            return gtk_widget_get_valign(castedPointer()).toAlign()
-        }
-        set {
-            gtk_widget_set_valign(castedPointer(), newValue.toGtkAlign())
-        }
-    }
+    @GObjectProperty(named: "valign") public var verticalAlignment: Align
 
     /// Whether to expand horizontally.
     @GObjectProperty(named: "hexpand") public var expandHorizontally: Bool

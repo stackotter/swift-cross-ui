@@ -19,7 +19,9 @@ import CGtk
 ///
 /// This enumeration may be extended in the future; input methods should
 /// interpret unknown values as “free form”.
-public enum InputPurpose {
+public enum InputPurpose: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkInputPurpose
+
     /// Allow any character
     case freeForm
     /// Allow only alphabetic characters
@@ -43,8 +45,38 @@ public enum InputPurpose {
     /// Allow any character, in addition to control codes
     case terminal
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkInputPurpose) {
+        switch gtkEnum {
+            case GTK_INPUT_PURPOSE_FREE_FORM:
+                self = .freeForm
+            case GTK_INPUT_PURPOSE_ALPHA:
+                self = .alpha
+            case GTK_INPUT_PURPOSE_DIGITS:
+                self = .digits
+            case GTK_INPUT_PURPOSE_NUMBER:
+                self = .number
+            case GTK_INPUT_PURPOSE_PHONE:
+                self = .phone
+            case GTK_INPUT_PURPOSE_URL:
+                self = .url
+            case GTK_INPUT_PURPOSE_EMAIL:
+                self = .email
+            case GTK_INPUT_PURPOSE_NAME:
+                self = .name
+            case GTK_INPUT_PURPOSE_PASSWORD:
+                self = .password
+            case GTK_INPUT_PURPOSE_PIN:
+                self = .pin
+            case GTK_INPUT_PURPOSE_TERMINAL:
+                self = .terminal
+            default:
+                fatalError("Unsupported GtkInputPurpose enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkInputPurpose() -> GtkInputPurpose {
+    public func toGtk() -> GtkInputPurpose {
         switch self {
             case .freeForm:
                 return GTK_INPUT_PURPOSE_FREE_FORM
@@ -68,38 +100,6 @@ public enum InputPurpose {
                 return GTK_INPUT_PURPOSE_PIN
             case .terminal:
                 return GTK_INPUT_PURPOSE_TERMINAL
-        }
-    }
-}
-
-extension GtkInputPurpose {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toInputPurpose() -> InputPurpose {
-        switch self {
-            case GTK_INPUT_PURPOSE_FREE_FORM:
-                return .freeForm
-            case GTK_INPUT_PURPOSE_ALPHA:
-                return .alpha
-            case GTK_INPUT_PURPOSE_DIGITS:
-                return .digits
-            case GTK_INPUT_PURPOSE_NUMBER:
-                return .number
-            case GTK_INPUT_PURPOSE_PHONE:
-                return .phone
-            case GTK_INPUT_PURPOSE_URL:
-                return .url
-            case GTK_INPUT_PURPOSE_EMAIL:
-                return .email
-            case GTK_INPUT_PURPOSE_NAME:
-                return .name
-            case GTK_INPUT_PURPOSE_PASSWORD:
-                return .password
-            case GTK_INPUT_PURPOSE_PIN:
-                return .pin
-            case GTK_INPUT_PURPOSE_TERMINAL:
-                return .terminal
-            default:
-                fatalError("Unsupported GtkInputPurpose enum value: \(self.rawValue)")
         }
     }
 }

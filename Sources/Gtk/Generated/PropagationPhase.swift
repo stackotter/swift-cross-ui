@@ -1,7 +1,9 @@
 import CGtk
 
 /// Describes the stage at which events are fed into a [class@EventController].
-public enum PropagationPhase {
+public enum PropagationPhase: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkPropagationPhase
+
     /// Events are not delivered.
     case none
     /// Events are delivered in the capture phase. The
@@ -18,8 +20,24 @@ public enum PropagationPhase {
     /// grab broken handlers for controllers in this phase to be run.
     case target
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkPropagationPhase) {
+        switch gtkEnum {
+            case GTK_PHASE_NONE:
+                self = .none
+            case GTK_PHASE_CAPTURE:
+                self = .capture
+            case GTK_PHASE_BUBBLE:
+                self = .bubble
+            case GTK_PHASE_TARGET:
+                self = .target
+            default:
+                fatalError("Unsupported GtkPropagationPhase enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkPropagationPhase() -> GtkPropagationPhase {
+    public func toGtk() -> GtkPropagationPhase {
         switch self {
             case .none:
                 return GTK_PHASE_NONE
@@ -29,24 +47,6 @@ public enum PropagationPhase {
                 return GTK_PHASE_BUBBLE
             case .target:
                 return GTK_PHASE_TARGET
-        }
-    }
-}
-
-extension GtkPropagationPhase {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toPropagationPhase() -> PropagationPhase {
-        switch self {
-            case GTK_PHASE_NONE:
-                return .none
-            case GTK_PHASE_CAPTURE:
-                return .capture
-            case GTK_PHASE_BUBBLE:
-                return .bubble
-            case GTK_PHASE_TARGET:
-                return .target
-            default:
-                fatalError("Unsupported GtkPropagationPhase enum value: \(self.rawValue)")
         }
     }
 }

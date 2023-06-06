@@ -88,7 +88,7 @@ struct GtkCodeGen {
                 SwitchCaseSyntax(
                     """
                     case \(raw: case_.cIdentifier):
-                        return .\(raw: name)
+                        self = .\(raw: name)
                     """
                 )
             )
@@ -99,24 +99,24 @@ struct GtkCodeGen {
             import CGtk
 
             \(raw: docComment(enumeration.doc))
-            public enum \(raw: enumeration.name) {
+            public enum \(raw: enumeration.name): GValueRepresentableEnum {
+                public typealias GtkEnum = \(raw: enumeration.cType)
+
                 \(raw: cases.map(\.description).joined(separator: "\n"))
 
-                /// Converts the value to its corresponding Gtk representation.
-                func to\(raw: enumeration.cType)() -> \(raw: enumeration.cType) {
-                    switch self {
-                        \(raw: toGtkConversionSwitchCases.map(\.description).joined(separator: "\n"))
-                    }
-                }
-            }
-
-            extension \(raw: enumeration.cType) {
                 /// Converts a Gtk value to its corresponding swift representation.
-                func to\(raw: enumeration.name)() -> \(raw: enumeration.name) {
-                    switch self {
+                public init(from gtkEnum: \(raw: enumeration.cType)) {
+                    switch gtkEnum {
                         \(raw: fromGtkConversionSwitchCases.map(\.description).joined(separator: "\n"))
                         default:
-                            fatalError("Unsupported \(raw: enumeration.cType) enum value: \\(self.rawValue)")
+                            fatalError("Unsupported \(raw: enumeration.cType) enum value: \\(gtkEnum.rawValue)")
+                    }
+                }
+                
+                /// Converts the value to its corresponding Gtk representation.
+                public func toGtk() -> \(raw: enumeration.cType) {
+                    switch self {
+                        \(raw: toGtkConversionSwitchCases.map(\.description).joined(separator: "\n"))
                     }
                 }
             }

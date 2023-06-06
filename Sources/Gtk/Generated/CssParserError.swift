@@ -4,7 +4,9 @@ import CGtk
 ///
 /// These errors are unexpected and will cause parts of the given CSS
 /// to be ignored.
-public enum CssParserError {
+public enum CssParserError: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkCssParserError
+
     /// Unknown failure.
     case failed
     /// The given text does not form valid syntax
@@ -16,8 +18,26 @@ public enum CssParserError {
     /// The given value is not correct
     case unknownValue
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkCssParserError) {
+        switch gtkEnum {
+            case GTK_CSS_PARSER_ERROR_FAILED:
+                self = .failed
+            case GTK_CSS_PARSER_ERROR_SYNTAX:
+                self = .syntax
+            case GTK_CSS_PARSER_ERROR_IMPORT:
+                self = .import_
+            case GTK_CSS_PARSER_ERROR_NAME:
+                self = .name
+            case GTK_CSS_PARSER_ERROR_UNKNOWN_VALUE:
+                self = .unknownValue
+            default:
+                fatalError("Unsupported GtkCssParserError enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkCssParserError() -> GtkCssParserError {
+    public func toGtk() -> GtkCssParserError {
         switch self {
             case .failed:
                 return GTK_CSS_PARSER_ERROR_FAILED
@@ -29,26 +49,6 @@ public enum CssParserError {
                 return GTK_CSS_PARSER_ERROR_NAME
             case .unknownValue:
                 return GTK_CSS_PARSER_ERROR_UNKNOWN_VALUE
-        }
-    }
-}
-
-extension GtkCssParserError {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toCssParserError() -> CssParserError {
-        switch self {
-            case GTK_CSS_PARSER_ERROR_FAILED:
-                return .failed
-            case GTK_CSS_PARSER_ERROR_SYNTAX:
-                return .syntax
-            case GTK_CSS_PARSER_ERROR_IMPORT:
-                return .import_
-            case GTK_CSS_PARSER_ERROR_NAME:
-                return .name
-            case GTK_CSS_PARSER_ERROR_UNKNOWN_VALUE:
-                return .unknownValue
-            default:
-                fatalError("Unsupported GtkCssParserError enum value: \(self.rawValue)")
         }
     }
 }

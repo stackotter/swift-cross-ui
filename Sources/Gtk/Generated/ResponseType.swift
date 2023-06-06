@@ -4,7 +4,9 @@ import CGtk
 ///
 /// All predefined values are negative; GTK leaves values of 0 or greater for
 /// application-defined response ids.
-public enum ResponseType {
+public enum ResponseType: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkResponseType
+
     /// Returned if an action widget has no response id,
     /// or if the dialog gets programmatically hidden or destroyed
     case none
@@ -29,8 +31,38 @@ public enum ResponseType {
     /// Returned by Help buttons in GTK dialogs
     case help
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkResponseType) {
+        switch gtkEnum {
+            case GTK_RESPONSE_NONE:
+                self = .none
+            case GTK_RESPONSE_REJECT:
+                self = .reject
+            case GTK_RESPONSE_ACCEPT:
+                self = .accept
+            case GTK_RESPONSE_DELETE_EVENT:
+                self = .deleteEvent
+            case GTK_RESPONSE_OK:
+                self = .ok
+            case GTK_RESPONSE_CANCEL:
+                self = .cancel
+            case GTK_RESPONSE_CLOSE:
+                self = .close
+            case GTK_RESPONSE_YES:
+                self = .yes
+            case GTK_RESPONSE_NO:
+                self = .no
+            case GTK_RESPONSE_APPLY:
+                self = .apply
+            case GTK_RESPONSE_HELP:
+                self = .help
+            default:
+                fatalError("Unsupported GtkResponseType enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkResponseType() -> GtkResponseType {
+    public func toGtk() -> GtkResponseType {
         switch self {
             case .none:
                 return GTK_RESPONSE_NONE
@@ -54,38 +86,6 @@ public enum ResponseType {
                 return GTK_RESPONSE_APPLY
             case .help:
                 return GTK_RESPONSE_HELP
-        }
-    }
-}
-
-extension GtkResponseType {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toResponseType() -> ResponseType {
-        switch self {
-            case GTK_RESPONSE_NONE:
-                return .none
-            case GTK_RESPONSE_REJECT:
-                return .reject
-            case GTK_RESPONSE_ACCEPT:
-                return .accept
-            case GTK_RESPONSE_DELETE_EVENT:
-                return .deleteEvent
-            case GTK_RESPONSE_OK:
-                return .ok
-            case GTK_RESPONSE_CANCEL:
-                return .cancel
-            case GTK_RESPONSE_CLOSE:
-                return .close
-            case GTK_RESPONSE_YES:
-                return .yes
-            case GTK_RESPONSE_NO:
-                return .no
-            case GTK_RESPONSE_APPLY:
-                return .apply
-            case GTK_RESPONSE_HELP:
-                return .help
-            default:
-                fatalError("Unsupported GtkResponseType enum value: \(self.rawValue)")
         }
     }
 }

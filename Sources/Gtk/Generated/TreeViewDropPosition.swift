@@ -1,7 +1,9 @@
 import CGtk
 
 /// An enum for determining where a dropped row goes.
-public enum TreeViewDropPosition {
+public enum TreeViewDropPosition: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkTreeViewDropPosition
+
     /// Dropped row is inserted before
     case before
     /// Dropped row is inserted after
@@ -11,8 +13,24 @@ public enum TreeViewDropPosition {
     /// Dropped row becomes a child or is inserted after
     case intoOrAfter
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkTreeViewDropPosition) {
+        switch gtkEnum {
+            case GTK_TREE_VIEW_DROP_BEFORE:
+                self = .before
+            case GTK_TREE_VIEW_DROP_AFTER:
+                self = .after
+            case GTK_TREE_VIEW_DROP_INTO_OR_BEFORE:
+                self = .intoOrBefore
+            case GTK_TREE_VIEW_DROP_INTO_OR_AFTER:
+                self = .intoOrAfter
+            default:
+                fatalError("Unsupported GtkTreeViewDropPosition enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkTreeViewDropPosition() -> GtkTreeViewDropPosition {
+    public func toGtk() -> GtkTreeViewDropPosition {
         switch self {
             case .before:
                 return GTK_TREE_VIEW_DROP_BEFORE
@@ -22,24 +40,6 @@ public enum TreeViewDropPosition {
                 return GTK_TREE_VIEW_DROP_INTO_OR_BEFORE
             case .intoOrAfter:
                 return GTK_TREE_VIEW_DROP_INTO_OR_AFTER
-        }
-    }
-}
-
-extension GtkTreeViewDropPosition {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toTreeViewDropPosition() -> TreeViewDropPosition {
-        switch self {
-            case GTK_TREE_VIEW_DROP_BEFORE:
-                return .before
-            case GTK_TREE_VIEW_DROP_AFTER:
-                return .after
-            case GTK_TREE_VIEW_DROP_INTO_OR_BEFORE:
-                return .intoOrBefore
-            case GTK_TREE_VIEW_DROP_INTO_OR_AFTER:
-                return .intoOrAfter
-            default:
-                fatalError("Unsupported GtkTreeViewDropPosition enum value: \(self.rawValue)")
         }
     }
 }

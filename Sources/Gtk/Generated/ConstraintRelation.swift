@@ -1,7 +1,9 @@
 import CGtk
 
 /// The relation between two terms of a constraint.
-public enum ConstraintRelation {
+public enum ConstraintRelation: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkConstraintRelation
+
     /// Less than, or equal
     case le
     /// Equal
@@ -9,8 +11,22 @@ public enum ConstraintRelation {
     /// Greater than, or equal
     case ge
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkConstraintRelation) {
+        switch gtkEnum {
+            case GTK_CONSTRAINT_RELATION_LE:
+                self = .le
+            case GTK_CONSTRAINT_RELATION_EQ:
+                self = .eq
+            case GTK_CONSTRAINT_RELATION_GE:
+                self = .ge
+            default:
+                fatalError("Unsupported GtkConstraintRelation enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkConstraintRelation() -> GtkConstraintRelation {
+    public func toGtk() -> GtkConstraintRelation {
         switch self {
             case .le:
                 return GTK_CONSTRAINT_RELATION_LE
@@ -18,22 +34,6 @@ public enum ConstraintRelation {
                 return GTK_CONSTRAINT_RELATION_EQ
             case .ge:
                 return GTK_CONSTRAINT_RELATION_GE
-        }
-    }
-}
-
-extension GtkConstraintRelation {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toConstraintRelation() -> ConstraintRelation {
-        switch self {
-            case GTK_CONSTRAINT_RELATION_LE:
-                return .le
-            case GTK_CONSTRAINT_RELATION_EQ:
-                return .eq
-            case GTK_CONSTRAINT_RELATION_GE:
-                return .ge
-            default:
-                fatalError("Unsupported GtkConstraintRelation enum value: \(self.rawValue)")
         }
     }
 }

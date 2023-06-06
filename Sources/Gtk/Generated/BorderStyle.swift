@@ -1,7 +1,9 @@
 import CGtk
 
 /// Describes how the border of a UI element should be rendered.
-public enum BorderStyle {
+public enum BorderStyle: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkBorderStyle
+
     /// No visible border
     case none
     /// Same as %GTK_BORDER_STYLE_NONE
@@ -23,8 +25,36 @@ public enum BorderStyle {
     /// Looks as if it were coming out of the canvas
     case ridge
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkBorderStyle) {
+        switch gtkEnum {
+            case GTK_BORDER_STYLE_NONE:
+                self = .none
+            case GTK_BORDER_STYLE_HIDDEN:
+                self = .hidden
+            case GTK_BORDER_STYLE_SOLID:
+                self = .solid
+            case GTK_BORDER_STYLE_INSET:
+                self = .inset
+            case GTK_BORDER_STYLE_OUTSET:
+                self = .outset
+            case GTK_BORDER_STYLE_DOTTED:
+                self = .dotted
+            case GTK_BORDER_STYLE_DASHED:
+                self = .dashed
+            case GTK_BORDER_STYLE_DOUBLE:
+                self = .double
+            case GTK_BORDER_STYLE_GROOVE:
+                self = .groove
+            case GTK_BORDER_STYLE_RIDGE:
+                self = .ridge
+            default:
+                fatalError("Unsupported GtkBorderStyle enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkBorderStyle() -> GtkBorderStyle {
+    public func toGtk() -> GtkBorderStyle {
         switch self {
             case .none:
                 return GTK_BORDER_STYLE_NONE
@@ -46,36 +76,6 @@ public enum BorderStyle {
                 return GTK_BORDER_STYLE_GROOVE
             case .ridge:
                 return GTK_BORDER_STYLE_RIDGE
-        }
-    }
-}
-
-extension GtkBorderStyle {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toBorderStyle() -> BorderStyle {
-        switch self {
-            case GTK_BORDER_STYLE_NONE:
-                return .none
-            case GTK_BORDER_STYLE_HIDDEN:
-                return .hidden
-            case GTK_BORDER_STYLE_SOLID:
-                return .solid
-            case GTK_BORDER_STYLE_INSET:
-                return .inset
-            case GTK_BORDER_STYLE_OUTSET:
-                return .outset
-            case GTK_BORDER_STYLE_DOTTED:
-                return .dotted
-            case GTK_BORDER_STYLE_DASHED:
-                return .dashed
-            case GTK_BORDER_STYLE_DOUBLE:
-                return .double
-            case GTK_BORDER_STYLE_GROOVE:
-                return .groove
-            case GTK_BORDER_STYLE_RIDGE:
-                return .ridge
-            default:
-                fatalError("Unsupported GtkBorderStyle enum value: \(self.rawValue)")
         }
     }
 }

@@ -2,7 +2,9 @@ import CGtk
 
 /// Error codes that identify various errors that can occur while
 /// using the GTK printing support.
-public enum PrintError {
+public enum PrintError: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkPrintError
+
     /// An unspecified error occurred.
     case general
     /// An internal error occurred.
@@ -13,8 +15,24 @@ public enum PrintError {
     /// or paper size from a key file.
     case invalidFile
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkPrintError) {
+        switch gtkEnum {
+            case GTK_PRINT_ERROR_GENERAL:
+                self = .general
+            case GTK_PRINT_ERROR_INTERNAL_ERROR:
+                self = .internalError
+            case GTK_PRINT_ERROR_NOMEM:
+                self = .nomem
+            case GTK_PRINT_ERROR_INVALID_FILE:
+                self = .invalidFile
+            default:
+                fatalError("Unsupported GtkPrintError enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkPrintError() -> GtkPrintError {
+    public func toGtk() -> GtkPrintError {
         switch self {
             case .general:
                 return GTK_PRINT_ERROR_GENERAL
@@ -24,24 +42,6 @@ public enum PrintError {
                 return GTK_PRINT_ERROR_NOMEM
             case .invalidFile:
                 return GTK_PRINT_ERROR_INVALID_FILE
-        }
-    }
-}
-
-extension GtkPrintError {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toPrintError() -> PrintError {
-        switch self {
-            case GTK_PRINT_ERROR_GENERAL:
-                return .general
-            case GTK_PRINT_ERROR_INTERNAL_ERROR:
-                return .internalError
-            case GTK_PRINT_ERROR_NOMEM:
-                return .nomem
-            case GTK_PRINT_ERROR_INVALID_FILE:
-                return .invalidFile
-            default:
-                fatalError("Unsupported GtkPrintError enum value: \(self.rawValue)")
         }
     }
 }

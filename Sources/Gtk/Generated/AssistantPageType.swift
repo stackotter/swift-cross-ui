@@ -10,7 +10,9 @@ import CGtk
 ///
 /// The Cancel button will only be shown if the page isn’t “committed”.
 /// See gtk_assistant_commit() for details.
-public enum AssistantPageType {
+public enum AssistantPageType: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkAssistantPageType
+
     /// The page has regular contents. Both the
     /// Back and forward buttons will be shown.
     case content
@@ -33,8 +35,28 @@ public enum AssistantPageType {
     /// add its own buttons through gtk_assistant_add_action_widget().
     case custom
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkAssistantPageType) {
+        switch gtkEnum {
+            case GTK_ASSISTANT_PAGE_CONTENT:
+                self = .content
+            case GTK_ASSISTANT_PAGE_INTRO:
+                self = .intro
+            case GTK_ASSISTANT_PAGE_CONFIRM:
+                self = .confirm
+            case GTK_ASSISTANT_PAGE_SUMMARY:
+                self = .summary
+            case GTK_ASSISTANT_PAGE_PROGRESS:
+                self = .progress
+            case GTK_ASSISTANT_PAGE_CUSTOM:
+                self = .custom
+            default:
+                fatalError("Unsupported GtkAssistantPageType enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkAssistantPageType() -> GtkAssistantPageType {
+    public func toGtk() -> GtkAssistantPageType {
         switch self {
             case .content:
                 return GTK_ASSISTANT_PAGE_CONTENT
@@ -48,28 +70,6 @@ public enum AssistantPageType {
                 return GTK_ASSISTANT_PAGE_PROGRESS
             case .custom:
                 return GTK_ASSISTANT_PAGE_CUSTOM
-        }
-    }
-}
-
-extension GtkAssistantPageType {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toAssistantPageType() -> AssistantPageType {
-        switch self {
-            case GTK_ASSISTANT_PAGE_CONTENT:
-                return .content
-            case GTK_ASSISTANT_PAGE_INTRO:
-                return .intro
-            case GTK_ASSISTANT_PAGE_CONFIRM:
-                return .confirm
-            case GTK_ASSISTANT_PAGE_SUMMARY:
-                return .summary
-            case GTK_ASSISTANT_PAGE_PROGRESS:
-                return .progress
-            case GTK_ASSISTANT_PAGE_CUSTOM:
-                return .custom
-            default:
-                fatalError("Unsupported GtkAssistantPageType enum value: \(self.rawValue)")
         }
     }
 }

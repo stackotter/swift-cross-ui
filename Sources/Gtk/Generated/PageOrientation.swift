@@ -1,7 +1,9 @@
 import CGtk
 
 /// See also gtk_print_settings_set_orientation().
-public enum PageOrientation {
+public enum PageOrientation: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkPageOrientation
+
     /// Portrait mode.
     case portrait
     /// Landscape mode.
@@ -11,8 +13,24 @@ public enum PageOrientation {
     /// Reverse landscape mode.
     case reverseLandscape
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkPageOrientation) {
+        switch gtkEnum {
+            case GTK_PAGE_ORIENTATION_PORTRAIT:
+                self = .portrait
+            case GTK_PAGE_ORIENTATION_LANDSCAPE:
+                self = .landscape
+            case GTK_PAGE_ORIENTATION_REVERSE_PORTRAIT:
+                self = .reversePortrait
+            case GTK_PAGE_ORIENTATION_REVERSE_LANDSCAPE:
+                self = .reverseLandscape
+            default:
+                fatalError("Unsupported GtkPageOrientation enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkPageOrientation() -> GtkPageOrientation {
+    public func toGtk() -> GtkPageOrientation {
         switch self {
             case .portrait:
                 return GTK_PAGE_ORIENTATION_PORTRAIT
@@ -22,24 +40,6 @@ public enum PageOrientation {
                 return GTK_PAGE_ORIENTATION_REVERSE_PORTRAIT
             case .reverseLandscape:
                 return GTK_PAGE_ORIENTATION_REVERSE_LANDSCAPE
-        }
-    }
-}
-
-extension GtkPageOrientation {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toPageOrientation() -> PageOrientation {
-        switch self {
-            case GTK_PAGE_ORIENTATION_PORTRAIT:
-                return .portrait
-            case GTK_PAGE_ORIENTATION_LANDSCAPE:
-                return .landscape
-            case GTK_PAGE_ORIENTATION_REVERSE_PORTRAIT:
-                return .reversePortrait
-            case GTK_PAGE_ORIENTATION_REVERSE_LANDSCAPE:
-                return .reverseLandscape
-            default:
-                fatalError("Unsupported GtkPageOrientation enum value: \(self.rawValue)")
         }
     }
 }

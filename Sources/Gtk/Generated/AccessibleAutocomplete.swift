@@ -2,7 +2,9 @@ import CGtk
 
 /// The possible values for the %GTK_ACCESSIBLE_PROPERTY_AUTOCOMPLETE
 /// accessible property.
-public enum AccessibleAutocomplete {
+public enum AccessibleAutocomplete: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkAccessibleAutocomplete
+
     /// Automatic suggestions are not displayed.
     case none
     /// When a user is providing input, text
@@ -20,8 +22,24 @@ public enum AccessibleAutocomplete {
     /// appears after the caret in the input.
     case both
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkAccessibleAutocomplete) {
+        switch gtkEnum {
+            case GTK_ACCESSIBLE_AUTOCOMPLETE_NONE:
+                self = .none
+            case GTK_ACCESSIBLE_AUTOCOMPLETE_INLINE:
+                self = .inline
+            case GTK_ACCESSIBLE_AUTOCOMPLETE_LIST:
+                self = .list
+            case GTK_ACCESSIBLE_AUTOCOMPLETE_BOTH:
+                self = .both
+            default:
+                fatalError("Unsupported GtkAccessibleAutocomplete enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkAccessibleAutocomplete() -> GtkAccessibleAutocomplete {
+    public func toGtk() -> GtkAccessibleAutocomplete {
         switch self {
             case .none:
                 return GTK_ACCESSIBLE_AUTOCOMPLETE_NONE
@@ -31,24 +49,6 @@ public enum AccessibleAutocomplete {
                 return GTK_ACCESSIBLE_AUTOCOMPLETE_LIST
             case .both:
                 return GTK_ACCESSIBLE_AUTOCOMPLETE_BOTH
-        }
-    }
-}
-
-extension GtkAccessibleAutocomplete {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toAccessibleAutocomplete() -> AccessibleAutocomplete {
-        switch self {
-            case GTK_ACCESSIBLE_AUTOCOMPLETE_NONE:
-                return .none
-            case GTK_ACCESSIBLE_AUTOCOMPLETE_INLINE:
-                return .inline
-            case GTK_ACCESSIBLE_AUTOCOMPLETE_LIST:
-                return .list
-            case GTK_ACCESSIBLE_AUTOCOMPLETE_BOTH:
-                return .both
-            default:
-                fatalError("Unsupported GtkAccessibleAutocomplete enum value: \(self.rawValue)")
         }
     }
 }

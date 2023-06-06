@@ -8,7 +8,9 @@ import CGtk
 ///
 /// For empty images, you can request any storage type (call any of the "get"
 /// functions), but they will all return %NULL values.
-public enum ImageType {
+public enum ImageType: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkImageType
+
     /// There is no image displayed by the widget
     case empty
     /// The widget contains a named icon
@@ -18,8 +20,24 @@ public enum ImageType {
     /// The widget contains a `GdkPaintable`
     case paintable
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkImageType) {
+        switch gtkEnum {
+            case GTK_IMAGE_EMPTY:
+                self = .empty
+            case GTK_IMAGE_ICON_NAME:
+                self = .iconName
+            case GTK_IMAGE_GICON:
+                self = .gicon
+            case GTK_IMAGE_PAINTABLE:
+                self = .paintable
+            default:
+                fatalError("Unsupported GtkImageType enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkImageType() -> GtkImageType {
+    public func toGtk() -> GtkImageType {
         switch self {
             case .empty:
                 return GTK_IMAGE_EMPTY
@@ -29,24 +47,6 @@ public enum ImageType {
                 return GTK_IMAGE_GICON
             case .paintable:
                 return GTK_IMAGE_PAINTABLE
-        }
-    }
-}
-
-extension GtkImageType {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toImageType() -> ImageType {
-        switch self {
-            case GTK_IMAGE_EMPTY:
-                return .empty
-            case GTK_IMAGE_ICON_NAME:
-                return .iconName
-            case GTK_IMAGE_GICON:
-                return .gicon
-            case GTK_IMAGE_PAINTABLE:
-                return .paintable
-            default:
-                fatalError("Unsupported GtkImageType enum value: \(self.rawValue)")
         }
     }
 }

@@ -2,7 +2,9 @@ import CGtk
 
 /// Determines how GTK handles the sensitivity of various controls,
 /// such as combo box buttons.
-public enum SensitivityType {
+public enum SensitivityType: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkSensitivityType
+
     /// The control is made insensitive if no
     /// action can be triggered
     case auto
@@ -11,8 +13,22 @@ public enum SensitivityType {
     /// The control is always insensitive
     case off
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkSensitivityType) {
+        switch gtkEnum {
+            case GTK_SENSITIVITY_AUTO:
+                self = .auto
+            case GTK_SENSITIVITY_ON:
+                self = .on
+            case GTK_SENSITIVITY_OFF:
+                self = .off
+            default:
+                fatalError("Unsupported GtkSensitivityType enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkSensitivityType() -> GtkSensitivityType {
+    public func toGtk() -> GtkSensitivityType {
         switch self {
             case .auto:
                 return GTK_SENSITIVITY_AUTO
@@ -20,22 +36,6 @@ public enum SensitivityType {
                 return GTK_SENSITIVITY_ON
             case .off:
                 return GTK_SENSITIVITY_OFF
-        }
-    }
-}
-
-extension GtkSensitivityType {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toSensitivityType() -> SensitivityType {
-        switch self {
-            case GTK_SENSITIVITY_AUTO:
-                return .auto
-            case GTK_SENSITIVITY_ON:
-                return .on
-            case GTK_SENSITIVITY_OFF:
-                return .off
-            default:
-                fatalError("Unsupported GtkSensitivityType enum value: \(self.rawValue)")
         }
     }
 }

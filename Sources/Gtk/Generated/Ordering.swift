@@ -6,7 +6,9 @@ import CGtk
 /// a `GCompareFunc` is allowed to return any integer values.
 /// For converting such a value to a `GtkOrdering` value, use
 /// [func@Gtk.Ordering.from_cmpfunc].
-public enum Ordering {
+public enum Ordering: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkOrdering
+
     /// The first value is smaller than the second
     case smaller
     /// The two values are equal
@@ -14,8 +16,22 @@ public enum Ordering {
     /// The first value is larger than the second
     case larger
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkOrdering) {
+        switch gtkEnum {
+            case GTK_ORDERING_SMALLER:
+                self = .smaller
+            case GTK_ORDERING_EQUAL:
+                self = .equal
+            case GTK_ORDERING_LARGER:
+                self = .larger
+            default:
+                fatalError("Unsupported GtkOrdering enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkOrdering() -> GtkOrdering {
+    public func toGtk() -> GtkOrdering {
         switch self {
             case .smaller:
                 return GTK_ORDERING_SMALLER
@@ -23,22 +39,6 @@ public enum Ordering {
                 return GTK_ORDERING_EQUAL
             case .larger:
                 return GTK_ORDERING_LARGER
-        }
-    }
-}
-
-extension GtkOrdering {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toOrdering() -> Ordering {
-        switch self {
-            case GTK_ORDERING_SMALLER:
-                return .smaller
-            case GTK_ORDERING_EQUAL:
-                return .equal
-            case GTK_ORDERING_LARGER:
-                return .larger
-            default:
-                fatalError("Unsupported GtkOrdering enum value: \(self.rawValue)")
         }
     }
 }

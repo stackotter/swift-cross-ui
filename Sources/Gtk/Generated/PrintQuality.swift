@@ -1,7 +1,9 @@
 import CGtk
 
 /// See also gtk_print_settings_set_quality().
-public enum PrintQuality {
+public enum PrintQuality: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkPrintQuality
+
     /// Low quality.
     case low
     /// Normal quality.
@@ -11,8 +13,24 @@ public enum PrintQuality {
     /// Draft quality.
     case draft
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkPrintQuality) {
+        switch gtkEnum {
+            case GTK_PRINT_QUALITY_LOW:
+                self = .low
+            case GTK_PRINT_QUALITY_NORMAL:
+                self = .normal
+            case GTK_PRINT_QUALITY_HIGH:
+                self = .high
+            case GTK_PRINT_QUALITY_DRAFT:
+                self = .draft
+            default:
+                fatalError("Unsupported GtkPrintQuality enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkPrintQuality() -> GtkPrintQuality {
+    public func toGtk() -> GtkPrintQuality {
         switch self {
             case .low:
                 return GTK_PRINT_QUALITY_LOW
@@ -22,24 +40,6 @@ public enum PrintQuality {
                 return GTK_PRINT_QUALITY_HIGH
             case .draft:
                 return GTK_PRINT_QUALITY_DRAFT
-        }
-    }
-}
-
-extension GtkPrintQuality {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toPrintQuality() -> PrintQuality {
-        switch self {
-            case GTK_PRINT_QUALITY_LOW:
-                return .low
-            case GTK_PRINT_QUALITY_NORMAL:
-                return .normal
-            case GTK_PRINT_QUALITY_HIGH:
-                return .high
-            case GTK_PRINT_QUALITY_DRAFT:
-                return .draft
-            default:
-                fatalError("Unsupported GtkPrintQuality enum value: \(self.rawValue)")
         }
     }
 }

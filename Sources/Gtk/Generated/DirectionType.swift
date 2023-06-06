@@ -1,7 +1,9 @@
 import CGtk
 
 /// Focus movement types.
-public enum DirectionType {
+public enum DirectionType: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkDirectionType
+
     /// Move forward.
     case tabForward
     /// Move backward.
@@ -15,8 +17,28 @@ public enum DirectionType {
     /// Move right.
     case right
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkDirectionType) {
+        switch gtkEnum {
+            case GTK_DIR_TAB_FORWARD:
+                self = .tabForward
+            case GTK_DIR_TAB_BACKWARD:
+                self = .tabBackward
+            case GTK_DIR_UP:
+                self = .up
+            case GTK_DIR_DOWN:
+                self = .down
+            case GTK_DIR_LEFT:
+                self = .left
+            case GTK_DIR_RIGHT:
+                self = .right
+            default:
+                fatalError("Unsupported GtkDirectionType enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkDirectionType() -> GtkDirectionType {
+    public func toGtk() -> GtkDirectionType {
         switch self {
             case .tabForward:
                 return GTK_DIR_TAB_FORWARD
@@ -30,28 +52,6 @@ public enum DirectionType {
                 return GTK_DIR_LEFT
             case .right:
                 return GTK_DIR_RIGHT
-        }
-    }
-}
-
-extension GtkDirectionType {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toDirectionType() -> DirectionType {
-        switch self {
-            case GTK_DIR_TAB_FORWARD:
-                return .tabForward
-            case GTK_DIR_TAB_BACKWARD:
-                return .tabBackward
-            case GTK_DIR_UP:
-                return .up
-            case GTK_DIR_DOWN:
-                return .down
-            case GTK_DIR_LEFT:
-                return .left
-            case GTK_DIR_RIGHT:
-                return .right
-            default:
-                fatalError("Unsupported GtkDirectionType enum value: \(self.rawValue)")
         }
     }
 }

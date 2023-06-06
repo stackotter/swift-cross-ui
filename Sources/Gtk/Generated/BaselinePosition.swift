@@ -8,7 +8,9 @@ import CGtk
 /// requested height of the baseline-aligned children then it can use a
 /// `GtkBaselinePosition` to select where to put the baseline inside the
 /// extra available space.
-public enum BaselinePosition {
+public enum BaselinePosition: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkBaselinePosition
+
     /// Align the baseline at the top
     case top
     /// Center the baseline
@@ -16,8 +18,22 @@ public enum BaselinePosition {
     /// Align the baseline at the bottom
     case bottom
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkBaselinePosition) {
+        switch gtkEnum {
+            case GTK_BASELINE_POSITION_TOP:
+                self = .top
+            case GTK_BASELINE_POSITION_CENTER:
+                self = .center
+            case GTK_BASELINE_POSITION_BOTTOM:
+                self = .bottom
+            default:
+                fatalError("Unsupported GtkBaselinePosition enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkBaselinePosition() -> GtkBaselinePosition {
+    public func toGtk() -> GtkBaselinePosition {
         switch self {
             case .top:
                 return GTK_BASELINE_POSITION_TOP
@@ -25,22 +41,6 @@ public enum BaselinePosition {
                 return GTK_BASELINE_POSITION_CENTER
             case .bottom:
                 return GTK_BASELINE_POSITION_BOTTOM
-        }
-    }
-}
-
-extension GtkBaselinePosition {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toBaselinePosition() -> BaselinePosition {
-        switch self {
-            case GTK_BASELINE_POSITION_TOP:
-                return .top
-            case GTK_BASELINE_POSITION_CENTER:
-                return .center
-            case GTK_BASELINE_POSITION_BOTTOM:
-                return .bottom
-            default:
-                fatalError("Unsupported GtkBaselinePosition enum value: \(self.rawValue)")
         }
     }
 }

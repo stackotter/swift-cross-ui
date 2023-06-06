@@ -6,7 +6,9 @@ import CGtk
 /// Note that the %GTK_ACCESSIBLE_INVALID_FALSE and
 /// %GTK_ACCESSIBLE_INVALID_TRUE have the same values
 /// as %FALSE and %TRUE.
-public enum AccessibleInvalidState {
+public enum AccessibleInvalidState: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkAccessibleInvalidState
+
     /// There are no detected errors in the value
     case false_
     /// The value entered by the user has failed validation
@@ -16,8 +18,24 @@ public enum AccessibleInvalidState {
     /// A spelling error was detected
     case spelling
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkAccessibleInvalidState) {
+        switch gtkEnum {
+            case GTK_ACCESSIBLE_INVALID_FALSE:
+                self = .false_
+            case GTK_ACCESSIBLE_INVALID_TRUE:
+                self = .true_
+            case GTK_ACCESSIBLE_INVALID_GRAMMAR:
+                self = .grammar
+            case GTK_ACCESSIBLE_INVALID_SPELLING:
+                self = .spelling
+            default:
+                fatalError("Unsupported GtkAccessibleInvalidState enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkAccessibleInvalidState() -> GtkAccessibleInvalidState {
+    public func toGtk() -> GtkAccessibleInvalidState {
         switch self {
             case .false_:
                 return GTK_ACCESSIBLE_INVALID_FALSE
@@ -27,24 +45,6 @@ public enum AccessibleInvalidState {
                 return GTK_ACCESSIBLE_INVALID_GRAMMAR
             case .spelling:
                 return GTK_ACCESSIBLE_INVALID_SPELLING
-        }
-    }
-}
-
-extension GtkAccessibleInvalidState {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toAccessibleInvalidState() -> AccessibleInvalidState {
-        switch self {
-            case GTK_ACCESSIBLE_INVALID_FALSE:
-                return .false_
-            case GTK_ACCESSIBLE_INVALID_TRUE:
-                return .true_
-            case GTK_ACCESSIBLE_INVALID_GRAMMAR:
-                return .grammar
-            case GTK_ACCESSIBLE_INVALID_SPELLING:
-                return .spelling
-            default:
-                fatalError("Unsupported GtkAccessibleInvalidState enum value: \(self.rawValue)")
         }
     }
 }

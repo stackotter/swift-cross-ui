@@ -2,7 +2,7 @@ import CGtk
 
 public protocol GValueRepresentableEnum: GValueRepresentable {
     associatedtype GtkEnum: RawRepresentable
-    init(rawGtkValue: GtkEnum.RawValue)
+    init(from gtkEnum: GtkEnum)
     func toGtk() -> GtkEnum
 }
 
@@ -14,7 +14,7 @@ extension GValueRepresentableEnum {
 
 extension GValueRepresentableEnum where GtkEnum.RawValue == Int32 {
     public init(_ pointer: UnsafeMutablePointer<GValue>) {
-        self.init(rawGtkValue: g_value_get_enum(pointer))
+        self.init(from: GtkEnum(rawValue: g_value_get_enum(pointer))!)
     }
 
     public func apply(to pointer: UnsafeMutablePointer<GValue>) {
@@ -24,7 +24,7 @@ extension GValueRepresentableEnum where GtkEnum.RawValue == Int32 {
 
 extension GValueRepresentableEnum where GtkEnum.RawValue == UInt32 {
     public init(_ pointer: UnsafeMutablePointer<GValue>) {
-        self.init(rawGtkValue: UInt32(g_value_get_enum(pointer)))
+        self.init(from: GtkEnum(rawValue: UInt32(g_value_get_enum(pointer)))!)
     }
 
     public func apply(to pointer: UnsafeMutablePointer<GValue>) {

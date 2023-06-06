@@ -4,7 +4,9 @@ import CGtk
 ///
 /// For examples, see the tabs of a [class@Notebook], or the label
 /// of a [class@Scale].
-public enum PositionType {
+public enum PositionType: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkPositionType
+
     /// The feature is at the left edge.
     case left
     /// The feature is at the right edge.
@@ -14,8 +16,24 @@ public enum PositionType {
     /// The feature is at the bottom edge.
     case bottom
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkPositionType) {
+        switch gtkEnum {
+            case GTK_POS_LEFT:
+                self = .left
+            case GTK_POS_RIGHT:
+                self = .right
+            case GTK_POS_TOP:
+                self = .top
+            case GTK_POS_BOTTOM:
+                self = .bottom
+            default:
+                fatalError("Unsupported GtkPositionType enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkPositionType() -> GtkPositionType {
+    public func toGtk() -> GtkPositionType {
         switch self {
             case .left:
                 return GTK_POS_LEFT
@@ -25,24 +43,6 @@ public enum PositionType {
                 return GTK_POS_TOP
             case .bottom:
                 return GTK_POS_BOTTOM
-        }
-    }
-}
-
-extension GtkPositionType {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toPositionType() -> PositionType {
-        switch self {
-            case GTK_POS_LEFT:
-                return .left
-            case GTK_POS_RIGHT:
-                return .right
-            case GTK_POS_TOP:
-                return .top
-            case GTK_POS_BOTTOM:
-                return .bottom
-            default:
-                fatalError("Unsupported GtkPositionType enum value: \(self.rawValue)")
         }
     }
 }

@@ -1,7 +1,9 @@
 import CGtk
 
 /// An enum for determining where a dropped item goes.
-public enum IconViewDropPosition {
+public enum IconViewDropPosition: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkIconViewDropPosition
+
     /// No drop possible
     case noDrop
     /// Dropped item replaces the item
@@ -15,8 +17,28 @@ public enum IconViewDropPosition {
     /// Dropped item is inserted below
     case dropBelow
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkIconViewDropPosition) {
+        switch gtkEnum {
+            case GTK_ICON_VIEW_NO_DROP:
+                self = .noDrop
+            case GTK_ICON_VIEW_DROP_INTO:
+                self = .dropInto
+            case GTK_ICON_VIEW_DROP_LEFT:
+                self = .dropLeft
+            case GTK_ICON_VIEW_DROP_RIGHT:
+                self = .dropRight
+            case GTK_ICON_VIEW_DROP_ABOVE:
+                self = .dropAbove
+            case GTK_ICON_VIEW_DROP_BELOW:
+                self = .dropBelow
+            default:
+                fatalError("Unsupported GtkIconViewDropPosition enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkIconViewDropPosition() -> GtkIconViewDropPosition {
+    public func toGtk() -> GtkIconViewDropPosition {
         switch self {
             case .noDrop:
                 return GTK_ICON_VIEW_NO_DROP
@@ -30,28 +52,6 @@ public enum IconViewDropPosition {
                 return GTK_ICON_VIEW_DROP_ABOVE
             case .dropBelow:
                 return GTK_ICON_VIEW_DROP_BELOW
-        }
-    }
-}
-
-extension GtkIconViewDropPosition {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toIconViewDropPosition() -> IconViewDropPosition {
-        switch self {
-            case GTK_ICON_VIEW_NO_DROP:
-                return .noDrop
-            case GTK_ICON_VIEW_DROP_INTO:
-                return .dropInto
-            case GTK_ICON_VIEW_DROP_LEFT:
-                return .dropLeft
-            case GTK_ICON_VIEW_DROP_RIGHT:
-                return .dropRight
-            case GTK_ICON_VIEW_DROP_ABOVE:
-                return .dropAbove
-            case GTK_ICON_VIEW_DROP_BELOW:
-                return .dropBelow
-            default:
-                fatalError("Unsupported GtkIconViewDropPosition enum value: \(self.rawValue)")
         }
     }
 }

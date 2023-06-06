@@ -4,7 +4,9 @@ import CGtk
 /// a `GtkScrolledWindow.`
 ///
 /// This is effectively the opposite of where the scroll bars are placed.
-public enum CornerType {
+public enum CornerType: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkCornerType
+
     /// Place the scrollbars on the right and bottom of the
     /// widget (default behaviour).
     case topLeft
@@ -18,8 +20,24 @@ public enum CornerType {
     /// widget.
     case bottomRight
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkCornerType) {
+        switch gtkEnum {
+            case GTK_CORNER_TOP_LEFT:
+                self = .topLeft
+            case GTK_CORNER_BOTTOM_LEFT:
+                self = .bottomLeft
+            case GTK_CORNER_TOP_RIGHT:
+                self = .topRight
+            case GTK_CORNER_BOTTOM_RIGHT:
+                self = .bottomRight
+            default:
+                fatalError("Unsupported GtkCornerType enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkCornerType() -> GtkCornerType {
+    public func toGtk() -> GtkCornerType {
         switch self {
             case .topLeft:
                 return GTK_CORNER_TOP_LEFT
@@ -29,24 +47,6 @@ public enum CornerType {
                 return GTK_CORNER_TOP_RIGHT
             case .bottomRight:
                 return GTK_CORNER_BOTTOM_RIGHT
-        }
-    }
-}
-
-extension GtkCornerType {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toCornerType() -> CornerType {
-        switch self {
-            case GTK_CORNER_TOP_LEFT:
-                return .topLeft
-            case GTK_CORNER_BOTTOM_LEFT:
-                return .bottomLeft
-            case GTK_CORNER_TOP_RIGHT:
-                return .topRight
-            case GTK_CORNER_BOTTOM_RIGHT:
-                return .bottomRight
-            default:
-                fatalError("Unsupported GtkCornerType enum value: \(self.rawValue)")
         }
     }
 }

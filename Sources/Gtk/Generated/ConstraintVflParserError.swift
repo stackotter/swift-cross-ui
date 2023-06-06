@@ -1,7 +1,9 @@
 import CGtk
 
 /// Domain for VFL parsing errors.
-public enum ConstraintVflParserError {
+public enum ConstraintVflParserError: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkConstraintVflParserError
+
     /// Invalid or unknown symbol
     case symbol
     /// Invalid or unknown attribute
@@ -15,8 +17,29 @@ public enum ConstraintVflParserError {
     /// Invalid or unknown relation
     case relation
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkConstraintVflParserError) {
+        switch gtkEnum {
+            case GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL:
+                self = .symbol
+            case GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE:
+                self = .attribute
+            case GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW:
+                self = .view
+            case GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC:
+                self = .metric
+            case GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY:
+                self = .priority
+            case GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION:
+                self = .relation
+            default:
+                fatalError(
+                    "Unsupported GtkConstraintVflParserError enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkConstraintVflParserError() -> GtkConstraintVflParserError {
+    public func toGtk() -> GtkConstraintVflParserError {
         switch self {
             case .symbol:
                 return GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL
@@ -30,28 +53,6 @@ public enum ConstraintVflParserError {
                 return GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY
             case .relation:
                 return GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION
-        }
-    }
-}
-
-extension GtkConstraintVflParserError {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toConstraintVflParserError() -> ConstraintVflParserError {
-        switch self {
-            case GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL:
-                return .symbol
-            case GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE:
-                return .attribute
-            case GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW:
-                return .view
-            case GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC:
-                return .metric
-            case GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY:
-                return .priority
-            case GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION:
-                return .relation
-            default:
-                fatalError("Unsupported GtkConstraintVflParserError enum value: \(self.rawValue)")
         }
     }
 }

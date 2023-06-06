@@ -10,7 +10,7 @@ open class Box: Widget, Orientable {
     public init(orientation: Orientation = .vertical, spacing: Int = 0) {
         super.init()
 
-        widgetPointer = gtk_box_new(orientation.toGtkOrientation(), gint(spacing))
+        widgetPointer = gtk_box_new(orientation.toGtk(), gint(spacing))
     }
 
     override func didMoveToParent() {
@@ -43,8 +43,5 @@ open class Box: Widget, Orientable {
 
     @GObjectProperty(named: "spacing") open var spacing: Int
 
-    open var orientation: Orientation {
-        get { gtk_orientable_get_orientation(opaquePointer).toOrientation() }
-        set { gtk_orientable_set_orientation(opaquePointer, newValue.toGtkOrientation()) }
-    }
+    @GObjectProperty(named: "orientation") open var orientation: Orientation
 }

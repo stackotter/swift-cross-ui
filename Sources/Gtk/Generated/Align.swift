@@ -15,7 +15,9 @@ import CGtk
 /// %GTK_ALIGN_BASELINE support is optional for containers and widgets, and
 /// it is only supported for vertical alignment.  When it's not supported by
 /// a child or a container it is treated as %GTK_ALIGN_FILL.
-public enum Align {
+public enum Align: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkAlign
+
     /// Stretch to fill all space if possible, center if
     /// no meaningful way to stretch
     case fill
@@ -29,8 +31,26 @@ public enum Align {
     /// See [class@Gtk.Widget].
     case baseline
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkAlign) {
+        switch gtkEnum {
+            case GTK_ALIGN_FILL:
+                self = .fill
+            case GTK_ALIGN_START:
+                self = .start
+            case GTK_ALIGN_END:
+                self = .end
+            case GTK_ALIGN_CENTER:
+                self = .center
+            case GTK_ALIGN_BASELINE:
+                self = .baseline
+            default:
+                fatalError("Unsupported GtkAlign enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkAlign() -> GtkAlign {
+    public func toGtk() -> GtkAlign {
         switch self {
             case .fill:
                 return GTK_ALIGN_FILL
@@ -42,26 +62,6 @@ public enum Align {
                 return GTK_ALIGN_CENTER
             case .baseline:
                 return GTK_ALIGN_BASELINE
-        }
-    }
-}
-
-extension GtkAlign {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toAlign() -> Align {
-        switch self {
-            case GTK_ALIGN_FILL:
-                return .fill
-            case GTK_ALIGN_START:
-                return .start
-            case GTK_ALIGN_END:
-                return .end
-            case GTK_ALIGN_CENTER:
-                return .center
-            case GTK_ALIGN_BASELINE:
-                return .baseline
-            default:
-                fatalError("Unsupported GtkAlign enum value: \(self.rawValue)")
         }
     }
 }

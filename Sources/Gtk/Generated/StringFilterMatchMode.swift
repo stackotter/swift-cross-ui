@@ -1,7 +1,9 @@
 import CGtk
 
 /// Specifies how search strings are matched inside text.
-public enum StringFilterMatchMode {
+public enum StringFilterMatchMode: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkStringFilterMatchMode
+
     /// The search string and
     /// text must match exactly.
     case exact
@@ -12,8 +14,22 @@ public enum StringFilterMatchMode {
     /// with the search string.
     case prefix
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkStringFilterMatchMode) {
+        switch gtkEnum {
+            case GTK_STRING_FILTER_MATCH_MODE_EXACT:
+                self = .exact
+            case GTK_STRING_FILTER_MATCH_MODE_SUBSTRING:
+                self = .substring
+            case GTK_STRING_FILTER_MATCH_MODE_PREFIX:
+                self = .prefix
+            default:
+                fatalError("Unsupported GtkStringFilterMatchMode enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkStringFilterMatchMode() -> GtkStringFilterMatchMode {
+    public func toGtk() -> GtkStringFilterMatchMode {
         switch self {
             case .exact:
                 return GTK_STRING_FILTER_MATCH_MODE_EXACT
@@ -21,22 +37,6 @@ public enum StringFilterMatchMode {
                 return GTK_STRING_FILTER_MATCH_MODE_SUBSTRING
             case .prefix:
                 return GTK_STRING_FILTER_MATCH_MODE_PREFIX
-        }
-    }
-}
-
-extension GtkStringFilterMatchMode {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toStringFilterMatchMode() -> StringFilterMatchMode {
-        switch self {
-            case GTK_STRING_FILTER_MATCH_MODE_EXACT:
-                return .exact
-            case GTK_STRING_FILTER_MATCH_MODE_SUBSTRING:
-                return .substring
-            case GTK_STRING_FILTER_MATCH_MODE_PREFIX:
-                return .prefix
-            default:
-                fatalError("Unsupported GtkStringFilterMatchMode enum value: \(self.rawValue)")
         }
     }
 }

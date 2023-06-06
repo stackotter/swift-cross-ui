@@ -2,7 +2,9 @@ import CGtk
 
 /// Granularity types that extend the text selection. Use the
 /// `GtkTextView::extend-selection` signal to customize the selection.
-public enum TextExtendSelection {
+public enum TextExtendSelection: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkTextExtendSelection
+
     /// Selects the current word. It is triggered by
     /// a double-click for example.
     case word
@@ -10,27 +12,25 @@ public enum TextExtendSelection {
     /// a triple-click for example.
     case line
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkTextExtendSelection) {
+        switch gtkEnum {
+            case GTK_TEXT_EXTEND_SELECTION_WORD:
+                self = .word
+            case GTK_TEXT_EXTEND_SELECTION_LINE:
+                self = .line
+            default:
+                fatalError("Unsupported GtkTextExtendSelection enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkTextExtendSelection() -> GtkTextExtendSelection {
+    public func toGtk() -> GtkTextExtendSelection {
         switch self {
             case .word:
                 return GTK_TEXT_EXTEND_SELECTION_WORD
             case .line:
                 return GTK_TEXT_EXTEND_SELECTION_LINE
-        }
-    }
-}
-
-extension GtkTextExtendSelection {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toTextExtendSelection() -> TextExtendSelection {
-        switch self {
-            case GTK_TEXT_EXTEND_SELECTION_WORD:
-                return .word
-            case GTK_TEXT_EXTEND_SELECTION_LINE:
-                return .line
-            default:
-                fatalError("Unsupported GtkTextExtendSelection enum value: \(self.rawValue)")
         }
     }
 }

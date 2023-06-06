@@ -2,7 +2,9 @@ import CGtk
 
 /// Passed as argument to various keybinding signals for moving the
 /// cursor position.
-public enum MovementStep {
+public enum MovementStep: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkMovementStep
+
     /// Move forward or back by graphemes
     case logicalPositions
     /// Move left or right by graphemes
@@ -24,8 +26,36 @@ public enum MovementStep {
     /// Move horizontally by pages
     case horizontalPages
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkMovementStep) {
+        switch gtkEnum {
+            case GTK_MOVEMENT_LOGICAL_POSITIONS:
+                self = .logicalPositions
+            case GTK_MOVEMENT_VISUAL_POSITIONS:
+                self = .visualPositions
+            case GTK_MOVEMENT_WORDS:
+                self = .words
+            case GTK_MOVEMENT_DISPLAY_LINES:
+                self = .displayLines
+            case GTK_MOVEMENT_DISPLAY_LINE_ENDS:
+                self = .displayLineEnds
+            case GTK_MOVEMENT_PARAGRAPHS:
+                self = .paragraphs
+            case GTK_MOVEMENT_PARAGRAPH_ENDS:
+                self = .paragraphEnds
+            case GTK_MOVEMENT_PAGES:
+                self = .pages
+            case GTK_MOVEMENT_BUFFER_ENDS:
+                self = .bufferEnds
+            case GTK_MOVEMENT_HORIZONTAL_PAGES:
+                self = .horizontalPages
+            default:
+                fatalError("Unsupported GtkMovementStep enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkMovementStep() -> GtkMovementStep {
+    public func toGtk() -> GtkMovementStep {
         switch self {
             case .logicalPositions:
                 return GTK_MOVEMENT_LOGICAL_POSITIONS
@@ -47,36 +77,6 @@ public enum MovementStep {
                 return GTK_MOVEMENT_BUFFER_ENDS
             case .horizontalPages:
                 return GTK_MOVEMENT_HORIZONTAL_PAGES
-        }
-    }
-}
-
-extension GtkMovementStep {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toMovementStep() -> MovementStep {
-        switch self {
-            case GTK_MOVEMENT_LOGICAL_POSITIONS:
-                return .logicalPositions
-            case GTK_MOVEMENT_VISUAL_POSITIONS:
-                return .visualPositions
-            case GTK_MOVEMENT_WORDS:
-                return .words
-            case GTK_MOVEMENT_DISPLAY_LINES:
-                return .displayLines
-            case GTK_MOVEMENT_DISPLAY_LINE_ENDS:
-                return .displayLineEnds
-            case GTK_MOVEMENT_PARAGRAPHS:
-                return .paragraphs
-            case GTK_MOVEMENT_PARAGRAPH_ENDS:
-                return .paragraphEnds
-            case GTK_MOVEMENT_PAGES:
-                return .pages
-            case GTK_MOVEMENT_BUFFER_ENDS:
-                return .bufferEnds
-            case GTK_MOVEMENT_HORIZONTAL_PAGES:
-                return .horizontalPages
-            default:
-                fatalError("Unsupported GtkMovementStep enum value: \(self.rawValue)")
         }
     }
 }

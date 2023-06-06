@@ -6,7 +6,9 @@ import CGtk
 /// If you are writing an implementation and are not sure which
 /// value to pass, %GTK_FILTER_CHANGE_DIFFERENT is always a correct
 /// choice.
-public enum FilterChange {
+public enum FilterChange: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkFilterChange
+
     /// The filter change cannot be
     /// described with any of the other enumeration values.
     case different
@@ -19,8 +21,22 @@ public enum FilterChange {
     /// still return %FALSE, others now may, too.
     case moreStrict
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkFilterChange) {
+        switch gtkEnum {
+            case GTK_FILTER_CHANGE_DIFFERENT:
+                self = .different
+            case GTK_FILTER_CHANGE_LESS_STRICT:
+                self = .lessStrict
+            case GTK_FILTER_CHANGE_MORE_STRICT:
+                self = .moreStrict
+            default:
+                fatalError("Unsupported GtkFilterChange enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkFilterChange() -> GtkFilterChange {
+    public func toGtk() -> GtkFilterChange {
         switch self {
             case .different:
                 return GTK_FILTER_CHANGE_DIFFERENT
@@ -28,22 +44,6 @@ public enum FilterChange {
                 return GTK_FILTER_CHANGE_LESS_STRICT
             case .moreStrict:
                 return GTK_FILTER_CHANGE_MORE_STRICT
-        }
-    }
-}
-
-extension GtkFilterChange {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toFilterChange() -> FilterChange {
-        switch self {
-            case GTK_FILTER_CHANGE_DIFFERENT:
-                return .different
-            case GTK_FILTER_CHANGE_LESS_STRICT:
-                return .lessStrict
-            case GTK_FILTER_CHANGE_MORE_STRICT:
-                return .moreStrict
-            default:
-                fatalError("Unsupported GtkFilterChange enum value: \(self.rawValue)")
         }
     }
 }

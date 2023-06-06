@@ -2,7 +2,9 @@ import CGtk
 
 /// Determines how the size should be computed to achieve the one of the
 /// visibility mode for the scrollbars.
-public enum PolicyType {
+public enum PolicyType: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkPolicyType
+
     /// The scrollbar is always visible. The view size is
     /// independent of the content.
     case always
@@ -17,8 +19,24 @@ public enum PolicyType {
     /// scrolled windows share a scrollbar.
     case external
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkPolicyType) {
+        switch gtkEnum {
+            case GTK_POLICY_ALWAYS:
+                self = .always
+            case GTK_POLICY_AUTOMATIC:
+                self = .automatic
+            case GTK_POLICY_NEVER:
+                self = .never
+            case GTK_POLICY_EXTERNAL:
+                self = .external
+            default:
+                fatalError("Unsupported GtkPolicyType enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkPolicyType() -> GtkPolicyType {
+    public func toGtk() -> GtkPolicyType {
         switch self {
             case .always:
                 return GTK_POLICY_ALWAYS
@@ -28,24 +46,6 @@ public enum PolicyType {
                 return GTK_POLICY_NEVER
             case .external:
                 return GTK_POLICY_EXTERNAL
-        }
-    }
-}
-
-extension GtkPolicyType {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toPolicyType() -> PolicyType {
-        switch self {
-            case GTK_POLICY_ALWAYS:
-                return .always
-            case GTK_POLICY_AUTOMATIC:
-                return .automatic
-            case GTK_POLICY_NEVER:
-                return .never
-            case GTK_POLICY_EXTERNAL:
-                return .external
-            default:
-                fatalError("Unsupported GtkPolicyType enum value: \(self.rawValue)")
         }
     }
 }

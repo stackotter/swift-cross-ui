@@ -20,24 +20,13 @@ public class Label: Widget {
             return String(cString: gtk_label_get_text(opaquePointer))
         }
         set {
-            if let text = newValue {
-                gtk_label_set_text(opaquePointer, text)
-            } else {
-                gtk_label_set_text(opaquePointer, nil)
-            }
+            gtk_label_set_text(opaquePointer, newValue)
         }
     }
 
     @GObjectProperty(named: "selectable") public var selectable: Bool
 
-    public var justification: Justification {
-        get {
-            return gtk_label_get_justify(opaquePointer).toJustification()
-        }
-        set {
-            gtk_label_set_justify(opaquePointer, newValue.toGtkJustification())
-        }
-    }
+    @GObjectProperty(named: "justify") public var justification: Justification
 
     @GObjectProperty(named: "wrap") public var lineWrap: Bool
 
