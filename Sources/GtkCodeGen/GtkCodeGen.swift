@@ -269,52 +269,12 @@ struct GtkCodeGen {
             type += "?"
         }
 
-        let getter =
-            """
-            get {
-                return \(generateGtkToSwiftConversion("\(getterFunction)(castedPointer())", swiftType: type))
-            }
-            """
-
-        let setter = property.setter.map { setter in
-            let conversion = generateSwiftToGtkConversion("newValue", swiftType: type)
-            return
-                """
-                set {
-                    \(namespace.cSymbolPrefix)_\(class_.cSymbolPrefix)_\(setter)(castedPointer(), \(conversion))
-                }
-                """
-        }
-
         return DeclSyntax(
             """
             \(raw: docComment(property.doc))
-            public var \(raw: convertPropertyName(property.name)): \(raw: type) {
-                \(raw: getter)
-                \(raw: setter ?? "")
-            }
+            @GObjectProperty(named: \(literal: property.name)) public var \(raw: convertPropertyName(property.name)): \(raw: type)
             """
         )
-    }
-
-    static func generateSwiftToGtkConversion(_ value: String, swiftType: String) -> String {
-        switch swiftType {
-            case "Bool":
-                return "\(value).toGBoolean()"
-            default:
-                return value
-        }
-    }
-
-    static func generateGtkToSwiftConversion(_ value: String, swiftType: String) -> String {
-        switch swiftType {
-            case "String?":
-                return "\(value).map(String.init(cString:))"
-            case "Bool":
-                return "\(value).toBool()"
-            default:
-                return value
-        }
     }
 
     static func swiftType(_ type: GIRType, namespace: Namespace) -> String {
