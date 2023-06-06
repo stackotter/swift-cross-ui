@@ -9,12 +9,16 @@ extension ViewContent where Content == Self, State == EmptyState {
         return self
     }
 
-    public func asWidget(_ children: Children) -> GtkBox {
-        let box = GtkBox(orientation: .vertical, spacing: 0)
+    public func asWidget(_ children: Children) -> GtkSectionBox {
+        let box = GtkSectionBox(orientation: .vertical, spacing: 0).debugName(Self.self)
         for widget in children.widgets {
             box.add(widget)
         }
         return box
+    }
+
+    public func update(_ widget: GtkSectionBox, children: Children) {
+        widget.update()
     }
 }
 

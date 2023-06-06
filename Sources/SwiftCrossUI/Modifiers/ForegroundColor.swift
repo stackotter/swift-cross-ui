@@ -11,13 +11,13 @@ private struct ForegroundColorModifierView<Child: View>: View {
     /// The foreground color to apply to the child view.
     var color: Color
 
-    func asWidget(_ children: ViewGraphNodeChildren1<Child>) -> GtkSingleChildBox {
-        let box = GtkSingleChildBox()
+    func asWidget(_ children: ViewGraphNodeChildren1<Child>) -> GtkModifierBox {
+        let box = GtkModifierBox().debugName(Self.self)
         box.setChild(children.child0.widget)
         return box
     }
 
-    func update(_ widget: GtkSingleChildBox, children: ViewGraphNodeChildren1<Child>) {
+    func update(_ widget: GtkModifierBox, children: ViewGraphNodeChildren1<Child>) {
         widget.setForegroundColor(color: color.gtkColor)
     }
 }

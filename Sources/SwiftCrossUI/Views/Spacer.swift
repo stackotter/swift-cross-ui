@@ -9,19 +9,21 @@ public struct Spacer: View {
         self.minLength = minLength
     }
 
-    public func asWidget(_ children: EmptyViewGraphNodeChildren) -> GtkBox {
-        return GtkBox()
+    public func asWidget(_ children: EmptyViewGraphNodeChildren) -> GtkModifierBox {
+        return GtkModifierBox().debugName(Self.self)
     }
 
-    public func update(_ widget: GtkBox, children: EmptyViewGraphNodeChildren) {
-        let orientableParent = widget.parentWidget as? GtkOrientable
+    public func update(_ widget: GtkModifierBox, children: EmptyViewGraphNodeChildren) {
+        let parent = widget.firstNonModifierParent() as? GtkBox
 
-        switch orientableParent?.orientation {
+        switch parent?.orientation {
             case .horizontal:
                 widget.leadingMargin = minLength ?? 0
                 widget.expandHorizontally = true
+                widget.expandVertically = false
             case .vertical:
                 widget.topMargin = minLength ?? 0
+                widget.expandHorizontally = false
                 widget.expandVertically = true
             case nil:
                 widget.leadingMargin = minLength ?? 0

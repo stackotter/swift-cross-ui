@@ -61,13 +61,11 @@ extension String: GValueRepresentable {
 
     public init?(_ pointer: UnsafeMutablePointer<GValue>) {
         guard let cString = g_value_get_string(pointer) else { return nil }
-        self.init(cString.toString())
+        self.init(cString: cString)
     }
 
     public func apply(to pointer: UnsafeMutablePointer<GValue>) {
-        withCString {
-            g_value_set_string(pointer, $0)
-        }
+        g_value_set_string(pointer, self)
     }
 }
 

@@ -18,7 +18,7 @@ public protocol View {
 
 extension View where Widget == GtkBox {
     public func asWidget(_ children: Content.Children) -> GtkBox {
-        let vStack = GtkBox(orientation: .vertical, spacing: 8)
+        let vStack = GtkBox(orientation: .vertical, spacing: 8).debugName(Self.self)
         for widget in children.widgets {
             vStack.add(widget)
         }

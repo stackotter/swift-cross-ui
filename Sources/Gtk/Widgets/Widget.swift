@@ -232,6 +232,8 @@ open class Widget: GObjectRepresentable {
         gtk_widget_set_visible(widgetPointer, false.toGBoolean())
     }
 
+    @GObjectProperty(named: "name") public var name: String?
+
     @GObjectProperty(named: "opacity") public var opacity: Double
 
     @GObjectProperty(named: "margin-top") public var topMargin: Int
@@ -270,4 +272,12 @@ open class Widget: GObjectRepresentable {
     @GObjectProperty(named: "width-request") public var minWidth: Int
     /// Set to -1 for no min heigth request
     @GObjectProperty(named: "height-request") public var minHeight: Int
+
+    /// Sets the name of the Gtk view for useful debugging in inspector (Ctrl+Shift+D)
+    open func debugName<View>(_: View.Type) -> Self {
+        #if DEBUG
+            name = String(describing: Self.self) + " " + String(describing: View.self)
+        #endif
+        return self
+    }
 }
