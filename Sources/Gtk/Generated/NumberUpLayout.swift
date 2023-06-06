@@ -2,7 +2,9 @@ import CGtk
 
 /// Used to determine the layout of pages on a sheet when printing
 /// multiple pages per sheet.
-public enum NumberUpLayout {
+public enum NumberUpLayout: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkNumberUpLayout
+
     /// ![](layout-lrtb.png)
     case lrtb
     /// ![](layout-lrbt.png)
@@ -20,8 +22,32 @@ public enum NumberUpLayout {
     /// ![](layout-btrl.png)
     case btrl
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkNumberUpLayout) {
+        switch gtkEnum {
+            case GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_TOP_TO_BOTTOM:
+                self = .lrtb
+            case GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_BOTTOM_TO_TOP:
+                self = .lrbt
+            case GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_TOP_TO_BOTTOM:
+                self = .rltb
+            case GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_BOTTOM_TO_TOP:
+                self = .rlbt
+            case GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_LEFT_TO_RIGHT:
+                self = .tblr
+            case GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_RIGHT_TO_LEFT:
+                self = .tbrl
+            case GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_LEFT_TO_RIGHT:
+                self = .btlr
+            case GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_RIGHT_TO_LEFT:
+                self = .btrl
+            default:
+                fatalError("Unsupported GtkNumberUpLayout enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkNumberUpLayout() -> GtkNumberUpLayout {
+    public func toGtk() -> GtkNumberUpLayout {
         switch self {
             case .lrtb:
                 return GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_TOP_TO_BOTTOM
@@ -39,32 +65,6 @@ public enum NumberUpLayout {
                 return GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_LEFT_TO_RIGHT
             case .btrl:
                 return GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_RIGHT_TO_LEFT
-        }
-    }
-}
-
-extension GtkNumberUpLayout {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toNumberUpLayout() -> NumberUpLayout {
-        switch self {
-            case GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_TOP_TO_BOTTOM:
-                return .lrtb
-            case GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_BOTTOM_TO_TOP:
-                return .lrbt
-            case GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_TOP_TO_BOTTOM:
-                return .rltb
-            case GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_BOTTOM_TO_TOP:
-                return .rlbt
-            case GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_LEFT_TO_RIGHT:
-                return .tblr
-            case GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_RIGHT_TO_LEFT:
-                return .tbrl
-            case GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_LEFT_TO_RIGHT:
-                return .btlr
-            case GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_RIGHT_TO_LEFT:
-                return .btrl
-            default:
-                fatalError("Unsupported GtkNumberUpLayout enum value: \(self.rawValue)")
         }
     }
 }

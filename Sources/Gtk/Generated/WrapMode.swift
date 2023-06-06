@@ -1,7 +1,9 @@
 import CGtk
 
 /// Describes a type of line wrapping.
-public enum WrapMode {
+public enum WrapMode: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkWrapMode
+
     /// Do not wrap lines; just make the text area wider
     case none
     /// Wrap text, breaking lines anywhere the cursor can
@@ -14,8 +16,24 @@ public enum WrapMode {
     /// that is not enough, also between graphemes
     case wordCharacter
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkWrapMode) {
+        switch gtkEnum {
+            case GTK_WRAP_NONE:
+                self = .none
+            case GTK_WRAP_CHAR:
+                self = .character
+            case GTK_WRAP_WORD:
+                self = .word
+            case GTK_WRAP_WORD_CHAR:
+                self = .wordCharacter
+            default:
+                fatalError("Unsupported GtkWrapMode enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkWrapMode() -> GtkWrapMode {
+    public func toGtk() -> GtkWrapMode {
         switch self {
             case .none:
                 return GTK_WRAP_NONE
@@ -25,24 +43,6 @@ public enum WrapMode {
                 return GTK_WRAP_WORD
             case .wordCharacter:
                 return GTK_WRAP_WORD_CHAR
-        }
-    }
-}
-
-extension GtkWrapMode {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toWrapMode() -> WrapMode {
-        switch self {
-            case GTK_WRAP_NONE:
-                return .none
-            case GTK_WRAP_CHAR:
-                return .character
-            case GTK_WRAP_WORD:
-                return .word
-            case GTK_WRAP_WORD_CHAR:
-                return .wordCharacter
-            default:
-                fatalError("Unsupported GtkWrapMode enum value: \(self.rawValue)")
         }
     }
 }

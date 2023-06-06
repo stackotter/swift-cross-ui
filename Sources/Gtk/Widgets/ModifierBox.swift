@@ -6,7 +6,7 @@ open class ModifierBox: Widget {
 
     public override init() {
         super.init()
-        widgetPointer = gtk_box_new(Orientation.vertical.toGtkOrientation(), 0)
+        widgetPointer = gtk_box_new(Orientation.vertical.toGtk(), 0)
     }
 
     override func didMoveToParent() {
@@ -22,7 +22,7 @@ open class ModifierBox: Widget {
     /// boxes to change their orientation (eg HStack stays horizontal for its entire lifetime)
     private func update() {
         if let parent = firstNonModifierParent() as? Box {
-            gtk_orientable_set_orientation(opaquePointer, parent.orientation.toGtkOrientation())
+            gtk_orientable_set_orientation(opaquePointer, parent.orientation.toGtk())
         }
     }
 

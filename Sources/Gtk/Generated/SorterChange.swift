@@ -2,7 +2,9 @@ import CGtk
 
 /// Describes changes in a sorter in more detail and allows users
 /// to optimize resorting.
-public enum SorterChange {
+public enum SorterChange: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkSorterChange
+
     /// The sorter change cannot be described
     /// by any of the other enumeration values
     case different
@@ -17,8 +19,24 @@ public enum SorterChange {
     /// that did return %GTK_ORDERING_EQUAL may not do so anymore.
     case moreStrict
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkSorterChange) {
+        switch gtkEnum {
+            case GTK_SORTER_CHANGE_DIFFERENT:
+                self = .different
+            case GTK_SORTER_CHANGE_INVERTED:
+                self = .inverted
+            case GTK_SORTER_CHANGE_LESS_STRICT:
+                self = .lessStrict
+            case GTK_SORTER_CHANGE_MORE_STRICT:
+                self = .moreStrict
+            default:
+                fatalError("Unsupported GtkSorterChange enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkSorterChange() -> GtkSorterChange {
+    public func toGtk() -> GtkSorterChange {
         switch self {
             case .different:
                 return GTK_SORTER_CHANGE_DIFFERENT
@@ -28,24 +46,6 @@ public enum SorterChange {
                 return GTK_SORTER_CHANGE_LESS_STRICT
             case .moreStrict:
                 return GTK_SORTER_CHANGE_MORE_STRICT
-        }
-    }
-}
-
-extension GtkSorterChange {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toSorterChange() -> SorterChange {
-        switch self {
-            case GTK_SORTER_CHANGE_DIFFERENT:
-                return .different
-            case GTK_SORTER_CHANGE_INVERTED:
-                return .inverted
-            case GTK_SORTER_CHANGE_LESS_STRICT:
-                return .lessStrict
-            case GTK_SORTER_CHANGE_MORE_STRICT:
-                return .moreStrict
-            default:
-                fatalError("Unsupported GtkSorterChange enum value: \(self.rawValue)")
         }
     }
 }

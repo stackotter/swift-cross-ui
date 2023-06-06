@@ -2,7 +2,9 @@ import CGtk
 
 /// These enumeration values describe the possible transitions
 /// when the child of a `GtkRevealer` widget is shown or hidden.
-public enum RevealerTransitionType {
+public enum RevealerTransitionType: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkRevealerTransitionType
+
     /// No transition
     case none
     /// Fade in
@@ -24,8 +26,36 @@ public enum RevealerTransitionType {
     /// Floop in from the top
     case swingDown
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkRevealerTransitionType) {
+        switch gtkEnum {
+            case GTK_REVEALER_TRANSITION_TYPE_NONE:
+                self = .none
+            case GTK_REVEALER_TRANSITION_TYPE_CROSSFADE:
+                self = .crossfade
+            case GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT:
+                self = .slideRight
+            case GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT:
+                self = .slideLeft
+            case GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP:
+                self = .slideUp
+            case GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN:
+                self = .slideDown
+            case GTK_REVEALER_TRANSITION_TYPE_SWING_RIGHT:
+                self = .swingRight
+            case GTK_REVEALER_TRANSITION_TYPE_SWING_LEFT:
+                self = .swingLeft
+            case GTK_REVEALER_TRANSITION_TYPE_SWING_UP:
+                self = .swingUp
+            case GTK_REVEALER_TRANSITION_TYPE_SWING_DOWN:
+                self = .swingDown
+            default:
+                fatalError("Unsupported GtkRevealerTransitionType enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkRevealerTransitionType() -> GtkRevealerTransitionType {
+    public func toGtk() -> GtkRevealerTransitionType {
         switch self {
             case .none:
                 return GTK_REVEALER_TRANSITION_TYPE_NONE
@@ -47,36 +77,6 @@ public enum RevealerTransitionType {
                 return GTK_REVEALER_TRANSITION_TYPE_SWING_UP
             case .swingDown:
                 return GTK_REVEALER_TRANSITION_TYPE_SWING_DOWN
-        }
-    }
-}
-
-extension GtkRevealerTransitionType {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toRevealerTransitionType() -> RevealerTransitionType {
-        switch self {
-            case GTK_REVEALER_TRANSITION_TYPE_NONE:
-                return .none
-            case GTK_REVEALER_TRANSITION_TYPE_CROSSFADE:
-                return .crossfade
-            case GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT:
-                return .slideRight
-            case GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT:
-                return .slideLeft
-            case GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP:
-                return .slideUp
-            case GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN:
-                return .slideDown
-            case GTK_REVEALER_TRANSITION_TYPE_SWING_RIGHT:
-                return .swingRight
-            case GTK_REVEALER_TRANSITION_TYPE_SWING_LEFT:
-                return .swingLeft
-            case GTK_REVEALER_TRANSITION_TYPE_SWING_UP:
-                return .swingUp
-            case GTK_REVEALER_TRANSITION_TYPE_SWING_DOWN:
-                return .swingDown
-            default:
-                fatalError("Unsupported GtkRevealerTransitionType enum value: \(self.rawValue)")
         }
     }
 }

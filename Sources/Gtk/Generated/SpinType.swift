@@ -2,7 +2,9 @@ import CGtk
 
 /// The values of the GtkSpinType enumeration are used to specify the
 /// change to make in gtk_spin_button_spin().
-public enum SpinType {
+public enum SpinType: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkSpinType
+
     /// Increment by the adjustments step increment.
     case stepForward
     /// Decrement by the adjustments step increment.
@@ -18,8 +20,30 @@ public enum SpinType {
     /// Change by a specified amount.
     case userDefined
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkSpinType) {
+        switch gtkEnum {
+            case GTK_SPIN_STEP_FORWARD:
+                self = .stepForward
+            case GTK_SPIN_STEP_BACKWARD:
+                self = .stepBackward
+            case GTK_SPIN_PAGE_FORWARD:
+                self = .pageForward
+            case GTK_SPIN_PAGE_BACKWARD:
+                self = .pageBackward
+            case GTK_SPIN_HOME:
+                self = .home
+            case GTK_SPIN_END:
+                self = .end
+            case GTK_SPIN_USER_DEFINED:
+                self = .userDefined
+            default:
+                fatalError("Unsupported GtkSpinType enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkSpinType() -> GtkSpinType {
+    public func toGtk() -> GtkSpinType {
         switch self {
             case .stepForward:
                 return GTK_SPIN_STEP_FORWARD
@@ -35,30 +59,6 @@ public enum SpinType {
                 return GTK_SPIN_END
             case .userDefined:
                 return GTK_SPIN_USER_DEFINED
-        }
-    }
-}
-
-extension GtkSpinType {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toSpinType() -> SpinType {
-        switch self {
-            case GTK_SPIN_STEP_FORWARD:
-                return .stepForward
-            case GTK_SPIN_STEP_BACKWARD:
-                return .stepBackward
-            case GTK_SPIN_PAGE_FORWARD:
-                return .pageForward
-            case GTK_SPIN_PAGE_BACKWARD:
-                return .pageBackward
-            case GTK_SPIN_HOME:
-                return .home
-            case GTK_SPIN_END:
-                return .end
-            case GTK_SPIN_USER_DEFINED:
-                return .userDefined
-            default:
-                fatalError("Unsupported GtkSpinType enum value: \(self.rawValue)")
         }
     }
 }

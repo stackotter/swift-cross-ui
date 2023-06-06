@@ -19,6 +19,8 @@ import CGtk
         storage storageKeyPath: ReferenceWritableKeyPath<EnclosingSelf, Self>
     ) -> Value {
         get { instance.getProperty(named: instance[keyPath: storageKeyPath].name) }
-        set { instance.setProperty(named: instance[keyPath: storageKeyPath].name, newValue: newValue) }
+        set {
+            instance.setProperty(named: instance[keyPath: storageKeyPath].name, newValue: newValue)
+        }
     }
 }

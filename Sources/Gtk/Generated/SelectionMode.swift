@@ -1,7 +1,9 @@
 import CGtk
 
 /// Used to control what selections users are allowed to make.
-public enum SelectionMode {
+public enum SelectionMode: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkSelectionMode
+
     /// No selection is possible.
     case none
     /// Zero or one element may be selected.
@@ -19,8 +21,24 @@ public enum SelectionMode {
     /// Some widgets may also allow Click-drag to select a range of elements.
     case multiple
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkSelectionMode) {
+        switch gtkEnum {
+            case GTK_SELECTION_NONE:
+                self = .none
+            case GTK_SELECTION_SINGLE:
+                self = .single
+            case GTK_SELECTION_BROWSE:
+                self = .browse
+            case GTK_SELECTION_MULTIPLE:
+                self = .multiple
+            default:
+                fatalError("Unsupported GtkSelectionMode enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkSelectionMode() -> GtkSelectionMode {
+    public func toGtk() -> GtkSelectionMode {
         switch self {
             case .none:
                 return GTK_SELECTION_NONE
@@ -30,24 +48,6 @@ public enum SelectionMode {
                 return GTK_SELECTION_BROWSE
             case .multiple:
                 return GTK_SELECTION_MULTIPLE
-        }
-    }
-}
-
-extension GtkSelectionMode {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toSelectionMode() -> SelectionMode {
-        switch self {
-            case GTK_SELECTION_NONE:
-                return .none
-            case GTK_SELECTION_SINGLE:
-                return .single
-            case GTK_SELECTION_BROWSE:
-                return .browse
-            case GTK_SELECTION_MULTIPLE:
-                return .multiple
-            default:
-                fatalError("Unsupported GtkSelectionMode enum value: \(self.rawValue)")
         }
     }
 }

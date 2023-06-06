@@ -4,7 +4,9 @@ import CGtk
 /// bounds.
 ///
 /// See [method@Gtk.SpinButton.set_update_policy].
-public enum SpinButtonUpdatePolicy {
+public enum SpinButtonUpdatePolicy: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkSpinButtonUpdatePolicy
+
     /// When refreshing your `GtkSpinButton`, the value is
     /// always displayed
     case always
@@ -13,27 +15,25 @@ public enum SpinButtonUpdatePolicy {
     /// adjustment
     case ifValid
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkSpinButtonUpdatePolicy) {
+        switch gtkEnum {
+            case GTK_UPDATE_ALWAYS:
+                self = .always
+            case GTK_UPDATE_IF_VALID:
+                self = .ifValid
+            default:
+                fatalError("Unsupported GtkSpinButtonUpdatePolicy enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkSpinButtonUpdatePolicy() -> GtkSpinButtonUpdatePolicy {
+    public func toGtk() -> GtkSpinButtonUpdatePolicy {
         switch self {
             case .always:
                 return GTK_UPDATE_ALWAYS
             case .ifValid:
                 return GTK_UPDATE_IF_VALID
-        }
-    }
-}
-
-extension GtkSpinButtonUpdatePolicy {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toSpinButtonUpdatePolicy() -> SpinButtonUpdatePolicy {
-        switch self {
-            case GTK_UPDATE_ALWAYS:
-                return .always
-            case GTK_UPDATE_IF_VALID:
-                return .ifValid
-            default:
-                fatalError("Unsupported GtkSpinButtonUpdatePolicy enum value: \(self.rawValue)")
         }
     }
 }

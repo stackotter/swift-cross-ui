@@ -2,7 +2,9 @@ import CGtk
 
 /// Error codes that identify various errors that can occur while using
 /// `GtkBuilder`.
-public enum BuilderError {
+public enum BuilderError: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkBuilderError
+
     /// A type-func attribute didn’t name
     /// a function that returns a `GType`.
     case invalidTypeFunction
@@ -45,8 +47,46 @@ public enum BuilderError {
     /// `gmodule-export-2.0` pkgconfig module can fix this problem.
     case invalidFunction
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkBuilderError) {
+        switch gtkEnum {
+            case GTK_BUILDER_ERROR_INVALID_TYPE_FUNCTION:
+                self = .invalidTypeFunction
+            case GTK_BUILDER_ERROR_UNHANDLED_TAG:
+                self = .unhandledTag
+            case GTK_BUILDER_ERROR_MISSING_ATTRIBUTE:
+                self = .missingAttribute
+            case GTK_BUILDER_ERROR_INVALID_ATTRIBUTE:
+                self = .invalidAttribute
+            case GTK_BUILDER_ERROR_INVALID_TAG:
+                self = .invalidTag
+            case GTK_BUILDER_ERROR_MISSING_PROPERTY_VALUE:
+                self = .missingPropertyValue
+            case GTK_BUILDER_ERROR_INVALID_VALUE:
+                self = .invalidValue
+            case GTK_BUILDER_ERROR_VERSION_MISMATCH:
+                self = .versionMismatch
+            case GTK_BUILDER_ERROR_DUPLICATE_ID:
+                self = .duplicateId
+            case GTK_BUILDER_ERROR_OBJECT_TYPE_REFUSED:
+                self = .objectTypeRefused
+            case GTK_BUILDER_ERROR_TEMPLATE_MISMATCH:
+                self = .templateMismatch
+            case GTK_BUILDER_ERROR_INVALID_PROPERTY:
+                self = .invalidProperty
+            case GTK_BUILDER_ERROR_INVALID_SIGNAL:
+                self = .invalidSignal
+            case GTK_BUILDER_ERROR_INVALID_ID:
+                self = .invalidId
+            case GTK_BUILDER_ERROR_INVALID_FUNCTION:
+                self = .invalidFunction
+            default:
+                fatalError("Unsupported GtkBuilderError enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkBuilderError() -> GtkBuilderError {
+    public func toGtk() -> GtkBuilderError {
         switch self {
             case .invalidTypeFunction:
                 return GTK_BUILDER_ERROR_INVALID_TYPE_FUNCTION
@@ -78,46 +118,6 @@ public enum BuilderError {
                 return GTK_BUILDER_ERROR_INVALID_ID
             case .invalidFunction:
                 return GTK_BUILDER_ERROR_INVALID_FUNCTION
-        }
-    }
-}
-
-extension GtkBuilderError {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toBuilderError() -> BuilderError {
-        switch self {
-            case GTK_BUILDER_ERROR_INVALID_TYPE_FUNCTION:
-                return .invalidTypeFunction
-            case GTK_BUILDER_ERROR_UNHANDLED_TAG:
-                return .unhandledTag
-            case GTK_BUILDER_ERROR_MISSING_ATTRIBUTE:
-                return .missingAttribute
-            case GTK_BUILDER_ERROR_INVALID_ATTRIBUTE:
-                return .invalidAttribute
-            case GTK_BUILDER_ERROR_INVALID_TAG:
-                return .invalidTag
-            case GTK_BUILDER_ERROR_MISSING_PROPERTY_VALUE:
-                return .missingPropertyValue
-            case GTK_BUILDER_ERROR_INVALID_VALUE:
-                return .invalidValue
-            case GTK_BUILDER_ERROR_VERSION_MISMATCH:
-                return .versionMismatch
-            case GTK_BUILDER_ERROR_DUPLICATE_ID:
-                return .duplicateId
-            case GTK_BUILDER_ERROR_OBJECT_TYPE_REFUSED:
-                return .objectTypeRefused
-            case GTK_BUILDER_ERROR_TEMPLATE_MISMATCH:
-                return .templateMismatch
-            case GTK_BUILDER_ERROR_INVALID_PROPERTY:
-                return .invalidProperty
-            case GTK_BUILDER_ERROR_INVALID_SIGNAL:
-                return .invalidSignal
-            case GTK_BUILDER_ERROR_INVALID_ID:
-                return .invalidId
-            case GTK_BUILDER_ERROR_INVALID_FUNCTION:
-                return .invalidFunction
-            default:
-                fatalError("Unsupported GtkBuilderError enum value: \(self.rawValue)")
         }
     }
 }

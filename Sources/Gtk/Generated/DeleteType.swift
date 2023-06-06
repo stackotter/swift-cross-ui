@@ -1,7 +1,9 @@
 import CGtk
 
 /// Passed to various keybinding signals for deleting text.
-public enum DeleteType {
+public enum DeleteType: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkDeleteType
+
     /// Delete characters.
     case chars
     /// Delete only the portion of the word to the
@@ -25,8 +27,32 @@ public enum DeleteType {
     /// Delete only whitespace. Like M-\ in Emacs.
     case whitespace
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkDeleteType) {
+        switch gtkEnum {
+            case GTK_DELETE_CHARS:
+                self = .chars
+            case GTK_DELETE_WORD_ENDS:
+                self = .wordEnds
+            case GTK_DELETE_WORDS:
+                self = .words
+            case GTK_DELETE_DISPLAY_LINES:
+                self = .displayLines
+            case GTK_DELETE_DISPLAY_LINE_ENDS:
+                self = .displayLineEnds
+            case GTK_DELETE_PARAGRAPH_ENDS:
+                self = .paragraphEnds
+            case GTK_DELETE_PARAGRAPHS:
+                self = .paragraphs
+            case GTK_DELETE_WHITESPACE:
+                self = .whitespace
+            default:
+                fatalError("Unsupported GtkDeleteType enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkDeleteType() -> GtkDeleteType {
+    public func toGtk() -> GtkDeleteType {
         switch self {
             case .chars:
                 return GTK_DELETE_CHARS
@@ -44,32 +70,6 @@ public enum DeleteType {
                 return GTK_DELETE_PARAGRAPHS
             case .whitespace:
                 return GTK_DELETE_WHITESPACE
-        }
-    }
-}
-
-extension GtkDeleteType {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toDeleteType() -> DeleteType {
-        switch self {
-            case GTK_DELETE_CHARS:
-                return .chars
-            case GTK_DELETE_WORD_ENDS:
-                return .wordEnds
-            case GTK_DELETE_WORDS:
-                return .words
-            case GTK_DELETE_DISPLAY_LINES:
-                return .displayLines
-            case GTK_DELETE_DISPLAY_LINE_ENDS:
-                return .displayLineEnds
-            case GTK_DELETE_PARAGRAPH_ENDS:
-                return .paragraphEnds
-            case GTK_DELETE_PARAGRAPHS:
-                return .paragraphs
-            case GTK_DELETE_WHITESPACE:
-                return .whitespace
-            default:
-                fatalError("Unsupported GtkDeleteType enum value: \(self.rawValue)")
         }
     }
 }

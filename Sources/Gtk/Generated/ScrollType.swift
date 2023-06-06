@@ -1,7 +1,9 @@
 import CGtk
 
 /// Scrolling types.
-public enum ScrollType {
+public enum ScrollType: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkScrollType
+
     /// No scrolling.
     case none
     /// Jump to new location.
@@ -35,8 +37,48 @@ public enum ScrollType {
     /// Scroll to end.
     case end
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkScrollType) {
+        switch gtkEnum {
+            case GTK_SCROLL_NONE:
+                self = .none
+            case GTK_SCROLL_JUMP:
+                self = .jump
+            case GTK_SCROLL_STEP_BACKWARD:
+                self = .stepBackward
+            case GTK_SCROLL_STEP_FORWARD:
+                self = .stepForward
+            case GTK_SCROLL_PAGE_BACKWARD:
+                self = .pageBackward
+            case GTK_SCROLL_PAGE_FORWARD:
+                self = .pageForward
+            case GTK_SCROLL_STEP_UP:
+                self = .stepUp
+            case GTK_SCROLL_STEP_DOWN:
+                self = .stepDown
+            case GTK_SCROLL_PAGE_UP:
+                self = .pageUp
+            case GTK_SCROLL_PAGE_DOWN:
+                self = .pageDown
+            case GTK_SCROLL_STEP_LEFT:
+                self = .stepLeft
+            case GTK_SCROLL_STEP_RIGHT:
+                self = .stepRight
+            case GTK_SCROLL_PAGE_LEFT:
+                self = .pageLeft
+            case GTK_SCROLL_PAGE_RIGHT:
+                self = .pageRight
+            case GTK_SCROLL_START:
+                self = .start
+            case GTK_SCROLL_END:
+                self = .end
+            default:
+                fatalError("Unsupported GtkScrollType enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkScrollType() -> GtkScrollType {
+    public func toGtk() -> GtkScrollType {
         switch self {
             case .none:
                 return GTK_SCROLL_NONE
@@ -70,48 +112,6 @@ public enum ScrollType {
                 return GTK_SCROLL_START
             case .end:
                 return GTK_SCROLL_END
-        }
-    }
-}
-
-extension GtkScrollType {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toScrollType() -> ScrollType {
-        switch self {
-            case GTK_SCROLL_NONE:
-                return .none
-            case GTK_SCROLL_JUMP:
-                return .jump
-            case GTK_SCROLL_STEP_BACKWARD:
-                return .stepBackward
-            case GTK_SCROLL_STEP_FORWARD:
-                return .stepForward
-            case GTK_SCROLL_PAGE_BACKWARD:
-                return .pageBackward
-            case GTK_SCROLL_PAGE_FORWARD:
-                return .pageForward
-            case GTK_SCROLL_STEP_UP:
-                return .stepUp
-            case GTK_SCROLL_STEP_DOWN:
-                return .stepDown
-            case GTK_SCROLL_PAGE_UP:
-                return .pageUp
-            case GTK_SCROLL_PAGE_DOWN:
-                return .pageDown
-            case GTK_SCROLL_STEP_LEFT:
-                return .stepLeft
-            case GTK_SCROLL_STEP_RIGHT:
-                return .stepRight
-            case GTK_SCROLL_PAGE_LEFT:
-                return .pageLeft
-            case GTK_SCROLL_PAGE_RIGHT:
-                return .pageRight
-            case GTK_SCROLL_START:
-                return .start
-            case GTK_SCROLL_END:
-                return .end
-            default:
-                fatalError("Unsupported GtkScrollType enum value: \(self.rawValue)")
         }
     }
 }

@@ -20,14 +20,7 @@ open class Stack: Widget {
     @GObjectProperty(named: "transition-duration") public var transitionDuration: Int
 
     /// Transition type
-    public var transitionType: StackTransitionType {
-        get {
-            return gtk_stack_get_transition_type(opaquePointer).toStackTransitionType()
-        }
-        set {
-            gtk_stack_set_transition_type(opaquePointer, newValue.toGtkStackTransitionType())
-        }
-    }
+    @GObjectProperty(named: "transition-type") public var transitionType: StackTransitionType
 
     public func add(_ child: Widget, named name: String, title: String? = nil) {
         pages.append(child)

@@ -1,7 +1,9 @@
 import CGtk
 
 /// The possible accessible states of a [iface@Accessible].
-public enum AccessibleState {
+public enum AccessibleState: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkAccessibleState
+
     /// A “busy” state. This state has boolean values
     case busy
     /// A “checked” state; indicates the current
@@ -32,8 +34,32 @@ public enum AccessibleState {
     /// is selected. Value type: boolean or undefined
     case selected
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkAccessibleState) {
+        switch gtkEnum {
+            case GTK_ACCESSIBLE_STATE_BUSY:
+                self = .busy
+            case GTK_ACCESSIBLE_STATE_CHECKED:
+                self = .checked
+            case GTK_ACCESSIBLE_STATE_DISABLED:
+                self = .disabled
+            case GTK_ACCESSIBLE_STATE_EXPANDED:
+                self = .expanded
+            case GTK_ACCESSIBLE_STATE_HIDDEN:
+                self = .hidden
+            case GTK_ACCESSIBLE_STATE_INVALID:
+                self = .invalid
+            case GTK_ACCESSIBLE_STATE_PRESSED:
+                self = .pressed
+            case GTK_ACCESSIBLE_STATE_SELECTED:
+                self = .selected
+            default:
+                fatalError("Unsupported GtkAccessibleState enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkAccessibleState() -> GtkAccessibleState {
+    public func toGtk() -> GtkAccessibleState {
         switch self {
             case .busy:
                 return GTK_ACCESSIBLE_STATE_BUSY
@@ -51,32 +77,6 @@ public enum AccessibleState {
                 return GTK_ACCESSIBLE_STATE_PRESSED
             case .selected:
                 return GTK_ACCESSIBLE_STATE_SELECTED
-        }
-    }
-}
-
-extension GtkAccessibleState {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toAccessibleState() -> AccessibleState {
-        switch self {
-            case GTK_ACCESSIBLE_STATE_BUSY:
-                return .busy
-            case GTK_ACCESSIBLE_STATE_CHECKED:
-                return .checked
-            case GTK_ACCESSIBLE_STATE_DISABLED:
-                return .disabled
-            case GTK_ACCESSIBLE_STATE_EXPANDED:
-                return .expanded
-            case GTK_ACCESSIBLE_STATE_HIDDEN:
-                return .hidden
-            case GTK_ACCESSIBLE_STATE_INVALID:
-                return .invalid
-            case GTK_ACCESSIBLE_STATE_PRESSED:
-                return .pressed
-            case GTK_ACCESSIBLE_STATE_SELECTED:
-                return .selected
-            default:
-                fatalError("Unsupported GtkAccessibleState enum value: \(self.rawValue)")
         }
     }
 }

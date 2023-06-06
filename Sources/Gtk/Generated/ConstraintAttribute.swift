@@ -1,7 +1,9 @@
 import CGtk
 
 /// The widget attributes that can be used when creating a [class@Constraint].
-public enum ConstraintAttribute {
+public enum ConstraintAttribute: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkConstraintAttribute
+
     /// No attribute, used for constant
     /// relations
     case none
@@ -36,8 +38,40 @@ public enum ConstraintAttribute {
     /// The baseline of a widget
     case baseline
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkConstraintAttribute) {
+        switch gtkEnum {
+            case GTK_CONSTRAINT_ATTRIBUTE_NONE:
+                self = .none
+            case GTK_CONSTRAINT_ATTRIBUTE_LEFT:
+                self = .left
+            case GTK_CONSTRAINT_ATTRIBUTE_RIGHT:
+                self = .right
+            case GTK_CONSTRAINT_ATTRIBUTE_TOP:
+                self = .top
+            case GTK_CONSTRAINT_ATTRIBUTE_BOTTOM:
+                self = .bottom
+            case GTK_CONSTRAINT_ATTRIBUTE_START:
+                self = .start
+            case GTK_CONSTRAINT_ATTRIBUTE_END:
+                self = .end
+            case GTK_CONSTRAINT_ATTRIBUTE_WIDTH:
+                self = .width
+            case GTK_CONSTRAINT_ATTRIBUTE_HEIGHT:
+                self = .height
+            case GTK_CONSTRAINT_ATTRIBUTE_CENTER_X:
+                self = .centerX
+            case GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y:
+                self = .centerY
+            case GTK_CONSTRAINT_ATTRIBUTE_BASELINE:
+                self = .baseline
+            default:
+                fatalError("Unsupported GtkConstraintAttribute enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkConstraintAttribute() -> GtkConstraintAttribute {
+    public func toGtk() -> GtkConstraintAttribute {
         switch self {
             case .none:
                 return GTK_CONSTRAINT_ATTRIBUTE_NONE
@@ -63,40 +97,6 @@ public enum ConstraintAttribute {
                 return GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y
             case .baseline:
                 return GTK_CONSTRAINT_ATTRIBUTE_BASELINE
-        }
-    }
-}
-
-extension GtkConstraintAttribute {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toConstraintAttribute() -> ConstraintAttribute {
-        switch self {
-            case GTK_CONSTRAINT_ATTRIBUTE_NONE:
-                return .none
-            case GTK_CONSTRAINT_ATTRIBUTE_LEFT:
-                return .left
-            case GTK_CONSTRAINT_ATTRIBUTE_RIGHT:
-                return .right
-            case GTK_CONSTRAINT_ATTRIBUTE_TOP:
-                return .top
-            case GTK_CONSTRAINT_ATTRIBUTE_BOTTOM:
-                return .bottom
-            case GTK_CONSTRAINT_ATTRIBUTE_START:
-                return .start
-            case GTK_CONSTRAINT_ATTRIBUTE_END:
-                return .end
-            case GTK_CONSTRAINT_ATTRIBUTE_WIDTH:
-                return .width
-            case GTK_CONSTRAINT_ATTRIBUTE_HEIGHT:
-                return .height
-            case GTK_CONSTRAINT_ATTRIBUTE_CENTER_X:
-                return .centerX
-            case GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y:
-                return .centerY
-            case GTK_CONSTRAINT_ATTRIBUTE_BASELINE:
-                return .baseline
-            default:
-                fatalError("Unsupported GtkConstraintAttribute enum value: \(self.rawValue)")
         }
     }
 }

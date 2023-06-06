@@ -9,7 +9,9 @@ import CGtk
 /// Most of the values correspond to [class@Settings] properties.
 ///
 /// More values may be added over time.
-public enum SystemSetting {
+public enum SystemSetting: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkSystemSetting
+
     /// The [property@Gtk.Settings:gtk-xft-dpi] setting has changed
     case dpi
     /// The [property@Gtk.Settings:gtk-font-name] setting has changed
@@ -28,8 +30,26 @@ public enum SystemSetting {
     /// icons to be looked up again
     case iconTheme
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkSystemSetting) {
+        switch gtkEnum {
+            case GTK_SYSTEM_SETTING_DPI:
+                self = .dpi
+            case GTK_SYSTEM_SETTING_FONT_NAME:
+                self = .fontName
+            case GTK_SYSTEM_SETTING_FONT_CONFIG:
+                self = .fontConfig
+            case GTK_SYSTEM_SETTING_DISPLAY:
+                self = .display
+            case GTK_SYSTEM_SETTING_ICON_THEME:
+                self = .iconTheme
+            default:
+                fatalError("Unsupported GtkSystemSetting enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkSystemSetting() -> GtkSystemSetting {
+    public func toGtk() -> GtkSystemSetting {
         switch self {
             case .dpi:
                 return GTK_SYSTEM_SETTING_DPI
@@ -41,26 +61,6 @@ public enum SystemSetting {
                 return GTK_SYSTEM_SETTING_DISPLAY
             case .iconTheme:
                 return GTK_SYSTEM_SETTING_ICON_THEME
-        }
-    }
-}
-
-extension GtkSystemSetting {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toSystemSetting() -> SystemSetting {
-        switch self {
-            case GTK_SYSTEM_SETTING_DPI:
-                return .dpi
-            case GTK_SYSTEM_SETTING_FONT_NAME:
-                return .fontName
-            case GTK_SYSTEM_SETTING_FONT_CONFIG:
-                return .fontConfig
-            case GTK_SYSTEM_SETTING_DISPLAY:
-                return .display
-            case GTK_SYSTEM_SETTING_ICON_THEME:
-                return .iconTheme
-            default:
-                fatalError("Unsupported GtkSystemSetting enum value: \(self.rawValue)")
         }
     }
 }

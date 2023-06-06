@@ -2,7 +2,9 @@ import CGtk
 
 /// The status gives a rough indication of the completion of a running
 /// print operation.
-public enum PrintStatus {
+public enum PrintStatus: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkPrintStatus
+
     /// The printing has not started yet; this
     /// status is set initially, and while the print dialog is shown.
     case initial
@@ -28,8 +30,34 @@ public enum PrintStatus {
     /// The printing has been aborted.
     case finishedAborted
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkPrintStatus) {
+        switch gtkEnum {
+            case GTK_PRINT_STATUS_INITIAL:
+                self = .initial
+            case GTK_PRINT_STATUS_PREPARING:
+                self = .preparing
+            case GTK_PRINT_STATUS_GENERATING_DATA:
+                self = .generatingData
+            case GTK_PRINT_STATUS_SENDING_DATA:
+                self = .sendingData
+            case GTK_PRINT_STATUS_PENDING:
+                self = .pending
+            case GTK_PRINT_STATUS_PENDING_ISSUE:
+                self = .pendingIssue
+            case GTK_PRINT_STATUS_PRINTING:
+                self = .printing
+            case GTK_PRINT_STATUS_FINISHED:
+                self = .finished
+            case GTK_PRINT_STATUS_FINISHED_ABORTED:
+                self = .finishedAborted
+            default:
+                fatalError("Unsupported GtkPrintStatus enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkPrintStatus() -> GtkPrintStatus {
+    public func toGtk() -> GtkPrintStatus {
         switch self {
             case .initial:
                 return GTK_PRINT_STATUS_INITIAL
@@ -49,34 +77,6 @@ public enum PrintStatus {
                 return GTK_PRINT_STATUS_FINISHED
             case .finishedAborted:
                 return GTK_PRINT_STATUS_FINISHED_ABORTED
-        }
-    }
-}
-
-extension GtkPrintStatus {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toPrintStatus() -> PrintStatus {
-        switch self {
-            case GTK_PRINT_STATUS_INITIAL:
-                return .initial
-            case GTK_PRINT_STATUS_PREPARING:
-                return .preparing
-            case GTK_PRINT_STATUS_GENERATING_DATA:
-                return .generatingData
-            case GTK_PRINT_STATUS_SENDING_DATA:
-                return .sendingData
-            case GTK_PRINT_STATUS_PENDING:
-                return .pending
-            case GTK_PRINT_STATUS_PENDING_ISSUE:
-                return .pendingIssue
-            case GTK_PRINT_STATUS_PRINTING:
-                return .printing
-            case GTK_PRINT_STATUS_FINISHED:
-                return .finished
-            case GTK_PRINT_STATUS_FINISHED_ABORTED:
-                return .finishedAborted
-            default:
-                fatalError("Unsupported GtkPrintStatus enum value: \(self.rawValue)")
         }
     }
 }

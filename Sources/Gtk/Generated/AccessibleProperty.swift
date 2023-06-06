@@ -1,7 +1,9 @@
 import CGtk
 
 /// The possible accessible properties of a [iface@Accessible].
-public enum AccessibleProperty {
+public enum AccessibleProperty: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkAccessibleProperty
+
     /// Indicates whether inputting text
     /// could trigger display of one or more predictions of the user's intended
     /// value for a combobox, searchbox, or textbox and specifies how predictions
@@ -68,8 +70,54 @@ public enum AccessibleProperty {
     /// of aria-valuenow for a range widget. Value type: string
     case valueText
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkAccessibleProperty) {
+        switch gtkEnum {
+            case GTK_ACCESSIBLE_PROPERTY_AUTOCOMPLETE:
+                self = .autocomplete
+            case GTK_ACCESSIBLE_PROPERTY_DESCRIPTION:
+                self = .description
+            case GTK_ACCESSIBLE_PROPERTY_HAS_POPUP:
+                self = .hasPopup
+            case GTK_ACCESSIBLE_PROPERTY_KEY_SHORTCUTS:
+                self = .keyShortcuts
+            case GTK_ACCESSIBLE_PROPERTY_LABEL:
+                self = .label
+            case GTK_ACCESSIBLE_PROPERTY_LEVEL:
+                self = .level
+            case GTK_ACCESSIBLE_PROPERTY_MODAL:
+                self = .modal
+            case GTK_ACCESSIBLE_PROPERTY_MULTI_LINE:
+                self = .multiLine
+            case GTK_ACCESSIBLE_PROPERTY_MULTI_SELECTABLE:
+                self = .multiSelectable
+            case GTK_ACCESSIBLE_PROPERTY_ORIENTATION:
+                self = .orientation
+            case GTK_ACCESSIBLE_PROPERTY_PLACEHOLDER:
+                self = .placeholder
+            case GTK_ACCESSIBLE_PROPERTY_READ_ONLY:
+                self = .readOnly
+            case GTK_ACCESSIBLE_PROPERTY_REQUIRED:
+                self = .required
+            case GTK_ACCESSIBLE_PROPERTY_ROLE_DESCRIPTION:
+                self = .roleDescription
+            case GTK_ACCESSIBLE_PROPERTY_SORT:
+                self = .sort
+            case GTK_ACCESSIBLE_PROPERTY_VALUE_MAX:
+                self = .valueMax
+            case GTK_ACCESSIBLE_PROPERTY_VALUE_MIN:
+                self = .valueMin
+            case GTK_ACCESSIBLE_PROPERTY_VALUE_NOW:
+                self = .valueNow
+            case GTK_ACCESSIBLE_PROPERTY_VALUE_TEXT:
+                self = .valueText
+            default:
+                fatalError("Unsupported GtkAccessibleProperty enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkAccessibleProperty() -> GtkAccessibleProperty {
+    public func toGtk() -> GtkAccessibleProperty {
         switch self {
             case .autocomplete:
                 return GTK_ACCESSIBLE_PROPERTY_AUTOCOMPLETE
@@ -109,54 +157,6 @@ public enum AccessibleProperty {
                 return GTK_ACCESSIBLE_PROPERTY_VALUE_NOW
             case .valueText:
                 return GTK_ACCESSIBLE_PROPERTY_VALUE_TEXT
-        }
-    }
-}
-
-extension GtkAccessibleProperty {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toAccessibleProperty() -> AccessibleProperty {
-        switch self {
-            case GTK_ACCESSIBLE_PROPERTY_AUTOCOMPLETE:
-                return .autocomplete
-            case GTK_ACCESSIBLE_PROPERTY_DESCRIPTION:
-                return .description
-            case GTK_ACCESSIBLE_PROPERTY_HAS_POPUP:
-                return .hasPopup
-            case GTK_ACCESSIBLE_PROPERTY_KEY_SHORTCUTS:
-                return .keyShortcuts
-            case GTK_ACCESSIBLE_PROPERTY_LABEL:
-                return .label
-            case GTK_ACCESSIBLE_PROPERTY_LEVEL:
-                return .level
-            case GTK_ACCESSIBLE_PROPERTY_MODAL:
-                return .modal
-            case GTK_ACCESSIBLE_PROPERTY_MULTI_LINE:
-                return .multiLine
-            case GTK_ACCESSIBLE_PROPERTY_MULTI_SELECTABLE:
-                return .multiSelectable
-            case GTK_ACCESSIBLE_PROPERTY_ORIENTATION:
-                return .orientation
-            case GTK_ACCESSIBLE_PROPERTY_PLACEHOLDER:
-                return .placeholder
-            case GTK_ACCESSIBLE_PROPERTY_READ_ONLY:
-                return .readOnly
-            case GTK_ACCESSIBLE_PROPERTY_REQUIRED:
-                return .required
-            case GTK_ACCESSIBLE_PROPERTY_ROLE_DESCRIPTION:
-                return .roleDescription
-            case GTK_ACCESSIBLE_PROPERTY_SORT:
-                return .sort
-            case GTK_ACCESSIBLE_PROPERTY_VALUE_MAX:
-                return .valueMax
-            case GTK_ACCESSIBLE_PROPERTY_VALUE_MIN:
-                return .valueMin
-            case GTK_ACCESSIBLE_PROPERTY_VALUE_NOW:
-                return .valueNow
-            case GTK_ACCESSIBLE_PROPERTY_VALUE_TEXT:
-                return .valueText
-            default:
-                fatalError("Unsupported GtkAccessibleProperty enum value: \(self.rawValue)")
         }
     }
 }

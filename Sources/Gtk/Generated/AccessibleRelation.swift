@@ -4,7 +4,9 @@ import CGtk
 ///
 /// Accessible relations can be references to other widgets,
 /// integers or strings.
-public enum AccessibleRelation {
+public enum AccessibleRelation: GValueRepresentableEnum {
+    public typealias GtkEnum = GtkAccessibleRelation
+
     /// Identifies the currently active
     /// element when focus is on a composite widget, combobox, textbox, group,
     /// or application. Value type: reference
@@ -67,8 +69,52 @@ public enum AccessibleRelation {
     /// set of listitems or treeitems. Value type: integer
     case setSize
 
+    /// Converts a Gtk value to its corresponding swift representation.
+    public init(from gtkEnum: GtkAccessibleRelation) {
+        switch gtkEnum {
+            case GTK_ACCESSIBLE_RELATION_ACTIVE_DESCENDANT:
+                self = .activeDescendant
+            case GTK_ACCESSIBLE_RELATION_COL_COUNT:
+                self = .colCount
+            case GTK_ACCESSIBLE_RELATION_COL_INDEX:
+                self = .colIndex
+            case GTK_ACCESSIBLE_RELATION_COL_INDEX_TEXT:
+                self = .colIndexText
+            case GTK_ACCESSIBLE_RELATION_COL_SPAN:
+                self = .colSpan
+            case GTK_ACCESSIBLE_RELATION_CONTROLS:
+                self = .controls
+            case GTK_ACCESSIBLE_RELATION_DESCRIBED_BY:
+                self = .describedBy
+            case GTK_ACCESSIBLE_RELATION_DETAILS:
+                self = .details
+            case GTK_ACCESSIBLE_RELATION_ERROR_MESSAGE:
+                self = .errorMessage
+            case GTK_ACCESSIBLE_RELATION_FLOW_TO:
+                self = .flowTo
+            case GTK_ACCESSIBLE_RELATION_LABELLED_BY:
+                self = .labelledBy
+            case GTK_ACCESSIBLE_RELATION_OWNS:
+                self = .owns
+            case GTK_ACCESSIBLE_RELATION_POS_IN_SET:
+                self = .posInSet
+            case GTK_ACCESSIBLE_RELATION_ROW_COUNT:
+                self = .rowCount
+            case GTK_ACCESSIBLE_RELATION_ROW_INDEX:
+                self = .rowIndex
+            case GTK_ACCESSIBLE_RELATION_ROW_INDEX_TEXT:
+                self = .rowIndexText
+            case GTK_ACCESSIBLE_RELATION_ROW_SPAN:
+                self = .rowSpan
+            case GTK_ACCESSIBLE_RELATION_SET_SIZE:
+                self = .setSize
+            default:
+                fatalError("Unsupported GtkAccessibleRelation enum value: \(gtkEnum.rawValue)")
+        }
+    }
+
     /// Converts the value to its corresponding Gtk representation.
-    func toGtkAccessibleRelation() -> GtkAccessibleRelation {
+    public func toGtk() -> GtkAccessibleRelation {
         switch self {
             case .activeDescendant:
                 return GTK_ACCESSIBLE_RELATION_ACTIVE_DESCENDANT
@@ -106,52 +152,6 @@ public enum AccessibleRelation {
                 return GTK_ACCESSIBLE_RELATION_ROW_SPAN
             case .setSize:
                 return GTK_ACCESSIBLE_RELATION_SET_SIZE
-        }
-    }
-}
-
-extension GtkAccessibleRelation {
-    /// Converts a Gtk value to its corresponding swift representation.
-    func toAccessibleRelation() -> AccessibleRelation {
-        switch self {
-            case GTK_ACCESSIBLE_RELATION_ACTIVE_DESCENDANT:
-                return .activeDescendant
-            case GTK_ACCESSIBLE_RELATION_COL_COUNT:
-                return .colCount
-            case GTK_ACCESSIBLE_RELATION_COL_INDEX:
-                return .colIndex
-            case GTK_ACCESSIBLE_RELATION_COL_INDEX_TEXT:
-                return .colIndexText
-            case GTK_ACCESSIBLE_RELATION_COL_SPAN:
-                return .colSpan
-            case GTK_ACCESSIBLE_RELATION_CONTROLS:
-                return .controls
-            case GTK_ACCESSIBLE_RELATION_DESCRIBED_BY:
-                return .describedBy
-            case GTK_ACCESSIBLE_RELATION_DETAILS:
-                return .details
-            case GTK_ACCESSIBLE_RELATION_ERROR_MESSAGE:
-                return .errorMessage
-            case GTK_ACCESSIBLE_RELATION_FLOW_TO:
-                return .flowTo
-            case GTK_ACCESSIBLE_RELATION_LABELLED_BY:
-                return .labelledBy
-            case GTK_ACCESSIBLE_RELATION_OWNS:
-                return .owns
-            case GTK_ACCESSIBLE_RELATION_POS_IN_SET:
-                return .posInSet
-            case GTK_ACCESSIBLE_RELATION_ROW_COUNT:
-                return .rowCount
-            case GTK_ACCESSIBLE_RELATION_ROW_INDEX:
-                return .rowIndex
-            case GTK_ACCESSIBLE_RELATION_ROW_INDEX_TEXT:
-                return .rowIndexText
-            case GTK_ACCESSIBLE_RELATION_ROW_SPAN:
-                return .rowSpan
-            case GTK_ACCESSIBLE_RELATION_SET_SIZE:
-                return .setSize
-            default:
-                fatalError("Unsupported GtkAccessibleRelation enum value: \(self.rawValue)")
         }
     }
 }

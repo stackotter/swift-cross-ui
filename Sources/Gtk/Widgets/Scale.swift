@@ -3,7 +3,7 @@ import CGtk
 public class Scale: Widget {
     public override init() {
         super.init()
-        widgetPointer = gtk_scale_new(Orientation.horizontal.toGtkOrientation(), nil)
+        widgetPointer = gtk_scale_new(Orientation.horizontal.toGtk(), nil)
         expandHorizontally = true
     }
 
@@ -16,7 +16,7 @@ public class Scale: Widget {
         }
     }
 
-    public var value: Double { // has no property
+    public var value: Double {  // has no property
         get {
             return gtk_range_get_value(castedPointer())
         }
