@@ -82,45 +82,17 @@ public class Button: Widget {
     }
 
     /// Whether the button has a frame.
-    public var hasFrame: Bool {
-        get {
-            return gtk_button_get_has_frame(castedPointer()).toBool()
-        }
-        set {
-            gtk_button_set_has_frame(castedPointer(), newValue.toGBoolean())
-        }
-    }
+    @GObjectProperty(named: "has-frame") public var hasFrame: Bool
 
     /// The name of the icon used to automatically populate the button.
-    public var iconName: String? {
-        get {
-            return gtk_button_get_icon_name(castedPointer()).map(String.init(cString:))
-        }
-        set {
-            gtk_button_set_icon_name(castedPointer(), newValue)
-        }
-    }
+    @GObjectProperty(named: "icon-name") public var iconName: String?
 
     /// Text of the label inside the button, if the button contains a label widget.
-    public var label: String? {
-        get {
-            return gtk_button_get_label(castedPointer()).map(String.init(cString:))
-        }
-        set {
-            gtk_button_set_label(castedPointer(), newValue)
-        }
-    }
+    @GObjectProperty(named: "label") public var label: String?
 
     /// If set, an underline in the text indicates that the following character is
     /// to be used as mnemonic.
-    public var useUnderline: Bool {
-        get {
-            return gtk_button_get_use_underline(castedPointer()).toBool()
-        }
-        set {
-            gtk_button_set_use_underline(castedPointer(), newValue.toGBoolean())
-        }
-    }
+    @GObjectProperty(named: "use-underline") public var useUnderline: Bool
 
     /// Emitted to animate press then release.
     ///
