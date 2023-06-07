@@ -189,9 +189,9 @@ struct Class: Decodable, ClassLike {
         case conformances = "implements"
     }
 
-    /// Aggregates all members of a specific type including those inherited from implemented
-    /// interfaces (but not those from super classes).
-    func getAll<T>(
+    /// Aggregates all members of a specific type including those implemented for an
+    /// interface conformance (but not those from super classes).
+    func getAllImplemented<T>(
         _ keyPath: KeyPath<ClassLike, [T]>,
         namespace: Namespace
     ) -> [(any ClassLike, T)] {
@@ -202,6 +202,24 @@ struct Class: Decodable, ClassLike {
                 return elements.map { (interface, $0) }
             }
         return baseProperties + interfaceProperties
+    }
+
+    /// Aggregates all members of a specific type that have been inherited from super
+    /// classes (doesn't include members from implemented interfaces).
+    func getAllInherited<T>(
+        _ keyPath: KeyPath<any ClassLike, [T]>,
+        namespace: Namespace
+    ) -> [(any ClassLike, T)] {
+        guard
+            let parent = parent,
+            let parentClass = namespace.classes.first(where: { $0.name == parent })
+        else {
+            return []
+        }
+
+        return
+            parentClass[keyPath: keyPath].map { (parentClass, $0) }
+            + parentClass.getAllInherited(keyPath, namespace: namespace)
     }
 
     /// Returns all interfaces implemented by the class. Excludes interfaces that can't

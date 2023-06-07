@@ -39,7 +39,7 @@ struct GtkCodeGen {
     }
 
     static func generateSources(for gir: GIR, to directory: URL) throws {
-        let allowListedClasses = ["Button", "Entry", "Label"]
+        let allowListedClasses = ["Button", "Entry", "Label", "TextView"]
         for class_ in gir.namespace.classes where allowListedClasses.contains(class_.name) {
             let source = generateClass(class_, namespace: gir.namespace)
             try save(source.description, to: directory, declName: class_.name)
@@ -189,7 +189,7 @@ struct GtkCodeGen {
         }
 
         var properties: [DeclSyntax] = []
-        for (classLike, property) in class_.getAll(\.properties, namespace: namespace) {
+        for (classLike, property) in class_.getAllImplemented(\.properties, namespace: namespace) {
             guard
                 property.version == nil,
                 property.name != "child",
@@ -202,7 +202,7 @@ struct GtkCodeGen {
             properties.append(decl)
         }
 
-        let signals = class_.getAll(\.signals, namespace: namespace)
+        let signals = class_.getAllImplemented(\.signals, namespace: namespace)
         for (_, signal) in signals {
             properties.append(
                 generateSignalHandlerProperty(signal, className: class_.name, forProtocol: false)
@@ -289,6 +289,7 @@ struct GtkCodeGen {
     static func generateSignalHandlerProperty(
         _ signal: Signal, className: String, forProtocol: Bool
     ) -> DeclSyntax {
+        // TODO: Correctly handle signals that take extra parameters
         let name = convertDelimitedCasingToCamel(signal.name, delimiter: "-")
         var prefix = ""
         var suffix = ""
