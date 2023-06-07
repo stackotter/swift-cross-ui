@@ -28,11 +28,9 @@ app.run { window in
     box.add(slider)
 
     let entry = Entry()
-    entry.placeholder = "Test input"
+    entry.placeholderText = "Test input"
     entry.changed = { entry in
-        let text = entry.text
-        print(text)
-        entry.text = text
+        print(entry.text)
     }
     box.add(entry)
 
