@@ -14,8 +14,7 @@ public struct Button: View {
     }
 
     public func asWidget(_ children: EmptyViewContent.Children) -> GtkButton {
-        let widget = GtkButton()
-        return widget
+        return GtkButton().debugName(Self.self)
     }
 
     public func update(_ widget: GtkButton, children: EmptyViewContent.Children) {

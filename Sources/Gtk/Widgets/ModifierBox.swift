@@ -6,7 +6,7 @@ open class ModifierBox: Widget {
 
     public override init() {
         super.init()
-        widgetPointer = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0)
+        widgetPointer = gtk_box_new(Orientation.vertical.toGtkOrientation(), 0)
     }
 
     override func didMoveToParent() {
