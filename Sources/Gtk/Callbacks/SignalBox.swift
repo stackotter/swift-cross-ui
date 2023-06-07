@@ -2,36 +2,20 @@
 //  Copyright © 2016 Tomas Linhart. All rights reserved.
 //
 
+import CGtk
+
 protocol SignalBox {
     associatedtype CallbackType
-
     var callback: CallbackType { get }
-
     init(callback: CallbackType)
 }
 
-typealias SignalCallbackZero = () -> Void
-typealias SignalCallbackOne = (UnsafeMutableRawPointer) -> Void
-typealias SignalCallbackTwo = (UnsafeMutableRawPointer, UnsafeMutableRawPointer) -> Void
-typealias SignalCallbackThree = (
-    UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer
-) -> Void
-typealias SignalCallbackFour = (
-    UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer,
-    UnsafeMutableRawPointer
-) -> Void
-typealias SignalCallbackFive = (
-    UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer,
-    UnsafeMutableRawPointer, UnsafeMutableRawPointer
-) -> Void
-typealias SignalCallbackSix = (
-    UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer,
-    UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutableRawPointer
-) -> Void
+func gCallback<T>(_ closure: T) -> GCallback {
+    return unsafeBitCast(closure, to: GCallback.self)
+}
 
-/// Provides a box that captures a callback for a signal so it makes easier to add signals.
-class SignalBoxZero: SignalBox {
-    typealias CallbackType = SignalCallbackZero
+class SignalBox0: SignalBox {
+    typealias CallbackType = () -> Void
 
     let callback: CallbackType
 
@@ -40,62 +24,108 @@ class SignalBoxZero: SignalBox {
     }
 }
 
-class SignalBoxOne: SignalBox {
-    typealias CallbackType = SignalCallbackOne
+class SignalBox1<T1>: SignalBox {
+    typealias CallbackType = (T1) -> Void
 
     let callback: CallbackType
 
     required init(callback: @escaping CallbackType) {
         self.callback = callback
     }
+
+    static func run<T1>(_ data: UnsafeMutableRawPointer, _ value1: T1) {
+        let box = Unmanaged<SignalBox1<T1>>.fromOpaque(data)
+            .takeUnretainedValue()
+        box.callback(value1)
+    }
 }
 
-class SignalBoxTwo: SignalBox {
-    typealias CallbackType = SignalCallbackTwo
+class SignalBox2<T1, T2>: SignalBox {
+    typealias CallbackType = (T1, T2) -> Void
 
     let callback: CallbackType
 
     required init(callback: @escaping CallbackType) {
         self.callback = callback
     }
+
+    static func run<T1, T2>(_ data: UnsafeMutableRawPointer, _ value1: T1, _ value2: T2) {
+        let box = Unmanaged<SignalBox2<T1, T2>>.fromOpaque(data)
+            .takeUnretainedValue()
+        box.callback(value1, value2)
+    }
 }
 
-class SignalBoxThree: SignalBox {
-    typealias CallbackType = SignalCallbackThree
+class SignalBox3<T1, T2, T3>: SignalBox {
+    typealias CallbackType = (T1, T2, T3) -> Void
 
     let callback: CallbackType
 
     required init(callback: @escaping CallbackType) {
         self.callback = callback
     }
+
+    static func run<T1, T2, T3>(
+        _ data: UnsafeMutableRawPointer, _ value1: T1, _ value2: T2, _ value3: T3
+    ) {
+        let box = Unmanaged<SignalBox3<T1, T2, T3>>.fromOpaque(data)
+            .takeUnretainedValue()
+        box.callback(value1, value2, value3)
+    }
 }
 
-class SignalBoxFour: SignalBox {
-    typealias CallbackType = SignalCallbackFour
+class SignalBox4<T1, T2, T3, T4>: SignalBox {
+    typealias CallbackType = (T1, T2, T3, T4) -> Void
 
     let callback: CallbackType
 
     required init(callback: @escaping CallbackType) {
         self.callback = callback
     }
+
+    static func run<T1, T2, T3, T4>(
+        _ data: UnsafeMutableRawPointer, _ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4
+    ) {
+        let box = Unmanaged<SignalBox4<T1, T2, T3, T4>>.fromOpaque(data)
+            .takeUnretainedValue()
+        box.callback(value1, value2, value3, value4)
+    }
 }
 
-class SignalBoxFive: SignalBox {
-    typealias CallbackType = SignalCallbackFive
+class SignalBox5<T1, T2, T3, T4, T5>: SignalBox {
+    typealias CallbackType = (T1, T2, T3, T4, T5) -> Void
 
     let callback: CallbackType
 
     required init(callback: @escaping CallbackType) {
         self.callback = callback
     }
+
+    static func run<T1, T2, T3, T4, T5>(
+        _ data: UnsafeMutableRawPointer, _ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4,
+        _ value5: T5
+    ) {
+        let box = Unmanaged<SignalBox5<T1, T2, T3, T4, T5>>.fromOpaque(data)
+            .takeUnretainedValue()
+        box.callback(value1, value2, value3, value4, value5)
+    }
 }
 
-class SignalBoxSix: SignalBox {
-    typealias CallbackType = SignalCallbackSix
+class SignalBox6<T1, T2, T3, T4, T5, T6>: SignalBox {
+    typealias CallbackType = (T1, T2, T3, T4, T5, T6) -> Void
 
     let callback: CallbackType
 
     required init(callback: @escaping CallbackType) {
         self.callback = callback
+    }
+
+    static func run<T1, T2, T3, T4, T5, T6>(
+        _ data: UnsafeMutableRawPointer, _ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4,
+        _ value5: T5, _ value6: T6
+    ) {
+        let box = Unmanaged<SignalBox6<T1, T2, T3, T4, T5, T6>>.fromOpaque(data)
+            .takeUnretainedValue()
+        box.callback(value1, value2, value3, value4, value5, value6)
     }
 }

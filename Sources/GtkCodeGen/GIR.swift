@@ -193,14 +193,17 @@ struct Class: Decodable, ClassLike {
     /// interface conformance (but not those from super classes).
     func getAllImplemented<T>(
         _ keyPath: KeyPath<ClassLike, [T]>,
-        namespace: Namespace
+        namespace: Namespace,
+        excludeInherited: Bool = true
     ) -> [(any ClassLike, T)] {
         let baseProperties = self[keyPath: keyPath].map { (self, $0) }
-        let interfaceProperties = getImplementedInterfaces(namespace: namespace)
-            .flatMap { interface in
-                let elements = interface[keyPath: keyPath]
-                return elements.map { (interface, $0) }
-            }
+        let interfaceProperties = getImplementedInterfaces(
+            namespace: namespace, excludeInherited: true
+        )
+        .flatMap { interface in
+            let elements = interface[keyPath: keyPath]
+            return elements.map { (interface, $0) }
+        }
         return baseProperties + interfaceProperties
     }
 
@@ -222,12 +225,52 @@ struct Class: Decodable, ClassLike {
             + parentClass.getAllInherited(keyPath, namespace: namespace)
     }
 
-    /// Returns all interfaces implemented by the class. Excludes interfaces that can't
-    /// be found in the namespace.
-    func getImplementedInterfaces(namespace: Namespace) -> [Interface] {
-        conformances.compactMap { conformance in
+    /// Returns all interfaces implemented by the class that aren't already implemented
+    /// by a superclass. Excludes interfaces that can't be found in the namespace.
+    func getImplementedInterfaces(
+        namespace: Namespace,
+        excludeInherited: Bool
+    ) -> [Interface] {
+        let interfaces = conformances.compactMap { conformance in
             namespace.interfaces.first { $0.name == conformance.name }
         }
+
+        if excludeInherited {
+            let inheritedInterfaces = getInheritedInterfaces(namespace: namespace)
+            return interfaces.filter { interface in
+                !inheritedInterfaces.contains { inheritedInterface in
+                    inheritedInterface.name == interface.name
+                }
+            }
+        } else {
+            return interfaces
+        }
+    }
+
+    /// Gets interface conformances inherited from parent.
+    func getInheritedInterfaces(namespace: Namespace) -> [Interface] {
+        guard let parentClass = getParentClass(namespace: namespace) else {
+            return []
+        }
+        return parentClass.getImplementedInterfaces(namespace: namespace, excludeInherited: false)
+    }
+
+    /// Returns nil if the class is parentless or the parent can't be found in the
+    /// namespace.
+    func getParentClass(namespace: Namespace) -> Class? {
+        guard
+            let parent = parent,
+            let parentClass = namespace.classes.first(where: { $0.name == parent })
+        else {
+            return nil
+        }
+        return parentClass
+    }
+
+    /// Returns `true` if the namespace contains at least one subclass of the class.
+    func hasSubclass(namespace: Namespace) -> Bool {
+        let child = namespace.classes.first { $0.parent == name }
+        return child != nil
     }
 }
 

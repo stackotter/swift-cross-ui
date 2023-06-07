@@ -82,7 +82,7 @@ import CGtk
 /// # Accessibility
 ///
 /// `GtkEntry` uses the %GTK_ACCESSIBLE_ROLE_TEXT_BOX role.
-public class Entry: Widget, Accessible, Buildable, CellEditable, ConstraintTarget, Editable {
+public class Entry: Widget, CellEditable, Editable {
     /// Creates a new entry.
     override public init() {
         super.init()
@@ -90,7 +90,7 @@ public class Entry: Widget, Accessible, Buildable, CellEditable, ConstraintTarge
     }
 
     /// Creates a new entry with the specified text buffer.
-    public init(buffer: UnsafeMutablePointer<GtkEntryBuffer>) {
+    public init(buffer: UnsafeMutablePointer<GtkEntryBuffer>!) {
         super.init()
         widgetPointer = gtk_entry_new_with_buffer(buffer)
     }
@@ -98,42 +98,76 @@ public class Entry: Widget, Accessible, Buildable, CellEditable, ConstraintTarge
     override func didMoveToParent() {
         super.didMoveToParent()
 
-        addSignal(name: "activate") { [weak self] in
+        addSignal(name: "activate") { [weak self] () in
             guard let self = self else { return }
             self.activate?(self)
         }
 
-        addSignal(name: "icon-press") { [weak self] in
+        let handler1:
+            @convention(c) (UnsafeMutableRawPointer, GtkEntryIconPosition, UnsafeMutableRawPointer)
+                -> Void =
+                { _, value1, data in
+                    SignalBox1<GtkEntryIconPosition>.run(data, value1)
+                }
+
+        addSignal(name: "icon-press", handler: gCallback(handler1)) {
+            [weak self] (_: GtkEntryIconPosition) in
             guard let self = self else { return }
             self.iconPress?(self)
         }
 
-        addSignal(name: "icon-release") { [weak self] in
+        let handler2:
+            @convention(c) (UnsafeMutableRawPointer, GtkEntryIconPosition, UnsafeMutableRawPointer)
+                -> Void =
+                { _, value1, data in
+                    SignalBox1<GtkEntryIconPosition>.run(data, value1)
+                }
+
+        addSignal(name: "icon-release", handler: gCallback(handler2)) {
+            [weak self] (_: GtkEntryIconPosition) in
             guard let self = self else { return }
             self.iconRelease?(self)
         }
 
-        addSignal(name: "editing-done") { [weak self] in
+        addSignal(name: "editing-done") { [weak self] () in
             guard let self = self else { return }
             self.editingDone?(self)
         }
 
-        addSignal(name: "remove-widget") { [weak self] in
+        addSignal(name: "remove-widget") { [weak self] () in
             guard let self = self else { return }
             self.removeWidget?(self)
         }
 
-        addSignal(name: "changed") { [weak self] in
+        addSignal(name: "changed") { [weak self] () in
             guard let self = self else { return }
             self.changed?(self)
         }
 
-        addSignal(name: "delete-text") { [weak self] in
+        let handler6:
+            @convention(c) (UnsafeMutableRawPointer, Int, Int, UnsafeMutableRawPointer) -> Void =
+                { _, value1, value2, data in
+                    SignalBox2<Int, Int>.run(data, value1, value2)
+                }
+
+        addSignal(name: "delete-text", handler: gCallback(handler6)) {
+            [weak self] (_: Int, _: Int) in
             guard let self = self else { return }
             self.deleteText?(self)
         }
 
-        addSignal(name: "insert-text") { [weak self] in
+        let handler7:
+            @convention(c) (
+                UnsafeMutableRawPointer, UnsafePointer<CChar>, Int, gpointer,
+                UnsafeMutableRawPointer
+            ) -> Void =
+                { _, value1, value2, value3, data in
+                    SignalBox3<UnsafePointer<CChar>, Int, gpointer>.run(
+                        data, value1, value2, value3)
+                }
+
+        addSignal(name: "insert-text", handler: gCallback(handler7)) {
+            [weak self] (_: UnsafePointer<CChar>, _: Int, _: gpointer) in
             guard let self = self else { return }
             self.insertText?(self)
         }
@@ -183,11 +217,6 @@ public class Entry: Widget, Accessible, Buildable, CellEditable, ConstraintTarge
     /// Whether the entry should show the “invisible char” instead of the
     /// actual text (“password mode”).
     @GObjectProperty(named: "visibility") public var visibility: Bool
-
-    /// The accessible role of the given `GtkAccessible` implementation.
-    ///
-    /// The accessible role cannot be changed once set.
-    @GObjectProperty(named: "accessible-role") public var accessibleRole: AccessibleRole
 
     /// Whether the entry contents can be edited.
     @GObjectProperty(named: "editable") public var editable: Bool
