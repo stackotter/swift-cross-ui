@@ -18,8 +18,10 @@ public struct TextField: View {
     }
 
     public func update(_ widget: GtkEntry, children: EmptyViewContent.Children) {
-        widget.placeholder = placeholder
-        widget.text = value?.wrappedValue ?? widget.text
+        widget.placeholderText = placeholder
+        if let value = value?.wrappedValue, value != widget.text {
+            widget.text = value
+        }
         widget.changed = { widget in
             self.value?.wrappedValue = widget.text
         }

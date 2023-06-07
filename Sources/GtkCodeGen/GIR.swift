@@ -74,7 +74,16 @@ struct Namespace: Decodable {
     }
 }
 
-struct Interface: Decodable {
+/// Can be expanded in future. Intended to be a common API for classes and interfaces.
+protocol ClassLike {
+    var name: String { get }
+    var cSymbolPrefix: String { get }
+    var methods: [Method] { get }
+    var signals: [Signal] { get }
+    var properties: [Property] { get }
+}
+
+struct Interface: Decodable, ClassLike {
     var name: String
     var cSymbolPrefix: String
     var cType: String
@@ -88,6 +97,7 @@ struct Interface: Decodable {
     var virtualMethods: [VirtualMethod]
     var methods: [Method]
     var signals: [Signal]
+    var properties: [Property]
 
     enum CodingKeys: String, CodingKey {
         case name, cSymbolPrefix, cType, glibTypeName, glibGetType, glibTypeStruct, doc
@@ -96,6 +106,7 @@ struct Interface: Decodable {
         case virtualMethods = "virtualMethod"
         case methods = "method"
         case signals = "glibSignal"
+        case properties = "property"
     }
 }
 
@@ -105,11 +116,9 @@ struct Function: Decodable {
     var doc: String?
     var returnValue: ReturnValue
     var parameters: Parameters
-    var properties: [Property]
 
     enum CodingKeys: String, CodingKey {
         case name, cIdentifier, doc, returnValue, parameters
-        case properties = "property"
     }
 }
 
@@ -157,7 +166,7 @@ struct Alias: Decodable {
     @Element var type: String
 }
 
-struct Class: Decodable {
+struct Class: Decodable, ClassLike {
     var name: String
     var cSymbolPrefix: String
     var cType: String?
@@ -165,11 +174,11 @@ struct Class: Decodable {
     var abstract: Bool?
 
     var doc: String
-    var constructors: [Constructor]?
-    var methods: [Method]?
-    var properties: [Property]?
-    var signals: [Signal]?
-    var conformances: [Conformance]?
+    var constructors: [Constructor]
+    var methods: [Method]
+    var properties: [Property]
+    var signals: [Signal]
+    var conformances: [Conformance]
 
     enum CodingKeys: String, CodingKey {
         case name, cSymbolPrefix, cType, parent, abstract, doc
@@ -178,6 +187,29 @@ struct Class: Decodable {
         case properties = "property"
         case signals = "glibSignal"
         case conformances = "implements"
+    }
+
+    /// Aggregates all members of a specific type including those inherited from implemented
+    /// interfaces (but not those from super classes).
+    func getAll<T>(
+        _ keyPath: KeyPath<ClassLike, [T]>,
+        namespace: Namespace
+    ) -> [(any ClassLike, T)] {
+        let baseProperties = self[keyPath: keyPath].map { (self, $0) }
+        let interfaceProperties = getImplementedInterfaces(namespace: namespace)
+            .flatMap { interface in
+                let elements = interface[keyPath: keyPath]
+                return elements.map { (interface, $0) }
+            }
+        return baseProperties + interfaceProperties
+    }
+
+    /// Returns all interfaces implemented by the class. Excludes interfaces that can't
+    /// be found in the namespace.
+    func getImplementedInterfaces(namespace: Namespace) -> [Interface] {
+        conformances.compactMap { conformance in
+            namespace.interfaces.first { $0.name == conformance.name }
+        }
     }
 }
 

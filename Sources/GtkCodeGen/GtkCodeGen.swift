@@ -37,7 +37,7 @@ struct GtkCodeGen {
     }
 
     static func generateSources(for gir: GIR, to directory: URL) throws {
-        let allowListedClasses = ["Button"]
+        let allowListedClasses = ["Button", "Entry"]
         for class_ in gir.namespace.classes where allowListedClasses.contains(class_.name) {
             let source = generateClass(class_, namespace: gir.namespace)
             try save(source.description, to: directory, declName: class_.name)
@@ -52,6 +52,44 @@ struct GtkCodeGen {
             let source = generateEnum(enumeration)
             try save(source.description, to: directory, declName: enumeration.name)
         }
+
+        // TODO: Generate Orientable
+        for interface in gir.namespace.interfaces where interface.name != "Orientable" {
+            let source = generateProtocol(interface, namespace: gir.namespace)
+            try save(source.description, to: directory, declName: interface.name)
+        }
+    }
+
+    static func generateProtocol(_ interface: Interface, namespace: Namespace) -> String {
+        var properties: [DeclSyntax] = []
+        for property in interface.properties {
+            if let syntax = generateProperty(
+                property, namespace: namespace, classLike: interface, forProtocol: true
+            ) {
+                properties.append(syntax)
+            }
+        }
+
+        var signalProperties: [DeclSyntax] = []
+        for signal in interface.signals {
+            signalProperties.append(
+                generateSignalHandlerProperty(signal, className: "Self", forProtocol: true)
+            )
+        }
+
+        let source = SourceFileSyntax(
+            """
+            import CGtk
+
+            \(raw: docComment(interface.doc))
+            public protocol \(raw: interface.name): GObjectRepresentable {
+                \(raw: properties.map(\.description).joined(separator: "\n\n"))
+
+                \(raw: signalProperties.map(\.description).joined(separator: "\n\n"))
+            }
+            """
+        )
+        return source.description
     }
 
     static func generateEnum(_ enumeration: Enumeration) -> String {
@@ -130,58 +168,69 @@ struct GtkCodeGen {
 
     static func docComment(_ doc: String?) -> String {
         // TODO: Parse comment format to replace image includes, links, and similar
-        if let doc {
-            return
-                doc
-                .split(separator: "\n", omittingEmptySubsequences: false)
-                .map { $0.trimmingCharacters(in: .whitespaces) }
-                .enumerated()
-                .map {
-                    $0.offset == 0
-                        ? $0.element.prefix(1).capitalized + $0.element.dropFirst() : $0.element
-                }
-                .map { "/// \($0)" }
-                .joined(separator: "\n")
-        } else {
-            return ""
-        }
+        doc?
+            .split(separator: "\n", omittingEmptySubsequences: false)
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .enumerated()
+            .map {
+                $0.offset == 0
+                    ? $0.element.prefix(1).capitalized + $0.element.dropFirst() : $0.element
+            }
+            .map { "/// \($0)" }
+            .joined(separator: "\n") ?? ""
     }
 
     static func generateClass(_ class_: Class, namespace: Namespace) -> String {
         var initializers: [DeclSyntax] = []
-        for constructor in class_.constructors ?? [] {
+        for constructor in class_.constructors {
             initializers.append(generateInitializer(constructor))
         }
 
         var properties: [DeclSyntax] = []
-        for property in class_.properties ?? [] where property.name != "child" {
+        for (classLike, property) in class_.getAll(\.properties, namespace: namespace) {
             guard
-                let decl = generateProperty(property, namespace: namespace, class_: class_)
+                property.name != "child",
+                let decl = generateProperty(
+                    property, namespace: namespace, classLike: classLike, forProtocol: false
+                )
             else {
                 continue
             }
             properties.append(decl)
         }
 
-        let signals = class_.signals ?? []
-        for signal in signals {
+        let signals = class_.getAll(\.signals, namespace: namespace)
+        for (_, signal) in signals {
             properties.append(
-                generateSignalHandlerProperty(signal, class_: class_)
+                generateSignalHandlerProperty(signal, className: class_.name, forProtocol: false)
             )
         }
 
         var methods: [DeclSyntax] = []
         if !signals.isEmpty {
             methods.append(
-                generateDidMoveToParent(signals)
+                generateDidMoveToParent(
+                    signals.map { signal in
+                        signal.1
+                    }
+                )
             )
         }
 
-        let conformances: String
+        var conformances: [String] = []
         if let parent = class_.parent {
-            conformances = ": \(parent)"
+            conformances.append(parent)
+        }
+
+        for conformance in class_.conformances {
+            conformances.append(conformance.name)
+        }
+
+        let conformanceString: String
+        if conformances.isEmpty {
+            conformanceString = ""
         } else {
-            conformances = ""
+            conformanceString = ": \(conformances.joined(separator: ", "))"
         }
 
         let source = SourceFileSyntax(
@@ -189,7 +238,7 @@ struct GtkCodeGen {
             import CGtk
 
             \(raw: docComment(class_.doc))
-            public class \(raw: class_.name)\(raw: conformances) {
+            public class \(raw: class_.name)\(raw: conformanceString) {
                 \(raw: initializers.map(\.description).joined(separator: "\n\n"))
 
                 \(raw: methods.map(\.description).joined(separator: "\n\n"))
@@ -234,12 +283,21 @@ struct GtkCodeGen {
         )
     }
 
-    static func generateSignalHandlerProperty(_ signal: Signal, class_: Class) -> DeclSyntax {
+    static func generateSignalHandlerProperty(
+        _ signal: Signal, className: String, forProtocol: Bool
+    ) -> DeclSyntax {
         let name = convertDelimitedCasingToCamel(signal.name, delimiter: "-")
+        var prefix = ""
+        var suffix = ""
+        if forProtocol {
+            suffix = " { get set }"
+        } else {
+            prefix = "public "
+        }
         return DeclSyntax(
             """
             \(raw: docComment(signal.doc))
-            public var \(raw: name): ((\(raw: class_.name)) -> Void)?
+            \(raw: prefix)var \(raw: name): ((\(raw: className)) -> Void)?\(raw: suffix)
             """
         )
     }
@@ -247,25 +305,27 @@ struct GtkCodeGen {
     static func generateProperty(
         _ property: Property,
         namespace: Namespace,
-        class_: Class
+        classLike: any ClassLike,
+        forProtocol: Bool
     ) -> DeclSyntax? {
         guard let getterName = property.getter else {
             return nil
         }
 
         guard let girType = property.type else {
-            fatalError("Missing type for '\(class_.name).\(property.name)'")
+            fatalError("Missing type for '\(classLike.name).\(property.name)'")
         }
 
         var type = swiftType(girType, namespace: namespace)
-        let getterFunction = "\(namespace.cSymbolPrefix)_\(class_.cSymbolPrefix)_\(getterName)"
+        let getterFunction = "\(namespace.cSymbolPrefix)_\(classLike.cSymbolPrefix)_\(getterName)"
 
         guard
-            let method = class_.methods?.first(where: { method in
+            let method = classLike.methods.first(where: { method in
                 method.cIdentifier == getterFunction
             })
         else {
-            fatalError("'\(class_.name)' is missing method matching '\(getterFunction)'")
+            print(property)
+            fatalError("'\(classLike.name)' is missing method matching '\(getterFunction)'")
         }
 
         // TODO: Handle this conversion more cleanly
@@ -290,10 +350,19 @@ struct GtkCodeGen {
             return nil
         }
 
+        var prefix = ""
+        var suffix = ""
+        if forProtocol {
+            suffix = " { get set }"
+        } else {
+            let literal = StringLiteralExprSyntax(content: property.name).description
+            prefix = "@GObjectProperty(named: \(literal)) public "
+        }
+
         return DeclSyntax(
             """
             \(raw: docComment(property.doc))
-            @GObjectProperty(named: \(literal: property.name)) public var \(raw: convertPropertyName(property.name)): \(raw: type)
+            \(raw: prefix)var \(raw: convertPropertyName(property.name)): \(raw: type)\(raw: suffix)
             """
         )
     }

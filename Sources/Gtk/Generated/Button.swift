@@ -30,7 +30,7 @@ import CGtk
 /// # Accessibility
 ///
 /// `GtkButton` uses the %GTK_ACCESSIBLE_ROLE_BUTTON role.
-public class Button: Widget {
+public class Button: Widget, Accessible, Actionable, Buildable, ConstraintTarget {
     /// Creates a new `GtkButton` widget.
     ///
     /// To add a child widget to the button, use [method@Gtk.Button.set_child].
@@ -93,6 +93,13 @@ public class Button: Widget {
     /// If set, an underline in the text indicates that the following character is
     /// to be used as mnemonic.
     @GObjectProperty(named: "use-underline") public var useUnderline: Bool
+
+    /// The accessible role of the given `GtkAccessible` implementation.
+    ///
+    /// The accessible role cannot be changed once set.
+    @GObjectProperty(named: "accessible-role") public var accessibleRole: AccessibleRole
+
+    @GObjectProperty(named: "action-name") public var actionName: String?
 
     /// Emitted to animate press then release.
     ///
