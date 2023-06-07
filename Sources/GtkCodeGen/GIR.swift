@@ -61,6 +61,7 @@ struct Namespace: Decodable {
     var aliases: [Alias]
     var classes: [Class]
     var enumerations: [Enumeration]
+    var interfaces: [Interface]
 
     enum CodingKeys: String, CodingKey {
         case name, version, sharedLibrary
@@ -69,14 +70,72 @@ struct Namespace: Decodable {
         case aliases = "alias"
         case classes = "class"
         case enumerations = "enumeration"
+        case interfaces = "interface"
     }
+}
+
+struct Interface: Decodable {
+    var name: String
+    var cSymbolPrefix: String
+    var cType: String
+    var glibTypeName: String
+    var glibGetType: String
+    var glibTypeStruct: String?
+    var doc: String
+    var prerequisites: [ConformancePrerequisite]
+
+    var functions: [Function]
+    var virtualMethods: [VirtualMethod]
+    var methods: [Method]
+    var signals: [Signal]
+
+    enum CodingKeys: String, CodingKey {
+        case name, cSymbolPrefix, cType, glibTypeName, glibGetType, glibTypeStruct, doc
+        case prerequisites = "prerequisite"
+        case functions = "function"
+        case virtualMethods = "virtualMethod"
+        case methods = "method"
+        case signals = "glibSignal"
+    }
+}
+
+struct Function: Decodable {
+    var name: String
+    var cIdentifier: String
+    var doc: String?
+    var returnValue: ReturnValue
+    var parameters: Parameters
+    var properties: [Property]
+
+    enum CodingKeys: String, CodingKey {
+        case name, cIdentifier, doc, returnValue, parameters
+        case properties = "property"
+    }
+}
+
+struct VirtualMethod: Decodable {
+    var name: String
+    var invoker: String?
+    var attribute: VirtualMethodAttribute?
+    var doc: String?
+    var returnValue: ReturnValue
+    var parameters: MethodParameters
+}
+
+struct VirtualMethodAttribute: Decodable {
+    var name: String
+    var value: String
+}
+
+struct ConformancePrerequisite: Decodable {
+    var name: String
 }
 
 struct Enumeration: Decodable {
     var name: String
     var version: String?
     var cType: String
-    var doc: String
+    var doc: String?
     var members: [Member]
 
     enum CodingKeys: String, CodingKey {
@@ -110,6 +169,7 @@ struct Class: Decodable {
     var methods: [Method]?
     var properties: [Property]?
     var signals: [Signal]?
+    var conformances: [Conformance]?
 
     enum CodingKeys: String, CodingKey {
         case name, cSymbolPrefix, cType, parent, abstract, doc
@@ -117,7 +177,12 @@ struct Class: Decodable {
         case methods = "method"
         case properties = "property"
         case signals = "glibSignal"
+        case conformances = "implements"
     }
+}
+
+struct Conformance: Decodable {
+    var name: String
 }
 
 struct Signal: Decodable {

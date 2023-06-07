@@ -9,16 +9,28 @@ public protocol GValueRepresentable {
 
 // MARK: - GValueRepresentable Implementations
 
-extension Int: GValueRepresentable {}
-extension Int32: GValueRepresentable {}
-
-extension GValueRepresentable where Self: BinaryInteger {
+// TODO: Implement property wrapper to convert all integer types to int without losing information about the underlying specific integer type
+extension Int: GValueRepresentable {
     public static var type: GType {
         GType(6 << G_TYPE_FUNDAMENTAL_SHIFT)
     }
 
     public init(_ pointer: UnsafeMutablePointer<GValue>) {
         self.init(g_value_get_int(pointer))
+    }
+
+    public func apply(to pointer: UnsafeMutablePointer<GValue>) {
+        g_value_set_int(pointer, gint(self))
+    }
+}
+
+extension UInt: GValueRepresentable {
+    public static var type: GType {
+        GType(6 << G_TYPE_FUNDAMENTAL_SHIFT)
+    }
+
+    public init(_ pointer: UnsafeMutablePointer<GValue>) {
+        self.init(g_value_get_uint(pointer))
     }
 
     public func apply(to pointer: UnsafeMutablePointer<GValue>) {
