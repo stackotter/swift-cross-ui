@@ -14,6 +14,9 @@ struct GtkCodeGen {
         "char*": "String",
         "gchar*": "String",
         "gboolean": "Bool",
+        "gdouble": "Double",
+        "guint": "UInt",
+        "gint": "Int",
     ]
 
     static let unshorteningMap: [String: String] = [
@@ -265,8 +268,26 @@ struct GtkCodeGen {
             fatalError("'\(class_.name)' is missing method matching '\(getterFunction)'")
         }
 
+        // TODO: Handle this conversion more cleanly
+        if type.hasPrefix("Gtk") {
+            type = String(type.dropFirst(3))
+        }
+
+        if !cTypeReplacements.values.contains(type)
+            && !namespace.enumerations.contains(where: { $0.name == type })
+        {
+            print("Skipping \(property.name) with type \(type)")
+            // TODO: Handle more types
+            return nil
+        }
+
         if method.returnValue?.nullable == true {
             type += "?"
+        }
+
+        guard !type.contains(".") else {
+            // TODO: Handle namespaced types
+            return nil
         }
 
         return DeclSyntax(
@@ -345,6 +366,7 @@ struct GtkCodeGen {
     }
 
     static func convertCIdentifier(_ identifier: String) -> String {
+        // TODO: Keywords should possibly be escaped with backticks instead of underscored
         let keywords = ["true", "false", "default", "switch", "import"]
         if keywords.contains(identifier) {
             return "\(identifier)_"

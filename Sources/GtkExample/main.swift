@@ -27,7 +27,8 @@ app.run { window in
     slider.value = 5.7
     box.add(slider)
 
-    let entry = Entry(placeholder: "Test input")
+    let entry = Entry()
+    entry.placeholder = "Test input"
     entry.changed = { entry in
         let text = entry.text
         print(text)
