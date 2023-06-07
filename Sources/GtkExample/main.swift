@@ -17,7 +17,7 @@ app.run { window in
 
     let box = Box(orientation: .vertical, spacing: 0)
 
-    let label = Label()
+    let label = Label(string: "")
     label.selectable = true
     box.add(label)
 
@@ -40,7 +40,7 @@ app.run { window in
     let viewport = Viewport()
     let content = Box(orientation: .vertical, spacing: 0)
     for i in 0..<20 {
-        content.add(Label(text: "This is line number \(i)"))
+        content.add(Label(string: "This is line number \(i)"))
     }
     viewport.setChild(content)
     scrollable.setChild(viewport)
@@ -49,13 +49,13 @@ app.run { window in
     let button = Button(label: "Press")
     button.label = "Press Me"
     button.clicked = { [weak label] _ in
-        label?.text = "Oh, you pressed the button."
+        label?.label = "Oh, you pressed the button."
 
         let newWindow = Window()
         newWindow.title = "Just a window"
         newWindow.defaultSize = Size(width: 200, height: 200)
 
-        let labelPressed = Label(text: "Oh, you pressed the button.")
+        let labelPressed = Label(string: "Oh, you pressed the button.")
         newWindow.setChild(labelPressed)
         newWindow.show()
     }
@@ -95,7 +95,7 @@ app.run { window in
         let fileButton = Button(label: "Select file")
         fileButton.label = "Select file"
         fileButton.clicked = { [weak label] _ in
-            label?.text = "Selecting file"
+            label?.label = "Selecting file"
 
             let dialog = FileDialog()
             dialog.title = "File dialog"
@@ -104,9 +104,9 @@ app.run { window in
             dialog.open { result in
                 switch result {
                     case .success(let file):
-                        label?.text = "Selected file: \(file.path)"
+                        label?.label = "Selected file: \(file.path)"
                     case .failure(let error):
-                        label?.text = "Cancelled selection: \(error.localizedDescription)"
+                        label?.label = "Cancelled selection: \(error.localizedDescription)"
                 }
             }
         }

@@ -246,6 +246,7 @@ struct Method: Decodable {
 
 struct Property: Decodable {
     var name: String
+    var version: String?
     var doc: String?
     var getter: String?
     var setter: String?
