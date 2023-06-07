@@ -2,6 +2,7 @@
 //  Copyright © 2015 Tomas Linhart. All rights reserved.
 //
 
+import CGtk
 import Foundation
 import Gtk
 
@@ -21,7 +22,8 @@ app.run { window in
     label.selectable = true
     box.add(label)
 
-    let slider = Scale()
+    var adjustment = GtkAdjustment()
+    let slider = Scale.init(orientation: Orientation.horizontal.toGtk(), adjustment: &adjustment)
     slider.minimum = 5
     slider.maximum = 10.5
     slider.value = 5.7

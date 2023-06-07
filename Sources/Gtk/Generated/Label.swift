@@ -174,7 +174,7 @@ import CGtk
 /// It is possible to implement custom handling for links and their tooltips
 /// with the [signal@Gtk.Label::activate-link] signal and the
 /// [method@Gtk.Label.get_current_uri] function.
-public class Label: Widget, Accessible, Buildable, ConstraintTarget {
+public class Label: Widget {
     /// Creates a new label with the given text inside it.
     ///
     /// You can pass %NULL to get an empty label widget.
@@ -205,22 +205,39 @@ public class Label: Widget, Accessible, Buildable, ConstraintTarget {
     override func didMoveToParent() {
         super.didMoveToParent()
 
-        addSignal(name: "activate-current-link") { [weak self] in
+        addSignal(name: "activate-current-link") { [weak self] () in
             guard let self = self else { return }
             self.activateCurrentLink?(self)
         }
 
-        addSignal(name: "activate-link") { [weak self] in
+        let handler1:
+            @convention(c) (UnsafeMutableRawPointer, UnsafePointer<CChar>, UnsafeMutableRawPointer)
+                -> Void =
+                { _, value1, data in
+                    SignalBox1<UnsafePointer<CChar>>.run(data, value1)
+                }
+
+        addSignal(name: "activate-link", handler: gCallback(handler1)) {
+            [weak self] (_: UnsafePointer<CChar>) in
             guard let self = self else { return }
             self.activateLink?(self)
         }
 
-        addSignal(name: "copy-clipboard") { [weak self] in
+        addSignal(name: "copy-clipboard") { [weak self] () in
             guard let self = self else { return }
             self.copyClipboard?(self)
         }
 
-        addSignal(name: "move-cursor") { [weak self] in
+        let handler3:
+            @convention(c) (
+                UnsafeMutableRawPointer, GtkMovementStep, Int, Bool, UnsafeMutableRawPointer
+            ) -> Void =
+                { _, value1, value2, value3, data in
+                    SignalBox3<GtkMovementStep, Int, Bool>.run(data, value1, value2, value3)
+                }
+
+        addSignal(name: "move-cursor", handler: gCallback(handler3)) {
+            [weak self] (_: GtkMovementStep, _: Int, _: Bool) in
             guard let self = self else { return }
             self.moveCursor?(self)
         }
@@ -308,11 +325,6 @@ public class Label: Widget, Accessible, Buildable, ConstraintTarget {
     /// Compare this to [property@Gtk.Widget:valign], which determines how the
     /// labels size allocation is positioned in the space available for the label.
     @GObjectProperty(named: "yalign") public var yalign: Float
-
-    /// The accessible role of the given `GtkAccessible` implementation.
-    ///
-    /// The accessible role cannot be changed once set.
-    @GObjectProperty(named: "accessible-role") public var accessibleRole: AccessibleRole
 
     /// Gets emitted when the user activates a link in the label.
     ///

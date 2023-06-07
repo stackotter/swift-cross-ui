@@ -18,6 +18,7 @@ struct GtkCodeGen {
         "guint": "UInt",
         "gint": "Int",
         "gfloat": "Float",
+        "double": "Double",
     ]
 
     static let unshorteningMap: [String: String] = [
@@ -39,7 +40,7 @@ struct GtkCodeGen {
     }
 
     static func generateSources(for gir: GIR, to directory: URL) throws {
-        let allowListedClasses = ["Button", "Entry", "Label", "TextView"]
+        let allowListedClasses = ["Button", "Entry", "Label", "TextView", "Range", "Scale"]
         for class_ in gir.namespace.classes where allowListedClasses.contains(class_.name) {
             let source = generateClass(class_, namespace: gir.namespace)
             try save(source.description, to: directory, declName: class_.name)
@@ -215,7 +216,8 @@ struct GtkCodeGen {
                 generateDidMoveToParent(
                     signals.map { signal in
                         signal.1
-                    }
+                    },
+                    namespace: namespace
                 )
             )
         }
@@ -225,7 +227,9 @@ struct GtkCodeGen {
             conformances.append(parent)
         }
 
-        for conformance in class_.conformances {
+        for conformance in class_.getImplementedInterfaces(
+            namespace: namespace, excludeInherited: true
+        ) {
             conformances.append(conformance.name)
         }
 
@@ -258,21 +262,66 @@ struct GtkCodeGen {
         try source.write(to: file, atomically: false, encoding: .utf8)
     }
 
-    static func generateDidMoveToParent(_ signals: [Signal]) -> DeclSyntax {
-        var exprs: [ExprSyntax] = []
+    static func generateDidMoveToParent(_ signals: [Signal], namespace: Namespace) -> DeclSyntax {
+        var exprs: [String] = []
 
-        for signal in signals {
+        for (signalIndex, signal) in signals.enumerated() {
+            let parameterCount = signal.parameters?.parameters.count ?? 0
+
+            let parameterTypes = (signal.parameters?.parameters ?? []).map { parameter in
+                guard let girType = parameter.type else {
+                    fatalError(
+                        "Missing c type for parameter '\(parameter.name)' of signal '\(signal.name)'"
+                    )
+                }
+                var type = swiftType(girType, namespace: namespace)
+                if type == "String" {
+                    type = "UnsafePointer<CChar>"
+                }
+                return type
+            }
             let name = convertDelimitedCasingToCamel(signal.name, delimiter: "-")
-            exprs.append(
-                ExprSyntax(
+
+            let parameters = parameterTypes.map { type in
+                "_: \(type)"
+            }.joined(separator: ", ")
+
+            let closure = ExprSyntax(
+                """
+                { [weak self] (\(raw: parameters)) in
+                    guard let self = self else { return }
+                    self.\(raw: name)?(self)
+                }
+                """
+            )
+            let expr: ExprSyntax
+            if parameterCount == 0 {
+                expr = ExprSyntax(
                     """
-                    addSignal(name: \(literal: signal.name)) { [weak self] in
-                        guard let self = self else { return }
-                        self.\(raw: name)?(self)
-                    }
+                    addSignal(name: \(literal: signal.name)) \(raw: closure)
                     """
                 )
-            )
+            } else {
+                let typeParameters = parameterTypes.joined(separator: ", ")
+
+                let arguments = (1...parameterCount).map { "value\($0)" }.joined(separator: ", ")
+                exprs.append(
+                    DeclSyntax(
+                        """
+                        let handler\(raw: signalIndex): @convention(c) (UnsafeMutableRawPointer, \(raw: typeParameters), UnsafeMutableRawPointer) -> Void =
+                            { _, \(raw: arguments), data in
+                                SignalBox\(raw: parameterCount)<\(raw: typeParameters)>.run(data, \(raw: arguments))
+                            }
+                        """
+                    ).description
+                )
+                expr = ExprSyntax(
+                    """
+                    addSignal(name: \(literal: signal.name), handler: gCallback(handler\(raw: signalIndex))) \(raw: closure)
+                    """
+                )
+            }
+            exprs.append(expr.description)
         }
 
         return DeclSyntax(
@@ -280,7 +329,7 @@ struct GtkCodeGen {
             override func didMoveToParent() {
                 super.didMoveToParent()
 
-                \(raw: exprs.map(\.description).joined(separator: "\n\n"))
+                \(raw: exprs.joined(separator: "\n\n"))
             }
             """
         )
@@ -411,6 +460,7 @@ struct GtkCodeGen {
             parameters[i].name = convertCIdentifier(parameter.name)
         }
 
+        // TODO: Fix for `gtk_scale_new_with_range`
         // Add a label to the first parameter name based on the constructor name if possible (to
         // avoid ambiguity between certain initializers). E.g. `gtk_button_new_with_label` and
         // `gtk_button_new_with_mnemonic` both call their first parameter `label` which would be
@@ -478,7 +528,7 @@ struct GtkCodeGen {
         var type = cType
         if type.last == "*" {
             let pointeeType = convertCType(String(type.dropLast()))
-            type = "UnsafeMutablePointer<\(pointeeType)>"
+            type = "UnsafeMutablePointer<\(pointeeType)>!"
         }
         return type
     }

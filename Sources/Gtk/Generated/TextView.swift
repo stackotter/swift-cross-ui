@@ -34,7 +34,7 @@ import CGtk
 /// ## Accessibility
 ///
 /// `GtkTextView` uses the %GTK_ACCESSIBLE_ROLE_TEXT_BOX role.
-public class TextView: Widget, Accessible, Buildable, ConstraintTarget, Scrollable {
+public class TextView: Widget, Scrollable {
     /// Creates a new `GtkTextView`.
     ///
     /// If you don’t call [method@Gtk.TextView.set_buffer] before using the
@@ -52,7 +52,7 @@ public class TextView: Widget, Accessible, Buildable, ConstraintTarget, Scrollab
     /// to create a default buffer, in which case this function is equivalent
     /// to [ctor@Gtk.TextView.new]. The text view adds its own reference count
     /// to the buffer; it does not take over an existing reference.
-    public init(buffer: UnsafeMutablePointer<GtkTextBuffer>) {
+    public init(buffer: UnsafeMutablePointer<GtkTextBuffer>!) {
         super.init()
         widgetPointer = gtk_text_view_new_with_buffer(buffer)
     }
@@ -60,77 +60,136 @@ public class TextView: Widget, Accessible, Buildable, ConstraintTarget, Scrollab
     override func didMoveToParent() {
         super.didMoveToParent()
 
-        addSignal(name: "backspace") { [weak self] in
+        addSignal(name: "backspace") { [weak self] () in
             guard let self = self else { return }
             self.backspace?(self)
         }
 
-        addSignal(name: "copy-clipboard") { [weak self] in
+        addSignal(name: "copy-clipboard") { [weak self] () in
             guard let self = self else { return }
             self.copyClipboard?(self)
         }
 
-        addSignal(name: "cut-clipboard") { [weak self] in
+        addSignal(name: "cut-clipboard") { [weak self] () in
             guard let self = self else { return }
             self.cutClipboard?(self)
         }
 
-        addSignal(name: "delete-from-cursor") { [weak self] in
+        let handler3:
+            @convention(c) (UnsafeMutableRawPointer, GtkDeleteType, Int, UnsafeMutableRawPointer) ->
+                Void =
+                { _, value1, value2, data in
+                    SignalBox2<GtkDeleteType, Int>.run(data, value1, value2)
+                }
+
+        addSignal(name: "delete-from-cursor", handler: gCallback(handler3)) {
+            [weak self] (_: GtkDeleteType, _: Int) in
             guard let self = self else { return }
             self.deleteFromCursor?(self)
         }
 
-        addSignal(name: "extend-selection") { [weak self] in
+        let handler4:
+            @convention(c) (
+                UnsafeMutableRawPointer, GtkTextExtendSelection, GtkTextIter, GtkTextIter,
+                GtkTextIter, UnsafeMutableRawPointer
+            ) -> Void =
+                { _, value1, value2, value3, value4, data in
+                    SignalBox4<GtkTextExtendSelection, GtkTextIter, GtkTextIter, GtkTextIter>.run(
+                        data, value1, value2, value3, value4)
+                }
+
+        addSignal(name: "extend-selection", handler: gCallback(handler4)) {
+            [weak self] (_: GtkTextExtendSelection, _: GtkTextIter, _: GtkTextIter, _: GtkTextIter)
+            in
             guard let self = self else { return }
             self.extendSelection?(self)
         }
 
-        addSignal(name: "insert-at-cursor") { [weak self] in
+        let handler5:
+            @convention(c) (UnsafeMutableRawPointer, UnsafePointer<CChar>, UnsafeMutableRawPointer)
+                -> Void =
+                { _, value1, data in
+                    SignalBox1<UnsafePointer<CChar>>.run(data, value1)
+                }
+
+        addSignal(name: "insert-at-cursor", handler: gCallback(handler5)) {
+            [weak self] (_: UnsafePointer<CChar>) in
             guard let self = self else { return }
             self.insertAtCursor?(self)
         }
 
-        addSignal(name: "insert-emoji") { [weak self] in
+        addSignal(name: "insert-emoji") { [weak self] () in
             guard let self = self else { return }
             self.insertEmoji?(self)
         }
 
-        addSignal(name: "move-cursor") { [weak self] in
+        let handler7:
+            @convention(c) (
+                UnsafeMutableRawPointer, GtkMovementStep, Int, Bool, UnsafeMutableRawPointer
+            ) -> Void =
+                { _, value1, value2, value3, data in
+                    SignalBox3<GtkMovementStep, Int, Bool>.run(data, value1, value2, value3)
+                }
+
+        addSignal(name: "move-cursor", handler: gCallback(handler7)) {
+            [weak self] (_: GtkMovementStep, _: Int, _: Bool) in
             guard let self = self else { return }
             self.moveCursor?(self)
         }
 
-        addSignal(name: "move-viewport") { [weak self] in
+        let handler8:
+            @convention(c) (UnsafeMutableRawPointer, GtkScrollStep, Int, UnsafeMutableRawPointer) ->
+                Void =
+                { _, value1, value2, data in
+                    SignalBox2<GtkScrollStep, Int>.run(data, value1, value2)
+                }
+
+        addSignal(name: "move-viewport", handler: gCallback(handler8)) {
+            [weak self] (_: GtkScrollStep, _: Int) in
             guard let self = self else { return }
             self.moveViewport?(self)
         }
 
-        addSignal(name: "paste-clipboard") { [weak self] in
+        addSignal(name: "paste-clipboard") { [weak self] () in
             guard let self = self else { return }
             self.pasteClipboard?(self)
         }
 
-        addSignal(name: "preedit-changed") { [weak self] in
+        let handler10:
+            @convention(c) (UnsafeMutableRawPointer, UnsafePointer<CChar>, UnsafeMutableRawPointer)
+                -> Void =
+                { _, value1, data in
+                    SignalBox1<UnsafePointer<CChar>>.run(data, value1)
+                }
+
+        addSignal(name: "preedit-changed", handler: gCallback(handler10)) {
+            [weak self] (_: UnsafePointer<CChar>) in
             guard let self = self else { return }
             self.preeditChanged?(self)
         }
 
-        addSignal(name: "select-all") { [weak self] in
+        let handler11:
+            @convention(c) (UnsafeMutableRawPointer, Bool, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<Bool>.run(data, value1)
+                }
+
+        addSignal(name: "select-all", handler: gCallback(handler11)) { [weak self] (_: Bool) in
             guard let self = self else { return }
             self.selectAll?(self)
         }
 
-        addSignal(name: "set-anchor") { [weak self] in
+        addSignal(name: "set-anchor") { [weak self] () in
             guard let self = self else { return }
             self.setAnchor?(self)
         }
 
-        addSignal(name: "toggle-cursor-visible") { [weak self] in
+        addSignal(name: "toggle-cursor-visible") { [weak self] () in
             guard let self = self else { return }
             self.toggleCursorVisible?(self)
         }
 
-        addSignal(name: "toggle-overwrite") { [weak self] in
+        addSignal(name: "toggle-overwrite") { [weak self] () in
             guard let self = self else { return }
             self.toggleOverwrite?(self)
         }
@@ -211,11 +270,6 @@ public class TextView: Widget, Accessible, Buildable, ConstraintTarget, Scrollab
     @GObjectProperty(named: "top-margin") public var topMargin: Int
 
     @GObjectProperty(named: "wrap-mode") public var wrapMode: WrapMode
-
-    /// The accessible role of the given `GtkAccessible` implementation.
-    ///
-    /// The accessible role cannot be changed once set.
-    @GObjectProperty(named: "accessible-role") public var accessibleRole: AccessibleRole
 
     /// Determines when horizontal scrolling should start.
     @GObjectProperty(named: "hscroll-policy") public var hscrollPolicy: ScrollablePolicy
