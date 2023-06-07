@@ -17,10 +17,12 @@ struct GtkCodeGen {
         "gdouble": "Double",
         "guint": "UInt",
         "gint": "Int",
+        "gfloat": "Float",
     ]
 
     static let unshorteningMap: [String: String] = [
-        "char": "character"
+        "char": "character",
+        "str": "string",
     ]
 
     static func main() throws {
@@ -37,7 +39,7 @@ struct GtkCodeGen {
     }
 
     static func generateSources(for gir: GIR, to directory: URL) throws {
-        let allowListedClasses = ["Button", "Entry"]
+        let allowListedClasses = ["Button", "Entry", "Label"]
         for class_ in gir.namespace.classes where allowListedClasses.contains(class_.name) {
             let source = generateClass(class_, namespace: gir.namespace)
             try save(source.description, to: directory, declName: class_.name)
@@ -62,7 +64,7 @@ struct GtkCodeGen {
 
     static func generateProtocol(_ interface: Interface, namespace: Namespace) -> String {
         var properties: [DeclSyntax] = []
-        for property in interface.properties {
+        for property in interface.properties where property.version == nil {
             if let syntax = generateProperty(
                 property, namespace: namespace, classLike: interface, forProtocol: true
             ) {
@@ -189,6 +191,7 @@ struct GtkCodeGen {
         var properties: [DeclSyntax] = []
         for (classLike, property) in class_.getAll(\.properties, namespace: namespace) {
             guard
+                property.version == nil,
                 property.name != "child",
                 let decl = generateProperty(
                     property, namespace: namespace, classLike: classLike, forProtocol: false
@@ -403,6 +406,10 @@ struct GtkCodeGen {
             return ""
         }
 
+        for (i, parameter) in parameters.enumerated() {
+            parameters[i].name = convertCIdentifier(parameter.name)
+        }
+
         // Add a label to the first parameter name based on the constructor name if possible (to
         // avoid ambiguity between certain initializers). E.g. `gtk_button_new_with_label` and
         // `gtk_button_new_with_mnemonic` both call their first parameter `label` which would be
@@ -422,7 +429,7 @@ struct GtkCodeGen {
                 guard let type = parameter.type?.cType else {
                     fatalError("Missing type for '\(parameter.name)'")
                 }
-                return "\(convertCIdentifier(parameter.name)): \(convertCType(type))"
+                return "\(parameter.name): \(convertCType(type))"
             }
             .joined(separator: ", ")
     }

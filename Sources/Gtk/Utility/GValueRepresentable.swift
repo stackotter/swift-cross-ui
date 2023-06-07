@@ -66,6 +66,20 @@ extension Double: GValueRepresentable {
     }
 }
 
+extension Float: GValueRepresentable {
+    public static var type: GType {
+        GType(14 << G_TYPE_FUNDAMENTAL_SHIFT)
+    }
+
+    public init?(_ pointer: UnsafeMutablePointer<GValue>) {
+        self.init(g_value_get_float(pointer))
+    }
+
+    public func apply(to pointer: UnsafeMutablePointer<GValue>) {
+        g_value_set_float(pointer, gfloat(self))
+    }
+}
+
 extension String: GValueRepresentable {
     public static var type: GType {
         GType(16 << G_TYPE_FUNDAMENTAL_SHIFT)
