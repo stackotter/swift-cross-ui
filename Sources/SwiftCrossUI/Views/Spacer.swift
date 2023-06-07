@@ -18,16 +18,16 @@ public struct Spacer: View {
 
         switch parent?.orientation {
             case .horizontal:
-                widget.leadingMargin = minLength ?? 0
+                widget.marginStart = minLength ?? 0
                 widget.expandHorizontally = true
                 widget.expandVertically = false
             case .vertical:
-                widget.topMargin = minLength ?? 0
+                widget.marginTop = minLength ?? 0
                 widget.expandHorizontally = false
                 widget.expandVertically = true
             case nil:
-                widget.leadingMargin = minLength ?? 0
-                widget.topMargin = minLength ?? 0
+                widget.marginStart = minLength ?? 0
+                widget.marginTop = minLength ?? 0
                 widget.expandHorizontally = true
                 widget.expandVertically = true
         }

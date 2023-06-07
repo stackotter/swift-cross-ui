@@ -236,10 +236,13 @@ open class Widget: GObjectRepresentable {
 
     @GObjectProperty(named: "opacity") public var opacity: Double
 
-    @GObjectProperty(named: "margin-top") public var topMargin: Int
-    @GObjectProperty(named: "margin-bottom") public var bottomMargin: Int
-    @GObjectProperty(named: "margin-start") public var leadingMargin: Int
-    @GObjectProperty(named: "margin-end") public var trailingMargin: Int
+    @GObjectProperty(named: "margin-top") public var marginTop: Int
+
+    @GObjectProperty(named: "margin-bottom") public var marginBottom: Int
+
+    @GObjectProperty(named: "margin-start") public var marginStart: Int
+
+    @GObjectProperty(named: "margin-end") public var marginEnd: Int
 
     @GObjectProperty(named: "halign") public var horizontalAlignment: Align
 
@@ -247,16 +250,20 @@ open class Widget: GObjectRepresentable {
 
     /// Whether to expand horizontally.
     @GObjectProperty(named: "hexpand") public var expandHorizontally: Bool
+
     /// Whether to use the expandHorizontally property.
     @GObjectProperty(named: "hexpand-set") public var useExpandHorizontally: Bool
+
     /// Whether to expand vertically.
     @GObjectProperty(named: "vexpand") public var expandVertically: Bool
+
     /// Whether to use the expandVertically property.
     @GObjectProperty(named: "vexpand-set") public var useExpandVertically: Bool
 
     /// Set to -1 for no min width request
     @GObjectProperty(named: "width-request") public var minWidth: Int
-    /// Set to -1 for no min heigth request
+
+    /// Set to -1 for no min height request
     @GObjectProperty(named: "height-request") public var minHeight: Int
 
     /// Sets the name of the Gtk view for useful debugging in inspector (Ctrl+Shift+D)

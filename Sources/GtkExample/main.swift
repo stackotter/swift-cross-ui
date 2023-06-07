@@ -126,9 +126,9 @@ app.run { window in
     textView.pasteClipboard = { _ in
         print("pasteClipboard")
     }
-    textView.selectAll = { _, select in
-        print(select ? "everything is selected" : "everything is unselected")
-    }
+    // textView.selectAll = { _, select in
+    //     print(select ? "everything is selected" : "everything is unselected")
+    // }
 
     box.add(textView)
 
