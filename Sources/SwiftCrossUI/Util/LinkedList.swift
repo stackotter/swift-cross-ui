@@ -1,4 +1,4 @@
-struct List<Value>: Sequence {
+struct LinkedList<Value>: Sequence {
     private(set) var firstNode: Node?
     private(set) var lastNode: Node?
 
