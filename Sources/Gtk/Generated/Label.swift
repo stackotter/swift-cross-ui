@@ -205,6 +205,8 @@ public class Label: Widget {
     override func didMoveToParent() {
         super.didMoveToParent()
 
+        removeSignals()
+
         addSignal(name: "activate-current-link") { [weak self] () in
             guard let self = self else { return }
             self.activateCurrentLink?(self)

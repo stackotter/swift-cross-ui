@@ -60,6 +60,8 @@ public class TextView: Widget, Scrollable {
     override func didMoveToParent() {
         super.didMoveToParent()
 
+        removeSignals()
+
         addSignal(name: "backspace") { [weak self] () in
             guard let self = self else { return }
             self.backspace?(self)
