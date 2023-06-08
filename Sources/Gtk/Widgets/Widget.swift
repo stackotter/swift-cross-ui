@@ -200,7 +200,7 @@ open class Widget: GObjectRepresentable {
         signals.append((handlerId, box))
     }
 
-    /// A string of css properties for this widget
+    /// A block of CSS for this widget
     public lazy var css: CSSBlock = CSSBlock(forCssClass: customCssClass) {
         didSet {
             guard oldValue != css else { return }
@@ -208,17 +208,17 @@ open class Widget: GObjectRepresentable {
         }
     }
 
-    /// Custom CSS class for this widget
+    /// Unique CSS class for this widget
     private lazy var customCssClass: String = {
-        let className = String(ObjectIdentifier(self).debugDescription
+        let className = ObjectIdentifier(self).debugDescription
             .replacingOccurrences(of: "ObjectIdentifier(0x", with: "class_")
             .replacingOccurrences(of: ")", with: "")
-            .dropLast()
-        )
         gtk_widget_add_css_class(widgetPointer, className)
         return className
     }()
 
+    /// A CSS provider specifically for this widget. Will get removed when
+    /// it deinits.
     private lazy var cssProvider = CSSProvider()
 
     public func show() {
