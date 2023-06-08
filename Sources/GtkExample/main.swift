@@ -2,7 +2,6 @@
 //  Copyright © 2015 Tomas Linhart. All rights reserved.
 //
 
-import CGtk
 import Foundation
 import Gtk
 
@@ -22,8 +21,7 @@ app.run { window in
     label.selectable = true
     box.add(label)
 
-    var adjustment = GtkAdjustment()
-    let slider = Scale.init(orientation: Orientation.horizontal.toGtk(), adjustment: &adjustment)
+    let slider = Scale(orientation: Orientation.horizontal.toGtk(), adjustment: nil)
     slider.minimum = 5
     slider.maximum = 10.5
     slider.value = 5.7
@@ -86,7 +84,7 @@ app.run { window in
         newWindow.title = "Just a window"
         newWindow.defaultSize = Size(width: 200, height: 200)
 
-        let image = Image(path: Bundle.module.bundleURL.appendingPathComponent("GTK.png").path)
+        let image = Image(filename: Bundle.module.bundleURL.appendingPathComponent("GTK.png").path)
 
         newWindow.setChild(image)
         newWindow.show()

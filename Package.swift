@@ -1,7 +1,7 @@
 // swift-tools-version:5.5
 
-import PackageDescription
 import Foundation
+import PackageDescription
 
 var dependencies: [Package.Dependency] = [
     .package(
@@ -15,21 +15,21 @@ var dependencies: [Package.Dependency] = [
 ]
 
 #if swift(>=5.6)
-// Add the documentation compiler plugin if possible
-dependencies.append(
-    .package(
-        url: "https://github.com/apple/swift-docc-plugin",
-        from: "1.0.0"
+    // Add the documentation compiler plugin if possible
+    dependencies.append(
+        .package(
+            url: "https://github.com/apple/swift-docc-plugin",
+            from: "1.0.0"
+        )
     )
-)
 #endif
 
 #if os(macOS)
-let cGtkSources = "Sources/CGtk/MacOS"
+    let cGtkSources = "Sources/CGtk/MacOS"
 #elseif os(Linux) || os(Windows)
-let cGtkSources = "Sources/CGtk/Linux+Windows"
+    let cGtkSources = "Sources/CGtk/Linux+Windows"
 #else
-fatalError("Unsupported platform.")
+    fatalError("Unsupported platform.")
 #endif
 
 // Conditionally enable features that rely on Gtk 4.10
@@ -93,7 +93,7 @@ let package = Package(
         .executable(
             name: "GtkExample",
             targets: ["GtkExample"]
-        )
+        ),
     ],
     dependencies: dependencies,
     targets: [
@@ -103,17 +103,16 @@ let package = Package(
             exclude: [
                 "Builders/ViewContentBuilder.swift.gyb",
                 "ViewGraph/ViewGraphNodeChildren.swift.gyb",
-                "Views/ViewContent.swift.gyb"
+                "Views/ViewContent.swift.gyb",
             ]
         ),
-
         .systemLibrary(
             name: "CGtk",
             path: cGtkSources,
             pkgConfig: "gtk4",
             providers: [
                 .brew(["gtk4"]),
-                .apt(["libgtk-4-dev clang"])
+                .apt(["libgtk-4-dev clang"]),
             ]
         ),
         .target(
@@ -129,9 +128,10 @@ let package = Package(
 
         .executableTarget(
             name: "GtkCodeGen",
-            dependencies: ["XMLCoder", .product(name: "SwiftSyntaxBuilder", package: "swift-syntax")]
+            dependencies: [
+                "XMLCoder", .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
+            ]
         ),
-
         .executableTarget(
             name: "CounterExample",
             dependencies: ["SwiftCrossUI"],
@@ -167,7 +167,7 @@ let package = Package(
             name: "SplitExample",
             dependencies: ["SwiftCrossUI"],
             path: "Examples/Split"
-        )
+        ),
     ] + conditionalTargets
 )
 
