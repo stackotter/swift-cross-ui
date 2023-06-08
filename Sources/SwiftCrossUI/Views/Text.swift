@@ -14,7 +14,7 @@ public struct Text: View {
     }
 
     public func asWidget(_ children: EmptyViewContent.Children) -> GtkLabel {
-        let widget = GtkLabel(string: "")
+        let widget = GtkLabel(string: string)
         widget.lineWrapMode = .wordCharacter
         widget.horizontalAlignment = .start
         return widget
