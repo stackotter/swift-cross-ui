@@ -14,6 +14,8 @@ public class Range: Widget, AccessibleRange, Orientable {
     override func didMoveToParent() {
         super.didMoveToParent()
 
+        removeSignals()
+
         let handler0:
             @convention(c) (UnsafeMutableRawPointer, Double, UnsafeMutableRawPointer) -> Void =
                 { _, value1, data in

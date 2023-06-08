@@ -70,6 +70,8 @@ public class Button: Widget, Actionable {
     override func didMoveToParent() {
         super.didMoveToParent()
 
+        removeSignals()
+
         addSignal(name: "activate") { [weak self] () in
             guard let self = self else { return }
             self.activate?(self)

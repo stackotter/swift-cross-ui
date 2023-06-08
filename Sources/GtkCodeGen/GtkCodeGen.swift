@@ -334,6 +334,8 @@ struct GtkCodeGen {
             override func didMoveToParent() {
                 super.didMoveToParent()
 
+                removeSignals()
+
                 \(raw: exprs.joined(separator: "\n\n"))
             }
             """

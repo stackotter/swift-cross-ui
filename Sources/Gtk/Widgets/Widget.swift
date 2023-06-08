@@ -35,7 +35,7 @@ open class Widget: GObjectRepresentable {
         widgetPointer = nil
     }
 
-    private func removeSignals() {
+    func removeSignals() {
         for (handlerId, _) in signals {
             disconnectSignal(widgetPointer, handlerId: handlerId)
         }
