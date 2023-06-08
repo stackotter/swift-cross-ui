@@ -18,13 +18,13 @@ private struct PaddingModifierView<Child: View>: View {
     /// The amount of padding to apply to the child view.
     var padding: Int
 
-    func asWidget(_ children: ViewGraphNodeChildren1<Child>) -> GtkSingleChildBox {
-        let box = GtkSingleChildBox()
+    func asWidget(_ children: ViewGraphNodeChildren1<Child>) -> GtkModifierBox {
+        let box = GtkModifierBox().debugName(Self.self)
         box.setChild(children.child0.widget)
         return box
     }
 
-    func update(_ box: GtkSingleChildBox, children: ViewGraphNodeChildren1<Child>) {
+    func update(_ box: GtkModifierBox, children: ViewGraphNodeChildren1<Child>) {
         if edges.contains(.top) {
             box.topMargin = padding
         }

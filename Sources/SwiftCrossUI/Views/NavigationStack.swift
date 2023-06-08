@@ -58,6 +58,7 @@ public struct NavigationStack<Detail: View>: View {
     }
 
     /// Sets the transition to use when changing navigation destinations.
+    ///
     /// - Parameters:
     ///   - transition: The type of animation that will be used for transitions between pages in the
     ///     stack.

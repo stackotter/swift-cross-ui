@@ -6,7 +6,7 @@ public struct ForEachViewChildren<
 
     class Storage {
         var nodes: [ViewGraphNode<Child>] = []
-        var container = GtkBox(orientation: .vertical, spacing: 0)
+        var container = GtkSectionBox(orientation: .vertical, spacing: 0).debugName(ForEach<Items, Child>.self)
     }
 
     let storage = Storage()
@@ -26,9 +26,7 @@ public struct ForEachViewChildren<
     }
 
     public func update(with content: Content) {
-        if let parent = storage.container.parentWidget as? GtkOrientable {
-            storage.container.orientation = parent.orientation
-        }
+        storage.container.update()
 
         for (i, node) in storage.nodes.enumerated() {
             guard i < content.elements.count else {

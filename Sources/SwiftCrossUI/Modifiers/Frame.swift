@@ -33,13 +33,13 @@ private struct SimpleFrameModifierView<Child: View>: View {
     var minWidth: Int?
     var minHeight: Int?
 
-    func asWidget(_ children: ViewGraphNodeChildren1<Child>) -> GtkSingleChildBox {
-        let widget = GtkSingleChildBox()
+    func asWidget(_ children: ViewGraphNodeChildren1<Child>) -> GtkModifierBox {
+        let widget = GtkModifierBox().debugName(Self.self)
         widget.setChild(children.child0.widget)
         return widget
     }
 
-    func update(_ widget: GtkSingleChildBox, children: ViewGraphNodeChildren1<Child>) {
+    func update(_ widget: GtkModifierBox, children: ViewGraphNodeChildren1<Child>) {
         widget.minWidth = minWidth ?? -1
         widget.minHeight = minHeight ?? -1
     }

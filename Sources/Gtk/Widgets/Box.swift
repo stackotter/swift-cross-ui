@@ -13,6 +13,12 @@ open class Box: Widget, Orientable {
         widgetPointer = gtk_box_new(orientation.toGtkOrientation(), gint(spacing))
     }
 
+    override func didMoveToParent() {
+        for widget in widgets {
+            widget.didMoveToParent()
+        }
+    }
+
     public func add(_ child: Widget) {
         widgets.append(child)
         child.parentWidget = self
@@ -35,5 +41,10 @@ open class Box: Widget, Orientable {
         widgets = []
     }
 
-    @GObjectProperty(named: "spacing") public var spacing: Int
+    @GObjectProperty(named: "spacing") open var spacing: Int
+
+    open var orientation: Orientation {
+        get { gtk_orientable_get_orientation(opaquePointer).toOrientation() }
+        set { gtk_orientable_set_orientation(opaquePointer, newValue.toGtkOrientation()) }
+    }
 }

@@ -18,7 +18,7 @@ public struct VStack<Content: ViewContent>: View {
     }
 
     public func asWidget(_ children: Content.Children) -> GtkBox {
-        let vStack = GtkBox(orientation: .vertical)
+        let vStack = GtkBox(orientation: .vertical).debugName(Self.self)
         for widget in children.widgets {
             vStack.add(widget)
         }
