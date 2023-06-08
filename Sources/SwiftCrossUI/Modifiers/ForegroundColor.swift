@@ -18,6 +18,6 @@ private struct ForegroundColorModifierView<Child: View>: View {
     }
 
     func update(_ widget: GtkModifierBox, children: ViewGraphNodeChildren1<Child>) {
-        widget.setForegroundColor(color: color.gtkColor)
+        widget.css.set(property: .foregroundColor(color.gtkColor))
     }
 }
