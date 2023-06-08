@@ -1,41 +1,41 @@
-public struct Padding {
-    public var top: Int = 0
-    public var bottom: Int = 0
-    public var left: Int = 0
-    public var right: Int = 0
-
-    public init() {}
-
-    public init(top: Int, bottom: Int, left: Int, right: Int) {
-        self.top = top
-        self.bottom = bottom
-        self.left = left
-        self.right = right
+extension View {
+    /// Adds a specific padding amount to each edge of this view.
+    public func padding(_ amount: Int) -> some View {
+        return PaddingModifierView(body: ViewContent1(self), edges: .all, padding: amount)
     }
 
-    public init(_ amount: Int) {
-        top = amount
-        bottom = amount
-        left = amount
-        right = amount
+    /// Adds an equal padding amount to specific edges of this view.
+    public func padding(_ edges: Edge.Set, _ amount: Int) -> some View {
+        return PaddingModifierView(body: ViewContent1(self), edges: edges, padding: amount)
+    }
+}
+
+private struct PaddingModifierView<Child: View>: View {
+    var body: ViewContent1<Child>
+
+    /// The edges on which to apply padding.
+    var edges: Edge.Set
+    /// The amount of padding to apply to the child view.
+    var padding: Int
+
+    func asWidget(_ children: ViewGraphNodeChildren1<Child>) -> GtkModifierBox {
+        let box = GtkModifierBox().debugName(Self.self)
+        box.setChild(children.child0.widget)
+        return box
     }
 
-    public subscript(_ side: Side) -> Int {
-        get {
-            switch side {
-                case .top: return top
-                case .bottom: return bottom
-                case .left: return left
-                case .right: return right
-            }
+    func update(_ box: GtkModifierBox, children: ViewGraphNodeChildren1<Child>) {
+        if edges.contains(.top) {
+            box.topMargin = padding
         }
-        set {
-            switch side {
-                case .top: top = newValue
-                case .bottom: bottom = newValue
-                case .left: left = newValue
-                case .right: right = newValue
-            }
+        if edges.contains(.bottom) {
+            box.bottomMargin = padding
+        }
+        if edges.contains(.leading) {
+            box.leadingMargin = padding
+        }
+        if edges.contains(.trailing) {
+            box.trailingMargin = padding
         }
     }
 }

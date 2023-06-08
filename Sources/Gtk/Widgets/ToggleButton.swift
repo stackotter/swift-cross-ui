@@ -32,14 +32,7 @@ public class ToggleButton: Button {
         }
     }
 
-    public var active: Bool {
-        get {
-            return gtk_toggle_button_get_active(castedPointer()).toBool()
-        }
-        set {
-            gtk_toggle_button_set_active(castedPointer(), newValue.toGBoolean())
-        }
-    }
+    @GObjectProperty(named: "active") public var active: Bool
 
     public var toggled: ((ToggleButton) -> Void)?
 }

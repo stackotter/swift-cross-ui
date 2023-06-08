@@ -6,7 +6,7 @@ public struct VStack<Content: ViewContent>: View {
     private var spacing: Int
 
     /// Creates a new VStack.
-    public init(@ViewContentBuilder _ content: () -> Content, spacing: Int = 8) {
+    public init(spacing: Int = 8, @ViewContentBuilder _ content: () -> Content) {
         body = content()
         self.spacing = spacing
     }
@@ -18,7 +18,7 @@ public struct VStack<Content: ViewContent>: View {
     }
 
     public func asWidget(_ children: Content.Children) -> GtkBox {
-        let vStack = GtkBox(orientation: .vertical)
+        let vStack = GtkBox(orientation: .vertical).debugName(Self.self)
         for widget in children.widgets {
             vStack.add(widget)
         }

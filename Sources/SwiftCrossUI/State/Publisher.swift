@@ -2,7 +2,7 @@ import CGtk
 import Foundation
 
 public class Publisher {
-    private var observations = List<() -> Void>()
+    private var observations = LinkedList<() -> Void>()
     private var cancellables: [Cancellable] = []
 
     public init() {}
@@ -16,7 +16,7 @@ public class Publisher {
                     fatalError("Publisher callback called without context")
                 }
 
-                let observations = context.assumingMemoryBound(to: List<() -> Void>.self).pointee
+                let observations = context.assumingMemoryBound(to: LinkedList<() -> Void>.self).pointee
                 for observation in observations {
                     observation()
                 }

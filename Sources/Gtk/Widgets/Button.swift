@@ -24,18 +24,7 @@ open class Button: Widget {
         }
     }
 
-    public var label: String? {
-        get {
-            return String(cString: gtk_button_get_label(castedPointer()))
-        }
-        set {
-            if let title = newValue {
-                gtk_button_set_label(castedPointer(), title)
-            } else {
-                gtk_button_set_label(castedPointer(), nil)
-            }
-        }
-    }
+    @GObjectProperty(named: "label") public var label: String?
 
     public var clicked: ((Button) -> Void)?
 }

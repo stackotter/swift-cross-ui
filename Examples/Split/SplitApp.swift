@@ -98,9 +98,9 @@ struct SplitApp: App {
                     case nil:
                         Text("Select an area")
                 }
-                // TODO: Exchange this for a proper .frame(minWidth:) once .frame is fixed
-                HStack { Spacer(minLength: 200) }
-            }.padding(10)
+            }
+            .padding(10)
+            .frame(minWidth: 100)
         } detail: {
             VStack {
                 switch state.selectedDetail {
