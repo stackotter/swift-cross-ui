@@ -3,7 +3,7 @@
 /// For a list of all supported CSS properties, see [Gtk's CSS documentation](https://docs.gtk.org/gtk4/css-properties.html).
 public struct CSSProperty: Equatable {
     var stringRepresentation: String {
-        key + ":" + value + ";"
+        "\(key):\(value);"
     }
 
     var key: String
