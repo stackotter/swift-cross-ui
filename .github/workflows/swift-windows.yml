@@ -10,11 +10,15 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - name: Install Swift 5.8
+      uses: compnerd/gha-setup-swift@main
+      with:
+        branch: swift-5.8-release
+        tag: 5.8-RELEASE
     - uses: actions/checkout@v3
-    - uses: swift-actions/setup-swift@v1
     - name: Install Dependencies
       run: vcpkg install --triplet x64-windows
     - name: Build
       env:
-        PKG_CONFIG_PATH: ${{ env.GITHUB_WORKSPACE }}/vcpkg_installed/x64-windows/lib/pkgconfig
+        PKG_CONFIG_PATH: ${{ github.workspace }}/vcpkg_installed/x64-windows/lib/pkgconfig
       run: swift build -v
