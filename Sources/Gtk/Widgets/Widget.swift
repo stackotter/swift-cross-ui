@@ -273,7 +273,8 @@ open class Widget: GObjectRepresentable {
     /// Sets the name of the Gtk view for useful debugging in inspector (Ctrl+Shift+D)
     open func debugName<View>(_: View.Type) -> Self {
         #if DEBUG
-            name = String(describing: Self.self) + " " + String(describing: View.self)
+            // Limited type depth because the inspector does not like long names
+            name = String(describing: Self.self) + " " + typeDescription(of: View.self, withMaxDepth: 3)
         #endif
         return self
     }

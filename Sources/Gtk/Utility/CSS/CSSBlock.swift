@@ -7,15 +7,16 @@
 /// ```
 public struct CSSBlock: Equatable {
     private var cssClass: String
-    /// property.key: property
+
+    /// The block's properties, keyed by property name.
     private var keyedProperties: [String: CSSProperty] = [:]
 
     var stringRepresentation: String {
         ".\(cssClass){\(keyedProperties.values.map(\.stringRepresentation).joined())}"
     }
 
-    init(forCssClass: String) {
-        cssClass = forCssClass
+    init(forCssClass cssClass: String) {
+        self.cssClass = cssClass
     }
 
     public mutating func set(property: CSSProperty) {
