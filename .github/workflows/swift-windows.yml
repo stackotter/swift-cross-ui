@@ -10,15 +10,35 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - name: Compute vcpkg Triplet
+      id: triplet
+      uses: ASzc/change-string-case-action@v5
+      with:
+        string: ${{ runner.arch }}-${{ runner.os }}
     - name: Install Swift 5.8
       uses: compnerd/gha-setup-swift@main
       with:
         branch: swift-5.8-release
         tag: 5.8-RELEASE
     - uses: actions/checkout@v3
-    - name: Install Dependencies
-      run: vcpkg install --triplet x64-windows
+    - name: Restore Dependency Cache
+      id: cache
+      uses: actions/cache/restore@v3
+      with:
+        path: vcpkg_installed
+        key: vcpkg-${{ steps.triplet.outputs.lowercase }}-${{ hashFiles('vcpkg.json') }}
+    - name: Build and Install Dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      env:
+        VCPKG_DEFAULT_TRIPLET: ${{ steps.triplet.outputs.lowercase }}
+      run: vcpkg install
+    - name: Save Dependency Cache
+      if: steps.cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v3
+      with:
+        path: vcpkg_installed
+        key: vcpkg-${{ steps.triplet.outputs.lowercase }}-${{ hashFiles('vcpkg.json') }}
     - name: Build
       env:
-        PKG_CONFIG_PATH: ${{ github.workspace }}/vcpkg_installed/x64-windows/lib/pkgconfig
+        PKG_CONFIG_PATH: ${{ github.workspace }}/vcpkg_installed/${{ steps.triplet.outputs.lowercase }}/lib/pkgconfig
       run: swift build -v
