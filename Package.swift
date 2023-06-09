@@ -24,12 +24,8 @@ var dependencies: [Package.Dependency] = [
     )
 #endif
 
-#if os(macOS)
-    let cGtkSources = "Sources/CGtk/MacOS"
-#elseif os(Linux) || os(Windows)
-    let cGtkSources = "Sources/CGtk/Linux+Windows"
-#else
-    fatalError("Unsupported platform.")
+#if !os(Linux) && !os(macOS)
+fatalError("Unsupported platform.")
 #endif
 
 // Conditionally enable features that rely on Gtk 4.10
@@ -108,7 +104,6 @@ let package = Package(
         ),
         .systemLibrary(
             name: "CGtk",
-            path: cGtkSources,
             pkgConfig: "gtk4",
             providers: [
                 .brew(["gtk4"]),
