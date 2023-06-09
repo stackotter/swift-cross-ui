@@ -14,7 +14,7 @@ var dependencies: [Package.Dependency] = [
     ),
 ]
 
-#if swift(>=5.6)
+#if swift(>=5.6) && !os(Windows)
     // Add the documentation compiler plugin if possible
     dependencies.append(
         .package(
@@ -24,7 +24,7 @@ var dependencies: [Package.Dependency] = [
     )
 #endif
 
-#if !os(Linux) && !os(macOS)
+#if !os(Linux) && !os(macOS) && !os(Windows)
 fatalError("Unsupported platform.")
 #endif
 
