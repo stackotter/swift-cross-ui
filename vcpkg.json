@@ -1,0 +1,5 @@
+{
+    "name": "swift-cross-ui",
+    "version-string": "main",
+    "dependencies": ["gtk"]
+}
