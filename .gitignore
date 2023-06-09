@@ -8,3 +8,4 @@ DerivedData/
 /.vscode
 *.pyc
 /.swiftpm
+vcpkg_installed/

@@ -82,11 +82,26 @@ brew install gtk4
 
 ### Linux: Installing Gtk 4.10+ and clang
 
-Install Gtk+3 and Clang using apt or the package manager of your choice. Ensure that the installed
+Install Gtk+ and Clang using apt or the package manager of your choice. Ensure that the installed
 version of Gtk is Gtk 4.10+
 
 ```sh
 sudo apt install libgtk-4-dev clang
+```
+
+### Windows (experimental): Installing Gtk 4.10+ through vcpkg
+
+Install Gtk+ using vcpkg is strongly suggested on Windows.
+
+```cmd
+git clone https://github.com/microsoft/vcpkg C:\vcpkg
+C:\vcpkg\bootstrap-vcpkg.bat
+```
+
+> **NOTE**: It's important to install vcpkg to the root of `C:` or any other drive due to limitations of Gtk build system.
+
+```cmd
+C:\vcpkg\vcpkg.exe install --triplet=x64-windows-static-md
 ```
 
 ## Usage
