@@ -9,7 +9,7 @@
     <img alt="GitHub" src="https://img.shields.io/github/license/stackotter/swift-cross-ui">
 </p>
 
-A SwiftUI-like framework for creating cross-platform apps in Swift. It uses Gtk 4.10+ as its backend.
+A SwiftUI-like framework for creating cross-platform apps in Swift (using Gtk 4 as the backend).
 
 This package is still quite a work-in-progress so don't expect it to be very useful or stable yet.
 
@@ -70,29 +70,28 @@ Here's the [documentation site](https://stackotter.github.io/swift-cross-ui/docu
 ## Dependencies
 
 1. Swift 5.5 or higher
-2. Gtk 4.10+
+2. Gtk 4
 3. clang (only required on Linux)
 
-### macOS: Installing Gtk 4.10+
+### macOS: Installing Gtk 4
 
-Install Gtk 4.10+ using HomeBrew or the package manager of your choice.
+Install Gtk 4 using HomeBrew or the package manager of your choice.
 
 ```sh
 brew install gtk4
 ```
 
-### Linux: Installing Gtk 4.10+ and Clang
+### Linux: Installing Gtk 4 and Clang
 
-Install Gtk+ and Clang using apt or the package manager of your choice. Ensure that the installed
-version of Gtk is Gtk 4.10+
+Install Gtk 4 and Clang using apt or the package manager of your choice. On most GNOME-based systems, Gtk should already be installed (although you should verify that it's Gtk 3).
 
 ```sh
 sudo apt install libgtk-4-dev clang
 ```
 
-### Windows (experimental): Installing Gtk 4.10+ through vcpkg
+### Windows (experimental): Installing Gtk 4 through vcpkg
 
-Install Gtk+ using vcpkg is strongly suggested on Windows.
+Install Gtk 4 using vcpkg is strongly suggested on Windows.
 
 #### Install vcpkg
 
@@ -113,9 +112,9 @@ set VCPKG_DEFAULT_TRIPLET=x64-windows
 $env:VCPKG_DEFAULT_TRIPLET = "x64-windows"
 ```
 
-#### Install Gtk 4.10+ package-wide (recommended)
+#### Install Gtk 4 package-wide (recommended)
 
-You can install Gtk+ inside your package workspace, to have a package-specific dependency store. First, create a `vcpkg.json` at your package root, e.g.
+You can install Gtk 4 inside your package workspace, to have a package-specific dependency store. First, create a `vcpkg.json` at your package root, e.g.
 
 ```json
 {
@@ -137,9 +136,9 @@ Set `PKG_CONFIG_PATH` environment variable to `PACKAGE_ROOT\vcpkg_installed\x64-
 
 Add `PACKAGE_ROOT\vcpkg_installed\x64-windows\bin` to `Path` for running targets using SwiftCrossUI, either independently or through `swift run`.
 
-#### Install Gtk 4.10+ globally
+#### Install Gtk 4 globally
 
-Alternatively, you can install Gtk+ in global installation path, alongside with other globally installed packages:
+Alternatively, you can install Gtk 4 in global installation path, alongside with other globally installed packages:
 
 ```cmd
 C:\vcpkg\vcpkg.exe install gtk
