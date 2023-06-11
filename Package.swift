@@ -24,6 +24,13 @@ var dependencies: [Package.Dependency] = [
     )
 #endif
 
+#if swift(<5.8) && os(Windows)
+if let pkgConfigPath = ProcessInfo.processInfo.environment["PKG_CONFIG_PATH"], pkgConfigPath.contains(":") {
+    print("PKG_CONFIG_PATH might not be parsed correctly with your Swift tools version.")
+    print("Upgrade to Swift 5.8+ instead.")
+}
+#endif
+
 #if !os(Linux) && !os(macOS) && !os(Windows)
 fatalError("Unsupported platform.")
 #endif
