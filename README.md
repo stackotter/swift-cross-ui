@@ -91,7 +91,7 @@ sudo apt install libgtk-4-dev clang
 
 ### Windows (experimental): Installing Gtk 4 through vcpkg
 
-Installing Gtk 4 using vcpkg is theh supported method for setting up SwiftCrossUI on Windows.
+Installing Gtk 4 using vcpkg is the supported method for setting up SwiftCrossUI on Windows.
 
 #### Install vcpkg
 
@@ -111,8 +111,8 @@ C:\vcpkg\vcpkg.exe install gtk --triplet x64-windows
 ```
 
 After installation, you must make the following changes to your environment variables:
-1. Set the `PKG_CONFIG_PATH` environment variable to `C:\vcpkg\installed\x64-windows\lib\pkgconfig` to allow SwiftPM to consume the installed packages.
-2. Add `C:\vcpkg\installed\x64-windows\bin` to your `PATH` environment variable.
+1. Set the `PKG_CONFIG_PATH` environment variable to `C:\vcpkg\installed\x64-windows\lib\pkgconfig`. This is only required for building.
+2. Add `C:\vcpkg\installed\x64-windows\bin` to your `Path` environment variable. This is only required for running.
 
 If installing globally fails, try deleting `C:\vcpkg` and starting over, otherwise file an issue to the `vcpkg` repository and let me know at `stackotter@stackotter.dev`.
 
