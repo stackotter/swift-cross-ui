@@ -91,7 +91,7 @@ sudo apt install libgtk-4-dev clang
 
 ### Windows (experimental): Installing Gtk 4 through vcpkg
 
-Install Gtk 4 using vcpkg is strongly suggested on Windows.
+Installing Gtk 4 using vcpkg is theh supported method for setting up SwiftCrossUI on Windows.
 
 #### Install vcpkg
 
@@ -100,21 +100,27 @@ git clone https://github.com/microsoft/vcpkg C:\vcpkg
 C:\vcpkg\bootstrap-vcpkg.bat
 ```
 
-> **NOTE**: It's important to install vcpkg to the root of `C:` or any other drive due to limitations of Gtk build system.
+> **NOTE**: It's important to install vcpkg to the root of `C:` or any other drive due to limitations of the Gtk build system.
 
-You should set default triplet with environment variable. For more context, see [microsoft/vcpkg-tool#881](https://github.com/microsoft/vcpkg-tool/pull/881).
+#### Install Gtk 4 globally (recommended)
+
+Run the following command to install Gtk 4 globally. This can take 45 minutes or longer depending on your machine. Running this command in the root of your drive will ensure that `vcpkg` doesn't run in manifest mode.
 
 ```cmd
-set VCPKG_DEFAULT_TRIPLET=x64-windows
+C:\vcpkg\vcpkg.exe install gtk --triplet x64-windows
 ```
 
-```powershell
-$env:VCPKG_DEFAULT_TRIPLET = "x64-windows"
-```
+After installation, you must make the following changes to your environment variables:
+1. Set the `PKG_CONFIG_PATH` environment variable to `C:\vcpkg\installed\x64-windows\lib\pkgconfig` to allow SwiftPM to consume the installed packages.
+2. Add `C:\vcpkg\installed\x64-windows\bin` to your `PATH` environment variable.
 
-#### Install Gtk 4 package-wide (recommended)
+If installing globally fails, try deleting `C:\vcpkg` and starting over, otherwise file an issue to the `vcpkg` repository and let me know at `stackotter@stackotter.dev`.
 
-You can install Gtk 4 inside your package workspace, to have a package-specific dependency store. First, create a `vcpkg.json` at your package root, e.g.
+#### Install Gtk 4 with project manifest (more unreliable)
+
+> **NOTE**: If the absolute path to your project contains spaces, it is possible that `vcpkg` will break, and installing globally will be a more reliable strategy.
+
+You can install Gtk 4 inside your package workspace, to have a package-specific dependency store. First, create a `vcpkg.json` at your package root. You can download [the vcpkg.json file from this repo](vcpkg.json), or create it yourself;
 
 ```json
 {
@@ -124,35 +130,23 @@ You can install Gtk 4 inside your package workspace, to have a package-specific 
 }
 ```
 
-You can also copy the file from [here](vcpkg.json).
-
-Change directory to your package root, then build and install dependencies with:
+Change directory to your package root, then run the following command to build and install dependencies.
 
 ```cmd
-C:\vcpkg\vcpkg.exe install
+C:\vcpkg\vcpkg.exe install --triplet x64-windows
 ```
 
-Set `PKG_CONFIG_PATH` environment variable to `PACKAGE_ROOT\vcpkg_installed\x64-windows\lib\pkgconfig` to allow SwiftPM to consume the installed packages.
+After installation, you must make the following changes to your environment variables:
+1. Set the `PKG_CONFIG_PATH` environment variable to `PACKAGE_ROOT\vcpkg_installed\x64-windows\lib\pkgconfig` to allow SwiftPM to consume the installed packages.
+3. Add `C:\path\to\your\project\vcpkg_installed\x64-windows\bin` to your `PATH` environment variable.
 
-Add `PACKAGE_ROOT\vcpkg_installed\x64-windows\bin` to `Path` for running targets using SwiftCrossUI, either independently or through `swift run`.
-
-#### Install Gtk 4 globally
-
-Alternatively, you can install Gtk 4 in global installation path, alongside with other globally installed packages:
-
-```cmd
-C:\vcpkg\vcpkg.exe install gtk
-```
-
-Set `PKG_CONFIG_PATH` environment variable to `C:\vcpkg\installed\x64-windows\lib\pkgconfig` to allow SwiftPM to consume the installed packages.
-
-Add `C:\vcpkg\installed\x64-windows\bin` to `Path` for running targets using SwiftCrossUI, either independently or through `swift run`.
+If you run into issues (potentially related to `libsass`), try installing globally instead (see above).
 
 #### Distribute SwiftCrossUI Apps
 
 `vcpkg_installed\<triplet>\bin` contains all required DLLs for running a SwiftCrossUI application on Windows, but not all of them are necessary.
 
-To identify which of them are required, you can use tools like [Dependencies](https://github.com/lucasg/Dependencies) to inspect the application executable, and copy all vcpkg-installed DLLs along with the executable for distribution.
+To identify which of them are required, you can use [the Dependencies tool](https://github.com/lucasg/Dependencies) to inspect the compiled executable, and copy all vcpkg-installed DLLs along with the executable for distribution.
 
 ## Usage
 
