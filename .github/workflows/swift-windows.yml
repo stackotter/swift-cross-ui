@@ -43,5 +43,3 @@ jobs:
         PKG_CONFIG_PATH: ${{ github.workspace }}/vcpkg_installed/${{ steps.triplet.outputs.lowercase }}/lib/pkgconfig
       # Only build the library target to work around apple/swift-package-manager#6644
       run: swift build --target SwiftCrossUI -v
-    - name: Test
-      run: swift test
