@@ -25,14 +25,16 @@ var dependencies: [Package.Dependency] = [
 #endif
 
 #if swift(<5.8) && os(Windows)
-if let pkgConfigPath = ProcessInfo.processInfo.environment["PKG_CONFIG_PATH"], pkgConfigPath.contains(":") {
-    print("PKG_CONFIG_PATH might not be parsed correctly with your Swift tools version.")
-    print("Upgrade to Swift 5.8+ instead.")
-}
+    if let pkgConfigPath = ProcessInfo.processInfo.environment["PKG_CONFIG_PATH"],
+        pkgConfigPath.contains(":")
+    {
+        print("PKG_CONFIG_PATH might not be parsed correctly with your Swift tools version.")
+        print("Upgrade to Swift 5.8+ instead.")
+    }
 #endif
 
 #if !os(Linux) && !os(macOS) && !os(Windows)
-fatalError("Unsupported platform.")
+    fatalError("Unsupported platform.")
 #endif
 
 // Conditionally enable features that rely on Gtk 4.10
@@ -170,41 +172,50 @@ let package = Package(
             dependencies: ["SwiftCrossUI"],
             path: "Examples/Split"
         ),
+
+        .testTarget(
+            name: "SwiftCrossUITests",
+            dependencies: ["SwiftCrossUI"]
+        ),
     ] + conditionalTargets
 )
 
 func getGtk4MinorVersion() -> Int? {
-#if os(Windows)
-    guard let pkgConfigPath = ProcessInfo.processInfo.environment["PKG_CONFIG_PATH"],
-          case let tripletRoot = URL(fileURLWithPath: pkgConfigPath, isDirectory: true)
-              .deletingLastPathComponent().deletingLastPathComponent(),
-          case let vcpkgInfoDirectory = tripletRoot.deletingLastPathComponent()
-              .appendingPathComponent("vcpkg").appendingPathComponent("info"),
-          let installedList = try? FileManager.default.contentsOfDirectory(at: vcpkgInfoDirectory, includingPropertiesForKeys: nil)
+    #if os(Windows)
+        guard let pkgConfigPath = ProcessInfo.processInfo.environment["PKG_CONFIG_PATH"],
+            case let tripletRoot = URL(fileURLWithPath: pkgConfigPath, isDirectory: true)
+                .deletingLastPathComponent().deletingLastPathComponent(),
+            case let vcpkgInfoDirectory = tripletRoot.deletingLastPathComponent()
+                .appendingPathComponent("vcpkg").appendingPathComponent("info"),
+            let installedList = try? FileManager.default.contentsOfDirectory(
+                at: vcpkgInfoDirectory, includingPropertiesForKeys: nil
+            )
             .map({ $0.deletingPathExtension().lastPathComponent }),
-          let packageName = installedList.first(where: { $0.hasPrefix("gtk_") && $0.hasSuffix("_\(tripletRoot.lastPathComponent)") })
-    else {
-        print("We only support installing gtk through vcpkg on Windows.")
-        return nil
-    }
+            let packageName = installedList.first(where: {
+                $0.hasPrefix("gtk_") && $0.hasSuffix("_\(tripletRoot.lastPathComponent)")
+            })
+        else {
+            print("We only support installing gtk through vcpkg on Windows.")
+            return nil
+        }
 
-    let version = packageName.split(separator: "_")[1].split(separator: ".")
-#else
-    let process = Process()
-    process.executableURL = URL(fileURLWithPath: "/bin/bash")
-    process.arguments = ["-c", "gtk4-launch --version"]
-    let pipe = Pipe()
-    process.standardOutput = pipe
+        let version = packageName.split(separator: "_")[1].split(separator: ".")
+    #else
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/bin/bash")
+        process.arguments = ["-c", "gtk4-launch --version"]
+        let pipe = Pipe()
+        process.standardOutput = pipe
 
-    guard let _ = try? process.run(),
-          let data = try? pipe.fileHandleForReading.readToEnd(),
-          case _ = process.waitUntilExit(),
-          let version = String(data: data, encoding: .utf8)?.split(separator: ".")
-    else {
-        print("Failed to get gtk version")
-        return nil
-    }
-#endif
+        guard let _ = try? process.run(),
+            let data = try? pipe.fileHandleForReading.readToEnd(),
+            case _ = process.waitUntilExit(),
+            let version = String(data: data, encoding: .utf8)?.split(separator: ".")
+        else {
+            print("Failed to get gtk version")
+            return nil
+        }
+    #endif
     guard version.count >= 2, let minor = Int(version[1]) else {
         print("Failed to get gtk version")
         return nil
