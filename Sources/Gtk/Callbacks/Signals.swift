@@ -26,7 +26,7 @@ func connectSignal<T>(
     connectFlags: ConnectFlags = .after,
     handler: @escaping GCallback
 ) -> UInt {
-    return .init(
+    return UInt(
         g_signal_connect_data(
             instance,
             name,

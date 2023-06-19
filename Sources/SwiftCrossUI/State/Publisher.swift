@@ -16,7 +16,8 @@ public class Publisher {
                     fatalError("Publisher callback called without context")
                 }
 
-                let observations = context.assumingMemoryBound(to: LinkedList<() -> Void>.self).pointee
+                let observations = context.assumingMemoryBound(to: LinkedList<() -> Void>.self)
+                    .pointee
                 for observation in observations {
                     observation()
                 }

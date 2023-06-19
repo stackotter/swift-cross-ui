@@ -10,7 +10,7 @@ public struct Image: View {
     }
 
     public func asWidget(_ children: EmptyViewGraphNodeChildren) -> GtkImage {
-        return GtkImage(path: path).debugName(Self.self)
+        return GtkImage(filename: path).debugName(Self.self)
     }
 
     public func update(_ widget: GtkImage, children: EmptyViewGraphNodeChildren) {

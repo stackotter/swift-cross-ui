@@ -6,7 +6,8 @@ public struct ForEachViewChildren<
 
     class Storage {
         var nodes: [ViewGraphNode<Child>] = []
-        var container = GtkSectionBox(orientation: .vertical, spacing: 0).debugName(ForEach<Items, Child>.self)
+        var container = GtkSectionBox(orientation: .vertical, spacing: 0)
+            .debugName(ForEach<Items, Child>.self)
     }
 
     let storage = Storage()

@@ -3,7 +3,7 @@ import CGtk
 open class Paned: Widget, Orientable {
     public init(orientation: Orientation) {
         super.init()
-        widgetPointer = gtk_paned_new(orientation.toGtkOrientation())
+        widgetPointer = gtk_paned_new(orientation.toGtk())
     }
 
     public var startChild: Widget? {

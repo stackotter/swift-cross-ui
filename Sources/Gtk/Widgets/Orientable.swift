@@ -8,10 +8,10 @@ public protocol Orientable: AnyObject {
 extension Orientable {
     public var orientation: Orientation {
         get {
-            gtk_orientable_get_orientation(opaquePointer).toOrientation()
+            return Orientation(from: gtk_orientable_get_orientation(opaquePointer))
         }
         set {
-            gtk_orientable_set_orientation(opaquePointer, newValue.toGtkOrientation())
+            gtk_orientable_set_orientation(opaquePointer, newValue.toGtk())
         }
     }
 }

@@ -26,16 +26,16 @@ private struct PaddingModifierView<Child: View>: View {
 
     func update(_ box: GtkModifierBox, children: ViewGraphNodeChildren1<Child>) {
         if edges.contains(.top) {
-            box.topMargin = padding
+            box.marginTop = padding
         }
         if edges.contains(.bottom) {
-            box.bottomMargin = padding
+            box.marginBottom = padding
         }
         if edges.contains(.leading) {
-            box.leadingMargin = padding
+            box.marginStart = padding
         }
         if edges.contains(.trailing) {
-            box.trailingMargin = padding
+            box.marginEnd = padding
         }
     }
 }

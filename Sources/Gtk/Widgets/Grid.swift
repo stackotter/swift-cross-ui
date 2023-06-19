@@ -49,7 +49,7 @@ public class Grid: Widget, Orientable {
             castedPointer(),
             child.widgetPointer,
             sibling.widgetPointer,
-            side.toGtkPositionType(),
+            side.toGtk(),
             gint(width),
             gint(height)
         )
@@ -86,7 +86,7 @@ public class Grid: Widget, Orientable {
     ///   - sibling: The child of `grid` that the new row or column will be placed next to.
     ///   - side: The side of `sibling` that `child` is positioned next to.
     public func insert(nextTo sibling: Widget, side: PositionType) {
-        gtk_grid_insert_next_to(castedPointer(), sibling.widgetPointer, side.toGtkPositionType())
+        gtk_grid_insert_next_to(castedPointer(), sibling.widgetPointer, side.toGtk())
     }
 
     /// Whether all rows of `grid` will have the same height.
@@ -105,14 +105,16 @@ public class Grid: Widget, Orientable {
     @GObjectProperty(named: "baseline-row") public var baselineRow: Int
 
     public func getRowBaselinePosition(forRow row: Int) -> BaselinePosition {
-        return gtk_grid_get_row_baseline_position(castedPointer(), gint(row)).toBaselinePosition()
+        return BaselinePosition(
+            from: gtk_grid_get_row_baseline_position(castedPointer(), gint(row))
+        )
     }
 
     public func setRowBaselinePosition(forRow row: Int, position: BaselinePosition) {
         gtk_grid_set_row_baseline_position(
             castedPointer(),
             gint(row),
-            position.toGtkBaselinePosition()
+            position.toGtk()
         )
     }
 }

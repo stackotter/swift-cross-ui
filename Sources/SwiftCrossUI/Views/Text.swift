@@ -14,14 +14,14 @@ public struct Text: View {
     }
 
     public func asWidget(_ children: EmptyViewContent.Children) -> GtkLabel {
-        let widget = GtkLabel()
+        let widget = GtkLabel(string: string)
         widget.lineWrapMode = .wordCharacter
         widget.horizontalAlignment = .start
         return widget
     }
 
     public func update(_ widget: GtkLabel, children: EmptyViewContent.Children) {
-        widget.text = string
-        widget.lineWrap = wrap
+        widget.label = string
+        widget.wrap = wrap
     }
 }
