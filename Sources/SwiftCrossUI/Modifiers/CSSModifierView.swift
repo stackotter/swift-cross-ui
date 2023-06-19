@@ -20,7 +20,7 @@ struct CSSModifierView<Child: View>: View {
     }
 
     func asWidget(_ children: ViewGraphNodeChildren1<Child>) -> GtkModifierBox {
-        let widget = GtkModifierBox().debugName(Self.self)
+        let widget = GtkModifierBox().debugName(Self.self, id: modifierName)
         widget.setChild(children.child0.widget)
         return widget
     }

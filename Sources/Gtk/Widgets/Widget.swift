@@ -271,10 +271,10 @@ open class Widget: GObjectRepresentable {
     @GObjectProperty(named: "height-request") public var minHeight: Int
 
     /// Sets the name of the Gtk view for useful debugging in inspector (Ctrl+Shift+D)
-    open func debugName<View>(_: View.Type) -> Self {
+    open func debugName<View>(_: View.Type, id: String = "") -> Self {
         #if DEBUG
             // Limited type depth because the inspector does not like long names
-            name = String(describing: Self.self) + " " + typeDescription(of: View.self, withMaxDepth: 3)
+            name = String(describing: Self.self) + " " + typeDescription(of: View.self, withMaxDepth: 3) + " " + id
         #endif
         return self
     }
