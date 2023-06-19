@@ -24,6 +24,6 @@ public class CSSProvider {
     ///
     /// Deprecated since: 4.12
     public func loadCss(from data: String) {
-        gtk_css_provider_load_from_data(pointer, data, data.count)
+        gtk_css_provider_load_from_data(pointer, data, gssize(data.count))
     }
 }
