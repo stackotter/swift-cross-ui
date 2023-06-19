@@ -1,6 +1,6 @@
 import CGtk
 
-public struct Color {
+public struct Color: Equatable {
     public var red: Float
     public var green: Float
     public var blue: Float

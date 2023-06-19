@@ -158,29 +158,26 @@ open class Widget: GObjectRepresentable {
         signals.append((handlerId, box))
     }
 
-    public func setForegroundColor(color: Color) {
-        let className = String("class-\(UUID().uuidString)").replacingOccurrences(
-            of: "-",
-            with: "_"
-        )
-        className.withCString { string in
-            gtk_widget_add_css_class(widgetPointer, string)
+    /// A block of CSS for this widget
+    public lazy var css: CSSBlock = CSSBlock(forCssClass: customCssClass) {
+        didSet {
+            guard oldValue != css else { return }
+            cssProvider.loadCss(from: css.stringRepresentation)
         }
-
-        let css =
-            ".\(className){color:rgba(\(color.red*255),\(color.green*255),\(color.blue*255),\(color.alpha*255));}"
-        let provider = CssProvider()
-        provider.loadFromData(css)
-        addCssProvider(provider)
     }
 
-    public func addCssProvider(_ provider: CssProvider) {
-        gtk_style_context_add_provider_for_display(
-            gdk_display_get_default(),
-            OpaquePointer(provider.pointer),
-            UInt32(GTK_STYLE_PROVIDER_PRIORITY_APPLICATION)
-        )
-    }
+    /// Unique CSS class for this widget
+    private lazy var customCssClass: String = {
+        let className = ObjectIdentifier(self).debugDescription
+            .replacingOccurrences(of: "ObjectIdentifier(0x", with: "class_")
+            .replacingOccurrences(of: ")", with: "")
+        gtk_widget_add_css_class(widgetPointer, className)
+        return className
+    }()
+
+    /// A CSS provider specifically for this widget. Will get removed when
+    /// it deinits.
+    private lazy var cssProvider = CSSProvider()
 
     public func show() {
         gtk_widget_set_visible(widgetPointer, true.toGBoolean())
@@ -225,9 +222,10 @@ open class Widget: GObjectRepresentable {
     @GObjectProperty(named: "height-request") public var minHeight: Int
 
     /// Sets the name of the Gtk view for useful debugging in inspector (Ctrl+Shift+D)
-    open func debugName<View>(_: View.Type) -> Self {
+    open func debugName<View>(_: View.Type, id: String = "") -> Self {
         #if DEBUG
-            name = String(describing: Self.self) + " " + String(describing: View.self)
+            // Limited type depth because the inspector does not like long names
+            name = String(describing: Self.self) + " " + typeDescription(of: View.self, withMaxDepth: 3) + " " + id
         #endif
         return self
     }
