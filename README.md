@@ -78,7 +78,13 @@ Here's the [documentation site](https://stackotter.github.io/swift-cross-ui/docu
 Install Gtk 4 using HomeBrew or the package manager of your choice.
 
 ```sh
-brew install gtk4
+brew install pkg-config gtk4
+```
+
+If you run into errors related to `libffi` or `FFI` when trying to build a swift-cross-ui project (likely caused by having Xcode CLTs installed), try running the following command to patch libffi:
+
+```sh
+sed -i '' 's/-I..includedir.//g' $(brew --prefix)/Library/Homebrew/os/mac/pkgconfig/*/libffi.pc
 ```
 
 ### Linux: Installing Gtk 4 and Clang
@@ -88,6 +94,8 @@ Install Gtk 4 and Clang using apt or the package manager of your choice. On most
 ```sh
 sudo apt install libgtk-4-dev clang
 ```
+
+If you run into errors related to not finding `gtk/gtk.h` when trying to build a swift-cross-ui project, try restarting your computer. This has worked in some cases (although there may be a more elegant solution).
 
 ### Windows (experimental): Installing Gtk 4 through vcpkg
 
