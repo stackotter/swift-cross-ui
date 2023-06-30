@@ -15,6 +15,15 @@ This package is still quite a work-in-progress so don't expect it to be very use
 
 **NOTE**: SwiftCrossUI does not attempt to replicate SwiftUI's API because SwiftCrossUI is intended to be simpler than SwiftUI. However, many concepts from SwiftUI should still be transferrable.
 
+## Community
+
+Discussion about SwiftCrossUI now happens in the [SwiftCrossUI Discord server](https://discord.gg/fw2trT48ny) (it used to happen in a channel of the SwiftGtk Discord server). Feel free to [join](https://discord.gg/fw2trT48ny)
+if you want to get involved, discuss the library, or just be kept up-to-date on progress!
+
+## Supporting SwiftCrossUI
+
+If you find SwiftCrossUI useful, please consider supporting me by [becoming a sponsor](https://github.com/sponsors/stackotter). I spend most of my spare time working on open-source projects, and each sponsorship helps me focus more time on making high quality libraries and tools for the community.
+
 ## Example
 
 Here's a simple example app demonstrate how easy it is to get started with SwiftCrossUI:

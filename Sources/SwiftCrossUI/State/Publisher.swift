@@ -24,6 +24,7 @@ public class Publisher {
 
                 return 0
             },
+            // TODO: Pass unretained instead of just as a pointer (see build warning).
             &observations,
             { _ in }
         )
