@@ -105,8 +105,7 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/body",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/path"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/body"
       ],
       "title" : "Instance Properties"
     },
@@ -304,43 +303,6 @@
   "title" : "init(_:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/image\/init(_:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Image/path": {
-  "abstract" : [
-    {
-      "text" : "The path to the image.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "path"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/path",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "path",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/image\/path"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Image/update(_:children:)": {
   "abstract" : [

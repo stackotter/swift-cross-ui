@@ -1,0 +1,216 @@
+{
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "View.body",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/body"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:12SwiftCrossUI10ScrollViewV4bodyxvp",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "var"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "body"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "Content"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Property",
+    "symbolKind" : "property",
+    "title" : "body"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "Linux"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "var"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "body"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Content"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/scrollview\/body"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView": {
+  "abstract" : [
+    {
+      "text" : "A view that is scrollable when it would otherwise overflow available space. Use the",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "code" : "View\/frame",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " modifier to constrain height if necessary.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ScrollView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ScrollView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ScrollView",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scrollview"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/body": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "body"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Content"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/body",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "body",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scrollview\/body"
+}
+}
+}

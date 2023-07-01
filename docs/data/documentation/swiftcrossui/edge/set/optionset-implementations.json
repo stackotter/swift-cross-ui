@@ -1,0 +1,916 @@
+{
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/OptionSet-Implementations"
+  },
+  "kind" : "article",
+  "metadata" : {
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "role" : "collectionGroup",
+    "title" : "OptionSet Implementations"
+  },
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/init()"
+      ],
+      "title" : "Initializers"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/contains(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/formIntersection(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/formSymmetricDifference(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/formUnion(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/insert(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/intersection(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/remove(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/symmetricDifference(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/union(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/update(with:)"
+      ],
+      "title" : "Instance Methods"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/edge\/set\/optionset-implementations"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge": {
+  "abstract" : [
+    {
+      "text" : "An enumeration to indicate one edge of a rectangle.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Edge"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Edge"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Edge",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/edge"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/Set": {
+  "abstract" : [
+    {
+      "text" : "An efficient set of Edges.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Set"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Set"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Edge.Set",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/edge\/set"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/Set/contains(_:)": {
+  "abstract" : [
+
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "Self",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " is ",
+        "type" : "text"
+      },
+      {
+        "code" : "Self.Element",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "contains"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/contains(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "contains(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/edge\/set\/contains(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/Set/formIntersection(_:)": {
+  "abstract" : [
+
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "RawValue",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "FixedWidthInteger",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "formIntersection"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/formIntersection(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "formIntersection(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/edge\/set\/formintersection(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/Set/formSymmetricDifference(_:)": {
+  "abstract" : [
+
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "RawValue",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "FixedWidthInteger",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "formSymmetricDifference"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/formSymmetricDifference(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "formSymmetricDifference(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/edge\/set\/formsymmetricdifference(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/Set/formUnion(_:)": {
+  "abstract" : [
+
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "RawValue",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "FixedWidthInteger",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "formUnion"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/formUnion(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "formUnion(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/edge\/set\/formunion(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/Set/init()": {
+  "abstract" : [
+
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "RawValue",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "FixedWidthInteger",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "()"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/init()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init()",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/edge\/set\/init()"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/Set/insert(_:)": {
+  "abstract" : [
+
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "Self",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " is ",
+        "type" : "text"
+      },
+      {
+        "code" : "Self.Element",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "insert"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Element"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> (inserted"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ", memberAfterInsert"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Element"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/insert(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "insert(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/edge\/set\/insert(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/Set/intersection(_:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "intersection"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/intersection(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "intersection(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/edge\/set\/intersection(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/Set/remove(_:)": {
+  "abstract" : [
+
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "Self",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " is ",
+        "type" : "text"
+      },
+      {
+        "code" : "Self.Element",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "remove"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Element"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Element"
+    },
+    {
+      "kind" : "text",
+      "text" : "?"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/remove(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "remove(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/edge\/set\/remove(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/Set/symmetricDifference(_:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "symmetricDifference"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/symmetricDifference(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "symmetricDifference(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/edge\/set\/symmetricdifference(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/Set/union(_:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "union"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/union(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "union(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/edge\/set\/union(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/Set/update(with:)": {
+  "abstract" : [
+
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "Self",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " is ",
+        "type" : "text"
+      },
+      {
+        "code" : "Self.Element",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "update"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "with"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Element"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Element"
+    },
+    {
+      "kind" : "text",
+      "text" : "?"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/update(with:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "update(with:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/edge\/set\/update(with:)"
+}
+}
+}

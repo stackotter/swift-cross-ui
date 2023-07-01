@@ -96,6 +96,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherViewContent",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewContent",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackContent",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewContent",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent1",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10",
@@ -249,6 +250,37 @@
   "title" : "ForEachViewContent",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/foreachviewcontent"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStackContent": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "NavigationStackContent"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackContent",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "NavigationStackContent"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "NavigationStackContent",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationstackcontent"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalViewContent": {
   "abstract" : [

@@ -13,7 +13,7 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI5ColorV3redSdvp",
+    "externalID" : "s:12SwiftCrossUI5ColorV3redSfvp",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -33,8 +33,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Sd",
-        "text" : "Double"
+        "preciseIdentifier" : "s:Sf",
+        "text" : "Float"
       }
     ],
     "modules" : [
@@ -76,8 +76,8 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Sd",
-              "text" : "Double"
+              "preciseIdentifier" : "s:Sf",
+              "text" : "Float"
             }
           ]
         }
@@ -175,8 +175,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/red-swift.property",

@@ -105,9 +105,7 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/action",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/body",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/label"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/body"
       ],
       "title" : "Instance Properties"
     },
@@ -198,43 +196,6 @@
   "title" : "View Implementations",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/button\/view-implementations"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Button/action": {
-  "abstract" : [
-    {
-      "text" : "The action to be performed when the button is clicked.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "action"
-    },
-    {
-      "kind" : "text",
-      "text" : ": () -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/action",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "action",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/button\/action"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Button/asWidget(_:)": {
   "abstract" : [
@@ -371,43 +332,6 @@
   "title" : "init(_:action:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/button\/init(_:action:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Button/label": {
-  "abstract" : [
-    {
-      "text" : "The label to show on the button.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "label"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/label",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "label",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/button\/label"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Button/update(_:children:)": {
   "abstract" : [

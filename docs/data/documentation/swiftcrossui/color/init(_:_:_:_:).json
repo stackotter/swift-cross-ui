@@ -13,7 +13,7 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI5ColorVyACSd_S3dtcfc",
+    "externalID" : "s:12SwiftCrossUI5ColorVyACSf_S3ftcfc",
     "fragments" : [
       {
         "kind" : "identifier",
@@ -25,8 +25,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Sd",
-        "text" : "Double"
+        "preciseIdentifier" : "s:Sf",
+        "text" : "Float"
       },
       {
         "kind" : "text",
@@ -34,8 +34,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Sd",
-        "text" : "Double"
+        "preciseIdentifier" : "s:Sf",
+        "text" : "Float"
       },
       {
         "kind" : "text",
@@ -43,8 +43,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Sd",
-        "text" : "Double"
+        "preciseIdentifier" : "s:Sf",
+        "text" : "Float"
       },
       {
         "kind" : "text",
@@ -52,8 +52,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Sd",
-        "text" : "Double"
+        "preciseIdentifier" : "s:Sf",
+        "text" : "Float"
       },
       {
         "kind" : "text",
@@ -107,8 +107,8 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Sd",
-              "text" : "Double"
+              "preciseIdentifier" : "s:Sf",
+              "text" : "Float"
             },
             {
               "kind" : "text",
@@ -132,8 +132,8 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Sd",
-              "text" : "Double"
+              "preciseIdentifier" : "s:Sf",
+              "text" : "Float"
             },
             {
               "kind" : "text",
@@ -157,8 +157,8 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Sd",
-              "text" : "Double"
+              "preciseIdentifier" : "s:Sf",
+              "text" : "Float"
             },
             {
               "kind" : "text",
@@ -182,8 +182,8 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Sd",
-              "text" : "Double"
+              "preciseIdentifier" : "s:Sf",
+              "text" : "Float"
             },
             {
               "kind" : "text",
@@ -277,8 +277,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
     },
     {
       "kind" : "text",
@@ -286,8 +286,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
     },
     {
       "kind" : "text",
@@ -295,8 +295,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
     },
     {
       "kind" : "text",
@@ -304,8 +304,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
     },
     {
       "kind" : "text",

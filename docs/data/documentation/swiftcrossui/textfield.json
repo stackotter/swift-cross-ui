@@ -105,9 +105,7 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/body",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/placeholder",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/value"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/body"
       ],
       "title" : "Instance Properties"
     },
@@ -336,43 +334,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/textfield\/init(_:_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/placeholder": {
-  "abstract" : [
-    {
-      "text" : "The label to show when the field is empty.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "placeholder"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/placeholder",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "placeholder",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/textfield\/placeholder"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/update(_:children:)": {
   "abstract" : [
 
@@ -436,56 +397,6 @@
   "title" : "update(_:children:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/textfield\/update(_:children:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/value": {
-  "abstract" : [
-    {
-      "text" : "Storage for the field’s content.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "value"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI7BindingC",
-      "text" : "Binding"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : ">?"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/value",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "value",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/textfield\/value"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

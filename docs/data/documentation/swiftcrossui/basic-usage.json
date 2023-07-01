@@ -80,7 +80,7 @@
         {
           "inlineContent" : [
             {
-              "text" : "Next, run the following command to install GTK+:",
+              "text" : "Next, run the following command to install Gtk 4:",
               "type" : "text"
             }
           ],
@@ -88,7 +88,7 @@
         },
         {
           "code" : [
-            "brew install gtk+3"
+            "brew install gtk4"
           ],
           "syntax" : null,
           "type" : "codeListing"
@@ -114,7 +114,7 @@
               "type" : "strong"
             },
             {
-              "text" : " If Xcode has trouble finding GTK+ after you’ve installed it, try restarting your computer.",
+              "text" : " If Xcode has trouble finding GTK 4 after you’ve installed it, try restarting your computer.",
               "type" : "text"
             }
           ],
@@ -144,7 +144,7 @@
               "type" : "text"
             },
             {
-              "code" : "GTK+",
+              "code" : "gtk4",
               "type" : "codeVoice"
             },
             {
@@ -163,7 +163,7 @@
         {
           "inlineContent" : [
             {
-              "text" : "If you’re on a Debian or Ubuntu-based Linux distro, you can use the following command to install GTK+ and Clang:",
+              "text" : "If you’re on a Debian or Ubuntu-based Linux distro, you can use the following command to install GTK 4 and Clang:",
               "type" : "text"
             }
           ],
@@ -171,7 +171,7 @@
         },
         {
           "code" : [
-            "sudo apt install libgtk-3-dev clang"
+            "sudo apt install libgtk-4-dev clang"
           ],
           "syntax" : null,
           "type" : "codeListing"

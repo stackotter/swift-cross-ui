@@ -72,7 +72,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:8SwiftGtk14ScrolledWindowC",
+              "preciseIdentifier" : "s:3Gtk14ScrolledWindowC",
               "text" : "ScrolledWindow"
             }
           ]

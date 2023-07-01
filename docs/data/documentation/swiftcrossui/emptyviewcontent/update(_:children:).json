@@ -5,7 +5,7 @@
       "type" : "text"
     },
     {
-      "code" : "View.update(_:children:)",
+      "code" : "ViewContent.update(_:children:)",
       "type" : "codeVoice"
     },
     {
@@ -18,7 +18,7 @@
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent\/View-Implementations"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent\/ViewContent-Implementations"
       ]
     ]
   },
@@ -28,8 +28,56 @@
   },
   "kind" : "symbol",
   "metadata" : {
+    "conformance" : {
+      "availabilityPrefix" : [
+        {
+          "text" : "Available when",
+          "type" : "text"
+        }
+      ],
+      "conformancePrefix" : [
+        {
+          "text" : "Conforms when",
+          "type" : "text"
+        }
+      ],
+      "constraints" : [
+        {
+          "code" : "Self",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " is ",
+          "type" : "text"
+        },
+        {
+          "code" : "Self.Content",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " and ",
+          "type" : "text"
+        },
+        {
+          "code" : "State",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " is ",
+          "type" : "text"
+        },
+        {
+          "code" : "EmptyState",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : ".",
+          "type" : "text"
+        }
+      ]
+    },
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI4ViewPAAE6update_8childreny6WidgetQz_7Content_8ChildrenQZtF::SYNTHESIZED::s:12SwiftCrossUI16EmptyViewContentV",
+    "externalID" : "s:12SwiftCrossUI11ViewContentPAA0E0QzRszAA10EmptyStateC0G0RtzrlE6update_8childreny3Gtk10SectionBoxC_8ChildrenQztF::SYNTHESIZED::s:12SwiftCrossUI16EmptyViewContentV",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -49,15 +97,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "Self"
-      },
-      {
-        "kind" : "text",
-        "text" : "."
-      },
-      {
-        "kind" : "typeIdentifier",
-        "text" : "Widget"
+        "preciseIdentifier" : "s:12SwiftCrossUI13GtkSectionBoxa",
+        "text" : "GtkSectionBox"
       },
       {
         "kind" : "text",
@@ -74,14 +115,6 @@
       {
         "kind" : "typeIdentifier",
         "text" : "Self"
-      },
-      {
-        "kind" : "text",
-        "text" : "."
-      },
-      {
-        "kind" : "typeIdentifier",
-        "text" : "Content"
       },
       {
         "kind" : "text",
@@ -150,16 +183,10 @@
               "text" : ": "
             },
             {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkSectionBox",
               "kind" : "typeIdentifier",
-              "text" : "Self"
-            },
-            {
-              "kind" : "text",
-              "text" : "."
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "Widget"
+              "preciseIdentifier" : "s:12SwiftCrossUI13GtkSectionBoxa",
+              "text" : "GtkSectionBox"
             },
             {
               "kind" : "text",
@@ -176,14 +203,6 @@
             {
               "kind" : "typeIdentifier",
               "text" : "Self"
-            },
-            {
-              "kind" : "text",
-              "text" : "."
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "Content"
             },
             {
               "kind" : "text",
@@ -270,21 +289,69 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/emptyviewcontent"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewContent/View-Implementations": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewContent/ViewContent-Implementations": {
   "abstract" : [
 
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent\/View-Implementations",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewContent\/ViewContent-Implementations",
   "kind" : "article",
   "role" : "collectionGroup",
-  "title" : "View Implementations",
+  "title" : "ViewContent Implementations",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/emptyviewcontent\/view-implementations"
+  "url" : "\/documentation\/swiftcrossui\/emptyviewcontent\/viewcontent-implementations"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewContent/update(_:children:)": {
   "abstract" : [
 
   ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "Self",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " is ",
+        "type" : "text"
+      },
+      {
+        "code" : "Self.Content",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " and ",
+        "type" : "text"
+      },
+      {
+        "code" : "State",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " is ",
+        "type" : "text"
+      },
+      {
+        "code" : "EmptyState",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
   "fragments" : [
     {
       "kind" : "keyword",
@@ -304,15 +371,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
+      "preciseIdentifier" : "s:12SwiftCrossUI13GtkSectionBoxa",
+      "text" : "GtkSectionBox"
     },
     {
       "kind" : "text",
@@ -336,14 +396,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
       "text" : "Children"
     },
     {
@@ -357,6 +409,37 @@
   "title" : "update(_:children:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/emptyviewcontent\/update(_:children:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkSectionBox": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkSectionBox"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkSectionBox",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkSectionBox"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkSectionBox",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtksectionbox"
 }
 }
 }

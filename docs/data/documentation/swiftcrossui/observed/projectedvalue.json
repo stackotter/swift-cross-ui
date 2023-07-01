@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "A binding to the inner value.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -185,9 +191,67 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/binding"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observable": {
+  "abstract" : [
+    {
+      "text" : "An object that can be observed for changes.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Observable"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Observable"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Observable",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/observable"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed": {
   "abstract" : [
-
+    {
+      "text" : "A wrapper which publishes a change whenever the wrapped value is set. If the wrapped value is",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ", its ",
+      "type" : "text"
+    },
+    {
+      "code" : "didChange",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " publisher will also be forwarded to the wrapper’s publisher.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -218,7 +282,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/projectedValue": {
   "abstract" : [
-
+    {
+      "text" : "A binding to the inner value.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

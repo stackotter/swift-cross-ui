@@ -1,0 +1,399 @@
+{
+  "abstract" : [
+    {
+      "text" : "Creates a wrapper around a class. Only setting ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/wrappedValue",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " to a new instance",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "of the class is the only change that will get published. This is hardly ever intentional, so",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "this initializer variant contains a deprecation warning to warn developers (but does nothing",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "functionally different).",
+      "type" : "text"
+    }
+  ],
+  "deprecationSummary" : [
+    {
+      "inlineContent" : [
+        {
+          "text" : "A class must be Observable to be Observed",
+          "type" : "text"
+        }
+      ],
+      "type" : "paragraph"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/init(wrappedValue:)-8e6q2"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:12SwiftCrossUI8ObservedC12wrappedValueACyxGx_tcRlzClufc",
+    "fragments" : [
+      {
+        "kind" : "identifier",
+        "text" : "init"
+      },
+      {
+        "kind" : "text",
+        "text" : "("
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "wrappedValue"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "Value"
+      },
+      {
+        "kind" : "text",
+        "text" : ")"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "platforms" : [
+
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Initializer",
+    "symbolKind" : "init",
+    "title" : "init(wrappedValue:)"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "Linux"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "init"
+            },
+            {
+              "kind" : "text",
+              "text" : "("
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "wrappedValue"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Value"
+            },
+            {
+              "kind" : "text",
+              "text" : ") "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "where"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Value"
+            },
+            {
+              "kind" : "text",
+              "text" : " : AnyObject"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/observed\/init(wrappedvalue:)-8e6q2"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observable": {
+  "abstract" : [
+    {
+      "text" : "An object that can be observed for changes.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Observable"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Observable"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Observable",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/observable"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed": {
+  "abstract" : [
+    {
+      "text" : "A wrapper which publishes a change whenever the wrapped value is set. If the wrapped value is",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ", its ",
+      "type" : "text"
+    },
+    {
+      "code" : "didChange",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " publisher will also be forwarded to the wrapper’s publisher.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Observed"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Observed"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Observed",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/observed"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/init(wrappedValue:)-8e6q2": {
+  "abstract" : [
+    {
+      "text" : "Creates a wrapper around a class. Only setting ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/wrappedValue",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " to a new instance",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "of the class is the only change that will get published. This is hardly ever intentional, so",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "this initializer variant contains a deprecation warning to warn developers (but does nothing",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "functionally different).",
+      "type" : "text"
+    }
+  ],
+  "deprecated" : true,
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "wrappedValue"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Value"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/init(wrappedValue:)-8e6q2",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(wrappedValue:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/observed\/init(wrappedvalue:)-8e6q2"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/wrappedValue": {
+  "abstract" : [
+    {
+      "text" : "The underlying wrapped value.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "wrappedValue"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Value"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/wrappedValue",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "wrappedValue",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/observed\/wrappedvalue"
+}
+}
+}

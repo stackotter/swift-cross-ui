@@ -90,7 +90,7 @@
                       "type" : "codeVoice"
                     },
                     {
-                      "text" : ", a simple app used to demonstrate some of the available window properties. See ",
+                      "text" : ", a simple app showcasing some of the available window properties. See ",
                       "type" : "text"
                     },
                     {
@@ -100,6 +100,75 @@
                     },
                     {
                       "text" : " for more information.",
+                      "type" : "text"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "code" : "GreetingGeneratorExample",
+                      "type" : "codeVoice"
+                    },
+                    {
+                      "text" : ", a simple app demonstrating dynamic state and the ",
+                      "type" : "text"
+                    },
+                    {
+                      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+                      "isActive" : true,
+                      "type" : "reference"
+                    },
+                    {
+                      "text" : " view.",
+                      "type" : "text"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "code" : "FileViewerExample",
+                      "type" : "codeVoice"
+                    },
+                    {
+                      "text" : ", an app showcasing integration with the system’s file chooser.",
+                      "type" : "text"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "code" : "NavigationExample",
+                      "type" : "codeVoice"
+                    },
+                    {
+                      "text" : ", an app showcasing ",
+                      "type" : "text"
+                    },
+                    {
+                      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack",
+                      "isActive" : true,
+                      "type" : "reference"
+                    },
+                    {
+                      "text" : " and related concepts.",
                       "type" : "text"
                     }
                   ],
@@ -122,10 +191,11 @@
         {
           "code" : [
             "swift run CounterExample",
-            "",
             "swift run RandomNumberGeneratorExample",
-            "",
-            "swift run WindowPropertiesExample"
+            "swift run WindowPropertiesExample",
+            "swift run GreetingGeneratorExample",
+            "swift run FileViewerExample",
+            "swift run NavigationExample"
           ],
           "syntax" : null,
           "type" : "codeListing"
@@ -192,6 +262,74 @@
   "title" : "Basic Usage",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/basic-usage"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach": {
+  "abstract" : [
+    {
+      "text" : "A view that displays a variable amount of children.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ForEach"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ForEach"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ForEach",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/foreach"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStack": {
+  "abstract" : [
+    {
+      "text" : "A view that displays a root view and enables you to present additional views over the root view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "NavigationStack"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "NavigationStack"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "NavigationStack",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationstack"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties": {
   "abstract" : [

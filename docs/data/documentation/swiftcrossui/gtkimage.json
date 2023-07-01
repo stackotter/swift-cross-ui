@@ -72,7 +72,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:8SwiftGtk5ImageC",
+              "preciseIdentifier" : "s:3Gtk5ImageC",
               "text" : "Image"
             }
           ]

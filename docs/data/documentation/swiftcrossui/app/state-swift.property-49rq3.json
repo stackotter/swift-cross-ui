@@ -8,7 +8,7 @@
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/state-swift.property-6f6cc"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/state-swift.property-8m60g"
       ],
       "title" : "App Implementations"
     }
@@ -242,7 +242,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/app\/state-swift.property-49rq3"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/state-swift.property-6f6cc": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/state-swift.property-8m60g": {
   "abstract" : [
 
   ],
@@ -269,7 +269,7 @@
         "type" : "text"
       },
       {
-        "code" : "EmptyViewState",
+        "code" : "EmptyState",
         "type" : "codeVoice"
       },
       {
@@ -297,16 +297,16 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI14EmptyViewStateC",
-      "text" : "EmptyViewState"
+      "preciseIdentifier" : "s:12SwiftCrossUI10EmptyStateC",
+      "text" : "EmptyState"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/state-swift.property-6f6cc",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/state-swift.property-8m60g",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "state",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/app\/state-swift.property-6f6cc"
+  "url" : "\/documentation\/swiftcrossui\/app\/state-swift.property-8m60g"
 }
 }
 }

@@ -72,7 +72,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:8SwiftGtk4SizeV",
+              "preciseIdentifier" : "s:3Gtk4SizeV",
               "text" : "Size"
             }
           ]

@@ -193,8 +193,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/alpha",
@@ -269,8 +269,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/blue-swift.property",
@@ -387,8 +387,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/green-swift.property",
@@ -489,8 +489,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
     },
     {
       "kind" : "text",
@@ -498,8 +498,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
     },
     {
       "kind" : "text",
@@ -507,8 +507,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
     },
     {
       "kind" : "text",
@@ -516,8 +516,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
     },
     {
       "kind" : "text",
@@ -596,8 +596,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
+      "preciseIdentifier" : "s:Sf",
+      "text" : "Float"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/red-swift.property",

@@ -1,4 +1,15 @@
 {
+  "deprecationSummary" : [
+    {
+      "inlineContent" : [
+        {
+          "text" : "Replace with Observable",
+          "type" : "text"
+        }
+      ],
+      "type" : "paragraph"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -12,11 +23,11 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI9ViewStateP",
+    "externalID" : "s:12SwiftCrossUI9ViewStatea",
     "fragments" : [
       {
         "kind" : "keyword",
-        "text" : "protocol"
+        "text" : "typealias"
       },
       {
         "kind" : "text",
@@ -38,9 +49,12 @@
         "text" : "ViewState"
       }
     ],
+    "platforms" : [
+
+    ],
     "role" : "symbol",
-    "roleHeading" : "Protocol",
-    "symbolKind" : "protocol",
+    "roleHeading" : "Type Alias",
+    "symbolKind" : "typealias",
     "title" : "ViewState"
   },
   "primaryContentSections" : [
@@ -56,7 +70,7 @@
           "tokens" : [
             {
               "kind" : "keyword",
-              "text" : "protocol"
+              "text" : "typealias"
             },
             {
               "kind" : "text",
@@ -68,22 +82,18 @@
             },
             {
               "kind" : "text",
-              "text" : " : AnyObject"
+              "text" : " = "
+            },
+            {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI10ObservableP",
+              "text" : "Observable"
             }
           ]
         }
       ],
       "kind" : "declarations"
-    }
-  ],
-  "relationshipsSections" : [
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState"
-      ],
-      "kind" : "relationships",
-      "title" : "Conforming Types",
-      "type" : "conformingTypes"
     }
   ],
   "schemaVersion" : {
@@ -93,14 +103,6 @@
   },
   "sections" : [
 
-  ],
-  "topicSections" : [
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState\/didChange-3z4vv"
-      ],
-      "title" : "Instance Properties"
-    }
   ],
   "variants" : [
     {
@@ -130,17 +132,17 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewState": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observable": {
   "abstract" : [
     {
-      "text" : "The view state to use for stateless views.",
+      "text" : "An object that can be observed for changes.",
       "type" : "text"
     }
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "class"
+      "text" : "protocol"
     },
     {
       "kind" : "text",
@@ -148,30 +150,31 @@
     },
     {
       "kind" : "identifier",
-      "text" : "EmptyViewState"
+      "text" : "Observable"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "EmptyViewState"
+      "text" : "Observable"
     }
   ],
   "role" : "symbol",
-  "title" : "EmptyViewState",
+  "title" : "Observable",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/emptyviewstate"
+  "url" : "\/documentation\/swiftcrossui\/observable"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewState": {
   "abstract" : [
 
   ],
+  "deprecated" : true,
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "protocol"
+      "text" : "typealias"
     },
     {
       "kind" : "text",
@@ -194,42 +197,6 @@
   "title" : "ViewState",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewstate"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewState/didChange-3z4vv": {
-  "abstract" : [
-
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "didChange"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9PublisherC",
-      "text" : "Publisher"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState\/didChange-3z4vv",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "didChange",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewstate\/didchange-3z4vv"
 }
 }
 }

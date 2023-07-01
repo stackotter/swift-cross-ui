@@ -87,7 +87,7 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/emptyviewstate\/init()",
+                "path" : "\/documentation\/swiftcrossui\/emptystate\/init()",
                 "title" : "init()",
                 "type" : "init"
               },
@@ -102,18 +102,18 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/emptyviewstate\/didchange",
+                    "path" : "\/documentation\/swiftcrossui\/emptystate\/didchange",
                     "title" : "var didChange: Publisher",
                     "type" : "property"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/emptyviewstate\/viewstate-implementations",
-                "title" : "ViewState Implementations",
+                "path" : "\/documentation\/swiftcrossui\/emptystate\/observable-implementations",
+                "title" : "Observable Implementations",
                 "type" : "symbol"
               }
             ],
-            "path" : "\/documentation\/swiftcrossui\/emptyviewstate",
-            "title" : "EmptyViewState",
+            "path" : "\/documentation\/swiftcrossui\/emptystate",
+            "title" : "EmptyState",
             "type" : "class"
           },
           {
@@ -123,7 +123,17 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/observed\/init(wrappedvalue:)",
+                "path" : "\/documentation\/swiftcrossui\/observed\/init(wrappedvalue:)-4hr3j",
+                "title" : "init(wrappedValue: Value)",
+                "type" : "init"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/observed\/init(wrappedvalue:)-8e6q2",
+                "title" : "init(wrappedValue: Value)",
+                "type" : "init"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/observed\/init(wrappedvalue:)-8qd3l",
                 "title" : "init(wrappedValue: Value)",
                 "type" : "init"
               },
@@ -132,13 +142,13 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/observed\/projectedvalue",
-                "title" : "var projectedValue: Binding<Value>",
+                "path" : "\/documentation\/swiftcrossui\/observed\/didchange-2rgzn",
+                "title" : "let didChange: Publisher",
                 "type" : "property"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/observed\/publisher",
-                "title" : "var publisher: Publisher",
+                "path" : "\/documentation\/swiftcrossui\/observed\/projectedvalue",
+                "title" : "var projectedValue: Binding<Value>",
                 "type" : "property"
               },
               {
@@ -151,9 +161,29 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/observed\/valuedidchange()",
-                "title" : "func valueDidChange()",
+                "path" : "\/documentation\/swiftcrossui\/observed\/valuedidchange(publish:)",
+                "title" : "func valueDidChange(publish: Bool)",
                 "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/observed\/didchange-6hdu",
+                    "title" : "var didChange: Publisher",
+                    "type" : "property"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/observed\/observable-implementations",
+                "title" : "Observable Implementations",
+                "type" : "symbol"
               }
             ],
             "path" : "\/documentation\/swiftcrossui\/observed",
@@ -177,7 +207,7 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/publisher\/link(todownstream:)",
-                "title" : "func link(toDownstream: Publisher)",
+                "title" : "func link(toDownstream: Publisher) -> Cancellable",
                 "type" : "method"
               },
               {
@@ -273,13 +303,13 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/viewgraphnode\/update()",
-                "title" : "func update()",
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnode\/update(with:)-1vs6a",
+                "title" : "func update(with: NodeView)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/viewgraphnode\/update(with:)",
-                "title" : "func update(with: NodeView)",
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnode\/update(with:)-2rvr0",
+                "title" : "func update(with: NodeView.Content?)",
                 "type" : "method"
               }
             ],
@@ -335,8 +365,8 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/app\/state-swift.property-6f6cc",
-                        "title" : "var state: EmptyViewState",
+                        "path" : "\/documentation\/swiftcrossui\/app\/state-swift.property-8m60g",
+                        "title" : "var state: EmptyState",
                         "type" : "property"
                       }
                     ],
@@ -399,13 +429,31 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/publishedvalue\/publisher",
-                "title" : "var publisher: Publisher",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/observable\/didchange-4m22n",
+                        "title" : "var didChange: Publisher",
+                        "type" : "property"
+                      }
+                    ],
+                    "title" : "Observable Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/observable\/didchange-4l6n9",
+                "title" : "var didChange: Publisher",
                 "type" : "property"
               }
             ],
-            "path" : "\/documentation\/swiftcrossui\/publishedvalue",
-            "title" : "PublishedValue",
+            "path" : "\/documentation\/swiftcrossui\/observable",
+            "title" : "Observable",
+            "type" : "protocol"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/observedmarkerprotocol",
+            "title" : "ObservedMarkerProtocol",
             "type" : "protocol"
           },
           {
@@ -456,8 +504,8 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/state-swift.property-7zzwk",
-                        "title" : "var state: EmptyViewState",
+                        "path" : "\/documentation\/swiftcrossui\/view\/state-swift.property-6dnw8",
+                        "title" : "var state: EmptyState",
                         "type" : "property"
                       }
                     ],
@@ -478,7 +526,7 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:)-6n4jf",
+                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:)-6f221",
                         "title" : "func asWidget(Self.Content.Children) -> GtkBox",
                         "type" : "method"
                       }
@@ -490,7 +538,7 @@
                     "children" : [
                       {
                         "path" : "\/documentation\/swiftcrossui\/viewcontent\/aswidget(_:)",
-                        "title" : "func asWidget(Self.Children) -> GtkBox",
+                        "title" : "func asWidget(Self.Children) -> GtkSectionBox",
                         "type" : "method"
                       }
                     ],
@@ -504,27 +552,22 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/view\/foregroundcolor(_:)",
-                "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                "title" : "func foregroundColor(Color) -> some View",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/view\/frame(height:)",
-                "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/view\/frame(minimumheight:maximumheight:)",
-                "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                "path" : "\/documentation\/swiftcrossui\/view\/frame(minwidth:minheight:)",
+                "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                 "type" : "method"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/view\/padding(_:)",
-                "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                "title" : "func padding(Int) -> some View",
                 "type" : "method"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/view\/padding(_:_:)",
-                "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                "title" : "func padding(Edge.Set, Int) -> some View",
                 "type" : "method"
               },
               {
@@ -538,6 +581,17 @@
                       }
                     ],
                     "title" : "View Implementations",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/viewcontent\/update(_:children:)",
+                        "title" : "func update(GtkSectionBox, children: Self.Children)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "ViewContent Implementations",
                     "type" : "groupMarker"
                   }
                 ],
@@ -610,35 +664,6 @@
             "type" : "protocol"
           },
           {
-            "children" : [
-              {
-                "title" : "Instance Properties",
-                "type" : "groupMarker"
-              },
-              {
-                "children" : [
-                  {
-                    "children" : [
-                      {
-                        "path" : "\/documentation\/swiftcrossui\/viewstate\/didchange-7w1d8",
-                        "title" : "var didChange: Publisher",
-                        "type" : "property"
-                      }
-                    ],
-                    "title" : "ViewState Implementations",
-                    "type" : "groupMarker"
-                  }
-                ],
-                "path" : "\/documentation\/swiftcrossui\/viewstate\/didchange-3z4vv",
-                "title" : "var didChange: Publisher",
-                "type" : "property"
-              }
-            ],
-            "path" : "\/documentation\/swiftcrossui\/viewstate",
-            "title" : "ViewState",
-            "type" : "protocol"
-          },
-          {
             "title" : "Structures",
             "type" : "groupMarker"
           },
@@ -658,18 +683,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/button\/action",
-                "title" : "var action: () -> Void",
-                "type" : "property"
-              },
-              {
                 "path" : "\/documentation\/swiftcrossui\/button\/body",
                 "title" : "var body: EmptyViewContent",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/button\/label",
-                "title" : "var label: String",
                 "type" : "property"
               },
               {
@@ -698,7 +713,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/button\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -707,27 +722,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/button\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/button\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/button\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/button\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/button\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/button\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -748,7 +758,7 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/color\/init(_:_:_:_:)",
-                "title" : "init(Double, Double, Double, Double)",
+                "title" : "init(Float, Float, Float, Float)",
                 "type" : "init"
               },
               {
@@ -757,17 +767,17 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/color\/alpha",
-                "title" : "var alpha: Double",
+                "title" : "var alpha: Float",
                 "type" : "property"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/color\/blue-swift.property",
-                "title" : "var blue: Double",
+                "title" : "var blue: Float",
                 "type" : "property"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/color\/green-swift.property",
-                "title" : "var green: Double",
+                "title" : "var green: Float",
                 "type" : "property"
               },
               {
@@ -777,7 +787,7 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/color\/red-swift.property",
-                "title" : "var red: Double",
+                "title" : "var red: Float",
                 "type" : "property"
               },
               {
@@ -846,12 +856,12 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/eitherview\/aswidget(_:)",
-                "title" : "func asWidget(EitherViewChildren<A, B>) -> GtkBox",
+                "title" : "func asWidget(EitherViewChildren<A, B>) -> GtkModifierBox",
                 "type" : "method"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/eitherview\/update(_:children:)",
-                "title" : "func update(GtkBox, children: EitherViewChildren<A, B>)",
+                "title" : "func update(GtkModifierBox, children: EitherViewChildren<A, B>)",
                 "type" : "method"
               },
               {
@@ -866,7 +876,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/eitherview\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -875,27 +885,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/eitherview\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/eitherview\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/eitherview\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/eitherview\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/eitherview\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -993,7 +998,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -1002,32 +1007,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -1043,7 +1038,12 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkBox",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
                     "type" : "method"
                   }
                 ],
@@ -1093,7 +1093,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -1102,32 +1102,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -1143,7 +1133,12 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkBox",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
                     "type" : "method"
                   }
                 ],
@@ -1231,7 +1226,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreach\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -1240,27 +1235,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreach\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/foreach\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/foreach\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreach\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreach\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1372,7 +1362,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -1381,32 +1371,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -1422,7 +1402,12 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkBox",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
                     "type" : "method"
                   }
                 ],
@@ -1442,214 +1427,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/init(_:color:)",
-                "title" : "init(Child, color: Color)",
-                "type" : "init"
-              },
-              {
-                "title" : "Instance Properties",
-                "type" : "groupMarker"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/body",
-                "title" : "var body: ViewContent1<Child>",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/color",
-                "title" : "var color: Color",
-                "type" : "property"
-              },
-              {
-                "title" : "Instance Methods",
-                "type" : "groupMarker"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/aswidget(_:)",
-                "title" : "func asWidget(ViewGraphNodeChildren1<Child>) -> GtkBox",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/update(_:children:)",
-                "title" : "func update(GtkBox, children: ViewGraphNodeChildren1<Child>)",
-                "type" : "method"
-              },
-              {
-                "title" : "Default Implementations",
-                "type" : "groupMarker"
-              },
-              {
-                "children" : [
-                  {
-                    "title" : "Instance Properties",
-                    "type" : "groupMarker"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/state",
-                    "title" : "var state: EmptyViewState",
-                    "type" : "property"
-                  },
-                  {
-                    "title" : "Instance Methods",
-                    "type" : "groupMarker"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  }
-                ],
-                "path" : "\/documentation\/swiftcrossui\/foregroundcolorview\/view-implementations",
-                "title" : "View Implementations",
-                "type" : "symbol"
-              }
-            ],
-            "path" : "\/documentation\/swiftcrossui\/foregroundcolorview",
-            "title" : "ForegroundColorView",
-            "type" : "struct"
-          },
-          {
-            "children" : [
-              {
-                "title" : "Initializers",
-                "type" : "groupMarker"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/frameview\/init(_:height:)",
-                "title" : "init(Child, height: Int)",
-                "type" : "init"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/frameview\/init(_:minimumheight:maximumheight:)",
-                "title" : "init(Child, minimumHeight: Int?, maximumHeight: Int?)",
-                "type" : "init"
-              },
-              {
-                "title" : "Instance Properties",
-                "type" : "groupMarker"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/frameview\/body",
-                "title" : "var body: ViewContent1<Child>",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/frameview\/maximumheight",
-                "title" : "var maximumHeight: Int?",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/frameview\/maximumwidth",
-                "title" : "var maximumWidth: Int?",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/frameview\/minimumheight",
-                "title" : "var minimumHeight: Int?",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/frameview\/minimumwidth",
-                "title" : "var minimumWidth: Int?",
-                "type" : "property"
-              },
-              {
-                "title" : "Instance Methods",
-                "type" : "groupMarker"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/frameview\/aswidget(_:)",
-                "title" : "func asWidget(ViewGraphNodeChildren1<Child>) -> GtkScrolledWindow",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/frameview\/update(_:children:)",
-                "title" : "func update(GtkScrolledWindow, children: ViewGraphNodeChildren1<Child>)",
-                "type" : "method"
-              },
-              {
-                "title" : "Default Implementations",
-                "type" : "groupMarker"
-              },
-              {
-                "children" : [
-                  {
-                    "title" : "Instance Properties",
-                    "type" : "groupMarker"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/frameview\/state",
-                    "title" : "var state: EmptyViewState",
-                    "type" : "property"
-                  },
-                  {
-                    "title" : "Instance Methods",
-                    "type" : "groupMarker"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/frameview\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/frameview\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/frameview\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/frameview\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/frameview\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  }
-                ],
-                "path" : "\/documentation\/swiftcrossui\/frameview\/view-implementations",
-                "title" : "View Implementations",
-                "type" : "symbol"
-              }
-            ],
-            "path" : "\/documentation\/swiftcrossui\/frameview",
-            "title" : "FrameView",
-            "type" : "struct"
-          },
-          {
-            "children" : [
-              {
-                "title" : "Initializers",
-                "type" : "groupMarker"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/hstack\/init(_:)",
-                "title" : "init(() -> Content)",
+                "path" : "\/documentation\/swiftcrossui\/hstack\/init(spacing:_:)",
+                "title" : "init(spacing: Int, () -> Content)",
                 "type" : "init"
               },
               {
@@ -1667,7 +1446,12 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/hstack\/aswidget(_:)",
-                "title" : "func asWidget(Content.Children) -> GtkButtonBox",
+                "title" : "func asWidget(Content.Children) -> GtkBox",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/hstack\/update(_:children:)",
+                "title" : "func update(GtkBox, children: Content.Children)",
                 "type" : "method"
               },
               {
@@ -1682,7 +1466,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/hstack\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -1691,32 +1475,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/hstack\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/hstack\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/hstack\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/hstack\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/hstack\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/hstack\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -1750,11 +1524,6 @@
                 "type" : "property"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/image\/path",
-                "title" : "var path: String",
-                "type" : "property"
-              },
-              {
                 "title" : "Instance Methods",
                 "type" : "groupMarker"
               },
@@ -1780,7 +1549,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/image\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -1789,27 +1558,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/image\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/image\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/image\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/image\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/image\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/image\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -1820,6 +1584,486 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/image",
             "title" : "Image",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationlink\/init(_:value:path:)",
+                "title" : "init<C>(String, value: C, path: Binding<NavigationPath>)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationlink\/body",
+                "title" : "var body: some ViewContent",
+                "type" : "property"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/state",
+                    "title" : "var state: EmptyState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Content.Children) -> GtkBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/padding(_:)",
+                    "title" : "func padding(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/update(_:children:)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/navigationlink\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/navigationlink",
+            "title" : "NavigationLink",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationpath\/init()",
+                "title" : "init()",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationpath\/append(_:)",
+                "title" : "func append<C>(C)",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationpath\/removeall()",
+                "title" : "func removeAll()",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationpath\/removelast(_:)",
+                "title" : "func removeLast(Int)",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Initializers",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationpath\/init(from:)",
+                    "title" : "init(from: Decoder) throws",
+                    "type" : "init"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/navigationpath\/decodable-implementations",
+                "title" : "Decodable Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationpath\/encode(to:)",
+                    "title" : "func encode(to: Encoder) throws",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/navigationpath\/encodable-implementations",
+                "title" : "Encodable Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/navigationpath",
+            "title" : "NavigationPath",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/init(sidebar:content:detail:)",
+                "title" : "init(sidebar: () -> SideBar, content: () -> MiddleBar, detail: () -> Detail)",
+                "type" : "init"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/init(sidebar:detail:)",
+                "title" : "init(sidebar: () -> SideBar, detail: () -> Detail)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/body",
+                "title" : "var body: ViewContent3<SideBar, MiddleBar, Detail>",
+                "type" : "property"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/state",
+                    "title" : "var state: EmptyState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/aswidget(_:)",
+                    "title" : "func asWidget(ViewGraphNodeChildren3<SideBar, MiddleBar, Detail>) -> GtkPaned",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/padding(_:)",
+                    "title" : "func padding(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/update(_:children:)",
+                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/navigationsplitview",
+            "title" : "NavigationSplitView",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationstack\/init(path:_:)",
+                "title" : "init(path: Binding<NavigationPath>, () -> Detail)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationstack\/body",
+                "title" : "var body: NavigationStackContent<Detail>",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationstack\/aswidget(_:)",
+                "title" : "func asWidget(NavigationStackChildren<Detail>) -> GtkStack",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationstack\/navigationdestination(for:destination:)",
+                "title" : "func navigationDestination<D, C>(for: D.Type, destination: (D) -> C) -> NavigationStack<EitherView<Detail, C>>",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationstack\/navigationtransition(_:duration:)",
+                "title" : "func navigationTransition(StackTransitionType, duration: Double) -> some View",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationstack\/update(_:children:)",
+                "title" : "func update(GtkStack, children: NavigationStackContent<Detail>.Children)",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/state",
+                    "title" : "var state: EmptyState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/padding(_:)",
+                    "title" : "func padding(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/navigationstack\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/navigationstack",
+            "title" : "NavigationStack",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationstackchildren\/init(from:)",
+                "title" : "init(from: NavigationStackChildren<Child>.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationstackchildren\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationstackchildren\/update(with:)",
+                "title" : "func update(with: NavigationStackChildren<Child>.Content)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationstackchildren\/content",
+                "title" : "NavigationStackChildren.Content",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/navigationstackchildren",
+            "title" : "NavigationStackChildren",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/child",
+                "title" : "var child: (Codable) -> Child?",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/destinationtypes",
+                "title" : "var destinationTypes: [Codable.Type]",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/elements",
+                "title" : "var elements: [Codable]",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/path",
+                "title" : "var path: Binding<NavigationPath>",
+                "type" : "property"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/children",
+                "title" : "NavigationStackContent.Children",
+                "type" : "typealias"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/state",
+                    "title" : "var state: EmptyState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/padding(_:)",
+                    "title" : "func padding(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/navigationstackcontent",
+            "title" : "NavigationStackContent",
             "type" : "struct"
           },
           {
@@ -1839,12 +2083,12 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/optionalview\/aswidget(_:)",
-                "title" : "func asWidget(OptionalViewChildren<V>) -> GtkBox",
+                "title" : "func asWidget(OptionalViewChildren<V>) -> GtkModifierBox",
                 "type" : "method"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/optionalview\/update(_:children:)",
-                "title" : "func update(GtkBox, children: OptionalViewChildren<V>)",
+                "title" : "func update(GtkModifierBox, children: OptionalViewChildren<V>)",
                 "type" : "method"
               },
               {
@@ -1859,7 +2103,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalview\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -1868,27 +2112,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalview\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/optionalview\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/optionalview\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalview\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalview\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -1981,7 +2220,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -1990,32 +2229,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -2031,7 +2260,12 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkBox",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
                     "type" : "method"
                   }
                 ],
@@ -2051,18 +2285,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/padding\/init()",
-                "title" : "init()",
-                "type" : "init"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/padding\/init(_:)",
-                "title" : "init(Int)",
-                "type" : "init"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/padding\/init(top:bottom:left:right:)",
-                "title" : "init(top: Int, bottom: Int, left: Int, right: Int)",
+                "path" : "\/documentation\/swiftcrossui\/scrollview\/init(_:)",
+                "title" : "init(() -> Content)",
                 "type" : "init"
               },
               {
@@ -2070,53 +2294,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/padding\/bottom",
-                "title" : "var bottom: Int",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/padding\/left",
-                "title" : "var left: Int",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/padding\/right",
-                "title" : "var right: Int",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/padding\/top",
-                "title" : "var top: Int",
-                "type" : "property"
-              },
-              {
-                "title" : "Subscripts",
-                "type" : "groupMarker"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/padding\/subscript(_:)",
-                "title" : "subscript(Side) -> Int",
-                "type" : "subscript"
-              }
-            ],
-            "path" : "\/documentation\/swiftcrossui\/padding",
-            "title" : "Padding",
-            "type" : "struct"
-          },
-          {
-            "children" : [
-              {
-                "title" : "Instance Properties",
-                "type" : "groupMarker"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/paddingview\/body",
+                "path" : "\/documentation\/swiftcrossui\/scrollview\/body",
                 "title" : "var body: Content",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/paddingview\/padding",
-                "title" : "var padding: Padding",
                 "type" : "property"
               },
               {
@@ -2124,8 +2303,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/paddingview\/aswidget(_:)",
-                "title" : "func asWidget(Content.Children) -> GtkBox",
+                "path" : "\/documentation\/swiftcrossui\/scrollview\/aswidget(_:)",
+                "title" : "func asWidget(Content.Children) -> GtkScrolledWindow",
                 "type" : "method"
               },
               {
@@ -2139,8 +2318,8 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/paddingview\/state",
-                    "title" : "var state: EmptyViewState",
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/state",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -2148,43 +2327,38 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/paddingview\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/paddingview\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/paddingview\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/padding(_:)",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/paddingview\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/paddingview\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/paddingview\/update(_:children:)",
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/update(_:children:)",
                     "title" : "func update(Self.Widget, children: Self.Content.Children)",
                     "type" : "method"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/paddingview\/view-implementations",
+                "path" : "\/documentation\/swiftcrossui\/scrollview\/view-implementations",
                 "title" : "View Implementations",
                 "type" : "symbol"
               }
             ],
-            "path" : "\/documentation\/swiftcrossui\/paddingview",
-            "title" : "PaddingView",
+            "path" : "\/documentation\/swiftcrossui\/scrollview",
+            "title" : "ScrollView",
             "type" : "struct"
           },
           {
@@ -2213,26 +2387,6 @@
                 "type" : "property"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/slider\/decimalplaces",
-                "title" : "var decimalPlaces: Int",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/slider\/maximum",
-                "title" : "var maximum: Double",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/slider\/minimum",
-                "title" : "var minimum: Double",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/slider\/value",
-                "title" : "var value: Binding<Double>?",
-                "type" : "property"
-              },
-              {
                 "title" : "Instance Methods",
                 "type" : "groupMarker"
               },
@@ -2258,7 +2412,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/slider\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -2267,27 +2421,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/slider\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/slider\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/slider\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/slider\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/slider\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/slider\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -2307,8 +2456,91 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/text\/init(_:)",
-                "title" : "init(String)",
+                "path" : "\/documentation\/swiftcrossui\/spacer\/init(minlength:)",
+                "title" : "init(minLength: Int?)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/spacer\/body",
+                "title" : "var body: EmptyViewContent",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/spacer\/aswidget(_:)",
+                "title" : "func asWidget(EmptyViewGraphNodeChildren) -> GtkModifierBox",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/spacer\/update(_:children:)",
+                "title" : "func update(GtkModifierBox, children: EmptyViewGraphNodeChildren)",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/state",
+                    "title" : "var state: EmptyState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/padding(_:)",
+                    "title" : "func padding(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/spacer\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/spacer",
+            "title" : "Spacer",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/text\/init(_:wrap:)",
+                "title" : "init(String, wrap: Bool)",
                 "type" : "init"
               },
               {
@@ -2318,11 +2550,6 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/text\/body",
                 "title" : "var body: EmptyViewContent",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/text\/string",
-                "title" : "var string: String",
                 "type" : "property"
               },
               {
@@ -2351,7 +2578,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/text\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -2360,27 +2587,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/text\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/text\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/text\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/text\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/text\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/text\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -2414,16 +2636,6 @@
                 "type" : "property"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/textfield\/placeholder",
-                "title" : "var placeholder: String",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/textfield\/value",
-                "title" : "var value: Binding<String>?",
-                "type" : "property"
-              },
-              {
                 "title" : "Instance Methods",
                 "type" : "groupMarker"
               },
@@ -2449,7 +2661,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/textfield\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -2458,27 +2670,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/textfield\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/textfield\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/textfield\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/textfield\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/textfield\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -2498,8 +2705,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/vstack\/init(_:spacing:)",
-                "title" : "init(() -> Content, spacing: Int)",
+                "path" : "\/documentation\/swiftcrossui\/vstack\/init(spacing:_:)",
+                "title" : "init(spacing: Int, () -> Content)",
                 "type" : "init"
               },
               {
@@ -2512,17 +2719,17 @@
                 "type" : "property"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/vstack\/spacing",
-                "title" : "var spacing: Int",
-                "type" : "property"
-              },
-              {
                 "title" : "Instance Methods",
                 "type" : "groupMarker"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/vstack\/aswidget(_:)",
                 "title" : "func asWidget(Content.Children) -> GtkBox",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/vstack\/update(_:children:)",
+                "title" : "func update(GtkBox, children: Content.Children)",
                 "type" : "method"
               },
               {
@@ -2537,7 +2744,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/vstack\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -2546,32 +2753,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/vstack\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/vstack\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/vstack\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/vstack\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/vstack\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/vstack\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -2621,7 +2818,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent1\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -2630,32 +2827,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent1\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent1\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent1\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -2671,7 +2858,12 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent1\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkBox",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
                     "type" : "method"
                   },
                   {
@@ -2775,7 +2967,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent10\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -2784,32 +2976,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent10\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent10\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent10\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -2825,7 +3007,12 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent10\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkBox",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
                     "type" : "method"
                   },
                   {
@@ -2889,7 +3076,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent2\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -2898,32 +3085,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent2\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent2\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent2\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -2939,7 +3116,12 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent2\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkBox",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
                     "type" : "method"
                   },
                   {
@@ -3008,7 +3190,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent3\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -3017,32 +3199,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent3\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent3\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent3\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -3058,7 +3230,12 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent3\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkBox",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
                     "type" : "method"
                   },
                   {
@@ -3132,7 +3309,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent4\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -3141,32 +3318,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent4\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent4\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent4\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -3182,7 +3349,12 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent4\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkBox",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
                     "type" : "method"
                   },
                   {
@@ -3261,7 +3433,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent5\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -3270,32 +3442,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent5\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent5\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent5\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -3311,7 +3473,12 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent5\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkBox",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
                     "type" : "method"
                   },
                   {
@@ -3395,7 +3562,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent6\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -3404,32 +3571,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent6\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent6\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent6\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -3445,7 +3602,12 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent6\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkBox",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
                     "type" : "method"
                   },
                   {
@@ -3534,7 +3696,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent7\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -3543,32 +3705,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent7\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent7\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent7\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -3584,7 +3736,12 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent7\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkBox",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
                     "type" : "method"
                   },
                   {
@@ -3678,7 +3835,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent8\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -3687,32 +3844,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent8\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent8\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent8\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -3728,7 +3875,12 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent8\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkBox",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
                     "type" : "method"
                   },
                   {
@@ -3827,7 +3979,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent9\/state",
-                    "title" : "var state: EmptyViewState",
+                    "title" : "var state: EmptyState",
                     "type" : "property"
                   },
                   {
@@ -3836,32 +3988,22 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent9\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
+                    "title" : "func foregroundColor(Color) -> some View",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent9\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
+                    "title" : "func padding(Int) -> some View",
                     "type" : "method"
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent9\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
                     "type" : "method"
                   }
                 ],
@@ -3877,7 +4019,12 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/viewcontent9\/aswidget(_:)",
-                    "title" : "func asWidget(Self.Children) -> GtkBox",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
                     "type" : "method"
                   },
                   {
@@ -4760,99 +4907,6 @@
             "type" : "struct"
           },
           {
-            "children" : [
-              {
-                "title" : "Initializers",
-                "type" : "groupMarker"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/windowreader\/init(_:spacing:)",
-                "title" : "init((GtkWindow) -> Content, spacing: Int)",
-                "type" : "init"
-              },
-              {
-                "title" : "Instance Properties",
-                "type" : "groupMarker"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/windowreader\/body",
-                "title" : "var body: Content",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/windowreader\/spacing",
-                "title" : "var spacing: Int",
-                "type" : "property"
-              },
-              {
-                "title" : "Instance Methods",
-                "type" : "groupMarker"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/windowreader\/aswidget(_:)",
-                "title" : "func asWidget(Content.Children) -> GtkBox",
-                "type" : "method"
-              },
-              {
-                "title" : "Default Implementations",
-                "type" : "groupMarker"
-              },
-              {
-                "children" : [
-                  {
-                    "title" : "Instance Properties",
-                    "type" : "groupMarker"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/windowreader\/state",
-                    "title" : "var state: EmptyViewState",
-                    "type" : "property"
-                  },
-                  {
-                    "title" : "Instance Methods",
-                    "type" : "groupMarker"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/windowreader\/foregroundcolor(_:)",
-                    "title" : "func foregroundColor(Color) -> ForegroundColorView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/windowreader\/frame(height:)",
-                    "title" : "func frame(height: Int) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/windowreader\/frame(minimumheight:maximumheight:)",
-                    "title" : "func frame(minimumHeight: Int?, maximumHeight: Int?) -> FrameView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/windowreader\/padding(_:)",
-                    "title" : "func padding(Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/windowreader\/padding(_:_:)",
-                    "title" : "func padding(Side, Int) -> PaddingView<ViewContent1<Self>>",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/windowreader\/update(_:children:)",
-                    "title" : "func update(Self.Widget, children: Self.Content.Children)",
-                    "type" : "method"
-                  }
-                ],
-                "path" : "\/documentation\/swiftcrossui\/windowreader\/view-implementations",
-                "title" : "View Implementations",
-                "type" : "symbol"
-              }
-            ],
-            "path" : "\/documentation\/swiftcrossui\/windowreader",
-            "title" : "WindowReader",
-            "type" : "struct"
-          },
-          {
             "title" : "Type Aliases",
             "type" : "groupMarker"
           },
@@ -4867,8 +4921,8 @@
             "type" : "typealias"
           },
           {
-            "path" : "\/documentation\/swiftcrossui\/filechooser",
-            "title" : "FileChooser",
+            "path" : "\/documentation\/swiftcrossui\/emptyviewstate",
+            "title" : "EmptyViewState",
             "type" : "typealias"
           },
           {
@@ -4887,18 +4941,8 @@
             "type" : "typealias"
           },
           {
-            "path" : "\/documentation\/swiftcrossui\/gtkbuttonbox",
-            "title" : "GtkButtonBox",
-            "type" : "typealias"
-          },
-          {
             "path" : "\/documentation\/swiftcrossui\/gtkcolor",
             "title" : "GtkColor",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkcontainer",
-            "title" : "GtkContainer",
             "type" : "typealias"
           },
           {
@@ -4917,6 +4961,21 @@
             "type" : "typealias"
           },
           {
+            "path" : "\/documentation\/swiftcrossui\/gtkmodifierbox",
+            "title" : "GtkModifierBox",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkorientable",
+            "title" : "GtkOrientable",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkpaned",
+            "title" : "GtkPaned",
+            "type" : "typealias"
+          },
+          {
             "path" : "\/documentation\/swiftcrossui\/gtkscale",
             "title" : "GtkScale",
             "type" : "typealias"
@@ -4927,8 +4986,18 @@
             "type" : "typealias"
           },
           {
+            "path" : "\/documentation\/swiftcrossui\/gtksectionbox",
+            "title" : "GtkSectionBox",
+            "type" : "typealias"
+          },
+          {
             "path" : "\/documentation\/swiftcrossui\/gtksize",
             "title" : "GtkSize",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkstack",
+            "title" : "GtkStack",
             "type" : "typealias"
           },
           {
@@ -4947,34 +5016,305 @@
             "type" : "typealias"
           },
           {
+            "path" : "\/documentation\/swiftcrossui\/viewstate",
+            "title" : "ViewState",
+            "type" : "typealias"
+          },
+          {
             "title" : "Enumerations",
             "type" : "groupMarker"
           },
           {
             "children" : [
               {
+                "title" : "Structures",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Initializers",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/edge\/set\/init(_:)-1jzph",
+                    "title" : "init(Edge)",
+                    "type" : "init"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/edge\/set\/init(rawvalue:)",
+                    "title" : "init(rawValue: Int8)",
+                    "type" : "init"
+                  },
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/edge\/set\/rawvalue",
+                    "title" : "let rawValue: Int8",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Type Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/edge\/set\/all",
+                    "title" : "static let all: Edge.Set",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/edge\/set\/bottom",
+                    "title" : "static let bottom: Edge.Set",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/edge\/set\/horizontal",
+                    "title" : "static let horizontal: Edge.Set",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/edge\/set\/leading",
+                    "title" : "static let leading: Edge.Set",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/edge\/set\/top",
+                    "title" : "static let top: Edge.Set",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/edge\/set\/trailing",
+                    "title" : "static let trailing: Edge.Set",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/edge\/set\/vertical",
+                    "title" : "static let vertical: Edge.Set",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Default Implementations",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "children" : [
+                      {
+                        "title" : "Operators",
+                        "type" : "groupMarker"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/!=(_:_:)",
+                        "title" : "static func != (Self, Self) -> Bool",
+                        "type" : "op"
+                      }
+                    ],
+                    "path" : "\/documentation\/swiftcrossui\/edge\/set\/equatable-implementations",
+                    "title" : "Equatable Implementations",
+                    "type" : "symbol"
+                  },
+                  {
+                    "children" : [
+                      {
+                        "title" : "Initializers",
+                        "type" : "groupMarker"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/init()",
+                        "title" : "init()",
+                        "type" : "init"
+                      },
+                      {
+                        "title" : "Instance Methods",
+                        "type" : "groupMarker"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/contains(_:)",
+                        "title" : "func contains(Self) -> Bool",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/formintersection(_:)",
+                        "title" : "func formIntersection(Self)",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/formsymmetricdifference(_:)",
+                        "title" : "func formSymmetricDifference(Self)",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/formunion(_:)",
+                        "title" : "func formUnion(Self)",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/insert(_:)",
+                        "title" : "func insert(Self.Element) -> (inserted: Bool, memberAfterInsert: Self.Element)",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/intersection(_:)",
+                        "title" : "func intersection(Self) -> Self",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/remove(_:)",
+                        "title" : "func remove(Self.Element) -> Self.Element?",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/symmetricdifference(_:)",
+                        "title" : "func symmetricDifference(Self) -> Self",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/union(_:)",
+                        "title" : "func union(Self) -> Self",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/update(with:)",
+                        "title" : "func update(with: Self.Element) -> Self.Element?",
+                        "type" : "method"
+                      }
+                    ],
+                    "path" : "\/documentation\/swiftcrossui\/edge\/set\/optionset-implementations",
+                    "title" : "OptionSet Implementations",
+                    "type" : "symbol"
+                  },
+                  {
+                    "children" : [
+                      {
+                        "title" : "Instance Properties",
+                        "type" : "groupMarker"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/hashvalue",
+                        "title" : "var hashValue: Int",
+                        "type" : "property"
+                      },
+                      {
+                        "title" : "Instance Methods",
+                        "type" : "groupMarker"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/hash(into:)",
+                        "title" : "func hash(into: inout Hasher)",
+                        "type" : "method"
+                      }
+                    ],
+                    "path" : "\/documentation\/swiftcrossui\/edge\/set\/rawrepresentable-implementations",
+                    "title" : "RawRepresentable Implementations",
+                    "type" : "symbol"
+                  },
+                  {
+                    "children" : [
+                      {
+                        "title" : "Initializers",
+                        "type" : "groupMarker"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/init(_:)-6ielq",
+                        "title" : "init<S>(S)",
+                        "type" : "init"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/init(arrayliteral:)",
+                        "title" : "init(arrayLiteral: Self.Element...)",
+                        "type" : "init"
+                      },
+                      {
+                        "title" : "Instance Properties",
+                        "type" : "groupMarker"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/isempty",
+                        "title" : "var isEmpty: Bool",
+                        "type" : "property"
+                      },
+                      {
+                        "title" : "Instance Methods",
+                        "type" : "groupMarker"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/isdisjoint(with:)",
+                        "title" : "func isDisjoint(with: Self) -> Bool",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/isstrictsubset(of:)",
+                        "title" : "func isStrictSubset(of: Self) -> Bool",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/isstrictsuperset(of:)",
+                        "title" : "func isStrictSuperset(of: Self) -> Bool",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/issubset(of:)",
+                        "title" : "func isSubset(of: Self) -> Bool",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/issuperset(of:)",
+                        "title" : "func isSuperset(of: Self) -> Bool",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/subtract(_:)",
+                        "title" : "func subtract(Self)",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/edge\/set\/subtracting(_:)",
+                        "title" : "func subtracting(Self) -> Self",
+                        "type" : "method"
+                      }
+                    ],
+                    "path" : "\/documentation\/swiftcrossui\/edge\/set\/setalgebra-implementations",
+                    "title" : "SetAlgebra Implementations",
+                    "type" : "symbol"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/edge\/set",
+                "title" : "Edge.Set",
+                "type" : "struct"
+              },
+              {
                 "title" : "Enumeration Cases",
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/side\/bottom",
+                "path" : "\/documentation\/swiftcrossui\/edge\/bottom",
                 "title" : "case bottom",
                 "type" : "case"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/side\/left",
-                "title" : "case left",
+                "path" : "\/documentation\/swiftcrossui\/edge\/leading",
+                "title" : "case leading",
                 "type" : "case"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/side\/right",
-                "title" : "case right",
-                "type" : "case"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/side\/top",
+                "path" : "\/documentation\/swiftcrossui\/edge\/top",
                 "title" : "case top",
                 "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/edge\/trailing",
+                "title" : "case trailing",
+                "type" : "case"
+              },
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/edge\/init(rawvalue:)",
+                "title" : "init?(rawValue: Int8)",
+                "type" : "init"
               },
               {
                 "title" : "Default Implementations",
@@ -4987,18 +5327,43 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/side\/!=(_:_:)",
+                    "path" : "\/documentation\/swiftcrossui\/edge\/!=(_:_:)",
                     "title" : "static func != (Self, Self) -> Bool",
                     "type" : "op"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/side\/equatable-implementations",
+                "path" : "\/documentation\/swiftcrossui\/edge\/equatable-implementations",
                 "title" : "Equatable Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/edge\/hashvalue",
+                    "title" : "var hashValue: Int",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/edge\/hash(into:)",
+                    "title" : "func hash(into: inout Hasher)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/edge\/rawrepresentable-implementations",
+                "title" : "RawRepresentable Implementations",
                 "type" : "symbol"
               }
             ],
-            "path" : "\/documentation\/swiftcrossui\/side",
-            "title" : "Side",
+            "path" : "\/documentation\/swiftcrossui\/edge",
+            "title" : "Edge",
             "type" : "enum"
           }
         ],

@@ -299,7 +299,7 @@
         "type" : "text"
       },
       {
-        "code" : "EmptyViewState",
+        "code" : "EmptyState",
         "type" : "codeVoice"
       },
       {

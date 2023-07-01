@@ -1,0 +1,435 @@
+{
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView\/init(sidebar:detail:)"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "conformance" : {
+      "availabilityPrefix" : [
+        {
+          "text" : "Available when",
+          "type" : "text"
+        }
+      ],
+      "conformancePrefix" : [
+        {
+          "text" : "Conforms when",
+          "type" : "text"
+        }
+      ],
+      "constraints" : [
+        {
+          "code" : "SideBar",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " conforms to ",
+          "type" : "text"
+        },
+        {
+          "code" : "View",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : ", ",
+          "type" : "text"
+        },
+        {
+          "code" : "MiddleBar",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " is ",
+          "type" : "text"
+        },
+        {
+          "code" : "EmptyViewContent",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : ", and ",
+          "type" : "text"
+        },
+        {
+          "code" : "Detail",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " conforms to ",
+          "type" : "text"
+        },
+        {
+          "code" : "View",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : ".",
+          "type" : "text"
+        }
+      ]
+    },
+    "extendedModule" : "SwiftCrossUI",
+    "externalID" : "s:12SwiftCrossUI19NavigationSplitViewVA2A05EmptyF7ContentVRs_rlE7sidebar6detailACyxAEq0_GxyXE_q0_yXEtcfc",
+    "fragments" : [
+      {
+        "kind" : "identifier",
+        "text" : "init"
+      },
+      {
+        "kind" : "text",
+        "text" : "("
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "sidebar"
+      },
+      {
+        "kind" : "text",
+        "text" : ": () -> "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "SideBar"
+      },
+      {
+        "kind" : "text",
+        "text" : ", "
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "detail"
+      },
+      {
+        "kind" : "text",
+        "text" : ": () -> "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "Detail"
+      },
+      {
+        "kind" : "text",
+        "text" : ")"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Initializer",
+    "symbolKind" : "init",
+    "title" : "init(sidebar:detail:)"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "Linux"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "init"
+            },
+            {
+              "kind" : "text",
+              "text" : "("
+            },
+            {
+              "kind" : "attribute",
+              "text" : "@"
+            },
+            {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI18ViewContentBuilderV",
+              "text" : "ViewContentBuilder"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "sidebar"
+            },
+            {
+              "kind" : "text",
+              "text" : ": () -> "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "SideBar"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "attribute",
+              "text" : "@"
+            },
+            {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI18ViewContentBuilderV",
+              "text" : "ViewContentBuilder"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "detail"
+            },
+            {
+              "kind" : "text",
+              "text" : ": () -> "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Detail"
+            },
+            {
+              "kind" : "text",
+              "text" : ")"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/navigationsplitview\/init(sidebar:detail:)"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationSplitView": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "NavigationSplitView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "NavigationSplitView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "NavigationSplitView",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationsplitview"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationSplitView/init(sidebar:detail:)": {
+  "abstract" : [
+
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "SideBar",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ", ",
+        "type" : "text"
+      },
+      {
+        "code" : "MiddleBar",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " is ",
+        "type" : "text"
+      },
+      {
+        "code" : "EmptyViewContent",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ", and ",
+        "type" : "text"
+      },
+      {
+        "code" : "Detail",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "sidebar"
+    },
+    {
+      "kind" : "text",
+      "text" : ": () -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "SideBar"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "detail"
+    },
+    {
+      "kind" : "text",
+      "text" : ": () -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Detail"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView\/init(sidebar:detail:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(sidebar:detail:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationsplitview\/init(sidebar:detail:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContentBuilder": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContentBuilder"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContentBuilder"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContentBuilder",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontentbuilder"
+}
+}
+}

@@ -67,7 +67,7 @@
           "type" : "text"
         },
         {
-          "code" : "EmptyViewState",
+          "code" : "EmptyState",
           "type" : "codeVoice"
         },
         {
@@ -77,7 +77,7 @@
       ]
     },
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI11ViewContentPAA0E0QzRszAA05EmptyD5StateC0G0RtzrlE4bodyxvp::SYNTHESIZED::s:12SwiftCrossUI19OptionalViewContentV",
+    "externalID" : "s:12SwiftCrossUI11ViewContentPAA0E0QzRszAA10EmptyStateC0G0RtzrlE4bodyxvp::SYNTHESIZED::s:12SwiftCrossUI19OptionalViewContentV",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -280,7 +280,7 @@
         "type" : "text"
       },
       {
-        "code" : "EmptyViewState",
+        "code" : "EmptyState",
         "type" : "codeVoice"
       },
       {

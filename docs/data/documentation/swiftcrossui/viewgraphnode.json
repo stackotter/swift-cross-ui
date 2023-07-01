@@ -131,8 +131,8 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update()",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update(with:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update(with:)-1vs6a",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update(with:)-2rvr0"
       ],
       "title" : "Instance Methods"
     }
@@ -316,36 +316,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewgraphnode\/init(for:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/update()": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "update"
-    },
-    {
-      "kind" : "text",
-      "text" : "()"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update()",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "update()",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnode\/update()"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/update(with:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/update(with:)-1vs6a": {
   "abstract" : [
 
   ],
@@ -383,12 +354,65 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update(with:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update(with:)-1vs6a",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(with:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnode\/update(with:)"
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnode\/update(with:)-1vs6a"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/update(with:)-2rvr0": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "update"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "with"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "NodeView"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Content"
+    },
+    {
+      "kind" : "text",
+      "text" : "?)"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update(with:)-2rvr0",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "update(with:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnode\/update(with:)-2rvr0"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/view": {
   "abstract" : [

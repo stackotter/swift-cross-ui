@@ -78,6 +78,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewChildren",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren1",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10",
@@ -249,6 +250,37 @@
   "title" : "ForEachViewChildren",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/foreachviewchildren"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStackChildren": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "NavigationStackChildren"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackChildren",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "NavigationStackChildren"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "NavigationStackChildren",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationstackchildren"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalViewChildren": {
   "abstract" : [

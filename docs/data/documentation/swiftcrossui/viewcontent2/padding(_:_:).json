@@ -1,15 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Inherited from ",
-      "type" : "text"
-    },
-    {
-      "code" : "View.padding(_:_:)",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : ".",
+      "text" : "Adds an equal padding amount to specific edges of this view.",
       "type" : "text"
     }
   ],
@@ -29,7 +21,7 @@
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI4ViewPAAE7paddingyAA07PaddingD0VyAA0D8Content1VyxGGAA4SideO_SitF::SYNTHESIZED::s:12SwiftCrossUI12ViewContent2V",
+    "externalID" : "s:12SwiftCrossUI4ViewPAAE7paddingyQrAA4EdgeO3SetV_SitF::SYNTHESIZED::s:12SwiftCrossUI12ViewContent2V",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -49,8 +41,17 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI4SideO",
-        "text" : "Side"
+        "preciseIdentifier" : "s:12SwiftCrossUI4EdgeO",
+        "text" : "Edge"
+      },
+      {
+        "kind" : "text",
+        "text" : "."
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:12SwiftCrossUI4EdgeO3SetV",
+        "text" : "Set"
       },
       {
         "kind" : "text",
@@ -66,30 +67,17 @@
         "text" : ") -> "
       },
       {
-        "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI11PaddingViewV",
-        "text" : "PaddingView"
+        "kind" : "keyword",
+        "text" : "some"
       },
       {
         "kind" : "text",
-        "text" : "<"
+        "text" : " "
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI12ViewContent1V",
-        "text" : "ViewContent1"
-      },
-      {
-        "kind" : "text",
-        "text" : "<"
-      },
-      {
-        "kind" : "typeIdentifier",
-        "text" : "Self"
-      },
-      {
-        "kind" : "text",
-        "text" : ">>"
+        "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+        "text" : "View"
       }
     ],
     "modules" : [
@@ -139,17 +127,27 @@
             },
             {
               "kind" : "internalParam",
-              "text" : "side"
+              "text" : "edges"
             },
             {
               "kind" : "text",
               "text" : ": "
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Side",
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI4SideO",
-              "text" : "Side"
+              "preciseIdentifier" : "s:12SwiftCrossUI4EdgeO",
+              "text" : "Edge"
+            },
+            {
+              "kind" : "text",
+              "text" : "."
+            },
+            {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI4EdgeO3SetV",
+              "text" : "Set"
             },
             {
               "kind" : "text",
@@ -181,32 +179,22 @@
               "text" : ") -> "
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PaddingView",
-              "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI11PaddingViewV",
-              "text" : "PaddingView"
+              "kind" : "keyword",
+              "text" : "some"
             },
             {
               "kind" : "text",
-              "text" : "<"
+              "text" : " "
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent1",
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI12ViewContent1V",
-              "text" : "ViewContent1"
+              "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+              "text" : "View"
             },
             {
               "kind" : "text",
-              "text" : "<"
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "Self"
-            },
-            {
-              "kind" : "text",
-              "text" : ">>"
+              "text" : "\n"
             }
           ]
         }
@@ -250,40 +238,12 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/PaddingView": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge": {
   "abstract" : [
-
-  ],
-  "fragments" : [
     {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "PaddingView"
+      "text" : "An enumeration to indicate one edge of a rectangle.",
+      "type" : "text"
     }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PaddingView",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "PaddingView"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "PaddingView",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/paddingview"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Side": {
-  "abstract" : [
-
   ],
   "fragments" : [
     {
@@ -296,25 +256,28 @@
     },
     {
       "kind" : "identifier",
-      "text" : "Side"
+      "text" : "Edge"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Side",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "Side"
+      "text" : "Edge"
     }
   ],
   "role" : "symbol",
-  "title" : "Side",
+  "title" : "Edge",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/side"
+  "url" : "\/documentation\/swiftcrossui\/edge"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent1": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/Set": {
   "abstract" : [
-
+    {
+      "text" : "An efficient set of Edges.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -327,21 +290,55 @@
     },
     {
       "kind" : "identifier",
-      "text" : "ViewContent1"
+      "text" : "Set"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent1",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "ViewContent1"
+      "text" : "Set"
     }
   ],
   "role" : "symbol",
-  "title" : "ViewContent1",
+  "title" : "Edge.Set",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewcontent1"
+  "url" : "\/documentation\/swiftcrossui\/edge\/set"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
+  "abstract" : [
+    {
+      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "View"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "View",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent2": {
   "abstract" : [
@@ -387,7 +384,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent2/padding(_:_:)": {
   "abstract" : [
-
+    {
+      "text" : "Adds an equal padding amount to specific edges of this view.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -408,8 +408,17 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI4SideO",
-      "text" : "Side"
+      "preciseIdentifier" : "s:12SwiftCrossUI4EdgeO",
+      "text" : "Edge"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4EdgeO3SetV",
+      "text" : "Set"
     },
     {
       "kind" : "text",
@@ -425,30 +434,17 @@
       "text" : ") -> "
     },
     {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI11PaddingViewV",
-      "text" : "PaddingView"
+      "kind" : "keyword",
+      "text" : "some"
     },
     {
       "kind" : "text",
-      "text" : "<"
+      "text" : " "
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI12ViewContent1V",
-      "text" : "ViewContent1"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : ">>"
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent2\/padding(_:_:)",

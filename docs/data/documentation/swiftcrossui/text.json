@@ -99,14 +99,13 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/init(_:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/init(_:wrap:)"
       ],
       "title" : "Initializers"
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/body",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/string"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/body"
       ],
       "title" : "Instance Properties"
     },
@@ -284,7 +283,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/text\/body"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/init(_:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/init(_:wrap:)": {
   "abstract" : [
     {
       "text" : "Creates a new text view with the given content.",
@@ -307,35 +306,11 @@
     },
     {
       "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/init(_:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "init(_:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/text\/init(_:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/string": {
-  "abstract" : [
-    {
-      "text" : "The string to be shown in the text view.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
+      "text" : ", "
     },
     {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "string"
+      "kind" : "externalParam",
+      "text" : "wrap"
     },
     {
       "kind" : "text",
@@ -343,16 +318,20 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/string",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/init(_:wrap:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "string",
+  "title" : "init(_:wrap:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/text\/string"
+  "url" : "\/documentation\/swiftcrossui\/text\/init(_:wrap:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/update(_:children:)": {
   "abstract" : [

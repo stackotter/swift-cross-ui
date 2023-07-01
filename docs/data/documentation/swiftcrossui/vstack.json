@@ -141,20 +141,20 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/init(_:spacing:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/init(spacing:_:)"
       ],
       "title" : "Initializers"
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/body",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/spacing"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/body"
       ],
       "title" : "Instance Properties"
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/asWidget(_:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/asWidget(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/update(_:children:)"
       ],
       "title" : "Instance Methods"
     },
@@ -330,7 +330,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/vstack\/body"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/init(_:spacing:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/init(spacing:_:)": {
   "abstract" : [
     {
       "text" : "Creates a new VStack.",
@@ -344,15 +344,7 @@
     },
     {
       "kind" : "text",
-      "text" : "(() -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
+      "text" : "("
     },
     {
       "kind" : "externalParam",
@@ -369,24 +361,32 @@
     },
     {
       "kind" : "text",
+      "text" : ", () -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Content"
+    },
+    {
+      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/init(_:spacing:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/init(spacing:_:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "init(_:spacing:)",
+  "title" : "init(spacing:_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/vstack\/init(_:spacing:)"
+  "url" : "\/documentation\/swiftcrossui\/vstack\/init(spacing:_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/spacing": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/update(_:children:)": {
   "abstract" : [
 
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "var"
+      "text" : "func"
     },
     {
       "kind" : "text",
@@ -394,7 +394,24 @@
     },
     {
       "kind" : "identifier",
-      "text" : "spacing"
+      "text" : "update"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI6GtkBoxa",
+      "text" : "GtkBox"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "children"
     },
     {
       "kind" : "text",
@@ -402,16 +419,27 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
+      "text" : "Content"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Children"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/spacing",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/update(_:children:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "spacing",
+  "title" : "update(_:children:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/vstack\/spacing"
+  "url" : "\/documentation\/swiftcrossui\/vstack\/update(_:children:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

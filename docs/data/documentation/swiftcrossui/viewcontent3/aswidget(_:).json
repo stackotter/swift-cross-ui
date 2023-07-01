@@ -67,7 +67,7 @@
           "type" : "text"
         },
         {
-          "code" : "EmptyViewState",
+          "code" : "EmptyState",
           "type" : "codeVoice"
         },
         {
@@ -77,7 +77,7 @@
       ]
     },
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI11ViewContentPAA0E0QzRszAA05EmptyD5StateC0G0RtzrlE8asWidgety0A3Gtk3BoxC8ChildrenQzF::SYNTHESIZED::s:12SwiftCrossUI12ViewContent3V",
+    "externalID" : "s:12SwiftCrossUI11ViewContentPAA0E0QzRszAA10EmptyStateC0G0RtzrlE8asWidgety3Gtk10SectionBoxC8ChildrenQzF::SYNTHESIZED::s:12SwiftCrossUI12ViewContent3V",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -113,8 +113,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI6GtkBoxa",
-        "text" : "GtkBox"
+        "preciseIdentifier" : "s:12SwiftCrossUI13GtkSectionBoxa",
+        "text" : "GtkSectionBox"
       }
     ],
     "modules" : [
@@ -187,10 +187,10 @@
               "text" : ") -> "
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBox",
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkSectionBox",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI6GtkBoxa",
-              "text" : "GtkBox"
+              "preciseIdentifier" : "s:12SwiftCrossUI13GtkSectionBoxa",
+              "text" : "GtkSectionBox"
             }
           ]
         }
@@ -234,7 +234,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkBox": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkSectionBox": {
   "abstract" : [
 
   ],
@@ -249,21 +249,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "GtkBox"
+      "text" : "GtkSectionBox"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBox",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkSectionBox",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "GtkBox"
+      "text" : "GtkSectionBox"
     }
   ],
   "role" : "symbol",
-  "title" : "GtkBox",
+  "title" : "GtkSectionBox",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/gtkbox"
+  "url" : "\/documentation\/swiftcrossui\/gtksectionbox"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent3": {
   "abstract" : [
@@ -350,7 +350,7 @@
         "type" : "text"
       },
       {
-        "code" : "EmptyViewState",
+        "code" : "EmptyState",
         "type" : "codeVoice"
       },
       {
@@ -394,8 +394,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI6GtkBoxa",
-      "text" : "GtkBox"
+      "preciseIdentifier" : "s:12SwiftCrossUI13GtkSectionBoxa",
+      "text" : "GtkSectionBox"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent3\/asWidget(_:)",

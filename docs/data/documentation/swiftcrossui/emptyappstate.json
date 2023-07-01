@@ -1,4 +1,15 @@
 {
+  "deprecationSummary" : [
+    {
+      "inlineContent" : [
+        {
+          "text" : "Replace with EmptyState",
+          "type" : "text"
+        }
+      ],
+      "type" : "paragraph"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -38,6 +49,9 @@
         "text" : "EmptyAppState"
       }
     ],
+    "platforms" : [
+
+    ],
     "role" : "symbol",
     "roleHeading" : "Type Alias",
     "symbolKind" : "typealias",
@@ -71,10 +85,10 @@
               "text" : " = "
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState",
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyState",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI14EmptyViewStateC",
-              "text" : "EmptyViewState"
+              "preciseIdentifier" : "s:12SwiftCrossUI10EmptyStateC",
+              "text" : "EmptyState"
             }
           ]
         }
@@ -122,6 +136,7 @@
   "abstract" : [
 
   ],
+  "deprecated" : true,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -149,10 +164,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/emptyappstate"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewState": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyState": {
   "abstract" : [
     {
-      "text" : "The view state to use for stateless views.",
+      "text" : "The state to use for stateless apps and views.",
       "type" : "text"
     }
   ],
@@ -167,21 +182,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "EmptyViewState"
+      "text" : "EmptyState"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyState",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "EmptyViewState"
+      "text" : "EmptyState"
     }
   ],
   "role" : "symbol",
-  "title" : "EmptyViewState",
+  "title" : "EmptyState",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/emptyviewstate"
+  "url" : "\/documentation\/swiftcrossui\/emptystate"
 }
 }
 }

@@ -290,8 +290,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI6GtkBoxa",
-      "text" : "GtkBox"
+      "preciseIdentifier" : "s:12SwiftCrossUI14GtkModifierBoxa",
+      "text" : "GtkModifierBox"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/asWidget(_:)",
@@ -378,8 +378,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI6GtkBoxa",
-      "text" : "GtkBox"
+      "preciseIdentifier" : "s:12SwiftCrossUI14GtkModifierBoxa",
+      "text" : "GtkModifierBox"
     },
     {
       "kind" : "text",

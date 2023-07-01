@@ -72,7 +72,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:8SwiftGtk6WindowC",
+              "preciseIdentifier" : "s:3Gtk6WindowC",
               "text" : "Window"
             }
           ]

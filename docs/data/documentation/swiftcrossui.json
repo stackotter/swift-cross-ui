@@ -71,7 +71,7 @@
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Cancellable",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyState",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraph",
@@ -83,11 +83,11 @@
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DoubleConvertible",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PublishedValue",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ObservedMarkerProtocol",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren"
       ],
       "title" : "Protocols"
     },
@@ -103,16 +103,20 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewContent",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForegroundColorView",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FrameView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationPath",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackChildren",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackContent",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewContent",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Padding",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PaddingView",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
@@ -137,8 +141,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren7",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren8",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren9",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowReader"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties"
       ],
       "title" : "Structures"
     },
@@ -146,28 +149,32 @@
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppState",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyAppState",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileChooser",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkApplication",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBox",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkButton",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkButtonBox",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkColor",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkContainer",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkEntry",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkImage",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkLabel",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkModifierBox",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkOrientable",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkPaned",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkScale",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkScrolledWindow",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkSectionBox",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkSize",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkStack",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkViewport",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWindow"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWindow",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState"
       ],
       "title" : "Type Aliases"
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Side"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge"
       ],
       "title" : "Enumerations"
     }
@@ -238,6 +245,7 @@
   "abstract" : [
 
   ],
+  "deprecated" : true,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -437,6 +445,40 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/doubleconvertible"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge": {
+  "abstract" : [
+    {
+      "text" : "An enumeration to indicate one edge of a rectangle.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Edge"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Edge"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Edge",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/edge"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView": {
   "abstract" : [
 
@@ -534,6 +576,7 @@
   "abstract" : [
 
   ],
+  "deprecated" : true,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -560,6 +603,40 @@
   "title" : "EmptyAppState",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/emptyappstate"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyState": {
+  "abstract" : [
+    {
+      "text" : "The state to use for stateless apps and views.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EmptyState"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyState",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EmptyState"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EmptyState",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptystate"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewContent": {
   "abstract" : [
@@ -625,15 +702,13 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewState": {
   "abstract" : [
-    {
-      "text" : "The view state to use for stateless views.",
-      "type" : "text"
-    }
+
   ],
+  "deprecated" : true,
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "class"
+      "text" : "typealias"
     },
     {
       "kind" : "text",
@@ -670,37 +745,6 @@
   "title" : "Examples",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/examples"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/FileChooser": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "FileChooser"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileChooser",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "FileChooser"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "FileChooser",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/filechooser"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach": {
   "abstract" : [
@@ -798,102 +842,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/foreachviewcontent"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForegroundColorView": {
-  "abstract" : [
-    {
-      "text" : "A view used to manage a child view’s font color. It is preferred to use the ",
-      "type" : "text"
-    },
-    {
-      "code" : "foregroundColor",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "modifier available on all views (which uses this behind the scenes).",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ForegroundColorView"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForegroundColorView",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ForegroundColorView"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ForegroundColorView",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/foregroundcolorview"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/FrameView": {
-  "abstract" : [
-    {
-      "text" : "A view used to manage a child view’s size. It is preferred to use the ",
-      "type" : "text"
-    },
-    {
-      "code" : "frame",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " modifier available",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "on all views (which uses this behind the scenes).",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "FrameView"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FrameView",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "FrameView"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "FrameView",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/frameview"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkApplication": {
   "abstract" : [
 
@@ -987,37 +935,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/gtkbutton"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkButtonBox": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "GtkButtonBox"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkButtonBox",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "GtkButtonBox"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "GtkButtonBox",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/gtkbuttonbox"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkColor": {
   "abstract" : [
 
@@ -1048,37 +965,6 @@
   "title" : "GtkColor",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/gtkcolor"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkContainer": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "GtkContainer"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkContainer",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "GtkContainer"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "GtkContainer",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/gtkcontainer"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkEntry": {
   "abstract" : [
@@ -1173,6 +1059,99 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/gtklabel"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkModifierBox": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkModifierBox"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkModifierBox",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkModifierBox"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkModifierBox",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkmodifierbox"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkOrientable": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkOrientable"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkOrientable",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkOrientable"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkOrientable",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkorientable"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkPaned": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkPaned"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkPaned",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkPaned"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkPaned",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkpaned"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkScale": {
   "abstract" : [
 
@@ -1235,6 +1214,37 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/gtkscrolledwindow"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkSectionBox": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkSectionBox"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkSectionBox",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkSectionBox"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkSectionBox",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtksectionbox"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkSize": {
   "abstract" : [
 
@@ -1265,6 +1275,37 @@
   "title" : "GtkSize",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/gtksize"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkStack": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkStack"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkStack",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkStack"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkStack",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkstack"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkViewport": {
   "abstract" : [
@@ -1435,9 +1476,262 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/image"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationLink": {
+  "abstract" : [
+    {
+      "text" : "A navigation primitive that appends a value to the current navigation path on click.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "NavigationLink"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "NavigationLink"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "NavigationLink",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationlink"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationPath": {
+  "abstract" : [
+    {
+      "text" : "A type-erased list of data representing the content of a navigation stack.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "NavigationPath"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationPath",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "NavigationPath"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "NavigationPath",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationpath"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationSplitView": {
   "abstract" : [
 
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "NavigationSplitView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "NavigationSplitView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "NavigationSplitView",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationsplitview"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStack": {
+  "abstract" : [
+    {
+      "text" : "A view that displays a root view and enables you to present additional views over the root view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "NavigationStack"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "NavigationStack"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "NavigationStack",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationstack"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStackChildren": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "NavigationStackChildren"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackChildren",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "NavigationStackChildren"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "NavigationStackChildren",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationstackchildren"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStackContent": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "NavigationStackContent"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackContent",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "NavigationStackContent"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "NavigationStackContent",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationstackcontent"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observable": {
+  "abstract" : [
+    {
+      "text" : "An object that can be observed for changes.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Observable"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Observable"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Observable",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/observable"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed": {
+  "abstract" : [
+    {
+      "text" : "A wrapper which publishes a change whenever the wrapped value is set. If the wrapped value is",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ", its ",
+      "type" : "text"
+    },
+    {
+      "code" : "didChange",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " publisher will also be forwarded to the wrapper’s publisher.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -1465,6 +1759,104 @@
   "title" : "Observed",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/observed"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ObservedMarkerProtocol": {
+  "abstract" : [
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " values nested within an ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " object will only have their changes published by",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "the parent ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " if marked with this marker protocol. This avoids uncertainty around which",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "properties will or will not have their changes published by the parent. For clarity reasons, you",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "shouldn’t conform your own types to this protocol. Instead, apply the ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " property",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "wrapper when needed.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ObservedMarkerProtocol"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ObservedMarkerProtocol",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ObservedMarkerProtocol"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ObservedMarkerProtocol",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/observedmarkerprotocol"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalView": {
   "abstract" : [
@@ -1559,99 +1951,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/optionalviewcontent"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Padding": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "Padding"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Padding",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "Padding"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "Padding",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/padding"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/PaddingView": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "PaddingView"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PaddingView",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "PaddingView"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "PaddingView",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/paddingview"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/PublishedValue": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "protocol"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "PublishedValue"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PublishedValue",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "PublishedValue"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "PublishedValue",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/publishedvalue"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher": {
   "abstract" : [
 
@@ -1683,14 +1982,29 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/publisher"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Side": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView": {
   "abstract" : [
-
+    {
+      "text" : "A view that is scrollable when it would otherwise overflow available space. Use the",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "code" : "View\/frame",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " modifier to constrain height if necessary.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "enum"
+      "text" : "struct"
     },
     {
       "kind" : "text",
@@ -1698,21 +2012,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "Side"
+      "text" : "ScrollView"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Side",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "Side"
+      "text" : "ScrollView"
     }
   ],
   "role" : "symbol",
-  "title" : "Side",
+  "title" : "ScrollView",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/side"
+  "url" : "\/documentation\/swiftcrossui\/scrollview"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider": {
   "abstract" : [
@@ -1747,6 +2061,40 @@
   "title" : "Slider",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/slider"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer": {
+  "abstract" : [
+    {
+      "text" : "A flexible space that expands along the major axis of its containing stack layout, or on both axes if not contained in a stack.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Spacer"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Spacer"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Spacer",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/spacer"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text": {
   "abstract" : [
@@ -2671,10 +3019,11 @@
   "abstract" : [
 
   ],
+  "deprecated" : true,
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "protocol"
+      "text" : "typealias"
     },
     {
       "kind" : "text",
@@ -2731,48 +3080,6 @@
   "title" : "WindowProperties",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/windowproperties"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowReader": {
-  "abstract" : [
-    {
-      "text" : "A vertically oriented container. Similar to a ",
-      "type" : "text"
-    },
-    {
-      "code" : "VStack",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " in SwiftUI.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "WindowReader"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowReader",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "WindowReader"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "WindowReader",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/windowreader"
 }
 }
 }

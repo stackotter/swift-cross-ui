@@ -106,11 +106,7 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/body",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/decimalPlaces",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/maximum",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/minimum",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/value"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/body"
       ],
       "title" : "Instance Properties"
     },
@@ -279,40 +275,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/slider\/body"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider/decimalPlaces": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "decimalPlaces"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/decimalPlaces",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "decimalPlaces",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/slider\/decimalplaces"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider/init(_:minimum:maximum:)-8qa1u": {
   "abstract" : [
 
@@ -469,74 +431,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/slider\/init(_:minimum:maximum:)-bs2t"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider/maximum": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "maximum"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/maximum",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "maximum",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/slider\/maximum"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider/minimum": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "minimum"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/minimum",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "minimum",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/slider\/minimum"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider/update(_:children:)": {
   "abstract" : [
 
@@ -591,53 +485,6 @@
   "title" : "update(_:children:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/slider\/update(_:children:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider/value": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "value"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI7BindingC",
-      "text" : "Binding"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
-    },
-    {
-      "kind" : "text",
-      "text" : ">?"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/value",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "value",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/slider\/value"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

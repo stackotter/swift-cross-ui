@@ -27,7 +27,7 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI10EitherViewV8asWidgety0A3Gtk3BoxCAA0dE8ChildrenVyxq_GF",
+    "externalID" : "s:12SwiftCrossUI10EitherViewV8asWidgety3Gtk11ModifierBoxCAA0dE8ChildrenVyxq_GF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -72,8 +72,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI6GtkBoxa",
-        "text" : "GtkBox"
+        "preciseIdentifier" : "s:12SwiftCrossUI14GtkModifierBoxa",
+        "text" : "GtkModifierBox"
       }
     ],
     "modules" : [
@@ -156,10 +156,10 @@
               "text" : ">) -> "
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBox",
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkModifierBox",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI6GtkBoxa",
-              "text" : "GtkBox"
+              "preciseIdentifier" : "s:12SwiftCrossUI14GtkModifierBoxa",
+              "text" : "GtkModifierBox"
             }
           ]
         }
@@ -282,8 +282,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI6GtkBoxa",
-      "text" : "GtkBox"
+      "preciseIdentifier" : "s:12SwiftCrossUI14GtkModifierBoxa",
+      "text" : "GtkModifierBox"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/asWidget(_:)",
@@ -324,7 +324,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/eitherviewchildren"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkBox": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkModifierBox": {
   "abstract" : [
 
   ],
@@ -339,21 +339,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "GtkBox"
+      "text" : "GtkModifierBox"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBox",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkModifierBox",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "GtkBox"
+      "text" : "GtkModifierBox"
     }
   ],
   "role" : "symbol",
-  "title" : "GtkBox",
+  "title" : "GtkModifierBox",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/gtkbox"
+  "url" : "\/documentation\/swiftcrossui\/gtkmodifierbox"
 }
 }
 }
