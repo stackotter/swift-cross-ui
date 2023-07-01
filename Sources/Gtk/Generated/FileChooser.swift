@@ -48,7 +48,21 @@ public protocol FileChooser: GObjectRepresentable {
     /// will offer the user to create new folders.
     var createFolders: Bool { get set }
 
+    /// A `GListModel` containing the filters that have been
+    /// added with gtk_file_chooser_add_filter().
+    ///
+    /// The returned object should not be modified. It may
+    /// or may not be updated for later changes.
+    var filters: OpaquePointer { get set }
+
     /// Whether to allow multiple files to be selected.
     var selectMultiple: Bool { get set }
+
+    /// A `GListModel` containing the shortcut folders that have been
+    /// added with gtk_file_chooser_add_shortcut_folder().
+    ///
+    /// The returned object should not be modified. It may
+    /// or may not be updated for later changes.
+    var shortcutFolders: OpaquePointer { get set }
 
 }

@@ -95,10 +95,22 @@ extension String: GValueRepresentable {
     }
 }
 
-/// Currently this is pinned to String as `g_value_get_string` is the only
-/// optional returning getter we use, if there is other g_value_get_x functions
-/// that return an optional we can probably replace String with GValueRepresentable.
-extension Optional: GValueRepresentable where Wrapped == String {
+extension OpaquePointer: GValueRepresentable {
+    public static var type: GType {
+        GType(20 << G_TYPE_FUNDAMENTAL_SHIFT)
+    }
+
+    public init?(_ pointer: UnsafeMutablePointer<GValue>) {
+        guard let object = g_value_get_object(pointer) else { return nil }
+        self = OpaquePointer(object)
+    }
+
+    public func apply(to pointer: UnsafeMutablePointer<GValue>) {
+        g_value_set_object(pointer, gpointer(self))
+    }
+}
+
+extension Optional: GValueRepresentable where Wrapped: GValueRepresentable {
     public static var type: GType {
         Wrapped.type
     }

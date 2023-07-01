@@ -225,7 +225,9 @@ open class Widget: GObjectRepresentable {
     open func debugName<View>(_: View.Type, id: String = "") -> Self {
         #if DEBUG
             // Limited type depth because the inspector does not like long names
-            name = String(describing: Self.self) + " " + typeDescription(of: View.self, withMaxDepth: 3) + " " + id
+            name =
+                String(describing: Self.self) + " "
+                + typeDescription(of: View.self, withMaxDepth: 3) + " " + id
         #endif
         return self
     }
