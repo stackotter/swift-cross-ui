@@ -341,7 +341,13 @@ struct Parameter: Decodable {
     var transferOwnership: String
     var doc: String?
     var type: GIRType?
+    var array: ArrayType?
     var varargs: VarArgs?
+}
+
+struct ArrayType: Decodable {
+    var cType: String
+    var type: GIRType
 }
 
 struct VarArgs: Decodable {}

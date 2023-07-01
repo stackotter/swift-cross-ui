@@ -24,6 +24,10 @@ struct GtkCodeGen {
         "GdkPaintable*": "OpaquePointer",
     ]
 
+    static let interfaces: [String] = [
+        "Gio.ListModel"
+    ]
+
     static let unshorteningMap: [String: String] = [
         "char": "character",
         "str": "string",
@@ -44,7 +48,7 @@ struct GtkCodeGen {
 
     static func generateSources(for gir: GIR, to directory: URL) throws {
         let allowListedClasses = [
-            "Button", "Entry", "Label", "TextView", "Range", "Scale", "Image",
+            "Button", "Entry", "Label", "TextView", "Range", "Scale", "Image", "DropDown",
         ]
         for class_ in gir.namespace.classes where allowListedClasses.contains(class_.name) {
             let source = generateClass(class_, namespace: gir.namespace)
@@ -191,6 +195,10 @@ struct GtkCodeGen {
     static func generateClass(_ class_: Class, namespace: Namespace) -> String {
         var initializers: [DeclSyntax] = []
         for constructor in class_.constructors {
+            if constructor.parameters?.parameters.first?.type?.cType == "GListModel*" {
+                // TODO: Support GListModel and GtkExpression
+                continue
+            }
             initializers.append(generateInitializer(constructor))
         }
 
@@ -395,6 +403,7 @@ struct GtkCodeGen {
 
         if !cTypeReplacements.values.contains(type)
             && !namespace.enumerations.contains(where: { $0.name == type })
+            && type != "OpaquePointer"
         {
             print("Skipping \(property.name) with type \(type)")
             // TODO: Handle more types
@@ -431,7 +440,11 @@ struct GtkCodeGen {
         if let cType = type.cType {
             return convertCType(cType)
         } else if let name = type.name {
-            return namespace.cIdentifierPrefix + name
+            if interfaces.contains(name) {
+                return "OpaquePointer"
+            } else {
+                return namespace.cIdentifierPrefix + name
+            }
         } else {
             fatalError("Type has no valid name")
         }
@@ -474,7 +487,8 @@ struct GtkCodeGen {
         // ambiguous in Swift.
         if let constructorName = constructorName, constructorName.contains("_with_") {
             let label = convertCIdentifier(
-                String(constructorName.components(separatedBy: "_with_")[1]))
+                String(constructorName.components(separatedBy: "_with_")[1])
+            )
             let parameterName = parameters[0].name
             if label != parameterName {
                 parameters[0].name = "\(label) \(parameterName)"
@@ -484,19 +498,30 @@ struct GtkCodeGen {
         return
             parameters
             .map { parameter in
-                guard let type = parameter.type?.cType else {
+                if let type = parameter.type?.cType {
+                    return "\(parameter.name): \(convertCType(type))"
+                } else if let arrayElementType = parameter.array?.type.cType {
+                    return "\(parameter.name): [\(convertCType(arrayElementType))]"
+                } else {
                     fatalError("Missing type for '\(parameter.name)'")
                 }
-                return "\(parameter.name): \(convertCType(type))"
             }
             .joined(separator: ", ")
     }
 
     static func generateArguments(_ parameters: Parameters?) -> String {
-        return parameters?.parameters
-            .map(\.name)
-            .map(convertCIdentifier)
-            .joined(separator: ", ") ?? ""
+        return parameters?.parameters.map { parameter in
+            let name = convertCIdentifier(parameter.name)
+            var argument = name
+
+            // TODO: Handle nested pointer arrays more generally
+            if parameter.array?.type.cType == "char*" {
+                argument = "\(argument).map { $0.withCString { $0 } }"
+            }
+
+            return argument
+        }
+        .joined(separator: ", ") ?? ""
     }
 
     static func convertCIdentifier(_ identifier: String) -> String {
