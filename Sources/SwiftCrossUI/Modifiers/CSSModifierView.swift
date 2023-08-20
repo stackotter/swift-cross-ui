@@ -12,7 +12,10 @@ struct CSSModifierView<Child: View>: View {
 
     /// - Parameter clear: Whether to clear all properties before applying new. By default the properties
     ///                    are additive and it does not remove css properties previously set.
-    internal init(_ child: Child, properties: [CSSProperty], clear: Bool = false, modifierName: String = #function) {
+    internal init(
+        _ child: Child, properties: [CSSProperty], clear: Bool = false,
+        modifierName: String = #function
+    ) {
         self.body = ViewContent1(child)
         self.properties = properties
         self.clear = clear

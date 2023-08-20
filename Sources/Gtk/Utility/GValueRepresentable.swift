@@ -34,7 +34,7 @@ extension UInt: GValueRepresentable {
     }
 
     public func apply(to pointer: UnsafeMutablePointer<GValue>) {
-        g_value_set_int(pointer, gint(self))
+        g_value_set_uint(pointer, guint(self))
     }
 }
 

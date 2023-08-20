@@ -29,3 +29,4 @@ public typealias GtkImage = Gtk.Image
 public typealias GtkViewport = Gtk.Viewport
 public typealias GtkScrolledWindow = Gtk.ScrolledWindow
 public typealias GtkColor = Gtk.Color
+public typealias GtkDropDown = Gtk.DropDown

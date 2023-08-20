@@ -1,4 +1,37 @@
 import CGtk
+import Foundation
+
+extension Collection where Element == UnsafePointer<CChar>? {
+    /// Creates an UnsafeMutableBufferPointer with enough space to hold the elements of self.
+    public func unsafeCopy() -> UnsafeMutableBufferPointer<Element> {
+        let copy = UnsafeMutableBufferPointer<Element>.allocate(
+            capacity: count + 1
+        )
+        _ = copy.initialize(from: self)
+        copy[count] = nil
+        return copy
+    }
+}
+
+extension Collection where Element == CChar {
+    /// Creates an UnsafeMutableBufferPointer with enough space to hold the elements of self.
+    public func unsafeCopy() -> UnsafeMutableBufferPointer<Element> {
+        let copy = UnsafeMutableBufferPointer<Element>.allocate(
+            capacity: count + 1
+        )
+        _ = copy.initialize(from: self)
+        copy[count] = 0
+        return copy
+    }
+}
+
+extension String {
+    /// Create UnsafeMutableBufferPointer holding a null-terminated UTF8 copy of the string
+    public func unsafeUTF8Copy() -> UnsafeMutableBufferPointer<CChar> {
+        self.utf8CString.unsafeCopy()
+    }
+}
+
 
 /// `GtkDropDown` is a widget that allows the user to choose an item
 /// from a list of options.
@@ -37,7 +70,12 @@ public class DropDown: Widget {
     /// the strings.
     public init(strings: [String]) {
         super.init()
-        widgetPointer = gtk_drop_down_new_from_strings(strings.map { $0.withCString { $0 } })
+        let pointer = 
+                strings
+                    .map({ UnsafePointer($0.unsafeUTF8Copy().baseAddress) })
+                    .unsafeCopy()
+                    .baseAddress
+        widgetPointer = gtk_drop_down_new_from_strings(pointer!)
     }
 
     override func didMoveToParent() {
@@ -48,6 +86,18 @@ public class DropDown: Widget {
         addSignal(name: "activate") { [weak self] () in
             guard let self = self else { return }
             self.activate?(self)
+        }
+
+        let handler:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) ->
+                Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::selected", handler: gCallback(handler)) {
+            [weak self] (_: OpaquePointer) in
+            self?.notifySelected?()
         }
     }
 
@@ -64,11 +114,13 @@ public class DropDown: Widget {
     ///
     /// If no item is selected, the property has the value
     /// %GTK_INVALID_LIST_POSITION.
-    @GObjectProperty(named: "selected") public var selected: UInt
+    @GObjectProperty(named: "selected") public var selected: Int
 
     /// Emitted to when the drop down is activated.
     ///
     /// The `::activate` signal on `GtkDropDown` is an action signal and
     /// emitting it causes the drop down to pop up its dropdown.
     public var activate: ((DropDown) -> Void)?
+
+    public var notifySelected: (() -> Void)?
 }

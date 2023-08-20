@@ -4,9 +4,23 @@ class RandomNumberGeneratorState: Observable {
     @Observed var minNum = 0
     @Observed var maxNum = 100
     @Observed var randomNumber = 0
+    @Observed var colorOption: ColorOption? = ColorOption.red
+}
+
+enum ColorOption: String, CaseIterable {
+    case red
+    case green
+    case blue
 
     var color: Color {
-        Color(0, Float(minNum) / 100, Float(maxNum) / 100)
+        switch self {
+            case .red:
+                return .red
+            case .green:
+                return .green
+            case .blue:
+                return .blue
+        }
     }
 }
 
@@ -50,10 +64,11 @@ struct RandomNumberGeneratorApp: App {
                 maximum: 100
             )
 
-            Text("(Excuse the weird colors, I'm just showing off dynamic styling)")
+            Text("Choose a color:")
                 .padding(.top, 20)
+            Picker(of: ColorOption.allCases, selection: state.$colorOption)
         }
         .padding(10)
-        .foregroundColor(state.color)
+        .foregroundColor(state.colorOption?.color ?? .red)
     }
 }
