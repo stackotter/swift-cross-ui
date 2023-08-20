@@ -56,6 +56,11 @@
             "type" : "class"
           },
           {
+            "path" : "\/documentation\/swiftcrossui\/box",
+            "title" : "Box",
+            "type" : "class"
+          },
+          {
             "children" : [
               {
                 "title" : "Initializers",
@@ -2276,6 +2281,216 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/optionalviewcontent",
             "title" : "OptionalViewContent",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/picker\/init(of:selection:)",
+                "title" : "init(of: [Value], selection: Binding<Value?>)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/picker\/body",
+                "title" : "var body: PickerViewContent",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/picker\/aswidget(_:)",
+                "title" : "func asWidget(PickerViewContent.Children) -> GtkDropDown",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/picker\/update(_:children:)",
+                "title" : "func update(GtkDropDown, children: PickerViewContent.Children)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/picker\/content",
+                "title" : "Picker.Content",
+                "type" : "typealias"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/picker\/state",
+                    "title" : "var state: EmptyState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/picker\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/picker\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/picker\/padding(_:)",
+                    "title" : "func padding(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/picker\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/picker\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/picker",
+            "title" : "Picker",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/pickerviewcontent\/init(from:)",
+                "title" : "init(from: PickerViewContent.Content)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/pickerviewcontent\/widgets",
+                "title" : "var widgets: [GtkWidget]",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/pickerviewcontent\/update(with:)",
+                "title" : "func update(with: PickerViewContent.Content)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/pickerviewcontent\/children",
+                "title" : "PickerViewContent.Children",
+                "type" : "typealias"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/pickerviewcontent\/content",
+                "title" : "PickerViewContent.Content",
+                "type" : "typealias"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/pickerviewcontent\/body",
+                    "title" : "var body: Self",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/pickerviewcontent\/state",
+                    "title" : "var state: EmptyState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/pickerviewcontent\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/pickerviewcontent\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/pickerviewcontent\/padding(_:)",
+                    "title" : "func padding(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/pickerviewcontent\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/pickerviewcontent\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/pickerviewcontent\/aswidget(_:)",
+                    "title" : "func asWidget(Self.Children) -> GtkSectionBox",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/pickerviewcontent\/update(_:children:)",
+                    "title" : "func update(GtkSectionBox, children: Self.Children)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/pickerviewcontent\/viewcontent-implementations",
+                "title" : "ViewContent Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/pickerviewcontent",
+            "title" : "PickerViewContent",
             "type" : "struct"
           },
           {
@@ -4943,6 +5158,11 @@
           {
             "path" : "\/documentation\/swiftcrossui\/gtkcolor",
             "title" : "GtkColor",
+            "type" : "typealias"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkdropdown",
+            "title" : "GtkDropDown",
             "type" : "typealias"
           },
           {
