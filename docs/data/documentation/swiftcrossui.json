@@ -69,8 +69,9 @@
     },
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyViewGraphNode",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyWidget",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Box",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Cancellable",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyState",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed",
@@ -83,6 +84,7 @@
     {
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DoubleConvertible",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ObservedMarkerProtocol",
@@ -104,6 +106,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewContent",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBackend",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink",
@@ -116,7 +119,6 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewContent",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PickerViewContent",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer",
@@ -178,7 +180,8 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/InheritedOrientation"
       ],
       "title" : "Enumerations"
     }
@@ -210,6 +213,68 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyViewGraphNode": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "AnyViewGraphNode"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyViewGraphNode",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "AnyViewGraphNode"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "AnyViewGraphNode",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/anyviewgraphnode"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyWidget": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "AnyWidget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyWidget",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "AnyWidget"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "AnyWidget",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/anywidget"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/App": {
   "abstract" : [
@@ -244,6 +309,37 @@
   "title" : "App",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/app"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "AppBackend"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "AppBackend"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "AppBackend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppState": {
   "abstract" : [
@@ -321,37 +417,6 @@
   "title" : "Binding",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/binding"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Box": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "class"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "Box"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Box",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "Box"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "Box",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/box"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Button": {
   "abstract" : [
@@ -907,6 +972,37 @@
   "title" : "GtkApplication",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/gtkapplication"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkBackend": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "GtkBackend"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBackend",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "GtkBackend"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "GtkBackend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkbackend"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkBox": {
   "abstract" : [
@@ -1542,6 +1638,37 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/image"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/InheritedOrientation": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "InheritedOrientation"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/InheritedOrientation",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "InheritedOrientation"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "InheritedOrientation",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/inheritedorientation"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationLink": {
   "abstract" : [
     {
@@ -2050,88 +2177,6 @@
   "title" : "Picker",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/picker"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/PickerViewContent": {
-  "abstract" : [
-    {
-      "text" : "Custom view content storage is required to store the previous set",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "of options to avoid infinite loops caused by repeatedly setting",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "options. Every time the options change, the selected index gets",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "updated, and then the view gets updated. If the view update causes",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "the index to be updated every single time, then an infinite loop",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "occurs. Using the view content as the children is possible as this",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "is just a simple way to store persistent data in the view graph.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "PickerViewContent"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PickerViewContent",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "PickerViewContent"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "PickerViewContent",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/pickerviewcontent"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher": {
   "abstract" : [

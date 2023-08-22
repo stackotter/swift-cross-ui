@@ -165,10 +165,9 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack\/asWidget(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack\/asWidget(_:backend:)-8zu8t",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack\/navigationDestination(for:destination:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack\/navigationTransition(_:duration:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack\/update(_:children:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack\/navigationTransition(_:duration:)"
       ],
       "title" : "Instance Methods"
     },
@@ -253,7 +252,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/navigationstack\/view-implementations"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStack/asWidget(_:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStack/asWidget(_:backend:)-8zu8t": {
   "abstract" : [
 
   ],
@@ -272,7 +271,15 @@
     },
     {
       "kind" : "text",
-      "text" : "("
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
     },
     {
       "kind" : "typeIdentifier",
@@ -289,20 +296,44 @@
     },
     {
       "kind" : "text",
-      "text" : ">) -> "
+      "text" : ">, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI8GtkStacka",
-      "text" : "GtkStack"
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
+      "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack\/asWidget(_:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack\/asWidget(_:backend:)-8zu8t",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "asWidget(_:)",
+  "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/navigationstack\/aswidget(_:)"
+  "url" : "\/documentation\/swiftcrossui\/navigationstack\/aswidget(_:backend:)-8zu8t"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStack/body": {
   "abstract" : [
@@ -600,78 +631,6 @@
   "title" : "navigationTransition(_:duration:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/navigationstack\/navigationtransition(_:duration:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStack/update(_:children:)": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "update"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI8GtkStacka",
-      "text" : "GtkStack"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "children"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI22NavigationStackContentV",
-      "text" : "NavigationStackContent"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Detail"
-    },
-    {
-      "kind" : "text",
-      "text" : ">."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI22NavigationStackContentV8Childrena",
-      "text" : "Children"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack\/update(_:children:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "update(_:children:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/navigationstack\/update(_:children:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

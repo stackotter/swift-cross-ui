@@ -33,8 +33,8 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/asWidget(_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/update(_:children:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/asWidget(_:backend:)-3virj",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/update(_:children:backend:)-8atv5"
       ],
       "title" : "Instance Methods"
     },
@@ -312,7 +312,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewcontent10\/children"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10/asWidget(_:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10/asWidget(_:backend:)-3virj": {
   "abstract" : [
 
   ],
@@ -379,7 +379,15 @@
     },
     {
       "kind" : "text",
-      "text" : "("
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
     },
     {
       "kind" : "typeIdentifier",
@@ -395,22 +403,46 @@
     },
     {
       "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
       "text" : ") -> "
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI13GtkSectionBoxa",
-      "text" : "GtkSectionBox"
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
+      "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/asWidget(_:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/asWidget(_:backend:)-3virj",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "asWidget(_:)",
+  "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewcontent10\/aswidget(_:)"
+  "url" : "\/documentation\/swiftcrossui\/viewcontent10\/aswidget(_:backend:)-3virj"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10/update(_:children:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent10/update(_:children:backend:)-8atv5": {
   "abstract" : [
 
   ],
@@ -477,12 +509,28 @@
     },
     {
       "kind" : "text",
-      "text" : "("
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI13GtkSectionBoxa",
-      "text" : "GtkSectionBox"
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
+      "text" : "Widget"
     },
     {
       "kind" : "text",
@@ -510,15 +558,31 @@
     },
     {
       "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/update(_:children:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent10\/update(_:children:backend:)-8atv5",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "update(_:children:)",
+  "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewcontent10\/update(_:children:)"
+  "url" : "\/documentation\/swiftcrossui\/viewcontent10\/update(_:children:backend:)-8atv5"
 }
 }
 }

@@ -33,8 +33,8 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewContent\/asWidget(_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewContent\/update(_:children:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewContent\/asWidget(_:backend:)-6tgr7",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewContent\/update(_:children:backend:)-3t5wl"
       ],
       "title" : "Instance Methods"
     }
@@ -98,7 +98,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/foreachviewcontent"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEachViewContent/asWidget(_:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEachViewContent/asWidget(_:backend:)-6tgr7": {
   "abstract" : [
 
   ],
@@ -165,7 +165,15 @@
     },
     {
       "kind" : "text",
-      "text" : "("
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
     },
     {
       "kind" : "typeIdentifier",
@@ -181,22 +189,46 @@
     },
     {
       "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
       "text" : ") -> "
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI13GtkSectionBoxa",
-      "text" : "GtkSectionBox"
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
+      "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewContent\/asWidget(_:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewContent\/asWidget(_:backend:)-6tgr7",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "asWidget(_:)",
+  "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/foreachviewcontent\/aswidget(_:)"
+  "url" : "\/documentation\/swiftcrossui\/foreachviewcontent\/aswidget(_:backend:)-6tgr7"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEachViewContent/update(_:children:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEachViewContent/update(_:children:backend:)-3t5wl": {
   "abstract" : [
 
   ],
@@ -263,12 +295,28 @@
     },
     {
       "kind" : "text",
-      "text" : "("
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI13GtkSectionBoxa",
-      "text" : "GtkSectionBox"
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
+      "text" : "Widget"
     },
     {
       "kind" : "text",
@@ -296,15 +344,31 @@
     },
     {
       "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewContent\/update(_:children:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEachViewContent\/update(_:children:backend:)-3t5wl",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "update(_:children:)",
+  "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/foreachviewcontent\/update(_:children:)"
+  "url" : "\/documentation\/swiftcrossui\/foreachviewcontent\/update(_:children:backend:)-3t5wl"
 }
 }
 }

@@ -76,6 +76,14 @@
             },
             {
               "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "genericParameter",
+              "text" : "Backend"
+            },
+            {
+              "kind" : "text",
               "text" : "> "
             },
             {
@@ -99,6 +107,24 @@
               "kind" : "typeIdentifier",
               "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
               "text" : "View"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Backend"
+            },
+            {
+              "kind" : "text",
+              "text" : " : "
+            },
+            {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP",
+              "text" : "AppBackend"
             }
           ]
         }
@@ -117,12 +143,13 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/init(for:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/init(for:backend:)"
       ],
       "title" : "Initializers"
     },
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/backend",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/children",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/view",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/widget"
@@ -164,6 +191,37 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "AppBackend"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "AppBackend"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "AppBackend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
@@ -230,6 +288,39 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewgraphnode"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/backend": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/backend",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "backend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnode\/backend"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/children": {
   "abstract" : [
 
@@ -279,7 +370,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewgraphnode\/children"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/init(for:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/init(for:backend:)": {
   "abstract" : [
 
   ],
@@ -306,15 +397,31 @@
     },
     {
       "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/init(for:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/init(for:backend:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "init(for:)",
+  "title" : "init(for:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnode\/init(for:)"
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnode\/init(for:backend:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/update(with:)-1vs6a": {
   "abstract" : [
@@ -470,7 +577,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "NodeView"
+      "text" : "Backend"
     },
     {
       "kind" : "text",
@@ -478,6 +585,7 @@
     },
     {
       "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],

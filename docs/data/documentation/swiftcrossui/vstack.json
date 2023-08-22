@@ -153,8 +153,8 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/asWidget(_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/update(_:children:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/asWidget(_:backend:)-5tcpa",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/update(_:children:backend:)-9y3ee"
       ],
       "title" : "Instance Methods"
     },
@@ -247,7 +247,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/vstack\/view-implementations"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/asWidget(_:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/asWidget(_:backend:)-5tcpa": {
   "abstract" : [
 
   ],
@@ -266,7 +266,15 @@
     },
     {
       "kind" : "text",
-      "text" : "("
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
     },
     {
       "kind" : "typeIdentifier",
@@ -282,20 +290,44 @@
     },
     {
       "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
       "text" : ") -> "
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI6GtkBoxa",
-      "text" : "GtkBox"
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
+      "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/asWidget(_:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/asWidget(_:backend:)-5tcpa",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "asWidget(_:)",
+  "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/vstack\/aswidget(_:)"
+  "url" : "\/documentation\/swiftcrossui\/vstack\/aswidget(_:backend:)-5tcpa"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/body": {
   "abstract" : [
@@ -379,7 +411,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/vstack\/init(spacing:_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/update(_:children:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/update(_:children:backend:)-9y3ee": {
   "abstract" : [
 
   ],
@@ -398,12 +430,28 @@
     },
     {
       "kind" : "text",
-      "text" : "("
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI6GtkBoxa",
-      "text" : "GtkBox"
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
+      "text" : "Widget"
     },
     {
       "kind" : "text",
@@ -431,15 +479,31 @@
     },
     {
       "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/update(_:children:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/update(_:children:backend:)-9y3ee",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "update(_:children:)",
+  "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/vstack\/update(_:children:)"
+  "url" : "\/documentation\/swiftcrossui\/vstack\/update(_:children:backend:)-9y3ee"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

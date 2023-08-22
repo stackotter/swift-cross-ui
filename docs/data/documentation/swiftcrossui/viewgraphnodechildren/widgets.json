@@ -13,7 +13,7 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP7widgetsSay3Gtk6WidgetCGvp",
+    "externalID" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP7widgetsSayAA9AnyWidgetCGvp",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -33,8 +33,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-        "text" : "GtkWidget"
+        "preciseIdentifier" : "s:12SwiftCrossUI9AnyWidgetC",
+        "text" : "AnyWidget"
       },
       {
         "kind" : "text",
@@ -80,10 +80,10 @@
               "text" : ": ["
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyWidget",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-              "text" : "GtkWidget"
+              "preciseIdentifier" : "s:12SwiftCrossUI9AnyWidgetC",
+              "text" : "AnyWidget"
             },
             {
               "kind" : "text",
@@ -139,14 +139,14 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkWidget": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyWidget": {
   "abstract" : [
 
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "typealias"
+      "text" : "class"
     },
     {
       "kind" : "text",
@@ -154,21 +154,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "GtkWidget"
+      "text" : "AnyWidget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyWidget",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "GtkWidget"
+      "text" : "AnyWidget"
     }
   ],
   "role" : "symbol",
-  "title" : "GtkWidget",
+  "title" : "AnyWidget",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/gtkwidget"
+  "url" : "\/documentation\/swiftcrossui\/anywidget"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren": {
   "abstract" : [
@@ -224,8 +224,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-      "text" : "GtkWidget"
+      "preciseIdentifier" : "s:12SwiftCrossUI9AnyWidgetC",
+      "text" : "AnyWidget"
     },
     {
       "kind" : "text",

@@ -40,10 +40,12 @@
     {
       "generated" : true,
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/asWidget(_:backend:)-29a6t",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/frame(minWidth:minHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/padding(_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/padding(_:_:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/padding(_:_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/update(_:children:backend:)-3ypo0"
       ],
       "title" : "Instance Methods"
     }
@@ -109,6 +111,96 @@
   "title" : "Spacer",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/spacer"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/asWidget(_:backend:)-29a6t": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "asWidget"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Content"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Children"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
+      "text" : "Widget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/asWidget(_:backend:)-29a6t",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "asWidget(_:backend:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/spacer\/aswidget(_:backend:)-29a6t"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/foregroundColor(_:)": {
   "abstract" : [
@@ -434,6 +526,108 @@
   "title" : "state",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/spacer\/state"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/update(_:children:backend:)-3ypo0": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "update"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "children"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Content"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Children"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/update(_:children:backend:)-3ypo0",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "update(_:children:backend:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/spacer\/update(_:children:backend:)-3ypo0"
 }
 }
 }
