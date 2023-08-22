@@ -1,3 +1,4 @@
+import CGtk
 import Foundation
 
 public protocol AppBackend {
@@ -89,6 +90,13 @@ public protocol AppBackend {
     func setVisibleChild(ofOneOfContainer container: Widget, to child: Widget)
 
     func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget
+
+    func createPicker(
+        options: [String], selectedOption: Int?, onChange: @escaping (Int?) -> Void
+    ) -> Widget
+    func setOptions(ofPicker picker: Widget, to options: [String])
+    func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?)
+    func setOnChange(ofPicker picker: Widget, to onChange: @escaping (Int?) -> Void)
 }
 
 public enum InheritedOrientation {
@@ -388,6 +396,85 @@ public struct GtkBackend: AppBackend {
         widget.position = 0
         widget.expandVertically = true
         return widget
+    }
+
+    public func createPicker(
+        options: [String], selectedOption: Int?, onChange: @escaping (Int?) -> Void
+    ) -> Widget {
+        let optionStrings = options.map({ "\($0)" })
+        let widget = GtkDropDown(strings: optionStrings)
+
+        let options = options
+        widget.notifySelected = { [weak widget] in
+            guard let widget = widget else {
+                return
+            }
+
+            if Int(widget.selected) >= options.count {
+                onChange(nil)
+            } else {
+                onChange(widget.selected)
+            }
+        }
+        return widget
+    }
+
+    public func setOptions(ofPicker picker: Widget, to options: [String]) {
+        let picker = picker as! GtkDropDown
+
+        // Check whether the options need to be updated or not (avoiding unnecessary updates is
+        // required to prevent an infinite loop caused by the onChange handler)
+        var hasChanged = false
+        for index in 0..<options.count {
+            guard
+                let item = gtk_string_list_get_string(picker.model, guint(index)),
+                String(cString: item) == options[index]
+            else {
+                hasChanged = true
+                break
+            }
+        }
+
+        // picker.model could be longer than options
+        if gtk_string_list_get_string(picker.model, guint(options.count)) != nil {
+            hasChanged = true
+        }
+
+        guard hasChanged else {
+            return
+        }
+
+        picker.model = gtk_string_list_new(
+            UnsafePointer(
+                options
+                    .map({ UnsafePointer($0.unsafeUTF8Copy().baseAddress) })
+                    .unsafeCopy()
+                    .baseAddress
+            )
+        )
+    }
+
+    public func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?) {
+        let picker = picker as! GtkDropDown
+        if selectedOption != picker.selected {
+            picker.selected = selectedOption ?? Int(GTK_INVALID_LIST_POSITION)
+        }
+    }
+
+    public func setOnChange(ofPicker picker: GtkWidget, to onChange: @escaping (Int?) -> Void) {
+        (picker as! GtkDropDown).notifySelected = { [weak picker] in
+            guard let widget = picker else {
+                return
+            }
+
+            let picker = widget as! GtkDropDown
+
+            if Int(picker.selected) == Int(GTK_INVALID_LIST_POSITION) {
+                onChange(nil)
+            } else {
+                onChange(picker.selected)
+            }
+        }
     }
 }
 
