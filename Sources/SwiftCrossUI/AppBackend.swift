@@ -87,6 +87,8 @@ public protocol AppBackend {
     func addChild(_ child: Widget, toOneOfContainer container: Widget)
     func removeChild(_ child: Widget, fromOneOfContainer container: Widget)
     func setVisibleChild(ofOneOfContainer container: Widget, to child: Widget)
+
+    func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget
 }
 
 public enum InheritedOrientation {
@@ -372,6 +374,20 @@ public struct GtkBackend: AppBackend {
 
     public func setVisibleChild(ofOneOfContainer container: GtkWidget, to child: GtkWidget) {
         (container as! GtkStack).setVisible(child)
+    }
+
+    public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
+        let widget = GtkPaned(orientation: .horizontal)
+        widget.startChild = leadingChild
+        widget.endChild = trailingChild
+        widget.shrinkStartChild = false
+        widget.shrinkEndChild = false
+        // Set the position to the farthest left possible.
+        // TODO: Allow setting the default offset (SwiftUI api: `navigationSplitViewColumnWidth(min:ideal:max:)`).
+        //   This needs frame modifier to be fledged out first
+        widget.position = 0
+        widget.expandVertically = true
+        return widget
     }
 }
 
