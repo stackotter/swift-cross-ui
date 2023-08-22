@@ -33,8 +33,8 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewContent\/asWidget(_:backend:)-7oz3p",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewContent\/update(_:children:backend:)-q5q8"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewContent\/asWidget(_:backend:)-1afhd",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewContent\/update(_:children:backend:)-8f78y"
       ],
       "title" : "Instance Methods"
     }
@@ -98,7 +98,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/optionalviewcontent"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalViewContent/asWidget(_:backend:)-7oz3p": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalViewContent/asWidget(_:backend:)-1afhd": {
   "abstract" : [
 
   ],
@@ -217,18 +217,17 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewContent\/asWidget(_:backend:)-7oz3p",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewContent\/asWidget(_:backend:)-1afhd",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/optionalviewcontent\/aswidget(_:backend:)-7oz3p"
+  "url" : "\/documentation\/swiftcrossui\/optionalviewcontent\/aswidget(_:backend:)-1afhd"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalViewContent/update(_:children:backend:)-q5q8": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalViewContent/update(_:children:backend:)-8f78y": {
   "abstract" : [
 
   ],
@@ -315,7 +314,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -363,12 +361,12 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewContent\/update(_:children:backend:)-q5q8",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalViewContent\/update(_:children:backend:)-8f78y",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/optionalviewcontent\/update(_:children:backend:)-q5q8"
+  "url" : "\/documentation\/swiftcrossui\/optionalviewcontent\/update(_:children:backend:)-8f78y"
 }
 }
 }

@@ -494,6 +494,15 @@
           {
             "children" : [
               {
+                "title" : "Associated Types",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/widget",
+                "title" : "Widget",
+                "type" : "associatedtype"
+              },
+              {
                 "title" : "Initializers",
                 "type" : "groupMarker"
               },
@@ -507,162 +516,536 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tohstack:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tohstack:)-45oez",
+                        "title" : "func addChild(Self.Widget, toHStack: Self.Widget)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tohstack:)-42awi",
                 "title" : "func addChild(Self.Widget, toHStack: Self.Widget)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tolistview:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tolistview:)-1qht2",
+                        "title" : "func addChild(Self.Widget, toListView: Self.Widget)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tolistview:)-17m8p",
                 "title" : "func addChild(Self.Widget, toListView: Self.Widget)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tooneofcontainer:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tooneofcontainer:)-1sc7g",
+                        "title" : "func addChild(Self.Widget, toOneOfContainer: Self.Widget)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tooneofcontainer:)-2q1vw",
                 "title" : "func addChild(Self.Widget, toOneOfContainer: Self.Widget)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:topassthroughvstack:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:topassthroughvstack:)-1i690",
+                        "title" : "func addChild(Self.Widget, toPassthroughVStack: Self.Widget)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:topassthroughvstack:)-535h3",
                 "title" : "func addChild(Self.Widget, toPassthroughVStack: Self.Widget)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tovstack:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tovstack:)-4igq5",
+                        "title" : "func addChild(Self.Widget, toVStack: Self.Widget)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tovstack:)-2ni2v",
                 "title" : "func addChild(Self.Widget, toVStack: Self.Widget)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tohstack:)-27onf",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tohstack:)-1xdxz",
                 "title" : "func addChildren([Self.Widget], toHStack: Self.Widget)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tohstack:)-308js",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tohstack:)-5en",
                 "title" : "func addChildren([AnyWidget], toHStack: Self.Widget)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:topassthroughvstack:)-14vp1",
-                "title" : "func addChildren([AnyWidget], toPassthroughVStack: Self.Widget)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:topassthroughvstack:)-1n6pc",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:topassthroughvstack:)-732ox",
                 "title" : "func addChildren([Self.Widget], toPassthroughVStack: Self.Widget)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tovstack:)-5bwn",
-                "title" : "func addChildren([GtkWidget], toVStack: GtkWidget)",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:topassthroughvstack:)-8xh9g",
+                "title" : "func addChildren([AnyWidget], toPassthroughVStack: Self.Widget)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tovstack:)-8y4c6",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tovstack:)-4iit3",
+                "title" : "func addChildren([Self.Widget], toVStack: Self.Widget)",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tovstack:)-5f9vt",
                 "title" : "func addChildren([AnyWidget], toVStack: Self.Widget)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createbutton(label:action:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createbutton(label:action:)-1du31",
+                        "title" : "func createButton(label: String, action: () -> Void) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createbutton(label:action:)-9xrda",
                 "title" : "func createButton(label: String, action: () -> Void) -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createeithercontainer(initiallycontaining:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createeithercontainer(initiallycontaining:)-1c9i7",
+                        "title" : "func createEitherContainer(initiallyContaining: Self.Widget?) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createeithercontainer(initiallycontaining:)-9e2or",
                 "title" : "func createEitherContainer(initiallyContaining: Self.Widget?) -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createhstack(spacing:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createforegroundcolorcontainer(for:color:)-j6n3",
+                        "title" : "func createForegroundColorContainer(for: Self.Widget, color: Color) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createforegroundcolorcontainer(for:color:)-7spw",
+                "title" : "func createForegroundColorContainer(for: Self.Widget, color: Color) -> Self.Widget",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createframecontainer(for:minwidth:minheight:)-6mikh",
+                        "title" : "func createFrameContainer(for: Self.Widget, minWidth: Int, minHeight: Int) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createframecontainer(for:minwidth:minheight:)-39a8o",
+                "title" : "func createFrameContainer(for: Self.Widget, minWidth: Int, minHeight: Int) -> Self.Widget",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createhstack(spacing:)-67d93",
+                        "title" : "func createHStack(spacing: Int) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createhstack(spacing:)-4eo9k",
                 "title" : "func createHStack(spacing: Int) -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createimageview(filepath:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createimageview(filepath:)-3pgww",
+                        "title" : "func createImageView(filePath: String) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createimageview(filepath:)-1wi3h",
                 "title" : "func createImageView(filePath: String) -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createlistview()",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createlistview()-2qrpa",
+                        "title" : "func createListView() -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createlistview()-2dsee",
                 "title" : "func createListView() -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-5fu2i",
+                        "title" : "func createOneOfContainer() -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-4r5hz",
                 "title" : "func createOneOfContainer() -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createpaddingcontainer(for:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createpaddingcontainer(for:)-kitc",
+                        "title" : "func createPaddingContainer(for: Self.Widget) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createpaddingcontainer(for:)-312a3",
                 "title" : "func createPaddingContainer(for: Self.Widget) -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createpassthroughvstack(spacing:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createpassthroughvstack(spacing:)-3mdr4",
+                        "title" : "func createPassthroughVStack(spacing: Int) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createpassthroughvstack(spacing:)-65zno",
                 "title" : "func createPassthroughVStack(spacing: Int) -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createpicker(options:selectedoption:onchange:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createpicker(options:selectedoption:onchange:)-3jwzc",
+                        "title" : "func createPicker(options: [String], selectedOption: Int?, onChange: (Int?) -> Void) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createpicker(options:selectedoption:onchange:)-215ms",
                 "title" : "func createPicker(options: [String], selectedOption: Int?, onChange: (Int?) -> Void) -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createscrollcontainer(for:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createscrollcontainer(for:)-96edi",
+                        "title" : "func createScrollContainer(for: Self.Widget) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createscrollcontainer(for:)-1q6bx",
                 "title" : "func createScrollContainer(for: Self.Widget) -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createslider(minimum:maximum:value:decimalplaces:onchange:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createslider(minimum:maximum:value:decimalplaces:onchange:)-7v1dh",
+                        "title" : "func createSlider(minimum: Double, maximum: Double, value: Double, decimalPlaces: Int, onChange: (Double) -> Void) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createslider(minimum:maximum:value:decimalplaces:onchange:)-3a7e2",
                 "title" : "func createSlider(minimum: Double, maximum: Double, value: Double, decimalPlaces: Int, onChange: (Double) -> Void) -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createspacer(expandhorizontally:expandvertically:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createspacer(expandhorizontally:expandvertically:)-8251m",
+                        "title" : "func createSpacer(expandHorizontally: Bool, expandVertically: Bool) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createspacer(expandhorizontally:expandvertically:)-3grgi",
                 "title" : "func createSpacer(expandHorizontally: Bool, expandVertically: Bool) -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createsplitview(leadingchild:trailingchild:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createsplitview(leadingchild:trailingchild:)-2deoe",
+                        "title" : "func createSplitView(leadingChild: Self.Widget, trailingChild: Self.Widget) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createsplitview(leadingchild:trailingchild:)-3iqgg",
                 "title" : "func createSplitView(leadingChild: Self.Widget, trailingChild: Self.Widget) -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createtextfield(content:placeholder:onchange:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createtextfield(content:placeholder:onchange:)-204w0",
+                        "title" : "func createTextField(content: String, placeholder: String, onChange: (String) -> Void) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createtextfield(content:placeholder:onchange:)-7zu87",
                 "title" : "func createTextField(content: String, placeholder: String, onChange: (String) -> Void) -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createtextview(content:shouldwrap:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createtextview(content:shouldwrap:)-9kud9",
+                        "title" : "func createTextView(content: String, shouldWrap: Bool) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createtextview(content:shouldwrap:)-f6zp",
                 "title" : "func createTextView(content: String, shouldWrap: Bool) -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createvstack(spacing:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createvstack(spacing:)-78bfm",
+                        "title" : "func createVStack(spacing: Int) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createvstack(spacing:)-2yalt",
                 "title" : "func createVStack(spacing: Int) -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/getchild(ofpaddingcontainer:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/getchild(ofpaddingcontainer:)-3k6y",
+                        "title" : "func getChild(ofPaddingContainer: Self.Widget) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/getchild(ofpaddingcontainer:)-31zda",
                 "title" : "func getChild(ofPaddingContainer: Self.Widget) -> Self.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/getcontent(oftextfield:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/getcontent(oftextfield:)-nkan",
+                        "title" : "func getContent(ofTextField: Self.Widget) -> String",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/getcontent(oftextfield:)-755gm",
                 "title" : "func getContent(ofTextField: Self.Widget) -> String",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/getinheritedorientation(of:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/getinheritedorientation(of:)-5k026",
+                        "title" : "func getInheritedOrientation(of: Self.Widget) -> InheritedOrientation?",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/getinheritedorientation(of:)-36htc",
                 "title" : "func getInheritedOrientation(of: Self.Widget) -> InheritedOrientation?",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/removechild(_:fromlistview:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/removechild(_:fromlistview:)-1muwc",
+                        "title" : "func removeChild(Self.Widget, fromListView: Self.Widget)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/removechild(_:fromlistview:)-9ca9f",
                 "title" : "func removeChild(Self.Widget, fromListView: Self.Widget)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/removechild(_:fromoneofcontainer:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/removechild(_:fromoneofcontainer:)-7x8sa",
+                        "title" : "func removeChild(Self.Widget, fromOneOfContainer: Self.Widget)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/removechild(_:fromoneofcontainer:)-1glc3",
                 "title" : "func removeChild(Self.Widget, fromOneOfContainer: Self.Widget)",
                 "type" : "method"
               },
@@ -672,133 +1055,531 @@
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setaction(ofbutton:to:)",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/runinmainthread(action:)",
+                "title" : "func runInMainThread(action: () -> Void)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setaction(ofbutton:to:)-1znj1",
+                        "title" : "func setAction(ofButton: Self.Widget, to: () -> Void)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setaction(ofbutton:to:)-5s3rv",
                 "title" : "func setAction(ofButton: Self.Widget, to: () -> Void)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setchild(ofeithercontainer:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchild(ofeithercontainer:to:)-1kv63",
+                        "title" : "func setChild(ofEitherContainer: Self.Widget, to: Self.Widget?)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setchild(ofeithercontainer:to:)-6uzwb",
                 "title" : "func setChild(ofEitherContainer: Self.Widget, to: Self.Widget?)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setcontent(oftextfield:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setcontent(oftextfield:to:)-2xhxj",
+                        "title" : "func setContent(ofTextField: Self.Widget, to: String)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setcontent(oftextfield:to:)-21686",
                 "title" : "func setContent(ofTextField: Self.Widget, to: String)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setcontent(oftextview:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setcontent(oftextview:to:)-r8ey",
+                        "title" : "func setContent(ofTextView: Self.Widget, to: String)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setcontent(oftextview:to:)-7m8bp",
                 "title" : "func setContent(ofTextView: Self.Widget, to: String)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setdecimalplaces(ofslider:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setdecimalplaces(ofslider:to:)-1fz5w",
+                        "title" : "func setDecimalPlaces(ofSlider: Self.Widget, to: Int)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setdecimalplaces(ofslider:to:)-7l3ai",
                 "title" : "func setDecimalPlaces(ofSlider: Self.Widget, to: Int)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setexpandhorizontally(ofspacer:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setexpandhorizontally(ofspacer:to:)-1mjx3",
+                        "title" : "func setExpandHorizontally(ofSpacer: Self.Widget, to: Bool)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setexpandhorizontally(ofspacer:to:)-4d6zt",
                 "title" : "func setExpandHorizontally(ofSpacer: Self.Widget, to: Bool)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setexpandvertically(ofspacer:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setexpandvertically(ofspacer:to:)-8bvxx",
+                        "title" : "func setExpandVertically(ofSpacer: Self.Widget, to: Bool)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setexpandvertically(ofspacer:to:)-3mp2c",
                 "title" : "func setExpandVertically(ofSpacer: Self.Widget, to: Bool)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setfilepath(ofimageview:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setfilepath(ofimageview:to:)-6v1lw",
+                        "title" : "func setFilePath(ofImageView: Self.Widget, to: String)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setfilepath(ofimageview:to:)-1cqj7",
                 "title" : "func setFilePath(ofImageView: Self.Widget, to: String)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setlabel(ofbutton:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setforegroundcolor(offoregroundcolorcontainer:to:)-71tz0",
+                        "title" : "func setForegroundColor(ofForegroundColorContainer: Self.Widget, to: Color)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setforegroundcolor(offoregroundcolorcontainer:to:)-2tyr9",
+                "title" : "func setForegroundColor(ofForegroundColorContainer: Self.Widget, to: Color)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setlabel(ofbutton:to:)-3quzx",
+                        "title" : "func setLabel(ofButton: Self.Widget, to: String)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setlabel(ofbutton:to:)-4x3t5",
                 "title" : "func setLabel(ofButton: Self.Widget, to: String)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setmaximum(ofslider:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setmaximum(ofslider:to:)-38egf",
+                        "title" : "func setMaximum(ofSlider: Self.Widget, to: Double)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setmaximum(ofslider:to:)-6tatt",
                 "title" : "func setMaximum(ofSlider: Self.Widget, to: Double)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setminimum(ofslider:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setminheight(offramecontainer:to:)-3wnuo",
+                        "title" : "func setMinHeight(ofFrameContainer: Self.Widget, to: Int)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setminheight(offramecontainer:to:)-69hwd",
+                "title" : "func setMinHeight(ofFrameContainer: Self.Widget, to: Int)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setminwidth(offramecontainer:to:)-2653z",
+                        "title" : "func setMinWidth(ofFrameContainer: Self.Widget, to: Int)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setminwidth(offramecontainer:to:)-6roxc",
+                "title" : "func setMinWidth(ofFrameContainer: Self.Widget, to: Int)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setminimum(ofslider:to:)-54vly",
+                        "title" : "func setMinimum(ofSlider: Self.Widget, to: Double)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setminimum(ofslider:to:)-2h25n",
                 "title" : "func setMinimum(ofSlider: Self.Widget, to: Double)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofpicker:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofpicker:to:)-4uxnq",
+                        "title" : "func setOnChange(ofPicker: Self.Widget, to: (Int?) -> Void)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofpicker:to:)-7ksqa",
                 "title" : "func setOnChange(ofPicker: Self.Widget, to: (Int?) -> Void)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofslider:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofslider:to:)-9hg15",
+                        "title" : "func setOnChange(ofSlider: Self.Widget, to: (Double) -> Void)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofslider:to:)-7j3la",
                 "title" : "func setOnChange(ofSlider: Self.Widget, to: (Double) -> Void)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(oftextfield:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(oftextfield:to:)-6z1v2",
+                        "title" : "func setOnChange(ofTextField: Self.Widget, to: (String) -> Void)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(oftextfield:to:)-6bixo",
                 "title" : "func setOnChange(ofTextField: Self.Widget, to: (String) -> Void)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setoptions(ofpicker:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setoptions(ofpicker:to:)-77xn4",
+                        "title" : "func setOptions(ofPicker: Self.Widget, to: [String])",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setoptions(ofpicker:to:)-2wmpb",
                 "title" : "func setOptions(ofPicker: Self.Widget, to: [String])",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setpadding(ofpaddingcontainer:top:bottom:leading:trailing:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setpadding(ofpaddingcontainer:top:bottom:leading:trailing:)-1ki1k",
+                        "title" : "func setPadding(ofPaddingContainer: Self.Widget, top: Int, bottom: Int, leading: Int, trailing: Int)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setpadding(ofpaddingcontainer:top:bottom:leading:trailing:)-3i82z",
                 "title" : "func setPadding(ofPaddingContainer: Self.Widget, top: Int, bottom: Int, leading: Int, trailing: Int)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setplaceholder(oftextfield:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setplaceholder(oftextfield:to:)-8exhn",
+                        "title" : "func setPlaceholder(ofTextField: Self.Widget, to: String)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setplaceholder(oftextfield:to:)-7mrkp",
                 "title" : "func setPlaceholder(ofTextField: Self.Widget, to: String)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setselectedoption(ofpicker:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setselectedoption(ofpicker:to:)-41904",
+                        "title" : "func setSelectedOption(ofPicker: Self.Widget, to: Int?)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setselectedoption(ofpicker:to:)-2b5qx",
                 "title" : "func setSelectedOption(ofPicker: Self.Widget, to: Int?)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setspacing(ofhstack:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setspacing(ofhstack:to:)-3ivar",
+                        "title" : "func setSpacing(ofHStack: Self.Widget, to: Int)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setspacing(ofhstack:to:)-6cn",
                 "title" : "func setSpacing(ofHStack: Self.Widget, to: Int)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setspacing(ofvstack:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setspacing(ofvstack:to:)-6okjk",
+                        "title" : "func setSpacing(ofVStack: Self.Widget, to: Int)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setspacing(ofvstack:to:)-3m3cm",
                 "title" : "func setSpacing(ofVStack: Self.Widget, to: Int)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setvalue(ofslider:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setvalue(ofslider:to:)-4476u",
+                        "title" : "func setValue(ofSlider: Self.Widget, to: Double)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setvalue(ofslider:to:)-9cjjs",
                 "title" : "func setValue(ofSlider: Self.Widget, to: Double)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-8fkaw",
+                        "title" : "func setVisibleChild(ofOneOfContainer: Self.Widget, to: Self.Widget)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-955ak",
                 "title" : "func setVisibleChild(ofOneOfContainer: Self.Widget, to: Self.Widget)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/setwrap(oftextview:to:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setwrap(oftextview:to:)-5993b",
+                        "title" : "func setWrap(ofTextView: Self.Widget, to: Bool)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setwrap(oftextview:to:)-6xmm4",
                 "title" : "func setWrap(ofTextView: Self.Widget, to: Bool)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatelistview(_:)",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/show(_:)-8ul44",
+                        "title" : "func show(Self.Widget)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/show(_:)-3myqx",
+                "title" : "func show(Self.Widget)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatelistview(_:)-9weqz",
+                        "title" : "func updateListView(Self.Widget)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatelistview(_:)-9cu5o",
                 "title" : "func updateListView(Self.Widget)",
                 "type" : "method"
               },
               {
-                "title" : "Type Aliases",
-                "type" : "groupMarker"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/widget",
-                "title" : "AppBackend.Widget",
-                "type" : "typealias"
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatepassthroughvstack(_:)-3hrbn",
+                        "title" : "func updatePassthroughVStack(Self.Widget)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatepassthroughvstack(_:)-9v2cc",
+                "title" : "func updatePassthroughVStack(Self.Widget)",
+                "type" : "method"
               }
             ],
             "path" : "\/documentation\/swiftcrossui\/appbackend",
@@ -929,7 +1710,7 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-3kutt",
+                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-1xwn4",
                         "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                         "type" : "method"
                       }
@@ -949,7 +1730,7 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-8cvsm",
+                "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-27slc",
                 "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                 "type" : "method"
               },
@@ -978,7 +1759,7 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:backend:)-7vpt3",
+                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:backend:)-41hrf",
                         "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                         "type" : "method"
                       }
@@ -998,7 +1779,7 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:backend:)-6q5h4",
+                "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:backend:)-8j1tw",
                 "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                 "type" : "method"
               }
@@ -1095,12 +1876,12 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/button\/aswidget(_:backend:)-8uieo",
+                "path" : "\/documentation\/swiftcrossui\/button\/aswidget(_:backend:)-4jbyi",
                 "title" : "func asWidget<Backend>(EmptyViewContent.Children, backend: Backend) -> Backend.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/button\/update(_:children:backend:)-446ra",
+                "path" : "\/documentation\/swiftcrossui\/button\/update(_:children:backend:)-7nuh4",
                 "title" : "func update<Backend>(Backend.Widget, children: EmptyViewContent.Children, backend: Backend)",
                 "type" : "method"
               },
@@ -1124,7 +1905,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/button\/aswidget(_:backend:)-72x47",
+                    "path" : "\/documentation\/swiftcrossui\/button\/aswidget(_:backend:)-cexh",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -1149,7 +1930,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/button\/update(_:children:backend:)-45qcf",
+                    "path" : "\/documentation\/swiftcrossui\/button\/update(_:children:backend:)-6o5mv",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -1191,11 +1972,6 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/color\/green-swift.property",
                 "title" : "var green: Float",
-                "type" : "property"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/color\/gtkcolor",
-                "title" : "var gtkColor: GtkColor",
                 "type" : "property"
               },
               {
@@ -1268,12 +2044,12 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/eitherview\/aswidget(_:backend:)-6j9yp",
+                "path" : "\/documentation\/swiftcrossui\/eitherview\/aswidget(_:backend:)-8n575",
                 "title" : "func asWidget<Backend>(EitherViewChildren<A, B>, backend: Backend) -> Backend.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/eitherview\/update(_:children:backend:)-537r6",
+                "path" : "\/documentation\/swiftcrossui\/eitherview\/update(_:children:backend:)-18xsl",
                 "title" : "func update<Backend>(Backend.Widget, children: EitherViewChildren<A, B>, backend: Backend)",
                 "type" : "method"
               },
@@ -1297,7 +2073,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/eitherview\/aswidget(_:backend:)-5s4du",
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/aswidget(_:backend:)-8ffdo",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -1322,7 +2098,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/eitherview\/update(_:children:backend:)-5h4te",
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/update(_:children:backend:)-4e81x",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -1429,7 +2205,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/aswidget(_:backend:)-17405",
+                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/aswidget(_:backend:)-37par",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -1454,7 +2230,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/update(_:children:backend:)-19ob",
+                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/update(_:children:backend:)-212o9",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -1470,12 +2246,12 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/aswidget(_:backend:)-6uvvx",
+                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/aswidget(_:backend:)-483tc",
                     "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/update(_:children:backend:)-fela",
+                    "path" : "\/documentation\/swiftcrossui\/eitherviewcontent\/update(_:children:backend:)-7o7aa",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -1534,7 +2310,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/aswidget(_:backend:)-21wb1",
+                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/aswidget(_:backend:)-84gxp",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -1559,7 +2335,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/update(_:children:backend:)-6x1fc",
+                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/update(_:children:backend:)-6ng5u",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -1575,12 +2351,12 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/aswidget(_:backend:)-1ib81",
+                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/aswidget(_:backend:)-4detd",
                     "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/update(_:children:backend:)-ino9",
+                    "path" : "\/documentation\/swiftcrossui\/emptyviewcontent\/update(_:children:backend:)-1k63k",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -1653,7 +2429,7 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/foreach\/aswidget(_:backend:)-2csy3",
+                "path" : "\/documentation\/swiftcrossui\/foreach\/aswidget(_:backend:)-5i3me",
                 "title" : "func asWidget<Backend>(ForEachViewChildren<Items, Child>, backend: Backend) -> Backend.Widget",
                 "type" : "method"
               },
@@ -1677,7 +2453,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/foreach\/aswidget(_:backend:)-9kc8d",
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/aswidget(_:backend:)-2ahim",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -1818,7 +2594,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/aswidget(_:backend:)-1sysl",
+                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/aswidget(_:backend:)-5o5z0",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -1843,7 +2619,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/update(_:children:backend:)-5u7hh",
+                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/update(_:children:backend:)-1j99z",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -1859,12 +2635,12 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/aswidget(_:backend:)-6tgr7",
+                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/aswidget(_:backend:)-4sycd",
                     "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/update(_:children:backend:)-3t5wl",
+                    "path" : "\/documentation\/swiftcrossui\/foreachviewcontent\/update(_:children:backend:)-5eo43",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -1876,335 +2652,6 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/foreachviewcontent",
             "title" : "ForEachViewContent",
-            "type" : "struct"
-          },
-          {
-            "children" : [
-              {
-                "title" : "Initializers",
-                "type" : "groupMarker"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/init(appidentifier:)",
-                "title" : "init(appIdentifier: String)",
-                "type" : "init"
-              },
-              {
-                "title" : "Instance Methods",
-                "type" : "groupMarker"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/addchild(_:tohstack:)",
-                "title" : "func addChild(GtkWidget, toHStack: GtkWidget)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/addchild(_:tolistview:)",
-                "title" : "func addChild(GtkWidget, toListView: GtkWidget)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/addchild(_:tooneofcontainer:)",
-                "title" : "func addChild(GtkWidget, toOneOfContainer: GtkWidget)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/addchild(_:topassthroughvstack:)",
-                "title" : "func addChild(GtkWidget, toPassthroughVStack: GtkWidget)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/addchild(_:tovstack:)",
-                "title" : "func addChild(GtkWidget, toVStack: GtkWidget)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createbutton(label:action:)",
-                "title" : "func createButton(label: String, action: () -> Void) -> GtkWidget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createeithercontainer(initiallycontaining:)",
-                "title" : "func createEitherContainer(initiallyContaining: GtkWidget?) -> GtkWidget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createhstack(spacing:)",
-                "title" : "func createHStack(spacing: Int) -> GtkWidget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createimageview(filepath:)",
-                "title" : "func createImageView(filePath: String) -> GtkWidget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createlistview()",
-                "title" : "func createListView() -> GtkWidget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createoneofcontainer()",
-                "title" : "func createOneOfContainer() -> GtkWidget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createpaddingcontainer(for:)",
-                "title" : "func createPaddingContainer(for: GtkWidget) -> GtkWidget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createpassthroughvstack(spacing:)",
-                "title" : "func createPassthroughVStack(spacing: Int) -> GtkWidget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createpicker(options:selectedoption:onchange:)",
-                "title" : "func createPicker(options: [String], selectedOption: Int?, onChange: (Int?) -> Void) -> GtkBackend.Widget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createscrollcontainer(for:)",
-                "title" : "func createScrollContainer(for: GtkWidget) -> GtkWidget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createslider(minimum:maximum:value:decimalplaces:onchange:)",
-                "title" : "func createSlider(minimum: Double, maximum: Double, value: Double, decimalPlaces: Int, onChange: (Double) -> Void) -> GtkWidget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createspacer(expandhorizontally:expandvertically:)",
-                "title" : "func createSpacer(expandHorizontally: Bool, expandVertically: Bool) -> GtkBackend.Widget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createsplitview(leadingchild:trailingchild:)",
-                "title" : "func createSplitView(leadingChild: GtkBackend.Widget, trailingChild: GtkBackend.Widget) -> GtkBackend.Widget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createtextfield(content:placeholder:onchange:)",
-                "title" : "func createTextField(content: String, placeholder: String, onChange: (String) -> Void) -> GtkWidget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createtextview(content:shouldwrap:)",
-                "title" : "func createTextView(content: String, shouldWrap: Bool) -> GtkWidget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/createvstack(spacing:)",
-                "title" : "func createVStack(spacing: Int) -> GtkWidget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/getchild(ofpaddingcontainer:)",
-                "title" : "func getChild(ofPaddingContainer: GtkBackend.Widget) -> GtkWidget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/getcontent(oftextfield:)",
-                "title" : "func getContent(ofTextField: GtkWidget) -> String",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/getinheritedorientation(of:)",
-                "title" : "func getInheritedOrientation(of: GtkWidget) -> InheritedOrientation?",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/removechild(_:fromlistview:)",
-                "title" : "func removeChild(GtkWidget, fromListView: GtkWidget)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/removechild(_:fromoneofcontainer:)",
-                "title" : "func removeChild(GtkBackend.Widget, fromOneOfContainer: GtkBackend.Widget)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/run(_:_:)",
-                "title" : "func run<AppRoot>(AppRoot, (ViewGraph<AppRoot>) -> Void)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setaction(ofbutton:to:)",
-                "title" : "func setAction(ofButton: GtkWidget, to: () -> Void)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setchild(ofeithercontainer:to:)",
-                "title" : "func setChild(ofEitherContainer: GtkWidget, to: GtkWidget?)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setcontent(oftextfield:to:)",
-                "title" : "func setContent(ofTextField: GtkWidget, to: String)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setcontent(oftextview:to:)",
-                "title" : "func setContent(ofTextView: GtkWidget, to: String)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setdecimalplaces(ofslider:to:)",
-                "title" : "func setDecimalPlaces(ofSlider: GtkWidget, to: Int)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setexpandhorizontally(ofspacer:to:)",
-                "title" : "func setExpandHorizontally(ofSpacer: GtkWidget, to: Bool)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setexpandvertically(ofspacer:to:)",
-                "title" : "func setExpandVertically(ofSpacer: GtkWidget, to: Bool)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setfilepath(ofimageview:to:)",
-                "title" : "func setFilePath(ofImageView: GtkWidget, to: String)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setlabel(ofbutton:to:)",
-                "title" : "func setLabel(ofButton: GtkWidget, to: String)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setmaximum(ofslider:to:)",
-                "title" : "func setMaximum(ofSlider: GtkWidget, to: Double)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setminimum(ofslider:to:)",
-                "title" : "func setMinimum(ofSlider: GtkWidget, to: Double)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setonchange(ofpicker:to:)",
-                "title" : "func setOnChange(ofPicker: GtkWidget, to: (Int?) -> Void)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setonchange(ofslider:to:)",
-                "title" : "func setOnChange(ofSlider: GtkWidget, to: (Double) -> Void)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setonchange(oftextfield:to:)",
-                "title" : "func setOnChange(ofTextField: GtkWidget, to: (String) -> Void)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setoptions(ofpicker:to:)",
-                "title" : "func setOptions(ofPicker: GtkBackend.Widget, to: [String])",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setpadding(ofpaddingcontainer:top:bottom:leading:trailing:)",
-                "title" : "func setPadding(ofPaddingContainer: GtkWidget, top: Int, bottom: Int, leading: Int, trailing: Int)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setplaceholder(oftextfield:to:)",
-                "title" : "func setPlaceholder(ofTextField: GtkWidget, to: String)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setselectedoption(ofpicker:to:)",
-                "title" : "func setSelectedOption(ofPicker: GtkBackend.Widget, to: Int?)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setspacing(ofhstack:to:)",
-                "title" : "func setSpacing(ofHStack: GtkWidget, to: Int)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setspacing(ofvstack:to:)",
-                "title" : "func setSpacing(ofVStack: GtkWidget, to: Int)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setvalue(ofslider:to:)",
-                "title" : "func setValue(ofSlider: GtkWidget, to: Double)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setvisiblechild(ofoneofcontainer:to:)",
-                "title" : "func setVisibleChild(ofOneOfContainer: GtkWidget, to: GtkWidget)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/setwrap(oftextview:to:)",
-                "title" : "func setWrap(ofTextView: GtkWidget, to: Bool)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/updatelistview(_:)",
-                "title" : "func updateListView(GtkWidget)",
-                "type" : "method"
-              },
-              {
-                "title" : "Type Aliases",
-                "type" : "groupMarker"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/widget",
-                "title" : "GtkBackend.Widget",
-                "type" : "typealias"
-              },
-              {
-                "title" : "Default Implementations",
-                "type" : "groupMarker"
-              },
-              {
-                "children" : [
-                  {
-                    "title" : "Instance Methods",
-                    "type" : "groupMarker"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/gtkbackend\/addchildren(_:tohstack:)-1k5mp",
-                    "title" : "func addChildren([Self.Widget], toHStack: Self.Widget)",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/gtkbackend\/addchildren(_:tohstack:)-7g8ge",
-                    "title" : "func addChildren([AnyWidget], toHStack: Self.Widget)",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/gtkbackend\/addchildren(_:topassthroughvstack:)-1w8gk",
-                    "title" : "func addChildren([AnyWidget], toPassthroughVStack: Self.Widget)",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/gtkbackend\/addchildren(_:topassthroughvstack:)-93tvf",
-                    "title" : "func addChildren([Self.Widget], toPassthroughVStack: Self.Widget)",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/gtkbackend\/addchildren(_:tovstack:)-5ki7p",
-                    "title" : "func addChildren([AnyWidget], toVStack: Self.Widget)",
-                    "type" : "method"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/gtkbackend\/addchildren(_:tovstack:)-9ryox",
-                    "title" : "func addChildren([GtkWidget], toVStack: GtkWidget)",
-                    "type" : "method"
-                  }
-                ],
-                "path" : "\/documentation\/swiftcrossui\/gtkbackend\/appbackend-implementations",
-                "title" : "AppBackend Implementations",
-                "type" : "symbol"
-              }
-            ],
-            "path" : "\/documentation\/swiftcrossui\/gtkbackend",
-            "title" : "GtkBackend",
             "type" : "struct"
           },
           {
@@ -2232,12 +2679,12 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/hstack\/aswidget(_:backend:)-72pbn",
+                "path" : "\/documentation\/swiftcrossui\/hstack\/aswidget(_:backend:)-4v4jf",
                 "title" : "func asWidget<Backend>(Content.Children, backend: Backend) -> Backend.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/hstack\/update(_:children:backend:)-1albf",
+                "path" : "\/documentation\/swiftcrossui\/hstack\/update(_:children:backend:)-63eyq",
                 "title" : "func update<Backend>(Backend.Widget, children: Content.Children, backend: Backend)",
                 "type" : "method"
               },
@@ -2261,7 +2708,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/hstack\/aswidget(_:backend:)-9qjzs",
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/aswidget(_:backend:)-90d02",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -2286,7 +2733,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/hstack\/update(_:children:backend:)-2knj",
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/update(_:children:backend:)-6kg2y",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -2325,12 +2772,12 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/image\/aswidget(_:backend:)-1nwbj",
+                "path" : "\/documentation\/swiftcrossui\/image\/aswidget(_:backend:)-4w77i",
                 "title" : "func asWidget<Backend>(EmptyViewContent.Children, backend: Backend) -> Backend.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/image\/update(_:children:backend:)-6ubav",
+                "path" : "\/documentation\/swiftcrossui\/image\/update(_:children:backend:)-3sbm2",
                 "title" : "func update<Backend>(Backend.Widget, children: EmptyViewContent.Children, backend: Backend)",
                 "type" : "method"
               },
@@ -2354,7 +2801,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/image\/aswidget(_:backend:)-9onm5",
+                    "path" : "\/documentation\/swiftcrossui\/image\/aswidget(_:backend:)-9rkgz",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -2379,7 +2826,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/image\/update(_:children:backend:)-81tzf",
+                    "path" : "\/documentation\/swiftcrossui\/image\/update(_:children:backend:)-2iolm",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -2588,13 +3035,13 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/aswidget(_:backend:)-854ko",
-                    "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/aswidget(_:backend:)-5fjli",
+                    "title" : "func asWidget<Backend>(ViewGraphNodeChildren3<SideBar, MiddleBar, Detail>, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/aswidget(_:backend:)-97dmf",
-                    "title" : "func asWidget<Backend>(ViewGraphNodeChildren3<SideBar, MiddleBar, Detail>, backend: Backend) -> Backend.Widget",
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/aswidget(_:backend:)-8sb7m",
+                    "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
@@ -2657,18 +3104,13 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/navigationstack\/aswidget(_:backend:)-8zu8t",
+                "path" : "\/documentation\/swiftcrossui\/navigationstack\/aswidget(_:backend:)-232ml",
                 "title" : "func asWidget<Backend>(NavigationStackChildren<Detail>, backend: Backend) -> Backend.Widget",
                 "type" : "method"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/navigationstack\/navigationdestination(for:destination:)",
                 "title" : "func navigationDestination<D, C>(for: D.Type, destination: (D) -> C) -> NavigationStack<EitherView<Detail, C>>",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/navigationstack\/navigationtransition(_:duration:)",
-                "title" : "func navigationTransition(StackTransitionType, duration: Double) -> some View",
                 "type" : "method"
               },
               {
@@ -2691,7 +3133,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/aswidget(_:backend:)-9ju1e",
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/aswidget(_:backend:)-2pztx",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -2833,7 +3275,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/aswidget(_:backend:)-61cza",
+                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/aswidget(_:backend:)-niy7",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -2858,7 +3300,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/update(_:children:backend:)-rv07",
+                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/update(_:children:backend:)-4c1c8",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -2874,12 +3316,12 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/aswidget(_:backend:)-15mhk",
+                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/aswidget(_:backend:)-1chyv",
                     "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/update(_:children:backend:)-6534z",
+                    "path" : "\/documentation\/swiftcrossui\/navigationstackcontent\/update(_:children:backend:)-50byt",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -2909,12 +3351,12 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/optionalview\/aswidget(_:backend:)-7q6h4",
+                "path" : "\/documentation\/swiftcrossui\/optionalview\/aswidget(_:backend:)-3q0rr",
                 "title" : "func asWidget<Backend>(OptionalViewChildren<V>, backend: Backend) -> Backend.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/optionalview\/update(_:children:backend:)-6mz08",
+                "path" : "\/documentation\/swiftcrossui\/optionalview\/update(_:children:backend:)-3ul09",
                 "title" : "func update<Backend>(Backend.Widget, children: OptionalViewChildren<V>, backend: Backend)",
                 "type" : "method"
               },
@@ -2938,7 +3380,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/optionalview\/aswidget(_:backend:)-7z1i8",
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/aswidget(_:backend:)-8gta4",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -2963,7 +3405,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/optionalview\/update(_:children:backend:)-64713",
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/update(_:children:backend:)-17a5a",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -3065,7 +3507,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/aswidget(_:backend:)-5ys9h",
+                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/aswidget(_:backend:)-4c2qs",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -3090,7 +3532,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/update(_:children:backend:)-18p8m",
+                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/update(_:children:backend:)-1odk3",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -3106,12 +3548,12 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/aswidget(_:backend:)-7oz3p",
+                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/aswidget(_:backend:)-1afhd",
                     "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/update(_:children:backend:)-q5q8",
+                    "path" : "\/documentation\/swiftcrossui\/optionalviewcontent\/update(_:children:backend:)-8f78y",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -3150,12 +3592,12 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/picker\/aswidget(_:backend:)-8gq5u",
+                "path" : "\/documentation\/swiftcrossui\/picker\/aswidget(_:backend:)-8c8bd",
                 "title" : "func asWidget<Backend>(EmptyViewContent.Children, backend: Backend) -> Backend.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/picker\/update(_:children:backend:)-1652y",
+                "path" : "\/documentation\/swiftcrossui\/picker\/update(_:children:backend:)-85nf8",
                 "title" : "func update<Backend>(Backend.Widget, children: EmptyViewContent.Children, backend: Backend)",
                 "type" : "method"
               },
@@ -3179,7 +3621,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/picker\/aswidget(_:backend:)-37i90",
+                    "path" : "\/documentation\/swiftcrossui\/picker\/aswidget(_:backend:)-386ps",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -3204,7 +3646,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/picker\/update(_:children:backend:)-2agot",
+                    "path" : "\/documentation\/swiftcrossui\/picker\/update(_:children:backend:)-5pwd6",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -3243,7 +3685,7 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/scrollview\/aswidget(_:backend:)-7i3mq",
+                "path" : "\/documentation\/swiftcrossui\/scrollview\/aswidget(_:backend:)-21r5t",
                 "title" : "func asWidget<Backend>(Content.Children, backend: Backend) -> Backend.Widget",
                 "type" : "method"
               },
@@ -3267,7 +3709,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/scrollview\/aswidget(_:backend:)-729m0",
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/aswidget(_:backend:)-63mth",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -3336,12 +3778,12 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/slider\/aswidget(_:backend:)-4fnwt",
+                "path" : "\/documentation\/swiftcrossui\/slider\/aswidget(_:backend:)-1xvbl",
                 "title" : "func asWidget<Backend>(EmptyViewContent.Children, backend: Backend) -> Backend.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/slider\/update(_:children:backend:)-2lg0g",
+                "path" : "\/documentation\/swiftcrossui\/slider\/update(_:children:backend:)-92gj3",
                 "title" : "func update<Backend>(Backend.Widget, children: EmptyViewContent.Children, backend: Backend)",
                 "type" : "method"
               },
@@ -3365,7 +3807,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/slider\/aswidget(_:backend:)-15cfb",
+                    "path" : "\/documentation\/swiftcrossui\/slider\/aswidget(_:backend:)-3a9u7",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -3390,7 +3832,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/slider\/update(_:children:backend:)-9kni0",
+                    "path" : "\/documentation\/swiftcrossui\/slider\/update(_:children:backend:)-7vf3j",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -3429,12 +3871,12 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/spacer\/aswidget(_:backend:)-3g2i3",
+                "path" : "\/documentation\/swiftcrossui\/spacer\/aswidget(_:backend:)-6xnbf",
                 "title" : "func asWidget<Backend>(EmptyViewContent.Children, backend: Backend) -> Backend.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/spacer\/update(_:children:backend:)-3b7g3",
+                "path" : "\/documentation\/swiftcrossui\/spacer\/update(_:children:backend:)-3sgat",
                 "title" : "func update<Backend>(Backend.Widget, children: EmptyViewContent.Children, backend: Backend)",
                 "type" : "method"
               },
@@ -3458,7 +3900,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/spacer\/aswidget(_:backend:)-29a6t",
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/aswidget(_:backend:)-519sk",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -3483,7 +3925,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/spacer\/update(_:children:backend:)-3ypo0",
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/update(_:children:backend:)-68koo",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -3522,12 +3964,12 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/text\/aswidget(_:backend:)-1rmn0",
+                "path" : "\/documentation\/swiftcrossui\/text\/aswidget(_:backend:)-9vx9p",
                 "title" : "func asWidget<Backend>(EmptyViewContent.Children, backend: Backend) -> Backend.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/text\/update(_:children:backend:)-hlv7",
+                "path" : "\/documentation\/swiftcrossui\/text\/update(_:children:backend:)-549tv",
                 "title" : "func update<Backend>(Backend.Widget, children: EmptyViewContent.Children, backend: Backend)",
                 "type" : "method"
               },
@@ -3551,7 +3993,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/text\/aswidget(_:backend:)-87n9x",
+                    "path" : "\/documentation\/swiftcrossui\/text\/aswidget(_:backend:)-39dka",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -3576,7 +4018,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/text\/update(_:children:backend:)-1f5uo",
+                    "path" : "\/documentation\/swiftcrossui\/text\/update(_:children:backend:)-24ea3",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -3615,12 +4057,12 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/textfield\/aswidget(_:backend:)-7npco",
+                "path" : "\/documentation\/swiftcrossui\/textfield\/aswidget(_:backend:)-9pblf",
                 "title" : "func asWidget<Backend>(EmptyViewContent.Children, backend: Backend) -> Backend.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/textfield\/update(_:children:backend:)-99k5b",
+                "path" : "\/documentation\/swiftcrossui\/textfield\/update(_:children:backend:)-6bnmu",
                 "title" : "func update<Backend>(Backend.Widget, children: EmptyViewContent.Children, backend: Backend)",
                 "type" : "method"
               },
@@ -3644,7 +4086,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/textfield\/aswidget(_:backend:)-i9g1",
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/aswidget(_:backend:)-9ye1",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -3669,7 +4111,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/textfield\/update(_:children:backend:)-3xzpx",
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/update(_:children:backend:)-64np4",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -3708,12 +4150,12 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/vstack\/aswidget(_:backend:)-5tcpa",
+                "path" : "\/documentation\/swiftcrossui\/vstack\/aswidget(_:backend:)-9ag7w",
                 "title" : "func asWidget<Backend>(Content.Children, backend: Backend) -> Backend.Widget",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/vstack\/update(_:children:backend:)-9y3ee",
+                "path" : "\/documentation\/swiftcrossui\/vstack\/update(_:children:backend:)-17bvj",
                 "title" : "func update<Backend>(Backend.Widget, children: Content.Children, backend: Backend)",
                 "type" : "method"
               },
@@ -3737,7 +4179,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/vstack\/aswidget(_:backend:)-3yffg",
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/aswidget(_:backend:)-2pn71",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -3762,7 +4204,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/vstack\/update(_:children:backend:)-77t5b",
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/update(_:children:backend:)-2wy3w",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -3821,7 +4263,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/aswidget(_:backend:)-hzoe",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/aswidget(_:backend:)-1i6lf",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -3846,7 +4288,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/update(_:children:backend:)-2g747",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/update(_:children:backend:)-3heeo",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -3862,12 +4304,12 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/aswidget(_:backend:)-2j8gq",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/aswidget(_:backend:)-cxb6",
                     "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/update(_:children:backend:)-2b7m8",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent1\/update(_:children:backend:)-29moc",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                     "type" : "method"
                   },
@@ -3980,7 +4422,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/aswidget(_:backend:)-51ai2",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/aswidget(_:backend:)-5sh1i",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -4005,7 +4447,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/update(_:children:backend:)-92d5u",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/update(_:children:backend:)-9fmvi",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -4021,12 +4463,12 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/aswidget(_:backend:)-3virj",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/aswidget(_:backend:)-7mwet",
                     "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/update(_:children:backend:)-8atv5",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent10\/update(_:children:backend:)-6agyy",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                     "type" : "method"
                   },
@@ -4099,7 +4541,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/aswidget(_:backend:)-hzd4",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/aswidget(_:backend:)-1i7jr",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -4124,7 +4566,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/update(_:children:backend:)-2g7gb",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/update(_:children:backend:)-3hdh6",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -4140,12 +4582,12 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/aswidget(_:backend:)-2j8mo",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/aswidget(_:backend:)-cwa4",
                     "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/update(_:children:backend:)-2b6qy",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent2\/update(_:children:backend:)-29n8i",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                     "type" : "method"
                   },
@@ -4223,7 +4665,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/aswidget(_:backend:)-hyyi",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/aswidget(_:backend:)-1i70n",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -4248,7 +4690,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/update(_:children:backend:)-2g7qb",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/update(_:children:backend:)-3hdyg",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -4264,12 +4706,12 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/aswidget(_:backend:)-2j946",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/aswidget(_:backend:)-cwpq",
                     "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/update(_:children:backend:)-2b720",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent3\/update(_:children:backend:)-29nck",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                     "type" : "method"
                   },
@@ -4352,7 +4794,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/aswidget(_:backend:)-i14g",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/aswidget(_:backend:)-1i85v",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -4377,7 +4819,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/update(_:children:backend:)-2g5kf",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/update(_:children:backend:)-3hctq",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -4393,12 +4835,12 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/aswidget(_:backend:)-2j6xk",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/aswidget(_:backend:)-cyd0",
                     "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/update(_:children:backend:)-2b8iu",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent4\/update(_:children:backend:)-29l6e",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                     "type" : "method"
                   },
@@ -4486,7 +4928,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/aswidget(_:backend:)-i0ti",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/aswidget(_:backend:)-1i7nn",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -4511,7 +4953,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/update(_:children:backend:)-2g5wf",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/update(_:children:backend:)-3hdbk",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -4527,12 +4969,12 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/aswidget(_:backend:)-2j71m",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/aswidget(_:backend:)-cyg2",
                     "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/update(_:children:backend:)-2b8uo",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent5\/update(_:children:backend:)-29lms",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                     "type" : "method"
                   },
@@ -4625,7 +5067,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/aswidget(_:backend:)-i0ig",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/aswidget(_:backend:)-1i8sf",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -4650,7 +5092,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/update(_:children:backend:)-2g66j",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/update(_:children:backend:)-3hc96",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -4666,12 +5108,12 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/aswidget(_:backend:)-2j7i8",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/aswidget(_:backend:)-cxqs",
                     "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/update(_:children:backend:)-2b7x6",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent6\/update(_:children:backend:)-29lqq",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                     "type" : "method"
                   },
@@ -4769,7 +5211,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/aswidget(_:backend:)-i07e",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/aswidget(_:backend:)-1i8a7",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -4794,7 +5236,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/update(_:children:backend:)-2g6hv",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/update(_:children:backend:)-3hcrc",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -4810,12 +5252,12 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/aswidget(_:backend:)-2j7we",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/aswidget(_:backend:)-cxty",
                     "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/update(_:children:backend:)-2b87c",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent7\/update(_:children:backend:)-29m3w",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                     "type" : "method"
                   },
@@ -4918,7 +5360,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/aswidget(_:backend:)-hxhc",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/aswidget(_:backend:)-1i4f7",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -4943,7 +5385,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/update(_:children:backend:)-2g493",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/update(_:children:backend:)-3hgl2",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -4959,12 +5401,12 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/aswidget(_:backend:)-2jamg",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/aswidget(_:backend:)-cui4",
                     "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/update(_:children:backend:)-2b9ri",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent8\/update(_:children:backend:)-29ov2",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                     "type" : "method"
                   },
@@ -5072,7 +5514,7 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/aswidget(_:backend:)-hx7i",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/aswidget(_:backend:)-1i3xv",
                     "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
@@ -5097,7 +5539,7 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/update(_:children:backend:)-2g4k7",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/update(_:children:backend:)-3hh28",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                     "type" : "method"
                   }
@@ -5113,12 +5555,12 @@
                     "type" : "groupMarker"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/aswidget(_:backend:)-2jat6",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/aswidget(_:backend:)-cusy",
                     "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/update(_:children:backend:)-2ba2o",
+                    "path" : "\/documentation\/swiftcrossui\/viewcontent9\/update(_:children:backend:)-29pf0",
                     "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                     "type" : "method"
                   },
@@ -6018,101 +6460,6 @@
           {
             "path" : "\/documentation\/swiftcrossui\/emptyviewstate",
             "title" : "EmptyViewState",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkapplication",
-            "title" : "GtkApplication",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkbox",
-            "title" : "GtkBox",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkbutton",
-            "title" : "GtkButton",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkcolor",
-            "title" : "GtkColor",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkdropdown",
-            "title" : "GtkDropDown",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkentry",
-            "title" : "GtkEntry",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkimage",
-            "title" : "GtkImage",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtklabel",
-            "title" : "GtkLabel",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkmodifierbox",
-            "title" : "GtkModifierBox",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkorientable",
-            "title" : "GtkOrientable",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkpaned",
-            "title" : "GtkPaned",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkscale",
-            "title" : "GtkScale",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkscrolledwindow",
-            "title" : "GtkScrolledWindow",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtksectionbox",
-            "title" : "GtkSectionBox",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtksize",
-            "title" : "GtkSize",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkstack",
-            "title" : "GtkStack",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkviewport",
-            "title" : "GtkViewport",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkwidget",
-            "title" : "GtkWidget",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/gtkwindow",
-            "title" : "GtkWindow",
             "type" : "typealias"
           },
           {

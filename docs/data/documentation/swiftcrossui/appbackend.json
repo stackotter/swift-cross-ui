@@ -72,16 +72,6 @@
       "kind" : "declarations"
     }
   ],
-  "relationshipsSections" : [
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBackend"
-      ],
-      "kind" : "relationships",
-      "title" : "Conforming Types",
-      "type" : "conformingTypes"
-    }
-  ],
   "schemaVersion" : {
     "major" : 0,
     "minor" : 3,
@@ -93,77 +83,85 @@
   "topicSections" : [
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/Widget"
+      ],
+      "title" : "Associated Types"
+    },
+    {
+      "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/init(appIdentifier:)"
       ],
       "title" : "Initializers"
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toHStack:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toListView:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toOneOfContainer:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toPassthroughVStack:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toVStack:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-27onf",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-308js",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toPassthroughVStack:)-14vp1",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toPassthroughVStack:)-1n6pc",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toVStack:)-5bwn",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toVStack:)-8y4c6",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createButton(label:action:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createEitherContainer(initiallyContaining:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createHStack(spacing:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createImageView(filePath:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createListView()",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPaddingContainer(for:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPassthroughVStack(spacing:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPicker(options:selectedOption:onChange:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createScrollContainer(for:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSlider(minimum:maximum:value:decimalPlaces:onChange:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSpacer(expandHorizontally:expandVertically:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSplitView(leadingChild:trailingChild:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextField(content:placeholder:onChange:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView(content:shouldWrap:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createVStack(spacing:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getChild(ofPaddingContainer:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getContent(ofTextField:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getInheritedOrientation(of:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeChild(_:fromListView:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeChild(_:fromOneOfContainer:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toHStack:)-42awi",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toListView:)-17m8p",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toOneOfContainer:)-2q1vw",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toPassthroughVStack:)-535h3",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toVStack:)-2ni2v",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-1xdxz",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-5en",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toPassthroughVStack:)-732ox",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toPassthroughVStack:)-8xh9g",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toVStack:)-4iit3",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toVStack:)-5f9vt",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createButton(label:action:)-9xrda",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createEitherContainer(initiallyContaining:)-9e2or",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createForegroundColorContainer(for:color:)-7spw",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createFrameContainer(for:minWidth:minHeight:)-39a8o",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createHStack(spacing:)-4eo9k",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createImageView(filePath:)-1wi3h",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createListView()-2dsee",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-4r5hz",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPaddingContainer(for:)-312a3",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPassthroughVStack(spacing:)-65zno",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPicker(options:selectedOption:onChange:)-215ms",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createScrollContainer(for:)-1q6bx",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSlider(minimum:maximum:value:decimalPlaces:onChange:)-3a7e2",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSpacer(expandHorizontally:expandVertically:)-3grgi",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSplitView(leadingChild:trailingChild:)-3iqgg",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextField(content:placeholder:onChange:)-7zu87",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView(content:shouldWrap:)-f6zp",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createVStack(spacing:)-2yalt",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getChild(ofPaddingContainer:)-31zda",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getContent(ofTextField:)-755gm",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getInheritedOrientation(of:)-36htc",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeChild(_:fromListView:)-9ca9f",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeChild(_:fromOneOfContainer:)-1glc3",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/run(_:_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setAction(ofButton:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChild(ofEitherContainer:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setContent(ofTextField:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setContent(ofTextView:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setDecimalPlaces(ofSlider:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setExpandHorizontally(ofSpacer:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setExpandVertically(ofSpacer:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setFilePath(ofImageView:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setLabel(ofButton:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMaximum(ofSlider:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMinimum(ofSlider:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofPicker:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofSlider:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofTextField:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOptions(ofPicker:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setPadding(ofPaddingContainer:top:bottom:leading:trailing:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setPlaceholder(ofTextField:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSelectedOption(ofPicker:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSpacing(ofHStack:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSpacing(ofVStack:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setValue(ofSlider:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setWrap(ofTextView:to:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateListView(_:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/runInMainThread(action:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setAction(ofButton:to:)-5s3rv",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChild(ofEitherContainer:to:)-6uzwb",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setContent(ofTextField:to:)-21686",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setContent(ofTextView:to:)-7m8bp",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setDecimalPlaces(ofSlider:to:)-7l3ai",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setExpandHorizontally(ofSpacer:to:)-4d6zt",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setExpandVertically(ofSpacer:to:)-3mp2c",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setFilePath(ofImageView:to:)-1cqj7",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setForegroundColor(ofForegroundColorContainer:to:)-2tyr9",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setLabel(ofButton:to:)-4x3t5",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMaximum(ofSlider:to:)-6tatt",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMinHeight(ofFrameContainer:to:)-69hwd",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMinWidth(ofFrameContainer:to:)-6roxc",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMinimum(ofSlider:to:)-2h25n",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofPicker:to:)-7ksqa",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofSlider:to:)-7j3la",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofTextField:to:)-6bixo",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOptions(ofPicker:to:)-2wmpb",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setPadding(ofPaddingContainer:top:bottom:leading:trailing:)-3i82z",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setPlaceholder(ofTextField:to:)-7mrkp",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSelectedOption(ofPicker:to:)-2b5qx",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSpacing(ofHStack:to:)-6cn",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSpacing(ofVStack:to:)-3m3cm",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setValue(ofSlider:to:)-9cjjs",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-955ak",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setWrap(ofTextView:to:)-6xmm4",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/show(_:)-3myqx",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateListView(_:)-9cu5o",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updatePassthroughVStack(_:)-9v2cc"
       ],
       "title" : "Instance Methods"
-    },
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/Widget"
-      ],
-      "title" : "Type Aliases"
     }
   ],
   "variants" : [
@@ -232,7 +230,7 @@
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "typealias"
+      "text" : "associatedtype"
     },
     {
       "kind" : "text",
@@ -245,21 +243,17 @@
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/Widget",
   "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "Widget"
-    }
-  ],
+  "required" : true,
   "role" : "symbol",
-  "title" : "AppBackend.Widget",
+  "title" : "Widget",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/widget"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toHStack:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toHStack:)-42awi": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -287,7 +281,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -312,7 +305,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -320,18 +312,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toHStack:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toHStack:)-42awi",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "addChild(_:toHStack:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tohstack:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tohstack:)-42awi"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toListView:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toListView:)-17m8p": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -359,7 +352,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -384,7 +376,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -392,18 +383,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toListView:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toListView:)-17m8p",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "addChild(_:toListView:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tolistview:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tolistview:)-17m8p"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toOneOfContainer:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toOneOfContainer:)-2q1vw": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -431,7 +423,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -456,7 +447,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -464,18 +454,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toOneOfContainer:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toOneOfContainer:)-2q1vw",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "addChild(_:toOneOfContainer:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tooneofcontainer:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tooneofcontainer:)-2q1vw"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toPassthroughVStack:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toPassthroughVStack:)-535h3": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -503,7 +494,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -528,7 +518,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -536,18 +525,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toPassthroughVStack:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toPassthroughVStack:)-535h3",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "addChild(_:toPassthroughVStack:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:topassthroughvstack:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:topassthroughvstack:)-535h3"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toVStack:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toVStack:)-2ni2v": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -575,7 +565,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -600,7 +589,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -608,15 +596,15 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toVStack:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toVStack:)-2ni2v",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "addChild(_:toVStack:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tovstack:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tovstack:)-2ni2v"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toHStack:)-27onf": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toHStack:)-1xdxz": {
   "abstract" : [
 
   ],
@@ -647,7 +635,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -672,7 +659,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -680,14 +666,14 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-27onf",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-1xdxz",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "addChildren(_:toHStack:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tohstack:)-27onf"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tohstack:)-1xdxz"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toHStack:)-308js": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toHStack:)-5en": {
   "abstract" : [
 
   ],
@@ -735,7 +721,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -743,14 +728,83 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-308js",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-5en",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "addChildren(_:toHStack:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tohstack:)-308js"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tohstack:)-5en"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toPassthroughVStack:)-14vp1": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toPassthroughVStack:)-732ox": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "addChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : "(["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : "], "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "toPassthroughVStack"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toPassthroughVStack:)-732ox",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "addChildren(_:toPassthroughVStack:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:topassthroughvstack:)-732ox"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toPassthroughVStack:)-8xh9g": {
   "abstract" : [
 
   ],
@@ -798,7 +852,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -806,14 +859,14 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toPassthroughVStack:)-14vp1",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toPassthroughVStack:)-8xh9g",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "addChildren(_:toPassthroughVStack:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:topassthroughvstack:)-14vp1"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:topassthroughvstack:)-8xh9g"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toPassthroughVStack:)-1n6pc": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toVStack:)-4iit3": {
   "abstract" : [
 
   ],
@@ -844,71 +897,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : "], "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "toPassthroughVStack"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toPassthroughVStack:)-1n6pc",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "addChildren(_:toPassthroughVStack:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:topassthroughvstack:)-1n6pc"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toVStack:)-5bwn": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "addChildren"
-    },
-    {
-      "kind" : "text",
-      "text" : "(["
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-      "text" : "GtkWidget"
     },
     {
       "kind" : "text",
@@ -924,22 +913,29 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-      "text" : "GtkWidget"
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
     },
     {
       "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toVStack:)-5bwn",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toVStack:)-4iit3",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "addChildren(_:toVStack:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tovstack:)-5bwn"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tovstack:)-4iit3"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toVStack:)-8y4c6": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toVStack:)-5f9vt": {
   "abstract" : [
 
   ],
@@ -987,7 +983,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -995,17 +990,18 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toVStack:)-8y4c6",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toVStack:)-5f9vt",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "addChildren(_:toVStack:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tovstack:)-8y4c6"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tovstack:)-5f9vt"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createButton(label:action:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createButton(label:action:)-9xrda": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -1067,22 +1063,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createButton(label:action:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createButton(label:action:)-9xrda",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createButton(label:action:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createbutton(label:action:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createbutton(label:action:)-9xrda"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createEitherContainer(initiallyContaining:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createEitherContainer(initiallyContaining:)-9e2or": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -1118,7 +1114,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -1135,22 +1130,207 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createEitherContainer(initiallyContaining:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createEitherContainer(initiallyContaining:)-9e2or",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createEitherContainer(initiallyContaining:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createeithercontainer(initiallycontaining:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createeithercontainer(initiallycontaining:)-9e2or"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createHStack(spacing:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createForegroundColorContainer(for:color:)-7spw": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "createForegroundColorContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "for"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "color"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createForegroundColorContainer(for:color:)-7spw",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "createForegroundColorContainer(for:color:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createforegroundcolorcontainer(for:color:)-7spw"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createFrameContainer(for:minWidth:minHeight:)-39a8o": {
+  "abstract" : [
+
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "createFrameContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "for"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "minWidth"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "minHeight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createFrameContainer(for:minWidth:minHeight:)-39a8o",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "createFrameContainer(for:minWidth:minHeight:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createframecontainer(for:minwidth:minheight:)-39a8o"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createHStack(spacing:)-4eo9k": {
+  "abstract" : [
+
+  ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -1195,22 +1375,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createHStack(spacing:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createHStack(spacing:)-4eo9k",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createHStack(spacing:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createhstack(spacing:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createhstack(spacing:)-4eo9k"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createImageView(filePath:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createImageView(filePath:)-1wi3h": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -1255,22 +1435,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createImageView(filePath:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createImageView(filePath:)-1wi3h",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createImageView(filePath:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createimageview(filepath:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createimageview(filepath:)-1wi3h"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createListView()": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createListView()-2dsee": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -1298,22 +1478,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createListView()",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createListView()-2dsee",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createListView()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createlistview()"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createlistview()-2dsee"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()-4r5hz": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -1341,22 +1521,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-4r5hz",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createOneOfContainer()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-4r5hz"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPaddingContainer(for:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPaddingContainer(for:)-312a3": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -1392,7 +1572,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -1409,22 +1588,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPaddingContainer(for:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPaddingContainer(for:)-312a3",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createPaddingContainer(for:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createpaddingcontainer(for:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createpaddingcontainer(for:)-312a3"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPassthroughVStack(spacing:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPassthroughVStack(spacing:)-65zno": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -1469,22 +1648,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPassthroughVStack(spacing:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPassthroughVStack(spacing:)-65zno",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createPassthroughVStack(spacing:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createpassthroughvstack(spacing:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createpassthroughvstack(spacing:)-65zno"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPicker(options:selectedOption:onChange:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPicker(options:selectedOption:onChange:)-215ms": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -1572,22 +1751,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPicker(options:selectedOption:onChange:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPicker(options:selectedOption:onChange:)-215ms",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createPicker(options:selectedOption:onChange:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createpicker(options:selectedoption:onchange:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createpicker(options:selectedoption:onchange:)-215ms"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createScrollContainer(for:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createScrollContainer(for:)-1q6bx": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -1623,7 +1802,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -1640,22 +1818,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createScrollContainer(for:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createScrollContainer(for:)-1q6bx",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createScrollContainer(for:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createscrollcontainer(for:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createscrollcontainer(for:)-1q6bx"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSlider(minimum:maximum:value:decimalPlaces:onChange:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSlider(minimum:maximum:value:decimalPlaces:onChange:)-3a7e2": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -1777,22 +1955,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSlider(minimum:maximum:value:decimalPlaces:onChange:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSlider(minimum:maximum:value:decimalPlaces:onChange:)-3a7e2",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createSlider(minimum:maximum:value:decimalPlaces:onChange:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createslider(minimum:maximum:value:decimalplaces:onchange:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createslider(minimum:maximum:value:decimalplaces:onchange:)-3a7e2"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSpacer(expandHorizontally:expandVertically:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSpacer(expandHorizontally:expandVertically:)-3grgi": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -1854,22 +2032,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSpacer(expandHorizontally:expandVertically:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSpacer(expandHorizontally:expandVertically:)-3grgi",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createSpacer(expandHorizontally:expandVertically:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createspacer(expandhorizontally:expandvertically:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createspacer(expandhorizontally:expandvertically:)-3grgi"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSplitView(leadingChild:trailingChild:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSplitView(leadingChild:trailingChild:)-3iqgg": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -1905,7 +2083,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -1930,7 +2107,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -1947,22 +2123,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSplitView(leadingChild:trailingChild:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSplitView(leadingChild:trailingChild:)-3iqgg",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createSplitView(leadingChild:trailingChild:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createsplitview(leadingchild:trailingchild:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createsplitview(leadingchild:trailingchild:)-3iqgg"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextField(content:placeholder:onChange:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextField(content:placeholder:onChange:)-7zu87": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -2050,22 +2226,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextField(content:placeholder:onChange:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextField(content:placeholder:onChange:)-7zu87",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createTextField(content:placeholder:onChange:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtextfield(content:placeholder:onchange:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtextfield(content:placeholder:onchange:)-7zu87"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextView(content:shouldWrap:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextView(content:shouldWrap:)-f6zp": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -2127,22 +2303,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView(content:shouldWrap:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView(content:shouldWrap:)-f6zp",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createTextView(content:shouldWrap:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtextview(content:shouldwrap:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtextview(content:shouldwrap:)-f6zp"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createVStack(spacing:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createVStack(spacing:)-2yalt": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -2187,22 +2363,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createVStack(spacing:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createVStack(spacing:)-2yalt",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "createVStack(spacing:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createvstack(spacing:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createvstack(spacing:)-2yalt"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/getChild(ofPaddingContainer:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/getChild(ofPaddingContainer:)-31zda": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -2238,7 +2414,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -2255,22 +2430,22 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getChild(ofPaddingContainer:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getChild(ofPaddingContainer:)-31zda",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "getChild(ofPaddingContainer:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/getchild(ofpaddingcontainer:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/getchild(ofpaddingcontainer:)-31zda"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/getContent(ofTextField:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/getContent(ofTextField:)-755gm": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -2306,7 +2481,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -2319,18 +2493,19 @@
       "text" : "String"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getContent(ofTextField:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getContent(ofTextField:)-755gm",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "getContent(ofTextField:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/getcontent(oftextfield:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/getcontent(oftextfield:)-755gm"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/getInheritedOrientation(of:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/getInheritedOrientation(of:)-36htc": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -2366,7 +2541,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -2383,13 +2557,13 @@
       "text" : "?"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getInheritedOrientation(of:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getInheritedOrientation(of:)-36htc",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "getInheritedOrientation(of:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/getinheritedorientation(of:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/getinheritedorientation(of:)-36htc"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/init(appIdentifier:)": {
   "abstract" : [
@@ -2430,10 +2604,11 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/init(appidentifier:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/removeChild(_:fromListView:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/removeChild(_:fromListView:)-9ca9f": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -2461,7 +2636,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -2486,7 +2660,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -2494,18 +2667,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeChild(_:fromListView:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeChild(_:fromListView:)-9ca9f",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "removeChild(_:fromListView:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/removechild(_:fromlistview:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/removechild(_:fromlistview:)-9ca9f"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/removeChild(_:fromOneOfContainer:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/removeChild(_:fromOneOfContainer:)-1glc3": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -2533,7 +2707,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -2558,7 +2731,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -2566,13 +2738,13 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeChild(_:fromOneOfContainer:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeChild(_:fromOneOfContainer:)-1glc3",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "removeChild(_:fromOneOfContainer:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/removechild(_:fromoneofcontainer:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/removechild(_:fromoneofcontainer:)-1glc3"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/run(_:_:)": {
   "abstract" : [
@@ -2646,10 +2818,58 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/run(_:_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setAction(ofButton:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/runInMainThread(action:)": {
   "abstract" : [
 
   ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "runInMainThread"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "action"
+    },
+    {
+      "kind" : "text",
+      "text" : ": () -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/runInMainThread(action:)",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "runInMainThread(action:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/runinmainthread(action:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setAction(ofButton:to:)-5s3rv": {
+  "abstract" : [
+
+  ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -2685,7 +2905,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -2710,18 +2929,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setAction(ofButton:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setAction(ofButton:to:)-5s3rv",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setAction(ofButton:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setaction(ofbutton:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setaction(ofbutton:to:)-5s3rv"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setChild(ofEitherContainer:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setChild(ofEitherContainer:to:)-6uzwb": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -2757,7 +2977,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -2782,7 +3001,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -2790,18 +3008,19 @@
       "text" : "?)"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChild(ofEitherContainer:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChild(ofEitherContainer:to:)-6uzwb",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setChild(ofEitherContainer:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setchild(ofeithercontainer:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setchild(ofeithercontainer:to:)-6uzwb"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setContent(ofTextField:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setContent(ofTextField:to:)-21686": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -2837,7 +3056,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -2862,18 +3080,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setContent(ofTextField:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setContent(ofTextField:to:)-21686",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setContent(ofTextField:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setcontent(oftextfield:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setcontent(oftextfield:to:)-21686"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setContent(ofTextView:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setContent(ofTextView:to:)-7m8bp": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -2909,7 +3128,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -2934,18 +3152,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setContent(ofTextView:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setContent(ofTextView:to:)-7m8bp",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setContent(ofTextView:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setcontent(oftextview:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setcontent(oftextview:to:)-7m8bp"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setDecimalPlaces(ofSlider:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setDecimalPlaces(ofSlider:to:)-7l3ai": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -2981,7 +3200,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -3006,18 +3224,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setDecimalPlaces(ofSlider:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setDecimalPlaces(ofSlider:to:)-7l3ai",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setDecimalPlaces(ofSlider:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setdecimalplaces(ofslider:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setdecimalplaces(ofslider:to:)-7l3ai"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setExpandHorizontally(ofSpacer:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setExpandHorizontally(ofSpacer:to:)-4d6zt": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -3053,7 +3272,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -3078,18 +3296,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setExpandHorizontally(ofSpacer:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setExpandHorizontally(ofSpacer:to:)-4d6zt",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setExpandHorizontally(ofSpacer:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setexpandhorizontally(ofspacer:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setexpandhorizontally(ofspacer:to:)-4d6zt"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setExpandVertically(ofSpacer:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setExpandVertically(ofSpacer:to:)-3mp2c": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -3125,7 +3344,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -3150,18 +3368,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setExpandVertically(ofSpacer:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setExpandVertically(ofSpacer:to:)-3mp2c",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setExpandVertically(ofSpacer:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setexpandvertically(ofspacer:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setexpandvertically(ofspacer:to:)-3mp2c"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setFilePath(ofImageView:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setFilePath(ofImageView:to:)-1cqj7": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -3197,7 +3416,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -3222,18 +3440,91 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setFilePath(ofImageView:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setFilePath(ofImageView:to:)-1cqj7",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setFilePath(ofImageView:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setfilepath(ofimageview:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setfilepath(ofimageview:to:)-1cqj7"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setLabel(ofButton:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setForegroundColor(ofForegroundColorContainer:to:)-2tyr9": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setForegroundColor"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofForegroundColorContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "to"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setForegroundColor(ofForegroundColorContainer:to:)-2tyr9",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "setForegroundColor(ofForegroundColorContainer:to:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setforegroundcolor(offoregroundcolorcontainer:to:)-2tyr9"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setLabel(ofButton:to:)-4x3t5": {
+  "abstract" : [
+
+  ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -3269,7 +3560,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -3294,18 +3584,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setLabel(ofButton:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setLabel(ofButton:to:)-4x3t5",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setLabel(ofButton:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setlabel(ofbutton:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setlabel(ofbutton:to:)-4x3t5"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setMaximum(ofSlider:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setMaximum(ofSlider:to:)-6tatt": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -3341,7 +3632,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -3366,18 +3656,163 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMaximum(ofSlider:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMaximum(ofSlider:to:)-6tatt",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setMaximum(ofSlider:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setmaximum(ofslider:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setmaximum(ofslider:to:)-6tatt"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setMinimum(ofSlider:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setMinHeight(ofFrameContainer:to:)-69hwd": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setMinHeight"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofFrameContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "to"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMinHeight(ofFrameContainer:to:)-69hwd",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "setMinHeight(ofFrameContainer:to:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setminheight(offramecontainer:to:)-69hwd"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setMinWidth(ofFrameContainer:to:)-6roxc": {
+  "abstract" : [
+
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setMinWidth"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofFrameContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "to"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMinWidth(ofFrameContainer:to:)-6roxc",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "setMinWidth(ofFrameContainer:to:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setminwidth(offramecontainer:to:)-6roxc"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setMinimum(ofSlider:to:)-2h25n": {
+  "abstract" : [
+
+  ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -3413,7 +3848,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -3438,18 +3872,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMinimum(ofSlider:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMinimum(ofSlider:to:)-2h25n",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setMinimum(ofSlider:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setminimum(ofslider:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setminimum(ofslider:to:)-2h25n"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofPicker:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofPicker:to:)-7ksqa": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -3485,7 +3920,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -3519,18 +3953,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofPicker:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofPicker:to:)-7ksqa",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setOnChange(ofPicker:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofpicker:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofpicker:to:)-7ksqa"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofSlider:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofSlider:to:)-7j3la": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -3566,7 +4001,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -3600,18 +4034,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofSlider:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofSlider:to:)-7j3la",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setOnChange(ofSlider:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofslider:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofslider:to:)-7j3la"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofTextField:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofTextField:to:)-6bixo": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -3647,7 +4082,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -3681,18 +4115,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofTextField:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofTextField:to:)-6bixo",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setOnChange(ofTextField:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(oftextfield:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(oftextfield:to:)-6bixo"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOptions(ofPicker:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOptions(ofPicker:to:)-2wmpb": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -3728,7 +4163,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -3753,18 +4187,19 @@
       "text" : "])"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOptions(ofPicker:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOptions(ofPicker:to:)-2wmpb",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setOptions(ofPicker:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setoptions(ofpicker:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setoptions(ofpicker:to:)-2wmpb"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setPadding(ofPaddingContainer:top:bottom:leading:trailing:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setPadding(ofPaddingContainer:top:bottom:leading:trailing:)-3i82z": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -3800,7 +4235,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -3876,18 +4310,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setPadding(ofPaddingContainer:top:bottom:leading:trailing:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setPadding(ofPaddingContainer:top:bottom:leading:trailing:)-3i82z",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setPadding(ofPaddingContainer:top:bottom:leading:trailing:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setpadding(ofpaddingcontainer:top:bottom:leading:trailing:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setpadding(ofpaddingcontainer:top:bottom:leading:trailing:)-3i82z"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setPlaceholder(ofTextField:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setPlaceholder(ofTextField:to:)-7mrkp": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -3923,7 +4358,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -3948,18 +4382,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setPlaceholder(ofTextField:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setPlaceholder(ofTextField:to:)-7mrkp",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setPlaceholder(ofTextField:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setplaceholder(oftextfield:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setplaceholder(oftextfield:to:)-7mrkp"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setSelectedOption(ofPicker:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setSelectedOption(ofPicker:to:)-2b5qx": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -3995,7 +4430,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -4020,18 +4454,19 @@
       "text" : "?)"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSelectedOption(ofPicker:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSelectedOption(ofPicker:to:)-2b5qx",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setSelectedOption(ofPicker:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setselectedoption(ofpicker:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setselectedoption(ofpicker:to:)-2b5qx"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setSpacing(ofHStack:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setSpacing(ofHStack:to:)-6cn": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -4067,7 +4502,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -4092,18 +4526,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSpacing(ofHStack:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSpacing(ofHStack:to:)-6cn",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setSpacing(ofHStack:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setspacing(ofhstack:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setspacing(ofhstack:to:)-6cn"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setSpacing(ofVStack:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setSpacing(ofVStack:to:)-3m3cm": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -4139,7 +4574,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -4164,18 +4598,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSpacing(ofVStack:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSpacing(ofVStack:to:)-3m3cm",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setSpacing(ofVStack:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setspacing(ofvstack:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setspacing(ofvstack:to:)-3m3cm"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setValue(ofSlider:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setValue(ofSlider:to:)-9cjjs": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -4211,7 +4646,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -4236,18 +4670,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setValue(ofSlider:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setValue(ofSlider:to:)-9cjjs",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setValue(ofSlider:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvalue(ofslider:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvalue(ofslider:to:)-9cjjs"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)-955ak": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -4283,7 +4718,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -4308,7 +4742,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -4316,18 +4749,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-955ak",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setVisibleChild(ofOneOfContainer:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-955ak"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setWrap(ofTextView:to:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setWrap(ofTextView:to:)-6xmm4": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -4363,7 +4797,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -4388,18 +4821,66 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setWrap(ofTextView:to:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setWrap(ofTextView:to:)-6xmm4",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "setWrap(ofTextView:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setwrap(oftextview:to:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setwrap(oftextview:to:)-6xmm4"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateListView(_:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/show(_:)-3myqx": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "show"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/show(_:)-3myqx",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "show(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/show(_:)-3myqx"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateListView(_:)-9cu5o": {
+  "abstract" : [
+
+  ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -4427,7 +4908,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -4435,22 +4915,23 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateListView(_:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateListView(_:)-9cu5o",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "updateListView(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatelistview(_:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatelistview(_:)-9cu5o"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkBackend": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updatePassthroughVStack(_:)-9v2cc": {
   "abstract" : [
 
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "struct"
+      "text" : "func"
     },
     {
       "kind" : "text",
@@ -4458,21 +4939,36 @@
     },
     {
       "kind" : "identifier",
-      "text" : "GtkBackend"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBackend",
-  "kind" : "symbol",
-  "navigatorTitle" : [
+      "text" : "updatePassthroughVStack"
+    },
     {
-      "kind" : "identifier",
-      "text" : "GtkBackend"
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
     }
   ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updatePassthroughVStack(_:)-9v2cc",
+  "kind" : "symbol",
+  "required" : true,
   "role" : "symbol",
-  "title" : "GtkBackend",
+  "title" : "updatePassthroughVStack(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/gtkbackend"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatepassthroughvstack(_:)-9v2cc"
 }
 }
 }

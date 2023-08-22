@@ -41,12 +41,12 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5\/asWidget(_:backend:)-i0ti",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5\/asWidget(_:backend:)-1i7nn",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5\/frame(minWidth:minHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5\/padding(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5\/padding(_:_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5\/update(_:children:backend:)-2g5wf"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5\/update(_:children:backend:)-3hdbk"
       ],
       "title" : "Instance Methods"
     }
@@ -110,7 +110,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewcontent5"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent5/asWidget(_:backend:)-i0ti": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent5/asWidget(_:backend:)-1i7nn": {
   "abstract" : [
 
   ],
@@ -189,16 +189,15 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5\/asWidget(_:backend:)-i0ti",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5\/asWidget(_:backend:)-1i7nn",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewcontent5\/aswidget(_:backend:)-i0ti"
+  "url" : "\/documentation\/swiftcrossui\/viewcontent5\/aswidget(_:backend:)-1i7nn"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent5/body": {
   "abstract" : [
@@ -606,7 +605,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewcontent5\/state"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent5/update(_:children:backend:)-2g5wf": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent5/update(_:children:backend:)-3hdbk": {
   "abstract" : [
 
   ],
@@ -645,7 +644,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -701,12 +699,12 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5\/update(_:children:backend:)-2g5wf",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent5\/update(_:children:backend:)-3hdbk",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewcontent5\/update(_:children:backend:)-2g5wf"
+  "url" : "\/documentation\/swiftcrossui\/viewcontent5\/update(_:children:backend:)-3hdbk"
 }
 }
 }

@@ -159,8 +159,8 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/asWidget(_:backend:)-6j9yp",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/update(_:children:backend:)-537r6"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/asWidget(_:backend:)-8n575",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/update(_:children:backend:)-18xsl"
       ],
       "title" : "Instance Methods"
     },
@@ -242,7 +242,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/eitherview\/view-implementations"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView/asWidget(_:backend:)-6j9yp": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView/asWidget(_:backend:)-8n575": {
   "abstract" : [
 
   ],
@@ -322,16 +322,15 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/asWidget(_:backend:)-6j9yp",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/asWidget(_:backend:)-8n575",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/eitherview\/aswidget(_:backend:)-6j9yp"
+  "url" : "\/documentation\/swiftcrossui\/eitherview\/aswidget(_:backend:)-8n575"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView/body": {
   "abstract" : [
@@ -387,7 +386,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/eitherview\/body"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView/update(_:children:backend:)-537r6": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView/update(_:children:backend:)-18xsl": {
   "abstract" : [
 
   ],
@@ -426,7 +425,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -483,12 +481,12 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/update(_:children:backend:)-537r6",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/update(_:children:backend:)-18xsl",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/eitherview\/update(_:children:backend:)-537r6"
+  "url" : "\/documentation\/swiftcrossui\/eitherview\/update(_:children:backend:)-18xsl"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

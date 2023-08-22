@@ -92,7 +92,6 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/alpha",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/blue-swift.property",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/green-swift.property",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/gtkColor",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/red-swift.property"
       ],
       "title" : "Instance Properties"
@@ -439,40 +438,6 @@
   "title" : "green",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/color\/green-swift.type.property"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/gtkColor": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "gtkColor"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI8GtkColora",
-      "text" : "GtkColor"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/gtkColor",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "gtkColor",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/color\/gtkcolor"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/init(_:_:_:_:)": {
   "abstract" : [

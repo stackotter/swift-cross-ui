@@ -33,8 +33,8 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4\/asWidget(_:backend:)-2j6xk",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4\/update(_:children:backend:)-2b8iu"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4\/asWidget(_:backend:)-cyd0",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4\/update(_:children:backend:)-29l6e"
       ],
       "title" : "Instance Methods"
     },
@@ -216,7 +216,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewcontent4\/children"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent4/asWidget(_:backend:)-2j6xk": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent4/asWidget(_:backend:)-cyd0": {
   "abstract" : [
 
   ],
@@ -335,18 +335,17 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4\/asWidget(_:backend:)-2j6xk",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4\/asWidget(_:backend:)-cyd0",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewcontent4\/aswidget(_:backend:)-2j6xk"
+  "url" : "\/documentation\/swiftcrossui\/viewcontent4\/aswidget(_:backend:)-cyd0"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent4/update(_:children:backend:)-2b8iu": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent4/update(_:children:backend:)-29l6e": {
   "abstract" : [
 
   ],
@@ -433,7 +432,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -481,12 +479,12 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4\/update(_:children:backend:)-2b8iu",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent4\/update(_:children:backend:)-29l6e",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewcontent4\/update(_:children:backend:)-2b8iu"
+  "url" : "\/documentation\/swiftcrossui\/viewcontent4\/update(_:children:backend:)-29l6e"
 }
 }
 }

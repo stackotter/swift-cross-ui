@@ -13,11 +13,11 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
+    "externalID" : "s:12SwiftCrossUI10AppBackendP6WidgetQa",
     "fragments" : [
       {
         "kind" : "keyword",
-        "text" : "typealias"
+        "text" : "associatedtype"
       },
       {
         "kind" : "text",
@@ -33,16 +33,11 @@
         "name" : "SwiftCrossUI"
       }
     ],
-    "navigatorTitle" : [
-      {
-        "kind" : "identifier",
-        "text" : "Widget"
-      }
-    ],
+    "required" : true,
     "role" : "symbol",
-    "roleHeading" : "Type Alias",
-    "symbolKind" : "typealias",
-    "title" : "AppBackend.Widget"
+    "roleHeading" : "Associated Type",
+    "symbolKind" : "associatedtype",
+    "title" : "Widget"
   },
   "primaryContentSections" : [
     {
@@ -57,7 +52,7 @@
           "tokens" : [
             {
               "kind" : "keyword",
-              "text" : "typealias"
+              "text" : "associatedtype"
             },
             {
               "kind" : "text",
@@ -66,16 +61,6 @@
             {
               "kind" : "identifier",
               "text" : "Widget"
-            },
-            {
-              "kind" : "text",
-              "text" : " = "
-            },
-            {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
-              "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI9GtkWidgeta",
-              "text" : "GtkWidget"
             }
           ]
         }
@@ -157,7 +142,7 @@
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "typealias"
+      "text" : "associatedtype"
     },
     {
       "kind" : "text",
@@ -170,47 +155,11 @@
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/Widget",
   "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "Widget"
-    }
-  ],
+  "required" : true,
   "role" : "symbol",
-  "title" : "AppBackend.Widget",
+  "title" : "Widget",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/widget"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkWidget": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "GtkWidget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkWidget",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "GtkWidget"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "GtkWidget",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/gtkwidget"
 }
 }
 }

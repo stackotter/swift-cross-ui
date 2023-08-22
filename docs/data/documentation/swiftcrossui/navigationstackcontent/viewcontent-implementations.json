@@ -33,8 +33,8 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackContent\/asWidget(_:backend:)-15mhk",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackContent\/update(_:children:backend:)-6534z"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackContent\/asWidget(_:backend:)-1chyv",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackContent\/update(_:children:backend:)-50byt"
       ],
       "title" : "Instance Methods"
     }
@@ -98,7 +98,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/navigationstackcontent"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStackContent/asWidget(_:backend:)-15mhk": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStackContent/asWidget(_:backend:)-1chyv": {
   "abstract" : [
 
   ],
@@ -217,18 +217,17 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackContent\/asWidget(_:backend:)-15mhk",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackContent\/asWidget(_:backend:)-1chyv",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/navigationstackcontent\/aswidget(_:backend:)-15mhk"
+  "url" : "\/documentation\/swiftcrossui\/navigationstackcontent\/aswidget(_:backend:)-1chyv"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStackContent/update(_:children:backend:)-6534z": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStackContent/update(_:children:backend:)-50byt": {
   "abstract" : [
 
   ],
@@ -315,7 +314,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -363,12 +361,12 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackContent\/update(_:children:backend:)-6534z",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStackContent\/update(_:children:backend:)-50byt",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/navigationstackcontent\/update(_:children:backend:)-6534z"
+  "url" : "\/documentation\/swiftcrossui\/navigationstackcontent\/update(_:children:backend:)-50byt"
 }
 }
 }

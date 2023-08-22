@@ -111,8 +111,8 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/asWidget(_:backend:)-3g2i3",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/update(_:children:backend:)-3b7g3"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/asWidget(_:backend:)-6xnbf",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/update(_:children:backend:)-3sgat"
       ],
       "title" : "Instance Methods"
     },
@@ -197,7 +197,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/spacer\/view-implementations"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/asWidget(_:backend:)-3g2i3": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/asWidget(_:backend:)-6xnbf": {
   "abstract" : [
 
   ],
@@ -270,16 +270,15 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/asWidget(_:backend:)-3g2i3",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/asWidget(_:backend:)-6xnbf",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/spacer\/aswidget(_:backend:)-3g2i3"
+  "url" : "\/documentation\/swiftcrossui\/spacer\/aswidget(_:backend:)-6xnbf"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/body": {
   "abstract" : [
@@ -353,7 +352,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/spacer\/init(minlength:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/update(_:children:backend:)-3b7g3": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/update(_:children:backend:)-3sgat": {
   "abstract" : [
 
   ],
@@ -392,7 +391,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -442,12 +440,12 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/update(_:children:backend:)-3b7g3",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/update(_:children:backend:)-3sgat",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/spacer\/update(_:children:backend:)-3b7g3"
+  "url" : "\/documentation\/swiftcrossui\/spacer\/update(_:children:backend:)-3sgat"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

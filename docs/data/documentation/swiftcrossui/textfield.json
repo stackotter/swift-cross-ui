@@ -111,8 +111,8 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/asWidget(_:backend:)-7npco",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/update(_:children:backend:)-99k5b"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/asWidget(_:backend:)-9pblf",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/update(_:children:backend:)-6bnmu"
       ],
       "title" : "Instance Methods"
     },
@@ -197,7 +197,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/textfield\/view-implementations"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/asWidget(_:backend:)-7npco": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/asWidget(_:backend:)-9pblf": {
   "abstract" : [
 
   ],
@@ -270,16 +270,15 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/asWidget(_:backend:)-7npco",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/asWidget(_:backend:)-9pblf",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/textfield\/aswidget(_:backend:)-7npco"
+  "url" : "\/documentation\/swiftcrossui\/textfield\/aswidget(_:backend:)-9pblf"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/body": {
   "abstract" : [
@@ -366,7 +365,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/textfield\/init(_:_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/update(_:children:backend:)-99k5b": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/update(_:children:backend:)-6bnmu": {
   "abstract" : [
 
   ],
@@ -405,7 +404,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -455,12 +453,12 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/update(_:children:backend:)-99k5b",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/update(_:children:backend:)-6bnmu",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/textfield\/update(_:children:backend:)-99k5b"
+  "url" : "\/documentation\/swiftcrossui\/textfield\/update(_:children:backend:)-6bnmu"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

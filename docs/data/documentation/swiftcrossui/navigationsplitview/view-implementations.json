@@ -40,8 +40,8 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView\/asWidget(_:backend:)-854ko",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView\/asWidget(_:backend:)-97dmf",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView\/asWidget(_:backend:)-5fjli",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView\/asWidget(_:backend:)-8sb7m",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView\/frame(minWidth:minHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView\/padding(_:)",
@@ -110,97 +110,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/navigationsplitview"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationSplitView/asWidget(_:backend:)-854ko": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "asWidget"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "genericParameter",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ">("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Children"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView\/asWidget(_:backend:)-854ko",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "asWidget(_:backend:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/navigationsplitview\/aswidget(_:backend:)-854ko"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationSplitView/asWidget(_:backend:)-97dmf": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationSplitView/asWidget(_:backend:)-5fjli": {
   "abstract" : [
 
   ],
@@ -352,16 +262,104 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView\/asWidget(_:backend:)-97dmf",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView\/asWidget(_:backend:)-5fjli",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/navigationsplitview\/aswidget(_:backend:)-97dmf"
+  "url" : "\/documentation\/swiftcrossui\/navigationsplitview\/aswidget(_:backend:)-5fjli"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationSplitView/asWidget(_:backend:)-8sb7m": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "asWidget"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Content"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Children"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView\/asWidget(_:backend:)-8sb7m",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "asWidget(_:backend:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationsplitview\/aswidget(_:backend:)-8sb7m"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationSplitView/foregroundColor(_:)": {
   "abstract" : [
@@ -727,7 +725,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {

@@ -112,8 +112,8 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/asWidget(_:backend:)-4fnwt",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/update(_:children:backend:)-2lg0g"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/asWidget(_:backend:)-1xvbl",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/update(_:children:backend:)-92gj3"
       ],
       "title" : "Instance Methods"
     },
@@ -198,7 +198,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/slider\/view-implementations"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider/asWidget(_:backend:)-4fnwt": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider/asWidget(_:backend:)-1xvbl": {
   "abstract" : [
 
   ],
@@ -271,16 +271,15 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/asWidget(_:backend:)-4fnwt",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/asWidget(_:backend:)-1xvbl",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/slider\/aswidget(_:backend:)-4fnwt"
+  "url" : "\/documentation\/swiftcrossui\/slider\/aswidget(_:backend:)-1xvbl"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider/body": {
   "abstract" : [
@@ -472,7 +471,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/slider\/init(_:minimum:maximum:)-bs2t"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider/update(_:children:backend:)-2lg0g": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider/update(_:children:backend:)-92gj3": {
   "abstract" : [
 
   ],
@@ -511,7 +510,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -561,12 +559,12 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/update(_:children:backend:)-2lg0g",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/update(_:children:backend:)-92gj3",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/slider\/update(_:children:backend:)-2lg0g"
+  "url" : "\/documentation\/swiftcrossui\/slider\/update(_:children:backend:)-92gj3"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

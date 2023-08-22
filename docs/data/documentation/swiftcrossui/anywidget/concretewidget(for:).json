@@ -13,7 +13,7 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI9AnyWidgetC08concreteE03for3Gtk0E0Cxm_tAA10AppBackendRzlF",
+    "externalID" : "s:12SwiftCrossUI9AnyWidgetC08concreteE03for0E0Qzxm_tAA10AppBackendRzlF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -65,7 +65,6 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
         "text" : "Widget"
       }
     ],
@@ -147,9 +146,7 @@
               "text" : "."
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/Widget",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
               "text" : "Widget"
             },
             {
@@ -306,7 +303,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
@@ -347,37 +343,6 @@
   "title" : "AppBackend",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/Widget": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/Widget",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "Widget"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "AppBackend.Widget",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/widget"
 }
 }
 }

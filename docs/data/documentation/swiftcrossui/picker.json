@@ -144,8 +144,8 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/asWidget(_:backend:)-8gq5u",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/update(_:children:backend:)-1652y"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/asWidget(_:backend:)-8c8bd",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/update(_:children:backend:)-85nf8"
       ],
       "title" : "Instance Methods"
     },
@@ -230,7 +230,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/picker\/view-implementations"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/asWidget(_:backend:)-8gq5u": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/asWidget(_:backend:)-8c8bd": {
   "abstract" : [
 
   ],
@@ -303,16 +303,15 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/asWidget(_:backend:)-8gq5u",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/asWidget(_:backend:)-8c8bd",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/picker\/aswidget(_:backend:)-8gq5u"
+  "url" : "\/documentation\/swiftcrossui\/picker\/aswidget(_:backend:)-8c8bd"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/body": {
   "abstract" : [
@@ -413,7 +412,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/picker\/init(of:selection:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/update(_:children:backend:)-1652y": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/update(_:children:backend:)-85nf8": {
   "abstract" : [
 
   ],
@@ -452,7 +451,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -502,12 +500,12 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/update(_:children:backend:)-1652y",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/update(_:children:backend:)-85nf8",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/picker\/update(_:children:backend:)-1652y"
+  "url" : "\/documentation\/swiftcrossui\/picker\/update(_:children:backend:)-85nf8"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

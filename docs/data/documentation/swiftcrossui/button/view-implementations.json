@@ -40,12 +40,12 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/asWidget(_:backend:)-72x47",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/asWidget(_:backend:)-cexh",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/frame(minWidth:minHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/padding(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/padding(_:_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/update(_:children:backend:)-45qcf"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/update(_:children:backend:)-6o5mv"
       ],
       "title" : "Instance Methods"
     }
@@ -112,7 +112,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/button"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Button/asWidget(_:backend:)-72x47": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Button/asWidget(_:backend:)-cexh": {
   "abstract" : [
 
   ],
@@ -191,16 +191,15 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/asWidget(_:backend:)-72x47",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/asWidget(_:backend:)-cexh",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/button\/aswidget(_:backend:)-72x47"
+  "url" : "\/documentation\/swiftcrossui\/button\/aswidget(_:backend:)-cexh"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Button/foregroundColor(_:)": {
   "abstract" : [
@@ -527,7 +526,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/button\/state"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Button/update(_:children:backend:)-45qcf": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Button/update(_:children:backend:)-6o5mv": {
   "abstract" : [
 
   ],
@@ -566,7 +565,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
@@ -622,12 +620,12 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/update(_:children:backend:)-45qcf",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/update(_:children:backend:)-6o5mv",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/button\/update(_:children:backend:)-45qcf"
+  "url" : "\/documentation\/swiftcrossui\/button\/update(_:children:backend:)-6o5mv"
 }
 }
 }

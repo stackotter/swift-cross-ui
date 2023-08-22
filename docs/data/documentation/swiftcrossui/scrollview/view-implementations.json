@@ -40,7 +40,7 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/asWidget(_:backend:)-729m0",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/asWidget(_:backend:)-63mth",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/frame(minWidth:minHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/padding(_:)",
@@ -124,7 +124,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scrollview"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/asWidget(_:backend:)-729m0": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/asWidget(_:backend:)-63mth": {
   "abstract" : [
 
   ],
@@ -203,16 +203,15 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/asWidget(_:backend:)-729m0",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/asWidget(_:backend:)-63mth",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/scrollview\/aswidget(_:backend:)-729m0"
+  "url" : "\/documentation\/swiftcrossui\/scrollview\/aswidget(_:backend:)-63mth"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/foregroundColor(_:)": {
   "abstract" : [
@@ -578,7 +577,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {

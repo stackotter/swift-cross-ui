@@ -157,7 +157,7 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/asWidget(_:backend:)-7i3mq"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/asWidget(_:backend:)-21r5t"
       ],
       "title" : "Instance Methods"
     },
@@ -254,7 +254,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scrollview\/view-implementations"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/asWidget(_:backend:)-7i3mq": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/asWidget(_:backend:)-21r5t": {
   "abstract" : [
 
   ],
@@ -325,16 +325,15 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/asWidget(_:backend:)-7i3mq",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/asWidget(_:backend:)-21r5t",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/scrollview\/aswidget(_:backend:)-7i3mq"
+  "url" : "\/documentation\/swiftcrossui\/scrollview\/aswidget(_:backend:)-21r5t"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/body": {
   "abstract" : [

@@ -29,7 +29,7 @@
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI4ViewPAAE6update_8children7backendy3Gtk6WidgetC_7Content_8ChildrenQZqd__tAA10AppBackendRd__lF::SYNTHESIZED::s:12SwiftCrossUI14NavigationLinkV",
+    "externalID" : "s:12SwiftCrossUI4ViewPAAE6update_8children7backendy6WidgetQyd___7Content_8ChildrenQZqd__tAA10AppBackendRd__lF::SYNTHESIZED::s:12SwiftCrossUI14NavigationLinkV",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -65,7 +65,6 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
         "text" : "Widget"
       },
       {
@@ -191,9 +190,7 @@
               "text" : "."
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/Widget",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
               "text" : "Widget"
             },
             {
@@ -343,37 +340,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/Widget": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/Widget",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "Widget"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "AppBackend.Widget",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/widget"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationLink": {
   "abstract" : [
     {
@@ -458,7 +424,6 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6Widgeta",
       "text" : "Widget"
     },
     {
