@@ -41,20 +41,19 @@ var conditionalProducts: [Product] = []
 var conditionalTargets: [Target] = []
 var exampleDependencies: [Target.Dependency] = ["SwiftCrossUI"]
 var fileViewerExampleDependencies: [Target.Dependency] = ["SwiftCrossUI"]
+var backendTargets: [String] = []
 
 // If Gtk is detected, add Gtk-related products and targets
 if let version = getGtk4MinorVersion() {
     var gtkSwiftSettings: [SwiftSetting] = []
     var gtkExampleDependencies: [Target.Dependency] = ["Gtk"]
     exampleDependencies.append("GtkBackend")
+    backendTargets.append("GtkBackend")
 
     // Conditionally enable features that rely on Gtk 4.10
     if version >= 10 {
         conditionalTargets.append(
-            .target(
-                name: "FileDialog",
-                dependencies: ["CGtk", "Gtk"]
-            )
+            .target(name: "FileDialog", dependencies: ["CGtk", "Gtk"])
         )
 
         gtkExampleDependencies.append("FileDialog")
@@ -64,29 +63,15 @@ if let version = getGtk4MinorVersion() {
 
     conditionalProducts.append(
         contentsOf: [
-            .library(
-                name: "GtkBackend",
-                targets: ["GtkBackend"]
-            ),
-            .library(
-                name: "Gtk",
-                targets: ["Gtk"]
-            ),
-
-            .executable(
-                name: "GtkExample",
-                targets: ["GtkExample"]
-            ),
+            .library(name: "GtkBackend", targets: ["GtkBackend"]),
+            .library(name: "Gtk", targets: ["Gtk"]),
+            .executable(name: "GtkExample", targets: ["GtkExample"]),
         ]
     )
 
     conditionalTargets.append(
         contentsOf: [
-            .target(
-                name: "GtkBackend",
-                dependencies: ["SwiftCrossUI", "Gtk", "CGtk"],
-                path: "Sources/GtkBackend"
-            ),
+            .target(name: "GtkBackend", dependencies: ["SwiftCrossUI", "Gtk", "CGtk"]),
             .systemLibrary(
                 name: "CGtk",
                 pkgConfig: "gtk4",
@@ -95,11 +80,7 @@ if let version = getGtk4MinorVersion() {
                     .apt(["libgtk-4-dev clang"]),
                 ]
             ),
-            .target(
-                name: "Gtk",
-                dependencies: ["CGtk"],
-                swiftSettings: gtkSwiftSettings
-            ),
+            .target(name: "Gtk", dependencies: ["CGtk"], swiftSettings: gtkSwiftSettings),
             .executableTarget(
                 name: "GtkExample",
                 dependencies: gtkExampleDependencies,
@@ -116,18 +97,18 @@ if let version = getGtk4MinorVersion() {
     )
 }
 
+#if canImport(AppKit)
+    conditionalTargets.append(.target(name: "AppKitBackend", dependencies: ["SwiftCrossUI"]))
+    backendTargets.append("AppKitBackend")
+    exampleDependencies.append("AppKitBackend")
+#endif
+
 let package = Package(
     name: "swift-cross-ui",
     platforms: [.macOS(.v10_15)],
     products: [
-        .library(
-            name: "SwiftCrossUI",
-            targets: ["SwiftCrossUI"]
-        ),
-        .executable(
-            name: "CounterExample",
-            targets: ["CounterExample"]
-        ),
+        .library(name: "SwiftCrossUI", targets: ["SwiftCrossUI"] + backendTargets),
+        .executable(name: "CounterExample", targets: ["CounterExample"]),
         .executable(
             name: "RandomNumberGeneratorExample",
             targets: ["RandomNumberGeneratorExample"]
@@ -140,18 +121,9 @@ let package = Package(
             name: "GreetingGeneratorExample",
             targets: ["GreetingGeneratorExample"]
         ),
-        .executable(
-            name: "FileViewerExample",
-            targets: ["FileViewerExample"]
-        ),
-        .executable(
-            name: "NavigationExample",
-            targets: ["NavigationExample"]
-        ),
-        .executable(
-            name: "SplitExample",
-            targets: ["SplitExample"]
-        ),
+        .executable(name: "FileViewerExample", targets: ["FileViewerExample"]),
+        .executable(name: "NavigationExample", targets: ["NavigationExample"]),
+        .executable(name: "SplitExample", targets: ["SplitExample"]),
     ] + conditionalProducts,
     dependencies: dependencies,
     targets: [
