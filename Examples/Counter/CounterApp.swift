@@ -1,5 +1,12 @@
 import SwiftCrossUI
 
+#if canImport(GtkBackend)
+    import GtkBackend
+    typealias SelectedBackend = GtkBackend
+#else
+    #error("No valid backends found")
+#endif
+
 class CounterState: Observable {
     @Observed
     var count = 0
@@ -7,6 +14,8 @@ class CounterState: Observable {
 
 @main
 struct CounterApp: App {
+    typealias Backend = SelectedBackend
+
     let identifier = "dev.stackotter.CounterApp"
 
     let state = CounterState()

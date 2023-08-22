@@ -8,6 +8,7 @@ class _App<AppRoot: App> {
 
     func run() {
         let backend = AppRoot.Backend(appIdentifier: app.identifier)
+        currentBackend = backend
         backend.run(app) { viewGraph in
             self.viewGraph = viewGraph
         }

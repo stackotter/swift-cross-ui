@@ -1,4 +1,3 @@
-import CGtk
 import Foundation
 
 public class Publisher {
@@ -9,25 +8,11 @@ public class Publisher {
 
     public func send() {
         // Publishers are run on the main Gtk thread so that observers can safely update the UI
-        g_idle_add_full(
-            0,
-            { context in
-                guard let context = context else {
-                    fatalError("Publisher callback called without context")
-                }
-
-                let observations = context.assumingMemoryBound(to: LinkedList<() -> Void>.self)
-                    .pointee
-                for observation in observations {
-                    observation()
-                }
-
-                return 0
-            },
-            // TODO: Pass unretained instead of just as a pointer (see build warning).
-            &observations,
-            { _ in }
-        )
+        currentBackend.runInMainThread {
+            for observation in self.observations {
+                observation()
+            }
+        }
     }
 
     public func observe(with closure: @escaping () -> Void) -> Cancellable {

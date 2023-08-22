@@ -1,12 +1,21 @@
 import Foundation
 import SwiftCrossUI
 
+#if canImport(GtkBackend)
+    import GtkBackend
+    typealias SelectedBackend = GtkBackend
+#else
+    #error("No valid backends found")
+#endif
+
 class WindowPropertiesAppState: Observable {
     @Observed var count = 0
 }
 
 @main
 struct WindowPropertiesApp: App {
+    typealias Backend = SelectedBackend
+
     let identifier = "dev.stackotter.WindowPropertiesApp"
 
     let state = WindowPropertiesAppState()

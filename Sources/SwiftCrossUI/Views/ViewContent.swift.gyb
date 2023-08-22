@@ -20,10 +20,7 @@ extension ViewContent where Content == Self, State == EmptyState {
     }
 
     public func update<Backend: AppBackend>(_ widget: Backend.Widget, children: Children, backend: Backend) {
-        // TODO: Figure out how to get rid of backend-specific code outside of backend itself
-        if Backend.self == GtkBackend.self {
-            (widget as! GtkSectionBox).update()
-        }
+        backend.updatePassthroughVStack(widget)
     }
 }
 

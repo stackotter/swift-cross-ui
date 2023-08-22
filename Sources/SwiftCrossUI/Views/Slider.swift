@@ -84,9 +84,17 @@ public struct Slider: View {
         _ children: EmptyViewContent.Children,
         backend: Backend
     ) -> Backend.Widget {
-        let scale = GtkScale()
-        scale.expandHorizontally = true
-        return scale
+        return backend.createSlider(
+            minimum: minimum,
+            maximum: maximum,
+            value: value?.wrappedValue ?? minimum,
+            decimalPlaces: decimalPlaces
+        ) { [weak value] newValue in
+            guard let value = value else {
+                return
+            }
+            value.wrappedValue = newValue
+        }
     }
 
     public func update<Backend: AppBackend>(
@@ -97,9 +105,11 @@ public struct Slider: View {
         backend.setMinimum(ofSlider: widget, to: minimum)
         backend.setMaximum(ofSlider: widget, to: maximum)
         backend.setDecimalPlaces(ofSlider: widget, to: decimalPlaces)
-
-        backend.setOnChange(ofSlider: widget) { newValue in
-            self.value?.wrappedValue = newValue
+        backend.setOnChange(ofSlider: widget) { [weak value] newValue in
+            guard let value = value else {
+                return
+            }
+            value.wrappedValue = newValue
         }
 
         if let value = value?.wrappedValue {

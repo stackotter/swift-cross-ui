@@ -1,5 +1,3 @@
-import Gtk
-
 /// Type to indicate the root of the NavigationStack. This is internal to prevent root accidentally showing instead
 /// of a detail view.
 struct NavigationStackRootPath: Codable {}
@@ -10,10 +8,6 @@ struct NavigationStackRootPath: Codable {}
 public struct NavigationStack<Detail: View>: View {
     public var body: NavigationStackContent<Detail>
 
-    /// The type of transition to use when a new navigation destination is displayed.
-    private var transitionType: StackTransitionType
-    /// The duration of transition to use (in milliseconds).
-    private var transitionMilliseconds: Int
     private var path: Binding<NavigationPath>
 
     /// Creates a navigation stack with heterogeneous navigation state that you can control.
@@ -26,8 +20,6 @@ public struct NavigationStack<Detail: View>: View {
         @ViewContentBuilder _ root: @escaping () -> Detail
     ) {
         self.path = path
-        transitionType = .slideLeftRight
-        transitionMilliseconds = 300
         body = NavigationStackContent(path, []) { element in
             if element is NavigationStackRootPath {
                 return root()
@@ -57,21 +49,6 @@ public struct NavigationStack<Detail: View>: View {
         )
     }
 
-    /// Sets the transition to use when changing navigation destinations.
-    ///
-    /// - Parameters:
-    ///   - transition: The type of animation that will be used for transitions between pages in the
-    ///     stack.
-    ///   - duration: Duration of the transition animation in seconds.
-    public func navigationTransition(_ transition: StackTransitionType, duration: Double)
-        -> some View
-    {
-        var view = self
-        view.transitionType = transition
-        view.transitionMilliseconds = Int(duration * 1000)
-        return view
-    }
-
     public func asWidget<Backend: AppBackend>(
         _ children: NavigationStackChildren<Detail>, backend: Backend
     ) -> Backend.Widget {
@@ -84,8 +61,6 @@ public struct NavigationStack<Detail: View>: View {
         destination: @escaping (Component) -> NewDetail?
     ) where Detail == EitherView<PreviousDetail, NewDetail> {
         path = previous.path
-        transitionType = previous.transitionType
-        transitionMilliseconds = previous.transitionMilliseconds
         body = NavigationStackContent(path, previous.body.destinationTypes + [Component.self]) {
             if let previous = previous.body.child($0) {
                 // Either root or previously defined destination returned a view

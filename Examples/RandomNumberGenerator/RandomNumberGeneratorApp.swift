@@ -1,5 +1,12 @@
 import SwiftCrossUI
 
+#if canImport(GtkBackend)
+    import GtkBackend
+    typealias SelectedBackend = GtkBackend
+#else
+    #error("No valid backends found")
+#endif
+
 class RandomNumberGeneratorState: Observable {
     @Observed var minNum = 0
     @Observed var maxNum = 100
@@ -26,7 +33,7 @@ enum ColorOption: String, CaseIterable {
 
 @main
 struct RandomNumberGeneratorApp: App {
-    typealias Backend = GtkBackend
+    typealias Backend = SelectedBackend
 
     let identifier = "dev.stackotter.RandomNumberGeneratorApp"
 

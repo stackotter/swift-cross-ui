@@ -37,22 +37,83 @@ var dependencies: [Package.Dependency] = [
     fatalError("Unsupported platform.")
 #endif
 
-// Conditionally enable features that rely on Gtk 4.10
+var conditionalProducts: [Product] = []
 var conditionalTargets: [Target] = []
-var swiftCrossUIDependencies: [Target.Dependency] = ["Gtk"]
-var gtkExampleDependencies: [Target.Dependency] = ["Gtk"]
-var gtkSwiftSettings: [SwiftSetting] = []
-if let version = getGtk4MinorVersion(), version >= 10 {
-    conditionalTargets.append(
-        .target(
-            name: "FileDialog",
-            dependencies: ["CGtk", "Gtk"]
+var exampleDependencies: [Target.Dependency] = ["SwiftCrossUI"]
+var fileViewerExampleDependencies: [Target.Dependency] = ["SwiftCrossUI"]
+
+// If Gtk is detected, add Gtk-related products and targets
+if let version = getGtk4MinorVersion() {
+    var gtkSwiftSettings: [SwiftSetting] = []
+    var gtkExampleDependencies: [Target.Dependency] = ["Gtk"]
+    exampleDependencies.append("GtkBackend")
+
+    // Conditionally enable features that rely on Gtk 4.10
+    if version >= 10 {
+        conditionalTargets.append(
+            .target(
+                name: "FileDialog",
+                dependencies: ["CGtk", "Gtk"]
+            )
         )
+
+        gtkExampleDependencies.append("FileDialog")
+        fileViewerExampleDependencies.append(contentsOf: ["GtkBackend", "FileDialog"])
+        gtkSwiftSettings.append(.define("GTK_4_10_PLUS"))
+    }
+
+    conditionalProducts.append(
+        contentsOf: [
+            .library(
+                name: "GtkBackend",
+                targets: ["GtkBackend"]
+            ),
+            .library(
+                name: "Gtk",
+                targets: ["Gtk"]
+            ),
+
+            .executable(
+                name: "GtkExample",
+                targets: ["GtkExample"]
+            ),
+        ]
     )
 
-    swiftCrossUIDependencies.append("FileDialog")
-    gtkExampleDependencies.append("FileDialog")
-    gtkSwiftSettings.append(.define("GTK_4_10_PLUS"))
+    conditionalTargets.append(
+        contentsOf: [
+            .target(
+                name: "GtkBackend",
+                dependencies: ["SwiftCrossUI", "Gtk", "CGtk"],
+                path: "Sources/GtkBackend"
+            ),
+            .systemLibrary(
+                name: "CGtk",
+                pkgConfig: "gtk4",
+                providers: [
+                    .brew(["gtk4"]),
+                    .apt(["libgtk-4-dev clang"]),
+                ]
+            ),
+            .target(
+                name: "Gtk",
+                dependencies: ["CGtk"],
+                swiftSettings: gtkSwiftSettings
+            ),
+            .executableTarget(
+                name: "GtkExample",
+                dependencies: gtkExampleDependencies,
+                resources: [.copy("GTK.png")]
+            ),
+
+            .executableTarget(
+                name: "GtkCodeGen",
+                dependencies: [
+                    "XMLCoder", .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
+                ]
+            ),
+        ]
+    )
 }
 
 let package = Package(
@@ -62,10 +123,6 @@ let package = Package(
         .library(
             name: "SwiftCrossUI",
             targets: ["SwiftCrossUI"]
-        ),
-        .library(
-            name: "Gtk",
-            targets: ["Gtk"]
         ),
         .executable(
             name: "CounterExample",
@@ -95,81 +152,52 @@ let package = Package(
             name: "SplitExample",
             targets: ["SplitExample"]
         ),
-        .executable(
-            name: "GtkExample",
-            targets: ["GtkExample"]
-        ),
-    ],
+    ] + conditionalProducts,
     dependencies: dependencies,
     targets: [
         .target(
             name: "SwiftCrossUI",
-            dependencies: swiftCrossUIDependencies,
+            dependencies: [],
             exclude: [
                 "Builders/ViewContentBuilder.swift.gyb",
                 "ViewGraph/ViewGraphNodeChildren.swift.gyb",
                 "Views/ViewContent.swift.gyb",
             ]
         ),
-        .systemLibrary(
-            name: "CGtk",
-            pkgConfig: "gtk4",
-            providers: [
-                .brew(["gtk4"]),
-                .apt(["libgtk-4-dev clang"]),
-            ]
-        ),
-        .target(
-            name: "Gtk",
-            dependencies: ["CGtk"],
-            swiftSettings: gtkSwiftSettings
-        ),
-        .executableTarget(
-            name: "GtkExample",
-            dependencies: gtkExampleDependencies,
-            resources: [.copy("GTK.png")]
-        ),
-
-        .executableTarget(
-            name: "GtkCodeGen",
-            dependencies: [
-                "XMLCoder", .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
-            ]
-        ),
         .executableTarget(
             name: "CounterExample",
-            dependencies: ["SwiftCrossUI"],
+            dependencies: exampleDependencies,
             path: "Examples/Counter"
         ),
         .executableTarget(
             name: "RandomNumberGeneratorExample",
-            dependencies: ["SwiftCrossUI"],
+            dependencies: exampleDependencies,
             path: "Examples/RandomNumberGenerator"
         ),
         .executableTarget(
             name: "WindowPropertiesExample",
-            dependencies: ["SwiftCrossUI"],
+            dependencies: exampleDependencies,
             path: "Examples/WindowProperties",
             resources: [.copy("Banner.png")]
         ),
         .executableTarget(
             name: "GreetingGeneratorExample",
-            dependencies: ["SwiftCrossUI"],
+            dependencies: exampleDependencies,
             path: "Examples/GreetingGenerator"
         ),
         .executableTarget(
             name: "FileViewerExample",
-            dependencies: ["SwiftCrossUI"],
+            dependencies: fileViewerExampleDependencies,
             path: "Examples/FileViewer"
         ),
         .executableTarget(
             name: "NavigationExample",
-            dependencies: ["SwiftCrossUI"],
+            dependencies: exampleDependencies,
             path: "Examples/Navigation"
         ),
         .executableTarget(
             name: "SplitExample",
-            dependencies: ["SwiftCrossUI"],
+            dependencies: exampleDependencies,
             path: "Examples/Split"
         ),
 

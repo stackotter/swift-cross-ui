@@ -1,5 +1,3 @@
-import CGtk
-
 /// A picker view.
 public struct Picker<Value: Equatable>: View {
     public var body = EmptyViewContent()

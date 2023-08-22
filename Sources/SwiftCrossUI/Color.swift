@@ -16,10 +16,6 @@ public struct Color {
         self.alpha = alpha
     }
 
-    public var gtkColor: GtkColor {
-        return GtkColor(red, green, blue, alpha)
-    }
-
     public static let red = Color(1, 0, 0)
     public static let green = Color(0, 1, 0)
     public static let blue = Color(0, 0, 1)

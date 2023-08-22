@@ -1,5 +1,12 @@
 import SwiftCrossUI
 
+#if canImport(GtkBackend)
+    import GtkBackend
+    typealias SelectedBackend = GtkBackend
+#else
+    #error("No valid backends found")
+#endif
+
 class GreetingGeneratorState: Observable {
     @Observed var name = ""
     @Observed var greetings: [String] = []
@@ -7,7 +14,7 @@ class GreetingGeneratorState: Observable {
 
 @main
 struct GreetingGeneratorApp: App {
-    typealias Backend = GtkBackend
+    typealias Backend = SelectedBackend
 
     let identifier = "dev.stackotter.GreetingGenerator"
 

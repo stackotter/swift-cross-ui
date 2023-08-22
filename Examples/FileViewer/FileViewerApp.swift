@@ -1,12 +1,25 @@
 import Foundation
 import SwiftCrossUI
 
+#if canImport(GtkBackend)
+    import GtkBackend
+    typealias SelectedBackend = GtkBackend
+#else
+    #error("No valid backends found")
+#endif
+
+#if canImport(FileDialog)
+    import FileDialog
+#endif
+
 class FileViewerAppState: Observable {
     @Observed var file: URL? = nil
 }
 
 @main
 struct FileViewerApp: App {
+    typealias Backend = SelectedBackend
+
     let identifier = "dev.stackotter.FileViewerApp"
 
     let state = FileViewerAppState()
@@ -24,7 +37,7 @@ struct FileViewerApp: App {
                     Text("Selected file: \(state.file?.path ?? "none")")
 
                     Button("Click") {
-                        let dialog = GtkFileDialog()
+                        let dialog = FileDialog()
                         dialog.open { result in
                             guard case let .success(file) = result else {
                                 return

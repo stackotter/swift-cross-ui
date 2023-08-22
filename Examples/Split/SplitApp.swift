@@ -1,6 +1,13 @@
 import Foundation
 import SwiftCrossUI
 
+#if canImport(GtkBackend)
+    import GtkBackend
+    typealias SelectedBackend = GtkBackend
+#else
+    #error("No valid backends found")
+#endif
+
 enum SubjectArea {
     case science
     case humanities
@@ -29,6 +36,8 @@ class SplitAppState: Observable {
 
 @main
 struct SplitApp: App {
+    typealias Backend = SelectedBackend
+
     let identifier = "dev.stackotter.SplitApp"
 
     let state = SplitAppState()
