@@ -18,7 +18,6 @@ enum HumanitiesSubject: Codable {
 
 class NavigationAppState: Observable {
     @Observed var path = NavigationPath()
-    @Observed var transitionDuration = 0.3
 
     var pathWrapper: Observed<NavigationPath> {
         _path
@@ -27,6 +26,8 @@ class NavigationAppState: Observable {
 
 @main
 struct NavigationApp: App {
+    typealias Backend = GtkBackend
+
     let identifier = "dev.stackotter.NavigationApp"
 
     let state = NavigationAppState()
@@ -37,12 +38,6 @@ struct NavigationApp: App {
     )
 
     var body: some ViewContent {
-        VStack {
-            Text("Change transition duration")
-            Slider(state.$transitionDuration, minimum: 0, maximum: 3)
-        }
-        .padding(10)
-
         NavigationStack(path: state.$path) {
             Text("Learn about subject areas")
                 .padding(.bottom, 10)
@@ -88,7 +83,6 @@ struct NavigationApp: App {
 
             backButton
         }
-        .navigationTransition(.slideLeftRight, duration: state.transitionDuration)
         .padding(10)
     }
 

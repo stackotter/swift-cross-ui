@@ -1,3 +1,5 @@
+import Foundation
+
 public protocol AppBackend {
     typealias Widget = GtkWidget
 
@@ -80,6 +82,11 @@ public protocol AppBackend {
 
     // TODO: Perhaps all views should have this just in-case backends need to add additional logic?
     func updateListView(_ listView: Widget)
+
+    func createOneOfContainer() -> Widget
+    func addChild(_ child: Widget, toOneOfContainer container: Widget)
+    func removeChild(_ child: Widget, fromOneOfContainer container: Widget)
+    func setVisibleChild(ofOneOfContainer container: Widget, to child: Widget)
 }
 
 public enum InheritedOrientation {
@@ -349,6 +356,22 @@ public struct GtkBackend: AppBackend {
 
     public func updateListView(_ listView: GtkWidget) {
         (listView as! GtkSectionBox).update()
+    }
+
+    public func createOneOfContainer() -> GtkWidget {
+        return GtkStack(transitionDuration: 300, transitionType: .slideLeftRight)
+    }
+
+    public func addChild(_ child: GtkWidget, toOneOfContainer container: GtkWidget) {
+        (container as! GtkStack).add(child, named: UUID().uuidString)
+    }
+
+    public func removeChild(_ child: Widget, fromOneOfContainer container: Widget) {
+        (container as! GtkStack).remove(child)
+    }
+
+    public func setVisibleChild(ofOneOfContainer container: GtkWidget, to child: GtkWidget) {
+        (container as! GtkStack).setVisible(child)
     }
 }
 
