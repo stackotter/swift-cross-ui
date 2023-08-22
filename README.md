@@ -24,6 +24,16 @@ if you want to get involved, discuss the library, or just be kept up-to-date on 
 
 If you find SwiftCrossUI useful, please consider supporting me by [becoming a sponsor](https://github.com/sponsors/stackotter). I spend most of my spare time working on open-source projects, and each sponsorship helps me focus more time on making high quality libraries and tools for the community.
 
+## Backends
+
+Work has been started to support multiple different backends. Switching backends only requires changing a single
+line of code! Currently there's the Gtk 4 backend, as well as an experimental AppKit backend (`AppKitBackend`, macOS-only). All
+examples use `GtkBackend` for maximum compatibility, but you can update them manually to try out the various available backends.
+Work is being done to allow the backend used by the examples to be changed from the command line.
+
+- `GtkBackend`: Requires gtk 4 to be installed, has maximum compatibility, and supports all SwiftCrossUI features.
+- `AppKitBackend`: ***Experimental***, only supports macOS, and currently supports a very limited subset of SwiftCrossUI features.
+
 ## Example
 
 Here's a simple example app demonstrate how easy it is to get started with SwiftCrossUI:
@@ -37,6 +47,9 @@ class CounterState: Observable {
 
 @main
 struct CounterApp: App {
+    // An experimental AppKit backend is also available when on macOS (try AppKitBackend)
+    typealias Backend = GtkBackend
+
     let identifier = "dev.stackotter.CounterApp"
     
     let state = CounterState()
