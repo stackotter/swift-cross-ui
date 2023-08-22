@@ -19,8 +19,8 @@ public protocol AppBackend {
     func createPassthroughVStack(spacing: Int) -> Widget
     func addChild(_ child: Widget, toPassthroughVStack container: Widget)
 
-    func createEitherContainer(initiallyContaining child: Widget) -> Widget
-    func setChild(ofEitherContainer container: Widget, to widget: Widget)
+    func createEitherContainer(initiallyContaining child: Widget?) -> Widget
+    func setChild(ofEitherContainer container: Widget, to widget: Widget?)
 
     func createPaddingContainer(for child: Widget) -> Widget
     func getChild(ofPaddingContainer container: Widget) -> Widget
@@ -73,6 +73,13 @@ public protocol AppBackend {
     func setPlaceholder(ofTextField textField: Widget, to placeholder: String)
     func setOnChange(ofTextField textField: Widget, to onChange: @escaping (String) -> Void)
     func getContent(ofTextField textField: Widget) -> String
+
+    func createListView() -> Widget
+    func addChild(_ child: Widget, toListView listView: Widget)
+    func removeChild(_ child: Widget, fromListView listView: Widget)
+
+    // TODO: Perhaps all views should have this just in-case backends need to add additional logic?
+    func updateListView(_ listView: Widget)
 }
 
 public enum InheritedOrientation {
@@ -146,13 +153,13 @@ public struct GtkBackend: AppBackend {
         (container as! GtkSectionBox).add(child)
     }
 
-    public func createEitherContainer(initiallyContaining child: GtkWidget) -> GtkWidget {
+    public func createEitherContainer(initiallyContaining child: GtkWidget?) -> GtkWidget {
         let box = GtkModifierBox()
         box.setChild(child)
         return box
     }
 
-    public func setChild(ofEitherContainer container: GtkWidget, to widget: GtkWidget) {
+    public func setChild(ofEitherContainer container: GtkWidget, to widget: GtkWidget?) {
         (container as! GtkModifierBox).setChild(widget)
     }
 
@@ -324,13 +331,29 @@ public struct GtkBackend: AppBackend {
         }
     }
 
-    public func getContent(ofTextField textField: Widget) -> String {
+    public func getContent(ofTextField textField: GtkWidget) -> String {
         return (textField as! GtkEntry).text
+    }
+
+    public func createListView() -> GtkWidget {
+        return GtkSectionBox(orientation: .vertical, spacing: 0)
+    }
+
+    public func addChild(_ child: GtkWidget, toListView listView: GtkWidget) {
+        (listView as! GtkSectionBox).add(child)
+    }
+
+    public func removeChild(_ child: GtkWidget, fromListView listView: GtkWidget) {
+        (listView as! GtkSectionBox).remove(child)
+    }
+
+    public func updateListView(_ listView: GtkWidget) {
+        (listView as! GtkSectionBox).update()
     }
 }
 
 extension AppBackend {
-    public func addChildren(_ children: [Widget], toVStack container: Widget) {
+    public func addChildren(_ children: [GtkWidget], toVStack container: GtkWidget) {
         for child in children {
             addChild(child, toVStack: container)
         }
