@@ -13,15 +13,19 @@ public struct Text: View {
         self.wrap = wrap
     }
 
-    public func asWidget(_ children: EmptyViewContent.Children) -> GtkLabel {
-        let widget = GtkLabel(string: string)
-        widget.lineWrapMode = .wordCharacter
-        widget.horizontalAlignment = .start
-        return widget
+    public func asWidget<Backend: AppBackend>(
+        _ children: EmptyViewContent.Children,
+        backend: Backend
+    ) -> Backend.Widget {
+        return backend.createTextView(content: string, shouldWrap: wrap)
     }
 
-    public func update(_ widget: GtkLabel, children: EmptyViewContent.Children) {
-        widget.label = string
-        widget.wrap = wrap
+    public func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: EmptyViewContent.Children,
+        backend: Backend
+    ) {
+        backend.setContent(ofTextView: widget, to: string)
+        backend.setWrap(ofTextView: widget, to: wrap)
     }
 }

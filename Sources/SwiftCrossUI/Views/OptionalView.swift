@@ -3,30 +3,30 @@ public struct OptionalViewChildren<V: View>: ViewGraphNodeChildren {
 
     /// Used to avoid the need for a mutating ``update`` method.
     class Storage {
-        var view: ViewGraphNode<V>?
+        var view: AnyViewGraphNode<V>?
         var hasToggled = true
     }
 
     let storage: Storage
 
-    public var widgets: [GtkWidget] {
+    public var widgets: [AnyWidget] {
         return [storage.view?.widget].compactMap { $0 }
     }
 
-    public init(from content: Content) {
+    public init<Backend: AppBackend>(from content: Content, backend: Backend) {
         storage = Storage()
         if let view = content.view {
-            storage.view = ViewGraphNode(for: view)
+            storage.view = AnyViewGraphNode(for: view, backend: backend)
         }
     }
 
-    public func update(with content: Content) {
+    public func update<Backend: AppBackend>(with content: Content, backend: Backend) {
         if let view = content.view {
             if let node = storage.view {
                 node.update(with: view)
                 storage.hasToggled = false
             } else {
-                storage.view = ViewGraphNode(for: view)
+                storage.view = AnyViewGraphNode(for: view, backend: backend)
                 storage.hasToggled = true
             }
         } else {
@@ -53,15 +53,17 @@ public struct OptionalView<V: View>: View {
         body = OptionalViewContent(view)
     }
 
-    public func asWidget(_ children: OptionalViewChildren<V>) -> GtkModifierBox {
-        let box = GtkModifierBox().debugName(Self.self)
-        box.setChild(children.widgets.first)
-        return box
+    public func asWidget<Backend: AppBackend>(_ children: OptionalViewChildren<V>, backend: Backend)
+        -> Backend.Widget
+    {
+        return backend.createEitherContainer(initiallyContaining: children.widgets[0].into())
     }
 
-    public func update(_ widget: GtkModifierBox, children: OptionalViewChildren<V>) {
+    public func update<Backend: AppBackend>(
+        _ widget: Backend.Widget, children: OptionalViewChildren<V>, backend: Backend
+    ) {
         if children.storage.hasToggled {
-            widget.setChild(children.widgets.first)
+            backend.setChild(ofEitherContainer: widget, to: children.widgets[0].into())
         }
     }
 }

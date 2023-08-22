@@ -1,5 +1,7 @@
 import Gtk
 
+// TODO: Get rid of the idea of CSS outside of the Gtk backend (currently just hacked over to get to a working state)
+
 /// A modifier view on which you can apply CSS
 struct CSSModifierView<Child: View>: View {
     var body: ViewContent1<Child>
@@ -22,13 +24,22 @@ struct CSSModifierView<Child: View>: View {
         self.modifierName = modifierName
     }
 
-    func asWidget(_ children: ViewGraphNodeChildren1<Child>) -> GtkModifierBox {
+    func asWidget<Backend: AppBackend>(
+        _ children: ViewGraphNodeChildren1<Child>,
+        backend: Backend
+    ) -> Backend.Widget {
+        assert(type(of: backend) == GtkBackend.self)
         let widget = GtkModifierBox().debugName(Self.self, id: modifierName)
-        widget.setChild(children.child0.widget)
-        return widget
+        widget.setChild(children.child0.widget.into())
+        return widget as Backend.Widget
     }
 
-    func update(_ widget: GtkModifierBox, children: ViewGraphNodeChildren1<Child>) {
+    func update<Backend: AppBackend>(
+        _ widget: GtkWidget,
+        children: ViewGraphNodeChildren1<Child>,
+        backend: Backend
+    ) {
+        let widget = widget as! GtkModifierBox
         widget.css.set(properties: properties, clear: clear)
     }
 }

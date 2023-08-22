@@ -1,5 +1,6 @@
 /// An application.
 public protocol App {
+    associatedtype Backend: AppBackend
     associatedtype Content: ViewContent
     associatedtype State: Observable
 

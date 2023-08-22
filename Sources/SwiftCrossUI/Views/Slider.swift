@@ -80,19 +80,30 @@ public struct Slider: View {
         decimalPlaces = 2
     }
 
-    public func asWidget(_ children: EmptyViewGraphNodeChildren) -> GtkScale {
+    public func asWidget<Backend: AppBackend>(
+        _ children: EmptyViewContent.Children,
+        backend: Backend
+    ) -> Backend.Widget {
         let scale = GtkScale()
         scale.expandHorizontally = true
         return scale
     }
 
-    public func update(_ widget: GtkScale, children: EmptyViewGraphNodeChildren) {
-        widget.minimum = minimum
-        widget.maximum = maximum
-        widget.value = value?.wrappedValue ?? widget.value
-        widget.digits = decimalPlaces
-        widget.valueChanged = { widget in
-            self.value?.wrappedValue = widget.value
+    public func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: EmptyViewContent.Children,
+        backend: Backend
+    ) {
+        backend.setMinimum(ofSlider: widget, to: minimum)
+        backend.setMaximum(ofSlider: widget, to: maximum)
+        backend.setDecimalPlaces(ofSlider: widget, to: decimalPlaces)
+
+        backend.setOnChange(ofSlider: widget) { newValue in
+            self.value?.wrappedValue = newValue
+        }
+
+        if let value = value?.wrappedValue {
+            backend.setValue(ofSlider: widget, to: value)
         }
     }
 }

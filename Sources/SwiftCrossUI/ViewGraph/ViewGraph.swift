@@ -1,13 +1,13 @@
 public class ViewGraph<Root: App> {
-    public typealias RootNode = ViewGraphNode<VStack<Root.Content>>
+    public typealias RootNode = ViewGraphNode<VStack<Root.Content>, Root.Backend>
 
     public var rootNode: RootNode
     private var cancellable: Cancellable?
     private var app: Root
 
-    public init(for app: Root) {
+    public init(for app: Root, backend: Root.Backend) {
         let vStack = VStack(app.body)
-        rootNode = ViewGraphNode(for: vStack)
+        rootNode = ViewGraphNode(for: vStack, backend: backend)
 
         self.app = app
 

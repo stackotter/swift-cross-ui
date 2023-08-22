@@ -13,17 +13,30 @@ public struct TextField: View {
         self.value = value
     }
 
-    public func asWidget(_ children: EmptyViewContent.Children) -> GtkEntry {
-        return GtkEntry()
+    public func asWidget<Backend: AppBackend>(
+        _ children: EmptyViewContent.Children,
+        backend: Backend
+    ) -> Backend.Widget {
+        return backend.createTextField(
+            content: value?.wrappedValue ?? "",
+            placeholder: placeholder,
+            onChange: { newValue in
+                self.value?.wrappedValue = newValue
+            }
+        )
     }
 
-    public func update(_ widget: GtkEntry, children: EmptyViewContent.Children) {
-        widget.placeholderText = placeholder
-        if let value = value?.wrappedValue, value != widget.text {
-            widget.text = value
+    public func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: EmptyViewContent.Children,
+        backend: Backend
+    ) {
+        backend.setPlaceholder(ofTextField: widget, to: placeholder)
+        if let value = value?.wrappedValue, value != backend.getContent(ofTextField: widget) {
+            backend.setContent(ofTextField: widget, to: value)
         }
-        widget.changed = { widget in
-            self.value?.wrappedValue = widget.text
+        backend.setOnChange(ofTextField: widget) { newValue in
+            self.value?.wrappedValue = newValue
         }
     }
 }

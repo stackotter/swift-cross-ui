@@ -3,35 +3,35 @@ public struct EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
 
     /// Used to avoid the need for a mutating ``update`` method.
     class Storage {
-        var viewA: ViewGraphNode<A>?
-        var viewB: ViewGraphNode<B>?
+        var viewA: AnyViewGraphNode<A>?
+        var viewB: AnyViewGraphNode<B>?
         var hasSwitchedCase = true
     }
 
     let storage: Storage
 
-    public var widgets: [GtkWidget] {
+    public var widgets: [AnyWidget] {
         return [storage.viewA?.widget, storage.viewB?.widget].compactMap { $0 }
     }
 
-    public init(from content: Content) {
+    public init<Backend: AppBackend>(from content: Content, backend: Backend) {
         storage = Storage()
         switch content.storage {
             case .a(let a):
-                storage.viewA = ViewGraphNode(for: a)
+                storage.viewA = AnyViewGraphNode(for: a, backend: backend)
             case .b(let b):
-                storage.viewB = ViewGraphNode(for: b)
+                storage.viewB = AnyViewGraphNode(for: b, backend: backend)
         }
     }
 
-    public func update(with content: Content) {
+    public func update<Backend: AppBackend>(with content: Content, backend: Backend) {
         switch content.storage {
             case .a(let a):
                 if let viewA = storage.viewA {
                     viewA.update(with: a)
                     storage.hasSwitchedCase = false
                 } else {
-                    storage.viewA = ViewGraphNode(for: a)
+                    storage.viewA = AnyViewGraphNode(for: a, backend: backend)
                     storage.viewB = nil
                     storage.hasSwitchedCase = true
                 }
@@ -40,7 +40,7 @@ public struct EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
                     viewB.update(with: b)
                     storage.hasSwitchedCase = false
                 } else {
-                    storage.viewB = ViewGraphNode(for: b)
+                    storage.viewB = AnyViewGraphNode(for: b, backend: backend)
                     storage.viewA = nil
                     storage.hasSwitchedCase = true
                 }
@@ -78,16 +78,19 @@ public struct EitherView<A: View, B: View>: View {
         body = EitherViewContent(b)
     }
 
-    public func asWidget(_ children: EitherViewChildren<A, B>) -> GtkModifierBox {
+    public func asWidget<Backend: AppBackend>(
+        _ children: EitherViewChildren<A, B>, backend: Backend
+    ) -> Backend.Widget {
         precondition(children.widgets.count == 1)
-        let box = GtkModifierBox().debugName(Self.self)
-        box.setChild(children.widgets.first)
-        return box
+        return backend.createEitherContainer(initiallyContaining: children.widgets[0].into())
     }
 
-    public func update(_ widget: GtkModifierBox, children: EitherViewChildren<A, B>) {
+    public func update<Backend: AppBackend>(
+        _ widget: Backend.Widget, children: EitherViewChildren<A, B>, backend: Backend
+    ) {
+        precondition(children.widgets.count == 1)
         if children.storage.hasSwitchedCase {
-            widget.setChild(children.widgets[0])
+            backend.setChild(ofEitherContainer: widget, to: children.widgets[0].into())
         }
     }
 }

@@ -9,27 +9,51 @@ public struct Spacer: View {
         self.minLength = minLength
     }
 
-    public func asWidget(_ children: EmptyViewGraphNodeChildren) -> GtkModifierBox {
-        return GtkModifierBox().debugName(Self.self)
+    public func asWidget<Backend: AppBackend>(
+        _ children: EmptyViewContent.Children,
+        backend: Backend
+    ) -> Backend.Widget {
+        let spacer = backend.createSpacer(expandHorizontally: false, expandVertically: false)
+        return backend.createPaddingContainer(for: spacer)
     }
 
-    public func update(_ widget: GtkModifierBox, children: EmptyViewGraphNodeChildren) {
-        let parent = widget.firstNonModifierParent() as? GtkBox
-
-        switch parent?.orientation {
+    public func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: EmptyViewContent.Children,
+        backend: Backend
+    ) {
+        let spacer = backend.getChild(ofPaddingContainer: widget)
+        switch backend.getInheritedOrientation(of: widget) {
             case .horizontal:
-                widget.marginStart = minLength ?? 0
-                widget.expandHorizontally = true
-                widget.expandVertically = false
+                backend.setExpandHorizontally(ofSpacer: spacer, to: true)
+                backend.setExpandVertically(ofSpacer: spacer, to: false)
+                backend.setPadding(
+                    ofPaddingContainer: widget,
+                    top: 0,
+                    bottom: 0,
+                    leading: minLength ?? 0,
+                    trailing: 0
+                )
             case .vertical:
-                widget.marginTop = minLength ?? 0
-                widget.expandHorizontally = false
-                widget.expandVertically = true
+                backend.setExpandHorizontally(ofSpacer: spacer, to: false)
+                backend.setExpandVertically(ofSpacer: spacer, to: true)
+                backend.setPadding(
+                    ofPaddingContainer: widget,
+                    top: minLength ?? 0,
+                    bottom: 0,
+                    leading: 0,
+                    trailing: 0
+                )
             case nil:
-                widget.marginStart = minLength ?? 0
-                widget.marginTop = minLength ?? 0
-                widget.expandHorizontally = true
-                widget.expandVertically = true
+                backend.setExpandHorizontally(ofSpacer: spacer, to: true)
+                backend.setExpandVertically(ofSpacer: spacer, to: true)
+                backend.setPadding(
+                    ofPaddingContainer: widget,
+                    top: minLength ?? 0,
+                    bottom: 0,
+                    leading: minLength ?? 0,
+                    trailing: 0
+                )
         }
     }
 }

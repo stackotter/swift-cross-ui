@@ -26,6 +26,8 @@ enum ColorOption: String, CaseIterable {
 
 @main
 struct RandomNumberGeneratorApp: App {
+    typealias Backend = GtkBackend
+
     let identifier = "dev.stackotter.RandomNumberGeneratorApp"
 
     let state = RandomNumberGeneratorState()
@@ -66,7 +68,7 @@ struct RandomNumberGeneratorApp: App {
 
             Text("Choose a color:")
                 .padding(.top, 20)
-            Picker(of: ColorOption.allCases, selection: state.$colorOption)
+            // Picker(of: ColorOption.allCases, selection: state.$colorOption)
         }
         .padding(10)
         .foregroundColor(state.colorOption?.color ?? .red)

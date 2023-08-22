@@ -4,30 +4,39 @@ import Foundation
 public protocol View {
     associatedtype Content: ViewContent
     associatedtype State: Observable
-    associatedtype Widget: GtkWidget
 
     var state: State { get set }
 
     /// The view's contents.
     @ViewContentBuilder var body: Content { get }
 
-    func asWidget(_ children: Content.Children) -> Widget
+    func asWidget<Backend: AppBackend>(
+        _ children: Content.Children,
+        backend: Backend
+    ) -> Backend.Widget
 
-    func update(_ widget: Widget, children: Content.Children)
+    func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: Content.Children,
+        backend: Backend
+    )
 }
 
-extension View where Widget == GtkBox {
-    public func asWidget(_ children: Content.Children) -> GtkBox {
-        let vStack = GtkBox(orientation: .vertical, spacing: 8).debugName(Self.self)
-        for widget in children.widgets {
-            vStack.add(widget)
-        }
+extension View {
+    public func asWidget<Backend: AppBackend>(
+        _ children: Content.Children,
+        backend: Backend
+    ) -> Backend.Widget {
+        let vStack = backend.createVStack(spacing: 8)
+        backend.addChildren(children.widgets, toVStack: vStack)
         return vStack
     }
 }
 
 extension View {
-    public func update(_ widget: Widget, children: Content.Children) {}
+    public func update<Backend: AppBackend>(
+        _ widget: Backend.Widget, children: Content.Children, backend: Backend
+    ) {}
 }
 
 extension View where State == EmptyState {

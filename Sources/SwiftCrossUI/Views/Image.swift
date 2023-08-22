@@ -9,11 +9,18 @@ public struct Image: View {
         self.path = path
     }
 
-    public func asWidget(_ children: EmptyViewGraphNodeChildren) -> GtkImage {
-        return GtkImage(filename: path).debugName(Self.self)
+    public func asWidget<Backend: AppBackend>(
+        _ children: EmptyViewContent.Children,
+        backend: Backend
+    ) -> Backend.Widget {
+        return backend.createImageView(filePath: path)
     }
 
-    public func update(_ widget: GtkImage, children: EmptyViewGraphNodeChildren) {
-        widget.setPath(path)
+    public func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: EmptyViewContent.Children,
+        backend: Backend
+    ) {
+        backend.setFilePath(ofImageView: widget, to: path)
     }
 }

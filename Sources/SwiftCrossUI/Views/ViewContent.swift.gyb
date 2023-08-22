@@ -13,16 +13,17 @@ extension ViewContent where Content == Self, State == EmptyState {
         return self
     }
 
-    public func asWidget(_ children: Children) -> GtkSectionBox {
-        let box = GtkSectionBox(orientation: .vertical, spacing: 0).debugName(Self.self)
-        for widget in children.widgets {
-            box.add(widget)
-        }
-        return box
+    public func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
+        let container = backend.createPassthroughVStack(spacing: 0)
+        backend.addChildren(children.widgets, toPassthroughVStack: container)
+        return container
     }
 
-    public func update(_ widget: GtkSectionBox, children: Children) {
-        widget.update()
+    public func update<Backend: AppBackend>(_ widget: Backend.Widget, children: Children, backend: Backend) {
+        // TODO: Figure out how to get rid of backend-specific code outside of backend itself
+        if Backend.self == GtkBackend.self {
+            (widget as! GtkSectionBox).update()
+        }
     }
 }
 

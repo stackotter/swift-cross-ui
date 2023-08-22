@@ -13,12 +13,19 @@ public struct Button: View {
         self.action = action
     }
 
-    public func asWidget(_ children: EmptyViewContent.Children) -> GtkButton {
-        return GtkButton().debugName(Self.self)
+    public func asWidget<Backend: AppBackend>(
+        _ children: EmptyViewContent.Children,
+        backend: Backend
+    ) -> Backend.Widget {
+        return backend.createButton(label: label, action: action)
     }
 
-    public func update(_ widget: GtkButton, children: EmptyViewContent.Children) {
-        widget.label = label
-        widget.clicked = { _ in action() }
+    public func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: EmptyViewContent.Children,
+        backend: Backend
+    ) {
+        backend.setLabel(ofButton: widget, to: label)
+        backend.setAction(ofButton: widget, to: action)
     }
 }

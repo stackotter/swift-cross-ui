@@ -5,19 +5,19 @@ maximum_child_count = 10
 public protocol ViewGraphNodeChildren {
     associatedtype Content: ViewContent where Content.Children == Self
     
-    var widgets: [GtkWidget] { get }
+    var widgets: [AnyWidget] { get }
 
-    init(from content: Content)
+    init<Backend: AppBackend>(from content: Content, backend: Backend)
 
-    func update(with content: Content)
+    func update<Backend: AppBackend>(with content: Content, backend: Backend)
 }
 
 public struct EmptyViewGraphNodeChildren: ViewGraphNodeChildren {
-    public let widgets: [GtkWidget] = []
+    public let widgets: [AnyWidget] = []
 
-    public init(from content: EmptyViewContent) {}
+    public init<Backend: AppBackend>(from content: EmptyViewContent, backend: Backend) {}
 
-    public func update(with content: EmptyViewContent) {}
+    public func update<Backend: AppBackend>(with content: EmptyViewContent, backend: Backend) {}
 }
 
 % for i in range(10):
@@ -34,7 +34,7 @@ content_type = "ViewContent%d<%s>" % (i + 1, content_type_parameters)
 public struct ViewGraphNodeChildren${i + 1}<${struct_type_parameters}>: ViewGraphNodeChildren {
     public typealias Content = ${content_type}
     
-    public var widgets: [GtkWidget] {
+    public var widgets: [AnyWidget] {
         return [
 % for child in children:
                 ${child.lower()}.widget,
@@ -43,16 +43,16 @@ public struct ViewGraphNodeChildren${i + 1}<${struct_type_parameters}>: ViewGrap
     }
 
 % for child in children:
-    public var ${child.lower()}: ViewGraphNode<${child}>
+    public var ${child.lower()}: AnyViewGraphNode<${child}>
 % end
 
-    public init(from content: Content) {
+    public init<Backend: AppBackend>(from content: Content, backend: Backend) {
 % for (i, child) in enumerate(children):
-        self.${child.lower()} = ViewGraphNode(for: content.view${i})
+        self.${child.lower()} = AnyViewGraphNode(for: content.view${i}, backend: backend)
 % end
     }
 
-    public func update(with content: Content) {
+    public func update<Backend: AppBackend>(with content: Content, backend: Backend) {
 % for (i, child) in enumerate(children):
         ${child.lower()}.update(with: content.view${i})
 % end

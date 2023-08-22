@@ -11,15 +11,18 @@ public struct HStack<Content: ViewContent>: View {
         self.spacing = spacing
     }
 
-    public func asWidget(_ children: Content.Children) -> GtkBox {
-        let hStack = GtkBox(orientation: .horizontal).debugName(Self.self)
-        for widget in children.widgets {
-            hStack.add(widget)
-        }
+    public func asWidget<Backend: AppBackend>(
+        _ children: Content.Children,
+        backend: Backend
+    ) -> Backend.Widget {
+        let hStack = backend.createHStack(spacing: spacing)
+        backend.addChildren(children.widgets, toHStack: hStack)
         return hStack
     }
 
-    public func update(_ widget: GtkBox, children: Content.Children) {
-        widget.spacing = spacing
+    public func update<Backend: AppBackend>(
+        _ widget: Backend.Widget, children: Content.Children, backend: Backend
+    ) {
+        backend.setSpacing(ofHStack: widget, to: spacing)
     }
 }

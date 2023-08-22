@@ -13,12 +13,13 @@ public struct ScrollView<Content: ViewContent>: View {
         body = content
     }
 
-    public func asWidget(_ children: Content.Children) -> GtkScrolledWindow {
-        let vStack = VStack(body).asWidget(children)
+    public func asWidget<Backend: AppBackend>(
+        _ children: Content.Children,
+        backend: Backend
+    ) -> Backend.Widget {
+        let vStack = backend.createVStack(spacing: 0)
+        backend.addChildren(children.widgets, toVStack: vStack)
 
-        let scrolledWindow = GtkScrolledWindow()
-        scrolledWindow.setChild(vStack)
-        scrolledWindow.propagateNaturalHeight = true
-        return scrolledWindow
+        return backend.createScrollContainer(for: vStack)
     }
 }
