@@ -33,6 +33,7 @@ Work is being done to allow the backend used by the examples to be changed from 
 
 - `GtkBackend`: Requires gtk 4 to be installed, has maximum compatibility, and supports all SwiftCrossUI features.
 - `AppKitBackend`: ***Experimental***, only supports macOS, and currently supports a very limited subset of SwiftCrossUI features.
+- `QtBackend`: ***Experimental***, requires `qt5` to be installed, and currently supports a very limited subset of SwiftCrossUI features.
 
 ## Example
 
@@ -48,6 +49,7 @@ class CounterState: Observable {
 @main
 struct CounterApp: App {
     // An experimental AppKit backend is also available when on macOS (try AppKitBackend)
+    // There's also a Qt5 backend (QtBackend) available when qt5 is installed
     typealias Backend = GtkBackend
 
     let identifier = "dev.stackotter.CounterApp"
@@ -92,8 +94,20 @@ Here's the [documentation site](https://stackotter.github.io/swift-cross-ui/docu
 ## Dependencies
 
 1. Swift 5.5 or higher
-2. Gtk 4
-3. clang (only required on Linux)
+2. Gtk 4 (only required for GtkBackend)
+3. clang (only required on Linux for GtkBackend)
+4. Qt5 (only required for QtBackend)
+
+### Installing Qt5
+
+```sh
+# On macOS
+brew install qt@5
+brew link qt@5
+
+# Linux with apt
+sudo apt install qtcreator qtbase5-dev qt5-qmake cmake
+```
 
 ### macOS: Installing Gtk 4
 
