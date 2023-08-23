@@ -12,10 +12,6 @@ var dependencies: [Package.Dependency] = [
         url: "https://github.com/apple/swift-syntax.git",
         from: "508.0.0"
     ),
-    .package(
-        url: "https://github.com/Longhanks/qlift",
-        revision: "ddab1f1ecc113ad4f8e05d2999c2734cdf706210"
-    ),
 ]
 
 #if swift(>=5.6) && !os(Windows)
@@ -116,6 +112,33 @@ if checkQtInstalled() {
     )
     backendTargets.append("QtBackend")
     exampleDependencies.append("QtBackend")
+    dependencies.append(
+        .package(
+            url: "https://github.com/Longhanks/qlift",
+            revision: "ddab1f1ecc113ad4f8e05d2999c2734cdf706210"
+        )
+    )
+}
+
+if checkSDL2Installed() {
+    conditionalTargets.append(
+        .target(
+            name: "LVGLBackend",
+            dependencies: [
+                "SwiftCrossUI",
+                .product(name: "LVGL", package: "LVGLSwift"),
+                .product(name: "CLVGL", package: "LVGLSwift"),
+            ]
+        )
+    )
+    backendTargets.append("LVGLBackend")
+    exampleDependencies.append("LVGLBackend")
+    dependencies.append(
+        .package(
+            url: "https://github.com/PADL/LVGLSwift",
+            revision: "fb696362c92a60a2793202a88053fbff298bbd7f"
+        )
+    )
 }
 
 let package = Package(
@@ -203,6 +226,25 @@ func checkQtInstalled() -> Bool {
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/bin/bash")
         process.arguments = ["-c", "qmake --version"]
+        process.standardOutput = Pipe()
+        do {
+            try process.run()
+            process.waitUntilExit()
+            return true
+        } catch {
+            return false
+        }
+    #endif
+}
+
+func checkSDL2Installed() -> Bool {
+    #if os(Windows)
+        // TODO: Test SDL backend on Windows
+        return false
+    #else
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/bin/bash")
+        process.arguments = ["-c", "sdl2-config --version"]
         process.standardOutput = Pipe()
         do {
             try process.run()
