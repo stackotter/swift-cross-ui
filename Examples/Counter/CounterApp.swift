@@ -1,11 +1,14 @@
+import QtBackend
 import SwiftCrossUI
 
-#if canImport(GtkBackend)
-    import GtkBackend
-    typealias SelectedBackend = GtkBackend
-#else
-    #error("No valid backends found")
-#endif
+// #if canImport(GtkBackend)
+//     import GtkBackend
+//     typealias SelectedBackend = GtkBackend
+// #else
+//     #error("No valid backends found")
+// #endif
+
+typealias SelectedBackend = QtBackend
 
 class CounterState: Observable {
     @Observed

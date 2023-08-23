@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Qlift",
+        "repositoryURL": "https://github.com/Longhanks/qlift",
+        "state": {
+          "branch": null,
+          "revision": "ddab1f1ecc113ad4f8e05d2999c2734cdf706210",
+          "version": null
+        }
+      },
+      {
         "package": "SwiftDocCPlugin",
         "repositoryURL": "https://github.com/apple/swift-docc-plugin",
         "state": {

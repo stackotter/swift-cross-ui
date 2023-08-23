@@ -1,3 +1,5 @@
+import Foundation
+
 // TODO: Find a way to get rid of this if possible. Required for getting onto the correct main thread from `Publisher`
 var currentBackend: (any AppBackend)!
 
@@ -154,53 +156,58 @@ extension AppBackend {
     }
 }
 
+private func todo(_ message: String) -> Never {
+    print(message)
+    Foundation.exit(1)
+}
+
 extension AppBackend {
     public func show(_ widget: Widget) {
-        fatalError("show not implemented")
+        todo("show not implemented")
     }
 
     public func createVStack(spacing: Int) -> Widget {
-        fatalError("createVStack not implemented")
+        todo("createVStack not implemented")
     }
     public func addChild(_ child: Widget, toVStack container: Widget) {
-        fatalError("addChild not implemented")
+        todo("addChild not implemented")
     }
     public func setSpacing(ofVStack widget: Widget, to spacing: Int) {
-        fatalError("setSpacing not implemented")
+        todo("setSpacing not implemented")
     }
 
     public func createHStack(spacing: Int) -> Widget {
-        fatalError("createHStack not implemented")
+        todo("createHStack not implemented")
     }
     public func addChild(_ child: Widget, toHStack container: Widget) {
-        fatalError("addChild not implemented")
+        todo("addChild not implemented")
     }
     public func setSpacing(ofHStack widget: Widget, to spacing: Int) {
-        fatalError("setSpacing not implemented")
+        todo("setSpacing not implemented")
     }
 
     public func createPassthroughVStack(spacing: Int) -> Widget {
-        fatalError("createPassthroughVStack not implemented")
+        todo("createPassthroughVStack not implemented")
     }
     public func addChild(_ child: Widget, toPassthroughVStack container: Widget) {
-        fatalError("addChild not implemented")
+        todo("addChild not implemented")
     }
     public func updatePassthroughVStack(_ vStack: Widget) {
-        fatalError("updatePassthroughVStack not implemented")
+        todo("updatePassthroughVStack not implemented")
     }
 
     public func createEitherContainer(initiallyContaining child: Widget?) -> Widget {
-        fatalError("createEitherContainer not implemented")
+        todo("createEitherContainer not implemented")
     }
     public func setChild(ofEitherContainer container: Widget, to widget: Widget?) {
-        fatalError("setChild not implemented")
+        todo("setChild not implemented")
     }
 
     public func createPaddingContainer(for child: Widget) -> Widget {
-        fatalError("createPaddingContainer not implemented")
+        todo("createPaddingContainer not implemented")
     }
     public func getChild(ofPaddingContainer container: Widget) -> Widget {
-        fatalError("getChild not implemented")
+        todo("getChild not implemented")
     }
     public func setPadding(
         ofPaddingContainer container: Widget,
@@ -209,54 +216,54 @@ extension AppBackend {
         leading: Int,
         trailing: Int
     ) {
-        fatalError("setPadding not implemented")
+        todo("setPadding not implemented")
     }
 
     public func createScrollContainer(for child: Widget) -> Widget {
-        fatalError("createScrollContainer not implemented")
+        todo("createScrollContainer not implemented")
     }
 
     public func createButton(label: String, action: @escaping () -> Void) -> Widget {
-        fatalError("createButton not implemented")
+        todo("createButton not implemented")
     }
     public func setLabel(ofButton button: Widget, to label: String) {
-        fatalError("setLabel not implemented")
+        todo("setLabel not implemented")
     }
     public func setAction(ofButton button: Widget, to action: @escaping () -> Void) {
-        fatalError("setAction not implemented")
+        todo("setAction not implemented")
     }
 
     public func createTextView(content: String, shouldWrap: Bool) -> Widget {
-        fatalError("createTextView not implemented")
+        todo("createTextView not implemented")
     }
     public func setContent(ofTextView textView: Widget, to content: String) {
-        fatalError("setContent not implemented")
+        todo("setContent not implemented")
     }
     public func setWrap(ofTextView textView: Widget, to shouldWrap: Bool) {
-        fatalError("setWrap not implemented")
+        todo("setWrap not implemented")
     }
 
     public func createImageView(filePath: String) -> Widget {
-        fatalError("createImageView not implemented")
+        todo("createImageView not implemented")
     }
     public func setFilePath(ofImageView imageView: Widget, to filePath: String) {
-        fatalError("setFilePath not implemented")
+        todo("setFilePath not implemented")
     }
 
     public func createSpacer(
         expandHorizontally: Bool, expandVertically: Bool
     ) -> Widget {
-        fatalError("Widget  not implemented")
+        todo("Widget  not implemented")
     }
     public func setExpandHorizontally(ofSpacer spacer: Widget, to expandHorizontally: Bool) {
-        fatalError("setExpandHorizontally not implemented")
+        todo("setExpandHorizontally not implemented")
     }
     public func setExpandVertically(ofSpacer spacer: Widget, to expandVertically: Bool) {
-        fatalError("setExpandVertically not implemented")
+        todo("setExpandVertically not implemented")
     }
 
     public func getInheritedOrientation(of widget: Widget) -> InheritedOrientation? {
-        fatalError("getInheritedOrientation not implemented")
+        todo("getInheritedOrientation not implemented")
     }
 
     public func createSlider(
@@ -266,104 +273,104 @@ extension AppBackend {
         decimalPlaces: Int,
         onChange: @escaping (Double) -> Void
     ) -> Widget {
-        fatalError("createSlider not implemented")
+        todo("createSlider not implemented")
     }
     public func setMinimum(ofSlider slider: Widget, to minimum: Double) {
-        fatalError("setMinimum not implemented")
+        todo("setMinimum not implemented")
     }
     public func setMaximum(ofSlider slider: Widget, to maximum: Double) {
-        fatalError("setMaximum not implemented")
+        todo("setMaximum not implemented")
     }
     public func setValue(ofSlider slider: Widget, to value: Double) {
-        fatalError("setValue not implemented")
+        todo("setValue not implemented")
     }
     public func setDecimalPlaces(ofSlider slider: Widget, to decimalPlaces: Int) {
-        fatalError("setDecimalPlaces not implemented")
+        todo("setDecimalPlaces not implemented")
     }
     public func setOnChange(ofSlider slider: Widget, to onChange: @escaping (Double) -> Void) {
-        fatalError("setOnChange not implemented")
+        todo("setOnChange not implemented")
     }
 
     public func createTextField(
         content: String, placeholder: String, onChange: @escaping (String) -> Void
     ) -> Widget {
-        fatalError("createTextField not implemented")
+        todo("createTextField not implemented")
     }
     public func setContent(ofTextField textField: Widget, to content: String) {
-        fatalError("setContent not implemented")
+        todo("setContent not implemented")
     }
     public func setPlaceholder(ofTextField textField: Widget, to placeholder: String) {
-        fatalError("setPlaceholder not implemented")
+        todo("setPlaceholder not implemented")
     }
     public func setOnChange(ofTextField textField: Widget, to onChange: @escaping (String) -> Void)
     {
-        fatalError("setOnChange not implemented")
+        todo("setOnChange not implemented")
     }
     public func getContent(ofTextField textField: Widget) -> String {
-        fatalError("getContent not implemented")
+        todo("getContent not implemented")
     }
 
     public func createListView() -> Widget {
-        fatalError("createListView not implemented")
+        todo("createListView not implemented")
     }
     public func addChild(_ child: Widget, toListView listView: Widget) {
-        fatalError("addChild not implemented")
+        todo("addChild not implemented")
     }
     public func removeChild(_ child: Widget, fromListView listView: Widget) {
-        fatalError("removeChild not implemented")
+        todo("removeChild not implemented")
     }
 
     // TODO: Perhaps all views should have this just in-case backends need to add additional logic?
     public func updateListView(_ listView: Widget) {
-        fatalError("updateListView not implemented")
+        todo("updateListView not implemented")
     }
 
     public func createOneOfContainer() -> Widget {
-        fatalError("createOneOfContainer not implemented")
+        todo("createOneOfContainer not implemented")
     }
     public func addChild(_ child: Widget, toOneOfContainer container: Widget) {
-        fatalError("addChild not implemented")
+        todo("addChild not implemented")
     }
     public func removeChild(_ child: Widget, fromOneOfContainer container: Widget) {
-        fatalError("removeChild not implemented")
+        todo("removeChild not implemented")
     }
     public func setVisibleChild(ofOneOfContainer container: Widget, to child: Widget) {
-        fatalError("setVisibleChild not implemented")
+        todo("setVisibleChild not implemented")
     }
 
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
-        fatalError("createSplitView not implemented")
+        todo("createSplitView not implemented")
     }
 
     public func createPicker(
         options: [String], selectedOption: Int?, onChange: @escaping (Int?) -> Void
     ) -> Widget {
-        fatalError("createPicker not implemented")
+        todo("createPicker not implemented")
     }
     public func setOptions(ofPicker picker: Widget, to options: [String]) {
-        fatalError("setOptions not implemented")
+        todo("setOptions not implemented")
     }
     public func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?) {
-        fatalError("setSelectedOption not implemented")
+        todo("setSelectedOption not implemented")
     }
     public func setOnChange(ofPicker picker: Widget, to onChange: @escaping (Int?) -> Void) {
-        fatalError("setOnChange not implemented")
+        todo("setOnChange not implemented")
     }
 
     public func createFrameContainer(for child: Widget, minWidth: Int, minHeight: Int) -> Widget {
-        fatalError("createFrameContainer not implemented")
+        todo("createFrameContainer not implemented")
     }
     public func setMinWidth(ofFrameContainer container: Widget, to minWidth: Int) {
-        fatalError("setMinWidth not implemented")
+        todo("setMinWidth not implemented")
     }
     public func setMinHeight(ofFrameContainer container: Widget, to minHeight: Int) {
-        fatalError("setMinHeight not implemented")
+        todo("setMinHeight not implemented")
     }
 
     public func createForegroundColorContainer(for child: Widget, color: Color) -> Widget {
-        fatalError("createForegroundColorContainer not implemented")
+        todo("createForegroundColorContainer not implemented")
     }
     public func setForegroundColor(ofForegroundColorContainer container: Widget, to color: Color) {
-        fatalError("setForegroundColor not implemented")
+        todo("setForegroundColor not implemented")
     }
 }

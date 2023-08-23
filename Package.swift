@@ -12,6 +12,10 @@ var dependencies: [Package.Dependency] = [
         url: "https://github.com/apple/swift-syntax.git",
         from: "508.0.0"
     ),
+    .package(
+        url: "https://github.com/Longhanks/qlift",
+        revision: "ddab1f1ecc113ad4f8e05d2999c2734cdf706210"
+    ),
 ]
 
 #if swift(>=5.6) && !os(Windows)
@@ -103,6 +107,17 @@ if let version = getGtk4MinorVersion() {
     exampleDependencies.append("AppKitBackend")
 #endif
 
+if checkQtInstalled() {
+    conditionalTargets.append(
+        .target(
+            name: "QtBackend",
+            dependencies: ["SwiftCrossUI", .product(name: "Qlift", package: "qlift")]
+        )
+    )
+    backendTargets.append("QtBackend")
+    exampleDependencies.append("QtBackend")
+}
+
 let package = Package(
     name: "swift-cross-ui",
     platforms: [.macOS(.v10_15)],
@@ -179,6 +194,25 @@ let package = Package(
         ),
     ] + conditionalTargets
 )
+
+func checkQtInstalled() -> Bool {
+    #if os(Windows)
+        // TODO: Test Qt backend on Windows
+        return false
+    #else
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/bin/bash")
+        process.arguments = ["-c", "qmake --version"]
+        process.standardOutput = Pipe()
+        do {
+            try process.run()
+            process.waitUntilExit()
+            return true
+        } catch {
+            return false
+        }
+    #endif
+}
 
 func getGtk4MinorVersion() -> Int? {
     #if os(Windows)
