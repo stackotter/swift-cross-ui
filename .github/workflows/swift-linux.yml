@@ -17,16 +17,16 @@ jobs:
         sudo apt install -y libgtk-4-dev clang
     - name: Build
       run: |
-        swift build SwiftCrossUI && \
-        swift build GtkBackend && \
-        swift build CounterExample && \
-        swift build RandomNumberGeneratorExample && \
-        swift build WindowPropertiesExample && \
-        swift build GreetingGeneratorExample && \
-        swift build FileViewerExample && \
-        swift build NavigationExample && \
-        swift build SplitExample && \
-        swift build GtkCodeGen && \
-        swift build GtkExample
+        swift build --target SwiftCrossUI && \
+        swift build --target GtkBackend && \
+        swift build --target CounterExample && \
+        swift build --target RandomNumberGeneratorExample && \
+        swift build --target WindowPropertiesExample && \
+        swift build --target GreetingGeneratorExample && \
+        swift build --target FileViewerExample && \
+        swift build --target NavigationExample && \
+        swift build --target SplitExample && \
+        swift build --target GtkCodeGen && \
+        swift build --target GtkExample
     - name: Test
       run: swift test
