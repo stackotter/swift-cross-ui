@@ -49,6 +49,7 @@ if let version = getGtk4MinorVersion() {
     var gtkExampleDependencies: [Target.Dependency] = ["Gtk"]
     exampleDependencies.append("GtkBackend")
     backendTargets.append("GtkBackend")
+    fileViewerExampleDependencies.append("GtkBackend")
 
     // Conditionally enable features that rely on Gtk 4.10
     if version >= 10 {
@@ -57,7 +58,8 @@ if let version = getGtk4MinorVersion() {
         )
 
         gtkExampleDependencies.append("FileDialog")
-        fileViewerExampleDependencies.append(contentsOf: ["GtkBackend", "FileDialog"])
+        fileViewerExampleDependencies.append("FileDialog")
+        fileViewerExampleDependencies.append("CGtk")
         gtkSwiftSettings.append(.define("GTK_4_10_PLUS"))
     }
 
