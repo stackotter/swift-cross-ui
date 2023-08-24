@@ -141,6 +141,22 @@ if checkSDL2Installed() {
     )
 }
 
+// TODO: Conditionally include TermKit backend
+conditionalTargets.append(
+    .target(
+        name: "CursesBackend",
+        dependencies: ["SwiftCrossUI", "TermKit"]
+    )
+)
+backendTargets.append("CursesBackend")
+exampleDependencies.append("CursesBackend")
+dependencies.append(
+    .package(
+        url: "https://github.com/migueldeicaza/TermKit",
+        revision: "3bce85d1bafbbb0336b3b7b7e905c35754cb9adf"
+    )
+)
+
 let package = Package(
     name: "swift-cross-ui",
     platforms: [.macOS(.v10_15)],
