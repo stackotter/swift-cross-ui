@@ -1,12 +1,6 @@
 import Foundation
+import GtkBackend
 import SwiftCrossUI
-
-#if canImport(GtkBackend)
-    import GtkBackend
-    typealias SelectedBackend = GtkBackend
-#else
-    #error("No valid backends found")
-#endif
 
 #if canImport(FileDialog)
     import FileDialog
@@ -18,7 +12,7 @@ class FileViewerAppState: Observable {
 
 @main
 struct FileViewerApp: App {
-    typealias Backend = SelectedBackend
+    typealias Backend = GtkBackend
 
     let identifier = "dev.stackotter.FileViewerApp"
 

@@ -41,6 +41,7 @@ Here's a simple example app demonstrate how easy it is to get started with Swift
 
 ```swift
 import SwiftCrossUI
+import GtkBackend
 
 class CounterState: Observable {
     @Observed var count = 0
@@ -86,6 +87,8 @@ swift run GreetingGeneratorExample
 swift run FileViewerExample
 swift run NavigationExample
 ```
+
+All examples use the `GtkBackend` but can easily be updated to test out other backends.
 
 ## Documentation
 

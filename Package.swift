@@ -39,15 +39,14 @@ var dependencies: [Package.Dependency] = [
 
 var conditionalProducts: [Product] = []
 var conditionalTargets: [Target] = []
-var exampleDependencies: [Target.Dependency] = ["SwiftCrossUI"]
-var fileViewerExampleDependencies: [Target.Dependency] = ["SwiftCrossUI"]
+var exampleDependencies: [Target.Dependency] = ["SwiftCrossUI", "GtkBackend"]
+var fileViewerExampleDependencies: [Target.Dependency] = ["SwiftCrossUI", "GtkBackend", "CGtk"]
 var backendTargets: [String] = []
 
 // If Gtk is detected, add Gtk-related products and targets
 if let version = getGtk4MinorVersion() {
     var gtkSwiftSettings: [SwiftSetting] = []
     var gtkExampleDependencies: [Target.Dependency] = ["Gtk"]
-    exampleDependencies.append("GtkBackend")
     backendTargets.append("GtkBackend")
     fileViewerExampleDependencies.append("GtkBackend")
 
@@ -59,7 +58,6 @@ if let version = getGtk4MinorVersion() {
 
         gtkExampleDependencies.append("FileDialog")
         fileViewerExampleDependencies.append("FileDialog")
-        fileViewerExampleDependencies.append("CGtk")
         gtkSwiftSettings.append(.define("GTK_4_10_PLUS"))
     }
 
@@ -102,7 +100,6 @@ if let version = getGtk4MinorVersion() {
 #if canImport(AppKit)
     conditionalTargets.append(.target(name: "AppKitBackend", dependencies: ["SwiftCrossUI"]))
     backendTargets.append("AppKitBackend")
-    exampleDependencies.append("AppKitBackend")
 #endif
 
 if checkQtInstalled() {
@@ -113,7 +110,6 @@ if checkQtInstalled() {
         )
     )
     backendTargets.append("QtBackend")
-    exampleDependencies.append("QtBackend")
     dependencies.append(
         .package(
             url: "https://github.com/Longhanks/qlift",
@@ -134,7 +130,6 @@ if checkSDL2Installed() {
         )
     )
     backendTargets.append("LVGLBackend")
-    exampleDependencies.append("LVGLBackend")
     dependencies.append(
         .package(
             url: "https://github.com/PADL/LVGLSwift",
@@ -152,7 +147,6 @@ if checkSDL2Installed() {
         )
     )
     backendTargets.append("CursesBackend")
-    exampleDependencies.append("CursesBackend")
     dependencies.append(
         .package(
             url: "https://github.com/migueldeicaza/TermKit",
