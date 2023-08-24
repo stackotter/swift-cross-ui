@@ -246,7 +246,7 @@ func checkQtInstalled() -> Bool {
         do {
             try process.run()
             process.waitUntilExit()
-            return true
+            return process.terminationStatus == 0
         } catch {
             return false
         }
@@ -265,7 +265,7 @@ func checkSDL2Installed() -> Bool {
         do {
             try process.run()
             process.waitUntilExit()
-            return true
+            return process.terminationStatus == 0
         } catch {
             return false
         }
