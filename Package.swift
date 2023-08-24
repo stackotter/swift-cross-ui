@@ -141,21 +141,23 @@ if checkSDL2Installed() {
     )
 }
 
-// TODO: Conditionally include TermKit backend
-conditionalTargets.append(
-    .target(
-        name: "CursesBackend",
-        dependencies: ["SwiftCrossUI", "TermKit"]
+#if os(macOS)
+    // TODO: Switch to a different terminal library that doesn't have issues on non-Apple platforms
+    conditionalTargets.append(
+        .target(
+            name: "CursesBackend",
+            dependencies: ["SwiftCrossUI", "TermKit"]
+        )
     )
-)
-backendTargets.append("CursesBackend")
-exampleDependencies.append("CursesBackend")
-dependencies.append(
-    .package(
-        url: "https://github.com/migueldeicaza/TermKit",
-        revision: "3bce85d1bafbbb0336b3b7b7e905c35754cb9adf"
+    backendTargets.append("CursesBackend")
+    exampleDependencies.append("CursesBackend")
+    dependencies.append(
+        .package(
+            url: "https://github.com/migueldeicaza/TermKit",
+            revision: "3bce85d1bafbbb0336b3b7b7e905c35754cb9adf"
+        )
     )
-)
+#endif
 
 let package = Package(
     name: "swift-cross-ui",
