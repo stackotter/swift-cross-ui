@@ -133,7 +133,7 @@ if checkSDL2Installed() {
     dependencies.append(
         .package(
             url: "https://github.com/PADL/LVGLSwift",
-            revision: "fb696362c92a60a2793202a88053fbff298bbd7f"
+            revision: "19c19a942153b50d61486faf1d0d45daf79e7be5"
         )
     )
 }
