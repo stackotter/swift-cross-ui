@@ -9,7 +9,7 @@ struct Person {
     var occupation: String
 }
 
-class SpreadSheetState: Observable {
+class SpreadsheetState: Observable {
     @Observed
     var data = [
         Person(
@@ -24,14 +24,14 @@ class SpreadSheetState: Observable {
 }
 
 @main
-struct SpreadSheetApp: App {
+struct SpreadsheetApp: App {
     typealias Backend = GtkBackend
 
-    let identifier = "dev.stackotter.SpreadSheetApp"
+    let identifier = "dev.stackotter.SpreadsheetApp"
 
-    let state = SpreadSheetState()
+    let state = SpreadsheetState()
 
-    let windowProperties = WindowProperties(title: "SpreadSheetApp", resizable: true)
+    let windowProperties = WindowProperties(title: "SpreadsheetApp", resizable: true)
 
     var body: some ViewContent {
         Table(state.data) {
