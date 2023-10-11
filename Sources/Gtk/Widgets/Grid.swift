@@ -15,7 +15,7 @@ import CGtk
 public class Grid: Widget, Orientable {
     var widgets: [Widget] = []
 
-    override init() {
+    public override init() {
         super.init()
 
         widgetPointer = gtk_grid_new()

@@ -111,11 +111,30 @@ public protocol AppBackend {
 
     func createForegroundColorContainer(for child: Widget, color: Color) -> Widget
     func setForegroundColor(ofForegroundColorContainer container: Widget, to color: Color)
+
+    func createTable(rows: Int, columns: Int) -> Widget
+    func setRowCount(ofTable table: Widget, to rows: Int)
+    func setColumnCount(ofTable table: Widget, to columns: Int)
+    func setCell(at position: CellPosition, inTable table: Widget, to widget: Widget)
 }
 
 public enum InheritedOrientation {
     case vertical
     case horizontal
+}
+
+/// The position of a cell in a table (with row and column numbers starting from 0).
+public struct CellPosition {
+    /// The row number starting from 0.
+    public var row: Int
+    /// The column number starting from 0.
+    public var column: Int
+
+    /// Creates a cell position from a row and column number (starting from 0).
+    public init(_ row: Int, _ column: Int) {
+        self.row = row
+        self.column = column
+    }
 }
 
 extension AppBackend {
@@ -156,12 +175,12 @@ extension AppBackend {
     }
 }
 
-private func todo(_ message: String) -> Never {
-    print(message)
-    Foundation.exit(1)
-}
-
 extension AppBackend {
+    private func todo(_ message: String) -> Never {
+        print("\(type(of: self)): message")
+        Foundation.exit(1)
+    }
+
     public func show(_ widget: Widget) {
         todo("show not implemented")
     }
@@ -372,5 +391,18 @@ extension AppBackend {
     }
     public func setForegroundColor(ofForegroundColorContainer container: Widget, to color: Color) {
         todo("setForegroundColor not implemented")
+    }
+
+    public func createTable(rows: Int, columns: Int) -> Widget {
+        todo("createTable not implemented")
+    }
+    public func setRowCount(ofTable table: Widget, to rows: Int) {
+        todo("setRowCount not implemented")
+    }
+    public func setColumnCount(ofTable table: Widget, to columns: Int) {
+        todo("setColumnCount not implemented")
+    }
+    public func setCell(at position: CellPosition, inTable table: Widget, to widget: Widget) {
+        todo("setCell not implemented")
     }
 }

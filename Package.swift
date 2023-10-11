@@ -224,6 +224,11 @@ let package = Package(
             dependencies: exampleDependencies,
             path: "Examples/Split"
         ),
+        .executableTarget(
+            name: "SpreadsheetExample",
+            dependencies: exampleDependencies,
+            path: "Examples/Spreadsheet"
+        ),
 
         .testTarget(
             name: "SwiftCrossUITests",
