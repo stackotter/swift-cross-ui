@@ -14,9 +14,9 @@ public struct TableBuilder<Row> {
 
     public static func buildOptional(_ component: TableColumn<Row>?) -> [TableColumn<Row>] {
         if let component = component {
-            [component]
+            return [component]
         } else {
-            []
+            return []
         }
     }
 
