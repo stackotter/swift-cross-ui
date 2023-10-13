@@ -121,6 +121,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSlider(minimum:maximum:value:decimalPlaces:onChange:)-3a7e2",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSpacer(expandHorizontally:expandVertically:)-3grgi",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSplitView(leadingChild:trailingChild:)-3iqgg",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTable(rows:columns:)-36alh",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextField(content:placeholder:onChange:)-7zu87",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView(content:shouldWrap:)-f6zp",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createVStack(spacing:)-2yalt",
@@ -132,7 +133,9 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/run(_:_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/runInMainThread(action:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setAction(ofButton:to:)-5s3rv",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setCell(at:inTable:to:)-3gjpn",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChild(ofEitherContainer:to:)-6uzwb",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setColumnCount(ofTable:to:)-7ydov",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setContent(ofTextField:to:)-21686",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setContent(ofTextView:to:)-7m8bp",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setDecimalPlaces(ofSlider:to:)-7l3ai",
@@ -151,6 +154,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOptions(ofPicker:to:)-2wmpb",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setPadding(ofPaddingContainer:top:bottom:leading:trailing:)-3i82z",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setPlaceholder(ofTextField:to:)-7mrkp",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setRowCount(ofTable:to:)-28yce",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSelectedOption(ofPicker:to:)-2b5qx",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSpacing(ofHStack:to:)-6cn",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSpacing(ofVStack:to:)-3m3cm",
@@ -2134,6 +2138,83 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createsplitview(leadingchild:trailingchild:)-3iqgg"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTable(rows:columns:)-36alh": {
+  "abstract" : [
+
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "createTable"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "rows"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "columns"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTable(rows:columns:)-36alh",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "createTable(rows:columns:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtable(rows:columns:)-36alh"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextField(content:placeholder:onChange:)-7zu87": {
   "abstract" : [
 
@@ -2937,6 +3018,102 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/setaction(ofbutton:to:)-5s3rv"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setCell(at:inTable:to:)-3gjpn": {
+  "abstract" : [
+
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setCell"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "at"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI12CellPositionV",
+      "text" : "CellPosition"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "inTable"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "to"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setCell(at:inTable:to:)-3gjpn",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "setCell(at:inTable:to:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setcell(at:intable:to:)-3gjpn"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setChild(ofEitherContainer:to:)-6uzwb": {
   "abstract" : [
 
@@ -3015,6 +3192,78 @@
   "title" : "setChild(ofEitherContainer:to:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/setchild(ofeithercontainer:to:)-6uzwb"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setColumnCount(ofTable:to:)-7ydov": {
+  "abstract" : [
+
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setColumnCount"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofTable"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "to"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setColumnCount(ofTable:to:)-7ydov",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "setColumnCount(ofTable:to:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setcolumncount(oftable:to:)-7ydov"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setContent(ofTextField:to:)-21686": {
   "abstract" : [
@@ -4389,6 +4638,78 @@
   "title" : "setPlaceholder(ofTextField:to:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/setplaceholder(oftextfield:to:)-7mrkp"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setRowCount(ofTable:to:)-28yce": {
+  "abstract" : [
+
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setRowCount"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofTable"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "to"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setRowCount(ofTable:to:)-28yce",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "setRowCount(ofTable:to:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setrowcount(oftable:to:)-28yce"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setSelectedOption(ofPicker:to:)-2b5qx": {
   "abstract" : [

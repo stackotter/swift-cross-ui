@@ -2,15 +2,10 @@
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/asWidget(_:backend:)-9l8po",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/asWidget(_:backend:)-1xwn4"
       ],
       "title" : "View Implementations"
-    },
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent\/asWidget(_:backend:)"
-      ],
-      "title" : "ViewContent Implementations"
     }
   ],
   "hierarchy" : {
@@ -533,7 +528,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-27slc"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent/asWidget(_:backend:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/asWidget(_:backend:)-9l8po": {
   "abstract" : [
 
   ],
@@ -655,12 +650,12 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent\/asWidget(_:backend:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/asWidget(_:backend:)-9l8po",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewcontent\/aswidget(_:backend:)"
+  "url" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-9l8po"
 }
 }
 }

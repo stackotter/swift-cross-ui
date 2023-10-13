@@ -97,6 +97,7 @@
     {
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CellPosition",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherViewChildren",
@@ -121,6 +122,9 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Table",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableBuilder",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
@@ -462,6 +466,40 @@
   "title" : "Cancellable",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/cancellable"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/CellPosition": {
+  "abstract" : [
+    {
+      "text" : "The position of a cell in a table (with row and column numbers starting from 0).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "CellPosition"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CellPosition",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "CellPosition"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "CellPosition",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/cellposition"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color": {
   "abstract" : [
@@ -1682,6 +1720,102 @@
   "title" : "Spacer",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/spacer"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Table": {
+  "abstract" : [
+    {
+      "text" : "A table view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Table"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Table",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Table"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Table",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/table"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TableBuilder": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TableBuilder"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableBuilder",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TableBuilder"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TableBuilder",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tablebuilder"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TableColumn"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TableColumn"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TableColumn",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tablecolumn"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text": {
   "abstract" : [

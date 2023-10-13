@@ -2,15 +2,10 @@
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/update(_:children:backend:)-9dyfs",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/update(_:children:backend:)-41hrf"
       ],
       "title" : "View Implementations"
-    },
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent\/update(_:children:backend:)"
-      ],
-      "title" : "ViewContent Implementations"
     }
   ],
   "hierarchy" : {
@@ -577,7 +572,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view\/update(_:children:backend:)-8j1tw"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent/update(_:children:backend:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/update(_:children:backend:)-9dyfs": {
   "abstract" : [
 
   ],
@@ -711,12 +706,12 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent\/update(_:children:backend:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/update(_:children:backend:)-9dyfs",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewcontent\/update(_:children:backend:)"
+  "url" : "\/documentation\/swiftcrossui\/view\/update(_:children:backend:)-9dyfs"
 }
 }
 }

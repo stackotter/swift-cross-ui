@@ -127,7 +127,7 @@
             },
             {
               "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder",
-              "kind" : "typeIdentifier",
+              "kind" : "attribute",
               "preciseIdentifier" : "s:12SwiftCrossUI18ViewContentBuilderV",
               "text" : "ViewContentBuilder"
             },

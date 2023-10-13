@@ -105,7 +105,7 @@
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/body",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/identifier",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/state-swift.property-49rq3",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/state-49rq3",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/windowProperties"
       ],
       "title" : "Instance Properties"
@@ -432,7 +432,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/app\/main()"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/state-swift.property-49rq3": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/state-49rq3": {
   "abstract" : [
     {
       "text" : "The application’s state.",
@@ -470,13 +470,13 @@
       "text" : "State"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/state-swift.property-49rq3",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/state-49rq3",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "state",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/app\/state-swift.property-49rq3"
+  "url" : "\/documentation\/swiftcrossui\/app\/state-49rq3"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/App/windowProperties": {
   "abstract" : [

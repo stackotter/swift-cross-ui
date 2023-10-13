@@ -226,7 +226,7 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/observed\/didchange-2rgzn",
+                "path" : "\/documentation\/swiftcrossui\/observed\/didchange",
                 "title" : "let didChange: Publisher",
                 "type" : "property"
               },
@@ -248,26 +248,6 @@
                 "path" : "\/documentation\/swiftcrossui\/observed\/valuedidchange(publish:)",
                 "title" : "func valueDidChange(publish: Bool)",
                 "type" : "method"
-              },
-              {
-                "title" : "Default Implementations",
-                "type" : "groupMarker"
-              },
-              {
-                "children" : [
-                  {
-                    "title" : "Instance Properties",
-                    "type" : "groupMarker"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/observed\/didchange-6hdu",
-                    "title" : "var didChange: Publisher",
-                    "type" : "property"
-                  }
-                ],
-                "path" : "\/documentation\/swiftcrossui\/observed\/observable-implementations",
-                "title" : "Observable Implementations",
-                "type" : "symbol"
               }
             ],
             "path" : "\/documentation\/swiftcrossui\/observed",
@@ -459,7 +439,7 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/app\/state-swift.property-8m60g",
+                        "path" : "\/documentation\/swiftcrossui\/app\/state-8m60g",
                         "title" : "var state: EmptyState",
                         "type" : "property"
                       }
@@ -468,7 +448,7 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/app\/state-swift.property-49rq3",
+                "path" : "\/documentation\/swiftcrossui\/app\/state-49rq3",
                 "title" : "var state: Self.State",
                 "type" : "property"
               },
@@ -910,6 +890,24 @@
                   {
                     "children" : [
                       {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createtable(rows:columns:)-31vyf",
+                        "title" : "func createTable(rows: Int, columns: Int) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createtable(rows:columns:)-36alh",
+                "title" : "func createTable(rows: Int, columns: Int) -> Self.Widget",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
                         "path" : "\/documentation\/swiftcrossui\/appbackend\/createtextfield(content:placeholder:onchange:)-204w0",
                         "title" : "func createTextField(content: String, placeholder: String, onChange: (String) -> Void) -> Self.Widget",
                         "type" : "method"
@@ -1082,6 +1080,24 @@
                   {
                     "children" : [
                       {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setcell(at:intable:to:)-2rcpv",
+                        "title" : "func setCell(at: CellPosition, inTable: Self.Widget, to: Self.Widget)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setcell(at:intable:to:)-3gjpn",
+                "title" : "func setCell(at: CellPosition, inTable: Self.Widget, to: Self.Widget)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
                         "path" : "\/documentation\/swiftcrossui\/appbackend\/setchild(ofeithercontainer:to:)-1kv63",
                         "title" : "func setChild(ofEitherContainer: Self.Widget, to: Self.Widget?)",
                         "type" : "method"
@@ -1093,6 +1109,24 @@
                 ],
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/setchild(ofeithercontainer:to:)-6uzwb",
                 "title" : "func setChild(ofEitherContainer: Self.Widget, to: Self.Widget?)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setcolumncount(oftable:to:)-897wr",
+                        "title" : "func setColumnCount(ofTable: Self.Widget, to: Int)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setcolumncount(oftable:to:)-7ydov",
+                "title" : "func setColumnCount(ofTable: Self.Widget, to: Int)",
                 "type" : "method"
               },
               {
@@ -1424,6 +1458,24 @@
                   {
                     "children" : [
                       {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setrowcount(oftable:to:)-4bto0",
+                        "title" : "func setRowCount(ofTable: Self.Widget, to: Int)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setrowcount(oftable:to:)-28yce",
+                "title" : "func setRowCount(ofTable: Self.Widget, to: Int)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
                         "path" : "\/documentation\/swiftcrossui\/appbackend\/setselectedoption(ofpicker:to:)-41904",
                         "title" : "func setSelectedOption(ofPicker: Self.Widget, to: Int?)",
                         "type" : "method"
@@ -1670,16 +1722,16 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/viewcontent\/body",
+                        "path" : "\/documentation\/swiftcrossui\/view\/body-8zy0r",
                         "title" : "var body: Self",
                         "type" : "property"
                       }
                     ],
-                    "title" : "ViewContent Implementations",
+                    "title" : "View Implementations",
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/view\/body",
+                "path" : "\/documentation\/swiftcrossui\/view\/body-2j1pw",
                 "title" : "var body: Self.Content",
                 "type" : "property"
               },
@@ -1688,7 +1740,7 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/state-swift.property-6dnw8",
+                        "path" : "\/documentation\/swiftcrossui\/view\/state-6dnw8",
                         "title" : "var state: EmptyState",
                         "type" : "property"
                       }
@@ -1697,7 +1749,7 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/view\/state-swift.property-t2al",
+                "path" : "\/documentation\/swiftcrossui\/view\/state-t2al",
                 "title" : "var state: Self.State",
                 "type" : "property"
               },
@@ -1710,23 +1762,17 @@
                   {
                     "children" : [
                       {
+                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-9l8po",
+                        "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
+                        "type" : "method"
+                      },
+                      {
                         "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-1xwn4",
                         "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                         "type" : "method"
                       }
                     ],
                     "title" : "View Implementations",
-                    "type" : "groupMarker"
-                  },
-                  {
-                    "children" : [
-                      {
-                        "path" : "\/documentation\/swiftcrossui\/viewcontent\/aswidget(_:backend:)",
-                        "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
-                        "type" : "method"
-                      }
-                    ],
-                    "title" : "ViewContent Implementations",
                     "type" : "groupMarker"
                   }
                 ],
@@ -1759,23 +1805,17 @@
                   {
                     "children" : [
                       {
+                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:backend:)-9dyfs",
+                        "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
+                        "type" : "method"
+                      },
+                      {
                         "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:backend:)-41hrf",
                         "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                         "type" : "method"
                       }
                     ],
                     "title" : "View Implementations",
-                    "type" : "groupMarker"
-                  },
-                  {
-                    "children" : [
-                      {
-                        "path" : "\/documentation\/swiftcrossui\/viewcontent\/update(_:children:backend:)",
-                        "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
-                        "type" : "method"
-                      }
-                    ],
-                    "title" : "ViewContent Implementations",
                     "type" : "groupMarker"
                   }
                 ],
@@ -1942,6 +1982,36 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/button",
             "title" : "Button",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/cellposition\/init(_:_:)",
+                "title" : "init(Int, Int)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/cellposition\/column",
+                "title" : "var column: Int",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/cellposition\/row",
+                "title" : "var row: Int",
+                "type" : "property"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/cellposition",
+            "title" : "CellPosition",
             "type" : "struct"
           },
           {
@@ -3937,6 +4007,175 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/spacer",
             "title" : "Spacer",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/table\/init(_:_:)",
+                "title" : "init([Row], () -> [TableColumn<Row>])",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/table\/body",
+                "title" : "var body: EmptyViewContent",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/table\/aswidget(_:backend:)-6wyk7",
+                "title" : "func asWidget<Backend>(EmptyViewContent.Children, backend: Backend) -> Backend.Widget",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/table\/update(_:children:backend:)-7sskf",
+                "title" : "func update<Backend>(Backend.Widget, children: EmptyViewContent.Children, backend: Backend)",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/state",
+                    "title" : "var state: EmptyState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/aswidget(_:backend:)-9rxms",
+                    "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/padding(_:)",
+                    "title" : "func padding(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/update(_:children:backend:)-1olcd",
+                    "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/table\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/table",
+            "title" : "Table",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Type Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tablebuilder\/buildarray(_:)",
+                "title" : "static func buildArray([TableColumn<Row>]) -> [TableColumn<Row>]",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tablebuilder\/buildblock()",
+                "title" : "static func buildBlock() -> [TableColumn<Row>]",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tablebuilder\/buildblock(_:)",
+                "title" : "static func buildBlock(TableColumn<Row>...) -> [TableColumn<Row>]",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tablebuilder\/buildeither(first:)",
+                "title" : "static func buildEither(first: TableColumn<Row>) -> [TableColumn<Row>]",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tablebuilder\/buildeither(second:)",
+                "title" : "static func buildEither(second: TableColumn<Row>) -> [TableColumn<Row>]",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tablebuilder\/buildoptional(_:)",
+                "title" : "static func buildOptional(TableColumn<Row>?) -> [TableColumn<Row>]",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/tablebuilder",
+            "title" : "TableBuilder",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tablecolumn\/init(_:value:)-2t5t",
+                "title" : "init<Value>(String, value: KeyPath<Row, Value>)",
+                "type" : "init"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tablecolumn\/init(_:value:)-33ros",
+                "title" : "init(String, value: KeyPath<Row, String>)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tablecolumn\/title",
+                "title" : "var title: String",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tablecolumn\/value",
+                "title" : "var value: (Row) -> String",
+                "type" : "property"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/tablecolumn",
+            "title" : "TableColumn",
             "type" : "struct"
           },
           {

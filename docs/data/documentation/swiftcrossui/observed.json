@@ -206,7 +206,7 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/didChange-2rgzn",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/didChange",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/projectedValue",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/wrappedValue"
       ],
@@ -217,13 +217,6 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/valueDidChange(publish:)"
       ],
       "title" : "Instance Methods"
-    },
-    {
-      "generated" : true,
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/Observable-Implementations"
-      ],
-      "title" : "Default Implementations"
     }
   ],
   "variants" : [
@@ -343,18 +336,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/observed"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/Observable-Implementations": {
-  "abstract" : [
-
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/Observable-Implementations",
-  "kind" : "article",
-  "role" : "collectionGroup",
-  "title" : "Observable Implementations",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/observed\/observable-implementations"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/didChange-2rgzn": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/didChange": {
   "abstract" : [
     {
       "text" : "A publisher that publishes any observable changes made to ",
@@ -393,12 +375,12 @@
       "text" : "Publisher"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/didChange-2rgzn",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/didChange",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "didChange",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/observed\/didchange-2rgzn"
+  "url" : "\/documentation\/swiftcrossui\/observed\/didchange"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/init(wrappedValue:)-4hr3j": {
   "abstract" : [

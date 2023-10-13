@@ -99,7 +99,10 @@
     ],
     "modules" : [
       {
-        "name" : "SwiftCrossUI"
+        "name" : "SwiftCrossUI",
+        "relatedModules" : [
+          "Swift"
+        ]
       }
     ],
     "role" : "symbol",
