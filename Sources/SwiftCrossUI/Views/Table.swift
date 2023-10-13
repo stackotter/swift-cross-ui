@@ -15,7 +15,7 @@ public struct Table<Row>: View {
         _ children: EmptyViewContent.Children,
         backend: Backend
     ) -> Backend.Widget {
-        return backend.createTable(rows: rows.count, columns: columns.count)
+        return backend.createTable(rows: rows.count + 1, columns: columns.count)
     }
 
     public func update<Backend: AppBackend>(
@@ -23,16 +23,25 @@ public struct Table<Row>: View {
         children: EmptyViewContent.Children,
         backend: Backend
     ) {
-        backend.setRowCount(ofTable: widget, to: rows.count)
+        backend.setRowCount(ofTable: widget, to: rows.count + 1)
         backend.setColumnCount(ofTable: widget, to: columns.count)
-        for i in 0..<rows.count {
-            let row = rows[i]
-            for j in 0..<columns.count {
+        for (i, column) in columns.enumerated() {
+            backend.setCell(
+                at: CellPosition(0, i),
+                inTable: widget,
+                to: backend.createTextView(
+                    content: column.title,
+                    shouldWrap: false
+                )
+            )
+        }
+        for (i, row) in rows.enumerated() {
+            for (j, column) in columns.enumerated() {
                 backend.setCell(
-                    at: CellPosition(i, j),
+                    at: CellPosition(i + 1, j),
                     inTable: widget,
                     to: backend.createTextView(
-                        content: columns[j].value(row),
+                        content: column.value(row),
                         shouldWrap: false
                     )
                 )
