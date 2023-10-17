@@ -100,6 +100,10 @@ if let version = getGtk4MinorVersion() {
 #if canImport(AppKit)
     conditionalTargets.append(.target(name: "AppKitBackend", dependencies: ["SwiftCrossUI"]))
     backendTargets.append("AppKitBackend")
+
+    conditionalProducts.append(
+        .library(name: "AppKitBackend", targets: ["AppKitBackend"])
+    )
 #endif
 
 if checkQtInstalled() {
@@ -115,6 +119,10 @@ if checkQtInstalled() {
             url: "https://github.com/Longhanks/qlift",
             revision: "ddab1f1ecc113ad4f8e05d2999c2734cdf706210"
         )
+    )
+
+    conditionalProducts.append(
+        .library(name: "QtBackend", targets: ["QtBackend"])
     )
 }
 
@@ -136,6 +144,10 @@ if checkSDL2Installed() {
             revision: "19c19a942153b50d61486faf1d0d45daf79e7be5"
         )
     )
+
+    conditionalProducts.append(
+        .library(name: "LVGLBackend", targets: ["LVGLBackend"])
+    )
 }
 
 #if os(macOS)
@@ -153,13 +165,17 @@ if checkSDL2Installed() {
             revision: "3bce85d1bafbbb0336b3b7b7e905c35754cb9adf"
         )
     )
+
+    conditionalProducts.append(
+        .library(name: "CursesBackend", targets: ["CursesBackend"])
+    )
 #endif
 
 let package = Package(
     name: "swift-cross-ui",
     platforms: [.macOS(.v10_15)],
     products: [
-        .library(name: "SwiftCrossUI", targets: ["SwiftCrossUI"] + backendTargets),
+        .library(name: "SwiftCrossUI", targets: ["SwiftCrossUI"]),
         .executable(name: "CounterExample", targets: ["CounterExample"]),
         .executable(
             name: "RandomNumberGeneratorExample",
