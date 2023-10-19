@@ -143,6 +143,44 @@ public struct QtBackend: AppBackend {
     public func setAction(ofButton button: Widget, to action: @escaping () -> Void) {
         internalState.buttonClickActions[ObjectIdentifier(button)] = action
     }
+
+    public func createSlider(
+        minimum: Double,
+        maximum: Double,
+        value: Double,
+        decimalPlaces: Int,
+        onChange: @escaping (Double) -> Void
+    ) -> QWidget {
+        let slider = QSlider(orientation: .Horizontal)
+        slider.minimum = Int32(minimum)
+        slider.maximum = Int32(maximum)
+        slider.value = Int32(value)
+
+        internalState.sliderChangeActions[ObjectIdentifier(slider)] = onChange
+        slider.connectValueChanged(receiver: nil) { [weak internalState] val in
+            guard let internalState = internalState else {
+                return
+            }
+            internalState.sliderChangeActions[ObjectIdentifier(slider)]?(Double(val))
+        }
+
+        return slider
+    }
+    public func setMinimum(ofSlider slider: Widget, to minimum: Double) {
+        (slider as! QSlider).minimum = Int32(minimum)
+    }
+    public func setMaximum(ofSlider slider: Widget, to maximum: Double) {
+        (slider as! QSlider).maximum = Int32(maximum)
+    }
+    public func setValue(ofSlider slider: Widget, to value: Double) {
+        (slider as! QSlider).value = Int32(value)
+    }
+    /// non applicable here
+    public func setDecimalPlaces(ofSlider slider: Widget, to decimalPlaces: Int) {
+    }
+    public func setOnChange(ofSlider slider: Widget, to onChange: @escaping (Double) -> Void) {
+        internalState.sliderChangeActions[ObjectIdentifier(slider)] = onChange
+    }
 }
 
 class MainWindow: QMainWindow {
