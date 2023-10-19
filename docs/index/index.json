@@ -1805,13 +1805,13 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:backend:)-9dyfs",
-                        "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
+                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:backend:)-41hrf",
+                        "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:backend:)-41hrf",
-                        "title" : "func update<Backend>(Backend.Widget, children: Self.Content.Children, backend: Backend)",
+                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:backend:)-9dyfs",
+                        "title" : "func update<Backend>(Backend.Widget, children: Self.Children, backend: Backend)",
                         "type" : "method"
                       }
                     ],
