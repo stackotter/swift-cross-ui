@@ -1,4 +1,4 @@
-/// A button view.
+/// A TextField view.
 public struct TextField: View {
     public var body = EmptyViewContent()
 
@@ -7,7 +7,7 @@ public struct TextField: View {
     /// Storage for the field's content.
     private var value: Binding<String>?
 
-    /// Creates a new button.
+    /// Creates an editable text field and binds a value.
     public init(_ placeholder: String = "", _ value: Binding<String>? = nil) {
         self.placeholder = placeholder
         self.value = value
