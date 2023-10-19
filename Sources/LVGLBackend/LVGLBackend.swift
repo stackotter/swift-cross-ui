@@ -60,9 +60,13 @@ public struct LVGLBackend: AppBackend {
     }
 
     public func runInMainThread(action: @escaping () -> Void) {
-        DispatchQueue.main.async {
+        #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
+            DispatchQueue.main.async {
+                action()
+            }
+        #else
             action()
-        }
+        #endif
     }
 
     public func show(_ widget: Widget) {}
