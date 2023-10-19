@@ -10,7 +10,7 @@ public struct QtBackend: AppBackend {
 
     private class InternalState {
         var buttonClickActions: [ObjectIdentifier: () -> Void] = [:]
-        var sliderChangeAction: [ObjectIdentifier: (Double) -> Void] = [:]
+        var sliderChangeActions: [ObjectIdentifier: (Double) -> Void] = [:]
         var paddingContainerChildren: [ObjectIdentifier: Widget] = [:]
     }
 
@@ -39,9 +39,13 @@ public struct QtBackend: AppBackend {
     }
 
     public func runInMainThread(action: @escaping () -> Void) {
-        DispatchQueue.main.async {
+        #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
+            DispatchQueue.main.async {
+                action()
+            }
+        #else
             action()
-        }
+        #endif
     }
 
     public func show(_ widget: Widget) {
