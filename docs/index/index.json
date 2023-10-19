@@ -1762,13 +1762,13 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-9l8po",
-                        "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
+                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-1xwn4",
+                        "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-1xwn4",
-                        "title" : "func asWidget<Backend>(Self.Content.Children, backend: Backend) -> Backend.Widget",
+                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-9l8po",
+                        "title" : "func asWidget<Backend>(Self.Children, backend: Backend) -> Backend.Widget",
                         "type" : "method"
                       }
                     ],
