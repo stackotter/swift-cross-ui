@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Creates a new text view with the given content.",
+      "text" : "Creates a new picker with the given options and a binding for the selected value.",
       "type" : "text"
     }
   ],
@@ -268,7 +268,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/init(of:selection:)": {
   "abstract" : [
     {
-      "text" : "Creates a new text view with the given content.",
+      "text" : "Creates a new picker with the given options and a binding for the selected value.",
       "type" : "text"
     }
   ],

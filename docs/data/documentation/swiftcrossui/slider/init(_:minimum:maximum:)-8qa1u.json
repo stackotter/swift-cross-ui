@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a slider to select a value between a minimum and maximum value.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -314,7 +320,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider/init(_:minimum:maximum:)-8qa1u": {
   "abstract" : [
-
+    {
+      "text" : "Creates a slider to select a value between a minimum and maximum value.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

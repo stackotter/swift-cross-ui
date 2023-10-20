@@ -323,7 +323,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField": {
   "abstract" : [
     {
-      "text" : "A button view.",
+      "text" : "A TextField view.",
       "type" : "text"
     }
   ],

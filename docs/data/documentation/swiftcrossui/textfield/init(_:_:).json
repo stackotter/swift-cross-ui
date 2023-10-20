@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Creates a new button.",
+      "text" : "Creates an editable text field and binds a value.",
       "type" : "text"
     }
   ],
@@ -222,7 +222,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField": {
   "abstract" : [
     {
-      "text" : "A button view.",
+      "text" : "A TextField view.",
       "type" : "text"
     }
   ],
@@ -256,7 +256,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/init(_:_:)": {
   "abstract" : [
     {
-      "text" : "Creates a new button.",
+      "text" : "Creates an editable text field and binds a value.",
       "type" : "text"
     }
   ],
