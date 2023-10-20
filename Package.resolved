@@ -20,15 +20,6 @@
         }
       },
       {
-        "package": "OpenCombine",
-        "repositoryURL": "https://github.com/OpenCombine/OpenCombine.git",
-        "state": {
-          "branch": null,
-          "revision": "8576f0d579b27020beccbccc3ea6844f3ddfc2c2",
-          "version": "0.14.0"
-        }
-      },
-      {
         "package": "Qlift",
         "repositoryURL": "https://github.com/Longhanks/qlift",
         "state": {
@@ -62,33 +53,6 @@
           "branch": null,
           "revision": "2c49d66d34dfd6f8130afdba889de77504b58ec0",
           "version": "508.0.1"
-        }
-      },
-      {
-        "package": "SwiftTerm",
-        "repositoryURL": "https://github.com/migueldeicaza/SwiftTerm.git",
-        "state": {
-          "branch": null,
-          "revision": "116b795e4de2324d4a1b1bb2db02141294bc9229",
-          "version": "1.2.4"
-        }
-      },
-      {
-        "package": "TermKit",
-        "repositoryURL": "https://github.com/migueldeicaza/TermKit",
-        "state": {
-          "branch": null,
-          "revision": "3bce85d1bafbbb0336b3b7b7e905c35754cb9adf",
-          "version": null
-        }
-      },
-      {
-        "package": "TextBufferKit",
-        "repositoryURL": "https://github.com/migueldeicaza/TextBufferKit.git",
-        "state": {
-          "branch": null,
-          "revision": "7f3ed5b1d7288de34ad853544d802647be11cfcf",
-          "version": "0.3.0"
         }
       },
       {

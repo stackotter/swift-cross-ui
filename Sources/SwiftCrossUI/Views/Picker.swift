@@ -2,9 +2,9 @@
 public struct Picker<Value: Equatable>: View {
     public var body = EmptyViewContent()
 
-    /// The string to be shown in the text view.
+    /// The options to be offered by the picker.
     private var options: [Value]
-    /// Specifies whether the text should be wrapped if wider than its container.
+    /// The picker's selected option.
     private var value: Binding<Value?>
 
     /// The index of the selected option (if any).
@@ -14,7 +14,7 @@ public struct Picker<Value: Equatable>: View {
         }
     }
 
-    /// Creates a new text view with the given content.
+    /// Creates a new picker with the given options and a binding for the selected value.
     public init(of options: [Value], selection value: Binding<Value?>) {
         self.options = options
         self.value = value
