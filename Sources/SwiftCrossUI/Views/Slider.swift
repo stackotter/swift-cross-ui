@@ -48,7 +48,7 @@ public struct Slider: View {
     /// The number of decimal places used when displaying the value.
     private var decimalPlaces: Int
 
-    /// Creates a new slider with the given minimum and maximum values and binds an integer.
+    /// Creates a slider to select a value between a minimum and maximum value.
     public init<T: BinaryInteger>(_ value: Binding<T>? = nil, minimum: T, maximum: T) {
         if let value = value {
             self.value = Binding<Double>(
@@ -65,7 +65,7 @@ public struct Slider: View {
         decimalPlaces = 0
     }
 
-    /// Creates a new slider with the given minimum and maximum values and binds a floating point number.
+    /// Creates a slider to select a value between a minimum and maximum value.
     public init<T: BinaryFloatingPoint>(_ value: Binding<T>? = nil, minimum: T, maximum: T) {
         if let value = value {
             self.value = Binding<Double>(

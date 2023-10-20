@@ -4,7 +4,7 @@ public struct TextField: View {
 
     /// The label to show when the field is empty.
     private var placeholder: String
-    /// Storage for the field's content.
+    /// The field's content.
     private var value: Binding<String>?
 
     /// Creates an editable text field and binds a value.
