@@ -52,7 +52,7 @@ extension Observable {
                     continue
                 }
 
-                _ = publisher.link(toDownstream: property.didChange)
+                _ = publisher.link(toUpstream: property.didChange)
             }
             mirror = aClass.superclassMirror
         }

@@ -1,9 +1,12 @@
-/// A table view.
+/// A container that presents rows of data arranged in columns.
 public struct Table<Row>: ElementaryView {
+    /// The row data to display.
     private var rows: [Row]
+    /// The columns to display (which each compute their cell values when given
+    /// ``Table/Row`` instances).
     private var columns: [TableColumn<Row>]
 
-    /// Creates a new text view with the given content.
+    /// Creates a table that computes its cell values based on a collection of rows.
     public init(_ rows: [Row], @TableBuilder<Row> _ columns: () -> [TableColumn<Row>]) {
         self.rows = rows
         self.columns = columns()

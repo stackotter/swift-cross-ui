@@ -1,134 +1,58 @@
 import Foundation
 
-/// A view that can be displayed by SwiftCrossUI.
+/// A view that can be rendered by any backend.
 public protocol View {
+    /// The view's content (composed of other views).
     associatedtype Content: View
+    /// The view's observed state.
     associatedtype State: Observable
 
+    /// The views observed state. Any observed changes cause ``View/body`` to be recomputed,
+    /// and the view itself to be updated.
     var state: State { get set }
 
     /// The view's contents.
     @ViewBuilder var body: Content { get }
 
-    func asChildren<Backend: AppBackend>(backend: Backend) -> any ViewGraphNodeChildren
+    /// Gets the view's children as a type-erased collection of view graph nodes. Type-erased
+    /// to avoid leaking complex requirements to users implementing their own regular views.
+    func children<Backend: AppBackend>(backend: Backend) -> any ViewGraphNodeChildren
 
+    /// Updates all of the view's children after an update-causing change has occured.
+    /// `children` is type-erased to avoid leaking complex requirements to users
+    /// creating regular ``View``s.
     func updateChildren<Backend: AppBackend>(
         _ children: any ViewGraphNodeChildren, backend: Backend
     )
 
+    /// Creates the view's widget using the supplied backend.
+    ///
+    /// A view is represented by the same widget instance for the whole time that it's visible even
+    /// if its content is changing; keep that in mind while deciding the structure of the widget.
+    /// For example, a view displaying one of two children should use
+    /// ``AppBackend/createEitherContainer(initiallyContaining:)`` as a container for the currently
+    /// displayed child instead of just returning the widget of the currently displayed child,
+    /// which would result in you not being able to ever switch to displaying the other child.
     func asWidget<Backend: AppBackend>(
         _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget
 
+    /// Updates the view's widget after a state change occurs (although the change isn't guaranteed
+    /// to have affected this particular view).
+    ///
+    /// Always called once immediately after creating the view's widget with ``View/asWidget(_:backend:)``
+    /// -- allowing for code duplication between creation and updating to be reduced.
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         backend: Backend
     )
-}
-
-/// A complimentary protocol for ``View`` to simplify implementation of
-/// elementary (i.e. atomic) views which have no children. Think of them
-/// as the leaves at the end of the view tree.
-protocol ElementaryView: View where Content == EmptyView {
-    func asWidget<Backend: AppBackend>(
-        backend: Backend
-    ) -> Backend.Widget
-
-    func update<Backend: AppBackend>(
-        _ widget: Backend.Widget,
-        backend: Backend
-    )
-}
-
-extension ElementaryView {
-    public var body: EmptyView {
-        return EmptyView()
-    }
-
-    public func asWidget<Backend: AppBackend>(
-        _ children: any ViewGraphNodeChildren,
-        backend: Backend
-    ) -> Backend.Widget {
-        return asWidget(backend: backend)
-    }
-
-    public func update<Backend: AppBackend>(
-        _ widget: Backend.Widget,
-        children: any ViewGraphNodeChildren,
-        backend: Backend
-    ) {
-        update(widget, backend: backend)
-    }
-}
-
-/// A complimentary protocol for ``View`` to make implementing views more
-/// type-safe without leaking the `Children` associated type to users
-/// (otherwise they would need to provide a `Children` associated type for
-/// every view they made).
-protocol TypeSafeView: View {
-    associatedtype Children: ViewGraphNodeChildren
-
-    func asChildren<Backend: AppBackend>(backend: Backend) -> Children
-
-    func updateChildren<Backend: AppBackend>(
-        _ children: Children, backend: Backend
-    )
-
-    func asWidget<Backend: AppBackend>(
-        _ children: Children,
-        backend: Backend
-    ) -> Backend.Widget
-
-    func update<Backend: AppBackend>(
-        _ widget: Backend.Widget,
-        children: Children,
-        backend: Backend
-    )
-}
-
-extension TypeSafeView {
-    public func asChildren<Backend: AppBackend>(backend: Backend) -> any ViewGraphNodeChildren {
-        let children: Children = asChildren(backend: backend)
-        return children
-    }
-
-    public func updateChildren<Backend: AppBackend>(
-        _ children: any ViewGraphNodeChildren, backend: Backend
-    ) {
-        updateChildren(children as! Children, backend: backend)
-    }
-
-    public func asWidget<Backend: AppBackend>(
-        _ children: any ViewGraphNodeChildren,
-        backend: Backend
-    ) -> Backend.Widget {
-        return asWidget(children as! Children, backend: backend)
-    }
-
-    public func update<Backend: AppBackend>(
-        _ widget: Backend.Widget,
-        children: any ViewGraphNodeChildren,
-        backend: Backend
-    ) {
-        update(widget, children: children as! Children, backend: backend)
-    }
-}
-
-extension TypeSafeView where Content: TypeSafeView, Children == Content.Children {
-    func asChildren<Backend: AppBackend>(backend: Backend) -> Children {
-        return body.asChildren(backend: backend)
-    }
-
-    func updateChildren<Backend: AppBackend>(_ children: Children, backend: Backend) {
-        body.updateChildren(children, backend: backend)
-    }
 }
 
 extension View {
-    public func asChildren<Backend: AppBackend>(backend: Backend) -> any ViewGraphNodeChildren {
-        body.asChildren(backend: backend)
+    public func children<Backend: AppBackend>(backend: Backend) -> any ViewGraphNodeChildren {
+        body.children(backend: backend)
     }
 
     public func updateChildren<Backend: AppBackend>(

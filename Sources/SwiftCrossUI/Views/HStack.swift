@@ -1,11 +1,11 @@
-/// A horizontally oriented container. Similar to a `HStack` in SwiftUI.
+/// A view that arranges its subviews horizontally.
 public struct HStack<Content: View>: View {
     public var body: Content
 
     /// The amount of spacing to apply between children.
     private var spacing: Int
 
-    /// Creates a new HStack.
+    /// Creates a horizontal stack with the given spacing.
     public init(spacing: Int = 8, @ViewBuilder _ content: () -> Content) {
         body = content()
         self.spacing = spacing

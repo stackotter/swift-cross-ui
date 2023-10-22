@@ -6,17 +6,29 @@ struct NavigationStackRootPath: Codable {}
 ///
 /// Use .navigationDestination(for:destination:) on this view instead of its children unlike Apples SwiftUI API.
 public struct NavigationStack<Detail: View>: TypeSafeView {
-    public typealias Children = NavigationStackChildren<Detail>
+    typealias Children = NavigationStackChildren<Detail>
 
     public var body = EmptyView()
 
-    public var path: Binding<NavigationPath>
-
-    public var destinationTypes: [any Codable.Type]
-
-    public var child: (any Codable) -> Detail?
-
-    public var elements: [any Codable] {
+    /// A binding to the current navigation path.
+    var path: Binding<NavigationPath>
+    /// The types handled by each destination (in the same order as their
+    /// corresponding views in the stack).
+    var destinationTypes: [any Codable.Type]
+    /// Gets a recursive ``EitherView`` structure which will have a single view
+    /// visible suitable for displaying the given path element (based on its
+    /// type).
+    ///
+    /// It's implemented as a recursive structure because that's the best way to keep this
+    /// typesafe without introducing some crazy generated pseudo-variadic storage types of
+    /// some sort. This way we can easily have unlimited navigation destinations and there's
+    /// just a single simple method for adding a navigation destination.
+    var child: (any Codable) -> Detail?
+    /// The elements of the navigation path. The result can depend on
+    /// ``NavigationStack/destinationTypes`` which determines how the keys are
+    /// decoded if they haven't yet been decoded (this happens if they're loaded
+    /// from disk for persistence).
+    var elements: [any Codable] {
         let resolvedPath = path.wrappedValue.path(
             destinationTypes: destinationTypes
         )
@@ -24,7 +36,6 @@ public struct NavigationStack<Detail: View>: TypeSafeView {
     }
 
     /// Creates a navigation stack with heterogeneous navigation state that you can control.
-    ///
     /// - Parameters:
     ///   - path: A `Binding` to the navigation state for this stack.
     ///   - root: The view to display when the stack is empty.
@@ -48,7 +59,6 @@ public struct NavigationStack<Detail: View>: TypeSafeView {
     /// Add this view modifer to describe the view that the stack displays when presenting a particular
     /// kind of data. Use a `NavigationLink` to present the data. You can add more than one navigation
     /// destination modifier to the stack if it needs to present more than one kind of data.
-    ///
     /// - Parameters:
     ///   - data: The type of data that this destination matches.
     ///   - destination: A view builder that defines a view to display when the stack’s navigation
@@ -57,31 +67,15 @@ public struct NavigationStack<Detail: View>: TypeSafeView {
     public func navigationDestination<D: Codable, C: View>(
         for data: D.Type, @ViewBuilder destination: @escaping (D) -> C
     ) -> NavigationStack<EitherView<Detail, C>> {
+        // Adds another detail view by adding to the recursive structure of either views created
+        // to display details in a type-safe manner. See NavigationStack.child for details.
         return NavigationStack<EitherView<Detail, C>>(
             previous: self,
             destination: destination
         )
     }
 
-    public func asChildren<Backend: AppBackend>(backend: Backend) -> Children {
-        return NavigationStackChildren(from: self, backend: backend)
-    }
-
-    public func updateChildren<Backend: AppBackend>(_ children: Children, backend: Backend) {
-        children.update(with: self, backend: backend)
-    }
-
-    public func asWidget<Backend: AppBackend>(
-        _ children: Children, backend: Backend
-    ) -> Backend.Widget {
-        return children.storage.container.into()
-    }
-
-    public func update<Backend: AppBackend>(
-        _ widget: Backend.Widget, children: Children, backend: Backend
-    ) {}
-
-    /// Add a destination for a specific path element
+    /// Add a destination for a specific path element (by adding another layer of ``EitherView``).
     private init<PreviousDetail: View, NewDetail: View, Component: Codable>(
         previous: NavigationStack<PreviousDetail>,
         destination: @escaping (Component) -> NewDetail?
@@ -102,6 +96,9 @@ public struct NavigationStack<Detail: View>: TypeSafeView {
         }
     }
 
+    /// Attempts to compute the detail view for the given element (the type of
+    /// the element decides which detail is shown). Crashes if no suitable detail
+    /// view is found.
     func childOrCrash(for element: any Codable) -> Detail {
         guard let child = child(element) else {
             fatalError(
@@ -111,56 +108,81 @@ public struct NavigationStack<Detail: View>: TypeSafeView {
 
         return child
     }
-}
 
-public struct NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
-    class Storage {
-        /// When a view is popped we store it in here to remove from the stack
-        /// the next time views are added. This allows them to animate out.
-        var widgetsQueuedForRemoval: [AnyWidget] = []
-        var nodes: [AnyViewGraphNode<Child>] = []
-        var container: AnyWidget
-
-        init(container: AnyWidget) {
-            self.container = container
-        }
+    func children<Backend: AppBackend>(backend: Backend) -> Children {
+        return NavigationStackChildren(from: self, backend: backend)
     }
 
-    let storage: Storage
+    func updateChildren<Backend: AppBackend>(_ children: Children, backend: Backend) {
+        children.update(with: self, backend: backend)
+    }
+
+    func asWidget<Backend: AppBackend>(
+        _ children: Children, backend: Backend
+    ) -> Backend.Widget {
+        return children.container.into()
+    }
+
+    func update<Backend: AppBackend>(
+        _ widget: Backend.Widget, children: Children, backend: Backend
+    ) {}
+}
+
+/// Stores view graph nodes for the detail views of all elements in the current navigation
+/// path (to allow animating back and forth as the navigation path changes).
+///
+/// The nodes are simply retrieved by calling ``NavigationStack.child`` with every single
+/// element in the navigation path and then type erasing the views in ``AnyViewGraphNode``s.
+///
+/// Unlike most ``ViewGraphNodeChildren`` implementations (but similarly to ``ForEachChildren``),
+/// this implementation manages the parent ``NavigationStack``'s one-of container as well
+/// to have the complexity in a single type. Most of the complexity is from trying to add
+/// and remove children in just the right way to allow animations to remain fluid even when
+/// the navigation path changes drastically (e.g. 5 elements of the path getting popped at once).
+class NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
+    /// When a view is popped we store it in here to remove from the stack
+    /// the next time views are added. This allows them to animate out.
+    var widgetsQueuedForRemoval: [AnyWidget] = []
+    var nodes: [AnyViewGraphNode<Child>] = []
+    var container: AnyWidget
+
+    init(container: AnyWidget) {
+        self.container = container
+    }
 
     /// This could be set to false for NavigationSplitView in the future
     let alwaysShowTopView = true
 
-    public var widgets: [AnyWidget] {
-        return [storage.container]
+    var widgets: [AnyWidget] {
+        return [container]
     }
 
-    public init<Backend: AppBackend>(from view: NavigationStack<Child>, backend: Backend) {
-        storage = Storage(container: AnyWidget(backend.createOneOfContainer()))
+    init<Backend: AppBackend>(from view: NavigationStack<Child>, backend: Backend) {
+        container = AnyWidget(backend.createOneOfContainer())
 
-        storage.nodes = view.elements
+        nodes = view.elements
             .map(view.childOrCrash)
             .map { view in
                 AnyViewGraphNode(for: view, backend: backend)
             }
 
-        for node in storage.nodes {
-            backend.addChild(node.widget.into(), toOneOfContainer: storage.container.into())
+        for node in nodes {
+            backend.addChild(node.widget.into(), toOneOfContainer: container.into())
         }
     }
 
-    public func update<Backend: AppBackend>(with view: NavigationStack<Child>, backend: Backend) {
+    func update<Backend: AppBackend>(with view: NavigationStack<Child>, backend: Backend) {
         // content.elements is a computed property so only get it once
         let contentElements = view.elements
 
         // Remove queued pages
-        for widget in storage.widgetsQueuedForRemoval {
-            backend.removeChild(widget.into(), fromOneOfContainer: storage.container.into())
+        for widget in widgetsQueuedForRemoval {
+            backend.removeChild(widget.into(), fromOneOfContainer: container.into())
         }
-        storage.widgetsQueuedForRemoval = []
+        widgetsQueuedForRemoval = []
 
         // Update pages
-        for (i, node) in storage.nodes.enumerated() {
+        for (i, node) in nodes.enumerated() {
 
             guard i < contentElements.count else {
                 break
@@ -169,35 +191,36 @@ public struct NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
             node.update(with: view.childOrCrash(for: contentElements[index]))
         }
 
-        let remaining = contentElements.count - storage.nodes.count
+        let remaining = contentElements.count - nodes.count
         if remaining > 0 {
             // Add new pages
-            for i in storage.nodes.count..<(storage.nodes.count + remaining) {
+            for i in nodes.count..<(nodes.count + remaining) {
                 let node = AnyViewGraphNode(
                     for: view.childOrCrash(for: contentElements[i]),
                     backend: backend
                 )
-                storage.nodes.append(node)
-                backend.addChild(node.widget.into(), toOneOfContainer: storage.container.into())
+                nodes.append(node)
+                backend.addChild(node.widget.into(), toOneOfContainer: container.into())
             }
             // Animate showing the new top page
-            if alwaysShowTopView, let top = storage.nodes.last?.widget {
-                backend.setVisibleChild(ofOneOfContainer: storage.container.into(), to: top.into())
+            if alwaysShowTopView, let top = nodes.last?.widget {
+                backend.setVisibleChild(ofOneOfContainer: container.into(), to: top.into())
             }
         } else if remaining < 0 {
             // Animate back to the last page that was not popped
             if alwaysShowTopView, !contentElements.isEmpty {
-                let top = storage.nodes[contentElements.count - 1]
+                let top = nodes[contentElements.count - 1]
                 backend.setVisibleChild(
-                    ofOneOfContainer: storage.container.into(), to: top.widget.into())
+                    ofOneOfContainer: container.into(), to: top.widget.into()
+                )
             }
 
             // Queue popped pages for removal
             let unused = -remaining
-            for i in (storage.nodes.count - unused)..<storage.nodes.count {
-                storage.widgetsQueuedForRemoval.append(storage.nodes[i].widget)
+            for i in (nodes.count - unused)..<nodes.count {
+                widgetsQueuedForRemoval.append(nodes[i].widget)
             }
-            storage.nodes.removeLast(unused)
+            nodes.removeLast(unused)
         }
     }
 

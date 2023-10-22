@@ -1,8 +1,12 @@
-/// A flexible space that expands along the major axis of its containing stack layout, or on both axes if not contained in a stack.
+/// A flexible space that expands along the major axis of its containing
+/// stack layout, or on both axes if not contained in a stack.
 public struct Spacer: ElementaryView {
-    /// The minimum length this spacer can be shrunk to, along the axis or axes of expansion.
-    var minLength: Int?
+    /// The minimum length this spacer can be shrunk to, along the axis
+    /// or axes of expansion.
+    private var minLength: Int?
 
+    /// Creates a spacer with a given minimum length along its axis or axes
+    /// of expansion.
     public init(minLength: Int? = nil) {
         self.minLength = minLength
     }

@@ -1,16 +1,22 @@
-/// An enumeration to indicate one edge of a rectangle.
+/// Indicates a specific edge of a rectangle.
 public enum Edge: Int8, CaseIterable, Hashable {
+    /// The top edge.
     case top
+    /// The bottom edge.
     case bottom
+    /// The leading edge (the left edge in left to right layouts).
     case leading
+    /// The trailing edge (the right edge in left to right layouts).
     case trailing
 
     /// An efficient set of Edges.
     public struct Set: OptionSet, Hashable {
         public let rawValue: Int8
+
         public init(rawValue: Int8) {
             self.rawValue = rawValue
         }
+
         public init(_ edge: Edge) {
             self.rawValue = 1 << edge.rawValue
         }

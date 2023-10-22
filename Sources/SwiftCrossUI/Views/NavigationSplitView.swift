@@ -1,19 +1,10 @@
+/// A view that presents views in two or three columns.
 public struct NavigationSplitView<SideBar: View, MiddleBar: View, Detail: View>: TypeSafeView {
     typealias Children = Content.Children
 
     public var body: VariadicView3<SideBar, MiddleBar, Detail>
-}
 
-extension NavigationSplitView where MiddleBar == EmptyView {
-    public init(
-        @ViewBuilder sidebar: () -> SideBar,
-        @ViewBuilder detail: () -> Detail
-    ) {
-        body = VariadicView3(sidebar(), EmptyView(), detail())
-    }
-}
-
-extension NavigationSplitView {
+    /// Creates a three column split view.
     public init(
         @ViewBuilder sidebar: () -> SideBar,
         @ViewBuilder content: () -> MiddleBar,
@@ -46,4 +37,14 @@ extension NavigationSplitView {
         children: ViewGraphNodeChildren3<SideBar, MiddleBar, Detail>,
         backend: Backend
     ) {}
+}
+
+extension NavigationSplitView where MiddleBar == EmptyView {
+    /// Creates a two column split view.
+    public init(
+        @ViewBuilder sidebar: () -> SideBar,
+        @ViewBuilder detail: () -> Detail
+    ) {
+        body = VariadicView3(sidebar(), EmptyView(), detail())
+    }
 }

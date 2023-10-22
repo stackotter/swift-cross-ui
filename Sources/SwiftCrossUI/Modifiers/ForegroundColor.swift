@@ -8,11 +8,14 @@ extension View {
     }
 }
 
+/// The implementation for the ``View/foregroundColor(_:)`` view modifier.
 struct ForegroundView<Child: View>: TypeSafeView {
     var body: VariadicView1<Child>
 
+    /// The foreground color to use.
     var color: Color
 
+    /// Wraps a child view and sets a specific foreground color.
     init(_ child: Child, color: Color) {
         self.body = VariadicView1(child)
         self.color = color

@@ -1,5 +1,11 @@
-
+/// The children of a view graph node. This is implemented by a few different
+/// types for various purposes. E.g. variable length with same-typed elements
+/// (``ForEach``), and fixed length with distinctly-typed elements (``VariadicView1``,
+/// ``VariadicView2``, etc).
 public protocol ViewGraphNodeChildren {
+    /// The widget's of the children. Type-erased to avoid the type of the currently
+    /// selected backend leaking into the ``View`` protocol, requiring users to
+    /// engage with annoying complexity and reducing ease of backend switching.
     var widgets: [AnyWidget] { get }
 }
 
@@ -15,28 +21,34 @@ extension ViewGraphNodeChildren {
         return stack
     }
 
+    /// Gets the node's type-erased widgets for a specific backend (crashing if the
+    /// widgets were created by a different backend).
     public func widgets<Backend: AppBackend>(for backend: Backend) -> [Backend.Widget] {
         return widgets.map { $0.into() }
     }
 }
 
+/// The children of a node with no children.
 public struct EmptyViewGraphNodeChildren: ViewGraphNodeChildren {
     public let widgets: [AnyWidget] = []
 
+    /// Creates an empty collection of children for a node with no children.
     public init() {}
 }
 
-
+/// A fixed-length strongly-typed collection of 1 child nodes. A counterpart to
+/// ``VariadicView1``.
 public struct ViewGraphNodeChildren1<Child0: View>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
-            child0.widget,
+            child0.widget
         ]
     }
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
 
+    /// Creates the nodes for 1 child views.
     public init<Backend: AppBackend>(
         _ child0: Child0,
         backend: Backend
@@ -45,6 +57,8 @@ public struct ViewGraphNodeChildren1<Child0: View>: ViewGraphNodeChildren {
     }
 }
 
+/// A fixed-length strongly-typed collection of 2 child nodes. A counterpart to
+/// ``VariadicView2``.
 public struct ViewGraphNodeChildren2<Child0: View, Child1: View>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
@@ -58,6 +72,7 @@ public struct ViewGraphNodeChildren2<Child0: View, Child1: View>: ViewGraphNodeC
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child1: AnyViewGraphNode<Child1>
 
+    /// Creates the nodes for 2 child views.
     public init<Backend: AppBackend>(
         _ child0: Child0,
         _ child1: Child1,
@@ -68,7 +83,11 @@ public struct ViewGraphNodeChildren2<Child0: View, Child1: View>: ViewGraphNodeC
     }
 }
 
-public struct ViewGraphNodeChildren3<Child0: View, Child1: View, Child2: View>: ViewGraphNodeChildren {
+/// A fixed-length strongly-typed collection of 3 child nodes. A counterpart to
+/// ``VariadicView3``.
+public struct ViewGraphNodeChildren3<Child0: View, Child1: View, Child2: View>:
+    ViewGraphNodeChildren
+{
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
@@ -84,6 +103,7 @@ public struct ViewGraphNodeChildren3<Child0: View, Child1: View, Child2: View>: 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child2: AnyViewGraphNode<Child2>
 
+    /// Creates the nodes for 3 child views.
     public init<Backend: AppBackend>(
         _ child0: Child0,
         _ child1: Child1,
@@ -96,7 +116,11 @@ public struct ViewGraphNodeChildren3<Child0: View, Child1: View, Child2: View>: 
     }
 }
 
-public struct ViewGraphNodeChildren4<Child0: View, Child1: View, Child2: View, Child3: View>: ViewGraphNodeChildren {
+/// A fixed-length strongly-typed collection of 4 child nodes. A counterpart to
+/// ``VariadicView4``.
+public struct ViewGraphNodeChildren4<Child0: View, Child1: View, Child2: View, Child3: View>:
+    ViewGraphNodeChildren
+{
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
@@ -115,6 +139,7 @@ public struct ViewGraphNodeChildren4<Child0: View, Child1: View, Child2: View, C
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child3: AnyViewGraphNode<Child3>
 
+    /// Creates the nodes for 4 child views.
     public init<Backend: AppBackend>(
         _ child0: Child0,
         _ child1: Child1,
@@ -129,7 +154,11 @@ public struct ViewGraphNodeChildren4<Child0: View, Child1: View, Child2: View, C
     }
 }
 
-public struct ViewGraphNodeChildren5<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View>: ViewGraphNodeChildren {
+/// A fixed-length strongly-typed collection of 5 child nodes. A counterpart to
+/// ``VariadicView5``.
+public struct ViewGraphNodeChildren5<
+    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View
+>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
@@ -151,6 +180,7 @@ public struct ViewGraphNodeChildren5<Child0: View, Child1: View, Child2: View, C
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child4: AnyViewGraphNode<Child4>
 
+    /// Creates the nodes for 5 child views.
     public init<Backend: AppBackend>(
         _ child0: Child0,
         _ child1: Child1,
@@ -167,7 +197,11 @@ public struct ViewGraphNodeChildren5<Child0: View, Child1: View, Child2: View, C
     }
 }
 
-public struct ViewGraphNodeChildren6<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View>: ViewGraphNodeChildren {
+/// A fixed-length strongly-typed collection of 6 child nodes. A counterpart to
+/// ``VariadicView6``.
+public struct ViewGraphNodeChildren6<
+    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View
+>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
@@ -192,6 +226,7 @@ public struct ViewGraphNodeChildren6<Child0: View, Child1: View, Child2: View, C
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child5: AnyViewGraphNode<Child5>
 
+    /// Creates the nodes for 6 child views.
     public init<Backend: AppBackend>(
         _ child0: Child0,
         _ child1: Child1,
@@ -210,7 +245,11 @@ public struct ViewGraphNodeChildren6<Child0: View, Child1: View, Child2: View, C
     }
 }
 
-public struct ViewGraphNodeChildren7<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View>: ViewGraphNodeChildren {
+/// A fixed-length strongly-typed collection of 7 child nodes. A counterpart to
+/// ``VariadicView7``.
+public struct ViewGraphNodeChildren7<
+    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View
+>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
@@ -238,6 +277,7 @@ public struct ViewGraphNodeChildren7<Child0: View, Child1: View, Child2: View, C
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child6: AnyViewGraphNode<Child6>
 
+    /// Creates the nodes for 7 child views.
     public init<Backend: AppBackend>(
         _ child0: Child0,
         _ child1: Child1,
@@ -258,7 +298,12 @@ public struct ViewGraphNodeChildren7<Child0: View, Child1: View, Child2: View, C
     }
 }
 
-public struct ViewGraphNodeChildren8<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View>: ViewGraphNodeChildren {
+/// A fixed-length strongly-typed collection of 8 child nodes. A counterpart to
+/// ``VariadicView8``.
+public struct ViewGraphNodeChildren8<
+    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
+    Child6: View, Child7: View
+>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
@@ -289,6 +334,7 @@ public struct ViewGraphNodeChildren8<Child0: View, Child1: View, Child2: View, C
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child7: AnyViewGraphNode<Child7>
 
+    /// Creates the nodes for 8 child views.
     public init<Backend: AppBackend>(
         _ child0: Child0,
         _ child1: Child1,
@@ -311,7 +357,12 @@ public struct ViewGraphNodeChildren8<Child0: View, Child1: View, Child2: View, C
     }
 }
 
-public struct ViewGraphNodeChildren9<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View>: ViewGraphNodeChildren {
+/// A fixed-length strongly-typed collection of 9 child nodes. A counterpart to
+/// ``VariadicView9``.
+public struct ViewGraphNodeChildren9<
+    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
+    Child6: View, Child7: View, Child8: View
+>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
@@ -345,6 +396,7 @@ public struct ViewGraphNodeChildren9<Child0: View, Child1: View, Child2: View, C
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child8: AnyViewGraphNode<Child8>
 
+    /// Creates the nodes for 9 child views.
     public init<Backend: AppBackend>(
         _ child0: Child0,
         _ child1: Child1,
@@ -369,7 +421,12 @@ public struct ViewGraphNodeChildren9<Child0: View, Child1: View, Child2: View, C
     }
 }
 
-public struct ViewGraphNodeChildren10<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View, Child9: View>: ViewGraphNodeChildren {
+/// A fixed-length strongly-typed collection of 10 child nodes. A counterpart to
+/// ``VariadicView10``.
+public struct ViewGraphNodeChildren10<
+    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
+    Child6: View, Child7: View, Child8: View, Child9: View
+>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
@@ -406,6 +463,7 @@ public struct ViewGraphNodeChildren10<Child0: View, Child1: View, Child2: View, 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child9: AnyViewGraphNode<Child9>
 
+    /// Creates the nodes for 10 child views.
     public init<Backend: AppBackend>(
         _ child0: Child0,
         _ child1: Child1,

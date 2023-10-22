@@ -1,8 +1,11 @@
-/// An image view.
+import Foundation
+
+/// A view that displays an image.
 public struct Image: ElementaryView {
     /// The path to the image.
     private var path: String
 
+    /// Creates an image displaying an image file.
     public init(_ path: String) {
         self.path = path
     }

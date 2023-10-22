@@ -10,9 +10,8 @@ extension View {
     }
 }
 
-private struct PaddingModifierView<Child: View>: TypeSafeView {
-    typealias Children = Content.Children
-
+/// The implementation for the ``View/padding(_:_:)`` and ``View/padding(_:)`` view modifiers.
+struct PaddingModifierView<Child: View>: TypeSafeView {
     var body: VariadicView1<Child>
 
     /// The edges on which to apply padding.

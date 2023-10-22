@@ -7,9 +7,8 @@ public protocol GValueRepresentable {
     func apply(to pointer: UnsafeMutablePointer<GValue>)
 }
 
-// MARK: - GValueRepresentable Implementations
-
-// TODO: Implement property wrapper to convert all integer types to int without losing information about the underlying specific integer type
+// TODO: Implement property wrapper to convert all integer types to int without losing
+//   information about the underlying specific integer type
 extension Int: GValueRepresentable {
     public static var type: GType {
         GType(6 << G_TYPE_FUNDAMENTAL_SHIFT)

@@ -1,3 +1,4 @@
+/// A result builder for constructing a table's columns.
 @resultBuilder
 public struct TableBuilder<Row> {
     public static func buildBlock() -> [TableColumn<Row>] {

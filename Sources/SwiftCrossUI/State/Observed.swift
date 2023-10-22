@@ -34,8 +34,8 @@ public protocol ObservedMarkerProtocol {}
 /// accompanying message).
 @propertyWrapper
 public class Observed<Value>: Observable, ObservedMarkerProtocol {
-    /// A handle that can be used to cancel the link to the previous downstream publisher.
-    private var downstreamLinkCancellable: Cancellable?
+    /// A handle that can be used to cancel the link to the previous upstream publisher.
+    private var upstreamLinkCancellable: Cancellable?
 
     /// A binding to the inner value.
     public var projectedValue: Binding<Value> {
@@ -84,15 +84,15 @@ public class Observed<Value>: Observable, ObservedMarkerProtocol {
     }
 
     /// Handles changing a value. If `publish` is `false`, the change won't be published, but if the
-    /// wrapped value is ``Observable``, the new downstream publisher will be relinked.
+    /// wrapped value is ``Observable``, the new upstream publisher will be relinked.
     public func valueDidChange(publish: Bool = true) {
         if publish {
             didChange.send()
         }
 
-        if let downstream = wrappedValue as? Observable {
-            downstreamLinkCancellable?.cancel()
-            downstreamLinkCancellable = didChange.link(toDownstream: downstream.didChange)
+        if let upstream = wrappedValue as? Observable {
+            upstreamLinkCancellable?.cancel()
+            upstreamLinkCancellable = didChange.link(toUpstream: upstream.didChange)
         }
     }
 }

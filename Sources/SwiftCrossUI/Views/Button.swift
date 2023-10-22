@@ -1,11 +1,11 @@
-/// A button view.
+/// A control that initiates an action.
 public struct Button: ElementaryView {
     /// The label to show on the button.
     private var label: String
     /// The action to be performed when the button is clicked.
     private var action: () -> Void
 
-    /// Creates a new button.
+    /// Creates a button that displays a custom label.
     public init(_ label: String, action: @escaping () -> Void = {}) {
         self.label = label
         self.action = action
