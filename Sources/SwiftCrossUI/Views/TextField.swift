@@ -1,11 +1,11 @@
-/// A TextField view.
+/// A control that displays an editable text interface.
 public struct TextField: ElementaryView {
     /// The label to show when the field is empty.
     private var placeholder: String
     /// The field's content.
     private var value: Binding<String>?
 
-    /// Creates an editable text field and binds a value.
+    /// Creates an editable text field with a given placeholder.
     public init(_ placeholder: String = "", _ value: Binding<String>? = nil) {
         self.placeholder = placeholder
         self.value = value

@@ -2,6 +2,8 @@
 maximum_view_count = 10
 }%
 
+/// A result builder used to compose views together into composite views in
+/// a declarative manner.
 @resultBuilder
 public struct ViewBuilder {
     public static func buildBlock() -> some View {

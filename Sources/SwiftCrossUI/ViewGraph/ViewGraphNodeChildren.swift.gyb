@@ -2,7 +2,14 @@
 maximum_child_count = 10
 }%
 
+/// The children of a view graph node. This is implemented by a few different
+/// types for various purposes. E.g. variable length with same-typed elements
+/// (``ForEach``), and fixed length with distinctly-typed elements (``VariadicView1``,
+/// ``VariadicView2``, etc).
 public protocol ViewGraphNodeChildren {
+    /// The widget's of the children. Type-erased to avoid the type of the currently
+    /// selected backend leaking into the ``View`` protocol, requiring users to
+    /// engage with annoying complexity and reducing ease of backend switching.
     var widgets: [AnyWidget] { get }
 }
 
@@ -18,14 +25,18 @@ extension ViewGraphNodeChildren {
         return stack
     }
 
+    /// Gets the node's type-erased widgets for a specific backend (crashing if the
+    /// widgets were created by a different backend).
     public func widgets<Backend: AppBackend>(for backend: Backend) -> [Backend.Widget] {
         return widgets.map { $0.into() }
     }
 }
 
+/// The children of a node with no children.
 public struct EmptyViewGraphNodeChildren: ViewGraphNodeChildren {
     public let widgets: [AnyWidget] = []
 
+    /// Creates an empty collection of children for a node with no children.
     public init() {}
 }
 
@@ -40,6 +51,8 @@ variadic_type_parameters = ", ".join(children)
 parent_type = "VariadicView%d<%s>" % (i + 1, variadic_type_parameters)
 }%
 
+/// A fixed-length strongly-typed collection of ${i + 1} child nodes. A counterpart to
+/// ``VariadicView${i + 1}``.
 public struct ViewGraphNodeChildren${i + 1}<${struct_type_parameters}>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
@@ -54,6 +67,7 @@ public struct ViewGraphNodeChildren${i + 1}<${struct_type_parameters}>: ViewGrap
     public var ${child.lower()}: AnyViewGraphNode<${child}>
     % end
 
+    /// Creates the nodes for ${i + 1} child views.
     public init<Backend: AppBackend>(
         % for child in children:
         _ ${child.lower()}: ${child},

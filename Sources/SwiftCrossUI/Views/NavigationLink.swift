@@ -1,6 +1,9 @@
+// TODO: This documentation could probably be clarified a bit more (potentially with
+//   some practical examples).
 /// A navigation primitive that appends a value to the current navigation path on click.
 ///
-/// Unlike Apples SwiftUI API a `NavigationLink` can be outside of a `NavigationStack` as long as they share the same `NavigationPath`
+/// Unlike Apples SwiftUI API a `NavigationLink` can be outside of a `NavigationStack`
+/// as long as they share the same `NavigationPath`.
 public struct NavigationLink: View {
     public var body: some View {
         Button(label) {
@@ -15,7 +18,9 @@ public struct NavigationLink: View {
     /// The navigation path to append to when clicked.
     private let path: Binding<NavigationPath>
 
-    /// Creates a navigation link that presents the view corresponding to a value in the NavigationStack that uses the same path.
+    /// Creates a navigation link that presents the view corresponding to a value.
+    /// The link is handled by whatever ``NavigationStack`` is sharing the same
+    /// navigation path.
     public init<C: Codable>(_ label: String, value: C, path: Binding<NavigationPath>) {
         self.label = label
         self.value = value

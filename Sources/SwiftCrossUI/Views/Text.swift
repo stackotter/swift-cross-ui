@@ -5,7 +5,7 @@ public struct Text: ElementaryView {
     /// Specifies whether the text should be wrapped if wider than its container.
     private var wrap: Bool
 
-    /// Creates a new text view with the given content.
+    /// Creates a new text view that displays a string with configurable wrapping.
     public init(_ string: String, wrap: Bool = true) {
         self.string = string
         self.wrap = wrap

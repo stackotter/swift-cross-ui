@@ -32,7 +32,6 @@ extension String {
     }
 }
 
-
 /// `GtkDropDown` is a widget that allows the user to choose an item
 /// from a list of options.
 ///
@@ -70,11 +69,11 @@ public class DropDown: Widget {
     /// the strings.
     public init(strings: [String]) {
         super.init()
-        let pointer = 
-                strings
-                    .map({ UnsafePointer($0.unsafeUTF8Copy().baseAddress) })
-                    .unsafeCopy()
-                    .baseAddress
+        let pointer =
+            strings
+            .map({ UnsafePointer($0.unsafeUTF8Copy().baseAddress) })
+            .unsafeCopy()
+            .baseAddress
         widgetPointer = gtk_drop_down_new_from_strings(pointer!)
     }
 

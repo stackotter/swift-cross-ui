@@ -1,43 +1,4 @@
-public struct OptionalViewChildren<V: View>: ViewGraphNodeChildren {
-    /// Used to avoid the need for a mutating ``update`` method.
-    class Storage {
-        var view: AnyViewGraphNode<V>?
-        var hasToggled = true
-    }
-
-    let storage: Storage
-
-    public var widgets: [AnyWidget] {
-        return [storage.view?.widget].compactMap { $0 }
-    }
-
-    public init<Backend: AppBackend>(from view: V?, backend: Backend) {
-        storage = Storage()
-        if let view = view {
-            storage.view = AnyViewGraphNode(for: view, backend: backend)
-        }
-    }
-
-    public func widget<Backend: AppBackend>(for backend: Backend) -> Backend.Widget? {
-        return widgets.first?.into()
-    }
-
-    public func update<Backend: AppBackend>(with view: V?, backend: Backend) {
-        if let view = view {
-            if let node = storage.view {
-                node.update(with: view)
-                storage.hasToggled = false
-            } else {
-                storage.view = AnyViewGraphNode(for: view, backend: backend)
-                storage.hasToggled = true
-            }
-        } else {
-            storage.hasToggled = storage.view != nil
-            storage.view = nil
-        }
-    }
-}
-
+/// A view used by ``ViewBuilder`` to support non-exhaustive if statements.
 public struct OptionalView<V: View>: TypeSafeView {
     typealias Children = OptionalViewChildren<V>
 
@@ -45,21 +6,22 @@ public struct OptionalView<V: View>: TypeSafeView {
 
     var view: V?
 
-    public init(_ view: V?) {
+    /// Wraps an optional view.
+    init(_ view: V?) {
         self.view = view
     }
 
-    public func asChildren<Backend: AppBackend>(backend: Backend) -> OptionalViewChildren<V> {
+    func children<Backend: AppBackend>(backend: Backend) -> OptionalViewChildren<V> {
         return OptionalViewChildren(from: view, backend: backend)
     }
 
-    public func updateChildren<Backend: AppBackend>(
+    func updateChildren<Backend: AppBackend>(
         _ children: OptionalViewChildren<V>, backend: Backend
     ) {
         children.update(with: view, backend: backend)
     }
 
-    public func asWidget<Backend: AppBackend>(
+    func asWidget<Backend: AppBackend>(
         _ children: OptionalViewChildren<V>, backend: Backend
     ) -> Backend.Widget {
         return backend.createEitherContainer(
@@ -67,11 +29,52 @@ public struct OptionalView<V: View>: TypeSafeView {
         )
     }
 
-    public func update<Backend: AppBackend>(
+    func update<Backend: AppBackend>(
         _ widget: Backend.Widget, children: OptionalViewChildren<V>, backend: Backend
     ) {
-        if children.storage.hasToggled {
+        if children.hasToggled {
             backend.setChild(ofEitherContainer: widget, to: children.widget(for: backend))
+        }
+    }
+}
+
+/// Stores a view graph node for the view's child if present. Tracks whether
+/// the child has toggled since last time the parent was updated or not.
+class OptionalViewChildren<V: View>: ViewGraphNodeChildren {
+    /// The view graph node for the view's child if present.
+    var node: AnyViewGraphNode<V>?
+    /// Whether the view's child has toggled between visible/not-visible (or vice versa)
+    /// since the last time the parent widget was updated.
+    var hasToggled = true
+
+    var widgets: [AnyWidget] {
+        return [node?.widget].compactMap { $0 }
+    }
+
+    /// Creates storage for an optional view's child if present (which can change at
+    /// any time).
+    init<Backend: AppBackend>(from view: V?, backend: Backend) {
+        if let view = view {
+            node = AnyViewGraphNode(for: view, backend: backend)
+        }
+    }
+
+    func widget<Backend: AppBackend>(for backend: Backend) -> Backend.Widget? {
+        return node?.widget.into()
+    }
+
+    func update<Backend: AppBackend>(with view: V?, backend: Backend) {
+        if let view = view {
+            if let node = node {
+                node.update(with: view)
+                hasToggled = false
+            } else {
+                node = AnyViewGraphNode(for: view, backend: backend)
+                hasToggled = true
+            }
+        } else {
+            hasToggled = node != nil
+            node = nil
         }
     }
 }

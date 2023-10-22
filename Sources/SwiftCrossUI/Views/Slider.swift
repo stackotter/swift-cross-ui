@@ -1,8 +1,13 @@
+/// A value convertible to and from a ``Double``.`
 public protocol DoubleConvertible {
+    /// Creates a value from a ``Double``.`
     init(_ value: Double)
+
+    /// Converts the value to a ``Double``.`
     var doubleRepresentation: Double { get }
 }
 
+/// A value represented by a ``BinaryFloatingPoint``.
 struct FloatingPointValue<Value: BinaryFloatingPoint>: DoubleConvertible {
     var value: Value
 
@@ -19,6 +24,7 @@ struct FloatingPointValue<Value: BinaryFloatingPoint>: DoubleConvertible {
     }
 }
 
+/// A value represented by a ``BinaryInteger``.
 struct IntegerValue<Value: BinaryInteger>: DoubleConvertible {
     var value: Value
 
@@ -35,7 +41,7 @@ struct IntegerValue<Value: BinaryInteger>: DoubleConvertible {
     }
 }
 
-/// A slider that allows a user to choose a numeric value.
+/// A control for selecting a value from a bounded range of numerical values.
 public struct Slider: ElementaryView {
     /// A binding to the current value.
     private var value: Binding<Double>?
