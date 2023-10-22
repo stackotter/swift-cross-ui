@@ -9,13 +9,12 @@ import CGtk
 /// could be scaled and stretched, it could be centered, or it could be
 /// positioned to one side of the space.
 ///
-/// Note that in horizontal context `GTK_ALIGN_START` and `GTK_ALIGN_END`
+/// Note that in horizontal context %GTK_ALIGN_START and %GTK_ALIGN_END
 /// are interpreted relative to text direction.
 ///
-/// Baseline support is optional for containers and widgets, and is only available
-/// for vertical alignment. `GTK_ALIGN_BASELINE_CENTER and `GTK_ALIGN_BASELINE_FILL`
-/// are treated similar to `GTK_ALIGN_CENTER` and `GTK_ALIGN_FILL`, except that it
-/// positions the widget to line up the baselines, where that is supported.
+/// %GTK_ALIGN_BASELINE support is optional for containers and widgets, and
+/// it is only supported for vertical alignment.  When it's not supported by
+/// a child or a container it is treated as %GTK_ALIGN_FILL.
 public enum Align: GValueRepresentableEnum {
     public typealias GtkEnum = GtkAlign
 
@@ -28,13 +27,9 @@ public enum Align: GValueRepresentableEnum {
     case end
     /// Center natural width of widget inside the allocation
     case center
-    /// A different name for `GTK_ALIGN_BASELINE`. Since 4.12
-    case baselineFill
     /// Align the widget according to the baseline.
-    /// See [class@Gtk.Widget]. Deprecated: 4.12: Use `GTK_ALIGN_BASELINE_FILL` instead
+    /// See [class@Gtk.Widget].
     case baseline
-    /// Stretch to fill all space, but align the baseline. Since 4.12
-    case baselineCenter
 
     /// Converts a Gtk value to its corresponding swift representation.
     public init(from gtkEnum: GtkAlign) {
@@ -47,12 +42,8 @@ public enum Align: GValueRepresentableEnum {
                 self = .end
             case GTK_ALIGN_CENTER:
                 self = .center
-            case GTK_ALIGN_BASELINE_FILL:
-                self = .baselineFill
             case GTK_ALIGN_BASELINE:
                 self = .baseline
-            case GTK_ALIGN_BASELINE_CENTER:
-                self = .baselineCenter
             default:
                 fatalError("Unsupported GtkAlign enum value: \(gtkEnum.rawValue)")
         }
@@ -69,12 +60,8 @@ public enum Align: GValueRepresentableEnum {
                 return GTK_ALIGN_END
             case .center:
                 return GTK_ALIGN_CENTER
-            case .baselineFill:
-                return GTK_ALIGN_BASELINE_FILL
             case .baseline:
                 return GTK_ALIGN_BASELINE
-            case .baselineCenter:
-                return GTK_ALIGN_BASELINE_CENTER
         }
     }
 }
