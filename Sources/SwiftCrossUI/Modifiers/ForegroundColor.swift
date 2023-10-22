@@ -8,13 +8,13 @@ extension View {
     }
 }
 
-struct ForegroundView<Child: View>: View {
-    var body: Child
+struct ForegroundView<Child: View>: TypeSafeView {
+    var body: VariadicView1<Child>
 
     var color: Color
 
     init(_ child: Child, color: Color) {
-        self.body = child
+        self.body = VariadicView1(child)
         self.color = color
     }
 

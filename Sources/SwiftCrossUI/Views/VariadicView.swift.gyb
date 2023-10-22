@@ -12,10 +12,11 @@ init_body = "\n        ".join(["self.view%d = view%d" % (j, j) for j in range(i 
 children_type_parameters = ", ".join(["View%d" % j for j in range(i + 1)])
 }%
 
-public struct ${view}<${struct_parameters}>: ContainerView {
+public struct ${view}<${struct_parameters}>: TypeSafeView {
     public typealias Content = EmptyView
-    public typealias NodeChildren = ViewGraphNodeChildren${i + 1}<${children_type_parameters}>
     public typealias State = EmptyState
+
+    typealias Children = ViewGraphNodeChildren${i + 1}<${children_type_parameters}>
 
     ${properties}
 
@@ -25,8 +26,8 @@ public struct ${view}<${struct_parameters}>: ContainerView {
         ${init_body}
     }
 
-    public func asChildren<Backend: AppBackend>(backend: Backend) -> NodeChildren {
-        return NodeChildren(
+    func asChildren<Backend: AppBackend>(backend: Backend) -> Children {
+        return Children(
             % for j in range(i + 1):
             view${j},
             % end
@@ -34,19 +35,19 @@ public struct ${view}<${struct_parameters}>: ContainerView {
         )
     }
 
-    public func updateChildren<Backend: AppBackend>(_ children: NodeChildren, backend: Backend) {
+    func updateChildren<Backend: AppBackend>(_ children: Children, backend: Backend) {
         % for j in range(i + 1):
         children.child${j}.update(with: view${j})
         % end
     }
 
-    public func asWidget<Backend: AppBackend>(_ children: [Backend.Widget], backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
         let container = backend.createPassthroughVStack(spacing: 0)
-        backend.addChildren(children, toPassthroughVStack: container)
+        backend.addChildren(children.widgets(for: backend), toPassthroughVStack: container)
         return container
     }
 
-    public func update<Backend: AppBackend>(_ widget: Backend.Widget, children: [Backend.Widget], backend: Backend) {
+    func update<Backend: AppBackend>(_ widget: Backend.Widget, children: Children, backend: Backend) {
         backend.updatePassthroughVStack(widget)
     }    
 }

@@ -72,8 +72,8 @@ public struct ForEachViewChildren<
 public struct ForEach<
     Items: Collection,
     Child: View
->: ContainerView where Items.Index == Int {
-    public typealias NodeChildren = ForEachViewChildren<Items, Child>
+>: TypeSafeView where Items.Index == Int {
+    public typealias Children = ForEachViewChildren<Items, Child>
 
     public var body = EmptyView()
 
@@ -106,4 +106,10 @@ public struct ForEach<
     ) -> Backend.Widget {
         return children.storage.container.into()
     }
+
+    public func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: ForEachViewChildren<Items, Child>,
+        backend: Backend
+    ) {}
 }

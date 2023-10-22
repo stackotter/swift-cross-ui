@@ -6,6 +6,16 @@ public struct EmptyView: View {
     }
 
     public init() {}
+
+    public func asChildren<Backend: AppBackend>(
+        backend: Backend
+    ) -> any ViewGraphNodeChildren {
+        return EmptyViewGraphNodeChildren()
+    }
+
+    public func updateChildren<Backend: AppBackend>(
+        _ children: any ViewGraphNodeChildren, backend: Backend
+    ) {}
 }
 
 extension Never: View {

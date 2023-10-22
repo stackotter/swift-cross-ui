@@ -5,7 +5,9 @@ struct NavigationStackRootPath: Codable {}
 /// A view that displays a root view and enables you to present additional views over the root view.
 ///
 /// Use .navigationDestination(for:destination:) on this view instead of its children unlike Apples SwiftUI API.
-public struct NavigationStack<Detail: View>: View {
+public struct NavigationStack<Detail: View>: TypeSafeView {
+    public typealias Children = NavigationStackChildren<Detail>
+
     public var body = EmptyView()
 
     public var path: Binding<NavigationPath>
@@ -61,11 +63,23 @@ public struct NavigationStack<Detail: View>: View {
         )
     }
 
+    public func asChildren<Backend: AppBackend>(backend: Backend) -> Children {
+        return NavigationStackChildren(from: self, backend: backend)
+    }
+
+    public func updateChildren<Backend: AppBackend>(_ children: Children, backend: Backend) {
+        children.update(with: self, backend: backend)
+    }
+
     public func asWidget<Backend: AppBackend>(
-        _ children: NavigationStackChildren<Detail>, backend: Backend
+        _ children: Children, backend: Backend
     ) -> Backend.Widget {
         return children.storage.container.into()
     }
+
+    public func update<Backend: AppBackend>(
+        _ widget: Backend.Widget, children: Children, backend: Backend
+    ) {}
 
     /// Add a destination for a specific path element
     private init<PreviousDetail: View, NewDetail: View, Component: Codable>(
@@ -96,18 +110,6 @@ public struct NavigationStack<Detail: View>: View {
         }
 
         return child
-    }
-}
-
-extension NavigationStack: ContainerView {
-    public typealias NodeChildren = NavigationStackChildren<Detail>
-
-    public func asChildren<Backend: AppBackend>(backend: Backend) -> NodeChildren {
-        return NavigationStackChildren(from: self, backend: backend)
-    }
-
-    public func updateChildren<Backend: AppBackend>(_ children: NodeChildren, backend: Backend) {
-        children.update(with: self, backend: backend)
     }
 }
 

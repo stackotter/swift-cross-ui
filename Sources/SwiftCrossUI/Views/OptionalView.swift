@@ -18,6 +18,10 @@ public struct OptionalViewChildren<V: View>: ViewGraphNodeChildren {
         }
     }
 
+    public func widget<Backend: AppBackend>(for backend: Backend) -> Backend.Widget? {
+        return widgets.first?.into()
+    }
+
     public func update<Backend: AppBackend>(with view: V?, backend: Backend) {
         if let view = view {
             if let node = storage.view {
@@ -34,7 +38,9 @@ public struct OptionalViewChildren<V: View>: ViewGraphNodeChildren {
     }
 }
 
-public struct OptionalView<V: View>: ContainerView {
+public struct OptionalView<V: View>: TypeSafeView {
+    typealias Children = OptionalViewChildren<V>
+
     public var body = EmptyView()
 
     var view: V?
@@ -54,14 +60,18 @@ public struct OptionalView<V: View>: ContainerView {
     }
 
     public func asWidget<Backend: AppBackend>(
-        _ children: [Backend.Widget], backend: Backend
+        _ children: OptionalViewChildren<V>, backend: Backend
     ) -> Backend.Widget {
-        return backend.createEitherContainer(initiallyContaining: children.first)
+        return backend.createEitherContainer(
+            initiallyContaining: children.widget(for: backend)
+        )
     }
 
     public func update<Backend: AppBackend>(
-        _ widget: Backend.Widget, children: [Backend.Widget], backend: Backend
+        _ widget: Backend.Widget, children: OptionalViewChildren<V>, backend: Backend
     ) {
-        backend.setChild(ofEitherContainer: widget, to: children.first)
+        if children.storage.hasToggled {
+            backend.setChild(ofEitherContainer: widget, to: children.widget(for: backend))
+        }
     }
 }

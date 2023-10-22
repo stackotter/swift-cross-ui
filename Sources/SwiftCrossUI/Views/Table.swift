@@ -1,7 +1,5 @@
 /// A table view.
-public struct Table<Row>: View {
-    public var body = EmptyView()
-
+public struct Table<Row>: ElementaryView {
     private var rows: [Row]
     private var columns: [TableColumn<Row>]
 
@@ -12,7 +10,6 @@ public struct Table<Row>: View {
     }
 
     public func asWidget<Backend: AppBackend>(
-        _ children: [Backend.Widget],
         backend: Backend
     ) -> Backend.Widget {
         return backend.createTable(rows: rows.count + 1, columns: columns.count)
@@ -20,7 +17,6 @@ public struct Table<Row>: View {
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: [Backend.Widget],
         backend: Backend
     ) {
         backend.setRowCount(ofTable: widget, to: rows.count + 1)
