@@ -9,12 +9,12 @@ extension View {
 }
 
 struct ForegroundView<Child: View>: View {
-    var body: ViewContent1<Child>
+    var body: Child
 
     var color: Color
 
     init(_ child: Child, color: Color) {
-        self.body = ViewContent1(child)
+        self.body = child
         self.color = color
     }
 

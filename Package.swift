@@ -48,7 +48,6 @@ if let version = getGtk4MinorVersion() {
     var gtkSwiftSettings: [SwiftSetting] = []
     var gtkExampleDependencies: [Target.Dependency] = ["Gtk"]
     backendTargets.append("GtkBackend")
-    fileViewerExampleDependencies.append("GtkBackend")
 
     // Conditionally enable features that rely on Gtk 4.10
     if version >= 10 {
@@ -199,9 +198,9 @@ let package = Package(
             name: "SwiftCrossUI",
             dependencies: [],
             exclude: [
-                "Builders/ViewContentBuilder.swift.gyb",
+                "Builders/ViewBuilder.swift.gyb",
                 "ViewGraph/ViewGraphNodeChildren.swift.gyb",
-                "Views/ViewContent.swift.gyb",
+                "Views/VariadicView.swift.gyb",
             ]
         ),
         .executableTarget(

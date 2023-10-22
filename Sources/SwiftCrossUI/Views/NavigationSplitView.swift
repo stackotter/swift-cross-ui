@@ -1,23 +1,23 @@
 public struct NavigationSplitView<SideBar: View, MiddleBar: View, Detail: View>: View {
-    public var body: ViewContent3<SideBar, MiddleBar, Detail>
+    public var body: VariadicView3<SideBar, MiddleBar, Detail>
 }
 
-extension NavigationSplitView where MiddleBar == EmptyViewContent {
+extension NavigationSplitView where MiddleBar == EmptyView {
     public init(
-        @ViewContentBuilder sidebar: () -> SideBar,
-        @ViewContentBuilder detail: () -> Detail
+        @ViewBuilder sidebar: () -> SideBar,
+        @ViewBuilder detail: () -> Detail
     ) {
-        body = ViewContent3(sidebar(), EmptyViewContent(), detail())
+        body = VariadicView3(sidebar(), EmptyView(), detail())
     }
 }
 
 extension NavigationSplitView {
     public init(
-        @ViewContentBuilder sidebar: () -> SideBar,
-        @ViewContentBuilder content: () -> MiddleBar,
-        @ViewContentBuilder detail: () -> Detail
+        @ViewBuilder sidebar: () -> SideBar,
+        @ViewBuilder content: () -> MiddleBar,
+        @ViewBuilder detail: () -> Detail
     ) {
-        body = ViewContent3(sidebar(), content(), detail())
+        body = VariadicView3(sidebar(), content(), detail())
     }
 
     public func asWidget<Backend: AppBackend>(
@@ -25,7 +25,7 @@ extension NavigationSplitView {
         backend: Backend
     ) -> Backend.Widget {
         let trailingChild: Backend.Widget
-        if MiddleBar.self == EmptyViewContent.self {
+        if MiddleBar.self == EmptyView.self {
             trailingChild = children.child2.widget.into()
         } else {
             trailingChild = backend.createSplitView(

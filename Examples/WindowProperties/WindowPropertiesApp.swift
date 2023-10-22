@@ -21,7 +21,7 @@ struct WindowPropertiesApp: App {
         resizable: false
     )
 
-    var body: some ViewContent {
+    var body: some View {
         HStack {
             VStack {
                 Text("This is a window with a custom size.")

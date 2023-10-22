@@ -16,7 +16,7 @@ struct GreetingGeneratorApp: App {
 
     let windowProperties = WindowProperties(title: "Greeting Generator")
 
-    var body: some ViewContent {
+    var body: some View {
         VStack {
             TextField("Name", state.$name)
             HStack {

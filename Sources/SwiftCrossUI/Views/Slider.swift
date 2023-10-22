@@ -37,7 +37,7 @@ struct IntegerValue<Value: BinaryInteger>: DoubleConvertible {
 
 /// A slider that allows a user to choose a numeric value.
 public struct Slider: View {
-    public var body = EmptyViewContent()
+    public var body = EmptyView()
 
     /// A binding to the current value.
     private var value: Binding<Double>?
@@ -83,7 +83,7 @@ public struct Slider: View {
     }
 
     public func asWidget<Backend: AppBackend>(
-        _ children: EmptyViewContent.Children,
+        _ children: [Backend.Widget],
         backend: Backend
     ) -> Backend.Widget {
         return backend.createSlider(
@@ -101,7 +101,7 @@ public struct Slider: View {
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: EmptyViewContent.Children,
+        children: [Backend.Widget],
         backend: Backend
     ) {
         backend.setMinimum(ofSlider: widget, to: minimum)

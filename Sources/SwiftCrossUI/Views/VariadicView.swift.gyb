@@ -1,0 +1,52 @@
+%{
+maximum_view_count = 10
+}%
+
+% for i in range(maximum_view_count):
+%{
+view = "VariadicView%d" % (i + 1)
+struct_parameters = ", ".join(["View%d: View" % (j) for j in range(i + 1)])
+properties = "\n    ".join(["public var view%d: View%d" % (j, j) for j in range(i + 1)])
+init_parameters = ", ".join(["_ view%d: View%d" % (j, j) for j in range(i + 1)])
+init_body = "\n        ".join(["self.view%d = view%d" % (j, j) for j in range(i + 1)])
+children_type_parameters = ", ".join(["View%d" % j for j in range(i + 1)])
+}%
+
+public struct ${view}<${struct_parameters}>: ContainerView {
+    public typealias Content = EmptyView
+    public typealias NodeChildren = ViewGraphNodeChildren${i + 1}<${children_type_parameters}>
+    public typealias State = EmptyState
+
+    ${properties}
+
+    public var body = EmptyView()
+
+    public init(${init_parameters}) {
+        ${init_body}
+    }
+
+    public func asChildren<Backend: AppBackend>(backend: Backend) -> NodeChildren {
+        return NodeChildren(
+            % for j in range(i + 1):
+            view${j},
+            % end
+            backend: backend
+        )
+    }
+
+    public func updateChildren<Backend: AppBackend>(_ children: NodeChildren, backend: Backend) {
+        % for j in range(i + 1):
+        children.child${j}.update(with: view${j})
+        % end
+    }
+
+    public func asWidget<Backend: AppBackend>(_ children: [Backend.Widget], backend: Backend) -> Backend.Widget {
+        let container = backend.createPassthroughVStack(spacing: 0)
+        backend.addChildren(children, toPassthroughVStack: container)
+        return container
+    }
+
+    public func update<Backend: AppBackend>(_ widget: Backend.Widget, children: [Backend.Widget], backend: Backend) {
+        backend.updatePassthroughVStack(widget)
+    }    
+}

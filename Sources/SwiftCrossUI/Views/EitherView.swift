@@ -1,6 +1,4 @@
 public struct EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
-    public typealias Content = EitherViewContent<A, B>
-
     /// Used to avoid the need for a mutating ``update`` method.
     class Storage {
         var viewA: AnyViewGraphNode<A>?
@@ -14,9 +12,9 @@ public struct EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
         return [storage.viewA?.widget, storage.viewB?.widget].compactMap { $0 }
     }
 
-    public init<Backend: AppBackend>(from content: Content, backend: Backend) {
+    public init<Backend: AppBackend>(from view: EitherView<A, B>, backend: Backend) {
         storage = Storage()
-        switch content.storage {
+        switch view.storage {
             case .a(let a):
                 storage.viewA = AnyViewGraphNode(for: a, backend: backend)
             case .b(let b):
@@ -24,8 +22,8 @@ public struct EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
         }
     }
 
-    public func update<Backend: AppBackend>(with content: Content, backend: Backend) {
-        switch content.storage {
+    public func update<Backend: AppBackend>(with view: EitherView<A, B>, backend: Backend) {
+        switch view.storage {
             case .a(let a):
                 if let viewA = storage.viewA {
                     viewA.update(with: a)
@@ -48,8 +46,10 @@ public struct EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
     }
 }
 
-public struct EitherViewContent<A: View, B: View>: ViewContent {
-    public typealias Children = EitherViewChildren<A, B>
+public struct EitherView<A: View, B: View>: ContainerView {
+    public typealias NodeChildren = EitherViewChildren<A, B>
+
+    public var body = EmptyView()
 
     enum Storage {
         case a(A)
@@ -58,24 +58,20 @@ public struct EitherViewContent<A: View, B: View>: ViewContent {
 
     var storage: Storage
 
-    public init(_ a: A) {
-        self.storage = .a(a)
-    }
-
-    public init(_ b: B) {
-        self.storage = .b(b)
-    }
-}
-
-public struct EitherView<A: View, B: View>: View {
-    public var body: EitherViewContent<A, B>
-
     init(_ a: A) {
-        body = EitherViewContent(a)
+        storage = .a(a)
     }
 
     init(_ b: B) {
-        body = EitherViewContent(b)
+        storage = .b(b)
+    }
+
+    public func asChildren<Backend: AppBackend>(backend: Backend) -> NodeChildren {
+        return EitherViewChildren(from: self, backend: backend)
+    }
+
+    public func updateChildren<Backend: AppBackend>(_ children: NodeChildren, backend: Backend) {
+        children.update(with: self, backend: backend)
     }
 
     public func asWidget<Backend: AppBackend>(

@@ -1,9 +1,7 @@
 public struct ForEachViewChildren<
     Items: Collection,
-    Child: ViewContent
+    Child: View
 >: ViewGraphNodeChildren where Items.Index == Int {
-    public typealias Content = ForEachViewContent<Items, Child>
-
     class Storage {
         var nodes: [AnyViewGraphNode<Child>] = []
         var container: AnyWidget
@@ -19,12 +17,12 @@ public struct ForEachViewChildren<
         return [storage.container]
     }
 
-    public init<Backend: AppBackend>(from content: Content, backend: Backend) {
+    public init<Backend: AppBackend>(from view: ForEach<Items, Child>, backend: Backend) {
         let container = backend.createListView()
         storage = Storage(container: AnyWidget(container))
 
-        storage.nodes = content.elements
-            .map(content.child)
+        storage.nodes = view.elements
+            .map(view.child)
             .map { child in
                 ViewGraphNode(for: child, backend: backend)
             }
@@ -35,23 +33,23 @@ public struct ForEachViewChildren<
         }
     }
 
-    public func update<Backend: AppBackend>(with content: Content, backend: Backend) {
+    public func update<Backend: AppBackend>(with view: ForEach<Items, Child>, backend: Backend) {
         backend.updateListView(storage.container.into())
 
         for (i, node) in storage.nodes.enumerated() {
-            guard i < content.elements.count else {
+            guard i < view.elements.count else {
                 break
             }
-            let index = content.elements.startIndex.advanced(by: i)
-            node.update(with: content.child(content.elements[index]))
+            let index = view.elements.startIndex.advanced(by: i)
+            node.update(with: view.child(view.elements[index]))
         }
 
-        let remaining = content.elements.count - storage.nodes.count
+        let remaining = view.elements.count - storage.nodes.count
         if remaining > 0 {
-            let startIndex = content.elements.startIndex.advanced(by: storage.nodes.count)
+            let startIndex = view.elements.startIndex.advanced(by: storage.nodes.count)
             for i in 0..<remaining {
                 let node = AnyViewGraphNode(
-                    for: content.child(content.elements[startIndex.advanced(by: i)]),
+                    for: view.child(view.elements[startIndex.advanced(by: i)]),
                     backend: backend
                 )
                 storage.nodes.append(node)
@@ -70,36 +68,36 @@ public struct ForEachViewChildren<
     }
 }
 
-public struct ForEachViewContent<
+/// A view that displays a variable amount of children.
+public struct ForEach<
     Items: Collection,
-    Child: ViewContent
->: ViewContent where Items.Index == Int {
-    public typealias Children = ForEachViewChildren<Items, Child>
+    Child: View
+>: ContainerView where Items.Index == Int {
+    public typealias NodeChildren = ForEachViewChildren<Items, Child>
+
+    public var body = EmptyView()
 
     public var elements: Items
     public var child: (Items.Element) -> Child
 
     public init(
         _ elements: Items,
-        _ child: @escaping (Items.Element) -> Child
+        @ViewBuilder _ child: @escaping (Items.Element) -> Child
     ) {
         self.elements = elements
         self.child = child
     }
-}
 
-/// A view that displays a variable amount of children.
-public struct ForEach<
-    Items: Collection,
-    Child: ViewContent
->: View where Items.Index == Int {
-    public var body: ForEachViewContent<Items, Child>
+    public func asChildren<Backend: AppBackend>(
+        backend: Backend
+    ) -> ForEachViewChildren<Items, Child> {
+        return ForEachViewChildren(from: self, backend: backend)
+    }
 
-    public init(
-        _ elements: Items,
-        @ViewContentBuilder _ child: @escaping (Items.Element) -> Child
+    public func updateChildren<Backend: AppBackend>(
+        _ children: ForEachViewChildren<Items, Child>, backend: Backend
     ) {
-        body = ForEachViewContent(elements, child)
+        children.update(with: self, backend: backend)
     }
 
     public func asWidget<Backend: AppBackend>(

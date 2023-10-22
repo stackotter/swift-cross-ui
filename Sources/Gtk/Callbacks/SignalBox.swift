@@ -33,7 +33,7 @@ class SignalBox1<T1>: SignalBox {
         self.callback = callback
     }
 
-    static func run<T1>(_ data: UnsafeMutableRawPointer, _ value1: T1) {
+    static func run(_ data: UnsafeMutableRawPointer, _ value1: T1) {
         let box = Unmanaged<SignalBox1<T1>>.fromOpaque(data)
             .takeUnretainedValue()
         box.callback(value1)
@@ -49,7 +49,7 @@ class SignalBox2<T1, T2>: SignalBox {
         self.callback = callback
     }
 
-    static func run<T1, T2>(_ data: UnsafeMutableRawPointer, _ value1: T1, _ value2: T2) {
+    static func run(_ data: UnsafeMutableRawPointer, _ value1: T1, _ value2: T2) {
         let box = Unmanaged<SignalBox2<T1, T2>>.fromOpaque(data)
             .takeUnretainedValue()
         box.callback(value1, value2)
@@ -65,7 +65,7 @@ class SignalBox3<T1, T2, T3>: SignalBox {
         self.callback = callback
     }
 
-    static func run<T1, T2, T3>(
+    static func run(
         _ data: UnsafeMutableRawPointer, _ value1: T1, _ value2: T2, _ value3: T3
     ) {
         let box = Unmanaged<SignalBox3<T1, T2, T3>>.fromOpaque(data)
@@ -83,7 +83,7 @@ class SignalBox4<T1, T2, T3, T4>: SignalBox {
         self.callback = callback
     }
 
-    static func run<T1, T2, T3, T4>(
+    static func run(
         _ data: UnsafeMutableRawPointer, _ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4
     ) {
         let box = Unmanaged<SignalBox4<T1, T2, T3, T4>>.fromOpaque(data)
@@ -101,7 +101,7 @@ class SignalBox5<T1, T2, T3, T4, T5>: SignalBox {
         self.callback = callback
     }
 
-    static func run<T1, T2, T3, T4, T5>(
+    static func run(
         _ data: UnsafeMutableRawPointer, _ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4,
         _ value5: T5
     ) {
@@ -120,7 +120,7 @@ class SignalBox6<T1, T2, T3, T4, T5, T6>: SignalBox {
         self.callback = callback
     }
 
-    static func run<T1, T2, T3, T4, T5, T6>(
+    static func run(
         _ data: UnsafeMutableRawPointer, _ value1: T1, _ value2: T2, _ value3: T3, _ value4: T4,
         _ value5: T5, _ value6: T6
     ) {

@@ -3,21 +3,31 @@ maximum_child_count = 10
 }%
 
 public protocol ViewGraphNodeChildren {
-    associatedtype Content: ViewContent where Content.Children == Self
-    
     var widgets: [AnyWidget] { get }
+}
 
-    init<Backend: AppBackend>(from content: Content, backend: Backend)
+public struct AnyContainerView {
+    public let asChildren: () -> any ViewGraphNodeChildren
+    public let updateChildren: (any ViewGraphNodeChildren) -> Void
 
-    func update<Backend: AppBackend>(with content: Content, backend: Backend)
+    public init<V: ContainerView, Backend: AppBackend>(_ containerView: V, backend: Backend) {
+        asChildren = {
+            return containerView.asChildren(backend: backend)
+        }
+
+        updateChildren = { children in
+            guard let children = children as? V.NodeChildren else {
+                fatalError("Passed incorrect children type to container view for updating")
+            }
+            containerView.updateChildren(children, backend: backend)
+        }
+    }
 }
 
 public struct EmptyViewGraphNodeChildren: ViewGraphNodeChildren {
     public let widgets: [AnyWidget] = []
 
-    public init<Backend: AppBackend>(from content: EmptyViewContent, backend: Backend) {}
-
-    public func update<Backend: AppBackend>(with content: EmptyViewContent, backend: Backend) {}
+    public init() {}
 }
 
 % for i in range(10):
@@ -27,35 +37,33 @@ for j in range(i + 1):
     children.append("Child%d" % j)
 
 struct_type_parameters = ", ".join(["%s: View" % child for child in children])
-content_type_parameters = ", ".join(children)
-content_type = "ViewContent%d<%s>" % (i + 1, content_type_parameters)
+variadic_type_parameters = ", ".join(children)
+parent_type = "VariadicView%d<%s>" % (i + 1, variadic_type_parameters)
 }%
 
 public struct ViewGraphNodeChildren${i + 1}<${struct_type_parameters}>: ViewGraphNodeChildren {
-    public typealias Content = ${content_type}
-    
     public var widgets: [AnyWidget] {
         return [
-% for child in children:
-                ${child.lower()}.widget,
-% end
+            % for child in children:
+            ${child.lower()}.widget,
+            % end
         ]
     }
 
-% for child in children:
+    % for child in children:
+    /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var ${child.lower()}: AnyViewGraphNode<${child}>
-% end
+    % end
 
-    public init<Backend: AppBackend>(from content: Content, backend: Backend) {
-% for (i, child) in enumerate(children):
-        self.${child.lower()} = AnyViewGraphNode(for: content.view${i}, backend: backend)
-% end
-    }
-
-    public func update<Backend: AppBackend>(with content: Content, backend: Backend) {
-% for (i, child) in enumerate(children):
-        ${child.lower()}.update(with: content.view${i})
-% end
+    public init<Backend: AppBackend>(
+        % for child in children:
+        _ ${child.lower()}: ${child},
+        % end
+        backend: Backend
+    ) {
+        % for child in children:
+        self.${child.lower()} = AnyViewGraphNode(for: ${child.lower()}, backend: backend)
+        % end
     }
 }
 % end

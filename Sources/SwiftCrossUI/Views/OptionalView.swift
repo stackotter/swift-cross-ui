@@ -1,6 +1,4 @@
 public struct OptionalViewChildren<V: View>: ViewGraphNodeChildren {
-    public typealias Content = OptionalViewContent<V>
-
     /// Used to avoid the need for a mutating ``update`` method.
     class Storage {
         var view: AnyViewGraphNode<V>?
@@ -13,15 +11,15 @@ public struct OptionalViewChildren<V: View>: ViewGraphNodeChildren {
         return [storage.view?.widget].compactMap { $0 }
     }
 
-    public init<Backend: AppBackend>(from content: Content, backend: Backend) {
+    public init<Backend: AppBackend>(from view: V?, backend: Backend) {
         storage = Storage()
-        if let view = content.view {
+        if let view = view {
             storage.view = AnyViewGraphNode(for: view, backend: backend)
         }
     }
 
-    public func update<Backend: AppBackend>(with content: Content, backend: Backend) {
-        if let view = content.view {
+    public func update<Backend: AppBackend>(with view: V?, backend: Backend) {
+        if let view = view {
             if let node = storage.view {
                 node.update(with: view)
                 storage.hasToggled = false
@@ -36,34 +34,34 @@ public struct OptionalViewChildren<V: View>: ViewGraphNodeChildren {
     }
 }
 
-public struct OptionalViewContent<V: View>: ViewContent {
-    public typealias Children = OptionalViewChildren<V>
+public struct OptionalView<V: View>: ContainerView {
+    public var body = EmptyView()
 
     var view: V?
 
-    public init(_ view: V? = nil) {
+    public init(_ view: V?) {
         self.view = view
     }
-}
 
-public struct OptionalView<V: View>: View {
-    public var body: OptionalViewContent<V>
-
-    init(_ view: V?) {
-        body = OptionalViewContent(view)
+    public func asChildren<Backend: AppBackend>(backend: Backend) -> OptionalViewChildren<V> {
+        return OptionalViewChildren(from: view, backend: backend)
     }
 
-    public func asWidget<Backend: AppBackend>(_ children: OptionalViewChildren<V>, backend: Backend)
-        -> Backend.Widget
-    {
-        return backend.createEitherContainer(initiallyContaining: children.widgets.first?.into())
+    public func updateChildren<Backend: AppBackend>(
+        _ children: OptionalViewChildren<V>, backend: Backend
+    ) {
+        children.update(with: view, backend: backend)
+    }
+
+    public func asWidget<Backend: AppBackend>(
+        _ children: [Backend.Widget], backend: Backend
+    ) -> Backend.Widget {
+        return backend.createEitherContainer(initiallyContaining: children.first)
     }
 
     public func update<Backend: AppBackend>(
-        _ widget: Backend.Widget, children: OptionalViewChildren<V>, backend: Backend
+        _ widget: Backend.Widget, children: [Backend.Widget], backend: Backend
     ) {
-        if children.storage.hasToggled {
-            backend.setChild(ofEitherContainer: widget, to: children.widgets.first?.into())
-        }
+        backend.setChild(ofEitherContainer: widget, to: children.first)
     }
 }

@@ -1,6 +1,8 @@
 /// A text view.
 public struct Text: View {
-    public var body = EmptyViewContent()
+    public var body = EmptyView()
+    public typealias State = EmptyState
+    public typealias NodeChildren = EmptyView.NodeChildren
 
     /// The string to be shown in the text view.
     private var string: String
@@ -14,7 +16,7 @@ public struct Text: View {
     }
 
     public func asWidget<Backend: AppBackend>(
-        _ children: EmptyViewContent.Children,
+        _ children: [Backend.Widget],
         backend: Backend
     ) -> Backend.Widget {
         return backend.createTextView(content: string, shouldWrap: wrap)
@@ -22,7 +24,7 @@ public struct Text: View {
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: EmptyViewContent.Children,
+        children: [Backend.Widget],
         backend: Backend
     ) {
         backend.setContent(ofTextView: widget, to: string)

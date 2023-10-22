@@ -1,12 +1,12 @@
 /// A vertically oriented container. Similar to a `VStack` in SwiftUI.
-public struct VStack<Content: ViewContent>: View {
+public struct VStack<Content: View>: View {
     public var body: Content
 
     /// The amount of spacing to apply between children.
     private var spacing: Int
 
     /// Creates a new VStack.
-    public init(spacing: Int = 8, @ViewContentBuilder _ content: () -> Content) {
+    public init(spacing: Int = 8, @ViewBuilder _ content: () -> Content) {
         body = content()
         self.spacing = spacing
     }
@@ -18,16 +18,16 @@ public struct VStack<Content: ViewContent>: View {
     }
 
     public func asWidget<Backend: AppBackend>(
-        _ children: Content.Children,
+        _ children: [Backend.Widget],
         backend: Backend
     ) -> Backend.Widget {
         let vStack = backend.createVStack(spacing: spacing)
-        backend.addChildren(children.widgets, toVStack: vStack)
+        backend.addChildren(children, toVStack: vStack)
         return vStack
     }
 
     public func update<Backend: AppBackend>(
-        _ widget: Backend.Widget, children: Content.Children, backend: Backend
+        _ widget: Backend.Widget, children: [Backend.Widget], backend: Backend
     ) {
         backend.setSpacing(ofVStack: widget, to: spacing)
     }

@@ -1,13 +1,12 @@
 public class ViewGraph<Root: App> {
-    public typealias RootNode = ViewGraphNode<VStack<Root.Content>, Root.Backend>
+    public typealias RootNode = ViewGraphNode<Root.Content, Root.Backend>
 
     public var rootNode: RootNode
     private var cancellable: Cancellable?
     private var app: Root
 
     public init(for app: Root, backend: Root.Backend) {
-        let vStack = VStack(app.body)
-        rootNode = ViewGraphNode(for: vStack, backend: backend)
+        rootNode = ViewGraphNode(for: app.body, backend: backend)
 
         self.app = app
 
@@ -17,6 +16,6 @@ public class ViewGraph<Root: App> {
     }
 
     public func update() {
-        rootNode.update(with: VStack(app.body))
+        rootNode.update(with: app.body)
     }
 }

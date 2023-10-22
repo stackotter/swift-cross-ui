@@ -1,6 +1,6 @@
 /// A flexible space that expands along the major axis of its containing stack layout, or on both axes if not contained in a stack.
 public struct Spacer: View {
-    public var body = EmptyViewContent()
+    public var body = EmptyView()
 
     /// The minimum length this spacer can be shrunk to, along the axis or axes of expansion.
     var minLength: Int?
@@ -10,7 +10,7 @@ public struct Spacer: View {
     }
 
     public func asWidget<Backend: AppBackend>(
-        _ children: EmptyViewContent.Children,
+        _ children: [Backend.Widget],
         backend: Backend
     ) -> Backend.Widget {
         let spacer = backend.createSpacer(expandHorizontally: false, expandVertically: false)
@@ -19,7 +19,7 @@ public struct Spacer: View {
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: EmptyViewContent.Children,
+        children: [Backend.Widget],
         backend: Backend
     ) {
         let spacer = backend.getChild(ofPaddingContainer: widget)
