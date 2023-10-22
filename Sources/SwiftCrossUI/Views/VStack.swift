@@ -18,16 +18,16 @@ public struct VStack<Content: View>: View {
     }
 
     public func asWidget<Backend: AppBackend>(
-        _ children: [Backend.Widget],
+        _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget {
         let vStack = backend.createVStack(spacing: spacing)
-        backend.addChildren(children, toVStack: vStack)
+        backend.addChildren(children.widgets(for: backend), toVStack: vStack)
         return vStack
     }
 
     public func update<Backend: AppBackend>(
-        _ widget: Backend.Widget, children: [Backend.Widget], backend: Backend
+        _ widget: Backend.Widget, children: any ViewGraphNodeChildren, backend: Backend
     ) {
         backend.setSpacing(ofVStack: widget, to: spacing)
     }

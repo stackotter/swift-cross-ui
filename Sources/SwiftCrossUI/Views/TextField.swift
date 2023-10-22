@@ -1,7 +1,5 @@
 /// A TextField view.
-public struct TextField: View {
-    public var body = EmptyView()
-
+public struct TextField: ElementaryView {
     /// The label to show when the field is empty.
     private var placeholder: String
     /// The field's content.
@@ -14,7 +12,6 @@ public struct TextField: View {
     }
 
     public func asWidget<Backend: AppBackend>(
-        _ children: [Backend.Widget],
         backend: Backend
     ) -> Backend.Widget {
         return backend.createTextField(
@@ -28,7 +25,6 @@ public struct TextField: View {
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: [Backend.Widget],
         backend: Backend
     ) {
         backend.setPlaceholder(ofTextField: widget, to: placeholder)

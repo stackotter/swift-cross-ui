@@ -9,14 +9,14 @@ extension View {
     }
 }
 
-struct FrameView<Child: View>: View {
-    var body: Child
+struct FrameView<Child: View>: TypeSafeView {
+    var body: VariadicView1<Child>
 
     var minWidth: Int
     var minHeight: Int
 
     init(_ child: Child, minWidth: Int, minHeight: Int) {
-        self.body = child
+        self.body = VariadicView1(child)
         self.minWidth = minWidth
         self.minHeight = minHeight
     }

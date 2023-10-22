@@ -1,4 +1,6 @@
-public struct NavigationSplitView<SideBar: View, MiddleBar: View, Detail: View>: View {
+public struct NavigationSplitView<SideBar: View, MiddleBar: View, Detail: View>: TypeSafeView {
+    typealias Children = Content.Children
+
     public var body: VariadicView3<SideBar, MiddleBar, Detail>
 }
 
@@ -38,4 +40,10 @@ extension NavigationSplitView {
             leadingChild: children.child0.widget.into(), trailingChild: trailingChild
         )
     }
+
+    public func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: ViewGraphNodeChildren3<SideBar, MiddleBar, Detail>,
+        backend: Backend
+    ) {}
 }

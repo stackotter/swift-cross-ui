@@ -1,7 +1,5 @@
 /// A picker view.
-public struct Picker<Value: Equatable>: View {
-    public var body = EmptyView()
-
+public struct Picker<Value: Equatable>: ElementaryView {
     /// The options to be offered by the picker.
     private var options: [Value]
     /// The picker's selected option.
@@ -21,7 +19,6 @@ public struct Picker<Value: Equatable>: View {
     }
 
     public func asWidget<Backend: AppBackend>(
-        _ children: [Backend.Widget],
         backend: Backend
     ) -> Backend.Widget {
         return backend.createPicker(
@@ -37,7 +34,7 @@ public struct Picker<Value: Equatable>: View {
     }
 
     public func update<Backend: AppBackend>(
-        _ widget: Backend.Widget, children: [Backend.Widget], backend: Backend
+        _ widget: Backend.Widget, backend: Backend
     ) {
         backend.setOptions(ofPicker: widget, to: options.map { "\($0)" })
         backend.setSelectedOption(ofPicker: widget, to: selectedOptionIndex)

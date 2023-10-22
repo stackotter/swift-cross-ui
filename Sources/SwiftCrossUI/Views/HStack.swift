@@ -12,16 +12,16 @@ public struct HStack<Content: View>: View {
     }
 
     public func asWidget<Backend: AppBackend>(
-        _ children: [Backend.Widget],
+        _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget {
         let hStack = backend.createHStack(spacing: spacing)
-        backend.addChildren(children, toHStack: hStack)
+        backend.addChildren(children.widgets(for: backend), toHStack: hStack)
         return hStack
     }
 
     public func update<Backend: AppBackend>(
-        _ widget: Backend.Widget, children: [Backend.Widget], backend: Backend
+        _ widget: Backend.Widget, children: any ViewGraphNodeChildren, backend: Backend
     ) {
         backend.setSpacing(ofHStack: widget, to: spacing)
     }

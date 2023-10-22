@@ -11,17 +11,11 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         self.backend = backend
 
         // First create the view's child nodes and widgets
-        if let container = view.asContainerView(backend: backend) {
-            children = container.asChildren()
-        } else if NodeView.Content.self == EmptyView.self {
-            children = EmptyViewGraphNodeChildren()
-        } else {
-            children = ViewGraphNodeChildren1(view.body, backend: backend)
-        }
+        children = view.asChildren(backend: backend)
 
         // Then create the widget for the view itself
         widget = view.asWidget(
-            children.widgets.map { $0.into() },
+            children,
             backend: backend
         )
 
@@ -51,15 +45,8 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
 
     /// Recomputes the view's body and updates its children and widget accordingly.
     public func update() {
-        if let containerView = view.asContainerView(backend: backend) {
-            containerView.updateChildren(children)
-        } else if NodeView.Content.self != EmptyView.self {
-            guard let children = children as? ViewGraphNodeChildren1<NodeView.Content> else {
-                fatalError("Invalid children for non-container view (supposedly unreachable)")
-            }
-            children.child0.update(with: view.body)
-        }
-        view.update(widget, children: children.widgets.map { $0.into() }, backend: backend)
+        view.updateChildren(children, backend: backend)
+        view.update(widget, children: children, backend: backend)
         backend.show(widget)
     }
 }

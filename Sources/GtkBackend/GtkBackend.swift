@@ -119,9 +119,6 @@ public struct GtkBackend: AppBackend {
 
     public func setChild(ofEitherContainer container: Widget, to widget: Widget?) {
         let container = container as! ModifierBox
-        guard container.child.map(ObjectIdentifier.init) != widget.map(ObjectIdentifier.init) else {
-            return
-        }
         container.setChild(widget)
     }
 

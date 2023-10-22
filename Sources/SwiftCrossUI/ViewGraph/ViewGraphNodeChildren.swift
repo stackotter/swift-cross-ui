@@ -3,21 +3,20 @@ public protocol ViewGraphNodeChildren {
     var widgets: [AnyWidget] { get }
 }
 
-public struct AnyContainerView {
-    public let asChildren: () -> any ViewGraphNodeChildren
-    public let updateChildren: (any ViewGraphNodeChildren) -> Void
-
-    public init<V: ContainerView, Backend: AppBackend>(_ containerView: V, backend: Backend) {
-        asChildren = {
-            return containerView.asChildren(backend: backend)
+extension ViewGraphNodeChildren {
+    /// Bundles the node's children into a single layout-transparent container (will take
+    /// on the orientation of its parent).
+    public func asSingleWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
+        let widgets: [Backend.Widget] = widgets.map { $0.into() }
+        let stack = backend.createPassthroughVStack(spacing: 0)
+        for widget in widgets {
+            backend.addChild(widget, toPassthroughVStack: stack)
         }
+        return stack
+    }
 
-        updateChildren = { children in
-            guard let children = children as? V.NodeChildren else {
-                fatalError("Passed incorrect children type to container view for updating")
-            }
-            containerView.updateChildren(children, backend: backend)
-        }
+    public func widgets<Backend: AppBackend>(for backend: Backend) -> [Backend.Widget] {
+        return widgets.map { $0.into() }
     }
 }
 

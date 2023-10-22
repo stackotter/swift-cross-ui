@@ -1,52 +1,73 @@
 public struct EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
-    /// Used to avoid the need for a mutating ``update`` method.
     class Storage {
-        var viewA: AnyViewGraphNode<A>?
-        var viewB: AnyViewGraphNode<B>?
+        enum EitherNode {
+            case a(AnyViewGraphNode<A>)
+            case b(AnyViewGraphNode<B>)
+
+            var widget: AnyWidget {
+                switch self {
+                    case let .a(node):
+                        return node.widget
+                    case let .b(node):
+                        return node.widget
+                }
+            }
+        }
+
+        var eitherNode: EitherNode
         var hasSwitchedCase = true
+
+        init(_ eitherNode: EitherNode) {
+            self.eitherNode = eitherNode
+        }
     }
 
     let storage: Storage
 
     public var widgets: [AnyWidget] {
-        return [storage.viewA?.widget, storage.viewB?.widget].compactMap { $0 }
+        return [storage.eitherNode.widget]
     }
 
     public init<Backend: AppBackend>(from view: EitherView<A, B>, backend: Backend) {
-        storage = Storage()
+        let eitherNode: Storage.EitherNode
         switch view.storage {
             case .a(let a):
-                storage.viewA = AnyViewGraphNode(for: a, backend: backend)
+                eitherNode = .a(AnyViewGraphNode(for: a, backend: backend))
             case .b(let b):
-                storage.viewB = AnyViewGraphNode(for: b, backend: backend)
+                eitherNode = .b(AnyViewGraphNode(for: b, backend: backend))
         }
+        storage = Storage(eitherNode)
+    }
+
+    public func widget<Backend: AppBackend>(for backend: Backend) -> Backend.Widget {
+        return storage.eitherNode.widget.into()
     }
 
     public func update<Backend: AppBackend>(with view: EitherView<A, B>, backend: Backend) {
         switch view.storage {
             case .a(let a):
-                if let viewA = storage.viewA {
-                    viewA.update(with: a)
-                    storage.hasSwitchedCase = false
-                } else {
-                    storage.viewA = AnyViewGraphNode(for: a, backend: backend)
-                    storage.viewB = nil
-                    storage.hasSwitchedCase = true
+                switch storage.eitherNode {
+                    case let .a(nodeA):
+                        nodeA.update(with: a)
+                        storage.hasSwitchedCase = false
+                    case .b:
+                        storage.eitherNode = .a(AnyViewGraphNode(for: a, backend: backend))
+                        storage.hasSwitchedCase = true
                 }
             case .b(let b):
-                if let viewB = storage.viewB {
-                    viewB.update(with: b)
-                    storage.hasSwitchedCase = false
-                } else {
-                    storage.viewB = AnyViewGraphNode(for: b, backend: backend)
-                    storage.viewA = nil
-                    storage.hasSwitchedCase = true
+                switch storage.eitherNode {
+                    case let .b(nodeB):
+                        nodeB.update(with: b)
+                        storage.hasSwitchedCase = false
+                    case .a:
+                        storage.eitherNode = .b(AnyViewGraphNode(for: b, backend: backend))
+                        storage.hasSwitchedCase = true
                 }
         }
     }
 }
 
-public struct EitherView<A: View, B: View>: ContainerView {
+public struct EitherView<A: View, B: View>: TypeSafeView {
     public typealias NodeChildren = EitherViewChildren<A, B>
 
     public var body = EmptyView()
@@ -77,16 +98,14 @@ public struct EitherView<A: View, B: View>: ContainerView {
     public func asWidget<Backend: AppBackend>(
         _ children: EitherViewChildren<A, B>, backend: Backend
     ) -> Backend.Widget {
-        precondition(children.widgets.count == 1)
-        return backend.createEitherContainer(initiallyContaining: children.widgets[0].into())
+        return backend.createEitherContainer(initiallyContaining: children.widget(for: backend))
     }
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget, children: EitherViewChildren<A, B>, backend: Backend
     ) {
-        precondition(children.widgets.count == 1)
         if children.storage.hasSwitchedCase {
-            backend.setChild(ofEitherContainer: widget, to: children.widgets[0].into())
+            backend.setChild(ofEitherContainer: widget, to: children.widget(for: backend))
         }
     }
 }
