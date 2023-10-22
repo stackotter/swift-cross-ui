@@ -16,7 +16,7 @@ struct CounterApp: App {
 
     let windowProperties = WindowProperties(title: "CounterApp", resizable: true)
 
-    var body: some ViewContent {
+    var body: some View {
         HStack(spacing: 20) {
             Button("-") { state.count -= 1 }
             Text("Count: \(state.count)", wrap: false)

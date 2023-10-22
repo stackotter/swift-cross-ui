@@ -1,6 +1,6 @@
 /// A button view.
 public struct Button: View {
-    public var body = EmptyViewContent()
+    public var body = EmptyView()
 
     /// The label to show on the button.
     private var label: String
@@ -14,7 +14,7 @@ public struct Button: View {
     }
 
     public func asWidget<Backend: AppBackend>(
-        _ children: EmptyViewContent.Children,
+        _ children: [Backend.Widget],
         backend: Backend
     ) -> Backend.Widget {
         return backend.createButton(label: label, action: action)
@@ -22,7 +22,7 @@ public struct Button: View {
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: EmptyViewContent.Children,
+        children: [Backend.Widget],
         backend: Backend
     ) {
         backend.setLabel(ofButton: widget, to: label)

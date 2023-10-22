@@ -38,7 +38,7 @@ struct NavigationApp: App {
         defaultSize: WindowProperties.Size(200, 250)
     )
 
-    var body: some ViewContent {
+    var body: some View {
         NavigationStack(path: state.$path) {
             Text("Learn about subject areas")
                 .padding(.bottom, 10)
@@ -87,8 +87,8 @@ struct NavigationApp: App {
         .padding(10)
     }
 
-    @ViewContentBuilder
-    var backButton: some ViewContent {
+    @ViewBuilder
+    var backButton: some View {
         Button("Back") {
             state.path.removeLast()
         }

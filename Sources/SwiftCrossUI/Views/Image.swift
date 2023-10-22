@@ -1,6 +1,6 @@
 /// An image view.
 public struct Image: View {
-    public var body = EmptyViewContent()
+    public var body = EmptyView()
 
     /// The path to the image.
     private var path: String
@@ -10,7 +10,7 @@ public struct Image: View {
     }
 
     public func asWidget<Backend: AppBackend>(
-        _ children: EmptyViewContent.Children,
+        _ children: [Backend.Widget],
         backend: Backend
     ) -> Backend.Widget {
         return backend.createImageView(filePath: path)
@@ -18,7 +18,7 @@ public struct Image: View {
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: EmptyViewContent.Children,
+        children: [Backend.Widget],
         backend: Backend
     ) {
         backend.setFilePath(ofImageView: widget, to: path)

@@ -41,7 +41,7 @@ struct SplitApp: App {
         defaultSize: WindowProperties.Size(600, 250)
     )
 
-    var body: some ViewContent {
+    var body: some View {
         switch state.columns {
             case .two:
                 doubleColumn

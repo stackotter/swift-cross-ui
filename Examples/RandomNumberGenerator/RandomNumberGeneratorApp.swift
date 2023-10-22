@@ -38,7 +38,7 @@ struct RandomNumberGeneratorApp: App {
         defaultSize: .init(500, 0)
     )
 
-    var body: some ViewContent {
+    var body: some View {
         VStack {
             Text("Random Number: \(state.randomNumber)")
             Button("Generate") {

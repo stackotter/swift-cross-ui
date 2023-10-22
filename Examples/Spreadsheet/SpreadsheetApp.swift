@@ -33,7 +33,7 @@ struct SpreadsheetApp: App {
 
     let windowProperties = WindowProperties(title: "SpreadsheetApp", resizable: true)
 
-    var body: some ViewContent {
+    var body: some View {
         Table(state.data) {
             TableColumn("Name", value: \Person.name)
             TableColumn("Age", value: \Person.age)

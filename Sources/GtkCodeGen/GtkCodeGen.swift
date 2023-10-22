@@ -165,7 +165,7 @@ struct GtkCodeGen {
                             fatalError("Unsupported \(raw: enumeration.cType) enum value: \\(gtkEnum.rawValue)")
                     }
                 }
-                
+
                 /// Converts the value to its corresponding Gtk representation.
                 public func toGtk() -> \(raw: enumeration.cType) {
                     switch self {

@@ -6,9 +6,20 @@ struct NavigationStackRootPath: Codable {}
 ///
 /// Use .navigationDestination(for:destination:) on this view instead of its children unlike Apples SwiftUI API.
 public struct NavigationStack<Detail: View>: View {
-    public var body: NavigationStackContent<Detail>
+    public var body = EmptyView()
 
-    private var path: Binding<NavigationPath>
+    public var path: Binding<NavigationPath>
+
+    public var destinationTypes: [any Codable.Type]
+
+    public var child: (any Codable) -> Detail?
+
+    public var elements: [any Codable] {
+        let resolvedPath = path.wrappedValue.path(
+            destinationTypes: destinationTypes
+        )
+        return [NavigationStackRootPath()] + resolvedPath
+    }
 
     /// Creates a navigation stack with heterogeneous navigation state that you can control.
     ///
@@ -17,10 +28,11 @@ public struct NavigationStack<Detail: View>: View {
     ///   - root: The view to display when the stack is empty.
     public init(
         path: Binding<NavigationPath>,
-        @ViewContentBuilder _ root: @escaping () -> Detail
+        @ViewBuilder _ root: @escaping () -> Detail
     ) {
         self.path = path
-        body = NavigationStackContent(path, []) { element in
+        destinationTypes = []
+        child = { element in
             if element is NavigationStackRootPath {
                 return root()
             } else {
@@ -41,7 +53,7 @@ public struct NavigationStack<Detail: View>: View {
     ///     state contains a value of type data. The closure takes one argument, which is the value
     ///     of the data to present.
     public func navigationDestination<D: Codable, C: View>(
-        for data: D.Type, @ViewContentBuilder destination: @escaping (D) -> C
+        for data: D.Type, @ViewBuilder destination: @escaping (D) -> C
     ) -> NavigationStack<EitherView<Detail, C>> {
         return NavigationStack<EitherView<Detail, C>>(
             previous: self,
@@ -61,8 +73,9 @@ public struct NavigationStack<Detail: View>: View {
         destination: @escaping (Component) -> NewDetail?
     ) where Detail == EitherView<PreviousDetail, NewDetail> {
         path = previous.path
-        body = NavigationStackContent(path, previous.body.destinationTypes + [Component.self]) {
-            if let previous = previous.body.child($0) {
+        destinationTypes = previous.destinationTypes + [Component.self]
+        child = {
+            if let previous = previous.child($0) {
                 // Either root or previously defined destination returned a view
                 return EitherView(previous)
             } else if let component = $0 as? Component, let new = destination(component) {
@@ -74,25 +87,8 @@ public struct NavigationStack<Detail: View>: View {
             }
         }
     }
-}
 
-public struct NavigationStackContent<Child: View>: ViewContent {
-    public typealias Children = NavigationStackChildren<Child>
-
-    public var path: Binding<NavigationPath>
-
-    public var destinationTypes: [any Codable.Type]
-
-    public var child: (any Codable) -> Child?
-
-    public var elements: [any Codable] {
-        let resolvedPath = path.wrappedValue.path(
-            destinationTypes: destinationTypes
-        )
-        return [NavigationStackRootPath()] + resolvedPath
-    }
-
-    func childOrCrash(for element: any Codable) -> Child {
+    func childOrCrash(for element: any Codable) -> Detail {
         guard let child = child(element) else {
             fatalError(
                 "Failed to find detail view for \"\(element)\", make sure you have called .navigationDestination for this type."
@@ -101,21 +97,21 @@ public struct NavigationStackContent<Child: View>: ViewContent {
 
         return child
     }
+}
 
-    internal init(
-        _ path: Binding<NavigationPath>,
-        _ destinationTypes: [any Codable.Type],
-        _ child: @escaping (any Codable) -> Child?
-    ) {
-        self.path = path
-        self.destinationTypes = destinationTypes
-        self.child = child
+extension NavigationStack: ContainerView {
+    public typealias NodeChildren = NavigationStackChildren<Detail>
+
+    public func asChildren<Backend: AppBackend>(backend: Backend) -> NodeChildren {
+        return NavigationStackChildren(from: self, backend: backend)
+    }
+
+    public func updateChildren<Backend: AppBackend>(_ children: NodeChildren, backend: Backend) {
+        children.update(with: self, backend: backend)
     }
 }
 
 public struct NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
-    public typealias Content = NavigationStackContent<Child>
-
     class Storage {
         /// When a view is popped we store it in here to remove from the stack
         /// the next time views are added. This allows them to animate out.
@@ -137,11 +133,11 @@ public struct NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
         return [storage.container]
     }
 
-    public init<Backend: AppBackend>(from content: Content, backend: Backend) {
+    public init<Backend: AppBackend>(from view: NavigationStack<Child>, backend: Backend) {
         storage = Storage(container: AnyWidget(backend.createOneOfContainer()))
 
-        storage.nodes = content.elements
-            .map(content.childOrCrash)
+        storage.nodes = view.elements
+            .map(view.childOrCrash)
             .map { view in
                 AnyViewGraphNode(for: view, backend: backend)
             }
@@ -151,9 +147,9 @@ public struct NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
         }
     }
 
-    public func update<Backend: AppBackend>(with content: Content, backend: Backend) {
+    public func update<Backend: AppBackend>(with view: NavigationStack<Child>, backend: Backend) {
         // content.elements is a computed property so only get it once
-        let contentElements = content.elements
+        let contentElements = view.elements
 
         // Remove queued pages
         for widget in storage.widgetsQueuedForRemoval {
@@ -168,7 +164,7 @@ public struct NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
                 break
             }
             let index = contentElements.startIndex.advanced(by: i)
-            node.update(with: content.childOrCrash(for: contentElements[index]))
+            node.update(with: view.childOrCrash(for: contentElements[index]))
         }
 
         let remaining = contentElements.count - storage.nodes.count
@@ -176,7 +172,7 @@ public struct NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
             // Add new pages
             for i in storage.nodes.count..<(storage.nodes.count + remaining) {
                 let node = AnyViewGraphNode(
-                    for: content.childOrCrash(for: contentElements[i]),
+                    for: view.childOrCrash(for: contentElements[i]),
                     backend: backend
                 )
                 storage.nodes.append(node)

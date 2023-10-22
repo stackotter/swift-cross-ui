@@ -1,7 +1,7 @@
 /// An application.
 public protocol App {
     associatedtype Backend: AppBackend
-    associatedtype Content: ViewContent
+    associatedtype Content: View
     associatedtype State: Observable
 
     /// The application's identifier.
@@ -14,7 +14,7 @@ public protocol App {
     var windowProperties: WindowProperties { get }
 
     /// The contents of the application's main window.
-    @ViewContentBuilder var body: Content { get }
+    @ViewBuilder var body: Content { get }
 
     /// Creates the application.
     init()

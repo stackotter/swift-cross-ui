@@ -24,7 +24,7 @@ struct FileViewerApp: App {
         resizable: false
     )
 
-    var body: some ViewContent {
+    var body: some View {
         #if canImport(FileDialog)
             HStack {
                 VStack {

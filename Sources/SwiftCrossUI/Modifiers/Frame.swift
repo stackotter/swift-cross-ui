@@ -10,13 +10,13 @@ extension View {
 }
 
 struct FrameView<Child: View>: View {
-    var body: ViewContent1<Child>
+    var body: Child
 
     var minWidth: Int
     var minHeight: Int
 
     init(_ child: Child, minWidth: Int, minHeight: Int) {
-        self.body = ViewContent1(child)
+        self.body = child
         self.minWidth = minWidth
         self.minHeight = minHeight
     }
@@ -26,8 +26,7 @@ struct FrameView<Child: View>: View {
         backend: Backend
     ) -> Backend.Widget {
         return backend.createFrameContainer(
-            for: children.child0.widget.into(),
-            minWidth: minWidth,
+            for: children.child0.widget.into(), minWidth: minWidth,
             minHeight: minHeight
         )
     }

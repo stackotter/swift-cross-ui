@@ -19,6 +19,6 @@ included:
   - Examples
 excluded:
   - Sources/SwiftCrossUI/ViewGraph/ViewGraphNodeChildren.swift
-  - Sources/SwiftCrossUI/Builders/ViewContentBuilder.swift
-  - Sources/SwiftCrossUI/Views/ViewContent.swift
+  - Sources/SwiftCrossUI/Builders/ViewBuilder.swift
+  - Sources/SwiftCrossUI/Views/VariadicView.swift
   - Sources/Gtk/Generated
