@@ -34,7 +34,7 @@
       "type" : "reference"
     },
     {
-      "text" : ", the new downstream publisher will be relinked.",
+      "text" : ", the new upstream publisher will be relinked.",
       "type" : "text"
     }
   ],
@@ -309,7 +309,7 @@
       "type" : "reference"
     },
     {
-      "text" : ", the new downstream publisher will be relinked.",
+      "text" : ", the new upstream publisher will be relinked.",
       "type" : "text"
     }
   ],

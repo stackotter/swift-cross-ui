@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "A view graph node storing a view, its widget, and its children (likely a collection of more nodes).",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -130,6 +136,34 @@
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "overview",
+          "level" : 2,
+          "text" : "Overview",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "This is where updates are initiated when a view’s state updates, and where state is persisted",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "even when a view gets recomputed by its parent.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
     }
   ],
   "schemaVersion" : {
@@ -158,8 +192,8 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update(with:)-1vs6a",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update(with:)-2rvr0"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update()",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update(with:)"
       ],
       "title" : "Instance Methods"
     }
@@ -194,7 +228,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -226,7 +263,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "text" : "A view that can be rendered by any backend.",
       "type" : "text"
     }
   ],
@@ -259,7 +296,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode": {
   "abstract" : [
-
+    {
+      "text" : "A view graph node storing a view, its widget, and its children (likely a collection of more nodes).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -290,7 +330,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/backend": {
   "abstract" : [
-
+    {
+      "text" : "The backend used to create the view’s widget.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -323,7 +366,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/children": {
   "abstract" : [
-
+    {
+      "text" : "The view’s children (usually just contains more view graph nodes, but can handle extra logic",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "such as figuring out how to update variable length array of children efficiently).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -344,23 +398,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "NodeView"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Children"
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/children",
@@ -372,7 +411,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/init(for:backend:)": {
   "abstract" : [
-
+    {
+      "text" : "Creates a node for a given view while also creating the nodes for its children, creating",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "the view’s widget, and starting to observe its state for changes.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -423,9 +473,52 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewgraphnode\/init(for:backend:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/update(with:)-1vs6a": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/update()": {
   "abstract" : [
-
+    {
+      "text" : "Recomputes the view’s body, and updates its children and widget accordingly.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "update"
+    },
+    {
+      "kind" : "text",
+      "text" : "()"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "update()",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnode\/update()"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/update(with:)": {
+  "abstract" : [
+    {
+      "text" : "Replaces the node’s view with a new version computed while recomputing the body of its parent",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "(e.g. when its parent’s state updates).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -461,69 +554,19 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update(with:)-1vs6a",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update(with:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(with:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnode\/update(with:)-1vs6a"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/update(with:)-2rvr0": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "update"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "with"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "NodeView"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "?)"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode\/update(with:)-2rvr0",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "update(with:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnode\/update(with:)-2rvr0"
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnode\/update(with:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/view": {
   "abstract" : [
-
+    {
+      "text" : "A copy of the view itself (from the latest computed body of its parent).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -556,12 +599,15 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/widget": {
   "abstract" : [
-
+    {
+      "text" : "The view’s single widget for the entirety of its lifetime in the view graph.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "var"
+      "text" : "let"
     },
     {
       "kind" : "text",

@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "An RGBA representation of a color.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -140,7 +146,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color": {
   "abstract" : [
-
+    {
+      "text" : "An RGBA representation of a color.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -171,7 +180,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/alpha": {
   "abstract" : [
-
+    {
+      "text" : "The alpha component (from 0 to 1).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -205,7 +217,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/black": {
   "abstract" : [
-
+    {
+      "text" : "Pure black.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -247,7 +262,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/blue-swift.property": {
   "abstract" : [
-
+    {
+      "text" : "The blue component (from 0 to 1).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -281,7 +299,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/blue-swift.type.property": {
   "abstract" : [
-
+    {
+      "text" : "Pure blue.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -323,7 +344,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/cyan": {
   "abstract" : [
-
+    {
+      "text" : "Pure cyan.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -365,7 +389,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/green-swift.property": {
   "abstract" : [
-
+    {
+      "text" : "The green component (from 0 to 1).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -399,7 +426,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/green-swift.type.property": {
   "abstract" : [
-
+    {
+      "text" : "Pure green.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -441,7 +471,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/init(_:_:_:_:)": {
   "abstract" : [
-
+    {
+      "text" : "Creates a color from its components with values between 0 and 1.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -498,7 +531,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/magenta": {
   "abstract" : [
-
+    {
+      "text" : "Pure magenta.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -540,7 +576,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/red-swift.property": {
   "abstract" : [
-
+    {
+      "text" : "The red component (from 0 to 1).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -574,7 +613,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/red-swift.type.property": {
   "abstract" : [
-
+    {
+      "text" : "Pure red.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -616,7 +658,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/white": {
   "abstract" : [
-
+    {
+      "text" : "Pure white.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -658,7 +703,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/yellow": {
   "abstract" : [
-
+    {
+      "text" : "Pure yellow.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

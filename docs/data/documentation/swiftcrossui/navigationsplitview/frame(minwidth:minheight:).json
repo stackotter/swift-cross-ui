@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Positions this view within an invisible frame having the specified size constraints.",
+      "text" : "Positions this view within an invisible frame having the specified minimum size constraints.",
       "type" : "text"
     }
   ],
@@ -220,7 +220,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationSplitView": {
   "abstract" : [
-
+    {
+      "text" : "A view that presents views in two or three columns.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -263,7 +266,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationSplitView/frame(minWidth:minHeight:)": {
   "abstract" : [
     {
-      "text" : "Positions this view within an invisible frame having the specified size constraints.",
+      "text" : "Positions this view within an invisible frame having the specified minimum size constraints.",
       "type" : "text"
     }
   ],
@@ -342,7 +345,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "text" : "A view that can be rendered by any backend.",
       "type" : "text"
     }
   ],

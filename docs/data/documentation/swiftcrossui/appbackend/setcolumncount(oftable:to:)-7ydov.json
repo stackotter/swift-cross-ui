@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Sets the number of columns of a table. Existing columns outside of the new bounds",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "should be deleted.",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -220,7 +234,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -251,7 +268,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setColumnCount(ofTable:to:)-7ydov": {
   "abstract" : [
-
+    {
+      "text" : "Sets the number of columns of a table. Existing columns outside of the new bounds",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "should be deleted.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

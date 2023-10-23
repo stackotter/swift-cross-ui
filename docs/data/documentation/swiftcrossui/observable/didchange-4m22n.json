@@ -327,7 +327,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher": {
   "abstract" : [
-
+    {
+      "text" : "A type that produces valueless observations.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

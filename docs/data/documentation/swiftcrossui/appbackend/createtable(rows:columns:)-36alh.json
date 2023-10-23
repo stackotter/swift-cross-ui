@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a table with an initial number of rows and columns.",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -214,7 +220,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -320,7 +329,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTable(rows:columns:)-36alh": {
   "abstract" : [
-
+    {
+      "text" : "Creates a table with an initial number of rows and columns.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

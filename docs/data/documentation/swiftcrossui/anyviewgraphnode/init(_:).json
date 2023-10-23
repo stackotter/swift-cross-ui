@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Type-erases a view graph node.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -202,7 +208,57 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyViewGraphNode": {
   "abstract" : [
-
+    {
+      "text" : "A type-erased ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ". Used by implementations of ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "to avoid leaking the selected backend into ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " implementations (which would be",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "an annoying complexity for users of the library and it worth the slight sacrifice",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "in performance and strong-typing). The user never sees such type-erased wrappers.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -233,7 +289,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyViewGraphNode/init(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Type-erases a view graph node.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -287,7 +346,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -316,9 +378,46 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
+  "abstract" : [
+    {
+      "text" : "A view that can be rendered by any backend.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "View"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "View",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode": {
   "abstract" : [
-
+    {
+      "text" : "A view graph node storing a view, its widget, and its children (likely a collection of more nodes).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -346,6 +445,87 @@
   "title" : "ViewGraphNode",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewgraphnode"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren": {
+  "abstract" : [
+    {
+      "text" : "The children of a view graph node. This is implemented by a few different",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "types for various purposes. E.g. variable length with same-typed elements",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "(",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : "), and fixed length with distinctly-typed elements (",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ",",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView2",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ", etc).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren"
 }
 }
 }

@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "AppBackend.setWrap(ofTextView:to:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -213,7 +227,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -314,7 +331,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setWrap(ofTextView:to:)-6xmm4": {
   "abstract" : [
-
+    {
+      "text" : "Sets whether to wrap the text content of a non-editable text view or not.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "AppBackend.setMinimum(ofSlider:to:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -213,7 +227,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -244,7 +261,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setMinimum(ofSlider:to:)-2h25n": {
   "abstract" : [
-
+    {
+      "text" : "Sets the minimum selectable value of a slider (inclusive).",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

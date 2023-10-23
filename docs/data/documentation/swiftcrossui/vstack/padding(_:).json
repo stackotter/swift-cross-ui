@@ -187,15 +187,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack": {
   "abstract" : [
     {
-      "text" : "A vertically oriented container. Similar to a ",
-      "type" : "text"
-    },
-    {
-      "code" : "VStack",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " in SwiftUI.",
+      "text" : "A view that arranges its subviews vertically.",
       "type" : "text"
     }
   ],
@@ -294,7 +286,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "text" : "A view that can be rendered by any backend.",
       "type" : "text"
     }
   ],

@@ -1,4 +1,19 @@
 {
+  "abstract" : [
+    {
+      "text" : "The layout orientation used by the likes of ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -103,9 +118,46 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack": {
+  "abstract" : [
+    {
+      "text" : "A view that arranges its subviews horizontally.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "HStack"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "HStack"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "HStack",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hstack"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/InheritedOrientation": {
   "abstract" : [
-
+    {
+      "text" : "The layout orientation inherited by a widget from its nearest oriented parent.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -136,7 +188,19 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/InheritedOrientation/horizontal": {
   "abstract" : [
-
+    {
+      "text" : "The layout orientation used by the likes of ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "A TextField view.",
+      "text" : "A control that displays an editable text interface.",
       "type" : "text"
     }
   ],
@@ -105,14 +105,8 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/body"
-      ],
-      "title" : "Instance Properties"
-    },
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/asWidget(_:backend:)-9pblf",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/update(_:children:backend:)-6bnmu"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/asWidget(backend:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/update(_:backend:)"
       ],
       "title" : "Instance Methods"
     },
@@ -155,7 +149,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField": {
   "abstract" : [
     {
-      "text" : "A TextField view.",
+      "text" : "A control that displays an editable text interface.",
       "type" : "text"
     }
   ],
@@ -197,7 +191,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/textfield\/view-implementations"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/asWidget(_:backend:)-9pblf": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/asWidget(backend:)": {
   "abstract" : [
 
   ],
@@ -225,24 +219,6 @@
     {
       "kind" : "text",
       "text" : ">("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI16EmptyViewContentV",
-      "text" : "EmptyViewContent"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI16EmptyViewContentV8Childrena",
-      "text" : "Children"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
     },
     {
       "kind" : "externalParam",
@@ -273,51 +249,17 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/asWidget(_:backend:)-9pblf",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/asWidget(backend:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "asWidget(_:backend:)",
+  "title" : "asWidget(backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/textfield\/aswidget(_:backend:)-9pblf"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/body": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "body"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI16EmptyViewContentV",
-      "text" : "EmptyViewContent"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/body",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "body",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/textfield\/body"
+  "url" : "\/documentation\/swiftcrossui\/textfield\/aswidget(backend:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/init(_:_:)": {
   "abstract" : [
     {
-      "text" : "Creates an editable text field and binds a value.",
+      "text" : "Creates an editable text field with a given placeholder.",
       "type" : "text"
     }
   ],
@@ -365,7 +307,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/textfield\/init(_:_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/update(_:children:backend:)-6bnmu": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/update(_:backend:)": {
   "abstract" : [
 
   ],
@@ -412,32 +354,6 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "children"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI16EmptyViewContentV",
-      "text" : "EmptyViewContent"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI16EmptyViewContentV8Childrena",
-      "text" : "Children"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
       "text" : "backend"
     },
     {
@@ -453,17 +369,17 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/update(_:children:backend:)-6bnmu",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/update(_:backend:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "update(_:children:backend:)",
+  "title" : "update(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/textfield\/update(_:children:backend:)-6bnmu"
+  "url" : "\/documentation\/swiftcrossui\/textfield\/update(_:backend:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "text" : "A view that can be rendered by any backend.",
       "type" : "text"
     }
   ],

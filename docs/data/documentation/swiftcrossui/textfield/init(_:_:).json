@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Creates an editable text field and binds a value.",
+      "text" : "Creates an editable text field with a given placeholder.",
       "type" : "text"
     }
   ],
@@ -190,7 +190,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Binding": {
   "abstract" : [
-
+    {
+      "text" : "A value that can read and write a value owned by a source of truth. Can be thought of",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "as a writable reference to the value.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -222,7 +233,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField": {
   "abstract" : [
     {
-      "text" : "A TextField view.",
+      "text" : "A control that displays an editable text interface.",
       "type" : "text"
     }
   ],
@@ -256,7 +267,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/init(_:_:)": {
   "abstract" : [
     {
-      "text" : "Creates an editable text field and binds a value.",
+      "text" : "Creates an editable text field with a given placeholder.",
       "type" : "text"
     }
   ],

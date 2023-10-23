@@ -86,7 +86,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge": {
   "abstract" : [
     {
-      "text" : "An enumeration to indicate one edge of a rectangle.",
+      "text" : "Indicates a specific edge of a rectangle.",
       "type" : "text"
     }
   ],

@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Positions this view within an invisible frame having the specified size constraints.",
+      "text" : "Positions this view within an invisible frame having the specified minimum size constraints.",
       "type" : "text"
     }
   ],
@@ -221,7 +221,15 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer": {
   "abstract" : [
     {
-      "text" : "A flexible space that expands along the major axis of its containing stack layout, or on both axes if not contained in a stack.",
+      "text" : "A flexible space that expands along the major axis of its containing",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "stack layout, or on both axes if not contained in a stack.",
       "type" : "text"
     }
   ],
@@ -266,7 +274,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/frame(minWidth:minHeight:)": {
   "abstract" : [
     {
-      "text" : "Positions this view within an invisible frame having the specified size constraints.",
+      "text" : "Positions this view within an invisible frame having the specified minimum size constraints.",
       "type" : "text"
     }
   ],
@@ -345,7 +353,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "text" : "A view that can be rendered by any backend.",
       "type" : "text"
     }
   ],

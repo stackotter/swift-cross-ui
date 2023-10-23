@@ -1,7 +1,15 @@
 {
   "abstract" : [
     {
-      "text" : "A flexible space that expands along the major axis of its containing stack layout, or on both axes if not contained in a stack.",
+      "text" : "A flexible space that expands along the major axis of its containing",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "stack layout, or on both axes if not contained in a stack.",
       "type" : "text"
     }
   ],
@@ -105,14 +113,8 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/body"
-      ],
-      "title" : "Instance Properties"
-    },
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/asWidget(_:backend:)-6xnbf",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/update(_:children:backend:)-3sgat"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/asWidget(backend:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/update(_:backend:)"
       ],
       "title" : "Instance Methods"
     },
@@ -155,7 +157,15 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer": {
   "abstract" : [
     {
-      "text" : "A flexible space that expands along the major axis of its containing stack layout, or on both axes if not contained in a stack.",
+      "text" : "A flexible space that expands along the major axis of its containing",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "stack layout, or on both axes if not contained in a stack.",
       "type" : "text"
     }
   ],
@@ -197,7 +207,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/spacer\/view-implementations"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/asWidget(_:backend:)-6xnbf": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/asWidget(backend:)": {
   "abstract" : [
 
   ],
@@ -225,24 +235,6 @@
     {
       "kind" : "text",
       "text" : ">("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI16EmptyViewContentV",
-      "text" : "EmptyViewContent"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI16EmptyViewContentV8Childrena",
-      "text" : "Children"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
     },
     {
       "kind" : "externalParam",
@@ -273,50 +265,27 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/asWidget(_:backend:)-6xnbf",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/asWidget(backend:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "asWidget(_:backend:)",
+  "title" : "asWidget(backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/spacer\/aswidget(_:backend:)-6xnbf"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/body": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "body"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI16EmptyViewContentV",
-      "text" : "EmptyViewContent"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/body",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "body",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/spacer\/body"
+  "url" : "\/documentation\/swiftcrossui\/spacer\/aswidget(backend:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/init(minLength:)": {
   "abstract" : [
-
+    {
+      "text" : "Creates a spacer with a given minimum length along its axis or axes",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "of expansion.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -352,7 +321,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/spacer\/init(minlength:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/update(_:children:backend:)-3sgat": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/update(_:backend:)": {
   "abstract" : [
 
   ],
@@ -399,32 +368,6 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "children"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI16EmptyViewContentV",
-      "text" : "EmptyViewContent"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI16EmptyViewContentV8Childrena",
-      "text" : "Children"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
       "text" : "backend"
     },
     {
@@ -440,17 +383,17 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/update(_:children:backend:)-3sgat",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/update(_:backend:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "update(_:children:backend:)",
+  "title" : "update(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/spacer\/update(_:children:backend:)-3sgat"
+  "url" : "\/documentation\/swiftcrossui\/spacer\/update(_:backend:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "text" : "A view that can be rendered by any backend.",
       "type" : "text"
     }
   ],

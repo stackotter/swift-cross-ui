@@ -1,0 +1,270 @@
+{
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "View.body",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView\/body"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:12SwiftCrossUI9EmptyViewV4bodys5NeverOvp",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "var"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "body"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:s5NeverO",
+        "text" : "Never"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Property",
+    "symbolKind" : "property",
+    "title" : "body"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "Linux"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "var"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "body"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:s5NeverO",
+              "text" : "Never"
+            },
+            {
+              "kind" : "text",
+              "text" : " { "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "get"
+            },
+            {
+              "kind" : "text",
+              "text" : " }"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/emptyview\/body"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyView": {
+  "abstract" : [
+    {
+      "text" : "A placeholder view used by elementary ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " implementations which don’t have bodies. Fatally",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "crashes if rendered.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EmptyView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EmptyView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EmptyView",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyview"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyView/body": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "body"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s5NeverO",
+      "text" : "Never"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView\/body",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "body",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyview\/body"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
+  "abstract" : [
+    {
+      "text" : "A view that can be rendered by any backend.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "View"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "View",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view"
+}
+}
+}

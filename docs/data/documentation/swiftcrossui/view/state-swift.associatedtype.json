@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "The view’s observed state.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -160,7 +166,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "text" : "A view that can be rendered by any backend.",
       "type" : "text"
     }
   ],
@@ -193,7 +199,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/State-swift.associatedtype": {
   "abstract" : [
-
+    {
+      "text" : "The view’s observed state.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

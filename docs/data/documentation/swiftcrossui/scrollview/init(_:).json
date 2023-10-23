@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Creates a new ScrollView.",
+      "text" : "Wraps a view in a scrollable container.",
       "type" : "text"
     }
   ],
@@ -72,10 +72,10 @@
               "text" : "@"
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder",
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
               "kind" : "attribute",
-              "preciseIdentifier" : "s:12SwiftCrossUI18ViewContentBuilderV",
-              "text" : "ViewContentBuilder"
+              "preciseIdentifier" : "s:12SwiftCrossUI11ViewBuilderV",
+              "text" : "ViewBuilder"
             },
             {
               "kind" : "text",
@@ -196,7 +196,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/init(_:)": {
   "abstract" : [
     {
-      "text" : "Creates a new ScrollView.",
+      "text" : "Wraps a view in a scrollable container.",
       "type" : "text"
     }
   ],
@@ -225,9 +225,20 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scrollview\/init(_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContentBuilder": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewBuilder": {
   "abstract" : [
-
+    {
+      "text" : "A result builder used to compose views together into composite views in",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "a declarative manner.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -240,21 +251,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "ViewContentBuilder"
+      "text" : "ViewBuilder"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "ViewContentBuilder"
+      "text" : "ViewBuilder"
     }
   ],
   "role" : "symbol",
-  "title" : "ViewContentBuilder",
+  "title" : "ViewBuilder",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewcontentbuilder"
+  "url" : "\/documentation\/swiftcrossui\/viewbuilder"
 }
 }
 }

@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "A copy of the view itself (from the latest computed body of its parent).",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -121,7 +127,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode": {
   "abstract" : [
-
+    {
+      "text" : "A view graph node storing a view, its widget, and its children (likely a collection of more nodes).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -152,7 +161,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/view": {
   "abstract" : [
-
+    {
+      "text" : "A copy of the view itself (from the latest computed body of its parent).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

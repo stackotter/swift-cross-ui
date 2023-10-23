@@ -1,4 +1,27 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a single-child container which can control the foreground text color of its",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "child. Predominantly used to implement the ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/foregroundColor(_:)",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " modifier.",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -237,7 +260,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -268,7 +294,27 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createForegroundColorContainer(for:color:)-7spw": {
   "abstract" : [
-
+    {
+      "text" : "Creates a single-child container which can control the foreground text color of its",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "child. Predominantly used to implement the ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/foregroundColor(_:)",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " modifier.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -434,7 +480,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color": {
   "abstract" : [
-
+    {
+      "text" : "An RGBA representation of a color.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -462,6 +511,60 @@
   "title" : "Color",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/color"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/foregroundColor(_:)": {
+  "abstract" : [
+    {
+      "text" : "Sets the color of the foreground elements displayed by this view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "foregroundColor"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/foregroundColor(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "foregroundColor(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view\/foregroundcolor(_:)"
 }
 }
 }

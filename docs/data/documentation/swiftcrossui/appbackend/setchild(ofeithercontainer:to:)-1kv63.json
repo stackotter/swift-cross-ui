@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "AppBackend.setChild(ofEitherContainer:to:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -227,7 +241,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -335,7 +352,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setChild(ofEitherContainer:to:)-6uzwb": {
   "abstract" : [
-
+    {
+      "text" : "Sets the single child of an either container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

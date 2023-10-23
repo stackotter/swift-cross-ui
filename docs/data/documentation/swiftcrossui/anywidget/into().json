@@ -1,4 +1,35 @@
 {
+  "abstract" : [
+    {
+      "text" : "Converts the widget back to its original concrete type. If the requested",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "type doesn’t match its original type then the method will crash. Often",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "more concise than using ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyWidget\/concreteWidget(for:)",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -137,7 +168,34 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyWidget": {
   "abstract" : [
-
+    {
+      "text" : "A type-erased widget which can be stored without having to propagate",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "the selected backend type through the type system of the whole view graph",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "system of types, which would leak it back into user view implementations",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "making the backend hard to switch for developers.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -166,9 +224,113 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/anywidget"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyWidget/concreteWidget(for:)": {
+  "abstract" : [
+    {
+      "text" : "Converts the widget back to its original concrete type. If the requested",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "type doesn’t match its original type then the method will crash.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "concreteWidget"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "for"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ".Type) -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyWidget\/concreteWidget(for:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "concreteWidget(for:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/anywidget\/concretewidget(for:)"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyWidget/into()": {
   "abstract" : [
-
+    {
+      "text" : "Converts the widget back to its original concrete type. If the requested",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "type doesn’t match its original type then the method will crash. Often",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "more concise than using ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyWidget\/concreteWidget(for:)",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

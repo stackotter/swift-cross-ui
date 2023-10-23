@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "AppBackend.setOptions(ofPicker:to:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -213,7 +227,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -244,7 +261,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOptions(ofPicker:to:)-2wmpb": {
   "abstract" : [
-
+    {
+      "text" : "Sets the options for a picker to display.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

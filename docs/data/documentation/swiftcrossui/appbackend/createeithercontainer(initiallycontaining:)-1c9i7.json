@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "AppBackend.createEitherContainer(initiallyContaining:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -195,7 +209,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -291,7 +308,19 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createEitherContainer(initiallyContaining:)-9e2or": {
   "abstract" : [
-
+    {
+      "text" : "Creates a single-child container suitable for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -355,6 +384,49 @@
   "title" : "createEitherContainer(initiallyContaining:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createeithercontainer(initiallycontaining:)-9e2or"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView": {
+  "abstract" : [
+    {
+      "text" : "A view used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " to support if\/else conditional statements.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EitherView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EitherView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EitherView",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/eitherview"
 }
 }
 }

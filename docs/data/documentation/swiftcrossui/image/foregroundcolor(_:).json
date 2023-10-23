@@ -187,7 +187,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color": {
   "abstract" : [
-
+    {
+      "text" : "An RGBA representation of a color.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -219,7 +222,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Image": {
   "abstract" : [
     {
-      "text" : "An image view.",
+      "text" : "A view that displays an image.",
       "type" : "text"
     }
   ],
@@ -318,7 +321,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "text" : "A view that can be rendered by any backend.",
       "type" : "text"
     }
   ],

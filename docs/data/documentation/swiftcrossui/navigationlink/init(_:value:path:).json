@@ -1,7 +1,32 @@
 {
   "abstract" : [
     {
-      "text" : "Creates a navigation link that presents the view corresponding to a value in the NavigationStack that uses the same path.",
+      "text" : "Creates a navigation link that presents the view corresponding to a value.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "The link is handled by whatever ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " is sharing the same",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "navigation path.",
       "type" : "text"
     }
   ],
@@ -277,7 +302,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Binding": {
   "abstract" : [
-
+    {
+      "text" : "A value that can read and write a value owned by a source of truth. Can be thought of",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "as a writable reference to the value.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -343,7 +379,32 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationLink/init(_:value:path:)": {
   "abstract" : [
     {
-      "text" : "Creates a navigation link that presents the view corresponding to a value in the NavigationStack that uses the same path.",
+      "text" : "Creates a navigation link that presents the view corresponding to a value.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "The link is handled by whatever ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " is sharing the same",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "navigation path.",
       "type" : "text"
     }
   ],
@@ -456,6 +517,40 @@
   "title" : "NavigationPath",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/navigationpath"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStack": {
+  "abstract" : [
+    {
+      "text" : "A view that displays a root view and enables you to present additional views over the root view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "NavigationStack"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "NavigationStack"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "NavigationStack",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationstack"
 }
 }
 }

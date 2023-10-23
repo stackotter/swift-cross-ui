@@ -1,4 +1,26 @@
 {
+  "abstract" : [
+    {
+      "text" : "Updates the orientation of a layout-transparent container to match its nearest",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "oriented parent (preferring to be vertical if it doesn’t have any oriented",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "parents). Called after any change that could potentially affect parent orientations.",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -170,7 +192,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -246,7 +271,26 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updatePassthroughVStack(_:)-9v2cc": {
   "abstract" : [
-
+    {
+      "text" : "Updates the orientation of a layout-transparent container to match its nearest",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "oriented parent (preferring to be vertical if it doesn’t have any oriented",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "parents). Called after any change that could potentially affect parent orientations.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

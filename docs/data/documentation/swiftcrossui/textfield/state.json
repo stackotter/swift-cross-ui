@@ -227,7 +227,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField": {
   "abstract" : [
     {
-      "text" : "A TextField view.",
+      "text" : "A control that displays an editable text interface.",
       "type" : "text"
     }
   ],

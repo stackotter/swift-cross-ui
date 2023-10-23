@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -70,6 +76,115 @@
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "overview",
+          "level" : 2,
+          "text" : "Overview",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Default placeholder implementations are available for all methods except",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "for ",
+              "type" : "text"
+            },
+            {
+              "code" : "Widget\/run(_:_:)",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " and ",
+              "type" : "text"
+            },
+            {
+              "code" : "Widget\/runInMainThread(action:)",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : ". These",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "implementations will fatally crash when called and are simply intended",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "to allow incremental implementation of backends, not a production-ready",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "fallback for views that cannot be represented by a given backend.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "If you need to modify the children of a widget after creation but there",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "aren’t update methods available, this is an intentional limitation to",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "reduce the complexity of maintaining a multitude of backends – nest",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "another container, such as a VStack, inside the container to allow you",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "to change its children on demand.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
     }
   ],
   "schemaVersion" : {
@@ -198,7 +313,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -255,7 +373,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toHStack:)-42awi": {
   "abstract" : [
-
+    {
+      "text" : "Adds a child to the end of a horizontal container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -326,7 +447,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toListView:)-17m8p": {
   "abstract" : [
-
+    {
+      "text" : "Adds a child to the end of a list view.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -397,7 +521,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toOneOfContainer:)-2q1vw": {
   "abstract" : [
-
+    {
+      "text" : "Adds a child to a one-of container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -468,7 +595,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toPassthroughVStack:)-535h3": {
   "abstract" : [
-
+    {
+      "text" : "Adds a child to a layout-transparent container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -539,7 +669,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toVStack:)-2ni2v": {
   "abstract" : [
-
+    {
+      "text" : "Adds a child to the end of a vertical container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -610,7 +743,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toHStack:)-1xdxz": {
   "abstract" : [
-
+    {
+      "text" : "A helper to add multiple children to a horizontal container at once.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -679,7 +815,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toHStack:)-5en": {
   "abstract" : [
-
+    {
+      "text" : "A helper to add multiple type-erased children to a horizontal container at once.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Will crash if any of the widgets are for a different backend.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -741,7 +888,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toPassthroughVStack:)-732ox": {
   "abstract" : [
-
+    {
+      "text" : "A helper to add multiple children to a layout-transparent container at once.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -810,7 +960,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toPassthroughVStack:)-8xh9g": {
   "abstract" : [
-
+    {
+      "text" : "A helper to add multiple type-erased children to a layout-transparent container",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "at once. Will crash if any of the widgets are for a different backend.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -872,7 +1033,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toVStack:)-4iit3": {
   "abstract" : [
-
+    {
+      "text" : "A helper to add multiple children to a vertical container at once.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -941,7 +1105,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toVStack:)-5f9vt": {
   "abstract" : [
-
+    {
+      "text" : "A helper to add multiple type-erased children to a vertical container at once.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Will crash if any of the widgets are for a different backend.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -1003,7 +1178,27 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createButton(label:action:)-9xrda": {
   "abstract" : [
-
+    {
+      "text" : "Creates a labelled button with an action triggered on click. Predominantly used",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -1080,7 +1275,19 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createEitherContainer(initiallyContaining:)-9e2or": {
   "abstract" : [
-
+    {
+      "text" : "Creates a single-child container suitable for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -1147,7 +1354,27 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createForegroundColorContainer(for:color:)-7spw": {
   "abstract" : [
-
+    {
+      "text" : "Creates a single-child container which can control the foreground text color of its",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "child. Predominantly used to implement the ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/foregroundColor(_:)",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " modifier.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -1231,7 +1458,26 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createFrameContainer(for:minWidth:minHeight:)-39a8o": {
   "abstract" : [
-
+    {
+      "text" : "Creates a single-child container which can have size constraints. Predominantly used to",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "implement the ",
+      "type" : "text"
+    },
+    {
+      "code" : "View\/frame(minWidth:maxWidth:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " modifier.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -1332,7 +1578,27 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createHStack(spacing:)-4eo9k": {
   "abstract" : [
-
+    {
+      "text" : "Creates a horizontal container with the specified spacing between children.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Predominantly used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".`",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -1392,7 +1658,27 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createImageView(filePath:)-1wi3h": {
   "abstract" : [
-
+    {
+      "text" : "Creates an image view from an image file (specified by path). Predominantly used",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -1452,7 +1738,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createListView()-2dsee": {
   "abstract" : [
-
+    {
+      "text" : "Creates a view with a (theoretically) unlimited number of children. Should inherit the",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "orientation of its nearest oriented parent.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -1495,7 +1792,26 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()-4r5hz": {
   "abstract" : [
-
+    {
+      "text" : "Creates a container that can (theoretically) have an unlimited number of children",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "while only displaying one child at a time (selected using ",
+      "type" : "text"
+    },
+    {
+      "code" : "Backend\/setVisibleChild",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ").",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -1538,7 +1854,36 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPaddingContainer(for:)-312a3": {
   "abstract" : [
-
+    {
+      "text" : "Creates a single-child container with configurable padding. Predominantly used",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "to implement the ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:)",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " and ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:_:)",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " modifiers.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -1605,7 +1950,43 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPassthroughVStack(spacing:)-65zno": {
   "abstract" : [
-
+    {
+      "text" : "Creates a container which takes on the orientation of its parent (preferring to be",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "vertical if it doesn’t have any oriented parents). Sometimes referred to as",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "layout-transparent in SwiftCrossUI code. Predominantly used by the variadic views",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "and ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " implementations (to avoid partaking in layout).",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -1665,7 +2046,35 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPicker(options:selectedOption:onChange:)-215ms": {
   "abstract" : [
-
+    {
+      "text" : "Creates a picker for selecting from a finite set of options (e.g. a radio button group,",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "a drop-down, a picker wheel). Predominantly used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ". The change handler is",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "called whenever a selection is made (even if the same option is picked again).",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -1768,7 +2177,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createScrollContainer(for:)-1q6bx": {
   "abstract" : [
-
+    {
+      "text" : "Creates a scrollable single-child container wrapping the given widget.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -1835,7 +2247,35 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSlider(minimum:maximum:value:decimalPlaces:onChange:)-3a7e2": {
   "abstract" : [
-
+    {
+      "text" : "Creates a slider for choosing a numerical value from a range with a limit",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "on the number of decimal places displayed and a change handler. Predominantly used",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -1972,7 +2412,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSpacer(expandHorizontally:expandVertically:)-3grgi": {
   "abstract" : [
-
+    {
+      "text" : "Creates contentless spacer that can expand along either axis or both.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -2049,7 +2492,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSplitView(leadingChild:trailingChild:)-3iqgg": {
   "abstract" : [
-
+    {
+      "text" : "Creates a split view containing two children visible side by side.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -2140,7 +2586,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTable(rows:columns:)-36alh": {
   "abstract" : [
-
+    {
+      "text" : "Creates a table with an initial number of rows and columns.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -2217,7 +2666,35 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextField(content:placeholder:onChange:)-7zu87": {
   "abstract" : [
-
+    {
+      "text" : "Creates an editable text field with a placeholder label and change handler. The",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "change handler is called whenever the displayed value changes. Predominantly",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -2320,7 +2797,27 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextView(content:shouldWrap:)-f6zp": {
   "abstract" : [
-
+    {
+      "text" : "Creates a non-editable text view with optional text wrapping. Predominantly used",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".`",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -2397,7 +2894,27 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createVStack(spacing:)-2yalt": {
   "abstract" : [
-
+    {
+      "text" : "Creates a vertical container with the specified spacing between children.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Predominantly used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".`",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -2457,7 +2974,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/getChild(ofPaddingContainer:)-31zda": {
   "abstract" : [
-
+    {
+      "text" : "Gets the single child of a padding container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -2524,7 +3044,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/getContent(ofTextField:)-755gm": {
   "abstract" : [
-
+    {
+      "text" : "Gets the value of an editable text field.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -2584,7 +3107,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/getInheritedOrientation(of:)-36htc": {
   "abstract" : [
-
+    {
+      "text" : "Gets the orientation of a widget’s first oriented parent (if any).",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -2687,7 +3213,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/removeChild(_:fromListView:)-9ca9f": {
   "abstract" : [
-
+    {
+      "text" : "Removes a child from wherever it is in a list view (if it exists).",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -2758,7 +3287,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/removeChild(_:fromOneOfContainer:)-1glc3": {
   "abstract" : [
-
+    {
+      "text" : "Removes a child from a one-of container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -2901,7 +3433,35 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/runInMainThread(action:)": {
   "abstract" : [
-
+    {
+      "text" : "Runs an action in the app’s main thread if required to perform UI updates",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "by the backend. Predominantly used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " to publish changes to a thread",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "compatible with dispatching UI updates.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -2948,7 +3508,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setAction(ofButton:to:)-5s3rv": {
   "abstract" : [
-
+    {
+      "text" : "Sets a button’s action (triggered on click). Replaces any existing actions.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -3020,7 +3583,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setCell(at:inTable:to:)-3gjpn": {
   "abstract" : [
-
+    {
+      "text" : "Sets the contents of the table cell at the given position in a table.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -3116,7 +3682,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setChild(ofEitherContainer:to:)-6uzwb": {
   "abstract" : [
-
+    {
+      "text" : "Sets the single child of an either container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -3195,7 +3764,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setColumnCount(ofTable:to:)-7ydov": {
   "abstract" : [
-
+    {
+      "text" : "Sets the number of columns of a table. Existing columns outside of the new bounds",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "should be deleted.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -3267,7 +3847,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setContent(ofTextField:to:)-21686": {
   "abstract" : [
-
+    {
+      "text" : "Sets the value of an editable text field.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -3339,7 +3922,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setContent(ofTextView:to:)-7m8bp": {
   "abstract" : [
-
+    {
+      "text" : "Sets the content of a non-editable text view.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -3411,7 +3997,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setDecimalPlaces(ofSlider:to:)-7l3ai": {
   "abstract" : [
-
+    {
+      "text" : "Sets the number of decimal places displayed by a slider.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -3483,7 +4072,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setExpandHorizontally(ofSpacer:to:)-4d6zt": {
   "abstract" : [
-
+    {
+      "text" : "Sets whether a spacer should expand along the horizontal axis.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -3555,7 +4147,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setExpandVertically(ofSpacer:to:)-3mp2c": {
   "abstract" : [
-
+    {
+      "text" : "Sets whether a spacer should expand along the vertical axis.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -3627,7 +4222,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setFilePath(ofImageView:to:)-1cqj7": {
   "abstract" : [
-
+    {
+      "text" : "Sets the path of the image file being displayed by an image view.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -3699,7 +4297,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setForegroundColor(ofForegroundColorContainer:to:)-2tyr9": {
   "abstract" : [
-
+    {
+      "text" : "Sets the foreground color of a foreground color container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -3771,7 +4372,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setLabel(ofButton:to:)-4x3t5": {
   "abstract" : [
-
+    {
+      "text" : "Sets a button’s label.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -3843,7 +4447,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setMaximum(ofSlider:to:)-6tatt": {
   "abstract" : [
-
+    {
+      "text" : "Sets the maximum selectable value of a slider (inclusive).",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -3915,7 +4522,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setMinHeight(ofFrameContainer:to:)-69hwd": {
   "abstract" : [
-
+    {
+      "text" : "Sets the minimum height of a frame container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -3987,7 +4597,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setMinWidth(ofFrameContainer:to:)-6roxc": {
   "abstract" : [
-
+    {
+      "text" : "Sets the minimum width of a frame container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -4059,7 +4672,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setMinimum(ofSlider:to:)-2h25n": {
   "abstract" : [
-
+    {
+      "text" : "Sets the minimum selectable value of a slider (inclusive).",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -4131,7 +4747,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofPicker:to:)-7ksqa": {
   "abstract" : [
-
+    {
+      "text" : "Sets the change handler of a picker (replaces any existing change handlers). The change",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "handler is called whenever a selection is made (even if the same option is picked again).",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -4212,7 +4839,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofSlider:to:)-7j3la": {
   "abstract" : [
-
+    {
+      "text" : "Sets the change handler of a slider (replaces any existing change handlers).",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -4293,7 +4923,34 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofTextField:to:)-6bixo": {
   "abstract" : [
-
+    {
+      "text" : "Sets the change handler of an editable text field (replace any existing change",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "handlers). The change handler is called whenever the displayed value changes.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "The backend shouldn’t wait until the user finishes typing to call the change handler;",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "it should allow live access to the value.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -4374,7 +5031,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOptions(ofPicker:to:)-2wmpb": {
   "abstract" : [
-
+    {
+      "text" : "Sets the options for a picker to display.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -4446,7 +5106,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setPadding(ofPaddingContainer:top:bottom:leading:trailing:)-3i82z": {
   "abstract" : [
-
+    {
+      "text" : "Sets the padding of a padding container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -4569,7 +5232,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setPlaceholder(ofTextField:to:)-7mrkp": {
   "abstract" : [
-
+    {
+      "text" : "Sets the placeholder label of an editable text field.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -4641,7 +5307,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setRowCount(ofTable:to:)-28yce": {
   "abstract" : [
-
+    {
+      "text" : "Sets the number of rows of a table. Existing rows outside of the new bounds should",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "be deleted.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -4713,7 +5390,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setSelectedOption(ofPicker:to:)-2b5qx": {
   "abstract" : [
-
+    {
+      "text" : "Sets the index of the selected option of a picker.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -4785,7 +5465,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setSpacing(ofHStack:to:)-6cn": {
   "abstract" : [
-
+    {
+      "text" : "Sets the spacing between children of a horizontal container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -4857,7 +5540,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setSpacing(ofVStack:to:)-3m3cm": {
   "abstract" : [
-
+    {
+      "text" : "Sets the spacing between children of a vertical container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -4929,7 +5615,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setValue(ofSlider:to:)-9cjjs": {
   "abstract" : [
-
+    {
+      "text" : "Sets the selected value of a slider.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -5001,7 +5690,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)-955ak": {
   "abstract" : [
-
+    {
+      "text" : "Sets the visible child of a one-of container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -5080,7 +5772,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setWrap(ofTextView:to:)-6xmm4": {
   "abstract" : [
-
+    {
+      "text" : "Sets whether to wrap the text content of a non-editable text view or not.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -5152,7 +5847,27 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/show(_:)-3myqx": {
   "abstract" : [
-
+    {
+      "text" : "Shows a widget after it got created or updated (may be unnecessary for some backends).",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Predominantly used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " after propagating updates.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -5199,7 +5914,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateListView(_:)-9cu5o": {
   "abstract" : [
-
+    {
+      "text" : "Updates the list view’s orientation to match that of its nearest oriented parent.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -5246,7 +5964,26 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updatePassthroughVStack(_:)-9v2cc": {
   "abstract" : [
-
+    {
+      "text" : "Updates the orientation of a layout-transparent container to match its nearest",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "oriented parent (preferring to be vertical if it doesn’t have any oriented",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "parents). Called after any change that could potentially affect parent orientations.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -5290,6 +6027,650 @@
   "title" : "updatePassthroughVStack(_:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/updatepassthroughvstack(_:)-9v2cc"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Button": {
+  "abstract" : [
+    {
+      "text" : "A control that initiates an action.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Button"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Button"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Button",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/button"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView": {
+  "abstract" : [
+    {
+      "text" : "A view used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " to support if\/else conditional statements.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EitherView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EitherView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EitherView",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/eitherview"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack": {
+  "abstract" : [
+    {
+      "text" : "A view that arranges its subviews horizontally.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "HStack"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "HStack"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "HStack",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hstack"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Image": {
+  "abstract" : [
+    {
+      "text" : "A view that displays an image.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Image"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Image"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Image",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/image"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker": {
+  "abstract" : [
+    {
+      "text" : "A control for selecting from a set of values.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Picker"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Picker"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Picker",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/picker"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher": {
+  "abstract" : [
+    {
+      "text" : "A type that produces valueless observations.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Publisher"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Publisher"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Publisher",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/publisher"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider": {
+  "abstract" : [
+    {
+      "text" : "A control for selecting a value from a bounded range of numerical values.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Slider"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Slider"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Slider",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/slider"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Text": {
+  "abstract" : [
+    {
+      "text" : "A text view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Text"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Text",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/text"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField": {
+  "abstract" : [
+    {
+      "text" : "A control that displays an editable text interface.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TextField"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TextField"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TextField",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/textfield"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack": {
+  "abstract" : [
+    {
+      "text" : "A view that arranges its subviews vertically.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "VStack"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "VStack"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "VStack",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/vstack"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/foregroundColor(_:)": {
+  "abstract" : [
+    {
+      "text" : "Sets the color of the foreground elements displayed by this view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "foregroundColor"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/foregroundColor(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "foregroundColor(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view\/foregroundcolor(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/padding(_:)": {
+  "abstract" : [
+    {
+      "text" : "Adds a specific padding amount to each edge of this view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "padding"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "padding(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view\/padding(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/padding(_:_:)": {
+  "abstract" : [
+    {
+      "text" : "Adds an equal padding amount to specific edges of this view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "padding"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4EdgeO",
+      "text" : "Edge"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4EdgeO3SetV",
+      "text" : "Set"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "padding(_:_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view\/padding(_:_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode": {
+  "abstract" : [
+    {
+      "text" : "A view graph node storing a view, its widget, and its children (likely a collection of more nodes).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNode"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNode"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNode",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnode"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren": {
+  "abstract" : [
+    {
+      "text" : "The children of a view graph node. This is implemented by a few different",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "types for various purposes. E.g. variable length with same-typed elements",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "(",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : "), and fixed length with distinctly-typed elements (",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ",",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView2",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ", etc).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren"
 }
 }
 }

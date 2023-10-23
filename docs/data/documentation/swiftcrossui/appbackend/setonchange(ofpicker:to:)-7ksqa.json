@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Sets the change handler of a picker (replaces any existing change handlers). The change",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "handler is called whenever a selection is made (even if the same option is picked again).",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -246,7 +260,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -356,7 +373,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofPicker:to:)-7ksqa": {
   "abstract" : [
-
+    {
+      "text" : "Sets the change handler of a picker (replaces any existing change handlers). The change",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "handler is called whenever a selection is made (even if the same option is picked again).",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

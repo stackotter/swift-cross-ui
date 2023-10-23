@@ -187,7 +187,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Image": {
   "abstract" : [
     {
-      "text" : "An image view.",
+      "text" : "A view that displays an image.",
       "type" : "text"
     }
   ],
@@ -286,7 +286,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "text" : "A view that can be rendered by any backend.",
       "type" : "text"
     }
   ],

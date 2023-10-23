@@ -1,4 +1,36 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a single-child container with configurable padding. Predominantly used",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "to implement the ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:)",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " and ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:_:)",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " modifiers.",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -202,7 +234,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -233,7 +268,36 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPaddingContainer(for:)-312a3": {
   "abstract" : [
-
+    {
+      "text" : "Creates a single-child container with configurable padding. Predominantly used",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "to implement the ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:)",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " and ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:_:)",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " modifiers.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -362,6 +426,132 @@
   "title" : "createPaddingContainer(for:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createpaddingcontainer(for:)-kitc"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/padding(_:)": {
+  "abstract" : [
+    {
+      "text" : "Adds a specific padding amount to each edge of this view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "padding"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "padding(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view\/padding(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/padding(_:_:)": {
+  "abstract" : [
+    {
+      "text" : "Adds an equal padding amount to specific edges of this view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "padding"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4EdgeO",
+      "text" : "Edge"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4EdgeO3SetV",
+      "text" : "Set"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "padding(_:_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view\/padding(_:_:)"
 }
 }
 }

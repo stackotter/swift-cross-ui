@@ -193,7 +193,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Button": {
   "abstract" : [
     {
-      "text" : "A button view.",
+      "text" : "A control that initiates an action.",
       "type" : "text"
     }
   ],

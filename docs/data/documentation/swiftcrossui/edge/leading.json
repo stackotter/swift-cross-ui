@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "The leading edge (the left edge in left to right layouts).",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -106,7 +112,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge": {
   "abstract" : [
     {
-      "text" : "An enumeration to indicate one edge of a rectangle.",
+      "text" : "Indicates a specific edge of a rectangle.",
       "type" : "text"
     }
   ],
@@ -139,7 +145,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/leading": {
   "abstract" : [
-
+    {
+      "text" : "The leading edge (the left edge in left to right layouts).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

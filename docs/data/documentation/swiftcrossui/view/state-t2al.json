@@ -1,4 +1,27 @@
 {
+  "abstract" : [
+    {
+      "text" : "The views observed state. Any observed changes cause ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " to be recomputed,",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "and the view itself to be updated.",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -167,7 +190,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "text" : "A view that can be rendered by any backend.",
       "type" : "text"
     }
   ],
@@ -197,6 +220,51 @@
   "title" : "View",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/body": {
+  "abstract" : [
+    {
+      "text" : "The view’s contents.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "body"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Content"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "body",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view\/body"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/state-6dnw8": {
   "abstract" : [
@@ -266,7 +334,27 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/state-t2al": {
   "abstract" : [
-
+    {
+      "text" : "The views observed state. Any observed changes cause ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " to be recomputed,",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "and the view itself to be updated.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

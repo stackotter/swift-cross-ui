@@ -1,4 +1,34 @@
 {
+  "abstract" : [
+    {
+      "text" : "Sets the change handler of an editable text field (replace any existing change",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "handlers). The change handler is called whenever the displayed value changes.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "The backend shouldn’t wait until the user finishes typing to call the change handler;",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "it should allow live access to the value.",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -246,7 +276,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -277,7 +310,34 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofTextField:to:)-6bixo": {
   "abstract" : [
-
+    {
+      "text" : "Sets the change handler of an editable text field (replace any existing change",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "handlers). The change handler is called whenever the displayed value changes.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "The backend shouldn’t wait until the user finishes typing to call the change handler;",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "it should allow live access to the value.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

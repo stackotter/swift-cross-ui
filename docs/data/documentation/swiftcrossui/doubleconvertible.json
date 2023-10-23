@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "A value convertible to and from a ",
+      "type" : "text"
+    },
+    {
+      "code" : "Double",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".`",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -124,7 +138,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/DoubleConvertible": {
   "abstract" : [
-
+    {
+      "text" : "A value convertible to and from a ",
+      "type" : "text"
+    },
+    {
+      "code" : "Double",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".`",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -155,7 +180,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/DoubleConvertible/doubleRepresentation": {
   "abstract" : [
-
+    {
+      "text" : "Converts the value to a ",
+      "type" : "text"
+    },
+    {
+      "code" : "Double",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".`",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -190,7 +226,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/DoubleConvertible/init(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Creates a value from a ",
+      "type" : "text"
+    },
+    {
+      "code" : "Double",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".`",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

@@ -1,4 +1,35 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates an editable text field with a placeholder label and change handler. The",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "change handler is called whenever the displayed value changes. Predominantly",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -274,7 +305,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -406,7 +440,35 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextField(content:placeholder:onChange:)-7zu87": {
   "abstract" : [
-
+    {
+      "text" : "Creates an editable text field with a placeholder label and change handler. The",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "change handler is called whenever the displayed value changes. Predominantly",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -506,6 +568,40 @@
   "title" : "createTextField(content:placeholder:onChange:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createtextfield(content:placeholder:onchange:)-7zu87"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField": {
+  "abstract" : [
+    {
+      "text" : "A control that displays an editable text interface.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TextField"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TextField"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TextField",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/textfield"
 }
 }
 }

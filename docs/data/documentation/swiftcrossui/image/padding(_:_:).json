@@ -241,7 +241,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge": {
   "abstract" : [
     {
-      "text" : "An enumeration to indicate one edge of a rectangle.",
+      "text" : "Indicates a specific edge of a rectangle.",
       "type" : "text"
     }
   ],
@@ -309,7 +309,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Image": {
   "abstract" : [
     {
-      "text" : "An image view.",
+      "text" : "A view that displays an image.",
       "type" : "text"
     }
   ],
@@ -426,7 +426,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "text" : "A view that can be rendered by any backend.",
       "type" : "text"
     }
   ],

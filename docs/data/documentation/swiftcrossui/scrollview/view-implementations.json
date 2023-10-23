@@ -40,12 +40,14 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/asWidget(_:backend:)-63mth",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/asWidget(_:backend:)-521v4",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/children(backend:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/frame(minWidth:minHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/padding(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/padding(_:_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/update(_:children:backend:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/update(_:children:backend:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/updateChildren(_:backend:)"
       ],
       "title" : "Instance Methods"
     }
@@ -124,7 +126,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scrollview"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/asWidget(_:backend:)-63mth": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/asWidget(_:backend:)-521v4": {
   "abstract" : [
 
   ],
@@ -155,23 +157,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Children"
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
     },
     {
       "kind" : "text",
@@ -206,12 +193,70 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/asWidget(_:backend:)-63mth",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/asWidget(_:backend:)-521v4",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/scrollview\/aswidget(_:backend:)-63mth"
+  "url" : "\/documentation\/swiftcrossui\/scrollview\/aswidget(_:backend:)-521v4"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/children(backend:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "children"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/children(backend:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "children(backend:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scrollview\/children(backend:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/foregroundColor(_:)": {
   "abstract" : [
@@ -270,7 +315,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/frame(minWidth:minHeight:)": {
   "abstract" : [
     {
-      "text" : "Positions this view within an invisible frame having the specified size constraints.",
+      "text" : "Positions this view within an invisible frame having the specified minimum size constraints.",
       "type" : "text"
     }
   ],
@@ -593,23 +638,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Children"
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
     },
     {
       "kind" : "text",
@@ -638,6 +668,68 @@
   "title" : "update(_:children:backend:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scrollview\/update(_:children:backend:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/updateChildren(_:backend:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/updateChildren(_:backend:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "updateChildren(_:backend:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scrollview\/updatechildren(_:backend:)"
 }
 }
 }

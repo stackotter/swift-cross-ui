@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Sets the contents of the table cell at the given position in a table.",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -277,7 +283,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -402,7 +411,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setCell(at:inTable:to:)-3gjpn": {
   "abstract" : [
-
+    {
+      "text" : "Sets the contents of the table cell at the given position in a table.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

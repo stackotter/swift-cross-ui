@@ -40,12 +40,14 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/asWidget(_:backend:)-8ffdo",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/asWidget(_:backend:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/children(backend:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/frame(minWidth:minHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/padding(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/padding(_:_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/update(_:children:backend:)-4e81x"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/update(_:children:backend:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/updateChildren(_:backend:)"
       ],
       "title" : "Instance Methods"
     }
@@ -80,7 +82,19 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView": {
   "abstract" : [
-
+    {
+      "text" : "A view used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " to support if\/else conditional statements.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -109,7 +123,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/eitherview"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView/asWidget(_:backend:)-8ffdo": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView/asWidget(_:backend:)": {
   "abstract" : [
 
   ],
@@ -140,23 +154,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Children"
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
     },
     {
       "kind" : "text",
@@ -191,12 +190,70 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/asWidget(_:backend:)-8ffdo",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/asWidget(_:backend:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/eitherview\/aswidget(_:backend:)-8ffdo"
+  "url" : "\/documentation\/swiftcrossui\/eitherview\/aswidget(_:backend:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView/children(backend:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "children"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/children(backend:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "children(backend:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/eitherview\/children(backend:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView/foregroundColor(_:)": {
   "abstract" : [
@@ -255,7 +312,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView/frame(minWidth:minHeight:)": {
   "abstract" : [
     {
-      "text" : "Positions this view within an invisible frame having the specified size constraints.",
+      "text" : "Positions this view within an invisible frame having the specified minimum size constraints.",
       "type" : "text"
     }
   ],
@@ -523,7 +580,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/eitherview\/state"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView/update(_:children:backend:)-4e81x": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView/update(_:children:backend:)": {
   "abstract" : [
 
   ],
@@ -578,23 +635,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Children"
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
     },
     {
       "kind" : "text",
@@ -617,12 +659,116 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/update(_:children:backend:)-4e81x",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/update(_:children:backend:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/eitherview\/update(_:children:backend:)-4e81x"
+  "url" : "\/documentation\/swiftcrossui\/eitherview\/update(_:children:backend:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView/updateChildren(_:backend:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/updateChildren(_:backend:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "updateChildren(_:backend:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/eitherview\/updatechildren(_:backend:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewBuilder": {
+  "abstract" : [
+    {
+      "text" : "A result builder used to compose views together into composite views in",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "a declarative manner.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewBuilder"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewBuilder"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewBuilder",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewbuilder"
 }
 }
 }

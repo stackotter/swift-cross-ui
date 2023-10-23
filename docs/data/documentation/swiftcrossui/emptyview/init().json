@@ -1,0 +1,248 @@
+{
+  "abstract" : [
+    {
+      "text" : "Creates a placeholder view (will crash if used in a ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " that doesn’t override the default",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "widget creation code, not intended for regular use).",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView\/init()"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:12SwiftCrossUI9EmptyViewVACycfc",
+    "fragments" : [
+      {
+        "kind" : "identifier",
+        "text" : "init"
+      },
+      {
+        "kind" : "text",
+        "text" : "()"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Initializer",
+    "symbolKind" : "init",
+    "title" : "init()"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "Linux"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "init"
+            },
+            {
+              "kind" : "text",
+              "text" : "()"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/emptyview\/init()"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyView": {
+  "abstract" : [
+    {
+      "text" : "A placeholder view used by elementary ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " implementations which don’t have bodies. Fatally",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "crashes if rendered.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EmptyView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EmptyView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EmptyView",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyview"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyView/init()": {
+  "abstract" : [
+    {
+      "text" : "Creates a placeholder view (will crash if used in a ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " that doesn’t override the default",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "widget creation code, not intended for regular use).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "()"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView\/init()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init()",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyview\/init()"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
+  "abstract" : [
+    {
+      "text" : "A view that can be rendered by any backend.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "View"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "View",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view"
+}
+}
+}

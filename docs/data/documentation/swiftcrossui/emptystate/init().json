@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates an empty state.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -131,7 +137,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyState/init()": {
   "abstract" : [
-
+    {
+      "text" : "Creates an empty state.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

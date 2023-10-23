@@ -41,11 +41,13 @@
       "generated" : true,
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink\/asWidget(_:backend:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink\/children(backend:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink\/frame(minWidth:minHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink\/padding(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink\/padding(_:_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink\/update(_:children:backend:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink\/update(_:children:backend:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink\/updateChildren(_:backend:)"
       ],
       "title" : "Instance Methods"
     }
@@ -143,23 +145,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Children"
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
     },
     {
       "kind" : "text",
@@ -200,6 +187,64 @@
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/navigationlink\/aswidget(_:backend:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationLink/children(backend:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "children"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink\/children(backend:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "children(backend:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationlink\/children(backend:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationLink/foregroundColor(_:)": {
   "abstract" : [
@@ -258,7 +303,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationLink/frame(minWidth:minHeight:)": {
   "abstract" : [
     {
-      "text" : "Positions this view within an invisible frame having the specified size constraints.",
+      "text" : "Positions this view within an invisible frame having the specified minimum size constraints.",
       "type" : "text"
     }
   ],
@@ -581,23 +626,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Children"
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
     },
     {
       "kind" : "text",
@@ -626,6 +656,68 @@
   "title" : "update(_:children:backend:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/navigationlink\/update(_:children:backend:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationLink/updateChildren(_:backend:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink\/updateChildren(_:backend:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "updateChildren(_:backend:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationlink\/updatechildren(_:backend:)"
 }
 }
 }

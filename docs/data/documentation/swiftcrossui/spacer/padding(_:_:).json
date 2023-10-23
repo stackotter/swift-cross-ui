@@ -241,7 +241,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge": {
   "abstract" : [
     {
-      "text" : "An enumeration to indicate one edge of a rectangle.",
+      "text" : "Indicates a specific edge of a rectangle.",
       "type" : "text"
     }
   ],
@@ -309,7 +309,15 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer": {
   "abstract" : [
     {
-      "text" : "A flexible space that expands along the major axis of its containing stack layout, or on both axes if not contained in a stack.",
+      "text" : "A flexible space that expands along the major axis of its containing",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "stack layout, or on both axes if not contained in a stack.",
       "type" : "text"
     }
   ],
@@ -426,7 +434,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "text" : "A view that can be rendered by any backend.",
       "type" : "text"
     }
   ],

@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "AppBackend.show(_:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -163,7 +177,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -194,7 +211,27 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/show(_:)-3myqx": {
   "abstract" : [
-
+    {
+      "text" : "Shows a widget after it got created or updated (may be unnecessary for some backends).",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Predominantly used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " after propagating updates.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -283,6 +320,40 @@
   "title" : "show(_:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/show(_:)-8ul44"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode": {
+  "abstract" : [
+    {
+      "text" : "A view graph node storing a view, its widget, and its children (likely a collection of more nodes).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNode"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNode"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNode",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnode"
 }
 }
 }

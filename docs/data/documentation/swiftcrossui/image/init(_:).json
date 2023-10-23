@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates an image displaying an image file.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -132,7 +138,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Image": {
   "abstract" : [
     {
-      "text" : "An image view.",
+      "text" : "A view that displays an image.",
       "type" : "text"
     }
   ],
@@ -165,7 +171,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Image/init(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Creates an image displaying an image file.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

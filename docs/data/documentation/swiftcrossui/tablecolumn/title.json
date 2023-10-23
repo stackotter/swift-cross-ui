@@ -123,7 +123,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn": {
   "abstract" : [
-
+    {
+      "text" : "A column that displays a view for each row in a table.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

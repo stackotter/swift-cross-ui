@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Creates a new button.",
+      "text" : "Creates a button that displays a custom label.",
       "type" : "text"
     }
   ],
@@ -180,7 +180,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Button": {
   "abstract" : [
     {
-      "text" : "A button view.",
+      "text" : "A control that initiates an action.",
       "type" : "text"
     }
   ],
@@ -214,7 +214,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Button/init(_:action:)": {
   "abstract" : [
     {
-      "text" : "Creates a new button.",
+      "text" : "Creates a button that displays a custom label.",
       "type" : "text"
     }
   ],

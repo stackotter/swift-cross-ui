@@ -187,7 +187,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color": {
   "abstract" : [
-
+    {
+      "text" : "An RGBA representation of a color.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -218,7 +221,19 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView": {
   "abstract" : [
-
+    {
+      "text" : "A view used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " to support if\/else conditional statements.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -315,7 +330,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "text" : "A view that can be rendered by any backend.",
       "type" : "text"
     }
   ],
@@ -345,6 +360,48 @@
   "title" : "View",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewBuilder": {
+  "abstract" : [
+    {
+      "text" : "A result builder used to compose views together into composite views in",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "a declarative manner.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewBuilder"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewBuilder"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewBuilder",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewbuilder"
 }
 }
 }

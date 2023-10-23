@@ -181,7 +181,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/App/Backend": {
   "abstract" : [
-
+    {
+      "text" : "The backend used to render the app.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -216,7 +219,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/App/Content": {
   "abstract" : [
-
+    {
+      "text" : "The app’s top-level content.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -237,8 +243,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI11ViewContentP",
-      "text" : "ViewContent"
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/Content",
@@ -251,7 +257,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/App/State-swift.associatedtype": {
   "abstract" : [
-
+    {
+      "text" : "The app’s observed state.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -287,7 +296,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/App/body": {
   "abstract" : [
     {
-      "text" : "The contents of the application’s main window.",
+      "text" : "The contents of the app’s main window.",
       "type" : "text"
     }
   ],
@@ -370,7 +379,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/App/init()": {
   "abstract" : [
     {
-      "text" : "Creates the application.",
+      "text" : "Creates an instance of the app.",
       "type" : "text"
     }
   ],

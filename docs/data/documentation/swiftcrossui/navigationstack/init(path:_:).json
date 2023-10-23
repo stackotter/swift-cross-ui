@@ -126,10 +126,10 @@
               "text" : "@"
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder",
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
               "kind" : "attribute",
-              "preciseIdentifier" : "s:12SwiftCrossUI18ViewContentBuilderV",
-              "text" : "ViewContentBuilder"
+              "preciseIdentifier" : "s:12SwiftCrossUI11ViewBuilderV",
+              "text" : "ViewBuilder"
             },
             {
               "kind" : "text",
@@ -252,7 +252,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Binding": {
   "abstract" : [
-
+    {
+      "text" : "A value that can read and write a value owned by a source of truth. Can be thought of",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "as a writable reference to the value.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -407,9 +418,20 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/navigationstack\/init(path:_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContentBuilder": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewBuilder": {
   "abstract" : [
-
+    {
+      "text" : "A result builder used to compose views together into composite views in",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "a declarative manner.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -422,21 +444,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "ViewContentBuilder"
+      "text" : "ViewBuilder"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "ViewContentBuilder"
+      "text" : "ViewBuilder"
     }
   ],
   "role" : "symbol",
-  "title" : "ViewContentBuilder",
+  "title" : "ViewBuilder",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewcontentbuilder"
+  "url" : "\/documentation\/swiftcrossui\/viewbuilder"
 }
 }
 }

@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Creates the application.",
+      "text" : "Creates an instance of the app.",
       "type" : "text"
     }
   ],
@@ -139,7 +139,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/App/init()": {
   "abstract" : [
     {
-      "text" : "Creates the application.",
+      "text" : "Creates an instance of the app.",
       "type" : "text"
     }
   ],

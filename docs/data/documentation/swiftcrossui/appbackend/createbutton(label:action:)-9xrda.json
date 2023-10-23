@@ -1,4 +1,27 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a labelled button with an action triggered on click. Predominantly used",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -222,7 +245,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -328,7 +354,27 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createButton(label:action:)-9xrda": {
   "abstract" : [
-
+    {
+      "text" : "Creates a labelled button with an action triggered on click. Predominantly used",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -402,6 +448,40 @@
   "title" : "createButton(label:action:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createbutton(label:action:)-9xrda"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Button": {
+  "abstract" : [
+    {
+      "text" : "A control that initiates an action.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Button"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Button"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Button",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/button"
 }
 }
 }

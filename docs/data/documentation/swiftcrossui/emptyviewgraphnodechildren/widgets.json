@@ -146,7 +146,34 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyWidget": {
   "abstract" : [
-
+    {
+      "text" : "A type-erased widget which can be stored without having to propagate",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "the selected backend type through the type system of the whole view graph",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "system of types, which would leak it back into user view implementations",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "making the backend hard to switch for developers.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -177,7 +204,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewGraphNodeChildren": {
   "abstract" : [
-
+    {
+      "text" : "The children of a node with no children.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

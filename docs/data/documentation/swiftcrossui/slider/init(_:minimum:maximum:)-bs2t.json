@@ -255,7 +255,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Binding": {
   "abstract" : [
-
+    {
+      "text" : "A value that can read and write a value owned by a source of truth. Can be thought of",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "as a writable reference to the value.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -287,7 +298,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider": {
   "abstract" : [
     {
-      "text" : "A slider that allows a user to choose a numeric value.",
+      "text" : "A control for selecting a value from a bounded range of numerical values.",
       "type" : "text"
     }
   ],

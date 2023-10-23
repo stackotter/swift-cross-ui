@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Sets whether a spacer should expand along the horizontal axis.",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -220,7 +226,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -321,7 +330,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setExpandHorizontally(ofSpacer:to:)-4d6zt": {
   "abstract" : [
-
+    {
+      "text" : "Sets whether a spacer should expand along the horizontal axis.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

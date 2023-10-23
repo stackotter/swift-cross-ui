@@ -40,12 +40,14 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/asWidget(_:backend:)-386ps",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/asWidget(_:backend:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/children(backend:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/frame(minWidth:minHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/padding(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/padding(_:_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/update(_:children:backend:)-5pwd6"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/update(_:children:backend:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/updateChildren(_:backend:)"
       ],
       "title" : "Instance Methods"
     }
@@ -81,7 +83,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker": {
   "abstract" : [
     {
-      "text" : "A picker view.",
+      "text" : "A control for selecting from a set of values.",
       "type" : "text"
     }
   ],
@@ -112,7 +114,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/picker"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/asWidget(_:backend:)-386ps": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/asWidget(_:backend:)": {
   "abstract" : [
 
   ],
@@ -143,23 +145,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Children"
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
     },
     {
       "kind" : "text",
@@ -194,12 +181,70 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/asWidget(_:backend:)-386ps",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/asWidget(_:backend:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/picker\/aswidget(_:backend:)-386ps"
+  "url" : "\/documentation\/swiftcrossui\/picker\/aswidget(_:backend:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/children(backend:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "children"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/children(backend:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "children(backend:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/picker\/children(backend:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/foregroundColor(_:)": {
   "abstract" : [
@@ -258,7 +303,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/frame(minWidth:minHeight:)": {
   "abstract" : [
     {
-      "text" : "Positions this view within an invisible frame having the specified size constraints.",
+      "text" : "Positions this view within an invisible frame having the specified minimum size constraints.",
       "type" : "text"
     }
   ],
@@ -526,7 +571,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/picker\/state"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/update(_:children:backend:)-5pwd6": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/update(_:children:backend:)": {
   "abstract" : [
 
   ],
@@ -581,23 +626,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Children"
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
     },
     {
       "kind" : "text",
@@ -620,12 +650,74 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/update(_:children:backend:)-5pwd6",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/update(_:children:backend:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/picker\/update(_:children:backend:)-5pwd6"
+  "url" : "\/documentation\/swiftcrossui\/picker\/update(_:children:backend:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/updateChildren(_:backend:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/updateChildren(_:backend:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "updateChildren(_:backend:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/picker\/updatechildren(_:backend:)"
 }
 }
 }

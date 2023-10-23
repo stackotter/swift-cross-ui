@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Creates a new text view with the given content.",
+      "text" : "Creates a new text view that displays a string with configurable wrapping.",
       "type" : "text"
     }
   ],
@@ -206,7 +206,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/init(_:wrap:)": {
   "abstract" : [
     {
-      "text" : "Creates a new text view with the given content.",
+      "text" : "Creates a new text view that displays a string with configurable wrapping.",
       "type" : "text"
     }
   ],

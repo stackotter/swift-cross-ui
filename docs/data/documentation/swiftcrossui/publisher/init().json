@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a new independent publisher.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -97,7 +103,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher": {
   "abstract" : [
-
+    {
+      "text" : "A type that produces valueless observations.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -128,7 +137,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher/init()": {
   "abstract" : [
-
+    {
+      "text" : "Creates a new independent publisher.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

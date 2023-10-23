@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "A result builder for constructing a table’s columns.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -143,7 +149,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TableBuilder": {
   "abstract" : [
-
+    {
+      "text" : "A result builder for constructing a table’s columns.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

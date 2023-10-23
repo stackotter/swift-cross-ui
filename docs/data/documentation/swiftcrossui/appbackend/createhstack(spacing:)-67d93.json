@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "AppBackend.createHStack(spacing:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -173,7 +187,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -204,7 +221,27 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createHStack(spacing:)-4eo9k": {
   "abstract" : [
-
+    {
+      "text" : "Creates a horizontal container with the specified spacing between children.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Predominantly used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".`",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -319,6 +356,40 @@
   "title" : "createHStack(spacing:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createhstack(spacing:)-67d93"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack": {
+  "abstract" : [
+    {
+      "text" : "A view that arranges its subviews horizontally.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "HStack"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "HStack"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "HStack",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hstack"
 }
 }
 }

@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Registers a handler to observe future events.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -174,7 +180,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Cancellable": {
   "abstract" : [
-
+    {
+      "text" : "Will run a ‘cancel’ action when the cancellable falls out of scope (gets",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "deinit’d by ARC). Protects against calling the action twice.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -205,7 +222,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher": {
   "abstract" : [
-
+    {
+      "text" : "A type that produces valueless observations.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -236,7 +256,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher/observe(with:)": {
   "abstract" : [
-
+    {
+      "text" : "Registers a handler to observe future events.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

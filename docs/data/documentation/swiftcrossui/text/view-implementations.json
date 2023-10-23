@@ -40,12 +40,14 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/asWidget(_:backend:)-39dka",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/asWidget(_:backend:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/children(backend:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/frame(minWidth:minHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/padding(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/padding(_:_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/update(_:children:backend:)-24ea3"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/update(_:children:backend:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/updateChildren(_:backend:)"
       ],
       "title" : "Instance Methods"
     }
@@ -112,7 +114,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/text"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/asWidget(_:backend:)-39dka": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/asWidget(_:backend:)": {
   "abstract" : [
 
   ],
@@ -143,23 +145,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Children"
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
     },
     {
       "kind" : "text",
@@ -194,12 +181,70 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/asWidget(_:backend:)-39dka",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/asWidget(_:backend:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/text\/aswidget(_:backend:)-39dka"
+  "url" : "\/documentation\/swiftcrossui\/text\/aswidget(_:backend:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/children(backend:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "children"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/children(backend:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "children(backend:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/text\/children(backend:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/foregroundColor(_:)": {
   "abstract" : [
@@ -258,7 +303,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/frame(minWidth:minHeight:)": {
   "abstract" : [
     {
-      "text" : "Positions this view within an invisible frame having the specified size constraints.",
+      "text" : "Positions this view within an invisible frame having the specified minimum size constraints.",
       "type" : "text"
     }
   ],
@@ -526,7 +571,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/text\/state"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/update(_:children:backend:)-24ea3": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/update(_:children:backend:)": {
   "abstract" : [
 
   ],
@@ -581,23 +626,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Children"
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
     },
     {
       "kind" : "text",
@@ -620,12 +650,74 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/update(_:children:backend:)-24ea3",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/update(_:children:backend:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/text\/update(_:children:backend:)-24ea3"
+  "url" : "\/documentation\/swiftcrossui\/text\/update(_:children:backend:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Text/updateChildren(_:backend:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text\/updateChildren(_:backend:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "updateChildren(_:backend:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/text\/updatechildren(_:backend:)"
 }
 }
 }

@@ -1,15 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "A vertically oriented container. Similar to a ",
-      "type" : "text"
-    },
-    {
-      "code" : "VStack",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " in SwiftUI.",
+      "text" : "A view that arranges its subviews vertically.",
       "type" : "text"
     }
   ],
@@ -109,10 +101,10 @@
               "text" : " : "
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI11ViewContentP",
-              "text" : "ViewContent"
+              "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+              "text" : "View"
             }
           ]
         }
@@ -153,8 +145,8 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/asWidget(_:backend:)-9ag7w",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/update(_:children:backend:)-17bvj"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/asWidget(_:backend:)-xlz8",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/update(_:children:backend:)-3ua60"
       ],
       "title" : "Instance Methods"
     },
@@ -197,15 +189,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack": {
   "abstract" : [
     {
-      "text" : "A vertically oriented container. Similar to a ",
-      "type" : "text"
-    },
-    {
-      "code" : "VStack",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " in SwiftUI.",
+      "text" : "A view that arranges its subviews vertically.",
       "type" : "text"
     }
   ],
@@ -247,7 +231,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/vstack\/view-implementations"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/asWidget(_:backend:)-9ag7w": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/asWidget(_:backend:)-xlz8": {
   "abstract" : [
 
   ],
@@ -278,15 +262,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Children"
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
     },
     {
       "kind" : "text",
@@ -321,12 +298,12 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/asWidget(_:backend:)-9ag7w",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/asWidget(_:backend:)-xlz8",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/vstack\/aswidget(_:backend:)-9ag7w"
+  "url" : "\/documentation\/swiftcrossui\/vstack\/aswidget(_:backend:)-xlz8"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/body": {
   "abstract" : [
@@ -364,7 +341,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/init(spacing:_:)": {
   "abstract" : [
     {
-      "text" : "Creates a new VStack.",
+      "text" : "Creates a horizontal stack with the given spacing.",
       "type" : "text"
     }
   ],
@@ -410,7 +387,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/vstack\/init(spacing:_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/update(_:children:backend:)-17bvj": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/update(_:children:backend:)-3ua60": {
   "abstract" : [
 
   ],
@@ -465,15 +442,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Content"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Children"
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
     },
     {
       "kind" : "text",
@@ -496,17 +466,17 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/update(_:children:backend:)-17bvj",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/update(_:children:backend:)-3ua60",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "update(_:children:backend:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/vstack\/update(_:children:backend:)-17bvj"
+  "url" : "\/documentation\/swiftcrossui\/vstack\/update(_:children:backend:)-3ua60"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "text" : "A view that can be rendered by any backend.",
       "type" : "text"
     }
   ],
@@ -536,37 +506,6 @@
   "title" : "View",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "protocol"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewContent"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewContent"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewContent",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewcontent"
 }
 }
 }

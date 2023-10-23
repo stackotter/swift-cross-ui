@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "A helper to add multiple type-erased children to a layout-transparent container",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "at once. Will crash if any of the widgets are for a different backend.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -205,7 +219,34 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyWidget": {
   "abstract" : [
-
+    {
+      "text" : "A type-erased widget which can be stored without having to propagate",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "the selected backend type through the type system of the whole view graph",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "system of types, which would leak it back into user view implementations",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "making the backend hard to switch for developers.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -236,7 +277,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -267,7 +311,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toPassthroughVStack:)-8xh9g": {
   "abstract" : [
-
+    {
+      "text" : "A helper to add multiple type-erased children to a layout-transparent container",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "at once. Will crash if any of the widgets are for a different backend.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

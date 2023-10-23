@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a split view containing two children visible side by side.",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -202,6 +208,42 @@
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "discussion",
+          "level" : 2,
+          "text" : "Discussion",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "If you need to modify the leading and trailing children after creation nest them",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "inside another container such as a VStack (avoiding update methods makes maintaining",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "a multitude of backends a bit easier).",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
     }
   ],
   "schemaVersion" : {
@@ -242,7 +284,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -362,7 +407,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSplitView(leadingChild:trailingChild:)-3iqgg": {
   "abstract" : [
-
+    {
+      "text" : "Creates a split view containing two children visible side by side.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "The app’s observed state.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -159,7 +165,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/App/State-swift.associatedtype": {
   "abstract" : [
-
+    {
+      "text" : "The app’s observed state.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

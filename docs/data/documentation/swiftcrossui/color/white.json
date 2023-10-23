@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Pure white.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -140,7 +146,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color": {
   "abstract" : [
-
+    {
+      "text" : "An RGBA representation of a color.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -171,7 +180,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/white": {
   "abstract" : [
-
+    {
+      "text" : "Pure white.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

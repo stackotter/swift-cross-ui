@@ -1,4 +1,35 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a slider for choosing a numerical value from a range with a limit",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "on the number of decimal places displayed and a change handler. Predominantly used",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -342,7 +373,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -373,7 +407,35 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSlider(minimum:maximum:value:decimalPlaces:onChange:)-3a7e2": {
   "abstract" : [
-
+    {
+      "text" : "Creates a slider for choosing a numerical value from a range with a limit",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "on the number of decimal places displayed and a change handler. Predominantly used",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -642,6 +704,40 @@
   "title" : "createSlider(minimum:maximum:value:decimalPlaces:onChange:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createslider(minimum:maximum:value:decimalplaces:onchange:)-7v1dh"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider": {
+  "abstract" : [
+    {
+      "text" : "A control for selecting a value from a bounded range of numerical values.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Slider"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Slider"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Slider",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/slider"
 }
 }
 }

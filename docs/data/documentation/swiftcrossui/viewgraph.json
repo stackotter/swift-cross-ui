@@ -1,4 +1,34 @@
 {
+  "abstract" : [
+    {
+      "text" : "The root of the view graph which shadows the app’s view structure with extra metadata,",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "cross-update state persistence, and behind the scenes backend widget handling. This is",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "where state updates are propagated through the view hierarchy, and also where view bodies",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "get recomputed.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -204,7 +234,34 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraph": {
   "abstract" : [
-
+    {
+      "text" : "The root of the view graph which shadows the app’s view structure with extra metadata,",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "cross-update state persistence, and behind the scenes backend widget handling. This is",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "where state updates are propagated through the view hierarchy, and also where view bodies",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "get recomputed.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -235,7 +292,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraph/RootNode-swift.typealias": {
   "abstract" : [
-
+    {
+      "text" : "The view graph’s",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -266,7 +326,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraph/init(for:backend:)": {
   "abstract" : [
-
+    {
+      "text" : "Creates a view graph for an app along with an instance of a compatible backend.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -327,7 +390,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraph/rootNode-swift.property": {
   "abstract" : [
-
+    {
+      "text" : "The root node storing the node for the app’s body.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -378,7 +444,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraph/update()": {
   "abstract" : [
-
+    {
+      "text" : "Recomputes the entire UI (e.g. due to the app’s state updating).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

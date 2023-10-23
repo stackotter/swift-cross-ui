@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "The alpha component (from 0 to 1).",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -123,7 +129,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color": {
   "abstract" : [
-
+    {
+      "text" : "An RGBA representation of a color.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -154,7 +163,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/alpha": {
   "abstract" : [
-
+    {
+      "text" : "The alpha component (from 0 to 1).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

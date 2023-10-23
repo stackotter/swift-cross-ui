@@ -215,7 +215,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TableBuilder": {
   "abstract" : [
-
+    {
+      "text" : "A result builder for constructing a table’s columns.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -317,7 +320,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn": {
   "abstract" : [
-
+    {
+      "text" : "A column that displays a view for each row in a table.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

@@ -1,4 +1,26 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a single-child container which can have size constraints. Predominantly used to",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "implement the ",
+      "type" : "text"
+    },
+    {
+      "code" : "View\/frame(minWidth:maxWidth:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " modifier.",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -270,7 +292,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -301,7 +326,26 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createFrameContainer(for:minWidth:minHeight:)-39a8o": {
   "abstract" : [
-
+    {
+      "text" : "Creates a single-child container which can have size constraints. Predominantly used to",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "implement the ",
+      "type" : "text"
+    },
+    {
+      "code" : "View\/frame(minWidth:maxWidth:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " modifier.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

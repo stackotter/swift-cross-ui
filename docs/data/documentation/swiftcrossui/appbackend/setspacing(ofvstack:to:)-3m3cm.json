@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Sets the spacing between children of a vertical container.",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -220,7 +226,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -251,7 +260,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setSpacing(ofVStack:to:)-3m3cm": {
   "abstract" : [
-
+    {
+      "text" : "Sets the spacing between children of a vertical container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

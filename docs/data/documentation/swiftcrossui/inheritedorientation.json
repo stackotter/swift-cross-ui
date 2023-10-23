@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "The layout orientation inherited by a widget from its nearest oriented parent.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -145,9 +151,46 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack": {
+  "abstract" : [
+    {
+      "text" : "A view that arranges its subviews horizontally.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "HStack"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "HStack"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "HStack",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hstack"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/InheritedOrientation": {
   "abstract" : [
-
+    {
+      "text" : "The layout orientation inherited by a widget from its nearest oriented parent.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -189,7 +232,19 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/InheritedOrientation/horizontal": {
   "abstract" : [
-
+    {
+      "text" : "The layout orientation used by the likes of ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -214,7 +269,19 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/InheritedOrientation/vertical": {
   "abstract" : [
-
+    {
+      "text" : "The layout orientation used by the likes of ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " (the default for most containers).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -236,6 +303,40 @@
   "title" : "InheritedOrientation.vertical",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/inheritedorientation\/vertical"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack": {
+  "abstract" : [
+    {
+      "text" : "A view that arranges its subviews vertically.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "VStack"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "VStack"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "VStack",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/vstack"
 }
 }
 }

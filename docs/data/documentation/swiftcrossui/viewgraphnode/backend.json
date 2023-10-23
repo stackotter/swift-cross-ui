@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "The backend used to create the view’s widget.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -121,7 +127,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode": {
   "abstract" : [
-
+    {
+      "text" : "A view graph node storing a view, its widget, and its children (likely a collection of more nodes).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -152,7 +161,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/backend": {
   "abstract" : [
-
+    {
+      "text" : "The backend used to create the view’s widget.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

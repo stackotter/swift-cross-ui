@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a labelled column that displays a string property.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -207,7 +213,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn": {
   "abstract" : [
-
+    {
+      "text" : "A column that displays a view for each row in a table.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -238,7 +247,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn/init(_:value:)-33ros": {
   "abstract" : [
-
+    {
+      "text" : "Creates a labelled column that displays a string property.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

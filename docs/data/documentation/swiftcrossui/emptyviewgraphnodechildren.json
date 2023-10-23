@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "The children of a node with no children.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -93,7 +99,7 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren\/init(from:backend:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren\/init()"
       ],
       "title" : "Initializers"
     },
@@ -104,10 +110,11 @@
       "title" : "Instance Properties"
     },
     {
+      "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren\/update(with:backend:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren\/ViewGraphNodeChildren-Implementations"
       ],
-      "title" : "Instance Methods"
+      "title" : "Default Implementations"
     }
   ],
   "variants" : [
@@ -140,7 +147,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewGraphNodeChildren": {
   "abstract" : [
-
+    {
+      "text" : "The children of a node with no children.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -169,9 +179,23 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewGraphNodeChildren/init(from:backend:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewGraphNodeChildren/ViewGraphNodeChildren-Implementations": {
   "abstract" : [
 
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren\/ViewGraphNodeChildren-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "ViewGraphNodeChildren Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren\/viewgraphnodechildren-implementations"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewGraphNodeChildren/init()": {
+  "abstract" : [
+    {
+      "text" : "Creates an empty collection of children for a node with no children.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -180,126 +204,15 @@
     },
     {
       "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "genericParameter",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ">("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "from"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI16EmptyViewContentV",
-      "text" : "EmptyViewContent"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
+      "text" : "()"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren\/init(from:backend:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren\/init()",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "init(from:backend:)",
+  "title" : "init()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren\/init(from:backend:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewGraphNodeChildren/update(with:backend:)": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "update"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "genericParameter",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ">("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "with"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI16EmptyViewContentV",
-      "text" : "EmptyViewContent"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren\/update(with:backend:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "update(with:backend:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren\/update(with:backend:)"
+  "url" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren\/init()"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewGraphNodeChildren/widgets": {
   "abstract" : [
@@ -339,9 +252,177 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren\/widgets"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach": {
+  "abstract" : [
+    {
+      "text" : "A view that displays a variable amount of children.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ForEach"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ForEach"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ForEach",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/foreach"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView1": {
+  "abstract" : [
+    {
+      "text" : "A view with exactly 1 children. Autogenerated as an alternative to Swift’s not yet",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "production ready variadic generics.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "VariadicView1"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "VariadicView1"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "VariadicView1",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/variadicview1"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView2": {
+  "abstract" : [
+    {
+      "text" : "A view with exactly 2 children. Autogenerated as an alternative to Swift’s not yet",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "production ready variadic generics.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "VariadicView2"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView2",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "VariadicView2"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "VariadicView2",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/variadicview2"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren": {
   "abstract" : [
-
+    {
+      "text" : "The children of a view graph node. This is implemented by a few different",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "types for various purposes. E.g. variable length with same-typed elements",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "(",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : "), and fixed length with distinctly-typed elements (",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ",",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView2",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ", etc).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

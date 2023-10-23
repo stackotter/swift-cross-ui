@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a color from its components with values between 0 and 1.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -233,7 +239,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color": {
   "abstract" : [
-
+    {
+      "text" : "An RGBA representation of a color.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -264,7 +273,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/init(_:_:_:_:)": {
   "abstract" : [
-
+    {
+      "text" : "Creates a color from its components with values between 0 and 1.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

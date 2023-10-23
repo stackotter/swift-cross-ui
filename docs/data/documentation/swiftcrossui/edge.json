@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "An enumeration to indicate one edge of a rectangle.",
+      "text" : "Indicates a specific edge of a rectangle.",
       "type" : "text"
     }
   ],
@@ -176,7 +176,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge": {
   "abstract" : [
     {
-      "text" : "An enumeration to indicate one edge of a rectangle.",
+      "text" : "Indicates a specific edge of a rectangle.",
       "type" : "text"
     }
   ],
@@ -265,7 +265,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/bottom": {
   "abstract" : [
-
+    {
+      "text" : "The bottom edge.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -328,7 +331,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/leading": {
   "abstract" : [
-
+    {
+      "text" : "The leading edge (the left edge in left to right layouts).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -353,7 +359,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/top": {
   "abstract" : [
-
+    {
+      "text" : "The top edge.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -378,7 +387,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/trailing": {
   "abstract" : [
-
+    {
+      "text" : "The trailing edge (the right edge in left to right layouts).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

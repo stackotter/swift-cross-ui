@@ -1,4 +1,58 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a binding with a custom getter and setter. To create a binding from",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "an observed state variable use its projected value instead: e.g. ",
+      "type" : "text"
+    },
+    {
+      "code" : "state.$value",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "will give you a binding for reading and writing ",
+      "type" : "text"
+    },
+    {
+      "code" : "state.value",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " (assuming that",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "code" : "state.value",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " is marked with ",
+      "type" : "text"
+    },
+    {
+      "code" : "@Observed",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ").",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -195,7 +249,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Binding": {
   "abstract" : [
-
+    {
+      "text" : "A value that can read and write a value owned by a source of truth. Can be thought of",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "as a writable reference to the value.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -226,7 +291,58 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Binding/init(get:set:)": {
   "abstract" : [
-
+    {
+      "text" : "Creates a binding with a custom getter and setter. To create a binding from",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "an observed state variable use its projected value instead: e.g. ",
+      "type" : "text"
+    },
+    {
+      "code" : "state.$value",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "will give you a binding for reading and writing ",
+      "type" : "text"
+    },
+    {
+      "code" : "state.value",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " (assuming that",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "code" : "state.value",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " is marked with ",
+      "type" : "text"
+    },
+    {
+      "code" : "@Observed",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ").",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

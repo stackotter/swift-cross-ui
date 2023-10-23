@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "AppBackend.createSpacer(expandHorizontally:expandVertically:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -207,7 +221,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -238,7 +255,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSpacer(expandHorizontally:expandVertically:)-3grgi": {
   "abstract" : [
-
+    {
+      "text" : "Creates contentless spacer that can expand along either axis or both.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

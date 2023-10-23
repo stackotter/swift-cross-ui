@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "AppBackend.getInheritedOrientation(of:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -190,7 +204,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -221,7 +238,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/getInheritedOrientation(of:)-36htc": {
   "abstract" : [
-
+    {
+      "text" : "Gets the orientation of a widget’s first oriented parent (if any).",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -347,7 +367,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/InheritedOrientation": {
   "abstract" : [
-
+    {
+      "text" : "The layout orientation inherited by a widget from its nearest oriented parent.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

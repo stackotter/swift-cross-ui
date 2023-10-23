@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a scrollable single-child container wrapping the given widget.",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -202,7 +208,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -233,7 +242,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createScrollContainer(for:)-1q6bx": {
   "abstract" : [
-
+    {
+      "text" : "Creates a scrollable single-child container wrapping the given widget.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

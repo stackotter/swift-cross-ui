@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Creates a new VStack.",
+      "text" : "Creates a horizontal stack with the given spacing.",
       "type" : "text"
     }
   ],
@@ -106,10 +106,10 @@
               "text" : "@"
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder",
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
               "kind" : "attribute",
-              "preciseIdentifier" : "s:12SwiftCrossUI18ViewContentBuilderV",
-              "text" : "ViewContentBuilder"
+              "preciseIdentifier" : "s:12SwiftCrossUI11ViewBuilderV",
+              "text" : "ViewBuilder"
             },
             {
               "kind" : "text",
@@ -184,15 +184,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack": {
   "abstract" : [
     {
-      "text" : "A vertically oriented container. Similar to a ",
-      "type" : "text"
-    },
-    {
-      "code" : "VStack",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " in SwiftUI.",
+      "text" : "A view that arranges its subviews vertically.",
       "type" : "text"
     }
   ],
@@ -226,7 +218,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/init(spacing:_:)": {
   "abstract" : [
     {
-      "text" : "Creates a new VStack.",
+      "text" : "Creates a horizontal stack with the given spacing.",
       "type" : "text"
     }
   ],
@@ -272,9 +264,20 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/vstack\/init(spacing:_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContentBuilder": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewBuilder": {
   "abstract" : [
-
+    {
+      "text" : "A result builder used to compose views together into composite views in",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "a declarative manner.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -287,21 +290,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "ViewContentBuilder"
+      "text" : "ViewBuilder"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "ViewContentBuilder"
+      "text" : "ViewBuilder"
     }
   ],
   "role" : "symbol",
-  "title" : "ViewContentBuilder",
+  "title" : "ViewBuilder",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewcontentbuilder"
+  "url" : "\/documentation\/swiftcrossui\/viewbuilder"
 }
 }
 }

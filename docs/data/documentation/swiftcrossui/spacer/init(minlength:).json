@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a spacer with a given minimum length along its axis or axes",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "of expansion.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -132,7 +146,15 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer": {
   "abstract" : [
     {
-      "text" : "A flexible space that expands along the major axis of its containing stack layout, or on both axes if not contained in a stack.",
+      "text" : "A flexible space that expands along the major axis of its containing",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "stack layout, or on both axes if not contained in a stack.",
       "type" : "text"
     }
   ],
@@ -165,7 +187,18 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/init(minLength:)": {
   "abstract" : [
-
+    {
+      "text" : "Creates a spacer with a given minimum length along its axis or axes",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "of expansion.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

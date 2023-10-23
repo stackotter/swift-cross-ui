@@ -1,4 +1,35 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a picker for selecting from a finite set of options (e.g. a radio button group,",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "a drop-down, a picker wheel). Predominantly used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ". The change handler is",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "called whenever a selection is made (even if the same option is picked again).",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -274,7 +305,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -305,7 +339,35 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPicker(options:selectedOption:onChange:)-215ms": {
   "abstract" : [
-
+    {
+      "text" : "Creates a picker for selecting from a finite set of options (e.g. a radio button group,",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "a drop-down, a picker wheel). Predominantly used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ". The change handler is",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "called whenever a selection is made (even if the same option is picked again).",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -506,6 +568,40 @@
   "title" : "createPicker(options:selectedOption:onChange:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createpicker(options:selectedoption:onchange:)-3jwzc"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker": {
+  "abstract" : [
+    {
+      "text" : "A control for selecting from a set of values.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Picker"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Picker"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Picker",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/picker"
 }
 }
 }

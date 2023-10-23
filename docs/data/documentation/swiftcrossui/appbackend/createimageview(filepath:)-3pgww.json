@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "AppBackend.createImageView(filePath:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -173,7 +187,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -204,7 +221,27 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createImageView(filePath:)-1wi3h": {
   "abstract" : [
-
+    {
+      "text" : "Creates an image view from an image file (specified by path). Predominantly used",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -319,6 +356,40 @@
   "title" : "createImageView(filePath:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createimageview(filepath:)-3pgww"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Image": {
+  "abstract" : [
+    {
+      "text" : "A view that displays an image.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Image"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Image"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Image",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/image"
 }
 }
 }

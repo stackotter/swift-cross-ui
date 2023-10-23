@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Removes a child from wherever it is in a list view (if it exists).",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -226,7 +232,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -326,7 +335,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/removeChild(_:fromListView:)-9ca9f": {
   "abstract" : [
-
+    {
+      "text" : "Removes a child from wherever it is in a list view (if it exists).",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

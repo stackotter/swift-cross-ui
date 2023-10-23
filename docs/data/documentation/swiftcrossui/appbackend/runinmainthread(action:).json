@@ -1,4 +1,35 @@
 {
+  "abstract" : [
+    {
+      "text" : "Runs an action in the app’s main thread if required to perform UI updates",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "by the backend. Predominantly used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " to publish changes to a thread",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "compatible with dispatching UI updates.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -156,7 +187,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -187,7 +221,35 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/runInMainThread(action:)": {
   "abstract" : [
-
+    {
+      "text" : "Runs an action in the app’s main thread if required to perform UI updates",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "by the backend. Predominantly used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " to publish changes to a thread",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "compatible with dispatching UI updates.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -231,6 +293,40 @@
   "title" : "runInMainThread(action:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/runinmainthread(action:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher": {
+  "abstract" : [
+    {
+      "text" : "A type that produces valueless observations.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Publisher"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Publisher"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Publisher",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/publisher"
 }
 }
 }

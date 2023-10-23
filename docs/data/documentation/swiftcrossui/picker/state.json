@@ -227,7 +227,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker": {
   "abstract" : [
     {
-      "text" : "A picker view.",
+      "text" : "A control for selecting from a set of values.",
       "type" : "text"
     }
   ],

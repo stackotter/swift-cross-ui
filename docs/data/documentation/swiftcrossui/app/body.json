@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "The contents of the application’s main window.",
+      "text" : "The contents of the app’s main window.",
       "type" : "text"
     }
   ],
@@ -77,10 +77,10 @@
               "text" : "@"
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder",
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
               "kind" : "attribute",
-              "preciseIdentifier" : "s:12SwiftCrossUI18ViewContentBuilderV",
-              "text" : "ViewContentBuilder"
+              "preciseIdentifier" : "s:12SwiftCrossUI11ViewBuilderV",
+              "text" : "ViewBuilder"
             },
             {
               "kind" : "text",
@@ -205,7 +205,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/App/body": {
   "abstract" : [
     {
-      "text" : "The contents of the application’s main window.",
+      "text" : "The contents of the app’s main window.",
       "type" : "text"
     }
   ],
@@ -247,9 +247,20 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/app\/body"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContentBuilder": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewBuilder": {
   "abstract" : [
-
+    {
+      "text" : "A result builder used to compose views together into composite views in",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "a declarative manner.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -262,21 +273,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "ViewContentBuilder"
+      "text" : "ViewBuilder"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContentBuilder",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "ViewContentBuilder"
+      "text" : "ViewBuilder"
     }
   ],
   "role" : "symbol",
-  "title" : "ViewContentBuilder",
+  "title" : "ViewBuilder",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewcontentbuilder"
+  "url" : "\/documentation\/swiftcrossui\/viewbuilder"
 }
 }
 }

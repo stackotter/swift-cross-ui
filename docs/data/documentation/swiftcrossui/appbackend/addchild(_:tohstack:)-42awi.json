@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Adds a child to the end of a horizontal container.",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -226,7 +232,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -257,7 +266,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toHStack:)-42awi": {
   "abstract" : [
-
+    {
+      "text" : "Adds a child to the end of a horizontal container.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [

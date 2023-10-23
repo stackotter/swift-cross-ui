@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "The view’s single widget for the entirety of its lifetime in the view graph.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -17,7 +23,7 @@
     "fragments" : [
       {
         "kind" : "keyword",
-        "text" : "var"
+        "text" : "let"
       },
       {
         "kind" : "text",
@@ -67,7 +73,7 @@
           "tokens" : [
             {
               "kind" : "keyword",
-              "text" : "var"
+              "text" : "let"
             },
             {
               "kind" : "text",
@@ -137,7 +143,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode": {
   "abstract" : [
-
+    {
+      "text" : "A view graph node storing a view, its widget, and its children (likely a collection of more nodes).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -168,12 +177,15 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNode/widget": {
   "abstract" : [
-
+    {
+      "text" : "The view’s single widget for the entirety of its lifetime in the view graph.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "var"
+      "text" : "let"
     },
     {
       "kind" : "text",

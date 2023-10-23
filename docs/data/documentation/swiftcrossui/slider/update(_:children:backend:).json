@@ -1,0 +1,648 @@
+{
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "View.update(_:children:backend:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/View-Implementations"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/update(_:children:backend:)"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "extendedModule" : "SwiftCrossUI",
+    "externalID" : "s:12SwiftCrossUI4ViewPAAE6update_8children7backendy6WidgetQyd___AA0D17GraphNodeChildren_pqd__tAA10AppBackendRd__lF::SYNTHESIZED::s:12SwiftCrossUI6SliderV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "func"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "update"
+      },
+      {
+        "kind" : "text",
+        "text" : "<"
+      },
+      {
+        "kind" : "genericParameter",
+        "text" : "Backend"
+      },
+      {
+        "kind" : "text",
+        "text" : ">("
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "Backend"
+      },
+      {
+        "kind" : "text",
+        "text" : "."
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "Widget"
+      },
+      {
+        "kind" : "text",
+        "text" : ", "
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "children"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+        "text" : "ViewGraphNodeChildren"
+      },
+      {
+        "kind" : "text",
+        "text" : ", "
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "backend"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "Backend"
+      },
+      {
+        "kind" : "text",
+        "text" : ")"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Method",
+    "symbolKind" : "method",
+    "title" : "update(_:children:backend:)"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "Linux"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "func"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "update"
+            },
+            {
+              "kind" : "text",
+              "text" : "<"
+            },
+            {
+              "kind" : "genericParameter",
+              "text" : "Backend"
+            },
+            {
+              "kind" : "text",
+              "text" : ">("
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "_"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "internalParam",
+              "text" : "widget"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Backend"
+            },
+            {
+              "kind" : "text",
+              "text" : "."
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Widget"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "children"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+              "text" : "ViewGraphNodeChildren"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "backend"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Backend"
+            },
+            {
+              "kind" : "text",
+              "text" : ") "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "where"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Backend"
+            },
+            {
+              "kind" : "text",
+              "text" : " : "
+            },
+            {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP",
+              "text" : "AppBackend"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/slider\/update(_:children:backend:)"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
+  "abstract" : [
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "AppBackend"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "AppBackend"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "AppBackend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach": {
+  "abstract" : [
+    {
+      "text" : "A view that displays a variable amount of children.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ForEach"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ForEach"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ForEach",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/foreach"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider": {
+  "abstract" : [
+    {
+      "text" : "A control for selecting a value from a bounded range of numerical values.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Slider"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Slider"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Slider",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/slider"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider/View-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/View-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "View Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/slider\/view-implementations"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider/update(_:children:backend:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "update"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "children"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
+      "text" : "ViewGraphNodeChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider\/update(_:children:backend:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "update(_:children:backend:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/slider\/update(_:children:backend:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView1": {
+  "abstract" : [
+    {
+      "text" : "A view with exactly 1 children. Autogenerated as an alternative to Swift’s not yet",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "production ready variadic generics.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "VariadicView1"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "VariadicView1"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "VariadicView1",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/variadicview1"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView2": {
+  "abstract" : [
+    {
+      "text" : "A view with exactly 2 children. Autogenerated as an alternative to Swift’s not yet",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "production ready variadic generics.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "VariadicView2"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView2",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "VariadicView2"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "VariadicView2",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/variadicview2"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren": {
+  "abstract" : [
+    {
+      "text" : "The children of a view graph node. This is implemented by a few different",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "types for various purposes. E.g. variable length with same-typed elements",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "(",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : "), and fixed length with distinctly-typed elements (",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ",",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView2",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ", etc).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren"
+}
+}
+}

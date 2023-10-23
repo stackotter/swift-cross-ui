@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "A type that produces valueless observations.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -89,7 +95,7 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher\/link(toDownstream:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher\/link(toUpstream:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher\/observe(with:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher\/send()"
       ],
@@ -126,7 +132,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher": {
   "abstract" : [
-
+    {
+      "text" : "A type that produces valueless observations.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -157,7 +166,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher/init()": {
   "abstract" : [
-
+    {
+      "text" : "Creates a new independent publisher.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -176,9 +188,20 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/publisher\/init()"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher/link(toDownstream:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher/link(toUpstream:)": {
   "abstract" : [
-
+    {
+      "text" : "Links the publisher to an upstream, meaning that observations from the upstream",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "effectively get forwarded to all observers of this publisher as well.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -199,7 +222,7 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "toDownstream"
+      "text" : "toUpstream"
     },
     {
       "kind" : "text",
@@ -220,16 +243,19 @@
       "text" : "Cancellable"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher\/link(toDownstream:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher\/link(toUpstream:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "link(toDownstream:)",
+  "title" : "link(toUpstream:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/publisher\/link(todownstream:)"
+  "url" : "\/documentation\/swiftcrossui\/publisher\/link(toupstream:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher/observe(with:)": {
   "abstract" : [
-
+    {
+      "text" : "Registers a handler to observe future events.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -280,7 +306,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher/send()": {
   "abstract" : [
-
+    {
+      "text" : "Publishes a change to all observers (on the main thread of the currently selected backend).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

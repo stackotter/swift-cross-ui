@@ -187,7 +187,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color": {
   "abstract" : [
-
+    {
+      "text" : "An RGBA representation of a color.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -219,15 +222,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack": {
   "abstract" : [
     {
-      "text" : "A horizontally oriented container. Similar to a ",
-      "type" : "text"
-    },
-    {
-      "code" : "HStack",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " in SwiftUI.",
+      "text" : "A view that arranges its subviews horizontally.",
       "type" : "text"
     }
   ],
@@ -326,7 +321,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
-      "text" : "A view that can be displayed by SwiftCrossUI.",
+      "text" : "A view that can be rendered by any backend.",
       "type" : "text"
     }
   ],

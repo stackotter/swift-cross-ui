@@ -1,4 +1,27 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a vertical container with the specified spacing between children.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Predominantly used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".`",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -180,7 +203,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -211,7 +237,27 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createVStack(spacing:)-2yalt": {
   "abstract" : [
-
+    {
+      "text" : "Creates a vertical container with the specified spacing between children.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Predominantly used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".`",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
@@ -326,6 +372,40 @@
   "title" : "createVStack(spacing:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createvstack(spacing:)-78bfm"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack": {
+  "abstract" : [
+    {
+      "text" : "A view that arranges its subviews vertically.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "VStack"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "VStack"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "VStack",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/vstack"
 }
 }
 }

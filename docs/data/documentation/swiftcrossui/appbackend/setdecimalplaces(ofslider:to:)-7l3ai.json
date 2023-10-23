@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Sets the number of decimal places displayed by a slider.",
+      "type" : "text"
+    }
+  ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
@@ -220,7 +226,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
-
+    {
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -321,7 +330,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setDecimalPlaces(ofSlider:to:)-7l3ai": {
   "abstract" : [
-
+    {
+      "text" : "Sets the number of decimal places displayed by a slider.",
+      "type" : "text"
+    }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
