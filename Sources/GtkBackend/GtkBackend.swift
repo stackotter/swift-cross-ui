@@ -11,6 +11,7 @@ extension SwiftCrossUI.Color {
 
 // TODO: Add back debug names for Gtk widgets (for debugging)
 public struct GtkBackend: AppBackend {
+    public typealias Window = Gtk.Window
     public typealias Widget = Gtk.Widget
 
     var gtkApp: Application
@@ -19,28 +20,35 @@ public struct GtkBackend: AppBackend {
         gtkApp = Application(applicationId: appIdentifier)
     }
 
-    public func run<AppRoot: App>(
-        _ app: AppRoot,
-        _ setViewGraph: @escaping (ViewGraph<AppRoot>) -> Void
-    ) where AppRoot.Backend == Self {
+    public func createRootWindow(
+        _ properties: WindowProperties,
+        _ callback: @escaping (Window) -> Void
+    ) {
         gtkApp.run { window in
-            window.title = app.windowProperties.title
-            if let size = app.windowProperties.defaultSize {
+            window.title = properties.title
+            if let size = properties.defaultSize {
                 window.defaultSize = Size(
                     width: size.width,
                     height: size.height
                 )
             }
-            window.resizable = app.windowProperties.resizable
+            window.resizable = properties.resizable
 
-            // The view graph must be stored after creation to avoid it getting released
-            let viewGraph = ViewGraph(for: app, backend: self)
-            setViewGraph(viewGraph)
-
-            window.setChild(viewGraph.rootNode.widget)
-
-            window.show()
+            callback(window)
         }
+    }
+
+    public func setChild(ofWindow window: Window, to child: Widget) {
+        window.setChild(child)
+    }
+
+    public func show(window: Window) {
+        window.show()
+    }
+
+    public func runMainLoop() {
+        // We're already inside the main loop due to the way `createRootWindow`
+        // had to be implemented, so there's nothing to do here.
     }
 
     class ThreadActionContext {
@@ -71,7 +79,7 @@ public struct GtkBackend: AppBackend {
         )
     }
 
-    public func show(_ widget: Widget) {
+    public func show(widget: Widget) {
         widget.show()
     }
 

@@ -64,6 +64,6 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     public func update() {
         view.updateChildren(children, backend: backend)
         view.update(widget, children: children, backend: backend)
-        backend.show(widget)
+        backend.show(widget: widget)
     }
 }

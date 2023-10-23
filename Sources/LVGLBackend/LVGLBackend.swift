@@ -37,25 +37,33 @@ public struct LVGLBackend: AppBackend {
         }
     }
 
+    public typealias Window = LVScreen
+
     public class Grid: Widget {
         var rowCount = 0
         var columnCount = 0
     }
 
-    public init(appIdentifier: String) {}
+    private let runLoop: LVRunLoop
 
-    public func run<AppRoot: App>(
-        _ app: AppRoot,
-        _ setViewGraph: @escaping (ViewGraph<AppRoot>) -> Void
-    ) where AppRoot.Backend == Self {
-        let runLoop = LVRunLoop.shared
+    public init(appIdentifier: String) {
+        runLoop = LVRunLoop.shared
+    }
 
-        let viewGraph = ViewGraph(for: app, backend: self)
-        setViewGraph(viewGraph)
+    public func createRootWindow(
+        _ properties: WindowProperties,
+        _ callback: @escaping (Window) -> Void
+    ) {
+        callback(LVScreen.active)
+    }
 
-        // TODO: app.windowProperties
-        _ = viewGraph.rootNode.widget.create(withParent: LVScreen.active)
+    public func setChild(ofWindow window: Window, to child: Widget) {
+        _ = child.create(withParent: window)
+    }
 
+    public func show(window: Window) {}
+
+    public func runMainLoop() {
         runLoop.run()
     }
 
@@ -69,7 +77,7 @@ public struct LVGLBackend: AppBackend {
         #endif
     }
 
-    public func show(_ widget: Widget) {}
+    public func show(widget: Widget) {}
 
     public func createVStack(spacing: Int) -> Widget {
         let grid = Grid { parent in

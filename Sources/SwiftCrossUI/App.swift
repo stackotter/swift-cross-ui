@@ -3,7 +3,7 @@ public protocol App {
     /// The backend used to render the app.
     associatedtype Backend: AppBackend
     /// The app's top-level content.
-    associatedtype Content: View
+    associatedtype Body: Scene
     /// The app's observed state.
     associatedtype State: Observable
 
@@ -16,8 +16,8 @@ public protocol App {
     /// The window's properties.
     var windowProperties: WindowProperties { get }
 
-    /// The contents of the app's main window.
-    @ViewBuilder var body: Content { get }
+    /// The contents of the app.
+    @SceneBuilder var body: Body { get }
 
     /// Creates an instance of the app.
     init()

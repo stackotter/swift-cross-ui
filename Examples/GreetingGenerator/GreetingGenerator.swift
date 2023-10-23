@@ -16,36 +16,38 @@ struct GreetingGeneratorApp: App {
 
     let windowProperties = WindowProperties(title: "Greeting Generator")
 
-    var body: some View {
-        VStack {
-            TextField("Name", state.$name)
-            HStack {
-                Button("Generate") {
-                    state.greetings.append("Hello, \(state.name)!")
-                }
-                Button("Reset") {
-                    state.greetings = []
-                    state.name = ""
-                }
-            }
-
-            if let latest = state.greetings.last {
-                Text(latest)
-                    .padding(.top, 5)
-
-                if state.greetings.count > 1 {
-                    Text("History:")
-                        .padding(.top, 20)
-
-                    ScrollView {
-                        ForEach(state.greetings.reversed()[1...]) { greeting in
-                            Text(greeting)
-                        }
+    var body: some Scene {
+        WindowGroup {
+            VStack {
+                TextField("Name", state.$name)
+                HStack {
+                    Button("Generate") {
+                        state.greetings.append("Hello, \(state.name)!")
                     }
-                    .padding(.top, 8)
+                    Button("Reset") {
+                        state.greetings = []
+                        state.name = ""
+                    }
+                }
+
+                if let latest = state.greetings.last {
+                    Text(latest)
+                        .padding(.top, 5)
+
+                    if state.greetings.count > 1 {
+                        Text("History:")
+                            .padding(.top, 20)
+
+                        ScrollView {
+                            ForEach(state.greetings.reversed()[1...]) { greeting in
+                                Text(greeting)
+                            }
+                        }
+                        .padding(.top, 8)
+                    }
                 }
             }
+            .padding(10)
         }
-        .padding(10)
     }
 }

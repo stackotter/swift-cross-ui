@@ -21,15 +21,17 @@ struct WindowPropertiesApp: App {
         resizable: false
     )
 
-    var body: some View {
-        VStack {
-            Text("This is a window with a custom size.")
-            Text("This window also can't be resized.")
-                .padding(.bottom, 10)
+    var body: some Scene {
+        WindowGroup {
+            VStack {
+                Text("This is a window with a custom size.")
+                Text("This window also can't be resized.")
+                    .padding(.bottom, 10)
 
-            Button("Click") { state.count += 1 }
-            Text("Count: \(state.count)")
-            Image(Bundle.module.bundleURL.appendingPathComponent("Banner.png").path)
-        }.padding(10)
+                Button("Click") { state.count += 1 }
+                Text("Count: \(state.count)")
+                Image(Bundle.module.bundleURL.appendingPathComponent("Banner.png").path)
+            }.padding(10)
+        }
     }
 }

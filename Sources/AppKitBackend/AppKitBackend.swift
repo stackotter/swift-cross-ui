@@ -2,19 +2,20 @@ import AppKit
 import SwiftCrossUI
 
 public struct AppKitBackend: AppBackend {
+    public typealias Window = NSWindow
     public typealias Widget = NSView
 
     public init(appIdentifier: String) {}
 
-    public func run<AppRoot: App>(
-        _ app: AppRoot,
-        _ setViewGraph: @escaping (ViewGraph<AppRoot>) -> Void
-    ) where AppRoot.Backend == Self {
+    public func createRootWindow(
+        _ properties: WindowProperties,
+        _ callback: @escaping (Window) -> Void
+    ) {
         let nsApp = NSApplication.shared
         nsApp.setActivationPolicy(.regular)
 
         var styleMask: NSWindow.StyleMask = [.titled, .closable]
-        if app.windowProperties.resizable {
+        if properties.resizable {
             styleMask.insert(.resizable)
         }
 
@@ -22,24 +23,29 @@ public struct AppKitBackend: AppBackend {
             contentRect: NSRect(
                 x: 0,
                 y: 0,
-                width: CGFloat(app.windowProperties.defaultSize?.width ?? 0),
-                height: CGFloat(app.windowProperties.defaultSize?.height ?? 0)
+                width: CGFloat(properties.defaultSize?.width ?? 0),
+                height: CGFloat(properties.defaultSize?.height ?? 0)
             ),
             styleMask: styleMask,
             backing: .buffered,
             defer: true
         )
-        window.title = app.windowProperties.title
+        window.title = properties.title
+
+        callback(window)
+    }
+
+    public func setChild(ofWindow window: NSWindow, to child: NSView) {
+        window.contentView = child
+    }
+
+    public func show(window: NSWindow) {
         window.makeKeyAndOrderFront(nil)
+    }
 
-        let viewGraph = ViewGraph(for: app, backend: self)
-        setViewGraph(viewGraph)
-
-        window.contentView = viewGraph.rootNode.widget
-
-        nsApp.activate(ignoringOtherApps: true)
-
-        nsApp.run()
+    public func runMainLoop() {
+        NSApplication.shared.activate(ignoringOtherApps: true)
+        NSApplication.shared.run()
     }
 
     public func runInMainThread(action: @escaping () -> Void) {
@@ -48,7 +54,7 @@ public struct AppKitBackend: AppBackend {
         }
     }
 
-    public func show(_ widget: Widget) {}
+    public func show(widget: Widget) {}
 
     public func createTextView(content: String, shouldWrap: Bool) -> Widget {
         if shouldWrap {
