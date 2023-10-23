@@ -1,5 +1,5 @@
 /// A container that presents rows of data arranged in columns.
-public struct Table<Row>: ElementaryView {
+public struct Table<Row>: ElementaryView, View {
     /// The row data to display.
     private var rows: [Row]
     /// The columns to display (which each compute their cell values when given

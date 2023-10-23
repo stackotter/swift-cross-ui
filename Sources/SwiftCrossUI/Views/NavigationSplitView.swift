@@ -1,5 +1,7 @@
 /// A view that presents views in two or three columns.
-public struct NavigationSplitView<SideBar: View, MiddleBar: View, Detail: View>: TypeSafeView {
+public struct NavigationSplitView<
+    SideBar: View, MiddleBar: View, Detail: View
+>: TypeSafeView, View {
     typealias Children = Content.Children
 
     public var body: VariadicView3<SideBar, MiddleBar, Detail>

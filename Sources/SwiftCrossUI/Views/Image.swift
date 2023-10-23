@@ -1,7 +1,7 @@
 import Foundation
 
 /// A view that displays an image.
-public struct Image: ElementaryView {
+public struct Image: ElementaryView, View {
     /// The path to the image.
     private var path: String
 

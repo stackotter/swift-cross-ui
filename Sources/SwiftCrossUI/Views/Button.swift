@@ -1,5 +1,5 @@
 /// A control that initiates an action.
-public struct Button: ElementaryView {
+public struct Button: ElementaryView, View {
     /// The label to show on the button.
     private var label: String
     /// The action to be performed when the button is clicked.

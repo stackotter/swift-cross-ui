@@ -16,7 +16,7 @@ children_type_parameters = ", ".join(["View%d" % j for j in range(i + 1)])
 /// production ready variadic generics.
 ///
 /// Will take on the orientation of its nearest 
-public struct ${view}<${struct_parameters}>: TypeSafeView {
+public struct ${view}<${struct_parameters}>: TypeSafeView, View {
     public typealias Content = EmptyView
     public typealias State = EmptyState
 

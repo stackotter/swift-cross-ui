@@ -1,5 +1,5 @@
 /// A view used by ``ViewBuilder`` to support if/else conditional statements.
-public struct EitherView<A: View, B: View>: TypeSafeView {
+public struct EitherView<A: View, B: View>: TypeSafeView, View {
     typealias NodeChildren = EitherViewChildren<A, B>
 
     public var body = EmptyView()

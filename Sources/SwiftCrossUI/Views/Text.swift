@@ -1,5 +1,5 @@
 /// A text view.
-public struct Text: ElementaryView {
+public struct Text: ElementaryView, View {
     /// The string to be shown in the text view.
     private var string: String
     /// Specifies whether the text should be wrapped if wider than its container.

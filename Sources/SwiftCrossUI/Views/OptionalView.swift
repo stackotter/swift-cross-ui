@@ -1,5 +1,5 @@
 /// A view used by ``ViewBuilder`` to support non-exhaustive if statements.
-public struct OptionalView<V: View>: TypeSafeView {
+public struct OptionalView<V: View>: TypeSafeView, View {
     typealias Children = OptionalViewChildren<V>
 
     public var body = EmptyView()

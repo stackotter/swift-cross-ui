@@ -2,7 +2,7 @@
 public struct ForEach<
     Items: Collection,
     Child: View
->: TypeSafeView where Items.Index == Int {
+>: TypeSafeView, View where Items.Index == Int {
     typealias Children = ForEachViewChildren<Items, Child>
 
     public var body = EmptyView()

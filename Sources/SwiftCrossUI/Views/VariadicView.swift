@@ -2,7 +2,7 @@
 /// production ready variadic generics.
 ///
 /// Will take on the orientation of its nearest
-public struct VariadicView1<View0: View>: TypeSafeView {
+public struct VariadicView1<View0: View>: TypeSafeView, View {
     public typealias Content = EmptyView
     public typealias State = EmptyState
 
@@ -42,7 +42,7 @@ public struct VariadicView1<View0: View>: TypeSafeView {
 /// production ready variadic generics.
 ///
 /// Will take on the orientation of its nearest
-public struct VariadicView2<View0: View, View1: View>: TypeSafeView {
+public struct VariadicView2<View0: View, View1: View>: TypeSafeView, View {
     public typealias Content = EmptyView
     public typealias State = EmptyState
 
@@ -86,7 +86,7 @@ public struct VariadicView2<View0: View, View1: View>: TypeSafeView {
 /// production ready variadic generics.
 ///
 /// Will take on the orientation of its nearest
-public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView {
+public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView, View {
     public typealias Content = EmptyView
     public typealias State = EmptyState
 
@@ -134,7 +134,8 @@ public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView
 /// production ready variadic generics.
 ///
 /// Will take on the orientation of its nearest
-public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>: TypeSafeView {
+public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>: TypeSafeView, View
+{
     public typealias Content = EmptyView
     public typealias State = EmptyState
 
@@ -187,7 +188,7 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
 ///
 /// Will take on the orientation of its nearest
 public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, View4: View>:
-    TypeSafeView
+    TypeSafeView, View
 {
     public typealias Content = EmptyView
     public typealias State = EmptyState
@@ -246,7 +247,7 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
 /// Will take on the orientation of its nearest
 public struct VariadicView6<
     View0: View, View1: View, View2: View, View3: View, View4: View, View5: View
->: TypeSafeView {
+>: TypeSafeView, View {
     public typealias Content = EmptyView
     public typealias State = EmptyState
 
@@ -311,7 +312,7 @@ public struct VariadicView6<
 /// Will take on the orientation of its nearest
 public struct VariadicView7<
     View0: View, View1: View, View2: View, View3: View, View4: View, View5: View, View6: View
->: TypeSafeView {
+>: TypeSafeView, View {
     public typealias Content = EmptyView
     public typealias State = EmptyState
 
@@ -381,7 +382,7 @@ public struct VariadicView7<
 public struct VariadicView8<
     View0: View, View1: View, View2: View, View3: View, View4: View, View5: View, View6: View,
     View7: View
->: TypeSafeView {
+>: TypeSafeView, View {
     public typealias Content = EmptyView
     public typealias State = EmptyState
 
@@ -457,7 +458,7 @@ public struct VariadicView8<
 public struct VariadicView9<
     View0: View, View1: View, View2: View, View3: View, View4: View, View5: View, View6: View,
     View7: View, View8: View
->: TypeSafeView {
+>: TypeSafeView, View {
     public typealias Content = EmptyView
     public typealias State = EmptyState
 
@@ -537,7 +538,7 @@ public struct VariadicView9<
 public struct VariadicView10<
     View0: View, View1: View, View2: View, View3: View, View4: View, View5: View, View6: View,
     View7: View, View8: View, View9: View
->: TypeSafeView {
+>: TypeSafeView, View {
     public typealias Content = EmptyView
     public typealias State = EmptyState
 

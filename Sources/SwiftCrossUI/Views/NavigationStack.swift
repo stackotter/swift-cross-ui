@@ -5,7 +5,7 @@ struct NavigationStackRootPath: Codable {}
 /// A view that displays a root view and enables you to present additional views over the root view.
 ///
 /// Use .navigationDestination(for:destination:) on this view instead of its children unlike Apples SwiftUI API.
-public struct NavigationStack<Detail: View>: TypeSafeView {
+public struct NavigationStack<Detail: View>: TypeSafeView, View {
     typealias Children = NavigationStackChildren<Detail>
 
     public var body = EmptyView()
