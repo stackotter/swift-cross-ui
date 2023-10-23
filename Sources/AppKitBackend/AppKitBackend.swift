@@ -20,14 +20,10 @@ public struct AppKitBackend: AppBackend {
 
         let window = NSWindow(
             contentRect: NSRect(
-                x:
-                    0,
-                y:
-                    0,
-                width:
-                    CGFloat(app.windowProperties.defaultSize?.width ?? 0),
-                height:
-                    CGFloat(app.windowProperties.defaultSize?.height ?? 0)
+                x: 0,
+                y: 0,
+                width: CGFloat(app.windowProperties.defaultSize?.width ?? 0),
+                height: CGFloat(app.windowProperties.defaultSize?.height ?? 0)
             ),
             styleMask: styleMask,
             backing: .buffered,

@@ -118,8 +118,7 @@ public struct GtkBackend: AppBackend {
     }
 
     public func setChild(ofEitherContainer container: Widget, to widget: Widget?) {
-        let container = container as! ModifierBox
-        container.setChild(widget)
+        (container as! ModifierBox).setChild(widget)
     }
 
     public func createPaddingContainer(for child: Widget) -> Widget {
