@@ -38,30 +38,32 @@ struct StressTestApp: App {
         resizable: true
     )
 
-    var body: some View {
-        NavigationSplitView {
-            VStack {
-                Button("List 1") { state.tab = 0 }
-                Button("List 2") { state.tab = 1 }
-            }.padding(10)
-        } detail: {
-            VStack {
-                Button("Generate") {
-                    var values: [String] = []
-                    for _ in 0..<1000 {
-                        values.append(state.options.randomElement()!)
-                    }
+    var body: some Scene {
+        WindowGroup {
+            NavigationSplitView {
+                VStack {
+                    Button("List 1") { state.tab = 0 }
+                    Button("List 2") { state.tab = 1 }
+                }.padding(10)
+            } detail: {
+                VStack {
+                    Button("Generate") {
+                        var values: [String] = []
+                        for _ in 0..<1000 {
+                            values.append(state.options.randomElement()!)
+                        }
 
-                    state.values[state.tab] = values
-                }
-                if let values = state.values[state.tab] {
-                    ScrollView {
-                        ForEach(values) { value in
-                            Text(value)
+                        state.values[state.tab] = values
+                    }
+                    if let values = state.values[state.tab] {
+                        ScrollView {
+                            ForEach(values) { value in
+                                Text(value)
+                            }
                         }
                     }
-                }
-            }.padding(10)
+                }.padding(10)
+            }
         }
     }
 }

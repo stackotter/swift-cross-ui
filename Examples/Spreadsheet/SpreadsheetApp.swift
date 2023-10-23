@@ -33,14 +33,16 @@ struct SpreadsheetApp: App {
 
     let windowProperties = WindowProperties(title: "SpreadsheetApp", resizable: true)
 
-    var body: some View {
-        Table(state.data) {
-            TableColumn("Name", value: \Person.name)
-            TableColumn("Age", value: \Person.age)
-            TableColumn("Phone", value: \Person.phone)
-            TableColumn("Email", value: \Person.email)
-            TableColumn("Occupation", value: \Person.occupation)
+    var body: some Scene {
+        WindowGroup {
+            Table(state.data) {
+                TableColumn("Name", value: \Person.name)
+                TableColumn("Age", value: \Person.age)
+                TableColumn("Phone", value: \Person.phone)
+                TableColumn("Email", value: \Person.email)
+                TableColumn("Occupation", value: \Person.occupation)
+            }
+            .padding(10)
         }
-        .padding(10)
     }
 }

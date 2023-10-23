@@ -39,7 +39,9 @@ var dependencies: [Package.Dependency] = [
 
 var conditionalProducts: [Product] = []
 var conditionalTargets: [Target] = []
-var exampleDependencies: [Target.Dependency] = ["SwiftCrossUI", "GtkBackend"]
+var exampleDependencies: [Target.Dependency] = [
+    "SwiftCrossUI", "GtkBackend",
+]
 var fileViewerExampleDependencies: [Target.Dependency] = ["SwiftCrossUI", "GtkBackend", "CGtk"]
 var backendTargets: [String] = []
 

@@ -6,6 +6,7 @@ import SwiftCrossUI
 // TODO: Fix window size code, currently seems to get pretty ignored.
 
 public struct QtBackend: AppBackend {
+    public typealias Window = QMainWindow
     public typealias Widget = QWidget
 
     private class InternalState {
@@ -15,26 +16,31 @@ public struct QtBackend: AppBackend {
     }
 
     private var internalState: InternalState
+    private let application: QApplication
 
     public init(appIdentifier: String) {
         internalState = InternalState()
+        application = QApplication()
     }
 
-    public func run<AppRoot: App>(
-        _ app: AppRoot,
-        _ setViewGraph: @escaping (ViewGraph<AppRoot>) -> Void
-    ) where AppRoot.Backend == Self {
-        let application = QApplication()
-
-        let viewGraph = ViewGraph(for: app, backend: self)
-        setViewGraph(viewGraph)
-
-        // TODO: app.windowProperties
+    public func createRootWindow(
+        _ properties: WindowProperties,
+        _ callback: @escaping (Window) -> Void
+    ) {
         let mainWindow = MainWindow()
-        mainWindow.setProperties(app.windowProperties)
-        mainWindow.setRoot(viewGraph.rootNode.widget)
-        mainWindow.show()
+        mainWindow.setProperties(properties)
+        callback(mainWindow)
+    }
 
+    public func setChild(ofWindow window: Window, to child: Widget) {
+        window.centralWidget = child
+    }
+
+    public func show(window: Window) {
+        window.show()
+    }
+
+    public func runMainLoop() {
         _ = application.exec()
     }
 
@@ -48,7 +54,7 @@ public struct QtBackend: AppBackend {
         #endif
     }
 
-    public func show(_ widget: Widget) {
+    public func show(widget: Widget) {
         widget.show()
     }
 
@@ -211,9 +217,5 @@ class MainWindow: QMainWindow {
 
         let policy: QSizePolicy.Policy = .Maximum
         sizePolicy = QSizePolicy(horizontal: policy, vertical: policy)
-    }
-
-    func setRoot(_ widget: QWidget) {
-        centralWidget = widget
     }
 }

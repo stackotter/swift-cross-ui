@@ -3,21 +3,28 @@ import SwiftCrossUI
 import TermKit
 
 public struct CursesBackend: AppBackend {
+    public typealias Window = RootView
     public typealias Widget = TermKit.View
 
     public init(appIdentifier: String) {}
 
-    public func run<AppRoot: App>(
-        _ app: AppRoot,
-        _ setViewGraph: @escaping (ViewGraph<AppRoot>) -> Void
-    ) where AppRoot.Backend == Self {
-        let viewGraph = ViewGraph(for: app, backend: self)
-        setViewGraph(viewGraph)
-
+    public func createRootWindow(
+        _ properties: WindowProperties,
+        _ callback: @escaping (Window) -> Void
+    ) {
         Application.prepare()
         let root = RootView()
-        root.addSubview(viewGraph.rootNode.widget)
         Application.top.addSubview(root)
+        callback(root)
+    }
+
+    public func setChild(ofWindow window: Window, to child: Widget) {
+        window.addSubview(child)
+    }
+
+    public func show(window: Window) {}
+
+    public func runMainLoop() {
         Application.run()
     }
 
@@ -31,7 +38,7 @@ public struct CursesBackend: AppBackend {
         #endif
     }
 
-    public func show(_ widget: Widget) {
+    public func show(widget: Widget) {
         widget.setNeedsDisplay()
     }
 
@@ -107,8 +114,8 @@ public struct CursesBackend: AppBackend {
     ) {}
 }
 
-class RootView: TermKit.View {
-    override func processKey(event: KeyEvent) -> Bool {
+public class RootView: TermKit.View {
+    public override func processKey(event: KeyEvent) -> Bool {
         if super.processKey(event: event) {
             return true
         }

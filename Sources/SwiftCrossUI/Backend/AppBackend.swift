@@ -7,35 +7,58 @@ var currentBackend: (any AppBackend)!
 
 /// A backend that can be used to run an app (e.g. Gtk or Qt).
 ///
-/// Default placeholder implementations are available for all methods except
-/// for ``Widget/run(_:_:)`` and ``Widget/runInMainThread(action:)``. These
-/// implementations will fatally crash when called and are simply intended
-/// to allow incremental implementation of backends, not a production-ready
-/// fallback for views that cannot be represented by a given backend.
+/// Default placeholder implementations are available for all non-essential
+/// app lifecycle methods. These implementations will fatally crash when called
+/// and are simply intended to allow incremental implementation of backends,
+/// not a production-ready fallback for views that cannot be represented by a
+/// given backend. The methods you need to implemented up-front (which don't
+/// have default implementations) are: ``AppBackend/createRootWindow(_:_:)``,
+/// ``AppBackend/setChild(ofWindow:to:)``, ``AppBackend/show(window:)``,
+/// ``AppBackend/runMainLoop()``, ``AppBackend/runInMainThread(action:)``,
+/// ``AppBackend/show(widget:)``.
 ///
 /// If you need to modify the children of a widget after creation but there
 /// aren't update methods available, this is an intentional limitation to
-/// reduce the complexity of maintaining a multitude of backends -- nest
-/// another container, such as a VStack, inside the container to allow you
-/// to change its children on demand.
+/// reduce the complexity of maintaining a multitude of backends. Use
+/// a nested container such as a VStack to work around this limitation.
 public protocol AppBackend {
+    associatedtype Window
     associatedtype Widget
 
     init(appIdentifier: String)
 
-    func run<AppRoot: App>(
-        _ app: AppRoot,
-        _ setViewGraph: @escaping (ViewGraph<AppRoot>) -> Void
-    ) where AppRoot.Backend == Self
+    /// Often in UI frameworks (such as Gtk), code is run in a callback
+    /// after starting the app, and hence this generic root window creation
+    /// API must reflect that. This is always the first method to be called
+    /// and is where boilerplate app setup should happen.
+    func createRootWindow(
+        _ properties: WindowProperties,
+        _ callback: @escaping (Window) -> Void
+    )
+    /// Sets the root child of a window (replaces the previous child if any).
+    func setChild(ofWindow window: Window, to child: Widget)
+    /// Shows a window after it has been created or updated (may be unnecessary
+    /// for some backends). Predominantly used by window-based ``Scene``
+    /// implementations after propagating updates.
+    func show(window: Window)
+
+    /// Runs the backend's main loop after SwiftCrossUI has finished all setup.
+    /// Isn't required to return (but it's find if it does).
+    ///
+    /// This method is run after ``createRootWindow(_:_:)``. For some backends,
+    /// this method should just do nothing (e.g. if the root window creation
+    /// callback was already called from within the app's event loop).
+    func runMainLoop()
 
     /// Runs an action in the app's main thread if required to perform UI updates
     /// by the backend. Predominantly used by ``Publisher`` to publish changes to a thread
     /// compatible with dispatching UI updates.
     func runInMainThread(action: @escaping () -> Void)
 
-    /// Shows a widget after it got created or updated (may be unnecessary for some backends).
-    /// Predominantly used by ``ViewGraphNode`` after propagating updates.
-    func show(_ widget: Widget)
+    /// Shows a widget after it has been created or updated (may be unnecessary
+    /// for some backends). Predominantly used by ``ViewGraphNode`` after
+    /// propagating updates.
+    func show(widget: Widget)
 
     /// Creates a vertical container with the specified spacing between children.
     /// Predominantly used by ``VStack``.`
@@ -317,57 +340,53 @@ extension AppBackend {
 
 extension AppBackend {
     /// Used by placeholder implementations of backend methods.
-    private func todo(_ message: String) -> Never {
-        print("\(type(of: self)): message")
+    private func todo(_ function: String = #function) -> Never {
+        print("\(type(of: self)): \(function) not implemented")
         Foundation.exit(1)
     }
 
-    public func show(_ widget: Widget) {
-        todo("show not implemented")
-    }
-
     public func createVStack(spacing: Int) -> Widget {
-        todo("createVStack not implemented")
+        todo()
     }
     public func addChild(_ child: Widget, toVStack container: Widget) {
-        todo("addChild not implemented")
+        todo()
     }
     public func setSpacing(ofVStack widget: Widget, to spacing: Int) {
-        todo("setSpacing not implemented")
+        todo()
     }
 
     public func createHStack(spacing: Int) -> Widget {
-        todo("createHStack not implemented")
+        todo()
     }
     public func addChild(_ child: Widget, toHStack container: Widget) {
-        todo("addChild not implemented")
+        todo()
     }
     public func setSpacing(ofHStack widget: Widget, to spacing: Int) {
-        todo("setSpacing not implemented")
+        todo()
     }
 
     public func createPassthroughVStack(spacing: Int) -> Widget {
-        todo("createPassthroughVStack not implemented")
+        todo()
     }
     public func addChild(_ child: Widget, toPassthroughVStack container: Widget) {
-        todo("addChild not implemented")
+        todo()
     }
     public func updatePassthroughVStack(_ vStack: Widget) {
-        todo("updatePassthroughVStack not implemented")
+        todo()
     }
 
     public func createEitherContainer(initiallyContaining child: Widget?) -> Widget {
-        todo("createEitherContainer not implemented")
+        todo()
     }
     public func setChild(ofEitherContainer container: Widget, to widget: Widget?) {
-        todo("setChild not implemented")
+        todo()
     }
 
     public func createPaddingContainer(for child: Widget) -> Widget {
-        todo("createPaddingContainer not implemented")
+        todo()
     }
     public func getChild(ofPaddingContainer container: Widget) -> Widget {
-        todo("getChild not implemented")
+        todo()
     }
     public func setPadding(
         ofPaddingContainer container: Widget,
@@ -376,21 +395,21 @@ extension AppBackend {
         leading: Int,
         trailing: Int
     ) {
-        todo("setPadding not implemented")
+        todo()
     }
 
     public func createScrollContainer(for child: Widget) -> Widget {
-        todo("createScrollContainer not implemented")
+        todo()
     }
 
     public func createButton(label: String, action: @escaping () -> Void) -> Widget {
-        todo("createButton not implemented")
+        todo()
     }
     public func setLabel(ofButton button: Widget, to label: String) {
-        todo("setLabel not implemented")
+        todo()
     }
     public func setAction(ofButton button: Widget, to action: @escaping () -> Void) {
-        todo("setAction not implemented")
+        todo()
     }
 
     public func createToggle(
@@ -418,36 +437,36 @@ extension AppBackend {
     }
 
     public func createTextView(content: String, shouldWrap: Bool) -> Widget {
-        todo("createTextView not implemented")
+        todo()
     }
     public func setContent(ofTextView textView: Widget, to content: String) {
-        todo("setContent not implemented")
+        todo()
     }
     public func setWrap(ofTextView textView: Widget, to shouldWrap: Bool) {
-        todo("setWrap not implemented")
+        todo()
     }
 
     public func createImageView(filePath: String) -> Widget {
-        todo("createImageView not implemented")
+        todo()
     }
     public func setFilePath(ofImageView imageView: Widget, to filePath: String) {
-        todo("setFilePath not implemented")
+        todo()
     }
 
     public func createSpacer(
         expandHorizontally: Bool, expandVertically: Bool
     ) -> Widget {
-        todo("Widget  not implemented")
+        todo()
     }
     public func setExpandHorizontally(ofSpacer spacer: Widget, to expandHorizontally: Bool) {
-        todo("setExpandHorizontally not implemented")
+        todo()
     }
     public func setExpandVertically(ofSpacer spacer: Widget, to expandVertically: Bool) {
-        todo("setExpandVertically not implemented")
+        todo()
     }
 
     public func getInheritedOrientation(of widget: Widget) -> InheritedOrientation? {
-        todo("getInheritedOrientation not implemented")
+        todo()
     }
 
     public func createSlider(
@@ -457,117 +476,117 @@ extension AppBackend {
         decimalPlaces: Int,
         onChange: @escaping (Double) -> Void
     ) -> Widget {
-        todo("createSlider not implemented")
+        todo()
     }
     public func setMinimum(ofSlider slider: Widget, to minimum: Double) {
-        todo("setMinimum not implemented")
+        todo()
     }
     public func setMaximum(ofSlider slider: Widget, to maximum: Double) {
-        todo("setMaximum not implemented")
+        todo()
     }
     public func setValue(ofSlider slider: Widget, to value: Double) {
-        todo("setValue not implemented")
+        todo()
     }
     public func setDecimalPlaces(ofSlider slider: Widget, to decimalPlaces: Int) {
-        todo("setDecimalPlaces not implemented")
+        todo()
     }
     public func setOnChange(ofSlider slider: Widget, to onChange: @escaping (Double) -> Void) {
-        todo("setOnChange not implemented")
+        todo()
     }
 
     public func createTextField(
         content: String, placeholder: String, onChange: @escaping (String) -> Void
     ) -> Widget {
-        todo("createTextField not implemented")
+        todo()
     }
     public func setContent(ofTextField textField: Widget, to content: String) {
-        todo("setContent not implemented")
+        todo()
     }
     public func setPlaceholder(ofTextField textField: Widget, to placeholder: String) {
-        todo("setPlaceholder not implemented")
+        todo()
     }
     public func setOnChange(ofTextField textField: Widget, to onChange: @escaping (String) -> Void)
     {
-        todo("setOnChange not implemented")
+        todo()
     }
     public func getContent(ofTextField textField: Widget) -> String {
-        todo("getContent not implemented")
+        todo()
     }
 
     public func createListView() -> Widget {
-        todo("createListView not implemented")
+        todo()
     }
     public func addChild(_ child: Widget, toListView listView: Widget) {
-        todo("addChild not implemented")
+        todo()
     }
     public func removeChild(_ child: Widget, fromListView listView: Widget) {
-        todo("removeChild not implemented")
+        todo()
     }
 
     // TODO: Perhaps all views should have this just in-case backends need to add additional logic?
     public func updateListView(_ listView: Widget) {
-        todo("updateListView not implemented")
+        todo()
     }
 
     public func createOneOfContainer() -> Widget {
-        todo("createOneOfContainer not implemented")
+        todo()
     }
     public func addChild(_ child: Widget, toOneOfContainer container: Widget) {
-        todo("addChild not implemented")
+        todo()
     }
     public func removeChild(_ child: Widget, fromOneOfContainer container: Widget) {
-        todo("removeChild not implemented")
+        todo()
     }
     public func setVisibleChild(ofOneOfContainer container: Widget, to child: Widget) {
-        todo("setVisibleChild not implemented")
+        todo()
     }
 
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
-        todo("createSplitView not implemented")
+        todo()
     }
 
     public func createPicker(
         options: [String], selectedOption: Int?, onChange: @escaping (Int?) -> Void
     ) -> Widget {
-        todo("createPicker not implemented")
+        todo()
     }
     public func setOptions(ofPicker picker: Widget, to options: [String]) {
-        todo("setOptions not implemented")
+        todo()
     }
     public func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?) {
-        todo("setSelectedOption not implemented")
+        todo()
     }
     public func setOnChange(ofPicker picker: Widget, to onChange: @escaping (Int?) -> Void) {
-        todo("setOnChange not implemented")
+        todo()
     }
 
     public func createFrameContainer(for child: Widget, minWidth: Int, minHeight: Int) -> Widget {
-        todo("createFrameContainer not implemented")
+        todo()
     }
     public func setMinWidth(ofFrameContainer container: Widget, to minWidth: Int) {
-        todo("setMinWidth not implemented")
+        todo()
     }
     public func setMinHeight(ofFrameContainer container: Widget, to minHeight: Int) {
-        todo("setMinHeight not implemented")
+        todo()
     }
 
     public func createForegroundColorContainer(for child: Widget, color: Color) -> Widget {
-        todo("createForegroundColorContainer not implemented")
+        todo()
     }
     public func setForegroundColor(ofForegroundColorContainer container: Widget, to color: Color) {
-        todo("setForegroundColor not implemented")
+        todo()
     }
 
     public func createTable(rows: Int, columns: Int) -> Widget {
-        todo("createTable not implemented")
+        todo()
     }
     public func setRowCount(ofTable table: Widget, to rows: Int) {
-        todo("setRowCount not implemented")
+        todo()
     }
     public func setColumnCount(ofTable table: Widget, to columns: Int) {
-        todo("setColumnCount not implemented")
+        todo()
     }
     public func setCell(at position: CellPosition, inTable table: Widget, to widget: Widget) {
-        todo("setCell not implemented")
+        todo()
     }
 }

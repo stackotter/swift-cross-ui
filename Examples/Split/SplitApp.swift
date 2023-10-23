@@ -41,12 +41,14 @@ struct SplitApp: App {
         defaultSize: WindowProperties.Size(600, 250)
     )
 
-    var body: some View {
-        switch state.columns {
-            case .two:
-                doubleColumn
-            case .three:
-                tripleColumn
+    var body: some Scene {
+        WindowGroup {
+            switch state.columns {
+                case .two:
+                    doubleColumn
+                case .three:
+                    tripleColumn
+            }
         }
     }
 

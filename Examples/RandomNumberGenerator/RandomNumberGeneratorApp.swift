@@ -38,40 +38,42 @@ struct RandomNumberGeneratorApp: App {
         defaultSize: .init(500, 0)
     )
 
-    var body: some View {
-        VStack {
-            Text("Random Number: \(state.randomNumber)")
-            Button("Generate") {
-                state.randomNumber = Int.random(in: Int(state.minNum)...Int(state.maxNum))
+    var body: some Scene {
+        WindowGroup {
+            VStack {
+                Text("Random Number: \(state.randomNumber)")
+                Button("Generate") {
+                    state.randomNumber = Int.random(in: Int(state.minNum)...Int(state.maxNum))
+                }
+
+                Text("Minimum:")
+                Slider(
+                    state.$minNum.onChange { newValue in
+                        if newValue > state.maxNum {
+                            state.minNum = state.maxNum
+                        }
+                    },
+                    minimum: 0,
+                    maximum: 100
+                )
+
+                Text("Maximum:")
+                Slider(
+                    state.$maxNum.onChange { newValue in
+                        if newValue < state.minNum {
+                            state.maxNum = state.minNum
+                        }
+                    },
+                    minimum: 0,
+                    maximum: 100
+                )
+
+                Text("Choose a color:")
+                    .padding(.top, 20)
+                Picker(of: ColorOption.allCases, selection: state.$colorOption)
             }
-
-            Text("Minimum:")
-            Slider(
-                state.$minNum.onChange { newValue in
-                    if newValue > state.maxNum {
-                        state.minNum = state.maxNum
-                    }
-                },
-                minimum: 0,
-                maximum: 100
-            )
-
-            Text("Maximum:")
-            Slider(
-                state.$maxNum.onChange { newValue in
-                    if newValue < state.minNum {
-                        state.maxNum = state.minNum
-                    }
-                },
-                minimum: 0,
-                maximum: 100
-            )
-
-            Text("Choose a color:")
-                .padding(.top, 20)
-            Picker(of: ColorOption.allCases, selection: state.$colorOption)
+            .padding(10)
+            .foregroundColor(state.colorOption?.color ?? .red)
         }
-        .padding(10)
-        .foregroundColor(state.colorOption?.color ?? .red)
     }
 }
