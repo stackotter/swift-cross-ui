@@ -2049,8 +2049,18 @@
                 "type" : "property"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/color\/brown",
+                "title" : "static let brown: Color",
+                "type" : "property"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/color\/cyan",
                 "title" : "static let cyan: Color",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/gray",
+                "title" : "static let gray: Color",
                 "type" : "property"
               },
               {
@@ -2059,13 +2069,38 @@
                 "type" : "property"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/color\/magenta",
-                "title" : "static let magenta: Color",
+                "path" : "\/documentation\/swiftcrossui\/color\/indigo",
+                "title" : "static let indigo: Color",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/mint",
+                "title" : "static let mint: Color",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/orange",
+                "title" : "static let orange: Color",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/pink",
+                "title" : "static let pink: Color",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/purple",
+                "title" : "static let purple: Color",
                 "type" : "property"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/color\/red-swift.type.property",
                 "title" : "static let red: Color",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/color\/teal",
+                "title" : "static let teal: Color",
                 "type" : "property"
               },
               {

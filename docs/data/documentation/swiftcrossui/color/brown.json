@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Pure magenta.",
+      "text" : "Pure brown.",
       "type" : "text"
     }
   ],
@@ -15,11 +15,11 @@
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/magenta"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/brown"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI5ColorV7magentaACvpZ",
+    "externalID" : "s:12SwiftCrossUI5ColorV5brownACvpZ",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -39,7 +39,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "magenta"
+        "text" : "brown"
       },
       {
         "kind" : "text",
@@ -59,7 +59,7 @@
     "role" : "symbol",
     "roleHeading" : "Type Property",
     "symbolKind" : "property",
-    "title" : "magenta"
+    "title" : "brown"
   },
   "primaryContentSections" : [
     {
@@ -90,7 +90,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "magenta"
+              "text" : "brown"
             },
             {
               "kind" : "text",
@@ -119,7 +119,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/color\/magenta"
+        "\/documentation\/swiftcrossui\/color\/brown"
       ],
       "traits" : [
         {
@@ -178,10 +178,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/color"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/magenta": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/brown": {
   "abstract" : [
     {
-      "text" : "Pure magenta.",
+      "text" : "Pure brown.",
       "type" : "text"
     }
   ],
@@ -204,7 +204,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "magenta"
+      "text" : "brown"
     },
     {
       "kind" : "text",
@@ -216,12 +216,12 @@
       "text" : "Color"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/magenta",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/brown",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "magenta",
+  "title" : "brown",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/color\/magenta"
+  "url" : "\/documentation\/swiftcrossui\/color\/brown"
 }
 }
 }

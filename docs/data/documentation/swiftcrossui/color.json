@@ -106,10 +106,17 @@
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/black",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/blue-swift.type.property",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/brown",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/cyan",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/gray",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/green-swift.type.property",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/magenta",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/indigo",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/mint",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/orange",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/pink",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/purple",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/red-swift.type.property",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/teal",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/white",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/yellow"
       ],
@@ -342,6 +349,51 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/color\/blue-swift.type.property"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/brown": {
+  "abstract" : [
+    {
+      "text" : "Pure brown.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "brown"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/brown",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "brown",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/color\/brown"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/cyan": {
   "abstract" : [
     {
@@ -386,6 +438,51 @@
   "title" : "cyan",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/color\/cyan"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/gray": {
+  "abstract" : [
+    {
+      "text" : "Pure gray.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "gray"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/gray",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "gray",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/color\/gray"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/green-swift.property": {
   "abstract" : [
@@ -469,6 +566,51 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/color\/green-swift.type.property"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/indigo": {
+  "abstract" : [
+    {
+      "text" : "Pure indigo.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "indigo"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/indigo",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "indigo",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/color\/indigo"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/init(_:_:_:_:)": {
   "abstract" : [
     {
@@ -529,10 +671,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/color\/init(_:_:_:_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/magenta": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/mint": {
   "abstract" : [
     {
-      "text" : "Pure magenta.",
+      "text" : "Pure mint.",
       "type" : "text"
     }
   ],
@@ -555,7 +697,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "magenta"
+      "text" : "mint"
     },
     {
       "kind" : "text",
@@ -567,12 +709,147 @@
       "text" : "Color"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/magenta",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/mint",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "magenta",
+  "title" : "mint",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/color\/magenta"
+  "url" : "\/documentation\/swiftcrossui\/color\/mint"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/orange": {
+  "abstract" : [
+    {
+      "text" : "Pure orange.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "orange"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/orange",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "orange",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/color\/orange"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/pink": {
+  "abstract" : [
+    {
+      "text" : "Pure pink.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "pink"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/pink",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "pink",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/color\/pink"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/purple": {
+  "abstract" : [
+    {
+      "text" : "Pure purple.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "purple"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/purple",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "purple",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/color\/purple"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/red-swift.property": {
   "abstract" : [
@@ -655,6 +932,51 @@
   "title" : "red",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/color\/red-swift.type.property"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/teal": {
+  "abstract" : [
+    {
+      "text" : "Pure teal.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "teal"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/teal",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "teal",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/color\/teal"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/white": {
   "abstract" : [
