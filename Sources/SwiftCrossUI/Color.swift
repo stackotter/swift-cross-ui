@@ -21,15 +21,13 @@ public struct Color {
         self.blue = blue
         self.alpha = alpha
     }
-    
+
     /// Pure black.
     public static let black = Color(0.00, 0.00, 0.00)
     /// Pure blue.
     public static let blue = Color(0.00, 0.48, 1.00)
     /// Pure brown.
     public static let brown = Color(0.64, 0.52, 0.37)
-    /// Pure clear.
-    public static let clear = Color(0.00, 0.00, 0.00)
     /// Pure cyan.
     public static let cyan = Color(0.33, 0.75, 0.94)
     /// Pure gray.
