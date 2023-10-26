@@ -2,31 +2,41 @@ import Foundation
 import SwiftCrossUI
 import TermKit
 
-public struct CursesBackend: AppBackend {
+public final class CursesBackend: AppBackend {
     public typealias Window = RootView
     public typealias Widget = TermKit.View
 
-    public init(appIdentifier: String) {}
+    var root: RootView
+    var hasCreatedWindow = false
 
-    public func createRootWindow(
-        _ properties: WindowProperties,
-        _ callback: @escaping (Window) -> Void
-    ) {
+    public init(appIdentifier: String) {
         Application.prepare()
-        let root = RootView()
+        root = RootView()
         Application.top.addSubview(root)
-        callback(root)
     }
+
+    public func runMainLoop(_ callback: @escaping () -> Void) {
+        callback()
+        Application.run()
+    }
+
+    public func createWindow(withDefaultSize defaultSize: SwiftCrossUI.Size?) -> Window {
+        guard !hasCreatedWindow else {
+            fatalError("CursesBackend doesn't support multi-windowing")
+        }
+        hasCreatedWindow = true
+        return root
+    }
+
+    public func setTitle(ofWindow window: Window, to title: String) {}
+
+    public func setResizability(ofWindow window: Window, to resizable: Bool) {}
 
     public func setChild(ofWindow window: Window, to child: Widget) {
         window.addSubview(child)
     }
 
     public func show(window: Window) {}
-
-    public func runMainLoop() {
-        Application.run()
-    }
 
     public func runInMainThread(action: @escaping () -> Void) {
         #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)

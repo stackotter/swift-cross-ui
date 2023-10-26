@@ -32,14 +32,8 @@ struct StressTestApp: App {
 
     let state = StressTestState()
 
-    let windowProperties = WindowProperties(
-        title: "StressTestApp",
-        defaultSize: WindowProperties.Size(400, 400),
-        resizable: true
-    )
-
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("Stress Tester") {
             NavigationSplitView {
                 VStack {
                     Button("List 1") { state.tab = 0 }
@@ -65,5 +59,6 @@ struct StressTestApp: App {
                 }.padding(10)
             }
         }
+        .defaultSize(width: 400, height: 400)
     }
 }

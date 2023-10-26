@@ -3,7 +3,7 @@ import Foundation
 import LVGL
 import SwiftCrossUI
 
-public struct LVGLBackend: AppBackend {
+public final class LVGLBackend: AppBackend {
     public class Widget {
         private var createWithParent: (LVObject) -> LVObject
         var widget: LVObject?
@@ -45,27 +45,34 @@ public struct LVGLBackend: AppBackend {
     }
 
     private let runLoop: LVRunLoop
+    private var hasCreatedWindow = false
 
     public init(appIdentifier: String) {
         runLoop = LVRunLoop.shared
     }
 
-    public func createRootWindow(
-        _ properties: WindowProperties,
-        _ callback: @escaping (Window) -> Void
-    ) {
-        callback(LVScreen.active)
+    public func runMainLoop(_ callback: @escaping () -> Void) {
+        callback()
+        runLoop.run()
     }
+
+    public func createWindow(withDefaultSize defaultSize: Size?) -> LVScreen {
+        guard !hasCreatedWindow else {
+            fatalError("LVGLBackend doesn't support multi-windowing")
+        }
+        hasCreatedWindow = true
+        return LVScreen.active
+    }
+
+    public func setTitle(ofWindow window: Window, to title: String) {}
+
+    public func setResizability(ofWindow window: Window, to resizable: Bool) {}
 
     public func setChild(ofWindow window: Window, to child: Widget) {
         _ = child.create(withParent: window)
     }
 
     public func show(window: Window) {}
-
-    public func runMainLoop() {
-        runLoop.run()
-    }
 
     public func runInMainThread(action: @escaping () -> Void) {
         #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)

@@ -12,22 +12,31 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
 
     public init<Backend: AppBackend>(
         from scene: WindowGroup<Content>,
-        backend: Backend,
-        rootWindow: Backend.Window
+        backend: Backend
     ) {
         viewGraph = ViewGraph(for: scene.body, backend: backend)
+        let window = backend.createWindow(withDefaultSize: scene.defaultSize)
         let rootWidget = viewGraph.rootNode.concreteNode(for: Backend.self).widget
-        backend.setChild(ofWindow: rootWindow, to: rootWidget)
-        window = rootWindow
+        backend.setChild(ofWindow: window, to: rootWidget)
+        backend.setTitle(ofWindow: window, to: scene.title)
+        backend.setResizability(ofWindow: window, to: scene.resizable)
+        self.window = window
     }
 
     public func update<Backend: AppBackend>(_ newScene: WindowGroup<Content>?, backend: Backend) {
-        if let newScene = newScene {
-            viewGraph.update(newScene.body)
-        }
-
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
+        }
+
+        if let newScene = newScene {
+            viewGraph.update(newScene.body)
+
+            // Don't set default size even if it has changed, we only set that once
+            // at window creation since some backends don't have a concept of
+            // 'default' size, so setting the default size every time the default size
+            // changed, the window would resize (which is incorrect behaviour).
+            backend.setTitle(ofWindow: window, to: newScene.title)
+            backend.setResizability(ofWindow: window, to: newScene.resizable)
         }
 
         backend.show(window: window)

@@ -20,20 +20,18 @@ class _App<AppRoot: App> {
     func run() {
         let backend = AppRoot.Backend(appIdentifier: app.identifier)
         currentBackend = backend
-        backend.createRootWindow(app.windowProperties) { rootWindow in
+        backend.runMainLoop {
             let rootNode = AppRoot.Body.Node(
                 from: self.app.body,
-                backend: backend,
-                rootWindow: rootWindow
+                backend: backend
             )
+
             rootNode.update(nil, backend: backend)
             self.sceneGraphRoot = rootNode
 
             self.cancellable = self.app.state.didChange.observe {
                 self.sceneGraphRoot?.update(self.app.body, backend: backend)
             }
-
-            backend.runMainLoop()
         }
     }
 }

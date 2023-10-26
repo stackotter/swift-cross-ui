@@ -31,10 +31,8 @@ struct SpreadsheetApp: App {
 
     let state = SpreadsheetState()
 
-    let windowProperties = WindowProperties(title: "SpreadsheetApp", resizable: true)
-
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("Spreadsheet") {
             Table(state.data) {
                 TableColumn("Name", value: \Person.name)
                 TableColumn("Age", value: \Person.age)

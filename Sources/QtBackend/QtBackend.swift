@@ -23,13 +23,31 @@ public struct QtBackend: AppBackend {
         application = QApplication()
     }
 
-    public func createRootWindow(
-        _ properties: WindowProperties,
-        _ callback: @escaping (Window) -> Void
-    ) {
+    public func runMainLoop(_ callback: @escaping () -> Void) {
+        callback()
+        _ = application.exec()
+    }
+
+    public func createWindow(withDefaultSize defaultSize: Size?) -> Window {
         let mainWindow = MainWindow()
-        mainWindow.setProperties(properties)
-        callback(mainWindow)
+        mainWindow.geometry = QRect(
+            x: 0,
+            y: 0,
+            width: Int32(defaultSize?.width ?? 0),
+            height: Int32(defaultSize?.height ?? 0)
+        )
+        return mainWindow
+    }
+
+    public func setTitle(ofWindow window: Window, to title: String) {
+        window.windowTitle = title
+    }
+
+    public func setResizability(ofWindow window: Window, to resizable: Bool) {
+        // TODO: Get window resizability working. It seems to remain resizable no matter what
+        //   policy I apply.
+        //  let policy: QSizePolicy.Policy = .Maximum
+        //  window.sizePolicy = QSizePolicy(horizontal: policy, vertical: policy)
     }
 
     public func setChild(ofWindow window: Window, to child: Widget) {
@@ -38,10 +56,6 @@ public struct QtBackend: AppBackend {
 
     public func show(window: Window) {
         window.show()
-    }
-
-    public func runMainLoop() {
-        _ = application.exec()
     }
 
     public func runInMainThread(action: @escaping () -> Void) {
@@ -202,20 +216,5 @@ public struct QtBackend: AppBackend {
 class MainWindow: QMainWindow {
     override init(parent: QWidget? = nil, flags: Qt.WindowFlags = .Widget) {
         super.init(parent: parent, flags: flags)
-    }
-
-    func setProperties(_ properties: WindowProperties) {
-        windowTitle = properties.title
-
-        let size = properties.defaultSize
-        geometry = QRect(
-            x: 0,
-            y: 0,
-            width: Int32(size?.width ?? 0),
-            height: Int32(size?.height ?? 0)
-        )
-
-        let policy: QSizePolicy.Policy = .Maximum
-        sizePolicy = QSizePolicy(horizontal: policy, vertical: policy)
     }
 }

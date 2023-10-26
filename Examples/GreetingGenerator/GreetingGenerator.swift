@@ -14,10 +14,8 @@ struct GreetingGeneratorApp: App {
 
     let state = GreetingGeneratorState()
 
-    let windowProperties = WindowProperties(title: "Greeting Generator")
-
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("Greeting Generator") {
             VStack {
                 TextField("Name", state.$name)
                 HStack {

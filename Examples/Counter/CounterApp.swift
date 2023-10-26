@@ -13,10 +13,8 @@ struct CounterApp: App {
 
     let state = CounterState()
 
-    let windowProperties = WindowProperties(title: "CounterApp", resizable: true)
-
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("CounterExample: \(state.count)") {
             HStack(spacing: 20) {
                 Button("-") { state.count -= 1 }
                 Text("Count: \(state.count)", wrap: false)

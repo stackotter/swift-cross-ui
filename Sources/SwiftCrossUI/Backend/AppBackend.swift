@@ -12,10 +12,12 @@ var currentBackend: (any AppBackend)!
 /// and are simply intended to allow incremental implementation of backends,
 /// not a production-ready fallback for views that cannot be represented by a
 /// given backend. The methods you need to implemented up-front (which don't
-/// have default implementations) are: ``AppBackend/createRootWindow(_:_:)``,
+/// have default implementations) are: ``AppBackend/createRootWindow(withDefaultSize:_:)``,
+/// ``AppBackend/setTitle(ofWindow:to:)``, ``AppBackend/setResizability(ofWindow:to:)``,
 /// ``AppBackend/setChild(ofWindow:to:)``, ``AppBackend/show(window:)``,
 /// ``AppBackend/runMainLoop()``, ``AppBackend/runInMainThread(action:)``,
-/// ``AppBackend/show(widget:)``.
+/// ``AppBackend/show(widget:)``. Many of these can simply be given dummy
+/// implementations until you're ready to implement them properly.
 ///
 /// If you need to modify the children of a widget after creation but there
 /// aren't update methods available, this is an intentional limitation to
@@ -31,24 +33,49 @@ public protocol AppBackend {
     /// after starting the app, and hence this generic root window creation
     /// API must reflect that. This is always the first method to be called
     /// and is where boilerplate app setup should happen.
-    func createRootWindow(
-        _ properties: WindowProperties,
-        _ callback: @escaping (Window) -> Void
+
+    /// Runs the backend's main run loop. The app will exit when this method
+    /// returns. This wall always be the first method called by SwiftCrossUI.
+    ///
+    /// The callback is where SwiftCrossUI will create windows, render
+    /// initial views, start state handlers, etc. The setup action must be
+    /// run exactly once. The backend must be fully functional before the
+    /// callback is ready.
+    ///
+    /// It is up to the backend to decide whether the callback runs before or
+    /// after the main loop starts. For example, some backends such as the `AppKit`
+    /// backend can create windows and widgets before the run loop starts, so it
+    /// makes the most sense to run the setup before the main run loop starts (it's
+    /// also not possible to run the setup function once the main run loop starts
+    /// anyway). On the other side is the `Gtk` backend which must be on the
+    /// main loop to create windows and widgets (because otherwise the root
+    /// window has not yet been created, which is essential in Gtk), so the
+    /// setup function is passed to `Gtk` as a callback to run once the main
+    /// run loop starts.
+    func runMainLoop(
+        _ callback: @escaping () -> Void
     )
+    /// Creates a new window. For some backends it may make sense for this
+    /// method to return the application's root window the first time its
+    /// called, and only create new windows on subsequent invocations.
+    ///
+    /// The default size is a suggestion; for example some backends may choose
+    /// to restore the user's preferred window size from a previous session.
+    ///
+    /// A window's content size has precendence over the default size. The
+    /// window should always be at least the size of its content.
+    func createWindow(withDefaultSize defaultSize: Size?) -> Window
+    /// Sets the title of a window.
+    func setTitle(ofWindow window: Window, to title: String)
+    /// Sets the resizability of a window. Even if resizable, the window
+    /// shouldn't be allowed to become smaller than its content.
+    func setResizability(ofWindow window: Window, to resizable: Bool)
     /// Sets the root child of a window (replaces the previous child if any).
     func setChild(ofWindow window: Window, to child: Widget)
     /// Shows a window after it has been created or updated (may be unnecessary
     /// for some backends). Predominantly used by window-based ``Scene``
     /// implementations after propagating updates.
     func show(window: Window)
-
-    /// Runs the backend's main loop after SwiftCrossUI has finished all setup.
-    /// Isn't required to return (but it's find if it does).
-    ///
-    /// This method is run after ``createRootWindow(_:_:)``. For some backends,
-    /// this method should just do nothing (e.g. if the root window creation
-    /// callback was already called from within the app's event loop).
-    func runMainLoop()
 
     /// Runs an action in the app's main thread if required to perform UI updates
     /// by the backend. Predominantly used by ``Publisher`` to publish changes to a thread
@@ -267,28 +294,6 @@ public protocol AppBackend {
     func setColumnCount(ofTable table: Widget, to columns: Int)
     /// Sets the contents of the table cell at the given position in a table.
     func setCell(at position: CellPosition, inTable table: Widget, to widget: Widget)
-}
-
-/// The layout orientation inherited by a widget from its nearest oriented parent.
-public enum InheritedOrientation {
-    /// The layout orientation used by the likes of ``VStack`` (the default for most containers).
-    case vertical
-    /// The layout orientation used by the likes of ``HStack``.
-    case horizontal
-}
-
-/// The position of a cell in a table (with row and column numbers starting from 0).
-public struct CellPosition {
-    /// The row number starting from 0.
-    public var row: Int
-    /// The column number starting from 0.
-    public var column: Int
-
-    /// Creates a cell position from a row and column number (starting from 0).
-    public init(_ row: Int, _ column: Int) {
-        self.row = row
-        self.column = column
-    }
 }
 
 extension AppBackend {
