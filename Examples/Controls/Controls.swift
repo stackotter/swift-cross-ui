@@ -15,13 +15,8 @@ struct ControlsApp: App {
 
     let state = ControlsState()
 
-    let windowProperties = WindowProperties(
-        title: "ControlsApp",
-        resizable: true
-    )
-
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("ControlsApp") {
             HStack {
                 VStack {
                     Text("Button")

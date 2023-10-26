@@ -33,13 +33,8 @@ struct RandomNumberGeneratorApp: App {
 
     let state = RandomNumberGeneratorState()
 
-    let windowProperties = WindowProperties(
-        title: "Random Number Generator",
-        defaultSize: .init(500, 0)
-    )
-
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("Random Number Generator") {
             VStack {
                 Text("Random Number: \(state.randomNumber)")
                 Button("Generate") {
@@ -75,5 +70,6 @@ struct RandomNumberGeneratorApp: App {
             .padding(10)
             .foregroundColor(state.colorOption?.color ?? .red)
         }
+        .defaultSize(width: 500, height: 0)
     }
 }

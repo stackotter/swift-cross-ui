@@ -36,13 +36,8 @@ struct SplitApp: App {
 
     let state = SplitAppState()
 
-    let windowProperties = WindowProperties(
-        title: "Split",
-        defaultSize: WindowProperties.Size(600, 250)
-    )
-
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("Split") {
             switch state.columns {
                 case .two:
                     doubleColumn
@@ -50,6 +45,7 @@ struct SplitApp: App {
                     tripleColumn
             }
         }
+        .defaultSize(width: 600, height: 250)
     }
 
     /// Example view for a two column NavigationSplitView

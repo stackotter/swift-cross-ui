@@ -10,7 +10,7 @@ public protocol SceneGraphNode: AnyObject {
     /// Creates a node from a corresponding scene. Should perform initial setup of
     /// any widgets required to display the scene (although ``SceneGraphNode/update(_:)``
     /// is guaranteed to be called immediately after initialization).
-    init<Backend: AppBackend>(from scene: NodeScene, backend: Backend, rootWindow: Backend.Window)
+    init<Backend: AppBackend>(from scene: NodeScene, backend: Backend)
 
     /// Unlike views (which have state), scenes are only ever updated when they're
     /// recomputed or immediately after they're created.

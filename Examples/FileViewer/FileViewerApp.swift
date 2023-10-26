@@ -18,14 +18,8 @@ struct FileViewerApp: App {
 
     let state = FileViewerAppState()
 
-    let windowProperties = WindowProperties(
-        title: "File Viewer",
-        defaultSize: WindowProperties.Size(500, 650),
-        resizable: false
-    )
-
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("File Viewer") {
             #if canImport(FileDialog)
                 HStack {
                     VStack {
@@ -46,5 +40,6 @@ struct FileViewerApp: App {
                 Text("FileDialog requires Gtk 4.10")
             #endif
         }
+        .defaultSize(width: 500, height: 650)
     }
 }

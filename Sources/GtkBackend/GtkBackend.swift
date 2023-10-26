@@ -9,33 +9,50 @@ extension SwiftCrossUI.Color {
     }
 }
 
-// TODO: Add back debug names for Gtk widgets (for debugging)
-public struct GtkBackend: AppBackend {
+public final class GtkBackend: AppBackend {
     public typealias Window = Gtk.Window
     public typealias Widget = Gtk.Widget
 
     var gtkApp: Application
 
+    /// A window to be returned on the next call to ``GtkBackend/createWindow``.
+    /// This is necessary because Gtk creates a root window no matter what, and
+    /// this needs to be returned on the first call to `createWindow`.
+    var precreatedWindow: Window?
+
     public init(appIdentifier: String) {
         gtkApp = Application(applicationId: appIdentifier)
     }
 
-    public func createRootWindow(
-        _ properties: WindowProperties,
-        _ callback: @escaping (Window) -> Void
-    ) {
+    public func runMainLoop(_ callback: @escaping () -> Void) {
+        // TODO: Setup the main window such that its child is centered like it would be in SwiftUI
         gtkApp.run { window in
-            window.title = properties.title
-            if let size = properties.defaultSize {
+            self.precreatedWindow = window
+            callback()
+        }
+    }
+
+    public func createWindow(withDefaultSize defaultSize: SwiftCrossUI.Size?) -> Window {
+        if let window = precreatedWindow {
+            if let defaultSize = defaultSize {
                 window.defaultSize = Size(
-                    width: size.width,
-                    height: size.height
+                    width: defaultSize.width,
+                    height: defaultSize.height
                 )
             }
-            window.resizable = properties.resizable
-
-            callback(window)
+            precreatedWindow = nil
+            return window
+        } else {
+            fatalError("Multi-windowing not yet implemented")
         }
+    }
+
+    public func setTitle(ofWindow window: Window, to title: String) {
+        window.title = title
+    }
+
+    public func setResizability(ofWindow window: Window, to resizable: Bool) {
+        window.resizable = resizable
     }
 
     public func setChild(ofWindow window: Window, to child: Widget) {
@@ -44,11 +61,6 @@ public struct GtkBackend: AppBackend {
 
     public func show(window: Window) {
         window.show()
-    }
-
-    public func runMainLoop() {
-        // We're already inside the main loop due to the way `createRootWindow`
-        // had to be implemented, so there's nothing to do here.
     }
 
     class ThreadActionContext {

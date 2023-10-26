@@ -33,13 +33,8 @@ struct NavigationApp: App {
 
     let state = NavigationAppState()
 
-    let windowProperties = WindowProperties(
-        title: "Navigation",
-        defaultSize: WindowProperties.Size(200, 250)
-    )
-
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("Navigation") {
             NavigationStack(path: state.$path) {
                 Text("Learn about subject areas")
                     .padding(.bottom, 10)
@@ -90,6 +85,7 @@ struct NavigationApp: App {
             }
             .padding(10)
         }
+        .defaultSize(width: 200, height: 250)
     }
 
     @ViewBuilder

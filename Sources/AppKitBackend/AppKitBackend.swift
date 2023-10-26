@@ -7,32 +7,39 @@ public struct AppKitBackend: AppBackend {
 
     public init(appIdentifier: String) {}
 
-    public func createRootWindow(
-        _ properties: WindowProperties,
-        _ callback: @escaping (Window) -> Void
-    ) {
+    public func runMainLoop(_ callback: @escaping () -> Void) {
+        callback()
+        NSApplication.shared.activate(ignoringOtherApps: true)
+        NSApplication.shared.run()
+    }
+
+    public func createWindow(withDefaultSize defaultSize: Size?) -> Window {
         let nsApp = NSApplication.shared
         nsApp.setActivationPolicy(.regular)
 
-        var styleMask: NSWindow.StyleMask = [.titled, .closable]
-        if properties.resizable {
-            styleMask.insert(.resizable)
-        }
-
-        let window = NSWindow(
+        return NSWindow(
             contentRect: NSRect(
                 x: 0,
                 y: 0,
-                width: CGFloat(properties.defaultSize?.width ?? 0),
-                height: CGFloat(properties.defaultSize?.height ?? 0)
+                width: CGFloat(defaultSize?.width ?? 0),
+                height: CGFloat(defaultSize?.height ?? 0)
             ),
-            styleMask: styleMask,
+            styleMask: [.titled, .closable],
             backing: .buffered,
             defer: true
         )
-        window.title = properties.title
+    }
 
-        callback(window)
+    public func setTitle(ofWindow window: Window, to title: String) {
+        window.title = title
+    }
+
+    public func setResizability(ofWindow window: Window, to resizable: Bool) {
+        if resizable {
+            window.styleMask.insert(.resizable)
+        } else {
+            window.styleMask.remove(.resizable)
+        }
     }
 
     public func setChild(ofWindow window: NSWindow, to child: NSView) {
@@ -41,11 +48,6 @@ public struct AppKitBackend: AppBackend {
 
     public func show(window: NSWindow) {
         window.makeKeyAndOrderFront(nil)
-    }
-
-    public func runMainLoop() {
-        NSApplication.shared.activate(ignoringOtherApps: true)
-        NSApplication.shared.run()
     }
 
     public func runInMainThread(action: @escaping () -> Void) {
