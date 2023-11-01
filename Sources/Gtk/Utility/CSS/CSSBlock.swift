@@ -1,9 +1,12 @@
-/// Type safe representation of a block of css
+/// Type safe representation of a block of css targetting a class.
 ///
+/// For example, here's a block of CSS against its equivalent ``CSSBlock``.
 /// ```
-/// .class {
-///   opacity: 0.3;
-/// }
+/// // .box {
+/// //   opacity: 0.3;
+/// // }
+/// var block = CSSBlock(forCssClass: "box")
+/// block.set(property: .opacity(0.3))
 /// ```
 public struct CSSBlock: Equatable {
     private var cssClass: String
@@ -15,7 +18,7 @@ public struct CSSBlock: Equatable {
         ".\(cssClass){\(keyedProperties.values.map(\.stringRepresentation).joined())}"
     }
 
-    init(forCssClass cssClass: String) {
+    init(forClass cssClass: String) {
         self.cssClass = cssClass
     }
 

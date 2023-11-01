@@ -43,13 +43,9 @@ open class Widget: GObjectRepresentable {
         signals = []
     }
 
-    func didMoveToParent() {
+    func didMoveToParent() {}
 
-    }
-
-    func didMoveFromParent() {
-
-    }
+    func didMoveFromParent() {}
 
     /// Adds a signal that is not carrying any additional information.
     func addSignal(name: String, callback: @escaping () -> Void) {
@@ -158,16 +154,17 @@ open class Widget: GObjectRepresentable {
         signals.append((handlerId, box))
     }
 
-    /// A block of CSS for this widget
-    public lazy var css: CSSBlock = CSSBlock(forCssClass: customCssClass) {
+    /// The CSS rules applied directly to this widget.
+    public lazy var css: CSSBlock = CSSBlock(forClass: customCSSClass) {
         didSet {
             guard oldValue != css else { return }
             cssProvider.loadCss(from: css.stringRepresentation)
         }
     }
 
-    /// Unique CSS class for this widget
-    private lazy var customCssClass: String = {
+    /// A unique CSS class for this widget. The class is lazily added to the
+    /// widget when this property is first accessed.
+    private lazy var customCSSClass: String = {
         let className = ObjectIdentifier(self).debugDescription
             .replacingOccurrences(of: "ObjectIdentifier(0x", with: "class_")
             .replacingOccurrences(of: ")", with: "")

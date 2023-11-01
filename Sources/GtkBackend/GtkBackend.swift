@@ -184,11 +184,15 @@ public struct GtkBackend: AppBackend {
     }
 
     public func createImageView(filePath: String) -> Widget {
-        return Image(filename: filePath)
+        let picture = Picture(filename: filePath)
+        // Prevent the image from completely disappearing if it isn't given space
+        // because that can be very confusing as a developer
+        picture.minHeight = 5
+        return picture
     }
 
     public func setFilePath(ofImageView imageView: Widget, to filePath: String) {
-        (imageView as! Gtk.Image).setPath(filePath)
+        (imageView as! Gtk.Picture).setPath(filePath)
     }
 
     public func createSpacer(

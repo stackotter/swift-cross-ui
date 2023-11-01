@@ -22,16 +22,14 @@ struct WindowPropertiesApp: App {
     )
 
     var body: some View {
-        HStack {
-            VStack {
-                Text("This is a window with a custom size.")
-                Text("This window also can't be resized.")
-                    .padding(.bottom, 10)
+        VStack {
+            Text("This is a window with a custom size.")
+            Text("This window also can't be resized.")
+                .padding(.bottom, 10)
 
-                Button("Click") { state.count += 1 }
-                Text("Count: \(state.count)")
-                Image(Bundle.module.bundleURL.appendingPathComponent("Banner.png").path)
-            }.padding(10)
-        }
+            Button("Click") { state.count += 1 }
+            Text("Count: \(state.count)")
+            Image(Bundle.module.bundleURL.appendingPathComponent("Banner.png").path)
+        }.padding(10)
     }
 }

@@ -10,7 +10,11 @@ public struct CSSProperty: Equatable {
     var value: String
 
     private static func rgba(_ color: Color) -> String {
-        "rgba(\(color.red*255),\(color.green*255),\(color.blue*255),\(color.alpha*255))"
+        let red = color.red * 255
+        let green = color.green * 255
+        let blue = color.blue * 255
+        let alpha = color.alpha * 255
+        return "rgba(\(red),\(green),\(blue),\(alpha))"
     }
 
     public static func foregroundColor(_ color: Color) -> CSSProperty {
@@ -34,7 +38,7 @@ public struct CSSProperty: Equatable {
     }
 
     public static func border(color: Color, width: Int) -> CSSProperty {
-        CSSProperty(key: "border", value: "\(width) none \(rgba(color))")
+        CSSProperty(key: "border", value: "\(width)px solid \(rgba(color))")
     }
 
     public static func cornerRadius(_ radius: Int) -> CSSProperty {
