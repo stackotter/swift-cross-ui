@@ -31,5 +31,12 @@ struct WindowPropertiesApp: App {
         }
         .defaultSize(width: 500, height: 500)
         .windowResizability(state.resizable ? .contentMinSize : .contentSize)
+
+        WindowGroup("Secondary window") {
+            Text("This a secondary window!")
+                .padding(10)
+        }
+        .defaultSize(width: 200, height: 200)
+        .windowResizability(.contentSize)
     }
 }
