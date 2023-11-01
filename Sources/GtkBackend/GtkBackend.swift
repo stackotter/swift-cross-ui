@@ -33,18 +33,22 @@ public final class GtkBackend: AppBackend {
     }
 
     public func createWindow(withDefaultSize defaultSize: SwiftCrossUI.Size?) -> Window {
-        if let window = precreatedWindow {
-            if let defaultSize = defaultSize {
-                window.defaultSize = Size(
-                    width: defaultSize.width,
-                    height: defaultSize.height
-                )
-            }
-            precreatedWindow = nil
-            return window
+        let window: Gtk.Window
+        if let precreatedWindow = precreatedWindow {
+            self.precreatedWindow = nil
+            window = precreatedWindow
         } else {
-            fatalError("Multi-windowing not yet implemented")
+            window = Gtk.Window()
         }
+
+        if let defaultSize = defaultSize {
+            window.defaultSize = Size(
+                width: defaultSize.width,
+                height: defaultSize.height
+            )
+        }
+
+        return window
     }
 
     public func setTitle(ofWindow window: Window, to title: String) {
@@ -473,20 +477,16 @@ public final class GtkBackend: AppBackend {
     }
 
     public func createFrameContainer(for child: Widget, minWidth: Int, minHeight: Int) -> Widget {
-        let widget = ModifierBox()
-        widget.setChild(child)
-        setMinWidth(ofFrameContainer: widget, to: minWidth)
-        setMinHeight(ofFrameContainer: widget, to: minHeight)
-        return widget
+        setMinWidth(ofFrameContainer: child, to: minWidth)
+        setMinHeight(ofFrameContainer: child, to: minHeight)
+        return child
     }
 
     public func setMinWidth(ofFrameContainer container: Widget, to minWidth: Int) {
-        let container = container as! ModifierBox
         container.css.set(properties: [.minWidth(minWidth)], clear: false)
     }
 
     public func setMinHeight(ofFrameContainer container: Widget, to minHeight: Int) {
-        let container = container as! ModifierBox
         container.css.set(properties: [.minHeight(minHeight)], clear: false)
     }
 
