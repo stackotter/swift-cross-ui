@@ -103,6 +103,60 @@ public class Scale: Range {
         widgetPointer = gtk_scale_new_with_range(orientation, min, max, step)
     }
 
+    override func didMoveToParent() {
+        removeSignals()
+
+        super.didMoveToParent()
+
+        let handler0:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::digits", handler: gCallback(handler0)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyDigits?(self)
+        }
+
+        let handler1:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::draw-value", handler: gCallback(handler1)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyDrawValue?(self)
+        }
+
+        let handler2:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::has-origin", handler: gCallback(handler2)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyHasOrigin?(self)
+        }
+
+        let handler3:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::value-pos", handler: gCallback(handler3)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyValuePos?(self)
+        }
+    }
+
     /// The number of decimal places that are displayed in the value.
     @GObjectProperty(named: "digits") public var digits: Int
 
@@ -114,4 +168,12 @@ public class Scale: Range {
 
     /// The position in which the current value is displayed.
     @GObjectProperty(named: "value-pos") public var valuePos: PositionType
+
+    public var notifyDigits: ((Scale) -> Void)?
+
+    public var notifyDrawValue: ((Scale) -> Void)?
+
+    public var notifyHasOrigin: ((Scale) -> Void)?
+
+    public var notifyValuePos: ((Scale) -> Void)?
 }

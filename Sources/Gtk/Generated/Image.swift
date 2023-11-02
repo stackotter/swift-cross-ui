@@ -132,6 +132,120 @@ public class Image: Widget {
         widgetPointer = gtk_image_new_from_resource(resourcePath)
     }
 
+    override func didMoveToParent() {
+        removeSignals()
+
+        super.didMoveToParent()
+
+        let handler0:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::file", handler: gCallback(handler0)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyFile?(self)
+        }
+
+        let handler1:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::gicon", handler: gCallback(handler1)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyGicon?(self)
+        }
+
+        let handler2:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::icon-name", handler: gCallback(handler2)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyIconName?(self)
+        }
+
+        let handler3:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::icon-size", handler: gCallback(handler3)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyIconSize?(self)
+        }
+
+        let handler4:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::paintable", handler: gCallback(handler4)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPaintable?(self)
+        }
+
+        let handler5:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::pixel-size", handler: gCallback(handler5)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPixelSize?(self)
+        }
+
+        let handler6:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::resource", handler: gCallback(handler6)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyResource?(self)
+        }
+
+        let handler7:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::storage-type", handler: gCallback(handler7)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyStorageType?(self)
+        }
+
+        let handler8:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::use-fallback", handler: gCallback(handler8)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyUseFallback?(self)
+        }
+    }
+
     /// The name of the icon in the icon theme.
     ///
     /// If the icon theme is changed, the image will be updated automatically.
@@ -149,4 +263,22 @@ public class Image: Widget {
 
     /// The representation being used for image data.
     @GObjectProperty(named: "storage-type") public var storageType: ImageType
+
+    public var notifyFile: ((Image) -> Void)?
+
+    public var notifyGicon: ((Image) -> Void)?
+
+    public var notifyIconName: ((Image) -> Void)?
+
+    public var notifyIconSize: ((Image) -> Void)?
+
+    public var notifyPaintable: ((Image) -> Void)?
+
+    public var notifyPixelSize: ((Image) -> Void)?
+
+    public var notifyResource: ((Image) -> Void)?
+
+    public var notifyStorageType: ((Image) -> Void)?
+
+    public var notifyUseFallback: ((Image) -> Void)?
 }

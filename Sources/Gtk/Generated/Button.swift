@@ -68,9 +68,9 @@ public class Button: Widget, Actionable {
     }
 
     override func didMoveToParent() {
-        super.didMoveToParent()
-
         removeSignals()
+
+        super.didMoveToParent()
 
         addSignal(name: "activate") { [weak self] () in
             guard let self = self else { return }
@@ -80,6 +80,102 @@ public class Button: Widget, Actionable {
         addSignal(name: "clicked") { [weak self] () in
             guard let self = self else { return }
             self.clicked?(self)
+        }
+
+        let handler2:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::can-shrink", handler: gCallback(handler2)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyCanShrink?(self)
+        }
+
+        let handler3:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::child", handler: gCallback(handler3)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyChild?(self)
+        }
+
+        let handler4:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::has-frame", handler: gCallback(handler4)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyHasFrame?(self)
+        }
+
+        let handler5:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::icon-name", handler: gCallback(handler5)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyIconName?(self)
+        }
+
+        let handler6:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::label", handler: gCallback(handler6)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyLabel?(self)
+        }
+
+        let handler7:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::use-underline", handler: gCallback(handler7)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyUseUnderline?(self)
+        }
+
+        let handler8:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::action-name", handler: gCallback(handler8)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyActionName?(self)
+        }
+
+        let handler9:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::action-target", handler: gCallback(handler9)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyActionTarget?(self)
         }
     }
 
@@ -109,4 +205,20 @@ public class Button: Widget, Actionable {
 
     /// Emitted when the button has been activated (pressed and released).
     public var clicked: ((Button) -> Void)?
+
+    public var notifyCanShrink: ((Button) -> Void)?
+
+    public var notifyChild: ((Button) -> Void)?
+
+    public var notifyHasFrame: ((Button) -> Void)?
+
+    public var notifyIconName: ((Button) -> Void)?
+
+    public var notifyLabel: ((Button) -> Void)?
+
+    public var notifyUseUnderline: ((Button) -> Void)?
+
+    public var notifyActionName: ((Button) -> Void)?
+
+    public var notifyActionTarget: ((Button) -> Void)?
 }

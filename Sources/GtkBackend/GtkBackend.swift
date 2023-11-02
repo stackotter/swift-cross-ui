@@ -350,12 +350,8 @@ public struct GtkBackend: AppBackend {
         let widget = DropDown(strings: optionStrings)
 
         let options = options
-        widget.notifySelected = { [weak widget] in
-            guard let widget = widget else {
-                return
-            }
-
-            if Int(widget.selected) >= options.count {
+        widget.notifySelected = { widget in
+            if widget.selected >= options.count {
                 onChange(nil)
             } else {
                 onChange(widget.selected)
@@ -407,14 +403,8 @@ public struct GtkBackend: AppBackend {
     }
 
     public func setOnChange(ofPicker picker: Widget, to onChange: @escaping (Int?) -> Void) {
-        (picker as! DropDown).notifySelected = { [weak picker] in
-            guard let widget = picker else {
-                return
-            }
-
-            let picker = widget as! DropDown
-
-            if Int(picker.selected) == Int(GTK_INVALID_LIST_POSITION) {
+        (picker as! DropDown).notifySelected = { picker in
+            if picker.selected == GTK_INVALID_LIST_POSITION {
                 onChange(nil)
             } else {
                 onChange(picker.selected)

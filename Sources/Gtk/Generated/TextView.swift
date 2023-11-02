@@ -58,9 +58,9 @@ public class TextView: Widget, Scrollable {
     }
 
     override func didMoveToParent() {
-        super.didMoveToParent()
-
         removeSignals()
+
+        super.didMoveToParent()
 
         addSignal(name: "backspace") { [weak self] () in
             guard let self = self else { return }
@@ -194,6 +194,306 @@ public class TextView: Widget, Scrollable {
         addSignal(name: "toggle-overwrite") { [weak self] () in
             guard let self = self else { return }
             self.toggleOverwrite?(self)
+        }
+
+        let handler15:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::accepts-tab", handler: gCallback(handler15)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyAcceptsTab?(self)
+        }
+
+        let handler16:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::bottom-margin", handler: gCallback(handler16)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyBottomMargin?(self)
+        }
+
+        let handler17:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::buffer", handler: gCallback(handler17)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyBuffer?(self)
+        }
+
+        let handler18:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::cursor-visible", handler: gCallback(handler18)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyCursorVisible?(self)
+        }
+
+        let handler19:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::editable", handler: gCallback(handler19)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyEditable?(self)
+        }
+
+        let handler20:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::extra-menu", handler: gCallback(handler20)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyExtraMenu?(self)
+        }
+
+        let handler21:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::im-module", handler: gCallback(handler21)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyImModule?(self)
+        }
+
+        let handler22:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::indent", handler: gCallback(handler22)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyIndent?(self)
+        }
+
+        let handler23:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::input-hints", handler: gCallback(handler23)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyInputHints?(self)
+        }
+
+        let handler24:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::input-purpose", handler: gCallback(handler24)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyInputPurpose?(self)
+        }
+
+        let handler25:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::justification", handler: gCallback(handler25)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyJustification?(self)
+        }
+
+        let handler26:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::left-margin", handler: gCallback(handler26)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyLeftMargin?(self)
+        }
+
+        let handler27:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::monospace", handler: gCallback(handler27)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyMonospace?(self)
+        }
+
+        let handler28:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::overwrite", handler: gCallback(handler28)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyOverwrite?(self)
+        }
+
+        let handler29:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::pixels-above-lines", handler: gCallback(handler29)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPixelsAboveLines?(self)
+        }
+
+        let handler30:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::pixels-below-lines", handler: gCallback(handler30)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPixelsBelowLines?(self)
+        }
+
+        let handler31:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::pixels-inside-wrap", handler: gCallback(handler31)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPixelsInsideWrap?(self)
+        }
+
+        let handler32:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::right-margin", handler: gCallback(handler32)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyRightMargin?(self)
+        }
+
+        let handler33:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::tabs", handler: gCallback(handler33)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyTabs?(self)
+        }
+
+        let handler34:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::top-margin", handler: gCallback(handler34)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyTopMargin?(self)
+        }
+
+        let handler35:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::wrap-mode", handler: gCallback(handler35)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyWrapMode?(self)
+        }
+
+        let handler36:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::hadjustment", handler: gCallback(handler36)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyHadjustment?(self)
+        }
+
+        let handler37:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::hscroll-policy", handler: gCallback(handler37)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyHscrollPolicy?(self)
+        }
+
+        let handler38:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::vadjustment", handler: gCallback(handler38)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyVadjustment?(self)
+        }
+
+        let handler39:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::vscroll-policy", handler: gCallback(handler39)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyVscrollPolicy?(self)
         }
     }
 
@@ -429,4 +729,54 @@ public class TextView: Widget, Scrollable {
     ///
     /// The default binding for this signal is <kbd>Insert</kbd>.
     public var toggleOverwrite: ((TextView) -> Void)?
+
+    public var notifyAcceptsTab: ((TextView) -> Void)?
+
+    public var notifyBottomMargin: ((TextView) -> Void)?
+
+    public var notifyBuffer: ((TextView) -> Void)?
+
+    public var notifyCursorVisible: ((TextView) -> Void)?
+
+    public var notifyEditable: ((TextView) -> Void)?
+
+    public var notifyExtraMenu: ((TextView) -> Void)?
+
+    public var notifyImModule: ((TextView) -> Void)?
+
+    public var notifyIndent: ((TextView) -> Void)?
+
+    public var notifyInputHints: ((TextView) -> Void)?
+
+    public var notifyInputPurpose: ((TextView) -> Void)?
+
+    public var notifyJustification: ((TextView) -> Void)?
+
+    public var notifyLeftMargin: ((TextView) -> Void)?
+
+    public var notifyMonospace: ((TextView) -> Void)?
+
+    public var notifyOverwrite: ((TextView) -> Void)?
+
+    public var notifyPixelsAboveLines: ((TextView) -> Void)?
+
+    public var notifyPixelsBelowLines: ((TextView) -> Void)?
+
+    public var notifyPixelsInsideWrap: ((TextView) -> Void)?
+
+    public var notifyRightMargin: ((TextView) -> Void)?
+
+    public var notifyTabs: ((TextView) -> Void)?
+
+    public var notifyTopMargin: ((TextView) -> Void)?
+
+    public var notifyWrapMode: ((TextView) -> Void)?
+
+    public var notifyHadjustment: ((TextView) -> Void)?
+
+    public var notifyHscrollPolicy: ((TextView) -> Void)?
+
+    public var notifyVadjustment: ((TextView) -> Void)?
+
+    public var notifyVscrollPolicy: ((TextView) -> Void)?
 }

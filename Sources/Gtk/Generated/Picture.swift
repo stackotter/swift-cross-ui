@@ -91,6 +91,84 @@ public class Picture: Widget {
         widgetPointer = gtk_picture_new_for_resource(resourcePath)
     }
 
+    override func didMoveToParent() {
+        removeSignals()
+
+        super.didMoveToParent()
+
+        let handler0:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::alternative-text", handler: gCallback(handler0)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyAlternativeText?(self)
+        }
+
+        let handler1:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::can-shrink", handler: gCallback(handler1)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyCanShrink?(self)
+        }
+
+        let handler2:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::content-fit", handler: gCallback(handler2)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyContentFit?(self)
+        }
+
+        let handler3:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::file", handler: gCallback(handler3)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyFile?(self)
+        }
+
+        let handler4:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::keep-aspect-ratio", handler: gCallback(handler4)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyKeepAspectRatio?(self)
+        }
+
+        let handler5:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::paintable", handler: gCallback(handler5)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPaintable?(self)
+        }
+    }
+
     /// The alternative textual description for the picture.
     @GObjectProperty(named: "alternative-text") public var alternativeText: String?
 
@@ -100,4 +178,16 @@ public class Picture: Widget {
     /// Whether the GtkPicture will render its contents trying to preserve the aspect
     /// ratio.
     @GObjectProperty(named: "keep-aspect-ratio") public var keepAspectRatio: Bool
+
+    public var notifyAlternativeText: ((Picture) -> Void)?
+
+    public var notifyCanShrink: ((Picture) -> Void)?
+
+    public var notifyContentFit: ((Picture) -> Void)?
+
+    public var notifyFile: ((Picture) -> Void)?
+
+    public var notifyKeepAspectRatio: ((Picture) -> Void)?
+
+    public var notifyPaintable: ((Picture) -> Void)?
 }

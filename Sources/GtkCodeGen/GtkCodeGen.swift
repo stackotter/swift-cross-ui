@@ -203,8 +203,11 @@ struct GtkCodeGen {
     static func generateClass(_ class_: Class, namespace: Namespace) -> String {
         var initializers: [DeclSyntax] = []
         for constructor in class_.constructors {
-            if constructor.parameters?.parameters.first?.type?.cType == "GListModel*" {
-                // TODO: Support GListModel and GtkExpression
+            let excludedParameterTypes: [String] = ["GListModel*", "GFile*"]
+            if let type = constructor.parameters?.parameters.first?.type?.cType,
+                excludedParameterTypes.contains(type)
+            {
+                // TODO: Support GListModel, GFile and GtkExpression
                 continue
             }
             initializers.append(generateInitializer(constructor))
@@ -224,7 +227,30 @@ struct GtkCodeGen {
             properties.append(decl)
         }
 
-        let signals = class_.getAllImplemented(\.signals, namespace: namespace)
+        var signals = class_.getAllImplemented(\.signals, namespace: namespace)
+        // TODO: Refactor so that notify::property signal handlers aren't just hacked into the
+        //   signal handler generation code so jankily. Ideally we should decouple the signal generation
+        //   code from the GIR types a bit more so that we can synthesize signals without having to
+        //   create fake GIR entries.
+        for (classLike, property) in class_.getAllImplemented(\.properties, namespace: namespace) {
+            signals.append(
+                (
+                    classLike,
+                    Signal(
+                        name: "notify::\(property.name)", when: "before",
+                        returnValue: ReturnValue(
+                            nullable: false, doc: "", type: property.type
+                        ),
+                        parameters: Parameters(parameters: [
+                            Parameter(
+                                nullable: false, name: "object", transferOwnership: "", doc: "",
+                                type: GIRType.init(name: "OpaquePointer", cType: "OpaquePointer")
+                            )
+                        ])
+                    )
+                )
+            )
+        }
         for (_, signal) in signals {
             properties.append(
                 generateSignalHandlerProperty(signal, className: class_.name, forProtocol: false)
@@ -301,7 +327,10 @@ struct GtkCodeGen {
                 }
                 return type
             }
-            let name = convertDelimitedCasingToCamel(signal.name, delimiter: "-")
+            let name = convertDelimitedCasingToCamel(
+                signal.name.replacingOccurrences(of: "::", with: "-"),
+                delimiter: "-"
+            )
 
             let parameters = parameterTypes.map { type in
                 "_: \(type)"
@@ -348,9 +377,9 @@ struct GtkCodeGen {
         return DeclSyntax(
             """
             override func didMoveToParent() {
-                super.didMoveToParent()
-
                 removeSignals()
+
+                super.didMoveToParent()
 
                 \(raw: exprs.joined(separator: "\n\n"))
             }
@@ -362,7 +391,10 @@ struct GtkCodeGen {
         _ signal: Signal, className: String, forProtocol: Bool
     ) -> DeclSyntax {
         // TODO: Correctly handle signals that take extra parameters
-        let name = convertDelimitedCasingToCamel(signal.name, delimiter: "-")
+        let name = convertDelimitedCasingToCamel(
+            signal.name.replacingOccurrences(of: "::", with: "-"),
+            delimiter: "-"
+        )
         var prefix = ""
         var suffix = ""
         if forProtocol {
@@ -420,6 +452,12 @@ struct GtkCodeGen {
 
         if method.returnValue?.nullable == true {
             type += "?"
+        }
+
+        // TODO: Figure out why DropDown.selected doesn't work as a UInt (Gtk complains that
+        //   the property doesn't hold a UInt, implying that the docs are wrong??)
+        if classLike.name == "DropDown" && property.name == "selected" {
+            type = "Int"
         }
 
         guard !type.contains(".") else {
@@ -524,7 +562,12 @@ struct GtkCodeGen {
 
             // TODO: Handle nested pointer arrays more generally
             if parameter.array?.type.cType == "char*" {
-                argument = "\(argument).map { $0.withCString { $0 } }"
+                argument = """
+                    \(argument)
+                        .map({ UnsafePointer($0.unsafeUTF8Copy().baseAddress) })
+                        .unsafeCopy()
+                        .baseAddress!
+                    """
             }
 
             return argument

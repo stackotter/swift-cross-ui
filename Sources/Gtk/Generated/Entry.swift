@@ -96,9 +96,9 @@ public class Entry: Widget, CellEditable, Editable {
     }
 
     override func didMoveToParent() {
-        super.didMoveToParent()
-
         removeSignals()
+
+        super.didMoveToParent()
 
         addSignal(name: "activate") { [weak self] () in
             guard let self = self else { return }
@@ -172,6 +172,582 @@ public class Entry: Widget, CellEditable, Editable {
             [weak self] (_: UnsafePointer<CChar>, _: Int, _: gpointer) in
             guard let self = self else { return }
             self.insertText?(self)
+        }
+
+        let handler8:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::activates-default", handler: gCallback(handler8)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyActivatesDefault?(self)
+        }
+
+        let handler9:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::attributes", handler: gCallback(handler9)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyAttributes?(self)
+        }
+
+        let handler10:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::buffer", handler: gCallback(handler10)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyBuffer?(self)
+        }
+
+        let handler11:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::completion", handler: gCallback(handler11)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyCompletion?(self)
+        }
+
+        let handler12:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::enable-emoji-completion", handler: gCallback(handler12)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyEnableEmojiCompletion?(self)
+        }
+
+        let handler13:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::extra-menu", handler: gCallback(handler13)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyExtraMenu?(self)
+        }
+
+        let handler14:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::has-frame", handler: gCallback(handler14)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyHasFrame?(self)
+        }
+
+        let handler15:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::im-module", handler: gCallback(handler15)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyImModule?(self)
+        }
+
+        let handler16:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::input-hints", handler: gCallback(handler16)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyInputHints?(self)
+        }
+
+        let handler17:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::input-purpose", handler: gCallback(handler17)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyInputPurpose?(self)
+        }
+
+        let handler18:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::invisible-char", handler: gCallback(handler18)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyInvisibleCharacter?(self)
+        }
+
+        let handler19:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::invisible-char-set", handler: gCallback(handler19)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyInvisibleCharacterSet?(self)
+        }
+
+        let handler20:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::max-length", handler: gCallback(handler20)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyMaxLength?(self)
+        }
+
+        let handler21:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::overwrite-mode", handler: gCallback(handler21)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyOverwriteMode?(self)
+        }
+
+        let handler22:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::placeholder-text", handler: gCallback(handler22)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPlaceholderText?(self)
+        }
+
+        let handler23:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::primary-icon-activatable", handler: gCallback(handler23)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPrimaryIconActivatable?(self)
+        }
+
+        let handler24:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::primary-icon-gicon", handler: gCallback(handler24)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPrimaryIconGicon?(self)
+        }
+
+        let handler25:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::primary-icon-name", handler: gCallback(handler25)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPrimaryIconName?(self)
+        }
+
+        let handler26:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::primary-icon-paintable", handler: gCallback(handler26)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPrimaryIconPaintable?(self)
+        }
+
+        let handler27:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::primary-icon-sensitive", handler: gCallback(handler27)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPrimaryIconSensitive?(self)
+        }
+
+        let handler28:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::primary-icon-storage-type", handler: gCallback(handler28)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPrimaryIconStorageType?(self)
+        }
+
+        let handler29:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::primary-icon-tooltip-markup", handler: gCallback(handler29)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPrimaryIconTooltipMarkup?(self)
+        }
+
+        let handler30:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::primary-icon-tooltip-text", handler: gCallback(handler30)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPrimaryIconTooltipText?(self)
+        }
+
+        let handler31:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::progress-fraction", handler: gCallback(handler31)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyProgressFraction?(self)
+        }
+
+        let handler32:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::progress-pulse-step", handler: gCallback(handler32)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyProgressPulseStep?(self)
+        }
+
+        let handler33:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::scroll-offset", handler: gCallback(handler33)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyScrollOffset?(self)
+        }
+
+        let handler34:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::secondary-icon-activatable", handler: gCallback(handler34)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifySecondaryIconActivatable?(self)
+        }
+
+        let handler35:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::secondary-icon-gicon", handler: gCallback(handler35)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifySecondaryIconGicon?(self)
+        }
+
+        let handler36:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::secondary-icon-name", handler: gCallback(handler36)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifySecondaryIconName?(self)
+        }
+
+        let handler37:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::secondary-icon-paintable", handler: gCallback(handler37)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifySecondaryIconPaintable?(self)
+        }
+
+        let handler38:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::secondary-icon-sensitive", handler: gCallback(handler38)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifySecondaryIconSensitive?(self)
+        }
+
+        let handler39:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::secondary-icon-storage-type", handler: gCallback(handler39)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifySecondaryIconStorageType?(self)
+        }
+
+        let handler40:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::secondary-icon-tooltip-markup", handler: gCallback(handler40)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifySecondaryIconTooltipMarkup?(self)
+        }
+
+        let handler41:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::secondary-icon-tooltip-text", handler: gCallback(handler41)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifySecondaryIconTooltipText?(self)
+        }
+
+        let handler42:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::show-emoji-icon", handler: gCallback(handler42)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyShowEmojiIcon?(self)
+        }
+
+        let handler43:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::tabs", handler: gCallback(handler43)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyTabs?(self)
+        }
+
+        let handler44:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::text-length", handler: gCallback(handler44)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyTextLength?(self)
+        }
+
+        let handler45:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::truncate-multiline", handler: gCallback(handler45)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyTruncateMultiline?(self)
+        }
+
+        let handler46:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::visibility", handler: gCallback(handler46)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyVisibility?(self)
+        }
+
+        let handler47:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::editing-canceled", handler: gCallback(handler47)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyEditingCanceled?(self)
+        }
+
+        let handler48:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::cursor-position", handler: gCallback(handler48)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyCursorPosition?(self)
+        }
+
+        let handler49:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::editable", handler: gCallback(handler49)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyEditable?(self)
+        }
+
+        let handler50:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::enable-undo", handler: gCallback(handler50)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyEnableUndo?(self)
+        }
+
+        let handler51:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::max-width-chars", handler: gCallback(handler51)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyMaxWidthChars?(self)
+        }
+
+        let handler52:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::selection-bound", handler: gCallback(handler52)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifySelectionBound?(self)
+        }
+
+        let handler53:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::text", handler: gCallback(handler53)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyText?(self)
+        }
+
+        let handler54:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::width-chars", handler: gCallback(handler54)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyWidthChars?(self)
+        }
+
+        let handler55:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::xalign", handler: gCallback(handler55)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyXalign?(self)
         }
     }
 
@@ -302,4 +878,100 @@ public class Entry: Widget, CellEditable, Editable {
     /// stopping the signal with g_signal_stop_emission(), it is possible
     /// to modify the inserted text, or prevent it from being inserted entirely.
     public var insertText: ((Entry) -> Void)?
+
+    public var notifyActivatesDefault: ((Entry) -> Void)?
+
+    public var notifyAttributes: ((Entry) -> Void)?
+
+    public var notifyBuffer: ((Entry) -> Void)?
+
+    public var notifyCompletion: ((Entry) -> Void)?
+
+    public var notifyEnableEmojiCompletion: ((Entry) -> Void)?
+
+    public var notifyExtraMenu: ((Entry) -> Void)?
+
+    public var notifyHasFrame: ((Entry) -> Void)?
+
+    public var notifyImModule: ((Entry) -> Void)?
+
+    public var notifyInputHints: ((Entry) -> Void)?
+
+    public var notifyInputPurpose: ((Entry) -> Void)?
+
+    public var notifyInvisibleCharacter: ((Entry) -> Void)?
+
+    public var notifyInvisibleCharacterSet: ((Entry) -> Void)?
+
+    public var notifyMaxLength: ((Entry) -> Void)?
+
+    public var notifyOverwriteMode: ((Entry) -> Void)?
+
+    public var notifyPlaceholderText: ((Entry) -> Void)?
+
+    public var notifyPrimaryIconActivatable: ((Entry) -> Void)?
+
+    public var notifyPrimaryIconGicon: ((Entry) -> Void)?
+
+    public var notifyPrimaryIconName: ((Entry) -> Void)?
+
+    public var notifyPrimaryIconPaintable: ((Entry) -> Void)?
+
+    public var notifyPrimaryIconSensitive: ((Entry) -> Void)?
+
+    public var notifyPrimaryIconStorageType: ((Entry) -> Void)?
+
+    public var notifyPrimaryIconTooltipMarkup: ((Entry) -> Void)?
+
+    public var notifyPrimaryIconTooltipText: ((Entry) -> Void)?
+
+    public var notifyProgressFraction: ((Entry) -> Void)?
+
+    public var notifyProgressPulseStep: ((Entry) -> Void)?
+
+    public var notifyScrollOffset: ((Entry) -> Void)?
+
+    public var notifySecondaryIconActivatable: ((Entry) -> Void)?
+
+    public var notifySecondaryIconGicon: ((Entry) -> Void)?
+
+    public var notifySecondaryIconName: ((Entry) -> Void)?
+
+    public var notifySecondaryIconPaintable: ((Entry) -> Void)?
+
+    public var notifySecondaryIconSensitive: ((Entry) -> Void)?
+
+    public var notifySecondaryIconStorageType: ((Entry) -> Void)?
+
+    public var notifySecondaryIconTooltipMarkup: ((Entry) -> Void)?
+
+    public var notifySecondaryIconTooltipText: ((Entry) -> Void)?
+
+    public var notifyShowEmojiIcon: ((Entry) -> Void)?
+
+    public var notifyTabs: ((Entry) -> Void)?
+
+    public var notifyTextLength: ((Entry) -> Void)?
+
+    public var notifyTruncateMultiline: ((Entry) -> Void)?
+
+    public var notifyVisibility: ((Entry) -> Void)?
+
+    public var notifyEditingCanceled: ((Entry) -> Void)?
+
+    public var notifyCursorPosition: ((Entry) -> Void)?
+
+    public var notifyEditable: ((Entry) -> Void)?
+
+    public var notifyEnableUndo: ((Entry) -> Void)?
+
+    public var notifyMaxWidthChars: ((Entry) -> Void)?
+
+    public var notifySelectionBound: ((Entry) -> Void)?
+
+    public var notifyText: ((Entry) -> Void)?
+
+    public var notifyWidthChars: ((Entry) -> Void)?
+
+    public var notifyXalign: ((Entry) -> Void)?
 }

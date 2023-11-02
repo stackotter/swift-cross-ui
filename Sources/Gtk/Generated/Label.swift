@@ -203,9 +203,9 @@ public class Label: Widget {
     }
 
     override func didMoveToParent() {
-        super.didMoveToParent()
-
         removeSignals()
+
+        super.didMoveToParent()
 
         addSignal(name: "activate-current-link") { [weak self] () in
             guard let self = self else { return }
@@ -242,6 +242,246 @@ public class Label: Widget {
             [weak self] (_: GtkMovementStep, _: Int, _: Bool) in
             guard let self = self else { return }
             self.moveCursor?(self)
+        }
+
+        let handler4:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::attributes", handler: gCallback(handler4)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyAttributes?(self)
+        }
+
+        let handler5:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::ellipsize", handler: gCallback(handler5)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyEllipsize?(self)
+        }
+
+        let handler6:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::extra-menu", handler: gCallback(handler6)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyExtraMenu?(self)
+        }
+
+        let handler7:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::justify", handler: gCallback(handler7)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyJustify?(self)
+        }
+
+        let handler8:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::label", handler: gCallback(handler8)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyLabel?(self)
+        }
+
+        let handler9:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::lines", handler: gCallback(handler9)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyLines?(self)
+        }
+
+        let handler10:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::max-width-chars", handler: gCallback(handler10)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyMaxWidthChars?(self)
+        }
+
+        let handler11:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::mnemonic-keyval", handler: gCallback(handler11)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyMnemonicKeyval?(self)
+        }
+
+        let handler12:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::mnemonic-widget", handler: gCallback(handler12)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyMnemonicWidget?(self)
+        }
+
+        let handler13:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::natural-wrap-mode", handler: gCallback(handler13)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyNaturalWrapMode?(self)
+        }
+
+        let handler14:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::selectable", handler: gCallback(handler14)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifySelectable?(self)
+        }
+
+        let handler15:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::single-line-mode", handler: gCallback(handler15)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifySingleLineMode?(self)
+        }
+
+        let handler16:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::tabs", handler: gCallback(handler16)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyTabs?(self)
+        }
+
+        let handler17:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::use-markup", handler: gCallback(handler17)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyUseMarkup?(self)
+        }
+
+        let handler18:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::use-underline", handler: gCallback(handler18)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyUseUnderline?(self)
+        }
+
+        let handler19:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::width-chars", handler: gCallback(handler19)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyWidthChars?(self)
+        }
+
+        let handler20:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::wrap", handler: gCallback(handler20)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyWrap?(self)
+        }
+
+        let handler21:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::wrap-mode", handler: gCallback(handler21)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyWrapMode?(self)
+        }
+
+        let handler22:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::xalign", handler: gCallback(handler22)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyXalign?(self)
+        }
+
+        let handler23:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::yalign", handler: gCallback(handler23)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyYalign?(self)
         }
     }
 
@@ -371,4 +611,44 @@ public class Label: Widget {
     /// - <kbd>Ctrl</kbd>+<kbd>←</kbd>, etc. move by words/paragraphs
     /// - <kbd>Home</kbd> and <kbd>End</kbd> move to the ends of the buffer
     public var moveCursor: ((Label) -> Void)?
+
+    public var notifyAttributes: ((Label) -> Void)?
+
+    public var notifyEllipsize: ((Label) -> Void)?
+
+    public var notifyExtraMenu: ((Label) -> Void)?
+
+    public var notifyJustify: ((Label) -> Void)?
+
+    public var notifyLabel: ((Label) -> Void)?
+
+    public var notifyLines: ((Label) -> Void)?
+
+    public var notifyMaxWidthChars: ((Label) -> Void)?
+
+    public var notifyMnemonicKeyval: ((Label) -> Void)?
+
+    public var notifyMnemonicWidget: ((Label) -> Void)?
+
+    public var notifyNaturalWrapMode: ((Label) -> Void)?
+
+    public var notifySelectable: ((Label) -> Void)?
+
+    public var notifySingleLineMode: ((Label) -> Void)?
+
+    public var notifyTabs: ((Label) -> Void)?
+
+    public var notifyUseMarkup: ((Label) -> Void)?
+
+    public var notifyUseUnderline: ((Label) -> Void)?
+
+    public var notifyWidthChars: ((Label) -> Void)?
+
+    public var notifyWrap: ((Label) -> Void)?
+
+    public var notifyWrapMode: ((Label) -> Void)?
+
+    public var notifyXalign: ((Label) -> Void)?
+
+    public var notifyYalign: ((Label) -> Void)?
 }
