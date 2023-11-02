@@ -21,7 +21,7 @@ public class ToggleButton: Button {
 
         addSignal(name: "toggled") { [weak self] in
             guard let self = self else { return }
-            self.toggled!(self)
+            self.toggled?(self)
         }
     }
 

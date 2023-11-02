@@ -98,13 +98,13 @@ public protocol AppBackend {
     /// Created a labelled toggle button that toggles a Bool on click. Predominantly
     /// used by ``ToggleButton``.
     func createToggleButton(
-        label: String, toggled: Bool, onChange: @escaping (Bool) -> Void
+        label: String, active: Bool, onChange: @escaping (Bool) -> Void
     ) -> Widget
-    /// Update the state of the toggleButton as soon as it is toggled for live access
-    /// to the state of the button.
-    func setOnToggled(ofToggleButton toggleButton: Widget, to onChange: Binding<Bool>)
-    /// Get the current state of the toggle button
-    func getToggled(ofToggleButton toggleButton: Widget) -> Bool
+    /// Sets the state of the button to active or not.
+    func setIsActive(ofToggleButton toggleButton: Widget, to active: Bool)
+    /// Sets the change handler of a toggle button (replaces any existing change handlers).
+    /// The change handler is called whenever the button is toggled on or off.
+    func setOnChange(ofToggleButton toggleButton: Widget, to onChange: @escaping (Bool) -> Void)
 
     /// Creates a non-editable text view with optional text wrapping. Predominantly used
     /// by ``Text``.`
@@ -387,16 +387,16 @@ extension AppBackend {
 
     public func createToggleButton(
         label: String, 
-        toggled: Bool?, 
+        active: Bool, 
         onChange: @escaping (Bool) -> Void
     ) -> Widget {
         todo("createToggleButton not implemented")
     }
-    public func setOnToggled(ofToggleButton toggleButton: Widget, to onChange: @escaping (Bool) -> Void) {
-        todo("setOnToggle not implemented")
+    public func setIsActive(ofToggleButton toggleButton: Widget, to active: Bool) {
+        todo("setIsActive not implemented")
     }
-    public func getToggled(ofToggleButton toggleButton: Widget) -> Bool {
-        todo("getToggle not implemented")
+    func setOnChange(ofToggleButton toggleButton: Widget, to onChange: @escaping (Bool) -> Void) {
+        todo("setOnChange not implemented")
     }
 
     public func createTextView(content: String, shouldWrap: Bool) -> Widget {

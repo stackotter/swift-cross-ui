@@ -2,8 +2,7 @@ import GtkBackend
 import SwiftCrossUI
 
 class CounterState: Observable {
-    @Observed
-    var count = 0
+    @Observed var count = 0
 }
 
 @main

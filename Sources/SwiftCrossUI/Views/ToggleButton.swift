@@ -2,13 +2,13 @@
 public struct ToggleButton: ElementaryView, View {
     /// The label to show on the toggle button.
     private var label: String
-    /// The state of the button.
-    private var toggled: Binding<Bool>?
+    /// Whether the button is active or not.
+    private var active: Binding<Bool>
 
     /// Creates a toggle button that displays a custom label.
-    public init(_ label: String, _ toggled: Binding<Bool>? = nil) {
+    public init(_ label: String, active: Binding<Bool>) {
         self.label = label
-        self.toggled = toggled
+        self.active = active
     }
 
     public func asWidget<Backend: AppBackend>(
@@ -16,9 +16,9 @@ public struct ToggleButton: ElementaryView, View {
     ) -> Backend.Widget {
         return backend.createToggleButton(
             label: label, 
-            toggled: toggled?.wrappedValue ?? false,
+            active: active.wrappedValue,
             onChange: { newValue in
-                self.toggled?.wrappedValue = newValue
+                self.active.wrappedValue = newValue
             }
         )
     }
@@ -28,12 +28,9 @@ public struct ToggleButton: ElementaryView, View {
         backend: Backend
     ) {
         backend.setLabel(ofButton: widget, to: label)
-        if let toggled = toggled?.wrappedValue, toggled != backend.getToggled(ofToggleButton: widget) {
-
+        backend.setIsActive(ofToggleButton: widget, to: active.wrappedValue)
+        backend.setOnChange(ofToggleButton: widget) { newActiveState in
+            active.wrappedValue = newActiveState
         }
-        backend.setOnToggled(
-            ofToggleButton: widget, 
-            to: toggled
-        )
     }
 }

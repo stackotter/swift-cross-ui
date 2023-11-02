@@ -204,6 +204,11 @@ let package = Package(
             ]
         ),
         .executableTarget(
+            name: "ButtonTypesExample",
+            dependencies: exampleDependencies,
+            path: "Examples/ButtonTypes"
+        ),
+        .executableTarget(
             name: "CounterExample",
             dependencies: exampleDependencies,
             path: "Examples/Counter"
