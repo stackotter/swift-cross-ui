@@ -395,7 +395,7 @@ extension AppBackend {
     public func setIsActive(ofToggleButton toggleButton: Widget, to active: Bool) {
         todo("setIsActive not implemented")
     }
-    func setOnChange(ofToggleButton toggleButton: Widget, to onChange: @escaping (Bool) -> Void) {
+    public func setOnChange(ofToggleButton toggleButton: Widget, to onChange: @escaping (Bool) -> Void) {
         todo("setOnChange not implemented")
     }
 
