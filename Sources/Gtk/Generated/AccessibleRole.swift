@@ -39,20 +39,22 @@ public enum AccessibleRole: GValueRepresentableEnum {
     /// the current processing of an application in order to prompt the user to enter
     /// information or require a response.
     case dialog
-    /// Unused
+    /// Content that assistive technology users may want to
+    /// browse in a reading mode.
     case document
     /// Unused
     case feed
     /// Unused
     case form
-    /// Unused
+    /// A nameless container that has no semantic meaning
+    /// of its own. This is the role that GTK uses by default for widgets.
     case generic
     /// A grid of items.
     case grid
     /// An item in a grid or tree grid.
     case gridCell
-    /// An element that groups multiple widgets. GTK uses
-    /// this role for various containers, like [class@Box], [class@Viewport], and [class@HeaderBar].
+    /// An element that groups multiple related widgets. GTK uses
+    /// this role for various containers, like [class@Gtk.HeaderBar] or [class@Gtk.Notebook].
     case group
     /// Unused
     case heading
@@ -97,12 +99,14 @@ public enum AccessibleRole: GValueRepresentableEnum {
     /// Unused
     case navigation
     /// An element that is not represented to accessibility technologies.
+    /// This role is synonymous to @GTK_ACCESSIBLE_ROLE_PRESENTATION.
     case none
     /// Unused
     case note
     /// Unused
     case option
     /// An element that is not represented to accessibility technologies.
+    /// This role is synonymous to @GTK_ACCESSIBLE_ROLE_NONE.
     case presentation
     /// An element that displays the progress
     /// status for tasks that take a long time.
@@ -178,10 +182,10 @@ public enum AccessibleRole: GValueRepresentableEnum {
     case treeGrid
     /// Unused
     case treeItem
-    /// An interactive component of a graphical user
-    /// interface. This is the role that GTK uses by default for widgets.
+    /// Abstract role for interactive components of a
+    /// graphical user interface
     case widget
-    /// An application window.
+    /// Abstract role for windows.
     case window
 
     /// Converts a Gtk value to its corresponding swift representation.

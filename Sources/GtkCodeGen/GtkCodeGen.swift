@@ -68,6 +68,10 @@ struct GtkCodeGen {
 
         // TODO: Generate Orientable
         for interface in gir.namespace.interfaces where interface.name != "Orientable" {
+            // Skip interfaces which were added since 4.0
+            guard interface.version == nil else {
+                continue
+            }
             let source = generateProtocol(interface, namespace: gir.namespace)
             try save(source.description, to: directory, declName: interface.name)
         }
@@ -107,7 +111,10 @@ struct GtkCodeGen {
 
     static func generateEnum(_ enumeration: Enumeration) -> String {
         // Filter out members which were introduced after 4.0
-        let members = enumeration.members.filter { !$0.doc.contains("Since: ") }
+        let members = enumeration.members.filter { member in
+            // Why they gotta be inconsistent like that 💀
+            !member.doc.contains("Since: ") && !member.doc.contains("Since ")
+        }
 
         var cases: [DeclSyntax] = []
         for case_ in members {

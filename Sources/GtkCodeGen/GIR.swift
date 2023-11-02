@@ -87,6 +87,7 @@ struct Interface: Decodable, ClassLike {
     var name: String
     var cSymbolPrefix: String
     var cType: String
+    var version: String?
     var glibTypeName: String
     var glibGetType: String
     var glibTypeStruct: String?
@@ -100,7 +101,7 @@ struct Interface: Decodable, ClassLike {
     var properties: [Property]
 
     enum CodingKeys: String, CodingKey {
-        case name, cSymbolPrefix, cType, glibTypeName, glibGetType, glibTypeStruct, doc
+        case name, cSymbolPrefix, cType, version, glibTypeName, glibGetType, glibTypeStruct, doc
         case prerequisites = "prerequisite"
         case functions = "function"
         case virtualMethods = "virtualMethod"
@@ -233,7 +234,7 @@ struct Class: Decodable, ClassLike {
     ) -> [Interface] {
         let interfaces = conformances.compactMap { conformance in
             namespace.interfaces.first { $0.name == conformance.name }
-        }
+        }.filter { $0.version == nil }
 
         if excludeInherited {
             let inheritedInterfaces = getInheritedInterfaces(namespace: namespace)

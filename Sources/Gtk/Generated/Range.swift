@@ -9,7 +9,7 @@ import CGtk
 /// Apart from signals for monitoring the parameters of the adjustment,
 /// `GtkRange` provides properties and methods for setting a
 /// “fill level” on range widgets. See [method@Gtk.Range.set_fill_level].
-public class Range: Widget, AccessibleRange, Orientable {
+public class Range: Widget, Orientable {
 
     override func didMoveToParent() {
         super.didMoveToParent()

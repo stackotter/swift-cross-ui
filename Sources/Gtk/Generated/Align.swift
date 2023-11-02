@@ -9,12 +9,13 @@ import CGtk
 /// could be scaled and stretched, it could be centered, or it could be
 /// positioned to one side of the space.
 ///
-/// Note that in horizontal context %GTK_ALIGN_START and %GTK_ALIGN_END
+/// Note that in horizontal context `GTK_ALIGN_START` and `GTK_ALIGN_END`
 /// are interpreted relative to text direction.
 ///
-/// %GTK_ALIGN_BASELINE support is optional for containers and widgets, and
-/// it is only supported for vertical alignment.  When it's not supported by
-/// a child or a container it is treated as %GTK_ALIGN_FILL.
+/// Baseline support is optional for containers and widgets, and is only available
+/// for vertical alignment. `GTK_ALIGN_BASELINE_CENTER and `GTK_ALIGN_BASELINE_FILL`
+/// are treated similar to `GTK_ALIGN_CENTER` and `GTK_ALIGN_FILL`, except that it
+/// positions the widget to line up the baselines, where that is supported.
 public enum Align: GValueRepresentableEnum {
     public typealias GtkEnum = GtkAlign
 
@@ -28,7 +29,7 @@ public enum Align: GValueRepresentableEnum {
     /// Center natural width of widget inside the allocation
     case center
     /// Align the widget according to the baseline.
-    /// See [class@Gtk.Widget].
+    /// See [class@Gtk.Widget]. Deprecated: 4.12: Use `GTK_ALIGN_BASELINE_FILL` instead
     case baseline
 
     /// Converts a Gtk value to its corresponding swift representation.
