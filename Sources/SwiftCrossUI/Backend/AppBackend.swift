@@ -95,6 +95,17 @@ public protocol AppBackend {
     /// Sets a button's action (triggered on click). Replaces any existing actions.
     func setAction(ofButton button: Widget, to action: @escaping () -> Void)
 
+    /// Created a labelled toggle button that toggles a Bool on click. Predominantly
+    /// used by ``ToggleButton``.
+    func createToggleButton(
+        label: String, toggled: Bool, onChange: @escaping (Bool) -> Void
+    ) -> Widget
+    /// Update the state of the toggleButton as soon as it is toggled for live access
+    /// to the state of the button.
+    func setOnToggled(ofToggleButton toggleButton: Widget, to onChange: Binding<Bool>)
+    /// Get the current state of the toggle button
+    func getToggled(ofToggleButton toggleButton: Widget) -> Bool
+
     /// Creates a non-editable text view with optional text wrapping. Predominantly used
     /// by ``Text``.`
     func createTextView(content: String, shouldWrap: Bool) -> Widget
@@ -372,6 +383,20 @@ extension AppBackend {
     }
     public func setAction(ofButton button: Widget, to action: @escaping () -> Void) {
         todo("setAction not implemented")
+    }
+
+    public func createToggleButton(
+        label: String, 
+        toggled: Bool?, 
+        onChange: @escaping (Bool) -> Void
+    ) -> Widget {
+        todo("createToggleButton not implemented")
+    }
+    public func setOnToggled(ofToggleButton toggleButton: Widget, to onChange: @escaping (Bool) -> Void) {
+        todo("setOnToggle not implemented")
+    }
+    public func getToggled(ofToggleButton toggleButton: Widget) -> Bool {
+        todo("getToggle not implemented")
     }
 
     public func createTextView(content: String, shouldWrap: Bool) -> Widget {
