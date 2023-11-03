@@ -1,5 +1,5 @@
-/// A control that toggles an option.
-public struct ToggleButton: ElementaryView, View {
+/// A control that is either on or off.
+public struct Toggle: ElementaryView, View {
     /// The label to show on the toggle button.
     private var label: String
     /// Whether the button is active or not.
@@ -14,7 +14,7 @@ public struct ToggleButton: ElementaryView, View {
     public func asWidget<Backend: AppBackend>(
         backend: Backend
     ) -> Backend.Widget {
-        return backend.createToggleButton(
+        return backend.createToggle(
             label: label, 
             active: active.wrappedValue,
             onChange: { newValue in
@@ -28,8 +28,8 @@ public struct ToggleButton: ElementaryView, View {
         backend: Backend
     ) {
         backend.setLabel(ofButton: widget, to: label)
-        backend.setIsActive(ofToggleButton: widget, to: active.wrappedValue)
-        backend.setOnChange(ofToggleButton: widget) { newActiveState in
+        backend.setIsActive(ofToggle: widget, to: active.wrappedValue)
+        backend.setOnChange(ofToggle: widget) { newActiveState in
             active.wrappedValue = newActiveState
         }
     }

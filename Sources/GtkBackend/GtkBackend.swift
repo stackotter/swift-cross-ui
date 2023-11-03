@@ -167,23 +167,23 @@ public struct GtkBackend: AppBackend {
         (button as! Gtk.Button).clicked = { _ in action() }
     }
 
-    public func createToggleButton(
+    public func createToggle(
         label: String, 
         active: Bool, 
         onChange: @escaping (Bool) -> Void
     ) -> Widget {
-        let toggleButton = ToggleButton()
-        toggleButton.label = label
-        toggleButton.active = active
-        return toggleButton
+        let toggle = ToggleButton()
+        toggle.label = label
+        toggle.active = active
+        return toggle
     }
 
-    public func setIsActive(ofToggleButton toggleButton: Widget, to active: Bool) {
-        (toggleButton as! Gtk.ToggleButton).active = active
+    public func setIsActive(ofToggle toggle: Widget, to active: Bool) {
+        (toggle as! Gtk.ToggleButton).active = active
     }
 
-    public func setOnChange(ofToggleButton toggleButton: Widget, to onChange: @escaping (Bool) -> Void) {
-        (toggleButton as! Gtk.ToggleButton).toggled = { widget in
+    public func setOnChange(ofToggle toggle: Widget, to onChange: @escaping (Bool) -> Void) {
+        (toggle as! Gtk.ToggleButton).toggled = { widget in
             onChange(widget.active)
         }
     }

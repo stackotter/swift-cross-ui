@@ -95,16 +95,16 @@ public protocol AppBackend {
     /// Sets a button's action (triggered on click). Replaces any existing actions.
     func setAction(ofButton button: Widget, to action: @escaping () -> Void)
 
-    /// Created a labelled toggle button that toggles a Bool on click. Predominantly
-    /// used by ``ToggleButton``.
-    func createToggleButton(
+    /// Creates a labelled toggle that is either on or off. Predominantly used by
+    /// ``Toggle``.
+    func createToggle(
         label: String, active: Bool, onChange: @escaping (Bool) -> Void
     ) -> Widget
     /// Sets the state of the button to active or not.
-    func setIsActive(ofToggleButton toggleButton: Widget, to active: Bool)
-    /// Sets the change handler of a toggle button (replaces any existing change handlers).
+    func setIsActive(ofToggle toggle: Widget, to active: Bool)
+    /// Sets the change handler of a toggle (replaces any existing change handlers).
     /// The change handler is called whenever the button is toggled on or off.
-    func setOnChange(ofToggleButton toggleButton: Widget, to onChange: @escaping (Bool) -> Void)
+    func setOnChange(ofToggle toggle: Widget, to onChange: @escaping (Bool) -> Void)
 
     /// Creates a non-editable text view with optional text wrapping. Predominantly used
     /// by ``Text``.`
@@ -385,17 +385,17 @@ extension AppBackend {
         todo("setAction not implemented")
     }
 
-    public func createToggleButton(
+    public func createToggle(
         label: String, 
         active: Bool, 
         onChange: @escaping (Bool) -> Void
     ) -> Widget {
-        todo("createToggleButton not implemented")
+        todo("createToggle not implemented")
     }
-    public func setIsActive(ofToggleButton toggleButton: Widget, to active: Bool) {
+    public func setIsActive(ofToggle toggle: Widget, to active: Bool) {
         todo("setIsActive not implemented")
     }
-    public func setOnChange(ofToggleButton toggleButton: Widget, to onChange: @escaping (Bool) -> Void) {
+    public func setOnChange(ofToggle toggle: Widget, to onChange: @escaping (Bool) -> Void) {
         todo("setOnChange not implemented")
     }
 

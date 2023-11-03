@@ -1,32 +1,32 @@
 import GtkBackend
 import SwiftCrossUI
 
-class ButtonTypesState: Observable {
+class ControlsState: Observable {
     @Observed var count = 0
     @Observed var exampleButtonState = false
 }
 
 @main
-struct ButtonTypesApp: App {
+struct ControlsApp: App {
     typealias Backend = GtkBackend
 
-    let identifier = "dev.stackotter.ButtonTypes"
+    let identifier = "dev.stackotter.Controls"
 
-    let state = ButtonTypesState()
+    let state = ControlsState()
 
-    let windowProperties = WindowProperties(title: "ButtonTypesApp", resizable: true)
+    let windowProperties = WindowProperties(title: "ControlsApp", resizable: true)
 
     var body: some View {
         VStack(spacing: 5) {
-            Text("Standard Button")
+            Text("Button")
             Button("Click me!") {
                 state.count += 1
             }
             Text("Count: \(state.count)", wrap: false)
             Spacer()
                 .padding(.bottom, 15)
-            Text("Toggle Button")
-            ToggleButton("Toggle me!", active: state.$exampleButtonState)
+            Text("Toggle (Button Style)")
+            Toggle("Toggle me!", active: state.$exampleButtonState)
             Text("Currently enabled: \(state.exampleButtonState)")
         }
         .padding(10)
