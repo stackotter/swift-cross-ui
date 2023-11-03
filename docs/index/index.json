@@ -944,6 +944,24 @@
                   {
                     "children" : [
                       {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createtoggle(label:active:onchange:)-3e916",
+                        "title" : "func createToggle(label: String, active: Bool, onChange: (Bool) -> Void) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createtoggle(label:active:onchange:)-1v1kf",
+                "title" : "func createToggle(label: String, active: Bool, onChange: (Bool) -> Void) -> Self.Widget",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
                         "path" : "\/documentation\/swiftcrossui\/appbackend\/createvstack(spacing:)-78bfm",
                         "title" : "func createVStack(spacing: Int) -> Self.Widget",
                         "type" : "method"
@@ -1260,6 +1278,24 @@
                   {
                     "children" : [
                       {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setisactive(oftoggle:to:)-6hk1k",
+                        "title" : "func setIsActive(ofToggle: Self.Widget, to: Bool)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setisactive(oftoggle:to:)-6swno",
+                "title" : "func setIsActive(ofToggle: Self.Widget, to: Bool)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
                         "path" : "\/documentation\/swiftcrossui\/appbackend\/setlabel(ofbutton:to:)-3quzx",
                         "title" : "func setLabel(ofButton: Self.Widget, to: String)",
                         "type" : "method"
@@ -1397,6 +1433,24 @@
                 ],
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(oftextfield:to:)-6bixo",
                 "title" : "func setOnChange(ofTextField: Self.Widget, to: (String) -> Void)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(oftoggle:to:)-38k5o",
+                        "title" : "func setOnChange(ofToggle: Self.Widget, to: (Bool) -> Void)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(oftoggle:to:)-8k7mc",
+                "title" : "func setOnChange(ofToggle: Self.Widget, to: (Bool) -> Void)",
                 "type" : "method"
               },
               {
@@ -3833,6 +3887,100 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/textfield",
             "title" : "TextField",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/toggle\/init(_:active:)",
+                "title" : "init(String, active: Binding<Bool>)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/toggle\/aswidget(backend:)",
+                "title" : "func asWidget<Backend>(backend: Backend) -> Backend.Widget",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/toggle\/update(_:backend:)",
+                "title" : "func update<Backend>(Backend.Widget, backend: Backend)",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/state",
+                    "title" : "var state: EmptyState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/aswidget(_:backend:)",
+                    "title" : "func asWidget<Backend>(ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/children(backend:)",
+                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/padding(_:)",
+                    "title" : "func padding(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/update(_:children:backend:)",
+                    "title" : "func update<Backend>(Backend.Widget, children: ViewGraphNodeChildren, backend: Backend)",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/updatechildren(_:backend:)",
+                    "title" : "func updateChildren<Backend>(ViewGraphNodeChildren, backend: Backend)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/toggle\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/toggle",
+            "title" : "Toggle",
             "type" : "struct"
           },
           {
@@ -6583,6 +6731,115 @@
             "path" : "\/documentation\/swiftcrossui\/inheritedorientation",
             "title" : "InheritedOrientation",
             "type" : "enum"
+          },
+          {
+            "title" : "Extended Modules",
+            "type" : "groupMarker"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Extended Enumerations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Initializers",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/swift\/never\/init()",
+                    "title" : "init()",
+                    "type" : "init"
+                  },
+                  {
+                    "title" : "Type Aliases",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/swift\/never\/nodechildren",
+                    "title" : "Never.NodeChildren",
+                    "type" : "typealias"
+                  },
+                  {
+                    "title" : "Default Implementations",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "children" : [
+                      {
+                        "title" : "Instance Properties",
+                        "type" : "groupMarker"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/body",
+                        "title" : "var body: Never",
+                        "type" : "property"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/state",
+                        "title" : "var state: EmptyState",
+                        "type" : "property"
+                      },
+                      {
+                        "title" : "Instance Methods",
+                        "type" : "groupMarker"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/aswidget(_:backend:)",
+                        "title" : "func asWidget<Backend>(ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/children(backend:)",
+                        "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/foregroundcolor(_:)",
+                        "title" : "func foregroundColor(Color) -> some View",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/frame(minwidth:minheight:)",
+                        "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/padding(_:)",
+                        "title" : "func padding(Int) -> some View",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/padding(_:_:)",
+                        "title" : "func padding(Edge.Set, Int) -> some View",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/update(_:children:backend:)",
+                        "title" : "func update<Backend>(Backend.Widget, children: ViewGraphNodeChildren, backend: Backend)",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/updatechildren(_:backend:)",
+                        "title" : "func updateChildren<Backend>(ViewGraphNodeChildren, backend: Backend)",
+                        "type" : "method"
+                      }
+                    ],
+                    "path" : "\/documentation\/swiftcrossui\/swift\/never\/view-implementations",
+                    "title" : "View Implementations",
+                    "type" : "symbol"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/swift\/never",
+                "title" : "Never",
+                "type" : "extension"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/swift",
+            "title" : "Swift",
+            "type" : "extension"
           }
         ],
         "path" : "\/documentation\/swiftcrossui",

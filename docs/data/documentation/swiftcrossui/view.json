@@ -90,6 +90,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView",
@@ -98,6 +99,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Table",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView10",
@@ -711,6 +713,50 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/spacer"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Swift/Never": {
+  "abstract" : [
+    {
+      "text" : "Used as the body of ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " to end the chain of view bodies.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "extension"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "preciseIdentifier" : "s:s5NeverO",
+      "text" : "Never"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Never"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Never",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/swift\/never"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Table": {
   "abstract" : [
     {
@@ -812,6 +858,40 @@
   "title" : "TextField",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/textfield"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle": {
+  "abstract" : [
+    {
+      "text" : "A control that is either on or off.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Toggle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Toggle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Toggle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/toggle"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack": {
   "abstract" : [
