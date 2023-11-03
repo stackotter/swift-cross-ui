@@ -204,6 +204,11 @@ let package = Package(
             ]
         ),
         .executableTarget(
+            name: "ControlsExample",
+            dependencies: exampleDependencies,
+            path: "Examples/Controls"
+        ),
+        .executableTarget(
             name: "CounterExample",
             dependencies: exampleDependencies,
             path: "Examples/Counter"

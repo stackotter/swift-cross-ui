@@ -95,6 +95,17 @@ public protocol AppBackend {
     /// Sets a button's action (triggered on click). Replaces any existing actions.
     func setAction(ofButton button: Widget, to action: @escaping () -> Void)
 
+    /// Creates a labelled toggle that is either on or off. Predominantly used by
+    /// ``Toggle``.
+    func createToggle(
+        label: String, active: Bool, onChange: @escaping (Bool) -> Void
+    ) -> Widget
+    /// Sets the state of the button to active or not.
+    func setIsActive(ofToggle toggle: Widget, to active: Bool)
+    /// Sets the change handler of a toggle (replaces any existing change handlers).
+    /// The change handler is called whenever the button is toggled on or off.
+    func setOnChange(ofToggle toggle: Widget, to onChange: @escaping (Bool) -> Void)
+
     /// Creates a non-editable text view with optional text wrapping. Predominantly used
     /// by ``Text``.`
     func createTextView(content: String, shouldWrap: Bool) -> Widget
@@ -372,6 +383,20 @@ extension AppBackend {
     }
     public func setAction(ofButton button: Widget, to action: @escaping () -> Void) {
         todo("setAction not implemented")
+    }
+
+    public func createToggle(
+        label: String, 
+        active: Bool, 
+        onChange: @escaping (Bool) -> Void
+    ) -> Widget {
+        todo("createToggle not implemented")
+    }
+    public func setIsActive(ofToggle toggle: Widget, to active: Bool) {
+        todo("setIsActive not implemented")
+    }
+    public func setOnChange(ofToggle toggle: Widget, to onChange: @escaping (Bool) -> Void) {
+        todo("setOnChange not implemented")
     }
 
     public func createTextView(content: String, shouldWrap: Bool) -> Widget {

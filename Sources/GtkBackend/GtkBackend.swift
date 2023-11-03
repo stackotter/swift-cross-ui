@@ -167,6 +167,27 @@ public struct GtkBackend: AppBackend {
         (button as! Gtk.Button).clicked = { _ in action() }
     }
 
+    public func createToggle(
+        label: String, 
+        active: Bool, 
+        onChange: @escaping (Bool) -> Void
+    ) -> Widget {
+        let toggle = ToggleButton()
+        toggle.label = label
+        toggle.active = active
+        return toggle
+    }
+
+    public func setIsActive(ofToggle toggle: Widget, to active: Bool) {
+        (toggle as! Gtk.ToggleButton).active = active
+    }
+
+    public func setOnChange(ofToggle toggle: Widget, to onChange: @escaping (Bool) -> Void) {
+        (toggle as! Gtk.ToggleButton).toggled = { widget in
+            onChange(widget.active)
+        }
+    }
+
     public func createTextView(content: String, shouldWrap: Bool) -> Widget {
         let label = Label(string: content)
         label.lineWrapMode = .wordCharacter
