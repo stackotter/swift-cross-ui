@@ -12,7 +12,7 @@ public struct ScrollView<Content: View>: View {
         _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = backend.createVStack(spacing: 0)
+        let vStack = backend.createVStack()
         backend.addChildren(children.widgets(for: backend), toVStack: vStack)
 
         return backend.createScrollContainer(for: vStack)

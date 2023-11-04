@@ -14,9 +14,9 @@ extension ViewGraphNodeChildren {
     /// on the orientation of its parent).
     public func asSingleWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
         let widgets: [Backend.Widget] = widgets.map { $0.into() }
-        let stack = backend.createPassthroughVStack(spacing: 0)
+        let stack = backend.createLayoutTransparentStack()
         for widget in widgets {
-            backend.addChild(widget, toPassthroughVStack: stack)
+            backend.addChild(widget, toLayoutTransparentStack: stack)
         }
         return stack
     }

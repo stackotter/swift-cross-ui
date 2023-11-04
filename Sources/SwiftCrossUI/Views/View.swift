@@ -65,7 +65,8 @@ extension View {
         _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = backend.createVStack(spacing: 8)
+        let vStack = backend.createVStack()
+        backend.setSpacing(ofVStack: vStack, to: 8)
         backend.addChildren(children.widgets(for: backend), toVStack: vStack)
         return vStack
     }

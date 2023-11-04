@@ -24,16 +24,16 @@ public struct OptionalView<V: View>: TypeSafeView, View {
     func asWidget<Backend: AppBackend>(
         _ children: OptionalViewChildren<V>, backend: Backend
     ) -> Backend.Widget {
-        return backend.createEitherContainer(
-            initiallyContaining: children.widget(for: backend)
-        )
+        let container = backend.createSingleChildContainer()
+        backend.setChild(ofSingleChildContainer: container, to: children.widget(for: backend))
+        return container
     }
 
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget, children: OptionalViewChildren<V>, backend: Backend
     ) {
         if children.hasToggled {
-            backend.setChild(ofEitherContainer: widget, to: children.widget(for: backend))
+            backend.setChild(ofSingleChildContainer: widget, to: children.widget(for: backend))
         }
     }
 }

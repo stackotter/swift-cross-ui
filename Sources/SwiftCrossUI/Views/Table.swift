@@ -25,24 +25,22 @@ public struct Table<Row>: ElementaryView, View {
         backend.setRowCount(ofTable: widget, to: rows.count + 1)
         backend.setColumnCount(ofTable: widget, to: columns.count)
         for (i, column) in columns.enumerated() {
+            let textView = backend.createTextView()
+            backend.updateTextView(textView, content: column.title, shouldWrap: false)
             backend.setCell(
                 at: CellPosition(0, i),
                 inTable: widget,
-                to: backend.createTextView(
-                    content: column.title,
-                    shouldWrap: false
-                )
+                to: textView
             )
         }
         for (i, row) in rows.enumerated() {
             for (j, column) in columns.enumerated() {
+                let textView = backend.createTextView()
+                backend.updateTextView(textView, content: column.value(row), shouldWrap: false)
                 backend.setCell(
                     at: CellPosition(i + 1, j),
                     inTable: widget,
-                    to: backend.createTextView(
-                        content: column.value(row),
-                        shouldWrap: false
-                    )
+                    to: textView
                 )
             }
         }

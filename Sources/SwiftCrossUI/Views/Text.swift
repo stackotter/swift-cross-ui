@@ -14,14 +14,13 @@ public struct Text: ElementaryView, View {
     public func asWidget<Backend: AppBackend>(
         backend: Backend
     ) -> Backend.Widget {
-        return backend.createTextView(content: string, shouldWrap: wrap)
+        return backend.createTextView()
     }
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         backend: Backend
     ) {
-        backend.setContent(ofTextView: widget, to: string)
-        backend.setWrap(ofTextView: widget, to: wrap)
+        backend.updateTextView(widget, content: string, shouldWrap: wrap)
     }
 }

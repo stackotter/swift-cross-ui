@@ -86,9 +86,9 @@ public final class LVGLBackend: AppBackend {
 
     public func show(widget: Widget) {}
 
-    public func createVStack(spacing: Int) -> Widget {
+    public func createVStack() -> Widget {
         let grid = Grid { parent in
-            let grid = LVGrid(with: parent, rows: 0, columns: 1, padding: Int16(spacing))
+            let grid = LVGrid(with: parent, rows: 0, columns: 1, padding: 0)
             grid.size = LVSize(width: 1 << 13 | 2001, height: 1 << 13 | 2001)
             grid.center()
             return grid
@@ -116,9 +116,9 @@ public final class LVGLBackend: AppBackend {
         }
     }
 
-    public func createHStack(spacing: Int) -> Widget {
+    public func createHStack() -> Widget {
         let grid = Grid { parent in
-            let grid = LVGrid(with: parent, rows: 1, columns: 0, padding: Int16(spacing))
+            let grid = LVGrid(with: parent, rows: 1, columns: 0, padding: 0)
             grid.size = LVSize(width: 1 << 13 | 2001, height: 1 << 13 | 2001)
             grid.center()
             return grid
@@ -146,47 +146,35 @@ public final class LVGLBackend: AppBackend {
         }
     }
 
-    public func createTextView(content: String, shouldWrap: Bool) -> Widget {
+    public func createTextView() -> Widget {
         return Widget { parent in
             let label = LVLabel(with: parent)
-            label.text = content
             return label
         }
     }
 
-    public func setContent(ofTextView textView: Widget, to content: String) {
+    public func updateTextView(_ textView: Widget, content: String, shouldWrap: Bool) {
+        // TODO: Implement text wrap option
         textView.postCreationAction { widget in
             (widget as! LVLabel).text = content
         }
     }
 
-    public func setWrap(ofTextView textView: Widget, to shouldWrap: Bool) {
-        // TODO: Implement text wrap option
-    }
-
-    public func createButton(label: String, action: @escaping () -> Void) -> Widget {
+    public func createButton() -> Widget {
         return Widget { parent in
             let button = LVButton(with: parent)
             let buttonLabel = LVLabel(with: button)
-            buttonLabel.text = label
             buttonLabel.center()
-            button.onEvent = { event in
-                if event.code == LV_EVENT_PRESSED {
-                    action()
-                }
-            }
             return button
         }
     }
 
-    public func setLabel(ofButton button: Widget, to label: String) {
+    public func updateButton(_ button: Widget, label: String, action: @escaping () -> Void) {
         button.postCreationAction { widget in
             let widget = widget as! LVButton
             (widget.child(at: 0)! as! LVLabel).text = label
         }
-    }
 
-    public func setAction(ofButton button: Widget, to action: @escaping () -> Void) {
         button.postCreationAction { widget in
             let widget = widget as! LVButton
             widget.onEvent = { event in

@@ -25,10 +25,7 @@ struct ForegroundView<Child: View>: TypeSafeView {
         _ children: ViewGraphNodeChildren1<Child>,
         backend: Backend
     ) -> Backend.Widget {
-        return backend.createForegroundColorContainer(
-            for: children.child0.widget.into(),
-            color: color
-        )
+        return backend.createStyleContainer(for: children.child0.widget.into())
     }
 
     func update<Backend: AppBackend>(
@@ -36,6 +33,6 @@ struct ForegroundView<Child: View>: TypeSafeView {
         children: ViewGraphNodeChildren1<Child>,
         backend: Backend
     ) {
-        backend.setForegroundColor(ofForegroundColorContainer: widget, to: color)
+        backend.setForegroundColor(ofStyleContainer: widget, to: color)
     }
 }

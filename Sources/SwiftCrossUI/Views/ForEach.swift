@@ -74,7 +74,7 @@ class ForEachViewChildren<
 
     /// Gets a variable length view's children as view graph node children.
     init<Backend: AppBackend>(from view: ForEach<Items, Child>, backend: Backend) {
-        let container = backend.createListView()
+        let container = backend.createLayoutTransparentStack()
         self.container = AnyWidget(container)
 
         nodes = view.elements
@@ -85,14 +85,14 @@ class ForEachViewChildren<
             .map(AnyViewGraphNode.init(_:))
 
         for node in nodes {
-            backend.addChild(node.widget.into(), toListView: container)
+            backend.addChild(node.widget.into(), toLayoutTransparentStack: container)
         }
     }
 
     /// Updates the variable length list widget with a new instance of the for each view being
     /// represented.
     func update<Backend: AppBackend>(with view: ForEach<Items, Child>, backend: Backend) {
-        backend.updateListView(container.into())
+        backend.updateLayoutTransparentStack(container.into())
 
         // TODO: The way we're reusing nodes for technically different elements means that if
         //   Child has state of its own then it could get pretty confused thinking that its state
@@ -115,14 +115,14 @@ class ForEachViewChildren<
                     backend: backend
                 )
                 nodes.append(node)
-                backend.addChild(node.widget.into(), toListView: container.into())
+                backend.addChild(node.widget.into(), toLayoutTransparentStack: container.into())
             }
         } else if remaining < 0 {
             let unused = -remaining
             for i in (nodes.count - unused)..<nodes.count {
                 backend.removeChild(
                     nodes[i].widget.into(),
-                    fromListView: container.into()
+                    fromLayoutTransparentStack: container.into()
                 )
             }
             nodes.removeLast(unused)

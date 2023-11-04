@@ -33,14 +33,16 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
     func asWidget<Backend: AppBackend>(
         _ children: EitherViewChildren<A, B>, backend: Backend
     ) -> Backend.Widget {
-        return backend.createEitherContainer(initiallyContaining: children.widget(for: backend))
+        let container = backend.createSingleChildContainer()
+        backend.setChild(ofSingleChildContainer: container, to: children.widget(for: backend))
+        return container
     }
 
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget, children: EitherViewChildren<A, B>, backend: Backend
     ) {
         if children.hasSwitchedCase {
-            backend.setChild(ofEitherContainer: widget, to: children.widget(for: backend))
+            backend.setChild(ofSingleChildContainer: widget, to: children.widget(for: backend))
         }
     }
 }

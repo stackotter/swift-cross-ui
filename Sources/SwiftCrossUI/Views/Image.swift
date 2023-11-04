@@ -20,6 +20,6 @@ public struct Image: ElementaryView, View {
         _ widget: Backend.Widget,
         backend: Backend
     ) {
-        backend.setFilePath(ofImageView: widget, to: path)
+        backend.updateImageView(widget, filePath: path)
     }
 }

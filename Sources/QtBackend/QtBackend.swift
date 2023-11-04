@@ -72,10 +72,8 @@ public struct QtBackend: AppBackend {
         widget.show()
     }
 
-    public func createVStack(spacing: Int) -> Widget {
+    public func createVStack() -> Widget {
         let layout = QVBoxLayout()
-        layout.spacing = Int32(spacing)
-
         let widget = QWidget()
         widget.layout = layout
         return widget
@@ -89,10 +87,8 @@ public struct QtBackend: AppBackend {
         (widget.layout as! QVBoxLayout).spacing = Int32(spacing)
     }
 
-    public func createHStack(spacing: Int) -> Widget {
+    public func createHStack() -> Widget {
         let layout = QHBoxLayout()
-        layout.spacing = Int32(spacing)
-
         let widget = QWidget()
         widget.layout = layout
         return widget
@@ -106,15 +102,66 @@ public struct QtBackend: AppBackend {
         (widget.layout as! QHBoxLayout).spacing = Int32(spacing)
     }
 
+    public func createTextView() -> Widget {
+        return QLabel(text: "")
+    }
+
+    public func updateTextView(_ textView: Widget, content: String, shouldWrap: Bool) {
+        // TODO: Implement text wrap setting
+        (textView as! QLabel).text = content
+    }
+
+    public func createButton() -> Widget {
+        let button = QPushButton(text: "")
+
+        // Internal state is required to avoid multiple subsequent calls to setAction adding
+        // new handlers instead of replacing the existing handler
+        button.connectClicked(receiver: nil) { [weak internalState] in
+            guard let internalState = internalState else {
+                return
+            }
+            internalState.buttonClickActions[ObjectIdentifier(button)]?()
+        }
+
+        return button
+    }
+
+    public func updateButton(_ button: Widget, label: String, action: @escaping () -> Void) {
+        (button as! QPushButton).text = label
+        internalState.buttonClickActions[ObjectIdentifier(button)] = action
+    }
+
+    public func createSlider() -> QWidget {
+        let slider = QSlider(orientation: .Horizontal)
+        slider.connectValueChanged(receiver: nil) { [weak internalState] val in
+            guard let internalState = internalState else {
+                return
+            }
+            internalState.sliderChangeActions[ObjectIdentifier(slider)]?(Double(val))
+        }
+
+        return slider
+    }
+
+    public func updateSlider(
+        _ slider: Widget, minimum: Double, maximum: Double, decimalPlaces: Int,
+        onChange: @escaping (Double) -> Void
+    ) {
+        let slider = slider as! QSlider
+        slider.minimum = Int32(minimum)
+        slider.maximum = Int32(maximum)
+        internalState.sliderChangeActions[ObjectIdentifier(slider)] = onChange
+    }
+
+    public func setValue(ofSlider slider: Widget, to value: Double) {
+        (slider as! QSlider).value = Int32(value)
+    }
+
     public func createPaddingContainer(for child: Widget) -> Widget {
-        let container = createVStack(spacing: 0)
+        let container = createVStack()
         addChild(child, toVStack: container)
         internalState.paddingContainerChildren[ObjectIdentifier(container)] = child
         return container
-    }
-
-    public func getChild(ofPaddingContainer container: Widget) -> Widget {
-        return internalState.paddingContainerChildren[ObjectIdentifier(container)]!
     }
 
     public func setPadding(
@@ -130,86 +177,6 @@ public struct QtBackend: AppBackend {
             right: Int32(trailing),
             bottom: Int32(bottom)
         )
-    }
-
-    public func createTextView(content: String, shouldWrap: Bool) -> Widget {
-        let label = QLabel(text: content)
-        return label
-    }
-
-    public func setContent(ofTextView textView: Widget, to content: String) {
-        (textView as! QLabel).text = content
-    }
-
-    public func setWrap(ofTextView textView: Widget, to shouldWrap: Bool) {
-        // TODO: Implement text wrap setting
-    }
-
-    public func createButton(label: String, action: @escaping () -> Void) -> Widget {
-        let button = QPushButton(text: label)
-
-        // Internal state is required to avoid multiple subsequent calls to setAction adding
-        // new handlers instead of replacing the existing handler
-        internalState.buttonClickActions[ObjectIdentifier(button)] = action
-        button.connectClicked(receiver: nil) { [weak internalState] in
-            guard let internalState = internalState else {
-                return
-            }
-            internalState.buttonClickActions[ObjectIdentifier(button)]?()
-        }
-
-        return button
-    }
-
-    public func setLabel(ofButton button: Widget, to label: String) {
-        (button as! QPushButton).text = label
-    }
-
-    public func setAction(ofButton button: Widget, to action: @escaping () -> Void) {
-        internalState.buttonClickActions[ObjectIdentifier(button)] = action
-    }
-
-    public func createSlider(
-        minimum: Double,
-        maximum: Double,
-        value: Double,
-        decimalPlaces: Int,
-        onChange: @escaping (Double) -> Void
-    ) -> QWidget {
-        let slider = QSlider(orientation: .Horizontal)
-        slider.minimum = Int32(minimum)
-        slider.maximum = Int32(maximum)
-        slider.value = Int32(value)
-
-        internalState.sliderChangeActions[ObjectIdentifier(slider)] = onChange
-        slider.connectValueChanged(receiver: nil) { [weak internalState] val in
-            guard let internalState = internalState else {
-                return
-            }
-            internalState.sliderChangeActions[ObjectIdentifier(slider)]?(Double(val))
-        }
-
-        return slider
-    }
-
-    public func setMinimum(ofSlider slider: Widget, to minimum: Double) {
-        (slider as! QSlider).minimum = Int32(minimum)
-    }
-
-    public func setMaximum(ofSlider slider: Widget, to maximum: Double) {
-        (slider as! QSlider).maximum = Int32(maximum)
-    }
-
-    public func setValue(ofSlider slider: Widget, to value: Double) {
-        (slider as! QSlider).value = Int32(value)
-    }
-
-    /// non applicable here
-    public func setDecimalPlaces(ofSlider slider: Widget, to decimalPlaces: Int) {
-    }
-
-    public func setOnChange(ofSlider slider: Widget, to onChange: @escaping (Double) -> Void) {
-        internalState.sliderChangeActions[ObjectIdentifier(slider)] = onChange
     }
 }
 

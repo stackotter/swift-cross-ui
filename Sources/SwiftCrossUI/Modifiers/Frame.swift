@@ -29,10 +29,7 @@ struct FrameView<Child: View>: TypeSafeView {
         _ children: ViewGraphNodeChildren1<Child>,
         backend: Backend
     ) -> Backend.Widget {
-        return backend.createFrameContainer(
-            for: children.child0.widget.into(), minWidth: minWidth,
-            minHeight: minHeight
-        )
+        return backend.createFrameContainer(for: children.child0.widget.into())
     }
 
     func update<Backend: AppBackend>(
@@ -40,7 +37,6 @@ struct FrameView<Child: View>: TypeSafeView {
         children: ViewGraphNodeChildren1<Child>,
         backend: Backend
     ) {
-        backend.setMinWidth(ofFrameContainer: widget, to: minWidth)
-        backend.setMinHeight(ofFrameContainer: widget, to: minHeight)
+        backend.updateFrameContainer(widget, minWidth: minWidth, minHeight: minHeight)
     }
 }

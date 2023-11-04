@@ -14,23 +14,16 @@ struct ToggleButton: ElementaryView, View {
     public func asWidget<Backend: AppBackend>(
         backend: Backend
     ) -> Backend.Widget {
-        return backend.createToggle(
-            label: label,
-            active: active.wrappedValue,
-            onChange: { newValue in
-                self.active.wrappedValue = newValue
-            }
-        )
+        return backend.createToggle()
     }
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         backend: Backend
     ) {
-        backend.setLabel(ofButton: widget, to: label)
-        backend.setIsActive(ofToggle: widget, to: active.wrappedValue)
-        backend.setOnChange(ofToggle: widget) { newActiveState in
+        backend.updateToggle(widget, label: label) { newActiveState in
             active.wrappedValue = newActiveState
         }
+        backend.setState(ofToggle: widget, to: active.wrappedValue)
     }
 }

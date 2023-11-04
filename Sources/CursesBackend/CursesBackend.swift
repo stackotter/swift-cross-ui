@@ -52,7 +52,7 @@ public final class CursesBackend: AppBackend {
         widget.setNeedsDisplay()
     }
 
-    public func createVStack(spacing: Int) -> Widget {
+    public func createVStack() -> Widget {
         return View()
     }
 
@@ -64,7 +64,7 @@ public final class CursesBackend: AppBackend {
 
     public func setSpacing(ofVStack container: Widget, to spacing: Int) {}
 
-    public func createHStack(spacing: Int) -> Widget {
+    public func createHStack() -> Widget {
         return View()
     }
 
@@ -76,30 +76,26 @@ public final class CursesBackend: AppBackend {
 
     public func setSpacing(ofHStack container: Widget, to spacing: Int) {}
 
-    public func createTextView(content: String, shouldWrap: Bool) -> Widget {
-        let label = Label(content)
+    public func createTextView() -> Widget {
+        let label = Label("")
         label.width = Dim.fill()
         return label
     }
 
-    public func setContent(ofTextView textView: Widget, to content: String) {
+    public func updateTextView(_ textView: Widget, content: String, shouldWrap: Bool) {
+        // TODO: Implement text wrap handling
         let label = textView as! Label
         label.text = content
     }
 
-    public func setWrap(ofTextView textView: Widget, to shouldWrap: Bool) {}
-
-    public func createButton(label: String, action: @escaping () -> Void) -> Widget {
-        let button = TermKit.Button(label, clicked: action)
+    public func createButton() -> Widget {
+        let button = TermKit.Button("")
         button.height = Dim.sized(1)
         return button
     }
 
-    public func setLabel(ofButton button: Widget, to label: String) {
+    public func updateButton(_ button: Widget, label: String, action: @escaping () -> Void) {
         (button as! TermKit.Button).text = label
-    }
-
-    public func setAction(ofButton button: Widget, to action: @escaping () -> Void) {
         (button as! TermKit.Button).clicked = { _ in
             action()
         }
