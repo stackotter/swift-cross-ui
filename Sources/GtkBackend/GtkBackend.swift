@@ -189,17 +189,17 @@ public struct GtkBackend: AppBackend {
     }
 
     public func createSwitch(active: Bool, onChange: @escaping (Bool) -> Void) -> Widget {
-        let backendSwitch = Switch()
-        backendSwitch.active = active
-        return backendSwitch
+        let switchWidget = Switch()
+        switchWidget.active = active
+        return switchWidget
     }
 
-    public func setIsActive(ofSwitch backendSwitch: Widget, to active: Bool) {
-        (backendSwitch as! Gtk.Switch).active = active
+    public func setIsActive(ofSwitch switchWidget: Widget, to active: Bool) {
+        (switchWidget as! Gtk.Switch).active = active
     }
 
-    public func setOnChange(ofSwitch backendSwitch: Widget, to onChange: @escaping (Bool) -> Void) {
-        (backendSwitch as! Gtk.Switch).notifyActive = { widget in
+    public func setOnChange(ofSwitch switchWidget: Widget, to onChange: @escaping (Bool) -> Void) {
+        (switchWidget as! Gtk.Switch).notifyActive = { widget in
             onChange(widget.active)
         }
     }

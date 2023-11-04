@@ -109,10 +109,10 @@ public protocol AppBackend {
     /// Creates a switch that is either on or off. Predominantly used by ``Switch``
     func createSwitch(active: Bool, onChange: @escaping (Bool) -> Void) -> Widget
     /// Sets the state of the switch to active or not.
-    func setIsActive(ofSwitch backendSwitch: Widget, to active: Bool)
+    func setIsActive(ofSwitch switchWidget: Widget, to active: Bool)
     /// Sets the change handler of a switch (replaces any existing change handlers).
     /// The change handler is called whenever the switch is turned on or off.
-    func setOnChange(ofSwitch backendSwitch: Widget, to onChange: @escaping (Bool) -> Void)
+    func setOnChange(ofSwitch switchWidget: Widget, to onChange: @escaping (Bool) -> Void)
 
     /// Creates a non-editable text view with optional text wrapping. Predominantly used
     /// by ``Text``.`
@@ -410,10 +410,10 @@ extension AppBackend {
     public func createSwitch(active: Bool, onChange: @escaping (Bool) -> Void) -> Widget {
         todo("createSwitch not implemented")
     }
-    public func setIsActive(ofSwitch backendSwitch: Widget, to active: Bool) {
+    public func setIsActive(ofSwitch switchWidget: Widget, to active: Bool) {
         todo("setIsActive not implemented")
     }
-    public func setOnChange(ofSwitch backendSwitch: Widget, to onChange: @escaping (Bool) -> Void) {
+    public func setOnChange(ofSwitch switchWidget: Widget, to onChange: @escaping (Bool) -> Void) {
         todo("setOnChange not implemented")
     }
 
