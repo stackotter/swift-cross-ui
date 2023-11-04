@@ -14,46 +14,19 @@ public struct Spacer: ElementaryView, View {
     public func asWidget<Backend: AppBackend>(
         backend: Backend
     ) -> Backend.Widget {
-        let spacer = backend.createSpacer(expandHorizontally: false, expandVertically: false)
-        return backend.createPaddingContainer(for: spacer)
+        return backend.createSpacer()
     }
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         backend: Backend
     ) {
-        let spacer = backend.getChild(ofPaddingContainer: widget)
-        switch backend.getInheritedOrientation(of: widget) {
-            case .horizontal:
-                backend.setExpandHorizontally(ofSpacer: spacer, to: true)
-                backend.setExpandVertically(ofSpacer: spacer, to: false)
-                backend.setPadding(
-                    ofPaddingContainer: widget,
-                    top: 0,
-                    bottom: 0,
-                    leading: minLength ?? 0,
-                    trailing: 0
-                )
-            case .vertical:
-                backend.setExpandHorizontally(ofSpacer: spacer, to: false)
-                backend.setExpandVertically(ofSpacer: spacer, to: true)
-                backend.setPadding(
-                    ofPaddingContainer: widget,
-                    top: minLength ?? 0,
-                    bottom: 0,
-                    leading: 0,
-                    trailing: 0
-                )
-            case nil:
-                backend.setExpandHorizontally(ofSpacer: spacer, to: true)
-                backend.setExpandVertically(ofSpacer: spacer, to: true)
-                backend.setPadding(
-                    ofPaddingContainer: widget,
-                    top: minLength ?? 0,
-                    bottom: 0,
-                    leading: minLength ?? 0,
-                    trailing: 0
-                )
-        }
+        let orientation = backend.getInheritedOrientation(of: widget)
+        backend.updateSpacer(
+            widget,
+            expandHorizontally: orientation == .vertical || orientation == nil,
+            expandVertically: orientation == .vertical || orientation == nil,
+            minSize: minLength ?? 0
+        )
     }
 }

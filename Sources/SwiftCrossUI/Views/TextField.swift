@@ -14,25 +14,18 @@ public struct TextField: ElementaryView, View {
     public func asWidget<Backend: AppBackend>(
         backend: Backend
     ) -> Backend.Widget {
-        return backend.createTextField(
-            content: value?.wrappedValue ?? "",
-            placeholder: placeholder,
-            onChange: { newValue in
-                self.value?.wrappedValue = newValue
-            }
-        )
+        return backend.createTextField()
     }
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         backend: Backend
     ) {
-        backend.setPlaceholder(ofTextField: widget, to: placeholder)
+        backend.updateTextField(widget, placeholder: placeholder) { newValue in
+            self.value?.wrappedValue = newValue
+        }
         if let value = value?.wrappedValue, value != backend.getContent(ofTextField: widget) {
             backend.setContent(ofTextField: widget, to: value)
-        }
-        backend.setOnChange(ofTextField: widget) { newValue in
-            self.value?.wrappedValue = newValue
         }
     }
 }

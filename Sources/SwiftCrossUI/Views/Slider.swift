@@ -89,27 +89,16 @@ public struct Slider: ElementaryView, View {
     public func asWidget<Backend: AppBackend>(
         backend: Backend
     ) -> Backend.Widget {
-        return backend.createSlider(
-            minimum: minimum,
-            maximum: maximum,
-            value: value?.wrappedValue ?? minimum,
-            decimalPlaces: decimalPlaces
-        ) { [weak value] newValue in
-            guard let value = value else {
-                return
-            }
-            value.wrappedValue = newValue
-        }
+        return backend.createSlider()
     }
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         backend: Backend
     ) {
-        backend.setMinimum(ofSlider: widget, to: minimum)
-        backend.setMaximum(ofSlider: widget, to: maximum)
-        backend.setDecimalPlaces(ofSlider: widget, to: decimalPlaces)
-        backend.setOnChange(ofSlider: widget) { [weak value] newValue in
+        backend.updateSlider(
+            widget, minimum: minimum, maximum: maximum, decimalPlaces: decimalPlaces
+        ) { [weak value] newValue in
             guard let value = value else {
                 return
             }

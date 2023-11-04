@@ -21,22 +21,19 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
     public func asWidget<Backend: AppBackend>(
         backend: Backend
     ) -> Backend.Widget {
-        return backend.createPicker(
-            options: options.map { "\($0)" },
-            selectedOption: selectedOptionIndex
-        ) { selectedIndex in
+        return backend.createPicker()
+    }
+
+    public func update<Backend: AppBackend>(
+        _ widget: Backend.Widget, backend: Backend
+    ) {
+        backend.updatePicker(widget, options: options.map { "\($0)" }) { selectedIndex in
             guard let selectedIndex = selectedIndex else {
                 value.wrappedValue = nil
                 return
             }
             value.wrappedValue = options[selectedIndex]
         }
-    }
-
-    public func update<Backend: AppBackend>(
-        _ widget: Backend.Widget, backend: Backend
-    ) {
-        backend.setOptions(ofPicker: widget, to: options.map { "\($0)" })
         backend.setSelectedOption(ofPicker: widget, to: selectedOptionIndex)
     }
 }

@@ -15,7 +15,7 @@ public struct VStack<Content: View>: View {
         _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = backend.createVStack(spacing: spacing)
+        let vStack = backend.createVStack()
         backend.addChildren(children.widgets(for: backend), toVStack: vStack)
         return vStack
     }

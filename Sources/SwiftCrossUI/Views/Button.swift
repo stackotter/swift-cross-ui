@@ -14,14 +14,13 @@ public struct Button: ElementaryView, View {
     public func asWidget<Backend: AppBackend>(
         backend: Backend
     ) -> Backend.Widget {
-        return backend.createButton(label: label, action: action)
+        return backend.createButton()
     }
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         backend: Backend
     ) {
-        backend.setLabel(ofButton: widget, to: label)
-        backend.setAction(ofButton: widget, to: action)
+        backend.updateButton(widget, label: label, action: action)
     }
 }

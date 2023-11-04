@@ -15,7 +15,7 @@ public struct HStack<Content: View>: View {
         _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget {
-        let hStack = backend.createHStack(spacing: spacing)
+        let hStack = backend.createHStack()
         backend.addChildren(children.widgets(for: backend), toHStack: hStack)
         return hStack
     }

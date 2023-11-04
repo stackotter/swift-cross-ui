@@ -29,7 +29,7 @@ public struct VariadicView1<View0: View>: TypeSafeView, View {
     }
 
     func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
-        let container = backend.createVStack(spacing: 0)
+        let container = backend.createVStack()
         backend.addChildren(children.widgets(for: backend), toVStack: container)
         return container
     }
@@ -73,7 +73,7 @@ public struct VariadicView2<View0: View, View1: View>: TypeSafeView, View {
     }
 
     func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
-        let container = backend.createVStack(spacing: 0)
+        let container = backend.createVStack()
         backend.addChildren(children.widgets(for: backend), toVStack: container)
         return container
     }
@@ -121,7 +121,7 @@ public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView
     }
 
     func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
-        let container = backend.createVStack(spacing: 0)
+        let container = backend.createVStack()
         backend.addChildren(children.widgets(for: backend), toVStack: container)
         return container
     }
@@ -174,7 +174,7 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
     }
 
     func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
-        let container = backend.createVStack(spacing: 0)
+        let container = backend.createVStack()
         backend.addChildren(children.widgets(for: backend), toVStack: container)
         return container
     }
@@ -232,7 +232,7 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
     }
 
     func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
-        let container = backend.createVStack(spacing: 0)
+        let container = backend.createVStack()
         backend.addChildren(children.widgets(for: backend), toVStack: container)
         return container
     }
@@ -297,7 +297,7 @@ public struct VariadicView6<
     }
 
     func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
-        let container = backend.createVStack(spacing: 0)
+        let container = backend.createVStack()
         backend.addChildren(children.widgets(for: backend), toVStack: container)
         return container
     }
@@ -366,7 +366,7 @@ public struct VariadicView7<
     }
 
     func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
-        let container = backend.createVStack(spacing: 0)
+        let container = backend.createVStack()
         backend.addChildren(children.widgets(for: backend), toVStack: container)
         return container
     }
@@ -442,7 +442,7 @@ public struct VariadicView8<
     }
 
     func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
-        let container = backend.createVStack(spacing: 0)
+        let container = backend.createVStack()
         backend.addChildren(children.widgets(for: backend), toVStack: container)
         return container
     }
@@ -522,7 +522,7 @@ public struct VariadicView9<
     }
 
     func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
-        let container = backend.createVStack(spacing: 0)
+        let container = backend.createVStack()
         backend.addChildren(children.widgets(for: backend), toVStack: container)
         return container
     }
@@ -606,7 +606,7 @@ public struct VariadicView10<
     }
 
     func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
-        let container = backend.createVStack(spacing: 0)
+        let container = backend.createVStack()
         backend.addChildren(children.widgets(for: backend), toVStack: container)
         return container
     }

@@ -11,21 +11,16 @@ struct ToggleSwitch: ElementaryView, View {
     public func asWidget<Backend: AppBackend>(
         backend: Backend
     ) -> Backend.Widget {
-        return backend.createSwitch(
-            active: active.wrappedValue,
-            onChange: { newValue in
-                self.active.wrappedValue = newValue
-            }
-        )
+        return backend.createSwitch()
     }
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         backend: Backend
     ) {
-        backend.setIsActive(ofSwitch: widget, to: active.wrappedValue)
-        backend.setOnChange(ofSwitch: widget) { newActiveState in
+        backend.updateSwitch(widget) { newActiveState in
             active.wrappedValue = newActiveState
         }
+        backend.setState(ofSwitch: widget, to: active.wrappedValue)
     }
 }

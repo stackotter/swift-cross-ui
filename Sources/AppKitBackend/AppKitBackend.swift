@@ -58,24 +58,18 @@ public struct AppKitBackend: AppBackend {
 
     public func show(widget: Widget) {}
 
-    public func createTextView(content: String, shouldWrap: Bool) -> Widget {
-        if shouldWrap {
-            return NSTextField(wrappingLabelWithString: content)
-        } else {
-            return NSTextField(labelWithString: content)
-        }
+    public func createTextView() -> Widget {
+        return NSTextField(wrappingLabelWithString: "")
     }
 
-    public func setContent(ofTextView textView: Widget, to content: String) {
+    public func updateTextView(_ textView: Widget, content: String, shouldWrap: Bool) {
+        // TODO: Implement text wrap handling
         (textView as! NSTextField).stringValue = content
     }
 
-    public func setWrap(ofTextView textView: Widget, to shouldWrap: Bool) {}
-
-    public func createVStack(spacing: Int) -> Widget {
+    public func createVStack() -> Widget {
         let view = NSStackView()
         view.orientation = .vertical
-        view.spacing = CGFloat(spacing)
         return view
     }
 
@@ -88,10 +82,9 @@ public struct AppKitBackend: AppBackend {
         (widget as! NSStackView).spacing = CGFloat(spacing)
     }
 
-    public func createHStack(spacing: Int) -> Widget {
+    public func createHStack() -> Widget {
         let view = NSStackView()
         view.orientation = .horizontal
-        view.spacing = CGFloat(spacing)
         return view
     }
 
@@ -103,19 +96,12 @@ public struct AppKitBackend: AppBackend {
         (widget as! NSStackView).spacing = CGFloat(spacing)
     }
 
-    public func createButton(label: String, action: @escaping () -> Void) -> Widget {
-        let button = NSButton(title: label, target: nil, action: nil)
-        button.onAction = { _ in
-            action()
-        }
-        return button
+    public func createButton() -> Widget {
+        return NSButton(title: "", target: nil, action: nil)
     }
 
-    public func setLabel(ofButton button: Widget, to label: String) {
+    public func updateButton(_ button: Widget, label: String, action: @escaping () -> Void) {
         (button as! NSButton).title = label
-    }
-
-    public func setAction(ofButton button: Widget, to action: @escaping () -> Void) {
         (button as! NSButton).onAction = { _ in
             action()
         }
