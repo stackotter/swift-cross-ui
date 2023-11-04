@@ -4,6 +4,7 @@ import SwiftCrossUI
 class ControlsState: Observable {
     @Observed var count = 0
     @Observed var exampleButtonState = false
+    @Observed var exampleSwitchState = false
 }
 
 @main
@@ -14,20 +15,35 @@ struct ControlsApp: App {
 
     let state = ControlsState()
 
-    let windowProperties = WindowProperties(title: "ControlsApp", resizable: true)
+    let windowProperties = WindowProperties(
+        title: "ControlsApp",
+        resizable: true
+    )
 
     var body: some View {
-        VStack(spacing: 5) {
-            Text("Button")
-            Button("Click me!") {
-                state.count += 1
+        HStack {
+            VStack {
+                Text("Button")
+                Button("Click me!") {
+                    state.count += 1
+                }
+                Text("Count: \(state.count)", wrap: false)
+                Spacer()
             }
-            Text("Count: \(state.count)", wrap: false)
             Spacer()
-                .padding(.bottom, 15)
-            Text("Toggle (Button Style)")
-            Toggle("Toggle me!", active: state.$exampleButtonState)
-            Text("Currently enabled: \(state.exampleButtonState)")
+            VStack {
+                Text("Toggle (Button Style)")
+                Toggle("Toggle me!", active: state.$exampleButtonState)
+                Text("Currently enabled: \(state.exampleButtonState)")
+                Spacer()
+                    .padding(.bottom, 10)
+                Text("Toggle (Switch Style)")
+                HStack {
+                    Switch(active: state.$exampleSwitchState)
+                    //Spacer()
+                }
+                Text("Currently enabled: \(state.exampleSwitchState)")
+            }
         }
         .padding(10)
     }

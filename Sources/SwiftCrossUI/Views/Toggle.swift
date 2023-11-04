@@ -15,7 +15,7 @@ public struct Toggle: ElementaryView, View {
         backend: Backend
     ) -> Backend.Widget {
         return backend.createToggle(
-            label: label, 
+            label: label,
             active: active.wrappedValue,
             onChange: { newValue in
                 self.active.wrappedValue = newValue
