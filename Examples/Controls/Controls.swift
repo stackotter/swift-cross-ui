@@ -33,13 +33,13 @@ struct ControlsApp: App {
             Spacer()
             VStack {
                 Text("Toggle (Button Style)")
-                Toggle("Toggle me!", active: state.$exampleButtonState)
+                Toggle(.buttonStyle, "Toggle me!", active: state.$exampleButtonState)
                 Text("Currently enabled: \(state.exampleButtonState)")
                 Spacer()
                     .padding(.bottom, 10)
                 Text("Toggle (Switch Style)")
                 HStack {
-                    Switch(active: state.$exampleSwitchState)
+                    Toggle(.switchStyle, "", active: state.$exampleSwitchState)
                     //Spacer()
                 }
                 Text("Currently enabled: \(state.exampleSwitchState)")

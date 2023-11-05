@@ -1,5 +1,5 @@
 /// A control that is either on or off.
-public struct Switch: ElementaryView, View {
+/*public struct Switch: ElementaryView, View {
     /// Whether the switch is active or not.
     private var active: Binding<Bool>
 
@@ -29,3 +29,4 @@ public struct Switch: ElementaryView, View {
         }
     }
 }
+*/
