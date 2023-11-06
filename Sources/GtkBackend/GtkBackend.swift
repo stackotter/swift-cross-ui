@@ -191,6 +191,9 @@ public struct GtkBackend: AppBackend {
     public func createSwitch(active: Bool, onChange: @escaping (Bool) -> Void) -> Widget {
         let switchWidget = Switch()
         switchWidget.active = active
+        switchWidget.notifyActive = { widget in
+            onChange(widget.active)
+        }
         return switchWidget
     }
 
