@@ -16,7 +16,7 @@ public struct Toggle: View {
     public var body: some View {
         switch selectedToggleStyle {
             case .switch:
-                HStack() {
+                HStack {
                     Text(label)
                     ToggleSwitch(active: active)
                 }
