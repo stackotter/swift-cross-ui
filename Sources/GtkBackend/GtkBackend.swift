@@ -168,8 +168,8 @@ public struct GtkBackend: AppBackend {
     }
 
     public func createToggle(
-        label: String, 
-        active: Bool, 
+        label: String,
+        active: Bool,
         onChange: @escaping (Bool) -> Void
     ) -> Widget {
         let toggle = ToggleButton()
@@ -184,6 +184,25 @@ public struct GtkBackend: AppBackend {
 
     public func setOnChange(ofToggle toggle: Widget, to onChange: @escaping (Bool) -> Void) {
         (toggle as! Gtk.ToggleButton).toggled = { widget in
+            onChange(widget.active)
+        }
+    }
+
+    public func createSwitch(active: Bool, onChange: @escaping (Bool) -> Void) -> Widget {
+        let switchWidget = Switch()
+        switchWidget.active = active
+        switchWidget.notifyActive = { widget in
+            onChange(widget.active)
+        }
+        return switchWidget
+    }
+
+    public func setIsActive(ofSwitch switchWidget: Widget, to active: Bool) {
+        (switchWidget as! Gtk.Switch).active = active
+    }
+
+    public func setOnChange(ofSwitch switchWidget: Widget, to onChange: @escaping (Bool) -> Void) {
+        (switchWidget as! Gtk.Switch).notifyActive = { widget in
             onChange(widget.active)
         }
     }
