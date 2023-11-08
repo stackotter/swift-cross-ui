@@ -1,33 +1,37 @@
 {
   "abstract" : [
     {
-      "text" : "Inherited from ",
+      "text" : "Creates a switch that is either on or off. Predominantly used by ",
       "type" : "text"
     },
     {
-      "code" : "ElementaryView.update(_:backend:)",
+      "code" : "Switch",
       "type" : "codeVoice"
-    },
+    }
+  ],
+  "defaultImplementationsSections" : [
     {
-      "text" : ".",
-      "type" : "text"
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch(active:onChange:)-4lji1"
+      ],
+      "title" : "AppBackend Implementations"
     }
   ],
   "hierarchy" : {
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/update(_:backend:)"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch(active:onChange:)-1gmnm"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI6ToggleV6update_7backendy6WidgetQz_xtAA10AppBackendRzlF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendP12createSwitch6active8onChange6WidgetQzSb_ySbctF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -39,23 +43,58 @@
       },
       {
         "kind" : "identifier",
-        "text" : "update"
+        "text" : "createSwitch"
       },
       {
         "kind" : "text",
-        "text" : "<"
+        "text" : "("
       },
       {
-        "kind" : "genericParameter",
-        "text" : "Backend"
+        "kind" : "externalParam",
+        "text" : "active"
       },
       {
         "kind" : "text",
-        "text" : ">("
+        "text" : ": "
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "Backend"
+        "preciseIdentifier" : "s:Sb",
+        "text" : "Bool"
+      },
+      {
+        "kind" : "text",
+        "text" : ", "
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "onChange"
+      },
+      {
+        "kind" : "text",
+        "text" : ": ("
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:Sb",
+        "text" : "Bool"
+      },
+      {
+        "kind" : "text",
+        "text" : ") -> "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:s4Voida",
+        "text" : "Void"
+      },
+      {
+        "kind" : "text",
+        "text" : ") -> "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "Self"
       },
       {
         "kind" : "text",
@@ -64,26 +103,6 @@
       {
         "kind" : "typeIdentifier",
         "text" : "Widget"
-      },
-      {
-        "kind" : "text",
-        "text" : ", "
-      },
-      {
-        "kind" : "externalParam",
-        "text" : "backend"
-      },
-      {
-        "kind" : "text",
-        "text" : ": "
-      },
-      {
-        "kind" : "typeIdentifier",
-        "text" : "Backend"
-      },
-      {
-        "kind" : "text",
-        "text" : ")"
       }
     ],
     "modules" : [
@@ -91,10 +110,11 @@
         "name" : "SwiftCrossUI"
       }
     ],
+    "required" : true,
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "update(_:backend:)"
+    "title" : "createSwitch(active:onChange:)"
   },
   "primaryContentSections" : [
     {
@@ -117,31 +137,15 @@
             },
             {
               "kind" : "identifier",
-              "text" : "update"
+              "text" : "createSwitch"
             },
             {
               "kind" : "text",
-              "text" : "<"
-            },
-            {
-              "kind" : "genericParameter",
-              "text" : "Backend"
-            },
-            {
-              "kind" : "text",
-              "text" : ">("
+              "text" : "("
             },
             {
               "kind" : "externalParam",
-              "text" : "_"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "internalParam",
-              "text" : "widget"
+              "text" : "active"
             },
             {
               "kind" : "text",
@@ -149,7 +153,50 @@
             },
             {
               "kind" : "typeIdentifier",
-              "text" : "Backend"
+              "preciseIdentifier" : "s:Sb",
+              "text" : "Bool"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "onChange"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "@escaping"
+            },
+            {
+              "kind" : "text",
+              "text" : " ("
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:Sb",
+              "text" : "Bool"
+            },
+            {
+              "kind" : "text",
+              "text" : ") -> "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:s4Voida",
+              "text" : "Void"
+            },
+            {
+              "kind" : "text",
+              "text" : ") -> "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Self"
             },
             {
               "kind" : "text",
@@ -158,48 +205,6 @@
             {
               "kind" : "typeIdentifier",
               "text" : "Widget"
-            },
-            {
-              "kind" : "text",
-              "text" : ", "
-            },
-            {
-              "kind" : "externalParam",
-              "text" : "backend"
-            },
-            {
-              "kind" : "text",
-              "text" : ": "
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "Backend"
-            },
-            {
-              "kind" : "text",
-              "text" : ") "
-            },
-            {
-              "kind" : "keyword",
-              "text" : "where"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "Backend"
-            },
-            {
-              "kind" : "text",
-              "text" : " : "
-            },
-            {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
-              "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP",
-              "text" : "AppBackend"
             }
           ]
         }
@@ -218,7 +223,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/toggle\/update(_:backend:)"
+        "\/documentation\/swiftcrossui\/appbackend\/createswitch(active:onchange:)-1gmnm"
       ],
       "traits" : [
         {
@@ -277,17 +282,22 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSwitch(active:onChange:)-1gmnm": {
   "abstract" : [
     {
-      "text" : "A control that is either on or off.",
+      "text" : "Creates a switch that is either on or off. Predominantly used by ",
       "type" : "text"
+    },
+    {
+      "code" : "Switch",
+      "type" : "codeVoice"
     }
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "struct"
+      "text" : "func"
     },
     {
       "kind" : "text",
@@ -295,23 +305,77 @@
     },
     {
       "kind" : "identifier",
-      "text" : "Toggle"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
-  "kind" : "symbol",
-  "navigatorTitle" : [
+      "text" : "createSwitch"
+    },
     {
-      "kind" : "identifier",
-      "text" : "Toggle"
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "active"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "onChange"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
     }
   ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch(active:onChange:)-1gmnm",
+  "kind" : "symbol",
+  "required" : true,
   "role" : "symbol",
-  "title" : "Toggle",
+  "title" : "createSwitch(active:onChange:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/toggle"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createswitch(active:onchange:)-1gmnm"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle/update(_:backend:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSwitch(active:onChange:)-4lji1": {
   "abstract" : [
 
   ],
@@ -326,23 +390,58 @@
     },
     {
       "kind" : "identifier",
-      "text" : "update"
+      "text" : "createSwitch"
     },
     {
       "kind" : "text",
-      "text" : "<"
+      "text" : "("
     },
     {
-      "kind" : "genericParameter",
-      "text" : "Backend"
+      "kind" : "externalParam",
+      "text" : "active"
     },
     {
       "kind" : "text",
-      "text" : ">("
+      "text" : ": "
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Backend"
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "onChange"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
     },
     {
       "kind" : "text",
@@ -351,34 +450,14 @@
     {
       "kind" : "typeIdentifier",
       "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/update(_:backend:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch(active:onChange:)-4lji1",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "update(_:backend:)",
+  "title" : "createSwitch(active:onChange:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/toggle\/update(_:backend:)"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createswitch(active:onchange:)-4lji1"
 }
 }
 }

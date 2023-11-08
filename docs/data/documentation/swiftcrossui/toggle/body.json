@@ -1,7 +1,15 @@
 {
   "abstract" : [
     {
-      "text" : "Positions this view within an invisible frame having the specified minimum size constraints.",
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "View.body",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
       "type" : "text"
     }
   ],
@@ -9,23 +17,21 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/View-Implementations"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/frame(minWidth:minHeight:)"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/body"
   },
   "kind" : "symbol",
   "metadata" : {
-    "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI4ViewPAAE5frame8minWidth0F6HeightQrSiSg_AGtF::SYNTHESIZED::s:12SwiftCrossUI6ToggleV",
+    "externalID" : "s:12SwiftCrossUI6ToggleV4bodyQrvp",
     "fragments" : [
       {
         "kind" : "keyword",
-        "text" : "func"
+        "text" : "var"
       },
       {
         "kind" : "text",
@@ -33,45 +39,11 @@
       },
       {
         "kind" : "identifier",
-        "text" : "frame"
-      },
-      {
-        "kind" : "text",
-        "text" : "("
-      },
-      {
-        "kind" : "externalParam",
-        "text" : "minWidth"
+        "text" : "body"
       },
       {
         "kind" : "text",
         "text" : ": "
-      },
-      {
-        "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Si",
-        "text" : "Int"
-      },
-      {
-        "kind" : "text",
-        "text" : "?, "
-      },
-      {
-        "kind" : "externalParam",
-        "text" : "minHeight"
-      },
-      {
-        "kind" : "text",
-        "text" : ": "
-      },
-      {
-        "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Si",
-        "text" : "Int"
-      },
-      {
-        "kind" : "text",
-        "text" : "?) -> "
       },
       {
         "kind" : "keyword",
@@ -93,9 +65,9 @@
       }
     ],
     "role" : "symbol",
-    "roleHeading" : "Instance Method",
-    "symbolKind" : "method",
-    "title" : "frame(minWidth:minHeight:)"
+    "roleHeading" : "Instance Property",
+    "symbolKind" : "property",
+    "title" : "body"
   },
   "primaryContentSections" : [
     {
@@ -110,7 +82,7 @@
           "tokens" : [
             {
               "kind" : "keyword",
-              "text" : "func"
+              "text" : "var"
             },
             {
               "kind" : "text",
@@ -118,45 +90,11 @@
             },
             {
               "kind" : "identifier",
-              "text" : "frame"
-            },
-            {
-              "kind" : "text",
-              "text" : "("
-            },
-            {
-              "kind" : "externalParam",
-              "text" : "minWidth"
+              "text" : "body"
             },
             {
               "kind" : "text",
               "text" : ": "
-            },
-            {
-              "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Si",
-              "text" : "Int"
-            },
-            {
-              "kind" : "text",
-              "text" : "? = nil, "
-            },
-            {
-              "kind" : "externalParam",
-              "text" : "minHeight"
-            },
-            {
-              "kind" : "text",
-              "text" : ": "
-            },
-            {
-              "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Si",
-              "text" : "Int"
-            },
-            {
-              "kind" : "text",
-              "text" : "? = nil) -> "
             },
             {
               "kind" : "keyword",
@@ -174,7 +112,15 @@
             },
             {
               "kind" : "text",
-              "text" : "\n"
+              "text" : " { "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "get"
+            },
+            {
+              "kind" : "text",
+              "text" : " }"
             }
           ]
         }
@@ -193,7 +139,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/toggle\/frame(minwidth:minheight:)"
+        "\/documentation\/swiftcrossui\/toggle\/body"
       ],
       "traits" : [
         {
@@ -249,28 +195,14 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/toggle"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle/View-Implementations": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle/body": {
   "abstract" : [
 
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/View-Implementations",
-  "kind" : "article",
-  "role" : "collectionGroup",
-  "title" : "View Implementations",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/toggle\/view-implementations"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle/frame(minWidth:minHeight:)": {
-  "abstract" : [
-    {
-      "text" : "Positions this view within an invisible frame having the specified minimum size constraints.",
-      "type" : "text"
-    }
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "func"
+      "text" : "var"
     },
     {
       "kind" : "text",
@@ -278,45 +210,11 @@
     },
     {
       "kind" : "identifier",
-      "text" : "frame"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "minWidth"
+      "text" : "body"
     },
     {
       "kind" : "text",
       "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : "?, "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "minHeight"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : "?) -> "
     },
     {
       "kind" : "keyword",
@@ -332,12 +230,12 @@
       "text" : "View"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/frame(minWidth:minHeight:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/body",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "frame(minWidth:minHeight:)",
+  "title" : "body",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/toggle\/frame(minwidth:minheight:)"
+  "url" : "\/documentation\/swiftcrossui\/toggle\/body"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

@@ -158,7 +158,8 @@
     {
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/InheritedOrientation"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/InheritedOrientation",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ToggleStyle"
       ],
       "title" : "Enumerations"
     },
@@ -1827,10 +1828,7 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle": {
   "abstract" : [
-    {
-      "text" : "A control that is either on or off.",
-      "type" : "text"
-    }
+
   ],
   "fragments" : [
     {
@@ -1858,6 +1856,37 @@
   "title" : "Toggle",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/toggle"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ToggleStyle": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ToggleStyle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ToggleStyle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ToggleStyle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ToggleStyle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/togglestyle"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack": {
   "abstract" : [

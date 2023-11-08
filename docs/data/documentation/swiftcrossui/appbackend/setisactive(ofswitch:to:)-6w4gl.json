@@ -1,27 +1,33 @@
 {
   "abstract" : [
     {
-      "text" : "Positions this view within an invisible frame having the specified minimum size constraints.",
+      "text" : "Sets the state of the switch to active or not.",
       "type" : "text"
+    }
+  ],
+  "defaultImplementationsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setIsActive(ofSwitch:to:)-8vjeh"
+      ],
+      "title" : "AppBackend Implementations"
     }
   ],
   "hierarchy" : {
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/View-Implementations"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/frame(minWidth:minHeight:)"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setIsActive(ofSwitch:to:)-6w4gl"
   },
   "kind" : "symbol",
   "metadata" : {
-    "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI4ViewPAAE5frame8minWidth0F6HeightQrSiSg_AGtF::SYNTHESIZED::s:12SwiftCrossUI6ToggleV",
+    "externalID" : "s:12SwiftCrossUI10AppBackendP11setIsActive8ofSwitch2toy6WidgetQz_SbtF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -33,7 +39,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "frame"
+        "text" : "setIsActive"
       },
       {
         "kind" : "text",
@@ -41,7 +47,7 @@
       },
       {
         "kind" : "externalParam",
-        "text" : "minWidth"
+        "text" : "ofSwitch"
       },
       {
         "kind" : "text",
@@ -49,16 +55,23 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Si",
-        "text" : "Int"
+        "text" : "Self"
       },
       {
         "kind" : "text",
-        "text" : "?, "
+        "text" : "."
+      },
+      {
+        "kind" : "typeIdentifier",
+        "text" : "Widget"
+      },
+      {
+        "kind" : "text",
+        "text" : ", "
       },
       {
         "kind" : "externalParam",
-        "text" : "minHeight"
+        "text" : "to"
       },
       {
         "kind" : "text",
@@ -66,25 +79,12 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Si",
-        "text" : "Int"
+        "preciseIdentifier" : "s:Sb",
+        "text" : "Bool"
       },
       {
         "kind" : "text",
-        "text" : "?) -> "
-      },
-      {
-        "kind" : "keyword",
-        "text" : "some"
-      },
-      {
-        "kind" : "text",
-        "text" : " "
-      },
-      {
-        "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
-        "text" : "View"
+        "text" : ")"
       }
     ],
     "modules" : [
@@ -92,10 +92,11 @@
         "name" : "SwiftCrossUI"
       }
     ],
+    "required" : true,
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "frame(minWidth:minHeight:)"
+    "title" : "setIsActive(ofSwitch:to:)"
   },
   "primaryContentSections" : [
     {
@@ -118,7 +119,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "frame"
+              "text" : "setIsActive"
             },
             {
               "kind" : "text",
@@ -126,55 +127,60 @@
             },
             {
               "kind" : "externalParam",
-              "text" : "minWidth"
-            },
-            {
-              "kind" : "text",
-              "text" : ": "
-            },
-            {
-              "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Si",
-              "text" : "Int"
-            },
-            {
-              "kind" : "text",
-              "text" : "? = nil, "
-            },
-            {
-              "kind" : "externalParam",
-              "text" : "minHeight"
-            },
-            {
-              "kind" : "text",
-              "text" : ": "
-            },
-            {
-              "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Si",
-              "text" : "Int"
-            },
-            {
-              "kind" : "text",
-              "text" : "? = nil) -> "
-            },
-            {
-              "kind" : "keyword",
-              "text" : "some"
+              "text" : "ofSwitch"
             },
             {
               "kind" : "text",
               "text" : " "
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
-              "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
-              "text" : "View"
+              "kind" : "internalParam",
+              "text" : "switchWidget"
             },
             {
               "kind" : "text",
-              "text" : "\n"
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Self"
+            },
+            {
+              "kind" : "text",
+              "text" : "."
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Widget"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "to"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "internalParam",
+              "text" : "active"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:Sb",
+              "text" : "Bool"
+            },
+            {
+              "kind" : "text",
+              "text" : ")"
             }
           ]
         }
@@ -193,7 +199,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/toggle\/frame(minwidth:minheight:)"
+        "\/documentation\/swiftcrossui\/appbackend\/setisactive(ofswitch:to:)-6w4gl"
       ],
       "traits" : [
         {
@@ -218,131 +224,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "Toggle"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "Toggle"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "Toggle",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/toggle"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle/View-Implementations": {
-  "abstract" : [
-
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/View-Implementations",
-  "kind" : "article",
-  "role" : "collectionGroup",
-  "title" : "View Implementations",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/toggle\/view-implementations"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle/frame(minWidth:minHeight:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
     {
-      "text" : "Positions this view within an invisible frame having the specified minimum size constraints.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "frame"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "minWidth"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : "?, "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "minHeight"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : "?) -> "
-    },
-    {
-      "kind" : "keyword",
-      "text" : "some"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
-      "text" : "View"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/frame(minWidth:minHeight:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "frame(minWidth:minHeight:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/toggle\/frame(minwidth:minheight:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
-  "abstract" : [
-    {
-      "text" : "A view that can be rendered by any backend.",
+      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
       "type" : "text"
     }
   ],
@@ -357,21 +242,166 @@
     },
     {
       "kind" : "identifier",
-      "text" : "View"
+      "text" : "AppBackend"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "View"
+      "text" : "AppBackend"
     }
   ],
   "role" : "symbol",
-  "title" : "View",
+  "title" : "AppBackend",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view"
+  "url" : "\/documentation\/swiftcrossui\/appbackend"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setIsActive(ofSwitch:to:)-6w4gl": {
+  "abstract" : [
+    {
+      "text" : "Sets the state of the switch to active or not.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setIsActive"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofSwitch"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "to"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setIsActive(ofSwitch:to:)-6w4gl",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "setIsActive(ofSwitch:to:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setisactive(ofswitch:to:)-6w4gl"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setIsActive(ofSwitch:to:)-8vjeh": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setIsActive"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofSwitch"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "to"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setIsActive(ofSwitch:to:)-8vjeh",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "setIsActive(ofSwitch:to:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setisactive(ofswitch:to:)-8vjeh"
 }
 }
 }

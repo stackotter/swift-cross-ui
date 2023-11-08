@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Creates a toggle button that displays a custom label.",
+      "text" : "Creates a toggle that displays a custom label.",
       "type" : "text"
     }
   ],
@@ -232,10 +232,7 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle": {
   "abstract" : [
-    {
-      "text" : "A control that is either on or off.",
-      "type" : "text"
-    }
+
   ],
   "fragments" : [
     {
@@ -267,7 +264,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle/init(_:active:)": {
   "abstract" : [
     {
-      "text" : "Creates a toggle button that displays a custom label.",
+      "text" : "Creates a toggle that displays a custom label.",
       "type" : "text"
     }
   ],

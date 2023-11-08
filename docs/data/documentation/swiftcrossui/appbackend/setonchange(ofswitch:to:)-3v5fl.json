@@ -5,7 +5,7 @@
       "type" : "text"
     },
     {
-      "code" : "AppBackend.createToggle(label:active:onChange:)",
+      "code" : "AppBackend.setOnChange(ofSwitch:to:)",
       "type" : "codeVoice"
     },
     {
@@ -18,18 +18,18 @@
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle(label:active:onChange:)-1v1kf"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofSwitch:to:)-8rhir"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle(label:active:onChange:)-3e916"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofSwitch:to:)-3v5fl"
   },
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE12createToggle5label6active8onChange6WidgetQzSS_SbySbctF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE11setOnChange8ofSwitch2toy6WidgetQz_ySbctF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -41,7 +41,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "createToggle"
+        "text" : "setOnChange"
       },
       {
         "kind" : "text",
@@ -49,7 +49,7 @@
       },
       {
         "kind" : "externalParam",
-        "text" : "label"
+        "text" : "ofSwitch"
       },
       {
         "kind" : "text",
@@ -57,25 +57,15 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:SS",
-        "text" : "String"
+        "text" : "Self"
       },
       {
         "kind" : "text",
-        "text" : ", "
-      },
-      {
-        "kind" : "externalParam",
-        "text" : "active"
-      },
-      {
-        "kind" : "text",
-        "text" : ": "
+        "text" : "."
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Sb",
-        "text" : "Bool"
+        "text" : "Widget"
       },
       {
         "kind" : "text",
@@ -83,7 +73,7 @@
       },
       {
         "kind" : "externalParam",
-        "text" : "onChange"
+        "text" : "to"
       },
       {
         "kind" : "text",
@@ -105,19 +95,7 @@
       },
       {
         "kind" : "text",
-        "text" : ") -> "
-      },
-      {
-        "kind" : "typeIdentifier",
-        "text" : "Self"
-      },
-      {
-        "kind" : "text",
-        "text" : "."
-      },
-      {
-        "kind" : "typeIdentifier",
-        "text" : "Widget"
+        "text" : ")"
       }
     ],
     "modules" : [
@@ -128,7 +106,7 @@
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "createToggle(label:active:onChange:)"
+    "title" : "setOnChange(ofSwitch:to:)"
   },
   "primaryContentSections" : [
     {
@@ -151,7 +129,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "createToggle"
+              "text" : "setOnChange"
             },
             {
               "kind" : "text",
@@ -159,7 +137,15 @@
             },
             {
               "kind" : "externalParam",
-              "text" : "label"
+              "text" : "ofSwitch"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "internalParam",
+              "text" : "switchWidget"
             },
             {
               "kind" : "text",
@@ -167,25 +153,15 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:SS",
-              "text" : "String"
+              "text" : "Self"
             },
             {
               "kind" : "text",
-              "text" : ", "
-            },
-            {
-              "kind" : "externalParam",
-              "text" : "active"
-            },
-            {
-              "kind" : "text",
-              "text" : ": "
+              "text" : "."
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Sb",
-              "text" : "Bool"
+              "text" : "Widget"
             },
             {
               "kind" : "text",
@@ -193,6 +169,14 @@
             },
             {
               "kind" : "externalParam",
+              "text" : "to"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "internalParam",
               "text" : "onChange"
             },
             {
@@ -223,19 +207,7 @@
             },
             {
               "kind" : "text",
-              "text" : ") -> "
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "Self"
-            },
-            {
-              "kind" : "text",
-              "text" : "."
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "Widget"
+              "text" : ")"
             }
           ]
         }
@@ -254,7 +226,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/createtoggle(label:active:onchange:)-3e916"
+        "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofswitch:to:)-3v5fl"
       ],
       "traits" : [
         {
@@ -313,10 +285,89 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createToggle(label:active:onChange:)-1v1kf": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofSwitch:to:)-3v5fl": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setOnChange"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofSwitch"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "to"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofSwitch:to:)-3v5fl",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "setOnChange(ofSwitch:to:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofswitch:to:)-3v5fl"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofSwitch:to:)-8rhir": {
   "abstract" : [
     {
-      "text" : "Creates a labelled toggle that is either on or off. Predominantly used by",
+      "text" : "Sets the change handler of a switch (replaces any existing change handlers).",
       "type" : "text"
     },
     {
@@ -324,12 +375,7 @@
       "type" : "text"
     },
     {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
+      "text" : "The change handler is called whenever the switch is turned on or off.",
       "type" : "text"
     }
   ],
@@ -345,7 +391,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createToggle"
+      "text" : "setOnChange"
     },
     {
       "kind" : "text",
@@ -353,7 +399,7 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "label"
+      "text" : "ofSwitch"
     },
     {
       "kind" : "text",
@@ -361,25 +407,15 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
+      "text" : "Self"
     },
     {
       "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "active"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
+      "text" : "."
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
+      "text" : "Widget"
     },
     {
       "kind" : "text",
@@ -387,7 +423,7 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "onChange"
+      "text" : "to"
     },
     {
       "kind" : "text",
@@ -409,160 +445,16 @@
     },
     {
       "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
+      "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle(label:active:onChange:)-1v1kf",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofSwitch:to:)-8rhir",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createToggle(label:active:onChange:)",
+  "title" : "setOnChange(ofSwitch:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtoggle(label:active:onchange:)-1v1kf"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createToggle(label:active:onChange:)-3e916": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "createToggle"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "label"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "active"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "onChange"
-    },
-    {
-      "kind" : "text",
-      "text" : ": ("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle(label:active:onChange:)-3e916",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "createToggle(label:active:onChange:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtoggle(label:active:onchange:)-3e916"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "Toggle"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "Toggle"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "Toggle",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/toggle"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofswitch:to:)-8rhir"
 }
 }
 }

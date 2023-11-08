@@ -5,7 +5,7 @@
       "type" : "text"
     },
     {
-      "code" : "AppBackend.createToggle(label:active:onChange:)",
+      "code" : "AppBackend.createSwitch(active:onChange:)",
       "type" : "codeVoice"
     },
     {
@@ -18,18 +18,18 @@
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle(label:active:onChange:)-1v1kf"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch(active:onChange:)-1gmnm"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle(label:active:onChange:)-3e916"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch(active:onChange:)-4lji1"
   },
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE12createToggle5label6active8onChange6WidgetQzSS_SbySbctF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE12createSwitch6active8onChange6WidgetQzSb_ySbctF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -41,28 +41,11 @@
       },
       {
         "kind" : "identifier",
-        "text" : "createToggle"
+        "text" : "createSwitch"
       },
       {
         "kind" : "text",
         "text" : "("
-      },
-      {
-        "kind" : "externalParam",
-        "text" : "label"
-      },
-      {
-        "kind" : "text",
-        "text" : ": "
-      },
-      {
-        "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:SS",
-        "text" : "String"
-      },
-      {
-        "kind" : "text",
-        "text" : ", "
       },
       {
         "kind" : "externalParam",
@@ -128,7 +111,7 @@
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "createToggle(label:active:onChange:)"
+    "title" : "createSwitch(active:onChange:)"
   },
   "primaryContentSections" : [
     {
@@ -151,28 +134,11 @@
             },
             {
               "kind" : "identifier",
-              "text" : "createToggle"
+              "text" : "createSwitch"
             },
             {
               "kind" : "text",
               "text" : "("
-            },
-            {
-              "kind" : "externalParam",
-              "text" : "label"
-            },
-            {
-              "kind" : "text",
-              "text" : ": "
-            },
-            {
-              "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:SS",
-              "text" : "String"
-            },
-            {
-              "kind" : "text",
-              "text" : ", "
             },
             {
               "kind" : "externalParam",
@@ -254,7 +220,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/createtoggle(label:active:onchange:)-3e916"
+        "\/documentation\/swiftcrossui\/appbackend\/createswitch(active:onchange:)-4lji1"
       ],
       "traits" : [
         {
@@ -313,24 +279,15 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createToggle(label:active:onChange:)-1v1kf": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSwitch(active:onChange:)-1gmnm": {
   "abstract" : [
     {
-      "text" : "Creates a labelled toggle that is either on or off. Predominantly used by",
+      "text" : "Creates a switch that is either on or off. Predominantly used by ",
       "type" : "text"
     },
     {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
+      "code" : "Switch",
+      "type" : "codeVoice"
     }
   ],
   "defaultImplementations" : 1,
@@ -345,28 +302,11 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createToggle"
+      "text" : "createSwitch"
     },
     {
       "kind" : "text",
       "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "label"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
     },
     {
       "kind" : "externalParam",
@@ -424,15 +364,15 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle(label:active:onChange:)-1v1kf",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch(active:onChange:)-1gmnm",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createToggle(label:active:onChange:)",
+  "title" : "createSwitch(active:onChange:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtoggle(label:active:onchange:)-1v1kf"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createswitch(active:onchange:)-1gmnm"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createToggle(label:active:onChange:)-3e916": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSwitch(active:onChange:)-4lji1": {
   "abstract" : [
 
   ],
@@ -447,28 +387,11 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createToggle"
+      "text" : "createSwitch"
     },
     {
       "kind" : "text",
       "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "label"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
     },
     {
       "kind" : "externalParam",
@@ -526,43 +449,12 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle(label:active:onChange:)-3e916",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch(active:onChange:)-4lji1",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "createToggle(label:active:onChange:)",
+  "title" : "createSwitch(active:onChange:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtoggle(label:active:onchange:)-3e916"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "Toggle"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "Toggle"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "Toggle",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/toggle"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createswitch(active:onchange:)-4lji1"
 }
 }
 }

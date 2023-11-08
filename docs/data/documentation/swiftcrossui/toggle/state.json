@@ -226,10 +226,7 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle": {
   "abstract" : [
-    {
-      "text" : "A control that is either on or off.",
-      "type" : "text"
-    }
+
   ],
   "fragments" : [
     {

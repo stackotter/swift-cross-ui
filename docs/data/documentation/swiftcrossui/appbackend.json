@@ -236,6 +236,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSlider(minimum:maximum:value:decimalPlaces:onChange:)-3a7e2",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSpacer(expandHorizontally:expandVertically:)-3grgi",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSplitView(leadingChild:trailingChild:)-3iqgg",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch(active:onChange:)-1gmnm",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTable(rows:columns:)-36alh",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextField(content:placeholder:onChange:)-7zu87",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView(content:shouldWrap:)-f6zp",
@@ -259,6 +260,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setExpandVertically(ofSpacer:to:)-3mp2c",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setFilePath(ofImageView:to:)-1cqj7",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setForegroundColor(ofForegroundColorContainer:to:)-2tyr9",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setIsActive(ofSwitch:to:)-6w4gl",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setIsActive(ofToggle:to:)-6swno",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setLabel(ofButton:to:)-4x3t5",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMaximum(ofSlider:to:)-6tatt",
@@ -267,6 +269,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMinimum(ofSlider:to:)-2h25n",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofPicker:to:)-7ksqa",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofSlider:to:)-7j3la",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofSwitch:to:)-8rhir",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofTextField:to:)-6bixo",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofToggle:to:)-8k7mc",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOptions(ofPicker:to:)-2wmpb",
@@ -2587,6 +2590,99 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createsplitview(leadingchild:trailingchild:)-3iqgg"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSwitch(active:onChange:)-1gmnm": {
+  "abstract" : [
+    {
+      "text" : "Creates a switch that is either on or off. Predominantly used by ",
+      "type" : "text"
+    },
+    {
+      "code" : "Switch",
+      "type" : "codeVoice"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "createSwitch"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "active"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "onChange"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch(active:onChange:)-1gmnm",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "createSwitch(active:onChange:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createswitch(active:onchange:)-1gmnm"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTable(rows:columns:)-36alh": {
   "abstract" : [
     {
@@ -4492,6 +4588,81 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/setforegroundcolor(offoregroundcolorcontainer:to:)-2tyr9"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setIsActive(ofSwitch:to:)-6w4gl": {
+  "abstract" : [
+    {
+      "text" : "Sets the state of the switch to active or not.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setIsActive"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofSwitch"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "to"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setIsActive(ofSwitch:to:)-6w4gl",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "setIsActive(ofSwitch:to:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setisactive(ofswitch:to:)-6w4gl"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setIsActive(ofToggle:to:)-6swno": {
   "abstract" : [
     {
@@ -5117,6 +5288,98 @@
   "title" : "setOnChange(ofSlider:to:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofslider:to:)-7j3la"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofSwitch:to:)-8rhir": {
+  "abstract" : [
+    {
+      "text" : "Sets the change handler of a switch (replaces any existing change handlers).",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "The change handler is called whenever the switch is turned on or off.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setOnChange"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofSwitch"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "to"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofSwitch:to:)-8rhir",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "setOnChange(ofSwitch:to:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofswitch:to:)-8rhir"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofTextField:to:)-6bixo": {
   "abstract" : [
@@ -6634,10 +6897,7 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle": {
   "abstract" : [
-    {
-      "text" : "A control that is either on or off.",
-      "type" : "text"
-    }
+
   ],
   "fragments" : [
     {

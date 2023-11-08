@@ -890,6 +890,24 @@
                   {
                     "children" : [
                       {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createswitch(active:onchange:)-4lji1",
+                        "title" : "func createSwitch(active: Bool, onChange: (Bool) -> Void) -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createswitch(active:onchange:)-1gmnm",
+                "title" : "func createSwitch(active: Bool, onChange: (Bool) -> Void) -> Self.Widget",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
                         "path" : "\/documentation\/swiftcrossui\/appbackend\/createtable(rows:columns:)-31vyf",
                         "title" : "func createTable(rows: Int, columns: Int) -> Self.Widget",
                         "type" : "method"
@@ -1278,6 +1296,24 @@
                   {
                     "children" : [
                       {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setisactive(ofswitch:to:)-8vjeh",
+                        "title" : "func setIsActive(ofSwitch: Self.Widget, to: Bool)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setisactive(ofswitch:to:)-6w4gl",
+                "title" : "func setIsActive(ofSwitch: Self.Widget, to: Bool)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
                         "path" : "\/documentation\/swiftcrossui\/appbackend\/setisactive(oftoggle:to:)-6hk1k",
                         "title" : "func setIsActive(ofToggle: Self.Widget, to: Bool)",
                         "type" : "method"
@@ -1415,6 +1451,24 @@
                 ],
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofslider:to:)-7j3la",
                 "title" : "func setOnChange(ofSlider: Self.Widget, to: (Double) -> Void)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofswitch:to:)-3v5fl",
+                        "title" : "func setOnChange(ofSwitch: Self.Widget, to: (Bool) -> Void)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofswitch:to:)-8rhir",
+                "title" : "func setOnChange(ofSwitch: Self.Widget, to: (Bool) -> Void)",
                 "type" : "method"
               },
               {
@@ -3901,17 +3955,21 @@
                 "type" : "init"
               },
               {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/toggle\/body",
+                "title" : "var body: some View",
+                "type" : "property"
+              },
+              {
                 "title" : "Instance Methods",
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/toggle\/aswidget(backend:)",
-                "title" : "func asWidget<Backend>(backend: Backend) -> Backend.Widget",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/toggle\/update(_:backend:)",
-                "title" : "func update<Backend>(Backend.Widget, backend: Backend)",
+                "path" : "\/documentation\/swiftcrossui\/toggle\/togglestyle(_:)",
+                "title" : "func toggleStyle(ToggleStyle) -> Toggle",
                 "type" : "method"
               },
               {
@@ -6730,6 +6788,47 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/inheritedorientation",
             "title" : "InheritedOrientation",
+            "type" : "enum"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Enumeration Cases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/togglestyle\/button",
+                "title" : "case button",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/togglestyle\/switch",
+                "title" : "case `switch`",
+                "type" : "case"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Operators",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/togglestyle\/!=(_:_:)",
+                    "title" : "static func != (Self, Self) -> Bool",
+                    "type" : "op"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/togglestyle\/equatable-implementations",
+                "title" : "Equatable Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/togglestyle",
+            "title" : "ToggleStyle",
             "type" : "enum"
           },
           {
