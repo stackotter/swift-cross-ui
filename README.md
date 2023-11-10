@@ -205,7 +205,7 @@ import PackageDescription
 let package = Package(
   name: "Example",
   dependencies: [
-    .package(url: "https://github.com/stackotter/swift-cross-ui", .branch("main"))
+    .package(url: "https://github.com/stackotter/swift-cross-ui", branch: "main")
   ],
   targets: [
     .executableTarget(

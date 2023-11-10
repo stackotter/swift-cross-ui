@@ -27,6 +27,10 @@ If you're on a Debian or Ubuntu-based Linux distro, you can use the following co
 ```
 sudo apt install libgtk-4-dev clang
 ```
+For Fedora:
+```
+sudo dnf install gtk4-devel clang
+```
 
 If your distro uses a different package manager, the package names will likely be similar.
 
@@ -34,7 +38,7 @@ If your distro uses a different package manager, the package names will likely b
 
 To add SwiftCrossUI to your project, add the following dependency to your `Package.swift` file.
 ```swift
-.package(url: "https://github.com/stackotter/swift-cross-ui", .branch("main"))
+.package(url: "https://github.com/stackotter/swift-cross-ui", branch: "main")
 ```
 
 Here's an example package file that uses SwiftCrossUI.
@@ -44,7 +48,7 @@ import PackageDescription
 let package = Package(
   name: "Example",
   dependencies: [
-    .package(url: "https://github.com/stackotter/swift-cross-ui", .branch("main"))
+    .package(url: "https://github.com/stackotter/swift-cross-ui", branch: "main")
   ],
   targets: [
     .executableTarget(
