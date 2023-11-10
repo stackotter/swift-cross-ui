@@ -15,7 +15,7 @@ SwiftCrossUI implements a simple API similar but not identical to SwiftUI, allow
 
 ### App Structure
 
-The top level of your app
+The top level of your app.
 
 - ``App``
 - ``SceneBuilder``
@@ -23,9 +23,10 @@ The top level of your app
 
 ### Views
 
-SwiftCrossUI has a wide variety of views available that you can combine to create complex UIs.
+The wide variety of views available that you can combine to create complex UIs.
 
 - ``Button``
+- ``CellPosition``
 - ``Color``
 - ``ForEach``
 - ``HStack``
@@ -44,9 +45,12 @@ SwiftCrossUI has a wide variety of views available that you can combine to creat
 - ``TextField``
 - ``Toggle``
 - ``View``
+- ``ViewContent``
 - ``VStack``
 
 ### States
+
+Objects that are read from and/or written to as part of your app.
 
 - ``AppState``
 - ``Binding``
@@ -61,7 +65,14 @@ SwiftCrossUI has a wide variety of views available that you can combine to creat
 
 ### Implementation Details
 
+The detailed components that are part of the low level of SwiftCrossUI.
+
 - ``AnyViewGraphNode``
+- ``EitherView``
+- ``EmptyView``
+- ``EmptyViewGraphNodeChildren``
+- ``OptionalView``
+- ``TableBuilder``
 - ``ViewGraph``
 - ``ViewGraphNode``
 - ``ViewGraphNodeChildren``

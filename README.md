@@ -128,7 +128,7 @@ sed -i '' 's/-I..includedir.//g' $(brew --prefix)/Library/Homebrew/os/mac/pkgcon
 
 ### Linux: Installing Gtk 4 and Clang
 
-Install Gtk 4 and Clang using apt or the package manager of your choice. On most GNOME-based systems, Gtk should already be installed (although you should verify that it's Gtk 3).
+Install Gtk 4 and Clang using apt or the package manager of your choice. On most GNOME-based systems, Gtk should already be installed (although you should verify that it's Gtk 4).
 
 ```sh
 sudo apt install libgtk-4-dev clang
