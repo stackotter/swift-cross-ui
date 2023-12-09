@@ -27,6 +27,7 @@ If you're on a Debian or Ubuntu-based Linux distro, you can use the following co
 ```
 sudo apt install libgtk-4-dev clang
 ```
+
 For Fedora:
 ```
 sudo dnf install gtk4-devel clang
