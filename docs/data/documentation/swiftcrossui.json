@@ -41,7 +41,7 @@
         {
           "inlineContent" : [
             {
-              "text" : "SwiftCrossUI implements a simple API similar but not identical to SwiftUI, allowing you to use the basic concepts of SwiftUI to create a cross-platofrm desktop app. SwiftCrossUI runs on SwiftGTK, a Swift wrapper for GTK+.",
+              "text" : "SwiftCrossUI implements a simple API similar but not identical to SwiftUI, allowing you to use the basic concepts of SwiftUI to create a cross-platofrm desktop app. SwiftCrossUI is designed to be flexible and can work with different backends, but has a focus on using GTK+ through SwiftGTK.",
               "type" : "text"
             }
           ],
@@ -68,39 +68,29 @@
       "title" : "Getting Started"
     },
     {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyViewGraphNode",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyWidget",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Cancellable",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyState",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraph",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode"
+      "abstract" : [
+        {
+          "text" : "The top level of your app.",
+          "type" : "text"
+        }
       ],
-      "title" : "Classes"
-    },
-    {
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DoubleConvertible",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ObservedMarkerProtocol",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder"
       ],
-      "title" : "Protocols"
+      "title" : "App Structure"
     },
     {
+      "abstract" : [
+        {
+          "text" : "The wide variety of views available that you can combine to create complex UIs.",
+          "type" : "text"
+        }
+      ],
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CellPosition",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image",
@@ -108,18 +98,78 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationPath",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Table",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableBuilder",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack"
+      ],
+      "title" : "Views"
+    },
+    {
+      "abstract" : [
+        {
+          "text" : "Objects that are read from and\/or written to as part of your app.",
+          "type" : "text"
+        }
+      ],
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppState",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Cancellable",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyAppState",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyState",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState"
+      ],
+      "title" : "States"
+    },
+    {
+      "abstract" : [
+        {
+          "text" : "The detailed components that are part of the low level of SwiftCrossUI.",
+          "type" : "text"
+        }
+      ],
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyViewGraphNode",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableBuilder",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraph",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren"
+      ],
+      "title" : "Implementation Details"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyWidget"
+      ],
+      "title" : "Classes"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DoubleConvertible",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ObservedMarkerProtocol"
+      ],
+      "title" : "Protocols"
+    },
+    {
+      "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView10",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView2",
@@ -130,7 +180,6 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView7",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView8",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView9",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren1",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren2",
@@ -144,16 +193,6 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties"
       ],
       "title" : "Structures"
-    },
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppState",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyAppState",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState"
-      ],
-      "title" : "Type Aliases"
     },
     {
       "identifiers" : [

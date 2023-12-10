@@ -125,6 +125,35 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CellPosition",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationPath",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Table",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack"
+      ],
+      "title" : "Views"
+    }
+  ],
   "topicSections" : [
     {
       "identifiers" : [
@@ -215,6 +244,74 @@
   "title" : "Button",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/button"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/CellPosition": {
+  "abstract" : [
+    {
+      "text" : "The position of a cell in a table (with row and column numbers starting from 0).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "CellPosition"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CellPosition",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "CellPosition"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "CellPosition",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/cellposition"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color": {
+  "abstract" : [
+    {
+      "text" : "An RGBA representation of a color.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Color"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Color"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Color",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/color"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView": {
   "abstract" : [
@@ -445,6 +542,40 @@
   "title" : "NavigationLink",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/navigationlink"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationPath": {
+  "abstract" : [
+    {
+      "text" : "A type-erased list of data representing the content of a navigation stack.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "NavigationPath"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationPath",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "NavigationPath"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "NavigationPath",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigationpath"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationSplitView": {
   "abstract" : [
@@ -790,6 +921,40 @@
   "title" : "Table",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/table"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn": {
+  "abstract" : [
+    {
+      "text" : "A column that displays a view for each row in a table.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TableColumn"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TableColumn"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TableColumn",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tablecolumn"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text": {
   "abstract" : [
@@ -2207,6 +2372,38 @@
   "title" : "ViewBuilder",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewbuilder"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent": {
+  "abstract" : [
+
+  ],
+  "deprecated" : true,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent"
 }
 }
 }

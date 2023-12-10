@@ -175,6 +175,74 @@
                   "type" : "paragraph"
                 }
               ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "code" : "SplitExample",
+                      "type" : "codeVoice"
+                    },
+                    {
+                      "text" : ", an app showcasing sidebar-based navigation with multiple levels.",
+                      "type" : "text"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "code" : "StressTestExample",
+                      "type" : "codeVoice"
+                    },
+                    {
+                      "text" : ", an app used to test view update performance.",
+                      "type" : "text"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "code" : "SpreadsheetExample",
+                      "type" : "codeVoice"
+                    },
+                    {
+                      "text" : ", an app showcasing tables.",
+                      "type" : "text"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
+            },
+            {
+              "content" : [
+                {
+                  "inlineContent" : [
+                    {
+                      "code" : "ControlsExample",
+                      "type" : "codeVoice"
+                    },
+                    {
+                      "text" : ", an app showcasing the various types of controls available.",
+                      "type" : "text"
+                    }
+                  ],
+                  "type" : "paragraph"
+                }
+              ]
             }
           ],
           "type" : "unorderedList"
@@ -195,7 +263,11 @@
             "swift run WindowPropertiesExample",
             "swift run GreetingGeneratorExample",
             "swift run FileViewerExample",
-            "swift run NavigationExample"
+            "swift run NavigationExample",
+            "swift run SpitExample",
+            "swift run StressTestExample",
+            "swift run SpreadsheetExample",
+            "swift run ControlsExample"
           ],
           "syntax" : null,
           "type" : "codeListing"

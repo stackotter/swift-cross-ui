@@ -179,6 +179,22 @@
         {
           "inlineContent" : [
             {
+              "text" : "For Fedora:",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "code" : [
+            "sudo dnf install gtk4-devel clang"
+          ],
+          "syntax" : null,
+          "type" : "codeListing"
+        },
+        {
+          "inlineContent" : [
+            {
               "text" : "If your distro uses a different package manager, the package names will likely be similar.",
               "type" : "text"
             }
@@ -210,7 +226,7 @@
         },
         {
           "code" : [
-            ".package(url: \"https:\/\/github.com\/stackotter\/swift-cross-ui\", .branch(\"main\"))"
+            ".package(url: \"https:\/\/github.com\/stackotter\/swift-cross-ui\", branch: \"main\")"
           ],
           "syntax" : "swift",
           "type" : "codeListing"
@@ -231,7 +247,7 @@
             "let package = Package(",
             "  name: \"Example\",",
             "  dependencies: [",
-            "    .package(url: \"https:\/\/github.com\/stackotter\/swift-cross-ui\", .branch(\"main\"))",
+            "    .package(url: \"https:\/\/github.com\/stackotter\/swift-cross-ui\", branch: \"main\")",
             "  ],",
             "  targets: [",
             "    .executableTarget(",
