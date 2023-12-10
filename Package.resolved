@@ -2,42 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "AsyncExtensions",
-        "repositoryURL": "https://github.com/lhoward/AsyncExtensions",
-        "state": {
-          "branch": "linux",
-          "revision": "2218eaa30dbdb39b063e92644fc28ed22e2cb942",
-          "version": null
-        }
-      },
-      {
-        "package": "LVGL",
-        "repositoryURL": "https://github.com/PADL/LVGLSwift",
-        "state": {
-          "branch": null,
-          "revision": "19c19a942153b50d61486faf1d0d45daf79e7be5",
-          "version": null
-        }
-      },
-      {
-        "package": "Qlift",
-        "repositoryURL": "https://github.com/Longhanks/qlift",
-        "state": {
-          "branch": null,
-          "revision": "ddab1f1ecc113ad4f8e05d2999c2734cdf706210",
-          "version": null
-        }
-      },
-      {
-        "package": "swift-collections",
-        "repositoryURL": "https://github.com/apple/swift-collections.git",
-        "state": {
-          "branch": null,
-          "revision": "a902f1823a7ff3c9ab2fba0f992396b948eda307",
-          "version": "1.0.5"
-        }
-      },
-      {
         "package": "SwiftDocCPlugin",
         "repositoryURL": "https://github.com/apple/swift-docc-plugin",
         "state": {
