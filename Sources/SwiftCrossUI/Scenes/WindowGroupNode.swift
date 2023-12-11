@@ -31,10 +31,11 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         if let newScene = newScene {
             viewGraph.update(newScene.body)
 
-            // Don't set default size even if it has changed, we only set that once
+            // Don't set default size even if it has changed. We only set that once
             // at window creation since some backends don't have a concept of
-            // 'default' size, so setting the default size every time the default size
-            // changed, the window would resize (which is incorrect behaviour).
+            // 'default' size which would mean that setting the default size every time
+            // the default size changed would resize the window (which is incorrect
+            // behaviour).
             backend.setTitle(ofWindow: window, to: newScene.title)
             backend.setResizability(ofWindow: window, to: newScene.resizable)
         }
