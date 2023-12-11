@@ -22,7 +22,7 @@ jobs:
         swift build --target CounterExample && \
         swift build --target ControlsExample && \
         swift build --target RandomNumberGeneratorExample && \
-        swift build --target WindowPropertiesExample && \
+        swift build --target WindowingExample && \
         swift build --target GreetingGeneratorExample && \
         swift build --target FileViewerExample && \
         swift build --target NavigationExample && \
