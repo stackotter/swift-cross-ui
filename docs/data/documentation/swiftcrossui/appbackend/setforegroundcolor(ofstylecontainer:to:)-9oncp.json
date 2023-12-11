@@ -1,49 +1,35 @@
 {
   "abstract" : [
     {
-      "text" : "Sets the visible child of a one-of container. Uses a widget reference instead of an",
+      "text" : "Inherited from ",
       "type" : "text"
     },
     {
-      "text" : " ",
-      "type" : "text"
+      "code" : "AppBackend.setForegroundColor(ofStyleContainer:to:)",
+      "type" : "codeVoice"
     },
     {
-      "text" : "index since the visible child should remain the same even if the visible child’s",
+      "text" : ".",
       "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index changes (e.g. due to a child being removed from before the visible child).",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementationsSections" : [
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-8fkaw"
-      ],
-      "title" : "AppBackend Implementations"
     }
   ],
   "hierarchy" : {
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setForegroundColor(ofStyleContainer:to:)-5aoam"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-955ak"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setForegroundColor(ofStyleContainer:to:)-9oncp"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI10AppBackendP15setVisibleChild16ofOneOfContainer2toy6WidgetQz_AHtF",
+    "extendedModule" : "SwiftCrossUI",
+    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE18setForegroundColor16ofStyleContainer2toy6WidgetQz_AA0H0VtF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -55,7 +41,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "setVisibleChild"
+        "text" : "setForegroundColor"
       },
       {
         "kind" : "text",
@@ -63,7 +49,7 @@
       },
       {
         "kind" : "externalParam",
-        "text" : "ofOneOfContainer"
+        "text" : "ofStyleContainer"
       },
       {
         "kind" : "text",
@@ -95,15 +81,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "Self"
-      },
-      {
-        "kind" : "text",
-        "text" : "."
-      },
-      {
-        "kind" : "typeIdentifier",
-        "text" : "Widget"
+        "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+        "text" : "Color"
       },
       {
         "kind" : "text",
@@ -115,11 +94,10 @@
         "name" : "SwiftCrossUI"
       }
     ],
-    "required" : true,
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "setVisibleChild(ofOneOfContainer:to:)"
+    "title" : "setForegroundColor(ofStyleContainer:to:)"
   },
   "primaryContentSections" : [
     {
@@ -142,7 +120,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "setVisibleChild"
+              "text" : "setForegroundColor"
             },
             {
               "kind" : "text",
@@ -150,7 +128,7 @@
             },
             {
               "kind" : "externalParam",
-              "text" : "ofOneOfContainer"
+              "text" : "ofStyleContainer"
             },
             {
               "kind" : "text",
@@ -190,23 +168,17 @@
             },
             {
               "kind" : "internalParam",
-              "text" : "child"
+              "text" : "color"
             },
             {
               "kind" : "text",
               "text" : ": "
             },
             {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color",
               "kind" : "typeIdentifier",
-              "text" : "Self"
-            },
-            {
-              "kind" : "text",
-              "text" : "."
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "Widget"
+              "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+              "text" : "Color"
             },
             {
               "kind" : "text",
@@ -229,7 +201,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-955ak"
+        "\/documentation\/swiftcrossui\/appbackend\/setforegroundcolor(ofstylecontainer:to:)-9oncp"
       ],
       "traits" : [
         {
@@ -288,103 +260,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)-8fkaw": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setVisibleChild"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-8fkaw",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "setVisibleChild(ofOneOfContainer:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-8fkaw"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)-955ak": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setForegroundColor(ofStyleContainer:to:)-5aoam": {
   "abstract" : [
     {
-      "text" : "Sets the visible child of a one-of container. Uses a widget reference instead of an",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index since the visible child should remain the same even if the visible child’s",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index changes (e.g. due to a child being removed from before the visible child).",
+      "text" : "Sets the foreground color of a foreground color container.",
       "type" : "text"
     }
   ],
@@ -400,7 +279,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "setVisibleChild"
+      "text" : "setForegroundColor"
     },
     {
       "kind" : "text",
@@ -408,7 +287,7 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "ofOneOfContainer"
+      "text" : "ofStyleContainer"
     },
     {
       "kind" : "text",
@@ -440,6 +319,53 @@
     },
     {
       "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setForegroundColor(ofStyleContainer:to:)-5aoam",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "setForegroundColor(ofStyleContainer:to:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setforegroundcolor(ofstylecontainer:to:)-5aoam"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setForegroundColor(ofStyleContainer:to:)-9oncp": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setForegroundColor"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofStyleContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
       "text" : "Self"
     },
     {
@@ -452,16 +378,66 @@
     },
     {
       "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "to"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
+      "text" : "Color"
+    },
+    {
+      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-955ak",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setForegroundColor(ofStyleContainer:to:)-9oncp",
   "kind" : "symbol",
-  "required" : true,
   "role" : "symbol",
-  "title" : "setVisibleChild(ofOneOfContainer:to:)",
+  "title" : "setForegroundColor(ofStyleContainer:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-955ak"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setforegroundcolor(ofstylecontainer:to:)-9oncp"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color": {
+  "abstract" : [
+    {
+      "text" : "An RGBA representation of a color.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Color"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Color"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Color",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/color"
 }
 }
 }

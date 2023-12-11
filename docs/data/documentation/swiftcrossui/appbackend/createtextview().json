@@ -1,15 +1,24 @@
 {
   "abstract" : [
     {
-      "text" : "Inherited from ",
+      "text" : "Creates a non-editable text view with optional text wrapping. Predominantly used",
       "type" : "text"
     },
     {
-      "code" : "AppBackend.createOneOfContainer()",
-      "type" : "codeVoice"
+      "text" : " ",
+      "type" : "text"
     },
     {
-      "text" : ".",
+      "text" : "by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".`",
       "type" : "text"
     }
   ],
@@ -17,19 +26,17 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-4r5hz"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-5fu2i"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView()"
   },
   "kind" : "symbol",
   "metadata" : {
-    "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE20createOneOfContainer6WidgetQzyF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendP14createTextView6WidgetQzyF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -41,7 +48,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "createOneOfContainer"
+        "text" : "createTextView"
       },
       {
         "kind" : "text",
@@ -65,10 +72,11 @@
         "name" : "SwiftCrossUI"
       }
     ],
+    "required" : true,
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "createOneOfContainer()"
+    "title" : "createTextView()"
   },
   "primaryContentSections" : [
     {
@@ -91,7 +99,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "createOneOfContainer"
+              "text" : "createTextView"
             },
             {
               "kind" : "text",
@@ -126,7 +134,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-5fu2i"
+        "\/documentation\/swiftcrossui\/appbackend\/createtextview()"
       ],
       "traits" : [
         {
@@ -185,10 +193,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()-4r5hz": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextView()": {
   "abstract" : [
     {
-      "text" : "Creates a container that can (theoretically) have an unlimited number of children",
+      "text" : "Creates a non-editable text view with optional text wrapping. Predominantly used",
       "type" : "text"
     },
     {
@@ -196,60 +204,19 @@
       "type" : "text"
     },
     {
-      "text" : "while only displaying one child at a time (selected using ",
+      "text" : "by ",
       "type" : "text"
     },
     {
-      "code" : "Backend\/setVisibleChild",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : ").",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "Differs from ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
       "isActive" : true,
       "type" : "reference"
     },
     {
-      "text" : " because it allows",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "transitions to be displayed when switching between children (unlike the single child",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "container which only ever has the current widget as its child meaning that it can’t",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "do transitions).",
+      "text" : ".`",
       "type" : "text"
     }
   ],
-  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -261,7 +228,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createOneOfContainer"
+      "text" : "createTextView"
     },
     {
       "kind" : "text",
@@ -280,22 +247,25 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-4r5hz",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView()",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createOneOfContainer()",
+  "title" : "createTextView()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-4r5hz"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtextview()"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()-5fu2i": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Text": {
   "abstract" : [
-
+    {
+      "text" : "A text view.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "func"
+      "text" : "struct"
     },
     {
       "kind" : "text",
@@ -303,86 +273,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : "() -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
+      "text" : "Text"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-5fu2i",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
   "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "createOneOfContainer()",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-5fu2i"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSingleChildContainer()-2u3xa": {
-  "abstract" : [
-    {
-      "text" : "Creates a single-child container. Predominantly used to implement ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
+  "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "createSingleChildContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : "() -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
+      "text" : "Text"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
-  "kind" : "symbol",
-  "required" : true,
   "role" : "symbol",
-  "title" : "createSingleChildContainer()",
+  "title" : "Text",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createsinglechildcontainer()-2u3xa"
+  "url" : "\/documentation\/swiftcrossui\/text"
 }
 }
 }

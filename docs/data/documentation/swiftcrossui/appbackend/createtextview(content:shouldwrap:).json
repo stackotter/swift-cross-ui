@@ -1,34 +1,4 @@
 {
-  "abstract" : [
-    {
-      "text" : "Sets the visible child of a one-of container. Uses a widget reference instead of an",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index since the visible child should remain the same even if the visible child’s",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index changes (e.g. due to a child being removed from before the visible child).",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementationsSections" : [
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-8fkaw"
-      ],
-      "title" : "AppBackend Implementations"
-    }
-  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -39,11 +9,12 @@
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-955ak"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView(content:shouldWrap:)"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI10AppBackendP15setVisibleChild16ofOneOfContainer2toy6WidgetQz_AHtF",
+    "extendedModule" : "SwiftCrossUI",
+    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE14createTextView7content10shouldWrap6WidgetQzSS_SbtF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -55,7 +26,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "setVisibleChild"
+        "text" : "createTextView"
       },
       {
         "kind" : "text",
@@ -63,7 +34,7 @@
       },
       {
         "kind" : "externalParam",
-        "text" : "ofOneOfContainer"
+        "text" : "content"
       },
       {
         "kind" : "text",
@@ -71,15 +42,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "Self"
-      },
-      {
-        "kind" : "text",
-        "text" : "."
-      },
-      {
-        "kind" : "typeIdentifier",
-        "text" : "Widget"
+        "preciseIdentifier" : "s:SS",
+        "text" : "String"
       },
       {
         "kind" : "text",
@@ -87,11 +51,20 @@
       },
       {
         "kind" : "externalParam",
-        "text" : "to"
+        "text" : "shouldWrap"
       },
       {
         "kind" : "text",
         "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:Sb",
+        "text" : "Bool"
+      },
+      {
+        "kind" : "text",
+        "text" : ") -> "
       },
       {
         "kind" : "typeIdentifier",
@@ -104,10 +77,6 @@
       {
         "kind" : "typeIdentifier",
         "text" : "Widget"
-      },
-      {
-        "kind" : "text",
-        "text" : ")"
       }
     ],
     "modules" : [
@@ -115,11 +84,10 @@
         "name" : "SwiftCrossUI"
       }
     ],
-    "required" : true,
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "setVisibleChild(ofOneOfContainer:to:)"
+    "title" : "createTextView(content:shouldWrap:)"
   },
   "primaryContentSections" : [
     {
@@ -142,7 +110,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "setVisibleChild"
+              "text" : "createTextView"
             },
             {
               "kind" : "text",
@@ -150,15 +118,7 @@
             },
             {
               "kind" : "externalParam",
-              "text" : "ofOneOfContainer"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "internalParam",
-              "text" : "container"
+              "text" : "content"
             },
             {
               "kind" : "text",
@@ -166,15 +126,8 @@
             },
             {
               "kind" : "typeIdentifier",
-              "text" : "Self"
-            },
-            {
-              "kind" : "text",
-              "text" : "."
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "Widget"
+              "preciseIdentifier" : "s:SS",
+              "text" : "String"
             },
             {
               "kind" : "text",
@@ -182,19 +135,20 @@
             },
             {
               "kind" : "externalParam",
-              "text" : "to"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "internalParam",
-              "text" : "child"
+              "text" : "shouldWrap"
             },
             {
               "kind" : "text",
               "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:Sb",
+              "text" : "Bool"
+            },
+            {
+              "kind" : "text",
+              "text" : ") -> "
             },
             {
               "kind" : "typeIdentifier",
@@ -207,10 +161,6 @@
             {
               "kind" : "typeIdentifier",
               "text" : "Widget"
-            },
-            {
-              "kind" : "text",
-              "text" : ")"
             }
           ]
         }
@@ -229,7 +179,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-955ak"
+        "\/documentation\/swiftcrossui\/appbackend\/createtextview(content:shouldwrap:)"
       ],
       "traits" : [
         {
@@ -288,7 +238,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)-8fkaw": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextView(content:shouldWrap:)": {
   "abstract" : [
 
   ],
@@ -303,7 +253,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "setVisibleChild"
+      "text" : "createTextView"
     },
     {
       "kind" : "text",
@@ -311,7 +261,7 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "ofOneOfContainer"
+      "text" : "content"
     },
     {
       "kind" : "text",
@@ -319,15 +269,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
     },
     {
       "kind" : "text",
@@ -335,11 +278,20 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "to"
+      "text" : "shouldWrap"
     },
     {
       "kind" : "text",
       "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -352,116 +304,14 @@
     {
       "kind" : "typeIdentifier",
       "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-8fkaw",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView(content:shouldWrap:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "setVisibleChild(ofOneOfContainer:to:)",
+  "title" : "createTextView(content:shouldWrap:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-8fkaw"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)-955ak": {
-  "abstract" : [
-    {
-      "text" : "Sets the visible child of a one-of container. Uses a widget reference instead of an",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index since the visible child should remain the same even if the visible child’s",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index changes (e.g. due to a child being removed from before the visible child).",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setVisibleChild"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-955ak",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setVisibleChild(ofOneOfContainer:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-955ak"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtextview(content:shouldwrap:)"
 }
 }
 }

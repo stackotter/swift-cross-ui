@@ -1,35 +1,46 @@
 {
   "abstract" : [
     {
-      "text" : "Inherited from ",
+      "text" : "Creates a labelled toggle that is either on or off. Predominantly used by",
       "type" : "text"
     },
     {
-      "code" : "AppBackend.createOneOfContainer()",
-      "type" : "codeVoice"
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
+      "isActive" : true,
+      "type" : "reference"
     },
     {
       "text" : ".",
       "type" : "text"
     }
   ],
+  "defaultImplementationsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle()-2vmr9"
+      ],
+      "title" : "AppBackend Implementations"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-4r5hz"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-5fu2i"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle()-814v1"
   },
   "kind" : "symbol",
   "metadata" : {
-    "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE20createOneOfContainer6WidgetQzyF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendP12createToggle6WidgetQzyF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -41,7 +52,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "createOneOfContainer"
+        "text" : "createToggle"
       },
       {
         "kind" : "text",
@@ -65,10 +76,11 @@
         "name" : "SwiftCrossUI"
       }
     ],
+    "required" : true,
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "createOneOfContainer()"
+    "title" : "createToggle()"
   },
   "primaryContentSections" : [
     {
@@ -91,7 +103,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "createOneOfContainer"
+              "text" : "createToggle"
             },
             {
               "kind" : "text",
@@ -126,7 +138,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-5fu2i"
+        "\/documentation\/swiftcrossui\/appbackend\/createtoggle()-814v1"
       ],
       "traits" : [
         {
@@ -185,110 +197,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()-4r5hz": {
-  "abstract" : [
-    {
-      "text" : "Creates a container that can (theoretically) have an unlimited number of children",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "while only displaying one child at a time (selected using ",
-      "type" : "text"
-    },
-    {
-      "code" : "Backend\/setVisibleChild",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : ").",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "Differs from ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " because it allows",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "transitions to be displayed when switching between children (unlike the single child",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "container which only ever has the current widget as its child meaning that it can’t",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "do transitions).",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "createOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : "() -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-4r5hz",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "createOneOfContainer()",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-4r5hz"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()-5fu2i": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createToggle()-2vmr9": {
   "abstract" : [
 
   ],
@@ -303,7 +212,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createOneOfContainer"
+      "text" : "createToggle"
     },
     {
       "kind" : "text",
@@ -322,21 +231,25 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-5fu2i",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle()-2vmr9",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "createOneOfContainer()",
+  "title" : "createToggle()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-5fu2i"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtoggle()-2vmr9"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSingleChildContainer()-2u3xa": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createToggle()-814v1": {
   "abstract" : [
     {
-      "text" : "Creates a single-child container. Predominantly used to implement ",
+      "text" : "Creates a labelled toggle that is either on or off. Predominantly used by",
       "type" : "text"
     },
     {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
       "isActive" : true,
       "type" : "reference"
     },
@@ -357,7 +270,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createSingleChildContainer"
+      "text" : "createToggle"
     },
     {
       "kind" : "text",
@@ -376,13 +289,44 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle()-814v1",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createSingleChildContainer()",
+  "title" : "createToggle()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createsinglechildcontainer()-2u3xa"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtoggle()-814v1"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Toggle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Toggle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Toggle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/toggle"
 }
 }
 }

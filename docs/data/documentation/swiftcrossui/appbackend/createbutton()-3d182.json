@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Creates a container that can (theoretically) have an unlimited number of children",
+      "text" : "Creates a labelled button with an action triggered on click. Predominantly used",
       "type" : "text"
     },
     {
@@ -9,63 +9,23 @@
       "type" : "text"
     },
     {
-      "text" : "while only displaying one child at a time (selected using ",
+      "text" : "by ",
       "type" : "text"
     },
     {
-      "code" : "Backend\/setVisibleChild",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : ").",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "Differs from ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
       "isActive" : true,
       "type" : "reference"
     },
     {
-      "text" : " because it allows",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "transitions to be displayed when switching between children (unlike the single child",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "container which only ever has the current widget as its child meaning that it can’t",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "do transitions).",
+      "text" : ".",
       "type" : "text"
     }
   ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-5fu2i"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createButton()-qy86"
       ],
       "title" : "AppBackend Implementations"
     }
@@ -80,11 +40,11 @@
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-4r5hz"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createButton()-3d182"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI10AppBackendP20createOneOfContainer6WidgetQzyF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendP12createButton6WidgetQzyF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -96,7 +56,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "createOneOfContainer"
+        "text" : "createButton"
       },
       {
         "kind" : "text",
@@ -124,7 +84,7 @@
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "createOneOfContainer()"
+    "title" : "createButton()"
   },
   "primaryContentSections" : [
     {
@@ -147,7 +107,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "createOneOfContainer"
+              "text" : "createButton"
             },
             {
               "kind" : "text",
@@ -182,7 +142,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-4r5hz"
+        "\/documentation\/swiftcrossui\/appbackend\/createbutton()-3d182"
       ],
       "traits" : [
         {
@@ -241,10 +201,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()-4r5hz": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createButton()-3d182": {
   "abstract" : [
     {
-      "text" : "Creates a container that can (theoretically) have an unlimited number of children",
+      "text" : "Creates a labelled button with an action triggered on click. Predominantly used",
       "type" : "text"
     },
     {
@@ -252,147 +212,11 @@
       "type" : "text"
     },
     {
-      "text" : "while only displaying one child at a time (selected using ",
+      "text" : "by ",
       "type" : "text"
     },
     {
-      "code" : "Backend\/setVisibleChild",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : ").",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "Differs from ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " because it allows",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "transitions to be displayed when switching between children (unlike the single child",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "container which only ever has the current widget as its child meaning that it can’t",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "do transitions).",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "createOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : "() -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-4r5hz",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "createOneOfContainer()",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-4r5hz"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()-5fu2i": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "createOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : "() -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-5fu2i",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "createOneOfContainer()",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-5fu2i"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSingleChildContainer()-2u3xa": {
-  "abstract" : [
-    {
-      "text" : "Creates a single-child container. Predominantly used to implement ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
       "isActive" : true,
       "type" : "reference"
     },
@@ -413,7 +237,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createSingleChildContainer"
+      "text" : "createButton"
     },
     {
       "kind" : "text",
@@ -432,27 +256,59 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createButton()-3d182",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createSingleChildContainer()",
+  "title" : "createButton()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createsinglechildcontainer()-2u3xa"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createbutton()-3d182"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createButton()-qy86": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "createButton"
+    },
+    {
+      "kind" : "text",
+      "text" : "() -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createButton()-qy86",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "createButton()",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createbutton()-qy86"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Button": {
   "abstract" : [
     {
-      "text" : "A view used by ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " to support if\/else conditional statements.",
+      "text" : "A control that initiates an action.",
       "type" : "text"
     }
   ],
@@ -467,21 +323,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "EitherView"
+      "text" : "Button"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "EitherView"
+      "text" : "Button"
     }
   ],
   "role" : "symbol",
-  "title" : "EitherView",
+  "title" : "Button",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/eitherview"
+  "url" : "\/documentation\/swiftcrossui\/button"
 }
 }
 }

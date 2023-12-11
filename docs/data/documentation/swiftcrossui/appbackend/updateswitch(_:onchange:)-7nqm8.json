@@ -1,49 +1,35 @@
 {
   "abstract" : [
     {
-      "text" : "Sets the visible child of a one-of container. Uses a widget reference instead of an",
+      "text" : "Inherited from ",
       "type" : "text"
     },
     {
-      "text" : " ",
-      "type" : "text"
+      "code" : "AppBackend.updateSwitch(_:onChange:)",
+      "type" : "codeVoice"
     },
     {
-      "text" : "index since the visible child should remain the same even if the visible child’s",
+      "text" : ".",
       "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index changes (e.g. due to a child being removed from before the visible child).",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementationsSections" : [
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-8fkaw"
-      ],
-      "title" : "AppBackend Implementations"
     }
   ],
   "hierarchy" : {
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSwitch(_:onChange:)-9nbu9"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-955ak"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSwitch(_:onChange:)-7nqm8"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI10AppBackendP15setVisibleChild16ofOneOfContainer2toy6WidgetQz_AHtF",
+    "extendedModule" : "SwiftCrossUI",
+    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE12updateSwitch_8onChangey6WidgetQz_ySbctF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -55,19 +41,11 @@
       },
       {
         "kind" : "identifier",
-        "text" : "setVisibleChild"
+        "text" : "updateSwitch"
       },
       {
         "kind" : "text",
         "text" : "("
-      },
-      {
-        "kind" : "externalParam",
-        "text" : "ofOneOfContainer"
-      },
-      {
-        "kind" : "text",
-        "text" : ": "
       },
       {
         "kind" : "typeIdentifier",
@@ -87,23 +65,25 @@
       },
       {
         "kind" : "externalParam",
-        "text" : "to"
+        "text" : "onChange"
       },
       {
         "kind" : "text",
-        "text" : ": "
+        "text" : ": ("
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "Self"
+        "preciseIdentifier" : "s:Sb",
+        "text" : "Bool"
       },
       {
         "kind" : "text",
-        "text" : "."
+        "text" : ") -> "
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "Widget"
+        "preciseIdentifier" : "s:s4Voida",
+        "text" : "Void"
       },
       {
         "kind" : "text",
@@ -115,11 +95,10 @@
         "name" : "SwiftCrossUI"
       }
     ],
-    "required" : true,
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "setVisibleChild(ofOneOfContainer:to:)"
+    "title" : "updateSwitch(_:onChange:)"
   },
   "primaryContentSections" : [
     {
@@ -142,7 +121,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "setVisibleChild"
+              "text" : "updateSwitch"
             },
             {
               "kind" : "text",
@@ -150,7 +129,7 @@
             },
             {
               "kind" : "externalParam",
-              "text" : "ofOneOfContainer"
+              "text" : "_"
             },
             {
               "kind" : "text",
@@ -158,7 +137,7 @@
             },
             {
               "kind" : "internalParam",
-              "text" : "container"
+              "text" : "switchWidget"
             },
             {
               "kind" : "text",
@@ -182,31 +161,33 @@
             },
             {
               "kind" : "externalParam",
-              "text" : "to"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "internalParam",
-              "text" : "child"
+              "text" : "onChange"
             },
             {
               "kind" : "text",
               "text" : ": "
             },
             {
-              "kind" : "typeIdentifier",
-              "text" : "Self"
+              "kind" : "keyword",
+              "text" : "@escaping"
             },
             {
               "kind" : "text",
-              "text" : "."
+              "text" : " ("
             },
             {
               "kind" : "typeIdentifier",
-              "text" : "Widget"
+              "preciseIdentifier" : "s:Sb",
+              "text" : "Bool"
+            },
+            {
+              "kind" : "text",
+              "text" : ") -> "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:s4Voida",
+              "text" : "Void"
             },
             {
               "kind" : "text",
@@ -229,7 +210,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-955ak"
+        "\/documentation\/swiftcrossui\/appbackend\/updateswitch(_:onchange:)-7nqm8"
       ],
       "traits" : [
         {
@@ -288,7 +269,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)-8fkaw": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateSwitch(_:onChange:)-7nqm8": {
   "abstract" : [
 
   ],
@@ -303,19 +284,11 @@
     },
     {
       "kind" : "identifier",
-      "text" : "setVisibleChild"
+      "text" : "updateSwitch"
     },
     {
       "kind" : "text",
       "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
     },
     {
       "kind" : "typeIdentifier",
@@ -335,40 +308,42 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "to"
+      "text" : "onChange"
     },
     {
       "kind" : "text",
-      "text" : ": "
+      "text" : ": ("
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
     },
     {
       "kind" : "text",
-      "text" : "."
+      "text" : ") -> "
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Widget"
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
     },
     {
       "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-8fkaw",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSwitch(_:onChange:)-7nqm8",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "setVisibleChild(ofOneOfContainer:to:)",
+  "title" : "updateSwitch(_:onChange:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-8fkaw"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updateswitch(_:onchange:)-7nqm8"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)-955ak": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateSwitch(_:onChange:)-9nbu9": {
   "abstract" : [
     {
-      "text" : "Sets the visible child of a one-of container. Uses a widget reference instead of an",
+      "text" : "Sets the change handler of a switch (replaces any existing change handlers).",
       "type" : "text"
     },
     {
@@ -376,15 +351,7 @@
       "type" : "text"
     },
     {
-      "text" : "index since the visible child should remain the same even if the visible child’s",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index changes (e.g. due to a child being removed from before the visible child).",
+      "text" : "The change handler is called whenever the button is toggled on or off.",
       "type" : "text"
     }
   ],
@@ -400,19 +367,11 @@
     },
     {
       "kind" : "identifier",
-      "text" : "setVisibleChild"
+      "text" : "updateSwitch"
     },
     {
       "kind" : "text",
       "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
     },
     {
       "kind" : "typeIdentifier",
@@ -432,36 +391,38 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "to"
+      "text" : "onChange"
     },
     {
       "kind" : "text",
-      "text" : ": "
+      "text" : ": ("
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
     },
     {
       "kind" : "text",
-      "text" : "."
+      "text" : ") -> "
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Widget"
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
     },
     {
       "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-955ak",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSwitch(_:onChange:)-9nbu9",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "setVisibleChild(ofOneOfContainer:to:)",
+  "title" : "updateSwitch(_:onChange:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-955ak"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updateswitch(_:onchange:)-9nbu9"
 }
 }
 }

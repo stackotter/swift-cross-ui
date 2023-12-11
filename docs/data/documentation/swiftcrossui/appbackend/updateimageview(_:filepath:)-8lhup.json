@@ -1,49 +1,35 @@
 {
   "abstract" : [
     {
-      "text" : "Sets the visible child of a one-of container. Uses a widget reference instead of an",
+      "text" : "Inherited from ",
       "type" : "text"
     },
     {
-      "text" : " ",
-      "type" : "text"
+      "code" : "AppBackend.updateImageView(_:filePath:)",
+      "type" : "codeVoice"
     },
     {
-      "text" : "index since the visible child should remain the same even if the visible child’s",
+      "text" : ".",
       "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index changes (e.g. due to a child being removed from before the visible child).",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementationsSections" : [
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-8fkaw"
-      ],
-      "title" : "AppBackend Implementations"
     }
   ],
   "hierarchy" : {
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateImageView(_:filePath:)-6d52v"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-955ak"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateImageView(_:filePath:)-8lhup"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI10AppBackendP15setVisibleChild16ofOneOfContainer2toy6WidgetQz_AHtF",
+    "extendedModule" : "SwiftCrossUI",
+    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE15updateImageView_8filePathy6WidgetQz_SStF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -55,19 +41,11 @@
       },
       {
         "kind" : "identifier",
-        "text" : "setVisibleChild"
+        "text" : "updateImageView"
       },
       {
         "kind" : "text",
         "text" : "("
-      },
-      {
-        "kind" : "externalParam",
-        "text" : "ofOneOfContainer"
-      },
-      {
-        "kind" : "text",
-        "text" : ": "
       },
       {
         "kind" : "typeIdentifier",
@@ -87,7 +65,7 @@
       },
       {
         "kind" : "externalParam",
-        "text" : "to"
+        "text" : "filePath"
       },
       {
         "kind" : "text",
@@ -95,15 +73,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "Self"
-      },
-      {
-        "kind" : "text",
-        "text" : "."
-      },
-      {
-        "kind" : "typeIdentifier",
-        "text" : "Widget"
+        "preciseIdentifier" : "s:SS",
+        "text" : "String"
       },
       {
         "kind" : "text",
@@ -115,11 +86,10 @@
         "name" : "SwiftCrossUI"
       }
     ],
-    "required" : true,
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "setVisibleChild(ofOneOfContainer:to:)"
+    "title" : "updateImageView(_:filePath:)"
   },
   "primaryContentSections" : [
     {
@@ -142,7 +112,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "setVisibleChild"
+              "text" : "updateImageView"
             },
             {
               "kind" : "text",
@@ -150,7 +120,7 @@
             },
             {
               "kind" : "externalParam",
-              "text" : "ofOneOfContainer"
+              "text" : "_"
             },
             {
               "kind" : "text",
@@ -158,7 +128,7 @@
             },
             {
               "kind" : "internalParam",
-              "text" : "container"
+              "text" : "imageView"
             },
             {
               "kind" : "text",
@@ -182,15 +152,7 @@
             },
             {
               "kind" : "externalParam",
-              "text" : "to"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "internalParam",
-              "text" : "child"
+              "text" : "filePath"
             },
             {
               "kind" : "text",
@@ -198,15 +160,8 @@
             },
             {
               "kind" : "typeIdentifier",
-              "text" : "Self"
-            },
-            {
-              "kind" : "text",
-              "text" : "."
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "Widget"
+              "preciseIdentifier" : "s:SS",
+              "text" : "String"
             },
             {
               "kind" : "text",
@@ -229,7 +184,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-955ak"
+        "\/documentation\/swiftcrossui\/appbackend\/updateimageview(_:filepath:)-8lhup"
       ],
       "traits" : [
         {
@@ -288,103 +243,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)-8fkaw": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setVisibleChild"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-8fkaw",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "setVisibleChild(ofOneOfContainer:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-8fkaw"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)-955ak": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateImageView(_:filePath:)-6d52v": {
   "abstract" : [
     {
-      "text" : "Sets the visible child of a one-of container. Uses a widget reference instead of an",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index since the visible child should remain the same even if the visible child’s",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index changes (e.g. due to a child being removed from before the visible child).",
+      "text" : "Sets the path of the image file being displayed by an image view.",
       "type" : "text"
     }
   ],
@@ -400,19 +262,11 @@
     },
     {
       "kind" : "identifier",
-      "text" : "setVisibleChild"
+      "text" : "updateImageView"
     },
     {
       "kind" : "text",
       "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
     },
     {
       "kind" : "typeIdentifier",
@@ -432,11 +286,50 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "to"
+      "text" : "filePath"
     },
     {
       "kind" : "text",
       "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateImageView(_:filePath:)-6d52v",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "updateImageView(_:filePath:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updateimageview(_:filepath:)-6d52v"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateImageView(_:filePath:)-8lhup": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateImageView"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
     },
     {
       "kind" : "typeIdentifier",
@@ -452,16 +345,32 @@
     },
     {
       "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "filePath"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-955ak",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateImageView(_:filePath:)-8lhup",
   "kind" : "symbol",
-  "required" : true,
   "role" : "symbol",
-  "title" : "setVisibleChild(ofOneOfContainer:to:)",
+  "title" : "updateImageView(_:filePath:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-955ak"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updateimageview(_:filepath:)-8lhup"
 }
 }
 }

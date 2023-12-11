@@ -5,7 +5,7 @@
       "type" : "text"
     },
     {
-      "code" : "AppBackend.createOneOfContainer()",
+      "code" : "AppBackend.createLayoutTransparentStack()",
       "type" : "codeVoice"
     },
     {
@@ -18,18 +18,18 @@
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-4r5hz"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createLayoutTransparentStack()-7grxq"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-5fu2i"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createLayoutTransparentStack()-5olkk"
   },
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE20createOneOfContainer6WidgetQzyF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE28createLayoutTransparentStack6WidgetQzyF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -41,7 +41,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "createOneOfContainer"
+        "text" : "createLayoutTransparentStack"
       },
       {
         "kind" : "text",
@@ -68,7 +68,7 @@
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "createOneOfContainer()"
+    "title" : "createLayoutTransparentStack()"
   },
   "primaryContentSections" : [
     {
@@ -91,7 +91,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "createOneOfContainer"
+              "text" : "createLayoutTransparentStack"
             },
             {
               "kind" : "text",
@@ -126,7 +126,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-5fu2i"
+        "\/documentation\/swiftcrossui\/appbackend\/createlayouttransparentstack()-5olkk"
       ],
       "traits" : [
         {
@@ -185,110 +185,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()-4r5hz": {
-  "abstract" : [
-    {
-      "text" : "Creates a container that can (theoretically) have an unlimited number of children",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "while only displaying one child at a time (selected using ",
-      "type" : "text"
-    },
-    {
-      "code" : "Backend\/setVisibleChild",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : ").",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "Differs from ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " because it allows",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "transitions to be displayed when switching between children (unlike the single child",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "container which only ever has the current widget as its child meaning that it can’t",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "do transitions).",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "createOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : "() -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-4r5hz",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "createOneOfContainer()",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-4r5hz"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()-5fu2i": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createLayoutTransparentStack()-5olkk": {
   "abstract" : [
 
   ],
@@ -303,7 +200,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createOneOfContainer"
+      "text" : "createLayoutTransparentStack"
     },
     {
       "kind" : "text",
@@ -322,21 +219,58 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-5fu2i",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createLayoutTransparentStack()-5olkk",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "createOneOfContainer()",
+  "title" : "createLayoutTransparentStack()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-5fu2i"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createlayouttransparentstack()-5olkk"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSingleChildContainer()-2u3xa": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createLayoutTransparentStack()-7grxq": {
   "abstract" : [
     {
-      "text" : "Creates a single-child container. Predominantly used to implement ",
+      "text" : "Creates a view with a (theoretically) unlimited number of children, which inherits the",
       "type" : "text"
     },
     {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "orientation of its nearest oriented parent. Should be vertical if it doesn’t have any",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "oriented parents. Often used as a layout-transparent container (e.g. by",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " implementations which use it to avoid partaking in layout).",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Also used by to implement ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
       "isActive" : true,
       "type" : "reference"
     },
@@ -357,7 +291,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createSingleChildContainer"
+      "text" : "createLayoutTransparentStack"
     },
     {
       "kind" : "text",
@@ -376,13 +310,128 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createLayoutTransparentStack()-7grxq",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createSingleChildContainer()",
+  "title" : "createLayoutTransparentStack()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createsinglechildcontainer()-2u3xa"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createlayouttransparentstack()-7grxq"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach": {
+  "abstract" : [
+    {
+      "text" : "A view that displays a variable amount of children.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ForEach"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ForEach"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ForEach",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/foreach"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren": {
+  "abstract" : [
+    {
+      "text" : "The children of a view graph node. This is implemented by a few different",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "types for various purposes. E.g. variable length with same-typed elements",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "(",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : "), and fixed length with distinctly-typed elements (",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ",",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView2",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ", etc).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphNodeChildren"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphNodeChildren",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren"
 }
 }
 }

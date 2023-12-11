@@ -5,7 +5,7 @@
       "type" : "text"
     },
     {
-      "code" : "AppBackend.createOneOfContainer()",
+      "code" : "AppBackend.createSwitch()",
       "type" : "codeVoice"
     },
     {
@@ -18,18 +18,18 @@
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-4r5hz"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch()-2f7xv"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-5fu2i"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch()-6cmnl"
   },
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE20createOneOfContainer6WidgetQzyF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE12createSwitch6WidgetQzyF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -41,7 +41,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "createOneOfContainer"
+        "text" : "createSwitch"
       },
       {
         "kind" : "text",
@@ -68,7 +68,7 @@
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "createOneOfContainer()"
+    "title" : "createSwitch()"
   },
   "primaryContentSections" : [
     {
@@ -91,7 +91,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "createOneOfContainer"
+              "text" : "createSwitch"
             },
             {
               "kind" : "text",
@@ -126,7 +126,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-5fu2i"
+        "\/documentation\/swiftcrossui\/appbackend\/createswitch()-6cmnl"
       ],
       "traits" : [
         {
@@ -185,68 +185,15 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()-4r5hz": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSwitch()-2f7xv": {
   "abstract" : [
     {
-      "text" : "Creates a container that can (theoretically) have an unlimited number of children",
+      "text" : "Creates a switch that is either on or off. Predominantly used by ",
       "type" : "text"
     },
     {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "while only displaying one child at a time (selected using ",
-      "type" : "text"
-    },
-    {
-      "code" : "Backend\/setVisibleChild",
+      "code" : "Switch",
       "type" : "codeVoice"
-    },
-    {
-      "text" : ").",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "Differs from ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " because it allows",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "transitions to be displayed when switching between children (unlike the single child",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "container which only ever has the current widget as its child meaning that it can’t",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "do transitions).",
-      "type" : "text"
     }
   ],
   "defaultImplementations" : 1,
@@ -261,7 +208,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createOneOfContainer"
+      "text" : "createSwitch"
     },
     {
       "kind" : "text",
@@ -280,15 +227,15 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-4r5hz",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch()-2f7xv",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createOneOfContainer()",
+  "title" : "createSwitch()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-4r5hz"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createswitch()-2f7xv"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()-5fu2i": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSwitch()-6cmnl": {
   "abstract" : [
 
   ],
@@ -303,7 +250,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createOneOfContainer"
+      "text" : "createSwitch"
     },
     {
       "kind" : "text",
@@ -322,67 +269,12 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-5fu2i",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch()-6cmnl",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "createOneOfContainer()",
+  "title" : "createSwitch()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-5fu2i"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSingleChildContainer()-2u3xa": {
-  "abstract" : [
-    {
-      "text" : "Creates a single-child container. Predominantly used to implement ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "createSingleChildContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : "() -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "createSingleChildContainer()",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createsinglechildcontainer()-2u3xa"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createswitch()-6cmnl"
 }
 }
 }

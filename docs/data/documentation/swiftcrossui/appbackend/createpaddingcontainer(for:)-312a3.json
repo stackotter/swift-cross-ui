@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Creates a single-child container with configurable padding. Predominantly used",
+      "text" : "Creates a single-child container with configurable padding. Used",
       "type" : "text"
     },
     {
@@ -269,7 +269,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPaddingContainer(for:)-312a3": {
   "abstract" : [
     {
-      "text" : "Creates a single-child container with configurable padding. Predominantly used",
+      "text" : "Creates a single-child container with configurable padding. Used",
       "type" : "text"
     },
     {

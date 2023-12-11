@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Creates a container that can (theoretically) have an unlimited number of children",
+      "text" : "Creates a picker for selecting from a finite set of options (e.g. a radio button group,",
       "type" : "text"
     },
     {
@@ -9,32 +9,16 @@
       "type" : "text"
     },
     {
-      "text" : "while only displaying one child at a time (selected using ",
+      "text" : "a drop-down, a picker wheel). Predominantly used by ",
       "type" : "text"
     },
     {
-      "code" : "Backend\/setVisibleChild",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : ").",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "Differs from ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker",
       "isActive" : true,
       "type" : "reference"
     },
     {
-      "text" : " because it allows",
+      "text" : ". The change handler is",
       "type" : "text"
     },
     {
@@ -42,30 +26,14 @@
       "type" : "text"
     },
     {
-      "text" : "transitions to be displayed when switching between children (unlike the single child",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "container which only ever has the current widget as its child meaning that it can’t",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "do transitions).",
+      "text" : "called whenever a selection is made (even if the same option is picked again).",
       "type" : "text"
     }
   ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-5fu2i"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPicker()-2oehi"
       ],
       "title" : "AppBackend Implementations"
     }
@@ -80,11 +48,11 @@
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-4r5hz"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPicker()-70yve"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI10AppBackendP20createOneOfContainer6WidgetQzyF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendP12createPicker6WidgetQzyF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -96,7 +64,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "createOneOfContainer"
+        "text" : "createPicker"
       },
       {
         "kind" : "text",
@@ -124,7 +92,7 @@
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "createOneOfContainer()"
+    "title" : "createPicker()"
   },
   "primaryContentSections" : [
     {
@@ -147,7 +115,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "createOneOfContainer"
+              "text" : "createPicker"
             },
             {
               "kind" : "text",
@@ -182,7 +150,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-4r5hz"
+        "\/documentation\/swiftcrossui\/appbackend\/createpicker()-70yve"
       ],
       "traits" : [
         {
@@ -241,110 +209,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()-4r5hz": {
-  "abstract" : [
-    {
-      "text" : "Creates a container that can (theoretically) have an unlimited number of children",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "while only displaying one child at a time (selected using ",
-      "type" : "text"
-    },
-    {
-      "code" : "Backend\/setVisibleChild",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : ").",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "Differs from ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " because it allows",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "transitions to be displayed when switching between children (unlike the single child",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "container which only ever has the current widget as its child meaning that it can’t",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "do transitions).",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "createOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : "() -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-4r5hz",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "createOneOfContainer()",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-4r5hz"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()-5fu2i": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPicker()-2oehi": {
   "abstract" : [
 
   ],
@@ -359,7 +224,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createOneOfContainer"
+      "text" : "createPicker"
     },
     {
       "kind" : "text",
@@ -378,26 +243,42 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-5fu2i",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPicker()-2oehi",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "createOneOfContainer()",
+  "title" : "createPicker()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createoneofcontainer()-5fu2i"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createpicker()-2oehi"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSingleChildContainer()-2u3xa": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPicker()-70yve": {
   "abstract" : [
     {
-      "text" : "Creates a single-child container. Predominantly used to implement ",
+      "text" : "Creates a picker for selecting from a finite set of options (e.g. a radio button group,",
       "type" : "text"
     },
     {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "a drop-down, a picker wheel). Predominantly used by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker",
       "isActive" : true,
       "type" : "reference"
     },
     {
-      "text" : ".",
+      "text" : ". The change handler is",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "called whenever a selection is made (even if the same option is picked again).",
       "type" : "text"
     }
   ],
@@ -413,7 +294,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createSingleChildContainer"
+      "text" : "createPicker"
     },
     {
       "kind" : "text",
@@ -432,27 +313,18 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPicker()-70yve",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createSingleChildContainer()",
+  "title" : "createPicker()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createsinglechildcontainer()-2u3xa"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createpicker()-70yve"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker": {
   "abstract" : [
     {
-      "text" : "A view used by ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " to support if\/else conditional statements.",
+      "text" : "A control for selecting from a set of values.",
       "type" : "text"
     }
   ],
@@ -467,21 +339,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "EitherView"
+      "text" : "Picker"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "EitherView"
+      "text" : "Picker"
     }
   ],
   "role" : "symbol",
-  "title" : "EitherView",
+  "title" : "Picker",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/eitherview"
+  "url" : "\/documentation\/swiftcrossui\/picker"
 }
 }
 }

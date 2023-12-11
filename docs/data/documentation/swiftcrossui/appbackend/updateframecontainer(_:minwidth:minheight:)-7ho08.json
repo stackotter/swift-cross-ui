@@ -1,30 +1,14 @@
 {
   "abstract" : [
     {
-      "text" : "Sets the visible child of a one-of container. Uses a widget reference instead of an",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index since the visible child should remain the same even if the visible child’s",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index changes (e.g. due to a child being removed from before the visible child).",
+      "text" : "Sets the minimum width and minimum height of a frame container.",
       "type" : "text"
     }
   ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-8fkaw"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateFrameContainer(_:minWidth:minHeight:)-8oajh"
       ],
       "title" : "AppBackend Implementations"
     }
@@ -39,11 +23,11 @@
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-955ak"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateFrameContainer(_:minWidth:minHeight:)-7ho08"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI10AppBackendP15setVisibleChild16ofOneOfContainer2toy6WidgetQz_AHtF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendP20updateFrameContainer_8minWidth0I6Heighty6WidgetQz_S2itF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -55,19 +39,11 @@
       },
       {
         "kind" : "identifier",
-        "text" : "setVisibleChild"
+        "text" : "updateFrameContainer"
       },
       {
         "kind" : "text",
         "text" : "("
-      },
-      {
-        "kind" : "externalParam",
-        "text" : "ofOneOfContainer"
-      },
-      {
-        "kind" : "text",
-        "text" : ": "
       },
       {
         "kind" : "typeIdentifier",
@@ -87,7 +63,7 @@
       },
       {
         "kind" : "externalParam",
-        "text" : "to"
+        "text" : "minWidth"
       },
       {
         "kind" : "text",
@@ -95,15 +71,25 @@
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "Self"
+        "preciseIdentifier" : "s:Si",
+        "text" : "Int"
       },
       {
         "kind" : "text",
-        "text" : "."
+        "text" : ", "
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "minHeight"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "Widget"
+        "preciseIdentifier" : "s:Si",
+        "text" : "Int"
       },
       {
         "kind" : "text",
@@ -119,7 +105,7 @@
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "setVisibleChild(ofOneOfContainer:to:)"
+    "title" : "updateFrameContainer(_:minWidth:minHeight:)"
   },
   "primaryContentSections" : [
     {
@@ -142,7 +128,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "setVisibleChild"
+              "text" : "updateFrameContainer"
             },
             {
               "kind" : "text",
@@ -150,7 +136,7 @@
             },
             {
               "kind" : "externalParam",
-              "text" : "ofOneOfContainer"
+              "text" : "_"
             },
             {
               "kind" : "text",
@@ -182,15 +168,7 @@
             },
             {
               "kind" : "externalParam",
-              "text" : "to"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "internalParam",
-              "text" : "child"
+              "text" : "minWidth"
             },
             {
               "kind" : "text",
@@ -198,15 +176,25 @@
             },
             {
               "kind" : "typeIdentifier",
-              "text" : "Self"
+              "preciseIdentifier" : "s:Si",
+              "text" : "Int"
             },
             {
               "kind" : "text",
-              "text" : "."
+              "text" : ", "
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "minHeight"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
             },
             {
               "kind" : "typeIdentifier",
-              "text" : "Widget"
+              "preciseIdentifier" : "s:Si",
+              "text" : "Int"
             },
             {
               "kind" : "text",
@@ -229,7 +217,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-955ak"
+        "\/documentation\/swiftcrossui\/appbackend\/updateframecontainer(_:minwidth:minheight:)-7ho08"
       ],
       "traits" : [
         {
@@ -288,103 +276,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)-8fkaw": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setVisibleChild"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-8fkaw",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "setVisibleChild(ofOneOfContainer:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-8fkaw"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)-955ak": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateFrameContainer(_:minWidth:minHeight:)-7ho08": {
   "abstract" : [
     {
-      "text" : "Sets the visible child of a one-of container. Uses a widget reference instead of an",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index since the visible child should remain the same even if the visible child’s",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index changes (e.g. due to a child being removed from before the visible child).",
+      "text" : "Sets the minimum width and minimum height of a frame container.",
       "type" : "text"
     }
   ],
@@ -400,19 +295,11 @@
     },
     {
       "kind" : "identifier",
-      "text" : "setVisibleChild"
+      "text" : "updateFrameContainer"
     },
     {
       "kind" : "text",
       "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
     },
     {
       "kind" : "typeIdentifier",
@@ -432,11 +319,67 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "to"
+      "text" : "minWidth"
     },
     {
       "kind" : "text",
       "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "minHeight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateFrameContainer(_:minWidth:minHeight:)-7ho08",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "updateFrameContainer(_:minWidth:minHeight:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updateframecontainer(_:minwidth:minheight:)-7ho08"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateFrameContainer(_:minWidth:minHeight:)-8oajh": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateFrameContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
     },
     {
       "kind" : "typeIdentifier",
@@ -452,16 +395,49 @@
     },
     {
       "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "minWidth"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "minHeight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-955ak",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateFrameContainer(_:minWidth:minHeight:)-8oajh",
   "kind" : "symbol",
-  "required" : true,
   "role" : "symbol",
-  "title" : "setVisibleChild(ofOneOfContainer:to:)",
+  "title" : "updateFrameContainer(_:minWidth:minHeight:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-955ak"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updateframecontainer(_:minwidth:minheight:)-8oajh"
 }
 }
 }

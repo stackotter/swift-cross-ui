@@ -1,30 +1,14 @@
 {
   "abstract" : [
     {
-      "text" : "Sets the visible child of a one-of container. Uses a widget reference instead of an",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index since the visible child should remain the same even if the visible child’s",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index changes (e.g. due to a child being removed from before the visible child).",
+      "text" : "Adds a child to the end of a layout-transparent stack.",
       "type" : "text"
     }
   ],
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-8fkaw"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toLayoutTransparentStack:)-2rmoj"
       ],
       "title" : "AppBackend Implementations"
     }
@@ -39,11 +23,11 @@
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-955ak"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toLayoutTransparentStack:)-476p3"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI10AppBackendP15setVisibleChild16ofOneOfContainer2toy6WidgetQz_AHtF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendP8addChild_24toLayoutTransparentStacky6WidgetQz_AGtF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -55,19 +39,11 @@
       },
       {
         "kind" : "identifier",
-        "text" : "setVisibleChild"
+        "text" : "addChild"
       },
       {
         "kind" : "text",
         "text" : "("
-      },
-      {
-        "kind" : "externalParam",
-        "text" : "ofOneOfContainer"
-      },
-      {
-        "kind" : "text",
-        "text" : ": "
       },
       {
         "kind" : "typeIdentifier",
@@ -87,7 +63,7 @@
       },
       {
         "kind" : "externalParam",
-        "text" : "to"
+        "text" : "toLayoutTransparentStack"
       },
       {
         "kind" : "text",
@@ -119,7 +95,7 @@
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "setVisibleChild(ofOneOfContainer:to:)"
+    "title" : "addChild(_:toLayoutTransparentStack:)"
   },
   "primaryContentSections" : [
     {
@@ -142,7 +118,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "setVisibleChild"
+              "text" : "addChild"
             },
             {
               "kind" : "text",
@@ -150,7 +126,7 @@
             },
             {
               "kind" : "externalParam",
-              "text" : "ofOneOfContainer"
+              "text" : "_"
             },
             {
               "kind" : "text",
@@ -158,7 +134,7 @@
             },
             {
               "kind" : "internalParam",
-              "text" : "container"
+              "text" : "child"
             },
             {
               "kind" : "text",
@@ -182,7 +158,7 @@
             },
             {
               "kind" : "externalParam",
-              "text" : "to"
+              "text" : "toLayoutTransparentStack"
             },
             {
               "kind" : "text",
@@ -190,7 +166,7 @@
             },
             {
               "kind" : "internalParam",
-              "text" : "child"
+              "text" : "container"
             },
             {
               "kind" : "text",
@@ -229,7 +205,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-955ak"
+        "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tolayouttransparentstack:)-476p3"
       ],
       "traits" : [
         {
@@ -288,7 +264,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)-8fkaw": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toLayoutTransparentStack:)-2rmoj": {
   "abstract" : [
 
   ],
@@ -303,19 +279,11 @@
     },
     {
       "kind" : "identifier",
-      "text" : "setVisibleChild"
+      "text" : "addChild"
     },
     {
       "kind" : "text",
       "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
     },
     {
       "kind" : "typeIdentifier",
@@ -335,7 +303,7 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "to"
+      "text" : "toLayoutTransparentStack"
     },
     {
       "kind" : "text",
@@ -358,33 +326,17 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-8fkaw",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toLayoutTransparentStack:)-2rmoj",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "setVisibleChild(ofOneOfContainer:to:)",
+  "title" : "addChild(_:toLayoutTransparentStack:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-8fkaw"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tolayouttransparentstack:)-2rmoj"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)-955ak": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toLayoutTransparentStack:)-476p3": {
   "abstract" : [
     {
-      "text" : "Sets the visible child of a one-of container. Uses a widget reference instead of an",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index since the visible child should remain the same even if the visible child’s",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "index changes (e.g. due to a child being removed from before the visible child).",
+      "text" : "Adds a child to the end of a layout-transparent stack.",
       "type" : "text"
     }
   ],
@@ -400,19 +352,11 @@
     },
     {
       "kind" : "identifier",
-      "text" : "setVisibleChild"
+      "text" : "addChild"
     },
     {
       "kind" : "text",
       "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofOneOfContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
     },
     {
       "kind" : "typeIdentifier",
@@ -432,7 +376,7 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "to"
+      "text" : "toLayoutTransparentStack"
     },
     {
       "kind" : "text",
@@ -455,13 +399,13 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-955ak",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toLayoutTransparentStack:)-476p3",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "setVisibleChild(ofOneOfContainer:to:)",
+  "title" : "addChild(_:toLayoutTransparentStack:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-955ak"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tolayouttransparentstack:)-476p3"
 }
 }
 }

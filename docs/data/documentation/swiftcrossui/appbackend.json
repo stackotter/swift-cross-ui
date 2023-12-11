@@ -247,7 +247,7 @@
               "type" : "text"
             },
             {
-              "text" : "reduce the complexity of maintaining a multitude of backends. Use",
+              "text" : "reduce the complexity of maintaining a multitude of backends – nest",
               "type" : "text"
             },
             {
@@ -255,7 +255,209 @@
               "type" : "text"
             },
             {
-              "text" : "a nested container such as a VStack to work around this limitation.",
+              "text" : "another container, such as a VStack, inside the container to allow you",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "to change its children on demand.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "For interactive controls with values, the method for setting the",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "control’s value is always separate from the method for updating the",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "control’s properties (e.g. its minimum value, or placeholder label etc).",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "This is because it’s very common for view implementations to either",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "update a control’s properties without updating its value (in the case",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "of an unbound control), or update a control’s value only if it doesn’t",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "match its current value (to prevent infinite loops).",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Many views have both a ",
+              "type" : "text"
+            },
+            {
+              "code" : "create",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " and an ",
+              "type" : "text"
+            },
+            {
+              "code" : "update",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " method. The ",
+              "type" : "text"
+            },
+            {
+              "code" : "create",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "method should only have parameters for properties which don’t have",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "sensible defaults (e.g. under some backends, image widgets can’t be",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "created without an underlying image being selected up-front, so the",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "code" : "create",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " method requires a ",
+              "type" : "text"
+            },
+            {
+              "code" : "filePath",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " and will overlap with the ",
+              "type" : "text"
+            },
+            {
+              "code" : "update",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "method). This design choice was made to reduce the amount of repeated",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "code between the ",
+              "type" : "text"
+            },
+            {
+              "code" : "create",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " and ",
+              "type" : "text"
+            },
+            {
+              "code" : "update",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " methods of the various widgets",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "(since the ",
+              "type" : "text"
+            },
+            {
+              "code" : "update",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " method is always called between calling ",
+              "type" : "text"
+            },
+            {
+              "code" : "create",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "and actually displaying the widget anyway).",
               "type" : "text"
             }
           ],
@@ -290,85 +492,73 @@
     {
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toHStack:)-42awi",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toListView:)-17m8p",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toLayoutTransparentStack:)-476p3",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toOneOfContainer:)-2q1vw",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toPassthroughVStack:)-535h3",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toVStack:)-2ni2v",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-1xdxz",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-5en",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toPassthroughVStack:)-732ox",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toPassthroughVStack:)-8xh9g",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toLayoutTransparentStack:)-3b92j",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toLayoutTransparentStack:)-8ksm8",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toVStack:)-4iit3",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toVStack:)-5f9vt",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createButton(label:action:)-9xrda",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createEitherContainer(initiallyContaining:)-9e2or",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createForegroundColorContainer(for:color:)-7spw",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createFrameContainer(for:minWidth:minHeight:)-39a8o",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createHStack(spacing:)-4eo9k",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createButton()-3d182",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createFrameContainer(for:)-5pep9",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createHStack()-45gjf",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createImageView(filePath:)-1wi3h",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createListView()-2dsee",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createLayoutTransparentStack()-7grxq",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createOneOfContainer()-4r5hz",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPaddingContainer(for:)-312a3",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPassthroughVStack(spacing:)-65zno",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPicker(options:selectedOption:onChange:)-215ms",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPicker()-70yve",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createScrollContainer(for:)-1q6bx",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSlider(minimum:maximum:value:decimalPlaces:onChange:)-3a7e2",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSpacer(expandHorizontally:expandVertically:)-3grgi",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSlider()-24c8w",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSpacer()-8z9yz",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSplitView(leadingChild:trailingChild:)-3iqgg",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch(active:onChange:)-1gmnm",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createStyleContainer(for:)-6gzp3",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch()-2f7xv",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTable(rows:columns:)-36alh",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextField(content:placeholder:onChange:)-7zu87",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView(content:shouldWrap:)-f6zp",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle(label:active:onChange:)-1v1kf",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createVStack(spacing:)-2yalt",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextField()-6jp68",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView()",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView(content:shouldWrap:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle()-814v1",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createVStack()-1wwt5",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createWindow(withDefaultSize:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getChild(ofPaddingContainer:)-31zda",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getContent(ofTextField:)-755gm",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getInheritedOrientation(of:)-36htc",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeChild(_:fromListView:)-9ca9f",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeChild(_:fromLayoutTransparentStack:)-9bh0l",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeChild(_:fromOneOfContainer:)-1glc3",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/runInMainThread(action:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/runMainLoop(_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setAction(ofButton:to:)-5s3rv",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setCell(at:inTable:to:)-3gjpn",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChild(ofEitherContainer:to:)-6uzwb",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChild(ofSingleChildContainer:to:)-e1ut",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChild(ofWindow:to:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setColumnCount(ofTable:to:)-7ydov",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setContent(ofTextField:to:)-21686",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setContent(ofTextView:to:)-7m8bp",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setDecimalPlaces(ofSlider:to:)-7l3ai",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setExpandHorizontally(ofSpacer:to:)-4d6zt",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setExpandVertically(ofSpacer:to:)-3mp2c",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setFilePath(ofImageView:to:)-1cqj7",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setForegroundColor(ofForegroundColorContainer:to:)-2tyr9",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setIsActive(ofSwitch:to:)-6w4gl",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setIsActive(ofToggle:to:)-6swno",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setLabel(ofButton:to:)-4x3t5",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMaximum(ofSlider:to:)-6tatt",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMinHeight(ofFrameContainer:to:)-69hwd",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMinWidth(ofFrameContainer:to:)-6roxc",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMinimum(ofSlider:to:)-2h25n",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofPicker:to:)-7ksqa",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofSlider:to:)-7j3la",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofSwitch:to:)-8rhir",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofTextField:to:)-6bixo",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofToggle:to:)-8k7mc",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOptions(ofPicker:to:)-2wmpb",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setForegroundColor(ofStyleContainer:to:)-5aoam",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setPadding(ofPaddingContainer:top:bottom:leading:trailing:)-3i82z",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setPlaceholder(ofTextField:to:)-7mrkp",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setResizability(ofWindow:to:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setRowCount(ofTable:to:)-28yce",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSelectedOption(ofPicker:to:)-2b5qx",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSpacing(ofHStack:to:)-6cn",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setSpacing(ofVStack:to:)-3m3cm",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setState(ofSwitch:to:)-70pzc",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setState(ofToggle:to:)-5y479",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setTitle(ofWindow:to:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setValue(ofSlider:to:)-9cjjs",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setVisibleChild(ofOneOfContainer:to:)-955ak",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setWrap(ofTextView:to:)-6xmm4",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/show(widget:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/show(window:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateListView(_:)-9cu5o",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updatePassthroughVStack(_:)-9v2cc"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateButton(_:label:action:)-93wmg",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateFrameContainer(_:minWidth:minHeight:)-7ho08",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateImageView(_:filePath:)-6d52v",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateLayoutTransparentStack(_:)-5gydf",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updatePicker(_:options:onChange:)-2hs2f",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSlider(_:minimum:maximum:decimalPlaces:onChange:)-8we73",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSpacer(_:expandHorizontally:expandVertically:minSize:)-5wd61",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSwitch(_:onChange:)-9nbu9",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateTextField(_:placeholder:onChange:)-55dak",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateTextView(_:content:shouldWrap:)-6q66p",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateToggle(_:label:onChange:)-4usuo"
       ],
       "title" : "Instance Methods"
     }
@@ -561,10 +751,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tohstack:)-42awi"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toListView:)-17m8p": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toLayoutTransparentStack:)-476p3": {
   "abstract" : [
     {
-      "text" : "Adds a child to the end of a list view.",
+      "text" : "Adds a child to the end of a layout-transparent stack.",
       "type" : "text"
     }
   ],
@@ -604,7 +794,7 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "toListView"
+      "text" : "toLayoutTransparentStack"
     },
     {
       "kind" : "text",
@@ -627,13 +817,13 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toListView:)-17m8p",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toLayoutTransparentStack:)-476p3",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "addChild(_:toListView:)",
+  "title" : "addChild(_:toLayoutTransparentStack:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tolistview:)-17m8p"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tolayouttransparentstack:)-476p3"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toOneOfContainer:)-2q1vw": {
   "abstract" : [
@@ -708,80 +898,6 @@
   "title" : "addChild(_:toOneOfContainer:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tooneofcontainer:)-2q1vw"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toPassthroughVStack:)-535h3": {
-  "abstract" : [
-    {
-      "text" : "Adds a child to a layout-transparent container.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "addChild"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "toPassthroughVStack"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toPassthroughVStack:)-535h3",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "addChild(_:toPassthroughVStack:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:topassthroughvstack:)-535h3"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toVStack:)-2ni2v": {
   "abstract" : [
@@ -1002,79 +1118,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tohstack:)-5en"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toPassthroughVStack:)-732ox": {
-  "abstract" : [
-    {
-      "text" : "A helper to add multiple children to a layout-transparent container at once.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "addChildren"
-    },
-    {
-      "kind" : "text",
-      "text" : "(["
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : "], "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "toPassthroughVStack"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toPassthroughVStack:)-732ox",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "addChildren(_:toPassthroughVStack:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:topassthroughvstack:)-732ox"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toPassthroughVStack:)-8xh9g": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toLayoutTransparentStack:)-3b92j": {
   "abstract" : [
     {
       "text" : "A helper to add multiple type-erased children to a layout-transparent container",
@@ -1117,7 +1161,7 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "toPassthroughVStack"
+      "text" : "toLayoutTransparentStack"
     },
     {
       "kind" : "text",
@@ -1140,12 +1184,84 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toPassthroughVStack:)-8xh9g",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toLayoutTransparentStack:)-3b92j",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "addChildren(_:toPassthroughVStack:)",
+  "title" : "addChildren(_:toLayoutTransparentStack:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:topassthroughvstack:)-8xh9g"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tolayouttransparentstack:)-3b92j"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toLayoutTransparentStack:)-8ksm8": {
+  "abstract" : [
+    {
+      "text" : "A helper to add multiple children to a layout-transparent container at once.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "addChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : "(["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : "], "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "toLayoutTransparentStack"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toLayoutTransparentStack:)-8ksm8",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "addChildren(_:toLayoutTransparentStack:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tolayouttransparentstack:)-8ksm8"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toVStack:)-4iit3": {
   "abstract" : [
@@ -1292,7 +1408,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tovstack:)-5f9vt"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createButton(label:action:)-9xrda": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createButton()-3d182": {
   "abstract" : [
     {
       "text" : "Creates a labelled button with an action triggered on click. Predominantly used",
@@ -1332,41 +1448,7 @@
     },
     {
       "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "label"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "action"
-    },
-    {
-      "kind" : "text",
-      "text" : ": () -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
+      "text" : "() -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -1381,201 +1463,18 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createButton(label:action:)-9xrda",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createButton()-3d182",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createButton(label:action:)",
+  "title" : "createButton()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createbutton(label:action:)-9xrda"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createbutton()-3d182"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createEitherContainer(initiallyContaining:)-9e2or": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createFrameContainer(for:)-5pep9": {
   "abstract" : [
     {
-      "text" : "Creates a single-child container suitable for ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "createEitherContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "initiallyContaining"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : "?) -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createEitherContainer(initiallyContaining:)-9e2or",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "createEitherContainer(initiallyContaining:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createeithercontainer(initiallycontaining:)-9e2or"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createForegroundColorContainer(for:color:)-7spw": {
-  "abstract" : [
-    {
-      "text" : "Creates a single-child container which can control the foreground text color of its",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "child. Predominantly used to implement the ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/foregroundColor(_:)",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " modifier.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "createForegroundColorContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "for"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "color"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
-      "text" : "Color"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createForegroundColorContainer(for:color:)-7spw",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "createForegroundColorContainer(for:color:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createforegroundcolorcontainer(for:color:)-7spw"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createFrameContainer(for:minWidth:minHeight:)-39a8o": {
-  "abstract" : [
-    {
-      "text" : "Creates a single-child container which can have size constraints. Predominantly used to",
+      "text" : "Creates a single-child container which can have size constraints. Used to",
       "type" : "text"
     },
     {
@@ -1635,40 +1534,6 @@
     },
     {
       "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "minWidth"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "minHeight"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
       "text" : ") -> "
     },
     {
@@ -1684,26 +1549,18 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createFrameContainer(for:minWidth:minHeight:)-39a8o",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createFrameContainer(for:)-5pep9",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createFrameContainer(for:minWidth:minHeight:)",
+  "title" : "createFrameContainer(for:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createframecontainer(for:minwidth:minheight:)-39a8o"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createframecontainer(for:)-5pep9"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createHStack(spacing:)-4eo9k": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createHStack()-45gjf": {
   "abstract" : [
     {
-      "text" : "Creates a horizontal container with the specified spacing between children.",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "Predominantly used by ",
+      "text" : "Creates a horizontal container. Predominantly used by ",
       "type" : "text"
     },
     {
@@ -1732,24 +1589,7 @@
     },
     {
       "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "spacing"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
+      "text" : "() -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -1764,13 +1604,13 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createHStack(spacing:)-4eo9k",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createHStack()-45gjf",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createHStack(spacing:)",
+  "title" : "createHStack()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createhstack(spacing:)-4eo9k"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createhstack()-45gjf"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createImageView(filePath:)-1wi3h": {
   "abstract" : [
@@ -1852,10 +1692,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createimageview(filepath:)-1wi3h"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createListView()-2dsee": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createLayoutTransparentStack()-7grxq": {
   "abstract" : [
     {
-      "text" : "Creates a view with a (theoretically) unlimited number of children. Should inherit the",
+      "text" : "Creates a view with a (theoretically) unlimited number of children, which inherits the",
       "type" : "text"
     },
     {
@@ -1863,7 +1703,45 @@
       "type" : "text"
     },
     {
-      "text" : "orientation of its nearest oriented parent.",
+      "text" : "orientation of its nearest oriented parent. Should be vertical if it doesn’t have any",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "oriented parents. Often used as a layout-transparent container (e.g. by",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " implementations which use it to avoid partaking in layout).",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Also used by to implement ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
       "type" : "text"
     }
   ],
@@ -1879,7 +1757,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createListView"
+      "text" : "createLayoutTransparentStack"
     },
     {
       "kind" : "text",
@@ -1898,13 +1776,13 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createListView()-2dsee",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createLayoutTransparentStack()-7grxq",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createListView()",
+  "title" : "createLayoutTransparentStack()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createlistview()-2dsee"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createlayouttransparentstack()-7grxq"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createOneOfContainer()-4r5hz": {
   "abstract" : [
@@ -1926,6 +1804,47 @@
     },
     {
       "text" : ").",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Differs from ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " because it allows",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "transitions to be displayed when switching between children (unlike the single child",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "container which only ever has the current widget as its child meaning that it can’t",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "do transitions).",
       "type" : "text"
     }
   ],
@@ -1971,7 +1890,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPaddingContainer(for:)-312a3": {
   "abstract" : [
     {
-      "text" : "Creates a single-child container with configurable padding. Predominantly used",
+      "text" : "Creates a single-child container with configurable padding. Used",
       "type" : "text"
     },
     {
@@ -2064,103 +1983,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createpaddingcontainer(for:)-312a3"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPassthroughVStack(spacing:)-65zno": {
-  "abstract" : [
-    {
-      "text" : "Creates a container which takes on the orientation of its parent (preferring to be",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "vertical if it doesn’t have any oriented parents). Sometimes referred to as",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "layout-transparent in SwiftCrossUI code. Predominantly used by the variadic views",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "and ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " implementations (to avoid partaking in layout).",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "createPassthroughVStack"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "spacing"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPassthroughVStack(spacing:)-65zno",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "createPassthroughVStack(spacing:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createpassthroughvstack(spacing:)-65zno"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPicker(options:selectedOption:onChange:)-215ms": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createPicker()-70yve": {
   "abstract" : [
     {
       "text" : "Creates a picker for selecting from a finite set of options (e.g. a radio button group,",
@@ -2208,67 +2031,7 @@
     },
     {
       "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "options"
-    },
-    {
-      "kind" : "text",
-      "text" : ": ["
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : "], "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "selectedOption"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : "?, "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "onChange"
-    },
-    {
-      "kind" : "text",
-      "text" : ": ("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : "?) -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
+      "text" : "() -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -2283,13 +2046,13 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPicker(options:selectedOption:onChange:)-215ms",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createPicker()-70yve",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createPicker(options:selectedOption:onChange:)",
+  "title" : "createPicker()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createpicker(options:selectedoption:onchange:)-215ms"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createpicker()-70yve"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createScrollContainer(for:)-1q6bx": {
   "abstract" : [
@@ -2361,18 +2124,65 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createscrollcontainer(for:)-1q6bx"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSlider(minimum:maximum:value:decimalPlaces:onChange:)-3a7e2": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSingleChildContainer()-2u3xa": {
   "abstract" : [
     {
-      "text" : "Creates a slider for choosing a numerical value from a range with a limit",
+      "text" : "Creates a single-child container. Predominantly used to implement ",
       "type" : "text"
     },
     {
-      "text" : " ",
-      "type" : "text"
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
+      "isActive" : true,
+      "type" : "reference"
     },
     {
-      "text" : "on the number of decimal places displayed and a change handler. Predominantly used",
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "createSingleChildContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : "() -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSingleChildContainer()-2u3xa",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "createSingleChildContainer()",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createsinglechildcontainer()-2u3xa"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSlider()-24c8w": {
+  "abstract" : [
+    {
+      "text" : "Creates a slider for choosing a numerical value from a range. Predominantly used",
       "type" : "text"
     },
     {
@@ -2409,101 +2219,7 @@
     },
     {
       "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "minimum"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "maximum"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "value"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "decimalPlaces"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "onChange"
-    },
-    {
-      "kind" : "text",
-      "text" : ": ("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
+      "text" : "() -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -2518,18 +2234,26 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSlider(minimum:maximum:value:decimalPlaces:onChange:)-3a7e2",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSlider()-24c8w",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createSlider(minimum:maximum:value:decimalPlaces:onChange:)",
+  "title" : "createSlider()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createslider(minimum:maximum:value:decimalplaces:onchange:)-3a7e2"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createslider()-24c8w"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSpacer(expandHorizontally:expandVertically:)-3grgi": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSpacer()-8z9yz": {
   "abstract" : [
     {
-      "text" : "Creates contentless spacer that can expand along either axis or both.",
+      "text" : "Creates a contentless spacer that can expand along either axis (or both). The spacer",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "can have a minimum size to ensure that it takes up at least a cetain amount of space.",
       "type" : "text"
     }
   ],
@@ -2549,41 +2273,7 @@
     },
     {
       "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "expandHorizontally"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "expandVertically"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
+      "text" : "() -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -2598,13 +2288,13 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSpacer(expandHorizontally:expandVertically:)-3grgi",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSpacer()-8z9yz",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createSpacer(expandHorizontally:expandVertically:)",
+  "title" : "createSpacer()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createspacer(expandhorizontally:expandvertically:)-3grgi"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createspacer()-8z9yz"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSplitView(leadingChild:trailingChild:)-3iqgg": {
   "abstract" : [
@@ -2700,7 +2390,94 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createsplitview(leadingchild:trailingchild:)-3iqgg"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSwitch(active:onChange:)-1gmnm": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createStyleContainer(for:)-6gzp3": {
+  "abstract" : [
+    {
+      "text" : "Creates a single-child container which can control the styles of its child.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Used to implement style modifiers; i.e. ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/foregroundColor(_:)",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "createStyleContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "for"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createStyleContainer(for:)-6gzp3",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "createStyleContainer(for:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createstylecontainer(for:)-6gzp3"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createSwitch()-2f7xv": {
   "abstract" : [
     {
       "text" : "Creates a switch that is either on or off. Predominantly used by ",
@@ -2727,50 +2504,7 @@
     },
     {
       "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "active"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "onChange"
-    },
-    {
-      "kind" : "text",
-      "text" : ": ("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
+      "text" : "() -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -2785,13 +2519,13 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch(active:onChange:)-1gmnm",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch()-2f7xv",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createSwitch(active:onChange:)",
+  "title" : "createSwitch()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createswitch(active:onchange:)-1gmnm"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createswitch()-2f7xv"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTable(rows:columns:)-36alh": {
   "abstract" : [
@@ -2873,7 +2607,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createtable(rows:columns:)-36alh"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextField(content:placeholder:onChange:)-7zu87": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextField()-6jp68": {
   "abstract" : [
     {
       "text" : "Creates an editable text field with a placeholder label and change handler. The",
@@ -2921,67 +2655,7 @@
     },
     {
       "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "content"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "placeholder"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "onChange"
-    },
-    {
-      "kind" : "text",
-      "text" : ": ("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
+      "text" : "() -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -2996,15 +2670,15 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextField(content:placeholder:onChange:)-7zu87",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextField()-6jp68",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createTextField(content:placeholder:onChange:)",
+  "title" : "createTextField()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtextfield(content:placeholder:onchange:)-7zu87"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtextfield()-6jp68"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextView(content:shouldWrap:)-f6zp": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextView()": {
   "abstract" : [
     {
       "text" : "Creates a non-editable text view with optional text wrapping. Predominantly used",
@@ -3028,7 +2702,48 @@
       "type" : "text"
     }
   ],
-  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "createTextView"
+    },
+    {
+      "kind" : "text",
+      "text" : "() -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView()",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "createTextView()",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtextview()"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextView(content:shouldWrap:)": {
+  "abstract" : [
+
+  ],
   "fragments" : [
     {
       "kind" : "keyword",
@@ -3093,15 +2808,14 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView(content:shouldWrap:)-f6zp",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView(content:shouldWrap:)",
   "kind" : "symbol",
-  "required" : true,
   "role" : "symbol",
   "title" : "createTextView(content:shouldWrap:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtextview(content:shouldwrap:)-f6zp"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtextview(content:shouldwrap:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createToggle(label:active:onChange:)-1v1kf": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createToggle()-814v1": {
   "abstract" : [
     {
       "text" : "Creates a labelled toggle that is either on or off. Predominantly used by",
@@ -3137,67 +2851,7 @@
     },
     {
       "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "label"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "active"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "onChange"
-    },
-    {
-      "kind" : "text",
-      "text" : ": ("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
+      "text" : "() -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -3212,26 +2866,18 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle(label:active:onChange:)-1v1kf",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createToggle()-814v1",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createToggle(label:active:onChange:)",
+  "title" : "createToggle()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtoggle(label:active:onchange:)-1v1kf"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtoggle()-814v1"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createVStack(spacing:)-2yalt": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createVStack()-1wwt5": {
   "abstract" : [
     {
-      "text" : "Creates a vertical container with the specified spacing between children.",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "Predominantly used by ",
+      "text" : "Creates a vertical container. Predominantly used by ",
       "type" : "text"
     },
     {
@@ -3260,24 +2906,7 @@
     },
     {
       "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "spacing"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
+      "text" : "() -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -3292,13 +2921,13 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createVStack(spacing:)-2yalt",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createVStack()-1wwt5",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createVStack(spacing:)",
+  "title" : "createVStack()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createvstack(spacing:)-2yalt"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createvstack()-1wwt5"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createWindow(withDefaultSize:)": {
   "abstract" : [
@@ -3377,76 +3006,6 @@
   "title" : "createWindow(withDefaultSize:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createwindow(withdefaultsize:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/getChild(ofPaddingContainer:)-31zda": {
-  "abstract" : [
-    {
-      "text" : "Gets the single child of a padding container.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "getChild"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofPaddingContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getChild(ofPaddingContainer:)-31zda",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "getChild(ofPaddingContainer:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/getchild(ofpaddingcontainer:)-31zda"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/getContent(ofTextField:)-755gm": {
   "abstract" : [
@@ -3617,10 +3176,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/init(appidentifier:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/removeChild(_:fromListView:)-9ca9f": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/removeChild(_:fromLayoutTransparentStack:)-9bh0l": {
   "abstract" : [
     {
-      "text" : "Removes a child from wherever it is in a list view (if it exists).",
+      "text" : "Removes a child from a layout-transparent stack. Does nothing if the child doesn’t exist.",
       "type" : "text"
     }
   ],
@@ -3660,7 +3219,7 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "fromListView"
+      "text" : "fromLayoutTransparentStack"
     },
     {
       "kind" : "text",
@@ -3683,13 +3242,13 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeChild(_:fromListView:)-9ca9f",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeChild(_:fromLayoutTransparentStack:)-9bh0l",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "removeChild(_:fromListView:)",
+  "title" : "removeChild(_:fromLayoutTransparentStack:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/removechild(_:fromlistview:)-9ca9f"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/removechild(_:fromlayouttransparentstack:)-9bh0l"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/removeChild(_:fromOneOfContainer:)-1glc3": {
   "abstract" : [
@@ -3890,81 +3449,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/runmainloop(_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setAction(ofButton:to:)-5s3rv": {
-  "abstract" : [
-    {
-      "text" : "Sets a button’s action (triggered on click). Replaces any existing actions.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setAction"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofButton"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": () -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setAction(ofButton:to:)-5s3rv",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setAction(ofButton:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setaction(ofbutton:to:)-5s3rv"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setCell(at:inTable:to:)-3gjpn": {
   "abstract" : [
     {
@@ -4064,7 +3548,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/setcell(at:intable:to:)-3gjpn"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setChild(ofEitherContainer:to:)-6uzwb": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setChild(ofSingleChildContainer:to:)-e1ut": {
   "abstract" : [
     {
       "text" : "Sets the single child of an either container.",
@@ -4091,7 +3575,7 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "ofEitherContainer"
+      "text" : "ofSingleChildContainer"
     },
     {
       "kind" : "text",
@@ -4138,13 +3622,13 @@
       "text" : "?)"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChild(ofEitherContainer:to:)-6uzwb",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChild(ofSingleChildContainer:to:)-e1ut",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "setChild(ofEitherContainer:to:)",
+  "title" : "setChild(ofSingleChildContainer:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setchild(ofeithercontainer:to:)-6uzwb"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setchild(ofsinglechildcontainer:to:)-e1ut"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setChild(ofWindow:to:)": {
   "abstract" : [
@@ -4385,382 +3869,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/setcontent(oftextfield:to:)-21686"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setContent(ofTextView:to:)-7m8bp": {
-  "abstract" : [
-    {
-      "text" : "Sets the content of a non-editable text view.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setContent"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofTextView"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setContent(ofTextView:to:)-7m8bp",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setContent(ofTextView:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setcontent(oftextview:to:)-7m8bp"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setDecimalPlaces(ofSlider:to:)-7l3ai": {
-  "abstract" : [
-    {
-      "text" : "Sets the number of decimal places displayed by a slider.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setDecimalPlaces"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofSlider"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setDecimalPlaces(ofSlider:to:)-7l3ai",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setDecimalPlaces(ofSlider:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setdecimalplaces(ofslider:to:)-7l3ai"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setExpandHorizontally(ofSpacer:to:)-4d6zt": {
-  "abstract" : [
-    {
-      "text" : "Sets whether a spacer should expand along the horizontal axis.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setExpandHorizontally"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofSpacer"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setExpandHorizontally(ofSpacer:to:)-4d6zt",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setExpandHorizontally(ofSpacer:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setexpandhorizontally(ofspacer:to:)-4d6zt"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setExpandVertically(ofSpacer:to:)-3mp2c": {
-  "abstract" : [
-    {
-      "text" : "Sets whether a spacer should expand along the vertical axis.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setExpandVertically"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofSpacer"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setExpandVertically(ofSpacer:to:)-3mp2c",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setExpandVertically(ofSpacer:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setexpandvertically(ofspacer:to:)-3mp2c"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setFilePath(ofImageView:to:)-1cqj7": {
-  "abstract" : [
-    {
-      "text" : "Sets the path of the image file being displayed by an image view.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setFilePath"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofImageView"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setFilePath(ofImageView:to:)-1cqj7",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setFilePath(ofImageView:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setfilepath(ofimageview:to:)-1cqj7"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setForegroundColor(ofForegroundColorContainer:to:)-2tyr9": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setForegroundColor(ofStyleContainer:to:)-5aoam": {
   "abstract" : [
     {
       "text" : "Sets the foreground color of a foreground color container.",
@@ -4787,7 +3896,7 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "ofForegroundColorContainer"
+      "text" : "ofStyleContainer"
     },
     {
       "kind" : "text",
@@ -4827,1081 +3936,13 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setForegroundColor(ofForegroundColorContainer:to:)-2tyr9",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setForegroundColor(ofStyleContainer:to:)-5aoam",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "setForegroundColor(ofForegroundColorContainer:to:)",
+  "title" : "setForegroundColor(ofStyleContainer:to:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setforegroundcolor(offoregroundcolorcontainer:to:)-2tyr9"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setIsActive(ofSwitch:to:)-6w4gl": {
-  "abstract" : [
-    {
-      "text" : "Sets the state of the switch to active or not.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setIsActive"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofSwitch"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setIsActive(ofSwitch:to:)-6w4gl",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setIsActive(ofSwitch:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setisactive(ofswitch:to:)-6w4gl"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setIsActive(ofToggle:to:)-6swno": {
-  "abstract" : [
-    {
-      "text" : "Sets the state of the button to active or not.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setIsActive"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofToggle"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setIsActive(ofToggle:to:)-6swno",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setIsActive(ofToggle:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setisactive(oftoggle:to:)-6swno"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setLabel(ofButton:to:)-4x3t5": {
-  "abstract" : [
-    {
-      "text" : "Sets a button’s label.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setLabel"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofButton"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setLabel(ofButton:to:)-4x3t5",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setLabel(ofButton:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setlabel(ofbutton:to:)-4x3t5"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setMaximum(ofSlider:to:)-6tatt": {
-  "abstract" : [
-    {
-      "text" : "Sets the maximum selectable value of a slider (inclusive).",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setMaximum"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofSlider"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMaximum(ofSlider:to:)-6tatt",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setMaximum(ofSlider:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setmaximum(ofslider:to:)-6tatt"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setMinHeight(ofFrameContainer:to:)-69hwd": {
-  "abstract" : [
-    {
-      "text" : "Sets the minimum height of a frame container.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setMinHeight"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofFrameContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMinHeight(ofFrameContainer:to:)-69hwd",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setMinHeight(ofFrameContainer:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setminheight(offramecontainer:to:)-69hwd"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setMinWidth(ofFrameContainer:to:)-6roxc": {
-  "abstract" : [
-    {
-      "text" : "Sets the minimum width of a frame container.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setMinWidth"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofFrameContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMinWidth(ofFrameContainer:to:)-6roxc",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setMinWidth(ofFrameContainer:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setminwidth(offramecontainer:to:)-6roxc"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setMinimum(ofSlider:to:)-2h25n": {
-  "abstract" : [
-    {
-      "text" : "Sets the minimum selectable value of a slider (inclusive).",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setMinimum"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofSlider"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setMinimum(ofSlider:to:)-2h25n",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setMinimum(ofSlider:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setminimum(ofslider:to:)-2h25n"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofPicker:to:)-7ksqa": {
-  "abstract" : [
-    {
-      "text" : "Sets the change handler of a picker (replaces any existing change handlers). The change",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "handler is called whenever a selection is made (even if the same option is picked again).",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setOnChange"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofPicker"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": ("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : "?) -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofPicker:to:)-7ksqa",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setOnChange(ofPicker:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofpicker:to:)-7ksqa"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofSlider:to:)-7j3la": {
-  "abstract" : [
-    {
-      "text" : "Sets the change handler of a slider (replaces any existing change handlers).",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setOnChange"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofSlider"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": ("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofSlider:to:)-7j3la",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setOnChange(ofSlider:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofslider:to:)-7j3la"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofSwitch:to:)-8rhir": {
-  "abstract" : [
-    {
-      "text" : "Sets the change handler of a switch (replaces any existing change handlers).",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "The change handler is called whenever the switch is turned on or off.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setOnChange"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofSwitch"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": ("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofSwitch:to:)-8rhir",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setOnChange(ofSwitch:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(ofswitch:to:)-8rhir"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofTextField:to:)-6bixo": {
-  "abstract" : [
-    {
-      "text" : "Sets the change handler of an editable text field (replace any existing change",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "handlers). The change handler is called whenever the displayed value changes.",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "The backend shouldn’t wait until the user finishes typing to call the change handler;",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "it should allow live access to the value.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setOnChange"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofTextField"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": ("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofTextField:to:)-6bixo",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setOnChange(ofTextField:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(oftextfield:to:)-6bixo"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOnChange(ofToggle:to:)-8k7mc": {
-  "abstract" : [
-    {
-      "text" : "Sets the change handler of a toggle (replaces any existing change handlers).",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "The change handler is called whenever the button is toggled on or off.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setOnChange"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofToggle"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": ("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOnChange(ofToggle:to:)-8k7mc",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setOnChange(ofToggle:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setonchange(oftoggle:to:)-8k7mc"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setOptions(ofPicker:to:)-2wmpb": {
-  "abstract" : [
-    {
-      "text" : "Sets the options for a picker to display.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setOptions"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofPicker"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": ["
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : "])"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setOptions(ofPicker:to:)-2wmpb",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setOptions(ofPicker:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setoptions(ofpicker:to:)-2wmpb"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setforegroundcolor(ofstylecontainer:to:)-5aoam"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setPadding(ofPaddingContainer:top:bottom:leading:trailing:)-3i82z": {
   "abstract" : [
@@ -6028,81 +4069,6 @@
   "title" : "setPadding(ofPaddingContainer:top:bottom:leading:trailing:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/setpadding(ofpaddingcontainer:top:bottom:leading:trailing:)-3i82z"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setPlaceholder(ofTextField:to:)-7mrkp": {
-  "abstract" : [
-    {
-      "text" : "Sets the placeholder label of an editable text field.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setPlaceholder"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofTextField"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setPlaceholder(ofTextField:to:)-7mrkp",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setPlaceholder(ofTextField:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setplaceholder(oftextfield:to:)-7mrkp"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setResizability(ofWindow:to:)": {
   "abstract" : [
@@ -6494,6 +4460,156 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/setspacing(ofvstack:to:)-3m3cm"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setState(ofSwitch:to:)-70pzc": {
+  "abstract" : [
+    {
+      "text" : "Sets the state of the switch to active or not.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setState"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofSwitch"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "to"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setState(ofSwitch:to:)-70pzc",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "setState(ofSwitch:to:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setstate(ofswitch:to:)-70pzc"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setState(ofToggle:to:)-5y479": {
+  "abstract" : [
+    {
+      "text" : "Sets the state of the button to active or not.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setState"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofToggle"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "to"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setState(ofToggle:to:)-5y479",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "setState(ofToggle:to:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setstate(oftoggle:to:)-5y479"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setTitle(ofWindow:to:)": {
   "abstract" : [
     {
@@ -6646,7 +4762,23 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setVisibleChild(ofOneOfContainer:to:)-955ak": {
   "abstract" : [
     {
-      "text" : "Sets the visible child of a one-of container.",
+      "text" : "Sets the visible child of a one-of container. Uses a widget reference instead of an",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "index since the visible child should remain the same even if the visible child’s",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "index changes (e.g. due to a child being removed from before the visible child).",
       "type" : "text"
     }
   ],
@@ -6724,81 +4856,6 @@
   "title" : "setVisibleChild(ofOneOfContainer:to:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/setvisiblechild(ofoneofcontainer:to:)-955ak"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setWrap(ofTextView:to:)-6xmm4": {
-  "abstract" : [
-    {
-      "text" : "Sets whether to wrap the text content of a non-editable text view or not.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "setWrap"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "ofTextView"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "to"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setWrap(ofTextView:to:)-6xmm4",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "setWrap(ofTextView:to:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/setwrap(oftextview:to:)-6xmm4"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/show(widget:)": {
   "abstract" : [
@@ -6960,10 +5017,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/show(window:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateListView(_:)-9cu5o": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateButton(_:label:action:)-93wmg": {
   "abstract" : [
     {
-      "text" : "Updates the list view’s orientation to match that of its nearest oriented parent.",
+      "text" : "Sets a button’s label and action. The action replaces any existing actions..",
       "type" : "text"
     }
   ],
@@ -6979,7 +5036,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "updateListView"
+      "text" : "updateButton"
     },
     {
       "kind" : "text",
@@ -6999,37 +5056,55 @@
     },
     {
       "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "label"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "action"
+    },
+    {
+      "kind" : "text",
+      "text" : ": () -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateListView(_:)-9cu5o",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateButton(_:label:action:)-93wmg",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "updateListView(_:)",
+  "title" : "updateButton(_:label:action:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatelistview(_:)-9cu5o"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatebutton(_:label:action:)-93wmg"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updatePassthroughVStack(_:)-9v2cc": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateFrameContainer(_:minWidth:minHeight:)-7ho08": {
   "abstract" : [
     {
-      "text" : "Updates the orientation of a layout-transparent container to match its nearest",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "oriented parent (preferring to be vertical if it doesn’t have any oriented",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "parents). Called after any change that could potentially affect parent orientations.",
+      "text" : "Sets the minimum width and minimum height of a frame container.",
       "type" : "text"
     }
   ],
@@ -7045,7 +5120,166 @@
     },
     {
       "kind" : "identifier",
-      "text" : "updatePassthroughVStack"
+      "text" : "updateFrameContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "minWidth"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "minHeight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateFrameContainer(_:minWidth:minHeight:)-7ho08",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "updateFrameContainer(_:minWidth:minHeight:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updateframecontainer(_:minwidth:minheight:)-7ho08"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateImageView(_:filePath:)-6d52v": {
+  "abstract" : [
+    {
+      "text" : "Sets the path of the image file being displayed by an image view.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateImageView"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "filePath"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateImageView(_:filePath:)-6d52v",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "updateImageView(_:filePath:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updateimageview(_:filepath:)-6d52v"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateLayoutTransparentStack(_:)-5gydf": {
+  "abstract" : [
+    {
+      "text" : "Updates a layout-transparent stack’s orientation to match that of its nearest oriented",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "parent.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateLayoutTransparentStack"
     },
     {
       "kind" : "text",
@@ -7068,13 +5302,772 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updatePassthroughVStack(_:)-9v2cc",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateLayoutTransparentStack(_:)-5gydf",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "updatePassthroughVStack(_:)",
+  "title" : "updateLayoutTransparentStack(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatepassthroughvstack(_:)-9v2cc"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatelayouttransparentstack(_:)-5gydf"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updatePicker(_:options:onChange:)-2hs2f": {
+  "abstract" : [
+    {
+      "text" : "Sets the options for a picker to display, along with a change handler for when its",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "selected option changes. The change handler replaces any existing change handlers and",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "is called whenever a selection is made (even if the same option is picked again).",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updatePicker"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "options"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : "], "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "onChange"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : "?) -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updatePicker(_:options:onChange:)-2hs2f",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "updatePicker(_:options:onChange:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatepicker(_:options:onchange:)-2hs2f"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateSlider(_:minimum:maximum:decimalPlaces:onChange:)-8we73": {
+  "abstract" : [
+    {
+      "text" : "Sets the minimum and maximum selectable value of a slider (inclusive), the number of decimal",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "places displayed by the slider, and the slider’s change handler (replaces any existing",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "change handlers).",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateSlider"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "minimum"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "maximum"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "decimalPlaces"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "onChange"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSlider(_:minimum:maximum:decimalPlaces:onChange:)-8we73",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "updateSlider(_:minimum:maximum:decimalPlaces:onChange:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updateslider(_:minimum:maximum:decimalplaces:onchange:)-8we73"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateSpacer(_:expandHorizontally:expandVertically:minSize:)-5wd61": {
+  "abstract" : [
+    {
+      "text" : "Sets whether a spacer should expand along the horizontal and vertical axes, along",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "with a minimum size to use along expanding axes.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateSpacer"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "expandHorizontally"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "expandVertically"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "minSize"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSpacer(_:expandHorizontally:expandVertically:minSize:)-5wd61",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "updateSpacer(_:expandHorizontally:expandVertically:minSize:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatespacer(_:expandhorizontally:expandvertically:minsize:)-5wd61"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateSwitch(_:onChange:)-9nbu9": {
+  "abstract" : [
+    {
+      "text" : "Sets the change handler of a switch (replaces any existing change handlers).",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "The change handler is called whenever the button is toggled on or off.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateSwitch"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "onChange"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSwitch(_:onChange:)-9nbu9",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "updateSwitch(_:onChange:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updateswitch(_:onchange:)-9nbu9"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateTextField(_:placeholder:onChange:)-55dak": {
+  "abstract" : [
+    {
+      "text" : "Sets the placeholder label and change handler of an editable text field. The new",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "change handler replaces any existing change handlers, and is called whenever the",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "displayed value changes.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateTextField"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "placeholder"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "onChange"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateTextField(_:placeholder:onChange:)-55dak",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "updateTextField(_:placeholder:onChange:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatetextfield(_:placeholder:onchange:)-55dak"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateTextView(_:content:shouldWrap:)-6q66p": {
+  "abstract" : [
+    {
+      "text" : "Sets the content and wrapping mode of a non-editable text view. If ",
+      "type" : "text"
+    },
+    {
+      "code" : "shouldWrap",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "is ",
+      "type" : "text"
+    },
+    {
+      "code" : "false",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ", text shouldn’t be wrapped onto multiple lines.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateTextView"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "content"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "shouldWrap"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateTextView(_:content:shouldWrap:)-6q66p",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "updateTextView(_:content:shouldWrap:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatetextview(_:content:shouldwrap:)-6q66p"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateToggle(_:label:onChange:)-4usuo": {
+  "abstract" : [
+    {
+      "text" : "Sets the label and change handler of a toggle (replaces any existing change handlers).",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "The change handler is called whenever the button is toggled on or off.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateToggle"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "label"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "onChange"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateToggle(_:label:onChange:)-4usuo",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "updateToggle(_:label:onChange:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatetoggle(_:label:onchange:)-4usuo"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Button": {
   "abstract" : [
@@ -7152,6 +6145,40 @@
   "title" : "EitherView",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/eitherview"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach": {
+  "abstract" : [
+    {
+      "text" : "A view that displays a variable amount of children.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ForEach"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ForEach"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ForEach",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/foreach"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack": {
   "abstract" : [

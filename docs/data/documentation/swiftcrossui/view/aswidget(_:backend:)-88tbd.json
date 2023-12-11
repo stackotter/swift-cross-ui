@@ -257,9 +257,8 @@
               "type" : "text"
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createEitherContainer(initiallyContaining:)-9e2or",
-              "isActive" : true,
-              "type" : "reference"
+              "code" : "AppBackend\/createEitherContainer(initiallyContaining:)",
+              "type" : "codeVoice"
             },
             {
               "text" : " as a container for the currently",
@@ -357,128 +356,6 @@
   "title" : "AppBackend",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createEitherContainer(initiallyContaining:)-9e2or": {
-  "abstract" : [
-    {
-      "text" : "Creates a single-child container suitable for ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "createEitherContainer"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "initiallyContaining"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : "?) -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createEitherContainer(initiallyContaining:)-9e2or",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "createEitherContainer(initiallyContaining:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createeithercontainer(initiallycontaining:)-9e2or"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView": {
-  "abstract" : [
-    {
-      "text" : "A view used by ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " to support if\/else conditional statements.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "EitherView"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "EitherView"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "EitherView",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/eitherview"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach": {
   "abstract" : [
