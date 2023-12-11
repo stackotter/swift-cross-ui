@@ -183,8 +183,8 @@ let package = Package(
             targets: ["RandomNumberGeneratorExample"]
         ),
         .executable(
-            name: "WindowPropertiesExample",
-            targets: ["WindowPropertiesExample"]
+            name: "WindowingExample",
+            targets: ["WindowingExample"]
         ),
         .executable(
             name: "GreetingGeneratorExample",
@@ -221,9 +221,9 @@ let package = Package(
             path: "Examples/RandomNumberGenerator"
         ),
         .executableTarget(
-            name: "WindowPropertiesExample",
+            name: "WindowingExample",
             dependencies: exampleDependencies,
-            path: "Examples/WindowProperties",
+            path: "Examples/Windowing",
             resources: [.copy("Banner.png")]
         ),
         .executableTarget(

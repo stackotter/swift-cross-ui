@@ -2,18 +2,18 @@ import Foundation
 import GtkBackend
 import SwiftCrossUI
 
-class WindowPropertiesAppState: Observable {
+class WindowingAppState: Observable {
     @Observed var title = "My window"
     @Observed var resizable = false
 }
 
 @main
-struct WindowPropertiesApp: App {
+struct WindowingApp: App {
     typealias Backend = GtkBackend
 
     let identifier = "dev.stackotter.WindowPropertiesApp"
 
-    let state = WindowPropertiesAppState()
+    let state = WindowingAppState()
 
     var body: some Scene {
         WindowGroup(state.title) {
