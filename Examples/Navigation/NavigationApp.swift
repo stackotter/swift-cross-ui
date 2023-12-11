@@ -19,10 +19,6 @@ enum HumanitiesSubject: Codable {
 
 class NavigationAppState: Observable {
     @Observed var path = NavigationPath()
-
-    var pathWrapper: Observed<NavigationPath> {
-        _path
-    }
 }
 
 @main

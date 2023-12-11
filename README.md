@@ -9,11 +9,11 @@
     <img alt="GitHub" src="https://img.shields.io/github/license/stackotter/swift-cross-ui">
 </p>
 
-A SwiftUI-like framework for creating cross-platform apps in Swift (using Gtk 4 as the backend).
+A SwiftUI-like framework for creating cross-platform apps in Swift.
 
 This package is still quite a work-in-progress so don't expect it to be very useful or stable yet.
 
-**NOTE**: SwiftCrossUI does not attempt to replicate SwiftUI's API because SwiftCrossUI is intended to be simpler than SwiftUI. However, many concepts from SwiftUI should still be transferrable.
+**NOTE**: SwiftCrossUI does not attempt to replicate SwiftUI's API perfectly because SwiftCrossUI is intended to be simpler than SwiftUI. However, many concepts from SwiftUI should still be transferrable.
 
 ## Community
 
@@ -54,16 +54,16 @@ struct CounterApp: App {
     typealias Backend = GtkBackend
 
     let identifier = "dev.stackotter.CounterApp"
-    
+
     let state = CounterState()
-    
-    let windowProperties = WindowProperties(title: "CounterApp")
-    
+
     var body: some ViewContent {
-        HStack {
-            Button("-") { state.count -= 1 }
-            Text("Count: \(state.count)")
-            Button("+") { state.count += 1 }
+        WindowGroup("CounterApp") {
+            HStack {
+                Button("-") { state.count -= 1 }
+                Text("Count: \(state.count)")
+                Button("+") { state.count += 1 }
+            }
         }
     }
 }
@@ -82,10 +82,14 @@ To see all of the examples, run these commands:
 ```sh
 swift run CounterExample
 swift run RandomNumberGeneratorExample
-swift run WindowPropertiesExample
+swift run WindowingExample
 swift run GreetingGeneratorExample
 swift run FileViewerExample
 swift run NavigationExample
+swift run SpitExample
+swift run StressTestExample
+swift run SpreadsheetExample
+swift run ControlsExample
 ```
 
 All examples use the `GtkBackend` but can easily be updated to test out other backends.
@@ -100,17 +104,6 @@ Here's the [documentation site](https://stackotter.github.io/swift-cross-ui/docu
 2. Gtk 4 (only required for GtkBackend)
 3. clang (only required on Linux for GtkBackend)
 4. Qt5 (only required for QtBackend)
-
-### Installing Qt5
-
-```sh
-# On macOS
-brew install qt@5
-brew link qt@5
-
-# Linux with apt
-sudo apt install qtcreator qtbase5-dev qt5-qmake cmake
-```
 
 ### macOS: Installing Gtk 4
 
@@ -194,6 +187,17 @@ If you run into issues (potentially related to `libsass`), try installing global
 `vcpkg_installed\<triplet>\bin` contains all required DLLs for running a SwiftCrossUI application on Windows, but not all of them are necessary.
 
 To identify which of them are required, you can use [the Dependencies tool](https://github.com/lucasg/Dependencies) to inspect the compiled executable, and copy all vcpkg-installed DLLs along with the executable for distribution.
+
+### Installing Qt5
+
+```sh
+# On macOS
+brew install qt@5
+brew link qt@5
+
+# Linux with apt
+sudo apt install qtcreator qtbase5-dev qt5-qmake cmake
+```
 
 ## Usage
 
