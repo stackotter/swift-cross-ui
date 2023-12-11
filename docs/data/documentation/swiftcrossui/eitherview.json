@@ -752,7 +752,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraph": {
   "abstract" : [
     {
-      "text" : "The root of the view graph which shadows the app’s view structure with extra metadata,",
+      "text" : "The root of the view graph which shadows a root view’s structure with extra metadata,",
       "type" : "text"
     },
     {
@@ -760,23 +760,7 @@
       "type" : "text"
     },
     {
-      "text" : "cross-update state persistence, and behind the scenes backend widget handling. This is",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "where state updates are propagated through the view hierarchy, and also where view bodies",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "get recomputed.",
+      "text" : "cross-update state persistence, and behind the scenes backend widget handling.",
       "type" : "text"
     }
   ],

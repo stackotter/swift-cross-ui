@@ -86,20 +86,28 @@
                 {
                   "inlineContent" : [
                     {
-                      "code" : "WindowPropertiesExample",
+                      "code" : "WindowingExample",
                       "type" : "codeVoice"
                     },
                     {
-                      "text" : ", a simple app showcasing some of the available window properties. See ",
+                      "text" : ", a simple app showcasing how ",
                       "type" : "text"
                     },
                     {
-                      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties",
+                      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroup",
                       "isActive" : true,
                       "type" : "reference"
                     },
                     {
-                      "text" : " for more information.",
+                      "text" : " is used to make multi-window apps and",
+                      "type" : "text"
+                    },
+                    {
+                      "text" : " ",
+                      "type" : "text"
+                    },
+                    {
+                      "text" : "control the properties of each window.",
                       "type" : "text"
                     }
                   ],
@@ -260,7 +268,7 @@
           "code" : [
             "swift run CounterExample",
             "swift run RandomNumberGeneratorExample",
-            "swift run WindowPropertiesExample",
+            "swift run WindowingExample",
             "swift run GreetingGeneratorExample",
             "swift run FileViewerExample",
             "swift run NavigationExample",
@@ -403,10 +411,26 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/navigationstack"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowGroup": {
   "abstract" : [
     {
-      "text" : "The basic properties for a window.",
+      "text" : "A scene that presents a group of identically structured windows. Currently",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "only supports having a single instance of the window but will eventually",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "support duplicating the window.",
       "type" : "text"
     }
   ],
@@ -421,21 +445,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "WindowProperties"
+      "text" : "WindowGroup"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroup",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "WindowProperties"
+      "text" : "WindowGroup"
     }
   ],
   "role" : "symbol",
-  "title" : "WindowProperties",
+  "title" : "WindowGroup",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/windowproperties"
+  "url" : "\/documentation\/swiftcrossui\/windowgroup"
 }
 }
 }

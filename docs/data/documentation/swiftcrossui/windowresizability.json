@@ -1,0 +1,317 @@
+{
+  "abstract" : [
+    {
+      "text" : "The level of resizability of a window.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowResizability"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:12SwiftCrossUI18WindowResizabilityO",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "enum"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "WindowResizability"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "WindowResizability"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Enumeration",
+    "symbolKind" : "enum",
+    "title" : "WindowResizability"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "Linux"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "enum"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "WindowResizability"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "relationshipsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/SQ",
+        "doc:\/\/SwiftCrossUI\/SH"
+      ],
+      "kind" : "relationships",
+      "title" : "Conforms To",
+      "type" : "conformsTo"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowResizability\/automatic",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowResizability\/contentMinSize",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowResizability\/contentSize"
+      ],
+      "title" : "Enumeration Cases"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowResizability\/Equatable-Implementations"
+      ],
+      "title" : "Default Implementations"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/windowresizability"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/SH": {
+  "identifier" : "doc:\/\/SwiftCrossUI\/SH",
+  "title" : "Swift.Hashable",
+  "type" : "unresolvable"
+},
+"doc://SwiftCrossUI/SQ": {
+  "identifier" : "doc:\/\/SwiftCrossUI\/SQ",
+  "title" : "Swift.Equatable",
+  "type" : "unresolvable"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowResizability": {
+  "abstract" : [
+    {
+      "text" : "The level of resizability of a window.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "WindowResizability"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowResizability",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "WindowResizability"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "WindowResizability",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowresizability"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowResizability/Equatable-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowResizability\/Equatable-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Equatable Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowresizability\/equatable-implementations"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowResizability/automatic": {
+  "abstract" : [
+    {
+      "text" : "SwiftCrossUI decides whether to use ",
+      "type" : "text"
+    },
+    {
+      "code" : "contentSize",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " or ",
+      "type" : "text"
+    },
+    {
+      "code" : "contentMinSize",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " depending",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "on the type of scene. This currently means it’ll just default to ",
+      "type" : "text"
+    },
+    {
+      "code" : "contentMinSize",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "automatic"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowResizability\/automatic",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "WindowResizability.automatic",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowresizability\/automatic"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowResizability/contentMinSize": {
+  "abstract" : [
+    {
+      "text" : "The window is resizable but must be at least as big as its content.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "contentMinSize"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowResizability\/contentMinSize",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "WindowResizability.contentMinSize",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowresizability\/contentminsize"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowResizability/contentSize": {
+  "abstract" : [
+    {
+      "text" : "The window is not resizable and its size is tied to the size of its content.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "contentSize"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowResizability\/contentSize",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "WindowResizability.contentSize",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowresizability\/contentsize"
+}
+}
+}

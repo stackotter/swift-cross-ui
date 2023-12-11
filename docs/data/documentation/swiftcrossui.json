@@ -76,6 +76,7 @@
       ],
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SceneBuilder",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder"
       ],
       "title" : "App Structure"
@@ -156,7 +157,9 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyWidget"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyWidget",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleSceneNode2",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroupNode"
       ],
       "title" : "Classes"
     },
@@ -164,12 +167,16 @@
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DoubleConvertible",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ObservedMarkerProtocol"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ObservedMarkerProtocol",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SceneGraphNode"
       ],
       "title" : "Protocols"
     },
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Size",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene2",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView10",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView2",
@@ -190,7 +197,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren7",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren8",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren9",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroup"
       ],
       "title" : "Structures"
     },
@@ -198,7 +205,8 @@
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/InheritedOrientation",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ToggleStyle"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ToggleStyle",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowResizability"
       ],
       "title" : "Enumerations"
     },
@@ -1562,6 +1570,132 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/publisher"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scene": {
+  "abstract" : [
+    {
+      "text" : "A scene wraps a root view and dictates how it is displayed (e.g. in a window or",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "a menu bar). Scenes can also be a composition of multiple child scenes instead",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "of wrapping a root view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Scene"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Scene"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Scene",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scene"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/SceneBuilder": {
+  "abstract" : [
+    {
+      "text" : "Builds an app’s root scene by composing other scenes together.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SceneBuilder"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SceneBuilder",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SceneBuilder"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "SceneBuilder",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scenebuilder"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/SceneGraphNode": {
+  "abstract" : [
+    {
+      "text" : "A persistent representation of a scene that maintains its state even when the scene",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "itself gets recomputed. Required to store view graphs and widget handles etc.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SceneGraphNode"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SceneGraphNode",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SceneGraphNode"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "SceneGraphNode",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scenegraphnode"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView": {
   "abstract" : [
     {
@@ -1607,6 +1741,40 @@
   "title" : "ScrollView",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scrollview"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Size": {
+  "abstract" : [
+    {
+      "text" : "A 2-dimensional size (in unspecified units).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Size"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Size",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Size"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Size",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/size"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider": {
   "abstract" : [
@@ -1926,6 +2094,68 @@
   "title" : "ToggleStyle",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/togglestyle"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleScene2": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene2"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene2",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene2"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleScene2",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tuplescene2"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleSceneNode2": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleSceneNode2"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleSceneNode2",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleSceneNode2"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleSceneNode2",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tuplescenenode2"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack": {
   "abstract" : [
@@ -2492,7 +2722,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraph": {
   "abstract" : [
     {
-      "text" : "The root of the view graph which shadows the app’s view structure with extra metadata,",
+      "text" : "The root of the view graph which shadows a root view’s structure with extra metadata,",
       "type" : "text"
     },
     {
@@ -2500,23 +2730,7 @@
       "type" : "text"
     },
     {
-      "text" : "cross-update state persistence, and behind the scenes backend widget handling. This is",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "where state updates are propagated through the view hierarchy, and also where view bodies",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "get recomputed.",
+      "text" : "cross-update state persistence, and behind the scenes backend widget handling.",
       "type" : "text"
     }
   ],
@@ -3164,10 +3378,26 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewstate"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowProperties": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowGroup": {
   "abstract" : [
     {
-      "text" : "The basic properties for a window.",
+      "text" : "A scene that presents a group of identically structured windows. Currently",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "only supports having a single instance of the window but will eventually",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "support duplicating the window.",
       "type" : "text"
     }
   ],
@@ -3182,21 +3412,115 @@
     },
     {
       "kind" : "identifier",
-      "text" : "WindowProperties"
+      "text" : "WindowGroup"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowProperties",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroup",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "WindowProperties"
+      "text" : "WindowGroup"
     }
   ],
   "role" : "symbol",
-  "title" : "WindowProperties",
+  "title" : "WindowGroup",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/windowproperties"
+  "url" : "\/documentation\/swiftcrossui\/windowgroup"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowGroupNode": {
+  "abstract" : [
+    {
+      "text" : "The ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SceneGraphNode",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " corresponding to a ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroup",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " scene. Holds",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "the scene’s view graph and window handle.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "WindowGroupNode"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroupNode",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "WindowGroupNode"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "WindowGroupNode",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowgroupnode"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowResizability": {
+  "abstract" : [
+    {
+      "text" : "The level of resizability of a window.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "WindowResizability"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowResizability",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "WindowResizability"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "WindowResizability",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowresizability"
 }
 }
 }

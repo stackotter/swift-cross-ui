@@ -106,7 +106,8 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SceneBuilder"
       ],
       "title" : "App Structure"
     }
@@ -193,6 +194,40 @@
   "title" : "App",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/app"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/SceneBuilder": {
+  "abstract" : [
+    {
+      "text" : "Builds an app’s root scene by composing other scenes together.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SceneBuilder"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SceneBuilder",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SceneBuilder"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "SceneBuilder",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scenebuilder"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewBuilder": {
   "abstract" : [

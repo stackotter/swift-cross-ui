@@ -33,8 +33,8 @@
                 "type" : "associatedtype"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/app\/content",
-                "title" : "Content",
+                "path" : "\/documentation\/swiftcrossui\/app\/body-swift.associatedtype",
+                "title" : "Body",
                 "type" : "associatedtype"
               },
               {
@@ -56,8 +56,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/app\/body",
-                "title" : "var body: Self.Content",
+                "path" : "\/documentation\/swiftcrossui\/app\/body-swift.property",
+                "title" : "var body: Self.Body",
                 "type" : "property"
               },
               {
@@ -84,11 +84,6 @@
                 "type" : "property"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/app\/windowproperties",
-                "title" : "var windowProperties: WindowProperties",
-                "type" : "property"
-              },
-              {
                 "title" : "Type Methods",
                 "type" : "groupMarker"
               },
@@ -101,6 +96,27 @@
             "path" : "\/documentation\/swiftcrossui\/app",
             "title" : "App",
             "type" : "protocol"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Type Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/scenebuilder\/buildblock(_:)",
+                "title" : "static func buildBlock<Content>(Content) -> Content",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/scenebuilder\/buildblock(_:_:)",
+                "title" : "static func buildBlock<S0, S1>(S0, S1) -> TupleScene2<S0, S1>",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/scenebuilder",
+            "title" : "SceneBuilder",
+            "type" : "struct"
           },
           {
             "children" : [
@@ -2800,7 +2816,7 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/viewgraph\/init(for:backend:)",
-                "title" : "init(for: Root, backend: Root.Backend)",
+                "title" : "init<Backend>(for: Root, backend: Backend)",
                 "type" : "init"
               },
               {
@@ -2817,8 +2833,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/viewgraph\/update()",
-                "title" : "func update()",
+                "path" : "\/documentation\/swiftcrossui\/viewgraph\/update(_:)",
+                "title" : "func update(Root?)",
                 "type" : "method"
               },
               {
@@ -2954,6 +2970,74 @@
             "type" : "class"
           },
           {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tuplescenenode2\/init(from:backend:)",
+                "title" : "init<Backend>(from: TupleSceneNode2<S0, S1>.NodeScene, backend: Backend)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tuplescenenode2\/update(_:backend:)",
+                "title" : "func update<Backend>(TupleSceneNode2<S0, S1>.NodeScene?, backend: Backend)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tuplescenenode2\/nodescene",
+                "title" : "TupleSceneNode2.NodeScene",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/tuplescenenode2",
+            "title" : "TupleSceneNode2",
+            "type" : "class"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowgroupnode\/init(from:backend:)",
+                "title" : "init<Backend>(from: WindowGroup<Content>, backend: Backend)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowgroupnode\/update(_:backend:)",
+                "title" : "func update<Backend>(WindowGroup<Content>?, backend: Backend)",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowgroupnode\/nodescene",
+                "title" : "WindowGroupNode.NodeScene",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/windowgroupnode",
+            "title" : "WindowGroupNode",
+            "type" : "class"
+          },
+          {
             "title" : "Protocols",
             "type" : "groupMarker"
           },
@@ -2966,6 +3050,11 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/widget",
                 "title" : "Widget",
+                "type" : "associatedtype"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/window",
+                "title" : "Window",
                 "type" : "associatedtype"
               },
               {
@@ -3480,6 +3569,11 @@
                 "type" : "method"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createwindow(withdefaultsize:)",
+                "title" : "func createWindow(withDefaultSize: Size?) -> Self.Window",
+                "type" : "method"
+              },
+              {
                 "children" : [
                   {
                     "children" : [
@@ -3570,13 +3664,13 @@
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/run(_:_:)",
-                "title" : "func run<AppRoot>(AppRoot, (ViewGraph<AppRoot>) -> Void)",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/runinmainthread(action:)",
+                "title" : "func runInMainThread(action: () -> Void)",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/runinmainthread(action:)",
-                "title" : "func runInMainThread(action: () -> Void)",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/runmainloop(_:)",
+                "title" : "func runMainLoop(() -> Void)",
                 "type" : "method"
               },
               {
@@ -3631,6 +3725,11 @@
                 ],
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/setchild(ofeithercontainer:to:)-6uzwb",
                 "title" : "func setChild(ofEitherContainer: Self.Widget, to: Self.Widget?)",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setchild(ofwindow:to:)",
+                "title" : "func setChild(ofWindow: Self.Window, to: Self.Widget)",
                 "type" : "method"
               },
               {
@@ -4048,6 +4147,11 @@
                 "type" : "method"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setresizability(ofwindow:to:)",
+                "title" : "func setResizability(ofWindow: Self.Window, to: Bool)",
+                "type" : "method"
+              },
+              {
                 "children" : [
                   {
                     "children" : [
@@ -4120,6 +4224,11 @@
                 "type" : "method"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/settitle(ofwindow:to:)",
+                "title" : "func setTitle(ofWindow: Self.Window, to: String)",
+                "type" : "method"
+              },
+              {
                 "children" : [
                   {
                     "children" : [
@@ -4174,21 +4283,13 @@
                 "type" : "method"
               },
               {
-                "children" : [
-                  {
-                    "children" : [
-                      {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/show(_:)-8ul44",
-                        "title" : "func show(Self.Widget)",
-                        "type" : "method"
-                      }
-                    ],
-                    "title" : "AppBackend Implementations",
-                    "type" : "groupMarker"
-                  }
-                ],
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/show(_:)-3myqx",
-                "title" : "func show(Self.Widget)",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/show(widget:)",
+                "title" : "func show(widget: Self.Widget)",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/show(window:)",
+                "title" : "func show(window: Self.Window)",
                 "type" : "method"
               },
               {
@@ -4263,8 +4364,113 @@
             "type" : "protocol"
           },
           {
+            "children" : [
+              {
+                "title" : "Associated Types",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/scene\/node",
+                "title" : "Node",
+                "type" : "associatedtype"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/scene",
+            "title" : "Scene",
+            "type" : "protocol"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Associated Types",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/scenegraphnode\/nodescene",
+                "title" : "NodeScene",
+                "type" : "associatedtype"
+              },
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/scenegraphnode\/init(from:backend:)",
+                "title" : "init<Backend>(from: Self.NodeScene, backend: Backend)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/scenegraphnode\/update(_:backend:)",
+                "title" : "func update<Backend>(Self.NodeScene?, backend: Backend)",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/scenegraphnode",
+            "title" : "SceneGraphNode",
+            "type" : "protocol"
+          },
+          {
             "title" : "Structures",
             "type" : "groupMarker"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/size\/init(_:_:)",
+                "title" : "init(Int, Int)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/size\/height",
+                "title" : "var height: Int",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/size\/width",
+                "title" : "var width: Int",
+                "type" : "property"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/size",
+            "title" : "Size",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tuplescene2\/init(_:_:)",
+                "title" : "init(S0, S1)",
+                "type" : "init"
+              },
+              {
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tuplescene2\/node",
+                "title" : "TupleScene2.Node",
+                "type" : "typealias"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/tuplescene2",
+            "title" : "TupleScene2",
+            "type" : "struct"
           },
           {
             "children" : [
@@ -6349,70 +6555,40 @@
           {
             "children" : [
               {
-                "title" : "Structures",
-                "type" : "groupMarker"
-              },
-              {
-                "children" : [
-                  {
-                    "title" : "Initializers",
-                    "type" : "groupMarker"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/windowproperties\/size\/init(_:_:)",
-                    "title" : "init(Int, Int)",
-                    "type" : "init"
-                  },
-                  {
-                    "title" : "Instance Properties",
-                    "type" : "groupMarker"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/windowproperties\/size\/height",
-                    "title" : "var height: Int",
-                    "type" : "property"
-                  },
-                  {
-                    "path" : "\/documentation\/swiftcrossui\/windowproperties\/size\/width",
-                    "title" : "var width: Int",
-                    "type" : "property"
-                  }
-                ],
-                "path" : "\/documentation\/swiftcrossui\/windowproperties\/size",
-                "title" : "WindowProperties.Size",
-                "type" : "struct"
-              },
-              {
                 "title" : "Initializers",
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/windowproperties\/init(title:defaultsize:resizable:)",
-                "title" : "init(title: String, defaultSize: WindowProperties.Size?, resizable: Bool)",
+                "path" : "\/documentation\/swiftcrossui\/windowgroup\/init(_:_:)",
+                "title" : "init(String?, () -> Content)",
                 "type" : "init"
               },
               {
-                "title" : "Instance Properties",
+                "title" : "Instance Methods",
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/windowproperties\/defaultsize",
-                "title" : "var defaultSize: WindowProperties.Size?",
-                "type" : "property"
+                "path" : "\/documentation\/swiftcrossui\/windowgroup\/defaultsize(width:height:)",
+                "title" : "func defaultSize(width: Int, height: Int) -> WindowGroup<Content>",
+                "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/windowproperties\/resizable",
-                "title" : "var resizable: Bool",
-                "type" : "property"
+                "path" : "\/documentation\/swiftcrossui\/windowgroup\/windowresizability(_:)",
+                "title" : "func windowResizability(WindowResizability) -> WindowGroup<Content>",
+                "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/windowproperties\/title",
-                "title" : "var title: String",
-                "type" : "property"
+                "title" : "Type Aliases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowgroup\/node",
+                "title" : "WindowGroup.Node",
+                "type" : "typealias"
               }
             ],
-            "path" : "\/documentation\/swiftcrossui\/windowproperties",
-            "title" : "WindowProperties",
+            "path" : "\/documentation\/swiftcrossui\/windowgroup",
+            "title" : "WindowGroup",
             "type" : "struct"
           },
           {
@@ -6841,6 +7017,52 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/togglestyle",
             "title" : "ToggleStyle",
+            "type" : "enum"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Enumeration Cases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowresizability\/automatic",
+                "title" : "case automatic",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowresizability\/contentminsize",
+                "title" : "case contentMinSize",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/windowresizability\/contentsize",
+                "title" : "case contentSize",
+                "type" : "case"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Operators",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/windowresizability\/!=(_:_:)",
+                    "title" : "static func != (Self, Self) -> Bool",
+                    "type" : "op"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/windowresizability\/equatable-implementations",
+                "title" : "Equatable Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/windowresizability",
+            "title" : "WindowResizability",
             "type" : "enum"
           },
           {
