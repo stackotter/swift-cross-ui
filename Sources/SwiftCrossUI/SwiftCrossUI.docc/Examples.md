@@ -8,7 +8,8 @@ A few examples are included with SwiftCrossUI to demonstrate some of it's basic 
 
 - `CounterExample`, a simple app with buttons to increase and decrease a count.
 - `RandomNumberGeneratorExample`, a simple app to generate random numbers between a minimum and maximum.
-- `WindowPropertiesExample`, a simple app showcasing some of the available window properties. See ``WindowProperties`` for more information.
+- `WindowingExample`, a simple app showcasing how ``WindowGroup`` is used to make multi-window apps and
+  control the properties of each window.
 - `GreetingGeneratorExample`, a simple app demonstrating dynamic state and the ``ForEach`` view.
 - `FileViewerExample`, an app showcasing integration with the system's file chooser.
 - `NavigationExample`, an app showcasing ``NavigationStack`` and related concepts.
@@ -21,7 +22,7 @@ To run an example, either select the example under schemes at the top of the win
 ```
 swift run CounterExample
 swift run RandomNumberGeneratorExample
-swift run WindowPropertiesExample
+swift run WindowingExample
 swift run GreetingGeneratorExample
 swift run FileViewerExample
 swift run NavigationExample
