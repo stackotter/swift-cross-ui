@@ -75,25 +75,15 @@ To run this example, run these commands:
 ```sh
 git clone https://github.com/stackotter/swift-cross-ui
 cd swift-cross-ui
+cd Examples
 swift run CounterExample
 ```
 
-To see all of the examples, run these commands:
+See [the Examples documentation page](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/examples)
+for a comprehensive list of available examples and what they do.
 
-```sh
-swift run CounterExample
-swift run RandomNumberGeneratorExample
-swift run WindowingExample
-swift run GreetingGeneratorExample
-swift run FileViewerExample
-swift run NavigationExample
-swift run SpitExample
-swift run StressTestExample
-swift run SpreadsheetExample
-swift run ControlsExample
-```
-
-All examples use the `GtkBackend` but can easily be updated to test out other backends.
+The examples use the `GtkBackend` by default, but you can change the value of the `backend`
+variable at the top of `Examples/Package.swift` to quickly try out other backends.
 
 ## Documentation
 

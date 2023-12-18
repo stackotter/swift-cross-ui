@@ -19,16 +19,19 @@ jobs:
     - name: Build
       run: |
         swift build --target SwiftCrossUI && \
+        cd Backends/GtkBackend && \
         swift build --target GtkBackend && \
-        swift build --target CounterExample && \
-        swift build --target ControlsExample && \
-        swift build --target RandomNumberGeneratorExample && \
-        swift build --target WindowingExample && \
-        swift build --target GreetingGeneratorExample && \
-        swift build --target FileViewerExample && \
-        swift build --target NavigationExample && \
-        swift build --target SplitExample && \
         swift build --target GtkCodeGen && \
-        swift build --target GtkExample
+        swift build --target GtkExample && \
+        cd ../../Examples && \
+        swift build --target CounterExample && \
+        swift build --target RandomNumberGeneratorExample && \
+        swift build --target GreetingGeneratorExample && \
+        swift build --target SplitExample && \
+        swift build --target ControlsExample && \
+        swift build --target WindowingExample && \
+        swift build --target NavigationExample && \
+        swift build --target SpreadsheetExample && \
+        swift build --target StressTestExample
     - name: Test
       run: swift test

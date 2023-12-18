@@ -1,0 +1,40 @@
+{
+  "pins" : [
+    {
+      "identity" : "opencombine",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/OpenCombine/OpenCombine.git",
+      "state" : {
+        "revision" : "8576f0d579b27020beccbccc3ea6844f3ddfc2c2",
+        "version" : "0.14.0"
+      }
+    },
+    {
+      "identity" : "swiftterm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/migueldeicaza/SwiftTerm.git",
+      "state" : {
+        "revision" : "e2b431dbf73f775fb4807a33e4572ffd3dc6933a",
+        "version" : "1.2.5"
+      }
+    },
+    {
+      "identity" : "termkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/migueldeicaza/TermKit",
+      "state" : {
+        "revision" : "3bce85d1bafbbb0336b3b7b7e905c35754cb9adf"
+      }
+    },
+    {
+      "identity" : "textbufferkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/migueldeicaza/TextBufferKit.git",
+      "state" : {
+        "revision" : "7f3ed5b1d7288de34ad853544d802647be11cfcf",
+        "version" : "0.3.0"
+      }
+    }
+  ],
+  "version" : 2
+}
