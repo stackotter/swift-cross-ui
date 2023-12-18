@@ -57,13 +57,14 @@ struct CounterApp: App {
 
     let state = CounterState()
 
-    var body: some ViewContent {
+    var body: some Scene {
         WindowGroup("CounterApp") {
             HStack {
                 Button("-") { state.count -= 1 }
                 Text("Count: \(state.count)")
                 Button("+") { state.count += 1 }
             }
+            .padding(10)
         }
     }
 }
