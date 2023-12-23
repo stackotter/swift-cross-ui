@@ -1,4 +1,4 @@
-import GtkBackend
+import SelectedBackend
 import SwiftCrossUI
 
 class CounterState: Observable {
@@ -7,7 +7,7 @@ class CounterState: Observable {
 
 @main
 struct CounterApp: App {
-    typealias Backend = GtkBackend
+    typealias Backend = SelectedBackend
 
     let identifier = "dev.stackotter.CounterApp"
 
@@ -20,7 +20,6 @@ struct CounterApp: App {
                 Text("Count: \(state.count)", wrap: false)
                 Button("+") { state.count += 1 }
             }
-            .padding(10)
         }
     }
 }

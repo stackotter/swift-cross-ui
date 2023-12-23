@@ -1,4 +1,4 @@
-import GtkBackend
+import SelectedBackend
 import SwiftCrossUI
 
 class StressTestState: Observable {
@@ -26,7 +26,7 @@ class StressTestState: Observable {
 
 @main
 struct StressTestApp: App {
-    typealias Backend = GtkBackend
+    typealias Backend = SelectedBackend
 
     let identifier = "dev.stackotter.StressTestApp"
 

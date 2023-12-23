@@ -1,4 +1,4 @@
-import GtkBackend
+import SelectedBackend
 import SwiftCrossUI
 
 class ControlsState: Observable {
@@ -9,7 +9,7 @@ class ControlsState: Observable {
 
 @main
 struct ControlsApp: App {
-    typealias Backend = GtkBackend
+    typealias Backend = SelectedBackend
 
     let identifier = "dev.stackotter.Controls"
 

@@ -1,4 +1,4 @@
-import GtkBackend
+import SelectedBackend
 import SwiftCrossUI
 
 class GreetingGeneratorState: Observable {
@@ -8,7 +8,7 @@ class GreetingGeneratorState: Observable {
 
 @main
 struct GreetingGeneratorApp: App {
-    typealias Backend = GtkBackend
+    typealias Backend = SelectedBackend
 
     let identifier = "dev.stackotter.GreetingGenerator"
 

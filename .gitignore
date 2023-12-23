@@ -1,5 +1,6 @@
 .DS_Store
 /.build
+/Examples/.build
 /Packages
 /*.xcodeproj
 xcuserdata/
