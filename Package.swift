@@ -20,6 +20,41 @@ if let version = getGtk4MinorVersion(), version >= 10 {
     gtkSwiftSettings.append(.define("GTK_4_10_PLUS"))
 }
 
+var swift510Dependencies: [Package.Dependency] = []
+var swift510Targets: [Target] = []
+var swift510Products: [Product] = []
+#if swift(>=5.10)
+    swift510Dependencies = [
+        .package(
+            url: "https://github.com/thebrowsercompany/swift-windowsappsdk",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/thebrowsercompany/swift-windowsfoundation",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/thebrowsercompany/swift-winui",
+            branch: "main"
+        ),
+    ]
+
+    swift510Products = [
+        .library(name: "WinUIBackend", targets: ["WinUIBackend"])
+    ]
+
+    swift510Targets = [
+        .target(
+            name: "WinUIBackend",
+            dependencies: [
+                .product(name: "WinUI", package: "swift-winui"),
+                .product(name: "WinAppSDK", package: "swift-windowsappsdk"),
+                .product(name: "WindowsFoundation", package: "swift-windowsfoundation"),
+            ]
+        )
+    ]
+#endif
+
 let package = Package(
     name: "swift-cross-ui",
     platforms: [.macOS(.v10_15)],
@@ -32,7 +67,7 @@ let package = Package(
         .library(name: "GtkBackend", targets: ["GtkBackend"]),
         .library(name: "Gtk", targets: ["Gtk"]),
         .executable(name: "GtkExample", targets: ["GtkExample"]),
-    ],
+    ] + swift510Products,
     dependencies: [
         .package(
             url: "https://github.com/CoreOffice/XMLCoder",
@@ -59,7 +94,7 @@ let package = Package(
             url: "https://github.com/apple/swift-docc-plugin",
             from: "1.0.0"
         ),
-    ],
+    ] + swift510Dependencies,
     targets: [
         .target(
             name: "SwiftCrossUI",
@@ -115,7 +150,7 @@ let package = Package(
                 "XMLCoder", .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
             ]
         ),
-    ]
+    ] + swift510Targets
 )
 
 func getGtk4MinorVersion() -> Int? {
