@@ -18,7 +18,7 @@ class WinRTApplication: SwiftApplication {
 
 public struct WinUIBackend: AppBackend {
     public typealias Window = WinUI.Window
-    public typealias Widget = WinUI.UIElement
+    public typealias Widget = WinUI.FrameworkElement
 
     private class InternalState {
         var buttonClickActions: [ObjectIdentifier: () -> Void] = [:]
@@ -343,6 +343,8 @@ public struct WinUIBackend: AppBackend {
         trailingColumn.width = GridLength(value: 1, gridUnitType: .star)
         grid.columnDefinitions.append(leadingColumn)
         grid.columnDefinitions.append(trailingColumn)
+        Grid.setColumn(leadingChild, 0)
+        Grid.setColumn(trailingChild, 1)
         grid.children.append(leadingChild)
         grid.children.append(trailingChild)
         return grid
@@ -366,6 +368,8 @@ public struct WinUIBackend: AppBackend {
 
     public func createTable(rows: Int, columns: Int) -> Widget {
         let grid = Grid()
+        grid.columnSpacing = 10
+        grid.rowSpacing = 10
         for _ in 0 ..< rows {
             let rowDefinition = RowDefinition()
             rowDefinition.height = GridLength(value: 0, gridUnitType: .auto)
@@ -402,9 +406,8 @@ public struct WinUIBackend: AppBackend {
 
     public func setCell(at position: CellPosition, inTable table: Widget, to widget: Widget) {
         let grid = table as! Grid
-        
-        try! widget.setValue(Grid.rowProperty, position.row)
-        // try! widget.setValue(Grid.columnProperty, position.column)
+        Grid.setColumn(widget, Int32(position.column))
+        Grid.setRow(widget, Int32(position.row))
         grid.children.append(widget)
     }
 
