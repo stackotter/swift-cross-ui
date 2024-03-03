@@ -248,12 +248,13 @@ public struct WinUIBackend: AppBackend {
     }
 
     public func setForegroundColor(ofStyleContainer container: Widget, to _: SwiftCrossUI.Color) {
+        // TODO: This does not work. Appending the style to the resources does nothing, if I set the style
+        // of the elements directly it throws at runtime since I'm trying to apply
+        // the style of a TextBlock to a StackPanel
         let container = container as! StackPanel
         let style = Style(.init(name: "TextBlock", kind: .primitive))
         style.setters.append(Setter(TextBlock.foregroundProperty, "Red"))
         let _ = container.resources.insert("Style", style)
-        print(container.resources!.count)
-        // print(container.style!)
     }
 
     public func createTextField() -> Widget {
@@ -310,6 +311,9 @@ public struct WinUIBackend: AppBackend {
     }
 
     public func setVisibleChild(ofOneOfContainer container: Widget, to child: Widget) {
+        // TODO: the frame.navigate method should allow to change the content of the frame
+        // with the specified animation (NavigationThemeTransition) but I fail to understant
+        // how to pass the child widget to it, so for now it just set the new content
         let frame = container as! Frame
         frame.content = child
         // let _ = try! frame.navigate(TypeName(name: child.accessKey, kind: .custom))
