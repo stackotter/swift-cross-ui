@@ -247,14 +247,31 @@ public struct WinUIBackend: AppBackend {
         return panel
     }
 
-    public func setForegroundColor(ofStyleContainer container: Widget, to _: SwiftCrossUI.Color) {
-        // TODO: This does not work. Appending the style to the resources does nothing, if I set the style
-        // of the elements directly it throws at runtime since I'm trying to apply
-        // the style of a TextBlock to a StackPanel
-        let container = container as! StackPanel
+    private func resolveTargetElement(of widget: Widget) -> Widget {
+        if let content = (widget as? Frame)?.content as? Widget {
+            return resolveTargetElement(of: content)
+        } else if let content = (widget as? ScrollViewer)?.content as? Widget {
+            return resolveTargetElement(of: content)
+        } else {
+            return widget
+        }
+    }
+
+    public func setForegroundColor(ofStyleContainer container: Widget, to color: SwiftCrossUI.Color) {
+        let container = container as? StackPanel ?? container as! Grid
         let style = Style(.init(name: "TextBlock", kind: .primitive))
-        style.setters.append(Setter(TextBlock.foregroundProperty, "Red"))
-        let _ = container.resources.insert("Style", style)
+        style.setters.append(Setter(TextBlock.foregroundProperty, "sc#\(color.alpha),\(color.red),\(color.green),\(color.blue)"))
+
+        for children in container.children {
+            let targetElement: Widget = resolveTargetElement(of: children as! Widget)
+            if let textBlock = targetElement as? TextBlock {
+                textBlock.style = style
+            } else if let stackPanel = targetElement as? StackPanel {
+                setForegroundColor(ofStyleContainer: stackPanel, to: color)
+            } else if let grid = targetElement as? Grid {
+                setForegroundColor(ofStyleContainer: grid, to: color)
+            }
+        }
     }
 
     public func createTextField() -> Widget {
