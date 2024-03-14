@@ -244,6 +244,7 @@ public struct WinUIBackend: AppBackend {
     public func createStyleContainer(for child: Widget) -> Widget {
         let panel = StackPanel()
         panel.children.append(child)
+        panel.name = "StyleContainer"
         return panel
     }
 
@@ -258,9 +259,22 @@ public struct WinUIBackend: AppBackend {
     }
 
     public func setForegroundColor(ofStyleContainer container: Widget, to color: SwiftCrossUI.Color) {
+        // Note: this works, but it's not optimal since we are iterating on all the childrens looking for
         let container = container as? StackPanel ?? container as! Grid
         let style = Style(.init(name: "TextBlock", kind: .primitive))
         style.setters.append(Setter(TextBlock.foregroundProperty, "sc#\(color.alpha),\(color.red),\(color.green),\(color.blue)"))
+
+        // Since we are drilling down the tree if we encounter another style container with a foreground color
+        // already set we stop here to avoid overwriting a more specific style that has been set.
+        // Adding the style to the resources does nothing in practice, is just a way of keeping track if we need
+        // to update that widget
+        if container.name == "StyleContainer" {
+            if container.resources.hasKey("ForegroundColor") {
+                return
+            } else {
+                _ = container.resources.insert("ForegroundColor", style)
+            }
+        }
 
         for children in container.children {
             let targetElement: Widget = resolveTargetElement(of: children as! Widget)
