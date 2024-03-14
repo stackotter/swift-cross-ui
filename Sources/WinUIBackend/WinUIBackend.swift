@@ -72,29 +72,41 @@ public struct WinUIBackend: AppBackend {
     public func show(widget _: Widget) {}
 
     public func createVStack() -> Widget {
-        StackPanel()
+        Grid()
     }
 
     public func addChild(_ child: Widget, toVStack container: Widget) {
-        (container as! StackPanel).children.append(child)
+        let grid = container as! Grid
+        let rowDefinition = RowDefinition()
+        if child.name != "Spacer" {
+            rowDefinition.height = GridLength(value: 1, gridUnitType: .auto)
+        }
+        Grid.setRow(child, Int32(grid.rowDefinitions.count))
+        grid.rowDefinitions.append(rowDefinition)
+        grid.children.append(child)
     }
 
     public func setSpacing(ofVStack widget: Widget, to spacing: Int) {
-        (widget as! StackPanel).spacing = Double(spacing)
+        (widget as! Grid).rowSpacing = Double(spacing)
     }
 
     public func createHStack() -> Widget {
-        let stack = StackPanel()
-        stack.orientation = .horizontal
-        return stack
+        Grid()
     }
 
     public func addChild(_ child: Widget, toHStack container: Widget) {
-        (container as! StackPanel).children.append(child)
+        let grid = container as! Grid
+        let columnDefinition = ColumnDefinition()
+        if child.name != "Spacer" {
+            columnDefinition.width = GridLength(value: 1, gridUnitType: .auto)
+        }
+        Grid.setColumn(child, Int32(grid.columnDefinitions.count))
+        grid.columnDefinitions.append(columnDefinition)
+        grid.children.append(child)
     }
 
     public func setSpacing(ofHStack widget: Widget, to spacing: Int) {
-        (widget as! StackPanel).spacing = Double(spacing)
+        (widget as! Grid).columnSpacing = Double(spacing)
     }
 
     public func createSingleChildContainer() -> Widget {
