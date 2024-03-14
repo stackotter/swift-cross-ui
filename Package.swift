@@ -40,9 +40,32 @@ var dependencies: [Package.Dependency] = [
 var conditionalProducts: [Product] = []
 var conditionalTargets: [Target] = []
 var exampleDependencies: [Target.Dependency] = [
-    "SwiftCrossUI", "GtkBackend",
+    "SwiftCrossUI",
 ]
-var fileViewerExampleDependencies: [Target.Dependency] = ["SwiftCrossUI", "GtkBackend", "CGtk"]
+var fileViewerExampleDependencies: [Target.Dependency] = ["SwiftCrossUI"]
+
+#if os(Windows)
+    dependencies.append(contentsOf: [
+        .package(url: "https://github.com/thebrowsercompany/swift-windowsappsdk", branch: "main"),
+        .package(url: "https://github.com/thebrowsercompany/swift-windowsfoundation", branch: "main"),
+        .package(url: "https://github.com/thebrowsercompany/swift-winui", branch: "main"),
+    ])
+    conditionalTargets.append(
+        .target(
+            name: "WinUIBackend",
+            dependencies: [
+                .product(name: "WinUI", package: "swift-winui"),
+                .product(name: "WinAppSDK", package: "swift-windowsappsdk"),
+                .product(name: "WindowsFoundation", package: "swift-windowsfoundation")
+            ]
+        )
+    )
+    fileViewerExampleDependencies.append(contentsOf: ["WinUIBackend"])
+    exampleDependencies.append(contentsOf: ["WinUIBackend"])
+#else
+    fileViewerExampleDependencies.append(contentsOf: ["GtkBackend", "CGtk"])
+    exampleDependencies.append(contentsOf: ["GtkBackend"])
+#endif
 var backendTargets: [String] = []
 
 // If Gtk is detected, add Gtk-related products and targets
