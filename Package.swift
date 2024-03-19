@@ -37,7 +37,6 @@ var dependencies: [Package.Dependency] = [
     fatalError("Unsupported platform.")
 #endif
 
-var conditionalProducts: [Product] = []
 var conditionalTargets: [Target] = []
 var exampleDependencies: [Target.Dependency] = [
     "SwiftCrossUI", "GtkBackend",
@@ -46,74 +45,25 @@ var fileViewerExampleDependencies: [Target.Dependency] = ["SwiftCrossUI", "GtkBa
 var backendTargets: [String] = []
 
 // If Gtk is detected, add Gtk-related products and targets
+var gtkSwiftSettings: [SwiftSetting] = []
+var gtkExampleDependencies: [Target.Dependency] = []
 if let version = getGtk4MinorVersion() {
-    var gtkSwiftSettings: [SwiftSetting] = []
-    var gtkExampleDependencies: [Target.Dependency] = ["Gtk"]
+    gtkExampleDependencies.append("Gtk")
     backendTargets.append("GtkBackend")
 
     // Conditionally enable features that rely on Gtk 4.10
     if version >= 10 {
-        conditionalTargets.append(
-            .target(name: "FileDialog", dependencies: ["CGtk", "Gtk"])
-        )
-
         gtkExampleDependencies.append("FileDialog")
         fileViewerExampleDependencies.append("FileDialog")
         gtkSwiftSettings.append(.define("GTK_4_10_PLUS"))
     }
-
-    conditionalProducts.append(
-        contentsOf: [
-            .library(name: "GtkBackend", targets: ["GtkBackend"]),
-            .library(name: "Gtk", targets: ["Gtk"]),
-            .executable(name: "GtkExample", targets: ["GtkExample"]),
-        ]
-    )
-
-    conditionalTargets.append(
-        contentsOf: [
-            .target(name: "GtkBackend", dependencies: ["SwiftCrossUI", "Gtk", "CGtk"]),
-            .systemLibrary(
-                name: "CGtk",
-                pkgConfig: "gtk4",
-                providers: [
-                    .brew(["gtk4"]),
-                    .apt(["libgtk-4-dev clang"]),
-                ]
-            ),
-            .target(name: "Gtk", dependencies: ["CGtk"], swiftSettings: gtkSwiftSettings),
-            .executableTarget(
-                name: "GtkExample",
-                dependencies: gtkExampleDependencies,
-                resources: [.copy("GTK.png")]
-            ),
-
-            .executableTarget(
-                name: "GtkCodeGen",
-                dependencies: [
-                    "XMLCoder", .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
-                ]
-            ),
-        ]
-    )
 }
 
 #if canImport(AppKit)
-    conditionalTargets.append(.target(name: "AppKitBackend", dependencies: ["SwiftCrossUI"]))
     backendTargets.append("AppKitBackend")
-
-    conditionalProducts.append(
-        .library(name: "AppKitBackend", targets: ["AppKitBackend"])
-    )
 #endif
 
 if checkQtInstalled() {
-    conditionalTargets.append(
-        .target(
-            name: "QtBackend",
-            dependencies: ["SwiftCrossUI", .product(name: "Qlift", package: "qlift")]
-        )
-    )
     backendTargets.append("QtBackend")
     dependencies.append(
         .package(
@@ -121,23 +71,9 @@ if checkQtInstalled() {
             revision: "ddab1f1ecc113ad4f8e05d2999c2734cdf706210"
         )
     )
-
-    conditionalProducts.append(
-        .library(name: "QtBackend", targets: ["QtBackend"])
-    )
 }
 
 if checkSDL2Installed() {
-    conditionalTargets.append(
-        .target(
-            name: "LVGLBackend",
-            dependencies: [
-                "SwiftCrossUI",
-                .product(name: "LVGL", package: "LVGLSwift"),
-                .product(name: "CLVGL", package: "LVGLSwift"),
-            ]
-        )
-    )
     backendTargets.append("LVGLBackend")
     dependencies.append(
         .package(
@@ -145,20 +81,10 @@ if checkSDL2Installed() {
             revision: "19c19a942153b50d61486faf1d0d45daf79e7be5"
         )
     )
-
-    conditionalProducts.append(
-        .library(name: "LVGLBackend", targets: ["LVGLBackend"])
-    )
 }
 
 #if os(macOS)
     // TODO: Switch to a different terminal library that doesn't have issues on non-Apple platforms
-    conditionalTargets.append(
-        .target(
-            name: "CursesBackend",
-            dependencies: ["SwiftCrossUI", "TermKit"]
-        )
-    )
     backendTargets.append("CursesBackend")
     dependencies.append(
         .package(
@@ -166,17 +92,27 @@ if checkSDL2Installed() {
             revision: "3bce85d1bafbbb0336b3b7b7e905c35754cb9adf"
         )
     )
-
-    conditionalProducts.append(
-        .library(name: "CursesBackend", targets: ["CursesBackend"])
-    )
-#endif
+    let withTermKit = true
+#else /* !os(macOS) */
+    let withTermKit = false
+#endif /* os(macOS) */
 
 let package = Package(
     name: "swift-cross-ui",
     platforms: [.macOS(.v10_15)],
     products: [
+        // library products that are always applied.
         .library(name: "SwiftCrossUI", targets: ["SwiftCrossUI"]),
+
+        // library products that are conditionally applied.
+        .library(name: "GtkBackend", targets: ["GtkBackend"]),
+        .library(name: "Gtk", targets: ["Gtk"]),
+        .library(name: "AppKitBackend", targets: ["AppKitBackend"]),
+        .library(name: "QtBackend", targets: ["QtBackend"]),
+        .library(name: "LVGLBackend", targets: ["LVGLBackend"]),
+        .library(name: "CursesBackend", targets: ["CursesBackend"]),
+
+        // exectuable products that are always applied.
         .executable(name: "CounterExample", targets: ["CounterExample"]),
         .executable(
             name: "RandomNumberGeneratorExample",
@@ -193,9 +129,13 @@ let package = Package(
         .executable(name: "FileViewerExample", targets: ["FileViewerExample"]),
         .executable(name: "NavigationExample", targets: ["NavigationExample"]),
         .executable(name: "SplitExample", targets: ["SplitExample"]),
-    ] + conditionalProducts,
+        
+        // exectuable products that are conditionally applied.
+        .executable(name: "GtkExample", targets: ["GtkExample"]),
+    ],
     dependencies: dependencies,
     targets: [
+        // targets that are always applied.
         .target(
             name: "SwiftCrossUI",
             dependencies: [],
@@ -205,6 +145,83 @@ let package = Package(
                 "Views/VariadicView.swift.gyb",
             ]
         ),
+
+        // targets that are conditionally applied.
+        .target(
+            name: "FileDialog", 
+            dependencies: (getGtk4MinorVersion() != nil ? [
+                "CGtk", 
+                "Gtk"
+            ] : [])
+        ),
+        .target(
+            name: "GtkBackend", 
+            dependencies: [
+                "SwiftCrossUI",
+            ] + (getGtk4MinorVersion() != nil ? [
+                "Gtk",
+                "CGtk"
+            ] : [])
+        ),
+        .systemLibrary(
+            name: "CGtk",
+            pkgConfig: "gtk4",
+            providers: [
+                .brew(["gtk4"]),
+                .apt(["libgtk-4-dev clang"]),
+            ]
+        ),
+        .target(
+            name: "Gtk",
+            dependencies: (getGtk4MinorVersion() != nil ? [
+                "CGtk",
+            ] : []),
+            swiftSettings: gtkSwiftSettings
+        ),
+    
+        // backend targets that are conditionally applied.
+        .target(name: "AppKitBackend", dependencies: ["SwiftCrossUI"]),
+        .target(
+            name: "QtBackend",
+            dependencies: [
+                "SwiftCrossUI",
+            ] + (checkQtInstalled() ? [
+                .product(name: "Qlift", package: "qlift")
+            ] : [])
+        ),
+        .target(
+            name: "LVGLBackend",
+            dependencies: [
+                "SwiftCrossUI",
+            ] + (checkSDL2Installed() ? [
+                .product(name: "LVGL", package: "LVGLSwift"),
+                .product(name: "CLVGL", package: "LVGLSwift"),
+            ] : [])
+        ),
+        .target(
+            name: "CursesBackend",
+            dependencies: [
+                "SwiftCrossUI", 
+            ] + (withTermKit ? [
+                "TermKit",
+            ] : [])
+        ),
+
+        // executables that are conditionally built.
+        .executableTarget(
+            name: "GtkExample",
+            dependencies: gtkExampleDependencies,
+            resources: [.copy("GTK.png")]
+        ),
+        .executableTarget(
+            name: "GtkCodeGen",
+            dependencies: [
+                "XMLCoder", 
+                .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
+            ]
+        ),
+
+        // executables that are always built.
         .executableTarget(
             name: "ControlsExample",
             dependencies: exampleDependencies,
@@ -261,7 +278,7 @@ let package = Package(
             name: "SwiftCrossUITests",
             dependencies: ["SwiftCrossUI"]
         ),
-    ] + conditionalTargets
+    ]
 )
 
 func checkQtInstalled() -> Bool {
