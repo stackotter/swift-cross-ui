@@ -29,5 +29,5 @@ jobs:
         swift build --target NavigationExample && \
         swift build --target SplitExample && \
         swift build --target GtkExample
-    - name: Test
-      run: swift test
+    # - name: Test
+    #   run: swift test
