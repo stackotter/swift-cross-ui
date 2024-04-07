@@ -276,6 +276,52 @@ public struct AppKitBackend: AppBackend {
     public func setForegroundColor(ofStyleContainer container: NSView, to color: Color) {
         // TODO: Implement foreground color
     }
+
+    public func createTextField() -> NSView {
+        return NSObservableTextField()
+    }
+
+    public func updateTextField(
+        _ textField: NSView, placeholder: String, onChange: @escaping (String) -> Void
+    ) {
+        let textField = textField as! NSObservableTextField
+        textField.placeholderString = placeholder
+        textField.onEdit = { textField in
+            onChange(textField.stringValue)
+        }
+    }
+
+    public func getContent(ofTextField textField: NSView) -> String {
+        let textField = textField as! NSTextField
+        return textField.stringValue
+    }
+
+    public func setContent(ofTextField textField: NSView, to content: String) {
+        let textField = textField as! NSTextField
+        textField.stringValue = content
+    }
+
+    public func createScrollContainer(for child: NSView) -> NSView {
+        let scrollView = NSScrollView()
+        scrollView.addSubview(child)
+        return scrollView
+    }
+
+    public func createLayoutTransparentStack() -> NSView {
+        return NSStackView()
+    }
+
+    public func updateLayoutTransparentStack(_ container: NSView) {
+        let stack = container as! NSStackView
+        // Inherit orientation of nearest oriented parent (defaulting to vertical)
+        stack.orientation =
+            getInheritedOrientation(of: stack) == .horizontal ? .horizontal : .vertical
+    }
+
+    public func addChild(_ child: NSView, toLayoutTransparentStack container: NSView) {
+        let stack = container as! NSStackView
+        stack.addView(child, in: .bottom)
+    }
 }
 
 // Source: https://gist.github.com/sindresorhus/3580ce9426fff8fafb1677341fca4815
@@ -323,16 +369,26 @@ final class ObjectAssociation<T: Any> {
     }
 }
 
+class NSObservableTextField: NSTextField {
+    override func textDidChange(_ notification: Notification) {
+        onEdit?(self)
+    }
+
+    var onEdit: ((NSTextField) -> Void)?
+}
+
 // Source: https://gist.github.com/sindresorhus/3580ce9426fff8fafb1677341fca4815
 extension NSControl {
     typealias ActionClosure = ((NSControl) -> Void)
+    typealias EditClosure = ((NSTextField) -> Void)
 
-    private struct AssociatedKeys {
+    struct AssociatedKeys {
         static let onActionClosure = ObjectAssociation<ActionClosure>()
+        static let onEditClosure = ObjectAssociation<EditClosure>()
     }
 
     @objc
-    private func callClosure(_ sender: NSControl) {
+    func callClosure(_ sender: NSControl) {
         onAction?(sender)
     }
 
