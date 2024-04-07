@@ -1,5 +1,5 @@
 import Foundation
-import GtkBackend
+import SelectedBackend
 import SwiftCrossUI
 
 enum SubjectArea: Codable {
@@ -23,8 +23,6 @@ class NavigationAppState: Observable {
 
 @main
 struct NavigationApp: App {
-    typealias Backend = GtkBackend
-
     let identifier = "dev.stackotter.NavigationApp"
 
     let state = NavigationAppState()

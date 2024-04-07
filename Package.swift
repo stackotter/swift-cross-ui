@@ -1,29 +1,9 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.6
 
 import Foundation
 import PackageDescription
 
-var dependencies: [Package.Dependency] = [
-    .package(
-        url: "https://github.com/CoreOffice/XMLCoder",
-        from: "0.17.1"
-    ),
-    .package(
-        url: "https://github.com/apple/swift-syntax.git",
-        from: "508.0.0"
-    ),
-]
-
-#if swift(>=5.6) && !os(Windows)
-    // Add the documentation compiler plugin if possible
-    dependencies.append(
-        .package(
-            url: "https://github.com/apple/swift-docc-plugin",
-            from: "1.0.0"
-        )
-    )
-#endif
-
+// Warn about a known SwiftPM issue on Windows
 #if swift(<5.8) && os(Windows)
     if let pkgConfigPath = ProcessInfo.processInfo.environment["PKG_CONFIG_PATH"],
         pkgConfigPath.contains(":")
@@ -33,191 +13,66 @@ var dependencies: [Package.Dependency] = [
     }
 #endif
 
-#if !os(Linux) && !os(macOS) && !os(Windows)
-    fatalError("Unsupported platform.")
-#endif
-
-var conditionalProducts: [Product] = []
-var conditionalTargets: [Target] = []
-var exampleDependencies: [Target.Dependency] = [
-    "SwiftCrossUI",
-]
-var fileViewerExampleDependencies: [Target.Dependency] = ["SwiftCrossUI"]
-
-#if os(Windows)
-    dependencies.append(contentsOf: [
-        .package(url: "https://github.com/thebrowsercompany/swift-windowsappsdk", branch: "main"),
-        .package(url: "https://github.com/thebrowsercompany/swift-windowsfoundation", branch: "main"),
-        .package(url: "https://github.com/thebrowsercompany/swift-winui", branch: "main"),
-    ])
-    conditionalTargets.append(
-        .target(
-            name: "WinUIBackend",
-            dependencies: [
-                .product(name: "WinUI", package: "swift-winui"),
-                .product(name: "WinAppSDK", package: "swift-windowsappsdk"),
-                .product(name: "WindowsFoundation", package: "swift-windowsfoundation")
-            ]
-        )
-    )
-    fileViewerExampleDependencies.append(contentsOf: ["WinUIBackend"])
-    exampleDependencies.append(contentsOf: ["WinUIBackend"])
-#else
-    fileViewerExampleDependencies.append(contentsOf: ["GtkBackend", "CGtk"])
-    exampleDependencies.append(contentsOf: ["GtkBackend"])
-#endif
-var backendTargets: [String] = []
-
-// If Gtk is detected, add Gtk-related products and targets
-if let version = getGtk4MinorVersion() {
-    var gtkSwiftSettings: [SwiftSetting] = []
-    var gtkExampleDependencies: [Target.Dependency] = ["Gtk"]
-    backendTargets.append("GtkBackend")
-
-    // Conditionally enable features that rely on Gtk 4.10
-    if version >= 10 {
-        conditionalTargets.append(
-            .target(name: "FileDialog", dependencies: ["CGtk", "Gtk"])
-        )
-
-        gtkExampleDependencies.append("FileDialog")
-        fileViewerExampleDependencies.append("FileDialog")
-        gtkSwiftSettings.append(.define("GTK_4_10_PLUS"))
-    }
-
-    conditionalProducts.append(
-        contentsOf: [
-            .library(name: "GtkBackend", targets: ["GtkBackend"]),
-            .library(name: "Gtk", targets: ["Gtk"]),
-            .executable(name: "GtkExample", targets: ["GtkExample"]),
-        ]
-    )
-
-    conditionalTargets.append(
-        contentsOf: [
-            .target(name: "GtkBackend", dependencies: ["SwiftCrossUI", "Gtk", "CGtk"]),
-            .systemLibrary(
-                name: "CGtk",
-                pkgConfig: "gtk4",
-                providers: [
-                    .brew(["gtk4"]),
-                    .apt(["libgtk-4-dev clang"]),
-                ]
-            ),
-            .target(name: "Gtk", dependencies: ["CGtk"], swiftSettings: gtkSwiftSettings),
-            .executableTarget(
-                name: "GtkExample",
-                dependencies: gtkExampleDependencies,
-                resources: [.copy("GTK.png")]
-            ),
-
-            .executableTarget(
-                name: "GtkCodeGen",
-                dependencies: [
-                    "XMLCoder", .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
-                ]
-            ),
-        ]
-    )
+// In Gtk 4.10 some breaking changes were made, so the GtkBackend code needs to know
+// which version is in use.
+var gtkSwiftSettings: [SwiftSetting] = []
+if let version = getGtk4MinorVersion(), version >= 10 {
+    gtkSwiftSettings.append(.define("GTK_4_10_PLUS"))
 }
-
-#if canImport(AppKit)
-    conditionalTargets.append(.target(name: "AppKitBackend", dependencies: ["SwiftCrossUI"]))
-    backendTargets.append("AppKitBackend")
-
-    conditionalProducts.append(
-        .library(name: "AppKitBackend", targets: ["AppKitBackend"])
-    )
-#endif
-
-if checkQtInstalled() {
-    conditionalTargets.append(
-        .target(
-            name: "QtBackend",
-            dependencies: ["SwiftCrossUI", .product(name: "Qlift", package: "qlift")]
-        )
-    )
-    backendTargets.append("QtBackend")
-    dependencies.append(
-        .package(
-            url: "https://github.com/Longhanks/qlift",
-            revision: "ddab1f1ecc113ad4f8e05d2999c2734cdf706210"
-        )
-    )
-
-    conditionalProducts.append(
-        .library(name: "QtBackend", targets: ["QtBackend"])
-    )
-}
-
-if checkSDL2Installed() {
-    conditionalTargets.append(
-        .target(
-            name: "LVGLBackend",
-            dependencies: [
-                "SwiftCrossUI",
-                .product(name: "LVGL", package: "LVGLSwift"),
-                .product(name: "CLVGL", package: "LVGLSwift"),
-            ]
-        )
-    )
-    backendTargets.append("LVGLBackend")
-    dependencies.append(
-        .package(
-            url: "https://github.com/PADL/LVGLSwift",
-            revision: "19c19a942153b50d61486faf1d0d45daf79e7be5"
-        )
-    )
-
-    conditionalProducts.append(
-        .library(name: "LVGLBackend", targets: ["LVGLBackend"])
-    )
-}
-
-#if os(macOS)
-    // TODO: Switch to a different terminal library that doesn't have issues on non-Apple platforms
-    conditionalTargets.append(
-        .target(
-            name: "CursesBackend",
-            dependencies: ["SwiftCrossUI", "TermKit"]
-        )
-    )
-    backendTargets.append("CursesBackend")
-    dependencies.append(
-        .package(
-            url: "https://github.com/migueldeicaza/TermKit",
-            revision: "3bce85d1bafbbb0336b3b7b7e905c35754cb9adf"
-        )
-    )
-
-    conditionalProducts.append(
-        .library(name: "CursesBackend", targets: ["CursesBackend"])
-    )
-#endif
 
 let package = Package(
     name: "swift-cross-ui",
     platforms: [.macOS(.v10_15)],
     products: [
         .library(name: "SwiftCrossUI", targets: ["SwiftCrossUI"]),
-        .executable(name: "CounterExample", targets: ["CounterExample"]),
-        .executable(
-            name: "RandomNumberGeneratorExample",
-            targets: ["RandomNumberGeneratorExample"]
+        .library(name: "AppKitBackend", targets: ["AppKitBackend"]),
+        .library(name: "WinUIBackend", targets: ["WinUIBackend"]),
+        .library(name: "CursesBackend", targets: ["CursesBackend"]),
+        .library(name: "QtBackend", targets: ["QtBackend"]),
+        .library(name: "LVGLBackend", targets: ["LVGLBackend"]),
+        .library(name: "GtkBackend", targets: ["GtkBackend"]),
+        .library(name: "Gtk", targets: ["Gtk"]),
+        .executable(name: "GtkExample", targets: ["GtkExample"]),
+    ],
+    dependencies: [
+        .package(
+            url: "https://github.com/CoreOffice/XMLCoder",
+            from: "0.17.1"
         ),
-        .executable(
-            name: "WindowingExample",
-            targets: ["WindowingExample"]
+        .package(
+            url: "https://github.com/apple/swift-syntax.git",
+            from: "508.0.0"
         ),
-        .executable(
-            name: "GreetingGeneratorExample",
-            targets: ["GreetingGeneratorExample"]
+        // TODO: Switch to a different terminal library that doesn't have issues on non-Apple platforms
+        .package(
+            url: "https://github.com/migueldeicaza/TermKit",
+            revision: "3bce85d1bafbbb0336b3b7b7e905c35754cb9adf"
         ),
-        .executable(name: "FileViewerExample", targets: ["FileViewerExample"]),
-        .executable(name: "NavigationExample", targets: ["NavigationExample"]),
-        .executable(name: "SplitExample", targets: ["SplitExample"]),
-    ] + conditionalProducts,
-    dependencies: dependencies,
+        .package(
+            url: "https://github.com/PADL/LVGLSwift",
+            revision: "19c19a942153b50d61486faf1d0d45daf79e7be5"
+        ),
+        .package(
+            url: "https://github.com/Longhanks/qlift",
+            revision: "ddab1f1ecc113ad4f8e05d2999c2734cdf706210"
+        ),
+        .package(
+            url: "https://github.com/apple/swift-docc-plugin",
+            from: "1.0.0"
+        ),
+        .package(
+            url: "https://github.com/thebrowsercompany/swift-windowsappsdk",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/thebrowsercompany/swift-windowsfoundation",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/thebrowsercompany/swift-winui",
+            branch: "main"
+        ),
+    ],
     targets: [
         .target(
             name: "SwiftCrossUI",
@@ -228,102 +83,61 @@ let package = Package(
                 "Views/VariadicView.swift.gyb",
             ]
         ),
-        .executableTarget(
-            name: "ControlsExample",
-            dependencies: exampleDependencies,
-            path: "Examples/Controls"
-        ),
-        .executableTarget(
-            name: "CounterExample",
-            dependencies: exampleDependencies,
-            path: "Examples/Counter"
-        ),
-        .executableTarget(
-            name: "RandomNumberGeneratorExample",
-            dependencies: exampleDependencies,
-            path: "Examples/RandomNumberGenerator"
-        ),
-        .executableTarget(
-            name: "WindowingExample",
-            dependencies: exampleDependencies,
-            path: "Examples/Windowing",
-            resources: [.copy("Banner.png")]
-        ),
-        .executableTarget(
-            name: "GreetingGeneratorExample",
-            dependencies: exampleDependencies,
-            path: "Examples/GreetingGenerator"
-        ),
-        .executableTarget(
-            name: "FileViewerExample",
-            dependencies: fileViewerExampleDependencies,
-            path: "Examples/FileViewer"
-        ),
-        .executableTarget(
-            name: "NavigationExample",
-            dependencies: exampleDependencies,
-            path: "Examples/Navigation"
-        ),
-        .executableTarget(
-            name: "SplitExample",
-            dependencies: exampleDependencies,
-            path: "Examples/Split"
-        ),
-        .executableTarget(
-            name: "SpreadsheetExample",
-            dependencies: exampleDependencies,
-            path: "Examples/Spreadsheet"
-        ),
-        .executableTarget(
-            name: "StressTestExample",
-            dependencies: exampleDependencies,
-            path: "Examples/StressTest"
-        ),
-
         .testTarget(
             name: "SwiftCrossUITests",
             dependencies: ["SwiftCrossUI"]
         ),
-    ] + conditionalTargets
+        .target(name: "AppKitBackend", dependencies: ["SwiftCrossUI"]),
+        .target(
+            name: "WinUIBackend",
+            dependencies: [
+                .product(name: "WinUI", package: "swift-winui"),
+                .product(name: "WinAppSDK", package: "swift-windowsappsdk"),
+                .product(name: "WindowsFoundation", package: "swift-windowsfoundation")
+            ]
+        ),
+        .target(
+            name: "QtBackend",
+            dependencies: ["SwiftCrossUI", .product(name: "Qlift", package: "qlift")]
+        ),
+        .target(
+            name: "CursesBackend",
+            dependencies: ["SwiftCrossUI", "TermKit"]
+        ),
+        .target(
+            name: "LVGLBackend",
+            dependencies: [
+                "SwiftCrossUI",
+                .product(name: "LVGL", package: "LVGLSwift"),
+                .product(name: "CLVGL", package: "LVGLSwift"),
+            ]
+        ),
+        .target(
+            name: "GtkBackend",
+            dependencies: ["SwiftCrossUI", "Gtk", "CGtk"]
+        ),
+        .systemLibrary(
+            name: "CGtk",
+            pkgConfig: "gtk4",
+            providers: [
+                .brew(["gtk4"]),
+                .apt(["libgtk-4-dev clang"]),
+            ]
+        ),
+        .target(name: "Gtk", dependencies: ["CGtk"], swiftSettings: gtkSwiftSettings),
+        .executableTarget(
+            name: "GtkExample",
+            dependencies: ["Gtk"],
+            resources: [.copy("GTK.png")]
+        ),
+        .executableTarget(
+            name: "GtkCodeGen",
+            dependencies: [
+                "XMLCoder", .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
+            ]
+        ),
+    ]
 )
-
-func checkQtInstalled() -> Bool {
-    #if os(Windows)
-        // TODO: Test Qt backend on Windows
-        return false
-    #else
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/bin/bash")
-        process.arguments = ["-c", "qmake --version"]
-        process.standardOutput = Pipe()
-        do {
-            try process.run()
-            process.waitUntilExit()
-            return process.terminationStatus == 0
-        } catch {
-            return false
-        }
-    #endif
-}
-
-func checkSDL2Installed() -> Bool {
-    #if os(Windows)
-        // TODO: Test SDL backend on Windows
-        return false
-    #else
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/bin/bash")
-        process.arguments = ["-c", "sdl2-config --version"]
-        process.standardOutput = Pipe()
-        do {
-            try process.run()
-            process.waitUntilExit()
-            return process.terminationStatus == 0
-        } catch {
-            return false
-        }
-    #endif
-}
 
 func getGtk4MinorVersion() -> Int? {
     #if os(Windows)

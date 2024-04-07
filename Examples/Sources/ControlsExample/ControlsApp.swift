@@ -1,4 +1,4 @@
-import GtkBackend
+import SelectedBackend
 import SwiftCrossUI
 
 class ControlsState: Observable {
@@ -9,7 +9,7 @@ class ControlsState: Observable {
 
 @main
 struct ControlsApp: App {
-    typealias Backend = GtkBackend
+    typealias Backend = SelectedBackend
 
     let identifier = "dev.stackotter.Controls"
 
@@ -17,35 +17,31 @@ struct ControlsApp: App {
 
     var body: some Scene {
         WindowGroup("ControlsApp") {
-            HStack {
+            VStack {
                 VStack {
                     Text("Button")
                     Button("Click me!") {
                         state.count += 1
                     }
-                    Text("Count: \(state.count)", wrap: false)
-                    Spacer()
+                    Text("Count: \(state.count)")
                 }
-                Spacer()
+                .padding(.bottom, 20)
+
                 VStack {
-                    Text("Toggle (Button Style)")
+                    Text("Toggle button")
                     Toggle("Toggle me!", active: state.$exampleButtonState)
                         .toggleStyle(.button)
                     Text("Currently enabled: \(state.exampleButtonState)")
-                    Spacer()
-                        .padding(.bottom, 10)
-                    Text("Toggle (Switch Style)")
-                    HStack {
-                        Toggle("Toggle me:", active: state.$exampleSwitchState)
-                            .toggleStyle(.switch)
-                        Spacer()
-                            .padding(.bottom, 10)
-                    }
+                }
+                .padding(.bottom, 20)
+
+                VStack {
+                    Text("Toggle switch")
+                    Toggle("Toggle me:", active: state.$exampleSwitchState)
+                        .toggleStyle(.switch)
                     Text("Currently enabled: \(state.exampleSwitchState)")
-                    Spacer()
                 }
             }
-            .padding(10)
         }
     }
 }

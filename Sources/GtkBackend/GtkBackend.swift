@@ -3,6 +3,10 @@ import Foundation
 import Gtk
 import SwiftCrossUI
 
+extension App {
+    public typealias Backend = GtkBackend
+}
+
 extension SwiftCrossUI.Color {
     public var gtkColor: Gtk.Color {
         return Gtk.Color(red, green, blue, alpha)

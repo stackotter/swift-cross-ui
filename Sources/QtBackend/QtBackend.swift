@@ -2,6 +2,10 @@ import Foundation
 import Qlift
 import SwiftCrossUI
 
+extension App {
+    public typealias Backend = QtBackend
+}
+
 // TODO: Remove default padding from QBoxLayout related widgets.
 // TODO: Fix window size code, currently seems to get pretty ignored.
 

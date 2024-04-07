@@ -1,4 +1,4 @@
-import GtkBackend
+import SelectedBackend
 import SwiftCrossUI
 
 struct Person {
@@ -25,8 +25,6 @@ class SpreadsheetState: Observable {
 
 @main
 struct SpreadsheetApp: App {
-    typealias Backend = GtkBackend
-
     let identifier = "dev.stackotter.SpreadsheetApp"
 
     let state = SpreadsheetState()

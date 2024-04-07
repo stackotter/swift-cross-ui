@@ -1,4 +1,4 @@
-import GtkBackend
+import SelectedBackend
 import SwiftCrossUI
 
 class RandomNumberGeneratorState: Observable {
@@ -27,8 +27,6 @@ enum ColorOption: String, CaseIterable {
 
 @main
 struct RandomNumberGeneratorApp: App {
-    typealias Backend = GtkBackend
-
     let identifier = "dev.stackotter.RandomNumberGeneratorApp"
 
     let state = RandomNumberGeneratorState()

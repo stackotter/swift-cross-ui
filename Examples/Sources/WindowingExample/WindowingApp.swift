@@ -1,5 +1,5 @@
 import Foundation
-import GtkBackend
+import SelectedBackend
 import SwiftCrossUI
 
 class WindowingAppState: Observable {
@@ -9,8 +9,6 @@ class WindowingAppState: Observable {
 
 @main
 struct WindowingApp: App {
-    typealias Backend = GtkBackend
-
     let identifier = "dev.stackotter.WindowPropertiesApp"
 
     let state = WindowingAppState()

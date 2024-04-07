@@ -1,5 +1,5 @@
 import Foundation
-import GtkBackend
+import SelectedBackend
 import SwiftCrossUI
 
 enum SubjectArea {
@@ -30,8 +30,6 @@ class SplitAppState: Observable {
 
 @main
 struct SplitApp: App {
-    typealias Backend = GtkBackend
-
     let identifier = "dev.stackotter.SplitApp"
 
     let state = SplitAppState()
