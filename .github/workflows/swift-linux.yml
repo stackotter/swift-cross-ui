@@ -17,6 +17,7 @@ jobs:
         sudo apt install -y libgtk-4-dev clang
     - name: Build
       run: |
+        swift build --target GtkCodeGen && \
         cd Examples && \
         swift build --target SwiftCrossUI && \
         swift build --target GtkBackend && \
@@ -27,7 +28,6 @@ jobs:
         swift build --target GreetingGeneratorExample && \
         swift build --target NavigationExample && \
         swift build --target SplitExample && \
-        swift build --target GtkCodeGen && \
         swift build --target GtkExample
     - name: Test
       run: swift test
