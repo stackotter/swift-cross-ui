@@ -77,8 +77,7 @@ let package = Package(
         .target(name: "AppKitBackend", dependencies: ["SwiftCrossUI"]),
         .target(
             name: "QtBackend",
-            dependencies: ["SwiftCrossUI", .product(name: "Qlift", package: "qlift")],
-            plugins: ["DependencyCheckingPlugin"]
+            dependencies: ["SwiftCrossUI", .product(name: "Qlift", package: "qlift")]
         ),
         .target(
             name: "CursesBackend",
@@ -94,8 +93,7 @@ let package = Package(
         ),
         .target(
             name: "GtkBackend",
-            dependencies: ["SwiftCrossUI", "Gtk", "CGtk"],
-            plugins: ["DependencyCheckingPlugin"]
+            dependencies: ["SwiftCrossUI", "Gtk", "CGtk"]
         ),
         .systemLibrary(
             name: "CGtk",
@@ -116,10 +114,6 @@ let package = Package(
             dependencies: [
                 "XMLCoder", .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
             ]
-        ),
-        .plugin(
-            name: "DependencyCheckingPlugin",
-            capability: .buildTool()
         ),
     ]
 )
