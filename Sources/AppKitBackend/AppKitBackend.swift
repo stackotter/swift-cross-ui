@@ -218,6 +218,64 @@ public struct AppKitBackend: AppBackend {
             container.addView(widget, in: .center)
         }
     }
+
+    public func createSlider() -> NSView {
+        return NSSlider()
+    }
+
+    public func updateSlider(
+        _ slider: NSView,
+        minimum: Double,
+        maximum: Double,
+        decimalPlaces: Int,
+        onChange: @escaping (Double) -> Void
+    ) {
+        // TODO: Implement decimalPlaces
+        let slider = slider as! NSSlider
+        slider.minValue = minimum
+        slider.maxValue = maximum
+        slider.onAction = { slider in
+            let slider = slider as! NSSlider
+            onChange(slider.doubleValue)
+        }
+    }
+
+    public func setValue(ofSlider slider: NSView, to value: Double) {
+        let slider = slider as! NSSlider
+        slider.doubleValue = value
+    }
+
+    public func createPicker() -> NSView {
+        return NSPopUpButton()
+    }
+
+    public func updatePicker(
+        _ picker: NSView, options: [String], onChange: @escaping (Int?) -> Void
+    ) {
+        let picker = picker as! NSPopUpButton
+        picker.addItems(withTitles: options)
+        picker.onAction = { picker in
+            let picker = picker as! NSPopUpButton
+            onChange(picker.indexOfSelectedItem)
+        }
+    }
+
+    public func setSelectedOption(ofPicker picker: NSView, to selectedOption: Int?) {
+        let picker = picker as! NSPopUpButton
+        if let index = selectedOption {
+            picker.selectItem(at: index)
+        } else {
+            picker.select(nil)
+        }
+    }
+
+    public func createStyleContainer(for child: NSView) -> NSView {
+        return child
+    }
+
+    public func setForegroundColor(ofStyleContainer container: NSView, to color: Color) {
+        // TODO: Implement foreground color
+    }
 }
 
 // Source: https://gist.github.com/sindresorhus/3580ce9426fff8fafb1677341fca4815
