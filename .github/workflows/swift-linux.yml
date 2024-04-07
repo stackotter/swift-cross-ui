@@ -25,7 +25,6 @@ jobs:
         swift build --target RandomNumberGeneratorExample && \
         swift build --target WindowingExample && \
         swift build --target GreetingGeneratorExample && \
-        swift build --target FileViewerExample && \
         swift build --target NavigationExample && \
         swift build --target SplitExample && \
         swift build --target GtkCodeGen && \
