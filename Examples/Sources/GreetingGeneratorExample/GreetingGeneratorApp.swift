@@ -8,8 +8,6 @@ class GreetingGeneratorState: Observable {
 
 @main
 struct GreetingGeneratorApp: App {
-    typealias Backend = SelectedBackend
-
     let identifier = "dev.stackotter.GreetingGenerator"
 
     let state = GreetingGeneratorState()

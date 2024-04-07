@@ -23,8 +23,6 @@ class NavigationAppState: Observable {
 
 @main
 struct NavigationApp: App {
-    typealias Backend = SelectedBackend
-
     let identifier = "dev.stackotter.NavigationApp"
 
     let state = NavigationAppState()

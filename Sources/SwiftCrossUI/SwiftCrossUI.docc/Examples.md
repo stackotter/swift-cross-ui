@@ -4,7 +4,7 @@ An overview of the examples included with SwiftCrossUI.
 
 ## Overview
 
-A few examples are included with SwiftCrossUI to demonstrate some of it's basic features. These examples are:
+A few examples are included with SwiftCrossUI to demonstrate some of its basic features;
 
 - `CounterExample`, a simple app with buttons to increase and decrease a count.
 - `RandomNumberGeneratorExample`, a simple app to generate random numbers between a minimum and maximum.
@@ -18,16 +18,8 @@ A few examples are included with SwiftCrossUI to demonstrate some of it's basic 
 - `SpreadsheetExample`, an app showcasing tables.
 - `ControlsExample`, an app showcasing the various types of controls available.
 
-To run an example, either select the example under schemes at the top of the window (in Xcode), or run one of the following commands (if using a terminal):
+To run an example, either select the example under schemes at the top of the window (in Xcode), or run it from the command line like so:
+
 ```
-swift run CounterExample
-swift run RandomNumberGeneratorExample
-swift run WindowingExample
-swift run GreetingGeneratorExample
-swift run FileViewerExample
-swift run NavigationExample
-swift run SpitExample
-swift run StressTestExample
-swift run SpreadsheetExample
-swift run ControlsExample
+swift run ExampleToRun
 ```

@@ -1,6 +1,10 @@
 import AppKit
 import SwiftCrossUI
 
+extension App {
+    public typealias Backend = AppKitBackend
+}
+
 public struct AppKitBackend: AppBackend {
     public typealias Window = NSWindow
     public typealias Widget = NSView

@@ -27,8 +27,6 @@ enum ColorOption: String, CaseIterable {
 
 @main
 struct RandomNumberGeneratorApp: App {
-    typealias Backend = SelectedBackend
-
     let identifier = "dev.stackotter.RandomNumberGeneratorApp"
 
     let state = RandomNumberGeneratorState()

@@ -1,8 +1,9 @@
 // swift-tools-version:5.6
 
+import Foundation
 import PackageDescription
 
-let backend = "GtkBackend"
+let backend = ProcessInfo.processInfo.environment["SCUI_BACKEND"] ?? "GtkBackend"
 
 let exampleDependencies: [Target.Dependency] = [
     "SwiftCrossUI",

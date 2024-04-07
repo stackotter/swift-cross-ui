@@ -2,6 +2,10 @@ import Foundation
 import SwiftCrossUI
 import TermKit
 
+extension App {
+    public typealias Backend = CursesBackend
+}
+
 public final class CursesBackend: AppBackend {
     public typealias Window = RootView
     public typealias Widget = TermKit.View

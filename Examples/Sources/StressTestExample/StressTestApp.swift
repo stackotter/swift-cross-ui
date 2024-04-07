@@ -26,8 +26,6 @@ class StressTestState: Observable {
 
 @main
 struct StressTestApp: App {
-    typealias Backend = SelectedBackend
-
     let identifier = "dev.stackotter.StressTestApp"
 
     let state = StressTestState()

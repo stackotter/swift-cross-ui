@@ -7,8 +7,6 @@ class CounterState: Observable {
 
 @main
 struct CounterApp: App {
-    typealias Backend = SelectedBackend
-
     let identifier = "dev.stackotter.CounterApp"
 
     let state = CounterState()

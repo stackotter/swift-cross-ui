@@ -41,6 +41,7 @@ Here's a simple example app demonstrate how easy it is to get started with Swift
 
 ```swift
 import SwiftCrossUI
+// Import whichever backend you need
 import GtkBackend
 
 class CounterState: Observable {
@@ -49,9 +50,9 @@ class CounterState: Observable {
 
 @main
 struct CounterApp: App {
-    // An experimental AppKit backend is also available when on macOS (try AppKitBackend)
-    // There's also a Qt5 backend (QtBackend) available when qt5 is installed
-    typealias Backend = GtkBackend
+    // Optionally, you can explicitly select which imported backend to use (this is done for
+    // you if only one backend is imported).
+    //  typealias Backend = GtkBackend
 
     let identifier = "dev.stackotter.CounterApp"
 
@@ -74,26 +75,33 @@ To run this example, run these commands:
 
 ```sh
 git clone https://github.com/stackotter/swift-cross-ui
-cd swift-cross-ui
+cd swift-cross-ui/Examples
 swift run CounterExample
 ```
 
-To see all of the examples, run these commands:
+### Other examples
 
-```sh
-swift run CounterExample
-swift run RandomNumberGeneratorExample
-swift run WindowingExample
-swift run GreetingGeneratorExample
-swift run FileViewerExample
-swift run NavigationExample
-swift run SpitExample
-swift run StressTestExample
-swift run SpreadsheetExample
-swift run ControlsExample
+A few examples are included with SwiftCrossUI to demonstrate some of its basic features;
+
+- `CounterExample`, a simple app with buttons to increase and decrease a count.
+- `RandomNumberGeneratorExample`, a simple app to generate random numbers between a minimum and maximum.
+- `WindowingExample`, a simple app showcasing how ``WindowGroup`` is used to make multi-window apps and
+  control the properties of each window.
+- `GreetingGeneratorExample`, a simple app demonstrating dynamic state and the ``ForEach`` view.
+- `FileViewerExample`, an app showcasing integration with the system's file chooser.
+- `NavigationExample`, an app showcasing ``NavigationStack`` and related concepts.
+- `SplitExample`, an app showcasing sidebar-based navigation with multiple levels.
+- `StressTestExample`, an app used to test view update performance.
+- `SpreadsheetExample`, an app showcasing tables.
+- `ControlsExample`, an app showcasing the various types of controls available.
+
+### Running examples on other backends
+
+All examples use `GtkBackend` by default but you can override this using the `SCUI_BACKEND` environment variable like so;
+
 ```
-
-All examples use the `GtkBackend` but can easily be updated to test out other backends.
+SCUI_BACKEND=QtBackend swift run CounterExample
+```
 
 ## Documentation
 

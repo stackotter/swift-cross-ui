@@ -30,8 +30,6 @@ class SplitAppState: Observable {
 
 @main
 struct SplitApp: App {
-    typealias Backend = SelectedBackend
-
     let identifier = "dev.stackotter.SplitApp"
 
     let state = SplitAppState()

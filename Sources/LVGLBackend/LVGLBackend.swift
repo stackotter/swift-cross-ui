@@ -3,6 +3,10 @@ import Foundation
 import LVGL
 import SwiftCrossUI
 
+extension App {
+    public typealias Backend = LVGLBackend
+}
+
 public final class LVGLBackend: AppBackend {
     public class Widget {
         private var createWithParent: (LVObject) -> LVObject

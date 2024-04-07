@@ -9,8 +9,6 @@ class ControlsState: Observable {
 
 @main
 struct ControlsApp: App {
-    typealias Backend = SelectedBackend
-
     let identifier = "dev.stackotter.Controls"
 
     let state = ControlsState()

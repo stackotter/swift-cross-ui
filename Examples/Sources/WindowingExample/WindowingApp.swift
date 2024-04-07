@@ -9,8 +9,6 @@ class WindowingAppState: Observable {
 
 @main
 struct WindowingApp: App {
-    typealias Backend = SelectedBackend
-
     let identifier = "dev.stackotter.WindowPropertiesApp"
 
     let state = WindowingAppState()
