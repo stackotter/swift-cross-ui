@@ -136,6 +136,88 @@ public struct AppKitBackend: AppBackend {
         view.edgeInsets.left = CGFloat(leading)
         view.edgeInsets.right = CGFloat(trailing)
     }
+
+    public func createSpacer() -> NSView {
+        return NSView()
+    }
+
+    public func updateSpacer(
+        _ spacer: NSView, expandHorizontally: Bool, expandVertically: Bool, minSize: Int
+    ) {
+        // TODO: Update spacer
+    }
+
+    public func createSwitch() -> NSView {
+        return NSSwitch()
+    }
+
+    public func updateSwitch(_ toggleSwitch: NSView, onChange: @escaping (Bool) -> Void) {
+        let toggleSwitch = toggleSwitch as! NSSwitch
+        toggleSwitch.onAction = { toggleSwitch in
+            let toggleSwitch = toggleSwitch as! NSSwitch
+            onChange(toggleSwitch.state == .on)
+        }
+    }
+
+    public func setState(ofSwitch toggleSwitch: NSView, to state: Bool) {
+        let toggleSwitch = toggleSwitch as! NSSwitch
+        toggleSwitch.state = state ? .on : .off
+    }
+
+    public func createToggle() -> NSView {
+        let toggle = NSButton()
+        toggle.setButtonType(.pushOnPushOff)
+        return toggle
+    }
+
+    public func updateToggle(_ toggle: NSView, label: String, onChange: @escaping (Bool) -> Void) {
+        let toggle = toggle as! NSButton
+        toggle.title = label
+        toggle.onAction = { toggle in
+            let toggle = toggle as! NSButton
+            onChange(toggle.state == .on)
+        }
+    }
+
+    public func setState(ofToggle toggle: NSView, to state: Bool) {
+        let toggle = toggle as! NSButton
+        toggle.state = state ? .on : .off
+    }
+
+    public func getInheritedOrientation(of widget: NSView) -> InheritedOrientation? {
+        guard let superview = widget.superview else {
+            return nil
+        }
+
+        if let stack = superview as? NSStackView {
+            switch stack.orientation {
+                case .horizontal:
+                    return .horizontal
+                case .vertical:
+                    return .vertical
+                default:
+                    break
+            }
+        }
+
+        return getInheritedOrientation(of: superview)
+    }
+
+    public func createSingleChildContainer() -> NSView {
+        let container = NSStackView()
+        container.alignment = .centerY
+        return container
+    }
+
+    public func setChild(ofSingleChildContainer container: NSView, to widget: NSView?) {
+        let container = container as! NSStackView
+        for child in container.arrangedSubviews {
+            container.removeView(child)
+        }
+        if let widget = widget {
+            container.addView(widget, in: .center)
+        }
+    }
 }
 
 // Source: https://gist.github.com/sindresorhus/3580ce9426fff8fafb1677341fca4815
