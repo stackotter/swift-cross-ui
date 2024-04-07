@@ -47,7 +47,11 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func setChild(ofWindow window: NSWindow, to child: NSView) {
-        window.contentView = child
+        let container = NSStackView()
+        container.addView(child, in: .bottom)
+        child.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
+        child.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
+        window.contentView = container
     }
 
     public func show(window: NSWindow) {
