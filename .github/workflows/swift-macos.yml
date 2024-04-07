@@ -18,6 +18,7 @@ jobs:
       run: sed -i '' 's/-I..includedir.//g' /usr/local/Homebrew/Library/Homebrew/os/mac/pkgconfig/13/libffi.pc
     - name: Build
       run: |
+        cd Examples && \
         swift build --target SwiftCrossUI && \
         swift build --target GtkBackend && \
         swift build --target CounterExample && \
