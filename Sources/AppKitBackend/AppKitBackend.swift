@@ -408,6 +408,17 @@ public struct AppKitBackend: AppBackend {
             .constraint(greaterThanOrEqualToConstant: CGFloat(minHeight))
             .isActive = true
     }
+
+    public func createImageView(filePath: String) -> Widget {
+        let imageView = NSImageView()
+        imageView.image = NSImage(contentsOfFile: filePath)
+        return .view(imageView)
+    }
+
+    public func updateImageView(_ imageView: Widget, filePath: String) {
+        let imageView = imageView.view as! NSImageView
+        imageView.image = NSImage(contentsOfFile: filePath)
+    }
 }
 
 // Source: https://gist.github.com/sindresorhus/3580ce9426fff8fafb1677341fca4815

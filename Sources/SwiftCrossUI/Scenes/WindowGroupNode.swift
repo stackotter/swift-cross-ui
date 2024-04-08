@@ -9,6 +9,8 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
     /// The window that the group is getting rendered in. Will need to be multiple
     /// windows once having multiple copies of a window is supported.
     private var window: Any
+    /// `false` after the first scene update.
+    private var isFirstUpdate = true
 
     public init<Backend: AppBackend>(
         from scene: WindowGroup<Content>,
@@ -40,6 +42,9 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             backend.setResizability(ofWindow: window, to: newScene.resizable)
         }
 
-        backend.show(window: window)
+        if isFirstUpdate {
+            backend.show(window: window)
+            isFirstUpdate = false
+        }
     }
 }
