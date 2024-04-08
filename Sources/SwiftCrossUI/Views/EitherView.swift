@@ -33,17 +33,16 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
     func asWidget<Backend: AppBackend>(
         _ children: EitherViewChildren<A, B>, backend: Backend
     ) -> Backend.Widget {
-        let container = backend.createSingleChildContainer()
-        backend.setChild(ofSingleChildContainer: container, to: children.widget(for: backend))
-        return container
+        return backend.createSingleChildContainer()
     }
 
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget, children: EitherViewChildren<A, B>, backend: Backend
     ) {
-        if children.hasSwitchedCase {
+        if children.hasSwitchedCase || children.isFirstUpdate {
             backend.setChild(ofSingleChildContainer: widget, to: children.widget(for: backend))
         }
+        children.isFirstUpdate = false
     }
 }
 
@@ -70,6 +69,8 @@ class EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
     /// Whether the view has switched children since the last time the parent widget was
     /// updated.
     var hasSwitchedCase = true
+    /// `true` if the first view update hasn't occurred yet.
+    var isFirstUpdate = true
 
     var widgets: [AnyWidget] {
         return [node.widget]

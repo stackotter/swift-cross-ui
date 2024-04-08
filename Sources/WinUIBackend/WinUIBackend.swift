@@ -1,8 +1,8 @@
 import SwiftCrossUI
 import UWP
 import WinAppSDK
-import WindowsFoundation
 import WinUI
+import WindowsFoundation
 
 class WinRTApplication: SwiftApplication {
     static var callback: () -> Void = {}
@@ -44,7 +44,8 @@ public struct WinUIBackend: AppBackend {
         let window = Window()
 
         if let size {
-            try! window.appWindow.resizeClient(SizeInt32(width: Int32(size.width), height: Int32(size.height)))
+            try! window.appWindow.resizeClient(
+                SizeInt32(width: Int32(size.width), height: Int32(size.height)))
         }
         return window
     }
@@ -75,15 +76,17 @@ public struct WinUIBackend: AppBackend {
         Grid()
     }
 
-    public func addChild(_ child: Widget, toVStack container: Widget) {
+    public func setChildren(_ children: [Widget], ofVStack container: Widget) {
         let grid = container as! Grid
-        let rowDefinition = RowDefinition()
-        if child.name != "Spacer" {
-            rowDefinition.height = GridLength(value: 1, gridUnitType: .auto)
+        for child in children {
+            let rowDefinition = RowDefinition()
+            if child.name != "Spacer" {
+                rowDefinition.height = GridLength(value: 1, gridUnitType: .auto)
+            }
+            Grid.setRow(child, Int32(grid.rowDefinitions.count))
+            grid.rowDefinitions.append(rowDefinition)
+            grid.children.append(child)
         }
-        Grid.setRow(child, Int32(grid.rowDefinitions.count))
-        grid.rowDefinitions.append(rowDefinition)
-        grid.children.append(child)
     }
 
     public func setSpacing(ofVStack widget: Widget, to spacing: Int) {
@@ -94,15 +97,17 @@ public struct WinUIBackend: AppBackend {
         Grid()
     }
 
-    public func addChild(_ child: Widget, toHStack container: Widget) {
+    public func setChildren(_ children: [Widget], ofHStack container: Widget) {
         let grid = container as! Grid
-        let columnDefinition = ColumnDefinition()
-        if child.name != "Spacer" {
-            columnDefinition.width = GridLength(value: 1, gridUnitType: .auto)
+        for child in children {
+            let columnDefinition = ColumnDefinition()
+            if child.name != "Spacer" {
+                columnDefinition.width = GridLength(value: 1, gridUnitType: .auto)
+            }
+            Grid.setColumn(child, Int32(grid.columnDefinitions.count))
+            grid.columnDefinitions.append(columnDefinition)
+            grid.children.append(child)
         }
-        Grid.setColumn(child, Int32(grid.columnDefinitions.count))
-        grid.columnDefinitions.append(columnDefinition)
-        grid.children.append(child)
     }
 
     public func setSpacing(ofHStack widget: Widget, to spacing: Int) {
@@ -123,7 +128,9 @@ public struct WinUIBackend: AppBackend {
         return border
     }
 
-    public func setPadding(ofPaddingContainer container: Widget, top: Int, bottom: Int, leading: Int, trailing: Int) {
+    public func setPadding(
+        ofPaddingContainer container: Widget, top: Int, bottom: Int, leading: Int, trailing: Int
+    ) {
         (container as! Border).borderThickness = .init(
             left: Double(leading),
             top: Double(top),
@@ -186,12 +193,16 @@ public struct WinUIBackend: AppBackend {
             guard let internalState = internalState else {
                 return
             }
-            internalState.sliderChangeActions[ObjectIdentifier(slider)]?(Double(event?.newValue ?? 0))
+            internalState.sliderChangeActions[ObjectIdentifier(slider)]?(
+                Double(event?.newValue ?? 0))
         }
         return slider
     }
 
-    public func updateSlider(_ slider: Widget, minimum: Double, maximum: Double, decimalPlaces _: Int, onChange: @escaping (Double) -> Void) {
+    public func updateSlider(
+        _ slider: Widget, minimum: Double, maximum: Double, decimalPlaces _: Int,
+        onChange: @escaping (Double) -> Void
+    ) {
         let slider = slider as! WinUI.Slider
         slider.minimum = minimum
         slider.maximum = maximum
@@ -214,7 +225,9 @@ public struct WinUIBackend: AppBackend {
         return picker
     }
 
-    public func updatePicker(_ picker: Widget, options: [String], onChange: @escaping (Int?) -> Void) {
+    public func updatePicker(
+        _ picker: Widget, options: [String], onChange: @escaping (Int?) -> Void
+    ) {
         let picker = picker as! ComboBox
         guard options.count > 0 else { return }
         if options.count == picker.items.count {
@@ -226,22 +239,22 @@ public struct WinUIBackend: AppBackend {
             // }
         } else if options.count > picker.items.count {
             if !picker.items.isEmpty {
-                for i in 0 ..< picker.items.count {
+                for i in 0..<picker.items.count {
                     // if picker.items.getAt(UInt32(i)) as? String != options[i] {
                     picker.items.setAt(UInt32(i), options[i])
                     // }
                 }
             }
-            for i in picker.items.count ..< options.count {
+            for i in picker.items.count..<options.count {
                 picker.items.append(options[i])
             }
         } else {
-            for i in 0 ..< options.count {
+            for i in 0..<options.count {
                 // if picker.items.getAt(UInt32(i)) as? String != options[i] {
                 picker.items.setAt(UInt32(i), options[i])
                 // }
             }
-            for i in options.count ..< picker.items.count {
+            for i in options.count..<picker.items.count {
                 picker.items.removeAt(UInt32(i))
             }
         }
@@ -270,11 +283,15 @@ public struct WinUIBackend: AppBackend {
         }
     }
 
-    public func setForegroundColor(ofStyleContainer container: Widget, to color: SwiftCrossUI.Color) {
+    public func setForegroundColor(ofStyleContainer container: Widget, to color: SwiftCrossUI.Color)
+    {
         // Note: this works, but it's not optimal since we are iterating on all the childrens looking for
         let container = container as? StackPanel ?? container as! Grid
         let style = Style(.init(name: "TextBlock", kind: .primitive))
-        style.setters.append(Setter(TextBlock.foregroundProperty, "sc#\(color.alpha),\(color.red),\(color.green),\(color.blue)"))
+        style.setters.append(
+            Setter(
+                TextBlock.foregroundProperty,
+                "sc#\(color.alpha),\(color.red),\(color.green),\(color.blue)"))
 
         // Since we are drilling down the tree if we encounter another style container with a foreground color
         // already set we stop here to avoid overwriting a more specific style that has been set.
@@ -311,7 +328,9 @@ public struct WinUIBackend: AppBackend {
         return textField
     }
 
-    public func updateTextField(_ textField: Widget, placeholder: String, onChange: @escaping (String) -> Void) {
+    public func updateTextField(
+        _ textField: Widget, placeholder: String, onChange: @escaping (String) -> Void
+    ) {
         let textField = (textField as! TextBox)
         textField.placeholderText = placeholder
         internalState.textFieldChangeActions[ObjectIdentifier(textField)] = onChange
@@ -368,7 +387,9 @@ public struct WinUIBackend: AppBackend {
         StackPanel()
     }
 
-    public func updateSpacer(_ spacer: Widget, expandHorizontally: Bool, expandVertically: Bool, minSize: Int) {
+    public func updateSpacer(
+        _ spacer: Widget, expandHorizontally: Bool, expandVertically: Bool, minSize: Int
+    ) {
         let stackPanel = spacer as! StackPanel
         if expandHorizontally {
             stackPanel.minWidth = Double(minSize)
@@ -393,6 +414,8 @@ public struct WinUIBackend: AppBackend {
         return grid
     }
 
+    public func updateSplitView(_ splitView: Widget) {}
+
     public func getInheritedOrientation(of _: Widget) -> InheritedOrientation? {
         InheritedOrientation.vertical
     }
@@ -413,13 +436,13 @@ public struct WinUIBackend: AppBackend {
         let grid = Grid()
         grid.columnSpacing = 10
         grid.rowSpacing = 10
-        for _ in 0 ..< rows {
+        for _ in 0..<rows {
             let rowDefinition = RowDefinition()
             rowDefinition.height = GridLength(value: 0, gridUnitType: .auto)
             grid.rowDefinitions.append(rowDefinition)
         }
 
-        for _ in 0 ..< columns {
+        for _ in 0..<columns {
             let columnDefinition = ColumnDefinition()
             columnDefinition.width = GridLength(value: 0, gridUnitType: .auto)
             grid.columnDefinitions.append(columnDefinition)
@@ -430,7 +453,7 @@ public struct WinUIBackend: AppBackend {
     public func setRowCount(ofTable table: Widget, to rows: Int) {
         let grid = table as! Grid
         grid.rowDefinitions.clear()
-        for _ in 0 ..< rows {
+        for _ in 0..<rows {
             let rowDefinition = RowDefinition()
             rowDefinition.height = GridLength(value: 0, gridUnitType: .auto)
             grid.rowDefinitions.append(rowDefinition)
@@ -440,7 +463,7 @@ public struct WinUIBackend: AppBackend {
     public func setColumnCount(ofTable table: Widget, to columns: Int) {
         let grid = table as! Grid
         grid.columnDefinitions.clear()
-        for _ in 0 ..< columns {
+        for _ in 0..<columns {
             let columnDefinition = ColumnDefinition()
             columnDefinition.width = GridLength(value: 0, gridUnitType: .auto)
             grid.columnDefinitions.append(columnDefinition)

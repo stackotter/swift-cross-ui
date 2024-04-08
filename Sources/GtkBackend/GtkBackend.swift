@@ -109,8 +109,11 @@ public final class GtkBackend: AppBackend {
         return Box(orientation: .vertical, spacing: 0)
     }
 
-    public func addChild(_ child: Widget, toVStack container: Widget) {
-        (container as! Box).add(child)
+    public func setChildren(_ children: [Widget], ofVStack container: Widget) {
+        let container = container as! Box
+        for child in children {
+            container.add(child)
+        }
     }
 
     public func setSpacing(ofVStack container: Widget, to spacing: Int) {
@@ -133,8 +136,11 @@ public final class GtkBackend: AppBackend {
         return ModifierBox()
     }
 
-    public func setChild(ofSingleChildContainer container: Widget, to widget: Widget?) {
-        (container as! ModifierBox).setChild(widget)
+    public func setChildren(_ children: [Widget], ofHStack container: Widget) {
+        let container = container as! Box
+        for child in children {
+            container.add(child)
+        }
     }
 
     public func createLayoutTransparentStack() -> Widget {
@@ -189,6 +195,8 @@ public final class GtkBackend: AppBackend {
         widget.expandVertically = true
         return widget
     }
+
+    public func updateSplitView(_ splitView: Widget) {}
 
     // MARK: Layout
 

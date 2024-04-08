@@ -110,21 +110,22 @@ public protocol AppBackend {
 
     /// Creates a vertical container. Predominantly used by ``VStack``.`
     func createVStack() -> Widget
-    /// Adds a child to the end of a vertical container.
-    func addChild(_ child: Widget, toVStack container: Widget)
+    /// Sets the children of a VStack. Will be called once and only once per VStack.
+    func setChildren(_ children: [Widget], ofVStack container: Widget)
     /// Sets the spacing between children of a vertical container.
     func setSpacing(ofVStack widget: Widget, to spacing: Int)
 
     /// Creates a horizontal container. Predominantly used by ``HStack``.`
     func createHStack() -> Widget
-    /// Adds a child to the end of a horizontal container.
-    func addChild(_ child: Widget, toHStack container: Widget)
+    /// Sets the children of a VStack. Will be called once and only once per HStack.
+    func setChildren(_ children: [Widget], ofHStack container: Widget)
     /// Sets the spacing between children of a horizontal container.
     func setSpacing(ofHStack widget: Widget, to spacing: Int)
 
     /// Creates a single-child container. Predominantly used to implement ``EitherView``.
     func createSingleChildContainer() -> Widget
-    /// Sets the single child of an either container.
+    /// Sets the child of a single-child container. Only called once the container has been
+    /// added to the widget hierarchy.
     func setChild(ofSingleChildContainer container: Widget, to widget: Widget?)
 
     /// Creates a view with a (theoretically) unlimited number of children, which inherits the
@@ -166,6 +167,11 @@ public protocol AppBackend {
     /// inside another container such as a VStack (avoiding update methods makes maintaining
     /// a multitude of backends a bit easier).
     func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget
+    /// Updates a split view.
+    ///
+    /// Many backends don't need to do anything here but some do need to do some layout
+    /// related updates.
+    func updateSplitView(_ splitView: Widget)
 
     // MARK: Layout
 
@@ -308,34 +314,24 @@ public protocol AppBackend {
 }
 
 extension AppBackend {
-    /// A helper to add multiple children to a vertical container at once.
-    public func addChildren(_ children: [Widget], toVStack container: Widget) {
-        for child in children {
-            addChild(child, toVStack: container)
-        }
-    }
-
     /// A helper to add multiple type-erased children to a vertical container at once.
-    /// Will crash if any of the widgets are for a different backend.
-    public func addChildren(_ children: [AnyWidget], toVStack container: Widget) {
-        for child in children {
-            addChild(child.into(), toVStack: container)
-        }
-    }
-
-    /// A helper to add multiple children to a horizontal container at once.
-    public func addChildren(_ children: [Widget], toHStack container: Widget) {
-        for child in children {
-            addChild(child, toHStack: container)
-        }
+    /// Will crash if any of the widgets are for a different backend. Should be called
+    /// once and only once per VStack.
+    public func setChildren(_ children: [AnyWidget], ofVStack container: Widget) {
+        setChildren(
+            children.map { child -> Widget in child.into() },
+            ofVStack: container
+        )
     }
 
     /// A helper to add multiple type-erased children to a horizontal container at once.
-    /// Will crash if any of the widgets are for a different backend.
-    public func addChildren(_ children: [AnyWidget], toHStack container: Widget) {
-        for child in children {
-            addChild(child.into(), toHStack: container)
-        }
+    /// Will crash if any of the widgets are for a different backend. Should be called
+    /// once and only once per HStack.
+    public func setChildren(_ children: [AnyWidget], ofHStack container: Widget) {
+        setChildren(
+            children.map { child -> Widget in child.into() },
+            ofHStack: container
+        )
     }
 
     /// A helper to add multiple children to a layout-transparent container at once.
@@ -348,9 +344,10 @@ extension AppBackend {
     /// A helper to add multiple type-erased children to a layout-transparent container
     /// at once. Will crash if any of the widgets are for a different backend.
     public func addChildren(_ children: [AnyWidget], toLayoutTransparentStack container: Widget) {
-        for child in children {
-            addChild(child.into(), toLayoutTransparentStack: container)
-        }
+        addChildren(
+            children.map { child -> Widget in child.into() },
+            toLayoutTransparentStack: container
+        )
     }
 }
 
@@ -366,7 +363,7 @@ extension AppBackend {
     public func createVStack() -> Widget {
         todo()
     }
-    public func addChild(_ child: Widget, toVStack container: Widget) {
+    public func setChildren(_ children: [Widget], ofVStack container: Widget) {
         todo()
     }
     public func setSpacing(ofVStack widget: Widget, to spacing: Int) {
@@ -376,7 +373,7 @@ extension AppBackend {
     public func createHStack() -> Widget {
         todo()
     }
-    public func addChild(_ child: Widget, toHStack container: Widget) {
+    public func setChildren(_ children: [Widget], ofHStack container: Widget) {
         todo()
     }
     public func setSpacing(ofHStack widget: Widget, to spacing: Int) {
@@ -421,6 +418,9 @@ extension AppBackend {
     }
 
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
+        todo()
+    }
+    public func updateSplitView(_ splitView: Widget) {
         todo()
     }
 

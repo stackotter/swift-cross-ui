@@ -67,7 +67,7 @@ extension View {
     ) -> Backend.Widget {
         let vStack = backend.createVStack()
         backend.setSpacing(ofVStack: vStack, to: 8)
-        backend.addChildren(children.widgets(for: backend), toVStack: vStack)
+        backend.setChildren(children.widgets(for: backend), ofVStack: vStack)
         return vStack
     }
 

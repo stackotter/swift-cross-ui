@@ -16,7 +16,7 @@ public struct HStack<Content: View>: View {
         backend: Backend
     ) -> Backend.Widget {
         let hStack = backend.createHStack()
-        backend.addChildren(children.widgets(for: backend), toHStack: hStack)
+        backend.setChildren(children.widgets(for: backend), ofHStack: hStack)
         return hStack
     }
 

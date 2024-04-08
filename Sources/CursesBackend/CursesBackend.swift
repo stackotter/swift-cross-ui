@@ -60,10 +60,12 @@ public final class CursesBackend: AppBackend {
         return View()
     }
 
-    public func addChild(_ child: Widget, toVStack container: Widget) {
+    public func setChildren(_ children: [Widget], ofVStack container: Widget) {
         // TODO: Properly calculate layout
-        child.y = Pos.at(container.subviews.count)
-        container.addSubview(child)
+        for child in children {
+            child.y = Pos.at(container.subviews.count)
+            container.addSubview(child)
+        }
     }
 
     public func setSpacing(ofVStack container: Widget, to spacing: Int) {}
@@ -72,10 +74,12 @@ public final class CursesBackend: AppBackend {
         return View()
     }
 
-    public func addChild(_ child: Widget, toHStack container: Widget) {
+    public func setChildren(_ children: [Widget], ofHStack container: Widget) {
         // TODO: Properly calculate layout
-        child.y = Pos.at(container.subviews.count)
-        container.addSubview(child)
+        for child in children {
+            child.y = Pos.at(container.subviews.count)
+            container.addSubview(child)
+        }
     }
 
     public func setSpacing(ofHStack container: Widget, to spacing: Int) {}

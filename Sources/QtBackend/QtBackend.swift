@@ -83,8 +83,11 @@ public struct QtBackend: AppBackend {
         return widget
     }
 
-    public func addChild(_ child: Widget, toVStack container: Widget) {
-        (container.layout as! QVBoxLayout).add(widget: child)
+    public func setChildren(_ children: [Widget], ofVStack container: Widget) {
+        let container = container.layout as! QVBoxLayout
+        for child in children {
+            container.add(widget: child)
+        }
     }
 
     public func setSpacing(ofVStack widget: Widget, to spacing: Int) {
@@ -98,8 +101,11 @@ public struct QtBackend: AppBackend {
         return widget
     }
 
-    public func addChild(_ child: Widget, toHStack container: Widget) {
-        (container.layout as! QHBoxLayout).add(widget: child)
+    public func setChildren(_ children: [Widget], ofHStack container: Widget) {
+        let container = container.layout as! QHBoxLayout
+        for child in children {
+            container.add(widget: child)
+        }
     }
 
     public func setSpacing(ofHStack widget: Widget, to spacing: Int) {
@@ -163,7 +169,7 @@ public struct QtBackend: AppBackend {
 
     public func createPaddingContainer(for child: Widget) -> Widget {
         let container = createVStack()
-        addChild(child, toVStack: container)
+        setChildren([child], ofVStack: container)
         internalState.paddingContainerChildren[ObjectIdentifier(container)] = child
         return container
     }

@@ -3,7 +3,7 @@
 import Foundation
 import PackageDescription
 
-let backend = ProcessInfo.processInfo.environment["SCUI_BACKEND"] ?? "GtkBackend"
+let backend = ProcessInfo.processInfo.environment["SCUI_BACKEND"] ?? "AppKitBackend"
 
 let exampleDependencies: [Target.Dependency] = [
     "SwiftCrossUI",

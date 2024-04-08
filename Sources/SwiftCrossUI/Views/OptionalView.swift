@@ -24,17 +24,16 @@ public struct OptionalView<V: View>: TypeSafeView, View {
     func asWidget<Backend: AppBackend>(
         _ children: OptionalViewChildren<V>, backend: Backend
     ) -> Backend.Widget {
-        let container = backend.createSingleChildContainer()
-        backend.setChild(ofSingleChildContainer: container, to: children.widget(for: backend))
-        return container
+        return backend.createSingleChildContainer()
     }
 
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget, children: OptionalViewChildren<V>, backend: Backend
     ) {
-        if children.hasToggled {
+        if children.hasToggled || children.isFirstUpdate {
             backend.setChild(ofSingleChildContainer: widget, to: children.widget(for: backend))
         }
+        children.isFirstUpdate = false
     }
 }
 
@@ -46,6 +45,8 @@ class OptionalViewChildren<V: View>: ViewGraphNodeChildren {
     /// Whether the view's child has toggled between visible/not-visible (or vice versa)
     /// since the last time the parent widget was updated.
     var hasToggled = true
+    /// `true` if the first view update hasn't occurred yet.
+    var isFirstUpdate = true
 
     var widgets: [AnyWidget] {
         return [node?.widget].compactMap { $0 }

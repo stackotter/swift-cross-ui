@@ -101,14 +101,17 @@ public final class LVGLBackend: AppBackend {
         return grid
     }
 
-    public func addChild(_ child: Widget, toVStack container: Widget) {
+    public func setChildren(_ children: [Widget], ofVStack container: Widget) {
         container.postCreationAction { widget in
-            let rowCount = (container as! Grid).rowCount
-            let grid = widget as! LVGrid
-            grid.resize(rows: UInt8(rowCount + 1), columns: 1)
-            // LVGL grid coordinates have column before row (weird)
-            grid.set(cell: child.create(withParent: widget), at: (0, UInt8(rowCount)))
-            (container as! Grid).rowCount += 1
+            let container = container as! Grid
+            for child in children {
+                let rowCount = container.rowCount
+                let grid = widget as! LVGrid
+                grid.resize(rows: UInt8(rowCount + 1), columns: 1)
+                // LVGL grid coordinates have column before row (weird)
+                grid.set(cell: child.create(withParent: widget), at: (0, UInt8(rowCount)))
+                container.rowCount += 1
+            }
         }
     }
 
@@ -131,14 +134,17 @@ public final class LVGLBackend: AppBackend {
         return grid
     }
 
-    public func addChild(_ child: Widget, toHStack container: Widget) {
+    public func setChildren(_ children: [Widget], ofHStack container: Widget) {
         container.postCreationAction { widget in
-            let columnCount = (container as! Grid).columnCount
-            let grid = widget as! LVGrid
-            grid.resize(rows: 1, columns: UInt8(columnCount + 1))
-            // LVGL grid coordinates have column before row (weird)
-            grid.set(cell: child.create(withParent: widget), at: (UInt8(columnCount), 0))
-            (container as! Grid).columnCount += 1
+            let container = container as! Grid
+            for child in children {
+                let columnCount = container.columnCount
+                let grid = widget as! LVGrid
+                grid.resize(rows: 1, columns: UInt8(columnCount + 1))
+                // LVGL grid coordinates have column before row (weird)
+                grid.set(cell: child.create(withParent: widget), at: (UInt8(columnCount), 0))
+                container.columnCount += 1
+            }
         }
     }
 

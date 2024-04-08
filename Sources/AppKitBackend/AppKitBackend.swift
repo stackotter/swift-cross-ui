@@ -7,7 +7,29 @@ extension App {
 
 public struct AppKitBackend: AppBackend {
     public typealias Window = NSWindow
-    public typealias Widget = NSView
+
+    public enum Widget {
+        case view(NSView)
+        case viewController(NSViewController)
+
+        public var view: NSView {
+            switch self {
+                case .view(let view):
+                    return view
+                case .viewController(let controller):
+                    return controller.view
+            }
+        }
+
+        public var viewController: NSViewController? {
+            switch self {
+                case .viewController(let controller):
+                    return controller
+                case .view:
+                    return nil
+            }
+        }
+    }
 
     public init(appIdentifier: String) {}
 
@@ -46,11 +68,12 @@ public struct AppKitBackend: AppBackend {
         }
     }
 
-    public func setChild(ofWindow window: NSWindow, to child: NSView) {
+    public func setChild(ofWindow window: NSWindow, to child: Widget) {
         let container = NSStackView()
-        container.addView(child, in: .bottom)
-        child.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
-        child.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
+        container.orientation = .vertical
+        container.alignment = .centerX
+        container.addView(child.view, in: .center)
+        child.view.pinEdges(to: container)
         window.contentView = container
     }
 
@@ -67,60 +90,76 @@ public struct AppKitBackend: AppBackend {
     public func show(widget: Widget) {}
 
     public func createTextView() -> Widget {
-        return NSTextField(wrappingLabelWithString: "")
+        return .view(NSTextField(wrappingLabelWithString: ""))
     }
 
     public func updateTextView(_ textView: Widget, content: String, shouldWrap: Bool) {
         // TODO: Implement text wrap handling
-        (textView as! NSTextField).stringValue = content
+        (textView.view as! NSTextField).stringValue = content
     }
 
     public func createVStack() -> Widget {
         let view = NSStackView()
         view.orientation = .vertical
-        return view
+        view.alignment = .centerX
+        return .view(view)
     }
 
-    public func addChild(_ child: Widget, toVStack container: Widget) {
-        let container = container as! NSStackView
-        container.addView(child, in: .bottom)
+    public func setChildren(_ children: [Widget], ofVStack container: Widget) {
+        let stack = container.view as! NSStackView
+        for child in children {
+            stack.addView(child.view, in: .center)
+        }
+        if let first = children.first, children.count == 1 {
+            first.view.pinEdges(to: container.view)
+        }
     }
 
     public func setSpacing(ofVStack widget: Widget, to spacing: Int) {
-        (widget as! NSStackView).spacing = CGFloat(spacing)
+        (widget.view as! NSStackView).spacing = CGFloat(spacing)
     }
 
     public func createHStack() -> Widget {
         let view = NSStackView()
         view.orientation = .horizontal
-        return view
+        view.alignment = .centerY
+        return .view(view)
     }
 
-    public func addChild(_ child: Widget, toHStack container: Widget) {
-        (container as! NSStackView).addView(child, in: .bottom)
+    public func setChildren(_ children: [Widget], ofHStack container: Widget) {
+        let stack = container.view as! NSStackView
+        for child in children {
+            stack.addView(child.view, in: .center)
+        }
+        if let first = children.first, children.count == 1 {
+            first.view.pinEdges(to: container.view)
+        }
     }
 
     public func setSpacing(ofHStack widget: Widget, to spacing: Int) {
-        (widget as! NSStackView).spacing = CGFloat(spacing)
+        (widget.view as! NSStackView).spacing = CGFloat(spacing)
     }
 
     public func createButton() -> Widget {
-        return NSButton(title: "", target: nil, action: nil)
+        return .view(NSButton(title: "", target: nil, action: nil))
     }
 
     public func updateButton(_ button: Widget, label: String, action: @escaping () -> Void) {
-        (button as! NSButton).title = label
-        (button as! NSButton).onAction = { _ in
+        let button = button.view as! NSButton
+        button.title = label
+        button.onAction = { _ in
             action()
         }
     }
 
     public func createPaddingContainer(for child: Widget) -> Widget {
-        return NSStackView(views: [child])
+        let paddingContainer = NSStackView(views: [child.view])
+        // child.view.pinEdges(to: paddingContainer)
+        return .view(paddingContainer)
     }
 
     public func getChild(ofPaddingContainer container: Widget) -> Widget {
-        return (container as! NSStackView).views[0]
+        return .view((container.view as! NSStackView).views[0])
     }
 
     public func setPadding(
@@ -130,48 +169,48 @@ public struct AppKitBackend: AppBackend {
         leading: Int,
         trailing: Int
     ) {
-        let view = container as! NSStackView
+        let view = container.view as! NSStackView
         view.edgeInsets.top = CGFloat(top)
         view.edgeInsets.bottom = CGFloat(bottom)
         view.edgeInsets.left = CGFloat(leading)
         view.edgeInsets.right = CGFloat(trailing)
     }
 
-    public func createSpacer() -> NSView {
-        return NSView()
+    public func createSpacer() -> Widget {
+        return .view(NSView())
     }
 
     public func updateSpacer(
-        _ spacer: NSView, expandHorizontally: Bool, expandVertically: Bool, minSize: Int
+        _ spacer: Widget, expandHorizontally: Bool, expandVertically: Bool, minSize: Int
     ) {
         // TODO: Update spacer
     }
 
-    public func createSwitch() -> NSView {
-        return NSSwitch()
+    public func createSwitch() -> Widget {
+        return .view(NSSwitch())
     }
 
-    public func updateSwitch(_ toggleSwitch: NSView, onChange: @escaping (Bool) -> Void) {
-        let toggleSwitch = toggleSwitch as! NSSwitch
+    public func updateSwitch(_ toggleSwitch: Widget, onChange: @escaping (Bool) -> Void) {
+        let toggleSwitch = toggleSwitch.view as! NSSwitch
         toggleSwitch.onAction = { toggleSwitch in
             let toggleSwitch = toggleSwitch as! NSSwitch
             onChange(toggleSwitch.state == .on)
         }
     }
 
-    public func setState(ofSwitch toggleSwitch: NSView, to state: Bool) {
-        let toggleSwitch = toggleSwitch as! NSSwitch
+    public func setState(ofSwitch toggleSwitch: Widget, to state: Bool) {
+        let toggleSwitch = toggleSwitch.view as! NSSwitch
         toggleSwitch.state = state ? .on : .off
     }
 
-    public func createToggle() -> NSView {
+    public func createToggle() -> Widget {
         let toggle = NSButton()
         toggle.setButtonType(.pushOnPushOff)
-        return toggle
+        return .view(toggle)
     }
 
-    public func updateToggle(_ toggle: NSView, label: String, onChange: @escaping (Bool) -> Void) {
-        let toggle = toggle as! NSButton
+    public func updateToggle(_ toggle: Widget, label: String, onChange: @escaping (Bool) -> Void) {
+        let toggle = toggle.view as! NSButton
         toggle.title = label
         toggle.onAction = { toggle in
             let toggle = toggle as! NSButton
@@ -179,13 +218,13 @@ public struct AppKitBackend: AppBackend {
         }
     }
 
-    public func setState(ofToggle toggle: NSView, to state: Bool) {
-        let toggle = toggle as! NSButton
+    public func setState(ofToggle toggle: Widget, to state: Bool) {
+        let toggle = toggle.view as! NSButton
         toggle.state = state ? .on : .off
     }
 
-    public func getInheritedOrientation(of widget: NSView) -> InheritedOrientation? {
-        guard let superview = widget.superview else {
+    public func getInheritedOrientation(of widget: Widget) -> InheritedOrientation? {
+        guard let superview = widget.view.superview else {
             return nil
         }
 
@@ -200,38 +239,40 @@ public struct AppKitBackend: AppBackend {
             }
         }
 
-        return getInheritedOrientation(of: superview)
+        return getInheritedOrientation(of: .view(superview))
     }
 
-    public func createSingleChildContainer() -> NSView {
+    public func createSingleChildContainer() -> Widget {
         let container = NSStackView()
-        container.alignment = .centerY
-        return container
+        container.orientation = .vertical
+        container.alignment = .centerX
+        return .view(container)
     }
 
-    public func setChild(ofSingleChildContainer container: NSView, to widget: NSView?) {
-        let container = container as! NSStackView
+    public func setChild(ofSingleChildContainer container: Widget, to widget: Widget?) {
+        let container = container.view as! NSStackView
         for child in container.arrangedSubviews {
             container.removeView(child)
         }
         if let widget = widget {
-            container.addView(widget, in: .center)
+            container.addView(widget.view, in: .center)
+            widget.view.pinEdges(to: container)
         }
     }
 
-    public func createSlider() -> NSView {
-        return NSSlider()
+    public func createSlider() -> Widget {
+        return .view(NSSlider())
     }
 
     public func updateSlider(
-        _ slider: NSView,
+        _ slider: Widget,
         minimum: Double,
         maximum: Double,
         decimalPlaces: Int,
         onChange: @escaping (Double) -> Void
     ) {
         // TODO: Implement decimalPlaces
-        let slider = slider as! NSSlider
+        let slider = slider.view as! NSSlider
         slider.minValue = minimum
         slider.maxValue = maximum
         slider.onAction = { slider in
@@ -240,19 +281,19 @@ public struct AppKitBackend: AppBackend {
         }
     }
 
-    public func setValue(ofSlider slider: NSView, to value: Double) {
-        let slider = slider as! NSSlider
+    public func setValue(ofSlider slider: Widget, to value: Double) {
+        let slider = slider.view as! NSSlider
         slider.doubleValue = value
     }
 
-    public func createPicker() -> NSView {
-        return NSPopUpButton()
+    public func createPicker() -> Widget {
+        return .view(NSPopUpButton())
     }
 
     public func updatePicker(
-        _ picker: NSView, options: [String], onChange: @escaping (Int?) -> Void
+        _ picker: Widget, options: [String], onChange: @escaping (Int?) -> Void
     ) {
-        let picker = picker as! NSPopUpButton
+        let picker = picker.view as! NSPopUpButton
         picker.addItems(withTitles: options)
         picker.onAction = { picker in
             let picker = picker as! NSPopUpButton
@@ -260,8 +301,8 @@ public struct AppKitBackend: AppBackend {
         }
     }
 
-    public func setSelectedOption(ofPicker picker: NSView, to selectedOption: Int?) {
-        let picker = picker as! NSPopUpButton
+    public func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?) {
+        let picker = picker.view as! NSPopUpButton
         if let index = selectedOption {
             picker.selectItem(at: index)
         } else {
@@ -269,58 +310,103 @@ public struct AppKitBackend: AppBackend {
         }
     }
 
-    public func createStyleContainer(for child: NSView) -> NSView {
+    public func createStyleContainer(for child: Widget) -> Widget {
         return child
     }
 
-    public func setForegroundColor(ofStyleContainer container: NSView, to color: Color) {
+    public func setForegroundColor(ofStyleContainer container: Widget, to color: Color) {
         // TODO: Implement foreground color
     }
 
-    public func createTextField() -> NSView {
-        return NSObservableTextField()
+    public func createTextField() -> Widget {
+        return .view(NSObservableTextField())
     }
 
     public func updateTextField(
-        _ textField: NSView, placeholder: String, onChange: @escaping (String) -> Void
+        _ textField: Widget, placeholder: String, onChange: @escaping (String) -> Void
     ) {
-        let textField = textField as! NSObservableTextField
+        let textField = textField.view as! NSObservableTextField
         textField.placeholderString = placeholder
         textField.onEdit = { textField in
             onChange(textField.stringValue)
         }
     }
 
-    public func getContent(ofTextField textField: NSView) -> String {
-        let textField = textField as! NSTextField
+    public func getContent(ofTextField textField: Widget) -> String {
+        let textField = textField.view as! NSTextField
         return textField.stringValue
     }
 
-    public func setContent(ofTextField textField: NSView, to content: String) {
-        let textField = textField as! NSTextField
+    public func setContent(ofTextField textField: Widget, to content: String) {
+        let textField = textField.view as! NSTextField
         textField.stringValue = content
     }
 
-    public func createScrollContainer(for child: NSView) -> NSView {
+    public func createScrollContainer(for child: Widget) -> Widget {
         let scrollView = NSScrollView()
-        scrollView.addSubview(child)
-        return scrollView
+        scrollView.addSubview(child.view)
+        child.view.pinEdges(to: scrollView)
+        return .view(scrollView)
     }
 
-    public func createLayoutTransparentStack() -> NSView {
-        return NSStackView()
+    public func createLayoutTransparentStack() -> Widget {
+        return .view(NSStackView())
     }
 
-    public func updateLayoutTransparentStack(_ container: NSView) {
-        let stack = container as! NSStackView
+    public func updateLayoutTransparentStack(_ container: Widget) {
+        let stack = container.view as! NSStackView
         // Inherit orientation of nearest oriented parent (defaulting to vertical)
         stack.orientation =
-            getInheritedOrientation(of: stack) == .horizontal ? .horizontal : .vertical
+            getInheritedOrientation(of: .view(stack)) == .horizontal ? .horizontal : .vertical
     }
 
-    public func addChild(_ child: NSView, toLayoutTransparentStack container: NSView) {
-        let stack = container as! NSStackView
-        stack.addView(child, in: .bottom)
+    public func addChild(_ child: Widget, toLayoutTransparentStack container: Widget) {
+        let stack = container.view as! NSStackView
+        stack.addView(child.view, in: .bottom)
+    }
+
+    public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
+        let splitViewController = NSSplitViewController()
+
+        let leadingViewController = NSViewController()
+        leadingViewController.view = leadingChild.view
+        let trailingViewController = NSViewController()
+        trailingViewController.view = trailingChild.view
+
+        splitViewController.addSplitViewItem(
+            NSSplitViewItem(sidebarWithViewController: leadingViewController)
+        )
+        splitViewController.addSplitViewItem(
+            NSSplitViewItem(viewController: trailingViewController)
+        )
+
+        return .viewController(splitViewController)
+    }
+
+    public func updateSplitView(_ splitView: Widget) {
+        guard let parent = splitView.view.superview else {
+            return
+        }
+        print("yep")
+
+        let splitView = splitView.view
+        splitView.topAnchor.constraint(equalTo: parent.topAnchor).isActive = true
+        splitView.bottomAnchor.constraint(equalTo: parent.bottomAnchor).isActive = true
+        splitView.leftAnchor.constraint(equalTo: parent.leftAnchor).isActive = true
+        splitView.rightAnchor.constraint(equalTo: parent.rightAnchor).isActive = true
+    }
+
+    public func createFrameContainer(for child: Widget) -> Widget {
+        return child
+    }
+
+    public func updateFrameContainer(_ container: Widget, minWidth: Int, minHeight: Int) {
+        container.view.widthAnchor
+            .constraint(greaterThanOrEqualToConstant: CGFloat(minWidth))
+            .isActive = true
+        container.view.heightAnchor
+            .constraint(greaterThanOrEqualToConstant: CGFloat(minHeight))
+            .isActive = true
     }
 }
 
@@ -410,5 +496,14 @@ extension NSControl {
             action = #selector(callClosure)
             target = self
         }
+    }
+}
+
+extension NSView {
+    func pinEdges(to parent: NSView) {
+        topAnchor.constraint(equalTo: parent.topAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: parent.bottomAnchor).isActive = true
+        leftAnchor.constraint(equalTo: parent.leftAnchor).isActive = true
+        rightAnchor.constraint(equalTo: parent.rightAnchor).isActive = true
     }
 }

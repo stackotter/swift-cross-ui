@@ -48,7 +48,7 @@ public struct ${view}<${struct_parameters}>: TypeSafeView, View {
 
     func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
         let container = backend.createVStack()
-        backend.addChildren(children.widgets(for: backend), toVStack: container)
+        backend.setChildren(children.widgets(for: backend), ofVStack: container)
         return container
     }
 
