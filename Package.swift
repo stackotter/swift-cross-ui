@@ -55,6 +55,19 @@ var swift510Products: [Product] = []
     ]
 #endif
 
+let defaultBackend: String
+if let backend = ProcessInfo.processInfo.environment["SCUI_DEFAULT_BACKEND"] {
+    defaultBackend = backend
+} else {
+    #if os(macOS)
+        defaultBackend = "AppKitBackend"
+    #elseif os(Windows)
+        defaultBackend = "WinUIBackend"
+    #else
+        defaultBackend = "GtkBackend"
+    #endif
+}
+
 let package = Package(
     name: "swift-cross-ui",
     platforms: [.macOS(.v10_15)],
@@ -108,6 +121,12 @@ let package = Package(
         .testTarget(
             name: "SwiftCrossUITests",
             dependencies: ["SwiftCrossUI"]
+        ),
+        .target(
+            name: "DefaultBackend",
+            dependencies: [
+                .target(name: defaultBackend)
+            ]
         ),
         .target(name: "AppKitBackend", dependencies: ["SwiftCrossUI"]),
         .target(
