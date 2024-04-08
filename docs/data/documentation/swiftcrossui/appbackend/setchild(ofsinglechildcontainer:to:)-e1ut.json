@@ -1,7 +1,15 @@
 {
   "abstract" : [
     {
-      "text" : "Sets the single child of an either container.",
+      "text" : "Sets the child of a single-child container. Only called once the container has been",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "added to the widget hierarchy.",
       "type" : "text"
     }
   ],
@@ -352,7 +360,15 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setChild(ofSingleChildContainer:to:)-e1ut": {
   "abstract" : [
     {
-      "text" : "Sets the single child of an either container.",
+      "text" : "Sets the child of a single-child container. Only called once the container has been",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "added to the widget hierarchy.",
       "type" : "text"
     }
   ],

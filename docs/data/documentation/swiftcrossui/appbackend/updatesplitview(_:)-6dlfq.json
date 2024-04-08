@@ -1,7 +1,15 @@
 {
   "abstract" : [
     {
-      "text" : "A helper to add multiple children to a horizontal container at once.",
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "AppBackend.updateSplitView(_:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
       "type" : "text"
     }
   ],
@@ -9,18 +17,19 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSplitView(_:)-5k5f3"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-1xdxz"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSplitView(_:)-6dlfq"
   },
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE11addChildren_8toHStackySay6WidgetQzG_AGtF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE15updateSplitViewyy6WidgetQzF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -32,35 +41,11 @@
       },
       {
         "kind" : "identifier",
-        "text" : "addChildren"
+        "text" : "updateSplitView"
       },
       {
         "kind" : "text",
-        "text" : "(["
-      },
-      {
-        "kind" : "typeIdentifier",
-        "text" : "Self"
-      },
-      {
-        "kind" : "text",
-        "text" : "."
-      },
-      {
-        "kind" : "typeIdentifier",
-        "text" : "Widget"
-      },
-      {
-        "kind" : "text",
-        "text" : "], "
-      },
-      {
-        "kind" : "externalParam",
-        "text" : "toHStack"
-      },
-      {
-        "kind" : "text",
-        "text" : ": "
+        "text" : "("
       },
       {
         "kind" : "typeIdentifier",
@@ -87,7 +72,7 @@
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "addChildren(_:toHStack:)"
+    "title" : "updateSplitView(_:)"
   },
   "primaryContentSections" : [
     {
@@ -110,7 +95,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "addChildren"
+              "text" : "updateSplitView"
             },
             {
               "kind" : "text",
@@ -126,39 +111,7 @@
             },
             {
               "kind" : "internalParam",
-              "text" : "children"
-            },
-            {
-              "kind" : "text",
-              "text" : ": ["
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "Self"
-            },
-            {
-              "kind" : "text",
-              "text" : "."
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "Widget"
-            },
-            {
-              "kind" : "text",
-              "text" : "], "
-            },
-            {
-              "kind" : "externalParam",
-              "text" : "toHStack"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "internalParam",
-              "text" : "container"
+              "text" : "splitView"
             },
             {
               "kind" : "text",
@@ -197,7 +150,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tohstack:)-1xdxz"
+        "\/documentation\/swiftcrossui\/appbackend\/updatesplitview(_:)-6dlfq"
       ],
       "traits" : [
         {
@@ -256,13 +209,14 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toHStack:)-1xdxz": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateSplitView(_:)-5k5f3": {
   "abstract" : [
     {
-      "text" : "A helper to add multiple children to a horizontal container at once.",
+      "text" : "Updates a split view.",
       "type" : "text"
     }
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -274,35 +228,11 @@
     },
     {
       "kind" : "identifier",
-      "text" : "addChildren"
+      "text" : "updateSplitView"
     },
     {
       "kind" : "text",
-      "text" : "(["
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : "], "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "toHStack"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
+      "text" : "("
     },
     {
       "kind" : "typeIdentifier",
@@ -321,12 +251,58 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-1xdxz",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSplitView(_:)-5k5f3",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "updateSplitView(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatesplitview(_:)-5k5f3"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateSplitView(_:)-6dlfq": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateSplitView"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSplitView(_:)-6dlfq",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "addChildren(_:toHStack:)",
+  "title" : "updateSplitView(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tohstack:)-1xdxz"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatesplitview(_:)-6dlfq"
 }
 }
 }

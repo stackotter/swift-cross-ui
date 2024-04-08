@@ -491,16 +491,10 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toHStack:)-42awi",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toLayoutTransparentStack:)-476p3",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toOneOfContainer:)-2q1vw",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toVStack:)-2ni2v",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-1xdxz",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-5en",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toLayoutTransparentStack:)-3b92j",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toLayoutTransparentStack:)-8ksm8",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toVStack:)-4iit3",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toVStack:)-5f9vt",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createButton()-3d182",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createFrameContainer(for:)-5pep9",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createHStack()-45gjf",
@@ -532,6 +526,8 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setCell(at:inTable:to:)-3gjpn",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChild(ofSingleChildContainer:to:)-e1ut",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChild(ofWindow:to:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChildren(_:ofHStack:)-7itbw",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChildren(_:ofVStack:)-69d3e",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setColumnCount(ofTable:to:)-7ydov",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setContent(ofTextField:to:)-21686",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setForegroundColor(ofStyleContainer:to:)-5aoam",
@@ -555,6 +551,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updatePicker(_:options:onChange:)-2hs2f",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSlider(_:minimum:maximum:decimalPlaces:onChange:)-8we73",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSpacer(_:expandHorizontally:expandVertically:minSize:)-5wd61",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSplitView(_:)-5k5f3",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSwitch(_:onChange:)-9nbu9",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateTextField(_:placeholder:onChange:)-55dak",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateTextView(_:content:shouldWrap:)-6q66p",
@@ -676,80 +673,6 @@
   "title" : "Window",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/window"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toHStack:)-42awi": {
-  "abstract" : [
-    {
-      "text" : "Adds a child to the end of a horizontal container.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "addChild"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "toHStack"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toHStack:)-42awi",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "addChild(_:toHStack:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tohstack:)-42awi"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toLayoutTransparentStack:)-476p3": {
   "abstract" : [
@@ -899,225 +822,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tooneofcontainer:)-2q1vw"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toVStack:)-2ni2v": {
-  "abstract" : [
-    {
-      "text" : "Adds a child to the end of a vertical container.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "addChild"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "toVStack"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toVStack:)-2ni2v",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "addChild(_:toVStack:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tovstack:)-2ni2v"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toHStack:)-1xdxz": {
-  "abstract" : [
-    {
-      "text" : "A helper to add multiple children to a horizontal container at once.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "addChildren"
-    },
-    {
-      "kind" : "text",
-      "text" : "(["
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : "], "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "toHStack"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-1xdxz",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "addChildren(_:toHStack:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tohstack:)-1xdxz"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toHStack:)-5en": {
-  "abstract" : [
-    {
-      "text" : "A helper to add multiple type-erased children to a horizontal container at once.",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "Will crash if any of the widgets are for a different backend.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "addChildren"
-    },
-    {
-      "kind" : "text",
-      "text" : "(["
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9AnyWidgetC",
-      "text" : "AnyWidget"
-    },
-    {
-      "kind" : "text",
-      "text" : "], "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "toHStack"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toHStack:)-5en",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "addChildren(_:toHStack:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tohstack:)-5en"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toLayoutTransparentStack:)-3b92j": {
   "abstract" : [
     {
@@ -1262,151 +966,6 @@
   "title" : "addChildren(_:toLayoutTransparentStack:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tolayouttransparentstack:)-8ksm8"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toVStack:)-4iit3": {
-  "abstract" : [
-    {
-      "text" : "A helper to add multiple children to a vertical container at once.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "addChildren"
-    },
-    {
-      "kind" : "text",
-      "text" : "(["
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : "], "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "toVStack"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toVStack:)-4iit3",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "addChildren(_:toVStack:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tovstack:)-4iit3"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChildren(_:toVStack:)-5f9vt": {
-  "abstract" : [
-    {
-      "text" : "A helper to add multiple type-erased children to a vertical container at once.",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "Will crash if any of the widgets are for a different backend.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "addChildren"
-    },
-    {
-      "kind" : "text",
-      "text" : "(["
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9AnyWidgetC",
-      "text" : "AnyWidget"
-    },
-    {
-      "kind" : "text",
-      "text" : "], "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "toVStack"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChildren(_:toVStack:)-5f9vt",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "addChildren(_:toVStack:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tovstack:)-5f9vt"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createButton()-3d182": {
   "abstract" : [
@@ -3551,7 +3110,15 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setChild(ofSingleChildContainer:to:)-e1ut": {
   "abstract" : [
     {
-      "text" : "Sets the single child of an either container.",
+      "text" : "Sets the child of a single-child container. Only called once the container has been",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "added to the widget hierarchy.",
       "type" : "text"
     }
   ],
@@ -3710,6 +3277,154 @@
   "title" : "setChild(ofWindow:to:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/setchild(ofwindow:to:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setChildren(_:ofHStack:)-7itbw": {
+  "abstract" : [
+    {
+      "text" : "Sets the children of a VStack. Will be called once and only once per HStack.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 2,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : "(["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : "], "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofHStack"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChildren(_:ofHStack:)-7itbw",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "setChildren(_:ofHStack:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofhstack:)-7itbw"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setChildren(_:ofVStack:)-69d3e": {
+  "abstract" : [
+    {
+      "text" : "Sets the children of a VStack. Will be called once and only once per VStack.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 2,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : "(["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : "], "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofVStack"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChildren(_:ofVStack:)-69d3e",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "setChildren(_:ofVStack:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-69d3e"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setColumnCount(ofTable:to:)-7ydov": {
   "abstract" : [
@@ -5670,6 +5385,56 @@
   "title" : "updateSpacer(_:expandHorizontally:expandVertically:minSize:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/updatespacer(_:expandhorizontally:expandvertically:minsize:)-5wd61"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateSplitView(_:)-5k5f3": {
+  "abstract" : [
+    {
+      "text" : "Updates a split view.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateSplitView"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSplitView(_:)-5k5f3",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "updateSplitView(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatesplitview(_:)-5k5f3"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateSwitch(_:onChange:)-9nbu9": {
   "abstract" : [

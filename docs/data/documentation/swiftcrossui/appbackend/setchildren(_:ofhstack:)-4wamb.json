@@ -1,33 +1,35 @@
 {
   "abstract" : [
     {
-      "text" : "Adds a child to the end of a vertical container.",
+      "text" : "Inherited from ",
       "type" : "text"
-    }
-  ],
-  "defaultImplementationsSections" : [
+    },
     {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toVStack:)-4igq5"
-      ],
-      "title" : "AppBackend Implementations"
+      "code" : "AppBackend.setChildren(_:ofHStack:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
     }
   ],
   "hierarchy" : {
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChildren(_:ofHStack:)-7itbw"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toVStack:)-2ni2v"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChildren(_:ofHStack:)-4wamb"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI10AppBackendP8addChild_8toVStacky6WidgetQz_AGtF",
+    "extendedModule" : "SwiftCrossUI",
+    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE11setChildren_8ofHStackySay6WidgetQzG_AGtF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -39,11 +41,11 @@
       },
       {
         "kind" : "identifier",
-        "text" : "addChild"
+        "text" : "setChildren"
       },
       {
         "kind" : "text",
-        "text" : "("
+        "text" : "(["
       },
       {
         "kind" : "typeIdentifier",
@@ -59,11 +61,11 @@
       },
       {
         "kind" : "text",
-        "text" : ", "
+        "text" : "], "
       },
       {
         "kind" : "externalParam",
-        "text" : "toVStack"
+        "text" : "ofHStack"
       },
       {
         "kind" : "text",
@@ -91,11 +93,10 @@
         "name" : "SwiftCrossUI"
       }
     ],
-    "required" : true,
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "addChild(_:toVStack:)"
+    "title" : "setChildren(_:ofHStack:)"
   },
   "primaryContentSections" : [
     {
@@ -118,7 +119,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "addChild"
+              "text" : "setChildren"
             },
             {
               "kind" : "text",
@@ -134,11 +135,11 @@
             },
             {
               "kind" : "internalParam",
-              "text" : "child"
+              "text" : "children"
             },
             {
               "kind" : "text",
-              "text" : ": "
+              "text" : ": ["
             },
             {
               "kind" : "typeIdentifier",
@@ -154,11 +155,11 @@
             },
             {
               "kind" : "text",
-              "text" : ", "
+              "text" : "], "
             },
             {
               "kind" : "externalParam",
-              "text" : "toVStack"
+              "text" : "ofHStack"
             },
             {
               "kind" : "text",
@@ -205,7 +206,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tovstack:)-2ni2v"
+        "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofhstack:)-4wamb"
       ],
       "traits" : [
         {
@@ -264,81 +265,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toVStack:)-2ni2v": {
-  "abstract" : [
-    {
-      "text" : "Adds a child to the end of a vertical container.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "addChild"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "toVStack"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toVStack:)-2ni2v",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "addChild(_:toVStack:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tovstack:)-2ni2v"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toVStack:)-4igq5": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setChildren(_:ofHStack:)-4wamb": {
   "abstract" : [
 
   ],
@@ -353,11 +280,11 @@
     },
     {
       "kind" : "identifier",
-      "text" : "addChild"
+      "text" : "setChildren"
     },
     {
       "kind" : "text",
-      "text" : "("
+      "text" : "(["
     },
     {
       "kind" : "typeIdentifier",
@@ -373,11 +300,11 @@
     },
     {
       "kind" : "text",
-      "text" : ", "
+      "text" : "], "
     },
     {
       "kind" : "externalParam",
-      "text" : "toVStack"
+      "text" : "ofHStack"
     },
     {
       "kind" : "text",
@@ -400,12 +327,86 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toVStack:)-4igq5",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChildren(_:ofHStack:)-4wamb",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "addChild(_:toVStack:)",
+  "title" : "setChildren(_:ofHStack:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tovstack:)-4igq5"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofhstack:)-4wamb"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/setChildren(_:ofHStack:)-7itbw": {
+  "abstract" : [
+    {
+      "text" : "Sets the children of a VStack. Will be called once and only once per HStack.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 2,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "setChildren"
+    },
+    {
+      "kind" : "text",
+      "text" : "(["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : "], "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ofHStack"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChildren(_:ofHStack:)-7itbw",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "setChildren(_:ofHStack:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofhstack:)-7itbw"
 }
 }
 }

@@ -3075,24 +3075,6 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tohstack:)-45oez",
-                        "title" : "func addChild(Self.Widget, toHStack: Self.Widget)",
-                        "type" : "method"
-                      }
-                    ],
-                    "title" : "AppBackend Implementations",
-                    "type" : "groupMarker"
-                  }
-                ],
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tohstack:)-42awi",
-                "title" : "func addChild(Self.Widget, toHStack: Self.Widget)",
-                "type" : "method"
-              },
-              {
-                "children" : [
-                  {
-                    "children" : [
-                      {
                         "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tolayouttransparentstack:)-2rmoj",
                         "title" : "func addChild(Self.Widget, toLayoutTransparentStack: Self.Widget)",
                         "type" : "method"
@@ -3125,34 +3107,6 @@
                 "type" : "method"
               },
               {
-                "children" : [
-                  {
-                    "children" : [
-                      {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tovstack:)-4igq5",
-                        "title" : "func addChild(Self.Widget, toVStack: Self.Widget)",
-                        "type" : "method"
-                      }
-                    ],
-                    "title" : "AppBackend Implementations",
-                    "type" : "groupMarker"
-                  }
-                ],
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tovstack:)-2ni2v",
-                "title" : "func addChild(Self.Widget, toVStack: Self.Widget)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tohstack:)-1xdxz",
-                "title" : "func addChildren([Self.Widget], toHStack: Self.Widget)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tohstack:)-5en",
-                "title" : "func addChildren([AnyWidget], toHStack: Self.Widget)",
-                "type" : "method"
-              },
-              {
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tolayouttransparentstack:)-3b92j",
                 "title" : "func addChildren([AnyWidget], toLayoutTransparentStack: Self.Widget)",
                 "type" : "method"
@@ -3160,16 +3114,6 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tolayouttransparentstack:)-8ksm8",
                 "title" : "func addChildren([Self.Widget], toLayoutTransparentStack: Self.Widget)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tovstack:)-4iit3",
-                "title" : "func addChildren([Self.Widget], toVStack: Self.Widget)",
-                "type" : "method"
-              },
-              {
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/addchildren(_:tovstack:)-5f9vt",
-                "title" : "func addChildren([AnyWidget], toVStack: Self.Widget)",
                 "type" : "method"
               },
               {
@@ -3657,6 +3601,52 @@
                   {
                     "children" : [
                       {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofhstack:)-4wamb",
+                        "title" : "func setChildren([Self.Widget], ofHStack: Self.Widget)",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofhstack:)-696pg",
+                        "title" : "func setChildren([AnyWidget], ofHStack: Self.Widget)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofhstack:)-7itbw",
+                "title" : "func setChildren([Self.Widget], ofHStack: Self.Widget)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-3cvac",
+                        "title" : "func setChildren([AnyWidget], ofVStack: Self.Widget)",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-bpyg",
+                        "title" : "func setChildren([Self.Widget], ofVStack: Self.Widget)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-69d3e",
+                "title" : "func setChildren([Self.Widget], ofVStack: Self.Widget)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
                         "path" : "\/documentation\/swiftcrossui\/appbackend\/setcolumncount(oftable:to:)-897wr",
                         "title" : "func setColumnCount(ofTable: Self.Widget, to: Int)",
                         "type" : "method"
@@ -4012,6 +4002,24 @@
                 ],
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/updatespacer(_:expandhorizontally:expandvertically:minsize:)-5wd61",
                 "title" : "func updateSpacer(Self.Widget, expandHorizontally: Bool, expandVertically: Bool, minSize: Int)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatesplitview(_:)-6dlfq",
+                        "title" : "func updateSplitView(Self.Widget)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatesplitview(_:)-5k5f3",
+                "title" : "func updateSplitView(Self.Widget)",
                 "type" : "method"
               },
               {

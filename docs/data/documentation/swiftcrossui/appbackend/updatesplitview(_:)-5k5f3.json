@@ -1,35 +1,33 @@
 {
   "abstract" : [
     {
-      "text" : "Inherited from ",
+      "text" : "Updates a split view.",
       "type" : "text"
-    },
+    }
+  ],
+  "defaultImplementationsSections" : [
     {
-      "code" : "AppBackend.addChild(_:toVStack:)",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSplitView(_:)-6dlfq"
+      ],
+      "title" : "AppBackend Implementations"
     }
   ],
   "hierarchy" : {
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toVStack:)-2ni2v"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toVStack:)-4igq5"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSplitView(_:)-5k5f3"
   },
   "kind" : "symbol",
   "metadata" : {
-    "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE8addChild_8toVStacky6WidgetQz_AGtF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendP15updateSplitViewyy6WidgetQzF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -41,35 +39,11 @@
       },
       {
         "kind" : "identifier",
-        "text" : "addChild"
+        "text" : "updateSplitView"
       },
       {
         "kind" : "text",
         "text" : "("
-      },
-      {
-        "kind" : "typeIdentifier",
-        "text" : "Self"
-      },
-      {
-        "kind" : "text",
-        "text" : "."
-      },
-      {
-        "kind" : "typeIdentifier",
-        "text" : "Widget"
-      },
-      {
-        "kind" : "text",
-        "text" : ", "
-      },
-      {
-        "kind" : "externalParam",
-        "text" : "toVStack"
-      },
-      {
-        "kind" : "text",
-        "text" : ": "
       },
       {
         "kind" : "typeIdentifier",
@@ -93,10 +67,11 @@
         "name" : "SwiftCrossUI"
       }
     ],
+    "required" : true,
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "addChild(_:toVStack:)"
+    "title" : "updateSplitView(_:)"
   },
   "primaryContentSections" : [
     {
@@ -119,7 +94,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "addChild"
+              "text" : "updateSplitView"
             },
             {
               "kind" : "text",
@@ -135,39 +110,7 @@
             },
             {
               "kind" : "internalParam",
-              "text" : "child"
-            },
-            {
-              "kind" : "text",
-              "text" : ": "
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "Self"
-            },
-            {
-              "kind" : "text",
-              "text" : "."
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "Widget"
-            },
-            {
-              "kind" : "text",
-              "text" : ", "
-            },
-            {
-              "kind" : "externalParam",
-              "text" : "toVStack"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "internalParam",
-              "text" : "container"
+              "text" : "splitView"
             },
             {
               "kind" : "text",
@@ -193,6 +136,34 @@
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "discussion",
+          "level" : 2,
+          "text" : "Discussion",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Many backends don’t need to do anything here but some do need to do some layout",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "related updates.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
     }
   ],
   "schemaVersion" : {
@@ -206,7 +177,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tovstack:)-4igq5"
+        "\/documentation\/swiftcrossui\/appbackend\/updatesplitview(_:)-5k5f3"
       ],
       "traits" : [
         {
@@ -265,10 +236,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toVStack:)-2ni2v": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateSplitView(_:)-5k5f3": {
   "abstract" : [
     {
-      "text" : "Adds a child to the end of a vertical container.",
+      "text" : "Updates a split view.",
       "type" : "text"
     }
   ],
@@ -284,7 +255,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "addChild"
+      "text" : "updateSplitView"
     },
     {
       "kind" : "text",
@@ -304,42 +275,18 @@
     },
     {
       "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "toVStack"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toVStack:)-2ni2v",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSplitView(_:)-5k5f3",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "addChild(_:toVStack:)",
+  "title" : "updateSplitView(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tovstack:)-2ni2v"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatesplitview(_:)-5k5f3"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/addChild(_:toVStack:)-4igq5": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateSplitView(_:)-6dlfq": {
   "abstract" : [
 
   ],
@@ -354,7 +301,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "addChild"
+      "text" : "updateSplitView"
     },
     {
       "kind" : "text",
@@ -374,39 +321,15 @@
     },
     {
       "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "toVStack"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/addChild(_:toVStack:)-4igq5",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSplitView(_:)-6dlfq",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "addChild(_:toVStack:)",
+  "title" : "updateSplitView(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:tovstack:)-4igq5"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatesplitview(_:)-6dlfq"
 }
 }
 }
