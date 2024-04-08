@@ -22,3 +22,4 @@ excluded:
   - Sources/SwiftCrossUI/Builders/ViewBuilder.swift
   - Sources/SwiftCrossUI/Views/VariadicView.swift
   - Sources/Gtk/Generated
+  - Examples/.build

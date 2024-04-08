@@ -4,6 +4,10 @@ import WinAppSDK
 import WinUI
 import WindowsFoundation
 
+// Many force tries are required for the WinUI backend but we don't really want them
+// anywhere else so just disable them for this file.
+// swiftlint:disable force_try
+
 class WinRTApplication: SwiftApplication {
     static var callback: () -> Void = {}
 
