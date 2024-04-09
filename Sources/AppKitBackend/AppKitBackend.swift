@@ -245,20 +245,27 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func createSingleChildContainer() -> Widget {
-        let container = NSStackView()
+        let container = NSSingleChildView()
         container.orientation = .vertical
         container.alignment = .centerX
         return .view(container)
     }
 
     public func setChild(ofSingleChildContainer container: Widget, to widget: Widget?) {
-        let container = container.view as! NSStackView
+        let container = container.view as! NSSingleChildView
         for child in container.arrangedSubviews {
             container.removeView(child)
         }
         if let widget = widget {
             container.addView(widget.view, in: .center)
             widget.view.pinEdges(to: container)
+            container.zeroHeightConstraint?.isActive = false
+            container.zeroWidthConstraint?.isActive = false
+        } else {
+            container.zeroHeightConstraint = container.heightAnchor.constraint(equalToConstant: 0)
+            container.zeroWidthConstraint = container.widthAnchor.constraint(equalToConstant: 0)
+            container.zeroHeightConstraint?.isActive = true
+            container.zeroWidthConstraint?.isActive = true
         }
     }
 
@@ -520,4 +527,9 @@ extension NSView {
         leftAnchor.constraint(equalTo: parent.leftAnchor).isActive = true
         rightAnchor.constraint(equalTo: parent.rightAnchor).isActive = true
     }
+}
+
+class NSSingleChildView: NSStackView {
+    var zeroHeightConstraint: NSLayoutConstraint?
+    var zeroWidthConstraint: NSLayoutConstraint?
 }
