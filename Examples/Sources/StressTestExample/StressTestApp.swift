@@ -41,7 +41,7 @@ struct StressTestApp: App {
                 VStack {
                     Button("Generate") {
                         var values: [String] = []
-                        for _ in 0..<10 {
+                        for _ in 0..<1000 {
                             values.append(state.options.randomElement()!)
                         }
 
