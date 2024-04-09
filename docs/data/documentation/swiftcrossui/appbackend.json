@@ -551,7 +551,6 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updatePicker(_:options:onChange:)-2hs2f",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSlider(_:minimum:maximum:decimalPlaces:onChange:)-8we73",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSpacer(_:expandHorizontally:expandVertically:minSize:)-5wd61",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSplitView(_:)-5k5f3",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSwitch(_:onChange:)-9nbu9",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateTextField(_:placeholder:onChange:)-55dak",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateTextView(_:content:shouldWrap:)-6q66p",
@@ -5385,56 +5384,6 @@
   "title" : "updateSpacer(_:expandHorizontally:expandVertically:minSize:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/updatespacer(_:expandhorizontally:expandvertically:minsize:)-5wd61"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateSplitView(_:)-5k5f3": {
-  "abstract" : [
-    {
-      "text" : "Updates a split view.",
-      "type" : "text"
-    }
-  ],
-  "defaultImplementations" : 1,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "updateSplitView"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSplitView(_:)-5k5f3",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "updateSplitView(_:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatesplitview(_:)-5k5f3"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateSwitch(_:onChange:)-9nbu9": {
   "abstract" : [

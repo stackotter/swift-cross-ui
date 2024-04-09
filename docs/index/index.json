@@ -3624,13 +3624,13 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-3cvac",
-                        "title" : "func setChildren([AnyWidget], ofVStack: Self.Widget)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-bpyg",
+                        "title" : "func setChildren([Self.Widget], ofVStack: Self.Widget)",
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-bpyg",
-                        "title" : "func setChildren([Self.Widget], ofVStack: Self.Widget)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-3cvac",
+                        "title" : "func setChildren([AnyWidget], ofVStack: Self.Widget)",
                         "type" : "method"
                       }
                     ],
@@ -4002,24 +4002,6 @@
                 ],
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/updatespacer(_:expandhorizontally:expandvertically:minsize:)-5wd61",
                 "title" : "func updateSpacer(Self.Widget, expandHorizontally: Bool, expandVertically: Bool, minSize: Int)",
-                "type" : "method"
-              },
-              {
-                "children" : [
-                  {
-                    "children" : [
-                      {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatesplitview(_:)-6dlfq",
-                        "title" : "func updateSplitView(Self.Widget)",
-                        "type" : "method"
-                      }
-                    ],
-                    "title" : "AppBackend Implementations",
-                    "type" : "groupMarker"
-                  }
-                ],
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatesplitview(_:)-5k5f3",
-                "title" : "func updateSplitView(Self.Widget)",
                 "type" : "method"
               },
               {
