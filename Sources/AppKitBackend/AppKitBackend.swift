@@ -102,6 +102,7 @@ public struct AppKitBackend: AppBackend {
         let view = NSStackView()
         view.orientation = .vertical
         view.alignment = .centerX
+        view.setHuggingPriority(.defaultLow, for: .vertical)
         return .view(view)
     }
 
@@ -123,6 +124,7 @@ public struct AppKitBackend: AppBackend {
         let view = NSStackView()
         view.orientation = .horizontal
         view.alignment = .centerY
+        view.setHuggingPriority(.defaultLow, for: .horizontal)
         return .view(view)
     }
 

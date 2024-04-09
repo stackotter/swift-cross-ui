@@ -124,8 +124,11 @@ public final class GtkBackend: AppBackend {
         return Box(orientation: .horizontal, spacing: 0)
     }
 
-    public func addChild(_ child: Widget, toHStack container: Widget) {
-        (container as! Box).add(child)
+    public func setChildren(_ children: [Widget], ofHStack container: Widget) {
+        let container = container as! Box
+        for child in children {
+            container.add(child)
+        }
     }
 
     public func setSpacing(ofHStack container: Widget, to spacing: Int) {
@@ -136,11 +139,9 @@ public final class GtkBackend: AppBackend {
         return ModifierBox()
     }
 
-    public func setChildren(_ children: [Widget], ofHStack container: Widget) {
-        let container = container as! Box
-        for child in children {
-            container.add(child)
-        }
+    public func setChild(ofSingleChildContainer container: Widget, to child: Widget?) {
+        let container = container as! ModifierBox
+        container.setChild(child)
     }
 
     public func createLayoutTransparentStack() -> Widget {
