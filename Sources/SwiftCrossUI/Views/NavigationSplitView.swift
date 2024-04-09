@@ -38,9 +38,7 @@ public struct NavigationSplitView<
         _ widget: Backend.Widget,
         children: ViewGraphNodeChildren3<SideBar, MiddleBar, Detail>,
         backend: Backend
-    ) {
-        backend.updateSplitView(widget)
-    }
+    ) {}
 }
 
 extension NavigationSplitView where MiddleBar == EmptyView {

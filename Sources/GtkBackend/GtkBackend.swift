@@ -196,8 +196,6 @@ public final class GtkBackend: AppBackend {
         return widget
     }
 
-    public func updateSplitView(_ splitView: Widget) {}
-
     // MARK: Layout
 
     public func createSpacer() -> Widget {

@@ -167,11 +167,6 @@ public protocol AppBackend {
     /// inside another container such as a VStack (avoiding update methods makes maintaining
     /// a multitude of backends a bit easier).
     func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget
-    /// Updates a split view.
-    ///
-    /// Many backends don't need to do anything here but some do need to do some layout
-    /// related updates.
-    func updateSplitView(_ splitView: Widget)
 
     // MARK: Layout
 
@@ -418,9 +413,6 @@ extension AppBackend {
     }
 
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
-        todo()
-    }
-    public func updateSplitView(_ splitView: Widget) {
         todo()
     }
 

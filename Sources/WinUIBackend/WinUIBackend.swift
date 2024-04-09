@@ -418,8 +418,6 @@ public struct WinUIBackend: AppBackend {
         return grid
     }
 
-    public func updateSplitView(_ splitView: Widget) {}
-
     public func getInheritedOrientation(of _: Widget) -> InheritedOrientation? {
         InheritedOrientation.vertical
     }

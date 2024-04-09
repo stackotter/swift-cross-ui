@@ -153,13 +153,15 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func createPaddingContainer(for child: Widget) -> Widget {
-        let paddingContainer = NSStackView(views: [child.view])
+        // let paddingContainer = NSStackView(views: [child.view])
         // child.view.pinEdges(to: paddingContainer)
-        return .view(paddingContainer)
+        // return .view(paddingContainer)
+        return child
     }
 
     public func getChild(ofPaddingContainer container: Widget) -> Widget {
-        return .view((container.view as! NSStackView).views[0])
+        // return .view((container.view as! NSStackView).views[0])
+        return container
     }
 
     public func setPadding(
@@ -169,11 +171,11 @@ public struct AppKitBackend: AppBackend {
         leading: Int,
         trailing: Int
     ) {
-        let view = container.view as! NSStackView
-        view.edgeInsets.top = CGFloat(top)
-        view.edgeInsets.bottom = CGFloat(bottom)
-        view.edgeInsets.left = CGFloat(leading)
-        view.edgeInsets.right = CGFloat(trailing)
+        // let view = container.view as! NSStackView
+        // view.edgeInsets.top = CGFloat(top)
+        // view.edgeInsets.bottom = CGFloat(bottom)
+        // view.edgeInsets.left = CGFloat(leading)
+        // view.edgeInsets.right = CGFloat(trailing)
     }
 
     public func createSpacer() -> Widget {
@@ -344,8 +346,22 @@ public struct AppKitBackend: AppBackend {
 
     public func createScrollContainer(for child: Widget) -> Widget {
         let scrollView = NSScrollView()
-        scrollView.addSubview(child.view)
-        child.view.pinEdges(to: scrollView)
+        scrollView.hasVerticalScroller = true
+
+        let clipView = scrollView.contentView
+        let documentView = NSStackView()
+        documentView.orientation = .vertical
+        documentView.alignment = .centerX
+        documentView.translatesAutoresizingMaskIntoConstraints = false
+        documentView.addView(child.view, in: .top)
+        scrollView.documentView = documentView
+
+        documentView.topAnchor.constraint(equalTo: clipView.topAnchor).isActive = true
+        documentView.leftAnchor.constraint(equalTo: clipView.leftAnchor).isActive = true
+        documentView.rightAnchor.constraint(equalTo: clipView.rightAnchor).isActive = true
+        documentView.heightAnchor.constraint(greaterThanOrEqualTo: clipView.heightAnchor)
+            .isActive = true
+
         return .view(scrollView)
     }
 
@@ -362,7 +378,7 @@ public struct AppKitBackend: AppBackend {
 
     public func addChild(_ child: Widget, toLayoutTransparentStack container: Widget) {
         let stack = container.view as! NSStackView
-        stack.addView(child.view, in: .bottom)
+        stack.addView(child.view, in: .top)
     }
 
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
@@ -381,19 +397,6 @@ public struct AppKitBackend: AppBackend {
         )
 
         return .viewController(splitViewController)
-    }
-
-    public func updateSplitView(_ splitView: Widget) {
-        guard let parent = splitView.view.superview else {
-            return
-        }
-        print("yep")
-
-        let splitView = splitView.view
-        splitView.topAnchor.constraint(equalTo: parent.topAnchor).isActive = true
-        splitView.bottomAnchor.constraint(equalTo: parent.bottomAnchor).isActive = true
-        splitView.leftAnchor.constraint(equalTo: parent.leftAnchor).isActive = true
-        splitView.rightAnchor.constraint(equalTo: parent.rightAnchor).isActive = true
     }
 
     public func createFrameContainer(for child: Widget) -> Widget {
