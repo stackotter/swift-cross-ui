@@ -19,7 +19,11 @@ public struct WindowGroup<Content: View>: Scene {
     /// to `ProcessInfo.processInfo.processName`.
     public init(_ title: String? = nil, @ViewBuilder _ content: () -> Content) {
         body = content()
-        self.title = title ?? ProcessInfo.processInfo.processName
+        #if os(WASI)
+            self.title = title ?? "Title"
+        #else
+            self.title = title ?? ProcessInfo.processInfo.processName
+        #endif
         resizable = true
     }
 
