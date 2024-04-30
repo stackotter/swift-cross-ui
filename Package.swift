@@ -92,8 +92,8 @@ let package = Package(
         ),
         // TODO: Switch to a different terminal library that doesn't have issues on non-Apple platforms
         .package(
-            url: "https://github.com/migueldeicaza/TermKit",
-            revision: "3bce85d1bafbbb0336b3b7b7e905c35754cb9adf"
+            url: "https://github.com/stackotter/TermKit",
+            revision: "163afa64f1257a0c026cc83ed8bc47a5f8fc9704"
         ),
         .package(
             url: "https://github.com/PADL/LVGLSwift",

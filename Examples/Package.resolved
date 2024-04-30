@@ -55,9 +55,9 @@
     {
       "identity" : "termkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/migueldeicaza/TermKit",
+      "location" : "https://github.com/stackotter/TermKit",
       "state" : {
-        "revision" : "3bce85d1bafbbb0336b3b7b7e905c35754cb9adf"
+        "revision" : "163afa64f1257a0c026cc83ed8bc47a5f8fc9704"
       }
     },
     {
