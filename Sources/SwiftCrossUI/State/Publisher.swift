@@ -1,5 +1,3 @@
-import Foundation
-
 /// A type that produces valueless observations.
 public class Publisher {
     /// The id for the next observation (ids are used to cancel observations).

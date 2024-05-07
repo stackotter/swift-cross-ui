@@ -1,5 +1,3 @@
-import Foundation
-
 public struct TupleScene2<S0: Scene, S1: Scene>: Scene {
     public typealias Node = TupleSceneNode2<S0, S1>
 

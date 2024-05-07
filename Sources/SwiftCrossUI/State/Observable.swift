@@ -1,5 +1,3 @@
-import Foundation
-
 /// An object that can be observed for changes.
 ///
 /// The default implementation only publishes changes made to properties that have been wrapped with

@@ -155,15 +155,15 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func createPaddingContainer(for child: Widget) -> Widget {
-        // let paddingContainer = NSStackView(views: [child.view])
-        // child.view.pinEdges(to: paddingContainer)
-        // return .view(paddingContainer)
-        return child
+        let paddingContainer = NSStackView()
+        paddingContainer.addView(child.view, in: .center)
+        paddingContainer.orientation = .vertical
+        paddingContainer.alignment = .centerX
+        return .view(paddingContainer)
     }
 
     public func getChild(ofPaddingContainer container: Widget) -> Widget {
-        // return .view((container.view as! NSStackView).views[0])
-        return container
+        return .view((container.view as! NSStackView).views[0])
     }
 
     public func setPadding(
@@ -173,11 +173,11 @@ public struct AppKitBackend: AppBackend {
         leading: Int,
         trailing: Int
     ) {
-        // let view = container.view as! NSStackView
-        // view.edgeInsets.top = CGFloat(top)
-        // view.edgeInsets.bottom = CGFloat(bottom)
-        // view.edgeInsets.left = CGFloat(leading)
-        // view.edgeInsets.right = CGFloat(trailing)
+        let view = container.view as! NSStackView
+        view.edgeInsets.top = CGFloat(top)
+        view.edgeInsets.bottom = CGFloat(bottom)
+        view.edgeInsets.left = CGFloat(leading)
+        view.edgeInsets.right = CGFloat(trailing)
     }
 
     public func createSpacer() -> Widget {

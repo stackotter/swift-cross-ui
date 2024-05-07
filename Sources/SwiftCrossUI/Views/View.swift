@@ -1,5 +1,3 @@
-import Foundation
-
 /// A view that can be rendered by any backend.
 public protocol View {
     /// The view's content (composed of other views).

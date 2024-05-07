@@ -90,7 +90,6 @@ let package = Package(
             url: "https://github.com/apple/swift-syntax.git",
             from: "508.0.0"
         ),
-        // TODO: Switch to a different terminal library that doesn't have issues on non-Apple platforms
         .package(
             url: "https://github.com/stackotter/TermKit",
             revision: "163afa64f1257a0c026cc83ed8bc47a5f8fc9704"
