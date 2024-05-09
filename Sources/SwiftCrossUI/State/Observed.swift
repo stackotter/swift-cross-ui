@@ -1,3 +1,5 @@
+import Foundation
+
 /// ``Observable`` values nested within an ``Observable`` object will only have their changes published by
 /// the parent ``Observable`` if marked with this marker protocol. This avoids uncertainty around which
 /// properties will or will not have their changes published by the parent. For clarity reasons, you
@@ -33,7 +35,7 @@ public protocol ObservedMarkerProtocol {}
 /// would not. The warning will show up as a deprecation, but it isn't (as you could guess from the
 /// accompanying message).
 @propertyWrapper
-public class Observed<Value>: Observable, ObservedMarkerProtocol {
+public final class Observed<Value>: Observable, ObservedMarkerProtocol {
     /// A handle that can be used to cancel the link to the previous upstream publisher.
     private var upstreamLinkCancellable: Cancellable?
 
@@ -94,5 +96,15 @@ public class Observed<Value>: Observable, ObservedMarkerProtocol {
             upstreamLinkCancellable?.cancel()
             upstreamLinkCancellable = didChange.link(toUpstream: upstream.didChange)
         }
+    }
+}
+
+extension Observed: Codable where Value: Codable {
+    public convenience init(from decoder: Decoder) throws {
+        self.init(wrappedValue: try Value(from: decoder))
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        try wrappedValue.encode(to: encoder)
     }
 }
