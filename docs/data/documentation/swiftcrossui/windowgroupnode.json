@@ -70,6 +70,10 @@
         "text" : "WindowGroupNode"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "WindowGroupNode.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/WindowGroupNode.swift#L3"
+    },
     "role" : "symbol",
     "roleHeading" : "Class",
     "symbolKind" : "class",

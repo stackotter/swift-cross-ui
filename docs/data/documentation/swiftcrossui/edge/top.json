@@ -39,6 +39,10 @@
         "name" : "SwiftCrossUI"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Edge.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Values\/Edge.swift#L4"
+    },
     "role" : "symbol",
     "roleHeading" : "Case",
     "symbolKind" : "case",

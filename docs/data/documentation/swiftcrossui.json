@@ -175,6 +175,7 @@
     },
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Size",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene2",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
@@ -244,6 +245,37 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyView": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "AnyView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "AnyView"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "AnyView",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/anyview"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyViewGraphNode": {
   "abstract" : [

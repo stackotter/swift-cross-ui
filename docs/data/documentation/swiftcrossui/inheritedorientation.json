@@ -44,6 +44,10 @@
         "text" : "InheritedOrientation"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "InheritedOrientation.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/InheritedOrientation.swift#L2"
+    },
     "role" : "symbol",
     "roleHeading" : "Enumeration",
     "symbolKind" : "enum",

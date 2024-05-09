@@ -44,6 +44,10 @@
         "text" : "NavigationStack"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "NavigationStack.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/NavigationStack.swift#L8"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

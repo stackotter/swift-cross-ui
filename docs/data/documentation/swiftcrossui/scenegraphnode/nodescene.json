@@ -48,6 +48,10 @@
         "name" : "SwiftCrossUI"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "SceneGraphNode.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/SceneGraphNode.swift#L8"
+    },
     "required" : true,
     "role" : "symbol",
     "roleHeading" : "Associated Type",

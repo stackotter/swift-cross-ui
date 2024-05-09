@@ -44,6 +44,10 @@
         "text" : "Picker"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Picker.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Picker.swift#L2"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

@@ -44,6 +44,10 @@
         "text" : "CellPosition"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "CellPosition.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/CellPosition.swift#L2"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

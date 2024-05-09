@@ -44,6 +44,10 @@
         "text" : "Text"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Text.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Text.swift#L2"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

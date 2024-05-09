@@ -60,6 +60,10 @@
         "text" : "WindowGroup"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "WindowGroup.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/WindowGroup.swift#L8"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

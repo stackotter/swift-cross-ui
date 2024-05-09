@@ -57,6 +57,10 @@
         "text" : "ViewGraphNodeChildren1"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "ViewGraphNodeChildren.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewGraphNodeChildren.swift#L43"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

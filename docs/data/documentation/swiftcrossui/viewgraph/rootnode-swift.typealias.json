@@ -45,6 +45,10 @@
         "text" : "RootNode"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "ViewGraph.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewGraph.swift#L10"
+    },
     "role" : "symbol",
     "roleHeading" : "Type Alias",
     "symbolKind" : "typealias",

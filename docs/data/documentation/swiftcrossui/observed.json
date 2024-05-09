@@ -65,6 +65,10 @@
         "text" : "Observed"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Observed.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Observed.swift#L38"
+    },
     "role" : "symbol",
     "roleHeading" : "Class",
     "symbolKind" : "class",
@@ -84,6 +88,14 @@
             {
               "kind" : "attribute",
               "text" : "@propertyWrapper"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "final"
             },
             {
               "kind" : "text",
@@ -180,7 +192,9 @@
     {
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ObservedMarkerProtocol"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ObservedMarkerProtocol",
+        "doc:\/\/SwiftCrossUI\/Se",
+        "doc:\/\/SwiftCrossUI\/SE"
       ],
       "kind" : "relationships",
       "title" : "Conforms To",
@@ -234,6 +248,14 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/valueDidChange(publish:)"
       ],
       "title" : "Instance Methods"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/Decodable-Implementations",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/Encodable-Implementations"
+      ],
+      "title" : "Default Implementations"
     }
   ],
   "variants" : [
@@ -250,6 +272,16 @@
   ]
 , 
 "references": {
+"doc://SwiftCrossUI/SE": {
+  "identifier" : "doc:\/\/SwiftCrossUI\/SE",
+  "title" : "Swift.Encodable",
+  "type" : "unresolvable"
+},
+"doc://SwiftCrossUI/Se": {
+  "identifier" : "doc:\/\/SwiftCrossUI\/Se",
+  "title" : "Swift.Decodable",
+  "type" : "unresolvable"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI": {
   "abstract" : [
     {
@@ -566,6 +598,28 @@
   "title" : "Observed",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/observed"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/Decodable-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/Decodable-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Decodable Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/observed\/decodable-implementations"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/Encodable-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/Encodable-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Encodable Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/observed\/encodable-implementations"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/didChange": {
   "abstract" : [

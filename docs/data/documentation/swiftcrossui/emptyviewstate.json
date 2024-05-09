@@ -52,6 +52,10 @@
     "platforms" : [
 
     ],
+    "remoteSource" : {
+      "fileName" : "EmptyViewState.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/EmptyViewState.swift#L2"
+    },
     "role" : "symbol",
     "roleHeading" : "Type Alias",
     "symbolKind" : "typealias",

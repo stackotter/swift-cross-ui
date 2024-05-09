@@ -44,6 +44,10 @@
         "text" : "EmptyState"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "EmptyState.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/EmptyState.swift#L2"
+    },
     "role" : "symbol",
     "roleHeading" : "Class",
     "symbolKind" : "class",

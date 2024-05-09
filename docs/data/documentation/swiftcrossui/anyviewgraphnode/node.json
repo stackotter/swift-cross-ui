@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "The number getting wrapped.",
+      "text" : "The node getting wrapped.",
       "type" : "text"
     }
   ],
@@ -47,6 +47,10 @@
         "name" : "SwiftCrossUI"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "AnyViewGraphNode.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/AnyViewGraphNode.swift#L7"
+    },
     "role" : "symbol",
     "roleHeading" : "Instance Property",
     "symbolKind" : "property",
@@ -209,7 +213,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyViewGraphNode/node": {
   "abstract" : [
     {
-      "text" : "The number getting wrapped.",
+      "text" : "The node getting wrapped.",
       "type" : "text"
     }
   ],

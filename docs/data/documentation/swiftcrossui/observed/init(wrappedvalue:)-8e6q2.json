@@ -98,6 +98,10 @@
     "platforms" : [
 
     ],
+    "remoteSource" : {
+      "fileName" : "Observed.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Observed.swift#L83"
+    },
     "role" : "symbol",
     "roleHeading" : "Initializer",
     "symbolKind" : "init",

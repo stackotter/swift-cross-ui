@@ -44,6 +44,10 @@
         "text" : "NavigationPath"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "NavigationPath.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/NavigationPath.swift#L8"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

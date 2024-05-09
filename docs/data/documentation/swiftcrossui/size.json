@@ -44,6 +44,10 @@
         "text" : "Size"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Size.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Values\/Size.swift#L2"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

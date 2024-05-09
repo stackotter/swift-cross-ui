@@ -52,6 +52,10 @@
         "text" : "Binding"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Binding.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Binding.swift#L4"
+    },
     "role" : "symbol",
     "roleHeading" : "Class",
     "symbolKind" : "class",

@@ -38,6 +38,10 @@
         "text" : "ToggleStyle"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Toggle.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Toggle.swift#L38"
+    },
     "role" : "symbol",
     "roleHeading" : "Enumeration",
     "symbolKind" : "enum",

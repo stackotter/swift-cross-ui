@@ -44,6 +44,10 @@
         "text" : "ViewGraphNode"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "ViewGraphNode.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewGraphNode.swift#L5"
+    },
     "role" : "symbol",
     "roleHeading" : "Class",
     "symbolKind" : "class",

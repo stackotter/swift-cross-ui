@@ -44,6 +44,10 @@
         "text" : "NavigationSplitView"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "NavigationSplitView.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/NavigationSplitView.swift#L2"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

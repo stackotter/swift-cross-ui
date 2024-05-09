@@ -53,6 +53,10 @@
         "text" : "NodeScene"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "TupleScene2.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/TupleScene2.swift#L14"
+    },
     "role" : "symbol",
     "roleHeading" : "Type Alias",
     "symbolKind" : "typealias",

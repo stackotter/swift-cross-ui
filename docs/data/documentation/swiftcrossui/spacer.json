@@ -52,6 +52,10 @@
         "text" : "Spacer"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Spacer.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Spacer.swift#L3"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

@@ -44,6 +44,10 @@
         "text" : "Table"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Table.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Table.swift#L2"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

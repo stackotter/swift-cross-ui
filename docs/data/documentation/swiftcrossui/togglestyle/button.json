@@ -33,6 +33,10 @@
         "name" : "SwiftCrossUI"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Toggle.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Toggle.swift#L40"
+    },
     "role" : "symbol",
     "roleHeading" : "Case",
     "symbolKind" : "case",

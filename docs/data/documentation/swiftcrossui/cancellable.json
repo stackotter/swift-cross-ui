@@ -52,6 +52,10 @@
         "text" : "Cancellable"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Cancellable.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Cancellable.swift#L3"
+    },
     "role" : "symbol",
     "roleHeading" : "Class",
     "symbolKind" : "class",

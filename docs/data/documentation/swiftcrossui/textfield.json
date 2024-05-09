@@ -44,6 +44,10 @@
         "text" : "TextField"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "TextField.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/TextField.swift#L2"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

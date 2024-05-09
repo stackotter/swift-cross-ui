@@ -61,6 +61,10 @@
         "text" : "EmptyView"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "EmptyView.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/EmptyView.swift#L3"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

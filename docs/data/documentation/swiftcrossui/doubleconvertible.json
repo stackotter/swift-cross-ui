@@ -52,6 +52,10 @@
         "text" : "DoubleConvertible"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Slider.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Slider.swift#L2"
+    },
     "role" : "symbol",
     "roleHeading" : "Protocol",
     "symbolKind" : "protocol",

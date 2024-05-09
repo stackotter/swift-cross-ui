@@ -44,6 +44,10 @@
         "text" : "TableBuilder"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "TableBuilder.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Builders\/TableBuilder.swift#L3"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

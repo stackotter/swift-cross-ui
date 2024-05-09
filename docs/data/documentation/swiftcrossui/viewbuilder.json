@@ -52,6 +52,10 @@
         "text" : "ViewBuilder"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "ViewBuilder.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Builders\/ViewBuilder.swift#L5"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

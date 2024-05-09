@@ -108,6 +108,10 @@
         "text" : "ObservedMarkerProtocol"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Observed.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Observed.swift#L27"
+    },
     "role" : "symbol",
     "roleHeading" : "Protocol",
     "symbolKind" : "protocol",

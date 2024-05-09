@@ -48,6 +48,10 @@
         "name" : "SwiftCrossUI"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "View.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/View.swift#L4"
+    },
     "required" : true,
     "role" : "symbol",
     "roleHeading" : "Associated Type",

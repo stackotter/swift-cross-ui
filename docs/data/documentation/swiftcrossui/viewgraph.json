@@ -52,6 +52,10 @@
         "text" : "ViewGraph"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "ViewGraph.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewGraph.swift#L8"
+    },
     "role" : "symbol",
     "roleHeading" : "Class",
     "symbolKind" : "class",

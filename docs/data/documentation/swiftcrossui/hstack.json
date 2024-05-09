@@ -44,6 +44,10 @@
         "text" : "HStack"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "HStack.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/HStack.swift#L2"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

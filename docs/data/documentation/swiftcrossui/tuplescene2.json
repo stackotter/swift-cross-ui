@@ -38,6 +38,10 @@
         "text" : "TupleScene2"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "TupleScene2.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/TupleScene2.swift#L1"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

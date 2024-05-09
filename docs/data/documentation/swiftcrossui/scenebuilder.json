@@ -44,6 +44,10 @@
         "text" : "SceneBuilder"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "SceneBuilder.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Builders\/SceneBuilder.swift#L3"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

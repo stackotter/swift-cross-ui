@@ -53,6 +53,10 @@
         "text" : "NodeScene"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "WindowGroupNode.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/WindowGroupNode.swift#L4"
+    },
     "role" : "symbol",
     "roleHeading" : "Type Alias",
     "symbolKind" : "typealias",

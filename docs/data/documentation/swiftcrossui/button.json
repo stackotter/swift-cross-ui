@@ -44,6 +44,10 @@
         "text" : "Button"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Button.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Button.swift#L2"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

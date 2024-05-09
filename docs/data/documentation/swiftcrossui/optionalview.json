@@ -53,6 +53,10 @@
         "text" : "OptionalView"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "OptionalView.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/OptionalView.swift#L2"
+    },
     "role" : "symbol",
     "roleHeading" : "Structure",
     "symbolKind" : "struct",

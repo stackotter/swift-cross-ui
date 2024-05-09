@@ -44,6 +44,10 @@
         "text" : "Observable"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Observable.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Observable.swift#L30"
+    },
     "role" : "symbol",
     "roleHeading" : "Protocol",
     "symbolKind" : "protocol",

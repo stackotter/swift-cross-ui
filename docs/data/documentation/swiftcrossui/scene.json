@@ -60,6 +60,10 @@
         "text" : "Scene"
       }
     ],
+    "remoteSource" : {
+      "fileName" : "Scene.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/Scene.swift#L6"
+    },
     "role" : "symbol",
     "roleHeading" : "Protocol",
     "symbolKind" : "protocol",
