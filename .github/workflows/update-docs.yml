@@ -38,7 +38,10 @@ jobs:
           --disable-indexing \
           --transform-for-static-hosting \
           --hosting-base-path swift-cross-ui \
-          --output-path gh-pages/docs
+          --output-path gh-pages/docs \
+          --source-service github \
+          --source-service-base-url https://github.com/stackotter/swift-cross-ui/blob/main \
+          --checkout-path $(pwd)
 
         CURRENT_COMMIT_HASH=`git rev-parse --short HEAD`
 
