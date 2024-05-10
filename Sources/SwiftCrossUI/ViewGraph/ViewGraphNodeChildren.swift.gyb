@@ -86,8 +86,14 @@ public struct ViewGraphNodeChildren${i + 1}<${struct_type_parameters}>: ViewGrap
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) {
+        let viewTypeNames = [
+            % for child in children:
+            ViewGraphSnapshotter.name(of: ${child}.self),
+            % end
+        ]
+        let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         % for j, child in enumerate(children):
-        self.${child.lower()} = AnyViewGraphNode(for: ${child.lower()}, backend: backend, snapshot: ${j} < snapshots?.count ?? 0 ? snapshots?[${j}] : nil)
+        self.${child.lower()} = AnyViewGraphNode(for: ${child.lower()}, backend: backend, snapshot: snapshots[${j}])
         % end
     }
 }

@@ -1,7 +1,7 @@
 import Foundation
 
 public struct ViewGraphSnapshotter: ErasedViewGraphNodeTransformer {
-    public struct NodeSnapshot: CustomDebugStringConvertible {
+    public struct NodeSnapshot: CustomDebugStringConvertible, Equatable {
         var viewTypeName: String
         var state: StateSnapshot?
         var children: [NodeSnapshot]
@@ -63,7 +63,7 @@ public struct ViewGraphSnapshotter: ErasedViewGraphNodeTransformer {
         }
     }
 
-    public enum StateSnapshot: CustomDebugStringConvertible {
+    public enum StateSnapshot: CustomDebugStringConvertible, Equatable {
         case encodingFailure
         case encoded(Data)
 
@@ -110,5 +110,53 @@ public struct ViewGraphSnapshotter: ErasedViewGraphNodeTransformer {
 
     static func name<V: View>(of viewType: V.Type) -> String {
         String(String(describing: V.self).split(separator: "<")[0])
+    }
+
+    /// Attempts to match a list of snapshots to a list of views. Uses assumptions about
+    /// a few common types of changes which occur when using hot reloading (e.g. adding/removing
+    /// single-child modifier views, adding an extra view between two siblings, etc). At
+    /// the end of the day, this task is impossible to do in general (by definition), so
+    /// this function is expected to just slowly improve over time to suit the majority of
+    /// use-cases.
+    static func match(
+        _ snapshots: [NodeSnapshot],
+        to viewTypeNames: [String]
+    ) -> [NodeSnapshot?] {
+        var sortedSnapshots: [NodeSnapshot?] = Array(repeating: nil, count: viewTypeNames.count)
+
+        var skippedSnapshots: [NodeSnapshot] = []
+        var usedIndices: Set<Int> = []
+        for snapshot in snapshots {
+            var foundView = false
+            for (i, viewTypeName) in viewTypeNames.enumerated() where !usedIndices.contains(i) {
+                if snapshot.viewTypeName == viewTypeName {
+                    sortedSnapshots[i] = snapshot
+                    foundView = true
+                    usedIndices.insert(i)
+                    break
+                }
+            }
+            if !foundView {
+                skippedSnapshots.append(snapshot)
+            }
+        }
+
+        if sortedSnapshots == [nil] {
+            let viewTypeName = viewTypeNames[0]
+            var children = snapshots
+            while children.count == 1 {
+                let child = children[0]
+                if child.viewTypeName == viewTypeName {
+                    return [child]
+                } else {
+                    children = child.children
+                }
+            }
+            if snapshots.count == 1 {
+                return snapshots
+            }
+        }
+
+        return sortedSnapshots
     }
 }

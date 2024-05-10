@@ -65,7 +65,11 @@ public struct ViewGraphNodeChildren1<Child0: View>: ViewGraphNodeChildren {
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) {
-        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: 0 < snapshots?.count ?? 0 ? snapshots?[0] : nil)
+        let viewTypeNames = [
+            ViewGraphSnapshotter.name(of: Child0.self),
+        ]
+        let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
+        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: snapshots[0])
     }
 }
 
@@ -98,8 +102,13 @@ public struct ViewGraphNodeChildren2<Child0: View, Child1: View>: ViewGraphNodeC
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) {
-        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: 0 < snapshots?.count ?? 0 ? snapshots?[0] : nil)
-        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: 1 < snapshots?.count ?? 0 ? snapshots?[1] : nil)
+        let viewTypeNames = [
+            ViewGraphSnapshotter.name(of: Child0.self),
+            ViewGraphSnapshotter.name(of: Child1.self),
+        ]
+        let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
+        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: snapshots[0])
+        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: snapshots[1])
     }
 }
 
@@ -137,9 +146,15 @@ public struct ViewGraphNodeChildren3<Child0: View, Child1: View, Child2: View>: 
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) {
-        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: 0 < snapshots?.count ?? 0 ? snapshots?[0] : nil)
-        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: 1 < snapshots?.count ?? 0 ? snapshots?[1] : nil)
-        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: 2 < snapshots?.count ?? 0 ? snapshots?[2] : nil)
+        let viewTypeNames = [
+            ViewGraphSnapshotter.name(of: Child0.self),
+            ViewGraphSnapshotter.name(of: Child1.self),
+            ViewGraphSnapshotter.name(of: Child2.self),
+        ]
+        let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
+        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: snapshots[0])
+        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: snapshots[1])
+        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: snapshots[2])
     }
 }
 
@@ -182,10 +197,17 @@ public struct ViewGraphNodeChildren4<Child0: View, Child1: View, Child2: View, C
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) {
-        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: 0 < snapshots?.count ?? 0 ? snapshots?[0] : nil)
-        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: 1 < snapshots?.count ?? 0 ? snapshots?[1] : nil)
-        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: 2 < snapshots?.count ?? 0 ? snapshots?[2] : nil)
-        self.child3 = AnyViewGraphNode(for: child3, backend: backend, snapshot: 3 < snapshots?.count ?? 0 ? snapshots?[3] : nil)
+        let viewTypeNames = [
+            ViewGraphSnapshotter.name(of: Child0.self),
+            ViewGraphSnapshotter.name(of: Child1.self),
+            ViewGraphSnapshotter.name(of: Child2.self),
+            ViewGraphSnapshotter.name(of: Child3.self),
+        ]
+        let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
+        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: snapshots[0])
+        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: snapshots[1])
+        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: snapshots[2])
+        self.child3 = AnyViewGraphNode(for: child3, backend: backend, snapshot: snapshots[3])
     }
 }
 
@@ -233,11 +255,19 @@ public struct ViewGraphNodeChildren5<Child0: View, Child1: View, Child2: View, C
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) {
-        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: 0 < snapshots?.count ?? 0 ? snapshots?[0] : nil)
-        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: 1 < snapshots?.count ?? 0 ? snapshots?[1] : nil)
-        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: 2 < snapshots?.count ?? 0 ? snapshots?[2] : nil)
-        self.child3 = AnyViewGraphNode(for: child3, backend: backend, snapshot: 3 < snapshots?.count ?? 0 ? snapshots?[3] : nil)
-        self.child4 = AnyViewGraphNode(for: child4, backend: backend, snapshot: 4 < snapshots?.count ?? 0 ? snapshots?[4] : nil)
+        let viewTypeNames = [
+            ViewGraphSnapshotter.name(of: Child0.self),
+            ViewGraphSnapshotter.name(of: Child1.self),
+            ViewGraphSnapshotter.name(of: Child2.self),
+            ViewGraphSnapshotter.name(of: Child3.self),
+            ViewGraphSnapshotter.name(of: Child4.self),
+        ]
+        let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
+        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: snapshots[0])
+        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: snapshots[1])
+        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: snapshots[2])
+        self.child3 = AnyViewGraphNode(for: child3, backend: backend, snapshot: snapshots[3])
+        self.child4 = AnyViewGraphNode(for: child4, backend: backend, snapshot: snapshots[4])
     }
 }
 
@@ -290,12 +320,21 @@ public struct ViewGraphNodeChildren6<Child0: View, Child1: View, Child2: View, C
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) {
-        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: 0 < snapshots?.count ?? 0 ? snapshots?[0] : nil)
-        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: 1 < snapshots?.count ?? 0 ? snapshots?[1] : nil)
-        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: 2 < snapshots?.count ?? 0 ? snapshots?[2] : nil)
-        self.child3 = AnyViewGraphNode(for: child3, backend: backend, snapshot: 3 < snapshots?.count ?? 0 ? snapshots?[3] : nil)
-        self.child4 = AnyViewGraphNode(for: child4, backend: backend, snapshot: 4 < snapshots?.count ?? 0 ? snapshots?[4] : nil)
-        self.child5 = AnyViewGraphNode(for: child5, backend: backend, snapshot: 5 < snapshots?.count ?? 0 ? snapshots?[5] : nil)
+        let viewTypeNames = [
+            ViewGraphSnapshotter.name(of: Child0.self),
+            ViewGraphSnapshotter.name(of: Child1.self),
+            ViewGraphSnapshotter.name(of: Child2.self),
+            ViewGraphSnapshotter.name(of: Child3.self),
+            ViewGraphSnapshotter.name(of: Child4.self),
+            ViewGraphSnapshotter.name(of: Child5.self),
+        ]
+        let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
+        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: snapshots[0])
+        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: snapshots[1])
+        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: snapshots[2])
+        self.child3 = AnyViewGraphNode(for: child3, backend: backend, snapshot: snapshots[3])
+        self.child4 = AnyViewGraphNode(for: child4, backend: backend, snapshot: snapshots[4])
+        self.child5 = AnyViewGraphNode(for: child5, backend: backend, snapshot: snapshots[5])
     }
 }
 
@@ -353,13 +392,23 @@ public struct ViewGraphNodeChildren7<Child0: View, Child1: View, Child2: View, C
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) {
-        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: 0 < snapshots?.count ?? 0 ? snapshots?[0] : nil)
-        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: 1 < snapshots?.count ?? 0 ? snapshots?[1] : nil)
-        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: 2 < snapshots?.count ?? 0 ? snapshots?[2] : nil)
-        self.child3 = AnyViewGraphNode(for: child3, backend: backend, snapshot: 3 < snapshots?.count ?? 0 ? snapshots?[3] : nil)
-        self.child4 = AnyViewGraphNode(for: child4, backend: backend, snapshot: 4 < snapshots?.count ?? 0 ? snapshots?[4] : nil)
-        self.child5 = AnyViewGraphNode(for: child5, backend: backend, snapshot: 5 < snapshots?.count ?? 0 ? snapshots?[5] : nil)
-        self.child6 = AnyViewGraphNode(for: child6, backend: backend, snapshot: 6 < snapshots?.count ?? 0 ? snapshots?[6] : nil)
+        let viewTypeNames = [
+            ViewGraphSnapshotter.name(of: Child0.self),
+            ViewGraphSnapshotter.name(of: Child1.self),
+            ViewGraphSnapshotter.name(of: Child2.self),
+            ViewGraphSnapshotter.name(of: Child3.self),
+            ViewGraphSnapshotter.name(of: Child4.self),
+            ViewGraphSnapshotter.name(of: Child5.self),
+            ViewGraphSnapshotter.name(of: Child6.self),
+        ]
+        let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
+        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: snapshots[0])
+        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: snapshots[1])
+        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: snapshots[2])
+        self.child3 = AnyViewGraphNode(for: child3, backend: backend, snapshot: snapshots[3])
+        self.child4 = AnyViewGraphNode(for: child4, backend: backend, snapshot: snapshots[4])
+        self.child5 = AnyViewGraphNode(for: child5, backend: backend, snapshot: snapshots[5])
+        self.child6 = AnyViewGraphNode(for: child6, backend: backend, snapshot: snapshots[6])
     }
 }
 
@@ -422,14 +471,25 @@ public struct ViewGraphNodeChildren8<Child0: View, Child1: View, Child2: View, C
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) {
-        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: 0 < snapshots?.count ?? 0 ? snapshots?[0] : nil)
-        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: 1 < snapshots?.count ?? 0 ? snapshots?[1] : nil)
-        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: 2 < snapshots?.count ?? 0 ? snapshots?[2] : nil)
-        self.child3 = AnyViewGraphNode(for: child3, backend: backend, snapshot: 3 < snapshots?.count ?? 0 ? snapshots?[3] : nil)
-        self.child4 = AnyViewGraphNode(for: child4, backend: backend, snapshot: 4 < snapshots?.count ?? 0 ? snapshots?[4] : nil)
-        self.child5 = AnyViewGraphNode(for: child5, backend: backend, snapshot: 5 < snapshots?.count ?? 0 ? snapshots?[5] : nil)
-        self.child6 = AnyViewGraphNode(for: child6, backend: backend, snapshot: 6 < snapshots?.count ?? 0 ? snapshots?[6] : nil)
-        self.child7 = AnyViewGraphNode(for: child7, backend: backend, snapshot: 7 < snapshots?.count ?? 0 ? snapshots?[7] : nil)
+        let viewTypeNames = [
+            ViewGraphSnapshotter.name(of: Child0.self),
+            ViewGraphSnapshotter.name(of: Child1.self),
+            ViewGraphSnapshotter.name(of: Child2.self),
+            ViewGraphSnapshotter.name(of: Child3.self),
+            ViewGraphSnapshotter.name(of: Child4.self),
+            ViewGraphSnapshotter.name(of: Child5.self),
+            ViewGraphSnapshotter.name(of: Child6.self),
+            ViewGraphSnapshotter.name(of: Child7.self),
+        ]
+        let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
+        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: snapshots[0])
+        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: snapshots[1])
+        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: snapshots[2])
+        self.child3 = AnyViewGraphNode(for: child3, backend: backend, snapshot: snapshots[3])
+        self.child4 = AnyViewGraphNode(for: child4, backend: backend, snapshot: snapshots[4])
+        self.child5 = AnyViewGraphNode(for: child5, backend: backend, snapshot: snapshots[5])
+        self.child6 = AnyViewGraphNode(for: child6, backend: backend, snapshot: snapshots[6])
+        self.child7 = AnyViewGraphNode(for: child7, backend: backend, snapshot: snapshots[7])
     }
 }
 
@@ -497,15 +557,27 @@ public struct ViewGraphNodeChildren9<Child0: View, Child1: View, Child2: View, C
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) {
-        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: 0 < snapshots?.count ?? 0 ? snapshots?[0] : nil)
-        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: 1 < snapshots?.count ?? 0 ? snapshots?[1] : nil)
-        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: 2 < snapshots?.count ?? 0 ? snapshots?[2] : nil)
-        self.child3 = AnyViewGraphNode(for: child3, backend: backend, snapshot: 3 < snapshots?.count ?? 0 ? snapshots?[3] : nil)
-        self.child4 = AnyViewGraphNode(for: child4, backend: backend, snapshot: 4 < snapshots?.count ?? 0 ? snapshots?[4] : nil)
-        self.child5 = AnyViewGraphNode(for: child5, backend: backend, snapshot: 5 < snapshots?.count ?? 0 ? snapshots?[5] : nil)
-        self.child6 = AnyViewGraphNode(for: child6, backend: backend, snapshot: 6 < snapshots?.count ?? 0 ? snapshots?[6] : nil)
-        self.child7 = AnyViewGraphNode(for: child7, backend: backend, snapshot: 7 < snapshots?.count ?? 0 ? snapshots?[7] : nil)
-        self.child8 = AnyViewGraphNode(for: child8, backend: backend, snapshot: 8 < snapshots?.count ?? 0 ? snapshots?[8] : nil)
+        let viewTypeNames = [
+            ViewGraphSnapshotter.name(of: Child0.self),
+            ViewGraphSnapshotter.name(of: Child1.self),
+            ViewGraphSnapshotter.name(of: Child2.self),
+            ViewGraphSnapshotter.name(of: Child3.self),
+            ViewGraphSnapshotter.name(of: Child4.self),
+            ViewGraphSnapshotter.name(of: Child5.self),
+            ViewGraphSnapshotter.name(of: Child6.self),
+            ViewGraphSnapshotter.name(of: Child7.self),
+            ViewGraphSnapshotter.name(of: Child8.self),
+        ]
+        let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
+        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: snapshots[0])
+        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: snapshots[1])
+        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: snapshots[2])
+        self.child3 = AnyViewGraphNode(for: child3, backend: backend, snapshot: snapshots[3])
+        self.child4 = AnyViewGraphNode(for: child4, backend: backend, snapshot: snapshots[4])
+        self.child5 = AnyViewGraphNode(for: child5, backend: backend, snapshot: snapshots[5])
+        self.child6 = AnyViewGraphNode(for: child6, backend: backend, snapshot: snapshots[6])
+        self.child7 = AnyViewGraphNode(for: child7, backend: backend, snapshot: snapshots[7])
+        self.child8 = AnyViewGraphNode(for: child8, backend: backend, snapshot: snapshots[8])
     }
 }
 
@@ -578,15 +650,28 @@ public struct ViewGraphNodeChildren10<Child0: View, Child1: View, Child2: View, 
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) {
-        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: 0 < snapshots?.count ?? 0 ? snapshots?[0] : nil)
-        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: 1 < snapshots?.count ?? 0 ? snapshots?[1] : nil)
-        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: 2 < snapshots?.count ?? 0 ? snapshots?[2] : nil)
-        self.child3 = AnyViewGraphNode(for: child3, backend: backend, snapshot: 3 < snapshots?.count ?? 0 ? snapshots?[3] : nil)
-        self.child4 = AnyViewGraphNode(for: child4, backend: backend, snapshot: 4 < snapshots?.count ?? 0 ? snapshots?[4] : nil)
-        self.child5 = AnyViewGraphNode(for: child5, backend: backend, snapshot: 5 < snapshots?.count ?? 0 ? snapshots?[5] : nil)
-        self.child6 = AnyViewGraphNode(for: child6, backend: backend, snapshot: 6 < snapshots?.count ?? 0 ? snapshots?[6] : nil)
-        self.child7 = AnyViewGraphNode(for: child7, backend: backend, snapshot: 7 < snapshots?.count ?? 0 ? snapshots?[7] : nil)
-        self.child8 = AnyViewGraphNode(for: child8, backend: backend, snapshot: 8 < snapshots?.count ?? 0 ? snapshots?[8] : nil)
-        self.child9 = AnyViewGraphNode(for: child9, backend: backend, snapshot: 9 < snapshots?.count ?? 0 ? snapshots?[9] : nil)
+        let viewTypeNames = [
+            ViewGraphSnapshotter.name(of: Child0.self),
+            ViewGraphSnapshotter.name(of: Child1.self),
+            ViewGraphSnapshotter.name(of: Child2.self),
+            ViewGraphSnapshotter.name(of: Child3.self),
+            ViewGraphSnapshotter.name(of: Child4.self),
+            ViewGraphSnapshotter.name(of: Child5.self),
+            ViewGraphSnapshotter.name(of: Child6.self),
+            ViewGraphSnapshotter.name(of: Child7.self),
+            ViewGraphSnapshotter.name(of: Child8.self),
+            ViewGraphSnapshotter.name(of: Child9.self),
+        ]
+        let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
+        self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: snapshots[0])
+        self.child1 = AnyViewGraphNode(for: child1, backend: backend, snapshot: snapshots[1])
+        self.child2 = AnyViewGraphNode(for: child2, backend: backend, snapshot: snapshots[2])
+        self.child3 = AnyViewGraphNode(for: child3, backend: backend, snapshot: snapshots[3])
+        self.child4 = AnyViewGraphNode(for: child4, backend: backend, snapshot: snapshots[4])
+        self.child5 = AnyViewGraphNode(for: child5, backend: backend, snapshot: snapshots[5])
+        self.child6 = AnyViewGraphNode(for: child6, backend: backend, snapshot: snapshots[6])
+        self.child7 = AnyViewGraphNode(for: child7, backend: backend, snapshot: snapshots[7])
+        self.child8 = AnyViewGraphNode(for: child8, backend: backend, snapshot: snapshots[8])
+        self.child9 = AnyViewGraphNode(for: child9, backend: backend, snapshot: snapshots[9])
     }
 }

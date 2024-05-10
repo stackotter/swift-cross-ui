@@ -34,7 +34,8 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
 
         // First create the view's child nodes and widgets
         let childSnapshots =
-            snapshot?.isValid(for: NodeView.self) == true ? snapshot?.children : nil
+            snapshot?.isValid(for: NodeView.self) == true
+            ? snapshot?.children : snapshot.map { [$0] }
         children = view.children(backend: backend, snapshots: childSnapshots)
 
         // Then create the widget for the view itself

@@ -91,6 +91,7 @@ let package = Package(
         .library(name: "QtBackend", type: libraryType, targets: ["QtBackend"]),
         .library(name: "LVGLBackend", type: libraryType, targets: ["LVGLBackend"]),
         .library(name: "GtkBackend", type: libraryType, targets: ["GtkBackend"]),
+        .library(name: "DefaultBackend", type: libraryType, targets: ["DefaultBackend"]),
         .library(name: "Gtk", type: libraryType, targets: ["Gtk"]),
         .executable(name: "GtkExample", targets: ["GtkExample"]),
     ] + swift510Products,

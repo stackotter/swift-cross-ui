@@ -85,7 +85,6 @@ class HotReloadableViewChildren: ViewGraphNodeChildren {
         if !node.updateWithNewView(view.child) {
             let snapshotter = ViewGraphSnapshotter()
             let snapshot = node.transform(with: snapshotter)
-            print(snapshot.debugDescription)
             node = ErasedViewGraphNode(for: view.child, backend: backend, snapshot: snapshot)
             backend.setChild(ofSingleChildContainer: container.into(), to: node.getWidget().into())
         }
