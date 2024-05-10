@@ -22,8 +22,10 @@
 ///
 ///     var otherCount = 0
 ///
-///     // Even though `nested` is `Observable`, its changes won't be published because without
-///     // `@Observed`, the behaviour is unclear without looking at the definition of `NestedState`
+///     // Even though `nested` is `Observable`, its changes won't be published because if you
+///     // could have observed properties without `@Observed` things would get pretty messy
+///     // and you'd always have to check the definition of the type of each property to know
+///     // exactly what would and wouldn't cause updates.
 ///     var nested = NestedState()
 /// }
 /// ```
@@ -36,6 +38,7 @@ public protocol Observable: AnyObject {
 extension Observable {
     public var didChange: Publisher {
         let publisher = Publisher()
+            .tag(with: String(describing: type(of: self)))
         guard type(of: self) != EmptyState.self else {
             return publisher
         }

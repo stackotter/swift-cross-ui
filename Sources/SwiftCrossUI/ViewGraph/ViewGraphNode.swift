@@ -23,14 +23,31 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     /// Creates a node for a given view while also creating the nodes for its children, creating
     /// the view's widget, and starting to observe its state for changes.
     public init(
-        for view: NodeView,
+        for nodeView: NodeView,
         backend: Backend,
         snapshot: ViewGraphSnapshotter.NodeSnapshot? = nil
     ) {
         self.backend = backend
 
         // Restore node snapshot if present.
-        self.view = snapshot?.restore(to: view) ?? view
+        self.view = snapshot?.restore(to: nodeView) ?? nodeView
+
+        #if DEBUG
+            var mirror: Mirror? = Mirror(reflecting: self.view.state)
+            while let aClass = mirror {
+                for (label, property) in aClass.children {
+                    guard
+                        property is ObservedMarkerProtocol,
+                        let property = property as? Observable
+                    else {
+                        continue
+                    }
+
+                    property.didChange.tag(with: "(\(label ?? "_"): Observed<_>)")
+                }
+                mirror = aClass.superclassMirror
+            }
+        #endif
 
         // First create the view's child nodes and widgets
         let childSnapshots =

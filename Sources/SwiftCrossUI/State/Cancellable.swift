@@ -3,6 +3,8 @@
 public class Cancellable {
     /// The cancel action to call on deinit.
     private var closure: (() -> Void)?
+    /// Human-readable tag for debugging purposes.
+    var tag: String?
 
     /// Creates a new cancellable.
     public init(closure: @escaping () -> Void) {
@@ -14,9 +16,17 @@ public class Cancellable {
         cancel()
     }
 
-    /// Runs the cancel action and ensures that it can be called a second time.
+    /// Runs the cancel action and ensures that it can't be called a second time.
     public func cancel() {
         closure?()
         closure = nil
+    }
+
+    @discardableResult
+    func tag(with tag: @autoclosure () -> String?) -> Self {
+        #if DEBUG
+            self.tag = tag()
+        #endif
+        return self
     }
 }

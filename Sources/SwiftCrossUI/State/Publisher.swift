@@ -6,6 +6,8 @@ public class Publisher {
     private var observations: [Int: () -> Void] = [:]
     /// Cancellable observations of downstream observers.
     private var cancellables: [Cancellable] = []
+    /// Human-readable tag for debugging purposes.
+    private var tag: String?
 
     /// Creates a new independent publisher.
     public init() {}
@@ -30,11 +32,15 @@ public class Publisher {
         nextObservationId += 1
 
         return Cancellable { [weak self] in
-            self?.observations[id] = nil
-            for cancellable in self?.cancellables ?? [] {
-                cancellable.cancel()
+            guard let self = self else { return }
+            self.observations[id] = nil
+            if self.observations.isEmpty {
+                for cancellable in self.cancellables {
+                    cancellable.cancel()
+                }
             }
         }
+        .tag(with: tag)
     }
 
     /// Links the publisher to an upstream, meaning that observations from the upstream
@@ -43,7 +49,16 @@ public class Publisher {
         let cancellable = publisher.observe(with: {
             self.send()
         })
+        cancellable.tag(with: "\(tag ?? "no tag") <-> \(cancellable.tag ?? "no tag")")
         cancellables.append(cancellable)
         return cancellable
+    }
+
+    @discardableResult
+    func tag(with tag: @autoclosure () -> String?) -> Self {
+        #if DEBUG
+            self.tag = tag()
+        #endif
+        return self
     }
 }

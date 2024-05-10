@@ -59,7 +59,7 @@ public final class Observed<Value>: Observable, ObservedMarkerProtocol {
     }
 
     /// A publisher that publishes any observable changes made to ``Observed/wrappedValue``.
-    public let didChange = Publisher()
+    public let didChange = Publisher().tag(with: "Observed")
 
     /// Creates a publishing wrapper around a value type or ``Observable`` class.
     public init(wrappedValue: Value) {
@@ -75,18 +75,18 @@ public final class Observed<Value>: Observable, ObservedMarkerProtocol {
         valueDidChange(publish: false)
     }
 
-    /// Creates a wrapper around a class. Only setting ``Observed/wrappedValue`` to a new instance
-    /// of the class is the only change that will get published. This is hardly ever intentional, so
-    /// this initializer variant contains a deprecation warning to warn developers (but does nothing
-    /// functionally different).
+    /// Creates a wrapper around a non-Observable class. Setting ``Observed/wrappedValue`` to a new
+    /// instance of the class is the only change that will get published. This is hardly ever
+    /// intentional, so this initializer variant contains a deprecation warning to warn developers
+    /// (but does nothing functionally different).
     @available(*, deprecated, message: "A class must be Observable to be Observed")
     public init(wrappedValue: Value) where Value: AnyObject {
         self.wrappedValue = wrappedValue
         valueDidChange(publish: false)
     }
 
-    /// Handles changing a value. If `publish` is `false`, the change won't be published, but if the
-    /// wrapped value is ``Observable``, the new upstream publisher will be relinked.
+    /// Handles changing a value. If `publish` is `false` the change won't be published, but if the
+    /// wrapped value is ``Observable`` the new upstream publisher will still get relinked.
     public func valueDidChange(publish: Bool = true) {
         if publish {
             didChange.send()
