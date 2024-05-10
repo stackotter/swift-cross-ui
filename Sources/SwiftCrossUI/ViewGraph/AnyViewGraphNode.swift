@@ -8,23 +8,38 @@ public class AnyViewGraphNode<NodeView: View> {
 
     /// The node's widget (type-erased).
     public var widget: AnyWidget {
-        getWidget()
+        _getWidget()
     }
 
     /// The node's type-erased update method for when the view is recomputed.
-    private var updateWithNewView: (NodeView) -> Void
+    private var _updateWithNewView: (NodeView) -> Void
     /// The node's type-erased update method for when the view's state changes.
-    private var updateNode: () -> Void
+    private var _updateNode: () -> Void
     /// The type-erased getter for the node's widget.
-    private var getWidget: () -> AnyWidget
+    private var _getWidget: () -> AnyWidget
+    /// The type-erased getter for the node's view.
+    private var _getNodeView: () -> NodeView
+    /// The type-erased getter for the node's children.
+    private var _getNodeChildren: () -> any ViewGraphNodeChildren
+    /// The underlying erased backend.
+    private var _getBackend: () -> any AppBackend
 
     /// Type-erases a view graph node.
     public init<Backend: AppBackend>(_ node: ViewGraphNode<NodeView, Backend>) {
         self.node = node
-        updateWithNewView = node.update(with:)
-        updateNode = node.update
-        getWidget = {
-            return AnyWidget(node.widget)
+        _updateWithNewView = node.update(with:)
+        _updateNode = node.update
+        _getWidget = {
+            AnyWidget(node.widget)
+        }
+        _getNodeView = {
+            node.view
+        }
+        _getNodeChildren = {
+            node.children
+        }
+        _getBackend = {
+            node.backend
         }
     }
 
@@ -35,12 +50,25 @@ public class AnyViewGraphNode<NodeView: View> {
 
     /// Updates the view after it was recomputed (e.g. due to the parent's state changing).
     public func update(with newView: NodeView) {
-        updateWithNewView(newView)
+        _updateWithNewView(newView)
     }
 
     /// Updates the view after its state changed.
     public func update() {
-        updateNode()
+        _updateNode()
+    }
+
+    /// Gets the node's wrapped view.
+    public func getView() -> NodeView {
+        _getNodeView()
+    }
+
+    public func getChildren() -> any ViewGraphNodeChildren {
+        _getNodeChildren()
+    }
+
+    public func getBackend() -> any AppBackend {
+        _getBackend()
     }
 
     /// Converts the node back to its original type. Crashes if the requested backend doesn't

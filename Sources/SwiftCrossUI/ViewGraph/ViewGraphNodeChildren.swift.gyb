@@ -11,6 +11,8 @@ public protocol ViewGraphNodeChildren {
     /// selected backend leaking into the ``View`` protocol, requiring users to
     /// engage with annoying complexity and reducing ease of backend switching.
     var widgets: [AnyWidget] { get }
+    /// Erased representations of all contained child nodes.
+    var erasedNodes: [ErasedViewGraphNode] { get }
 }
 
 extension ViewGraphNodeChildren {
@@ -35,6 +37,7 @@ extension ViewGraphNodeChildren {
 /// The children of a node with no children.
 public struct EmptyViewGraphNodeChildren: ViewGraphNodeChildren {
     public let widgets: [AnyWidget] = []
+    public let erasedNodes: [ErasedViewGraphNode] = []
 
     /// Creates an empty collection of children for a node with no children.
     public init() {}
@@ -58,6 +61,14 @@ public struct ViewGraphNodeChildren${i + 1}<${struct_type_parameters}>: ViewGrap
         return [
             % for child in children:
             ${child.lower()}.widget,
+            % end
+        ]
+    }
+
+    public var erasedNodes: [ErasedViewGraphNode] {
+        return [
+            % for child in children:
+            ErasedViewGraphNode(wrapping: ${child.lower()}),
             % end
         ]
     }

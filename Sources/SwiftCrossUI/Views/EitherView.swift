@@ -62,6 +62,15 @@ class EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
                     return node.widget
             }
         }
+
+        var erasedNode: ErasedViewGraphNode {
+            switch self {
+                case let .a(node):
+                    return ErasedViewGraphNode(wrapping: node)
+                case let .b(node):
+                    return ErasedViewGraphNode(wrapping: node)
+            }
+        }
     }
 
     /// The view graph node for the currently displayed child.
@@ -74,6 +83,10 @@ class EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
 
     var widgets: [AnyWidget] {
         return [node.widget]
+    }
+
+    var erasedNodes: [ErasedViewGraphNode] {
+        [node.erasedNode]
     }
 
     /// Creates storage for an either view's current child (which can change at any time).

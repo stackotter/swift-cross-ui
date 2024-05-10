@@ -8,6 +8,8 @@ public protocol ViewGraphNodeChildren {
     /// selected backend leaking into the ``View`` protocol, requiring users to
     /// engage with annoying complexity and reducing ease of backend switching.
     var widgets: [AnyWidget] { get }
+    /// Erased representations of all contained child nodes.
+    var erasedNodes: [ErasedViewGraphNode] { get }
 }
 
 extension ViewGraphNodeChildren {
@@ -32,6 +34,7 @@ extension ViewGraphNodeChildren {
 /// The children of a node with no children.
 public struct EmptyViewGraphNodeChildren: ViewGraphNodeChildren {
     public let widgets: [AnyWidget] = []
+    public let erasedNodes: [ErasedViewGraphNode] = []
 
     /// Creates an empty collection of children for a node with no children.
     public init() {}
@@ -44,6 +47,12 @@ public struct ViewGraphNodeChildren1<Child0: View>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
+        ]
+    }
+
+    public var erasedNodes: [ErasedViewGraphNode] {
+        return [
+            ErasedViewGraphNode(wrapping: child0),
         ]
     }
 
@@ -66,6 +75,13 @@ public struct ViewGraphNodeChildren2<Child0: View, Child1: View>: ViewGraphNodeC
         return [
             child0.widget,
             child1.widget,
+        ]
+    }
+
+    public var erasedNodes: [ErasedViewGraphNode] {
+        return [
+            ErasedViewGraphNode(wrapping: child0),
+            ErasedViewGraphNode(wrapping: child1),
         ]
     }
 
@@ -93,6 +109,14 @@ public struct ViewGraphNodeChildren3<Child0: View, Child1: View, Child2: View>: 
             child0.widget,
             child1.widget,
             child2.widget,
+        ]
+    }
+
+    public var erasedNodes: [ErasedViewGraphNode] {
+        return [
+            ErasedViewGraphNode(wrapping: child0),
+            ErasedViewGraphNode(wrapping: child1),
+            ErasedViewGraphNode(wrapping: child2),
         ]
     }
 
@@ -125,6 +149,15 @@ public struct ViewGraphNodeChildren4<Child0: View, Child1: View, Child2: View, C
             child1.widget,
             child2.widget,
             child3.widget,
+        ]
+    }
+
+    public var erasedNodes: [ErasedViewGraphNode] {
+        return [
+            ErasedViewGraphNode(wrapping: child0),
+            ErasedViewGraphNode(wrapping: child1),
+            ErasedViewGraphNode(wrapping: child2),
+            ErasedViewGraphNode(wrapping: child3),
         ]
     }
 
@@ -162,6 +195,16 @@ public struct ViewGraphNodeChildren5<Child0: View, Child1: View, Child2: View, C
             child2.widget,
             child3.widget,
             child4.widget,
+        ]
+    }
+
+    public var erasedNodes: [ErasedViewGraphNode] {
+        return [
+            ErasedViewGraphNode(wrapping: child0),
+            ErasedViewGraphNode(wrapping: child1),
+            ErasedViewGraphNode(wrapping: child2),
+            ErasedViewGraphNode(wrapping: child3),
+            ErasedViewGraphNode(wrapping: child4),
         ]
     }
 
@@ -204,6 +247,17 @@ public struct ViewGraphNodeChildren6<Child0: View, Child1: View, Child2: View, C
             child3.widget,
             child4.widget,
             child5.widget,
+        ]
+    }
+
+    public var erasedNodes: [ErasedViewGraphNode] {
+        return [
+            ErasedViewGraphNode(wrapping: child0),
+            ErasedViewGraphNode(wrapping: child1),
+            ErasedViewGraphNode(wrapping: child2),
+            ErasedViewGraphNode(wrapping: child3),
+            ErasedViewGraphNode(wrapping: child4),
+            ErasedViewGraphNode(wrapping: child5),
         ]
     }
 
@@ -251,6 +305,18 @@ public struct ViewGraphNodeChildren7<Child0: View, Child1: View, Child2: View, C
             child4.widget,
             child5.widget,
             child6.widget,
+        ]
+    }
+
+    public var erasedNodes: [ErasedViewGraphNode] {
+        return [
+            ErasedViewGraphNode(wrapping: child0),
+            ErasedViewGraphNode(wrapping: child1),
+            ErasedViewGraphNode(wrapping: child2),
+            ErasedViewGraphNode(wrapping: child3),
+            ErasedViewGraphNode(wrapping: child4),
+            ErasedViewGraphNode(wrapping: child5),
+            ErasedViewGraphNode(wrapping: child6),
         ]
     }
 
@@ -303,6 +369,19 @@ public struct ViewGraphNodeChildren8<Child0: View, Child1: View, Child2: View, C
             child5.widget,
             child6.widget,
             child7.widget,
+        ]
+    }
+
+    public var erasedNodes: [ErasedViewGraphNode] {
+        return [
+            ErasedViewGraphNode(wrapping: child0),
+            ErasedViewGraphNode(wrapping: child1),
+            ErasedViewGraphNode(wrapping: child2),
+            ErasedViewGraphNode(wrapping: child3),
+            ErasedViewGraphNode(wrapping: child4),
+            ErasedViewGraphNode(wrapping: child5),
+            ErasedViewGraphNode(wrapping: child6),
+            ErasedViewGraphNode(wrapping: child7),
         ]
     }
 
@@ -360,6 +439,20 @@ public struct ViewGraphNodeChildren9<Child0: View, Child1: View, Child2: View, C
             child6.widget,
             child7.widget,
             child8.widget,
+        ]
+    }
+
+    public var erasedNodes: [ErasedViewGraphNode] {
+        return [
+            ErasedViewGraphNode(wrapping: child0),
+            ErasedViewGraphNode(wrapping: child1),
+            ErasedViewGraphNode(wrapping: child2),
+            ErasedViewGraphNode(wrapping: child3),
+            ErasedViewGraphNode(wrapping: child4),
+            ErasedViewGraphNode(wrapping: child5),
+            ErasedViewGraphNode(wrapping: child6),
+            ErasedViewGraphNode(wrapping: child7),
+            ErasedViewGraphNode(wrapping: child8),
         ]
     }
 
@@ -422,6 +515,21 @@ public struct ViewGraphNodeChildren10<Child0: View, Child1: View, Child2: View, 
             child7.widget,
             child8.widget,
             child9.widget,
+        ]
+    }
+
+    public var erasedNodes: [ErasedViewGraphNode] {
+        return [
+            ErasedViewGraphNode(wrapping: child0),
+            ErasedViewGraphNode(wrapping: child1),
+            ErasedViewGraphNode(wrapping: child2),
+            ErasedViewGraphNode(wrapping: child3),
+            ErasedViewGraphNode(wrapping: child4),
+            ErasedViewGraphNode(wrapping: child5),
+            ErasedViewGraphNode(wrapping: child6),
+            ErasedViewGraphNode(wrapping: child7),
+            ErasedViewGraphNode(wrapping: child8),
+            ErasedViewGraphNode(wrapping: child9),
         ]
     }
 

@@ -52,6 +52,14 @@ class OptionalViewChildren<V: View>: ViewGraphNodeChildren {
         return [node?.widget].compactMap { $0 }
     }
 
+    var erasedNodes: [ErasedViewGraphNode] {
+        if let node = node {
+            [ErasedViewGraphNode(wrapping: node)]
+        } else {
+            []
+        }
+    }
+
     /// Creates storage for an optional view's child if present (which can change at
     /// any time).
     init<Backend: AppBackend>(from view: V?, backend: Backend) {

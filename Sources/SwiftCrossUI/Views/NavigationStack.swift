@@ -154,7 +154,11 @@ class NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
     let alwaysShowTopView = true
 
     var widgets: [AnyWidget] {
-        return [container]
+        [container]
+    }
+
+    var erasedNodes: [ErasedViewGraphNode] {
+        nodes.map(ErasedViewGraphNode.init(wrapping:))
     }
 
     init<Backend: AppBackend>(from view: NavigationStack<Child>, backend: Backend) {

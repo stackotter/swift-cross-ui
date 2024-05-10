@@ -68,17 +68,30 @@ if let backend = ProcessInfo.processInfo.environment["SCUI_DEFAULT_BACKEND"] {
     #endif
 }
 
+let libraryType: Product.Library.LibraryType?
+switch ProcessInfo.processInfo.environment["SCUI_LIBRARY_TYPE"] {
+    case "static":
+        libraryType = .static
+    case "dynamic":
+        libraryType = .dynamic
+    case .some:
+        print("Invalid SCUI_LIBRARY_TYPE, expected static, dynamic, or auto")
+        libraryType = nil
+    case "auto", nil:
+        libraryType = nil
+}
+
 let package = Package(
     name: "swift-cross-ui",
     platforms: [.macOS(.v10_15)],
     products: [
-        .library(name: "SwiftCrossUI", targets: ["SwiftCrossUI"]),
-        .library(name: "AppKitBackend", targets: ["AppKitBackend"]),
-        .library(name: "CursesBackend", targets: ["CursesBackend"]),
-        .library(name: "QtBackend", targets: ["QtBackend"]),
-        .library(name: "LVGLBackend", targets: ["LVGLBackend"]),
-        .library(name: "GtkBackend", targets: ["GtkBackend"]),
-        .library(name: "Gtk", targets: ["Gtk"]),
+        .library(name: "SwiftCrossUI", type: libraryType, targets: ["SwiftCrossUI"]),
+        .library(name: "AppKitBackend", type: libraryType, targets: ["AppKitBackend"]),
+        .library(name: "CursesBackend", type: libraryType, targets: ["CursesBackend"]),
+        .library(name: "QtBackend", type: libraryType, targets: ["QtBackend"]),
+        .library(name: "LVGLBackend", type: libraryType, targets: ["LVGLBackend"]),
+        .library(name: "GtkBackend", type: libraryType, targets: ["GtkBackend"]),
+        .library(name: "Gtk", type: libraryType, targets: ["Gtk"]),
         .executable(name: "GtkExample", targets: ["GtkExample"]),
     ] + swift510Products,
     dependencies: [

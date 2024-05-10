@@ -37,17 +37,25 @@ public struct AnyView: TypeSafeView {
     ) {}
 }
 
-struct ErasedViewGraphNode {
+public struct ErasedViewGraphNode {
     var node: Any
     var updateWithNewView: (Any) -> Bool
     var updateNode: () -> Void
     var getWidget: () -> AnyWidget
     var getState: () -> Data?
-    var setState: (Data) -> Void
+    var viewType: any View.Type
+    var backendType: any AppBackend.Type
 
     public init<V: View, Backend: AppBackend>(for view: V, backend: Backend) {
-        let node = ViewGraphNode(for: view, backend: backend)
+        self.init(wrapping: ViewGraphNode(for: view, backend: backend))
+    }
+
+    public init<V: View, Backend: AppBackend>(
+        wrapping node: ViewGraphNode<V, Backend>
+    ) {
         self.node = node
+        backendType = Backend.self
+        viewType = V.self
         updateWithNewView = { view in
             guard let view = view as? V else {
                 return false
@@ -65,9 +73,33 @@ struct ErasedViewGraphNode {
             }
             return try? JSONEncoder().encode(encodable)
         }
-        setState = { data in
-        }
     }
+
+    public init<V: View>(wrapping node: AnyViewGraphNode<V>) {
+        self.init(wrapping: node, backend: node.getBackend())
+    }
+
+    private init<V: View, Backend: AppBackend>(
+        wrapping node: AnyViewGraphNode<V>, backend: Backend
+    ) {
+        self.init(wrapping: node.node as! ViewGraphNode<V, Backend>)
+    }
+
+    public func transform<R>(with transformer: any ErasedViewGraphNodeTransformer<R>) -> R {
+        func helper<V: View, Backend: AppBackend>(
+            viewType: V.Type,
+            backendType: Backend.Type
+        ) -> R {
+            transformer.transform(node: node as! ViewGraphNode<V, Backend>)
+        }
+        return helper(viewType: viewType, backendType: backendType)
+    }
+}
+
+public protocol ErasedViewGraphNodeTransformer<Return> {
+    associatedtype Return
+
+    func transform<V: View, Backend: AppBackend>(node: ViewGraphNode<V, Backend>) -> Return
 }
 
 class AnyViewChildren: ViewGraphNodeChildren {
@@ -78,6 +110,10 @@ class AnyViewChildren: ViewGraphNodeChildren {
 
     var widgets: [AnyWidget] {
         return [container]
+    }
+
+    var erasedNodes: [ErasedViewGraphNode] {
+        [node]
     }
 
     /// Gets a variable length view's children as view graph node children.

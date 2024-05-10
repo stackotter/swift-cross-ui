@@ -72,6 +72,10 @@ class ForEachViewChildren<
         return [container]
     }
 
+    var erasedNodes: [ErasedViewGraphNode] {
+        nodes.map(ErasedViewGraphNode.init(wrapping:))
+    }
+
     /// Gets a variable length view's children as view graph node children.
     init<Backend: AppBackend>(from view: ForEach<Items, Child>, backend: Backend) {
         let container = backend.createLayoutTransparentStack()
