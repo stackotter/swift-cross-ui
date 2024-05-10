@@ -11,8 +11,14 @@ public struct OptionalView<V: View>: TypeSafeView, View {
         self.view = view
     }
 
-    func children<Backend: AppBackend>(backend: Backend) -> OptionalViewChildren<V> {
-        return OptionalViewChildren(from: view, backend: backend)
+    func children<Backend: AppBackend>(
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+    ) -> OptionalViewChildren<V> {
+        // TODO: This is a conservative implementation, perhaps there are some situations
+        //   where we could usefully use the snapshots even if there are too many.
+        let snapshot = snapshots?.count == 1 ? snapshots?.first : nil
+        return OptionalViewChildren(from: view, backend: backend, snapshot: snapshot)
     }
 
     func updateChildren<Backend: AppBackend>(
@@ -62,9 +68,13 @@ class OptionalViewChildren<V: View>: ViewGraphNodeChildren {
 
     /// Creates storage for an optional view's child if present (which can change at
     /// any time).
-    init<Backend: AppBackend>(from view: V?, backend: Backend) {
+    init<Backend: AppBackend>(
+        from view: V?,
+        backend: Backend,
+        snapshot: ViewGraphSnapshotter.NodeSnapshot?
+    ) {
         if let view = view {
-            node = AnyViewGraphNode(for: view, backend: backend)
+            node = AnyViewGraphNode(for: view, backend: backend, snapshot: snapshot)
         }
     }
 

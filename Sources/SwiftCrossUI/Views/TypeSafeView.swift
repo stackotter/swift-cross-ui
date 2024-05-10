@@ -5,7 +5,10 @@
 protocol TypeSafeView: View {
     associatedtype Children: ViewGraphNodeChildren
 
-    func children<Backend: AppBackend>(backend: Backend) -> Children
+    func children<Backend: AppBackend>(
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+    ) -> Children
 
     func updateChildren<Backend: AppBackend>(
         _ children: Children, backend: Backend
@@ -24,8 +27,11 @@ protocol TypeSafeView: View {
 }
 
 extension TypeSafeView {
-    public func children<Backend: AppBackend>(backend: Backend) -> any ViewGraphNodeChildren {
-        let children: Children = children(backend: backend)
+    public func children<Backend: AppBackend>(
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+    ) -> any ViewGraphNodeChildren {
+        let children: Children = children(backend: backend, snapshots: snapshots)
         return children
     }
 
@@ -52,8 +58,11 @@ extension TypeSafeView {
 }
 
 extension TypeSafeView where Content: TypeSafeView, Children == Content.Children {
-    func children<Backend: AppBackend>(backend: Backend) -> Children {
-        return body.children(backend: backend)
+    func children<Backend: AppBackend>(
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+    ) -> Children {
+        return body.children(backend: backend, snapshots: snapshots)
     }
 
     func updateChildren<Backend: AppBackend>(_ children: Children, backend: Backend) {

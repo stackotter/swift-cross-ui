@@ -83,10 +83,11 @@ public struct ViewGraphNodeChildren${i + 1}<${struct_type_parameters}>: ViewGrap
         % for child in children:
         _ ${child.lower()}: ${child},
         % end
-        backend: Backend
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) {
-        % for child in children:
-        self.${child.lower()} = AnyViewGraphNode(for: ${child.lower()}, backend: backend)
+        % for j, child in enumerate(children):
+        self.${child.lower()} = AnyViewGraphNode(for: ${child.lower()}, backend: backend, snapshot: ${j} < snapshots?.count ?? 0 ? snapshots?[${j}] : nil)
         % end
     }
 }

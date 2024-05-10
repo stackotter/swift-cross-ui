@@ -22,8 +22,11 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
         storage = .b(b)
     }
 
-    func children<Backend: AppBackend>(backend: Backend) -> NodeChildren {
-        return EitherViewChildren(from: self, backend: backend)
+    func children<Backend: AppBackend>(
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+    ) -> NodeChildren {
+        return EitherViewChildren(from: self, backend: backend, snapshots: snapshots)
     }
 
     func updateChildren<Backend: AppBackend>(_ children: NodeChildren, backend: Backend) {
@@ -90,12 +93,21 @@ class EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
     }
 
     /// Creates storage for an either view's current child (which can change at any time).
-    init<Backend: AppBackend>(from view: EitherView<A, B>, backend: Backend) {
+    init<Backend: AppBackend>(
+        from view: EitherView<A, B>,
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+    ) {
+        // TODO: Ensure that this is valid in all circumstances. It should be, given that
+        //   we're assuming that the parent view's state was restored from the same snapshot
+        //   which should mean that the same EitherView case will be selected (if we assume
+        //   that views are pure, which we have to).
+        let snapshot = snapshots?.first
         switch view.storage {
             case .a(let a):
-                node = .a(AnyViewGraphNode(for: a, backend: backend))
+                node = .a(AnyViewGraphNode(for: a, backend: backend, snapshot: snapshot))
             case .b(let b):
-                node = .b(AnyViewGraphNode(for: b, backend: backend))
+                node = .b(AnyViewGraphNode(for: b, backend: backend, snapshot: snapshot))
         }
     }
 

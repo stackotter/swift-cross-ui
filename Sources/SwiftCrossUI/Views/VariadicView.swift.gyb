@@ -31,12 +31,13 @@ public struct ${view}<${struct_parameters}>: TypeSafeView, View {
         ${init_body}
     }
 
-    func children<Backend: AppBackend>(backend: Backend) -> Children {
+    func children<Backend: AppBackend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> Children {
         return Children(
             % for j in range(i + 1):
             view${j},
             % end
-            backend: backend
+            backend: backend,
+            snapshots: snapshots
         )
     }
 

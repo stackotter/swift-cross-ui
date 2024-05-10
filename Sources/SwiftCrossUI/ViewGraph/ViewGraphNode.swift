@@ -22,12 +22,20 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
 
     /// Creates a node for a given view while also creating the nodes for its children, creating
     /// the view's widget, and starting to observe its state for changes.
-    public init(for view: NodeView, backend: Backend) {
-        self.view = view
+    public init(
+        for view: NodeView,
+        backend: Backend,
+        snapshot: ViewGraphSnapshotter.NodeSnapshot? = nil
+    ) {
         self.backend = backend
 
+        // Restore node snapshot if present.
+        self.view = snapshot?.restore(to: view) ?? view
+
         // First create the view's child nodes and widgets
-        children = view.children(backend: backend)
+        let childSnapshots =
+            snapshot?.isValid(for: NodeView.self) == true ? snapshot?.children : nil
+        children = view.children(backend: backend, snapshots: childSnapshots)
 
         // Then create the widget for the view itself
         widget = view.asWidget(

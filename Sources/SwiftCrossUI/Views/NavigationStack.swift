@@ -109,8 +109,10 @@ public struct NavigationStack<Detail: View>: TypeSafeView, View {
         return child
     }
 
-    func children<Backend: AppBackend>(backend: Backend) -> Children {
-        return NavigationStackChildren(from: self, backend: backend)
+    func children<Backend: AppBackend>(
+        backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+    ) -> Children {
+        return NavigationStackChildren(from: self, backend: backend, snapshots: snapshots)
     }
 
     func updateChildren<Backend: AppBackend>(_ children: Children, backend: Backend) {
@@ -161,13 +163,19 @@ class NavigationStackChildren<Child: View>: ViewGraphNodeChildren {
         nodes.map(ErasedViewGraphNode.init(wrapping:))
     }
 
-    init<Backend: AppBackend>(from view: NavigationStack<Child>, backend: Backend) {
+    init<Backend: AppBackend>(
+        from view: NavigationStack<Child>,
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+    ) {
         container = AnyWidget(backend.createOneOfContainer())
 
         nodes = view.elements
             .map(view.childOrCrash)
-            .map { view in
-                AnyViewGraphNode(for: view, backend: backend)
+            .enumerated()
+            .map { (index, view) in
+                let snapshot = index < snapshots?.count ?? 0 ? snapshots?[index] : nil
+                return AnyViewGraphNode(for: view, backend: backend, snapshot: snapshot)
             }
 
         for node in nodes {

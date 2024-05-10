@@ -44,8 +44,12 @@ public class AnyViewGraphNode<NodeView: View> {
     }
 
     /// Creates a new view graph node and immediately type-erases it.
-    public convenience init<Backend: AppBackend>(for view: NodeView, backend: Backend) {
-        self.init(ViewGraphNode(for: view, backend: backend))
+    public convenience init<Backend: AppBackend>(
+        for view: NodeView,
+        backend: Backend,
+        snapshot: ViewGraphSnapshotter.NodeSnapshot? = nil
+    ) {
+        self.init(ViewGraphNode(for: view, backend: backend, snapshot: snapshot))
     }
 
     /// Updates the view after it was recomputed (e.g. due to the parent's state changing).

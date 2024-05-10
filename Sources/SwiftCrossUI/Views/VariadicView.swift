@@ -19,10 +19,11 @@ public struct VariadicView1<View0: View>: TypeSafeView, View {
         self.view0 = view0
     }
 
-    func children<Backend: AppBackend>(backend: Backend) -> Children {
+    func children<Backend: AppBackend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> Children {
         return Children(
             view0,
-            backend: backend
+            backend: backend,
+            snapshots: snapshots
         )
     }
 
@@ -60,11 +61,12 @@ public struct VariadicView2<View0: View, View1: View>: TypeSafeView, View {
         self.view1 = view1
     }
 
-    func children<Backend: AppBackend>(backend: Backend) -> Children {
+    func children<Backend: AppBackend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> Children {
         return Children(
             view0,
             view1,
-            backend: backend
+            backend: backend,
+            snapshots: snapshots
         )
     }
 
@@ -105,12 +107,13 @@ public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView
         self.view2 = view2
     }
 
-    func children<Backend: AppBackend>(backend: Backend) -> Children {
+    func children<Backend: AppBackend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> Children {
         return Children(
             view0,
             view1,
             view2,
-            backend: backend
+            backend: backend,
+            snapshots: snapshots
         )
     }
 
@@ -154,13 +157,14 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
         self.view3 = view3
     }
 
-    func children<Backend: AppBackend>(backend: Backend) -> Children {
+    func children<Backend: AppBackend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> Children {
         return Children(
             view0,
             view1,
             view2,
             view3,
-            backend: backend
+            backend: backend,
+            snapshots: snapshots
         )
     }
 
@@ -207,14 +211,15 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
         self.view4 = view4
     }
 
-    func children<Backend: AppBackend>(backend: Backend) -> Children {
+    func children<Backend: AppBackend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> Children {
         return Children(
             view0,
             view1,
             view2,
             view3,
             view4,
-            backend: backend
+            backend: backend,
+            snapshots: snapshots
         )
     }
 
@@ -264,7 +269,7 @@ public struct VariadicView6<View0: View, View1: View, View2: View, View3: View, 
         self.view5 = view5
     }
 
-    func children<Backend: AppBackend>(backend: Backend) -> Children {
+    func children<Backend: AppBackend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> Children {
         return Children(
             view0,
             view1,
@@ -272,7 +277,8 @@ public struct VariadicView6<View0: View, View1: View, View2: View, View3: View, 
             view3,
             view4,
             view5,
-            backend: backend
+            backend: backend,
+            snapshots: snapshots
         )
     }
 
@@ -325,7 +331,7 @@ public struct VariadicView7<View0: View, View1: View, View2: View, View3: View, 
         self.view6 = view6
     }
 
-    func children<Backend: AppBackend>(backend: Backend) -> Children {
+    func children<Backend: AppBackend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> Children {
         return Children(
             view0,
             view1,
@@ -334,7 +340,8 @@ public struct VariadicView7<View0: View, View1: View, View2: View, View3: View, 
             view4,
             view5,
             view6,
-            backend: backend
+            backend: backend,
+            snapshots: snapshots
         )
     }
 
@@ -390,7 +397,7 @@ public struct VariadicView8<View0: View, View1: View, View2: View, View3: View, 
         self.view7 = view7
     }
 
-    func children<Backend: AppBackend>(backend: Backend) -> Children {
+    func children<Backend: AppBackend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> Children {
         return Children(
             view0,
             view1,
@@ -400,7 +407,8 @@ public struct VariadicView8<View0: View, View1: View, View2: View, View3: View, 
             view5,
             view6,
             view7,
-            backend: backend
+            backend: backend,
+            snapshots: snapshots
         )
     }
 
@@ -459,7 +467,7 @@ public struct VariadicView9<View0: View, View1: View, View2: View, View3: View, 
         self.view8 = view8
     }
 
-    func children<Backend: AppBackend>(backend: Backend) -> Children {
+    func children<Backend: AppBackend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> Children {
         return Children(
             view0,
             view1,
@@ -470,7 +478,8 @@ public struct VariadicView9<View0: View, View1: View, View2: View, View3: View, 
             view6,
             view7,
             view8,
-            backend: backend
+            backend: backend,
+            snapshots: snapshots
         )
     }
 
@@ -532,7 +541,7 @@ public struct VariadicView10<View0: View, View1: View, View2: View, View3: View,
         self.view9 = view9
     }
 
-    func children<Backend: AppBackend>(backend: Backend) -> Children {
+    func children<Backend: AppBackend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> Children {
         return Children(
             view0,
             view1,
@@ -544,7 +553,8 @@ public struct VariadicView10<View0: View, View1: View, View2: View, View3: View,
             view7,
             view8,
             view9,
-            backend: backend
+            backend: backend,
+            snapshots: snapshots
         )
     }
 

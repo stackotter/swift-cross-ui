@@ -9,8 +9,12 @@ public struct ErasedViewGraphNode {
     var viewType: any View.Type
     var backendType: any AppBackend.Type
 
-    public init<V: View, Backend: AppBackend>(for view: V, backend: Backend) {
-        self.init(wrapping: ViewGraphNode(for: view, backend: backend))
+    public init<V: View, Backend: AppBackend>(
+        for view: V,
+        backend: Backend,
+        snapshot: ViewGraphSnapshotter.NodeSnapshot? = nil
+    ) {
+        self.init(wrapping: ViewGraphNode(for: view, backend: backend, snapshot: snapshot))
     }
 
     public init<V: View, Backend: AppBackend>(

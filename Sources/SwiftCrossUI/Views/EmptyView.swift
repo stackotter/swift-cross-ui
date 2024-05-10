@@ -12,7 +12,8 @@ public struct EmptyView: View {
     public init() {}
 
     public func children<Backend: AppBackend>(
-        backend: Backend
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) -> any ViewGraphNodeChildren {
         return EmptyViewGraphNodeChildren()
     }

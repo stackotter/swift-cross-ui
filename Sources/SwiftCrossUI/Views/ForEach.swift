@@ -22,9 +22,10 @@ public struct ForEach<
     }
 
     func children<Backend: AppBackend>(
-        backend: Backend
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) -> ForEachViewChildren<Items, Child> {
-        return ForEachViewChildren(from: self, backend: backend)
+        return ForEachViewChildren(from: self, backend: backend, snapshots: snapshots)
     }
 
     func updateChildren<Backend: AppBackend>(
@@ -77,14 +78,20 @@ class ForEachViewChildren<
     }
 
     /// Gets a variable length view's children as view graph node children.
-    init<Backend: AppBackend>(from view: ForEach<Items, Child>, backend: Backend) {
+    init<Backend: AppBackend>(
+        from view: ForEach<Items, Child>,
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+    ) {
         let container = backend.createLayoutTransparentStack()
         self.container = AnyWidget(container)
 
         nodes = view.elements
             .map(view.child)
-            .map { child in
-                ViewGraphNode(for: child, backend: backend)
+            .enumerated()
+            .map { (index, child) in
+                let snapshot = index < snapshots?.count ?? 0 ? snapshots?[index] : nil
+                return ViewGraphNode(for: child, backend: backend, snapshot: snapshot)
             }
             .map(AnyViewGraphNode.init(_:))
 

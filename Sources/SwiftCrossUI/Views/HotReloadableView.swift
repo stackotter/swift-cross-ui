@@ -20,9 +20,11 @@ public struct HotReloadableView: TypeSafeView {
     }
 
     func children<Backend: AppBackend>(
-        backend: Backend
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) -> HotReloadableViewChildren {
-        return HotReloadableViewChildren(from: self, backend: backend)
+        let snapshot = snapshots?.count == 1 ? snapshots?.first : nil
+        return HotReloadableViewChildren(from: self, backend: backend, snapshot: snapshot)
     }
 
     func updateChildren<Backend: AppBackend>(
@@ -61,8 +63,12 @@ class HotReloadableViewChildren: ViewGraphNodeChildren {
     }
 
     /// Creates the erased child node and wraps the child's widget in a single-child container.
-    init<Backend: AppBackend>(from view: HotReloadableView, backend: Backend) {
-        node = ErasedViewGraphNode(for: view.child, backend: backend)
+    init<Backend: AppBackend>(
+        from view: HotReloadableView,
+        backend: Backend,
+        snapshot: ViewGraphSnapshotter.NodeSnapshot?
+    ) {
+        node = ErasedViewGraphNode(for: view.child, backend: backend, snapshot: snapshot)
         let container = backend.createSingleChildContainer()
         backend.setChild(ofSingleChildContainer: container, to: node.getWidget().into())
         self.container = AnyWidget(container)
@@ -77,11 +83,10 @@ class HotReloadableViewChildren: ViewGraphNodeChildren {
     /// we just fall back on the failing view's default state.
     func update<Backend: AppBackend>(with view: HotReloadableView, backend: Backend) {
         if !node.updateWithNewView(view.child) {
-            var child = view.child
-            if let previousState = node.getState() {
-                child = Self.setState(of: child, to: previousState)
-            }
-            node = ErasedViewGraphNode(for: child, backend: backend)
+            let snapshotter = ViewGraphSnapshotter()
+            let snapshot = node.transform(with: snapshotter)
+            print(snapshot.debugDescription)
+            node = ErasedViewGraphNode(for: view.child, backend: backend, snapshot: snapshot)
             backend.setChild(ofSingleChildContainer: container.into(), to: node.getWidget().into())
         }
     }

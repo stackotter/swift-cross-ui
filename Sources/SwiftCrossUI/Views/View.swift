@@ -14,7 +14,10 @@ public protocol View {
 
     /// Gets the view's children as a type-erased collection of view graph nodes. Type-erased
     /// to avoid leaking complex requirements to users implementing their own regular views.
-    func children<Backend: AppBackend>(backend: Backend) -> any ViewGraphNodeChildren
+    func children<Backend: AppBackend>(
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+    ) -> any ViewGraphNodeChildren
 
     /// Updates all of the view's children after an update-causing change has occured.
     /// `children` is type-erased to avoid leaking complex requirements to users
@@ -49,8 +52,11 @@ public protocol View {
 }
 
 extension View {
-    public func children<Backend: AppBackend>(backend: Backend) -> any ViewGraphNodeChildren {
-        body.children(backend: backend)
+    public func children<Backend: AppBackend>(
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+    ) -> any ViewGraphNodeChildren {
+        body.children(backend: backend, snapshots: snapshots)
     }
 
     public func updateChildren<Backend: AppBackend>(

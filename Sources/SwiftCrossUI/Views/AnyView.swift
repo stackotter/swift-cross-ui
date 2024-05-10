@@ -17,9 +17,11 @@ public struct AnyView: TypeSafeView {
     }
 
     func children<Backend: AppBackend>(
-        backend: Backend
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) -> AnyViewChildren {
-        return AnyViewChildren(from: self, backend: backend)
+        let snapshot = snapshots?.count == 1 ? snapshots?.first : nil
+        return AnyViewChildren(from: self, backend: backend, snapshot: snapshot)
     }
 
     func updateChildren<Backend: AppBackend>(
@@ -58,8 +60,12 @@ class AnyViewChildren: ViewGraphNodeChildren {
     }
 
     /// Creates the erased child node and wraps the child's widget in a single-child container.
-    init<Backend: AppBackend>(from view: AnyView, backend: Backend) {
-        node = ErasedViewGraphNode(for: view.child, backend: backend)
+    init<Backend: AppBackend>(
+        from view: AnyView,
+        backend: Backend,
+        snapshot: ViewGraphSnapshotter.NodeSnapshot?
+    ) {
+        node = ErasedViewGraphNode(for: view.child, backend: backend, snapshot: snapshot)
         let container = backend.createSingleChildContainer()
         backend.setChild(ofSingleChildContainer: container, to: node.getWidget().into())
         self.container = AnyWidget(container)
