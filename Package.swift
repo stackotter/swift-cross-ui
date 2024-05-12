@@ -68,17 +68,24 @@ if let backend = ProcessInfo.processInfo.environment["SCUI_DEFAULT_BACKEND"] {
     #endif
 }
 
-let libraryType: Product.Library.LibraryType?
+var libraryType: Product.Library.LibraryType?
 switch ProcessInfo.processInfo.environment["SCUI_LIBRARY_TYPE"] {
     case "static":
         libraryType = .static
     case "dynamic":
         libraryType = .dynamic
+    case "auto":
+        libraryType = nil
     case .some:
         print("Invalid SCUI_LIBRARY_TYPE, expected static, dynamic, or auto")
         libraryType = nil
-    case "auto", nil:
-        libraryType = nil
+    case nil:
+        let hotReloading = ProcessInfo.processInfo.environment["SWIFT_BUNDLER_HOT_RELOADING"] != nil
+        if hotReloading {
+            libraryType = .dynamic
+        } else {
+            libraryType = nil
+        }
 }
 
 let package = Package(
