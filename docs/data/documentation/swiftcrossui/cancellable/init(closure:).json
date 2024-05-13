@@ -54,7 +54,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Cancellable.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Cancellable.swift#L8"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Cancellable.swift#L10"
     },
     "role" : "symbol",
     "roleHeading" : "Initializer",

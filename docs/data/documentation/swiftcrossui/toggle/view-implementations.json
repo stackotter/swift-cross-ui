@@ -41,7 +41,7 @@
       "generated" : true,
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/asWidget(_:backend:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/children(backend:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/children(backend:snapshots:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/frame(minWidth:minHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/padding(_:)",
@@ -185,7 +185,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/toggle\/aswidget(_:backend:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle/children(backend:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle/children(backend:snapshots:)": {
   "abstract" : [
 
   ],
@@ -228,7 +228,33 @@
     },
     {
       "kind" : "text",
-      "text" : ") -> "
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "snapshots"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI20ViewGraphSnapshotterV",
+      "text" : "ViewGraphSnapshotter"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI20ViewGraphSnapshotterV12NodeSnapshotV",
+      "text" : "NodeSnapshot"
+    },
+    {
+      "kind" : "text",
+      "text" : "]?) -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -236,12 +262,12 @@
       "text" : "ViewGraphNodeChildren"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/children(backend:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle\/children(backend:snapshots:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "children(backend:)",
+  "title" : "children(backend:snapshots:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/toggle\/children(backend:)"
+  "url" : "\/documentation\/swiftcrossui\/toggle\/children(backend:snapshots:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle/foregroundColor(_:)": {
   "abstract" : [

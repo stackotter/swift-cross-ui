@@ -43,7 +43,7 @@
       "generated" : true,
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/asWidget(_:backend:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/children(backend:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/children(backend:snapshots:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/frame(minWidth:minHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/padding(_:)",
@@ -296,7 +296,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/swift\/never\/body"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Swift/Never/children(backend:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Swift/Never/children(backend:snapshots:)": {
   "abstract" : [
 
   ],
@@ -339,7 +339,33 @@
     },
     {
       "kind" : "text",
-      "text" : ") -> "
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "snapshots"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI20ViewGraphSnapshotterV",
+      "text" : "ViewGraphSnapshotter"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI20ViewGraphSnapshotterV12NodeSnapshotV",
+      "text" : "NodeSnapshot"
+    },
+    {
+      "kind" : "text",
+      "text" : "]?) -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -347,12 +373,12 @@
       "text" : "ViewGraphNodeChildren"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/children(backend:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/children(backend:snapshots:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "children(backend:)",
+  "title" : "children(backend:snapshots:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/swift\/never\/children(backend:)"
+  "url" : "\/documentation\/swiftcrossui\/swift\/never\/children(backend:snapshots:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Swift/Never/foregroundColor(_:)": {
   "abstract" : [

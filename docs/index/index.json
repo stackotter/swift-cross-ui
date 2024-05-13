@@ -253,8 +253,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/button\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/button\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -491,8 +491,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/foreach\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -594,8 +594,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/hstack\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -688,8 +688,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/image\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/image\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -777,8 +777,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -956,8 +956,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -1054,8 +1054,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -1148,8 +1148,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/picker\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/picker\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -1246,8 +1246,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/scrollview\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -1345,8 +1345,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/slider\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/slider\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -1439,8 +1439,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/spacer\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -1533,8 +1533,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/table\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/table\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -1662,8 +1662,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/text\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/text\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -1756,8 +1756,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/textfield\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -1854,8 +1854,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/toggle\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -1968,8 +1968,8 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/children(backend:)-37bw8",
-                        "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                        "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:)-4vijt",
+                        "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                         "type" : "method"
                       }
                     ],
@@ -1977,8 +1977,8 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/view\/children(backend:)-99w9l",
-                "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:)-8qy1a",
+                "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                 "type" : "method"
               },
               {
@@ -2106,8 +2106,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/vstack\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -2439,8 +2439,8 @@
                 "type" : "init"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/anyviewgraphnode\/init(for:backend:)",
-                "title" : "convenience init<Backend>(for: NodeView, backend: Backend)",
+                "path" : "\/documentation\/swiftcrossui\/anyviewgraphnode\/init(for:backend:snapshot:)",
+                "title" : "convenience init<Backend>(for: NodeView, backend: Backend, snapshot: ViewGraphSnapshotter.NodeSnapshot?)",
                 "type" : "init"
               },
               {
@@ -2464,6 +2464,21 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/anyviewgraphnode\/concretenode(for:)",
                 "title" : "func concreteNode<Backend>(for: Backend.Type) -> ViewGraphNode<NodeView, Backend>",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/anyviewgraphnode\/getbackend()",
+                "title" : "func getBackend() -> AppBackend",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/anyviewgraphnode\/getchildren()",
+                "title" : "func getChildren() -> ViewGraphNodeChildren",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/anyviewgraphnode\/getview()",
+                "title" : "func getView() -> NodeView",
                 "type" : "method"
               },
               {
@@ -2517,8 +2532,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/eitherview\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -2586,8 +2601,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/emptyview\/children(backend:)-16bo3",
-                "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                "path" : "\/documentation\/swiftcrossui\/emptyview\/children(backend:snapshots:)-9vle0",
+                "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                 "type" : "method"
               },
               {
@@ -2629,8 +2644,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/emptyview\/children(backend:)-17k6",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/emptyview\/children(backend:snapshots:)-4roju",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -2687,6 +2702,11 @@
               {
                 "title" : "Instance Properties",
                 "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren\/erasednodes",
+                "title" : "let erasedNodes: [ErasedViewGraphNode]",
+                "type" : "property"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren\/widgets",
@@ -2759,8 +2779,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/optionalview\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -2869,6 +2889,11 @@
                 "type" : "groupMarker"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/viewgraph\/snapshot()",
+                "title" : "func snapshot() -> ViewGraphSnapshotter.NodeSnapshot",
+                "type" : "method"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/viewgraph\/update(_:)",
                 "title" : "func update(Root?)",
                 "type" : "method"
@@ -2894,8 +2919,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/viewgraphnode\/init(for:backend:)",
-                "title" : "init(for: NodeView, backend: Backend)",
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnode\/init(for:backend:snapshot:)",
+                "title" : "init(for: NodeView, backend: Backend, snapshot: ViewGraphSnapshotter.NodeSnapshot?)",
                 "type" : "init"
               },
               {
@@ -2946,6 +2971,11 @@
               {
                 "title" : "Instance Properties",
                 "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren\/erasednodes",
+                "title" : "var erasedNodes: [ErasedViewGraphNode]",
+                "type" : "property"
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren\/widgets",
@@ -3637,13 +3667,13 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofhstack:)-4wamb",
-                        "title" : "func setChildren([Self.Widget], ofHStack: Self.Widget)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofhstack:)-696pg",
+                        "title" : "func setChildren([AnyWidget], ofHStack: Self.Widget)",
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofhstack:)-696pg",
-                        "title" : "func setChildren([AnyWidget], ofHStack: Self.Widget)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofhstack:)-4wamb",
+                        "title" : "func setChildren([Self.Widget], ofHStack: Self.Widget)",
                         "type" : "method"
                       }
                     ],
@@ -4143,6 +4173,31 @@
             "type" : "protocol"
           },
           {
+            "children" : [
+              {
+                "title" : "Associated Types",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnodetransformer\/return",
+                "title" : "Return",
+                "type" : "associatedtype"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnodetransformer\/transform(node:)",
+                "title" : "func transform<V, Backend>(node: ViewGraphNode<V, Backend>) -> Self.Return",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnodetransformer",
+            "title" : "ErasedViewGraphNodeTransformer",
+            "type" : "protocol"
+          },
+          {
             "path" : "\/documentation\/swiftcrossui\/observedmarkerprotocol",
             "title" : "ObservedMarkerProtocol",
             "type" : "protocol"
@@ -4246,8 +4301,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/anyview\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/anyview\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -4288,6 +4343,205 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/anyview",
             "title" : "AnyView",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/init(for:backend:snapshot:)",
+                "title" : "init<V, Backend>(for: V, backend: Backend, snapshot: ViewGraphSnapshotter.NodeSnapshot?)",
+                "type" : "init"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/init(wrapping:)-9jp0a",
+                "title" : "init<V>(wrapping: AnyViewGraphNode<V>)",
+                "type" : "init"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/init(wrapping:)-9xgtd",
+                "title" : "init<V, Backend>(wrapping: ViewGraphNode<V, Backend>)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/backendtype",
+                "title" : "var backendType: AppBackend.Type",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/getstate",
+                "title" : "var getState: () -> Data?",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/getwidget",
+                "title" : "var getWidget: () -> AnyWidget",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/node",
+                "title" : "var node: Any",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/updatenode",
+                "title" : "var updateNode: () -> Void",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/updatewithnewview",
+                "title" : "var updateWithNewView: (Any) -> Bool",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/viewtype",
+                "title" : "var viewType: View.Type",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/transform(with:)",
+                "title" : "func transform<R>(with: ErasedViewGraphNodeTransformer<R>) -> R",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnode",
+            "title" : "ErasedViewGraphNode",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/exprlocation\/init(line:column:)",
+                "title" : "init(line: Int, column: Int)",
+                "type" : "init"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Operators",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/exprlocation\/!=(_:_:)",
+                    "title" : "static func != (Self, Self) -> Bool",
+                    "type" : "op"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/exprlocation\/equatable-implementations",
+                "title" : "Equatable Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/exprlocation",
+            "title" : "ExprLocation",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/init(_:)",
+                "title" : "init(View)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/body",
+                "title" : "var body: EmptyView",
+                "type" : "property"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/state",
+                    "title" : "var state: EmptyState",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/aswidget(_:backend:)",
+                    "title" : "func asWidget<Backend>(ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/frame(minwidth:minheight:)",
+                    "title" : "func frame(minWidth: Int?, minHeight: Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/padding(_:)",
+                    "title" : "func padding(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/update(_:children:backend:)",
+                    "title" : "func update<Backend>(Backend.Widget, children: ViewGraphNodeChildren, backend: Backend)",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/updatechildren(_:backend:)",
+                    "title" : "func updateChildren<Backend>(ViewGraphNodeChildren, backend: Backend)",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/hotreloadableview",
+            "title" : "HotReloadableView",
             "type" : "struct"
           },
           {
@@ -4409,8 +4663,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/variadicview1\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/variadicview1\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -4562,8 +4816,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/variadicview10\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/variadicview10\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -4675,8 +4929,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/variadicview2\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/variadicview2\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -4793,8 +5047,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/variadicview3\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/variadicview3\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -4916,8 +5170,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/variadicview4\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/variadicview4\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -5044,8 +5298,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/variadicview5\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/variadicview5\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -5177,8 +5431,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/variadicview6\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/variadicview6\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -5315,8 +5569,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/variadicview7\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/variadicview7\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -5458,8 +5712,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/variadicview8\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/variadicview8\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -5606,8 +5860,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/variadicview9\/children(backend:)",
-                    "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                    "path" : "\/documentation\/swiftcrossui\/variadicview9\/children(backend:snapshots:)",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                     "type" : "method"
                   },
                   {
@@ -5657,8 +5911,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren1\/init(_:backend:)",
-                "title" : "init<Backend>(Child0, backend: Backend)",
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren1\/init(_:backend:snapshots:)",
+                "title" : "init<Backend>(Child0, backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?)",
                 "type" : "init"
               },
               {
@@ -5668,6 +5922,11 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren1\/child0",
                 "title" : "var child0: AnyViewGraphNode<Child0>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren1\/erasednodes",
+                "title" : "var erasedNodes: [ErasedViewGraphNode]",
                 "type" : "property"
               },
               {
@@ -5712,8 +5971,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/init(_:_:_:_:_:_:_:_:_:_:backend:)",
-                "title" : "init<Backend>(Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, Child8, Child9, backend: Backend)",
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/init(_:_:_:_:_:_:_:_:_:_:backend:snapshots:)",
+                "title" : "init<Backend>(Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, Child8, Child9, backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?)",
                 "type" : "init"
               },
               {
@@ -5771,6 +6030,11 @@
                 "type" : "property"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/erasednodes",
+                "title" : "var erasedNodes: [ErasedViewGraphNode]",
+                "type" : "property"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/widgets",
                 "title" : "var widgets: [AnyWidget]",
                 "type" : "property"
@@ -5812,8 +6076,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren2\/init(_:_:backend:)",
-                "title" : "init<Backend>(Child0, Child1, backend: Backend)",
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren2\/init(_:_:backend:snapshots:)",
+                "title" : "init<Backend>(Child0, Child1, backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?)",
                 "type" : "init"
               },
               {
@@ -5828,6 +6092,11 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren2\/child1",
                 "title" : "var child1: AnyViewGraphNode<Child1>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren2\/erasednodes",
+                "title" : "var erasedNodes: [ErasedViewGraphNode]",
                 "type" : "property"
               },
               {
@@ -5872,8 +6141,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren3\/init(_:_:_:backend:)",
-                "title" : "init<Backend>(Child0, Child1, Child2, backend: Backend)",
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren3\/init(_:_:_:backend:snapshots:)",
+                "title" : "init<Backend>(Child0, Child1, Child2, backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?)",
                 "type" : "init"
               },
               {
@@ -5893,6 +6162,11 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren3\/child2",
                 "title" : "var child2: AnyViewGraphNode<Child2>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren3\/erasednodes",
+                "title" : "var erasedNodes: [ErasedViewGraphNode]",
                 "type" : "property"
               },
               {
@@ -5937,8 +6211,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren4\/init(_:_:_:_:backend:)",
-                "title" : "init<Backend>(Child0, Child1, Child2, Child3, backend: Backend)",
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren4\/init(_:_:_:_:backend:snapshots:)",
+                "title" : "init<Backend>(Child0, Child1, Child2, Child3, backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?)",
                 "type" : "init"
               },
               {
@@ -5963,6 +6237,11 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren4\/child3",
                 "title" : "var child3: AnyViewGraphNode<Child3>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren4\/erasednodes",
+                "title" : "var erasedNodes: [ErasedViewGraphNode]",
                 "type" : "property"
               },
               {
@@ -6007,8 +6286,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5\/init(_:_:_:_:_:backend:)",
-                "title" : "init<Backend>(Child0, Child1, Child2, Child3, Child4, backend: Backend)",
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5\/init(_:_:_:_:_:backend:snapshots:)",
+                "title" : "init<Backend>(Child0, Child1, Child2, Child3, Child4, backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?)",
                 "type" : "init"
               },
               {
@@ -6038,6 +6317,11 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5\/child4",
                 "title" : "var child4: AnyViewGraphNode<Child4>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5\/erasednodes",
+                "title" : "var erasedNodes: [ErasedViewGraphNode]",
                 "type" : "property"
               },
               {
@@ -6082,8 +6366,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6\/init(_:_:_:_:_:_:backend:)",
-                "title" : "init<Backend>(Child0, Child1, Child2, Child3, Child4, Child5, backend: Backend)",
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6\/init(_:_:_:_:_:_:backend:snapshots:)",
+                "title" : "init<Backend>(Child0, Child1, Child2, Child3, Child4, Child5, backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?)",
                 "type" : "init"
               },
               {
@@ -6118,6 +6402,11 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6\/child5",
                 "title" : "var child5: AnyViewGraphNode<Child5>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6\/erasednodes",
+                "title" : "var erasedNodes: [ErasedViewGraphNode]",
                 "type" : "property"
               },
               {
@@ -6162,8 +6451,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7\/init(_:_:_:_:_:_:_:backend:)",
-                "title" : "init<Backend>(Child0, Child1, Child2, Child3, Child4, Child5, Child6, backend: Backend)",
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7\/init(_:_:_:_:_:_:_:backend:snapshots:)",
+                "title" : "init<Backend>(Child0, Child1, Child2, Child3, Child4, Child5, Child6, backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?)",
                 "type" : "init"
               },
               {
@@ -6203,6 +6492,11 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7\/child6",
                 "title" : "var child6: AnyViewGraphNode<Child6>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7\/erasednodes",
+                "title" : "var erasedNodes: [ErasedViewGraphNode]",
                 "type" : "property"
               },
               {
@@ -6247,8 +6541,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/init(_:_:_:_:_:_:_:_:backend:)",
-                "title" : "init<Backend>(Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, backend: Backend)",
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/init(_:_:_:_:_:_:_:_:backend:snapshots:)",
+                "title" : "init<Backend>(Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?)",
                 "type" : "init"
               },
               {
@@ -6296,6 +6590,11 @@
                 "type" : "property"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/erasednodes",
+                "title" : "var erasedNodes: [ErasedViewGraphNode]",
+                "type" : "property"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8\/widgets",
                 "title" : "var widgets: [AnyWidget]",
                 "type" : "property"
@@ -6337,8 +6636,8 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/init(_:_:_:_:_:_:_:_:_:backend:)",
-                "title" : "init<Backend>(Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, Child8, backend: Backend)",
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/init(_:_:_:_:_:_:_:_:_:backend:snapshots:)",
+                "title" : "init<Backend>(Child0, Child1, Child2, Child3, Child4, Child5, Child6, Child7, Child8, backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?)",
                 "type" : "init"
               },
               {
@@ -6391,6 +6690,11 @@
                 "type" : "property"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/erasednodes",
+                "title" : "var erasedNodes: [ErasedViewGraphNode]",
+                "type" : "property"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9\/widgets",
                 "title" : "var widgets: [AnyWidget]",
                 "type" : "property"
@@ -6423,6 +6727,153 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9",
             "title" : "ViewGraphNodeChildren9",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Structures",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/nodesnapshot\/debugdescription",
+                    "title" : "var debugDescription: String",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/nodesnapshot\/isvalid(for:)",
+                    "title" : "func isValid<V>(for: V.Type) -> Bool",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/nodesnapshot\/restore(to:)",
+                    "title" : "func restore<V>(to: V) -> V",
+                    "type" : "method"
+                  },
+                  {
+                    "title" : "Default Implementations",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "children" : [
+                      {
+                        "title" : "Operators",
+                        "type" : "groupMarker"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/nodesnapshot\/!=(_:_:)",
+                        "title" : "static func != (Self, Self) -> Bool",
+                        "type" : "op"
+                      }
+                    ],
+                    "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/nodesnapshot\/equatable-implementations",
+                    "title" : "Equatable Implementations",
+                    "type" : "symbol"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/nodesnapshot",
+                "title" : "ViewGraphSnapshotter.NodeSnapshot",
+                "type" : "struct"
+              },
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/init()",
+                "title" : "init()",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/transform(node:)",
+                "title" : "func transform<U, Backend>(node: ViewGraphNode<U, Backend>) -> ViewGraphSnapshotter.NodeSnapshot",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/name(of:)",
+                "title" : "static func name<V>(of: V.Type) -> String",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/snapshot(of:)",
+                "title" : "static func snapshot<V>(of: AnyViewGraphNode<V>) -> ViewGraphSnapshotter.NodeSnapshot",
+                "type" : "method"
+              },
+              {
+                "title" : "Enumerations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Enumeration Cases",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/statesnapshot\/encoded(_:)",
+                    "title" : "case encoded(Data)",
+                    "type" : "case"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/statesnapshot\/encodingfailure",
+                    "title" : "case encodingFailure",
+                    "type" : "case"
+                  },
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/statesnapshot\/debugdescription",
+                    "title" : "var debugDescription: String",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Default Implementations",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "children" : [
+                      {
+                        "title" : "Operators",
+                        "type" : "groupMarker"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/statesnapshot\/!=(_:_:)",
+                        "title" : "static func != (Self, Self) -> Bool",
+                        "type" : "op"
+                      }
+                    ],
+                    "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/statesnapshot\/equatable-implementations",
+                    "title" : "Equatable Implementations",
+                    "type" : "symbol"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/statesnapshot",
+                "title" : "ViewGraphSnapshotter.StateSnapshot",
+                "type" : "enum"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter",
+            "title" : "ViewGraphSnapshotter",
             "type" : "struct"
           },
           {
@@ -6463,6 +6914,20 @@
             "path" : "\/documentation\/swiftcrossui\/windowgroup",
             "title" : "WindowGroup",
             "type" : "struct"
+          },
+          {
+            "title" : "Macros",
+            "type" : "groupMarker"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/hotreloadable()",
+            "title" : "macro HotReloadable()",
+            "type" : "macro"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/hotreloadable(_:)",
+            "title" : "macro hotReloadable<T>(T) -> HotReloadableView",
+            "type" : "macro"
           },
           {
             "title" : "Enumerations",
@@ -6998,8 +7463,8 @@
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/children(backend:)",
-                        "title" : "func children<Backend>(backend: Backend) -> ViewGraphNodeChildren",
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/children(backend:snapshots:)",
+                        "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?) -> ViewGraphNodeChildren",
                         "type" : "method"
                       },
                       {

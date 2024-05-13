@@ -1,4 +1,47 @@
 {
+  "abstract" : [
+    {
+      "text" : "A view which erases the type of its child. Useful in dynamic",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "use-cases such as hot reloading, but not recommended if there",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "are alternate strongly-typed solutions to your problem since",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " has significantly more overhead than strongly",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "typed views.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -40,7 +83,7 @@
     ],
     "remoteSource" : {
       "fileName" : "AnyView.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/AnyView.swift#L3"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/AnyView.swift#L8"
     },
     "role" : "symbol",
     "roleHeading" : "Structure",
@@ -145,7 +188,47 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyView": {
   "abstract" : [
-
+    {
+      "text" : "A view which erases the type of its child. Useful in dynamic",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "use-cases such as hot reloading, but not recommended if there",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "are alternate strongly-typed solutions to your problem since",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " has significantly more overhead than strongly",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "typed views.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

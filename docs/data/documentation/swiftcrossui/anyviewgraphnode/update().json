@@ -45,7 +45,7 @@
     ],
     "remoteSource" : {
       "fileName" : "AnyViewGraphNode.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/AnyViewGraphNode.swift#L42"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/AnyViewGraphNode.swift#L61"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

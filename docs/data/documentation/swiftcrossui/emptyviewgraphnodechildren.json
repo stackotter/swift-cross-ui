@@ -46,7 +46,7 @@
     ],
     "remoteSource" : {
       "fileName" : "ViewGraphNodeChildren.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewGraphNodeChildren.swift#L33"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewGraphNodeChildren.swift#L35"
     },
     "role" : "symbol",
     "roleHeading" : "Structure",
@@ -125,6 +125,7 @@
     },
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren\/erasedNodes",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren\/widgets"
       ],
       "title" : "Instance Properties"
@@ -384,6 +385,44 @@
   "title" : "ViewGraphNodeChildren Implementations",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren\/viewgraphnodechildren-implementations"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewGraphNodeChildren/erasedNodes": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "erasedNodes"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI19ErasedViewGraphNodeV",
+      "text" : "ErasedViewGraphNode"
+    },
+    {
+      "kind" : "text",
+      "text" : "]"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren\/erasedNodes",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "erasedNodes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren\/erasednodes"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewGraphNodeChildren/init()": {
   "abstract" : [

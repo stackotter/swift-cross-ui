@@ -46,7 +46,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Observable.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Observable.swift#L30"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Observable.swift#L32"
     },
     "role" : "symbol",
     "roleHeading" : "Protocol",
@@ -160,8 +160,10 @@
             "",
             "    var otherCount = 0",
             "",
-            "    \/\/ Even though `nested` is `Observable`, its changes won't be published because without",
-            "    \/\/ `@Observed`, the behaviour is unclear without looking at the definition of `NestedState`",
+            "    \/\/ Even though `nested` is `Observable`, its changes won't be published because if you",
+            "    \/\/ could have observed properties without `@Observed` things would get pretty messy",
+            "    \/\/ and you'd always have to check the definition of the type of each property to know",
+            "    \/\/ exactly what would and wouldn't cause updates.",
             "    var nested = NestedState()",
             "}"
           ],

@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Runs the cancel action and ensures that it can be called a second time.",
+      "text" : "Runs the cancel action and ensures that it can’t be called a second time.",
       "type" : "text"
     }
   ],
@@ -45,7 +45,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Cancellable.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Cancellable.swift#L18"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Cancellable.swift#L20"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",
@@ -166,7 +166,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Cancellable/cancel()": {
   "abstract" : [
     {
-      "text" : "Runs the cancel action and ensures that it can be called a second time.",
+      "text" : "Runs the cancel action and ensures that it can’t be called a second time.",
       "type" : "text"
     }
   ],

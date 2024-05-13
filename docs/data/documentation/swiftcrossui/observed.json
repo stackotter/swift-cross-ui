@@ -719,7 +719,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/init(wrappedValue:)-8e6q2": {
   "abstract" : [
     {
-      "text" : "Creates a wrapper around a class. Only setting ",
+      "text" : "Creates a wrapper around a non-Observable class. Setting ",
       "type" : "text"
     },
     {
@@ -728,7 +728,7 @@
       "type" : "reference"
     },
     {
-      "text" : " to a new instance",
+      "text" : " to a new",
       "type" : "text"
     },
     {
@@ -736,7 +736,7 @@
       "type" : "text"
     },
     {
-      "text" : "of the class is the only change that will get published. This is hardly ever intentional, so",
+      "text" : "instance of the class is the only change that will get published. This is hardly ever",
       "type" : "text"
     },
     {
@@ -744,7 +744,7 @@
       "type" : "text"
     },
     {
-      "text" : "this initializer variant contains a deprecation warning to warn developers (but does nothing",
+      "text" : "intentional, so this initializer variant contains a deprecation warning to warn developers",
       "type" : "text"
     },
     {
@@ -752,7 +752,7 @@
       "type" : "text"
     },
     {
-      "text" : "functionally different).",
+      "text" : "(but does nothing functionally different).",
       "type" : "text"
     }
   ],
@@ -907,7 +907,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : ", the change won’t be published, but if the",
+      "text" : " the change won’t be published, but if the",
       "type" : "text"
     },
     {
@@ -924,7 +924,7 @@
       "type" : "reference"
     },
     {
-      "text" : ", the new upstream publisher will be relinked.",
+      "text" : " the new upstream publisher will still get relinked.",
       "type" : "text"
     }
   ],

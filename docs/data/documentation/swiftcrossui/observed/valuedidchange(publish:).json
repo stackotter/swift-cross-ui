@@ -17,7 +17,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : ", the change won’t be published, but if the",
+      "text" : " the change won’t be published, but if the",
       "type" : "text"
     },
     {
@@ -34,7 +34,7 @@
       "type" : "reference"
     },
     {
-      "text" : ", the new upstream publisher will be relinked.",
+      "text" : " the new upstream publisher will still get relinked.",
       "type" : "text"
     }
   ],
@@ -296,7 +296,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : ", the change won’t be published, but if the",
+      "text" : " the change won’t be published, but if the",
       "type" : "text"
     },
     {
@@ -313,7 +313,7 @@
       "type" : "reference"
     },
     {
-      "text" : ", the new upstream publisher will be relinked.",
+      "text" : " the new upstream publisher will still get relinked.",
       "type" : "text"
     }
   ],

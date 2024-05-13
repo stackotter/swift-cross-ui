@@ -70,7 +70,7 @@
     ],
     "remoteSource" : {
       "fileName" : "AnyViewGraphNode.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/AnyViewGraphNode.swift#L22"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/AnyViewGraphNode.swift#L28"
     },
     "role" : "symbol",
     "roleHeading" : "Initializer",

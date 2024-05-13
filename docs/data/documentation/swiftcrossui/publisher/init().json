@@ -37,7 +37,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Publisher.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Publisher.swift#L11"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Publisher.swift#L13"
     },
     "role" : "symbol",
     "roleHeading" : "Initializer",

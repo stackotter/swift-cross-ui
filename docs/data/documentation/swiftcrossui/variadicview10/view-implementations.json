@@ -41,7 +41,7 @@
       "generated" : true,
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView10\/asWidget(_:backend:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView10\/children(backend:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView10\/children(backend:snapshots:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView10\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView10\/frame(minWidth:minHeight:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView10\/padding(_:)",
@@ -196,7 +196,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/variadicview10\/aswidget(_:backend:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView10/children(backend:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView10/children(backend:snapshots:)": {
   "abstract" : [
 
   ],
@@ -239,7 +239,33 @@
     },
     {
       "kind" : "text",
-      "text" : ") -> "
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "snapshots"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI20ViewGraphSnapshotterV",
+      "text" : "ViewGraphSnapshotter"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI20ViewGraphSnapshotterV12NodeSnapshotV",
+      "text" : "NodeSnapshot"
+    },
+    {
+      "kind" : "text",
+      "text" : "]?) -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -247,12 +273,12 @@
       "text" : "ViewGraphNodeChildren"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView10\/children(backend:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView10\/children(backend:snapshots:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "children(backend:)",
+  "title" : "children(backend:snapshots:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/variadicview10\/children(backend:)"
+  "url" : "\/documentation\/swiftcrossui\/variadicview10\/children(backend:snapshots:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView10/foregroundColor(_:)": {
   "abstract" : [

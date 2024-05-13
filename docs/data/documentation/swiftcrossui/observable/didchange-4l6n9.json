@@ -71,7 +71,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Observable.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Observable.swift#L33"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Observable.swift#L35"
     },
     "required" : true,
     "role" : "symbol",

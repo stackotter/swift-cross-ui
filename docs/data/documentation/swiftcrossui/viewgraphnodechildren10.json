@@ -59,7 +59,7 @@
     ],
     "remoteSource" : {
       "fileName" : "ViewGraphNodeChildren.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewGraphNodeChildren.swift#L412"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewGraphNodeChildren.swift#L586"
     },
     "role" : "symbol",
     "roleHeading" : "Structure",
@@ -384,7 +384,7 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10\/init(_:_:_:_:_:_:_:_:_:_:backend:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10\/init(_:_:_:_:_:_:_:_:_:_:backend:snapshots:)"
       ],
       "title" : "Initializers"
     },
@@ -400,6 +400,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10\/child7",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10\/child8",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10\/child9",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10\/erasedNodes",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10\/widgets"
       ],
       "title" : "Instance Properties"
@@ -1518,7 +1519,45 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/child9"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren10/init(_:_:_:_:_:_:_:_:_:_:backend:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren10/erasedNodes": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "erasedNodes"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI19ErasedViewGraphNodeV",
+      "text" : "ErasedViewGraphNode"
+    },
+    {
+      "kind" : "text",
+      "text" : "]"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10\/erasedNodes",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "erasedNodes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/erasednodes"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren10/init(_:_:_:_:_:_:_:_:_:_:backend:snapshots:)": {
   "abstract" : [
     {
       "text" : "Creates the nodes for 10 child views.",
@@ -1636,15 +1675,41 @@
     },
     {
       "kind" : "text",
-      "text" : ")"
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "snapshots"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI20ViewGraphSnapshotterV",
+      "text" : "ViewGraphSnapshotter"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI20ViewGraphSnapshotterV12NodeSnapshotV",
+      "text" : "NodeSnapshot"
+    },
+    {
+      "kind" : "text",
+      "text" : "]?)"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10\/init(_:_:_:_:_:_:_:_:_:_:backend:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10\/init(_:_:_:_:_:_:_:_:_:_:backend:snapshots:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "init(_:_:_:_:_:_:_:_:_:_:backend:)",
+  "title" : "init(_:_:_:_:_:_:_:_:_:_:backend:snapshots:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/init(_:_:_:_:_:_:_:_:_:_:backend:)"
+  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10\/init(_:_:_:_:_:_:_:_:_:_:backend:snapshots:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren10/widgets": {
   "abstract" : [
