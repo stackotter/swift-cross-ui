@@ -14,24 +14,28 @@ extension HotReloadableAppMacro: PeerMacro {
             throw MacroError("@HotReloadable can only be applied to structs")
         }
 
-        return [
-            """
-            var hotReloadingImportedEntryPoint: (@convention(c) (UnsafeRawPointer, Int) -> Any)? = nil
-            """,
-            """
-            @_cdecl("body")
-            public func hotReloadingExportedEntryPoint(app: UnsafeRawPointer, viewId: Int) -> Any {
-                hotReloadingHasConnectedToServer = true
-                let app = app.assumingMemoryBound(to: \(raw: structDecl.identifier).self)
-                return SwiftCrossUI.HotReloadableView(
-                    app.pointee.entryPoint(viewId: viewId)
-                )
-            }
-            """,
-            """
-            var hotReloadingHasConnectedToServer = false
-            """,
-        ]
+        #if HOT_RELOADING_ENABLED
+            return [
+                """
+                var hotReloadingImportedEntryPoint: (@convention(c) (UnsafeRawPointer, Int) -> Any)? = nil
+                """,
+                """
+                @_cdecl("body")
+                public func hotReloadingExportedEntryPoint(app: UnsafeRawPointer, viewId: Int) -> Any {
+                    hotReloadingHasConnectedToServer = true
+                    let app = app.assumingMemoryBound(to: \(raw: structDecl.identifier).self)
+                    return SwiftCrossUI.HotReloadableView(
+                        app.pointee.entryPoint(viewId: viewId)
+                    )
+                }
+                """,
+                """
+                var hotReloadingHasConnectedToServer = false
+                """,
+            ]
+        #else
+            return []
+        #endif
     }
 }
 
@@ -59,67 +63,72 @@ extension HotReloadableAppMacro: MemberMacro {
             throw MacroError("@HotReloadable can only be applied to structs")
         }
 
-        // TODO: Skip nested declarations
-        let visitor = HotReloadableViewVisitor(viewMode: .fixedUp)
-        visitor.walk(structDecl._syntax)
+        #if HOT_RELOADING_ENABLED
+            // TODO: Skip nested declarations
+            let visitor = HotReloadableViewVisitor(viewMode: .fixedUp)
+            visitor.walk(structDecl._syntax)
 
-        let cases: [DeclSyntax] = visitor.hotReloadableExprs.enumerated().map { (index, expr) in
-            """
-            if viewId == \(raw: index.description) {
-                return SwiftCrossUI.HotReloadableView(\(expr))
+            let cases: [DeclSyntax] = visitor.hotReloadableExprs.enumerated().map { (index, expr) in
+                """
+                if viewId == \(raw: index.description) {
+                    return SwiftCrossUI.HotReloadableView(\(expr))
+                }
+                """
             }
-            """
-        }
-        var exprIds: [String] = try visitor.hotReloadableExprs.enumerated().map { (index, expr) in
-            guard let location = context.location(of: expr) else {
-                throw MacroError(
-                    "hotReloadable expr without source location?? (shouldn't be possible)"
-                )
+            var exprIds: [String] = try visitor.hotReloadableExprs.enumerated().map {
+                (index, expr) in
+                guard let location = context.location(of: expr) else {
+                    throw MacroError(
+                        "hotReloadable expr without source location?? (shouldn't be possible)"
+                    )
+                }
+                return "ExprLocation(line: \(location.line), column: \(location.column)): \(index),"
             }
-            return "ExprLocation(line: \(location.line), column: \(location.column)): \(index),"
-        }
 
-        // Handle empty dictionary literal
-        if exprIds.isEmpty {
-            exprIds.append(":")
-        }
+            // Handle empty dictionary literal
+            if exprIds.isEmpty {
+                exprIds.append(":")
+            }
 
-        return [
-            """
-            func entryPoint(viewId: Int) -> SwiftCrossUI.HotReloadableView {
-                #if !canImport(SwiftBundlerRuntime)
-                    #error("Hot reloading requires importing SwiftBundlerRuntime from the swift-bundler package")
-                #endif
+            return [
+                """
+                func entryPoint(viewId: Int) -> SwiftCrossUI.HotReloadableView {
+                    #if !canImport(SwiftBundlerRuntime)
+                        #error("Hot reloading requires importing SwiftBundlerRuntime from the swift-bundler package")
+                    #endif
 
-                if !hotReloadingHasConnectedToServer {
-                    hotReloadingHasConnectedToServer = true
-                    Task {
-                        do {
-                            var client = try await HotReloadingClient()
-                            print("Hot reloading: received new dylib")
-                            try await client.handlePackets { dylib in
-                                guard let symbol = dylib.symbol(named: "body", ofType: (@convention(c) (UnsafeRawPointer, Int) -> Any).self) else {
-                                    print("Hot reloading: Missing 'body' symbol")
-                                    return
+                    if !hotReloadingHasConnectedToServer {
+                        hotReloadingHasConnectedToServer = true
+                        Task {
+                            do {
+                                var client = try await HotReloadingClient()
+                                print("Hot reloading: received new dylib")
+                                try await client.handlePackets { dylib in
+                                    guard let symbol = dylib.symbol(named: "body", ofType: (@convention(c) (UnsafeRawPointer, Int) -> Any).self) else {
+                                        print("Hot reloading: Missing 'body' symbol")
+                                        return
+                                    }
+                                    hotReloadingImportedEntryPoint = symbol
+                                    _forceRefresh()
                                 }
-                                hotReloadingImportedEntryPoint = symbol
-                                _forceRefresh()
+                            } catch {
+                                print("Hot reloading: \\(error)")
                             }
-                        } catch {
-                            print("Hot reloading: \\(error)")
                         }
                     }
+
+                    \(raw: cases.map(\.description).joined(separator: "\n"))
+                    fatalError("Unknown viewId \\(viewId)")
                 }
-                
-                \(raw: cases.map(\.description).joined(separator: "\n"))
-                fatalError("Unknown viewId \\(viewId)")
-            }
-            """,
-            """
-            static let hotReloadingExprIds: [ExprLocation: Int] = [
-                \(raw: exprIds.joined(separator: "\n"))
+                """,
+                """
+                static let hotReloadingExprIds: [ExprLocation: Int] = [
+                    \(raw: exprIds.joined(separator: "\n"))
+                ]
+                """,
             ]
-            """,
-        ]
+        #else
+            return []
+        #endif
     }
 }

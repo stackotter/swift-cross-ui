@@ -59,6 +59,17 @@ if let backend = ProcessInfo.processInfo.environment["SCUI_DEFAULT_BACKEND"] {
     #endif
 }
 
+let hotReloadingEnabled =
+    ProcessInfo.processInfo.environment["SWIFT_BUNDLER_HOT_RELOADING"] != nil
+    || ProcessInfo.processInfo.environment["SCUI_HOT_RELOADING"] != nil
+
+var swiftSettings: [SwiftSetting] = []
+if hotReloadingEnabled {
+    swiftSettings += [
+        .define("HOT_RELOADING_ENABLED")
+    ]
+}
+
 var libraryType: Product.Library.LibraryType?
 switch ProcessInfo.processInfo.environment["SCUI_LIBRARY_TYPE"] {
     case "static":
@@ -71,8 +82,7 @@ switch ProcessInfo.processInfo.environment["SCUI_LIBRARY_TYPE"] {
         print("Invalid SCUI_LIBRARY_TYPE, expected static, dynamic, or auto")
         libraryType = nil
     case nil:
-        let hotReloading = ProcessInfo.processInfo.environment["SWIFT_BUNDLER_HOT_RELOADING"] != nil
-        if hotReloading {
+        if hotReloadingEnabled {
             libraryType = .dynamic
         } else {
             libraryType = nil
@@ -193,7 +203,8 @@ let package = Package(
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
                 .product(name: "MacroToolkit", package: "swift-macro-toolkit"),
-            ]
+            ],
+            swiftSettings: swiftSettings
         ),
     ] + swift510Targets
 )
