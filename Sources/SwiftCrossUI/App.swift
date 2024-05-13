@@ -1,3 +1,5 @@
+import Foundation
+
 /// An application.
 public protocol App {
     /// The backend used to render the app.
@@ -29,7 +31,13 @@ extension App {
     public static func main() {
         let app = _App(Self())
         _forceRefresh = {
-            app.forceRefresh()
+            if String(describing: type(of: app.backend)) == "AppKitBackend" {
+                DispatchQueue.main.async {
+                    app.forceRefresh()
+                }
+            } else {
+                app.forceRefresh()
+            }
         }
         app.run()
     }
