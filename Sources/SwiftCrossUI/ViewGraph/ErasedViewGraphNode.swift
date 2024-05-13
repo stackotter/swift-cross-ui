@@ -1,13 +1,13 @@
 import Foundation
 
 public struct ErasedViewGraphNode {
-    var node: Any
-    var updateWithNewView: (Any) -> Bool
-    var updateNode: () -> Void
-    var getWidget: () -> AnyWidget
-    var getState: () -> Data?
-    var viewType: any View.Type
-    var backendType: any AppBackend.Type
+    public var node: Any
+    public var updateWithNewView: (Any) -> Bool
+    public var updateNode: () -> Void
+    public var getWidget: () -> AnyWidget
+    public var getState: () -> Data?
+    public var viewType: any View.Type
+    public var backendType: any AppBackend.Type
 
     public init<V: View, Backend: AppBackend>(
         for view: V,

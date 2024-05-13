@@ -77,13 +77,15 @@ public struct ViewGraphSnapshotter: ErasedViewGraphNodeTransformer {
         }
     }
 
+    public init() {}
+
     public func transform<U: View, Backend: AppBackend>(
         node: ViewGraphNode<U, Backend>
     ) -> NodeSnapshot {
         Self.snapshot(of: AnyViewGraphNode(node))
     }
 
-    static func snapshot<V: View>(of node: AnyViewGraphNode<V>) -> NodeSnapshot {
+    public static func snapshot<V: View>(of node: AnyViewGraphNode<V>) -> NodeSnapshot {
         let stateSnapshot: StateSnapshot?
         if let state = node.getView().state as? Codable {
             if let encodedState = try? JSONEncoder().encode(state) {
@@ -108,7 +110,7 @@ public struct ViewGraphSnapshotter: ErasedViewGraphNodeTransformer {
         )
     }
 
-    static func name<V: View>(of viewType: V.Type) -> String {
+    public static func name<V: View>(of viewType: V.Type) -> String {
         String(String(describing: V.self).split(separator: "<")[0])
     }
 

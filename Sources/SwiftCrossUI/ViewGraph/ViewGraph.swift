@@ -30,7 +30,7 @@ public class ViewGraph<Root: View> {
     }
 
     /// Recomputes the entire UI (e.g. due to the root view's state updating).
-    /// If the update is due to the parent scene getting updated then the view]
+    /// If the update is due to the parent scene getting updated then the view
     /// is recomputed and passed as `newView`.
     public func update(_ newView: Root? = nil) {
         rootNode.update(with: newView ?? view)

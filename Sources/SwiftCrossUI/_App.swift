@@ -6,6 +6,8 @@
 class _App<AppRoot: App> {
     /// The app being run.
     let app: AppRoot
+    /// An instance of the app's selected backend.
+    let backend: AppRoot.Backend
     /// The root of the app's scene graph.
     var sceneGraphRoot: AppRoot.Body.Node?
     /// A cancellable handle to observation of the app's state .
@@ -13,24 +15,28 @@ class _App<AppRoot: App> {
 
     /// Wraps a user's app implementation.
     init(_ app: AppRoot) {
+        backend = AppRoot.Backend(appIdentifier: app.identifier)
         self.app = app
+    }
+
+    func forceRefresh() {
+        self.sceneGraphRoot?.update(self.app.body, backend: self.backend)
     }
 
     /// Runs the app using the app's selected backend.
     func run() {
-        let backend = AppRoot.Backend(appIdentifier: app.identifier)
         currentBackend = backend
         backend.runMainLoop {
             let rootNode = AppRoot.Body.Node(
                 from: self.app.body,
-                backend: backend
+                backend: self.backend
             )
 
-            rootNode.update(nil, backend: backend)
+            rootNode.update(nil, backend: self.backend)
             self.sceneGraphRoot = rootNode
 
             self.cancellable = self.app.state.didChange.observe {
-                self.sceneGraphRoot?.update(self.app.body, backend: backend)
+                self.sceneGraphRoot?.update(self.app.body, backend: self.backend)
             }
         }
     }

@@ -20,10 +20,17 @@ public protocol App {
     init()
 }
 
+/// Force refresh the entire scene graph. Used by hot reloading. If you need to do
+/// this in your own code then something has gone very wrong...
+public var _forceRefresh: () -> Void = {}
+
 extension App {
     /// Runs the application.
     public static func main() {
         let app = _App(Self())
+        _forceRefresh = {
+            app.forceRefresh()
+        }
         app.run()
     }
 }

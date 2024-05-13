@@ -1,17 +1,8 @@
-// swift-tools-version:5.6
+// swift-tools-version:5.9
 
+import CompilerPluginSupport
 import Foundation
 import PackageDescription
-
-// Warn about a known SwiftPM issue on Windows
-#if swift(<5.8) && os(Windows)
-    if let pkgConfigPath = ProcessInfo.processInfo.environment["PKG_CONFIG_PATH"],
-        pkgConfigPath.contains(":")
-    {
-        print("PKG_CONFIG_PATH might not be parsed correctly with your Swift tools version.")
-        print("Upgrade to Swift 5.8+ instead.")
-    }
-#endif
 
 // In Gtk 4.10 some breaking changes were made, so the GtkBackend code needs to know
 // which version is in use.
@@ -108,10 +99,6 @@ let package = Package(
             from: "0.17.1"
         ),
         .package(
-            url: "https://github.com/apple/swift-syntax.git",
-            from: "508.0.0"
-        ),
-        .package(
             url: "https://github.com/stackotter/TermKit",
             revision: "163afa64f1257a0c026cc83ed8bc47a5f8fc9704"
         ),
@@ -127,11 +114,21 @@ let package = Package(
             url: "https://github.com/apple/swift-docc-plugin",
             from: "1.0.0"
         ),
+        .package(
+            url: "https://github.com/apple/swift-syntax.git",
+            from: "510.0.0"
+        ),
+        .package(
+            url: "https://github.com/stackotter/swift-macro-toolkit",
+            from: "0.4.0"
+        ),
     ] + swift510Dependencies,
     targets: [
         .target(
             name: "SwiftCrossUI",
-            dependencies: [],
+            dependencies: [
+                "HotReloadingMacrosPlugin"
+            ],
             exclude: [
                 "Builders/ViewBuilder.swift.gyb",
                 "ViewGraph/ViewGraphNodeChildren.swift.gyb",
@@ -187,6 +184,15 @@ let package = Package(
             name: "GtkCodeGen",
             dependencies: [
                 "XMLCoder", .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
+            ]
+        ),
+        .macro(
+            name: "HotReloadingMacrosPlugin",
+            dependencies: [
+                .product(name: "SwiftSyntax", package: "swift-syntax"),
+                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
+                .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
+                .product(name: "MacroToolkit", package: "swift-macro-toolkit"),
             ]
         ),
     ] + swift510Targets
