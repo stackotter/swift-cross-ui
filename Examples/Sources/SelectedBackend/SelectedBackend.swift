@@ -13,6 +13,9 @@
 #elseif canImport(LVGLBackend)
     import LVGLBackend
     public typealias SelectedBackend = LVGLBackend
+#elseif canImport(WinUIBackend)
+    import WinUIBackend
+    public typealias SelectedBackend = WinUIBackend
 #else
     #error("Unknown backend selected")
 #endif
