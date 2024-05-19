@@ -20,6 +20,10 @@ class WinRTApplication: SwiftApplication {
     }
 }
 
+extension App {
+    public typealias Backend = WinUIBackend
+}
+
 public struct WinUIBackend: AppBackend {
     public typealias Window = WinUI.Window
     public typealias Widget = WinUI.FrameworkElement
