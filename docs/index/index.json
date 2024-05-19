@@ -3667,13 +3667,13 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofhstack:)-696pg",
-                        "title" : "func setChildren([AnyWidget], ofHStack: Self.Widget)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofhstack:)-4wamb",
+                        "title" : "func setChildren([Self.Widget], ofHStack: Self.Widget)",
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofhstack:)-4wamb",
-                        "title" : "func setChildren([Self.Widget], ofHStack: Self.Widget)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofhstack:)-696pg",
+                        "title" : "func setChildren([AnyWidget], ofHStack: Self.Widget)",
                         "type" : "method"
                       }
                     ],
@@ -3690,13 +3690,13 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-bpyg",
-                        "title" : "func setChildren([Self.Widget], ofVStack: Self.Widget)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-3cvac",
+                        "title" : "func setChildren([AnyWidget], ofVStack: Self.Widget)",
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-3cvac",
-                        "title" : "func setChildren([AnyWidget], ofVStack: Self.Widget)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-bpyg",
+                        "title" : "func setChildren([Self.Widget], ofVStack: Self.Widget)",
                         "type" : "method"
                       }
                     ],
