@@ -38,6 +38,7 @@ var swift510Products: [Product] = []
         .target(
             name: "WinUIBackend",
             dependencies: [
+                "SwiftCrossUI",
                 .product(name: "WinUI", package: "swift-winui"),
                 .product(name: "WinAppSDK", package: "swift-windowsappsdk"),
                 .product(name: "WindowsFoundation", package: "swift-windowsfoundation"),
