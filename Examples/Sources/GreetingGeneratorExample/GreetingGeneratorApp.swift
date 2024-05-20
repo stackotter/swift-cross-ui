@@ -1,5 +1,6 @@
 import SelectedBackend
 import SwiftCrossUI
+import SwiftBundlerRuntime
 
 class GreetingGeneratorState: Observable {
     @Observed var name = ""
@@ -7,6 +8,7 @@ class GreetingGeneratorState: Observable {
 }
 
 @main
+@HotReloadable
 struct GreetingGeneratorApp: App {
     let identifier = "dev.stackotter.GreetingGenerator"
 
@@ -14,36 +16,38 @@ struct GreetingGeneratorApp: App {
 
     var body: some Scene {
         WindowGroup("Greeting Generator") {
-            VStack {
-                TextField("Name", state.$name)
-                HStack {
-                    Button("Generate") {
-                        state.greetings.append("Hello, \(state.name)!")
-                    }
-                    Button("Reset") {
-                        state.greetings = []
-                        state.name = ""
-                    }
-                }
-
-                if let latest = state.greetings.last {
-                    Text(latest)
-                        .padding(.top, 5)
-
-                    if state.greetings.count > 1 {
-                        Text("History:")
-                            .padding(.top, 20)
-
-                        ScrollView {
-                            ForEach(state.greetings.reversed()[1...]) { greeting in
-                                Text(greeting)
-                            }
+            #hotReloadable {
+                VStack {
+                    TextField("Name", state.$name)
+                    HStack {
+                        Button("Generate") {
+                            state.greetings.append("Hello, \(state.name)!")
                         }
-                        .padding(.top, 8)
+                        Button("Reset") {
+                            state.greetings = []
+                            state.name = ""
+                        }
+                    }
+
+                    if let latest = state.greetings.last {
+                        Text(latest)
+                            .padding(.top, 5)
+
+                        if state.greetings.count > 1 {
+                            Text("History:")
+                                .padding(.top, 20)
+
+                            ScrollView {
+                                ForEach(state.greetings.reversed()[1...]) { greeting in
+                                    Text(greeting)
+                                }
+                            }
+                            .padding(.top, 8)
+                        }
                     }
                 }
+                .padding(10)
             }
-            .padding(10)
         }
     }
 }

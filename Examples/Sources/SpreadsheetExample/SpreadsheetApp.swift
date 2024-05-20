@@ -1,5 +1,6 @@
 import SelectedBackend
 import SwiftCrossUI
+import SwiftBundlerRuntime
 
 struct Person {
     var name: String
@@ -24,6 +25,7 @@ class SpreadsheetState: Observable {
 }
 
 @main
+@HotReloadable
 struct SpreadsheetApp: App {
     let identifier = "dev.stackotter.SpreadsheetApp"
 
@@ -31,14 +33,16 @@ struct SpreadsheetApp: App {
 
     var body: some Scene {
         WindowGroup("Spreadsheet") {
-            Table(state.data) {
-                TableColumn("Name", value: \Person.name)
-                TableColumn("Age", value: \Person.age)
-                TableColumn("Phone", value: \Person.phone)
-                TableColumn("Email", value: \Person.email)
-                TableColumn("Occupation", value: \Person.occupation)
+            #hotReloadable {
+                Table(state.data) {
+                    TableColumn("Name", value: \Person.name)
+                    TableColumn("Age", value: \Person.age)
+                    TableColumn("Phone", value: \Person.phone)
+                    TableColumn("Email", value: \Person.email)
+                    TableColumn("Occupation", value: \Person.occupation)
+                }
+                .padding(10)
             }
-            .padding(10)
         }
     }
 }

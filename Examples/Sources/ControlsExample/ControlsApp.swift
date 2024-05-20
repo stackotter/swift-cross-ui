@@ -1,5 +1,6 @@
 import SelectedBackend
 import SwiftCrossUI
+import SwiftBundlerRuntime
 
 class ControlsState: Observable {
     @Observed var count = 0
@@ -8,6 +9,7 @@ class ControlsState: Observable {
 }
 
 @main
+@HotReloadable
 struct ControlsApp: App {
     typealias Backend = SelectedBackend
 
@@ -17,29 +19,31 @@ struct ControlsApp: App {
 
     var body: some Scene {
         WindowGroup("ControlsApp") {
-            VStack {
+            #hotReloadable {
                 VStack {
-                    Text("Button")
-                    Button("Click me!") {
-                        state.count += 1
+                    VStack {
+                        Text("Button")
+                        Button("Click me!") {
+                            state.count += 1
+                        }
+                        Text("Count: \(state.count)")
                     }
-                    Text("Count: \(state.count)")
-                }
-                .padding(.bottom, 20)
+                    .padding(.bottom, 20)
 
-                VStack {
-                    Text("Toggle button")
-                    Toggle("Toggle me!", active: state.$exampleButtonState)
-                        .toggleStyle(.button)
-                    Text("Currently enabled: \(state.exampleButtonState)")
-                }
-                .padding(.bottom, 20)
+                    VStack {
+                        Text("Toggle button")
+                        Toggle("Toggle me!", active: state.$exampleButtonState)
+                            .toggleStyle(.button)
+                        Text("Currently enabled: \(state.exampleButtonState)")
+                    }
+                    .padding(.bottom, 20)
 
-                VStack {
-                    Text("Toggle switch")
-                    Toggle("Toggle me:", active: state.$exampleSwitchState)
-                        .toggleStyle(.switch)
-                    Text("Currently enabled: \(state.exampleSwitchState)")
+                    VStack {
+                        Text("Toggle switch")
+                        Toggle("Toggle me:", active: state.$exampleSwitchState)
+                            .toggleStyle(.switch)
+                        Text("Currently enabled: \(state.exampleSwitchState)")
+                    }
                 }
             }
         }

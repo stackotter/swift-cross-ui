@@ -10,7 +10,7 @@ public macro HotReloadable() =
     #externalMacro(module: "HotReloadingMacrosPlugin", type: "HotReloadableAppMacro")
 
 @freestanding(expression)
-public macro hotReloadable<T: View>(_ expr: T) -> HotReloadableView =
+public macro hotReloadable<T: View>(@ViewBuilder _ expr: () -> T) -> HotReloadableView =
     #externalMacro(module: "HotReloadingMacrosPlugin", type: "HotReloadableExprMacro")
 
 public struct ExprLocation: Hashable {

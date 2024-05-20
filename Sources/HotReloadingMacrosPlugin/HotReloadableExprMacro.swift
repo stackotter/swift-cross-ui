@@ -7,15 +7,17 @@ public struct HotReloadableExprMacro: ExpressionMacro {
         of node: some FreestandingMacroExpansionSyntax,
         in context: some MacroExpansionContext
     ) throws -> ExprSyntax {
-        guard let expr = destructureSingle(node.arguments), expr.label == nil else {
-            throw MacroError("#hotReloadable takes exactly one unlabelled argument")
+        guard node.arguments.isEmpty, let expr = node.trailingClosure.map(ExprSyntax.init) else {
+            throw MacroError("#hotReloadable expects exactly one trailing closure")
         }
 
         #if HOT_RELOADING_ENABLED
             guard let location = context.location(of: expr) else {
                 throw MacroError(
-                    "#hotReloadable expr without source location?? (shouldn't be possible)")
+                    "#hotReloadable expr without source location?? (shouldn't be possible)"
+                )
             }
+
             // TODO: Guard against use of `#hotReloadable` in situations where `self` doesn't refer
             //   to the root App type of the user's application.
             return
@@ -36,7 +38,7 @@ public struct HotReloadableExprMacro: ExpressionMacro {
                 }()
                 """
         #else
-            return "SwiftCrossUI.HotReloadableView(\(expr))"
+            return "SwiftCrossUI.HotReloadableView \(expr)"
         #endif
     }
 }

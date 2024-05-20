@@ -19,6 +19,10 @@ public struct HotReloadableView: TypeSafeView {
         self.child = child
     }
 
+    public init(@ViewBuilder _ child: () -> some View) {
+        self.child = child()
+    }
+
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
@@ -75,7 +79,7 @@ class HotReloadableViewChildren: ViewGraphNodeChildren {
     }
 
     /// Attempts to update the child. If the initial update succeeds then the child's concrete type
-    /// hasn't changed and the ViewGraph will has handled state persistence on our behalf. Otherwise,
+    /// hasn't changed and the ViewGraph has handled state persistence on our behalf. Otherwise,
     /// we must recreate the child node and swap out our current child widget with the new view's
     /// widget. Before displaying the child, we also attempt to transfer a snapshot of the old
     /// view graph sub tree's state onto the new view graph sub tree. This is not possible to do

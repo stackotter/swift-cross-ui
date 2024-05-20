@@ -41,14 +41,19 @@ extension HotReloadableAppMacro: PeerMacro {
 
 class HotReloadableViewVisitor: SyntaxVisitor {
     var hotReloadableExprs: [ExprSyntax] = []
+
     override func visit(_ node: MacroExpansionExprSyntax) -> SyntaxVisitorContinueKind {
         guard node.macroName.text == "hotReloadable" else {
             return .visitChildren
         }
-        guard let expr = destructureSingle(node.arguments) else {
+        guard
+            node.arguments.isEmpty,
+            let expr = node.trailingClosure,
+            node.additionalTrailingClosures.isEmpty
+        else {
             return .visitChildren
         }
-        hotReloadableExprs.append(expr.expression)
+        hotReloadableExprs.append(ExprSyntax(expr))
         return .skipChildren
     }
 }
@@ -71,7 +76,7 @@ extension HotReloadableAppMacro: MemberMacro {
             let cases: [DeclSyntax] = visitor.hotReloadableExprs.enumerated().map { (index, expr) in
                 """
                 if viewId == \(raw: index.description) {
-                    return SwiftCrossUI.HotReloadableView(\(expr))
+                    return SwiftCrossUI.HotReloadableView \(expr)
                 }
                 """
             }

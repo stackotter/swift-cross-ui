@@ -1,5 +1,6 @@
 import SelectedBackend
 import SwiftCrossUI
+import SwiftBundlerRuntime
 
 class StressTestState: Observable {
     @Observed
@@ -25,6 +26,7 @@ class StressTestState: Observable {
 }
 
 @main
+@HotReloadable
 struct StressTestApp: App {
     let identifier = "dev.stackotter.StressTestApp"
 
@@ -32,29 +34,31 @@ struct StressTestApp: App {
 
     var body: some Scene {
         WindowGroup("Stress Tester") {
-            NavigationSplitView {
-                VStack {
-                    Button("List 1") { state.tab = 0 }
-                    Button("List 2") { state.tab = 1 }
-                }.padding(10)
-            } detail: {
-                VStack {
-                    Button("Generate") {
-                        var values: [String] = []
-                        for _ in 0..<1000 {
-                            values.append(state.options.randomElement()!)
-                        }
-
-                        state.values[state.tab] = values
-                    }
-                    if let values = state.values[state.tab] {
-                        ScrollView {
-                            ForEach(values) { value in
-                                Text(value)
+            #hotReloadable {
+                NavigationSplitView {
+                    VStack {
+                        Button("List 1") { state.tab = 0 }
+                        Button("List 2") { state.tab = 1 }
+                    }.padding(10)
+                } detail: {
+                    VStack {
+                        Button("Generate") {
+                            var values: [String] = []
+                            for _ in 0..<1000 {
+                                values.append(state.options.randomElement()!)
                             }
-                        }.frame(minWidth: 300)
-                    }
-                }.padding(10)
+
+                            state.values[state.tab] = values
+                        }
+                        if let values = state.values[state.tab] {
+                            ScrollView {
+                                ForEach(values) { value in
+                                    Text(value)
+                                }
+                            }.frame(minWidth: 300)
+                        }
+                    }.padding(10)
+                }
             }
         }
         .defaultSize(width: 400, height: 400)

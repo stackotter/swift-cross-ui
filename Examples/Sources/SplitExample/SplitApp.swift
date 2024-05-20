@@ -1,6 +1,7 @@
 import Foundation
 import SelectedBackend
 import SwiftCrossUI
+import SwiftBundlerRuntime
 
 enum SubjectArea {
     case science
@@ -29,6 +30,7 @@ class SplitAppState: Observable {
 }
 
 @main
+@HotReloadable
 struct SplitApp: App {
     let identifier = "dev.stackotter.SplitApp"
 
@@ -36,11 +38,13 @@ struct SplitApp: App {
 
     var body: some Scene {
         WindowGroup("Split") {
-            switch state.columns {
-                case .two:
-                    doubleColumn
-                case .three:
-                    tripleColumn
+            #hotReloadable {
+                switch state.columns {
+                    case .two:
+                        doubleColumn
+                    case .three:
+                        tripleColumn
+                }
             }
         }
         .defaultSize(width: 600, height: 250)

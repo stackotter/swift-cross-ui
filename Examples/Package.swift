@@ -1,4 +1,4 @@
-// swift-tools-version:5.6
+// swift-tools-version: 5.9
 
 import Foundation
 import PackageDescription
@@ -8,13 +8,18 @@ let backend = ProcessInfo.processInfo.environment["SCUI_BACKEND"] ?? "GtkBackend
 let exampleDependencies: [Target.Dependency] = [
     "SwiftCrossUI",
     "SelectedBackend",
+    .product(name: "SwiftBundlerRuntime", package: "swift-bundler"),
 ]
 
 let package = Package(
     name: "Examples",
     platforms: [.macOS(.v10_15)],
     dependencies: [
-        .package(name: "SwiftCrossUI", path: "..")
+        .package(name: "SwiftCrossUI", path: ".."),
+        .package(
+            url: "https://github.com/stackotter/swift-bundler",
+            revision: "5ba9c04744efd3815ba5578193c3cfa9a011bee3"
+        ),
     ],
     targets: [
         .executableTarget(
