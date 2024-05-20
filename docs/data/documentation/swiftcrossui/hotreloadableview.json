@@ -163,7 +163,8 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadableView\/init(_:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadableView\/init(_:)-80rbw",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadableView\/init(_:)-85pqu"
       ],
       "title" : "Initializers"
     },
@@ -320,7 +321,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/hotreloadableview\/body"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/HotReloadableView/init(_:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HotReloadableView/init(_:)-80rbw": {
   "abstract" : [
 
   ],
@@ -343,12 +344,42 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadableView\/init(_:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadableView\/init(_:)-80rbw",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "init(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/hotreloadableview\/init(_:)"
+  "url" : "\/documentation\/swiftcrossui\/hotreloadableview\/init(_:)-80rbw"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HotReloadableView/init(_:)-85pqu": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "(() -> some "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadableView\/init(_:)-85pqu",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hotreloadableview\/init(_:)-85pqu"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

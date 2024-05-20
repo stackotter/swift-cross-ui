@@ -8,8 +8,8 @@
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChildren(_:ofVStack:)-3cvac",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChildren(_:ofVStack:)-bpyg"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChildren(_:ofVStack:)-bpyg",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setChildren(_:ofVStack:)-3cvac"
       ],
       "title" : "AppBackend Implementations"
     }

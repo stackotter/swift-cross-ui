@@ -9,7 +9,7 @@
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadableView\/init(_:)"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadableView\/init(_:)-80rbw"
   },
   "kind" : "symbol",
   "metadata" : {
@@ -109,7 +109,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/hotreloadableview\/init(_:)"
+        "\/documentation\/swiftcrossui\/hotreloadableview\/init(_:)-80rbw"
       ],
       "traits" : [
         {
@@ -200,7 +200,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/hotreloadableview"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/HotReloadableView/init(_:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HotReloadableView/init(_:)-80rbw": {
   "abstract" : [
 
   ],
@@ -223,12 +223,12 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadableView\/init(_:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadableView\/init(_:)-80rbw",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "init(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/hotreloadableview\/init(_:)"
+  "url" : "\/documentation\/swiftcrossui\/hotreloadableview\/init(_:)-80rbw"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

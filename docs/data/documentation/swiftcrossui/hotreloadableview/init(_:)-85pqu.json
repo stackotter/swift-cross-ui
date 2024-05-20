@@ -2,54 +2,35 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadableView"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/hotReloadable(_:)"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadableView\/init(_:)-85pqu"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI13hotReloadableyAA03HotE4ViewVxyXEcAA0G0Rzlufm",
+    "externalID" : "s:12SwiftCrossUI17HotReloadableViewVyACxyXEcAA0F0Rzlufc",
     "fragments" : [
       {
-        "kind" : "keyword",
-        "text" : "macro"
-      },
-      {
-        "kind" : "text",
-        "text" : " "
-      },
-      {
         "kind" : "identifier",
-        "text" : "hotReloadable"
+        "text" : "init"
       },
       {
         "kind" : "text",
-        "text" : "<"
-      },
-      {
-        "kind" : "genericParameter",
-        "text" : "T"
-      },
-      {
-        "kind" : "text",
-        "text" : ">(() -> "
+        "text" : "(() -> some "
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "T"
+        "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+        "text" : "View"
       },
       {
         "kind" : "text",
-        "text" : ") -> "
-      },
-      {
-        "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI17HotReloadableViewV",
-        "text" : "HotReloadableView"
+        "text" : ")"
       }
     ],
     "modules" : [
@@ -58,13 +39,13 @@
       }
     ],
     "remoteSource" : {
-      "fileName" : "HotReloadingMacros.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/HotReloadingMacros.swift#L13"
+      "fileName" : "HotReloadableView.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/HotReloadableView.swift#L22"
     },
     "role" : "symbol",
-    "roleHeading" : "Macro",
-    "symbolKind" : "macro",
-    "title" : "hotReloadable(_:)"
+    "roleHeading" : "Initializer",
+    "symbolKind" : "init",
+    "title" : "init(_:)"
   },
   "primaryContentSections" : [
     {
@@ -78,36 +59,12 @@
           ],
           "tokens" : [
             {
-              "kind" : "attribute",
-              "text" : "@freestanding"
-            },
-            {
-              "kind" : "text",
-              "text" : "(expression) "
-            },
-            {
               "kind" : "keyword",
-              "text" : "macro"
+              "text" : "init"
             },
             {
               "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "identifier",
-              "text" : "hotReloadable"
-            },
-            {
-              "kind" : "text",
-              "text" : "<"
-            },
-            {
-              "kind" : "genericParameter",
-              "text" : "T"
-            },
-            {
-              "kind" : "text",
-              "text" : ">("
+              "text" : "("
             },
             {
               "kind" : "attribute",
@@ -133,51 +90,21 @@
             },
             {
               "kind" : "internalParam",
-              "text" : "expr"
+              "text" : "child"
             },
             {
               "kind" : "text",
-              "text" : ": () -> "
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "T"
-            },
-            {
-              "kind" : "text",
-              "text" : ") -> "
-            },
-            {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadableView",
-              "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI17HotReloadableViewV",
-              "text" : "HotReloadableView"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "keyword",
-              "text" : "where"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "T"
-            },
-            {
-              "kind" : "text",
-              "text" : " : "
+              "text" : ": () -> some "
             },
             {
               "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
               "kind" : "typeIdentifier",
               "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
               "text" : "View"
+            },
+            {
+              "kind" : "text",
+              "text" : ")"
             }
           ]
         }
@@ -196,7 +123,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/hotreloadable(_:)"
+        "\/documentation\/swiftcrossui\/hotreloadableview\/init(_:)-85pqu"
       ],
       "traits" : [
         {
@@ -287,6 +214,36 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/hotreloadableview"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HotReloadableView/init(_:)-85pqu": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "(() -> some "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadableView\/init(_:)-85pqu",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hotreloadableview\/init(_:)-85pqu"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
@@ -362,56 +319,6 @@
   "title" : "ViewBuilder",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewbuilder"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/hotReloadable(_:)": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "macro"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "hotReloadable"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "genericParameter",
-      "text" : "T"
-    },
-    {
-      "kind" : "text",
-      "text" : ">(() -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "T"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI17HotReloadableViewV",
-      "text" : "HotReloadableView"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/hotReloadable(_:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "hotReloadable(_:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/hotreloadable(_:)"
 }
 }
 }

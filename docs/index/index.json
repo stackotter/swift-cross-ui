@@ -3690,13 +3690,13 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-3cvac",
-                        "title" : "func setChildren([AnyWidget], ofVStack: Self.Widget)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-bpyg",
+                        "title" : "func setChildren([Self.Widget], ofVStack: Self.Widget)",
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-bpyg",
-                        "title" : "func setChildren([Self.Widget], ofVStack: Self.Widget)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/setchildren(_:ofvstack:)-3cvac",
+                        "title" : "func setChildren([AnyWidget], ofVStack: Self.Widget)",
                         "type" : "method"
                       }
                     ],
@@ -4462,8 +4462,13 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/init(_:)",
+                "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/init(_:)-80rbw",
                 "title" : "init(View)",
+                "type" : "init"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/init(_:)-85pqu",
+                "title" : "init(() -> some View)",
                 "type" : "init"
               },
               {
@@ -6926,7 +6931,7 @@
           },
           {
             "path" : "\/documentation\/swiftcrossui\/hotreloadable(_:)",
-            "title" : "macro hotReloadable<T>(T) -> HotReloadableView",
+            "title" : "macro hotReloadable<T>(() -> T) -> HotReloadableView",
             "type" : "macro"
           },
           {
