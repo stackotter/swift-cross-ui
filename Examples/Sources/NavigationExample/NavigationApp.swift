@@ -1,7 +1,10 @@
 import Foundation
 import SelectedBackend
 import SwiftCrossUI
-import SwiftBundlerRuntime
+
+#if canImport(SwiftBundlerRuntime)
+    import SwiftBundlerRuntime
+#endif
 
 enum SubjectArea: Codable {
     case science
@@ -45,7 +48,8 @@ struct NavigationApp: App {
                             Text("Choose a science subject")
                                 .padding(.bottom, 10)
 
-                            NavigationLink("Physics", value: ScienceSubject.physics, path: state.$path)
+                            NavigationLink(
+                                "Physics", value: ScienceSubject.physics, path: state.$path)
                             NavigationLink(
                                 "Chemistry", value: ScienceSubject.chemistry, path: state.$path)
                         case .humanities:

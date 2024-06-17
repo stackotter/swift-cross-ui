@@ -8,7 +8,11 @@ let backend = ProcessInfo.processInfo.environment["SCUI_BACKEND"] ?? "GtkBackend
 let exampleDependencies: [Target.Dependency] = [
     "SwiftCrossUI",
     "SelectedBackend",
-    .product(name: "SwiftBundlerRuntime", package: "swift-bundler"),
+    .product(
+        name: "SwiftBundlerRuntime",
+        package: "swift-bundler",
+        condition: .when(platforms: [.macOS, .linux])
+    ),
 ]
 
 let package = Package(

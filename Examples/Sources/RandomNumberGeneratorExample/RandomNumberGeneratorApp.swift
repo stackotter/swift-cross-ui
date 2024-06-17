@@ -1,6 +1,10 @@
 import SelectedBackend
 import SwiftCrossUI
 
+#if canImport(SwiftBundlerRuntime)
+    import SwiftBundlerRuntime
+#endif
+
 class RandomNumberGeneratorState: Observable {
     @Observed var minNum = 0
     @Observed var maxNum = 100

@@ -60,9 +60,14 @@ if let backend = ProcessInfo.processInfo.environment["SCUI_DEFAULT_BACKEND"] {
     #endif
 }
 
-let hotReloadingEnabled =
-    ProcessInfo.processInfo.environment["SWIFT_BUNDLER_HOT_RELOADING"] != nil
-    || ProcessInfo.processInfo.environment["SCUI_HOT_RELOADING"] != nil
+let hotReloadingEnabled: Bool
+#if os(Windows)
+    hotReloadingEnabled = false
+#else
+    hotReloadingEnabled =
+        ProcessInfo.processInfo.environment["SWIFT_BUNDLER_HOT_RELOADING"] != nil
+        || ProcessInfo.processInfo.environment["SCUI_HOT_RELOADING"] != nil
+#endif
 
 var swiftSettings: [SwiftSetting] = []
 if hotReloadingEnabled {

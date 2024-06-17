@@ -1,7 +1,10 @@
 import Foundation
 import SelectedBackend
 import SwiftCrossUI
-import SwiftBundlerRuntime
+
+#if canImport(SwiftBundlerRuntime)
+    import SwiftBundlerRuntime
+#endif
 
 enum SubjectArea {
     case science

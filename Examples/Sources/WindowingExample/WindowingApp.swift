@@ -1,7 +1,10 @@
 import Foundation
 import SelectedBackend
 import SwiftCrossUI
-import SwiftBundlerRuntime
+
+#if canImport(SwiftBundlerRuntime)
+    import SwiftBundlerRuntime
+#endif
 
 class WindowingAppState: Observable {
     @Observed var title = "My window"

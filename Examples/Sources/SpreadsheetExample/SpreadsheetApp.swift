@@ -1,6 +1,9 @@
 import SelectedBackend
 import SwiftCrossUI
-import SwiftBundlerRuntime
+
+#if canImport(SwiftBundlerRuntime)
+    import SwiftBundlerRuntime
+#endif
 
 struct Person {
     var name: String
