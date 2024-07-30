@@ -44,3 +44,8 @@ version = '0.1.0'
 identifier = 'dev.stackotter.StressTestExample'
 product = 'StressTestExample'
 version = '0.1.0'
+
+[apps.NotesExample]
+identifier = 'dev.stackotter.NotesExample'
+product = 'NotesExample'
+version = '0.1.0'

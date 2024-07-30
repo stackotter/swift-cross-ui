@@ -63,6 +63,10 @@ let package = Package(
             name: "StressTestExample",
             dependencies: exampleDependencies
         ),
+        .executableTarget(
+            name: "NotesExample",
+            dependencies: exampleDependencies
+        ),
         .target(
             name: "SelectedBackend",
             dependencies: [

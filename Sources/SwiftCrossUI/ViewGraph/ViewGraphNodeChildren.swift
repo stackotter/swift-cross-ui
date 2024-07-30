@@ -13,17 +13,6 @@ public protocol ViewGraphNodeChildren {
 }
 
 extension ViewGraphNodeChildren {
-    /// Bundles the node's children into a single layout-transparent container (will take
-    /// on the orientation of its parent).
-    public func asSingleWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
-        let widgets: [Backend.Widget] = widgets.map { $0.into() }
-        let stack = backend.createLayoutTransparentStack()
-        for widget in widgets {
-            backend.addChild(widget, toLayoutTransparentStack: stack)
-        }
-        return stack
-    }
-
     /// Gets the node's type-erased widgets for a specific backend (crashing if the
     /// widgets were created by a different backend).
     public func widgets<Backend: AppBackend>(for backend: Backend) -> [Backend.Widget] {

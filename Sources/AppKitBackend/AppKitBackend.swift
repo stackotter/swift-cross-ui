@@ -330,7 +330,8 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func createTextField() -> Widget {
-        return .view(NSObservableTextField())
+        let field = NSObservableTextField()
+        return .view(field)
     }
 
     public func updateTextField(
