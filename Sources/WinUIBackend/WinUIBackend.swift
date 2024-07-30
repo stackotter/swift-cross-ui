@@ -39,7 +39,7 @@ public struct WinUIBackend: AppBackend {
 
     private var internalState: InternalState
 
-    public init(appIdentifier _: String) {
+    public init() {
         internalState = InternalState()
     }
 

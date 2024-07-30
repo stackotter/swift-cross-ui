@@ -51,7 +51,7 @@ public final class LVGLBackend: AppBackend {
     private let runLoop: LVRunLoop
     private var hasCreatedWindow = false
 
-    public init(appIdentifier: String) {
+    public init() {
         runLoop = LVRunLoop.shared
     }
 

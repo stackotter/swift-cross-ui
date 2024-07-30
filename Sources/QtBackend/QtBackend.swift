@@ -22,7 +22,7 @@ public struct QtBackend: AppBackend {
     private var internalState: InternalState
     private let application: QApplication
 
-    public init(appIdentifier: String) {
+    public init() {
         internalState = InternalState()
         application = QApplication()
     }

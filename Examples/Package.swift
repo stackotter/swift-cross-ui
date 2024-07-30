@@ -7,6 +7,7 @@ let backend = ProcessInfo.processInfo.environment["SCUI_BACKEND"] ?? "GtkBackend
 
 let exampleDependencies: [Target.Dependency] = [
     "SwiftCrossUI",
+    // TODO: Switch to DefaultBackend once all examples work with all of the three major backends.
     "SelectedBackend",
     .product(
         name: "SwiftBundlerRuntime",

@@ -15,7 +15,7 @@ class _App<AppRoot: App> {
 
     /// Wraps a user's app implementation.
     init(_ app: AppRoot) {
-        backend = AppRoot.Backend(appIdentifier: app.identifier)
+        backend = app.backend
         self.app = app
     }
 

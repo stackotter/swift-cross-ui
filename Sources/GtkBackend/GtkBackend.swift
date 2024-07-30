@@ -24,6 +24,11 @@ public final class GtkBackend: AppBackend {
     /// this needs to be returned on the first call to `createWindow`.
     var precreatedWindow: Window?
 
+    /// Creates a backend instance using the default app identifier `com.example.SwiftCrossUIApp`.
+    convenience public init() {
+        self.init(appIdentifier: "com.example.SwiftCrossUIApp")
+    }
+
     public init(appIdentifier: String) {
         gtkApp = Application(applicationId: appIdentifier)
     }

@@ -31,7 +31,7 @@ public struct AppKitBackend: AppBackend {
         }
     }
 
-    public init(appIdentifier: String) {}
+    public init() {}
 
     public func runMainLoop(_ callback: @escaping () -> Void) {
         callback()

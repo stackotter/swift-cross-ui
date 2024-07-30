@@ -46,7 +46,7 @@ public protocol AppBackend {
     associatedtype Window
     associatedtype Widget
 
-    init(appIdentifier: String)
+    init()
 
     /// Often in UI frameworks (such as Gtk), code is run in a callback
     /// after starting the app, and hence this generic root window creation

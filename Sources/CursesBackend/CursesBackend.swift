@@ -13,7 +13,7 @@ public final class CursesBackend: AppBackend {
     var root: RootView
     var hasCreatedWindow = false
 
-    public init(appIdentifier: String) {
+    public init() {
         Application.prepare()
         root = RootView()
         Application.top.addSubview(root)

@@ -9,8 +9,8 @@ public protocol App {
     /// The app's observed state.
     associatedtype State: Observable
 
-    /// The application's identifier.
-    var identifier: String { get }
+    /// The application's backend.
+    var backend: Backend { get }
 
     /// The application's state.
     var state: State { get }
@@ -29,22 +29,29 @@ public var _forceRefresh: () -> Void = {}
 extension App {
     /// Runs the application.
     public static func main() {
-        let app = _App(Self())
+        let app = Self()
+        let _app = _App(app)
         _forceRefresh = {
             if String(describing: type(of: app.backend)) == "AppKitBackend" {
                 DispatchQueue.main.async {
-                    app.forceRefresh()
+                    _app.forceRefresh()
                 }
             } else {
-                app.forceRefresh()
+                _app.forceRefresh()
             }
         }
-        app.run()
+        _app.run()
     }
 }
 
 extension App where State == EmptyState {
     public var state: State {
         EmptyState()
+    }
+}
+
+extension App {
+    public var backend: Backend {
+        Backend()
     }
 }
