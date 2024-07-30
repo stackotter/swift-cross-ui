@@ -188,6 +188,16 @@ open class Widget: GObjectRepresentable {
         gtk_widget_set_size_request(widgetPointer, Int32(width), Int32(height))
     }
 
+    public func getNaturalSize() -> (width: Int, height: Int) {
+        var minimumSize = GtkRequisition()
+        var naturalSize = GtkRequisition()
+        gtk_widget_get_preferred_size(widgetPointer, &minimumSize, &naturalSize)
+        return (
+            width: Int(naturalSize.width),
+            height: Int(naturalSize.height)
+        )
+    }
+
     @GObjectProperty(named: "name") public var name: String?
 
     @GObjectProperty(named: "opacity") public var opacity: Double

@@ -1,6 +1,8 @@
 module CGtk [system] {
   header "header.h"
   link "gtk-4"
+  link "pango-1.0"
+  link "pangocairo-1.0"
 
   export *
 }
