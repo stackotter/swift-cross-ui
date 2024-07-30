@@ -29,7 +29,6 @@ public enum Align: GValueRepresentableEnum {
     /// Center natural width of widget inside the allocation
     case center
     /// Align the widget according to the baseline.
-    /// See [class@Gtk.Widget]. Deprecated: 4.12: Use `GTK_ALIGN_BASELINE_FILL` instead
     case baseline
 
     /// Converts a Gtk value to its corresponding swift representation.

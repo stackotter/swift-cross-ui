@@ -31,6 +31,10 @@ import CGtk
 /// <object class="GtkDropDown"><property name="model"><object class="GtkStringList"><items><item translatable="yes">Factory</item><item translatable="yes">Home</item><item translatable="yes">Subway</item></items></object></property></object>
 /// ```
 ///
+/// If a `GtkDropDown` is created in this manner, or with
+/// [ctor@Gtk.DropDown.new_from_strings], for instance, the object returned from
+/// [method@Gtk.DropDown.get_selected_item] will be a [class@Gtk.StringObject].
+///
 /// To learn more about the list widget framework, see the
 /// [overview](section-list-widget.html).
 ///

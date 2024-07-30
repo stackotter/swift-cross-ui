@@ -156,7 +156,8 @@ struct Enumeration: Decodable {
     struct Member: Decodable {
         var name: String
         var cIdentifier: String
-        var doc: String
+        var doc: String?
+        var version: String?
     }
 }
 

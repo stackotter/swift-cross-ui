@@ -43,6 +43,8 @@ public enum License: GValueRepresentableEnum {
     case apache20
     /// The Mozilla Public License, version 2.0
     case mpl20
+    /// Zero-Clause BSD license
+    case zeroBsd
 
     /// Converts a Gtk value to its corresponding swift representation.
     public init(from gtkEnum: GtkLicense) {
@@ -83,6 +85,8 @@ public enum License: GValueRepresentableEnum {
                 self = .apache20
             case GTK_LICENSE_MPL_2_0:
                 self = .mpl20
+            case GTK_LICENSE_0BSD:
+                self = .zeroBsd
             default:
                 fatalError("Unsupported GtkLicense enum value: \(gtkEnum.rawValue)")
         }
@@ -127,6 +131,8 @@ public enum License: GValueRepresentableEnum {
                 return GTK_LICENSE_APACHE_2_0
             case .mpl20:
                 return GTK_LICENSE_MPL_2_0
+            case .zeroBsd:
+                return GTK_LICENSE_0BSD
         }
     }
 }

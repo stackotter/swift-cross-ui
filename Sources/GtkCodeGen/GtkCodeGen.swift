@@ -112,8 +112,16 @@ struct GtkCodeGen {
     static func generateEnum(_ enumeration: Enumeration) -> String {
         // Filter out members which were introduced after 4.0
         let members = enumeration.members.filter { member in
-            // Why they gotta be inconsistent like that 💀
-            !member.doc.contains("Since: ") && !member.doc.contains("Since ")
+            if member.version != nil {
+                return false
+            }
+
+            if let doc = member.doc {
+                // Why they gotta be inconsistent like that 💀
+                return !doc.contains("Since: ") && !doc.contains("Since ")
+            } else {
+                return true
+            }
         }
 
         var cases: [DeclSyntax] = []
@@ -227,11 +235,11 @@ struct GtkCodeGen {
             properties.append(decl)
         }
 
-        var signals = class_.getAllImplemented(\.signals, namespace: namespace)
         // TODO: Refactor so that notify::property signal handlers aren't just hacked into the
         //   signal handler generation code so jankily. Ideally we should decouple the signal generation
         //   code from the GIR types a bit more so that we can synthesize signals without having to
         //   create fake GIR entries.
+        var signals = class_.getAllImplemented(\.signals, namespace: namespace)
         for (classLike, property) in class_.getAllImplemented(\.properties, namespace: namespace) {
             signals.append(
                 (
@@ -251,6 +259,7 @@ struct GtkCodeGen {
                 )
             )
         }
+
         for (_, signal) in signals {
             properties.append(
                 generateSignalHandlerProperty(signal, className: class_.name, forProtocol: false)
@@ -580,6 +589,10 @@ struct GtkCodeGen {
         let keywords = ["true", "false", "default", "switch", "import"]
         if keywords.contains(identifier) {
             return "\(identifier)_"
+        }
+        var identifier = identifier
+        if identifier.starts(with: "0") {
+            identifier = "zero_" + identifier.dropFirst()
         }
         return convertDelimitedCasingToCamel(identifier, delimiter: "_")
     }

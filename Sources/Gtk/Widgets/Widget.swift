@@ -184,6 +184,10 @@ open class Widget: GObjectRepresentable {
         gtk_widget_set_visible(widgetPointer, false.toGBoolean())
     }
 
+    public func setSizeRequest(width: Int, height: Int) {
+        gtk_widget_set_size_request(widgetPointer, Int32(width), Int32(height))
+    }
+
     @GObjectProperty(named: "name") public var name: String?
 
     @GObjectProperty(named: "opacity") public var opacity: Double
