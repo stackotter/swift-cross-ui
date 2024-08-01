@@ -9,6 +9,14 @@ public protocol View {
     /// and the view itself to be updated.
     var state: State { get set }
 
+    /// The view's size flexibility. E.g. a spacer without a specified size has the highest
+    /// flexibility and a fixed size view has a flexibility of zero. Less flexible views get
+    /// first dibs when claiming space in layouts.
+    ///
+    /// This is an advanced feature which should only be used when creating custom leaf or
+    /// layout views. Defaults to the flexibility of the view's body.
+    var flexibility: Int { get }
+
     /// The view's contents.
     @ViewBuilder var body: Content { get }
 
@@ -19,39 +27,50 @@ public protocol View {
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) -> any ViewGraphNodeChildren
 
-    /// Updates all of the view's children after an update-causing change has occured.
-    /// `children` is type-erased to avoid leaking complex requirements to users
-    /// creating regular ``View``s.
-    func updateChildren<Backend: AppBackend>(
-        _ children: any ViewGraphNodeChildren, backend: Backend
-    )
+    /// Gets the view's children in a format that can be consumed by the ``LayoutSystem``.
+    /// This really only needs to be its own method for views such as VStack which treat
+    /// their child's children as their own and skip over their direct child.
+    func layoutableChildren<Backend: AppBackend>(
+        backend: Backend,
+        children: any ViewGraphNodeChildren
+    ) -> [LayoutSystem.LayoutableChild]
 
     /// Creates the view's widget using the supplied backend.
     ///
     /// A view is represented by the same widget instance for the whole time that it's visible even
     /// if its content is changing; keep that in mind while deciding the structure of the widget.
-    /// For example, a view displaying one of two children should use
-    /// ``AppBackend/createEitherContainer(initiallyContaining:)`` as a container for the currently
-    /// displayed child instead of just returning the widget of the currently displayed child,
-    /// which would result in you not being able to ever switch to displaying the other child.
+    /// For example, a view displaying one of two children should use ``AppBackend/createContainer()``
+    /// to create a container for the displayed child instead of just directly returning the widget
+    /// of the currently displayed child (which would result in you not being able to ever switch
+    /// to displaying the other child). This constraint significantly simplifies view implementations
+    /// without requiring widgets to be re-created after every single update.
     func asWidget<Backend: AppBackend>(
         _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget
 
     /// Updates the view's widget after a state change occurs (although the change isn't guaranteed
-    /// to have affected this particular view).
+    /// to have affected this particular view). `proposedSize` is the size suggested by the parent
+    /// container, but child views always get the final call on their own size.
     ///
-    /// Always called once immediately after creating the view's widget with ``View/asWidget(_:backend:)``
-    /// -- allowing for code duplication between creation and updating to be reduced.
+    /// Always called once immediately after creating the view's widget with. This helps reduce
+    /// code duplication between `asWidget` and `update`.
+    ///
+    /// - Returns: The view's new size.
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation,
         backend: Backend
-    )
+    ) -> SIMD2<Int>
 }
 
 extension View {
+    public var flexibility: Int {
+        body.flexibility
+    }
+
     public func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
@@ -59,25 +78,37 @@ extension View {
         body.children(backend: backend, snapshots: snapshots)
     }
 
-    public func updateChildren<Backend: AppBackend>(
-        _ children: any ViewGraphNodeChildren, backend: Backend
-    ) {
-        body.updateChildren(children, backend: backend)
+    public func layoutableChildren<Backend: AppBackend>(
+        backend: Backend,
+        children: any ViewGraphNodeChildren
+    ) -> [LayoutSystem.LayoutableChild] {
+        body.layoutableChildren(backend: backend, children: children)
     }
 
     public func asWidget<Backend: AppBackend>(
         _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = backend.createVStack()
-        backend.setSpacing(ofVStack: vStack, to: 8)
-        backend.setChildren(children.widgets(for: backend), ofVStack: vStack)
-        return vStack
+        let vStack = VStack(body)
+        return vStack.asWidget(children, backend: backend)
     }
 
     public func update<Backend: AppBackend>(
-        _ widget: Backend.Widget, children: any ViewGraphNodeChildren, backend: Backend
-    ) {}
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation,
+        backend: Backend
+    ) -> SIMD2<Int> {
+        let vStack = VStack(body)
+        return vStack.update(
+            widget,
+            children: children,
+            proposedSize: proposedSize,
+            parentOrientation: parentOrientation,
+            backend: backend
+        )
+    }
 }
 
 extension View where State == EmptyState {

@@ -108,58 +108,29 @@ public protocol AppBackend {
 
     // MARK: Containers
 
-    /// Creates a vertical container. Predominantly used by ``VStack``.`
-    func createVStack() -> Widget
-    /// Sets the children of a VStack. Will be called once and only once per VStack.
-    func setChildren(_ children: [Widget], ofVStack container: Widget)
-    /// Sets the spacing between children of a vertical container.
-    func setSpacing(ofVStack widget: Widget, to spacing: Int)
-
-    /// Creates a horizontal container. Predominantly used by ``HStack``.`
-    func createHStack() -> Widget
-    /// Sets the children of a VStack. Will be called once and only once per HStack.
-    func setChildren(_ children: [Widget], ofHStack container: Widget)
-    /// Sets the spacing between children of a horizontal container.
-    func setSpacing(ofHStack widget: Widget, to spacing: Int)
-
-    /// Creates a single-child container. Predominantly used to implement ``EitherView``.
-    func createSingleChildContainer() -> Widget
-    /// Sets the child of a single-child container. Only called once the container has been
-    /// added to the widget hierarchy.
-    func setChild(ofSingleChildContainer container: Widget, to widget: Widget?)
-
-    /// Creates a view with a (theoretically) unlimited number of children, which inherits the
-    /// orientation of its nearest oriented parent. Should be vertical if it doesn't have any
-    /// oriented parents. Often used as a layout-transparent container (e.g. by
-    /// ``ViewGraphNodeChildren`` implementations which use it to avoid partaking in layout).
-    /// Also used by to implement ``ForEach``.
-    func createLayoutTransparentStack() -> Widget
-    /// Adds a child to the end of a layout-transparent stack.
-    func addChild(_ child: Widget, toLayoutTransparentStack container: Widget)
-    /// Removes a child from a layout-transparent stack. Does nothing if the child doesn't exist.
-    func removeChild(_ child: Widget, fromLayoutTransparentStack container: Widget)
-    /// Updates a layout-transparent stack's orientation to match that of its nearest oriented
-    /// parent.
-    func updateLayoutTransparentStack(_ container: Widget)
+    /// Creates a container in which children can be layed out by SwiftCrossUI using exact
+    /// pixel positions.
+    func createContainer() -> Widget
+    /// Adds a child to a given container at an exact position.
+    func addChild(_ child: Widget, to container: Widget)
+    /// Sets the position of the specified child in a container.
+    func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>)
+    /// Removes a child widget from a container (if the child is a direct child of the container).
+    func removeChild(_ child: Widget, from container: Widget)
+    /// Gets the natural size of a given widget. E.g. the natural size of a button may be the size
+    /// of the label (without line wrapping) plus a bit of padding and a border.
+    func naturalSize(of widget: Widget) -> SIMD2<Int>
+    /// Sets the size of a widget.
+    func setSize(of widget: Widget, to size: SIMD2<Int>)
+    /// Gets the size that the given text would have if it were layed out attempting to stay
+    /// within the proposed frame (most backends only use the proposed width and ignore the
+    /// proposed height). The size returned by this function should be upheld by the layout
+    /// system; child views should always get the final say on their size, parents just choose how
+    /// the children get layed out.
+    func size(of text: String, in proposedFrame: SIMD2<Int>) -> SIMD2<Int>
 
     /// Creates a scrollable single-child container wrapping the given widget.
     func createScrollContainer(for child: Widget) -> Widget
-
-    /// Creates a container that can (theoretically) have an unlimited number of children
-    /// while only displaying one child at a time (selected using ``Backend/setVisibleChild``).
-    /// Differs from ``AppBackend/createSingleChildContainer()`` because it allows
-    /// transitions to be displayed when switching between children (unlike the single child
-    /// container which only ever has the current widget as its child meaning that it can't
-    /// do transitions).
-    func createOneOfContainer() -> Widget
-    /// Adds a child to a one-of container.
-    func addChild(_ child: Widget, toOneOfContainer container: Widget)
-    /// Removes a child from a one-of container.
-    func removeChild(_ child: Widget, fromOneOfContainer container: Widget)
-    /// Sets the visible child of a one-of container. Uses a widget reference instead of an
-    /// index since the visible child should remain the same even if the visible child's
-    /// index changes (e.g. due to a child being removed from before the visible child).
-    func setVisibleChild(ofOneOfContainer container: Widget, to child: Widget)
 
     /// Creates a split view containing two children visible side by side.
     ///
@@ -167,23 +138,6 @@ public protocol AppBackend {
     /// inside another container such as a VStack (avoiding update methods makes maintaining
     /// a multitude of backends a bit easier).
     func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget
-
-    // MARK: Layout
-
-    /// Creates a contentless spacer that can expand along either axis (or both). The spacer
-    /// can have a minimum size to ensure that it takes up at least a cetain amount of space.
-    func createSpacer() -> Widget
-    /// Sets whether a spacer should expand along the horizontal and vertical axes, along
-    /// with a minimum size to use along expanding axes.
-    func updateSpacer(
-        _ spacer: Widget,
-        expandHorizontally: Bool,
-        expandVertically: Bool,
-        minSize: Int
-    )
-
-    /// Gets the orientation of a widget's first oriented parent (if any).
-    func getInheritedOrientation(of widget: Widget) -> InheritedOrientation?
 
     // MARK: Passive views
 
@@ -283,67 +237,11 @@ public protocol AppBackend {
 
     // MARK: Modifiers
 
-    /// Creates a single-child container which can have size constraints. Used to
-    /// implement the ``View/frame(minWidth:maxWidth:)`` modifier.
-    func createFrameContainer(for child: Widget) -> Widget
-    /// Sets the minimum width and minimum height of a frame container.
-    func updateFrameContainer(_ container: Widget, minWidth: Int, minHeight: Int)
-
-    /// Creates a single-child container with configurable padding. Used
-    /// to implement the ``View/padding(_:)`` and ``View/padding(_:_:)`` modifiers.
-    func createPaddingContainer(for child: Widget) -> Widget
-    /// Sets the padding of a padding container.
-    func setPadding(
-        ofPaddingContainer container: Widget,
-        top: Int,
-        bottom: Int,
-        leading: Int,
-        trailing: Int
-    )
-
     /// Creates a single-child container which can control the styles of its child.
     /// Used to implement style modifiers; i.e. ``View/foregroundColor(_:)``.
     func createStyleContainer(for child: Widget) -> Widget
     /// Sets the foreground color of a foreground color container.
     func setForegroundColor(ofStyleContainer container: Widget, to color: Color)
-}
-
-extension AppBackend {
-    /// A helper to add multiple type-erased children to a vertical container at once.
-    /// Will crash if any of the widgets are for a different backend. Should be called
-    /// once and only once per VStack.
-    public func setChildren(_ children: [AnyWidget], ofVStack container: Widget) {
-        setChildren(
-            children.map { child -> Widget in child.into() },
-            ofVStack: container
-        )
-    }
-
-    /// A helper to add multiple type-erased children to a horizontal container at once.
-    /// Will crash if any of the widgets are for a different backend. Should be called
-    /// once and only once per HStack.
-    public func setChildren(_ children: [AnyWidget], ofHStack container: Widget) {
-        setChildren(
-            children.map { child -> Widget in child.into() },
-            ofHStack: container
-        )
-    }
-
-    /// A helper to add multiple children to a layout-transparent container at once.
-    public func addChildren(_ children: [Widget], toLayoutTransparentStack container: Widget) {
-        for child in children {
-            addChild(child, toLayoutTransparentStack: container)
-        }
-    }
-
-    /// A helper to add multiple type-erased children to a layout-transparent container
-    /// at once. Will crash if any of the widgets are for a different backend.
-    public func addChildren(_ children: [AnyWidget], toLayoutTransparentStack container: Widget) {
-        addChildren(
-            children.map { child -> Widget in child.into() },
-            toLayoutTransparentStack: container
-        )
-    }
 }
 
 extension AppBackend {
@@ -355,79 +253,11 @@ extension AppBackend {
 
     // MARK: Containers
 
-    public func createVStack() -> Widget {
-        todo()
-    }
-    public func setChildren(_ children: [Widget], ofVStack container: Widget) {
-        todo()
-    }
-    public func setSpacing(ofVStack widget: Widget, to spacing: Int) {
-        todo()
-    }
-
-    public func createHStack() -> Widget {
-        todo()
-    }
-    public func setChildren(_ children: [Widget], ofHStack container: Widget) {
-        todo()
-    }
-    public func setSpacing(ofHStack widget: Widget, to spacing: Int) {
-        todo()
-    }
-
-    public func createSingleChildContainer() -> Widget {
-        todo()
-    }
-    public func setChild(ofSingleChildContainer container: Widget, to widget: Widget?) {
-        todo()
-    }
-
-    public func createLayoutTransparentStack() -> Widget {
-        todo()
-    }
-    public func addChild(_ child: Widget, toLayoutTransparentStack container: Widget) {
-        todo()
-    }
-    public func removeChild(_ child: Widget, fromLayoutTransparentStack container: Widget) {
-        todo()
-    }
-    public func updateLayoutTransparentStack(_ container: Widget) {
-        todo()
-    }
-
     public func createScrollContainer(for child: Widget) -> Widget {
         todo()
     }
 
-    public func createOneOfContainer() -> Widget {
-        todo()
-    }
-    public func addChild(_ child: Widget, toOneOfContainer container: Widget) {
-        todo()
-    }
-    public func removeChild(_ child: Widget, fromOneOfContainer container: Widget) {
-        todo()
-    }
-    public func setVisibleChild(ofOneOfContainer container: Widget, to child: Widget) {
-        todo()
-    }
-
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
-        todo()
-    }
-
-    // MARK: Layout
-
-    public func createSpacer() -> Widget {
-        todo()
-    }
-    public func updateSpacer(
-        _ spacer: Widget, expandHorizontally: Bool, expandVertically: Bool, minSize: Int
-    ) {
-        todo()
-    }
-
-    public func getInheritedOrientation(of widget: Widget) -> InheritedOrientation? {
         todo()
     }
 
@@ -532,26 +362,6 @@ extension AppBackend {
     }
 
     // MARK: Modifiers
-
-    public func createFrameContainer(for child: Widget) -> Widget {
-        todo()
-    }
-    public func updateFrameContainer(_ container: Widget, minWidth: Int, minHeight: Int) {
-        todo()
-    }
-
-    public func createPaddingContainer(for child: Widget) -> Widget {
-        todo()
-    }
-    public func setPadding(
-        ofPaddingContainer container: Widget,
-        top: Int,
-        bottom: Int,
-        leading: Int,
-        trailing: Int
-    ) {
-        todo()
-    }
 
     public func createStyleContainer(for child: Widget) -> Widget {
         todo()

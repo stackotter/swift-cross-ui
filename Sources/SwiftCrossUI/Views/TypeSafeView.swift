@@ -10,9 +10,10 @@ protocol TypeSafeView: View {
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) -> Children
 
-    func updateChildren<Backend: AppBackend>(
-        _ children: Children, backend: Backend
-    )
+    func layoutableChildren<Backend: AppBackend>(
+        backend: Backend,
+        children: Children
+    ) -> [LayoutSystem.LayoutableChild]
 
     func asWidget<Backend: AppBackend>(
         _ children: Children,
@@ -22,8 +23,10 @@ protocol TypeSafeView: View {
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation,
         backend: Backend
-    )
+    ) -> SIMD2<Int>
 }
 
 extension TypeSafeView {
@@ -35,10 +38,11 @@ extension TypeSafeView {
         return children
     }
 
-    public func updateChildren<Backend: AppBackend>(
-        _ children: any ViewGraphNodeChildren, backend: Backend
-    ) {
-        updateChildren(children as! Children, backend: backend)
+    public func layoutableChildren<Backend: AppBackend>(
+        backend: Backend,
+        children: any ViewGraphNodeChildren
+    ) -> [LayoutSystem.LayoutableChild] {
+        return layoutableChildren(backend: backend, children: children as! Children)
     }
 
     public func asWidget<Backend: AppBackend>(
@@ -51,21 +55,16 @@ extension TypeSafeView {
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation,
         backend: Backend
-    ) {
-        update(widget, children: children as! Children, backend: backend)
-    }
-}
-
-extension TypeSafeView where Content: TypeSafeView, Children == Content.Children {
-    func children<Backend: AppBackend>(
-        backend: Backend,
-        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
-    ) -> Children {
-        return body.children(backend: backend, snapshots: snapshots)
-    }
-
-    func updateChildren<Backend: AppBackend>(_ children: Children, backend: Backend) {
-        body.updateChildren(children, backend: backend)
+    ) -> SIMD2<Int> {
+        update(
+            widget,
+            children: children as! Children,
+            proposedSize: proposedSize,
+            parentOrientation: parentOrientation,
+            backend: backend
+        )
     }
 }

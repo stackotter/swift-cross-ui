@@ -5,6 +5,10 @@ public struct Button: ElementaryView, View {
     /// The action to be performed when the button is clicked.
     private var action: () -> Void
 
+    public var flexibility: Int {
+        100
+    }
+
     /// Creates a button that displays a custom label.
     public init(_ label: String, action: @escaping () -> Void = {}) {
         self.label = label
@@ -19,8 +23,11 @@ public struct Button: ElementaryView, View {
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation,
         backend: Backend
-    ) {
+    ) -> SIMD2<Int> {
         backend.updateButton(widget, label: label, action: action)
+        return backend.naturalSize(of: widget)
     }
 }

@@ -41,17 +41,47 @@ public struct ${view}<${struct_parameters}>: TypeSafeView, View {
         )
     }
 
-    func updateChildren<Backend: AppBackend>(_ children: Children, backend: Backend) {
+    func layoutableChildren<Backend: AppBackend>(
+        backend: Backend,
+        children: Children
+    ) -> [LayoutSystem.LayoutableChild] {
+        var layoutableChildren: [LayoutSystem.LayoutableChild] = []
         % for j in range(i + 1):
-        children.child${j}.update(with: view${j})
+        layoutableChildren.append(
+            LayoutSystem.LayoutableChild(
+                flexibility: view${j}.flexibility,
+                update: { proposedSize, parentOrientation in
+                    children.child${j}.update(
+                        with: view${j},
+                        proposedSize: proposedSize,
+                        parentOrientation: parentOrientation
+                    )
+                }
+            )
+        )
         % end
+        return layoutableChildren
     }
 
     func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
-        let container = backend.createVStack()
-        backend.setChildren(children.widgets(for: backend), ofVStack: container)
-        return container
+        let vStack = VStack(self)
+        return vStack.asWidget(children, backend: backend)
     }
 
-    func update<Backend: AppBackend>(_ widget: Backend.Widget, children: Children, backend: Backend) {}    
+    func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: Children,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation,
+        backend: Backend
+    ) -> SIMD2<Int> {
+        let vStack = VStack(self)
+        return vStack.update(
+            widget,
+            children: children,
+            proposedSize: proposedSize,
+            parentOrientation: parentOrientation,
+            backend: backend
+        )
+    }    
 }

@@ -61,13 +61,10 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
             backend: backend
         )
 
-        // Now update to ensure that orientations of layout-transparent containers can propagate
-        update()
-
         // Update the view and its children when state changes (children are always updated first)
         cancellable = view.state.didChange.observe { [weak self] in
             guard let self = self else { return }
-            self.update()
+            _ = self.update(proposedSize: SIMD2(200, 200), parentOrientation: .vertical)
         }
     }
 
@@ -78,18 +75,43 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
 
     /// Replaces the node's view with a new version computed while recomputing the body of its parent
     /// (e.g. when its parent's state updates).
-    public func update(with newView: NodeView) {
+    public func update(
+        with newView: NodeView,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation
+    ) -> SIMD2<Int> {
         var newView = newView
         newView.state = view.state
         view = newView
 
-        update()
+        return update(proposedSize: proposedSize, parentOrientation: parentOrientation)
     }
 
-    /// Recomputes the view's body, and updates its children and widget accordingly.
-    public func update() {
-        view.updateChildren(children, backend: backend)
-        view.update(widget, children: children, backend: backend)
+    /// Recomputes the view's body, and updates its widget accordingly. The view may or may not
+    /// propagate the update to its children depending on the nature of the update.
+    public func update(
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation
+    ) -> SIMD2<Int> {
+        let size = view.update(
+            widget,
+            children: children,
+            proposedSize: proposedSize,
+            parentOrientation: parentOrientation,
+            backend: backend
+        )
         backend.show(widget: widget)
+        return size
     }
 }
+
+// VariadicViewN.updateChildren has to be refactored into a function that returns
+// the children in the format required by `LayoutSystem.updateStackLayout`.
+// (same goes for all other views with custom `updateChildren` functions).
+//
+// Then ViewGraphNode.update (both versions) have to take proposedSize and
+// parentOrientation so that they can correctly update their wrapped views.
+//
+// Then VStack should be able to work at the very minimum? Might help to just
+// comment all views other than VStack, VariadicViewN, and Text until the
+// details are all figured out.

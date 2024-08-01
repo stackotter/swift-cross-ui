@@ -2,8 +2,21 @@ import Foundation
 
 public struct ErasedViewGraphNode {
     public var node: Any
-    public var updateWithNewView: (Any) -> Bool
-    public var updateNode: () -> Void
+    /// If the new view doesn't have the same type as the old view then the returned
+    /// value will have `viewTypeMatched` set to `false`, allowing views such as `AnyView`
+    /// to choose how to react to a mismatch. In `AnyView`'s case this means throwing away
+    /// the current view graph node and creating a new one for the new view type.
+    public var updateWithNewView:
+        (
+            _ newView: Any,
+            _ proposedSize: SIMD2<Int>,
+            _ parentOrientation: Orientation
+        ) -> (viewTypeMatched: Bool, size: SIMD2<Int>)
+    public var updateNode:
+        (
+            _ proposedSize: SIMD2<Int>,
+            _ parentOrientation: Orientation
+        ) -> SIMD2<Int>
     public var getWidget: () -> AnyWidget
     public var getState: () -> Data?
     public var viewType: any View.Type
@@ -23,12 +36,16 @@ public struct ErasedViewGraphNode {
         self.node = node
         backendType = Backend.self
         viewType = V.self
-        updateWithNewView = { view in
+        updateWithNewView = { view, proposedSize, parentOrientation in
             guard let view = view as? V else {
-                return false
+                return (false, .zero)
             }
-            node.update(with: view)
-            return true
+            let size = node.update(
+                with: view,
+                proposedSize: proposedSize,
+                parentOrientation: parentOrientation
+            )
+            return (true, size)
         }
         updateNode = node.update
         getWidget = {

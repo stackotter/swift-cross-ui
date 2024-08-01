@@ -12,9 +12,18 @@ public class AnyViewGraphNode<NodeView: View> {
     }
 
     /// The node's type-erased update method for when the view is recomputed.
-    private var _updateWithNewView: (NodeView) -> Void
+    private var _updateWithNewView:
+        (
+            _ newView: NodeView,
+            _ proposedSize: SIMD2<Int>,
+            _ parentOrientation: Orientation
+        ) -> SIMD2<Int>
     /// The node's type-erased update method for when the view's state changes.
-    private var _updateNode: () -> Void
+    private var _updateNode:
+        (
+            _ proposedSize: SIMD2<Int>,
+            _ parentOrientation: Orientation
+        ) -> SIMD2<Int>
     /// The type-erased getter for the node's widget.
     private var _getWidget: () -> AnyWidget
     /// The type-erased getter for the node's view.
@@ -27,8 +36,8 @@ public class AnyViewGraphNode<NodeView: View> {
     /// Type-erases a view graph node.
     public init<Backend: AppBackend>(_ node: ViewGraphNode<NodeView, Backend>) {
         self.node = node
-        _updateWithNewView = node.update(with:)
-        _updateNode = node.update
+        _updateWithNewView = node.update(with:proposedSize:parentOrientation:)
+        _updateNode = node.update(proposedSize:parentOrientation:)
         _getWidget = {
             AnyWidget(node.widget)
         }
@@ -53,13 +62,17 @@ public class AnyViewGraphNode<NodeView: View> {
     }
 
     /// Updates the view after it was recomputed (e.g. due to the parent's state changing).
-    public func update(with newView: NodeView) {
-        _updateWithNewView(newView)
+    public func update(
+        with newView: NodeView,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation
+    ) -> SIMD2<Int> {
+        _updateWithNewView(newView, proposedSize, parentOrientation)
     }
 
     /// Updates the view after its state changed.
-    public func update() {
-        _updateNode()
+    public func update(proposedSize: SIMD2<Int>, parentOrientation: Orientation) -> SIMD2<Int> {
+        _updateNode(proposedSize, parentOrientation)
     }
 
     /// Gets the node's wrapped view.

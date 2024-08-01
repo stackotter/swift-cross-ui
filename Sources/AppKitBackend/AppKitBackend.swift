@@ -8,6 +8,8 @@ extension App {
 public struct AppKitBackend: AppBackend {
     public typealias Window = NSWindow
 
+    public static let font = NSFont.systemFont(ofSize: 12)
+
     public enum Widget {
         case view(NSView)
         case viewController(NSViewController)
@@ -89,57 +91,97 @@ public struct AppKitBackend: AppBackend {
 
     public func show(widget: Widget) {}
 
+    class NSContainerView: NSView {
+        var children: [NSView] = []
+
+        override func addSubview(_ view: NSView) {
+            children.append(view)
+            super.addSubview(view)
+        }
+
+        func removeSubview(_ view: NSView) {
+            children.removeAll { other in
+                view === other
+            }
+            view.removeFromSuperview()
+        }
+    }
+
+    public func createContainer() -> Widget {
+        let container = NSContainerView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return .view(container)
+    }
+
+    public func addChild(_ child: Widget, to container: Widget) {
+        container.view.addSubview(child.view)
+        child.view.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
+        let container = container.view as! NSContainerView
+        guard container.children.indices.contains(index) else {
+            // TODO: Create proper logging system.
+            print("warning: Attempted to set position of non-existent container child")
+            return
+        }
+
+        // TODO: Cache contraints so that they can be updated multiple times (at the moment
+        //   setting a position or size multiple times just creates conflicting constraints)
+        let child = container.children[index]
+        child.leftAnchor.constraint(
+            equalTo: container.leftAnchor,
+            constant: CGFloat(position.x)
+        ).isActive = true
+        child.topAnchor.constraint(
+            equalTo: container.topAnchor,
+            constant: CGFloat(position.y)
+        ).isActive = true
+    }
+
+    public func removeChild(_ child: Widget, from container: Widget) {
+        let container = container.view as! NSContainerView
+        container.removeSubview(child.view)
+    }
+
+    public func naturalSize(of widget: Widget) -> SIMD2<Int> {
+        let size = widget.view.intrinsicContentSize
+        return SIMD2(
+            Int(size.width),
+            Int(size.height)
+        )
+    }
+
+    public func setSize(of widget: Widget, to size: SIMD2<Int>) {
+        widget.view.widthAnchor.constraint(equalToConstant: Double(size.x)).isActive = true
+        widget.view.heightAnchor.constraint(equalToConstant: Double(size.y)).isActive = true
+    }
+
+    public func size(of text: String, in proposedFrame: SIMD2<Int>) -> SIMD2<Int> {
+        let proposedSize = NSSize(
+            width: CGFloat(proposedFrame.x),
+            height: CGFloat(proposedFrame.y)
+        )
+        let rect = NSString(string: text).boundingRect(
+            with: proposedSize,
+            options: [.usesLineFragmentOrigin],
+            attributes: [.font: Self.font]
+        )
+        return SIMD2(
+            Int(rect.size.width.rounded(.awayFromZero)),
+            Int(rect.size.height.rounded(.awayFromZero))
+        )
+    }
+
     public func createTextView() -> Widget {
-        return .view(NSTextField(wrappingLabelWithString: ""))
+        let textView = NSTextField(wrappingLabelWithString: "")
+        textView.font = Self.font
+        return .view(textView)
     }
 
     public func updateTextView(_ textView: Widget, content: String, shouldWrap: Bool) {
         // TODO: Implement text wrap handling
         (textView.view as! NSTextField).stringValue = content
-    }
-
-    public func createVStack() -> Widget {
-        let view = NSStackView()
-        view.orientation = .vertical
-        view.alignment = .centerX
-        view.setHuggingPriority(.defaultLow, for: .vertical)
-        return .view(view)
-    }
-
-    public func setChildren(_ children: [Widget], ofVStack container: Widget) {
-        let stack = container.view as! NSStackView
-        for child in children {
-            stack.addView(child.view, in: .center)
-        }
-        if let first = children.first, children.count == 1 {
-            first.view.pinEdges(to: container.view)
-        }
-    }
-
-    public func setSpacing(ofVStack widget: Widget, to spacing: Int) {
-        (widget.view as! NSStackView).spacing = CGFloat(spacing)
-    }
-
-    public func createHStack() -> Widget {
-        let view = NSStackView()
-        view.orientation = .horizontal
-        view.alignment = .centerY
-        view.setHuggingPriority(.defaultLow, for: .horizontal)
-        return .view(view)
-    }
-
-    public func setChildren(_ children: [Widget], ofHStack container: Widget) {
-        let stack = container.view as! NSStackView
-        for child in children {
-            stack.addView(child.view, in: .center)
-        }
-        if let first = children.first, children.count == 1 {
-            first.view.pinEdges(to: container.view)
-        }
-    }
-
-    public func setSpacing(ofHStack widget: Widget, to spacing: Int) {
-        (widget.view as! NSStackView).spacing = CGFloat(spacing)
     }
 
     public func createButton() -> Widget {
@@ -152,42 +194,6 @@ public struct AppKitBackend: AppBackend {
         button.onAction = { _ in
             action()
         }
-    }
-
-    public func createPaddingContainer(for child: Widget) -> Widget {
-        let paddingContainer = NSStackView()
-        paddingContainer.addView(child.view, in: .center)
-        paddingContainer.orientation = .vertical
-        paddingContainer.alignment = .centerX
-        return .view(paddingContainer)
-    }
-
-    public func getChild(ofPaddingContainer container: Widget) -> Widget {
-        return .view((container.view as! NSStackView).views[0])
-    }
-
-    public func setPadding(
-        ofPaddingContainer container: Widget,
-        top: Int,
-        bottom: Int,
-        leading: Int,
-        trailing: Int
-    ) {
-        let view = container.view as! NSStackView
-        view.edgeInsets.top = CGFloat(top)
-        view.edgeInsets.bottom = CGFloat(bottom)
-        view.edgeInsets.left = CGFloat(leading)
-        view.edgeInsets.right = CGFloat(trailing)
-    }
-
-    public func createSpacer() -> Widget {
-        return .view(NSView())
-    }
-
-    public func updateSpacer(
-        _ spacer: Widget, expandHorizontally: Bool, expandVertically: Bool, minSize: Int
-    ) {
-        // TODO: Update spacer
     }
 
     public func createSwitch() -> Widget {
@@ -225,50 +231,6 @@ public struct AppKitBackend: AppBackend {
     public func setState(ofToggle toggle: Widget, to state: Bool) {
         let toggle = toggle.view as! NSButton
         toggle.state = state ? .on : .off
-    }
-
-    public func getInheritedOrientation(of widget: Widget) -> InheritedOrientation? {
-        guard let superview = widget.view.superview else {
-            return nil
-        }
-
-        if let stack = superview as? NSStackView {
-            switch stack.orientation {
-                case .horizontal:
-                    return .horizontal
-                case .vertical:
-                    return .vertical
-                default:
-                    break
-            }
-        }
-
-        return getInheritedOrientation(of: .view(superview))
-    }
-
-    public func createSingleChildContainer() -> Widget {
-        let container = NSSingleChildView()
-        container.orientation = .vertical
-        container.alignment = .centerX
-        return .view(container)
-    }
-
-    public func setChild(ofSingleChildContainer container: Widget, to widget: Widget?) {
-        let container = container.view as! NSSingleChildView
-        for child in container.arrangedSubviews {
-            container.removeView(child)
-        }
-        if let widget = widget {
-            container.addView(widget.view, in: .center)
-            widget.view.pinEdges(to: container)
-            container.zeroHeightConstraint?.isActive = false
-            container.zeroWidthConstraint?.isActive = false
-        } else {
-            container.zeroHeightConstraint = container.heightAnchor.constraint(equalToConstant: 0)
-            container.zeroWidthConstraint = container.widthAnchor.constraint(equalToConstant: 0)
-            container.zeroHeightConstraint?.isActive = true
-            container.zeroWidthConstraint?.isActive = true
-        }
     }
 
     public func createSlider() -> Widget {
@@ -375,22 +337,6 @@ public struct AppKitBackend: AppBackend {
         return .view(scrollView)
     }
 
-    public func createLayoutTransparentStack() -> Widget {
-        return .view(NSStackView())
-    }
-
-    public func updateLayoutTransparentStack(_ container: Widget) {
-        let stack = container.view as! NSStackView
-        // Inherit orientation of nearest oriented parent (defaulting to vertical)
-        stack.orientation =
-            getInheritedOrientation(of: .view(stack)) == .horizontal ? .horizontal : .vertical
-    }
-
-    public func addChild(_ child: Widget, toLayoutTransparentStack container: Widget) {
-        let stack = container.view as! NSStackView
-        stack.addView(child.view, in: .top)
-    }
-
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
         let splitViewController = NSSplitViewController()
 
@@ -407,19 +353,6 @@ public struct AppKitBackend: AppBackend {
         )
 
         return .viewController(splitViewController)
-    }
-
-    public func createFrameContainer(for child: Widget) -> Widget {
-        return child
-    }
-
-    public func updateFrameContainer(_ container: Widget, minWidth: Int, minHeight: Int) {
-        container.view.widthAnchor
-            .constraint(greaterThanOrEqualToConstant: CGFloat(minWidth))
-            .isActive = true
-        container.view.heightAnchor
-            .constraint(greaterThanOrEqualToConstant: CGFloat(minHeight))
-            .isActive = true
     }
 
     public func createImageView(filePath: String) -> Widget {

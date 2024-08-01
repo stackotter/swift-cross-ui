@@ -18,9 +18,33 @@ public struct EmptyView: View {
         return EmptyViewGraphNodeChildren()
     }
 
+    public func layoutableChildren<Backend: AppBackend>(
+        backend: Backend,
+        children: ViewGraphNodeChildren
+    ) -> [LayoutSystem.LayoutableChild] {
+        []
+    }
+
     public func updateChildren<Backend: AppBackend>(
         _ children: any ViewGraphNodeChildren, backend: Backend
     ) {}
+
+    public func asWidget<Backend: AppBackend>(
+        _ children: ViewGraphNodeChildren,
+        backend: Backend
+    ) -> Backend.Widget {
+        backend.createContainer()
+    }
+
+    public func update<Backend>(
+        _ widget: Backend.Widget,
+        children: ViewGraphNodeChildren,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation,
+        backend: Backend
+    ) -> SIMD2<Int> where Backend: AppBackend {
+        .zero
+    }
 }
 
 /// Used as the body of ``EmptyView`` to end the chain of view bodies.

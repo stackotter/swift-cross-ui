@@ -1,3 +1,4 @@
+
 /// The children of a view graph node. This is implemented by a few different
 /// types for various purposes. E.g. variable length with same-typed elements
 /// (``ForEach``), and fixed length with distinctly-typed elements (``VariadicView1``,
@@ -28,18 +29,19 @@ public struct EmptyViewGraphNodeChildren: ViewGraphNodeChildren {
     public init() {}
 }
 
+
 /// A fixed-length strongly-typed collection of 1 child nodes. A counterpart to
 /// ``VariadicView1``.
 public struct ViewGraphNodeChildren1<Child0: View>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
-            child0.widget
+            child0.widget,
         ]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
         return [
-            ErasedViewGraphNode(wrapping: child0)
+            ErasedViewGraphNode(wrapping: child0),
         ]
     }
 
@@ -53,7 +55,7 @@ public struct ViewGraphNodeChildren1<Child0: View>: ViewGraphNodeChildren {
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self)
+            ViewGraphSnapshotter.name(of: Child0.self),
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = AnyViewGraphNode(for: child0, backend: backend, snapshot: snapshots[0])
@@ -101,9 +103,7 @@ public struct ViewGraphNodeChildren2<Child0: View, Child1: View>: ViewGraphNodeC
 
 /// A fixed-length strongly-typed collection of 3 child nodes. A counterpart to
 /// ``VariadicView3``.
-public struct ViewGraphNodeChildren3<Child0: View, Child1: View, Child2: View>:
-    ViewGraphNodeChildren
-{
+public struct ViewGraphNodeChildren3<Child0: View, Child1: View, Child2: View>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
@@ -149,9 +149,7 @@ public struct ViewGraphNodeChildren3<Child0: View, Child1: View, Child2: View>:
 
 /// A fixed-length strongly-typed collection of 4 child nodes. A counterpart to
 /// ``VariadicView4``.
-public struct ViewGraphNodeChildren4<Child0: View, Child1: View, Child2: View, Child3: View>:
-    ViewGraphNodeChildren
-{
+public struct ViewGraphNodeChildren4<Child0: View, Child1: View, Child2: View, Child3: View>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
@@ -204,9 +202,7 @@ public struct ViewGraphNodeChildren4<Child0: View, Child1: View, Child2: View, C
 
 /// A fixed-length strongly-typed collection of 5 child nodes. A counterpart to
 /// ``VariadicView5``.
-public struct ViewGraphNodeChildren5<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View
->: ViewGraphNodeChildren {
+public struct ViewGraphNodeChildren5<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
@@ -266,9 +262,7 @@ public struct ViewGraphNodeChildren5<
 
 /// A fixed-length strongly-typed collection of 6 child nodes. A counterpart to
 /// ``VariadicView6``.
-public struct ViewGraphNodeChildren6<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View
->: ViewGraphNodeChildren {
+public struct ViewGraphNodeChildren6<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
@@ -335,9 +329,7 @@ public struct ViewGraphNodeChildren6<
 
 /// A fixed-length strongly-typed collection of 7 child nodes. A counterpart to
 /// ``VariadicView7``.
-public struct ViewGraphNodeChildren7<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View
->: ViewGraphNodeChildren {
+public struct ViewGraphNodeChildren7<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
@@ -411,10 +403,7 @@ public struct ViewGraphNodeChildren7<
 
 /// A fixed-length strongly-typed collection of 8 child nodes. A counterpart to
 /// ``VariadicView8``.
-public struct ViewGraphNodeChildren8<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View
->: ViewGraphNodeChildren {
+public struct ViewGraphNodeChildren8<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
@@ -495,10 +484,7 @@ public struct ViewGraphNodeChildren8<
 
 /// A fixed-length strongly-typed collection of 9 child nodes. A counterpart to
 /// ``VariadicView9``.
-public struct ViewGraphNodeChildren9<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View, Child8: View
->: ViewGraphNodeChildren {
+public struct ViewGraphNodeChildren9<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget,
@@ -586,10 +572,7 @@ public struct ViewGraphNodeChildren9<
 
 /// A fixed-length strongly-typed collection of 10 child nodes. A counterpart to
 /// ``VariadicView10``.
-public struct ViewGraphNodeChildren10<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View, Child8: View, Child9: View
->: ViewGraphNodeChildren {
+public struct ViewGraphNodeChildren10<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View, Child9: View>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget,

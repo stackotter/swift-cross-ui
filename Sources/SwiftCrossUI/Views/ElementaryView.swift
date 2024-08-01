@@ -8,11 +8,18 @@ protocol ElementaryView: View where Content == EmptyView {
 
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation,
         backend: Backend
-    )
+    ) -> SIMD2<Int>
 }
 
 extension ElementaryView {
+    /// This default prevents ``EmptyView/body`` from getting called.
+    public var flexibility: Int {
+        0
+    }
+
     public var body: EmptyView {
         return EmptyView()
     }
@@ -22,15 +29,22 @@ extension ElementaryView {
         _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget {
-        return asWidget(backend: backend)
+        asWidget(backend: backend)
     }
 
-    /// Do not implement yourself, implement ``ElementaryView/update(_:backend:)`` instead.
+    /// Do not implement yourself, implement ``ElementaryView/update(_:proposedSize:parentOrientation:backend:)`` instead.
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation,
         backend: Backend
-    ) {
-        update(widget, backend: backend)
+    ) -> SIMD2<Int> {
+        update(
+            widget,
+            proposedSize: proposedSize,
+            parentOrientation: parentOrientation,
+            backend: backend
+        )
     }
 }

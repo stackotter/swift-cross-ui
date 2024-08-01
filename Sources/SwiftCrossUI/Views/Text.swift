@@ -2,13 +2,14 @@
 public struct Text: ElementaryView, View {
     /// The string to be shown in the text view.
     private var string: String
-    /// Specifies whether the text should be wrapped if wider than its container.
-    private var wrap: Bool
+
+    public var flexibility: Int {
+        200
+    }
 
     /// Creates a new text view that displays a string with configurable wrapping.
-    public init(_ string: String, wrap: Bool = true) {
+    public init(_ string: String) {
         self.string = string
-        self.wrap = wrap
     }
 
     public func asWidget<Backend: AppBackend>(
@@ -19,8 +20,14 @@ public struct Text: ElementaryView, View {
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation,
         backend: Backend
-    ) {
-        backend.updateTextView(widget, content: string, shouldWrap: wrap)
+    ) -> SIMD2<Int> {
+        let size = backend.size(of: string, in: proposedSize)
+        backend.updateTextView(widget, content: string, shouldWrap: true)
+        backend.setSize(of: widget, to: size)
+        print(proposedSize, size)
+        return size
     }
 }

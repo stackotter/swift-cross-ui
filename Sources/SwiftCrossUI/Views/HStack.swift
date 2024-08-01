@@ -5,6 +5,10 @@ public struct HStack<Content: View>: View {
     /// The amount of spacing to apply between children.
     private var spacing: Int
 
+    public var flexibility: Int {
+        300
+    }
+
     /// Creates a horizontal stack with the given spacing.
     public init(spacing: Int = 8, @ViewBuilder _ content: () -> Content) {
         body = content()
@@ -15,14 +19,27 @@ public struct HStack<Content: View>: View {
         _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget {
-        let hStack = backend.createHStack()
-        backend.setChildren(children.widgets(for: backend), ofHStack: hStack)
-        return hStack
+        let vStack = backend.createContainer()
+        for child in children.widgets(for: backend) {
+            backend.addChild(child, to: vStack)
+        }
+        return vStack
     }
 
     public func update<Backend: AppBackend>(
-        _ widget: Backend.Widget, children: any ViewGraphNodeChildren, backend: Backend
-    ) {
-        backend.setSpacing(ofHStack: widget, to: spacing)
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation,
+        backend: Backend
+    ) -> SIMD2<Int> {
+        return LayoutSystem.updateStackLayout(
+            container: widget,
+            children: layoutableChildren(backend: backend, children: children),
+            proposedSize: proposedSize,
+            orientation: .horizontal,
+            spacing: spacing,
+            backend: backend
+        )
     }
 }

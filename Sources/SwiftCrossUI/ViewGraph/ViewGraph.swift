@@ -21,6 +21,7 @@ public class ViewGraph<Root: View> {
     /// Creates a view graph for a root view with a specific backend.
     public init<Backend: AppBackend>(for view: Root, backend: Backend) {
         rootNode = AnyViewGraphNode(for: view, backend: backend)
+        let size = rootNode.update(proposedSize: SIMD2(800, 400), parentOrientation: .vertical)
 
         self.view = view
 
@@ -33,7 +34,11 @@ public class ViewGraph<Root: View> {
     /// If the update is due to the parent scene getting updated then the view
     /// is recomputed and passed as `newView`.
     public func update(_ newView: Root? = nil) {
-        rootNode.update(with: newView ?? view)
+        _ = rootNode.update(
+            with: newView ?? view,
+            proposedSize: SIMD2(800, 400),
+            parentOrientation: .vertical
+        )
     }
 
     public func snapshot() -> ViewGraphSnapshotter.NodeSnapshot {

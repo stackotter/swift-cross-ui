@@ -24,10 +24,13 @@ public struct AnyView: TypeSafeView {
         return AnyViewChildren(from: self, backend: backend, snapshot: snapshot)
     }
 
-    func updateChildren<Backend: AppBackend>(
-        _ children: AnyViewChildren, backend: Backend
-    ) {
-        children.update(with: self, backend: backend)
+    func layoutableChildren<Backend: AppBackend>(
+        backend: Backend,
+        children: AnyViewChildren
+    ) -> [LayoutSystem.LayoutableChild] {
+        // TODO: Figure out a convention for views like this where ``layoutableChildren`` will
+        //   never get used unless something has already gone pretty wrong.
+        body.layoutableChildren(backend: backend, children: children)
     }
 
     func asWidget<Backend: AppBackend>(
@@ -40,8 +43,17 @@ public struct AnyView: TypeSafeView {
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: AnyViewChildren,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation,
         backend: Backend
-    ) {}
+    ) -> SIMD2<Int> {
+        children.update(
+            with: self,
+            proposedSize: proposedSize,
+            parentOrientation: parentOrientation,
+            backend: backend
+        )
+    }
 }
 
 class AnyViewChildren: ViewGraphNodeChildren {
@@ -66,18 +78,40 @@ class AnyViewChildren: ViewGraphNodeChildren {
         snapshot: ViewGraphSnapshotter.NodeSnapshot?
     ) {
         node = ErasedViewGraphNode(for: view.child, backend: backend, snapshot: snapshot)
-        let container = backend.createSingleChildContainer()
-        backend.setChild(ofSingleChildContainer: container, to: node.getWidget().into())
+        let container = backend.createContainer()
+        backend.addChild(node.getWidget().into(), to: container)
+        backend.setPosition(ofChildAt: 0, in: container, to: .zero)
         self.container = AnyWidget(container)
     }
 
     /// Attempts to update the child. If the initial update fails then it means that the child's
     /// concrete type has changed and we must recreate the child node and swap out our current
     /// child widget with the new view's widget.
-    func update<Backend: AppBackend>(with view: AnyView, backend: Backend) {
-        if !node.updateWithNewView(view.child) {
+    func update<Backend: AppBackend>(
+        with view: AnyView,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation,
+        backend: Backend
+    ) -> SIMD2<Int> {
+        var (viewTypesMatched, size) = node.updateWithNewView(
+            view.child,
+            proposedSize,
+            parentOrientation
+        )
+
+        if !viewTypesMatched {
+            backend.removeChild(node.getWidget().into(), from: container.into())
             node = ErasedViewGraphNode(for: view.child, backend: backend)
-            backend.setChild(ofSingleChildContainer: container.into(), to: node.getWidget().into())
+            backend.addChild(node.getWidget().into(), to: container.into())
+            backend.setPosition(ofChildAt: 0, in: container.into(), to: .zero)
+
+            // We can just assume that the update succeeded because we just created the node
+            // a few lines earlier (so it's guaranteed that the view types match).
+            let result = node.updateWithNewView(view.child, proposedSize, parentOrientation)
+            size = result.size
         }
+
+        backend.setSize(of: container.into(), to: size)
+        return size
     }
 }
