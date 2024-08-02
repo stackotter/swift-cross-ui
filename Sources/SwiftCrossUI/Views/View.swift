@@ -89,7 +89,7 @@ extension View {
         _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = VStack(body)
+        let vStack = VStack(content: body)
         return vStack.asWidget(children, backend: backend)
     }
 
@@ -100,7 +100,7 @@ extension View {
         parentOrientation: Orientation,
         backend: Backend
     ) -> SIMD2<Int> {
-        let vStack = VStack(body)
+        let vStack = VStack(content: body)
         return vStack.update(
             widget,
             children: children,

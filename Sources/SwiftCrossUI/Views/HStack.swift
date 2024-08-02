@@ -4,15 +4,22 @@ public struct HStack<Content: View>: View {
 
     /// The amount of spacing to apply between children.
     private var spacing: Int
+    /// The alignment of the stack's children in the vertical direction.
+    private var alignment: VerticalAlignment
 
     public var flexibility: Int {
         300
     }
 
     /// Creates a horizontal stack with the given spacing.
-    public init(spacing: Int = 8, @ViewBuilder _ content: () -> Content) {
+    public init(
+        alignment: VerticalAlignment = .center,
+        spacing: Int? = nil,
+        @ViewBuilder _ content: () -> Content
+    ) {
         body = content()
-        self.spacing = spacing
+        self.spacing = spacing ?? VStack<EmptyView>.defaultSpacing
+        self.alignment = alignment
     }
 
     public func asWidget<Backend: AppBackend>(
@@ -38,6 +45,7 @@ public struct HStack<Content: View>: View {
             children: layoutableChildren(backend: backend, children: children),
             proposedSize: proposedSize,
             orientation: .horizontal,
+            alignment: alignment.asStackAlignment,
             spacing: spacing,
             backend: backend
         )

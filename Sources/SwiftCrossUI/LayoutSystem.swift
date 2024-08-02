@@ -21,6 +21,7 @@ public enum LayoutSystem {
         children: [LayoutableChild],
         proposedSize: SIMD2<Int>,
         orientation: Orientation,
+        alignment: StackAlignment,
         spacing: Int = 10,
         backend: Backend
     ) -> SIMD2<Int> {
@@ -92,7 +93,24 @@ public enum LayoutSystem {
         var x = 0
         var y = 0
         for (index, childSize) in renderedChildren.enumerated() {
+            // Compute alignment
+            switch (orientation, alignment) {
+                case (.vertical, .leading):
+                    x = 0
+                case (.horizontal, .leading):
+                    y = 0
+                case (.vertical, .center):
+                    x = (size.x - childSize.x) / 2
+                case (.horizontal, .center):
+                    y = (size.y - childSize.y) / 2
+                case (.vertical, .trailing):
+                    x = (size.x - childSize.x)
+                case (.horizontal, .trailing):
+                    y = (size.y - childSize.y)
+            }
+
             backend.setPosition(ofChildAt: index, in: container, to: SIMD2<Int>(x, y))
+
             switch orientation {
                 case .horizontal:
                     x += childSize.x + spacing

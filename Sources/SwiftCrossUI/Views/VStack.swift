@@ -1,23 +1,35 @@
 /// A view that arranges its subviews vertically.
 public struct VStack<Content: View>: View {
+    static var defaultSpacing: Int { 10 }
+
     public var body: Content
 
     /// The amount of spacing to apply between children.
     private var spacing: Int
+    /// The alignment of the stack's children in the horizontal direction.
+    private var alignment: HorizontalAlignment
 
     public var flexibility: Int {
         300
     }
 
     /// Creates a horizontal stack with the given spacing.
-    public init(spacing: Int = 10, @ViewBuilder _ content: () -> Content) {
-        body = content()
-        self.spacing = spacing
+    public init(
+        alignment: HorizontalAlignment = .center,
+        spacing: Int? = nil,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.init(alignment: alignment, spacing: spacing, content: content())
     }
 
-    init(spacing: Int = 10, _ content: Content) {
+    init(
+        alignment: HorizontalAlignment = .center,
+        spacing: Int? = nil,
+        content: Content
+    ) {
         body = content
-        self.spacing = spacing
+        self.spacing = spacing ?? Self.defaultSpacing
+        self.alignment = alignment
     }
 
     public func asWidget<Backend: AppBackend>(
@@ -43,6 +55,7 @@ public struct VStack<Content: View>: View {
             children: layoutableChildren(backend: backend, children: children),
             proposedSize: proposedSize,
             orientation: .vertical,
+            alignment: alignment.asStackAlignment,
             spacing: spacing,
             backend: backend
         )
