@@ -17,26 +17,37 @@ public class ViewGraph<Root: View> {
     private var cancellable: Cancellable?
     /// The root view being managed by this view graph.
     private var view: Root
+    /// The most recent size of the window (used when updated the root view due to a state
+    /// change as opposed to a window resizing event).
+    private var windowSize: SIMD2<Int>
 
     /// Creates a view graph for a root view with a specific backend.
     public init<Backend: AppBackend>(for view: Root, backend: Backend) {
         rootNode = AnyViewGraphNode(for: view, backend: backend)
-        let size = rootNode.update(proposedSize: SIMD2(800, 400), parentOrientation: .vertical)
 
         self.view = view
+        self.windowSize = .zero
 
-        cancellable = view.state.didChange.observe {
-            self.update()
+        cancellable = view.state.didChange.observe { [weak self] in
+            guard let self else { return }
+            // TODO: Notify parent scene of the root view's new size (which would be
+            //   required to implement content hugging)
+            self.update(proposedSize: windowSize, parentOrientation: .vertical)
         }
     }
 
     /// Recomputes the entire UI (e.g. due to the root view's state updating).
     /// If the update is due to the parent scene getting updated then the view
     /// is recomputed and passed as `newView`.
-    public func update(_ newView: Root? = nil) {
-        _ = rootNode.update(
+    public func update(
+        with newView: Root? = nil,
+        proposedSize: SIMD2<Int>,
+        parentOrientation: Orientation
+    ) -> SIMD2<Int> {
+        windowSize = proposedSize
+        return rootNode.update(
             with: newView ?? view,
-            proposedSize: SIMD2(800, 400),
+            proposedSize: proposedSize,
             parentOrientation: .vertical
         )
     }

@@ -83,7 +83,7 @@ public protocol AppBackend {
     ///
     /// A window's content size has precendence over the default size. The
     /// window should always be at least the size of its content.
-    func createWindow(withDefaultSize defaultSize: Size?) -> Window
+    func createWindow(withDefaultSize defaultSize: SIMD2<Int>?) -> Window
     /// Sets the title of a window.
     func setTitle(ofWindow window: Window, to title: String)
     /// Sets the resizability of a window. Even if resizable, the window
@@ -91,6 +91,16 @@ public protocol AppBackend {
     func setResizability(ofWindow window: Window, to resizable: Bool)
     /// Sets the root child of a window (replaces the previous child if any).
     func setChild(ofWindow window: Window, to child: Widget)
+    /// Gets the size of the given window in pixels.
+    func size(ofWindow window: Window) -> SIMD2<Int>
+    /// Sets the handler for the window's resizing events. `action` takes the proposed size
+    /// of the window and returns the final size for the window (which allows SwiftCrossUI
+    /// to implement features such as dynamic minimum window sizes based off the content's
+    /// minimum size). Setting the resize handler overrides any previous handler.
+    func setResizeHandler(
+        ofWindow window: Window,
+        to action: @escaping (_ newSize: SIMD2<Int>) -> SIMD2<Int>
+    )
     /// Shows a window after it has been created or updated (may be unnecessary
     /// for some backends). Predominantly used by window-based ``Scene``
     /// implementations after propagating updates.

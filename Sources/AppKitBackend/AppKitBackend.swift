@@ -6,7 +6,7 @@ extension App {
 }
 
 public struct AppKitBackend: AppBackend {
-    public typealias Window = NSWindow
+    public typealias Window = NSCustomWindow
 
     public static let font = NSFont.systemFont(ofSize: 12)
 
@@ -41,21 +41,38 @@ public struct AppKitBackend: AppBackend {
         NSApplication.shared.run()
     }
 
-    public func createWindow(withDefaultSize defaultSize: Size?) -> Window {
+    public func createWindow(withDefaultSize defaultSize: SIMD2<Int>?) -> Window {
         let nsApp = NSApplication.shared
         nsApp.setActivationPolicy(.regular)
 
-        return NSWindow(
+        let window = NSCustomWindow(
             contentRect: NSRect(
                 x: 0,
                 y: 0,
-                width: CGFloat(defaultSize?.width ?? 0),
-                height: CGFloat(defaultSize?.height ?? 0)
+                width: CGFloat(defaultSize?.x ?? 0),
+                height: CGFloat(defaultSize?.y ?? 0)
             ),
             styleMask: [.titled, .closable],
             backing: .buffered,
             defer: true
         )
+        window.delegate = window.resizeDelegate
+        return window
+    }
+
+    public func size(ofWindow window: Window) -> SIMD2<Int> {
+        let contentRect = window.contentRect(forFrameRect: window.frame)
+        return SIMD2(
+            Int(contentRect.width.rounded(.towardZero)),
+            Int(contentRect.height.rounded(.towardZero))
+        )
+    }
+
+    public func setResizeHandler(
+        ofWindow window: Window,
+        to action: @escaping (SIMD2<Int>) -> SIMD2<Int>
+    ) {
+        window.resizeDelegate.setHandler(action)
     }
 
     public func setTitle(ofWindow window: Window, to title: String) {
@@ -70,16 +87,20 @@ public struct AppKitBackend: AppBackend {
         }
     }
 
-    public func setChild(ofWindow window: NSWindow, to child: Widget) {
-        let container = NSStackView()
-        container.orientation = .vertical
-        container.alignment = .centerX
-        container.addView(child.view, in: .center)
-        child.view.pinEdges(to: container)
+    public func setChild(ofWindow window: Window, to child: Widget) {
+        let childView = child.view
+
+        let container = NSView()
+        container.addSubview(childView)
+
+        childView.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
+        childView.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
+        childView.translatesAutoresizingMaskIntoConstraints = false
+
         window.contentView = container
     }
 
-    public func show(window: NSWindow) {
+    public func show(window: Window) {
         window.makeKeyAndOrderFront(nil)
     }
 
@@ -126,17 +147,43 @@ public struct AppKitBackend: AppBackend {
             return
         }
 
-        // TODO: Cache contraints so that they can be updated multiple times (at the moment
-        //   setting a position or size multiple times just creates conflicting constraints)
         let child = container.children[index]
-        child.leftAnchor.constraint(
-            equalTo: container.leftAnchor,
-            constant: CGFloat(position.x)
-        ).isActive = true
-        child.topAnchor.constraint(
-            equalTo: container.topAnchor,
-            constant: CGFloat(position.y)
-        ).isActive = true
+
+        var foundConstraint = false
+        for constraint in container.constraints {
+            if constraint.firstAnchor === child.leftAnchor
+                && constraint.secondAnchor === container.leftAnchor
+            {
+                constraint.constant = CGFloat(position.x)
+                foundConstraint = true
+                break
+            }
+        }
+
+        if !foundConstraint {
+            let constraint = child.leftAnchor.constraint(
+                equalTo: container.leftAnchor, constant: CGFloat(position.x)
+            )
+            constraint.isActive = true
+        }
+
+        foundConstraint = false
+        for constraint in container.constraints {
+            if constraint.firstAnchor === child.topAnchor
+                && constraint.secondAnchor === container.topAnchor
+            {
+                constraint.constant = CGFloat(position.y)
+                foundConstraint = true
+                break
+            }
+        }
+
+        if !foundConstraint {
+            child.topAnchor.constraint(
+                equalTo: container.topAnchor,
+                constant: CGFloat(position.y)
+            ).isActive = true
+        }
     }
 
     public func removeChild(_ child: Widget, from container: Widget) {
@@ -153,8 +200,31 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func setSize(of widget: Widget, to size: SIMD2<Int>) {
-        widget.view.widthAnchor.constraint(equalToConstant: Double(size.x)).isActive = true
-        widget.view.heightAnchor.constraint(equalToConstant: Double(size.y)).isActive = true
+        var foundConstraint = false
+        for constraint in widget.view.constraints {
+            if constraint.firstAnchor === widget.view.widthAnchor {
+                constraint.constant = CGFloat(size.x)
+                foundConstraint = true
+                break
+            }
+        }
+
+        if !foundConstraint {
+            widget.view.widthAnchor.constraint(equalToConstant: CGFloat(size.x)).isActive = true
+        }
+
+        foundConstraint = false
+        for constraint in widget.view.constraints {
+            if constraint.firstAnchor === widget.view.heightAnchor {
+                constraint.constant = CGFloat(size.y)
+                foundConstraint = true
+                break
+            }
+        }
+
+        if !foundConstraint {
+            widget.view.heightAnchor.constraint(equalToConstant: CGFloat(size.y)).isActive = true
+        }
     }
 
     public func size(of text: String, in proposedFrame: SIMD2<Int>) -> SIMD2<Int> {
@@ -435,15 +505,6 @@ extension NSControl {
         onAction?(sender)
     }
 
-    /**
-    Closure version of `.action`.
-    ```
-    let button = NSButton(title: "Unicorn", target: nil, action: nil)
-    button.onAction = { sender in
-        print("Button action: \(sender)")
-    }
-    ```
-    */
     var onAction: ActionClosure? {
         get {
             return AssociatedKeys.onActionClosure[self]
@@ -468,4 +529,39 @@ extension NSView {
 class NSSingleChildView: NSStackView {
     var zeroHeightConstraint: NSLayoutConstraint?
     var zeroWidthConstraint: NSLayoutConstraint?
+}
+
+public class NSCustomWindow: NSWindow {
+    var resizeDelegate = ResizeDelegate()
+
+    class ResizeDelegate: NSObject, NSWindowDelegate {
+        var resizeHandler: ((SIMD2<Int>) -> SIMD2<Int>)?
+
+        func setHandler(_ resizeHandler: @escaping (SIMD2<Int>) -> SIMD2<Int>) {
+            self.resizeHandler = resizeHandler
+        }
+
+        func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
+            guard let resizeHandler else {
+                return frameSize
+            }
+
+            let contentSize = sender.contentRect(
+                forFrameRect: NSRect(x: 0, y: 0, width: frameSize.width, height: frameSize.height)
+            )
+
+            let size = resizeHandler(
+                SIMD2(
+                    Int(contentSize.width.rounded(.towardZero)),
+                    Int(contentSize.height.rounded(.towardZero))
+                )
+            )
+
+            let toolbarHeight = frameSize.height - contentSize.height
+            return NSSize(
+                width: size.x,
+                height: size.y + Int(toolbarHeight)
+            )
+        }
+    }
 }

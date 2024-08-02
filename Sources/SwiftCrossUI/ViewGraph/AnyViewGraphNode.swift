@@ -11,16 +11,10 @@ public class AnyViewGraphNode<NodeView: View> {
         _getWidget()
     }
 
-    /// The node's type-erased update method for when the view is recomputed.
+    /// The node's type-erased update method for update the view.
     private var _updateWithNewView:
         (
-            _ newView: NodeView,
-            _ proposedSize: SIMD2<Int>,
-            _ parentOrientation: Orientation
-        ) -> SIMD2<Int>
-    /// The node's type-erased update method for when the view's state changes.
-    private var _updateNode:
-        (
+            _ newView: NodeView?,
             _ proposedSize: SIMD2<Int>,
             _ parentOrientation: Orientation
         ) -> SIMD2<Int>
@@ -37,7 +31,6 @@ public class AnyViewGraphNode<NodeView: View> {
     public init<Backend: AppBackend>(_ node: ViewGraphNode<NodeView, Backend>) {
         self.node = node
         _updateWithNewView = node.update(with:proposedSize:parentOrientation:)
-        _updateNode = node.update(proposedSize:parentOrientation:)
         _getWidget = {
             AnyWidget(node.widget)
         }
@@ -61,18 +54,14 @@ public class AnyViewGraphNode<NodeView: View> {
         self.init(ViewGraphNode(for: view, backend: backend, snapshot: snapshot))
     }
 
-    /// Updates the view after it was recomputed (e.g. due to the parent's state changing).
+    /// Updates the view after it got recomputed (e.g. due to the parent's state changing)
+    /// or after its own state changed (depending on the presence of `newView`).
     public func update(
-        with newView: NodeView,
+        with newView: NodeView?,
         proposedSize: SIMD2<Int>,
         parentOrientation: Orientation
     ) -> SIMD2<Int> {
         _updateWithNewView(newView, proposedSize, parentOrientation)
-    }
-
-    /// Updates the view after its state changed.
-    public func update(proposedSize: SIMD2<Int>, parentOrientation: Orientation) -> SIMD2<Int> {
-        _updateNode(proposedSize, parentOrientation)
     }
 
     /// Gets the node's wrapped view.

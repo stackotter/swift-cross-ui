@@ -22,17 +22,40 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         backend.setChild(ofWindow: window, to: rootWidget)
         backend.setTitle(ofWindow: window, to: scene.title)
         backend.setResizability(ofWindow: window, to: scene.resizable)
+
         self.window = window
+
+        backend.setResizeHandler(ofWindow: window) { [weak self] newSize in
+            guard let self else { return .zero }
+            return self.update(nil, proposedWindowSize: newSize, backend: backend)
+        }
     }
 
-    public func update<Backend: AppBackend>(_ newScene: WindowGroup<Content>?, backend: Backend) {
+    public func update<Backend: AppBackend>(
+        _ newScene: WindowGroup<Content>?,
+        backend: Backend
+    ) {
+        guard let window = window as? Backend.Window else {
+            fatalError("Scene updated with a backend incompatible with the window it was given")
+        }
+
+        _ = update(
+            newScene,
+            proposedWindowSize: backend.size(ofWindow: window),
+            backend: backend
+        )
+    }
+
+    public func update<Backend: AppBackend>(
+        _ newScene: WindowGroup<Content>?,
+        proposedWindowSize: SIMD2<Int>,
+        backend: Backend
+    ) -> SIMD2<Int> {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
 
         if let newScene = newScene {
-            viewGraph.update(newScene.body)
-
             // Don't set default size even if it has changed. We only set that once
             // at window creation since some backends don't have a concept of
             // 'default' size which would mean that setting the default size every time
@@ -42,9 +65,17 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             backend.setResizability(ofWindow: window, to: newScene.resizable)
         }
 
+        let contentSize = viewGraph.update(
+            with: newScene?.body,
+            proposedSize: proposedWindowSize,
+            parentOrientation: .vertical
+        )
+
         if isFirstUpdate {
             backend.show(window: window)
             isFirstUpdate = false
         }
+
+        return contentSize
     }
 }

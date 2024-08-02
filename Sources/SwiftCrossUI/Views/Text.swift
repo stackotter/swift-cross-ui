@@ -27,7 +27,6 @@ public struct Text: ElementaryView, View {
         let size = backend.size(of: string, in: proposedSize)
         backend.updateTextView(widget, content: string, shouldWrap: true)
         backend.setSize(of: widget, to: size)
-        print(proposedSize, size)
         return size
     }
 }

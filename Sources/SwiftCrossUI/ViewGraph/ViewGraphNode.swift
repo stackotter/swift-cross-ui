@@ -73,26 +73,21 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         cancellable?.cancel()
     }
 
-    /// Replaces the node's view with a new version computed while recomputing the body of its parent
-    /// (e.g. when its parent's state updates).
-    public func update(
-        with newView: NodeView,
-        proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation
-    ) -> SIMD2<Int> {
-        var newView = newView
-        newView.state = view.state
-        view = newView
-
-        return update(proposedSize: proposedSize, parentOrientation: parentOrientation)
-    }
-
     /// Recomputes the view's body, and updates its widget accordingly. The view may or may not
-    /// propagate the update to its children depending on the nature of the update.
+    /// propagate the update to its children depending on the nature of the update. If `newView`
+    /// is provided (in the case that the parent's body got updated) then it simply replaces the
+    /// old view while inheriting the old view's state.
     public func update(
+        with newView: NodeView? = nil,
         proposedSize: SIMD2<Int>,
         parentOrientation: Orientation
     ) -> SIMD2<Int> {
+        if let newView {
+            var newView = newView
+            newView.state = view.state
+            view = newView
+        }
+
         let size = view.update(
             widget,
             children: children,
@@ -104,14 +99,3 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         return size
     }
 }
-
-// VariadicViewN.updateChildren has to be refactored into a function that returns
-// the children in the format required by `LayoutSystem.updateStackLayout`.
-// (same goes for all other views with custom `updateChildren` functions).
-//
-// Then ViewGraphNode.update (both versions) have to take proposedSize and
-// parentOrientation so that they can correctly update their wrapped views.
-//
-// Then VStack should be able to work at the very minimum? Might help to just
-// comment all views other than VStack, VariadicViewN, and Text until the
-// details are all figured out.

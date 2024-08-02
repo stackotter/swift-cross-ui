@@ -8,15 +8,10 @@ public struct ErasedViewGraphNode {
     /// the current view graph node and creating a new one for the new view type.
     public var updateWithNewView:
         (
-            _ newView: Any,
+            _ newView: Any?,
             _ proposedSize: SIMD2<Int>,
             _ parentOrientation: Orientation
         ) -> (viewTypeMatched: Bool, size: SIMD2<Int>)
-    public var updateNode:
-        (
-            _ proposedSize: SIMD2<Int>,
-            _ parentOrientation: Orientation
-        ) -> SIMD2<Int>
     public var getWidget: () -> AnyWidget
     public var getState: () -> Data?
     public var viewType: any View.Type
@@ -37,17 +32,25 @@ public struct ErasedViewGraphNode {
         backendType = Backend.self
         viewType = V.self
         updateWithNewView = { view, proposedSize, parentOrientation in
-            guard let view = view as? V else {
-                return (false, .zero)
+            if let view {
+                guard let view = view as? V else {
+                    return (false, .zero)
+                }
+                let size = node.update(
+                    with: view,
+                    proposedSize: proposedSize,
+                    parentOrientation: parentOrientation
+                )
+                return (true, size)
+            } else {
+                let size = node.update(
+                    with: nil,
+                    proposedSize: proposedSize,
+                    parentOrientation: parentOrientation
+                )
+                return (true, size)
             }
-            let size = node.update(
-                with: view,
-                proposedSize: proposedSize,
-                parentOrientation: parentOrientation
-            )
-            return (true, size)
         }
-        updateNode = node.update
         getWidget = {
             return AnyWidget(node.widget)
         }

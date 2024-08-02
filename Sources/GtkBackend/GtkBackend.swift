@@ -41,7 +41,7 @@ public final class GtkBackend: AppBackend {
         }
     }
 
-    public func createWindow(withDefaultSize defaultSize: SwiftCrossUI.Size?) -> Window {
+    public func createWindow(withDefaultSize defaultSize: SIMD2<Int>?) -> Window {
         let window: Gtk.Window
         if let precreatedWindow = precreatedWindow {
             self.precreatedWindow = nil
@@ -52,8 +52,8 @@ public final class GtkBackend: AppBackend {
 
         if let defaultSize = defaultSize {
             window.defaultSize = Size(
-                width: defaultSize.width,
-                height: defaultSize.height
+                width: defaultSize.x,
+                height: defaultSize.y
             )
         }
 
