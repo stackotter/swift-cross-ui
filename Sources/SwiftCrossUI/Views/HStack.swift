@@ -37,14 +37,14 @@ public struct HStack<Content: View>: View {
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         return LayoutSystem.updateStackLayout(
             container: widget,
             children: layoutableChildren(backend: backend, children: children),
             proposedSize: proposedSize,
-            orientation: .horizontal,
+            environment: environment.with(\.layoutOrientation, .horizontal),
             alignment: alignment.asStackAlignment,
             spacing: spacing,
             backend: backend

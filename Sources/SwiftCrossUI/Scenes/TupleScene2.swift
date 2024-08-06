@@ -18,14 +18,19 @@ public final class TupleSceneNode2<S0: Scene, S1: Scene>: SceneGraphNode {
 
     public init<Backend: AppBackend>(
         from scene: NodeScene,
-        backend: Backend
+        backend: Backend,
+        environment: Environment
     ) {
-        node0 = S0.Node(from: scene.scene0, backend: backend)
-        node1 = S1.Node(from: scene.scene1, backend: backend)
+        node0 = S0.Node(from: scene.scene0, backend: backend, environment: environment)
+        node1 = S1.Node(from: scene.scene1, backend: backend, environment: environment)
     }
 
-    public func update<Backend: AppBackend>(_ newScene: NodeScene?, backend: Backend) {
-        node0.update(newScene?.scene0, backend: backend)
-        node1.update(newScene?.scene1, backend: backend)
+    public func update<Backend: AppBackend>(
+        _ newScene: NodeScene?,
+        backend: Backend,
+        environment: Environment
+    ) {
+        node0.update(newScene?.scene0, backend: backend, environment: environment)
+        node1.update(newScene?.scene1, backend: backend, environment: environment)
     }
 }

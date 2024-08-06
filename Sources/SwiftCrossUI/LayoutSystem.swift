@@ -4,12 +4,12 @@ public enum LayoutSystem {
         public var update:
             (
                 _ proposedSize: SIMD2<Int>,
-                _ parentOrientation: Orientation
+                _ environment: Environment
             ) -> SIMD2<Int>
 
         public init(
             flexibility: Int,
-            update: @escaping (SIMD2<Int>, Orientation) -> SIMD2<Int>
+            update: @escaping (SIMD2<Int>, Environment) -> SIMD2<Int>
         ) {
             self.flexibility = flexibility
             self.update = update
@@ -20,7 +20,7 @@ public enum LayoutSystem {
         container: Backend.Widget,
         children: [LayoutableChild],
         proposedSize: SIMD2<Int>,
-        orientation: Orientation,
+        environment: Environment,
         alignment: StackAlignment,
         spacing: Int = 10,
         backend: Backend
@@ -42,7 +42,7 @@ public enum LayoutSystem {
         for (index, child) in sortedChildren {
             let proposedWidth: Double
             let proposedHeight: Double
-            switch orientation {
+            switch environment.layoutOrientation {
                 case .horizontal:
                     proposedWidth =
                         Double(max(proposedSize.x - spaceUsedAlongStackAxis - totalSpacing, 0))
@@ -60,13 +60,13 @@ public enum LayoutSystem {
                     Int(proposedWidth.rounded(.towardZero)),
                     Int(proposedHeight.rounded(.towardZero))
                 ),
-                orientation
+                environment
             )
 
             renderedChildren[index] = childSize
             childrenRemaining -= 1
 
-            switch orientation {
+            switch environment.layoutOrientation {
                 case .horizontal:
                     spaceUsedAlongStackAxis += childSize.x
                 case .vertical:
@@ -75,7 +75,7 @@ public enum LayoutSystem {
         }
 
         let size: SIMD2<Int>
-        switch orientation {
+        switch environment.layoutOrientation {
             case .horizontal:
                 size = SIMD2<Int>(
                     renderedChildren.map(\.x).reduce(0, +) + totalSpacing,
@@ -94,7 +94,7 @@ public enum LayoutSystem {
         var y = 0
         for (index, childSize) in renderedChildren.enumerated() {
             // Compute alignment
-            switch (orientation, alignment) {
+            switch (environment.layoutOrientation, alignment) {
                 case (.vertical, .leading):
                     x = 0
                 case (.horizontal, .leading):
@@ -111,7 +111,7 @@ public enum LayoutSystem {
 
             backend.setPosition(ofChildAt: index, in: container, to: SIMD2<Int>(x, y))
 
-            switch orientation {
+            switch environment.layoutOrientation {
                 case .horizontal:
                     x += childSize.x + spacing
                 case .vertical:

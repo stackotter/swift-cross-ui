@@ -24,13 +24,13 @@ public struct Spacer: ElementaryView, View {
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         let minLength = minLength ?? 0
 
         let size: SIMD2<Int>
-        switch parentOrientation {
+        switch environment.layoutOrientation {
             case .horizontal:
                 size = SIMD2(max(minLength, proposedSize.x), 0)
             case .vertical:

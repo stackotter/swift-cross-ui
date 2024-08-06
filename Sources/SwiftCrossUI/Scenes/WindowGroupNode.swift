@@ -11,12 +11,15 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
     private var window: Any
     /// `false` after the first scene update.
     private var isFirstUpdate = true
+    /// The environment most recently provided by this node's parent scene.
+    private var parentEnvironment: Environment
 
     public init<Backend: AppBackend>(
         from scene: WindowGroup<Content>,
-        backend: Backend
+        backend: Backend,
+        environment: Environment
     ) {
-        viewGraph = ViewGraph(for: scene.body, backend: backend)
+        viewGraph = ViewGraph(for: scene.body, backend: backend, environment: environment)
         let window = backend.createWindow(withDefaultSize: scene.defaultSize)
         let rootWidget = viewGraph.rootNode.concreteNode(for: Backend.self).widget
         backend.setChild(ofWindow: window, to: rootWidget)
@@ -24,16 +27,23 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         backend.setResizability(ofWindow: window, to: scene.resizable)
 
         self.window = window
+        parentEnvironment = environment
 
         backend.setResizeHandler(ofWindow: window) { [weak self] newSize in
             guard let self else { return .zero }
-            return self.update(nil, proposedWindowSize: newSize, backend: backend)
+            return self.update(
+                nil,
+                proposedWindowSize: newSize,
+                backend: backend,
+                environment: parentEnvironment
+            )
         }
     }
 
     public func update<Backend: AppBackend>(
         _ newScene: WindowGroup<Content>?,
-        backend: Backend
+        backend: Backend,
+        environment: Environment
     ) {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
@@ -42,18 +52,22 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         _ = update(
             newScene,
             proposedWindowSize: backend.size(ofWindow: window),
-            backend: backend
+            backend: backend,
+            environment: environment
         )
     }
 
     public func update<Backend: AppBackend>(
         _ newScene: WindowGroup<Content>?,
         proposedWindowSize: SIMD2<Int>,
-        backend: Backend
+        backend: Backend,
+        environment: Environment
     ) -> SIMD2<Int> {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
+
+        parentEnvironment = environment
 
         if let newScene = newScene {
             // Don't set default size even if it has changed. We only set that once
@@ -68,7 +82,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         let contentSize = viewGraph.update(
             with: newScene?.body,
             proposedSize: proposedWindowSize,
-            parentOrientation: .vertical
+            environment: environment
         )
 
         if isFirstUpdate {

@@ -12,18 +12,25 @@ public struct VariadicView1<View0: View>: TypeSafeView, View {
 
     public var body = EmptyView()
 
+    public var flexibility: Int {
+        300
+    }
+
     /// Wraps 1 child views in a single container view.
     public init(_ view0: View0) {
         self.view0 = view0
     }
 
     func children<Backend: AppBackend>(
-        backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
     ) -> Children {
         return Children(
             view0,
             backend: backend,
-            snapshots: snapshots
+            snapshots: snapshots,
+            environment: environment
         )
     }
 
@@ -35,11 +42,11 @@ public struct VariadicView1<View0: View>: TypeSafeView, View {
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view0.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -47,7 +54,10 @@ public struct VariadicView1<View0: View>: TypeSafeView, View {
         return layoutableChildren
     }
 
-    func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(
+        _ children: Children,
+        backend: Backend
+    ) -> Backend.Widget {
         let vStack = VStack(content: self)
         return vStack.asWidget(children, backend: backend)
     }
@@ -56,7 +66,7 @@ public struct VariadicView1<View0: View>: TypeSafeView, View {
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         let vStack = VStack(content: self)
@@ -64,7 +74,7 @@ public struct VariadicView1<View0: View>: TypeSafeView, View {
             widget,
             children: children,
             proposedSize: proposedSize,
-            parentOrientation: parentOrientation,
+            environment: environment,
             backend: backend
         )
     }
@@ -85,6 +95,10 @@ public struct VariadicView2<View0: View, View1: View>: TypeSafeView, View {
 
     public var body = EmptyView()
 
+    public var flexibility: Int {
+        300
+    }
+
     /// Wraps 2 child views in a single container view.
     public init(_ view0: View0, _ view1: View1) {
         self.view0 = view0
@@ -92,13 +106,16 @@ public struct VariadicView2<View0: View, View1: View>: TypeSafeView, View {
     }
 
     func children<Backend: AppBackend>(
-        backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
     ) -> Children {
         return Children(
             view0,
             view1,
             backend: backend,
-            snapshots: snapshots
+            snapshots: snapshots,
+            environment: environment
         )
     }
 
@@ -110,11 +127,11 @@ public struct VariadicView2<View0: View, View1: View>: TypeSafeView, View {
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view0.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -122,11 +139,11 @@ public struct VariadicView2<View0: View, View1: View>: TypeSafeView, View {
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view1.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -134,7 +151,10 @@ public struct VariadicView2<View0: View, View1: View>: TypeSafeView, View {
         return layoutableChildren
     }
 
-    func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(
+        _ children: Children,
+        backend: Backend
+    ) -> Backend.Widget {
         let vStack = VStack(content: self)
         return vStack.asWidget(children, backend: backend)
     }
@@ -143,7 +163,7 @@ public struct VariadicView2<View0: View, View1: View>: TypeSafeView, View {
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         let vStack = VStack(content: self)
@@ -151,7 +171,7 @@ public struct VariadicView2<View0: View, View1: View>: TypeSafeView, View {
             widget,
             children: children,
             proposedSize: proposedSize,
-            parentOrientation: parentOrientation,
+            environment: environment,
             backend: backend
         )
     }
@@ -173,6 +193,10 @@ public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView
 
     public var body = EmptyView()
 
+    public var flexibility: Int {
+        300
+    }
+
     /// Wraps 3 child views in a single container view.
     public init(_ view0: View0, _ view1: View1, _ view2: View2) {
         self.view0 = view0
@@ -181,14 +205,17 @@ public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView
     }
 
     func children<Backend: AppBackend>(
-        backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
     ) -> Children {
         return Children(
             view0,
             view1,
             view2,
             backend: backend,
-            snapshots: snapshots
+            snapshots: snapshots,
+            environment: environment
         )
     }
 
@@ -200,11 +227,11 @@ public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view0.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -212,11 +239,11 @@ public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view1.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -224,11 +251,11 @@ public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view2.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -236,7 +263,10 @@ public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView
         return layoutableChildren
     }
 
-    func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(
+        _ children: Children,
+        backend: Backend
+    ) -> Backend.Widget {
         let vStack = VStack(content: self)
         return vStack.asWidget(children, backend: backend)
     }
@@ -245,7 +275,7 @@ public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         let vStack = VStack(content: self)
@@ -253,7 +283,7 @@ public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView
             widget,
             children: children,
             proposedSize: proposedSize,
-            parentOrientation: parentOrientation,
+            environment: environment,
             backend: backend
         )
     }
@@ -277,6 +307,10 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
 
     public var body = EmptyView()
 
+    public var flexibility: Int {
+        300
+    }
+
     /// Wraps 4 child views in a single container view.
     public init(_ view0: View0, _ view1: View1, _ view2: View2, _ view3: View3) {
         self.view0 = view0
@@ -286,7 +320,9 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
     }
 
     func children<Backend: AppBackend>(
-        backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
     ) -> Children {
         return Children(
             view0,
@@ -294,7 +330,8 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
             view2,
             view3,
             backend: backend,
-            snapshots: snapshots
+            snapshots: snapshots,
+            environment: environment
         )
     }
 
@@ -306,11 +343,11 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view0.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -318,11 +355,11 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view1.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -330,11 +367,11 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view2.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -342,11 +379,11 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view3.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child3.update(
                         with: view3,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -354,7 +391,10 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
         return layoutableChildren
     }
 
-    func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(
+        _ children: Children,
+        backend: Backend
+    ) -> Backend.Widget {
         let vStack = VStack(content: self)
         return vStack.asWidget(children, backend: backend)
     }
@@ -363,7 +403,7 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         let vStack = VStack(content: self)
@@ -371,7 +411,7 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
             widget,
             children: children,
             proposedSize: proposedSize,
-            parentOrientation: parentOrientation,
+            environment: environment,
             backend: backend
         )
     }
@@ -397,6 +437,10 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
 
     public var body = EmptyView()
 
+    public var flexibility: Int {
+        300
+    }
+
     /// Wraps 5 child views in a single container view.
     public init(_ view0: View0, _ view1: View1, _ view2: View2, _ view3: View3, _ view4: View4) {
         self.view0 = view0
@@ -407,7 +451,9 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
     }
 
     func children<Backend: AppBackend>(
-        backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
     ) -> Children {
         return Children(
             view0,
@@ -416,7 +462,8 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
             view3,
             view4,
             backend: backend,
-            snapshots: snapshots
+            snapshots: snapshots,
+            environment: environment
         )
     }
 
@@ -428,11 +475,11 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view0.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -440,11 +487,11 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view1.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -452,11 +499,11 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view2.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -464,11 +511,11 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view3.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child3.update(
                         with: view3,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -476,11 +523,11 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view4.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child4.update(
                         with: view4,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -488,7 +535,10 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
         return layoutableChildren
     }
 
-    func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(
+        _ children: Children,
+        backend: Backend
+    ) -> Backend.Widget {
         let vStack = VStack(content: self)
         return vStack.asWidget(children, backend: backend)
     }
@@ -497,7 +547,7 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         let vStack = VStack(content: self)
@@ -505,7 +555,7 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
             widget,
             children: children,
             proposedSize: proposedSize,
-            parentOrientation: parentOrientation,
+            environment: environment,
             backend: backend
         )
     }
@@ -532,6 +582,10 @@ public struct VariadicView6<
 
     public var body = EmptyView()
 
+    public var flexibility: Int {
+        300
+    }
+
     /// Wraps 6 child views in a single container view.
     public init(
         _ view0: View0, _ view1: View1, _ view2: View2, _ view3: View3, _ view4: View4,
@@ -546,7 +600,9 @@ public struct VariadicView6<
     }
 
     func children<Backend: AppBackend>(
-        backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
     ) -> Children {
         return Children(
             view0,
@@ -556,7 +612,8 @@ public struct VariadicView6<
             view4,
             view5,
             backend: backend,
-            snapshots: snapshots
+            snapshots: snapshots,
+            environment: environment
         )
     }
 
@@ -568,11 +625,11 @@ public struct VariadicView6<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view0.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -580,11 +637,11 @@ public struct VariadicView6<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view1.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -592,11 +649,11 @@ public struct VariadicView6<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view2.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -604,11 +661,11 @@ public struct VariadicView6<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view3.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child3.update(
                         with: view3,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -616,11 +673,11 @@ public struct VariadicView6<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view4.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child4.update(
                         with: view4,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -628,11 +685,11 @@ public struct VariadicView6<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view5.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child5.update(
                         with: view5,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -640,7 +697,10 @@ public struct VariadicView6<
         return layoutableChildren
     }
 
-    func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(
+        _ children: Children,
+        backend: Backend
+    ) -> Backend.Widget {
         let vStack = VStack(content: self)
         return vStack.asWidget(children, backend: backend)
     }
@@ -649,7 +709,7 @@ public struct VariadicView6<
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         let vStack = VStack(content: self)
@@ -657,7 +717,7 @@ public struct VariadicView6<
             widget,
             children: children,
             proposedSize: proposedSize,
-            parentOrientation: parentOrientation,
+            environment: environment,
             backend: backend
         )
     }
@@ -685,6 +745,10 @@ public struct VariadicView7<
 
     public var body = EmptyView()
 
+    public var flexibility: Int {
+        300
+    }
+
     /// Wraps 7 child views in a single container view.
     public init(
         _ view0: View0, _ view1: View1, _ view2: View2, _ view3: View3, _ view4: View4,
@@ -700,7 +764,9 @@ public struct VariadicView7<
     }
 
     func children<Backend: AppBackend>(
-        backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
     ) -> Children {
         return Children(
             view0,
@@ -711,7 +777,8 @@ public struct VariadicView7<
             view5,
             view6,
             backend: backend,
-            snapshots: snapshots
+            snapshots: snapshots,
+            environment: environment
         )
     }
 
@@ -723,11 +790,11 @@ public struct VariadicView7<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view0.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -735,11 +802,11 @@ public struct VariadicView7<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view1.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -747,11 +814,11 @@ public struct VariadicView7<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view2.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -759,11 +826,11 @@ public struct VariadicView7<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view3.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child3.update(
                         with: view3,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -771,11 +838,11 @@ public struct VariadicView7<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view4.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child4.update(
                         with: view4,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -783,11 +850,11 @@ public struct VariadicView7<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view5.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child5.update(
                         with: view5,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -795,11 +862,11 @@ public struct VariadicView7<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view6.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child6.update(
                         with: view6,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -807,7 +874,10 @@ public struct VariadicView7<
         return layoutableChildren
     }
 
-    func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(
+        _ children: Children,
+        backend: Backend
+    ) -> Backend.Widget {
         let vStack = VStack(content: self)
         return vStack.asWidget(children, backend: backend)
     }
@@ -816,7 +886,7 @@ public struct VariadicView7<
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         let vStack = VStack(content: self)
@@ -824,7 +894,7 @@ public struct VariadicView7<
             widget,
             children: children,
             proposedSize: proposedSize,
-            parentOrientation: parentOrientation,
+            environment: environment,
             backend: backend
         )
     }
@@ -856,6 +926,10 @@ public struct VariadicView8<
 
     public var body = EmptyView()
 
+    public var flexibility: Int {
+        300
+    }
+
     /// Wraps 8 child views in a single container view.
     public init(
         _ view0: View0, _ view1: View1, _ view2: View2, _ view3: View3, _ view4: View4,
@@ -872,7 +946,9 @@ public struct VariadicView8<
     }
 
     func children<Backend: AppBackend>(
-        backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
     ) -> Children {
         return Children(
             view0,
@@ -884,7 +960,8 @@ public struct VariadicView8<
             view6,
             view7,
             backend: backend,
-            snapshots: snapshots
+            snapshots: snapshots,
+            environment: environment
         )
     }
 
@@ -896,11 +973,11 @@ public struct VariadicView8<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view0.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -908,11 +985,11 @@ public struct VariadicView8<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view1.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -920,11 +997,11 @@ public struct VariadicView8<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view2.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -932,11 +1009,11 @@ public struct VariadicView8<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view3.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child3.update(
                         with: view3,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -944,11 +1021,11 @@ public struct VariadicView8<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view4.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child4.update(
                         with: view4,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -956,11 +1033,11 @@ public struct VariadicView8<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view5.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child5.update(
                         with: view5,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -968,11 +1045,11 @@ public struct VariadicView8<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view6.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child6.update(
                         with: view6,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -980,11 +1057,11 @@ public struct VariadicView8<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view7.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child7.update(
                         with: view7,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -992,7 +1069,10 @@ public struct VariadicView8<
         return layoutableChildren
     }
 
-    func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(
+        _ children: Children,
+        backend: Backend
+    ) -> Backend.Widget {
         let vStack = VStack(content: self)
         return vStack.asWidget(children, backend: backend)
     }
@@ -1001,7 +1081,7 @@ public struct VariadicView8<
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         let vStack = VStack(content: self)
@@ -1009,7 +1089,7 @@ public struct VariadicView8<
             widget,
             children: children,
             proposedSize: proposedSize,
-            parentOrientation: parentOrientation,
+            environment: environment,
             backend: backend
         )
     }
@@ -1042,6 +1122,10 @@ public struct VariadicView9<
 
     public var body = EmptyView()
 
+    public var flexibility: Int {
+        300
+    }
+
     /// Wraps 9 child views in a single container view.
     public init(
         _ view0: View0, _ view1: View1, _ view2: View2, _ view3: View3, _ view4: View4,
@@ -1059,7 +1143,9 @@ public struct VariadicView9<
     }
 
     func children<Backend: AppBackend>(
-        backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
     ) -> Children {
         return Children(
             view0,
@@ -1072,7 +1158,8 @@ public struct VariadicView9<
             view7,
             view8,
             backend: backend,
-            snapshots: snapshots
+            snapshots: snapshots,
+            environment: environment
         )
     }
 
@@ -1084,11 +1171,11 @@ public struct VariadicView9<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view0.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1096,11 +1183,11 @@ public struct VariadicView9<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view1.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1108,11 +1195,11 @@ public struct VariadicView9<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view2.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1120,11 +1207,11 @@ public struct VariadicView9<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view3.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child3.update(
                         with: view3,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1132,11 +1219,11 @@ public struct VariadicView9<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view4.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child4.update(
                         with: view4,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1144,11 +1231,11 @@ public struct VariadicView9<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view5.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child5.update(
                         with: view5,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1156,11 +1243,11 @@ public struct VariadicView9<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view6.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child6.update(
                         with: view6,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1168,11 +1255,11 @@ public struct VariadicView9<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view7.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child7.update(
                         with: view7,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1180,11 +1267,11 @@ public struct VariadicView9<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view8.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child8.update(
                         with: view8,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1192,7 +1279,10 @@ public struct VariadicView9<
         return layoutableChildren
     }
 
-    func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(
+        _ children: Children,
+        backend: Backend
+    ) -> Backend.Widget {
         let vStack = VStack(content: self)
         return vStack.asWidget(children, backend: backend)
     }
@@ -1201,7 +1291,7 @@ public struct VariadicView9<
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         let vStack = VStack(content: self)
@@ -1209,7 +1299,7 @@ public struct VariadicView9<
             widget,
             children: children,
             proposedSize: proposedSize,
-            parentOrientation: parentOrientation,
+            environment: environment,
             backend: backend
         )
     }
@@ -1243,6 +1333,10 @@ public struct VariadicView10<
 
     public var body = EmptyView()
 
+    public var flexibility: Int {
+        300
+    }
+
     /// Wraps 10 child views in a single container view.
     public init(
         _ view0: View0, _ view1: View1, _ view2: View2, _ view3: View3, _ view4: View4,
@@ -1261,7 +1355,9 @@ public struct VariadicView10<
     }
 
     func children<Backend: AppBackend>(
-        backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
     ) -> Children {
         return Children(
             view0,
@@ -1275,7 +1371,8 @@ public struct VariadicView10<
             view8,
             view9,
             backend: backend,
-            snapshots: snapshots
+            snapshots: snapshots,
+            environment: environment
         )
     }
 
@@ -1287,11 +1384,11 @@ public struct VariadicView10<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view0.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1299,11 +1396,11 @@ public struct VariadicView10<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view1.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1311,11 +1408,11 @@ public struct VariadicView10<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view2.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1323,11 +1420,11 @@ public struct VariadicView10<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view3.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child3.update(
                         with: view3,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1335,11 +1432,11 @@ public struct VariadicView10<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view4.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child4.update(
                         with: view4,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1347,11 +1444,11 @@ public struct VariadicView10<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view5.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child5.update(
                         with: view5,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1359,11 +1456,11 @@ public struct VariadicView10<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view6.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child6.update(
                         with: view6,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1371,11 +1468,11 @@ public struct VariadicView10<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view7.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child7.update(
                         with: view7,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1383,11 +1480,11 @@ public struct VariadicView10<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view8.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child8.update(
                         with: view8,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1395,11 +1492,11 @@ public struct VariadicView10<
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
                 flexibility: view9.flexibility,
-                update: { proposedSize, parentOrientation in
+                update: { proposedSize, environment in
                     children.child9.update(
                         with: view9,
                         proposedSize: proposedSize,
-                        parentOrientation: parentOrientation
+                        environment: environment
                     )
                 }
             )
@@ -1407,7 +1504,10 @@ public struct VariadicView10<
         return layoutableChildren
     }
 
-    func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(
+        _ children: Children,
+        backend: Backend
+    ) -> Backend.Widget {
         let vStack = VStack(content: self)
         return vStack.asWidget(children, backend: backend)
     }
@@ -1416,7 +1516,7 @@ public struct VariadicView10<
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         let vStack = VStack(content: self)
@@ -1424,7 +1524,7 @@ public struct VariadicView10<
             widget,
             children: children,
             proposedSize: proposedSize,
-            parentOrientation: parentOrientation,
+            environment: environment,
             backend: backend
         )
     }

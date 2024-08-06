@@ -230,7 +230,7 @@ public struct AppKitBackend: AppBackend {
     public func size(of text: String, in proposedFrame: SIMD2<Int>) -> SIMD2<Int> {
         let proposedSize = NSSize(
             width: CGFloat(proposedFrame.x),
-            height: CGFloat(proposedFrame.y)
+            height: .greatestFiniteMagnitude
         )
         let rect = NSString(string: text).boundingRect(
             with: proposedSize,

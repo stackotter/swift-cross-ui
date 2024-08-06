@@ -2,6 +2,7 @@ import Foundation
 
 public struct ErasedViewGraphNode {
     public var node: Any
+
     /// If the new view doesn't have the same type as the old view then the returned
     /// value will have `viewTypeMatched` set to `false`, allowing views such as `AnyView`
     /// to choose how to react to a mismatch. In `AnyView`'s case this means throwing away
@@ -10,8 +11,9 @@ public struct ErasedViewGraphNode {
         (
             _ newView: Any?,
             _ proposedSize: SIMD2<Int>,
-            _ parentOrientation: Orientation
+            _ environment: Environment
         ) -> (viewTypeMatched: Bool, size: SIMD2<Int>)
+
     public var getWidget: () -> AnyWidget
     public var getState: () -> Data?
     public var viewType: any View.Type
@@ -20,9 +22,17 @@ public struct ErasedViewGraphNode {
     public init<V: View, Backend: AppBackend>(
         for view: V,
         backend: Backend,
-        snapshot: ViewGraphSnapshotter.NodeSnapshot? = nil
+        snapshot: ViewGraphSnapshotter.NodeSnapshot? = nil,
+        environment: Environment
     ) {
-        self.init(wrapping: ViewGraphNode(for: view, backend: backend, snapshot: snapshot))
+        self.init(
+            wrapping: ViewGraphNode(
+                for: view,
+                backend: backend,
+                snapshot: snapshot,
+                environment: environment
+            )
+        )
     }
 
     public init<V: View, Backend: AppBackend>(
@@ -31,7 +41,7 @@ public struct ErasedViewGraphNode {
         self.node = node
         backendType = Backend.self
         viewType = V.self
-        updateWithNewView = { view, proposedSize, parentOrientation in
+        updateWithNewView = { view, proposedSize, environment in
             if let view {
                 guard let view = view as? V else {
                     return (false, .zero)
@@ -39,14 +49,14 @@ public struct ErasedViewGraphNode {
                 let size = node.update(
                     with: view,
                     proposedSize: proposedSize,
-                    parentOrientation: parentOrientation
+                    environment: environment
                 )
                 return (true, size)
             } else {
                 let size = node.update(
                     with: nil,
                     proposedSize: proposedSize,
-                    parentOrientation: parentOrientation
+                    environment: environment
                 )
                 return (true, size)
             }

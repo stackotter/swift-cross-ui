@@ -24,7 +24,7 @@ public struct Button: ElementaryView, View {
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         backend.updateButton(widget, label: label, action: action)

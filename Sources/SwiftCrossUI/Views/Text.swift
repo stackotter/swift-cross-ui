@@ -21,7 +21,7 @@ public struct Text: ElementaryView, View {
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         let size = backend.size(of: string, in: proposedSize)

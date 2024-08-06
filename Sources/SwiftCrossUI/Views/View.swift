@@ -24,7 +24,8 @@ public protocol View {
     /// to avoid leaking complex requirements to users implementing their own regular views.
     func children<Backend: AppBackend>(
         backend: Backend,
-        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
     ) -> any ViewGraphNodeChildren
 
     /// Gets the view's children in a format that can be consumed by the ``LayoutSystem``.
@@ -61,7 +62,7 @@ public protocol View {
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int>
 }
@@ -73,9 +74,10 @@ extension View {
 
     public func children<Backend: AppBackend>(
         backend: Backend,
-        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
     ) -> any ViewGraphNodeChildren {
-        body.children(backend: backend, snapshots: snapshots)
+        body.children(backend: backend, snapshots: snapshots, environment: environment)
     }
 
     public func layoutableChildren<Backend: AppBackend>(
@@ -97,7 +99,7 @@ extension View {
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         let vStack = VStack(content: body)
@@ -105,7 +107,7 @@ extension View {
             widget,
             children: children,
             proposedSize: proposedSize,
-            parentOrientation: parentOrientation,
+            environment: environment,
             backend: backend
         )
     }

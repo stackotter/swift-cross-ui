@@ -9,7 +9,7 @@ protocol ElementaryView: View where Content == EmptyView {
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int>
 }
@@ -32,18 +32,18 @@ extension ElementaryView {
         asWidget(backend: backend)
     }
 
-    /// Do not implement yourself, implement ``ElementaryView/update(_:proposedSize:parentOrientation:backend:)`` instead.
+    /// Do not implement yourself, implement ``ElementaryView/update(_:proposedSize:environment:backend:)`` instead.
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         update(
             widget,
             proposedSize: proposedSize,
-            parentOrientation: parentOrientation,
+            environment: environment,
             backend: backend
         )
     }

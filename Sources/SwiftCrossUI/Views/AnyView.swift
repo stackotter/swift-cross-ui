@@ -18,10 +18,16 @@ public struct AnyView: TypeSafeView {
 
     func children<Backend: AppBackend>(
         backend: Backend,
-        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
     ) -> AnyViewChildren {
         let snapshot = snapshots?.count == 1 ? snapshots?.first : nil
-        return AnyViewChildren(from: self, backend: backend, snapshot: snapshot)
+        return AnyViewChildren(
+            from: self,
+            backend: backend,
+            snapshot: snapshot,
+            environment: environment
+        )
     }
 
     func layoutableChildren<Backend: AppBackend>(
@@ -44,13 +50,13 @@ public struct AnyView: TypeSafeView {
         _ widget: Backend.Widget,
         children: AnyViewChildren,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         children.update(
             with: self,
             proposedSize: proposedSize,
-            parentOrientation: parentOrientation,
+            environment: environment,
             backend: backend
         )
     }
@@ -75,9 +81,15 @@ class AnyViewChildren: ViewGraphNodeChildren {
     init<Backend: AppBackend>(
         from view: AnyView,
         backend: Backend,
-        snapshot: ViewGraphSnapshotter.NodeSnapshot?
+        snapshot: ViewGraphSnapshotter.NodeSnapshot?,
+        environment: Environment
     ) {
-        node = ErasedViewGraphNode(for: view.child, backend: backend, snapshot: snapshot)
+        node = ErasedViewGraphNode(
+            for: view.child,
+            backend: backend,
+            snapshot: snapshot,
+            environment: environment
+        )
         let container = backend.createContainer()
         backend.addChild(node.getWidget().into(), to: container)
         backend.setPosition(ofChildAt: 0, in: container, to: .zero)
@@ -90,24 +102,24 @@ class AnyViewChildren: ViewGraphNodeChildren {
     func update<Backend: AppBackend>(
         with view: AnyView,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation,
+        environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
         var (viewTypesMatched, size) = node.updateWithNewView(
             view.child,
             proposedSize,
-            parentOrientation
+            environment
         )
 
         if !viewTypesMatched {
             backend.removeChild(node.getWidget().into(), from: container.into())
-            node = ErasedViewGraphNode(for: view.child, backend: backend)
+            node = ErasedViewGraphNode(for: view.child, backend: backend, environment: environment)
             backend.addChild(node.getWidget().into(), to: container.into())
             backend.setPosition(ofChildAt: 0, in: container.into(), to: .zero)
 
             // We can just assume that the update succeeded because we just created the node
             // a few lines earlier (so it's guaranteed that the view types match).
-            let result = node.updateWithNewView(view.child, proposedSize, parentOrientation)
+            let result = node.updateWithNewView(view.child, proposedSize, environment)
             size = result.size
         }
 

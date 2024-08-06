@@ -16,7 +16,7 @@ public class AnyViewGraphNode<NodeView: View> {
         (
             _ newView: NodeView?,
             _ proposedSize: SIMD2<Int>,
-            _ parentOrientation: Orientation
+            _ environment: Environment
         ) -> SIMD2<Int>
     /// The type-erased getter for the node's widget.
     private var _getWidget: () -> AnyWidget
@@ -30,7 +30,7 @@ public class AnyViewGraphNode<NodeView: View> {
     /// Type-erases a view graph node.
     public init<Backend: AppBackend>(_ node: ViewGraphNode<NodeView, Backend>) {
         self.node = node
-        _updateWithNewView = node.update(with:proposedSize:parentOrientation:)
+        _updateWithNewView = node.update(with:proposedSize:environment:)
         _getWidget = {
             AnyWidget(node.widget)
         }
@@ -49,9 +49,17 @@ public class AnyViewGraphNode<NodeView: View> {
     public convenience init<Backend: AppBackend>(
         for view: NodeView,
         backend: Backend,
-        snapshot: ViewGraphSnapshotter.NodeSnapshot? = nil
+        snapshot: ViewGraphSnapshotter.NodeSnapshot? = nil,
+        environment: Environment
     ) {
-        self.init(ViewGraphNode(for: view, backend: backend, snapshot: snapshot))
+        self.init(
+            ViewGraphNode(
+                for: view,
+                backend: backend,
+                snapshot: snapshot,
+                environment: environment
+            )
+        )
     }
 
     /// Updates the view after it got recomputed (e.g. due to the parent's state changing)
@@ -59,9 +67,9 @@ public class AnyViewGraphNode<NodeView: View> {
     public func update(
         with newView: NodeView?,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation
+        environment: Environment
     ) -> SIMD2<Int> {
-        _updateWithNewView(newView, proposedSize, parentOrientation)
+        _updateWithNewView(newView, proposedSize, environment)
     }
 
     /// Gets the node's wrapped view.

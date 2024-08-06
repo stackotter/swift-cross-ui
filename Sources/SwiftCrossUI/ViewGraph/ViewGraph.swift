@@ -21,18 +21,22 @@ public class ViewGraph<Root: View> {
     /// change as opposed to a window resizing event).
     private var windowSize: SIMD2<Int>
 
+    /// The environment most recently provided by this node's parent scene.
+    private var parentEnvironment: Environment
+
     /// Creates a view graph for a root view with a specific backend.
-    public init<Backend: AppBackend>(for view: Root, backend: Backend) {
-        rootNode = AnyViewGraphNode(for: view, backend: backend)
+    public init<Backend: AppBackend>(for view: Root, backend: Backend, environment: Environment) {
+        rootNode = AnyViewGraphNode(for: view, backend: backend, environment: environment)
 
         self.view = view
-        self.windowSize = .zero
+        windowSize = .zero
+        parentEnvironment = environment
 
         cancellable = view.state.didChange.observe { [weak self] in
             guard let self else { return }
             // TODO: Notify parent scene of the root view's new size (which would be
             //   required to implement content hugging)
-            self.update(proposedSize: windowSize, parentOrientation: .vertical)
+            self.update(proposedSize: windowSize, environment: parentEnvironment)
         }
     }
 
@@ -42,13 +46,14 @@ public class ViewGraph<Root: View> {
     public func update(
         with newView: Root? = nil,
         proposedSize: SIMD2<Int>,
-        parentOrientation: Orientation
+        environment: Environment
     ) -> SIMD2<Int> {
+        parentEnvironment = environment
         windowSize = proposedSize
         return rootNode.update(
             with: newView ?? view,
             proposedSize: proposedSize,
-            parentOrientation: .vertical
+            environment: parentEnvironment
         )
     }
 
