@@ -34,7 +34,7 @@ return_type_init_parameters = ", ".join(["view%d" % j for j in range(i + 1)])
         return EitherView(component)
     }
 
-    // public static func buildIf<V: View>(_ content: V?) -> OptionalView<V> {
-    //     return OptionalView(content)
-    // }
+    public static func buildIf<V: View>(_ content: V?) -> OptionalView<V> {
+        return OptionalView(content)
+    }
 }

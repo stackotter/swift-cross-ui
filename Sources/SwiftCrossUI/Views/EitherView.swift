@@ -44,40 +44,6 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
         )
     }
 
-    func layoutableChildren<Backend>(
-        backend: Backend,
-        children: EitherViewChildren<A, B>
-    ) -> [LayoutSystem.LayoutableChild] where Backend: AppBackend {
-        switch children.node {
-            case .a(let nodeA):
-                return [
-                    LayoutSystem.LayoutableChild(
-                        flexibility: nodeA.getView().flexibility,
-                        update: { proposedSize, environment in
-                            nodeA.update(
-                                with: nil,
-                                proposedSize: proposedSize,
-                                environment: environment
-                            )
-                        }
-                    )
-                ]
-            case .b(let nodeB):
-                return [
-                    LayoutSystem.LayoutableChild(
-                        flexibility: nodeB.getView().flexibility,
-                        update: { proposedSize, environment in
-                            nodeB.update(
-                                with: nil,
-                                proposedSize: proposedSize,
-                                environment: environment
-                            )
-                        }
-                    )
-                ]
-        }
-    }
-
     func asWidget<Backend: AppBackend>(
         _ children: EitherViewChildren<A, B>,
         backend: Backend

@@ -51,6 +51,15 @@ extension TypeSafeView {
         return layoutableChildren(backend: backend, children: children as! Children)
     }
 
+    public func layoutableChildren<Backend: AppBackend>(
+        backend: Backend,
+        children: Children
+    ) -> [LayoutSystem.LayoutableChild] {
+        // Most views don't need to implement this at all so a simple default implementation
+        // suffices in most cases.
+        []
+    }
+
     public func asWidget<Backend: AppBackend>(
         _ children: any ViewGraphNodeChildren,
         backend: Backend

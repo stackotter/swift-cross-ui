@@ -1,99 +1,124 @@
 /// A view used by ``ViewBuilder`` to support non-exhaustive if statements.
-// public struct OptionalView<V: View>: TypeSafeView, View {
-//     typealias Children = OptionalViewChildren<V>
+public struct OptionalView<V: View>: TypeSafeView, View {
+    typealias Children = OptionalViewChildren<V>
 
-//     public var body = EmptyView()
+    public var body = EmptyView()
 
-//     var view: V?
+    public var flexibility: Int {
+        view?.flexibility ?? 1500
+    }
 
-//     /// Wraps an optional view.
-//     init(_ view: V?) {
-//         self.view = view
-//     }
+    var view: V?
 
-//     func children<Backend: AppBackend>(
-//         backend: Backend,
-//         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
-//     ) -> OptionalViewChildren<V> {
-//         // TODO: This is a conservative implementation, perhaps there are some situations
-//         //   where we could usefully use the snapshots even if there are too many.
-//         let snapshot = snapshots?.count == 1 ? snapshots?.first : nil
-//         return OptionalViewChildren(from: view, backend: backend, snapshot: snapshot)
-//     }
+    /// Wraps an optional view.
+    init(_ view: V?) {
+        self.view = view
+    }
 
-//     func updateChildren<Backend: AppBackend>(
-//         _ children: OptionalViewChildren<V>, backend: Backend
-//     ) {
-//         children.update(with: view, backend: backend)
-//     }
+    func children<Backend: AppBackend>(
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
+    ) -> OptionalViewChildren<V> {
+        // TODO: This is a conservative implementation, perhaps there are some situations
+        //   where we could usefully use the snapshots even if there are too many.
+        let snapshot = snapshots?.count == 1 ? snapshots?.first : nil
+        return OptionalViewChildren(
+            from: view,
+            backend: backend,
+            snapshot: snapshot,
+            environment: environment
+        )
+    }
 
-//     func asWidget<Backend: AppBackend>(
-//         _ children: OptionalViewChildren<V>, backend: Backend
-//     ) -> Backend.Widget {
-//         return backend.createSingleChildContainer()
-//     }
+    func asWidget<Backend: AppBackend>(
+        _ children: OptionalViewChildren<V>,
+        backend: Backend
+    ) -> Backend.Widget {
+        return backend.createContainer()
+    }
 
-//     func update<Backend: AppBackend>(
-//         _ widget: Backend.Widget, children: OptionalViewChildren<V>, backend: Backend
-//     ) {
-//         if children.hasToggled || children.isFirstUpdate {
-//             backend.setChild(ofSingleChildContainer: widget, to: children.widget(for: backend))
-//         }
-//         children.isFirstUpdate = false
-//     }
-// }
+    func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: OptionalViewChildren<V>,
+        proposedSize: SIMD2<Int>,
+        environment: Environment,
+        backend: Backend
+    ) -> SIMD2<Int> {
+        let hasToggled: Bool
+        let size: SIMD2<Int>
+        if let view = view {
+            if let node = children.node {
+                size = node.update(with: view, proposedSize: proposedSize, environment: environment)
+                hasToggled = false
+            } else {
+                let node = AnyViewGraphNode(
+                    for: view,
+                    backend: backend,
+                    environment: environment
+                )
+                children.node = node
+                size = node.update(
+                    with: view,
+                    proposedSize: proposedSize,
+                    environment: environment
+                )
+                hasToggled = true
+            }
+        } else {
+            hasToggled = children.node != nil
+            children.node = nil
+            size = .zero
+        }
 
-// /// Stores a view graph node for the view's child if present. Tracks whether
-// /// the child has toggled since last time the parent was updated or not.
-// class OptionalViewChildren<V: View>: ViewGraphNodeChildren {
-//     /// The view graph node for the view's child if present.
-//     var node: AnyViewGraphNode<V>?
-//     /// Whether the view's child has toggled between visible/not-visible (or vice versa)
-//     /// since the last time the parent widget was updated.
-//     var hasToggled = true
-//     /// `true` if the first view update hasn't occurred yet.
-//     var isFirstUpdate = true
+        if hasToggled || children.isFirstUpdate {
+            backend.removeAllChildren(of: widget)
+            if let node = children.node {
+                backend.addChild(node.widget.into(), to: widget)
+                backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
+            }
+            children.isFirstUpdate = false
+        }
 
-//     var widgets: [AnyWidget] {
-//         return [node?.widget].compactMap { $0 }
-//     }
+        return size
+    }
+}
 
-//     var erasedNodes: [ErasedViewGraphNode] {
-//         if let node = node {
-//             [ErasedViewGraphNode(wrapping: node)]
-//         } else {
-//             []
-//         }
-//     }
+/// Stores a view graph node for the view's child if present. Tracks whether
+/// the child has toggled since last time the parent was updated or not.
+class OptionalViewChildren<V: View>: ViewGraphNodeChildren {
+    /// The view graph node for the view's child if present.
+    var node: AnyViewGraphNode<V>?
+    /// `true` if the first view update hasn't occurred yet.
+    var isFirstUpdate = true
 
-//     /// Creates storage for an optional view's child if present (which can change at
-//     /// any time).
-//     init<Backend: AppBackend>(
-//         from view: V?,
-//         backend: Backend,
-//         snapshot: ViewGraphSnapshotter.NodeSnapshot?
-//     ) {
-//         if let view = view {
-//             node = AnyViewGraphNode(for: view, backend: backend, snapshot: snapshot)
-//         }
-//     }
+    var widgets: [AnyWidget] {
+        return [node?.widget].compactMap { $0 }
+    }
 
-//     func widget<Backend: AppBackend>(for backend: Backend) -> Backend.Widget? {
-//         return node?.widget.into()
-//     }
+    var erasedNodes: [ErasedViewGraphNode] {
+        if let node = node {
+            [ErasedViewGraphNode(wrapping: node)]
+        } else {
+            []
+        }
+    }
 
-//     func update<Backend: AppBackend>(with view: V?, backend: Backend) {
-//         if let view = view {
-//             if let node = node {
-//                 node.update(with: view)
-//                 hasToggled = false
-//             } else {
-//                 node = AnyViewGraphNode(for: view, backend: backend)
-//                 hasToggled = true
-//             }
-//         } else {
-//             hasToggled = node != nil
-//             node = nil
-//         }
-//     }
-// }
+    /// Creates storage for an optional view's child if present (which can change at
+    /// any time).
+    init<Backend: AppBackend>(
+        from view: V?,
+        backend: Backend,
+        snapshot: ViewGraphSnapshotter.NodeSnapshot?,
+        environment: Environment
+    ) {
+        if let view = view {
+            node = AnyViewGraphNode(
+                for: view,
+                backend: backend,
+                snapshot: snapshot,
+                environment: environment
+            )
+        }
+    }
+}

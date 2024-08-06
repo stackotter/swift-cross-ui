@@ -88,7 +88,7 @@ public struct ViewBuilder {
         return EitherView(component)
     }
 
-    // public static func buildIf<V: View>(_ content: V?) -> OptionalView<V> {
-    //     return OptionalView(content)
-    // }
+    public static func buildIf<V: View>(_ content: V?) -> OptionalView<V> {
+        return OptionalView(content)
+    }
 }
