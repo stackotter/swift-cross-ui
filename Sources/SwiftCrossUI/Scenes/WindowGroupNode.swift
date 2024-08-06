@@ -31,12 +31,13 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
 
         backend.setResizeHandler(ofWindow: window) { [weak self] newSize in
             guard let self else { return .zero }
-            return self.update(
+            self.update(
                 nil,
                 proposedWindowSize: newSize,
                 backend: backend,
                 environment: parentEnvironment
             )
+            return newSize
         }
     }
 

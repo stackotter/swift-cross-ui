@@ -80,6 +80,8 @@ public struct OptionalView<V: View>: TypeSafeView, View {
             children.isFirstUpdate = false
         }
 
+        backend.setSize(of: widget, to: size)
+
         return size
     }
 }
