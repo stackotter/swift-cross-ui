@@ -126,12 +126,24 @@ public struct AppKitBackend: AppBackend {
             }
             view.removeFromSuperview()
         }
+
+        func removeAllSubviews() {
+            for child in children {
+                child.removeFromSuperview()
+            }
+            children = []
+        }
     }
 
     public func createContainer() -> Widget {
         let container = NSContainerView()
         container.translatesAutoresizingMaskIntoConstraints = false
         return .view(container)
+    }
+
+    public func removeAllChildren(of container: Widget) {
+        let container = container.view as! NSContainerView
+        container.removeAllSubviews()
     }
 
     public func addChild(_ child: Widget, to container: Widget) {

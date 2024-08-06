@@ -1,140 +1,231 @@
 /// A view used by ``ViewBuilder`` to support if/else conditional statements.
-// public struct EitherView<A: View, B: View>: TypeSafeView, View {
-//     typealias NodeChildren = EitherViewChildren<A, B>
+public struct EitherView<A: View, B: View>: TypeSafeView, View {
+    typealias NodeChildren = EitherViewChildren<A, B>
 
-//     public var body = EmptyView()
+    public var body = EmptyView()
 
-//     /// Stores one of two possible view types.
-//     enum Storage {
-//         case a(A)
-//         case b(B)
-//     }
+    public var flexibility: Int {
+        switch storage {
+            case .a(let view):
+                view.flexibility
+            case .b(let view):
+                view.flexibility
+        }
+    }
 
-//     var storage: Storage
+    /// Stores one of two possible view types.
+    enum Storage {
+        case a(A)
+        case b(B)
+    }
 
-//     /// Creates an either view with its first case visible initially.
-//     init(_ a: A) {
-//         storage = .a(a)
-//     }
+    var storage: Storage
 
-//     /// Creates an either view with its second case visible initially.
-//     init(_ b: B) {
-//         storage = .b(b)
-//     }
+    /// Creates an either view with its first case visible initially.
+    init(_ a: A) {
+        storage = .a(a)
+    }
 
-//     func children<Backend: AppBackend>(
-//         backend: Backend,
-//         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
-//     ) -> NodeChildren {
-//         return EitherViewChildren(from: self, backend: backend, snapshots: snapshots)
-//     }
+    /// Creates an either view with its second case visible initially.
+    init(_ b: B) {
+        storage = .b(b)
+    }
 
-//     func updateChildren<Backend: AppBackend>(_ children: NodeChildren, backend: Backend) {
-//         children.update(with: self, backend: backend)
-//     }
+    func children<Backend: AppBackend>(
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
+    ) -> NodeChildren {
+        return EitherViewChildren(
+            from: self,
+            backend: backend,
+            snapshots: snapshots,
+            environment: environment
+        )
+    }
 
-//     func asWidget<Backend: AppBackend>(
-//         _ children: EitherViewChildren<A, B>, backend: Backend
-//     ) -> Backend.Widget {
-//         return backend.createSingleChildContainer()
-//     }
+    func layoutableChildren<Backend>(
+        backend: Backend,
+        children: EitherViewChildren<A, B>
+    ) -> [LayoutSystem.LayoutableChild] where Backend: AppBackend {
+        switch children.node {
+            case .a(let nodeA):
+                return [
+                    LayoutSystem.LayoutableChild(
+                        flexibility: nodeA.getView().flexibility,
+                        update: { proposedSize, environment in
+                            nodeA.update(
+                                with: nil,
+                                proposedSize: proposedSize,
+                                environment: environment
+                            )
+                        }
+                    )
+                ]
+            case .b(let nodeB):
+                return [
+                    LayoutSystem.LayoutableChild(
+                        flexibility: nodeB.getView().flexibility,
+                        update: { proposedSize, environment in
+                            nodeB.update(
+                                with: nil,
+                                proposedSize: proposedSize,
+                                environment: environment
+                            )
+                        }
+                    )
+                ]
+        }
+    }
 
-//     func update<Backend: AppBackend>(
-//         _ widget: Backend.Widget, children: EitherViewChildren<A, B>, backend: Backend
-//     ) {
-//         if children.hasSwitchedCase || children.isFirstUpdate {
-//             backend.setChild(ofSingleChildContainer: widget, to: children.widget(for: backend))
-//         }
-//         children.isFirstUpdate = false
-//     }
-// }
+    func asWidget<Backend: AppBackend>(
+        _ children: EitherViewChildren<A, B>,
+        backend: Backend
+    ) -> Backend.Widget {
+        return backend.createContainer()
+    }
 
-// /// Uses an `enum` to store a view graph node for one of two possible child view types.
-// class EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
-//     /// A view graph node that wraps one of two possible child view types.
-//     enum EitherNode {
-//         case a(AnyViewGraphNode<A>)
-//         case b(AnyViewGraphNode<B>)
+    func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: EitherViewChildren<A, B>,
+        proposedSize: SIMD2<Int>,
+        environment: Environment,
+        backend: Backend
+    ) -> SIMD2<Int> {
+        let size: SIMD2<Int>
+        let hasSwitchedCase: Bool
+        switch storage {
+            case .a(let a):
+                switch children.node {
+                    case let .a(nodeA):
+                        size = nodeA.update(
+                            with: a,
+                            proposedSize: proposedSize,
+                            environment: environment
+                        )
+                        hasSwitchedCase = false
+                    case .b:
+                        let nodeA = AnyViewGraphNode(
+                            for: a,
+                            backend: backend,
+                            environment: environment
+                        )
+                        children.node = .a(nodeA)
+                        size = nodeA.update(
+                            with: a,
+                            proposedSize: proposedSize,
+                            environment: environment
+                        )
+                        hasSwitchedCase = true
+                }
+            case .b(let b):
+                switch children.node {
+                    case let .b(nodeB):
+                        size = nodeB.update(
+                            with: b,
+                            proposedSize: proposedSize,
+                            environment: environment
+                        )
+                        hasSwitchedCase = false
+                    case .a:
+                        let nodeB = AnyViewGraphNode(
+                            for: b,
+                            backend: backend,
+                            environment: environment
+                        )
+                        children.node = .b(nodeB)
+                        size = nodeB.update(
+                            with: b,
+                            proposedSize: proposedSize,
+                            environment: environment
+                        )
+                        hasSwitchedCase = true
+                }
+        }
 
-//         /// The widget corresponding to the currently displayed child view.
-//         var widget: AnyWidget {
-//             switch self {
-//                 case let .a(node):
-//                     return node.widget
-//                 case let .b(node):
-//                     return node.widget
-//             }
-//         }
+        if hasSwitchedCase || children.isFirstUpdate {
+            backend.removeAllChildren(of: widget)
+            backend.addChild(children.node.widget.into(), to: widget)
+            backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
+            children.isFirstUpdate = false
+        }
 
-//         var erasedNode: ErasedViewGraphNode {
-//             switch self {
-//                 case let .a(node):
-//                     return ErasedViewGraphNode(wrapping: node)
-//                 case let .b(node):
-//                     return ErasedViewGraphNode(wrapping: node)
-//             }
-//         }
-//     }
+        return size
+    }
+}
 
-//     /// The view graph node for the currently displayed child.
-//     var node: EitherNode
-//     /// Whether the view has switched children since the last time the parent widget was
-//     /// updated.
-//     var hasSwitchedCase = true
-//     /// `true` if the first view update hasn't occurred yet.
-//     var isFirstUpdate = true
+/// Uses an `enum` to store a view graph node for one of two possible child view types.
+class EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
+    /// A view graph node that wraps one of two possible child view types.
+    enum EitherNode {
+        case a(AnyViewGraphNode<A>)
+        case b(AnyViewGraphNode<B>)
 
-//     var widgets: [AnyWidget] {
-//         return [node.widget]
-//     }
+        /// The widget corresponding to the currently displayed child view.
+        var widget: AnyWidget {
+            switch self {
+                case let .a(node):
+                    return node.widget
+                case let .b(node):
+                    return node.widget
+            }
+        }
 
-//     var erasedNodes: [ErasedViewGraphNode] {
-//         [node.erasedNode]
-//     }
+        var erasedNode: ErasedViewGraphNode {
+            switch self {
+                case let .a(node):
+                    return ErasedViewGraphNode(wrapping: node)
+                case let .b(node):
+                    return ErasedViewGraphNode(wrapping: node)
+            }
+        }
+    }
 
-//     /// Creates storage for an either view's current child (which can change at any time).
-//     init<Backend: AppBackend>(
-//         from view: EitherView<A, B>,
-//         backend: Backend,
-//         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?
-//     ) {
-//         // TODO: Ensure that this is valid in all circumstances. It should be, given that
-//         //   we're assuming that the parent view's state was restored from the same snapshot
-//         //   which should mean that the same EitherView case will be selected (if we assume
-//         //   that views are pure, which we have to).
-//         let snapshot = snapshots?.first
-//         switch view.storage {
-//             case .a(let a):
-//                 node = .a(AnyViewGraphNode(for: a, backend: backend, snapshot: snapshot))
-//             case .b(let b):
-//                 node = .b(AnyViewGraphNode(for: b, backend: backend, snapshot: snapshot))
-//         }
-//     }
+    /// The view graph node for the currently displayed child.
+    var node: EitherNode
 
-//     func widget<Backend: AppBackend>(for backend: Backend) -> Backend.Widget {
-//         return node.widget.into()
-//     }
+    /// `true` if the first view update hasn't occurred yet.
+    var isFirstUpdate = true
 
-//     func update<Backend: AppBackend>(with view: EitherView<A, B>, backend: Backend) {
-//         switch view.storage {
-//             case .a(let a):
-//                 switch node {
-//                     case let .a(nodeA):
-//                         nodeA.update(with: a)
-//                         hasSwitchedCase = false
-//                     case .b:
-//                         node = .a(AnyViewGraphNode(for: a, backend: backend))
-//                         hasSwitchedCase = true
-//                 }
-//             case .b(let b):
-//                 switch node {
-//                     case let .b(nodeB):
-//                         nodeB.update(with: b)
-//                         hasSwitchedCase = false
-//                     case .a:
-//                         node = .b(AnyViewGraphNode(for: b, backend: backend))
-//                         hasSwitchedCase = true
-//                 }
-//         }
-//     }
-// }
+    var widgets: [AnyWidget] {
+        return [node.widget]
+    }
+
+    var erasedNodes: [ErasedViewGraphNode] {
+        [node.erasedNode]
+    }
+
+    /// Creates storage for an either view's current child (which can change at any time).
+    init<Backend: AppBackend>(
+        from view: EitherView<A, B>,
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
+    ) {
+        // TODO: Ensure that this is valid in all circumstances. It should be, given that
+        //   we're assuming that the parent view's state was restored from the same snapshot
+        //   which should mean that the same EitherView case will be selected (if we assume
+        //   that views are pure, which we have to).
+        let snapshot = snapshots?.first
+        switch view.storage {
+            case .a(let a):
+                node = .a(
+                    AnyViewGraphNode(
+                        for: a,
+                        backend: backend,
+                        snapshot: snapshot,
+                        environment: environment
+                    )
+                )
+            case .b(let b):
+                node = .b(
+                    AnyViewGraphNode(
+                        for: b,
+                        backend: backend,
+                        snapshot: snapshot,
+                        environment: environment
+                    )
+                )
+        }
+    }
+}

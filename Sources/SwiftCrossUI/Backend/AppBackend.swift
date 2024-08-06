@@ -121,6 +121,8 @@ public protocol AppBackend {
     /// Creates a container in which children can be layed out by SwiftCrossUI using exact
     /// pixel positions.
     func createContainer() -> Widget
+    /// Removes all children of the given container.
+    func removeAllChildren(of container: Widget)
     /// Adds a child to a given container at an exact position.
     func addChild(_ child: Widget, to container: Widget)
     /// Sets the position of the specified child in a container.

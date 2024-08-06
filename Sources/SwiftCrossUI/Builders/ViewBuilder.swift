@@ -80,13 +80,13 @@ public struct ViewBuilder {
             view0, view1, view2, view3, view4, view5, view6, view7, view8, view9)
     }
 
-    // public static func buildEither<A: View, B: View>(first component: A) -> EitherView<A, B> {
-    //     return EitherView(component)
-    // }
+    public static func buildEither<A: View, B: View>(first component: A) -> EitherView<A, B> {
+        return EitherView(component)
+    }
 
-    // public static func buildEither<A: View, B: View>(second component: B) -> EitherView<A, B> {
-    //     return EitherView(component)
-    // }
+    public static func buildEither<A: View, B: View>(second component: B) -> EitherView<A, B> {
+        return EitherView(component)
+    }
 
     // public static func buildIf<V: View>(_ content: V?) -> OptionalView<V> {
     //     return OptionalView(content)
