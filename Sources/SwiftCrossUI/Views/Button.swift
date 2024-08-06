@@ -15,9 +15,7 @@ public struct Button: ElementaryView, View {
         self.action = action
     }
 
-    public func asWidget<Backend: AppBackend>(
-        backend: Backend
-    ) -> Backend.Widget {
+    public func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
         return backend.createButton()
     }
 
