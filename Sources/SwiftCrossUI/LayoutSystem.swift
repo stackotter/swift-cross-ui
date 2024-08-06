@@ -21,10 +21,11 @@ public enum LayoutSystem {
         children: [LayoutableChild],
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        alignment: StackAlignment,
-        spacing: Int = 10,
         backend: Backend
     ) -> SIMD2<Int> {
+        let spacing = environment.layoutSpacing
+        let alignment = environment.layoutAlignment
+        let orientation = environment.layoutOrientation
         let totalSpacing = (children.count - 1) * spacing
 
         var spaceUsedAlongStackAxis = 0
@@ -42,7 +43,7 @@ public enum LayoutSystem {
         for (index, child) in sortedChildren {
             let proposedWidth: Double
             let proposedHeight: Double
-            switch environment.layoutOrientation {
+            switch orientation {
                 case .horizontal:
                     proposedWidth =
                         Double(max(proposedSize.x - spaceUsedAlongStackAxis - totalSpacing, 0))
@@ -66,7 +67,7 @@ public enum LayoutSystem {
             renderedChildren[index] = childSize
             childrenRemaining -= 1
 
-            switch environment.layoutOrientation {
+            switch orientation {
                 case .horizontal:
                     spaceUsedAlongStackAxis += childSize.x
                 case .vertical:
@@ -75,7 +76,7 @@ public enum LayoutSystem {
         }
 
         let size: SIMD2<Int>
-        switch environment.layoutOrientation {
+        switch orientation {
             case .horizontal:
                 size = SIMD2<Int>(
                     renderedChildren.map(\.x).reduce(0, +) + totalSpacing,
@@ -94,7 +95,7 @@ public enum LayoutSystem {
         var y = 0
         for (index, childSize) in renderedChildren.enumerated() {
             // Compute alignment
-            switch (environment.layoutOrientation, alignment) {
+            switch (orientation, alignment) {
                 case (.vertical, .leading):
                     x = 0
                 case (.horizontal, .leading):
@@ -111,7 +112,7 @@ public enum LayoutSystem {
 
             backend.setPosition(ofChildAt: index, in: container, to: SIMD2<Int>(x, y))
 
-            switch environment.layoutOrientation {
+            switch orientation {
                 case .horizontal:
                     x += childSize.x + spacing
                 case .vertical:

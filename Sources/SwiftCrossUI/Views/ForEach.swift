@@ -120,7 +120,6 @@ public struct ForEach<
             children: layoutableChildren,
             proposedSize: proposedSize,
             environment: environment,
-            alignment: .leading,  // TODO: Pass alignment via environment
             backend: backend
         )
     }

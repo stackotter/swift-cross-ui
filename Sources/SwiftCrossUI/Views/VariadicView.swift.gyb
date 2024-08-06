@@ -76,8 +76,8 @@ public struct ${view}<${struct_parameters}>: TypeSafeView, View {
         _ children: Children,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = VStack(content: self)
-        return vStack.asWidget(children, backend: backend)
+        let group = Group(content: self)
+        return group.asWidget(children, backend: backend)
     }
 
     func update<Backend: AppBackend>(
@@ -87,8 +87,8 @@ public struct ${view}<${struct_parameters}>: TypeSafeView, View {
         environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
-        let vStack = VStack(content: self)
-        return vStack.update(
+        let group = Group(content: self)
+        return group.update(
             widget,
             children: children,
             proposedSize: proposedSize,

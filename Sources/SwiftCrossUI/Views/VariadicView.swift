@@ -58,8 +58,8 @@ public struct VariadicView1<View0: View>: TypeSafeView, View {
         _ children: Children,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = VStack(content: self)
-        return vStack.asWidget(children, backend: backend)
+        let group = Group(content: self)
+        return group.asWidget(children, backend: backend)
     }
 
     func update<Backend: AppBackend>(
@@ -69,8 +69,8 @@ public struct VariadicView1<View0: View>: TypeSafeView, View {
         environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
-        let vStack = VStack(content: self)
-        return vStack.update(
+        let group = Group(content: self)
+        return group.update(
             widget,
             children: children,
             proposedSize: proposedSize,
@@ -155,8 +155,8 @@ public struct VariadicView2<View0: View, View1: View>: TypeSafeView, View {
         _ children: Children,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = VStack(content: self)
-        return vStack.asWidget(children, backend: backend)
+        let group = Group(content: self)
+        return group.asWidget(children, backend: backend)
     }
 
     func update<Backend: AppBackend>(
@@ -166,8 +166,8 @@ public struct VariadicView2<View0: View, View1: View>: TypeSafeView, View {
         environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
-        let vStack = VStack(content: self)
-        return vStack.update(
+        let group = Group(content: self)
+        return group.update(
             widget,
             children: children,
             proposedSize: proposedSize,
@@ -267,8 +267,8 @@ public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView
         _ children: Children,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = VStack(content: self)
-        return vStack.asWidget(children, backend: backend)
+        let group = Group(content: self)
+        return group.asWidget(children, backend: backend)
     }
 
     func update<Backend: AppBackend>(
@@ -278,8 +278,8 @@ public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView
         environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
-        let vStack = VStack(content: self)
-        return vStack.update(
+        let group = Group(content: self)
+        return group.update(
             widget,
             children: children,
             proposedSize: proposedSize,
@@ -395,8 +395,8 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
         _ children: Children,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = VStack(content: self)
-        return vStack.asWidget(children, backend: backend)
+        let group = Group(content: self)
+        return group.asWidget(children, backend: backend)
     }
 
     func update<Backend: AppBackend>(
@@ -406,8 +406,8 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
         environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
-        let vStack = VStack(content: self)
-        return vStack.update(
+        let group = Group(content: self)
+        return group.update(
             widget,
             children: children,
             proposedSize: proposedSize,
@@ -539,8 +539,8 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
         _ children: Children,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = VStack(content: self)
-        return vStack.asWidget(children, backend: backend)
+        let group = Group(content: self)
+        return group.asWidget(children, backend: backend)
     }
 
     func update<Backend: AppBackend>(
@@ -550,8 +550,8 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
         environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
-        let vStack = VStack(content: self)
-        return vStack.update(
+        let group = Group(content: self)
+        return group.update(
             widget,
             children: children,
             proposedSize: proposedSize,
@@ -701,8 +701,8 @@ public struct VariadicView6<
         _ children: Children,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = VStack(content: self)
-        return vStack.asWidget(children, backend: backend)
+        let group = Group(content: self)
+        return group.asWidget(children, backend: backend)
     }
 
     func update<Backend: AppBackend>(
@@ -712,8 +712,8 @@ public struct VariadicView6<
         environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
-        let vStack = VStack(content: self)
-        return vStack.update(
+        let group = Group(content: self)
+        return group.update(
             widget,
             children: children,
             proposedSize: proposedSize,
@@ -878,8 +878,8 @@ public struct VariadicView7<
         _ children: Children,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = VStack(content: self)
-        return vStack.asWidget(children, backend: backend)
+        let group = Group(content: self)
+        return group.asWidget(children, backend: backend)
     }
 
     func update<Backend: AppBackend>(
@@ -889,8 +889,8 @@ public struct VariadicView7<
         environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
-        let vStack = VStack(content: self)
-        return vStack.update(
+        let group = Group(content: self)
+        return group.update(
             widget,
             children: children,
             proposedSize: proposedSize,
@@ -1073,8 +1073,8 @@ public struct VariadicView8<
         _ children: Children,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = VStack(content: self)
-        return vStack.asWidget(children, backend: backend)
+        let group = Group(content: self)
+        return group.asWidget(children, backend: backend)
     }
 
     func update<Backend: AppBackend>(
@@ -1084,8 +1084,8 @@ public struct VariadicView8<
         environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
-        let vStack = VStack(content: self)
-        return vStack.update(
+        let group = Group(content: self)
+        return group.update(
             widget,
             children: children,
             proposedSize: proposedSize,
@@ -1283,8 +1283,8 @@ public struct VariadicView9<
         _ children: Children,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = VStack(content: self)
-        return vStack.asWidget(children, backend: backend)
+        let group = Group(content: self)
+        return group.asWidget(children, backend: backend)
     }
 
     func update<Backend: AppBackend>(
@@ -1294,8 +1294,8 @@ public struct VariadicView9<
         environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
-        let vStack = VStack(content: self)
-        return vStack.update(
+        let group = Group(content: self)
+        return group.update(
             widget,
             children: children,
             proposedSize: proposedSize,
@@ -1508,8 +1508,8 @@ public struct VariadicView10<
         _ children: Children,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = VStack(content: self)
-        return vStack.asWidget(children, backend: backend)
+        let group = Group(content: self)
+        return group.asWidget(children, backend: backend)
     }
 
     func update<Backend: AppBackend>(
@@ -1519,8 +1519,8 @@ public struct VariadicView10<
         environment: Environment,
         backend: Backend
     ) -> SIMD2<Int> {
-        let vStack = VStack(content: self)
-        return vStack.update(
+        let group = Group(content: self)
+        return group.update(
             widget,
             children: children,
             proposedSize: proposedSize,

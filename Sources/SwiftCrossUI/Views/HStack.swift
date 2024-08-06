@@ -44,9 +44,11 @@ public struct HStack<Content: View>: View {
             container: widget,
             children: layoutableChildren(backend: backend, children: children),
             proposedSize: proposedSize,
-            environment: environment.with(\.layoutOrientation, .horizontal),
-            alignment: alignment.asStackAlignment,
-            spacing: spacing,
+            environment:
+                environment
+                .with(\.layoutOrientation, .horizontal)
+                .with(\.layoutAlignment, alignment.asStackAlignment)
+                .with(\.layoutSpacing, spacing),
             backend: backend
         )
     }
