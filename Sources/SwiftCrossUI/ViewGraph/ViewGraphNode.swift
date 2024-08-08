@@ -113,7 +113,6 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     /// current view gets updated due to a state change and has potential to trigger its parent to
     /// update as well, or the current view's child has propagated such an update upwards).
     private func bottomUpUpdate() {
-        print("Processing bottom up update: \(NodeView.self)")
         let currentSize = currentSize
         let newSize = self.update(
             proposedSize: lastProposedSize,

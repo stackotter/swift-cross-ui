@@ -420,21 +420,77 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
-        let splitViewController = NSSplitViewController()
+        let splitView = NSCustomSplitView()
+        let leadingPane = NSView()
+        leadingPane.addSubview(leadingChild.view)
+        leadingPane.centerXAnchor.constraint(equalTo: leadingChild.view.centerXAnchor)
+            .isActive = true
+        leadingPane.centerYAnchor.constraint(equalTo: leadingChild.view.centerYAnchor)
+            .isActive = true
+        leadingPane.widthAnchor.constraint(greaterThanOrEqualTo: leadingChild.view.widthAnchor)
+            .isActive = true
+        leadingPane.heightAnchor.constraint(greaterThanOrEqualTo: leadingChild.view.heightAnchor)
+            .isActive = true
 
-        let leadingViewController = NSViewController()
-        leadingViewController.view = leadingChild.view
-        let trailingViewController = NSViewController()
-        trailingViewController.view = trailingChild.view
+        let leadingPaneWithEffect = NSVisualEffectView()
+        leadingPaneWithEffect.blendingMode = .behindWindow
+        leadingPaneWithEffect.material = .sidebar
+        leadingPaneWithEffect.addSubview(leadingPane)
+        leadingPane.widthAnchor.constraint(equalTo: leadingPaneWithEffect.widthAnchor)
+            .isActive = true
+        leadingPane.heightAnchor.constraint(equalTo: leadingPaneWithEffect.heightAnchor)
+            .isActive = true
+        leadingPane.topAnchor.constraint(equalTo: leadingPaneWithEffect.topAnchor)
+            .isActive = true
+        leadingPane.leadingAnchor.constraint(equalTo: leadingPaneWithEffect.leadingAnchor)
+            .isActive = true
+        leadingPane.translatesAutoresizingMaskIntoConstraints = false
+        leadingPaneWithEffect.translatesAutoresizingMaskIntoConstraints = false
 
-        splitViewController.addSplitViewItem(
-            NSSplitViewItem(sidebarWithViewController: leadingViewController)
-        )
-        splitViewController.addSplitViewItem(
-            NSSplitViewItem(viewController: trailingViewController)
-        )
+        let trailingPane = NSStackView()
+        trailingPane.addSubview(trailingChild.view)
+        trailingPane.centerXAnchor.constraint(equalTo: trailingChild.view.centerXAnchor)
+            .isActive = true
+        trailingPane.centerYAnchor.constraint(equalTo: trailingChild.view.centerYAnchor)
+            .isActive = true
+        trailingPane.widthAnchor.constraint(greaterThanOrEqualTo: trailingChild.view.widthAnchor)
+            .isActive = true
+        trailingPane.heightAnchor.constraint(greaterThanOrEqualTo: trailingChild.view.heightAnchor)
+            .isActive = true
 
-        return .viewController(splitViewController)
+        splitView.addArrangedSubview(leadingPaneWithEffect)
+        splitView.addArrangedSubview(trailingPane)
+        splitView.isVertical = true
+        splitView.dividerStyle = .thin
+        let defaultLeadingWidth = 200
+        splitView.setPosition(CGFloat(defaultLeadingWidth), ofDividerAt: 0)
+        splitView.adjustSubviews()
+
+        let delegate = NSSplitViewResizingDelegate()
+        delegate.leadingWidth = defaultLeadingWidth
+        splitView.delegate = delegate
+        splitView.resizingDelegate = delegate
+        return .view(splitView)
+    }
+
+    public func setResizeHandler(
+        ofSplitView splitView: Widget,
+        to action: @escaping (_ leadingWidth: Int, _ trailingWidth: Int) -> Void
+    ) {
+        let splitView = splitView.view as! NSCustomSplitView
+        splitView.resizingDelegate?.setResizeHandler { paneWidths in
+            action(paneWidths[0], paneWidths[1])
+        }
+    }
+
+    public func sidebarWidth(ofSplitView splitView: Widget) -> Int {
+        let splitView = splitView.view as! NSCustomSplitView
+        return splitView.resizingDelegate!.leadingWidth
+    }
+
+    public func setMinimumSidebarWidth(ofSplitView splitView: Widget, to minimumWidth: Int) {
+        let splitView = splitView.view as! NSCustomSplitView
+        splitView.resizingDelegate!.minimumLeadingWidth = minimumWidth
     }
 
     public func createImageView(filePath: String) -> Widget {
@@ -529,18 +585,44 @@ extension NSControl {
     }
 }
 
-extension NSView {
-    func pinEdges(to parent: NSView) {
-        topAnchor.constraint(equalTo: parent.topAnchor).isActive = true
-        bottomAnchor.constraint(equalTo: parent.bottomAnchor).isActive = true
-        leftAnchor.constraint(equalTo: parent.leftAnchor).isActive = true
-        rightAnchor.constraint(equalTo: parent.rightAnchor).isActive = true
-    }
+class NSCustomSplitView: NSSplitView {
+    var resizingDelegate: NSSplitViewResizingDelegate?
 }
 
-class NSSingleChildView: NSStackView {
-    var zeroHeightConstraint: NSLayoutConstraint?
-    var zeroWidthConstraint: NSLayoutConstraint?
+class NSSplitViewResizingDelegate: NSObject, NSSplitViewDelegate {
+    var resizeHandler: ((_ paneWidths: [Int]) -> Void)?
+    var leadingWidth = 0
+    var minimumLeadingWidth = 0
+
+    func setResizeHandler(_ handler: @escaping (_ paneWidths: [Int]) -> Void) {
+        resizeHandler = handler
+    }
+
+    func splitViewDidResizeSubviews(_ notification: Notification) {
+        let splitView = notification.object! as! NSSplitView
+        let paneWidths = splitView.subviews.map(\.frame.width).map { width in
+            Int(width.rounded())
+        }
+        leadingWidth = paneWidths[0]
+        resizeHandler?(paneWidths)
+    }
+
+    func splitView(
+        _ splitView: NSSplitView,
+        constrainMinCoordinate proposedMinimumPosition: CGFloat,
+        ofSubviewAt dividerIndex: Int
+    ) -> CGFloat {
+        if dividerIndex == 0 {
+            return CGFloat(minimumLeadingWidth)
+        } else {
+            return proposedMinimumPosition
+        }
+    }
+
+    func splitView(_ splitView: NSSplitView, resizeSubviewsWithOldSize oldSize: NSSize) {
+        splitView.adjustSubviews()
+        splitView.setPosition(200, ofDividerAt: 0)
+    }
 }
 
 public class NSCustomWindow: NSWindow {

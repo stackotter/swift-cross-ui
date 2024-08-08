@@ -150,6 +150,15 @@ public protocol AppBackend {
     /// inside another container such as a VStack (avoiding update methods makes maintaining
     /// a multitude of backends a bit easier).
     func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget
+    /// Sets the function to be called when the split view's panes get resized.
+    func setResizeHandler(
+        ofSplitView splitView: Widget,
+        to action: @escaping (_ leadingWidth: Int, _ trailingWidth: Int) -> Void
+    )
+    /// Gets the width of a split view's sidebar.
+    func sidebarWidth(ofSplitView splitView: Widget) -> Int
+    /// Sets the minimum width of a split view's sidebar.
+    func setMinimumSidebarWidth(ofSplitView splitView: Widget, to minimumWidth: Int)
 
     // MARK: Passive views
 
@@ -270,6 +279,17 @@ extension AppBackend {
     }
 
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
+        todo()
+    }
+
+    public func setResizeHandler(
+        ofSplitView splitView: Widget,
+        to action: @escaping (_ leadingWidth: Int, _ trailingWidth: Int) -> Void
+    ) {
+        todo()
+    }
+
+    public func sidebarWidth(ofSplitView splitView: Widget) -> Int {
         todo()
     }
 
