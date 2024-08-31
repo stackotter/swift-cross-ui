@@ -119,6 +119,10 @@ public struct AppKitBackend: AppBackend {
         }
     }
 
+    public func computeRootEnvironment(defaultEnvironment: Environment) -> Environment {
+        defaultEnvironment.with(\.foregroundColor, Color(NSColor.textColor))
+    }
+
     public func show(widget: Widget) {}
 
     class NSContainerView: NSView {
@@ -273,13 +277,7 @@ public struct AppKitBackend: AppBackend {
     public func updateTextView(_ textView: Widget, content: String, environment: Environment) {
         let field = textView.view as! NSTextField
         field.stringValue = content
-        let textColor = environment.foregroundColor
-        field.textColor = NSColor(
-            calibratedRed: CGFloat(textColor.red),
-            green: CGFloat(textColor.green),
-            blue: CGFloat(textColor.blue),
-            alpha: 1
-        )
+        field.textColor = environment.foregroundColor.nsColor
     }
 
     public func createButton() -> Widget {
@@ -523,6 +521,31 @@ public struct AppKitBackend: AppBackend {
     public func updateImageView(_ imageView: Widget, filePath: String) {
         let imageView = imageView.view as! NSImageView
         imageView.image = NSImage(contentsOfFile: filePath)
+    }
+}
+
+extension Color {
+    init(_ nsColor: NSColor) {
+        guard let resolvedNSColor = nsColor.usingColorSpace(.deviceRGB) else {
+            print("error: Failed to convert NSColor to RGB")
+            self = .black
+            return
+        }
+        self.init(
+            Float(resolvedNSColor.redComponent),
+            Float(resolvedNSColor.greenComponent),
+            Float(resolvedNSColor.blueComponent),
+            Float(resolvedNSColor.alphaComponent)
+        )
+    }
+
+    var nsColor: NSColor {
+        NSColor(
+            calibratedRed: CGFloat(red),
+            green: CGFloat(green),
+            blue: CGFloat(blue),
+            alpha: 1
+        )
     }
 }
 

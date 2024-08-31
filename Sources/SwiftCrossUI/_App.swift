@@ -13,20 +13,20 @@ class _App<AppRoot: App> {
     /// A cancellable handle to observation of the app's state .
     var cancellable: Cancellable?
     /// The root level environment.
-    var environment: Environment
+    var defaultEnvironment: Environment
 
     /// Wraps a user's app implementation.
     init(_ app: AppRoot) {
         backend = app.backend
         self.app = app
-        self.environment = Environment()
+        self.defaultEnvironment = Environment()
     }
 
     func forceRefresh() {
         self.sceneGraphRoot?.update(
             self.app.body,
             backend: self.backend,
-            environment: environment
+            environment: defaultEnvironment
         )
     }
 
@@ -37,17 +37,25 @@ class _App<AppRoot: App> {
             let rootNode = AppRoot.Body.Node(
                 from: self.app.body,
                 backend: self.backend,
-                environment: self.environment
+                environment: self.defaultEnvironment
             )
 
-            rootNode.update(nil, backend: self.backend, environment: self.environment)
+            rootNode.update(
+                nil,
+                backend: self.backend,
+                environment: self.backend.computeRootEnvironment(
+                    defaultEnvironment: self.defaultEnvironment
+                )
+            )
             self.sceneGraphRoot = rootNode
 
             self.cancellable = self.app.state.didChange.observe {
                 self.sceneGraphRoot?.update(
                     self.app.body,
                     backend: self.backend,
-                    environment: self.environment
+                    environment: self.backend.computeRootEnvironment(
+                        defaultEnvironment: self.defaultEnvironment
+                    )
                 )
             }
         }

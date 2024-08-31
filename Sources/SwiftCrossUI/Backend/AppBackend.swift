@@ -52,7 +52,7 @@ public protocol AppBackend {
     /// after starting the app, and hence this generic root window creation
     /// API must reflect that. This is always the first method to be called
     /// and is where boilerplate app setup should happen.
-
+    ///
     /// Runs the backend's main run loop. The app will exit when this method
     /// returns. This wall always be the first method called by SwiftCrossUI.
     ///
@@ -115,6 +115,10 @@ public protocol AppBackend {
     /// by the backend. Predominantly used by ``Publisher`` to publish changes to a thread
     /// compatible with dispatching UI updates.
     func runInMainThread(action: @escaping () -> Void)
+
+    /// Computes the root environment for an app (e.g. by checking the system's current
+    /// theme). May fall back on the provided defaults where reasonable.
+    func computeRootEnvironment(defaultEnvironment: Environment) -> Environment
 
     /// Shows a widget after it has been created or updated (may be unnecessary
     /// for some backends). Predominantly used by ``ViewGraphNode`` after

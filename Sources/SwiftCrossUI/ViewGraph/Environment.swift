@@ -13,7 +13,7 @@ public struct Environment {
         foregroundColor = .black
     }
 
-    func with<T>(_ keyPath: WritableKeyPath<Self, T>, _ newValue: T) -> Self {
+    public func with<T>(_ keyPath: WritableKeyPath<Self, T>, _ newValue: T) -> Self {
         var environment = self
         environment[keyPath: keyPath] = newValue
         return environment
