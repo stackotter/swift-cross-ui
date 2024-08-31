@@ -46,7 +46,7 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let topPadding = edges.contains(.top) ? padding : 0
         let bottomPadding = edges.contains(.bottom) ? padding : 0
         let leadingPadding = edges.contains(.leading) ? padding : 0
@@ -62,12 +62,16 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
         )
 
         let size = SIMD2(
-            childSize.x + leadingPadding + trailingPadding,
-            childSize.y + topPadding + bottomPadding
+            childSize.size.x + leadingPadding + trailingPadding,
+            childSize.size.y + topPadding + bottomPadding
         )
         backend.setSize(of: container, to: size)
         backend.setPosition(ofChildAt: 0, in: container, to: SIMD2(topPadding, leadingPadding))
 
-        return size
+        return ViewUpdateResult(
+            size: size,
+            minimumWidth: childSize.minimumWidth + leadingPadding + trailingPadding,
+            minimumHeight: childSize.minimumHeight + topPadding + bottomPadding
+        )
     }
 }

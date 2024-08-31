@@ -21,7 +21,7 @@ struct CounterApp: App {
             #hotReloadable {
                 HStack(spacing: 20) {
                     Button("-") { state.count -= 1 }
-                    Text("Count: \(state.count)", wrap: false)
+                    Text("Count: \(state.count)")
                     Button("+") { state.count += 1 }
                 }
                 .padding(10)

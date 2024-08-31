@@ -12,7 +12,7 @@ public struct ErasedViewGraphNode {
             _ newView: Any?,
             _ proposedSize: SIMD2<Int>,
             _ environment: Environment
-        ) -> (viewTypeMatched: Bool, size: SIMD2<Int>)
+        ) -> (viewTypeMatched: Bool, size: ViewUpdateResult)
 
     public var getWidget: () -> AnyWidget
     public var getState: () -> Data?
@@ -44,7 +44,7 @@ public struct ErasedViewGraphNode {
         updateWithNewView = { view, proposedSize, environment in
             if let view {
                 guard let view = view as? V else {
-                    return (false, .zero)
+                    return (false, .empty)
                 }
                 let size = node.update(
                     with: view,

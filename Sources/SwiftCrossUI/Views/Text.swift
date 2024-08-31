@@ -23,10 +23,12 @@ public struct Text: ElementaryView, View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let size = backend.size(of: string, in: proposedSize)
         backend.updateTextView(widget, content: string, shouldWrap: true)
         backend.setSize(of: widget, to: size)
-        return size
+        // TODO: Query from backend
+        let lineHeight = 12
+        return ViewUpdateResult(size: size, minimumWidth: 0, minimumHeight: lineHeight)
     }
 }

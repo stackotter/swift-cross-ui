@@ -488,9 +488,14 @@ public struct AppKitBackend: AppBackend {
         return splitView.resizingDelegate!.leadingWidth
     }
 
-    public func setMinimumSidebarWidth(ofSplitView splitView: Widget, to minimumWidth: Int) {
+    public func setSidebarWidthBounds(
+        ofSplitView splitView: Widget,
+        minimum minimumWidth: Int,
+        maximum maximumWidth: Int
+    ) {
         let splitView = splitView.view as! NSCustomSplitView
         splitView.resizingDelegate!.minimumLeadingWidth = minimumWidth
+        splitView.resizingDelegate!.maximumLeadingWidth = maximumWidth
     }
 
     public func createImageView(filePath: String) -> Widget {
@@ -593,6 +598,7 @@ class NSSplitViewResizingDelegate: NSObject, NSSplitViewDelegate {
     var resizeHandler: ((_ paneWidths: [Int]) -> Void)?
     var leadingWidth = 0
     var minimumLeadingWidth = 0
+    var maximumLeadingWidth = 0
 
     func setResizeHandler(_ handler: @escaping (_ paneWidths: [Int]) -> Void) {
         resizeHandler = handler
@@ -616,6 +622,18 @@ class NSSplitViewResizingDelegate: NSObject, NSSplitViewDelegate {
             return CGFloat(minimumLeadingWidth)
         } else {
             return proposedMinimumPosition
+        }
+    }
+
+    func splitView(
+        _ splitView: NSSplitView,
+        constrainMaxCoordinate proposedMaximumPosition: CGFloat,
+        ofSubviewAt dividerIndex: Int
+    ) -> CGFloat {
+        if dividerIndex == 0 {
+            return CGFloat(maximumLeadingWidth)
+        } else {
+            return proposedMaximumPosition
         }
     }
 

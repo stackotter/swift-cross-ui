@@ -68,7 +68,7 @@ public struct VariadicView1<View0: View>: TypeSafeView, View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -165,7 +165,7 @@ public struct VariadicView2<View0: View, View1: View>: TypeSafeView, View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -277,7 +277,7 @@ public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -405,7 +405,7 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -549,7 +549,7 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -711,7 +711,7 @@ public struct VariadicView6<
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -888,7 +888,7 @@ public struct VariadicView7<
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -1083,7 +1083,7 @@ public struct VariadicView8<
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -1293,7 +1293,7 @@ public struct VariadicView9<
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -1518,7 +1518,7 @@ public struct VariadicView10<
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
             widget,

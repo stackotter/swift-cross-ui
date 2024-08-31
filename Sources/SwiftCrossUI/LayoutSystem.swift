@@ -5,11 +5,11 @@ public enum LayoutSystem {
             (
                 _ proposedSize: SIMD2<Int>,
                 _ environment: Environment
-            ) -> SIMD2<Int>
+            ) -> ViewUpdateResult
 
         public init(
             flexibility: Int,
-            update: @escaping (SIMD2<Int>, Environment) -> SIMD2<Int>
+            update: @escaping (SIMD2<Int>, Environment) -> ViewUpdateResult
         ) {
             self.flexibility = flexibility
             self.update = update
@@ -22,7 +22,7 @@ public enum LayoutSystem {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let spacing = environment.layoutSpacing
         let alignment = environment.layoutAlignment
         let orientation = environment.layoutOrientation
@@ -31,8 +31,8 @@ public enum LayoutSystem {
         var spaceUsedAlongStackAxis = 0
         var childrenRemaining = children.count
 
-        var renderedChildren = [SIMD2<Int>](
-            repeating: .zero,
+        var renderedChildren = [ViewUpdateResult](
+            repeating: .empty,
             count: children.count
         )
 
@@ -69,24 +69,30 @@ public enum LayoutSystem {
 
             switch orientation {
                 case .horizontal:
-                    spaceUsedAlongStackAxis += childSize.x
+                    spaceUsedAlongStackAxis += childSize.size.x
                 case .vertical:
-                    spaceUsedAlongStackAxis += childSize.y
+                    spaceUsedAlongStackAxis += childSize.size.y
             }
         }
 
         let size: SIMD2<Int>
+        let minimumWidth: Int
+        let minimumHeight: Int
         switch orientation {
             case .horizontal:
                 size = SIMD2<Int>(
-                    renderedChildren.map(\.x).reduce(0, +) + totalSpacing,
-                    renderedChildren.map(\.y).max() ?? 0
+                    renderedChildren.map(\.size.x).reduce(0, +) + totalSpacing,
+                    renderedChildren.map(\.size.y).max() ?? 0
                 )
+                minimumWidth = renderedChildren.map(\.minimumWidth).reduce(0, +) + totalSpacing
+                minimumHeight = renderedChildren.map(\.minimumHeight).max() ?? 0
             case .vertical:
                 size = SIMD2<Int>(
-                    renderedChildren.map(\.x).max() ?? 0,
-                    renderedChildren.map(\.y).reduce(0, +) + totalSpacing
+                    renderedChildren.map(\.size.x).max() ?? 0,
+                    renderedChildren.map(\.size.y).reduce(0, +) + totalSpacing
                 )
+                minimumWidth = renderedChildren.map(\.minimumWidth).max() ?? 0
+                minimumHeight = renderedChildren.map(\.minimumHeight).reduce(0, +) + totalSpacing
         }
 
         backend.setSize(of: container, to: size)
@@ -101,25 +107,29 @@ public enum LayoutSystem {
                 case (.horizontal, .leading):
                     y = 0
                 case (.vertical, .center):
-                    x = (size.x - childSize.x) / 2
+                    x = (size.x - childSize.size.x) / 2
                 case (.horizontal, .center):
-                    y = (size.y - childSize.y) / 2
+                    y = (size.y - childSize.size.y) / 2
                 case (.vertical, .trailing):
-                    x = (size.x - childSize.x)
+                    x = (size.x - childSize.size.x)
                 case (.horizontal, .trailing):
-                    y = (size.y - childSize.y)
+                    y = (size.y - childSize.size.y)
             }
 
             backend.setPosition(ofChildAt: index, in: container, to: SIMD2<Int>(x, y))
 
             switch orientation {
                 case .horizontal:
-                    x += childSize.x + spacing
+                    x += childSize.size.x + spacing
                 case .vertical:
-                    y += childSize.y + spacing
+                    y += childSize.size.y + spacing
             }
         }
 
-        return size
+        return ViewUpdateResult(
+            size: size,
+            minimumWidth: minimumWidth,
+            minimumHeight: minimumHeight
+        )
     }
 }

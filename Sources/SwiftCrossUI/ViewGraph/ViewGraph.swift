@@ -47,7 +47,7 @@ public class ViewGraph<Root: View> {
         with newView: Root? = nil,
         proposedSize: SIMD2<Int>,
         environment: Environment
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         parentEnvironment = environment
         windowSize = proposedSize
         return rootNode.update(

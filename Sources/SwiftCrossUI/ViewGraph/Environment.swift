@@ -1,5 +1,5 @@
 public struct Environment {
-    var onResize: (_ newSize: SIMD2<Int>) -> Void
+    var onResize: (_ newSize: ViewUpdateResult) -> Void
     var layoutOrientation: Orientation
     var layoutAlignment: StackAlignment
     var layoutSpacing: Int

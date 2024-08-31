@@ -34,7 +34,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     public var backend: Backend
 
     /// The most recently computed size for the wrapped view.
-    private var currentSize: SIMD2<Int>
+    private var currentSize: ViewUpdateResult
     /// The most recent size proposed by the parent view. Used when updating the wrapped
     /// view as a result of a state change rather than the parent view updating.
     private var lastProposedSize: SIMD2<Int>
@@ -80,7 +80,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
             snapshot?.isValid(for: NodeView.self) == true
             ? snapshot?.children : snapshot.map { [$0] }
 
-        currentSize = .zero
+        currentSize = .empty
         lastProposedSize = .zero
         parentEnvironment = environment
 
@@ -139,7 +139,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         with newView: NodeView? = nil,
         proposedSize: SIMD2<Int>,
         environment: Environment
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         parentEnvironment = environment
         lastProposedSize = proposedSize
 

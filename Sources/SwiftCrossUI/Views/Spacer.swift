@@ -1,8 +1,8 @@
 /// A flexible space that expands along the major axis of its containing
 /// stack layout, or on both axes if not contained in a stack.
 public struct Spacer: ElementaryView, View {
-    /// The minimum length this spacer can be shrunk to, along the axis
-    /// or axes of expansion.
+    /// The minimum length this spacer can be shrunk to, along the axis of
+    /// expansion.
     private var minLength: Int?
 
     public var flexibility: Int {
@@ -26,18 +26,28 @@ public struct Spacer: ElementaryView, View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let minLength = minLength ?? 0
 
         let size: SIMD2<Int>
+        let minimumWidth: Int
+        let minimumHeight: Int
         switch environment.layoutOrientation {
             case .horizontal:
                 size = SIMD2(max(minLength, proposedSize.x), 0)
+                minimumWidth = minLength
+                minimumHeight = 0
             case .vertical:
                 size = SIMD2(0, max(minLength, proposedSize.y))
+                minimumWidth = 0
+                minimumHeight = minLength
         }
 
         backend.setSize(of: widget, to: size)
-        return size
+        return ViewUpdateResult(
+            size: size,
+            minimumWidth: minimumWidth,
+            minimumHeight: minimumHeight
+        )
     }
 }

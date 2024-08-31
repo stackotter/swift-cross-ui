@@ -27,7 +27,7 @@ protocol TypeSafeView: View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int>
+    ) -> ViewUpdateResult
 }
 
 extension TypeSafeView {
@@ -73,7 +73,7 @@ extension TypeSafeView {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         update(
             widget,
             children: children as! Children,

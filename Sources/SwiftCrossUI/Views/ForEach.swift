@@ -51,7 +51,7 @@ public struct ForEach<
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         // TODO: The way we're reusing nodes for technically different elements means that if
         //   Child has state of its own then it could get pretty confused thinking that its state
         //   changed whereas it was actually just moved to a new slot in the array. Probably not

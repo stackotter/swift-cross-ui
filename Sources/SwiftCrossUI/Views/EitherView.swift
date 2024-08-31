@@ -57,8 +57,8 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
-        let size: SIMD2<Int>
+    ) -> ViewUpdateResult {
+        let size: ViewUpdateResult
         let hasSwitchedCase: Bool
         switch storage {
             case .a(let a):
@@ -116,7 +116,7 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
             children.isFirstUpdate = false
         }
 
-        backend.setSize(of: widget, to: size)
+        backend.setSize(of: widget, to: size.size)
 
         return size
     }

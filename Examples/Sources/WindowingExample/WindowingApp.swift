@@ -23,7 +23,7 @@ struct WindowingApp: App {
             #hotReloadable {
                 VStack {
                     HStack {
-                        Text("Window title:", wrap: false)
+                        Text("Window title:")
                         TextField("My window", state.$title)
                     }
                     Button(state.resizable ? "Disable resizing" : "Enable resizing") {

@@ -24,8 +24,8 @@ public struct Button: ElementaryView, View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         backend.updateButton(widget, label: label, action: action)
-        return backend.naturalSize(of: widget)
+        return ViewUpdateResult(fixedSize: backend.naturalSize(of: widget))
     }
 }

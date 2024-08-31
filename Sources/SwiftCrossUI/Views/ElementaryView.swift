@@ -11,7 +11,7 @@ protocol ElementaryView: View where Content == EmptyView {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int>
+    ) -> ViewUpdateResult
 }
 
 extension ElementaryView {
@@ -39,7 +39,7 @@ extension ElementaryView {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         update(
             widget,
             proposedSize: proposedSize,

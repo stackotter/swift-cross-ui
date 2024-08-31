@@ -17,11 +17,11 @@ struct ToggleSwitch: ElementaryView, View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         backend.updateSwitch(widget) { newActiveState in
             active.wrappedValue = newActiveState
         }
         backend.setState(ofSwitch: widget, to: active.wrappedValue)
-        return backend.naturalSize(of: widget)
+        return ViewUpdateResult(fixedSize: backend.naturalSize(of: widget))
     }
 }

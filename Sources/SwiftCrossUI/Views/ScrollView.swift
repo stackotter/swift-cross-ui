@@ -42,18 +42,18 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let contentSize = children.child0.update(
             with: body,
             proposedSize: proposedSize,
             environment: environment
         )
         let scrollViewSize = SIMD2(
-            min(contentSize.x, proposedSize.x),
-            min(contentSize.y, proposedSize.y)
+            min(contentSize.size.x, proposedSize.x),
+            min(contentSize.size.y, proposedSize.y)
         )
-        print(contentSize, scrollViewSize)
         backend.setSize(of: widget, to: scrollViewSize)
-        return scrollViewSize
+        // TODO: Account for size required by scroll bars
+        return ViewUpdateResult(size: scrollViewSize, minimumWidth: 0, minimumHeight: 0)
     }
 }

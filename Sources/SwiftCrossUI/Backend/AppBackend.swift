@@ -157,8 +157,12 @@ public protocol AppBackend {
     )
     /// Gets the width of a split view's sidebar.
     func sidebarWidth(ofSplitView splitView: Widget) -> Int
-    /// Sets the minimum width of a split view's sidebar.
-    func setMinimumSidebarWidth(ofSplitView splitView: Widget, to minimumWidth: Int)
+    /// Sets the minimum and maximum width of a split view's sidebar.
+    func setSidebarWidthBounds(
+        ofSplitView splitView: Widget,
+        minimum minimumWidth: Int,
+        maximum maximumWidth: Int
+    )
 
     // MARK: Passive views
 

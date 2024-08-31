@@ -43,34 +43,55 @@ public struct AnyView: TypeSafeView {
         _ children: AnyViewChildren,
         backend: Backend
     ) -> Backend.Widget {
-        return children.container.into()
+        let container = backend.createContainer()
+        backend.addChild(children.node.getWidget().into(), to: container)
+        backend.setPosition(ofChildAt: 0, in: container, to: .zero)
+        return container
     }
 
+    /// Attempts to update the child. If the initial update fails then it means that the child's
+    /// concrete type has changed and we must recreate the child node and swap out our current
+    /// child widget with the new view's widget.
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: AnyViewChildren,
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
-        children.update(
-            with: self,
-            proposedSize: proposedSize,
-            environment: environment,
-            backend: backend
+    ) -> ViewUpdateResult {
+        var (viewTypesMatched, size) = children.node.updateWithNewView(
+            child,
+            proposedSize,
+            environment
         )
+
+        if !viewTypesMatched {
+            backend.removeChild(children.node.getWidget().into(), from: widget)
+            children.node = ErasedViewGraphNode(
+                for: child,
+                backend: backend,
+                environment: environment
+            )
+            backend.addChild(children.node.getWidget().into(), to: widget)
+            backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
+
+            // We can just assume that the update succeeded because we just created the node
+            // a few lines earlier (so it's guaranteed that the view types match).
+            let result = children.node.updateWithNewView(child, proposedSize, environment)
+            size = result.size
+        }
+
+        backend.setSize(of: widget, to: size.size)
+        return size
     }
 }
 
 class AnyViewChildren: ViewGraphNodeChildren {
     /// The erased underlying node.
     var node: ErasedViewGraphNode
-    /// The single-child container used to allow the child to be swapped
-    /// out willy-nilly.
-    var container: AnyWidget
 
     var widgets: [AnyWidget] {
-        return [container]
+        return [node.getWidget()]
     }
 
     var erasedNodes: [ErasedViewGraphNode] {
@@ -90,40 +111,5 @@ class AnyViewChildren: ViewGraphNodeChildren {
             snapshot: snapshot,
             environment: environment
         )
-        let container = backend.createContainer()
-        backend.addChild(node.getWidget().into(), to: container)
-        backend.setPosition(ofChildAt: 0, in: container, to: .zero)
-        self.container = AnyWidget(container)
-    }
-
-    /// Attempts to update the child. If the initial update fails then it means that the child's
-    /// concrete type has changed and we must recreate the child node and swap out our current
-    /// child widget with the new view's widget.
-    func update<Backend: AppBackend>(
-        with view: AnyView,
-        proposedSize: SIMD2<Int>,
-        environment: Environment,
-        backend: Backend
-    ) -> SIMD2<Int> {
-        var (viewTypesMatched, size) = node.updateWithNewView(
-            view.child,
-            proposedSize,
-            environment
-        )
-
-        if !viewTypesMatched {
-            backend.removeChild(node.getWidget().into(), from: container.into())
-            node = ErasedViewGraphNode(for: view.child, backend: backend, environment: environment)
-            backend.addChild(node.getWidget().into(), to: container.into())
-            backend.setPosition(ofChildAt: 0, in: container.into(), to: .zero)
-
-            // We can just assume that the update succeeded because we just created the node
-            // a few lines earlier (so it's guaranteed that the view types match).
-            let result = node.updateWithNewView(view.child, proposedSize, environment)
-            size = result.size
-        }
-
-        backend.setSize(of: container.into(), to: size)
-        return size
     }
 }

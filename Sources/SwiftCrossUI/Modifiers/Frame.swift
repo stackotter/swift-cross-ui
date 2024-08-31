@@ -33,9 +33,9 @@ extension View {
 struct StrictFrameView<Child: View>: TypeSafeView {
     var body: VariadicView1<Child>
 
-    /// The minimum width to make the view.
+    /// The exact width to make the view.
     var width: Int?
-    /// The minimum height to make the view.
+    /// The exact height to make the view.
     var height: Int?
 
     /// Wraps a child view with size constraints.
@@ -68,7 +68,7 @@ struct StrictFrameView<Child: View>: TypeSafeView {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let frameSize = SIMD2(
             width ?? proposedSize.x,
             height ?? proposedSize.y
@@ -82,13 +82,17 @@ struct StrictFrameView<Child: View>: TypeSafeView {
 
         let childPosition =
             SIMD2(
-                frameSize.x - childSize.x,
-                frameSize.y - childSize.y
+                frameSize.x - childSize.size.x,
+                frameSize.y - childSize.size.y
             ) / 2
         backend.setSize(of: widget, to: frameSize)
         backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
 
-        return frameSize
+        return ViewUpdateResult(
+            size: frameSize,
+            minimumWidth: width ?? childSize.minimumWidth,
+            minimumHeight: height ?? childSize.minimumHeight
+        )
     }
 }
 
@@ -145,7 +149,7 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         var proposedFrameSize = proposedSize
         if let idealWidth {
             proposedFrameSize.x = min(proposedFrameSize.x, idealWidth)
@@ -174,24 +178,26 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
 
         var frameSize = childSize
         if let minWidth {
-            frameSize.x = max(frameSize.x, minWidth)
+            frameSize.size.x = max(frameSize.size.x, minWidth)
+            frameSize.minimumWidth = minWidth
         }
         if let maxWidth {
-            frameSize.x = min(frameSize.x, maxWidth)
+            frameSize.size.x = min(frameSize.size.x, maxWidth)
         }
         if let minHeight {
-            frameSize.y = max(frameSize.y, minHeight)
+            frameSize.size.y = max(frameSize.size.y, minHeight)
+            frameSize.minimumHeight = minHeight
         }
         if let maxHeight {
-            frameSize.y = min(frameSize.y, maxHeight)
+            frameSize.size.y = min(frameSize.size.y, maxHeight)
         }
 
         let childPosition =
             SIMD2(
-                frameSize.x - childSize.x,
-                frameSize.y - childSize.y
+                frameSize.size.x - childSize.size.x,
+                frameSize.size.y - childSize.size.y
             ) / 2
-        backend.setSize(of: widget, to: frameSize)
+        backend.setSize(of: widget, to: frameSize.size)
         backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
 
         return frameSize

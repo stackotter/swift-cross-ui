@@ -61,7 +61,7 @@ public struct HotReloadableView: TypeSafeView {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         var (viewTypeMatched, size) = children.node.updateWithNewView(
             child,
             proposedSize,
@@ -89,7 +89,7 @@ public struct HotReloadableView: TypeSafeView {
             backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
             children.isFirstUpdate = false
         }
-        backend.setSize(of: widget, to: size)
+        backend.setSize(of: widget, to: size.size)
         return size
     }
 }

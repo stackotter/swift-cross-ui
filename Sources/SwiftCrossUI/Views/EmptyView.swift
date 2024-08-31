@@ -37,14 +37,14 @@ public struct EmptyView: View {
         backend.createContainer()
     }
 
-    public func update<Backend>(
+    public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> where Backend: AppBackend {
-        .zero
+    ) -> ViewUpdateResult {
+        .empty
     }
 }
 

@@ -67,7 +67,7 @@ public protocol View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int>
+    ) -> ViewUpdateResult
 }
 
 extension View {
@@ -104,7 +104,7 @@ extension View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let vStack = VStack(content: body)
         return vStack.update(
             widget,

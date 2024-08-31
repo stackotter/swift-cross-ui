@@ -27,7 +27,7 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         backend.updatePicker(widget, options: options.map { "\($0)" }) { selectedIndex in
             guard let selectedIndex = selectedIndex else {
                 value.wrappedValue = nil
@@ -36,6 +36,6 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
             value.wrappedValue = options[selectedIndex]
         }
         backend.setSelectedOption(ofPicker: widget, to: selectedOptionIndex)
-        return backend.naturalSize(of: widget)
+        return ViewUpdateResult(fixedSize: backend.naturalSize(of: widget))
     }
 }

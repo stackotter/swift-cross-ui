@@ -95,7 +95,7 @@ public struct Slider: ElementaryView, View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         backend.updateSlider(
             widget, minimum: minimum, maximum: maximum, decimalPlaces: decimalPlaces
         ) { [weak value] newValue in
@@ -109,6 +109,6 @@ public struct Slider: ElementaryView, View {
             backend.setValue(ofSlider: widget, to: value)
         }
 
-        return backend.naturalSize(of: widget)
+        return ViewUpdateResult(fixedSize: backend.naturalSize(of: widget))
     }
 }

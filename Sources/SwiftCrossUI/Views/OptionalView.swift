@@ -44,9 +44,9 @@ public struct OptionalView<V: View>: TypeSafeView, View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let hasToggled: Bool
-        let size: SIMD2<Int>
+        let size: ViewUpdateResult
         if let view = view {
             if let node = children.node {
                 size = node.update(with: view, proposedSize: proposedSize, environment: environment)
@@ -68,7 +68,7 @@ public struct OptionalView<V: View>: TypeSafeView, View {
         } else {
             hasToggled = children.node != nil
             children.node = nil
-            size = .zero
+            size = .empty
         }
 
         if hasToggled || children.isFirstUpdate {
@@ -80,7 +80,7 @@ public struct OptionalView<V: View>: TypeSafeView, View {
             children.isFirstUpdate = false
         }
 
-        backend.setSize(of: widget, to: size)
+        backend.setSize(of: widget, to: size.size)
 
         return size
     }

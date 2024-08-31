@@ -20,13 +20,13 @@ public struct TextField: ElementaryView, View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         backend.updateTextField(widget, placeholder: placeholder) { newValue in
             self.value?.wrappedValue = newValue
         }
         if let value = value?.wrappedValue, value != backend.getContent(ofTextField: widget) {
             backend.setContent(ofTextField: widget, to: value)
         }
-        return backend.naturalSize(of: widget)
+        return ViewUpdateResult(fixedSize: backend.naturalSize(of: widget))
     }
 }

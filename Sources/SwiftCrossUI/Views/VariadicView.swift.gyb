@@ -86,7 +86,7 @@ public struct ${view}<${struct_parameters}>: TypeSafeView, View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> SIMD2<Int> {
+    ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
             widget,
