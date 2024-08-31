@@ -68,6 +68,15 @@ public struct AppKitBackend: AppBackend {
         )
     }
 
+    public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
+        window.setContentSize(NSSize(width: newSize.x, height: newSize.y))
+    }
+
+    public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
+        window.contentMinSize.width = CGFloat(minimumSize.x)
+        window.contentMinSize.height = CGFloat(minimumSize.y)
+    }
+
     public func setResizeHandler(
         ofWindow window: Window,
         to action: @escaping (SIMD2<Int>) -> SIMD2<Int>

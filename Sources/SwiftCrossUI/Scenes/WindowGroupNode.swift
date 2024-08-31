@@ -3,6 +3,8 @@
 public final class WindowGroupNode<Content: View>: SceneGraphNode {
     public typealias NodeScene = WindowGroup<Content>
 
+    /// The node's scene.
+    private var scene: WindowGroup<Content>
     /// The view graph of the window group's root view. Will need to be multiple
     /// view graphs once having multiple copies of a window is supported.
     private var viewGraph: ViewGraph<Content>
@@ -19,19 +21,20 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         backend: Backend,
         environment: Environment
     ) {
+        self.scene = scene
         viewGraph = ViewGraph(for: scene.body, backend: backend, environment: environment)
         let window = backend.createWindow(withDefaultSize: scene.defaultSize)
         let rootWidget = viewGraph.rootNode.concreteNode(for: Backend.self).widget
         backend.setChild(ofWindow: window, to: rootWidget)
         backend.setTitle(ofWindow: window, to: scene.title)
-        backend.setResizability(ofWindow: window, to: scene.resizable)
+        backend.setResizability(ofWindow: window, to: scene.resizability.isResizable)
 
         self.window = window
         parentEnvironment = environment
 
         backend.setResizeHandler(ofWindow: window) { [weak self] newSize in
             guard let self else { return .zero }
-            self.update(
+            _ = self.update(
                 nil,
                 proposedWindowSize: newSize,
                 backend: backend,
@@ -77,14 +80,20 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             // the default size changed would resize the window (which is incorrect
             // behaviour).
             backend.setTitle(ofWindow: window, to: newScene.title)
-            backend.setResizability(ofWindow: window, to: newScene.resizable)
+            backend.setResizability(ofWindow: window, to: newScene.resizability.isResizable)
+            scene = newScene
         }
 
         let contentSize = viewGraph.update(
             with: newScene?.body,
             proposedSize: proposedWindowSize,
-            environment: environment
+            environment: environment.with(\.onResize) { [weak self] newContentSize in
+                guard let self = self else { return }
+                self.updateSize(of: window, backend: backend, contentSize: newContentSize)
+            }
         )
+
+        updateSize(of: window, backend: backend, contentSize: contentSize)
 
         if isFirstUpdate {
             backend.show(window: window)
@@ -92,5 +101,23 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         }
 
         return contentSize
+    }
+
+    public func updateSize<Backend: AppBackend>(
+        of window: Backend.Window,
+        backend: Backend,
+        contentSize: ViewUpdateResult
+    ) {
+        if scene.resizability.isResizable {
+            backend.setMinimumSize(
+                ofWindow: window,
+                to: SIMD2(
+                    contentSize.minimumWidth,
+                    contentSize.minimumHeight
+                )
+            )
+        } else {
+            backend.setSize(ofWindow: window, to: contentSize.size)
+        }
     }
 }

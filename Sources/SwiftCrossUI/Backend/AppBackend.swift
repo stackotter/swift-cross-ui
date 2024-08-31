@@ -93,6 +93,11 @@ public protocol AppBackend {
     func setChild(ofWindow window: Window, to child: Widget)
     /// Gets the size of the given window in pixels.
     func size(ofWindow window: Window) -> SIMD2<Int>
+    /// Sets the size of the given window in pixels.
+    func setSize(ofWindow window: Window, to newSize: SIMD2<Int>)
+    /// Sets the minimum width and height of the window. Prevents the user from making the
+    /// window any smaller than the given size.
+    func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>)
     /// Sets the handler for the window's resizing events. `action` takes the proposed size
     /// of the window and returns the final size for the window (which allows SwiftCrossUI
     /// to implement features such as dynamic minimum window sizes based off the content's

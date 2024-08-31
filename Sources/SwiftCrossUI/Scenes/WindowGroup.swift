@@ -15,8 +15,8 @@ public struct WindowGroup<Content: View>: Scene {
     /// The default size of the window (only has effect at time of creation). Defaults to
     /// 900x450.
     var defaultSize: SIMD2<Int>
-    /// Whether the window should be resizable.
-    var resizable: Bool
+    /// The window's resizing behaviour.
+    var resizability: WindowResizability
 
     /// Creates a window group optionally specifying a title. Window title defaults
     /// to `ProcessInfo.processInfo.processName`.
@@ -27,7 +27,7 @@ public struct WindowGroup<Content: View>: Scene {
         #else
             self.title = title ?? ProcessInfo.processInfo.processName
         #endif
-        resizable = true
+        resizability = .automatic
         defaultSize = SIMD2(900, 450)
     }
 
@@ -38,10 +38,10 @@ public struct WindowGroup<Content: View>: Scene {
         return windowGroup
     }
 
-    /// Sets the resizability of a window. By default windows are resizable.
+    /// Sets the resizability of a window.
     public func windowResizability(_ resizability: WindowResizability) -> Self {
         var windowGroup = self
-        windowGroup.resizable = resizability.isResizable
+        windowGroup.resizability = resizability
         return windowGroup
     }
 }
