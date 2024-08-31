@@ -1,38 +1,63 @@
-// extension View {
-//     /// Sets the color of the foreground elements displayed by this view.
-//     public func foregroundColor(_ color: Color) -> some View {
-//         return ForegroundView(
-//             self,
-//             color: color
-//         )
-//     }
-// }
+extension View {
+    /// Sets the color of the foreground elements displayed by this view.
+    public func foregroundColor(_ color: Color) -> some View {
+        return EnvironmentModifier(self) { environment in
+            print("Updating fg color")
+            return environment.with(\.foregroundColor, color)
+        }
+    }
+}
 
-// /// The implementation for the ``View/foregroundColor(_:)`` view modifier.
-// struct ForegroundView<Child: View>: TypeSafeView {
-//     var body: VariadicView1<Child>
+struct EnvironmentModifier<Child: View>: TypeSafeView {
+    typealias Children = VariadicView1<Child>.Children
 
-//     /// The foreground color to use.
-//     var color: Color
+    var body: VariadicView1<Child>
+    var modification: (Environment) -> Environment
 
-//     /// Wraps a child view and sets a specific foreground color.
-//     init(_ child: Child, color: Color) {
-//         self.body = VariadicView1(child)
-//         self.color = color
-//     }
+    init(_ child: Child, modification: @escaping (Environment) -> Environment) {
+        self.body = VariadicView1(child)
+        self.modification = modification
+    }
 
-//     func asWidget<Backend: AppBackend>(
-//         _ children: ViewGraphNodeChildren1<Child>,
-//         backend: Backend
-//     ) -> Backend.Widget {
-//         return backend.createStyleContainer(for: children.child0.widget.into())
-//     }
+    func children<Backend: AppBackend>(
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
+    ) -> Children {
+        body.children(
+            backend: backend,
+            snapshots: snapshots,
+            environment: modification(environment)
+        )
+    }
 
-//     func update<Backend: AppBackend>(
-//         _ widget: Backend.Widget,
-//         children: ViewGraphNodeChildren1<Child>,
-//         backend: Backend
-//     ) {
-//         backend.setForegroundColor(ofStyleContainer: widget, to: color)
-//     }
-// }
+    func layoutableChildren<Backend: AppBackend>(
+        backend: Backend,
+        children: Children
+    ) -> [LayoutSystem.LayoutableChild] {
+        []
+    }
+
+    func asWidget<Backend: AppBackend>(
+        _ children: Children,
+        backend: Backend
+    ) -> Backend.Widget {
+        return body.asWidget(children, backend: backend)
+    }
+
+    func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: Children,
+        proposedSize: SIMD2<Int>,
+        environment: Environment,
+        backend: Backend
+    ) -> ViewUpdateResult {
+        return body.update(
+            widget,
+            children: children,
+            proposedSize: proposedSize,
+            environment: modification(environment),
+            backend: backend
+        )
+    }
+}

@@ -270,9 +270,16 @@ public struct AppKitBackend: AppBackend {
         return .view(textView)
     }
 
-    public func updateTextView(_ textView: Widget, content: String, shouldWrap: Bool) {
-        // TODO: Implement text wrap handling
-        (textView.view as! NSTextField).stringValue = content
+    public func updateTextView(_ textView: Widget, content: String, environment: Environment) {
+        let field = textView.view as! NSTextField
+        field.stringValue = content
+        let textColor = environment.foregroundColor
+        field.textColor = NSColor(
+            calibratedRed: CGFloat(textColor.red),
+            green: CGFloat(textColor.green),
+            blue: CGFloat(textColor.blue),
+            alpha: 1
+        )
     }
 
     public func createButton() -> Widget {

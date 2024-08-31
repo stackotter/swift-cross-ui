@@ -174,9 +174,8 @@ public protocol AppBackend {
     /// Creates a non-editable text view with optional text wrapping. Predominantly used
     /// by ``Text``.`
     func createTextView() -> Widget
-    /// Sets the content and wrapping mode of a non-editable text view. If `shouldWrap`
-    /// is `false`, text shouldn't be wrapped onto multiple lines.
-    func updateTextView(_ textView: Widget, content: String, shouldWrap: Bool)
+    /// Sets the content and wrapping mode of a non-editable text view.
+    func updateTextView(_ textView: Widget, content: String, environment: Environment)
 
     /// Creates an image view from an image file (specified by path). Predominantly used
     /// by ``Image``.
@@ -307,7 +306,7 @@ extension AppBackend {
     public func createTextView(content: String, shouldWrap: Bool) -> Widget {
         todo()
     }
-    public func updateTextView(_ textView: Widget, content: String, shouldWrap: Bool) {
+    public func updateTextView(_ textView: Widget, content: String, environment: Environment) {
         todo()
     }
 

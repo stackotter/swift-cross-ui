@@ -127,7 +127,8 @@ struct SplitApp: App {
                     default:
                         Text("Select a subject")
                 }
-            }.padding(10)
+            }
+            .padding(10)
         }
     }
 }
