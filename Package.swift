@@ -25,7 +25,7 @@ var swift510Products: [Product] = []
             branch: "main"
         ),
         .package(
-            url: "https://github.com/thebrowsercompany/swift-winui",
+            url: "https://github.com/stackotter/swift-winui",
             branch: "main"
         ),
     ]
@@ -242,7 +242,7 @@ func getGtk4MinorVersion() -> Int? {
         let pipe = Pipe()
         process.standardOutput = pipe
 
-        guard let _ = try? process.run(),
+        guard (try? process.run()) != nil,
             let data = try? pipe.fileHandleForReading.readToEnd(),
             case _ = process.waitUntilExit(),
             let version = String(data: data, encoding: .utf8)?.split(separator: ".")
