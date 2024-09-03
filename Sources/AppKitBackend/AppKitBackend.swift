@@ -653,6 +653,7 @@ class NSSplitViewResizingDelegate: NSObject, NSSplitViewDelegate {
     var leadingWidth = 0
     var minimumLeadingWidth = 0
     var maximumLeadingWidth = 0
+    var isFirstUpdate = true
 
     func setResizeHandler(_ handler: @escaping (_ paneWidths: [Int]) -> Void) {
         resizeHandler = handler
@@ -693,7 +694,15 @@ class NSSplitViewResizingDelegate: NSObject, NSSplitViewDelegate {
 
     func splitView(_ splitView: NSSplitView, resizeSubviewsWithOldSize oldSize: NSSize) {
         splitView.adjustSubviews()
-        splitView.setPosition(200, ofDividerAt: 0)
+
+        if isFirstUpdate {
+            splitView.setPosition(max(200, CGFloat(minimumLeadingWidth)), ofDividerAt: 0)
+            isFirstUpdate = false
+        } else {
+            // Magic! Thanks https://stackoverflow.com/a/30494691. This one line fixed all
+            // of the split view resizing issues.
+            splitView.setPosition(splitView.subviews[0].frame.width, ofDividerAt: 0)
+        }
     }
 }
 
