@@ -32,25 +32,16 @@ class SplitAppState: Observable {
     @Observed var columns: Columns = .two
 }
 
-@main
-@HotReloadable
-struct SplitApp: App {
-    let identifier = "dev.stackotter.SplitApp"
+struct ContentView: View {
+    var state = SplitAppState()
 
-    let state = SplitAppState()
-
-    var body: some Scene {
-        WindowGroup("Split") {
-            #hotReloadable {
-                switch state.columns {
-                    case .two:
-                        doubleColumn
-                    case .three:
-                        tripleColumn
-                }
-            }
+    var body: some View {
+        switch state.columns {
+            case .two:
+                doubleColumn
+            case .three:
+                tripleColumn
         }
-        .defaultSize(width: 600, height: 250)
     }
 
     /// Example view for a two column NavigationSplitView
@@ -67,6 +58,7 @@ struct SplitApp: App {
                 switch state.selectedArea {
                     case .science:
                         Text("Science")
+                            .frame(minHeight: 500)
                     case .humanities:
                         Text("Humanities")
                     case nil:
@@ -127,5 +119,20 @@ struct SplitApp: App {
             }
             .padding(10)
         }
+    }
+}
+
+@main
+@HotReloadable
+struct SplitApp: App {
+    let identifier = "dev.stackotter.SplitApp"
+
+    var body: some Scene {
+        WindowGroup("Split") {
+            #hotReloadable {
+                ContentView()
+            }
+        }
+        .defaultSize(width: 600, height: 250)
     }
 }

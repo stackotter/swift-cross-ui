@@ -34,7 +34,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     public var backend: Backend
 
     /// The most recently computed size for the wrapped view.
-    private var currentSize: ViewUpdateResult
+    var currentSize: ViewUpdateResult
     /// The most recent size proposed by the parent view. Used when updating the wrapped
     /// view as a result of a state change rather than the parent view updating.
     private var lastProposedSize: SIMD2<Int>

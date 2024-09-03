@@ -20,6 +20,8 @@ public class ViewGraph<Root: View> {
     /// The most recent size of the window (used when updated the root view due to a state
     /// change as opposed to a window resizing event).
     private var windowSize: SIMD2<Int>
+    /// The current size of the root view.
+    private var currentRootViewSize: SIMD2<Int>
 
     /// The environment most recently provided by this node's parent scene.
     private var parentEnvironment: Environment
@@ -31,12 +33,17 @@ public class ViewGraph<Root: View> {
         self.view = view
         windowSize = .zero
         parentEnvironment = environment
+        currentRootViewSize = .zero
 
         cancellable = view.state.didChange.observe { [weak self] in
             guard let self else { return }
             // TODO: Notify parent scene of the root view's new size (which would be
             //   required to implement content hugging)
-            self.update(proposedSize: windowSize, environment: parentEnvironment)
+            let newSize = self.update(proposedSize: windowSize, environment: parentEnvironment)
+            if newSize.size != currentRootViewSize {
+                currentRootViewSize = newSize.size
+                environment.onResize(newSize)
+            }
         }
     }
 
@@ -50,11 +57,13 @@ public class ViewGraph<Root: View> {
     ) -> ViewUpdateResult {
         parentEnvironment = environment
         windowSize = proposedSize
-        return rootNode.update(
+        let size = rootNode.update(
             with: newView ?? view,
             proposedSize: proposedSize,
             environment: parentEnvironment
         )
+        currentRootViewSize = size.size
+        return size
     }
 
     public func snapshot() -> ViewGraphSnapshotter.NodeSnapshot {

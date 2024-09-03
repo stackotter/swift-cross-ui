@@ -34,6 +34,17 @@ class _App<AppRoot: App> {
     func run() {
         currentBackend = backend
         backend.runMainLoop {
+            self.defaultEnvironment = self.defaultEnvironment.with(\.recomputeEntireApp) {
+                print("Recomputing app")
+                self.sceneGraphRoot?.update(
+                    self.app.body,
+                    backend: self.backend,
+                    environment: self.backend.computeRootEnvironment(
+                        defaultEnvironment: self.defaultEnvironment
+                    )
+                )
+            }
+
             let rootNode = AppRoot.Body.Node(
                 from: self.app.body,
                 backend: self.backend,
@@ -50,6 +61,7 @@ class _App<AppRoot: App> {
             self.sceneGraphRoot = rootNode
 
             self.cancellable = self.app.state.didChange.observe {
+                print("Updating scene graph root")
                 self.sceneGraphRoot?.update(
                     self.app.body,
                     backend: self.backend,

@@ -192,8 +192,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-image-formats",
       "state" : {
-        "branch" : "main",
-        "revision" : "02c079d0f28747e1e3c3bc20322cc79e007b6ac4"
+        "revision" : "02c079d0f28747e1e3c3bc20322cc79e007b6ac4",
+        "version" : "0.1.0"
       }
     },
     {

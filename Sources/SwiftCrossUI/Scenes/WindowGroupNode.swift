@@ -35,7 +35,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         backend.setResizeHandler(ofWindow: window) { [weak self] newSize in
             guard let self else { return .zero }
             _ = self.update(
-                nil,
+                scene,
                 proposedWindowSize: newSize,
                 backend: backend,
                 environment: parentEnvironment
@@ -89,11 +89,33 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             proposedSize: proposedWindowSize,
             environment: environment.with(\.onResize) { [weak self] newContentSize in
                 guard let self = self else { return }
-                self.updateSize(of: window, backend: backend, contentSize: newContentSize)
+                // TODO: Figure out whether this would still work if we didn't recompute the
+                //   scene's body. I have a vague feeling that it wouldn't work in all cases?
+                //   But I don't have the time to come up with a counterexample right now.
+                _ = self.update(
+                    scene,
+                    proposedWindowSize: backend.size(ofWindow: window),
+                    backend: backend,
+                    environment: environment
+                )
             }
         )
 
-        updateSize(of: window, backend: backend, contentSize: contentSize)
+        let newWindowSize = updateSize(
+            of: window,
+            backend: backend,
+            contentSize: contentSize,
+            environment: environment
+        )
+
+        if let newWindowSize {
+            return update(
+                scene,
+                proposedWindowSize: newWindowSize,
+                backend: backend,
+                environment: environment
+            )
+        }
 
         if isFirstUpdate {
             backend.show(window: window)
@@ -106,8 +128,10 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
     public func updateSize<Backend: AppBackend>(
         of window: Backend.Window,
         backend: Backend,
-        contentSize: ViewUpdateResult
-    ) {
+        contentSize: ViewUpdateResult,
+        environment: Environment
+    ) -> SIMD2<Int>? {
+        let windowSize = backend.size(ofWindow: window)
         if scene.resizability.isResizable {
             backend.setMinimumSize(
                 ofWindow: window,
@@ -116,8 +140,27 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                     contentSize.minimumHeight
                 )
             )
-        } else {
+
+            if windowSize.x < contentSize.minimumWidth
+                || windowSize.y < contentSize.minimumHeight
+            {
+                let newSize = SIMD2(
+                    max(windowSize.x, contentSize.minimumWidth),
+                    max(windowSize.y, contentSize.minimumHeight)
+                )
+                backend.setSize(
+                    ofWindow: window,
+                    to: newSize
+                )
+                return newSize
+            } else {
+                return nil
+            }
+        } else if contentSize.size != windowSize {
             backend.setSize(ofWindow: window, to: contentSize.size)
+            return contentSize.size
+        } else {
+            return nil
         }
     }
 }

@@ -57,7 +57,11 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
             ),
             environment: environment
         )
-        backend.setSize(of: widget, to: proposedSize)
+        let size = SIMD2(
+            max(proposedSize.x, leadingContentSize.size.x + trailingContentSize.size.x),
+            max(proposedSize.y, max(leadingContentSize.size.y, trailingContentSize.size.y))
+        )
+        backend.setSize(of: widget, to: size)
         backend.setSidebarWidthBounds(
             ofSplitView: widget,
             minimum: leadingContentSize.minimumWidth,
@@ -67,7 +71,7 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
             )
         )
         return ViewUpdateResult(
-            size: proposedSize,
+            size: size,
             minimumWidth: leadingContentSize.minimumWidth + trailingContentSize.minimumWidth,
             minimumHeight: max(leadingContentSize.minimumHeight, trailingContentSize.minimumHeight)
         )
