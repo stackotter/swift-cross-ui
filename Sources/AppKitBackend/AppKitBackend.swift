@@ -253,6 +253,9 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func size(of text: String, in proposedFrame: SIMD2<Int>) -> SIMD2<Int> {
+        if proposedFrame.x == 0 {
+            return .zero
+        }
         let proposedSize = NSSize(
             width: CGFloat(proposedFrame.x),
             height: .greatestFiniteMagnitude
