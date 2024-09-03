@@ -512,15 +512,27 @@ public struct AppKitBackend: AppBackend {
         splitView.resizingDelegate!.maximumLeadingWidth = maximumWidth
     }
 
-    public func createImageView(filePath: String) -> Widget {
+    public func createImageView() -> Widget {
         let imageView = NSImageView()
-        imageView.image = NSImage(contentsOfFile: filePath)
+        imageView.imageScaling = .scaleAxesIndependently
         return .view(imageView)
     }
 
-    public func updateImageView(_ imageView: Widget, filePath: String) {
+    public func updateImageView(_ imageView: Widget, rgbaData: [UInt8], width: Int, height: Int) {
         let imageView = imageView.view as! NSImageView
-        imageView.image = NSImage(contentsOfFile: filePath)
+        var rgbaData = rgbaData
+        let context = CGContext(
+            data: &rgbaData,
+            width: width,
+            height: height,
+            bitsPerComponent: 8,
+            bytesPerRow: 4 * width,
+            space: CGColorSpaceCreateDeviceRGB(),
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+        )
+        let cgImage = context!.makeImage()!
+
+        imageView.image = NSImage(cgImage: cgImage, size: NSSize(width: width, height: height))
     }
 }
 

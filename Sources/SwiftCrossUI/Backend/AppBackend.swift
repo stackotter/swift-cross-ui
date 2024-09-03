@@ -183,9 +183,16 @@ public protocol AppBackend {
 
     /// Creates an image view from an image file (specified by path). Predominantly used
     /// by ``Image``.
-    func createImageView(filePath: String) -> Widget
-    /// Sets the path of the image file being displayed by an image view.
-    func updateImageView(_ imageView: Widget, filePath: String)
+    func createImageView() -> Widget
+    /// Sets the image data to be displayed.
+    /// - Parameters:
+    ///   - imageView: The image view to update.
+    ///   - rgbaData: The pixel data (as rows of pixels concatenated into a flat array).
+    ///   - width: The width of the image in pixels (should only be used to interpret `rgbaData`, not
+    ///     to influence the size of the image on-screen).
+    ///   - height: The height of the image in pixels (should only be used to interpret `rgbaData`, not
+    ///     to influence the size of the image on-screen).
+    func updateImageView(_ imageView: Widget, rgbaData: [UInt8], width: Int, height: Int)
 
     /// Creates a table with an initial number of rows and columns.
     func createTable(rows: Int, columns: Int) -> Widget
@@ -314,10 +321,11 @@ extension AppBackend {
         todo()
     }
 
-    public func createImageView(filePath: String) -> Widget {
+    public func createImageView() -> Widget {
         todo()
     }
-    public func updateImageView(_ imageView: Widget, filePath: String) {
+
+    public func updateImageView(_ imageView: Widget, rgbaData: [UInt8], width: Int, height: Int) {
         todo()
     }
 

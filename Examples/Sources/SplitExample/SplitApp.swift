@@ -67,13 +67,10 @@ struct SplitApp: App {
                 switch state.selectedArea {
                     case .science:
                         Text("Science")
-                            .padding(.bottom, 10)
                     case .humanities:
                         Text("Humanities")
-                            .padding(.bottom, 10)
                     case nil:
                         Text("Select an area")
-                            .padding(.bottom, 10)
                 }
             }.padding(10)
         }

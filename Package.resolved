@@ -1,5 +1,15 @@
 {
+  "originHash" : "006a2024f7d0588e31979eaa7a012cad4e4242605053958045a089b62b639b5b",
   "pins" : [
+    {
+      "identity" : "jpeg",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stackotter/jpeg",
+      "state" : {
+        "revision" : "a27e47f49479993b2541bc5f5c95d9354ed567a0",
+        "version" : "1.0.2"
+      }
+    },
     {
       "identity" : "opencombine",
       "kind" : "remoteSourceControl",
@@ -45,12 +55,48 @@
       }
     },
     {
+      "identity" : "swift-hash",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stackotter/swift-hash",
+      "state" : {
+        "revision" : "6e9301937718c3c0b2ce6bfd323a210a7490a007",
+        "version" : "0.6.3"
+      }
+    },
+    {
+      "identity" : "swift-image-formats",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stackotter/swift-image-formats",
+      "state" : {
+        "revision" : "02c079d0f28747e1e3c3bc20322cc79e007b6ac4",
+        "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "swift-libwebp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stackotter/swift-libwebp",
+      "state" : {
+        "revision" : "a2868991d916fb2c9ccd2714b77fb52aeea8d2ec",
+        "version" : "0.1.0"
+      }
+    },
+    {
       "identity" : "swift-macro-toolkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-macro-toolkit",
       "state" : {
         "revision" : "687075e7bf976e121d083e922a07c7a9350ca85d",
         "version" : "0.4.0"
+      }
+    },
+    {
+      "identity" : "swift-png",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stackotter/swift-png",
+      "state" : {
+        "revision" : "313bfc017df44fd07abb792c615471c42c470ded",
+        "version" : "4.4.5"
       }
     },
     {
@@ -134,5 +180,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

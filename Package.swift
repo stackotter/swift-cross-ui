@@ -1,4 +1,4 @@
-// swift-tools-version:5.9
+// swift-tools-version:5.10
 
 import CompilerPluginSupport
 import Foundation
@@ -138,12 +138,17 @@ let package = Package(
             url: "https://github.com/stackotter/swift-macro-toolkit",
             from: "0.4.0"
         ),
+        .package(
+            url: "https://github.com/stackotter/swift-image-formats",
+            .upToNextMinor(from: "0.1.0")
+        ),
     ] + swift510Dependencies,
     targets: [
         .target(
             name: "SwiftCrossUI",
             dependencies: [
-                "HotReloadingMacrosPlugin"
+                "HotReloadingMacrosPlugin",
+                .product(name: "ImageFormats", package: "swift-image-formats"),
             ],
             exclude: [
                 "Builders/ViewBuilder.swift.gyb",
@@ -242,7 +247,7 @@ func getGtk4MinorVersion() -> Int? {
         let pipe = Pipe()
         process.standardOutput = pipe
 
-        guard let _ = try? process.run(),
+        guard (try? process.run()) != nil,
             let data = try? pipe.fileHandleForReading.readToEnd(),
             case _ = process.waitUntilExit(),
             let version = String(data: data, encoding: .utf8)?.split(separator: ".")
