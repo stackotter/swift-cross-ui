@@ -5,13 +5,13 @@ import CGtk
 /// ![An example GtkSwitch](switch.png)
 ///
 /// The user can control which state should be active by clicking the
-/// empty area, or by dragging the handle.
+/// empty area, or by dragging the slider.
 ///
-/// `GtkSwitch` can also handle situations where the underlying state
-/// changes with a delay. In this case, the slider position indicates
-/// the user's recent change (as indicated by the [property@Gtk.Switch:active]
-/// property), and the color indicates whether the underlying state (represented
-/// by the [property@Gtk.Switch:state] property) has been updated yet.
+/// `GtkSwitch` can also express situations where the underlying state changes
+/// with a delay. In this case, the slider position indicates the user's recent
+/// change (represented by the [property@Gtk.Switch:active] property), while the
+/// trough color indicates the present underlying state (represented by the
+/// [property@Gtk.Switch:state] property).
 ///
 /// ![GtkSwitch with delayed state change](switch-state.png)
 ///
@@ -115,6 +115,10 @@ public class Switch: Widget, Actionable {
 
     /// The backend state that is controlled by the switch.
     ///
+    /// Applications should usually set the [property@Gtk.Switch:active] property,
+    /// except when indicating a change to the backend state which occurs
+    /// separately from the user's interaction.
+    ///
     /// See [signal@Gtk.Switch::state-set] for details.
     @GObjectProperty(named: "state") public var state: Bool
 
@@ -129,18 +133,14 @@ public class Switch: Widget, Actionable {
     /// Emitted to change the underlying state.
     ///
     /// The ::state-set signal is emitted when the user changes the switch
-    /// position. The default handler keeps the state in sync with the
-    /// [property@Gtk.Switch:active] property.
+    /// position. The default handler calls [method@Gtk.Switch.set_state] with the
+    /// value of @state.
     ///
     /// To implement delayed state change, applications can connect to this
     /// signal, initiate the change of the underlying state, and call
     /// [method@Gtk.Switch.set_state] when the underlying state change is
     /// complete. The signal handler should return %TRUE to prevent the
     /// default handler from running.
-    ///
-    /// Visually, the underlying state is represented by the trough color of
-    /// the switch, while the [property@Gtk.Switch:active] property is
-    /// represented by the position of the switch.
     public var stateSet: ((Switch) -> Void)?
 
     public var notifyActive: ((Switch) -> Void)?

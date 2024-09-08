@@ -87,7 +87,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         let contentSize = viewGraph.update(
             with: newScene?.body,
             proposedSize: proposedWindowSize,
-            environment: environment.with(\.onResize) { [weak self] newContentSize in
+            environment: environment.with(\.onResize) { [weak self] _ in
                 guard let self = self else { return }
                 // TODO: Figure out whether this would still work if we didn't recompute the
                 //   scene's body. I have a vague feeling that it wouldn't work in all cases?

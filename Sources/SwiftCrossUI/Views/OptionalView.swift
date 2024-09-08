@@ -5,7 +5,7 @@ public struct OptionalView<V: View>: TypeSafeView, View {
     public var body = EmptyView()
 
     public var flexibility: Int {
-        view?.flexibility ?? 1500
+        view?.flexibility ?? 0
     }
 
     var view: V?

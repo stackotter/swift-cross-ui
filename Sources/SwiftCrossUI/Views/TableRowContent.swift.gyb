@@ -1,0 +1,64 @@
+%{
+maximum_column_count = 10
+}%
+
+public protocol TableRowContent<RowValue> {
+    associatedtype RowValue
+    associatedtype RowContent: View
+
+    var labels: [String] { get }
+
+    func content(for row: RowValue) -> RowContent
+}
+
+public struct EmptyTableRowContent<RowValue>: TableRowContent {
+    public typealias RowContent = EmptyView
+
+    public var labels: [String] {
+        []
+    }
+
+    public init() {}
+
+    public func content(for row: RowValue) -> EmptyView {
+        EmptyView()
+    }
+}
+
+%for i in range(1, maximum_column_count + 1):
+public struct TupleTableRowContent${i}<
+    RowValue,
+    ${",\n    ".join("Content%d: View" % j for j in range(i))}
+>: TableRowContent {
+    public typealias RowContent = VariadicView${i}<
+        ${",\n        ".join("Content%d" % j for j in range(i))}
+    >
+
+    %for j in range(i):
+    public var column${j}: TableColumn<RowValue, Content${j}>
+    %end
+
+    public var labels: [String] {
+        [
+            %for j in range(i):
+            column${j}.label,
+            %end
+        ]
+    }
+
+    public init(
+        ${",\n        ".join("_ column%d: TableColumn<RowValue, Content%d>" % (j, j) for j in range(i))}
+    ) {
+        %for j in range(i):
+        self.column${j} = column${j}
+        %end
+    }
+
+    public func content(for row: RowValue) -> RowContent {
+        VariadicView${i}(
+            ${",\n            ".join("column%d.content(row)" % j for j in range(i))}
+        )
+    }
+}
+
+%end

@@ -1,24 +1,25 @@
-/// A column that displays a view for each row in a table.
-// public struct TableColumn<Row> {
-//     public var title: String
-//     public var value: (Row) -> String
+/// A labelled column with a view for each row in a table.
+public struct TableColumn<RowValue, Content: View> {
+    /// The label displayed at the top of the column (also known as the column title).
+    public var label: String
+    /// The content displayed for this column of each row of the table.
+    public var content: (RowValue) -> Content
+}
 
-//     /// Creates a labelled column that displays a string property.
-//     public init(_ title: String, value keyPath: KeyPath<Row, String>) {
-//         self.title = title
-//         self.value = { row in
-//             row[keyPath: keyPath]
-//         }
-//     }
+extension TableColumn {
+    /// Creates a column.
+    public init(_ label: String, @ViewBuilder content: @escaping (RowValue) -> Content) {
+        self.label = label
+        self.content = content
+    }
+}
 
-//     /// Creates a labelled column that displays a string convertible property.
-//     public init<Value: CustomStringConvertible>(
-//         _ title: String,
-//         value keyPath: KeyPath<Row, Value>
-//     ) {
-//         self.title = title
-//         self.value = { row in
-//             row[keyPath: keyPath].description
-//         }
-//     }
-// }
+extension TableColumn where Content == Text {
+    /// Creates a column with that displays a string property and has a text label.
+    public init(_ label: String, value keyPath: KeyPath<RowValue, String>) {
+        self.label = label
+        self.content = { row in
+            Text(row[keyPath: keyPath])
+        }
+    }
+}

@@ -159,7 +159,7 @@ public struct WinUIBackend: AppBackend {
         let container = (container as! StackPanel)
         let index = container.children.index(of: child)
         if let index {
-            let _ = container.children.remove(at: index)
+            _ = container.children.remove(at: index)
         }
     }
 

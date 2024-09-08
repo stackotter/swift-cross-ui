@@ -537,6 +537,100 @@ public struct AppKitBackend: AppBackend {
 
         imageView.image = NSImage(cgImage: cgImage, size: NSSize(width: width, height: height))
     }
+
+    public func createTable() -> Widget {
+        let scrollView = NSScrollView()
+        let table = NSCustomTableView()
+        table.delegate = table.customDelegate
+        table.dataSource = table.customDelegate
+        table.usesAlternatingRowBackgroundColors = true
+        table.rowHeight = 24
+        table.columnAutoresizingStyle = .lastColumnOnlyAutoresizingStyle
+        table.allowsColumnSelection = false
+        scrollView.documentView = table
+        return .view(scrollView)
+    }
+
+    public func setRowCount(ofTable table: Widget, to rowCount: Int) {
+        let table = (table.view as! NSScrollView).documentView as! NSCustomTableView
+        table.customDelegate.rowCount = rowCount
+    }
+
+    public func setColumnLabels(ofTable table: Widget, to labels: [String]) {
+        let table = (table.view as! NSScrollView).documentView as! NSCustomTableView
+        var columnIndices: [ObjectIdentifier: Int] = [:]
+        let columns = labels.enumerated().map { (i, label) in
+            let column = NSTableColumn(
+                identifier: NSUserInterfaceItemIdentifier("Column \(i)")
+            )
+            column.headerCell = NSTableHeaderCell(textCell: label)
+            // column.width = 200
+            columnIndices[ObjectIdentifier(column)] = i
+            return column
+        }
+        table.customDelegate.columnIndices = columnIndices
+        for column in table.tableColumns {
+            table.removeTableColumn(column)
+        }
+        table.customDelegate.columnCount = labels.count
+        for column in columns {
+            table.addTableColumn(column)
+        }
+    }
+
+    public func setCells(
+        ofTable table: Widget,
+        to cells: [Widget],
+        withRowHeights rowHeights: [Int]
+    ) {
+        let table = (table.view as! NSScrollView).documentView as! NSCustomTableView
+        table.customDelegate.widgets = cells
+        table.customDelegate.rowHeights = rowHeights
+        table.reloadData()
+    }
+}
+
+class NSCustomTableView: NSTableView {
+    var customDelegate = NSCustomTableViewDelegate()
+}
+
+class NSCustomTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSource {
+    var widgets: [AppKitBackend.Widget] = []
+    var rowHeights: [Int] = []
+    var columnIndices: [ObjectIdentifier: Int] = [:]
+    var rowCount = 0
+    var columnCount = 0
+
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return rowCount
+    }
+
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        return CGFloat(rowHeights[row])
+    }
+
+    func tableView(
+        _ tableView: NSTableView,
+        viewFor tableColumn: NSTableColumn?,
+        row: Int
+    ) -> NSView? {
+        guard let tableColumn else {
+            print("warning: No column provided")
+            return nil
+        }
+        guard let columnIndex = columnIndices[ObjectIdentifier(tableColumn)] else {
+            print("warning: NSTableView asked for value of non-existent column")
+            return nil
+        }
+        return widgets[row * columnCount + columnIndex].view
+    }
+
+    func tableView(
+        _ tableView: NSTableView,
+        selectionIndexesForProposedSelection proposedSelectionIndexes: IndexSet
+    ) -> IndexSet {
+        []
+    }
 }
 
 extension Color {

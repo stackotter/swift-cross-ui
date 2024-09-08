@@ -1,0 +1,26 @@
+%{
+maximum_column_count = 10
+}%
+
+/// A result builder for constructing a collection of table columns.
+@resultBuilder
+public struct TableRowBuilder<RowValue> {
+    public static func buildBlock() -> EmptyTableRowContent<RowValue> {
+        EmptyTableRowContent<RowValue>()
+    }
+
+    %for i in range(1, maximum_column_count + 1):
+    public static func buildBlock<
+        ${",\n        ".join("Content%d: View" % j for j in range(i))}
+    >(
+        ${",\n        ".join("_ column%d: TableColumn<RowValue, Content%d>" % (j, j) for j in range(i))}
+    ) -> TupleTableRowContent${i}<
+        RowValue,
+        ${",\n        ".join("Content%d" % j for j in range(i))}
+    > {
+        TupleTableRowContent${i}(
+            ${",\n            ".join("column%d" % j for j in range(i))}
+        )
+    }
+    %end
+}

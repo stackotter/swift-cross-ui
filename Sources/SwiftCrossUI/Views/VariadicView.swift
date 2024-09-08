@@ -13,7 +13,9 @@ public struct VariadicView1<View0: View>: TypeSafeView, View {
     public var body = EmptyView()
 
     public var flexibility: Int {
-        300
+        [
+            view0.flexibility
+        ].reduce(0, +) / 1
     }
 
     /// Wraps 1 child views in a single container view.
@@ -96,7 +98,10 @@ public struct VariadicView2<View0: View, View1: View>: TypeSafeView, View {
     public var body = EmptyView()
 
     public var flexibility: Int {
-        300
+        [
+            view0.flexibility,
+            view1.flexibility,
+        ].reduce(0, +) / 2
     }
 
     /// Wraps 2 child views in a single container view.
@@ -194,7 +199,11 @@ public struct VariadicView3<View0: View, View1: View, View2: View>: TypeSafeView
     public var body = EmptyView()
 
     public var flexibility: Int {
-        300
+        [
+            view0.flexibility,
+            view1.flexibility,
+            view2.flexibility,
+        ].reduce(0, +) / 3
     }
 
     /// Wraps 3 child views in a single container view.
@@ -308,7 +317,12 @@ public struct VariadicView4<View0: View, View1: View, View2: View, View3: View>:
     public var body = EmptyView()
 
     public var flexibility: Int {
-        300
+        [
+            view0.flexibility,
+            view1.flexibility,
+            view2.flexibility,
+            view3.flexibility,
+        ].reduce(0, +) / 4
     }
 
     /// Wraps 4 child views in a single container view.
@@ -438,7 +452,13 @@ public struct VariadicView5<View0: View, View1: View, View2: View, View3: View, 
     public var body = EmptyView()
 
     public var flexibility: Int {
-        300
+        [
+            view0.flexibility,
+            view1.flexibility,
+            view2.flexibility,
+            view3.flexibility,
+            view4.flexibility,
+        ].reduce(0, +) / 5
     }
 
     /// Wraps 5 child views in a single container view.
@@ -583,7 +603,14 @@ public struct VariadicView6<
     public var body = EmptyView()
 
     public var flexibility: Int {
-        300
+        [
+            view0.flexibility,
+            view1.flexibility,
+            view2.flexibility,
+            view3.flexibility,
+            view4.flexibility,
+            view5.flexibility,
+        ].reduce(0, +) / 6
     }
 
     /// Wraps 6 child views in a single container view.
@@ -746,7 +773,15 @@ public struct VariadicView7<
     public var body = EmptyView()
 
     public var flexibility: Int {
-        300
+        [
+            view0.flexibility,
+            view1.flexibility,
+            view2.flexibility,
+            view3.flexibility,
+            view4.flexibility,
+            view5.flexibility,
+            view6.flexibility,
+        ].reduce(0, +) / 7
     }
 
     /// Wraps 7 child views in a single container view.
@@ -927,7 +962,16 @@ public struct VariadicView8<
     public var body = EmptyView()
 
     public var flexibility: Int {
-        300
+        [
+            view0.flexibility,
+            view1.flexibility,
+            view2.flexibility,
+            view3.flexibility,
+            view4.flexibility,
+            view5.flexibility,
+            view6.flexibility,
+            view7.flexibility,
+        ].reduce(0, +) / 8
     }
 
     /// Wraps 8 child views in a single container view.
@@ -1123,7 +1167,17 @@ public struct VariadicView9<
     public var body = EmptyView()
 
     public var flexibility: Int {
-        300
+        [
+            view0.flexibility,
+            view1.flexibility,
+            view2.flexibility,
+            view3.flexibility,
+            view4.flexibility,
+            view5.flexibility,
+            view6.flexibility,
+            view7.flexibility,
+            view8.flexibility,
+        ].reduce(0, +) / 9
     }
 
     /// Wraps 9 child views in a single container view.
@@ -1334,7 +1388,18 @@ public struct VariadicView10<
     public var body = EmptyView()
 
     public var flexibility: Int {
-        300
+        [
+            view0.flexibility,
+            view1.flexibility,
+            view2.flexibility,
+            view3.flexibility,
+            view4.flexibility,
+            view5.flexibility,
+            view6.flexibility,
+            view7.flexibility,
+            view8.flexibility,
+            view9.flexibility,
+        ].reduce(0, +) / 10
     }
 
     /// Wraps 10 child views in a single container view.

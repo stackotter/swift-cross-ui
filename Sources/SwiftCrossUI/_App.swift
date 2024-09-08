@@ -61,7 +61,6 @@ class _App<AppRoot: App> {
             self.sceneGraphRoot = rootNode
 
             self.cancellable = self.app.state.didChange.observe {
-                print("Updating scene graph root")
                 self.sceneGraphRoot?.update(
                     self.app.body,
                     backend: self.backend,

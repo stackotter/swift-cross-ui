@@ -194,16 +194,19 @@ public protocol AppBackend {
     ///     to influence the size of the image on-screen).
     func updateImageView(_ imageView: Widget, rgbaData: [UInt8], width: Int, height: Int)
 
-    /// Creates a table with an initial number of rows and columns.
-    func createTable(rows: Int, columns: Int) -> Widget
+    /// Creates an empty table.
+    func createTable() -> Widget
     /// Sets the number of rows of a table. Existing rows outside of the new bounds should
     /// be deleted.
     func setRowCount(ofTable table: Widget, to rows: Int)
-    /// Sets the number of columns of a table. Existing columns outside of the new bounds
-    /// should be deleted.
-    func setColumnCount(ofTable table: Widget, to columns: Int)
-    /// Sets the contents of the table cell at the given position in a table.
-    func setCell(at position: CellPosition, inTable table: Widget, to widget: Widget)
+    /// Sets the labels of a table's columns. Also sets the number of columns of the table to the
+    /// number of labels provided.
+    func setColumnLabels(ofTable table: Widget, to labels: [String])
+    /// Sets the contents of the table as a flat array of cells in order of and grouped by row. Also
+    /// sets the height of each row's content.
+    ///
+    /// A nested array would have significantly more overhead, especially for large arrays.
+    func setCells(ofTable table: Widget, to cells: [Widget], withRowHeights rowHeights: [Int])
 
     // MARK: Controls
 
@@ -329,16 +332,20 @@ extension AppBackend {
         todo()
     }
 
-    public func createTable(rows: Int, columns: Int) -> Widget {
+    public func createTable() -> Widget {
         todo()
     }
     public func setRowCount(ofTable table: Widget, to rows: Int) {
         todo()
     }
-    public func setColumnCount(ofTable table: Widget, to columns: Int) {
+    public func setColumnLabels(ofTable table: Widget, to labels: [String]) {
         todo()
     }
-    public func setCell(at position: CellPosition, inTable table: Widget, to widget: Widget) {
+    public func setCells(
+        ofTable table: Widget,
+        to cells: [Widget],
+        withRowHeights rowHeights: [Int]
+    ) {
         todo()
     }
 
