@@ -33,6 +33,9 @@ public struct AppKitBackend: AppBackend {
         }
     }
 
+    public let defaultTableRowContentHeight = 20
+    public let defaultTableCellVerticalPadding = 4
+
     public init() {}
 
     public func runMainLoop(_ callback: @escaping () -> Void) {
@@ -281,6 +284,10 @@ public struct AppKitBackend: AppBackend {
         let field = textView.view as! NSTextField
         field.stringValue = content
         field.textColor = environment.foregroundColor.nsColor
+    }
+
+    public func computeLineHeight(ofTextRenderedWith environment: Environment) -> Int {
+        return Int(Self.font.pointSize.rounded())
     }
 
     public func createButton() -> Widget {
@@ -544,7 +551,9 @@ public struct AppKitBackend: AppBackend {
         table.delegate = table.customDelegate
         table.dataSource = table.customDelegate
         table.usesAlternatingRowBackgroundColors = true
-        table.rowHeight = 24
+        table.rowHeight = CGFloat(
+            defaultTableRowContentHeight + 2 * defaultTableCellVerticalPadding
+        )
         table.columnAutoresizingStyle = .lastColumnOnlyAutoresizingStyle
         table.allowsColumnSelection = false
         scrollView.documentView = table

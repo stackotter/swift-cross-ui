@@ -48,6 +48,16 @@ public protocol AppBackend {
 
     init()
 
+    /// The default height of a table row excluding cell padding. This is a
+    /// recommendation by the backend that SwiftCrossUI won't necessarily
+    /// follow in all cases.
+    var defaultTableRowContentHeight: Int { get }
+    /// The default vertical padding to apply to table cells. This is a
+    /// recommendation by the backend that SwiftCrossUI won't necessarily
+    /// follow in all cases. This is the amount of padding added above and
+    /// below each cell, not the total amount added along the vertical axis.
+    var defaultTableCellVerticalPadding: Int { get }
+
     /// Often in UI frameworks (such as Gtk), code is run in a callback
     /// after starting the app, and hence this generic root window creation
     /// API must reflect that. This is always the first method to be called
@@ -180,6 +190,8 @@ public protocol AppBackend {
     func createTextView() -> Widget
     /// Sets the content and wrapping mode of a non-editable text view.
     func updateTextView(_ textView: Widget, content: String, environment: Environment)
+    /// Computes the line height that text rendered within the given environment would have.
+    func computeLineHeight(ofTextRenderedWith environment: Environment) -> Int
 
     /// Creates an image view from an image file (specified by path). Predominantly used
     /// by ``Image``.
@@ -321,6 +333,9 @@ extension AppBackend {
         todo()
     }
     public func updateTextView(_ textView: Widget, content: String, environment: Environment) {
+        todo()
+    }
+    public func computeLineHeight(ofTextRenderedWith environment: Environment) -> Int {
         todo()
     }
 

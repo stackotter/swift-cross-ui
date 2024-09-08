@@ -77,9 +77,6 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
         backend.setRowCount(ofTable: widget, to: rows.count)
         backend.setColumnLabels(ofTable: widget, to: columnLabels)
 
-        // TODO: Don't hardcode this
-        let defaultRowContentHeight = 20
-        let defaultRowPadding = 8
         let columnWidth = proposedSize.x / columnCount
         var rowHeights: [Int] = []
         for (rowIndex, (rowNode, content)) in zip(children.rowNodes, rowContent).enumerated() {
@@ -90,11 +87,16 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
 
             var cellHeights: [Int] = []
             for rowCell in rowCells {
-                let size = rowCell.update(SIMD2(columnWidth, defaultRowContentHeight), environment)
+                let size = rowCell.update(
+                    SIMD2(columnWidth, backend.defaultTableRowContentHeight),
+                    environment
+                )
                 cellHeights.append(size.size.y)
             }
 
-            let rowHeight = max(cellHeights.max() ?? 0, defaultRowContentHeight) + defaultRowPadding
+            let rowHeight =
+                max(cellHeights.max() ?? 0, backend.defaultTableRowContentHeight)
+                + backend.defaultTableCellVerticalPadding * 2
             rowHeights.append(rowHeight)
 
             for (columnIndex, cellHeight) in zip(0..<columnCount, cellHeights) {
