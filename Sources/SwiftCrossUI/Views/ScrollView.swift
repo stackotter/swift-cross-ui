@@ -12,9 +12,9 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: Environment
-    ) -> ViewGraphNodeChildren1<VStack<Content>> {
+    ) -> TupleViewChildren1<VStack<Content>> {
         // TODO: Verify that snapshotting works correctly with this
-        return ViewGraphNodeChildren1(
+        return TupleViewChildren1(
             body,
             backend: backend,
             snapshots: snapshots,
@@ -24,13 +24,13 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
 
     func layoutableChildren<Backend: AppBackend>(
         backend: Backend,
-        children: ViewGraphNodeChildren1<VStack<Content>>
+        children: TupleViewChildren1<VStack<Content>>
     ) -> [LayoutSystem.LayoutableChild] {
         []
     }
 
     func asWidget<Backend: AppBackend>(
-        _ children: ViewGraphNodeChildren1<VStack<Content>>,
+        _ children: TupleViewChildren1<VStack<Content>>,
         backend: Backend
     ) -> Backend.Widget {
         return backend.createScrollContainer(for: children.child0.widget.into())
@@ -38,7 +38,7 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
 
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: ViewGraphNodeChildren1<VStack<Content>>,
+        children: TupleViewChildren1<VStack<Content>>,
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend

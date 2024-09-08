@@ -1,8 +1,6 @@
 /// A placeholder view used by elementary ``View`` implementations which don't have bodies. Fatally
 /// crashes if rendered.
 public struct EmptyView: View {
-    public typealias NodeChildren = EmptyViewGraphNodeChildren
-
     public var body: Never {
         return fatalError("Rendered EmptyView")
     }
@@ -16,7 +14,7 @@ public struct EmptyView: View {
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: Environment
     ) -> any ViewGraphNodeChildren {
-        return EmptyViewGraphNodeChildren()
+        return EmptyViewChildren()
     }
 
     public func layoutableChildren<Backend: AppBackend>(
@@ -31,7 +29,7 @@ public struct EmptyView: View {
     ) {}
 
     public func asWidget<Backend: AppBackend>(
-        _ children: ViewGraphNodeChildren,
+        _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget {
         backend.createContainer()
@@ -39,7 +37,7 @@ public struct EmptyView: View {
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: ViewGraphNodeChildren,
+        children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
@@ -48,10 +46,17 @@ public struct EmptyView: View {
     }
 }
 
+/// The children of a node with no children.
+public struct EmptyViewChildren: ViewGraphNodeChildren {
+    public let widgets: [AnyWidget] = []
+    public let erasedNodes: [ErasedViewGraphNode] = []
+
+    /// Creates an empty collection of children for a node with no children.
+    public init() {}
+}
+
 /// Used as the body of ``EmptyView`` to end the chain of view bodies.
 extension Never: View {
-    public typealias NodeChildren = EmptyViewGraphNodeChildren
-
     public var body: Never {
         return fatalError("Rendered Never")
     }

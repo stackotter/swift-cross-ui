@@ -152,8 +152,10 @@ let package = Package(
             ],
             exclude: [
                 "Builders/ViewBuilder.swift.gyb",
-                "ViewGraph/ViewGraphNodeChildren.swift.gyb",
-                "Views/VariadicView.swift.gyb",
+                "Builders/TableRowBuilder.swift.gyb",
+                "Views/TupleView.swift.gyb",
+                "Views/TupleViewChildren.swift.gyb",
+                "Views/TableRowContent.swift.gyb",
             ]
         ),
         .testTarget(

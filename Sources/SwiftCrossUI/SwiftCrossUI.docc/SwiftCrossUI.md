@@ -70,7 +70,7 @@ The detailed components that are part of the low level of SwiftCrossUI.
 - ``AnyViewGraphNode``
 - ``EitherView``
 - ``EmptyView``
-- ``EmptyViewGraphNodeChildren``
+- ``EmptyViewChildren``
 - ``OptionalView``
 - ``TableBuilder``
 - ``ViewGraph``

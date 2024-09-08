@@ -2,36 +2,6 @@
 maximum_child_count = 10
 }%
 
-/// The children of a view graph node. This is implemented by a few different
-/// types for various purposes. E.g. variable length with same-typed elements
-/// (``ForEach``), and fixed length with distinctly-typed elements (``VariadicView1``,
-/// ``VariadicView2``, etc).
-public protocol ViewGraphNodeChildren {
-    /// The widget's of the children. Type-erased to avoid the type of the currently
-    /// selected backend leaking into the ``View`` protocol, requiring users to
-    /// engage with annoying complexity and reducing ease of backend switching.
-    var widgets: [AnyWidget] { get }
-    /// Erased representations of all contained child nodes.
-    var erasedNodes: [ErasedViewGraphNode] { get }
-}
-
-extension ViewGraphNodeChildren {
-    /// Gets the node's type-erased widgets for a specific backend (crashing if the
-    /// widgets were created by a different backend).
-    public func widgets<Backend: AppBackend>(for backend: Backend) -> [Backend.Widget] {
-        return widgets.map { $0.into() }
-    }
-}
-
-/// The children of a node with no children.
-public struct EmptyViewGraphNodeChildren: ViewGraphNodeChildren {
-    public let widgets: [AnyWidget] = []
-    public let erasedNodes: [ErasedViewGraphNode] = []
-
-    /// Creates an empty collection of children for a node with no children.
-    public init() {}
-}
-
 % for i in range(10):
 %{
 children = []
@@ -40,12 +10,11 @@ for j in range(i + 1):
 
 struct_type_parameters = ", ".join(["%s: View" % child for child in children])
 variadic_type_parameters = ", ".join(children)
-parent_type = "VariadicView%d<%s>" % (i + 1, variadic_type_parameters)
 }%
 
 /// A fixed-length strongly-typed collection of ${i + 1} child nodes. A counterpart to
-/// ``VariadicView${i + 1}``.
-public struct ViewGraphNodeChildren${i + 1}<${struct_type_parameters}>: ViewGraphNodeChildren {
+/// ``TupleView${i + 1}``.
+public struct TupleViewChildren${i + 1}<${struct_type_parameters}>: ViewGraphNodeChildren {
     public var widgets: [AnyWidget] {
         return [
             % for child in children:

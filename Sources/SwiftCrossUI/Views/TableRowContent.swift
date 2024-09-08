@@ -25,7 +25,7 @@ public struct TupleTableRowContent1<
     RowValue,
     Content0: View
 >: TableRowContent {
-    public typealias RowContent = VariadicView1<
+    public typealias RowContent = TupleView1<
         Content0
     >
 
@@ -44,7 +44,7 @@ public struct TupleTableRowContent1<
     }
 
     public func content(for row: RowValue) -> RowContent {
-        VariadicView1(
+        TupleView1(
             column0.content(row)
         )
     }
@@ -55,7 +55,7 @@ public struct TupleTableRowContent2<
     Content0: View,
     Content1: View
 >: TableRowContent {
-    public typealias RowContent = VariadicView2<
+    public typealias RowContent = TupleView2<
         Content0,
         Content1
     >
@@ -79,7 +79,7 @@ public struct TupleTableRowContent2<
     }
 
     public func content(for row: RowValue) -> RowContent {
-        VariadicView2(
+        TupleView2(
             column0.content(row),
             column1.content(row)
         )
@@ -92,7 +92,7 @@ public struct TupleTableRowContent3<
     Content1: View,
     Content2: View
 >: TableRowContent {
-    public typealias RowContent = VariadicView3<
+    public typealias RowContent = TupleView3<
         Content0,
         Content1,
         Content2
@@ -121,7 +121,7 @@ public struct TupleTableRowContent3<
     }
 
     public func content(for row: RowValue) -> RowContent {
-        VariadicView3(
+        TupleView3(
             column0.content(row),
             column1.content(row),
             column2.content(row)
@@ -136,7 +136,7 @@ public struct TupleTableRowContent4<
     Content2: View,
     Content3: View
 >: TableRowContent {
-    public typealias RowContent = VariadicView4<
+    public typealias RowContent = TupleView4<
         Content0,
         Content1,
         Content2,
@@ -170,7 +170,7 @@ public struct TupleTableRowContent4<
     }
 
     public func content(for row: RowValue) -> RowContent {
-        VariadicView4(
+        TupleView4(
             column0.content(row),
             column1.content(row),
             column2.content(row),
@@ -187,7 +187,7 @@ public struct TupleTableRowContent5<
     Content3: View,
     Content4: View
 >: TableRowContent {
-    public typealias RowContent = VariadicView5<
+    public typealias RowContent = TupleView5<
         Content0,
         Content1,
         Content2,
@@ -226,7 +226,7 @@ public struct TupleTableRowContent5<
     }
 
     public func content(for row: RowValue) -> RowContent {
-        VariadicView5(
+        TupleView5(
             column0.content(row),
             column1.content(row),
             column2.content(row),
@@ -245,7 +245,7 @@ public struct TupleTableRowContent6<
     Content4: View,
     Content5: View
 >: TableRowContent {
-    public typealias RowContent = VariadicView6<
+    public typealias RowContent = TupleView6<
         Content0,
         Content1,
         Content2,
@@ -289,7 +289,7 @@ public struct TupleTableRowContent6<
     }
 
     public func content(for row: RowValue) -> RowContent {
-        VariadicView6(
+        TupleView6(
             column0.content(row),
             column1.content(row),
             column2.content(row),
@@ -310,7 +310,7 @@ public struct TupleTableRowContent7<
     Content5: View,
     Content6: View
 >: TableRowContent {
-    public typealias RowContent = VariadicView7<
+    public typealias RowContent = TupleView7<
         Content0,
         Content1,
         Content2,
@@ -359,7 +359,7 @@ public struct TupleTableRowContent7<
     }
 
     public func content(for row: RowValue) -> RowContent {
-        VariadicView7(
+        TupleView7(
             column0.content(row),
             column1.content(row),
             column2.content(row),
@@ -382,7 +382,7 @@ public struct TupleTableRowContent8<
     Content6: View,
     Content7: View
 >: TableRowContent {
-    public typealias RowContent = VariadicView8<
+    public typealias RowContent = TupleView8<
         Content0,
         Content1,
         Content2,
@@ -436,7 +436,7 @@ public struct TupleTableRowContent8<
     }
 
     public func content(for row: RowValue) -> RowContent {
-        VariadicView8(
+        TupleView8(
             column0.content(row),
             column1.content(row),
             column2.content(row),
@@ -461,7 +461,7 @@ public struct TupleTableRowContent9<
     Content7: View,
     Content8: View
 >: TableRowContent {
-    public typealias RowContent = VariadicView9<
+    public typealias RowContent = TupleView9<
         Content0,
         Content1,
         Content2,
@@ -520,7 +520,7 @@ public struct TupleTableRowContent9<
     }
 
     public func content(for row: RowValue) -> RowContent {
-        VariadicView9(
+        TupleView9(
             column0.content(row),
             column1.content(row),
             column2.content(row),
@@ -547,7 +547,7 @@ public struct TupleTableRowContent10<
     Content8: View,
     Content9: View
 >: TableRowContent {
-    public typealias RowContent = VariadicView10<
+    public typealias RowContent = TupleView10<
         Content0,
         Content1,
         Content2,
@@ -611,7 +611,7 @@ public struct TupleTableRowContent10<
     }
 
     public func content(for row: RowValue) -> RowContent {
-        VariadicView10(
+        TupleView10(
             column0.content(row),
             column1.content(row),
             column2.content(row),

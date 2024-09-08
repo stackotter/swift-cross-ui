@@ -1,7 +1,7 @@
 struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
     typealias Children = Content.Children
 
-    var body: VariadicView2<Sidebar, Detail>
+    var body: TupleView2<Sidebar, Detail>
 
     var flexibility: Int {
         body.view1.flexibility
@@ -9,19 +9,19 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
 
     /// Creates a two column split view.
     init(@ViewBuilder sidebar: () -> Sidebar, @ViewBuilder detail: () -> Detail) {
-        body = VariadicView2(sidebar(), detail())
+        body = TupleView2(sidebar(), detail())
     }
 
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: Environment
-    ) -> VariadicView2<Sidebar, Detail>.Children {
+    ) -> TupleView2<Sidebar, Detail>.Children {
         body.children(backend: backend, snapshots: snapshots, environment: environment)
     }
 
     func asWidget<Backend: AppBackend>(
-        _ children: ViewGraphNodeChildren2<Sidebar, Detail>,
+        _ children: TupleViewChildren2<Sidebar, Detail>,
         backend: Backend
     ) -> Backend.Widget {
         return backend.createSplitView(
@@ -32,7 +32,7 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
 
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: ViewGraphNodeChildren2<Sidebar, Detail>,
+        children: TupleViewChildren2<Sidebar, Detail>,
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend

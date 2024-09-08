@@ -30,7 +30,7 @@ public struct TupleTableRowContent${i}<
     RowValue,
     ${",\n    ".join("Content%d: View" % j for j in range(i))}
 >: TableRowContent {
-    public typealias RowContent = VariadicView${i}<
+    public typealias RowContent = TupleView${i}<
         ${",\n        ".join("Content%d" % j for j in range(i))}
     >
 
@@ -55,7 +55,7 @@ public struct TupleTableRowContent${i}<
     }
 
     public func content(for row: RowValue) -> RowContent {
-        VariadicView${i}(
+        TupleView${i}(
             ${",\n            ".join("column%d.content(row)" % j for j in range(i))}
         )
     }

@@ -28,12 +28,12 @@ public protocol View {
         environment: Environment
     ) -> any ViewGraphNodeChildren
 
-    // TODO: Perhaps this can be split off into a separate protocol for the `VariadicViewN`s
+    // TODO: Perhaps this can be split off into a separate protocol for the `TupleViewN`s
     //   if we can set up the generics right for VStack.
     /// Gets the view's children in a format that can be consumed by the ``LayoutSystem``.
     /// This really only needs to be its own method for views such as VStack which treat
     /// their child's children as their own and skip over their direct child. Only needs to
-    /// be implemented by the `VariadicViewN`s.
+    /// be implemented by the `TupleViewN`s.
     func layoutableChildren<Backend: AppBackend>(
         backend: Backend,
         children: any ViewGraphNodeChildren

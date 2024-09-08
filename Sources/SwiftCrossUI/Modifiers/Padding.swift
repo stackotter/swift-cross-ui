@@ -1,18 +1,18 @@
 extension View {
     /// Adds a specific padding amount to each edge of this view.
     public func padding(_ amount: Int) -> some View {
-        return PaddingModifierView(body: VariadicView1(self), edges: .all, padding: amount)
+        return PaddingModifierView(body: TupleView1(self), edges: .all, padding: amount)
     }
 
     /// Adds an equal padding amount to specific edges of this view.
     public func padding(_ edges: Edge.Set, _ amount: Int) -> some View {
-        return PaddingModifierView(body: VariadicView1(self), edges: edges, padding: amount)
+        return PaddingModifierView(body: TupleView1(self), edges: edges, padding: amount)
     }
 }
 
 /// The implementation for the ``View/padding(_:_:)`` and ``View/padding(_:)`` view modifiers.
 struct PaddingModifierView<Child: View>: TypeSafeView {
-    var body: VariadicView1<Child>
+    var body: TupleView1<Child>
 
     /// The edges on which to apply padding.
     var edges: Edge.Set
@@ -27,12 +27,12 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: Environment
-    ) -> ViewGraphNodeChildren1<Child> {
+    ) -> TupleViewChildren1<Child> {
         body.children(backend: backend, snapshots: snapshots, environment: environment)
     }
 
     func asWidget<Backend: AppBackend>(
-        _ children: ViewGraphNodeChildren1<Child>,
+        _ children: TupleViewChildren1<Child>,
         backend: Backend
     ) -> Backend.Widget {
         let container = backend.createContainer()
@@ -42,7 +42,7 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
 
     func update<Backend: AppBackend>(
         _ container: Backend.Widget,
-        children: ViewGraphNodeChildren1<Child>,
+        children: TupleViewChildren1<Child>,
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend

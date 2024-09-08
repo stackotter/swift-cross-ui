@@ -31,7 +31,7 @@ extension View {
 
 /// The implementation for the ``View/frame(width:height:)`` view modifier.
 struct StrictFrameView<Child: View>: TypeSafeView {
-    var body: VariadicView1<Child>
+    var body: TupleView1<Child>
 
     /// The exact width to make the view.
     var width: Int?
@@ -40,7 +40,7 @@ struct StrictFrameView<Child: View>: TypeSafeView {
 
     /// Wraps a child view with size constraints.
     init(_ child: Child, width: Int?, height: Int?) {
-        self.body = VariadicView1(child)
+        self.body = TupleView1(child)
         self.width = width
         self.height = height
     }
@@ -49,12 +49,12 @@ struct StrictFrameView<Child: View>: TypeSafeView {
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: Environment
-    ) -> ViewGraphNodeChildren1<Child> {
+    ) -> TupleViewChildren1<Child> {
         body.children(backend: backend, snapshots: snapshots, environment: environment)
     }
 
     func asWidget<Backend: AppBackend>(
-        _ children: ViewGraphNodeChildren1<Child>,
+        _ children: TupleViewChildren1<Child>,
         backend: Backend
     ) -> Backend.Widget {
         let container = backend.createContainer()
@@ -64,7 +64,7 @@ struct StrictFrameView<Child: View>: TypeSafeView {
 
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: ViewGraphNodeChildren1<Child>,
+        children: TupleViewChildren1<Child>,
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
@@ -98,7 +98,7 @@ struct StrictFrameView<Child: View>: TypeSafeView {
 
 /// The implementation for the ``View/frame(width:height:)`` view modifier.
 struct FlexibleFrameView<Child: View>: TypeSafeView {
-    var body: VariadicView1<Child>
+    var body: TupleView1<Child>
 
     var minWidth: Int?
     var idealWidth: Int?
@@ -117,7 +117,7 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         idealHeight: Int?,
         maxHeight: Int?
     ) {
-        self.body = VariadicView1(child)
+        self.body = TupleView1(child)
         self.minWidth = minWidth
         self.minHeight = minHeight
         self.idealWidth = idealWidth
@@ -130,12 +130,12 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: Environment
-    ) -> ViewGraphNodeChildren1<Child> {
+    ) -> TupleViewChildren1<Child> {
         body.children(backend: backend, snapshots: snapshots, environment: environment)
     }
 
     func asWidget<Backend: AppBackend>(
-        _ children: ViewGraphNodeChildren1<Child>,
+        _ children: TupleViewChildren1<Child>,
         backend: Backend
     ) -> Backend.Widget {
         let container = backend.createContainer()
@@ -145,7 +145,7 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
 
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: ViewGraphNodeChildren1<Child>,
+        children: TupleViewChildren1<Child>,
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend

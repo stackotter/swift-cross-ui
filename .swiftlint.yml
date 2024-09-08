@@ -18,8 +18,9 @@ included:
   - Sources
   - Examples
 excluded:
-  - Sources/SwiftCrossUI/ViewGraph/ViewGraphNodeChildren.swift
   - Sources/SwiftCrossUI/Builders/ViewBuilder.swift
-  - Sources/SwiftCrossUI/Views/VariadicView.swift
+  - Sources/SwiftCrossUI/Builders/TableRowBuilder.swift
+  - Sources/SwiftCrossUI/Views/TupleView.swift
+  - Sources/SwiftCrossUI/Views/TupleViewChildren.swift
   - Sources/Gtk/Generated
   - Examples/.build

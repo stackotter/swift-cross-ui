@@ -8,13 +8,13 @@ extension View {
 }
 
 struct EnvironmentModifier<Child: View>: TypeSafeView {
-    typealias Children = VariadicView1<Child>.Children
+    typealias Children = TupleView1<Child>.Children
 
-    var body: VariadicView1<Child>
+    var body: TupleView1<Child>
     var modification: (Environment) -> Environment
 
     init(_ child: Child, modification: @escaping (Environment) -> Environment) {
-        self.body = VariadicView1(child)
+        self.body = TupleView1(child)
         self.modification = modification
     }
 
