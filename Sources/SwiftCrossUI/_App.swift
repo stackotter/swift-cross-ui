@@ -13,20 +13,20 @@ class _App<AppRoot: App> {
     /// A cancellable handle to observation of the app's state .
     var cancellable: Cancellable?
     /// The root level environment.
-    var defaultEnvironment: Environment
+    var environment: Environment
 
     /// Wraps a user's app implementation.
     init(_ app: AppRoot) {
         backend = app.backend
         self.app = app
-        self.defaultEnvironment = Environment()
+        self.environment = Environment()
     }
 
     func forceRefresh() {
         self.sceneGraphRoot?.update(
             self.app.body,
             backend: self.backend,
-            environment: defaultEnvironment
+            environment: environment
         )
     }
 
@@ -34,28 +34,29 @@ class _App<AppRoot: App> {
     func run() {
         currentBackend = backend
         backend.runMainLoop {
-            self.defaultEnvironment = self.defaultEnvironment.with(\.recomputeEntireApp) {
-                print("Recomputing app")
-                self.sceneGraphRoot?.update(
-                    self.app.body,
-                    backend: self.backend,
-                    environment: self.backend.computeRootEnvironment(
-                        defaultEnvironment: self.defaultEnvironment
-                    )
-                )
-            }
+            let baseEnvironment = Environment()
+            self.environment = self.backend.computeRootEnvironment(
+                defaultEnvironment: baseEnvironment
+            )
 
             let rootNode = AppRoot.Body.Node(
                 from: self.app.body,
                 backend: self.backend,
-                environment: self.defaultEnvironment
+                environment: self.environment
             )
+
+            self.backend.setRootEnvironmentChangeHandler {
+                self.environment = self.backend.computeRootEnvironment(
+                    defaultEnvironment: baseEnvironment
+                )
+                self.forceRefresh()
+            }
 
             rootNode.update(
                 nil,
                 backend: self.backend,
                 environment: self.backend.computeRootEnvironment(
-                    defaultEnvironment: self.defaultEnvironment
+                    defaultEnvironment: baseEnvironment
                 )
             )
             self.sceneGraphRoot = rootNode
@@ -64,9 +65,7 @@ class _App<AppRoot: App> {
                 self.sceneGraphRoot?.update(
                     self.app.body,
                     backend: self.backend,
-                    environment: self.backend.computeRootEnvironment(
-                        defaultEnvironment: self.defaultEnvironment
-                    )
+                    environment: self.environment
                 )
             }
         }

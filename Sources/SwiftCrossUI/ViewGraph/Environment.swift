@@ -1,6 +1,5 @@
 public struct Environment {
     public var onResize: (_ newSize: ViewUpdateResult) -> Void
-    public var recomputeEntireApp: () -> Void
     public var layoutOrientation: Orientation
     public var layoutAlignment: StackAlignment
     public var layoutSpacing: Int
@@ -8,7 +7,6 @@ public struct Environment {
 
     init() {
         onResize = { _ in }
-        recomputeEntireApp = {}
         layoutOrientation = .vertical
         layoutAlignment = .center
         layoutSpacing = 10

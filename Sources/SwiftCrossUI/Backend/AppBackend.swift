@@ -129,6 +129,10 @@ public protocol AppBackend {
     /// Computes the root environment for an app (e.g. by checking the system's current
     /// theme). May fall back on the provided defaults where reasonable.
     func computeRootEnvironment(defaultEnvironment: Environment) -> Environment
+    /// Sets the handler to be notified when the root environment may have to get
+    /// recomputed. This is intended to only be called once. Calling it more than once
+    /// may or may not override the previous handler.
+    func setRootEnvironmentChangeHandler(to action: @escaping () -> Void)
 
     /// Shows a widget after it has been created or updated (may be unnecessary
     /// for some backends). Predominantly used by ``ViewGraphNode`` after

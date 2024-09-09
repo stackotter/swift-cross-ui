@@ -102,7 +102,19 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func computeRootEnvironment(defaultEnvironment: Environment) -> Environment {
-        defaultEnvironment.with(\.foregroundColor, Color(NSColor.textColor))
+        let isDark = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark"
+        let textColor: Color = isDark ? .white : .black
+        return defaultEnvironment.with(\.foregroundColor, textColor)
+    }
+
+    public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
+        DistributedNotificationCenter.default.addObserver(
+            forName: .AppleInterfaceThemeChangedNotification,
+            object: nil,
+            queue: OperationQueue.main
+        ) { (notification) in
+            action()
+        }
     }
 
     public func show(widget: Widget) {}
@@ -821,4 +833,10 @@ public class NSCustomWindow: NSWindow {
             )
         }
     }
+}
+
+extension Notification.Name {
+    static let AppleInterfaceThemeChangedNotification = Notification.Name(
+        "AppleInterfaceThemeChangedNotification"
+    )
 }
