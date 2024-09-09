@@ -1,4 +1,4 @@
-import SelectedBackend
+import DefaultBackend
 import SwiftCrossUI
 
 #if canImport(SwiftBundlerRuntime)
@@ -14,10 +14,6 @@ class ControlsState: Observable {
 @main
 @HotReloadable
 struct ControlsApp: App {
-    typealias Backend = SelectedBackend
-
-    let identifier = "dev.stackotter.Controls"
-
     let state = ControlsState()
 
     var body: some Scene {

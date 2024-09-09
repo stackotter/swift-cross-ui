@@ -1,5 +1,5 @@
+import DefaultBackend
 import Foundation
-import SelectedBackend
 import SwiftCrossUI
 
 #if canImport(SwiftBundlerRuntime)
@@ -14,8 +14,6 @@ class WindowingAppState: Observable {
 @main
 @HotReloadable
 struct WindowingApp: App {
-    let identifier = "dev.stackotter.WindowPropertiesApp"
-
     let state = WindowingAppState()
 
     var body: some Scene {

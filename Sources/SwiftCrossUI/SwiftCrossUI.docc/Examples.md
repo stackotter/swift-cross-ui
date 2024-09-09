@@ -23,3 +23,9 @@ To run an example, either select the example under schemes at the top of the win
 ```
 swift run ExampleToRun
 ```
+
+If you want to try out an example with a backend other than the default, you can do that too;
+
+```
+SCUI_DEFAULT_BACKEND=QtBackend swift run ExampleToRun
+```

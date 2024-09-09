@@ -1,5 +1,5 @@
+import DefaultBackend
 import Foundation
-import SelectedBackend
 import SwiftCrossUI
 
 #if canImport(SwiftBundlerRuntime)
@@ -28,8 +28,6 @@ class NavigationAppState: Observable {
 @main
 @HotReloadable
 struct NavigationApp: App {
-    let identifier = "dev.stackotter.NavigationApp"
-
     let state = NavigationAppState()
 
     var body: some Scene {

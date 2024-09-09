@@ -1,4 +1,4 @@
-import SelectedBackend
+import DefaultBackend
 import SwiftCrossUI
 
 #if canImport(SwiftBundlerRuntime)
@@ -12,8 +12,6 @@ class CounterState: Observable {
 @main
 @HotReloadable
 struct CounterApp: App {
-    let identifier = "dev.stackotter.CounterApp"
-
     let state = CounterState()
 
     var body: some Scene {

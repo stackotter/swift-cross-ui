@@ -1,4 +1,4 @@
-import SelectedBackend
+import DefaultBackend
 import SwiftCrossUI
 
 #if canImport(SwiftBundlerRuntime)
@@ -13,8 +13,6 @@ class GreetingGeneratorState: Observable {
 @main
 @HotReloadable
 struct GreetingGeneratorApp: App {
-    let identifier = "dev.stackotter.GreetingGenerator"
-
     let state = GreetingGeneratorState()
 
     var body: some Scene {

@@ -1,12 +1,10 @@
-import SelectedBackend
+import DefaultBackend
 import SwiftBundlerRuntime
 import SwiftCrossUI
 
 @main
 @HotReloadable
 struct NotesApp: App {
-    let identifier = "dev.stackotter.NotesApp"
-
     var body: some Scene {
         WindowGroup("Notes") {
             #hotReloadable {

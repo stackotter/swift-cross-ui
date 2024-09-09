@@ -1,5 +1,5 @@
+import DefaultBackend
 import Foundation
-import SelectedBackend
 import SwiftCrossUI
 
 #if canImport(SwiftBundlerRuntime)
@@ -125,8 +125,6 @@ struct ContentView: View {
 @main
 @HotReloadable
 struct SplitApp: App {
-    let identifier = "dev.stackotter.SplitApp"
-
     var body: some Scene {
         WindowGroup("Split") {
             #hotReloadable {

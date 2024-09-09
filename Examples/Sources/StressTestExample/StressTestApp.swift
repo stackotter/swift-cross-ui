@@ -1,4 +1,4 @@
-import SelectedBackend
+import DefaultBackend
 import SwiftCrossUI
 
 #if canImport(SwiftBundlerRuntime)
@@ -31,8 +31,6 @@ class StressTestState: Observable {
 @main
 @HotReloadable
 struct StressTestApp: App {
-    let identifier = "dev.stackotter.StressTestApp"
-
     let state = StressTestState()
 
     var body: some Scene {

@@ -1,4 +1,4 @@
-import SelectedBackend
+import DefaultBackend
 import SwiftCrossUI
 
 #if canImport(SwiftBundlerRuntime)
@@ -32,8 +32,6 @@ enum ColorOption: String, CaseIterable {
 @main
 @HotReloadable
 struct RandomNumberGeneratorApp: App {
-    let identifier = "dev.stackotter.RandomNumberGeneratorApp"
-
     let state = RandomNumberGeneratorState()
 
     var body: some Scene {

@@ -3,12 +3,9 @@
 import Foundation
 import PackageDescription
 
-let backend = ProcessInfo.processInfo.environment["SCUI_BACKEND"] ?? "GtkBackend"
-
 let exampleDependencies: [Target.Dependency] = [
-    "SwiftCrossUI",
-    // TODO: Switch to DefaultBackend once all examples work with all of the three major backends.
-    "SelectedBackend",
+    .product(name: "SwiftCrossUI", package: "swift-cross-ui"),
+    .product(name: "DefaultBackend", package: "swift-cross-ui"),
     .product(
         name: "SwiftBundlerRuntime",
         package: "swift-bundler",
@@ -20,7 +17,7 @@ let package = Package(
     name: "Examples",
     platforms: [.macOS(.v10_15)],
     dependencies: [
-        .package(name: "SwiftCrossUI", path: ".."),
+        .package(name: "swift-cross-ui", path: ".."),
         .package(
             url: "https://github.com/stackotter/swift-bundler",
             revision: "d5b56cf7cc967d262ad5330b83849069fcba7821"
@@ -67,12 +64,6 @@ let package = Package(
         .executableTarget(
             name: "NotesExample",
             dependencies: exampleDependencies
-        ),
-        .target(
-            name: "SelectedBackend",
-            dependencies: [
-                .product(name: backend, package: "SwiftCrossUI")
-            ]
         ),
     ]
 )

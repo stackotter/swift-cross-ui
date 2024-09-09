@@ -1,5 +1,5 @@
+import DefaultBackend
 import Foundation
-import SelectedBackend
 import SwiftCrossUI
 
 #if canImport(SwiftBundlerRuntime)
@@ -34,8 +34,6 @@ class SpreadsheetState: Observable {
 @main
 @HotReloadable
 struct SpreadsheetApp: App {
-    let identifier = "dev.stackotter.SpreadsheetApp"
-
     let state = SpreadsheetState()
 
     var body: some Scene {

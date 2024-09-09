@@ -26,14 +26,16 @@ If you find SwiftCrossUI useful, please consider supporting me by [becoming a sp
 
 ## Backends
 
-Work has been started to support multiple different backends. Switching backends only requires changing a single
-line of code! Currently there's the Gtk 4 backend, as well as an experimental AppKit backend (`AppKitBackend`, macOS-only). All
-examples use `GtkBackend` for maximum compatibility, but you can update them manually to try out the various available backends.
-Work is being done to allow the backend used by the examples to be changed from the command line.
+SwiftCrossUI has a variety of backends tailored to different operating systems. The beauty of SwiftCrossUI is that you can write your app once and have it look native everywhere. For this reason I recommend using `DefaultBackend` unless you've got particular constraints.
 
-- `GtkBackend`: Requires gtk 4 to be installed, has maximum compatibility, and supports all SwiftCrossUI features.
-- `AppKitBackend`: ***Experimental***, only supports macOS, and currently supports a very limited subset of SwiftCrossUI features.
+If you use `DefaultBackend`, like the examples do, you can override the default when compiling your app by setting the `SCUI_DEFAULT_BACKEND` environment variable to the name of your desired backend. This can be quite useful when you e.g. want to test the Gtk version of your app while using a Mac.
+
+- `DefaultBackend`: Adapts to your target operating system. On macOS it uses `AppKitBackend`, on Windows it uses `WinUIBackend`, and on Linux it uses `GtkBackend`.
+- `GtkBackend`: Works on Linux, macOS, and Windows. Requires gtk 4 to be installed. Supports all SwiftCrossUI features.
+- `AppKitBackend`: The native macOS backend. Supports all SwiftCrossUI features.
+- `WinUIBackend`: The native Windows backend. Supports most SwiftCrossUI features.
 - `QtBackend`: ***Experimental***, requires `qt5` to be installed, and currently supports a very limited subset of SwiftCrossUI features.
+- `CursesBackend`: ***Experimental***, requires `curses` to be installed, and supports a *very very* limited subset of SwiftCrossUI features.
 
 ## Example
 
@@ -42,7 +44,7 @@ Here's a simple example app demonstrate how easy it is to get started with Swift
 ```swift
 import SwiftCrossUI
 // Import whichever backend you need
-import GtkBackend
+import DefaultBackend
 
 class CounterState: Observable {
     @Observed var count = 0
@@ -50,20 +52,22 @@ class CounterState: Observable {
 
 @main
 struct CounterApp: App {
-    // Optionally, you can explicitly select which imported backend to use (this is done for
-    // you if only one backend is imported).
-    //  typealias Backend = GtkBackend
+    // Optionally, you can explicitly select which imported backend to use (if you only
+    // import one backend then this is done automatically).
+    //  typealias Backend = DefaultBackend
 
-    let identifier = "dev.stackotter.CounterApp"
-
-    let state = CounterState()
+    var state = CounterState()
 
     var body: some Scene {
         WindowGroup("CounterApp") {
             HStack {
-                Button("-") { state.count -= 1 }
+                Button("-") {
+                    state.count -= 1
+                }
                 Text("Count: \(state.count)")
-                Button("+") { state.count += 1 }
+                Button("+") {
+                  state.count += 1
+                }
             }
             .padding(10)
         }
@@ -81,7 +85,7 @@ swift run CounterExample
 
 ### Other examples
 
-A few examples are included with SwiftCrossUI to demonstrate some of its basic features;
+A few examples are included with SwiftCrossUI to demonstrate some of its basic features.
 
 - `CounterExample`, a simple app with buttons to increase and decrease a count.
 - `RandomNumberGeneratorExample`, a simple app to generate random numbers between a minimum and maximum.
@@ -97,10 +101,10 @@ A few examples are included with SwiftCrossUI to demonstrate some of its basic f
 
 ### Running examples on other backends
 
-All examples use `GtkBackend` by default but you can override this using the `SCUI_BACKEND` environment variable like so;
+All of the examples use `DefaultBackend`, so when building the examples you can simply set the `SCUI_DEFAULT_BACKEND` environment variable to try out the various backends (limited of course by the compatibility of the various backends with your operating system).
 
 ```
-SCUI_BACKEND=QtBackend swift run CounterExample
+SCUI_DEFAULT_BACKEND=QtBackend swift run CounterExample
 ```
 
 ## Documentation
