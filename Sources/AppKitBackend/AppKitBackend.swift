@@ -10,28 +10,7 @@ public struct AppKitBackend: AppBackend {
 
     public static let font = NSFont.systemFont(ofSize: 12)
 
-    public enum Widget {
-        case view(NSView)
-        case viewController(NSViewController)
-
-        public var view: NSView {
-            switch self {
-                case .view(let view):
-                    return view
-                case .viewController(let controller):
-                    return controller.view
-            }
-        }
-
-        public var viewController: NSViewController? {
-            switch self {
-                case .viewController(let controller):
-                    return controller
-                case .view:
-                    return nil
-            }
-        }
-    }
+    public typealias Widget = NSView
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
@@ -100,7 +79,7 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func setChild(ofWindow window: Window, to child: Widget) {
-        let childView = child.view
+        let childView = child
 
         let container = NSView()
         container.addSubview(childView)
@@ -154,21 +133,21 @@ public struct AppKitBackend: AppBackend {
     public func createContainer() -> Widget {
         let container = NSContainerView()
         container.translatesAutoresizingMaskIntoConstraints = false
-        return .view(container)
+        return container
     }
 
     public func removeAllChildren(of container: Widget) {
-        let container = container.view as! NSContainerView
+        let container = container as! NSContainerView
         container.removeAllSubviews()
     }
 
     public func addChild(_ child: Widget, to container: Widget) {
-        container.view.addSubview(child.view)
-        child.view.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(child)
+        child.translatesAutoresizingMaskIntoConstraints = false
     }
 
     public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
-        let container = container.view as! NSContainerView
+        let container = container as! NSContainerView
         guard container.children.indices.contains(index) else {
             // TODO: Create proper logging system.
             print("warning: Attempted to set position of non-existent container child")
@@ -215,12 +194,12 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func removeChild(_ child: Widget, from container: Widget) {
-        let container = container.view as! NSContainerView
-        container.removeSubview(child.view)
+        let container = container as! NSContainerView
+        container.removeSubview(child)
     }
 
     public func naturalSize(of widget: Widget) -> SIMD2<Int> {
-        let size = widget.view.intrinsicContentSize
+        let size = widget.intrinsicContentSize
         return SIMD2(
             Int(size.width),
             Int(size.height)
@@ -229,8 +208,8 @@ public struct AppKitBackend: AppBackend {
 
     public func setSize(of widget: Widget, to size: SIMD2<Int>) {
         var foundConstraint = false
-        for constraint in widget.view.constraints {
-            if constraint.firstAnchor === widget.view.widthAnchor {
+        for constraint in widget.constraints {
+            if constraint.firstAnchor === widget.widthAnchor {
                 constraint.constant = CGFloat(size.x)
                 foundConstraint = true
                 break
@@ -238,12 +217,12 @@ public struct AppKitBackend: AppBackend {
         }
 
         if !foundConstraint {
-            widget.view.widthAnchor.constraint(equalToConstant: CGFloat(size.x)).isActive = true
+            widget.widthAnchor.constraint(equalToConstant: CGFloat(size.x)).isActive = true
         }
 
         foundConstraint = false
-        for constraint in widget.view.constraints {
-            if constraint.firstAnchor === widget.view.heightAnchor {
+        for constraint in widget.constraints {
+            if constraint.firstAnchor === widget.heightAnchor {
                 constraint.constant = CGFloat(size.y)
                 foundConstraint = true
                 break
@@ -251,7 +230,7 @@ public struct AppKitBackend: AppBackend {
         }
 
         if !foundConstraint {
-            widget.view.heightAnchor.constraint(equalToConstant: CGFloat(size.y)).isActive = true
+            widget.heightAnchor.constraint(equalToConstant: CGFloat(size.y)).isActive = true
         }
     }
 
@@ -277,11 +256,11 @@ public struct AppKitBackend: AppBackend {
     public func createTextView() -> Widget {
         let textView = NSTextField(wrappingLabelWithString: "")
         textView.font = Self.font
-        return .view(textView)
+        return textView
     }
 
     public func updateTextView(_ textView: Widget, content: String, environment: Environment) {
-        let field = textView.view as! NSTextField
+        let field = textView as! NSTextField
         field.stringValue = content
         field.textColor = environment.foregroundColor.nsColor
     }
@@ -291,11 +270,11 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func createButton() -> Widget {
-        return .view(NSButton(title: "", target: nil, action: nil))
+        return NSButton(title: "", target: nil, action: nil)
     }
 
     public func updateButton(_ button: Widget, label: String, action: @escaping () -> Void) {
-        let button = button.view as! NSButton
+        let button = button as! NSButton
         button.title = label
         button.onAction = { _ in
             action()
@@ -303,11 +282,11 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func createSwitch() -> Widget {
-        return .view(NSSwitch())
+        return NSSwitch()
     }
 
     public func updateSwitch(_ toggleSwitch: Widget, onChange: @escaping (Bool) -> Void) {
-        let toggleSwitch = toggleSwitch.view as! NSSwitch
+        let toggleSwitch = toggleSwitch as! NSSwitch
         toggleSwitch.onAction = { toggleSwitch in
             let toggleSwitch = toggleSwitch as! NSSwitch
             onChange(toggleSwitch.state == .on)
@@ -315,18 +294,18 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func setState(ofSwitch toggleSwitch: Widget, to state: Bool) {
-        let toggleSwitch = toggleSwitch.view as! NSSwitch
+        let toggleSwitch = toggleSwitch as! NSSwitch
         toggleSwitch.state = state ? .on : .off
     }
 
     public func createToggle() -> Widget {
         let toggle = NSButton()
         toggle.setButtonType(.pushOnPushOff)
-        return .view(toggle)
+        return toggle
     }
 
     public func updateToggle(_ toggle: Widget, label: String, onChange: @escaping (Bool) -> Void) {
-        let toggle = toggle.view as! NSButton
+        let toggle = toggle as! NSButton
         toggle.title = label
         toggle.onAction = { toggle in
             let toggle = toggle as! NSButton
@@ -335,12 +314,12 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func setState(ofToggle toggle: Widget, to state: Bool) {
-        let toggle = toggle.view as! NSButton
+        let toggle = toggle as! NSButton
         toggle.state = state ? .on : .off
     }
 
     public func createSlider() -> Widget {
-        return .view(NSSlider())
+        return NSSlider()
     }
 
     public func updateSlider(
@@ -351,7 +330,7 @@ public struct AppKitBackend: AppBackend {
         onChange: @escaping (Double) -> Void
     ) {
         // TODO: Implement decimalPlaces
-        let slider = slider.view as! NSSlider
+        let slider = slider as! NSSlider
         slider.minValue = minimum
         slider.maxValue = maximum
         slider.onAction = { slider in
@@ -361,18 +340,18 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func setValue(ofSlider slider: Widget, to value: Double) {
-        let slider = slider.view as! NSSlider
+        let slider = slider as! NSSlider
         slider.doubleValue = value
     }
 
     public func createPicker() -> Widget {
-        return .view(NSPopUpButton())
+        return NSPopUpButton()
     }
 
     public func updatePicker(
         _ picker: Widget, options: [String], onChange: @escaping (Int?) -> Void
     ) {
-        let picker = picker.view as! NSPopUpButton
+        let picker = picker as! NSPopUpButton
         picker.addItems(withTitles: options)
         picker.onAction = { picker in
             let picker = picker as! NSPopUpButton
@@ -381,7 +360,7 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?) {
-        let picker = picker.view as! NSPopUpButton
+        let picker = picker as! NSPopUpButton
         if let index = selectedOption {
             picker.selectItem(at: index)
         } else {
@@ -399,13 +378,13 @@ public struct AppKitBackend: AppBackend {
 
     public func createTextField() -> Widget {
         let field = NSObservableTextField()
-        return .view(field)
+        return field
     }
 
     public func updateTextField(
         _ textField: Widget, placeholder: String, onChange: @escaping (String) -> Void
     ) {
-        let textField = textField.view as! NSObservableTextField
+        let textField = textField as! NSObservableTextField
         textField.placeholderString = placeholder
         textField.onEdit = { textField in
             onChange(textField.stringValue)
@@ -413,12 +392,12 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func getContent(ofTextField textField: Widget) -> String {
-        let textField = textField.view as! NSTextField
+        let textField = textField as! NSTextField
         return textField.stringValue
     }
 
     public func setContent(ofTextField textField: Widget, to content: String) {
-        let textField = textField.view as! NSTextField
+        let textField = textField as! NSTextField
         textField.stringValue = content
     }
 
@@ -431,7 +410,7 @@ public struct AppKitBackend: AppBackend {
         documentView.orientation = .vertical
         documentView.alignment = .centerX
         documentView.translatesAutoresizingMaskIntoConstraints = false
-        documentView.addView(child.view, in: .top)
+        documentView.addView(child, in: .top)
         scrollView.documentView = documentView
 
         documentView.topAnchor.constraint(equalTo: clipView.topAnchor).isActive = true
@@ -440,20 +419,20 @@ public struct AppKitBackend: AppBackend {
         documentView.heightAnchor.constraint(greaterThanOrEqualTo: clipView.heightAnchor)
             .isActive = true
 
-        return .view(scrollView)
+        return scrollView
     }
 
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
         let splitView = NSCustomSplitView()
         let leadingPane = NSView()
-        leadingPane.addSubview(leadingChild.view)
-        leadingPane.centerXAnchor.constraint(equalTo: leadingChild.view.centerXAnchor)
+        leadingPane.addSubview(leadingChild)
+        leadingPane.centerXAnchor.constraint(equalTo: leadingChild.centerXAnchor)
             .isActive = true
-        leadingPane.centerYAnchor.constraint(equalTo: leadingChild.view.centerYAnchor)
+        leadingPane.centerYAnchor.constraint(equalTo: leadingChild.centerYAnchor)
             .isActive = true
-        leadingPane.widthAnchor.constraint(greaterThanOrEqualTo: leadingChild.view.widthAnchor)
+        leadingPane.widthAnchor.constraint(greaterThanOrEqualTo: leadingChild.widthAnchor)
             .isActive = true
-        leadingPane.heightAnchor.constraint(greaterThanOrEqualTo: leadingChild.view.heightAnchor)
+        leadingPane.heightAnchor.constraint(greaterThanOrEqualTo: leadingChild.heightAnchor)
             .isActive = true
 
         let leadingPaneWithEffect = NSVisualEffectView()
@@ -472,14 +451,14 @@ public struct AppKitBackend: AppBackend {
         leadingPaneWithEffect.translatesAutoresizingMaskIntoConstraints = false
 
         let trailingPane = NSStackView()
-        trailingPane.addSubview(trailingChild.view)
-        trailingPane.centerXAnchor.constraint(equalTo: trailingChild.view.centerXAnchor)
+        trailingPane.addSubview(trailingChild)
+        trailingPane.centerXAnchor.constraint(equalTo: trailingChild.centerXAnchor)
             .isActive = true
-        trailingPane.centerYAnchor.constraint(equalTo: trailingChild.view.centerYAnchor)
+        trailingPane.centerYAnchor.constraint(equalTo: trailingChild.centerYAnchor)
             .isActive = true
-        trailingPane.widthAnchor.constraint(greaterThanOrEqualTo: trailingChild.view.widthAnchor)
+        trailingPane.widthAnchor.constraint(greaterThanOrEqualTo: trailingChild.widthAnchor)
             .isActive = true
-        trailingPane.heightAnchor.constraint(greaterThanOrEqualTo: trailingChild.view.heightAnchor)
+        trailingPane.heightAnchor.constraint(greaterThanOrEqualTo: trailingChild.heightAnchor)
             .isActive = true
 
         splitView.addArrangedSubview(leadingPaneWithEffect)
@@ -494,21 +473,21 @@ public struct AppKitBackend: AppBackend {
         delegate.leadingWidth = defaultLeadingWidth
         splitView.delegate = delegate
         splitView.resizingDelegate = delegate
-        return .view(splitView)
+        return splitView
     }
 
     public func setResizeHandler(
         ofSplitView splitView: Widget,
         to action: @escaping (_ leadingWidth: Int, _ trailingWidth: Int) -> Void
     ) {
-        let splitView = splitView.view as! NSCustomSplitView
+        let splitView = splitView as! NSCustomSplitView
         splitView.resizingDelegate?.setResizeHandler { paneWidths in
             action(paneWidths[0], paneWidths[1])
         }
     }
 
     public func sidebarWidth(ofSplitView splitView: Widget) -> Int {
-        let splitView = splitView.view as! NSCustomSplitView
+        let splitView = splitView as! NSCustomSplitView
         return splitView.resizingDelegate!.leadingWidth
     }
 
@@ -517,7 +496,7 @@ public struct AppKitBackend: AppBackend {
         minimum minimumWidth: Int,
         maximum maximumWidth: Int
     ) {
-        let splitView = splitView.view as! NSCustomSplitView
+        let splitView = splitView as! NSCustomSplitView
         splitView.resizingDelegate!.minimumLeadingWidth = minimumWidth
         splitView.resizingDelegate!.maximumLeadingWidth = maximumWidth
     }
@@ -525,11 +504,11 @@ public struct AppKitBackend: AppBackend {
     public func createImageView() -> Widget {
         let imageView = NSImageView()
         imageView.imageScaling = .scaleAxesIndependently
-        return .view(imageView)
+        return imageView
     }
 
     public func updateImageView(_ imageView: Widget, rgbaData: [UInt8], width: Int, height: Int) {
-        let imageView = imageView.view as! NSImageView
+        let imageView = imageView as! NSImageView
         var rgbaData = rgbaData
         let context = CGContext(
             data: &rgbaData,
@@ -557,16 +536,16 @@ public struct AppKitBackend: AppBackend {
         table.columnAutoresizingStyle = .lastColumnOnlyAutoresizingStyle
         table.allowsColumnSelection = false
         scrollView.documentView = table
-        return .view(scrollView)
+        return scrollView
     }
 
     public func setRowCount(ofTable table: Widget, to rowCount: Int) {
-        let table = (table.view as! NSScrollView).documentView as! NSCustomTableView
+        let table = (table as! NSScrollView).documentView as! NSCustomTableView
         table.customDelegate.rowCount = rowCount
     }
 
     public func setColumnLabels(ofTable table: Widget, to labels: [String]) {
-        let table = (table.view as! NSScrollView).documentView as! NSCustomTableView
+        let table = (table as! NSScrollView).documentView as! NSCustomTableView
         var columnIndices: [ObjectIdentifier: Int] = [:]
         let columns = labels.enumerated().map { (i, label) in
             let column = NSTableColumn(
@@ -592,7 +571,7 @@ public struct AppKitBackend: AppBackend {
         to cells: [Widget],
         withRowHeights rowHeights: [Int]
     ) {
-        let table = (table.view as! NSScrollView).documentView as! NSCustomTableView
+        let table = (table as! NSScrollView).documentView as! NSCustomTableView
         table.customDelegate.widgets = cells
         table.customDelegate.rowHeights = rowHeights
         table.reloadData()
@@ -631,7 +610,7 @@ class NSCustomTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataS
             print("warning: NSTableView asked for value of non-existent column")
             return nil
         }
-        return widgets[row * columnCount + columnIndex].view
+        return widgets[row * columnCount + columnIndex]
     }
 
     func tableView(
