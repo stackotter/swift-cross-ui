@@ -19,8 +19,11 @@ included:
   - Examples
 excluded:
   - Sources/SwiftCrossUI/Builders/ViewBuilder.swift
+  - Sources/SwiftCrossUI/Builders/SceneBuilder.swift
   - Sources/SwiftCrossUI/Builders/TableRowBuilder.swift
   - Sources/SwiftCrossUI/Views/TupleView.swift
   - Sources/SwiftCrossUI/Views/TupleViewChildren.swift
+  - Sources/SwiftCrossUI/Views/TableRowContent.swift
+  - Sources/SwiftCrossUI/Scenes/TupleScene.swift
   - Sources/Gtk/Generated
   - Examples/.build

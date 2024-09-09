@@ -29,7 +29,7 @@ struct WindowingApp: App {
                     Button(state.resizable ? "Disable resizing" : "Enable resizing") {
                         state.resizable = !state.resizable
                     }
-                    Image(Bundle.module.bundleURL.appendingPathComponent("Banner.png").path)
+                    Image(Bundle.module.bundleURL.appendingPathComponent("Banner.png"))
                 }
                 .padding(10)
             }
@@ -40,6 +40,15 @@ struct WindowingApp: App {
         WindowGroup("Secondary window") {
             #hotReloadable {
                 Text("This a secondary window!")
+                    .padding(10)
+            }
+        }
+        .defaultSize(width: 200, height: 200)
+        .windowResizability(.contentSize)
+
+        WindowGroup("Tertiary window") {
+            #hotReloadable {
+                Text("This a tertiary window!")
                     .padding(10)
             }
         }

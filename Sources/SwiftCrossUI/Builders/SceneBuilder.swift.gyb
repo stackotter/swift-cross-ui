@@ -1,0 +1,26 @@
+%{
+maximum_scene_count = 10
+}%
+
+/// Builds an app's root scene by composing other scenes together.
+@resultBuilder
+public struct SceneBuilder {
+    /// A single scene doesn't need to get wrapped, simply pass it straight through.
+    public static func buildBlock<Content: Scene>(_ content: Content) -> Content {
+        return content
+    }
+    %for i in range(2, maximum_scene_count + 1):
+
+    public static func buildBlock<
+        ${",\n        ".join("Scene%d: Scene" % j for j in range(i))}
+    >(
+        ${",\n        ".join("_ scene%d: Scene%d" % (j, j) for j in range(i))}
+    ) -> TupleScene${i}<
+        ${",\n        ".join("Scene%d" % j for j in range(i))}
+    > {
+        return TupleScene${i}(
+            ${",\n            ".join("scene%d" % j for j in range(i))}
+        )
+    }
+    %end
+}

@@ -152,10 +152,12 @@ let package = Package(
             ],
             exclude: [
                 "Builders/ViewBuilder.swift.gyb",
+                "Builders/SceneBuilder.swift.gyb",
                 "Builders/TableRowBuilder.swift.gyb",
                 "Views/TupleView.swift.gyb",
                 "Views/TupleViewChildren.swift.gyb",
                 "Views/TableRowContent.swift.gyb",
+                "Scenes/TupleScene.swift.gyb",
             ]
         ),
         .testTarget(
