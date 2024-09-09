@@ -273,8 +273,7 @@ public struct AppKitBackend: AppBackend {
 
     public func updateTextView(_ textView: Widget, content: String, environment: Environment) {
         let field = textView as! NSTextField
-        field.stringValue = content
-        field.textColor = environment.foregroundColor.nsColor
+        field.attributedStringValue = Self.attributedString(for: content, in: environment)
     }
 
     public func computeLineHeight(ofTextRenderedWith environment: Environment) -> Int {
@@ -285,9 +284,14 @@ public struct AppKitBackend: AppBackend {
         return NSButton(title: "", target: nil, action: nil)
     }
 
-    public func updateButton(_ button: Widget, label: String, action: @escaping () -> Void) {
+    public func updateButton(
+        _ button: Widget,
+        label: String,
+        action: @escaping () -> Void,
+        environment: Environment
+    ) {
         let button = button as! NSButton
-        button.title = label
+        button.attributedTitle = Self.attributedString(for: label, in: environment)
         button.onAction = { _ in
             action()
         }
@@ -556,15 +560,22 @@ public struct AppKitBackend: AppBackend {
         table.customDelegate.rowCount = rowCount
     }
 
-    public func setColumnLabels(ofTable table: Widget, to labels: [String]) {
+    public func setColumnLabels(
+        ofTable table: Widget,
+        to labels: [String],
+        environment: Environment
+    ) {
         let table = (table as! NSScrollView).documentView as! NSCustomTableView
         var columnIndices: [ObjectIdentifier: Int] = [:]
         let columns = labels.enumerated().map { (i, label) in
             let column = NSTableColumn(
                 identifier: NSUserInterfaceItemIdentifier("Column \(i)")
             )
-            column.headerCell = NSTableHeaderCell(textCell: label)
-            // column.width = 200
+            column.headerCell = NSTableHeaderCell()
+            column.headerCell.attributedStringValue = Self.attributedString(
+                for: label,
+                in: environment
+            )
             columnIndices[ObjectIdentifier(column)] = i
             return column
         }
@@ -587,6 +598,16 @@ public struct AppKitBackend: AppBackend {
         table.customDelegate.widgets = cells
         table.customDelegate.rowHeights = rowHeights
         table.reloadData()
+    }
+
+    private static func attributedString(
+        for text: String,
+        in environment: Environment
+    ) -> NSAttributedString {
+        NSAttributedString(
+            string: text,
+            attributes: [.foregroundColor: environment.foregroundColor.nsColor]
+        )
     }
 }
 

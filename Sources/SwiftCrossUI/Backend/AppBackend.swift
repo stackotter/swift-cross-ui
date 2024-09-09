@@ -217,7 +217,7 @@ public protocol AppBackend {
     func setRowCount(ofTable table: Widget, to rows: Int)
     /// Sets the labels of a table's columns. Also sets the number of columns of the table to the
     /// number of labels provided.
-    func setColumnLabels(ofTable table: Widget, to labels: [String])
+    func setColumnLabels(ofTable table: Widget, to labels: [String], environment: Environment)
     /// Sets the contents of the table as a flat array of cells in order of and grouped by row. Also
     /// sets the height of each row's content.
     ///
@@ -230,7 +230,12 @@ public protocol AppBackend {
     /// by ``Button``.
     func createButton() -> Widget
     /// Sets a button's label and action. The action replaces any existing actions..
-    func updateButton(_ button: Widget, label: String, action: @escaping () -> Void)
+    func updateButton(
+        _ button: Widget,
+        label: String,
+        action: @escaping () -> Void,
+        environment: Environment
+    )
 
     /// Creates a labelled toggle that is either on or off. Predominantly used by
     /// ``Toggle``.
@@ -357,7 +362,11 @@ extension AppBackend {
     public func setRowCount(ofTable table: Widget, to rows: Int) {
         todo()
     }
-    public func setColumnLabels(ofTable table: Widget, to labels: [String]) {
+    public func setColumnLabels(
+        ofTable table: Widget,
+        to labels: [String],
+        environment: Environment
+    ) {
         todo()
     }
     public func setCells(
@@ -373,7 +382,12 @@ extension AppBackend {
     public func createButton() -> Widget {
         todo()
     }
-    public func updateButton(_ button: Widget, label: String, action: @escaping () -> Void) {
+    public func updateButton(
+        _ button: Widget,
+        label: String,
+        action: @escaping () -> Void,
+        environment: Environment
+    ) {
         todo()
     }
 

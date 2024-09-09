@@ -75,7 +75,7 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
         }
 
         backend.setRowCount(ofTable: widget, to: rows.count)
-        backend.setColumnLabels(ofTable: widget, to: columnLabels)
+        backend.setColumnLabels(ofTable: widget, to: columnLabels, environment: environment)
 
         let columnWidth = proposedSize.x / columnCount
         var rowHeights: [Int] = []

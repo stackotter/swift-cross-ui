@@ -25,7 +25,7 @@ public struct Button: ElementaryView, View {
         environment: Environment,
         backend: Backend
     ) -> ViewUpdateResult {
-        backend.updateButton(widget, label: label, action: action)
+        backend.updateButton(widget, label: label, action: action, environment: environment)
         return ViewUpdateResult(fixedSize: backend.naturalSize(of: widget))
     }
 }
