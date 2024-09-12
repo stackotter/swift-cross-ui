@@ -28,7 +28,12 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
         environment: Environment,
         backend: Backend
     ) -> ViewUpdateResult {
-        backend.updatePicker(widget, options: options.map { "\($0)" }) { selectedIndex in
+        backend.updatePicker(
+            widget,
+            options: options.map { "\($0)" },
+            environment: environment
+        ) {
+            selectedIndex in
             guard let selectedIndex = selectedIndex else {
                 value.wrappedValue = nil
                 return

@@ -17,12 +17,18 @@ public final class GtkBackend: AppBackend {
     public typealias Window = Gtk.Window
     public typealias Widget = Gtk.Widget
 
+    public let defaultTableRowContentHeight = 20
+    public let defaultTableCellVerticalPadding = 4
+
     var gtkApp: Application
 
     /// A window to be returned on the next call to ``GtkBackend/createWindow``.
     /// This is necessary because Gtk creates a root window no matter what, and
     /// this needs to be returned on the first call to `createWindow`.
     var precreatedWindow: Window?
+
+    /// A pango instance used for text layout.
+    var pango: Pango
 
     /// Creates a backend instance using the default app identifier `com.example.SwiftCrossUIApp`.
     convenience public init() {
@@ -31,10 +37,10 @@ public final class GtkBackend: AppBackend {
 
     public init(appIdentifier: String) {
         gtkApp = Application(applicationId: appIdentifier)
+        pango = Pango()
     }
 
     public func runMainLoop(_ callback: @escaping () -> Void) {
-        // TODO: Setup the main window such that its child is centered like it would be in SwiftUI
         gtkApp.run { window in
             self.precreatedWindow = window
             callback()
@@ -69,7 +75,86 @@ public final class GtkBackend: AppBackend {
     }
 
     public func setChild(ofWindow window: Window, to child: Widget) {
-        window.setChild(child)
+        let container = Box(orientation: .vertical, spacing: 0)
+        container.add(child)
+
+        // Set up a constraint layout to decouple the window's size from the child widget's size
+        // while keeping the child centered. This allows SwiftCrossUI to take full control of
+        // window resizing.
+        let constraintLayout = gtk_constraint_layout_new()!
+        let containerPointer = UnsafeMutableRawPointer(container.opaquePointer!)
+        let childPointer = UnsafeMutableRawPointer(child.opaquePointer!)
+        let widthConstraint = gtk_constraint_new_constant(
+            containerPointer,
+            GTK_CONSTRAINT_ATTRIBUTE_WIDTH,
+            GTK_CONSTRAINT_RELATION_GE,
+            0,
+            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
+        )
+        let heightConstraint = gtk_constraint_new_constant(
+            containerPointer,
+            GTK_CONSTRAINT_ATTRIBUTE_WIDTH,
+            GTK_CONSTRAINT_RELATION_GE,
+            0,
+            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
+        )
+        let centerXConstraint = gtk_constraint_new(
+            containerPointer,
+            GTK_CONSTRAINT_ATTRIBUTE_CENTER_X,
+            GTK_CONSTRAINT_RELATION_EQ,
+            childPointer,
+            GTK_CONSTRAINT_ATTRIBUTE_CENTER_X,
+            1,
+            0,
+            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
+        )
+        let centerYConstraint = gtk_constraint_new(
+            containerPointer,
+            GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y,
+            GTK_CONSTRAINT_RELATION_EQ,
+            childPointer,
+            GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y,
+            1,
+            0,
+            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
+        )
+        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), widthConstraint)
+        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), heightConstraint)
+        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), centerXConstraint)
+        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), centerYConstraint)
+        gtk_widget_set_layout_manager(
+            containerPointer.assumingMemoryBound(to: _GtkWidget.self),
+            constraintLayout
+        )
+
+        window.setChild(container)
+    }
+
+    public func size(ofWindow window: Window) -> SIMD2<Int> {
+        SIMD2(window.size.width, window.size.height)
+    }
+
+    public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
+        window.size = Size(width: newSize.x, height: newSize.y)
+    }
+
+    public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
+        window.setMinimumSize(to: Size(width: minimumSize.x, height: minimumSize.y))
+    }
+
+    public func setResizeHandler(
+        ofWindow window: Window,
+        to action: @escaping (_ newSize: SIMD2<Int>) -> Void
+    ) {
+        // TODO: Create custom Gtk widget to be the root widget. It should override
+        //   the size allocation functions to notify us when the window gets resized.
+        //   This should also address the current issue of not being able to force the
+        //   window's content to get resized to be smaller than it currently is (the current
+        //   content size gets used as the window's minimum size by Gtk).
+
+        window.onResize {
+            action(self.size(ofWindow: window))
+        }
     }
 
     public func show(window: Window) {
@@ -104,88 +189,60 @@ public final class GtkBackend: AppBackend {
         )
     }
 
+    public func computeRootEnvironment(defaultEnvironment: Environment) -> Environment {
+        defaultEnvironment
+    }
+
+    public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
+        // TODO: React to theme changes
+    }
+
     public func show(widget: Widget) {
         widget.show()
     }
 
+    public func size(of text: String, in proposedFrame: SIMD2<Int>) -> SIMD2<Int> {
+        let (width, height) = pango.getTextSize(
+            text,
+            proposedWidth: Double(proposedFrame.x),
+            proposedHeight: Double(proposedFrame.y)
+        )
+        return SIMD2(width, height)
+    }
+
     // MARK: Containers
 
-    public func createVStack() -> Widget {
-        return Box(orientation: .vertical, spacing: 0)
+    public func createContainer() -> Widget {
+        return Fixed()
     }
 
-    public func setChildren(_ children: [Widget], ofVStack container: Widget) {
-        let container = container as! Box
-        for child in children {
-            container.add(child)
-        }
+    public func removeAllChildren(of container: Widget) {
+        let container = container as! Fixed
+        container.removeAllChildren()
     }
 
-    public func setSpacing(ofVStack container: Widget, to spacing: Int) {
-        (container as! Box).spacing = spacing
+    public func addChild(_ child: Widget, to container: Widget) {
+        let container = container as! Fixed
+        container.put(child, x: 0, y: 0)
     }
 
-    public func createHStack() -> Widget {
-        return Box(orientation: .horizontal, spacing: 0)
+    public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
+        let container = container as! Fixed
+        container.move(container.children[index], x: Double(position.x), y: Double(position.y))
     }
 
-    public func setChildren(_ children: [Widget], ofHStack container: Widget) {
-        let container = container as! Box
-        for child in children {
-            container.add(child)
-        }
+    public func removeChild(_ child: Widget, from container: Widget) {
+        let container = container as! Fixed
+        container.remove(child)
     }
 
-    public func setSpacing(ofHStack container: Widget, to spacing: Int) {
-        (container as! Box).spacing = spacing
+    public func naturalSize(of widget: Widget) -> SIMD2<Int> {
+        let (width, height) = widget.getNaturalSize()
+        return SIMD2(width, height)
     }
 
-    public func createSingleChildContainer() -> Widget {
-        return ModifierBox()
-    }
-
-    public func setChild(ofSingleChildContainer container: Widget, to child: Widget?) {
-        let container = container as! ModifierBox
-        container.setChild(child)
-    }
-
-    public func createLayoutTransparentStack() -> Widget {
-        return SectionBox(orientation: .vertical, spacing: 0)
-    }
-
-    public func addChild(_ child: Widget, toLayoutTransparentStack container: Widget) {
-        (container as! SectionBox).add(child)
-    }
-
-    public func removeChild(_ child: Widget, fromLayoutTransparentStack container: Widget) {
-        (container as! SectionBox).remove(child)
-    }
-
-    public func updateLayoutTransparentStack(_ container: Widget) {
-        (container as! SectionBox).update()
-    }
-
-    public func createScrollContainer(for child: Widget) -> Widget {
-        let scrolledWindow = ScrolledWindow()
-        scrolledWindow.setChild(child)
-        scrolledWindow.propagateNaturalHeight = true
-        return scrolledWindow
-    }
-
-    public func createOneOfContainer() -> Widget {
-        return Stack(transitionDuration: 300, transitionType: .slideLeftRight)
-    }
-
-    public func addChild(_ child: Widget, toOneOfContainer container: Widget) {
-        (container as! Stack).add(child, named: UUID().uuidString)
-    }
-
-    public func removeChild(_ child: Widget, fromOneOfContainer container: Widget) {
-        (container as! Stack).remove(child)
-    }
-
-    public func setVisibleChild(ofOneOfContainer container: Widget, to child: Widget) {
-        (container as! Stack).setVisible(child)
+    public func setSize(of widget: Widget, to size: SIMD2<Int>) {
+        widget.setSizeRequest(width: size.x, height: size.y)
     }
 
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
@@ -202,35 +259,24 @@ public final class GtkBackend: AppBackend {
         return widget
     }
 
-    // MARK: Layout
-
-    public func createSpacer() -> Widget {
-        return ModifierBox()
-    }
-
-    public func updateSpacer(
-        _ spacer: Widget,
-        expandHorizontally: Bool,
-        expandVertically: Bool,
-        minSize: Int
+    public func setResizeHandler(
+        ofSplitView splitView: Widget,
+        to action: @escaping (_ leadingWidth: Int, _ trailingWidth: Int) -> Void
     ) {
-        let spacer = spacer as! ModifierBox
-        spacer.expandHorizontally = expandHorizontally
-        spacer.expandVertically = expandVertically
-        spacer.marginEnd = expandHorizontally ? minSize : 0
-        spacer.marginBottom = expandVertically ? minSize : 0
+        // TODO: Implement setResizeHandler(ofSplitView:to:)
     }
 
-    public func getInheritedOrientation(of widget: Widget) -> InheritedOrientation? {
-        let parent = widget.firstNonModifierParent() as? Box
-        switch parent?.orientation {
-            case .vertical:
-                return .vertical
-            case .horizontal:
-                return .horizontal
-            case nil:
-                return nil
-        }
+    public func sidebarWidth(ofSplitView splitView: Widget) -> Int {
+        // TODO: Implement sidebarWidth
+        0
+    }
+
+    public func setSidebarWidthBounds(
+        ofSplitView splitView: Widget,
+        minimum minimumWidth: Int,
+        maximum maximumWidth: Int
+    ) {
+        // TODO: Implement setSidebarWidthBounds
     }
 
     // MARK: Passive views
@@ -241,93 +287,114 @@ public final class GtkBackend: AppBackend {
         return label
     }
 
-    public func updateTextView(_ textView: Widget, content: String, shouldWrap: Bool) {
+    public func updateTextView(_ textView: Widget, content: String, environment: Environment) {
         let textView = textView as! Label
         textView.label = content
-        textView.wrap = shouldWrap
+        textView.wrap = true
+        textView.lineWrapMode = .wordCharacter
+        textView.css.clear()
+        textView.css.set(property: .foregroundColor(environment.foregroundColor.gtkColor))
     }
 
-    public func createImageView(filePath: String) -> Widget {
-        let picture = Picture(filename: filePath)
-        // Prevent the image from completely disappearing if it isn't given space
-        // because that can be very confusing as a developer
-        picture.minHeight = 5
-        return picture
+    public func createImageView() -> Widget {
+        let imageView = Gtk.Picture()
+        imageView.keepAspectRatio = false
+        imageView.canShrink = true
+        return imageView
     }
 
-    public func updateImageView(_ imageView: Widget, filePath: String) {
-        (imageView as! Gtk.Picture).setPath(filePath)
-    }
-
-    private class Tables {
-        var tableSizes: [ObjectIdentifier: (rows: Int, columns: Int)] = [:]
-    }
-
-    private let tables = Tables()
-
-    public func createTable(rows: Int, columns: Int) -> Widget {
-        let widget = Grid()
-
-        for i in 0..<rows {
-            widget.insertRow(position: i)
-        }
-
-        for i in 0..<columns {
-            widget.insertRow(position: i)
-        }
-
-        tables.tableSizes[ObjectIdentifier(widget)] = (rows: rows, columns: columns)
-
-        widget.columnSpacing = 10
-        widget.rowSpacing = 10
-
-        return widget
-    }
-
-    public func setRowCount(ofTable table: Widget, to rows: Int) {
-        let table = table as! Grid
-
-        let rowDifference = rows - tables.tableSizes[ObjectIdentifier(table)]!.rows
-        tables.tableSizes[ObjectIdentifier(table)]!.rows = rows
-        if rowDifference < 0 {
-            for _ in 0..<(-rowDifference) {
-                table.removeRow(position: 0)
-            }
-        } else if rowDifference > 0 {
-            for _ in 0..<rowDifference {
-                table.insertRow(position: 0)
-            }
-        }
-
-    }
-
-    public func setColumnCount(ofTable table: Widget, to columns: Int) {
-        let table = table as! Grid
-
-        let columnDifference = columns - tables.tableSizes[ObjectIdentifier(table)]!.columns
-        tables.tableSizes[ObjectIdentifier(table)]!.columns = columns
-        if columnDifference < 0 {
-            for _ in 0..<(-columnDifference) {
-                table.removeColumn(position: 0)
-            }
-        } else if columnDifference > 0 {
-            for _ in 0..<columnDifference {
-                table.insertColumn(position: 0)
-            }
-        }
-
-    }
-
-    public func setCell(at position: CellPosition, inTable table: Widget, to widget: Widget) {
-        let table = table as! Grid
-        table.attach(
-            child: widget,
-            left: position.column,
-            top: position.row,
-            width: 1,
-            height: 1
+    public func updateImageView(_ imageView: Widget, rgbaData: [UInt8], width: Int, height: Int) {
+        let imageView = imageView as! Gtk.Picture
+        var rgbaData = rgbaData
+        let buffer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: rgbaData.count)
+        memcpy(buffer.baseAddress, rgbaData, rgbaData.count)
+        let pixbuf = gdk_pixbuf_new_from_data(
+            buffer.baseAddress,
+            GDK_COLORSPACE_RGB,
+            1,
+            8,
+            Int32(width),
+            Int32(height),
+            Int32(width * 4),
+            { buffer, _ in
+                buffer?.deallocate()
+            },
+            nil
         )
+        let texture = gdk_texture_new_for_pixbuf(pixbuf)!
+        imageView.setPaintable(texture)
     }
+
+    // private class Tables {
+    //     var tableSizes: [ObjectIdentifier: (rows: Int, columns: Int)] = [:]
+    // }
+
+    // private let tables = Tables()
+
+    // TODO: Implement tables
+    // public func createTable(rows: Int, columns: Int) -> Widget {
+    //     let widget = Grid()
+
+    //     for i in 0..<rows {
+    //         widget.insertRow(position: i)
+    //     }
+
+    //     for i in 0..<columns {
+    //         widget.insertRow(position: i)
+    //     }
+
+    //     tables.tableSizes[ObjectIdentifier(widget)] = (rows: rows, columns: columns)
+
+    //     widget.columnSpacing = 10
+    //     widget.rowSpacing = 10
+
+    //     return widget
+    // }
+
+    // public func setRowCount(ofTable table: Widget, to rows: Int) {
+    //     let table = table as! Grid
+
+    //     let rowDifference = rows - tables.tableSizes[ObjectIdentifier(table)]!.rows
+    //     tables.tableSizes[ObjectIdentifier(table)]!.rows = rows
+    //     if rowDifference < 0 {
+    //         for _ in 0..<(-rowDifference) {
+    //             table.removeRow(position: 0)
+    //         }
+    //     } else if rowDifference > 0 {
+    //         for _ in 0..<rowDifference {
+    //             table.insertRow(position: 0)
+    //         }
+    //     }
+
+    // }
+
+    // public func setColumnCount(ofTable table: Widget, to columns: Int) {
+    //     let table = table as! Grid
+
+    //     let columnDifference = columns - tables.tableSizes[ObjectIdentifier(table)]!.columns
+    //     tables.tableSizes[ObjectIdentifier(table)]!.columns = columns
+    //     if columnDifference < 0 {
+    //         for _ in 0..<(-columnDifference) {
+    //             table.removeColumn(position: 0)
+    //         }
+    //     } else if columnDifference > 0 {
+    //         for _ in 0..<columnDifference {
+    //             table.insertColumn(position: 0)
+    //         }
+    //     }
+
+    // }
+
+    // public func setCell(at position: CellPosition, inTable table: Widget, to widget: Widget) {
+    //     let table = table as! Grid
+    //     table.attach(
+    //         child: widget,
+    //         left: position.column,
+    //         top: position.row,
+    //         width: 1,
+    //         height: 1
+    //     )
+    // }
 
     // MARK: Controls
 
@@ -335,9 +402,17 @@ public final class GtkBackend: AppBackend {
         return Button()
     }
 
-    public func updateButton(_ button: Widget, label: String, action: @escaping () -> Void) {
+    public func updateButton(
+        _ button: Widget,
+        label: String,
+        action: @escaping () -> Void,
+        environment: Environment
+    ) {
+        // TODO: Update button label color using environment
         let button = button as! Gtk.Button
         button.label = label
+        button.css.clear()
+        button.css.set(property: .foregroundColor(environment.foregroundColor.gtkColor))
         button.clicked = { _ in action() }
     }
 
@@ -423,7 +498,10 @@ public final class GtkBackend: AppBackend {
     }
 
     public func updatePicker(
-        _ picker: Widget, options: [String], onChange: @escaping (Int?) -> Void
+        _ picker: Widget,
+        options: [String],
+        environment: Environment,
+        onChange: @escaping (Int?) -> Void
     ) {
         let picker = picker as! DropDown
 
@@ -444,6 +522,14 @@ public final class GtkBackend: AppBackend {
         if gtk_string_list_get_string(picker.model, guint(options.count)) != nil {
             hasChanged = true
         }
+
+        picker.cssProvider.loadCss(
+            from: """
+                .\(picker.css.cssClass) label {
+                    color: \(CSSProperty.rgba(environment.foregroundColor.gtkColor))
+                }
+                """
+        )
 
         guard hasChanged else {
             return
@@ -472,54 +558,5 @@ public final class GtkBackend: AppBackend {
         if selectedOption != picker.selected {
             picker.selected = selectedOption ?? Int(GTK_INVALID_LIST_POSITION)
         }
-    }
-
-    // MARK: Modifiers
-
-    public func createFrameContainer(for child: Widget) -> Widget {
-        let widget = ModifierBox()
-        widget.setChild(child)
-        return widget
-    }
-
-    public func updateFrameContainer(_ container: Widget, minWidth: Int, minHeight: Int) {
-        let container = container as! ModifierBox
-        container.css.set(properties: [.minWidth(minWidth)], clear: false)
-        container.css.set(properties: [.minHeight(minHeight)], clear: false)
-    }
-
-    public func createPaddingContainer(for child: Widget) -> Widget {
-        let box = ModifierBox()
-        box.setChild(child)
-        return box
-    }
-
-    public func setPadding(
-        ofPaddingContainer container: Widget,
-        top: Int,
-        bottom: Int,
-        leading: Int,
-        trailing: Int
-    ) {
-        let container = container as! ModifierBox
-        container.marginTop = top
-        container.marginBottom = bottom
-        container.marginStart = leading
-        container.marginEnd = trailing
-    }
-
-    public func createStyleContainer(for child: Widget)
-        -> Widget
-    {
-        let widget = ModifierBox()
-        widget.setChild(child)
-        return widget
-    }
-
-    public func setForegroundColor(
-        ofStyleContainer container: Widget,
-        to color: SwiftCrossUI.Color
-    ) {
-        (container as! ModifierBox).css.set(properties: [.foregroundColor(color.gtkColor)])
     }
 }

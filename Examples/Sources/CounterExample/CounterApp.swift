@@ -18,13 +18,17 @@ struct CounterApp: App {
         WindowGroup("CounterExample: \(state.count)") {
             #hotReloadable {
                 HStack(spacing: 20) {
-                    Button("-") { state.count -= 1 }
+                    Button("-") {
+                        state.count -= 1
+                    }
                     Text("Count: \(state.count)")
-                    Button("+") { state.count += 1 }
+                    Button("+") {
+                        state.count += 1
+                    }
                 }
                 .padding(10)
             }
         }
-        .defaultSize(width: 200, height: 100)
+        .defaultSize(width: 400, height: 200)
     }
 }

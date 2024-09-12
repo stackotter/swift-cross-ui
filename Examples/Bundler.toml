@@ -11,8 +11,8 @@ product = 'CounterExample'
 version = '0.1.0'
 
 [apps.RandomNumberGeneratorExample]
-identifier = 'dev.stackotter.RandomNumberGeneratorE'
-product = 'RandomNumberGeneratorE'
+identifier = 'dev.stackotter.RandomNumberGeneratorExample'
+product = 'RandomNumberGeneratorExample'
 version = '0.1.0'
 
 [apps.WindowingExample]
@@ -21,8 +21,8 @@ product = 'WindowingExample'
 version = '0.1.0'
 
 [apps.GreetingGeneratorExample]
-identifier = 'dev.stackotter.GreetingGeneratorExamp'
-product = 'GreetingGeneratorExamp'
+identifier = 'dev.stackotter.GreetingGeneratorExample'
+product = 'GreetingGeneratorExample'
 version = '0.1.0'
 
 [apps.NavigationExample]

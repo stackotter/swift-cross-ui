@@ -66,7 +66,7 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
             childSize.size.y + topPadding + bottomPadding
         )
         backend.setSize(of: container, to: size)
-        backend.setPosition(ofChildAt: 0, in: container, to: SIMD2(topPadding, leadingPadding))
+        backend.setPosition(ofChildAt: 0, in: container, to: SIMD2(leadingPadding, topPadding))
 
         return ViewUpdateResult(
             size: size,

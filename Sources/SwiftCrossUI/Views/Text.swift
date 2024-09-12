@@ -27,7 +27,12 @@ public struct Text: ElementaryView, View {
         let size = backend.size(of: string, in: proposedSize)
         backend.updateTextView(widget, content: string, environment: environment)
         backend.setSize(of: widget, to: size)
-        let lineHeight = backend.computeLineHeight(ofTextRenderedWith: environment)
-        return ViewUpdateResult(size: size, minimumWidth: 0, minimumHeight: lineHeight)
+        let minimumWidth = backend.size(of: string, in: SIMD2(1, proposedSize.y)).x
+        let minimumHeight = backend.size(of: string, in: SIMD2(proposedSize.x, 1)).y
+        return ViewUpdateResult(
+            size: size,
+            minimumWidth: minimumWidth == 1 ? 0 : minimumWidth,
+            minimumHeight: minimumHeight
+        )
     }
 }

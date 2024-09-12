@@ -114,7 +114,7 @@ public protocol AppBackend {
     /// minimum size). Setting the resize handler overrides any previous handler.
     func setResizeHandler(
         ofWindow window: Window,
-        to action: @escaping (_ newSize: SIMD2<Int>) -> SIMD2<Int>
+        to action: @escaping (_ newSize: SIMD2<Int>) -> Void
     )
     /// Shows a window after it has been created or updated (may be unnecessary
     /// for some backends). Predominantly used by window-based ``Scene``
@@ -194,8 +194,6 @@ public protocol AppBackend {
     func createTextView() -> Widget
     /// Sets the content and wrapping mode of a non-editable text view.
     func updateTextView(_ textView: Widget, content: String, environment: Environment)
-    /// Computes the line height that text rendered within the given environment would have.
-    func computeLineHeight(ofTextRenderedWith environment: Environment) -> Int
 
     /// Creates an image view from an image file (specified by path). Predominantly used
     /// by ``Image``.
@@ -295,7 +293,12 @@ public protocol AppBackend {
     /// Sets the options for a picker to display, along with a change handler for when its
     /// selected option changes. The change handler replaces any existing change handlers and
     /// is called whenever a selection is made (even if the same option is picked again).
-    func updatePicker(_ picker: Widget, options: [String], onChange: @escaping (Int?) -> Void)
+    func updatePicker(
+        _ picker: Widget,
+        options: [String],
+        environment: Environment,
+        onChange: @escaping (Int?) -> Void
+    )
     /// Sets the index of the selected option of a picker.
     func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?)
 
@@ -342,9 +345,6 @@ extension AppBackend {
         todo()
     }
     public func updateTextView(_ textView: Widget, content: String, environment: Environment) {
-        todo()
-    }
-    public func computeLineHeight(ofTextRenderedWith environment: Environment) -> Int {
         todo()
     }
 
@@ -417,7 +417,10 @@ extension AppBackend {
         todo()
     }
     public func updateSlider(
-        _ slider: Widget, minimum: Double, maximum: Double, decimalPlaces: Int,
+        _ slider: Widget,
+        minimum: Double,
+        maximum: Double,
+        decimalPlaces: Int,
         onChange: @escaping (Double) -> Void
     ) {
         todo()
@@ -445,7 +448,10 @@ extension AppBackend {
         todo()
     }
     public func updatePicker(
-        _ picker: Widget, options: [String], onChange: @escaping (Int?) -> Void
+        _ picker: Widget,
+        options: [String],
+        environment: Environment,
+        onChange: @escaping (Int?) -> Void
     ) {
         todo()
     }

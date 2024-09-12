@@ -33,14 +33,13 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         parentEnvironment = environment
 
         backend.setResizeHandler(ofWindow: window) { [weak self] newSize in
-            guard let self else { return .zero }
+            guard let self else { return }
             _ = self.update(
                 scene,
                 proposedWindowSize: newSize,
                 backend: backend,
                 environment: parentEnvironment
             )
-            return newSize
         }
     }
 
@@ -109,6 +108,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         )
 
         if let newWindowSize {
+            // TODO: Guard against infinite update loops.
             return update(
                 scene,
                 proposedWindowSize: newWindowSize,

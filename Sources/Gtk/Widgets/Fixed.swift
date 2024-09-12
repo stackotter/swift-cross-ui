@@ -38,7 +38,7 @@ import CGtk
 /// and prefer the simplicity of `GtkFixed`, by all means use the
 /// widget. But you should be aware of the tradeoffs.
 public class Fixed: Widget {
-    var widgets: [Widget] = []
+    public var children: [Widget] = []
 
     /// Creates a new `GtkFixed`.
     override public init() {
@@ -48,13 +48,26 @@ public class Fixed: Widget {
 
     public func put(_ child: Widget, x: Double, y: Double) {
         gtk_fixed_put(castedPointer(), child.widgetPointer, x, y)
+        children.append(child)
+        child.parentWidget = self
+    }
+
+    public func move(_ child: Widget, x: Double, y: Double) {
+        gtk_fixed_move(castedPointer(), child.castedPointer(), x, y)
     }
 
     public func remove(_ child: Widget) {
-        if let index = widgets.firstIndex(where: { $0 === child }) {
+        if let index = children.firstIndex(where: { $0 === child }) {
             gtk_fixed_remove(castedPointer(), child.widgetPointer)
-            widgets.remove(at: index)
+            children.remove(at: index)
             child.parentWidget = nil
         }
+    }
+
+    public func removeAllChildren() {
+        for child in children {
+            gtk_fixed_remove(castedPointer(), child.widgetPointer)
+        }
+        children = []
     }
 }

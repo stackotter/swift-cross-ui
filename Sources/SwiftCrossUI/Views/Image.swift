@@ -12,6 +12,10 @@ public struct Image: View {
         }
     }
 
+    public var flexibility: Int {
+        400
+    }
+
     /// Displays an image file. `png`, `jpg`, and `webp` are supported.
     /// - Parameters:
     ///   - url: The url of the file to display.

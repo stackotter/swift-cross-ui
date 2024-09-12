@@ -97,7 +97,10 @@ public struct Slider: ElementaryView, View {
         backend: Backend
     ) -> ViewUpdateResult {
         backend.updateSlider(
-            widget, minimum: minimum, maximum: maximum, decimalPlaces: decimalPlaces
+            widget,
+            minimum: minimum,
+            maximum: maximum,
+            decimalPlaces: decimalPlaces
         ) { [weak value] newValue in
             guard let value = value else {
                 return
@@ -109,6 +112,14 @@ public struct Slider: ElementaryView, View {
             backend.setValue(ofSlider: widget, to: value)
         }
 
-        return ViewUpdateResult(fixedSize: backend.naturalSize(of: widget))
+        let naturalSize = backend.naturalSize(of: widget)
+        let size = SIMD2(proposedSize.x, naturalSize.y)
+        backend.setSize(of: widget, to: size)
+
+        return ViewUpdateResult(
+            size: size,
+            minimumWidth: naturalSize.x,
+            minimumHeight: naturalSize.y
+        )
     }
 }

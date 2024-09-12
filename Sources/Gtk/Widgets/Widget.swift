@@ -174,7 +174,7 @@ open class Widget: GObjectRepresentable {
 
     /// A CSS provider specifically for this widget. Will get removed when
     /// it deinits.
-    private lazy var cssProvider = CSSProvider()
+    public lazy var cssProvider = CSSProvider()
 
     public func show() {
         gtk_widget_set_visible(widgetPointer, true.toGBoolean())

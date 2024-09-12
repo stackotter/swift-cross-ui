@@ -65,9 +65,10 @@ struct RandomNumberGeneratorApp: App {
                         maximum: 100
                     )
 
-                    Text("Choose a color:")
-                        .padding(.top, 20)
-                    Picker(of: ColorOption.allCases, selection: state.$colorOption)
+                    HStack {
+                        Text("Choose a color:")
+                        Picker(of: ColorOption.allCases, selection: state.$colorOption)
+                    }
                 }
                 .padding(10)
                 .foregroundColor(state.colorOption?.color ?? .red)

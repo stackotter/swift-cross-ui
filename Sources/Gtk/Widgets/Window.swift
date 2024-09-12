@@ -37,12 +37,77 @@ public class Window: Widget {
         }
     }
 
+    public var size: Size {
+        get {
+            // TODO: The default size is the current size of the window unless we're
+            //   in full screen. But we can't simply use the widget size, cause that
+            //   doesn't work before the first proper update or something like that.
+            defaultSize
+        }
+        set {
+            // We set the 'default size' here because setting the size of the window
+            // actually sets the window's minimum size. Whereas the 'default size' is
+            // just the current size of the window, except when the window is in full
+            // screen, in which case the 'default size' is the size that the window
+            // should return to when it leaves full screen.
+            defaultSize = newValue
+        }
+    }
+
     @GObjectProperty(named: "resizable") public var resizable: Bool
 
     private var _titleBar: Widget?
     public var titlebar: Widget? {
         get { return _titleBar }
         set { gtk_window_set_titlebar(castedPointer(), newValue?.widgetPointer) }
+    }
+
+    public func setMinimumSize(to minimumSize: Size) {
+        gtk_widget_set_size_request(
+            castedPointer(),
+            gint(minimumSize.width),
+            gint(minimumSize.height)
+        )
+    }
+
+    public func onResize(_ action: @escaping () -> Void) {
+        // let native = GTK_NATIVE(castedPointer())!
+        // let surface = gtk_native_get_surface(native)
+
+        // let box = SignalBox0(callback: action)
+        // let handler1:
+        //     @convention(c) (
+        //         UnsafeMutableRawPointer, UnsafeMutableRawPointer
+        //     ) -> Void = { _, data in
+        //         let box = Unmanaged<SignalBox0>.fromOpaque(data).takeUnretainedValue()
+        //         box.callback()
+        //     }
+
+        // g_signal_connect_data(
+        //     UnsafeMutableRawPointer(surface!),
+        //     "notify::state",
+        //     unsafeBitCast(handler1, to: GCallback.self),
+        //     Unmanaged.passUnretained(box).toOpaque().cast(),
+        //     nil,
+        //     ConnectFlags.after.toGConnectFlags()
+        // )
+
+        let handler2:
+            @convention(c) (
+                UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer
+            ) -> Void = { _, value1, data in
+                SignalBox1<OpaquePointer>.run(data, value1)
+            }
+
+        addSignal(name: "notify::default-width", handler: gCallback(handler2)) {
+            (_: OpaquePointer) in
+            action()
+        }
+
+        addSignal(name: "notify::default-height", handler: gCallback(handler2)) {
+            (_: OpaquePointer) in
+            action()
+        }
     }
 
     public func setChild(_ child: Widget) {

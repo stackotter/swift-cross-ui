@@ -9,7 +9,7 @@
 /// block.set(property: .opacity(0.3))
 /// ```
 public struct CSSBlock: Equatable {
-    private var cssClass: String
+    public var cssClass: String
 
     /// The block's properties, keyed by property name.
     private var keyedProperties: [String: CSSProperty] = [:]

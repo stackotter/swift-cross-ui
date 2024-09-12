@@ -61,7 +61,7 @@ public struct AppKitBackend: AppBackend {
 
     public func setResizeHandler(
         ofWindow window: Window,
-        to action: @escaping (SIMD2<Int>) -> SIMD2<Int>
+        to action: @escaping (SIMD2<Int>) -> Void
     ) {
         window.resizeDelegate.setHandler(action)
     }
@@ -79,14 +79,12 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func setChild(ofWindow window: Window, to child: Widget) {
-        let childView = child
-
         let container = NSView()
-        container.addSubview(childView)
+        container.addSubview(child)
 
-        childView.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
-        childView.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
-        childView.translatesAutoresizingMaskIntoConstraints = false
+        child.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
+        child.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
+        child.translatesAutoresizingMaskIntoConstraints = false
 
         window.contentView = container
     }
@@ -248,8 +246,16 @@ public struct AppKitBackend: AppBackend {
 
     public func size(of text: String, in proposedFrame: SIMD2<Int>) -> SIMD2<Int> {
         if proposedFrame.x == 0 {
-            return .zero
+            // We want the text to have the same height as it would have if it were
+            // one pixel wide so that the layout doesn't suddely jump when the text
+            // reaches zero width.
+            let size = size(of: text, in: SIMD2(1, proposedFrame.y))
+            return SIMD2(
+                0,
+                size.y
+            )
         }
+
         let proposedSize = NSSize(
             width: CGFloat(proposedFrame.x),
             height: .greatestFiniteMagnitude
@@ -274,10 +280,6 @@ public struct AppKitBackend: AppBackend {
     public func updateTextView(_ textView: Widget, content: String, environment: Environment) {
         let field = textView as! NSTextField
         field.attributedStringValue = Self.attributedString(for: content, in: environment)
-    }
-
-    public func computeLineHeight(ofTextRenderedWith environment: Environment) -> Int {
-        return Int(Self.font.pointSize.rounded())
     }
 
     public func createButton() -> Widget {
@@ -365,10 +367,18 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func updatePicker(
-        _ picker: Widget, options: [String], onChange: @escaping (Int?) -> Void
+        _ picker: Widget,
+        options: [String],
+        environment: Environment,
+        onChange: @escaping (Int?) -> Void
     ) {
         let picker = picker as! NSPopUpButton
-        picker.addItems(withTitles: options)
+        picker.menu?.removeAllItems()
+        for option in options {
+            let item = NSMenuItem()
+            item.attributedTitle = Self.attributedString(for: option, in: environment)
+            picker.menu?.addItem(item)
+        }
         picker.onAction = { picker in
             let picker = picker as! NSPopUpButton
             onChange(picker.indexOfSelectedItem)
@@ -825,9 +835,9 @@ public class NSCustomWindow: NSWindow {
     var resizeDelegate = ResizeDelegate()
 
     class ResizeDelegate: NSObject, NSWindowDelegate {
-        var resizeHandler: ((SIMD2<Int>) -> SIMD2<Int>)?
+        var resizeHandler: ((SIMD2<Int>) -> Void)?
 
-        func setHandler(_ resizeHandler: @escaping (SIMD2<Int>) -> SIMD2<Int>) {
+        func setHandler(_ resizeHandler: @escaping (SIMD2<Int>) -> Void) {
             self.resizeHandler = resizeHandler
         }
 
@@ -840,18 +850,14 @@ public class NSCustomWindow: NSWindow {
                 forFrameRect: NSRect(x: 0, y: 0, width: frameSize.width, height: frameSize.height)
             )
 
-            let size = resizeHandler(
+            resizeHandler(
                 SIMD2(
                     Int(contentSize.width.rounded(.towardZero)),
                     Int(contentSize.height.rounded(.towardZero))
                 )
             )
 
-            let toolbarHeight = frameSize.height - contentSize.height
-            return NSSize(
-                width: size.x,
-                height: size.y + Int(toolbarHeight)
-            )
+            return frameSize
         }
     }
 }

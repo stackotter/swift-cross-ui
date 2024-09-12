@@ -6,15 +6,12 @@ public struct CSSProperty: Equatable {
         "\(key):\(value);"
     }
 
-    var key: String
-    var value: String
+    public var key: String
+    public var value: String
 
-    private static func rgba(_ color: Color) -> String {
-        let red = color.red * 255
-        let green = color.green * 255
-        let blue = color.blue * 255
-        let alpha = color.alpha * 255
-        return "rgba(\(red),\(green),\(blue),\(alpha))"
+    public init(key: String, value: String) {
+        self.key = key
+        self.value = value
     }
 
     public static func foregroundColor(_ color: Color) -> CSSProperty {
@@ -55,5 +52,13 @@ public struct CSSProperty: Equatable {
 
     public static func minHeight(_ height: Int) -> CSSProperty {
         CSSProperty(key: "min-height", value: "\(height)px")
+    }
+
+    public static func rgba(_ color: Color) -> String {
+        let red = color.red * 255
+        let green = color.green * 255
+        let blue = color.blue * 255
+        let alpha = color.alpha * 255
+        return "rgba(\(red),\(green),\(blue),\(alpha))"
     }
 }

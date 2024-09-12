@@ -8,7 +8,7 @@ enum ConnectFlags {
     case after
     case swapped
 
-    fileprivate func toGConnectFlags() -> GConnectFlags {
+    func toGConnectFlags() -> GConnectFlags {
         switch self {
             case .after:
                 return G_CONNECT_AFTER
