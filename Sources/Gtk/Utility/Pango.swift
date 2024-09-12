@@ -4,9 +4,9 @@ public class Pango {
     private var pangoContext: OpaquePointer
 
     /// Create a default pango instance with default context.
-    public init() {
-        let fontMap = pango_cairo_font_map_new()
-        pangoContext = pango_font_map_create_context(fontMap)!
+    /// Create a pango context for a specific
+    public init(for widget: Widget) {
+        pangoContext = gtk_widget_create_pango_context(widget.widgetPointer)
     }
 
     deinit {

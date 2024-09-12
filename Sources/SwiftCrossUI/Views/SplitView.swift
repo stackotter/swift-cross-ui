@@ -1,3 +1,5 @@
+import Foundation
+
 struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
     typealias Children = Content.Children
 
@@ -69,6 +71,12 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
                 leadingContentSize.minimumWidth,
                 proposedSize.x - trailingContentSize.minimumWidth
             )
+        )
+        backend.updateSplitViewChildPositions(
+            of: widget,
+            splitViewSize: size,
+            leadingChildSize: leadingContentSize.size,
+            trailingChildSize: trailingContentSize.size
         )
         return ViewUpdateResult(
             size: size,

@@ -27,9 +27,6 @@ public final class GtkBackend: AppBackend {
     /// this needs to be returned on the first call to `createWindow`.
     var precreatedWindow: Window?
 
-    /// A pango instance used for text layout.
-    var pango: Pango
-
     /// Creates a backend instance using the default app identifier `com.example.SwiftCrossUIApp`.
     convenience public init() {
         self.init(appIdentifier: "com.example.SwiftCrossUIApp")
@@ -37,7 +34,6 @@ public final class GtkBackend: AppBackend {
 
     public init(appIdentifier: String) {
         gtkApp = Application(applicationId: appIdentifier)
-        pango = Pango()
     }
 
     public func runMainLoop(_ callback: @escaping () -> Void) {
@@ -75,58 +71,7 @@ public final class GtkBackend: AppBackend {
     }
 
     public func setChild(ofWindow window: Window, to child: Widget) {
-        let container = Box(orientation: .vertical, spacing: 0)
-        container.add(child)
-
-        // Set up a constraint layout to decouple the window's size from the child widget's size
-        // while keeping the child centered. This allows SwiftCrossUI to take full control of
-        // window resizing.
-        let constraintLayout = gtk_constraint_layout_new()!
-        let containerPointer = UnsafeMutableRawPointer(container.opaquePointer!)
-        let childPointer = UnsafeMutableRawPointer(child.opaquePointer!)
-        let widthConstraint = gtk_constraint_new_constant(
-            containerPointer,
-            GTK_CONSTRAINT_ATTRIBUTE_WIDTH,
-            GTK_CONSTRAINT_RELATION_GE,
-            0,
-            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
-        )
-        let heightConstraint = gtk_constraint_new_constant(
-            containerPointer,
-            GTK_CONSTRAINT_ATTRIBUTE_WIDTH,
-            GTK_CONSTRAINT_RELATION_GE,
-            0,
-            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
-        )
-        let centerXConstraint = gtk_constraint_new(
-            containerPointer,
-            GTK_CONSTRAINT_ATTRIBUTE_CENTER_X,
-            GTK_CONSTRAINT_RELATION_EQ,
-            childPointer,
-            GTK_CONSTRAINT_ATTRIBUTE_CENTER_X,
-            1,
-            0,
-            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
-        )
-        let centerYConstraint = gtk_constraint_new(
-            containerPointer,
-            GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y,
-            GTK_CONSTRAINT_RELATION_EQ,
-            childPointer,
-            GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y,
-            1,
-            0,
-            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
-        )
-        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), widthConstraint)
-        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), heightConstraint)
-        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), centerXConstraint)
-        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), centerYConstraint)
-        gtk_widget_set_layout_manager(
-            containerPointer.assumingMemoryBound(to: _GtkWidget.self),
-            constraintLayout
-        )
-
+        let container = createSizeDecoupledContainer(for: child)
         window.setChild(container)
     }
 
@@ -146,12 +91,6 @@ public final class GtkBackend: AppBackend {
         ofWindow window: Window,
         to action: @escaping (_ newSize: SIMD2<Int>) -> Void
     ) {
-        // TODO: Create custom Gtk widget to be the root widget. It should override
-        //   the size allocation functions to notify us when the window gets resized.
-        //   This should also address the current issue of not being able to force the
-        //   window's content to get resized to be smaller than it currently is (the current
-        //   content size gets used as the window's minimum size by Gtk).
-
         window.onResize {
             action(self.size(ofWindow: window))
         }
@@ -201,13 +140,8 @@ public final class GtkBackend: AppBackend {
         widget.show()
     }
 
-    public func size(of text: String, in proposedFrame: SIMD2<Int>) -> SIMD2<Int> {
-        let (width, height) = pango.getTextSize(
-            text,
-            proposedWidth: Double(proposedFrame.x),
-            proposedHeight: Double(proposedFrame.y)
-        )
-        return SIMD2(width, height)
+    public func tag(widget: Widget, as tag: String) {
+        widget.tag(as: tag)
     }
 
     // MARK: Containers
@@ -247,15 +181,15 @@ public final class GtkBackend: AppBackend {
 
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
         let widget = Paned(orientation: .horizontal)
-        widget.startChild = leadingChild
-        widget.endChild = trailingChild
+        let leadingContainer = createSizeDecoupledContainer(for: leadingChild)
+        let trailingContainer = createSizeDecoupledContainer(for: trailingChild)
+
+        widget.startChild = leadingContainer
+        widget.endChild = trailingContainer
         widget.shrinkStartChild = false
         widget.shrinkEndChild = false
-        // Set the position to the farthest left possible.
-        // TODO: Allow setting the default offset (SwiftUI api: `navigationSplitViewColumnWidth(min:ideal:max:)`).
-        //   This needs frame modifier to be fleshed out first
-        widget.position = 0
-        widget.expandVertically = true
+
+        widget.position = 200
         return widget
     }
 
@@ -263,12 +197,15 @@ public final class GtkBackend: AppBackend {
         ofSplitView splitView: Widget,
         to action: @escaping (_ leadingWidth: Int, _ trailingWidth: Int) -> Void
     ) {
-        // TODO: Implement setResizeHandler(ofSplitView:to:)
+        let splitView = splitView as! Paned
+        splitView.notifyPosition = { splitView in
+            action(splitView.position, splitView.getNaturalSize().width - splitView.position)
+        }
     }
 
     public func sidebarWidth(ofSplitView splitView: Widget) -> Int {
-        // TODO: Implement sidebarWidth
-        0
+        let splitView = splitView as! Paned
+        return splitView.position
     }
 
     public func setSidebarWidthBounds(
@@ -276,7 +213,38 @@ public final class GtkBackend: AppBackend {
         minimum minimumWidth: Int,
         maximum maximumWidth: Int
     ) {
-        // TODO: Implement setSidebarWidthBounds
+        let splitView = splitView as! Paned
+        show(widget: splitView.startChild!)
+        let width = splitView.getNaturalSize().width
+        splitView.startChild?.setSizeRequest(width: minimumWidth, height: 0)
+        splitView.endChild?.setSizeRequest(width: width - maximumWidth, height: 0)
+    }
+
+    public func updateSplitViewChildPositions(
+        of splitView: Widget,
+        splitViewSize: SIMD2<Int>,
+        leadingChildSize: SIMD2<Int>,
+        trailingChildSize: SIMD2<Int>
+    ) {
+        let splitView = splitView as! Paned
+        let leadingChild = splitView.startChild! as! Box
+        let trailingChild = splitView.endChild! as! Box
+        let leadingChildInner = leadingChild.children[0] as! Fixed
+        let trailingChildInner = trailingChild.children[0] as! Fixed
+        let leadingPaneWidth = splitView.position
+        let trailingPaneWidth = splitViewSize.x - leadingPaneWidth
+        leadingChildInner.move(
+            leadingChildInner.children[0],
+            x: Double((leadingPaneWidth - leadingChildSize.x) / 2),
+            y: Double((splitViewSize.y - leadingChildSize.y) / 2)
+        )
+        trailingChildInner.move(
+            trailingChildInner.children[0],
+            x: Double((trailingPaneWidth - trailingChildSize.x) / 2),
+            y: Double((splitViewSize.y - trailingChildSize.y) / 2)
+        )
+        leadingChildInner.setSizeRequest(width: leadingPaneWidth, height: splitViewSize.y)
+        trailingChildInner.setSizeRequest(width: trailingPaneWidth, height: splitViewSize.y)
     }
 
     // MARK: Passive views
@@ -296,6 +264,21 @@ public final class GtkBackend: AppBackend {
         textView.css.set(property: .foregroundColor(environment.foregroundColor.gtkColor))
     }
 
+    public func size(
+        of text: String,
+        whenDisplayedIn textView: Widget,
+        proposedFrame: SIMD2<Int>,
+        environment: Environment
+    ) -> SIMD2<Int> {
+        let pango = Pango(for: textView)
+        let (width, height) = pango.getTextSize(
+            text,
+            proposedWidth: Double(proposedFrame.x),
+            proposedHeight: Double(proposedFrame.y)
+        )
+        return SIMD2(width, height)
+    }
+
     public func createImageView() -> Widget {
         let imageView = Gtk.Picture()
         imageView.keepAspectRatio = false
@@ -305,7 +288,6 @@ public final class GtkBackend: AppBackend {
 
     public func updateImageView(_ imageView: Widget, rgbaData: [UInt8], width: Int, height: Int) {
         let imageView = imageView as! Gtk.Picture
-        var rgbaData = rgbaData
         let buffer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: rgbaData.count)
         memcpy(buffer.baseAddress, rgbaData, rgbaData.count)
         let pixbuf = gdk_pixbuf_new_from_data(
@@ -523,6 +505,7 @@ public final class GtkBackend: AppBackend {
             hasChanged = true
         }
 
+        // Apply the current foreground color to the dropdown's labels
         picker.cssProvider.loadCss(
             from: """
                 .\(picker.css.cssClass) label {
@@ -558,5 +541,66 @@ public final class GtkBackend: AppBackend {
         if selectedOption != picker.selected {
             picker.selected = selectedOption ?? Int(GTK_INVALID_LIST_POSITION)
         }
+    }
+
+    // MARK: Helpers
+
+    private func createSizeDecoupledContainer(for widget: Widget) -> Widget {
+        let innerContainer = Fixed()
+        innerContainer.put(widget, x: 0, y: 0)
+
+        let container = Box(orientation: .vertical, spacing: 0)
+        container.add(innerContainer)
+
+        // Set up a constraint layout to decouple the window's size from the child widget's size
+        // while keeping the child centered. This allows SwiftCrossUI to take full control of
+        // window resizing.
+        let constraintLayout = gtk_constraint_layout_new()!
+        let containerPointer = UnsafeMutableRawPointer(container.opaquePointer!)
+        let childPointer = UnsafeMutableRawPointer(widget.opaquePointer!)
+        let widthConstraint = gtk_constraint_new_constant(
+            containerPointer,
+            GTK_CONSTRAINT_ATTRIBUTE_WIDTH,
+            GTK_CONSTRAINT_RELATION_GE,
+            0,
+            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
+        )
+        let heightConstraint = gtk_constraint_new_constant(
+            containerPointer,
+            GTK_CONSTRAINT_ATTRIBUTE_WIDTH,
+            GTK_CONSTRAINT_RELATION_GE,
+            0,
+            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
+        )
+        let centerXConstraint = gtk_constraint_new(
+            containerPointer,
+            GTK_CONSTRAINT_ATTRIBUTE_CENTER_X,
+            GTK_CONSTRAINT_RELATION_EQ,
+            childPointer,
+            GTK_CONSTRAINT_ATTRIBUTE_CENTER_X,
+            1,
+            0,
+            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
+        )
+        let centerYConstraint = gtk_constraint_new(
+            containerPointer,
+            GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y,
+            GTK_CONSTRAINT_RELATION_EQ,
+            childPointer,
+            GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y,
+            1,
+            0,
+            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
+        )
+        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), widthConstraint)
+        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), heightConstraint)
+        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), centerXConstraint)
+        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), centerYConstraint)
+        gtk_widget_set_layout_manager(
+            containerPointer.assumingMemoryBound(to: _GtkWidget.self),
+            constraintLayout
+        )
+
+        return container
     }
 }

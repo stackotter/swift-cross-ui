@@ -138,6 +138,10 @@ public protocol AppBackend {
     /// for some backends). Predominantly used by ``ViewGraphNode`` after
     /// propagating updates.
     func show(widget: Widget)
+    /// Adds a short tag to a widget to assist during debugging if the backend supports
+    /// such a feature. Some backends may only apply tags under particular conditions
+    /// such as when being built in debug mode.
+    func tag(widget: Widget, as tag: String)
 
     // MARK: Containers
 
@@ -157,12 +161,6 @@ public protocol AppBackend {
     func naturalSize(of widget: Widget) -> SIMD2<Int>
     /// Sets the size of a widget.
     func setSize(of widget: Widget, to size: SIMD2<Int>)
-    /// Gets the size that the given text would have if it were layed out attempting to stay
-    /// within the proposed frame (most backends only use the proposed width and ignore the
-    /// proposed height). The size returned by this function should be upheld by the layout
-    /// system; child views should always get the final say on their size, parents just choose how
-    /// the children get layed out.
-    func size(of text: String, in proposedFrame: SIMD2<Int>) -> SIMD2<Int>
 
     /// Creates a scrollable single-child container wrapping the given widget.
     func createScrollContainer(for child: Widget) -> Widget
@@ -186,6 +184,15 @@ public protocol AppBackend {
         minimum minimumWidth: Int,
         maximum maximumWidth: Int
     )
+    /// Updates the positions of a split view's children to keep them centered. The childrens's
+    /// sizes are provided to help backends with less powerful layout systems center the
+    /// children correctly.
+    func updateSplitViewChildPositions(
+        of splitView: Widget,
+        splitViewSize: SIMD2<Int>,
+        leadingChildSize: SIMD2<Int>,
+        trailingChildSize: SIMD2<Int>
+    )
 
     // MARK: Passive views
 
@@ -194,6 +201,17 @@ public protocol AppBackend {
     func createTextView() -> Widget
     /// Sets the content and wrapping mode of a non-editable text view.
     func updateTextView(_ textView: Widget, content: String, environment: Environment)
+    /// Gets the size that the given text would have if it were layed out attempting to stay
+    /// within the proposed frame (most backends only use the proposed width and ignore the
+    /// proposed height). The size returned by this function will be upheld by the layout
+    /// system; child views always get the final say on their own size, parents just choose how
+    /// the children get layed out.
+    func size(
+        of text: String,
+        whenDisplayedIn textView: Widget,
+        proposedFrame: SIMD2<Int>,
+        environment: Environment
+    ) -> SIMD2<Int>
 
     /// Creates an image view from an image file (specified by path). Predominantly used
     /// by ``Image``.
@@ -312,6 +330,13 @@ public protocol AppBackend {
 }
 
 extension AppBackend {
+    public func tag(widget: Widget, as tag: String) {
+        // This is only really to assist contributors when debugging backends,
+        // so it's safe enough to have a no-op default implementation.
+    }
+}
+
+extension AppBackend {
     /// Used by placeholder implementations of backend methods.
     private func todo(_ function: String = #function) -> Never {
         print("\(type(of: self)): \(function) not implemented")
@@ -339,12 +364,37 @@ extension AppBackend {
         todo()
     }
 
+    public func setSidebarWidthBounds(
+        ofSplitView splitView: Widget,
+        minimum minimumWidth: Int,
+        maximum maximumWidth: Int
+    ) {
+        todo()
+    }
+
+    public func updateSplitViewChildPositions(
+        of splitView: Widget,
+        splitViewSize: SIMD2<Int>,
+        leadingChildSize: SIMD2<Int>,
+        trailingChildSize: SIMD2<Int>
+    ) {
+        todo()
+    }
+
     // MARK: Passive views
 
     public func createTextView(content: String, shouldWrap: Bool) -> Widget {
         todo()
     }
     public func updateTextView(_ textView: Widget, content: String, environment: Environment) {
+        todo()
+    }
+    public func size(
+        of text: String,
+        whenDisplayedIn textView: Widget,
+        proposedFrame: SIMD2<Int>,
+        environment: Environment
+    ) -> SIMD2<Int> {
         todo()
     }
 

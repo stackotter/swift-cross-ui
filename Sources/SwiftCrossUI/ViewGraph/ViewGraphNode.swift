@@ -92,10 +92,14 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         self.children = children
 
         // Then create the widget for the view itself
-        _widget = view.asWidget(
+        let widget = view.asWidget(
             children,
             backend: backend
         )
+        _widget = widget
+
+        let tag = String(String(describing: NodeView.self).split(separator: "<")[0])
+        backend.tag(widget: widget, as: tag)
 
         // Update the view and its children when state changes (children are always updated first)
         cancellable = view.state.didChange.observe { [weak self] in

@@ -24,11 +24,29 @@ public struct Text: ElementaryView, View {
         environment: Environment,
         backend: Backend
     ) -> ViewUpdateResult {
-        let size = backend.size(of: string, in: proposedSize)
         backend.updateTextView(widget, content: string, environment: environment)
+
+        let size = backend.size(
+            of: string,
+            whenDisplayedIn: widget,
+            proposedFrame: proposedSize,
+            environment: environment
+        )
         backend.setSize(of: widget, to: size)
-        let minimumWidth = backend.size(of: string, in: SIMD2(1, proposedSize.y)).x
-        let minimumHeight = backend.size(of: string, in: SIMD2(proposedSize.x, 1)).y
+
+        let minimumWidth = backend.size(
+            of: string,
+            whenDisplayedIn: widget,
+            proposedFrame: SIMD2(1, proposedSize.y),
+            environment: environment
+        ).x
+        let minimumHeight = backend.size(
+            of: string,
+            whenDisplayedIn: widget,
+            proposedFrame: SIMD2(proposedSize.x, 1),
+            environment: environment
+        ).y
+
         return ViewUpdateResult(
             size: size,
             minimumWidth: minimumWidth == 1 ? 0 : minimumWidth,

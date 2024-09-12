@@ -58,7 +58,6 @@ struct ContentView: View {
                 switch state.selectedArea {
                     case .science:
                         Text("Science")
-                            .frame(minHeight: 500)
                     case .humanities:
                         Text("Humanities")
                     case nil:

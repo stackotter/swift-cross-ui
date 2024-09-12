@@ -22,6 +22,25 @@ open class Paned: Widget, Orientable {
         }
     }
 
+    override func didMoveToParent() {
+        startChild?.didMoveToParent()
+        endChild?.didMoveToParent()
+
+        let handler:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::position", handler: gCallback(handler)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyPosition?(self)
+        }
+    }
+
+    public var notifyPosition: ((Paned) -> Void)?
+
     @GObjectProperty(named: "position") public var position: Int
     @GObjectProperty(named: "max-position") public var maxPosition: Int
     @GObjectProperty(named: "min-position") public var minPosition: Int

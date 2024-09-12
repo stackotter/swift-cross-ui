@@ -34,12 +34,13 @@ public struct Group<Content: View>: View {
         environment: Environment,
         backend: Backend
     ) -> ViewUpdateResult {
-        return LayoutSystem.updateStackLayout(
+        let size = LayoutSystem.updateStackLayout(
             container: widget,
             children: layoutableChildren(backend: backend, children: children),
             proposedSize: proposedSize,
             environment: environment,
             backend: backend
         )
+        return size
     }
 }

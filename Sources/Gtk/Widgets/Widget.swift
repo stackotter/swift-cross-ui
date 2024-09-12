@@ -188,6 +188,13 @@ open class Widget: GObjectRepresentable {
         gtk_widget_set_size_request(widgetPointer, Int32(width), Int32(height))
     }
 
+    public func getSizeRequest() -> Size {
+        var width: Int32 = 0
+        var height: Int32 = 0
+        gtk_widget_get_size_request(widgetPointer, &width, &height)
+        return Size(width: Int(width), height: Int(height))
+    }
+
     public func getNaturalSize() -> (width: Int, height: Int) {
         var minimumSize = GtkRequisition()
         var naturalSize = GtkRequisition()
@@ -233,13 +240,7 @@ open class Widget: GObjectRepresentable {
     @GObjectProperty(named: "height-request") public var minHeight: Int
 
     /// Sets the name of the Gtk view for useful debugging in inspector (Ctrl+Shift+D)
-    open func debugName<View>(_: View.Type, id: String = "") -> Self {
-        #if DEBUG
-            // Limited type depth because the inspector does not like long names
-            name =
-                String(describing: Self.self) + " "
-                + typeDescription(of: View.self, withMaxDepth: 3) + " " + id
-        #endif
-        return self
+    public func tag(as tag: String) {
+        name = tag
     }
 }

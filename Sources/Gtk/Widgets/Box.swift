@@ -5,7 +5,7 @@
 import CGtk
 
 open class Box: Widget, Orientable {
-    var widgets: [Widget] = []
+    public var children: [Widget] = []
 
     public init(orientation: Orientation = .vertical, spacing: Int = 0) {
         super.init()
@@ -14,31 +14,31 @@ open class Box: Widget, Orientable {
     }
 
     override func didMoveToParent() {
-        for widget in widgets {
+        for widget in children {
             widget.didMoveToParent()
         }
     }
 
     public func add(_ child: Widget) {
-        widgets.append(child)
+        children.append(child)
         child.parentWidget = self
         gtk_box_append(castedPointer(), child.widgetPointer)
     }
 
     public func remove(_ child: Widget) {
-        if let index = widgets.firstIndex(where: { $0 === child }) {
+        if let index = children.firstIndex(where: { $0 === child }) {
             gtk_box_remove(castedPointer(), child.widgetPointer)
-            widgets.remove(at: index)
+            children.remove(at: index)
             child.parentWidget = nil
         }
     }
 
     public func removeAll() {
-        for widget in widgets {
+        for widget in children {
             gtk_box_remove(castedPointer(), widget.widgetPointer)
             widget.parentWidget = nil
         }
-        widgets = []
+        children = []
     }
 
     @GObjectProperty(named: "spacing") open var spacing: Int
