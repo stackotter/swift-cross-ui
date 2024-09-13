@@ -26,13 +26,14 @@ public struct Image: View {
             return
         }
 
+        let bytes = Array(data)
         if useFileExtension {
             image = try? ImageFormats.Image<RGBA>.load(
-                from: Array(data),
+                from: bytes,
                 usingFileExtension: url.pathExtension
             )
         } else {
-            image = try? ImageFormats.Image<RGBA>.load(from: Array(data))
+            image = try? ImageFormats.Image<RGBA>.load(from: bytes)
         }
     }
 
