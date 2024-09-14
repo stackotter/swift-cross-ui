@@ -7,10 +7,8 @@ on:
 
 jobs:
   build-mac:
-    runs-on: macos-13
+    runs-on: macos-14
     steps:
-    - name: List available Xcode versions
-      run: ls /Applications | grep Xcode
     - name: Force Xcode 15.4
       run: sudo xcode-select -switch /Applications/Xcode_15.4.app
     - uses: actions/checkout@v3
