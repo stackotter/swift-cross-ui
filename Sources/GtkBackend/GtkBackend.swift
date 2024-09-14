@@ -289,7 +289,7 @@ public final class GtkBackend: AppBackend {
     public func updateImageView(_ imageView: Widget, rgbaData: [UInt8], width: Int, height: Int) {
         let imageView = imageView as! Gtk.Picture
         let buffer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: rgbaData.count)
-        memcpy(buffer.baseAddress, rgbaData, rgbaData.count)
+        memcpy(buffer.baseAddress!, rgbaData, rgbaData.count)
         let pixbuf = gdk_pixbuf_new_from_data(
             buffer.baseAddress,
             GDK_COLORSPACE_RGB,
