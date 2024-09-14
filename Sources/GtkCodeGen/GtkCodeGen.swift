@@ -62,6 +62,11 @@ struct GtkCodeGen {
                 continue
             }
 
+            // The 'License' enum has a case that doesn't seem to exist in some Gtk versions
+            guard enumeration.name != "License" else {
+                continue
+            }
+
             let source = generateEnum(enumeration)
             try save(source.description, to: directory, declName: enumeration.name)
         }
