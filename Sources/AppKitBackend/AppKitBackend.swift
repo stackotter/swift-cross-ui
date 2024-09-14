@@ -546,6 +546,16 @@ public struct AppKitBackend: AppBackend {
         splitView.resizingDelegate!.maximumLeadingWidth = maximumWidth
     }
 
+    public func updateSplitViewChildPositions(
+        of splitView: Widget,
+        splitViewSize: SIMD2<Int>,
+        leadingChildSize: SIMD2<Int>,
+        trailingChildSize: SIMD2<Int>
+    ) {
+        // We don't need to do any work here cause we set up AppKit constraints to
+        // center the child of each pane.
+    }
+
     public func createImageView() -> Widget {
         let imageView = NSImageView()
         imageView.imageScaling = .scaleAxesIndependently

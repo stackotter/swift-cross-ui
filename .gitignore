@@ -11,3 +11,4 @@ DerivedData/
 *.pyc
 /.swiftpm
 vcpkg_installed/
+*.trace
