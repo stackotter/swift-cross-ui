@@ -10,7 +10,7 @@ public class Pango {
     }
 
     deinit {
-        free(UnsafeMutableRawPointer(pangoContext))
+        g_object_unref(UnsafeMutableRawPointer(pangoContext))
     }
 
     /// Gets the size of the given text in pixels using the default font. If supplied, `proposedWidth`
@@ -43,7 +43,7 @@ public class Pango {
         var height: Int32 = 0
         pango_layout_get_pixel_size(layout, &width, &height)
 
-        free(UnsafeMutableRawPointer(layout))
+        g_object_unref(UnsafeMutableRawPointer(layout))
 
         return (
             Int(width),
