@@ -93,6 +93,15 @@ public struct AppKitBackend: AppBackend {
         window.makeKeyAndOrderFront(nil)
     }
 
+    public func updateWindowChildPosition(
+        of window: Window,
+        windowSize: SIMD2<Int>,
+        childSize: SIMD2<Int>
+    ) {
+        // When creating the window we set up layout constraints to center the child,
+        // so we don't have to do anything here.
+    }
+
     public func runInMainThread(action: @escaping () -> Void) {
         DispatchQueue.main.async {
             action()

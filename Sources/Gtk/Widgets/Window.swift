@@ -5,7 +5,7 @@
 import CGtk
 
 public class Window: Widget {
-    var child: Widget?
+    public var child: Widget?
 
     override public init() {
         super.init()

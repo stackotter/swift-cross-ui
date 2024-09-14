@@ -117,6 +117,12 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             )
         }
 
+        backend.updateWindowChildPosition(
+            of: window,
+            windowSize: proposedWindowSize,
+            childSize: contentSize.size
+        )
+
         if isFirstUpdate {
             backend.show(window: window)
             isFirstUpdate = false

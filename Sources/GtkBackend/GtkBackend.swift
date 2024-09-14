@@ -100,6 +100,21 @@ public final class GtkBackend: AppBackend {
         window.show()
     }
 
+    public func updateWindowChildPosition(
+        of window: Window,
+        windowSize: SIMD2<Int>,
+        childSize: SIMD2<Int>
+    ) {
+        let child = window.child! as! Box
+        let childInner = child.children[0] as! Fixed
+        childInner.move(
+            childInner.children[0],
+            x: Double((windowSize.x - childSize.x) / 2),
+            y: Double((windowSize.y - childSize.y) / 2)
+        )
+        childInner.setSizeRequest(width: windowSize.x, height: windowSize.y)
+    }
+
     class ThreadActionContext {
         var action: () -> Void
 
