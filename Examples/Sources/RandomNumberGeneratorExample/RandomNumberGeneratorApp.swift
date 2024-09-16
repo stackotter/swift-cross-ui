@@ -75,5 +75,6 @@ struct RandomNumberGeneratorApp: App {
             }
         }
         .defaultSize(width: 500, height: 0)
+        .windowResizability(.contentSize)
     }
 }

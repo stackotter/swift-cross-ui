@@ -120,12 +120,6 @@ public protocol AppBackend {
     /// for some backends). Predominantly used by window-based ``Scene``
     /// implementations after propagating updates.
     func show(window: Window)
-    // Re-positions a window's child so that it remains in the center of the window.
-    func updateWindowChildPosition(
-        of window: Window,
-        windowSize: SIMD2<Int>,
-        childSize: SIMD2<Int>
-    )
 
     /// Runs an action in the app's main thread if required to perform UI updates
     /// by the backend. Predominantly used by ``Publisher`` to publish changes to a thread

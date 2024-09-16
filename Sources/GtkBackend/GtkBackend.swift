@@ -71,16 +71,29 @@ public final class GtkBackend: AppBackend {
     }
 
     public func setChild(ofWindow window: Window, to child: Widget) {
-        let container = createSizeDecoupledContainer(for: child)
+        let container = wrapInCustomRootContainer(child)
         window.setChild(container)
     }
 
     public func size(ofWindow window: Window) -> SIMD2<Int> {
-        SIMD2(window.size.width, window.size.height)
+        let child = window.getChild() as! CustomRootWidget
+        let size = child.getSize()
+        return SIMD2(size.width, size.height)
     }
 
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
-        window.size = Size(width: newSize.x, height: newSize.y)
+        let child = window.getChild() as! CustomRootWidget
+        let windowSize = window.defaultSize
+        let childSize = child.getSize()
+        let decorationsSize = SIMD2(
+            windowSize.width - childSize.width,
+            windowSize.height - childSize.height
+        )
+        window.size = Size(
+            width: decorationsSize.x + newSize.x,
+            height: decorationsSize.y + newSize.y
+        )
+        child.preemptAllocatedSize(allocatedWidth: newSize.x, allocatedHeight: newSize.y)
     }
 
     public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
@@ -91,28 +104,14 @@ public final class GtkBackend: AppBackend {
         ofWindow window: Window,
         to action: @escaping (_ newSize: SIMD2<Int>) -> Void
     ) {
-        window.onResize {
-            action(self.size(ofWindow: window))
+        let child = window.getChild() as! CustomRootWidget
+        child.setResizeHandler { size in
+            action(SIMD2(size.width, size.height))
         }
     }
 
     public func show(window: Window) {
         window.show()
-    }
-
-    public func updateWindowChildPosition(
-        of window: Window,
-        windowSize: SIMD2<Int>,
-        childSize: SIMD2<Int>
-    ) {
-        let child = window.child! as! Box
-        let childInner = child.children[0] as! Fixed
-        childInner.move(
-            childInner.children[0],
-            x: Double((windowSize.x - childSize.x) / 2),
-            y: Double((windowSize.y - childSize.y) / 2)
-        )
-        childInner.setSizeRequest(width: windowSize.x, height: windowSize.y)
     }
 
     class ThreadActionContext {
@@ -186,7 +185,10 @@ public final class GtkBackend: AppBackend {
     }
 
     public func naturalSize(of widget: Widget) -> SIMD2<Int> {
+        let currentSize = widget.getSizeRequest()
+        widget.setSizeRequest(width: -1, height: -1)
         let (width, height) = widget.getNaturalSize()
+        widget.setSizeRequest(width: currentSize.width, height: currentSize.height)
         return SIMD2(width, height)
     }
 
@@ -524,7 +526,7 @@ public final class GtkBackend: AppBackend {
         picker.cssProvider.loadCss(
             from: """
                 .\(picker.css.cssClass) label {
-                    color: \(CSSProperty.rgba(environment.foregroundColor.gtkColor))
+                    color: \(CSSProperty.rgba(environment.foregroundColor.gtkColor));
                 }
                 """
         )
@@ -559,6 +561,12 @@ public final class GtkBackend: AppBackend {
     }
 
     // MARK: Helpers
+
+    private func wrapInCustomRootContainer(_ widget: Widget) -> Widget {
+        let container = CustomRootWidget()
+        container.setChild(to: widget)
+        return container
+    }
 
     private func createSizeDecoupledContainer(for widget: Widget) -> Widget {
         let innerContainer = Fixed()

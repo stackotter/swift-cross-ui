@@ -70,46 +70,6 @@ public class Window: Widget {
         )
     }
 
-    public func onResize(_ action: @escaping () -> Void) {
-        // let native = GTK_NATIVE(castedPointer())!
-        // let surface = gtk_native_get_surface(native)
-
-        // let box = SignalBox0(callback: action)
-        // let handler1:
-        //     @convention(c) (
-        //         UnsafeMutableRawPointer, UnsafeMutableRawPointer
-        //     ) -> Void = { _, data in
-        //         let box = Unmanaged<SignalBox0>.fromOpaque(data).takeUnretainedValue()
-        //         box.callback()
-        //     }
-
-        // g_signal_connect_data(
-        //     UnsafeMutableRawPointer(surface!),
-        //     "notify::state",
-        //     unsafeBitCast(handler1, to: GCallback.self),
-        //     Unmanaged.passUnretained(box).toOpaque().cast(),
-        //     nil,
-        //     ConnectFlags.after.toGConnectFlags()
-        // )
-
-        let handler2:
-            @convention(c) (
-                UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer
-            ) -> Void = { _, value1, data in
-                SignalBox1<OpaquePointer>.run(data, value1)
-            }
-
-        addSignal(name: "notify::default-width", handler: gCallback(handler2)) {
-            (_: OpaquePointer) in
-            action()
-        }
-
-        addSignal(name: "notify::default-height", handler: gCallback(handler2)) {
-            (_: OpaquePointer) in
-            action()
-        }
-    }
-
     public func setChild(_ child: Widget) {
         self.child?.parentWidget = nil
         self.child = child

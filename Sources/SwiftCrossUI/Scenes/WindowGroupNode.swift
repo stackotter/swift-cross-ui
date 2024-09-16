@@ -15,6 +15,8 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
     private var isFirstUpdate = true
     /// The environment most recently provided by this node's parent scene.
     private var parentEnvironment: Environment
+    /// The container used to center the root view in the window.
+    private var containerWidget: AnyWidget
 
     public init<Backend: AppBackend>(
         from scene: WindowGroup<Content>,
@@ -25,7 +27,12 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         viewGraph = ViewGraph(for: scene.body, backend: backend, environment: environment)
         let window = backend.createWindow(withDefaultSize: scene.defaultSize)
         let rootWidget = viewGraph.rootNode.concreteNode(for: Backend.self).widget
-        backend.setChild(ofWindow: window, to: rootWidget)
+
+        let container = backend.createContainer()
+        backend.addChild(rootWidget, to: container)
+        self.containerWidget = AnyWidget(container)
+
+        backend.setChild(ofWindow: window, to: container)
         backend.setTitle(ofWindow: window, to: scene.title)
         backend.setResizability(ofWindow: window, to: scene.resizability.isResizable)
 
@@ -108,7 +115,6 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         )
 
         if let newWindowSize {
-            // TODO: Guard against infinite update loops.
             return update(
                 scene,
                 proposedWindowSize: newWindowSize,
@@ -117,10 +123,13 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             )
         }
 
-        backend.updateWindowChildPosition(
-            of: window,
-            windowSize: proposedWindowSize,
-            childSize: contentSize.size
+        backend.setPosition(
+            ofChildAt: 0,
+            in: containerWidget.into(),
+            to: SIMD2(
+                (proposedWindowSize.x - contentSize.size.x) / 2,
+                (proposedWindowSize.y - contentSize.size.y) / 2
+            )
         )
 
         if isFirstUpdate {

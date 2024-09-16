@@ -199,7 +199,12 @@ let package = Package(
                 .apt(["libgtk-4-dev clang"]),
             ]
         ),
-        .target(name: "Gtk", dependencies: ["CGtk"], swiftSettings: gtkSwiftSettings),
+        .target(
+            name: "Gtk",
+            dependencies: ["CGtk", "GtkCustomWidgets"],
+            exclude: ["LICENSE.md"],
+            swiftSettings: gtkSwiftSettings
+        ),
         .executableTarget(
             name: "GtkExample",
             dependencies: ["Gtk"],
@@ -220,6 +225,10 @@ let package = Package(
                 .product(name: "MacroToolkit", package: "swift-macro-toolkit"),
             ],
             swiftSettings: swiftSettings
+        ),
+        .target(
+            name: "GtkCustomWidgets",
+            dependencies: ["CGtk"]
         ),
     ] + swift510Targets
 )

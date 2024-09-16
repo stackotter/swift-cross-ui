@@ -53,7 +53,7 @@ public class Fixed: Widget {
     }
 
     public func move(_ child: Widget, x: Double, y: Double) {
-        gtk_fixed_move(castedPointer(), child.castedPointer(), x, y)
+        gtk_fixed_move(castedPointer(), child.widgetPointer, x, y)
     }
 
     public func remove(_ child: Widget) {

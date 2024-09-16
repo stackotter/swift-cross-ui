@@ -55,8 +55,8 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
         let childSize = children.child0.update(
             with: body.view0,
             proposedSize: SIMD2(
-                proposedSize.x - leadingPadding - trailingPadding,
-                proposedSize.y - topPadding - bottomPadding
+                max(proposedSize.x - leadingPadding - trailingPadding, 0),
+                max(proposedSize.y - topPadding - bottomPadding, 0)
             ),
             environment: environment
         )
