@@ -441,6 +441,7 @@ public struct AppKitBackend: AppBackend {
         documentView.translatesAutoresizingMaskIntoConstraints = false
         documentView.addView(child, in: .top)
         scrollView.documentView = documentView
+        scrollView.drawsBackground = false
 
         documentView.topAnchor.constraint(equalTo: clipView.topAnchor).isActive = true
         documentView.leftAnchor.constraint(equalTo: clipView.leftAnchor).isActive = true
