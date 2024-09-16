@@ -44,7 +44,7 @@ void gtk_custom_root_widget_allocate(
     int baseline
 ) {
     GtkCustomRootWidget *root_widget = GTK_CUSTOM_ROOT_WIDGET(widget);
-    gtk_widget_allocate(root_widget->child, width, height, 0, gsk_transform_new());
+    gtk_widget_allocate(root_widget->child, width, height, 0, NULL);
 
     if (!root_widget->has_been_allocated) {
         if (width == root_widget->natural_width && height == root_widget->natural_height) {
