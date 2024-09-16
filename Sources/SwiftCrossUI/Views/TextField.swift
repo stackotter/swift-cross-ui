@@ -27,6 +27,16 @@ public struct TextField: ElementaryView, View {
         if let value = value?.wrappedValue, value != backend.getContent(ofTextField: widget) {
             backend.setContent(ofTextField: widget, to: value)
         }
-        return ViewUpdateResult(fixedSize: backend.naturalSize(of: widget))
+        let naturalHeight = backend.naturalSize(of: widget).y
+        let size = SIMD2(
+            proposedSize.x,
+            naturalHeight
+        )
+        backend.setSize(of: widget, to: size)
+        return ViewUpdateResult(
+            size: size,
+            minimumWidth: 0,
+            minimumHeight: naturalHeight
+        )
     }
 }

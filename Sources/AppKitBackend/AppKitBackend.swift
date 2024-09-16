@@ -79,14 +79,7 @@ public struct AppKitBackend: AppBackend {
     }
 
     public func setChild(ofWindow window: Window, to child: Widget) {
-        let container = NSView()
-        container.addSubview(child)
-
-        child.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
-        child.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
-        child.translatesAutoresizingMaskIntoConstraints = false
-
-        window.contentView = container
+        window.contentView = child
     }
 
     public func show(window: Window) {

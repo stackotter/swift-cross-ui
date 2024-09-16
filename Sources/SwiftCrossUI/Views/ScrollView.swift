@@ -3,6 +3,10 @@
 public struct ScrollView<Content: View>: TypeSafeView, View {
     public var body: VStack<Content>
 
+    public var flexibility: Int {
+        500
+    }
+
     /// Wraps a view in a VStackrcontent: ollable container.
     public init(@ViewBuilder _ content: () -> Content) {
         body = VStack(content: content())
@@ -50,7 +54,7 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         )
         let scrollViewSize = SIMD2(
             min(contentSize.size.x, proposedSize.x),
-            min(contentSize.size.y, proposedSize.y)
+            proposedSize.y
         )
         backend.setSize(of: widget, to: scrollViewSize)
         // TODO: Account for size required by scroll bars

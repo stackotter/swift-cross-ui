@@ -38,6 +38,10 @@ struct StrictFrameView<Child: View>: TypeSafeView {
     /// The exact height to make the view.
     var height: Int?
 
+    public var flexibility: Int {
+        0
+    }
+
     /// Wraps a child view with size constraints.
     init(_ child: Child, width: Int?, height: Int?) {
         self.body = TupleView1(child)
@@ -106,6 +110,10 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
     var minHeight: Int?
     var idealHeight: Int?
     var maxHeight: Int?
+
+    public var flexibility: Int {
+        (maxWidth == nil && maxHeight == nil) ? body.flexibility : 100
+    }
 
     /// Wraps a child view with size constraints.
     init(

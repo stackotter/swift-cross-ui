@@ -15,7 +15,7 @@ public struct TupleView1<View0: View>: TypeSafeView, View {
     public var flexibility: Int {
         [
             view0.flexibility
-        ].reduce(0, +) / 1
+        ].max() ?? 0
     }
 
     /// Wraps 1 child views in a single container view.
@@ -101,7 +101,7 @@ public struct TupleView2<View0: View, View1: View>: TypeSafeView, View {
         [
             view0.flexibility,
             view1.flexibility,
-        ].reduce(0, +) / 2
+        ].max() ?? 0
     }
 
     /// Wraps 2 child views in a single container view.
@@ -203,7 +203,7 @@ public struct TupleView3<View0: View, View1: View, View2: View>: TypeSafeView, V
             view0.flexibility,
             view1.flexibility,
             view2.flexibility,
-        ].reduce(0, +) / 3
+        ].max() ?? 0
     }
 
     /// Wraps 3 child views in a single container view.
@@ -321,7 +321,7 @@ public struct TupleView4<View0: View, View1: View, View2: View, View3: View>: Ty
             view1.flexibility,
             view2.flexibility,
             view3.flexibility,
-        ].reduce(0, +) / 4
+        ].max() ?? 0
     }
 
     /// Wraps 4 child views in a single container view.
@@ -457,7 +457,7 @@ public struct TupleView5<View0: View, View1: View, View2: View, View3: View, Vie
             view2.flexibility,
             view3.flexibility,
             view4.flexibility,
-        ].reduce(0, +) / 5
+        ].max() ?? 0
     }
 
     /// Wraps 5 child views in a single container view.
@@ -609,7 +609,7 @@ public struct TupleView6<
             view3.flexibility,
             view4.flexibility,
             view5.flexibility,
-        ].reduce(0, +) / 6
+        ].max() ?? 0
     }
 
     /// Wraps 6 child views in a single container view.
@@ -780,7 +780,7 @@ public struct TupleView7<
             view4.flexibility,
             view5.flexibility,
             view6.flexibility,
-        ].reduce(0, +) / 7
+        ].max() ?? 0
     }
 
     /// Wraps 7 child views in a single container view.
@@ -968,7 +968,7 @@ public struct TupleView8<
             view5.flexibility,
             view6.flexibility,
             view7.flexibility,
-        ].reduce(0, +) / 8
+        ].max() ?? 0
     }
 
     /// Wraps 8 child views in a single container view.
@@ -1174,7 +1174,7 @@ public struct TupleView9<
             view6.flexibility,
             view7.flexibility,
             view8.flexibility,
-        ].reduce(0, +) / 9
+        ].max() ?? 0
     }
 
     /// Wraps 9 child views in a single container view.
@@ -1396,7 +1396,7 @@ public struct TupleView10<
             view7.flexibility,
             view8.flexibility,
             view9.flexibility,
-        ].reduce(0, +) / 10
+        ].max() ?? 0
     }
 
     /// Wraps 10 child views in a single container view.
