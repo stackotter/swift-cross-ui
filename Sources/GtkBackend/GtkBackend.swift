@@ -264,6 +264,12 @@ public final class GtkBackend: AppBackend {
         trailingChildInner.setSizeRequest(width: trailingPaneWidth, height: splitViewSize.y)
     }
 
+    public func createScrollContainer(for child: Widget) -> Widget {
+        let scrollView = ScrolledWindow()
+        scrollView.setChild(child)
+        return scrollView
+    }
+
     // MARK: Passive views
 
     public func createTextView() -> Widget {
