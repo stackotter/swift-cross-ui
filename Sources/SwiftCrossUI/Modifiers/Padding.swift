@@ -1,5 +1,12 @@
 extension View {
     /// Adds padding to a view. If `amount` is `nil`, then a backend-specific default value
+    /// is used. Separate from ``View/padding(_:_:)`` because overload resolution didn't
+    /// like the double default parameters.
+    public func padding(_ amount: Int? = nil) -> some View {
+        return padding(.all, amount)
+    }
+
+    /// Adds padding to a view. If `amount` is `nil`, then a backend-specific default value
     /// is used.
     public func padding(_ edges: Edge.Set = .all, _ amount: Int? = nil) -> some View {
         return PaddingModifierView(body: TupleView1(self), edges: edges, padding: amount)
@@ -43,7 +50,7 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
         environment: Environment,
         backend: Backend
     ) -> ViewUpdateResult {
-        let padding = padding ?? backend.defaultPadding
+        let padding = padding ?? backend.defaultPaddingAmount
         let topPadding = edges.contains(.top) ? padding : 0
         let bottomPadding = edges.contains(.bottom) ? padding : 0
         let leadingPadding = edges.contains(.leading) ? padding : 0

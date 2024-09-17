@@ -14,7 +14,7 @@ public struct AppKitBackend: AppBackend {
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
-    public let defaultPadding = 10
+    public let defaultPaddingAmount = 10
 
     public init() {}
 

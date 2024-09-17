@@ -11,6 +11,6 @@ struct NotesApp: App {
                 ContentView()
             }
         }
-        .defaultSize(width: 400, height: 200)
+        .defaultSize(width: 800, height: 400)
     }
 }
