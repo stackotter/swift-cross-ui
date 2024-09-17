@@ -454,45 +454,23 @@ public struct AppKitBackend: AppBackend {
 
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
         let splitView = NSCustomSplitView()
-        let leadingPane = NSView()
-        leadingPane.addSubview(leadingChild)
-        leadingPane.centerXAnchor.constraint(equalTo: leadingChild.centerXAnchor)
+        let leadingChildWithEffect = NSVisualEffectView()
+        leadingChildWithEffect.blendingMode = .behindWindow
+        leadingChildWithEffect.material = .sidebar
+        leadingChildWithEffect.addSubview(leadingChild)
+        leadingChild.widthAnchor.constraint(equalTo: leadingChildWithEffect.widthAnchor)
             .isActive = true
-        leadingPane.centerYAnchor.constraint(equalTo: leadingChild.centerYAnchor)
+        leadingChild.heightAnchor.constraint(equalTo: leadingChildWithEffect.heightAnchor)
             .isActive = true
-        leadingPane.widthAnchor.constraint(greaterThanOrEqualTo: leadingChild.widthAnchor)
+        leadingChild.topAnchor.constraint(equalTo: leadingChildWithEffect.topAnchor)
             .isActive = true
-        leadingPane.heightAnchor.constraint(greaterThanOrEqualTo: leadingChild.heightAnchor)
+        leadingChild.leadingAnchor.constraint(equalTo: leadingChildWithEffect.leadingAnchor)
             .isActive = true
+        leadingChild.translatesAutoresizingMaskIntoConstraints = false
+        leadingChildWithEffect.translatesAutoresizingMaskIntoConstraints = false
 
-        let leadingPaneWithEffect = NSVisualEffectView()
-        leadingPaneWithEffect.blendingMode = .behindWindow
-        leadingPaneWithEffect.material = .sidebar
-        leadingPaneWithEffect.addSubview(leadingPane)
-        leadingPane.widthAnchor.constraint(equalTo: leadingPaneWithEffect.widthAnchor)
-            .isActive = true
-        leadingPane.heightAnchor.constraint(equalTo: leadingPaneWithEffect.heightAnchor)
-            .isActive = true
-        leadingPane.topAnchor.constraint(equalTo: leadingPaneWithEffect.topAnchor)
-            .isActive = true
-        leadingPane.leadingAnchor.constraint(equalTo: leadingPaneWithEffect.leadingAnchor)
-            .isActive = true
-        leadingPane.translatesAutoresizingMaskIntoConstraints = false
-        leadingPaneWithEffect.translatesAutoresizingMaskIntoConstraints = false
-
-        let trailingPane = NSStackView()
-        trailingPane.addSubview(trailingChild)
-        trailingPane.centerXAnchor.constraint(equalTo: trailingChild.centerXAnchor)
-            .isActive = true
-        trailingPane.centerYAnchor.constraint(equalTo: trailingChild.centerYAnchor)
-            .isActive = true
-        trailingPane.widthAnchor.constraint(greaterThanOrEqualTo: trailingChild.widthAnchor)
-            .isActive = true
-        trailingPane.heightAnchor.constraint(greaterThanOrEqualTo: trailingChild.heightAnchor)
-            .isActive = true
-
-        splitView.addArrangedSubview(leadingPaneWithEffect)
-        splitView.addArrangedSubview(trailingPane)
+        splitView.addArrangedSubview(leadingChildWithEffect)
+        splitView.addArrangedSubview(trailingChild)
         splitView.isVertical = true
         splitView.dividerStyle = .thin
         let defaultLeadingWidth = 200
@@ -529,16 +507,6 @@ public struct AppKitBackend: AppBackend {
         let splitView = splitView as! NSCustomSplitView
         splitView.resizingDelegate!.minimumLeadingWidth = minimumWidth
         splitView.resizingDelegate!.maximumLeadingWidth = maximumWidth
-    }
-
-    public func updateSplitViewChildPositions(
-        of splitView: Widget,
-        splitViewSize: SIMD2<Int>,
-        leadingChildSize: SIMD2<Int>,
-        trailingChildSize: SIMD2<Int>
-    ) {
-        // We don't need to do any work here cause we set up AppKit constraints to
-        // center the child of each pane.
     }
 
     public func createImageView() -> Widget {

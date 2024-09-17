@@ -94,7 +94,7 @@ struct ContentView: View {
                 }
             }
             .padding(10)
-            .frame(minWidth: 100)
+            .frame(minWidth: 150)
         } detail: {
             VStack {
                 switch state.selectedDetail {

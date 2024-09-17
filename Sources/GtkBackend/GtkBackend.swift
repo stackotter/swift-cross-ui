@@ -198,8 +198,8 @@ public final class GtkBackend: AppBackend {
 
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
         let widget = Paned(orientation: .horizontal)
-        let leadingContainer = createSizeDecoupledContainer(for: leadingChild)
-        let trailingContainer = createSizeDecoupledContainer(for: trailingChild)
+        let leadingContainer = wrapInCustomRootContainer(leadingChild)
+        let trailingContainer = wrapInCustomRootContainer(trailingChild)
 
         widget.startChild = leadingContainer
         widget.endChild = trailingContainer
@@ -235,33 +235,6 @@ public final class GtkBackend: AppBackend {
         let width = splitView.getNaturalSize().width
         splitView.startChild?.setSizeRequest(width: minimumWidth, height: 0)
         splitView.endChild?.setSizeRequest(width: width - maximumWidth, height: 0)
-    }
-
-    public func updateSplitViewChildPositions(
-        of splitView: Widget,
-        splitViewSize: SIMD2<Int>,
-        leadingChildSize: SIMD2<Int>,
-        trailingChildSize: SIMD2<Int>
-    ) {
-        let splitView = splitView as! Paned
-        let leadingChild = splitView.startChild! as! Box
-        let trailingChild = splitView.endChild! as! Box
-        let leadingChildInner = leadingChild.children[0] as! Fixed
-        let trailingChildInner = trailingChild.children[0] as! Fixed
-        let leadingPaneWidth = splitView.position
-        let trailingPaneWidth = splitViewSize.x - leadingPaneWidth
-        leadingChildInner.move(
-            leadingChildInner.children[0],
-            x: Double((leadingPaneWidth - leadingChildSize.x) / 2),
-            y: Double((splitViewSize.y - leadingChildSize.y) / 2)
-        )
-        trailingChildInner.move(
-            trailingChildInner.children[0],
-            x: Double((trailingPaneWidth - trailingChildSize.x) / 2),
-            y: Double((splitViewSize.y - trailingChildSize.y) / 2)
-        )
-        leadingChildInner.setSizeRequest(width: leadingPaneWidth, height: splitViewSize.y)
-        trailingChildInner.setSizeRequest(width: trailingPaneWidth, height: splitViewSize.y)
     }
 
     public func createScrollContainer(for child: Widget) -> Widget {

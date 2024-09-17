@@ -184,15 +184,6 @@ public protocol AppBackend {
         minimum minimumWidth: Int,
         maximum maximumWidth: Int
     )
-    /// Updates the positions of a split view's children to keep them centered. The childrens's
-    /// sizes are provided to help backends with less powerful layout systems center the
-    /// children correctly.
-    func updateSplitViewChildPositions(
-        of splitView: Widget,
-        splitViewSize: SIMD2<Int>,
-        leadingChildSize: SIMD2<Int>,
-        trailingChildSize: SIMD2<Int>
-    )
 
     // MARK: Passive views
 
@@ -368,15 +359,6 @@ extension AppBackend {
         ofSplitView splitView: Widget,
         minimum minimumWidth: Int,
         maximum maximumWidth: Int
-    ) {
-        todo()
-    }
-
-    public func updateSplitViewChildPositions(
-        of splitView: Widget,
-        splitViewSize: SIMD2<Int>,
-        leadingChildSize: SIMD2<Int>,
-        trailingChildSize: SIMD2<Int>
     ) {
         todo()
     }

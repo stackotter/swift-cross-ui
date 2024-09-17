@@ -1,7 +1,7 @@
 import Foundation
 
 struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
-    typealias Children = Content.Children
+    typealias Children = SplitViewChildren<Sidebar, Detail>
 
     var body: TupleView2<Sidebar, Detail>
 
@@ -18,23 +18,30 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: Environment
-    ) -> TupleView2<Sidebar, Detail>.Children {
-        body.children(backend: backend, snapshots: snapshots, environment: environment)
+    ) -> Children {
+        SplitViewChildren(
+            wrapping: body.children(
+                backend: backend,
+                snapshots: snapshots,
+                environment: environment
+            ),
+            backend: backend
+        )
     }
 
     func asWidget<Backend: AppBackend>(
-        _ children: TupleViewChildren2<Sidebar, Detail>,
+        _ children: Children,
         backend: Backend
     ) -> Backend.Widget {
         return backend.createSplitView(
-            leadingChild: children.child0.widget.into(),
-            trailingChild: children.child1.widget.into()
+            leadingChild: children.leadingPaneContainer.into(),
+            trailingChild: children.trailingPaneContainer.into()
         )
     }
 
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: TupleViewChildren2<Sidebar, Detail>,
+        children: Children,
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
@@ -43,7 +50,9 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
         backend.setResizeHandler(ofSplitView: widget) { _, _ in
             environment.onResize(.empty)
         }
-        let leadingContentSize = children.child0.update(
+
+        // Update pane children
+        let leadingContentSize = children.leadingChild.update(
             with: body.view0,
             proposedSize: SIMD2(
                 leadingWidth,
@@ -51,7 +60,7 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
             ),
             environment: environment
         )
-        let trailingContentSize = children.child1.update(
+        let trailingContentSize = children.trailingChild.update(
             with: body.view1,
             proposedSize: SIMD2(
                 proposedSize.x - leadingWidth,
@@ -59,6 +68,8 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
             ),
             environment: environment
         )
+
+        // Update split view size and sidebar width bounds
         let size = SIMD2(
             max(proposedSize.x, leadingContentSize.size.x + trailingContentSize.size.x),
             max(proposedSize.y, max(leadingContentSize.size.y, trailingContentSize.size.y))
@@ -72,16 +83,69 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
                 proposedSize.x - trailingContentSize.minimumWidth
             )
         )
-        backend.updateSplitViewChildPositions(
-            of: widget,
-            splitViewSize: size,
-            leadingChildSize: leadingContentSize.size,
-            trailingChildSize: trailingContentSize.size
+
+        // Center pane children
+        backend.setPosition(
+            ofChildAt: 0,
+            in: children.leadingPaneContainer.into(),
+            to: SIMD2(
+                leadingWidth - leadingContentSize.size.x,
+                proposedSize.y - leadingContentSize.size.y
+            ) / 2
         )
+        backend.setPosition(
+            ofChildAt: 0,
+            in: children.trailingPaneContainer.into(),
+            to: SIMD2(
+                proposedSize.x - leadingWidth - trailingContentSize.size.x,
+                proposedSize.y - trailingContentSize.size.y
+            ) / 2
+        )
+
         return ViewUpdateResult(
             size: size,
             minimumWidth: leadingContentSize.minimumWidth + trailingContentSize.minimumWidth,
             minimumHeight: max(leadingContentSize.minimumHeight, trailingContentSize.minimumHeight)
         )
+    }
+}
+
+class SplitViewChildren<Sidebar: View, Detail: View>: ViewGraphNodeChildren {
+    var paneChildren: TupleView2<Sidebar, Detail>.Children
+    var leadingPaneContainer: AnyWidget
+    var trailingPaneContainer: AnyWidget
+
+    init<Backend: AppBackend>(
+        wrapping children: TupleView2<Sidebar, Detail>.Children,
+        backend: Backend
+    ) {
+        self.paneChildren = children
+
+        let leadingPaneContainer = backend.createContainer()
+        backend.addChild(paneChildren.child0.widget.into(), to: leadingPaneContainer)
+        let trailingPaneContainer = backend.createContainer()
+        backend.addChild(paneChildren.child1.widget.into(), to: trailingPaneContainer)
+
+        self.leadingPaneContainer = AnyWidget(leadingPaneContainer)
+        self.trailingPaneContainer = AnyWidget(trailingPaneContainer)
+    }
+
+    var erasedNodes: [ErasedViewGraphNode] {
+        paneChildren.erasedNodes
+    }
+
+    var widgets: [AnyWidget] {
+        [
+            leadingPaneContainer,
+            trailingPaneContainer,
+        ]
+    }
+
+    var leadingChild: AnyViewGraphNode<Sidebar> {
+        paneChildren.child0
+    }
+
+    var trailingChild: AnyViewGraphNode<Detail> {
+        paneChildren.child1
     }
 }
