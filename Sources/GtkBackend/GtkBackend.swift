@@ -19,6 +19,7 @@ public final class GtkBackend: AppBackend {
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
+    public let defaultPadding = 10
 
     var gtkApp: Application
 

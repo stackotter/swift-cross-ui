@@ -57,6 +57,9 @@ public protocol AppBackend {
     /// follow in all cases. This is the amount of padding added above and
     /// below each cell, not the total amount added along the vertical axis.
     var defaultTableCellVerticalPadding: Int { get }
+    /// The default amount of padding used when a user uses the ``View/padding(_:_:)``
+    /// modifier.
+    var defaultPadding: Int { get }
 
     /// Often in UI frameworks (such as Gtk), code is run in a callback
     /// after starting the app, and hence this generic root window creation

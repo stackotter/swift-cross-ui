@@ -26,7 +26,7 @@ struct CounterApp: App {
                         state.count += 1
                     }
                 }
-                .padding(10)
+                .padding()
             }
         }
         .defaultSize(width: 400, height: 200)

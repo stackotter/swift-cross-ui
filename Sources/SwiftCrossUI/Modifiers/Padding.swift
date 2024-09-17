@@ -1,23 +1,19 @@
 extension View {
-    /// Adds a specific padding amount to each edge of this view.
-    public func padding(_ amount: Int) -> some View {
-        return PaddingModifierView(body: TupleView1(self), edges: .all, padding: amount)
-    }
-
-    /// Adds an equal padding amount to specific edges of this view.
-    public func padding(_ edges: Edge.Set, _ amount: Int) -> some View {
+    /// Adds padding to a view. If `amount` is `nil`, then a backend-specific default value
+    /// is used.
+    public func padding(_ edges: Edge.Set = .all, _ amount: Int? = nil) -> some View {
         return PaddingModifierView(body: TupleView1(self), edges: edges, padding: amount)
     }
 }
 
-/// The implementation for the ``View/padding(_:_:)`` and ``View/padding(_:)`` view modifiers.
+/// The implementation for the ``View/padding(_:_:)`` modifier.
 struct PaddingModifierView<Child: View>: TypeSafeView {
     var body: TupleView1<Child>
 
     /// The edges on which to apply padding.
     var edges: Edge.Set
     /// The amount of padding to apply to the child view.
-    var padding: Int
+    var padding: Int?
 
     public var flexibility: Int {
         body.flexibility - 10
@@ -47,6 +43,7 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
         environment: Environment,
         backend: Backend
     ) -> ViewUpdateResult {
+        let padding = padding ?? backend.defaultPadding
         let topPadding = edges.contains(.top) ? padding : 0
         let bottomPadding = edges.contains(.bottom) ? padding : 0
         let leadingPadding = edges.contains(.leading) ? padding : 0
