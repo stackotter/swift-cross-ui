@@ -3,10 +3,6 @@
 public struct Group<Content: View>: View {
     public var body: Content
 
-    public var flexibility: Int {
-        300
-    }
-
     /// Creates a horizontal stack with the given spacing.
     public init(@ViewBuilder content: () -> Content) {
         self.init(content: content())
@@ -32,14 +28,16 @@ public struct Group<Content: View>: View {
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let size = LayoutSystem.updateStackLayout(
             container: widget,
             children: layoutableChildren(backend: backend, children: children),
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
         return size
     }

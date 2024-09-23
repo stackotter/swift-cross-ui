@@ -25,7 +25,8 @@ public struct EmptyView: View {
     }
 
     public func updateChildren<Backend: AppBackend>(
-        _ children: any ViewGraphNodeChildren, backend: Backend
+        _ children: any ViewGraphNodeChildren,
+        backend: Backend
     ) {}
 
     public func asWidget<Backend: AppBackend>(
@@ -40,7 +41,8 @@ public struct EmptyView: View {
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         .empty
     }

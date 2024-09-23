@@ -3,10 +3,6 @@
 public struct ScrollView<Content: View>: TypeSafeView, View {
     public var body: VStack<Content>
 
-    public var flexibility: Int {
-        500
-    }
-
     /// Wraps a view in a VStackrcontent: ollable container.
     public init(@ViewBuilder _ content: () -> Content) {
         body = VStack(content: content())
@@ -45,19 +41,30 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         children: TupleViewChildren1<VStack<Content>>,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let contentSize = children.child0.update(
             with: body,
             proposedSize: proposedSize,
-            environment: environment
+            environment: environment,
+            dryRun: dryRun
         )
         let scrollViewSize = SIMD2(
             min(contentSize.size.x, proposedSize.x),
             proposedSize.y
         )
-        backend.setSize(of: widget, to: scrollViewSize)
+
+        if !dryRun {
+            backend.setSize(of: widget, to: scrollViewSize)
+        }
+
         // TODO: Account for size required by scroll bars
-        return ViewUpdateResult(size: scrollViewSize, minimumWidth: 0, minimumHeight: 0)
+        return ViewUpdateResult(
+            size: scrollViewSize,
+            idealSize: contentSize.idealSize,
+            minimumWidth: 0,
+            minimumHeight: 0
+        )
     }
 }

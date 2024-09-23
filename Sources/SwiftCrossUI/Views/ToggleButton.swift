@@ -19,8 +19,10 @@ struct ToggleButton: ElementaryView, View {
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
+        // TODO: Implement toggle button sizing within SwiftCrossUI so that we can properly implement `dryRun`.
         backend.updateToggle(widget, label: label) { newActiveState in
             active.wrappedValue = newActiveState
         }

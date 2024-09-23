@@ -7,10 +7,6 @@ public struct ForEach<
 
     public var body = EmptyView()
 
-    public var flexibility: Int {
-        300
-    }
-
     /// A variable-length collection of elements to display.
     var elements: Items
     /// A method to display the elements as views.
@@ -50,8 +46,37 @@ public struct ForEach<
         children: ForEachViewChildren<Items, Child>,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
+        func addChild(_ child: Backend.Widget) {
+            if dryRun {
+                children.queuedChanges.append(.addChild(AnyWidget(child)))
+            } else {
+                backend.addChild(child, to: widget)
+            }
+        }
+
+        func removeChild(_ child: Backend.Widget) {
+            if dryRun {
+                children.queuedChanges.append(.removeChild(AnyWidget(child)))
+            } else {
+                backend.removeChild(child, from: widget)
+            }
+        }
+
+        if !dryRun {
+            for change in children.queuedChanges {
+                switch change {
+                    case .addChild(let child):
+                        backend.addChild(child.into(), to: widget)
+                    case .removeChild(let child):
+                        backend.removeChild(child.into(), from: widget)
+                }
+            }
+            children.queuedChanges = []
+        }
+
         // TODO: The way we're reusing nodes for technically different elements means that if
         //   Child has state of its own then it could get pretty confused thinking that its state
         //   changed whereas it was actually just moved to a new slot in the array. Probably not
@@ -64,16 +89,16 @@ public struct ForEach<
             let index = elements.startIndex.advanced(by: i)
             let childContent = child(elements[index])
             if children.isFirstUpdate {
-                backend.addChild(node.widget.into(), to: widget)
+                addChild(node.widget.into())
             }
             layoutableChildren.append(
                 LayoutSystem.LayoutableChild(
-                    flexibility: childContent.flexibility,
-                    update: { proposedSize, environment in
+                    update: { proposedSize, environment, dryRun in
                         node.update(
                             with: childContent,
                             proposedSize: proposedSize,
-                            environment: environment
+                            environment: environment,
+                            dryRun: dryRun
                         )
                     }
                 )
@@ -93,15 +118,15 @@ public struct ForEach<
                     environment: environment
                 )
                 children.nodes.append(node)
-                backend.addChild(node.widget.into(), to: widget)
+                addChild(node.widget.into())
                 layoutableChildren.append(
                     LayoutSystem.LayoutableChild(
-                        flexibility: childContent.flexibility,
-                        update: { proposedSize, environment in
+                        update: { proposedSize, environment, dryRun in
                             node.update(
                                 with: childContent,
                                 proposedSize: proposedSize,
-                                environment: environment
+                                environment: environment,
+                                dryRun: dryRun
                             )
                         }
                     )
@@ -110,7 +135,7 @@ public struct ForEach<
         } else if remainingElementCount < 0 {
             let unused = -remainingElementCount
             for i in (nodeCount - unused)..<nodeCount {
-                backend.removeChild(children.nodes[i].widget.into(), from: widget)
+                removeChild(children.nodes[i].widget.into())
             }
             children.nodes.removeLast(unused)
         }
@@ -120,7 +145,8 @@ public struct ForEach<
             children: layoutableChildren,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
     }
 }
@@ -141,6 +167,13 @@ class ForEachViewChildren<
 >: ViewGraphNodeChildren where Items.Index == Int {
     /// The nodes for all current children of the ``ForEach`` view.
     var nodes: [AnyViewGraphNode<Child>] = []
+    /// Changes queued during `dryRun` updates.
+    var queuedChanges: [Change] = []
+
+    enum Change {
+        case addChild(AnyWidget)
+        case removeChild(AnyWidget)
+    }
 
     var isFirstUpdate = true
 

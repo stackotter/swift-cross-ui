@@ -22,9 +22,12 @@ public struct Text: ElementaryView, View {
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
-        backend.updateTextView(widget, content: string, environment: environment)
+        if !dryRun {
+            backend.updateTextView(widget, content: string, environment: environment)
+        }
 
         let size = backend.size(
             of: string,
@@ -32,7 +35,16 @@ public struct Text: ElementaryView, View {
             proposedFrame: proposedSize,
             environment: environment
         )
-        backend.setSize(of: widget, to: size)
+        if !dryRun {
+            backend.setSize(of: widget, to: size)
+        }
+
+        let idealSize = backend.size(
+            of: string,
+            whenDisplayedIn: widget,
+            proposedFrame: nil,
+            environment: environment
+        )
 
         let minimumWidth = backend.size(
             of: string,
@@ -49,6 +61,7 @@ public struct Text: ElementaryView, View {
 
         return ViewUpdateResult(
             size: size,
+            idealSize: idealSize,
             minimumWidth: minimumWidth == 1 ? 0 : minimumWidth,
             minimumHeight: minimumHeight
         )

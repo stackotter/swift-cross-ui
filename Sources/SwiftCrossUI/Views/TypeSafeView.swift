@@ -26,7 +26,8 @@ protocol TypeSafeView: View {
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult
 }
 
@@ -72,14 +73,16 @@ extension TypeSafeView {
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         update(
             widget,
             children: children as! Children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
     }
 }

@@ -22,10 +22,6 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
     /// The amount of padding to apply to the child view.
     var padding: Int?
 
-    public var flexibility: Int {
-        body.flexibility - 10
-    }
-
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
@@ -48,7 +44,8 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
         children: TupleViewChildren1<Child>,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let padding = padding ?? backend.defaultPaddingAmount
         let topPadding = edges.contains(.top) ? padding : 0
@@ -62,18 +59,24 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
                 max(proposedSize.x - leadingPadding - trailingPadding, 0),
                 max(proposedSize.y - topPadding - bottomPadding, 0)
             ),
-            environment: environment
+            environment: environment,
+            dryRun: dryRun
         )
 
-        let size = SIMD2(
-            childSize.size.x + leadingPadding + trailingPadding,
-            childSize.size.y + topPadding + bottomPadding
-        )
-        backend.setSize(of: container, to: size)
-        backend.setPosition(ofChildAt: 0, in: container, to: SIMD2(leadingPadding, topPadding))
+        let paddingSize = SIMD2(leadingPadding + trailingPadding, topPadding + bottomPadding)
+        let size =
+            SIMD2(
+                childSize.size.x,
+                childSize.size.y
+            ) &+ paddingSize
+        if !dryRun {
+            backend.setSize(of: container, to: size)
+            backend.setPosition(ofChildAt: 0, in: container, to: SIMD2(leadingPadding, topPadding))
+        }
 
         return ViewUpdateResult(
             size: size,
+            idealSize: childSize.idealSize &+ paddingSize,
             minimumWidth: childSize.minimumWidth + leadingPadding + trailingPadding,
             minimumHeight: childSize.minimumHeight + topPadding + bottomPadding
         )

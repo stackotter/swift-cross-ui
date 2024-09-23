@@ -60,7 +60,8 @@ public class ViewGraph<Root: View> {
         let size = rootNode.update(
             with: newView ?? view,
             proposedSize: proposedSize,
-            environment: parentEnvironment
+            environment: parentEnvironment,
+            dryRun: false
         )
         currentRootViewSize = size.size
         return size

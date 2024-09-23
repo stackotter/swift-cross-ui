@@ -16,7 +16,8 @@ public class AnyViewGraphNode<NodeView: View> {
         (
             _ newView: NodeView?,
             _ proposedSize: SIMD2<Int>,
-            _ environment: Environment
+            _ environment: Environment,
+            _ dryRun: Bool
         ) -> ViewUpdateResult
     /// The type-erased getter for the node's widget.
     private var _getWidget: () -> AnyWidget
@@ -30,7 +31,7 @@ public class AnyViewGraphNode<NodeView: View> {
     /// Type-erases a view graph node.
     public init<Backend: AppBackend>(_ node: ViewGraphNode<NodeView, Backend>) {
         self.node = node
-        _updateWithNewView = node.update(with:proposedSize:environment:)
+        _updateWithNewView = node.update(with:proposedSize:environment:dryRun:)
         _getWidget = {
             AnyWidget(node.widget)
         }
@@ -64,12 +65,14 @@ public class AnyViewGraphNode<NodeView: View> {
 
     /// Updates the view after it got recomputed (e.g. due to the parent's state changing)
     /// or after its own state changed (depending on the presence of `newView`).
+    /// - Parameter dryRun: If `true`, only compute sizing and don't update the underlying widget.
     public func update(
         with newView: NodeView?,
         proposedSize: SIMD2<Int>,
-        environment: Environment
+        environment: Environment,
+        dryRun: Bool
     ) -> ViewUpdateResult {
-        _updateWithNewView(newView, proposedSize, environment)
+        _updateWithNewView(newView, proposedSize, environment, dryRun)
     }
 
     /// Gets the node's wrapped view.

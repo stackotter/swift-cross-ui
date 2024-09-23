@@ -10,7 +10,8 @@ protocol ElementaryView: View where Content == EmptyView {
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult
 }
 
@@ -38,13 +39,15 @@ extension ElementaryView {
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         update(
             widget,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
     }
 }

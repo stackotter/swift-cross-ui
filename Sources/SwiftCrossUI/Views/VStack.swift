@@ -9,10 +9,6 @@ public struct VStack<Content: View>: View {
     /// The alignment of the stack's children in the horizontal direction.
     private var alignment: HorizontalAlignment
 
-    public var flexibility: Int {
-        300
-    }
-
     /// Creates a horizontal stack with the given spacing.
     public init(
         alignment: HorizontalAlignment = .center,
@@ -48,7 +44,8 @@ public struct VStack<Content: View>: View {
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         return LayoutSystem.updateStackLayout(
             container: widget,
@@ -59,7 +56,8 @@ public struct VStack<Content: View>: View {
                 .with(\.layoutOrientation, .vertical)
                 .with(\.layoutAlignment, alignment.asStackAlignment)
                 .with(\.layoutSpacing, spacing),
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
     }
 }

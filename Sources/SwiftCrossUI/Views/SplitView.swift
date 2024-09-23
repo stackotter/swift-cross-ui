@@ -5,10 +5,6 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
 
     var body: TupleView2<Sidebar, Detail>
 
-    var flexibility: Int {
-        body.view1.flexibility
-    }
-
     /// Creates a two column split view.
     init(@ViewBuilder sidebar: () -> Sidebar, @ViewBuilder detail: () -> Detail) {
         body = TupleView2(sidebar(), detail())
@@ -44,11 +40,14 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let leadingWidth = backend.sidebarWidth(ofSplitView: widget)
-        backend.setResizeHandler(ofSplitView: widget) { _, _ in
-            environment.onResize(.empty)
+        if !dryRun {
+            backend.setResizeHandler(ofSplitView: widget) { _, _ in
+                environment.onResize(.empty)
+            }
         }
 
         // Update pane children
@@ -58,7 +57,8 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
                 leadingWidth,
                 proposedSize.y
             ),
-            environment: environment
+            environment: environment,
+            dryRun: dryRun
         )
         let trailingContentSize = children.trailingChild.update(
             with: body.view1,
@@ -66,7 +66,8 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
                 proposedSize.x - leadingWidth,
                 proposedSize.y
             ),
-            environment: environment
+            environment: environment,
+            dryRun: dryRun
         )
 
         // Update split view size and sidebar width bounds
@@ -74,36 +75,39 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
             max(proposedSize.x, leadingContentSize.size.x + trailingContentSize.size.x),
             max(proposedSize.y, max(leadingContentSize.size.y, trailingContentSize.size.y))
         )
-        backend.setSize(of: widget, to: size)
-        backend.setSidebarWidthBounds(
-            ofSplitView: widget,
-            minimum: leadingContentSize.minimumWidth,
-            maximum: max(
-                leadingContentSize.minimumWidth,
-                proposedSize.x - trailingContentSize.minimumWidth
+        if !dryRun {
+            backend.setSize(of: widget, to: size)
+            backend.setSidebarWidthBounds(
+                ofSplitView: widget,
+                minimum: leadingContentSize.minimumWidth,
+                maximum: max(
+                    leadingContentSize.minimumWidth,
+                    proposedSize.x - trailingContentSize.minimumWidth
+                )
             )
-        )
 
-        // Center pane children
-        backend.setPosition(
-            ofChildAt: 0,
-            in: children.leadingPaneContainer.into(),
-            to: SIMD2(
-                leadingWidth - leadingContentSize.size.x,
-                proposedSize.y - leadingContentSize.size.y
-            ) / 2
-        )
-        backend.setPosition(
-            ofChildAt: 0,
-            in: children.trailingPaneContainer.into(),
-            to: SIMD2(
-                proposedSize.x - leadingWidth - trailingContentSize.size.x,
-                proposedSize.y - trailingContentSize.size.y
-            ) / 2
-        )
+            // Center pane children
+            backend.setPosition(
+                ofChildAt: 0,
+                in: children.leadingPaneContainer.into(),
+                to: SIMD2(
+                    leadingWidth - leadingContentSize.size.x,
+                    proposedSize.y - leadingContentSize.size.y
+                ) / 2
+            )
+            backend.setPosition(
+                ofChildAt: 0,
+                in: children.trailingPaneContainer.into(),
+                to: SIMD2(
+                    proposedSize.x - leadingWidth - trailingContentSize.size.x,
+                    proposedSize.y - trailingContentSize.size.y
+                ) / 2
+            )
+        }
 
         return ViewUpdateResult(
             size: size,
+            idealSize: leadingContentSize.idealSize &+ trailingContentSize.idealSize,
             minimumWidth: leadingContentSize.minimumWidth + trailingContentSize.minimumWidth,
             minimumHeight: max(leadingContentSize.minimumHeight, trailingContentSize.minimumHeight)
         )

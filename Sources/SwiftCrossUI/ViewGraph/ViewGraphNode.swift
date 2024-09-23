@@ -120,7 +120,8 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         let currentSize = currentSize
         let newSize = self.update(
             proposedSize: lastProposedSize,
-            environment: parentEnvironment
+            environment: parentEnvironment,
+            dryRun: false
         )
         if newSize != currentSize {
             self.currentSize = newSize
@@ -139,10 +140,12 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     /// propagate the update to its children depending on the nature of the update. If `newView`
     /// is provided (in the case that the parent's body got updated) then it simply replaces the
     /// old view while inheriting the old view's state.
+    /// - Parameter dryRun: If `true`, only compute sizing and don't update the underlying widget.
     public func update(
         with newView: NodeView? = nil,
         proposedSize: SIMD2<Int>,
-        environment: Environment
+        environment: Environment,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         parentEnvironment = environment
         lastProposedSize = proposedSize
@@ -158,7 +161,8 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
             children: children,
             proposedSize: proposedSize,
             environment: updateEnvironment(environment),
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
         backend.show(widget: widget)
 

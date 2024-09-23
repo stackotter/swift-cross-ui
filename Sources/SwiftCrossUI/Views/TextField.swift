@@ -19,22 +19,31 @@ public struct TextField: ElementaryView, View {
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
-        backend.updateTextField(widget, placeholder: placeholder) { newValue in
-            self.value?.wrappedValue = newValue
+        if !dryRun {
+            backend.updateTextField(widget, placeholder: placeholder) { newValue in
+                self.value?.wrappedValue = newValue
+            }
+            if let value = value?.wrappedValue, value != backend.getContent(ofTextField: widget) {
+                backend.setContent(ofTextField: widget, to: value)
+            }
         }
-        if let value = value?.wrappedValue, value != backend.getContent(ofTextField: widget) {
-            backend.setContent(ofTextField: widget, to: value)
-        }
+
         let naturalHeight = backend.naturalSize(of: widget).y
         let size = SIMD2(
             proposedSize.x,
             naturalHeight
         )
-        backend.setSize(of: widget, to: size)
+        if !dryRun {
+            backend.setSize(of: widget, to: size)
+        }
+
+        // TODO: Allow backends to set their own ideal text field width
         return ViewUpdateResult(
             size: size,
+            idealSize: SIMD2(100, naturalHeight),
             minimumWidth: 0,
             minimumHeight: naturalHeight
         )

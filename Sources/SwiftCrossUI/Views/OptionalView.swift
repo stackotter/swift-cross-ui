@@ -4,10 +4,6 @@ public struct OptionalView<V: View>: TypeSafeView, View {
 
     public var body = EmptyView()
 
-    public var flexibility: Int {
-        view?.flexibility ?? 0
-    }
-
     var view: V?
 
     /// Wraps an optional view.
@@ -43,13 +39,19 @@ public struct OptionalView<V: View>: TypeSafeView, View {
         children: OptionalViewChildren<V>,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let hasToggled: Bool
         let size: ViewUpdateResult
         if let view = view {
             if let node = children.node {
-                size = node.update(with: view, proposedSize: proposedSize, environment: environment)
+                size = node.update(
+                    with: view,
+                    proposedSize: proposedSize,
+                    environment: environment,
+                    dryRun: dryRun
+                )
                 hasToggled = false
             } else {
                 let node = AnyViewGraphNode(
@@ -61,7 +63,8 @@ public struct OptionalView<V: View>: TypeSafeView, View {
                 size = node.update(
                     with: view,
                     proposedSize: proposedSize,
-                    environment: environment
+                    environment: environment,
+                    dryRun: dryRun
                 )
                 hasToggled = true
             }
@@ -70,17 +73,20 @@ public struct OptionalView<V: View>: TypeSafeView, View {
             children.node = nil
             size = .empty
         }
+        children.hasToggled = children.hasToggled || hasToggled
 
-        if hasToggled || children.isFirstUpdate {
-            backend.removeAllChildren(of: widget)
-            if let node = children.node {
-                backend.addChild(node.widget.into(), to: widget)
-                backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
+        if !dryRun {
+            if children.hasToggled {
+                backend.removeAllChildren(of: widget)
+                if let node = children.node {
+                    backend.addChild(node.widget.into(), to: widget)
+                    backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
+                }
+                children.hasToggled = false
             }
-            children.isFirstUpdate = false
-        }
 
-        backend.setSize(of: widget, to: size.size)
+            backend.setSize(of: widget, to: size.size)
+        }
 
         return size
     }
@@ -91,8 +97,9 @@ public struct OptionalView<V: View>: TypeSafeView, View {
 class OptionalViewChildren<V: View>: ViewGraphNodeChildren {
     /// The view graph node for the view's child if present.
     var node: AnyViewGraphNode<V>?
-    /// `true` if the first view update hasn't occurred yet.
-    var isFirstUpdate = true
+    /// Whether the view has toggled since the last non-dryrun update. `true`
+    /// if the first view update hasn't occurred yet.
+    var hasToggled = true
 
     var widgets: [AnyWidget] {
         return [node?.widget].compactMap { $0 }

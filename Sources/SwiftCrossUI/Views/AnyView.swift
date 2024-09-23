@@ -57,31 +57,50 @@ public struct AnyView: TypeSafeView {
         children: AnyViewChildren,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         var (viewTypesMatched, size) = children.node.updateWithNewView(
             child,
             proposedSize,
-            environment
+            environment,
+            dryRun
         )
 
+        // If the new view's type doesn't match the old view's type then we need to create a new
+        // view graph node for the new view.
         if !viewTypesMatched {
-            backend.removeChild(children.node.getWidget().into(), from: widget)
+            children.widgetToReplace = children.node.getWidget()
             children.node = ErasedViewGraphNode(
                 for: child,
                 backend: backend,
                 environment: environment
             )
-            backend.addChild(children.node.getWidget().into(), to: widget)
-            backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
 
             // We can just assume that the update succeeded because we just created the node
             // a few lines earlier (so it's guaranteed that the view types match).
-            let result = children.node.updateWithNewView(child, proposedSize, environment)
+            let result = children.node.updateWithNewView(
+                child,
+                proposedSize,
+                environment,
+                dryRun
+            )
             size = result.size
         }
 
-        backend.setSize(of: widget, to: size.size)
+        // If the child view has changed types and this isn't a dry-run then switch to displaying
+        // the new child widget.
+        if !dryRun, let widgetToReplace = children.widgetToReplace {
+            backend.removeChild(widgetToReplace.into(), from: widget)
+            backend.addChild(children.node.getWidget().into(), to: widget)
+            backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
+            children.widgetToReplace = nil
+        }
+
+        if !dryRun {
+            backend.setSize(of: widget, to: size.size)
+        }
+
         return size
     }
 }
@@ -89,6 +108,8 @@ public struct AnyView: TypeSafeView {
 class AnyViewChildren: ViewGraphNodeChildren {
     /// The erased underlying node.
     var node: ErasedViewGraphNode
+    /// If the displayed view changed during a dry-run update then this stores the widget of the replaced view.
+    var widgetToReplace: AnyWidget?
 
     var widgets: [AnyWidget] {
         return [node.getWidget()]

@@ -9,14 +9,6 @@ public protocol View {
     /// and the view itself to be updated.
     var state: State { get set }
 
-    /// The view's size flexibility. E.g. a spacer without a specified size has the highest
-    /// flexibility and a fixed size view has a flexibility of zero. Less flexible views get
-    /// first dibs when claiming space in layouts.
-    ///
-    /// This is an advanced feature which should only be used when creating custom leaf or
-    /// layout views. Defaults to the flexibility of the view's body.
-    var flexibility: Int { get }
-
     /// The view's contents.
     @ViewBuilder var body: Content { get }
 
@@ -59,22 +51,19 @@ public protocol View {
     ///
     /// Always called once immediately after creating the view's widget with. This helps reduce
     /// code duplication between `asWidget` and `update`.
-    ///
+    /// - Parameter dryRun: If `true`, avoids updating the UI and only computes sizing.
     /// - Returns: The view's new size.
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult
 }
 
 extension View {
-    public var flexibility: Int {
-        body.flexibility
-    }
-
     public func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
@@ -103,7 +92,8 @@ extension View {
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let vStack = VStack(content: body)
         return vStack.update(
@@ -111,7 +101,8 @@ extension View {
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
     }
 }

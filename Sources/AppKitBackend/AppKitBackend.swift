@@ -241,10 +241,10 @@ public struct AppKitBackend: AppBackend {
     public func size(
         of text: String,
         whenDisplayedIn textView: Widget,
-        proposedFrame: SIMD2<Int>,
+        proposedFrame: SIMD2<Int>?,
         environment: Environment
     ) -> SIMD2<Int> {
-        if proposedFrame.x == 0 {
+        if let proposedFrame, proposedFrame.x == 0 {
             // We want the text to have the same height as it would have if it were
             // one pixel wide so that the layout doesn't suddely jump when the text
             // reaches zero width.
@@ -261,7 +261,7 @@ public struct AppKitBackend: AppBackend {
         }
 
         let proposedSize = NSSize(
-            width: CGFloat(proposedFrame.x),
+            width: (proposedFrame?.x).map(CGFloat.init) ?? 0,
             height: .greatestFiniteMagnitude
         )
         let rect = NSString(string: text).boundingRect(

@@ -12,10 +12,6 @@ public struct Image: View {
         }
     }
 
-    public var flexibility: Int {
-        400
-    }
-
     /// Displays an image file. `png`, `jpg`, and `webp` are supported.
     /// - Parameters:
     ///   - url: The url of the file to display.
@@ -71,25 +67,40 @@ struct _Image: ElementaryView, View {
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
-        backend.updateImageView(
-            widget,
-            rgbaData: image.data,
-            width: image.width,
-            height: image.height
-        )
+        if !dryRun {
+            backend.updateImageView(
+                widget,
+                rgbaData: image.data,
+                width: image.width,
+                height: image.height
+            )
+        }
+
+        let idealSize = SIMD2(image.width, image.height)
         let size: ViewUpdateResult
         if resizable {
-            size = ViewUpdateResult(size: proposedSize, minimumWidth: 0, minimumHeight: 0)
+            size = ViewUpdateResult(
+                size: proposedSize,
+                idealSize: idealSize,
+                minimumWidth: 0,
+                minimumHeight: 0
+            )
         } else {
             size = ViewUpdateResult(
-                size: SIMD2(image.width, image.height),
+                size: idealSize,
+                idealSize: idealSize,
                 minimumWidth: image.width,
                 minimumHeight: image.height
             )
         }
-        backend.setSize(of: widget, to: size.size)
+
+        if !dryRun {
+            backend.setSize(of: widget, to: size.size)
+        }
+
         return size
     }
 }

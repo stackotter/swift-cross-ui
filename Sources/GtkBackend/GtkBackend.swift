@@ -264,14 +264,14 @@ public final class GtkBackend: AppBackend {
     public func size(
         of text: String,
         whenDisplayedIn textView: Widget,
-        proposedFrame: SIMD2<Int>,
+        proposedFrame: SIMD2<Int>?,
         environment: Environment
     ) -> SIMD2<Int> {
         let pango = Pango(for: textView)
         let (width, height) = pango.getTextSize(
             text,
-            proposedWidth: Double(proposedFrame.x),
-            proposedHeight: Double(proposedFrame.y)
+            proposedWidth: (proposedFrame?.x).map(Double.init),
+            proposedHeight: (proposedFrame?.y).map(Double.init)
         )
         return SIMD2(width, height)
     }

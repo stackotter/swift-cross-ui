@@ -12,12 +12,6 @@ public struct TupleView1<View0: View>: TypeSafeView, View {
 
     public var body = EmptyView()
 
-    public var flexibility: Int {
-        [
-            view0.flexibility
-        ].max() ?? 0
-    }
-
     /// Wraps 1 child views in a single container view.
     public init(_ view0: View0) {
         self.view0 = view0
@@ -43,12 +37,12 @@ public struct TupleView1<View0: View>: TypeSafeView, View {
         var layoutableChildren: [LayoutSystem.LayoutableChild] = []
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view0.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
@@ -69,7 +63,8 @@ public struct TupleView1<View0: View>: TypeSafeView, View {
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
@@ -77,7 +72,8 @@ public struct TupleView1<View0: View>: TypeSafeView, View {
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
     }
 }
@@ -96,13 +92,6 @@ public struct TupleView2<View0: View, View1: View>: TypeSafeView, View {
     public var view1: View1
 
     public var body = EmptyView()
-
-    public var flexibility: Int {
-        [
-            view0.flexibility,
-            view1.flexibility,
-        ].max() ?? 0
-    }
 
     /// Wraps 2 child views in a single container view.
     public init(_ view0: View0, _ view1: View1) {
@@ -131,24 +120,24 @@ public struct TupleView2<View0: View, View1: View>: TypeSafeView, View {
         var layoutableChildren: [LayoutSystem.LayoutableChild] = []
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view0.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view1.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
@@ -169,7 +158,8 @@ public struct TupleView2<View0: View, View1: View>: TypeSafeView, View {
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
@@ -177,7 +167,8 @@ public struct TupleView2<View0: View, View1: View>: TypeSafeView, View {
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
     }
 }
@@ -197,14 +188,6 @@ public struct TupleView3<View0: View, View1: View, View2: View>: TypeSafeView, V
     public var view2: View2
 
     public var body = EmptyView()
-
-    public var flexibility: Int {
-        [
-            view0.flexibility,
-            view1.flexibility,
-            view2.flexibility,
-        ].max() ?? 0
-    }
 
     /// Wraps 3 child views in a single container view.
     public init(_ view0: View0, _ view1: View1, _ view2: View2) {
@@ -235,36 +218,36 @@ public struct TupleView3<View0: View, View1: View, View2: View>: TypeSafeView, V
         var layoutableChildren: [LayoutSystem.LayoutableChild] = []
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view0.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view1.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view2.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
@@ -285,7 +268,8 @@ public struct TupleView3<View0: View, View1: View, View2: View>: TypeSafeView, V
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
@@ -293,7 +277,8 @@ public struct TupleView3<View0: View, View1: View, View2: View>: TypeSafeView, V
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
     }
 }
@@ -314,15 +299,6 @@ public struct TupleView4<View0: View, View1: View, View2: View, View3: View>: Ty
     public var view3: View3
 
     public var body = EmptyView()
-
-    public var flexibility: Int {
-        [
-            view0.flexibility,
-            view1.flexibility,
-            view2.flexibility,
-            view3.flexibility,
-        ].max() ?? 0
-    }
 
     /// Wraps 4 child views in a single container view.
     public init(_ view0: View0, _ view1: View1, _ view2: View2, _ view3: View3) {
@@ -355,48 +331,48 @@ public struct TupleView4<View0: View, View1: View, View2: View, View3: View>: Ty
         var layoutableChildren: [LayoutSystem.LayoutableChild] = []
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view0.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view1.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view2.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view3.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child3.update(
                         with: view3,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
@@ -417,7 +393,8 @@ public struct TupleView4<View0: View, View1: View, View2: View, View3: View>: Ty
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
@@ -425,7 +402,8 @@ public struct TupleView4<View0: View, View1: View, View2: View, View3: View>: Ty
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
     }
 }
@@ -449,16 +427,6 @@ public struct TupleView5<View0: View, View1: View, View2: View, View3: View, Vie
     public var view4: View4
 
     public var body = EmptyView()
-
-    public var flexibility: Int {
-        [
-            view0.flexibility,
-            view1.flexibility,
-            view2.flexibility,
-            view3.flexibility,
-            view4.flexibility,
-        ].max() ?? 0
-    }
 
     /// Wraps 5 child views in a single container view.
     public init(_ view0: View0, _ view1: View1, _ view2: View2, _ view3: View3, _ view4: View4) {
@@ -493,60 +461,60 @@ public struct TupleView5<View0: View, View1: View, View2: View, View3: View, Vie
         var layoutableChildren: [LayoutSystem.LayoutableChild] = []
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view0.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view1.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view2.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view3.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child3.update(
                         with: view3,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view4.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child4.update(
                         with: view4,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
@@ -567,7 +535,8 @@ public struct TupleView5<View0: View, View1: View, View2: View, View3: View, Vie
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
@@ -575,7 +544,8 @@ public struct TupleView5<View0: View, View1: View, View2: View, View3: View, Vie
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
     }
 }
@@ -600,17 +570,6 @@ public struct TupleView6<
     public var view5: View5
 
     public var body = EmptyView()
-
-    public var flexibility: Int {
-        [
-            view0.flexibility,
-            view1.flexibility,
-            view2.flexibility,
-            view3.flexibility,
-            view4.flexibility,
-            view5.flexibility,
-        ].max() ?? 0
-    }
 
     /// Wraps 6 child views in a single container view.
     public init(
@@ -650,72 +609,72 @@ public struct TupleView6<
         var layoutableChildren: [LayoutSystem.LayoutableChild] = []
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view0.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view1.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view2.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view3.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child3.update(
                         with: view3,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view4.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child4.update(
                         with: view4,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view5.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child5.update(
                         with: view5,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
@@ -736,7 +695,8 @@ public struct TupleView6<
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
@@ -744,7 +704,8 @@ public struct TupleView6<
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
     }
 }
@@ -770,18 +731,6 @@ public struct TupleView7<
     public var view6: View6
 
     public var body = EmptyView()
-
-    public var flexibility: Int {
-        [
-            view0.flexibility,
-            view1.flexibility,
-            view2.flexibility,
-            view3.flexibility,
-            view4.flexibility,
-            view5.flexibility,
-            view6.flexibility,
-        ].max() ?? 0
-    }
 
     /// Wraps 7 child views in a single container view.
     public init(
@@ -823,84 +772,84 @@ public struct TupleView7<
         var layoutableChildren: [LayoutSystem.LayoutableChild] = []
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view0.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view1.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view2.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view3.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child3.update(
                         with: view3,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view4.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child4.update(
                         with: view4,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view5.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child5.update(
                         with: view5,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view6.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child6.update(
                         with: view6,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
@@ -921,7 +870,8 @@ public struct TupleView7<
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
@@ -929,7 +879,8 @@ public struct TupleView7<
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
     }
 }
@@ -957,19 +908,6 @@ public struct TupleView8<
     public var view7: View7
 
     public var body = EmptyView()
-
-    public var flexibility: Int {
-        [
-            view0.flexibility,
-            view1.flexibility,
-            view2.flexibility,
-            view3.flexibility,
-            view4.flexibility,
-            view5.flexibility,
-            view6.flexibility,
-            view7.flexibility,
-        ].max() ?? 0
-    }
 
     /// Wraps 8 child views in a single container view.
     public init(
@@ -1013,96 +951,96 @@ public struct TupleView8<
         var layoutableChildren: [LayoutSystem.LayoutableChild] = []
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view0.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view1.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view2.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view3.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child3.update(
                         with: view3,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view4.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child4.update(
                         with: view4,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view5.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child5.update(
                         with: view5,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view6.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child6.update(
                         with: view6,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view7.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child7.update(
                         with: view7,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
@@ -1123,7 +1061,8 @@ public struct TupleView8<
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
@@ -1131,7 +1070,8 @@ public struct TupleView8<
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
     }
 }
@@ -1162,20 +1102,6 @@ public struct TupleView9<
     public var view8: View8
 
     public var body = EmptyView()
-
-    public var flexibility: Int {
-        [
-            view0.flexibility,
-            view1.flexibility,
-            view2.flexibility,
-            view3.flexibility,
-            view4.flexibility,
-            view5.flexibility,
-            view6.flexibility,
-            view7.flexibility,
-            view8.flexibility,
-        ].max() ?? 0
-    }
 
     /// Wraps 9 child views in a single container view.
     public init(
@@ -1221,108 +1147,108 @@ public struct TupleView9<
         var layoutableChildren: [LayoutSystem.LayoutableChild] = []
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view0.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view1.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view2.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view3.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child3.update(
                         with: view3,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view4.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child4.update(
                         with: view4,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view5.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child5.update(
                         with: view5,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view6.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child6.update(
                         with: view6,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view7.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child7.update(
                         with: view7,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view8.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child8.update(
                         with: view8,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
@@ -1343,7 +1269,8 @@ public struct TupleView9<
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
@@ -1351,7 +1278,8 @@ public struct TupleView9<
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
     }
 }
@@ -1383,21 +1311,6 @@ public struct TupleView10<
     public var view9: View9
 
     public var body = EmptyView()
-
-    public var flexibility: Int {
-        [
-            view0.flexibility,
-            view1.flexibility,
-            view2.flexibility,
-            view3.flexibility,
-            view4.flexibility,
-            view5.flexibility,
-            view6.flexibility,
-            view7.flexibility,
-            view8.flexibility,
-            view9.flexibility,
-        ].max() ?? 0
-    }
 
     /// Wraps 10 child views in a single container view.
     public init(
@@ -1445,120 +1358,120 @@ public struct TupleView10<
         var layoutableChildren: [LayoutSystem.LayoutableChild] = []
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view0.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child0.update(
                         with: view0,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view1.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child1.update(
                         with: view1,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view2.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child2.update(
                         with: view2,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view3.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child3.update(
                         with: view3,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view4.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child4.update(
                         with: view4,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view5.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child5.update(
                         with: view5,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view6.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child6.update(
                         with: view6,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view7.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child7.update(
                         with: view7,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view8.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child8.update(
                         with: view8,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
         )
         layoutableChildren.append(
             LayoutSystem.LayoutableChild(
-                flexibility: view9.flexibility,
-                update: { proposedSize, environment in
+                update: { proposedSize, environment, dryRun in
                     children.child9.update(
                         with: view9,
                         proposedSize: proposedSize,
-                        environment: environment
+                        environment: environment,
+                        dryRun: dryRun
                     )
                 }
             )
@@ -1579,7 +1492,8 @@ public struct TupleView10<
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let group = Group(content: self)
         return group.update(
@@ -1587,7 +1501,8 @@ public struct TupleView10<
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend
+            backend: backend,
+            dryRun: dryRun
         )
     }
 }

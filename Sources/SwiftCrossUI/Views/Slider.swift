@@ -94,30 +94,40 @@ public struct Slider: ElementaryView, View {
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
-        backend.updateSlider(
-            widget,
-            minimum: minimum,
-            maximum: maximum,
-            decimalPlaces: decimalPlaces
-        ) { [weak value] newValue in
-            guard let value = value else {
-                return
+        if !dryRun {
+            backend.updateSlider(
+                widget,
+                minimum: minimum,
+                maximum: maximum,
+                decimalPlaces: decimalPlaces
+            ) { [weak value] newValue in
+                guard let value = value else {
+                    return
+                }
+                value.wrappedValue = newValue
             }
-            value.wrappedValue = newValue
+
+            if let value = value?.wrappedValue {
+                backend.setValue(ofSlider: widget, to: value)
+            }
         }
 
-        if let value = value?.wrappedValue {
-            backend.setValue(ofSlider: widget, to: value)
-        }
-
+        // TODO: Don't rely on naturalSize for minimum size so that we can get Slider sizes without
+        //   relying on the widget.
         let naturalSize = backend.naturalSize(of: widget)
         let size = SIMD2(proposedSize.x, naturalSize.y)
-        backend.setSize(of: widget, to: size)
 
+        if !dryRun {
+            backend.setSize(of: widget, to: size)
+        }
+
+        // TODO: Allow backends to specify their own ideal slider widths.
         return ViewUpdateResult(
             size: size,
+            idealSize: SIMD2(100, naturalSize.y),
             minimumWidth: naturalSize.x,
             minimumHeight: naturalSize.y
         )

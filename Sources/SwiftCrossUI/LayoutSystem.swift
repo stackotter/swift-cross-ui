@@ -1,18 +1,29 @@
 public enum LayoutSystem {
     public struct LayoutableChild {
-        public var flexibility: Int
-        public var update:
+        private var update:
             (
                 _ proposedSize: SIMD2<Int>,
-                _ environment: Environment
+                _ environment: Environment,
+                _ dryRun: Bool
             ) -> ViewUpdateResult
 
-        public init(
-            flexibility: Int,
-            update: @escaping (SIMD2<Int>, Environment) -> ViewUpdateResult
-        ) {
-            self.flexibility = flexibility
+        public init(update: @escaping (SIMD2<Int>, Environment, Bool) -> ViewUpdateResult) {
             self.update = update
+        }
+
+        public func update(
+            proposedSize: SIMD2<Int>,
+            environment: Environment,
+            dryRun: Bool = false
+        ) -> ViewUpdateResult {
+            update(proposedSize, environment, dryRun)
+        }
+
+        public func computeSize(
+            proposedSize: SIMD2<Int>,
+            environment: Environment
+        ) -> ViewUpdateResult {
+            update(proposedSize, environment, true)
         }
     }
 
@@ -22,7 +33,7 @@ public enum LayoutSystem {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend,
-        file: String = #file
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let spacing = environment.layoutSpacing
         let alignment = environment.layoutAlignment
@@ -37,9 +48,27 @@ public enum LayoutSystem {
             count: children.count
         )
 
-        let sortedChildren = children.enumerated().sorted { first, second in
-            first.element.flexibility <= second.element.flexibility
+        // TODO: Find a better notion of 'flexibility', will probably require knowing a view's
+        //   maximum size, not just its minimum size.
+        let proposedSizeWithoutSpacing = SIMD2(
+            proposedSize.x - (orientation == .horizontal ? totalSpacing : 0),
+            proposedSize.y - (orientation == .vertical ? totalSpacing : 0)
+        )
+        let minimumSizes = children.map { child in
+            let size = child.computeSize(
+                proposedSize: proposedSizeWithoutSpacing,
+                environment: environment
+            )
+            return switch orientation {
+                case .horizontal:
+                    size.minimumWidth
+                case .vertical:
+                    size.minimumHeight
+            }
         }
+        let sortedChildren = zip(children.enumerated(), minimumSizes).sorted { first, second in
+            first.1 <= second.1
+        }.map(\.0)
 
         for (index, child) in sortedChildren {
             let proposedWidth: Double
@@ -58,11 +87,12 @@ public enum LayoutSystem {
             }
 
             let childSize = child.update(
-                SIMD2<Int>(
+                proposedSize: SIMD2<Int>(
                     Int(proposedWidth.rounded(.towardZero)),
                     Int(proposedHeight.rounded(.towardZero))
                 ),
-                environment
+                environment: environment,
+                dryRun: dryRun
             )
 
             renderedChildren[index] = childSize
@@ -77,6 +107,7 @@ public enum LayoutSystem {
         }
 
         let size: SIMD2<Int>
+        let idealSize: SIMD2<Int>
         let minimumWidth: Int
         let minimumHeight: Int
         switch orientation {
@@ -85,6 +116,10 @@ public enum LayoutSystem {
                     renderedChildren.map(\.size.x).reduce(0, +) + totalSpacing,
                     renderedChildren.map(\.size.y).max() ?? 0
                 )
+                idealSize = SIMD2<Int>(
+                    renderedChildren.map(\.idealSize.x).reduce(0, +) + totalSpacing,
+                    renderedChildren.map(\.idealSize.y).max() ?? 0
+                )
                 minimumWidth = renderedChildren.map(\.minimumWidth).reduce(0, +) + totalSpacing
                 minimumHeight = renderedChildren.map(\.minimumHeight).max() ?? 0
             case .vertical:
@@ -92,43 +127,50 @@ public enum LayoutSystem {
                     renderedChildren.map(\.size.x).max() ?? 0,
                     renderedChildren.map(\.size.y).reduce(0, +) + totalSpacing
                 )
+                idealSize = SIMD2<Int>(
+                    renderedChildren.map(\.idealSize.x).max() ?? 0,
+                    renderedChildren.map(\.idealSize.y).reduce(0, +) + totalSpacing
+                )
                 minimumWidth = renderedChildren.map(\.minimumWidth).max() ?? 0
                 minimumHeight = renderedChildren.map(\.minimumHeight).reduce(0, +) + totalSpacing
         }
 
-        backend.setSize(of: container, to: size)
+        if !dryRun {
+            backend.setSize(of: container, to: size)
 
-        var x = 0
-        var y = 0
-        for (index, childSize) in renderedChildren.enumerated() {
-            // Compute alignment
-            switch (orientation, alignment) {
-                case (.vertical, .leading):
-                    x = 0
-                case (.horizontal, .leading):
-                    y = 0
-                case (.vertical, .center):
-                    x = (size.x - childSize.size.x) / 2
-                case (.horizontal, .center):
-                    y = (size.y - childSize.size.y) / 2
-                case (.vertical, .trailing):
-                    x = (size.x - childSize.size.x)
-                case (.horizontal, .trailing):
-                    y = (size.y - childSize.size.y)
-            }
+            var x = 0
+            var y = 0
+            for (index, childSize) in renderedChildren.enumerated() {
+                // Compute alignment
+                switch (orientation, alignment) {
+                    case (.vertical, .leading):
+                        x = 0
+                    case (.horizontal, .leading):
+                        y = 0
+                    case (.vertical, .center):
+                        x = (size.x - childSize.size.x) / 2
+                    case (.horizontal, .center):
+                        y = (size.y - childSize.size.y) / 2
+                    case (.vertical, .trailing):
+                        x = (size.x - childSize.size.x)
+                    case (.horizontal, .trailing):
+                        y = (size.y - childSize.size.y)
+                }
 
-            backend.setPosition(ofChildAt: index, in: container, to: SIMD2<Int>(x, y))
+                backend.setPosition(ofChildAt: index, in: container, to: SIMD2<Int>(x, y))
 
-            switch orientation {
-                case .horizontal:
-                    x += childSize.size.x + spacing
-                case .vertical:
-                    y += childSize.size.y + spacing
+                switch orientation {
+                    case .horizontal:
+                        x += childSize.size.x + spacing
+                    case .vertical:
+                        y += childSize.size.y + spacing
+                }
             }
         }
 
         return ViewUpdateResult(
             size: size,
+            idealSize: idealSize,
             minimumWidth: minimumWidth,
             minimumHeight: minimumHeight
         )

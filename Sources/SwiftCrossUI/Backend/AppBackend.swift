@@ -200,10 +200,13 @@ public protocol AppBackend {
     /// proposed height). The size returned by this function will be upheld by the layout
     /// system; child views always get the final say on their own size, parents just choose how
     /// the children get layed out.
+    ///
+    /// If `proposedFrame` isn't supplied, the text should be layed out on a single line
+    /// taking up as much width as it needs.
     func size(
         of text: String,
         whenDisplayedIn textView: Widget,
-        proposedFrame: SIMD2<Int>,
+        proposedFrame: SIMD2<Int>?,
         environment: Environment
     ) -> SIMD2<Int>
 
@@ -377,7 +380,7 @@ extension AppBackend {
     public func size(
         of text: String,
         whenDisplayedIn textView: Widget,
-        proposedFrame: SIMD2<Int>,
+        proposedFrame: SIMD2<Int>?,
         environment: Environment
     ) -> SIMD2<Int> {
         todo()

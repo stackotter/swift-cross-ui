@@ -38,10 +38,6 @@ struct StrictFrameView<Child: View>: TypeSafeView {
     /// The exact height to make the view.
     var height: Int?
 
-    public var flexibility: Int {
-        0
-    }
-
     /// Wraps a child view with size constraints.
     init(_ child: Child, width: Int?, height: Int?) {
         self.body = TupleView1(child)
@@ -71,29 +67,41 @@ struct StrictFrameView<Child: View>: TypeSafeView {
         children: TupleViewChildren1<Child>,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
-        let frameSize = SIMD2(
+        let proposedSize = SIMD2(
             width ?? proposedSize.x,
             height ?? proposedSize.y
         )
 
         let childSize = children.child0.update(
             with: body.view0,
-            proposedSize: frameSize,
-            environment: environment
+            proposedSize: proposedSize,
+            environment: environment,
+            dryRun: dryRun
         )
 
-        let childPosition =
-            SIMD2(
-                frameSize.x - childSize.size.x,
-                frameSize.y - childSize.size.y
-            ) / 2
-        backend.setSize(of: widget, to: frameSize)
-        backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
+        let frameSize = SIMD2(
+            width ?? childSize.size.x,
+            height ?? childSize.size.y
+        )
+        if !dryRun {
+            let childPosition =
+                SIMD2(
+                    frameSize.x - childSize.size.x,
+                    frameSize.y - childSize.size.y
+                ) / 2
+            backend.setSize(of: widget, to: frameSize)
+            backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
+        }
 
         return ViewUpdateResult(
             size: frameSize,
+            idealSize: SIMD2(
+                width ?? childSize.idealSize.x,
+                height ?? childSize.idealSize.y
+            ),
             minimumWidth: width ?? childSize.minimumWidth,
             minimumHeight: height ?? childSize.minimumHeight
         )
@@ -110,10 +118,6 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
     var minHeight: Int?
     var idealHeight: Int?
     var maxHeight: Int?
-
-    public var flexibility: Int {
-        (maxWidth == nil && maxHeight == nil) ? body.flexibility : 100
-    }
 
     /// Wraps a child view with size constraints.
     init(
@@ -156,7 +160,8 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         children: TupleViewChildren1<Child>,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         var proposedFrameSize = proposedSize
         if let idealWidth {
@@ -181,32 +186,45 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         let childSize = children.child0.update(
             with: body.view0,
             proposedSize: proposedFrameSize,
-            environment: environment
+            environment: environment,
+            dryRun: dryRun
         )
 
         var frameSize = childSize
         if let minWidth {
             frameSize.size.x = max(frameSize.size.x, minWidth)
             frameSize.minimumWidth = minWidth
+            frameSize.idealSize.x = max(frameSize.idealSize.x, minWidth)
         }
         if let maxWidth {
             frameSize.size.x = min(frameSize.size.x, maxWidth)
+            frameSize.idealSize.x = min(frameSize.idealSize.x, maxWidth)
         }
         if let minHeight {
             frameSize.size.y = max(frameSize.size.y, minHeight)
             frameSize.minimumHeight = minHeight
+            frameSize.idealSize.y = max(frameSize.idealSize.y, minHeight)
         }
         if let maxHeight {
             frameSize.size.y = min(frameSize.size.y, maxHeight)
+            frameSize.idealSize.y = min(frameSize.idealSize.y, maxHeight)
+        }
+        if let idealWidth {
+            frameSize.idealSize.x = idealWidth
+        }
+        if let idealHeight {
+            frameSize.idealSize.y = idealHeight
         }
 
-        let childPosition =
-            SIMD2(
-                frameSize.size.x - childSize.size.x,
-                frameSize.size.y - childSize.size.y
-            ) / 2
-        backend.setSize(of: widget, to: frameSize.size)
-        backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
+        if !dryRun {
+            let childPosition =
+                SIMD2(
+                    frameSize.size.x - childSize.size.x,
+                    frameSize.size.y - childSize.size.y
+                ) / 2
+            backend.setSize(of: widget, to: frameSize.size)
+            backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
+        }
 
         return frameSize
     }

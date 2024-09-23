@@ -4,15 +4,6 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
 
     public var body = EmptyView()
 
-    public var flexibility: Int {
-        switch storage {
-            case .a(let view):
-                view.flexibility
-            case .b(let view):
-                view.flexibility
-        }
-    }
-
     /// Stores one of two possible view types.
     enum Storage {
         case a(A)
@@ -56,7 +47,8 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
         children: EitherViewChildren<A, B>,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let size: ViewUpdateResult
         let hasSwitchedCase: Bool
@@ -67,7 +59,8 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
                         size = nodeA.update(
                             with: a,
                             proposedSize: proposedSize,
-                            environment: environment
+                            environment: environment,
+                            dryRun: dryRun
                         )
                         hasSwitchedCase = false
                     case .b:
@@ -80,7 +73,8 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
                         size = nodeA.update(
                             with: a,
                             proposedSize: proposedSize,
-                            environment: environment
+                            environment: environment,
+                            dryRun: dryRun
                         )
                         hasSwitchedCase = true
                 }
@@ -90,7 +84,8 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
                         size = nodeB.update(
                             with: b,
                             proposedSize: proposedSize,
-                            environment: environment
+                            environment: environment,
+                            dryRun: dryRun
                         )
                         hasSwitchedCase = false
                     case .a:
@@ -103,20 +98,24 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
                         size = nodeB.update(
                             with: b,
                             proposedSize: proposedSize,
-                            environment: environment
+                            environment: environment,
+                            dryRun: dryRun
                         )
                         hasSwitchedCase = true
                 }
         }
+        children.hasSwitchedCase = children.hasSwitchedCase || hasSwitchedCase
 
-        if hasSwitchedCase || children.isFirstUpdate {
+        if !dryRun && children.hasSwitchedCase {
             backend.removeAllChildren(of: widget)
             backend.addChild(children.node.widget.into(), to: widget)
             backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
-            children.isFirstUpdate = false
+            children.hasSwitchedCase = false
         }
 
-        backend.setSize(of: widget, to: size.size)
+        if !dryRun {
+            backend.setSize(of: widget, to: size.size)
+        }
 
         return size
     }
@@ -152,8 +151,9 @@ class EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
     /// The view graph node for the currently displayed child.
     var node: EitherNode
 
-    /// `true` if the first view update hasn't occurred yet.
-    var isFirstUpdate = true
+    /// Tracks whether the view has switched cases since the last non-dryrun update.
+    /// Initially `true`.
+    var hasSwitchedCase = true
 
     var widgets: [AnyWidget] {
         return [node.widget]

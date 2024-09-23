@@ -16,12 +16,15 @@ struct ToggleSwitch: ElementaryView, View {
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
-        backend.updateSwitch(widget) { newActiveState in
-            active.wrappedValue = newActiveState
+        if !dryRun {
+            backend.updateSwitch(widget) { newActiveState in
+                active.wrappedValue = newActiveState
+            }
+            backend.setState(ofSwitch: widget, to: active.wrappedValue)
         }
-        backend.setState(ofSwitch: widget, to: active.wrappedValue)
         return ViewUpdateResult(fixedSize: backend.naturalSize(of: widget))
     }
 }

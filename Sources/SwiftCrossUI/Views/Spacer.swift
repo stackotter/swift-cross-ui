@@ -5,10 +5,6 @@ public struct Spacer: ElementaryView, View {
     /// expansion.
     private var minLength: Int?
 
-    public var flexibility: Int {
-        1000
-    }
-
     /// Creates a spacer with a given minimum length along its axis or axes
     /// of expansion.
     public init(minLength: Int? = nil) {
@@ -25,7 +21,8 @@ public struct Spacer: ElementaryView, View {
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let minLength = minLength ?? 0
 
@@ -43,9 +40,12 @@ public struct Spacer: ElementaryView, View {
                 minimumHeight = minLength
         }
 
-        backend.setSize(of: widget, to: size)
+        if !dryRun {
+            backend.setSize(of: widget, to: size)
+        }
         return ViewUpdateResult(
             size: size,
+            idealSize: SIMD2(minimumWidth, minimumHeight),
             minimumWidth: minimumWidth,
             minimumHeight: minimumHeight
         )

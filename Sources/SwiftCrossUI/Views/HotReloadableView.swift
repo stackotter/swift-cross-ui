@@ -13,10 +13,6 @@ public struct HotReloadableView: TypeSafeView {
 
     public var body = EmptyView()
 
-    public var flexibility: Int {
-        child.flexibility
-    }
-
     var child: any View
 
     public init(_ child: any View) {
@@ -60,14 +56,17 @@ public struct HotReloadableView: TypeSafeView {
         children: HotReloadableViewChildren,
         proposedSize: SIMD2<Int>,
         environment: Environment,
-        backend: Backend
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         var (viewTypeMatched, size) = children.node.updateWithNewView(
             child,
             proposedSize,
-            environment
+            environment,
+            dryRun
         )
-        if !viewTypeMatched || children.isFirstUpdate {
+
+        if !viewTypeMatched {
             let snapshotter = ViewGraphSnapshotter()
             let snapshot = children.node.transform(with: snapshotter)
             children.node = ErasedViewGraphNode(
@@ -76,20 +75,30 @@ public struct HotReloadableView: TypeSafeView {
                 snapshot: snapshot,
                 environment: environment
             )
+
             // We can assume that the view types match since we just recreated the view
             // on the line above.
             let (_, newSize) = children.node.updateWithNewView(
                 child,
                 proposedSize,
-                environment
+                environment,
+                dryRun
             )
             size = newSize
-            backend.removeAllChildren(of: widget)
-            backend.addChild(children.node.getWidget().into(), to: widget)
-            backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
-            children.isFirstUpdate = false
+            children.hasChangedChild = true
         }
-        backend.setSize(of: widget, to: size.size)
+
+        if !dryRun {
+            if children.hasChangedChild {
+                backend.removeAllChildren(of: widget)
+                backend.addChild(children.node.getWidget().into(), to: widget)
+                backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
+                children.hasChangedChild = false
+            }
+
+            backend.setSize(of: widget, to: size.size)
+        }
+
         return size
     }
 }
@@ -106,7 +115,7 @@ class HotReloadableViewChildren: ViewGraphNodeChildren {
         [node]
     }
 
-    var isFirstUpdate = true
+    var hasChangedChild = true
 
     /// Creates the erased child node and wraps the child's widget in a single-child container.
     init<Backend: AppBackend>(
