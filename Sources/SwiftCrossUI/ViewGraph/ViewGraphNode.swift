@@ -1,5 +1,3 @@
-var updateCount = 0
-
 /// A view graph node storing a view, its widget, and its children (likely a collection of more nodes).
 ///
 /// This is where updates are initiated when a view's state updates, and where state is persisted
@@ -123,15 +121,29 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     /// current view gets updated due to a state change and has potential to trigger its parent to
     /// update as well, or the current view's child has propagated such an update upwards).
     private func bottomUpUpdate() {
+        // First we compute what size the view will be after the update. If it will change size,
+        // propagate the update to this node's parent instead of updating straight away. The
+        // cachedSize is guaranteed to be the size that the view was after the last update.
+        // cachedSizeIsValid doesn't apply here because it only applies when claiming that
+        // cachedSize is actually what you'd get if you called update right now (which we're
+        // explicitly *not* doing).
         let currentSize = cachedSize
         let newSize = self.update(
             proposedSize: lastProposedSize,
             environment: parentEnvironment,
-            dryRun: false
+            dryRun: true
         )
+
         if newSize != currentSize {
             self.cachedSize = newSize
+            self.cachedSizeIsValid = true
             parentEnvironment.onResize(newSize)
+        } else {
+            cachedSize = self.update(
+                proposedSize: lastProposedSize,
+                environment: parentEnvironment,
+                dryRun: false
+            )
         }
     }
 
@@ -153,7 +165,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         environment: Environment,
         dryRun: Bool
     ) -> ViewUpdateResult {
-        if dryRun && cachedSizeIsValid {
+        if dryRun && cachedSizeIsValid && proposedSize == lastProposedSize {
             return cachedSize
         }
 

@@ -90,21 +90,26 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             scene = newScene
         }
 
+        let environment = environment.with(\.onResize) { [weak self] _ in
+            guard let self = self else { return }
+            // TODO: Figure out whether this would still work if we didn't recompute the
+            //   scene's body. I have a vague feeling that it wouldn't work in all cases?
+            //   But I don't have the time to come up with a counterexample right now.
+            _ = self.update(
+                scene,
+                proposedWindowSize: backend.size(ofWindow: window),
+                backend: backend,
+                environment: environment
+            )
+        }
+
+        // Perform a dry-run update of the root view to check if the window needs to
+        // change size.
         let contentSize = viewGraph.update(
             with: newScene?.body,
             proposedSize: proposedWindowSize,
-            environment: environment.with(\.onResize) { [weak self] _ in
-                guard let self = self else { return }
-                // TODO: Figure out whether this would still work if we didn't recompute the
-                //   scene's body. I have a vague feeling that it wouldn't work in all cases?
-                //   But I don't have the time to come up with a counterexample right now.
-                _ = self.update(
-                    scene,
-                    proposedWindowSize: backend.size(ofWindow: window),
-                    backend: backend,
-                    environment: environment
-                )
-            }
+            environment: environment,
+            dryRun: true
         )
 
         let newWindowSize = updateSize(
@@ -114,12 +119,21 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             environment: environment
         )
 
+        // Either restart the window update (if the content has caused the window to
+        // change size) or rerun the update but for real this time.
         if let newWindowSize {
             return update(
                 scene,
                 proposedWindowSize: newWindowSize,
                 backend: backend,
                 environment: environment
+            )
+        } else {
+            _ = viewGraph.update(
+                with: newScene?.body,
+                proposedSize: proposedWindowSize,
+                environment: environment,
+                dryRun: false
             )
         }
 

@@ -21,7 +21,7 @@ public class ViewGraph<Root: View> {
     /// change as opposed to a window resizing event).
     private var windowSize: SIMD2<Int>
     /// The current size of the root view.
-    private var currentRootViewSize: SIMD2<Int>
+    private var currentRootViewSize: ViewUpdateResult
 
     /// The environment most recently provided by this node's parent scene.
     private var parentEnvironment: Environment
@@ -33,16 +33,28 @@ public class ViewGraph<Root: View> {
         self.view = view
         windowSize = .zero
         parentEnvironment = environment
-        currentRootViewSize = .zero
+        currentRootViewSize = .empty
 
         cancellable = view.state.didChange.observe { [weak self] in
             guard let self else { return }
-            // TODO: Notify parent scene of the root view's new size (which would be
-            //   required to implement content hugging)
-            let newSize = self.update(proposedSize: windowSize, environment: parentEnvironment)
-            if newSize.size != currentRootViewSize {
-                currentRootViewSize = newSize.size
+            // We first compute the root view's new size so that we don't end up
+            // updating the root view twice if we need to propagate the update to
+            // the parent scene.
+            let currentSize = currentRootViewSize
+            let newSize = self.update(
+                proposedSize: windowSize,
+                environment: parentEnvironment,
+                dryRun: true
+            )
+            if newSize != currentSize {
+                currentRootViewSize = newSize
                 environment.onResize(newSize)
+            } else {
+                _ = self.update(
+                    proposedSize: windowSize,
+                    environment: parentEnvironment,
+                    dryRun: false
+                )
             }
         }
     }
@@ -53,7 +65,8 @@ public class ViewGraph<Root: View> {
     public func update(
         with newView: Root? = nil,
         proposedSize: SIMD2<Int>,
-        environment: Environment
+        environment: Environment,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         parentEnvironment = environment
         windowSize = proposedSize
@@ -61,9 +74,8 @@ public class ViewGraph<Root: View> {
             with: newView ?? view,
             proposedSize: proposedSize,
             environment: parentEnvironment,
-            dryRun: false
+            dryRun: dryRun
         )
-        currentRootViewSize = size.size
         return size
     }
 
