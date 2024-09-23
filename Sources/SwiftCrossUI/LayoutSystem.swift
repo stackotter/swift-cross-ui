@@ -67,7 +67,7 @@ public enum LayoutSystem {
             }
         }
         let sortedChildren = zip(children.enumerated(), minimumSizes).sorted { first, second in
-            first.1 <= second.1
+            first.1 >= second.1
         }.map(\.0)
 
         for (index, child) in sortedChildren {
