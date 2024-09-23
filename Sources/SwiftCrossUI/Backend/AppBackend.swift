@@ -159,6 +159,9 @@ public protocol AppBackend {
     func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>)
     /// Removes a child widget from a container (if the child is a direct child of the container).
     func removeChild(_ child: Widget, from container: Widget)
+    /// Sets the background of a container.
+    func setBackgroundColor(ofContainer widget: Widget, to color: Color)
+
     /// Gets the natural size of a given widget. E.g. the natural size of a button may be the size
     /// of the label (without line wrapping) plus a bit of padding and a border.
     func naturalSize(of widget: Widget) -> SIMD2<Int>
@@ -341,6 +344,10 @@ extension AppBackend {
     }
 
     // MARK: Containers
+
+    public func setBackgroundColor(ofContainer widget: Widget, to color: Color) {
+        todo()
+    }
 
     public func createScrollContainer(for child: Widget) -> Widget {
         todo()

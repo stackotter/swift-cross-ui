@@ -53,3 +53,28 @@ public struct Color {
     /// Pure white.
     public static let white = Color(1.00, 1.00, 1.00)
 }
+
+extension Color: ElementaryView {
+    func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
+        backend.createContainer()
+    }
+
+    func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        proposedSize: SIMD2<Int>,
+        environment: Environment,
+        backend: Backend,
+        dryRun: Bool
+    ) -> ViewSize {
+        backend.setSize(of: widget, to: proposedSize)
+        backend.setBackgroundColor(ofContainer: widget, to: self)
+        return ViewSize(
+            size: proposedSize,
+            idealSize: SIMD2(10, 10),
+            minimumWidth: 0,
+            minimumHeight: 0,
+            maximumWidth: nil,
+            maximumHeight: nil
+        )
+    }
+}

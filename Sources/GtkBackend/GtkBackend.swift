@@ -185,6 +185,10 @@ public final class GtkBackend: AppBackend {
         container.remove(child)
     }
 
+    public func setBackgroundColor(ofContainer widget: Widget, to color: SwiftCrossUI.Color) {
+        widget.css.set(property: .backgroundColor(color.gtkColor))
+    }
+
     public func naturalSize(of widget: Widget) -> SIMD2<Int> {
         let currentSize = widget.getSizeRequest()
         widget.setSizeRequest(width: -1, height: -1)

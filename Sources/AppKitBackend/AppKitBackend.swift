@@ -202,6 +202,11 @@ public struct AppKitBackend: AppBackend {
         container.removeSubview(child)
     }
 
+    public func setBackgroundColor(ofContainer widget: Widget, to color: Color) {
+        widget.wantsLayer = true
+        widget.layer?.backgroundColor = color.nsColor.cgColor
+    }
+
     public func naturalSize(of widget: Widget) -> SIMD2<Int> {
         let size = widget.intrinsicContentSize
         return SIMD2(
