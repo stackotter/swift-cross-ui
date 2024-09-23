@@ -69,7 +69,7 @@ struct StrictFrameView<Child: View>: TypeSafeView {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let proposedSize = SIMD2(
             width ?? proposedSize.x,
             height ?? proposedSize.y
@@ -96,14 +96,16 @@ struct StrictFrameView<Child: View>: TypeSafeView {
             backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
         }
 
-        return ViewUpdateResult(
+        return ViewSize(
             size: frameSize,
             idealSize: SIMD2(
                 width ?? childSize.idealSize.x,
                 height ?? childSize.idealSize.y
             ),
             minimumWidth: width ?? childSize.minimumWidth,
-            minimumHeight: height ?? childSize.minimumHeight
+            minimumHeight: height ?? childSize.minimumHeight,
+            maximumWidth: width.map(Double.init) ?? childSize.maximumWidth,
+            maximumHeight: height.map(Double.init) ?? childSize.maximumHeight
         )
     }
 }
@@ -162,7 +164,7 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         var proposedFrameSize = proposedSize
         if let idealWidth {
             proposedFrameSize.x = min(proposedFrameSize.x, idealWidth)
@@ -199,6 +201,7 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         if let maxWidth {
             frameSize.size.x = min(frameSize.size.x, maxWidth)
             frameSize.idealSize.x = min(frameSize.idealSize.x, maxWidth)
+            frameSize.maximumWidth = min(childSize.maximumWidth, Double(maxWidth))
         }
         if let minHeight {
             frameSize.size.y = max(frameSize.size.y, minHeight)
@@ -208,6 +211,7 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         if let maxHeight {
             frameSize.size.y = min(frameSize.size.y, maxHeight)
             frameSize.idealSize.y = min(frameSize.idealSize.y, maxHeight)
+            frameSize.maximumHeight = min(childSize.maximumHeight, Double(maxHeight))
         }
         if let idealWidth {
             frameSize.idealSize.x = idealWidth

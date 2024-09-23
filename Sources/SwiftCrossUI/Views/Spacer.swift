@@ -23,31 +23,39 @@ public struct Spacer: ElementaryView, View {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let minLength = minLength ?? 0
 
         let size: SIMD2<Int>
         let minimumWidth: Int
         let minimumHeight: Int
+        let maximumWidth: Double?
+        let maximumHeight: Double?
         switch environment.layoutOrientation {
             case .horizontal:
                 size = SIMD2(max(minLength, proposedSize.x), 0)
                 minimumWidth = minLength
                 minimumHeight = 0
+                maximumWidth = nil
+                maximumHeight = 0
             case .vertical:
                 size = SIMD2(0, max(minLength, proposedSize.y))
                 minimumWidth = 0
                 minimumHeight = minLength
+                maximumWidth = 0
+                maximumHeight = nil
         }
 
         if !dryRun {
             backend.setSize(of: widget, to: size)
         }
-        return ViewUpdateResult(
+        return ViewSize(
             size: size,
             idealSize: SIMD2(minimumWidth, minimumHeight),
             minimumWidth: minimumWidth,
-            minimumHeight: minimumHeight
+            minimumHeight: minimumHeight,
+            maximumWidth: maximumWidth,
+            maximumHeight: maximumHeight
         )
     }
 }

@@ -40,7 +40,7 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let size = proposedSize
         if !dryRun {
             let rowContent = rows.map(columns.content(for:)).map(RowView.init(_:))
@@ -128,11 +128,13 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
         }
 
         // TODO: Compute a proper ideal size for tables
-        return ViewUpdateResult(
+        return ViewSize(
             size: size,
             idealSize: .zero,
             minimumWidth: 0,
-            minimumHeight: 0
+            minimumHeight: 0,
+            maximumWidth: nil,
+            maximumHeight: nil
         )
     }
 }
@@ -192,7 +194,7 @@ struct RowView<Content: View>: View {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         return .empty
     }
 }

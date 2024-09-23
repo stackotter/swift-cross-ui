@@ -42,7 +42,7 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let leadingWidth = backend.sidebarWidth(ofSplitView: widget)
         if !dryRun {
             backend.setResizeHandler(ofSplitView: widget) { _, _ in
@@ -105,11 +105,13 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
             )
         }
 
-        return ViewUpdateResult(
+        return ViewSize(
             size: size,
             idealSize: leadingContentSize.idealSize &+ trailingContentSize.idealSize,
             minimumWidth: leadingContentSize.minimumWidth + trailingContentSize.minimumWidth,
-            minimumHeight: max(leadingContentSize.minimumHeight, trailingContentSize.minimumHeight)
+            minimumHeight: max(leadingContentSize.minimumHeight, trailingContentSize.minimumHeight),
+            maximumWidth: nil,
+            maximumHeight: nil
         )
     }
 }

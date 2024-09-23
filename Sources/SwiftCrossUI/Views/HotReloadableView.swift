@@ -58,7 +58,7 @@ public struct HotReloadableView: TypeSafeView {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         var (viewTypeMatched, size) = children.node.updateWithNewView(
             child,
             proposedSize,

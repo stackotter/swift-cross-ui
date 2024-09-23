@@ -48,7 +48,7 @@ public struct ForEach<
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         func addChild(_ child: Backend.Widget) {
             if dryRun {
                 children.queuedChanges.append(.addChild(AnyWidget(child)))

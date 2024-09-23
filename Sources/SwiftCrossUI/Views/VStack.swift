@@ -46,7 +46,7 @@ public struct VStack<Content: View>: View {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         return LayoutSystem.updateStackLayout(
             container: widget,
             children: layoutableChildren(backend: backend, children: children),

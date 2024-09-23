@@ -42,7 +42,7 @@ struct EnvironmentModifier<Child: View>: TypeSafeView {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         return body.update(
             widget,
             children: children,

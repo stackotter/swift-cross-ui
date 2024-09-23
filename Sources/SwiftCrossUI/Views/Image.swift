@@ -69,7 +69,7 @@ struct _Image: ElementaryView, View {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         if !dryRun {
             backend.updateImageView(
                 widget,
@@ -80,21 +80,18 @@ struct _Image: ElementaryView, View {
         }
 
         let idealSize = SIMD2(image.width, image.height)
-        let size: ViewUpdateResult
+        let size: ViewSize
         if resizable {
-            size = ViewUpdateResult(
+            size = ViewSize(
                 size: proposedSize,
                 idealSize: idealSize,
                 minimumWidth: 0,
-                minimumHeight: 0
+                minimumHeight: 0,
+                maximumWidth: nil,
+                maximumHeight: nil
             )
         } else {
-            size = ViewUpdateResult(
-                size: idealSize,
-                idealSize: idealSize,
-                minimumWidth: image.width,
-                minimumHeight: image.height
-            )
+            size = ViewSize(fixedSize: idealSize)
         }
 
         if !dryRun {

@@ -49,8 +49,8 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
-        let size: ViewUpdateResult
+    ) -> ViewSize {
+        let size: ViewSize
         let hasSwitchedCase: Bool
         switch storage {
             case .a(let a):

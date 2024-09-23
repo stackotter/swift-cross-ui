@@ -21,9 +21,9 @@ public struct Button: ElementaryView, View {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         // TODO: Implement button sizing within SwiftCrossUI so that we can properly implement `dryRun`.
         backend.updateButton(widget, label: label, action: action, environment: environment)
-        return ViewUpdateResult(fixedSize: backend.naturalSize(of: widget))
+        return ViewSize(fixedSize: backend.naturalSize(of: widget))
     }
 }

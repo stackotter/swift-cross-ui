@@ -59,7 +59,7 @@ public struct AnyView: TypeSafeView {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         var (viewTypesMatched, size) = children.node.updateWithNewView(
             child,
             proposedSize,

@@ -13,7 +13,7 @@ public struct ErasedViewGraphNode {
             _ proposedSize: SIMD2<Int>,
             _ environment: Environment,
             _ dryRun: Bool
-        ) -> (viewTypeMatched: Bool, size: ViewUpdateResult)
+        ) -> (viewTypeMatched: Bool, size: ViewSize)
 
     public var getWidget: () -> AnyWidget
     public var getState: () -> Data?

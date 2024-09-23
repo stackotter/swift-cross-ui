@@ -65,7 +65,7 @@ public struct TupleView1<View0: View>: TypeSafeView, View {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -160,7 +160,7 @@ public struct TupleView2<View0: View, View1: View>: TypeSafeView, View {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -270,7 +270,7 @@ public struct TupleView3<View0: View, View1: View, View2: View>: TypeSafeView, V
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -395,7 +395,7 @@ public struct TupleView4<View0: View, View1: View, View2: View, View3: View>: Ty
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -537,7 +537,7 @@ public struct TupleView5<View0: View, View1: View, View2: View, View3: View, Vie
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -697,7 +697,7 @@ public struct TupleView6<
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -872,7 +872,7 @@ public struct TupleView7<
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -1063,7 +1063,7 @@ public struct TupleView8<
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -1271,7 +1271,7 @@ public struct TupleView9<
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let group = Group(content: self)
         return group.update(
             widget,
@@ -1494,7 +1494,7 @@ public struct TupleView10<
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let group = Group(content: self)
         return group.update(
             widget,

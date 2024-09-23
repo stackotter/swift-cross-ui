@@ -28,7 +28,7 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         // TODO: Implement picker sizing within SwiftCrossUI so that we can properly implement `dryRun`.
         backend.updatePicker(
             widget,
@@ -43,6 +43,6 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
             value.wrappedValue = options[selectedIndex]
         }
         backend.setSelectedOption(ofPicker: widget, to: selectedOptionIndex)
-        return ViewUpdateResult(fixedSize: backend.naturalSize(of: widget))
+        return ViewSize(fixedSize: backend.naturalSize(of: widget))
     }
 }

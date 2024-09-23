@@ -1,5 +1,5 @@
 public struct Environment {
-    public var onResize: (_ newSize: ViewUpdateResult) -> Void
+    public var onResize: (_ newSize: ViewSize) -> Void
     public var layoutOrientation: Orientation
     public var layoutAlignment: StackAlignment
     public var layoutSpacing: Int

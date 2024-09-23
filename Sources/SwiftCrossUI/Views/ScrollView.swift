@@ -43,7 +43,7 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let contentSize = children.child0.update(
             with: body,
             proposedSize: proposedSize,
@@ -60,11 +60,13 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         }
 
         // TODO: Account for size required by scroll bars
-        return ViewUpdateResult(
+        return ViewSize(
             size: scrollViewSize,
             idealSize: contentSize.idealSize,
             minimumWidth: 0,
-            minimumHeight: 0
+            minimumHeight: 0,
+            maximumWidth: nil,
+            maximumHeight: nil
         )
     }
 }

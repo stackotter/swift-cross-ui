@@ -18,13 +18,13 @@ struct ToggleSwitch: ElementaryView, View {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         if !dryRun {
             backend.updateSwitch(widget) { newActiveState in
                 active.wrappedValue = newActiveState
             }
             backend.setState(ofSwitch: widget, to: active.wrappedValue)
         }
-        return ViewUpdateResult(fixedSize: backend.naturalSize(of: widget))
+        return ViewSize(fixedSize: backend.naturalSize(of: widget))
     }
 }

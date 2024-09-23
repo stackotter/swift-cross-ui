@@ -3,10 +3,6 @@ public struct Text: ElementaryView, View {
     /// The string to be shown in the text view.
     private var string: String
 
-    public var flexibility: Int {
-        200
-    }
-
     /// Creates a new text view that displays a string with configurable wrapping.
     public init(_ string: String) {
         self.string = string
@@ -24,7 +20,7 @@ public struct Text: ElementaryView, View {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         if !dryRun {
             backend.updateTextView(widget, content: string, environment: environment)
         }
@@ -59,11 +55,13 @@ public struct Text: ElementaryView, View {
             environment: environment
         ).y
 
-        return ViewUpdateResult(
+        return ViewSize(
             size: size,
             idealSize: idealSize,
             minimumWidth: minimumWidth == 1 ? 0 : minimumWidth,
-            minimumHeight: minimumHeight
+            minimumHeight: minimumHeight,
+            maximumWidth: Double(idealSize.x),
+            maximumHeight: Double(size.y)
         )
     }
 }

@@ -5,9 +5,9 @@ public enum LayoutSystem {
                 _ proposedSize: SIMD2<Int>,
                 _ environment: Environment,
                 _ dryRun: Bool
-            ) -> ViewUpdateResult
+            ) -> ViewSize
 
-        public init(update: @escaping (SIMD2<Int>, Environment, Bool) -> ViewUpdateResult) {
+        public init(update: @escaping (SIMD2<Int>, Environment, Bool) -> ViewSize) {
             self.update = update
         }
 
@@ -15,14 +15,14 @@ public enum LayoutSystem {
             proposedSize: SIMD2<Int>,
             environment: Environment,
             dryRun: Bool = false
-        ) -> ViewUpdateResult {
+        ) -> ViewSize {
             update(proposedSize, environment, dryRun)
         }
 
         public func computeSize(
             proposedSize: SIMD2<Int>,
             environment: Environment
-        ) -> ViewUpdateResult {
+        ) -> ViewSize {
             update(proposedSize, environment, true)
         }
     }
@@ -34,7 +34,7 @@ public enum LayoutSystem {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let spacing = environment.layoutSpacing
         let alignment = environment.layoutAlignment
         let orientation = environment.layoutOrientation
@@ -43,31 +43,31 @@ public enum LayoutSystem {
         var spaceUsedAlongStackAxis = 0
         var childrenRemaining = children.count
 
-        var renderedChildren = [ViewUpdateResult](
+        var renderedChildren = [ViewSize](
             repeating: .empty,
             count: children.count
         )
 
-        // TODO: Find a better notion of 'flexibility', will probably require knowing a view's
-        //   maximum size, not just its minimum size.
+        // My thanks go to this great article for investigating and explaining how SwiftUI determines
+        // child view 'flexibility': https://www.objc.io/blog/2020/11/10/hstacks-child-ordering/
         let proposedSizeWithoutSpacing = SIMD2(
             proposedSize.x - (orientation == .horizontal ? totalSpacing : 0),
             proposedSize.y - (orientation == .vertical ? totalSpacing : 0)
         )
-        let minimumSizes = children.map { child in
+        let flexibilities = children.map { child in
             let size = child.computeSize(
                 proposedSize: proposedSizeWithoutSpacing,
                 environment: environment
             )
             return switch orientation {
                 case .horizontal:
-                    size.minimumWidth
+                    size.maximumWidth - Double(size.minimumWidth)
                 case .vertical:
-                    size.minimumHeight
+                    size.maximumHeight - Double(size.minimumHeight)
             }
         }
-        let sortedChildren = zip(children.enumerated(), minimumSizes).sorted { first, second in
-            first.1 >= second.1
+        let sortedChildren = zip(children.enumerated(), flexibilities).sorted { first, second in
+            first.1 <= second.1
         }.map(\.0)
 
         for (index, child) in sortedChildren {
@@ -110,6 +110,8 @@ public enum LayoutSystem {
         let idealSize: SIMD2<Int>
         let minimumWidth: Int
         let minimumHeight: Int
+        let maximumWidth: Double?
+        let maximumHeight: Double?
         switch orientation {
             case .horizontal:
                 size = SIMD2<Int>(
@@ -122,6 +124,9 @@ public enum LayoutSystem {
                 )
                 minimumWidth = renderedChildren.map(\.minimumWidth).reduce(0, +) + totalSpacing
                 minimumHeight = renderedChildren.map(\.minimumHeight).max() ?? 0
+                maximumWidth =
+                    renderedChildren.map(\.maximumWidth).reduce(0, +) + Double(totalSpacing)
+                maximumHeight = renderedChildren.map(\.maximumHeight).max()
             case .vertical:
                 size = SIMD2<Int>(
                     renderedChildren.map(\.size.x).max() ?? 0,
@@ -133,6 +138,9 @@ public enum LayoutSystem {
                 )
                 minimumWidth = renderedChildren.map(\.minimumWidth).max() ?? 0
                 minimumHeight = renderedChildren.map(\.minimumHeight).reduce(0, +) + totalSpacing
+                maximumWidth = renderedChildren.map(\.maximumWidth).max()
+                maximumHeight =
+                    renderedChildren.map(\.maximumHeight).reduce(0, +) + Double(totalSpacing)
         }
 
         if !dryRun {
@@ -168,11 +176,13 @@ public enum LayoutSystem {
             }
         }
 
-        return ViewUpdateResult(
+        return ViewSize(
             size: size,
             idealSize: idealSize,
             minimumWidth: minimumWidth,
-            minimumHeight: minimumHeight
+            minimumHeight: minimumHeight,
+            maximumWidth: maximumWidth,
+            maximumHeight: maximumHeight
         )
     }
 }

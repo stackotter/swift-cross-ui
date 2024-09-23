@@ -37,7 +37,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     /// occasionally say that the cached size is invalid even when it's in reality still correct.
     var cachedSizeIsValid: Bool
     /// The most recently computed size for the wrapped view.
-    var cachedSize: ViewUpdateResult
+    var cachedSize: ViewSize
     /// The most recent size proposed by the parent view. Used when updating the wrapped
     /// view as a result of a state change rather than the parent view updating.
     private var lastProposedSize: SIMD2<Int>
@@ -164,7 +164,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         if dryRun && cachedSizeIsValid && proposedSize == lastProposedSize {
             return cachedSize
         }

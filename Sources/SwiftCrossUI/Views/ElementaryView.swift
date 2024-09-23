@@ -12,7 +12,7 @@ protocol ElementaryView: View where Content == EmptyView {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult
+    ) -> ViewSize
 }
 
 extension ElementaryView {
@@ -41,7 +41,7 @@ extension ElementaryView {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         update(
             widget,
             proposedSize: proposedSize,

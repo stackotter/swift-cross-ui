@@ -43,7 +43,7 @@ public struct EmptyView: View {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         .empty
     }
 }

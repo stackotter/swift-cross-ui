@@ -18,7 +18,7 @@ public class AnyViewGraphNode<NodeView: View> {
             _ proposedSize: SIMD2<Int>,
             _ environment: Environment,
             _ dryRun: Bool
-        ) -> ViewUpdateResult
+        ) -> ViewSize
     /// The type-erased getter for the node's widget.
     private var _getWidget: () -> AnyWidget
     /// The type-erased getter for the node's view.
@@ -71,7 +71,7 @@ public class AnyViewGraphNode<NodeView: View> {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         _updateWithNewView(newView, proposedSize, environment, dryRun)
     }
 

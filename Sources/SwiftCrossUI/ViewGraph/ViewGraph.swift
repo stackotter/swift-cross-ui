@@ -21,7 +21,7 @@ public class ViewGraph<Root: View> {
     /// change as opposed to a window resizing event).
     private var windowSize: SIMD2<Int>
     /// The current size of the root view.
-    private var currentRootViewSize: ViewUpdateResult
+    private var currentRootViewSize: ViewSize
 
     /// The environment most recently provided by this node's parent scene.
     private var parentEnvironment: Environment
@@ -67,7 +67,7 @@ public class ViewGraph<Root: View> {
         proposedSize: SIMD2<Int>,
         environment: Environment,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         parentEnvironment = environment
         windowSize = proposedSize
         let size = rootNode.update(

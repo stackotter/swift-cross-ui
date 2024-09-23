@@ -41,9 +41,9 @@ public struct OptionalView<V: View>: TypeSafeView, View {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let hasToggled: Bool
-        let size: ViewUpdateResult
+        let size: ViewSize
         if let view = view {
             if let node = children.node {
                 size = node.update(

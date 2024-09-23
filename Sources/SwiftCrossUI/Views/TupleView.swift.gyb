@@ -83,7 +83,7 @@ public struct ${view}<${struct_parameters}>: TypeSafeView, View {
         environment: Environment,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         let group = Group(content: self)
         return group.update(
             widget,

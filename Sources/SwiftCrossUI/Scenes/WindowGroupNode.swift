@@ -72,7 +72,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         proposedWindowSize: SIMD2<Int>,
         backend: Backend,
         environment: Environment
-    ) -> ViewUpdateResult {
+    ) -> ViewSize {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
@@ -157,7 +157,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
     public func updateSize<Backend: AppBackend>(
         of window: Backend.Window,
         backend: Backend,
-        contentSize: ViewUpdateResult,
+        contentSize: ViewSize,
         environment: Environment
     ) -> SIMD2<Int>? {
         let windowSize = backend.size(ofWindow: window)
