@@ -1,3 +1,5 @@
+var updateCount = 0
+
 /// A view graph node storing a view, its widget, and its children (likely a collection of more nodes).
 ///
 /// This is where updates are initiated when a view's state updates, and where state is persisted
@@ -33,8 +35,11 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     /// The backend used to create the view's widget.
     public var backend: Backend
 
+    /// Tracks whether ``cachedSize`` is still valid. Uses a conservative approach so it may
+    /// occasionally say that the cached size is invalid even when it's in reality still correct.
+    var cachedSizeIsValid: Bool
     /// The most recently computed size for the wrapped view.
-    var currentSize: ViewUpdateResult
+    var cachedSize: ViewUpdateResult
     /// The most recent size proposed by the parent view. Used when updating the wrapped
     /// view as a result of a state change rather than the parent view updating.
     private var lastProposedSize: SIMD2<Int>
@@ -80,7 +85,8 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
             snapshot?.isValid(for: NodeView.self) == true
             ? snapshot?.children : snapshot.map { [$0] }
 
-        currentSize = .empty
+        cachedSizeIsValid = false
+        cachedSize = .empty
         lastProposedSize = .zero
         parentEnvironment = environment
 
@@ -117,14 +123,14 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     /// current view gets updated due to a state change and has potential to trigger its parent to
     /// update as well, or the current view's child has propagated such an update upwards).
     private func bottomUpUpdate() {
-        let currentSize = currentSize
+        let currentSize = cachedSize
         let newSize = self.update(
             proposedSize: lastProposedSize,
             environment: parentEnvironment,
             dryRun: false
         )
         if newSize != currentSize {
-            self.currentSize = newSize
+            self.cachedSize = newSize
             parentEnvironment.onResize(newSize)
         }
     }
@@ -147,6 +153,10 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         environment: Environment,
         dryRun: Bool
     ) -> ViewUpdateResult {
+        if dryRun && cachedSizeIsValid {
+            return cachedSize
+        }
+
         parentEnvironment = environment
         lastProposedSize = proposedSize
 
@@ -156,7 +166,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
             view = newView
         }
 
-        currentSize = view.update(
+        cachedSize = view.update(
             widget,
             children: children,
             proposedSize: proposedSize,
@@ -166,6 +176,13 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         )
         backend.show(widget: widget)
 
-        return currentSize
+        // We assume that the view's size won't change between consecutive dry run updates and the
+        // following real update because groups of updates following that pattern are assumed to
+        // be occurring within a single overarching view update. It may seem weird that we set it
+        // to false after real updates, but that's because it may get invalidated between a real
+        // update and the next dry-run update.
+        cachedSizeIsValid = dryRun
+
+        return cachedSize
     }
 }
