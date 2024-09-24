@@ -561,6 +561,12 @@ public final class GtkBackend: AppBackend {
         }
     }
 
+    public func createProgressSpinner() -> Widget {
+        let spinner = Spinner()
+        spinner.spinning = true
+        return spinner
+    }
+
     // MARK: Helpers
 
     private func wrapInCustomRootContainer(_ widget: Widget) -> Widget {

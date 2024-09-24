@@ -341,13 +341,8 @@ public protocol AppBackend {
     /// Sets the index of the selected option of a picker.
     func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?)
 
-    // MARK: Modifiers
-
-    /// Creates a single-child container which can control the styles of its child.
-    /// Used to implement style modifiers; i.e. ``View/foregroundColor(_:)``.
-    func createStyleContainer(for child: Widget) -> Widget
-    /// Sets the foreground color of a foreground color container.
-    func setForegroundColor(ofStyleContainer container: Widget, to color: Color)
+    /// Creates an indeterminate progress spinner.
+    func createProgressSpinner() -> Widget
 }
 
 extension AppBackend {

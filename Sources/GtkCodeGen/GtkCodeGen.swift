@@ -49,7 +49,7 @@ struct GtkCodeGen {
     static func generateSources(for gir: GIR, to directory: URL) throws {
         let allowListedClasses = [
             "Button", "Entry", "Label", "TextView", "Range", "Scale", "Image", "DropDown",
-            "Picture", "Switch",
+            "Picture", "Switch", "Spinner",
         ]
         for class_ in gir.namespace.classes where allowListedClasses.contains(class_.name) {
             let source = generateClass(class_, namespace: gir.namespace)

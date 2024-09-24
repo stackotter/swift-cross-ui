@@ -647,6 +647,14 @@ public final class AppKitBackend: AppBackend {
             attributes: [.foregroundColor: environment.foregroundColor.nsColor]
         )
     }
+
+    public func createProgressSpinner() -> Widget {
+        let spinner = NSProgressIndicator()
+        spinner.isIndeterminate = true
+        spinner.style = .spinning
+        spinner.startAnimation(nil)
+        return spinner
+    }
 }
 
 class NSCustomTableView: NSTableView {
