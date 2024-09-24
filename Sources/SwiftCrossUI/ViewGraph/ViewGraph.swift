@@ -37,24 +37,26 @@ public class ViewGraph<Root: View> {
 
         cancellable = view.state.didChange.observe { [weak self] in
             guard let self else { return }
-            // We first compute the root view's new size so that we don't end up
-            // updating the root view twice if we need to propagate the update to
-            // the parent scene.
-            let currentSize = currentRootViewSize
-            let newSize = self.update(
-                proposedSize: windowSize,
-                environment: parentEnvironment,
-                dryRun: true
-            )
-            if newSize != currentSize {
-                currentRootViewSize = newSize
-                environment.onResize(newSize)
-            } else {
-                _ = self.update(
-                    proposedSize: windowSize,
-                    environment: parentEnvironment,
-                    dryRun: false
+            backend.runInMainThread {
+                // We first compute the root view's new size so that we don't end up
+                // updating the root view twice if we need to propagate the update to
+                // the parent scene.
+                let currentSize = self.currentRootViewSize
+                let newSize = self.update(
+                    proposedSize: self.windowSize,
+                    environment: self.parentEnvironment,
+                    dryRun: true
                 )
+                if newSize != currentSize {
+                    self.currentRootViewSize = newSize
+                    environment.onResize(newSize)
+                } else {
+                    _ = self.update(
+                        proposedSize: self.windowSize,
+                        environment: self.parentEnvironment,
+                        dryRun: false
+                    )
+                }
             }
         }
     }

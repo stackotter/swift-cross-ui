@@ -1,10 +1,5 @@
 import Foundation
 
-// TODO: Find a way to get rid of this if possible. Required for getting onto the correct main thread from `Publisher`
-/// The currently selected backend. Used by ``Publisher`` which is otherwise
-/// unaware of the current backend.
-var currentBackend: (any AppBackend)!
-
 /// A backend that can be used to run an app (e.g. Gtk or Qt).
 ///
 /// Default placeholder implementations are available for all non-essential

@@ -12,16 +12,10 @@ public class Publisher {
     /// Creates a new independent publisher.
     public init() {}
 
-    /// Publishes a change to all observers (on the main thread of the currently selected backend).
-    ///
-    /// Uses ``currentBackend`` as the current backend. Unfortunately this is required to avoid
-    /// the selected backend leaking into state observation.
+    /// Publishes a change to all observers serially on the current thread.
     public func send() {
-        // Publishers are run on the main Gtk thread so that observers can safely update the UI
-        currentBackend.runInMainThread {
-            for observation in self.observations.values {
-                observation()
-            }
+        for observation in self.observations.values {
+            observation()
         }
     }
 

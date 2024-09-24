@@ -32,7 +32,6 @@ class _App<AppRoot: App> {
 
     /// Runs the app using the app's selected backend.
     func run() {
-        currentBackend = backend
         backend.runMainLoop {
             let baseEnvironment = Environment()
             self.environment = self.backend.computeRootEnvironment(
@@ -62,11 +61,13 @@ class _App<AppRoot: App> {
             self.sceneGraphRoot = rootNode
 
             self.cancellable = self.app.state.didChange.observe {
-                self.sceneGraphRoot?.update(
-                    self.app.body,
-                    backend: self.backend,
-                    environment: self.environment
-                )
+                self.backend.runInMainThread {
+                    self.sceneGraphRoot?.update(
+                        self.app.body,
+                        backend: self.backend,
+                        environment: self.environment
+                    )
+                }
             }
         }
     }

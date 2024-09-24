@@ -1,3 +1,5 @@
+import Foundation
+
 /// A view graph node storing a view, its widget, and its children (likely a collection of more nodes).
 ///
 /// This is where updates are initiated when a view's state updates, and where state is persisted
@@ -108,7 +110,9 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         // Update the view and its children when state changes (children are always updated first)
         cancellable = view.state.didChange.observe { [weak self] in
             guard let self = self else { return }
-            self.bottomUpUpdate()
+            self.backend.runInMainThread {
+                self.bottomUpUpdate()
+            }
         }
     }
 
