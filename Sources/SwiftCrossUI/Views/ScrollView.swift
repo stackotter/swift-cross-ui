@@ -2,23 +2,28 @@
 /// ``View/frame`` moVStack to constrain height if necessary.
 public struct ScrollView<Content: View>: TypeSafeView, View {
     public var body: VStack<Content>
+    public var axes: Axis.Set
 
     /// Wraps a view in a VStackrcontent: ollable container.
-    public init(@ViewBuilder _ content: () -> Content) {
+    public init(_ axes: Axis.Set = .vertical, @ViewBuilder _ content: () -> Content) {
+        self.axes = axes
         body = VStack(content: content())
     }
 
-    public func children<Backend: AppBackend>(
+    func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: Environment
-    ) -> TupleViewChildren1<VStack<Content>> {
+    ) -> ScrollViewChildren<Content> {
         // TODO: Verify that snapshotting works correctly with this
-        return TupleViewChildren1(
-            body,
-            backend: backend,
-            snapshots: snapshots,
-            environment: environment
+        return ScrollViewChildren(
+            wrapping: TupleViewChildren1(
+                body,
+                backend: backend,
+                snapshots: snapshots,
+                environment: environment
+            ),
+            backend: backend
         )
     }
 
@@ -30,43 +35,135 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
     }
 
     func asWidget<Backend: AppBackend>(
-        _ children: TupleViewChildren1<VStack<Content>>,
+        _ children: ScrollViewChildren<Content>,
         backend: Backend
     ) -> Backend.Widget {
-        return backend.createScrollContainer(for: children.child0.widget.into())
+        return backend.createScrollContainer(for: children.innerContainer.into())
     }
 
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: TupleViewChildren1<VStack<Content>>,
+        children: ScrollViewChildren<Content>,
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {
-        let contentSize = children.child0.update(
+        // Probe how big the child would like to be
+        let contentSize = children.child.update(
             with: body,
             proposedSize: proposedSize,
             environment: environment,
-            dryRun: dryRun
+            dryRun: true
         )
+
+        let scrollBarWidth = backend.scrollBarWidth
+
+        let hasHorizontalScrollBar =
+            axes.contains(.horizontal) && contentSize.idealSize.x > proposedSize.x
+        let hasVerticalScrollBar =
+            axes.contains(.vertical) && contentSize.idealSize.y > proposedSize.y
+
+        let verticalScrollBarWidth = hasVerticalScrollBar ? scrollBarWidth : 0
+        let horizontalScrollBarHeight = hasHorizontalScrollBar ? scrollBarWidth : 0
+
+        let scrollViewWidth: Int
+        let scrollViewHeight: Int
+        let minimumWidth: Int
+        let minimumHeight: Int
+        if axes.contains(.horizontal) {
+            scrollViewWidth = proposedSize.x
+            minimumWidth = verticalScrollBarWidth
+        } else {
+            scrollViewWidth = contentSize.size.x + verticalScrollBarWidth
+            minimumWidth = contentSize.minimumWidth + verticalScrollBarWidth
+        }
+        if axes.contains(.vertical) {
+            scrollViewHeight = proposedSize.y
+            minimumHeight = horizontalScrollBarHeight
+        } else {
+            scrollViewHeight = contentSize.size.y + horizontalScrollBarHeight
+            minimumHeight = contentSize.minimumHeight + horizontalScrollBarHeight
+        }
+
         let scrollViewSize = SIMD2(
-            min(contentSize.size.x, proposedSize.x),
-            proposedSize.y
+            scrollViewWidth,
+            scrollViewHeight
         )
 
         if !dryRun {
+            let proposedContentSize = SIMD2(
+                hasHorizontalScrollBar ? contentSize.idealSize.x : contentSize.size.x,
+                hasVerticalScrollBar ? contentSize.idealSize.y : contentSize.size.y
+            )
+
+            let finalContentSize = children.child.update(
+                with: body,
+                proposedSize: proposedContentSize,
+                environment: environment,
+                dryRun: false
+            )
+
+            let clipViewWidth = scrollViewSize.x - verticalScrollBarWidth
+            let clipViewHeight = scrollViewSize.y - horizontalScrollBarHeight
+            var childPosition: SIMD2<Int> = .zero
+            var innerContainerSize: SIMD2<Int> = finalContentSize.size
+            if axes.contains(.vertical) && finalContentSize.size.x < clipViewWidth {
+                childPosition.x = (clipViewWidth - finalContentSize.size.x) / 2
+                innerContainerSize.x = clipViewWidth
+            }
+            if axes.contains(.horizontal) && finalContentSize.size.y < clipViewHeight {
+                childPosition.y = (clipViewHeight - finalContentSize.size.y) / 2
+                innerContainerSize.y = clipViewHeight
+            }
+
             backend.setSize(of: widget, to: scrollViewSize)
+            backend.setSize(of: children.innerContainer.into(), to: innerContainerSize)
+            backend.setPosition(ofChildAt: 0, in: children.innerContainer.into(), to: childPosition)
+            backend.setScrollBarPresence(
+                ofScrollContainer: widget,
+                hasVerticalScrollBar: hasVerticalScrollBar,
+                hasHorizontalScrollBar: hasHorizontalScrollBar
+            )
         }
 
         // TODO: Account for size required by scroll bars
         return ViewSize(
             size: scrollViewSize,
             idealSize: contentSize.idealSize,
-            minimumWidth: 0,
-            minimumHeight: 0,
+            minimumWidth: minimumWidth,
+            minimumHeight: minimumHeight,
             maximumWidth: nil,
             maximumHeight: nil
         )
+    }
+}
+
+class ScrollViewChildren<Content: View>: ViewGraphNodeChildren {
+    var children: TupleView1<VStack<Content>>.Children
+    var innerContainer: AnyWidget
+
+    var child: AnyViewGraphNode<VStack<Content>> {
+        children.child0
+    }
+
+    var widgets: [AnyWidget] {
+        // The implementation of this property doesn't really matter. It doesn't
+        // really have a reason to get used anywhere.
+        children.widgets
+    }
+
+    var erasedNodes: [ErasedViewGraphNode] {
+        children.erasedNodes
+    }
+
+    init<Backend: AppBackend>(
+        wrapping children: TupleView1<VStack<Content>>.Children,
+        backend: Backend
+    ) {
+        self.children = children
+        let innerContainer = backend.createContainer()
+        backend.addChild(children.child0.widget.into(), to: innerContainer)
+        self.innerContainer = AnyWidget(innerContainer)
     }
 }

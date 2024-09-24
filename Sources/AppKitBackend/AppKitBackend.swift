@@ -5,7 +5,7 @@ extension App {
     public typealias Backend = AppKitBackend
 }
 
-public struct AppKitBackend: AppBackend {
+public final class AppKitBackend: AppBackend {
     public typealias Window = NSCustomWindow
 
     public static let font = NSFont.systemFont(ofSize: 12)
@@ -15,6 +15,18 @@ public struct AppKitBackend: AppBackend {
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
     public let defaultPaddingAmount = 10
+
+    public var scrollBarWidth: Int {
+        // We assume that all scrollers have their controlSize set to `.regular` by default.
+        // The internet seems to indicate that this is true regardless of any system wide
+        // preferences etc.
+        Int(
+            NSScroller.scrollerWidth(
+                for: .regular,
+                scrollerStyle: NSScroller.preferredScrollerStyle
+            ).rounded(.awayFromZero)
+        )
+    }
 
     public init() {}
 
@@ -104,7 +116,19 @@ public struct AppKitBackend: AppBackend {
             forName: .AppleInterfaceThemeChangedNotification,
             object: nil,
             queue: OperationQueue.main
-        ) { (notification) in
+        ) { notification in
+            action()
+        }
+
+        // This doesn't strictly affect the root environment, but it does require us
+        // to re-compute the app's layout, and this is how backends should trigger top
+        // level updates.
+        DistributedNotificationCenter.default.addObserver(
+            forName: NSScroller.preferredScrollerStyleDidChangeNotification,
+            object: nil,
+            queue: OperationQueue.main
+        ) { notification in
+            // Self.scrollBarWidth has changed
             action()
         }
     }
@@ -438,7 +462,6 @@ public struct AppKitBackend: AppBackend {
 
     public func createScrollContainer(for child: Widget) -> Widget {
         let scrollView = NSScrollView()
-        scrollView.hasVerticalScroller = true
 
         let clipView = scrollView.contentView
         let documentView = NSStackView()
@@ -451,11 +474,22 @@ public struct AppKitBackend: AppBackend {
 
         documentView.topAnchor.constraint(equalTo: clipView.topAnchor).isActive = true
         documentView.leftAnchor.constraint(equalTo: clipView.leftAnchor).isActive = true
-        documentView.rightAnchor.constraint(equalTo: clipView.rightAnchor).isActive = true
         documentView.heightAnchor.constraint(greaterThanOrEqualTo: clipView.heightAnchor)
+            .isActive = true
+        documentView.widthAnchor.constraint(greaterThanOrEqualTo: clipView.widthAnchor)
             .isActive = true
 
         return scrollView
+    }
+
+    public func setScrollBarPresence(
+        ofScrollContainer scrollView: Widget,
+        hasVerticalScrollBar: Bool,
+        hasHorizontalScrollBar: Bool
+    ) {
+        let scrollView = scrollView as! NSScrollView
+        scrollView.hasVerticalScroller = hasVerticalScrollBar
+        scrollView.hasHorizontalScroller = hasHorizontalScrollBar
     }
 
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {

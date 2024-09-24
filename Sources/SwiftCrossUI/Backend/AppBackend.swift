@@ -60,6 +60,17 @@ public protocol AppBackend {
     /// The default amount of padding used when a user uses the ``View/padding(_:_:)``
     /// modifier.
     var defaultPaddingAmount: Int { get }
+    /// Gets the layout width of a backend's scroll bars. Assumes that the width
+    /// is the same for both vertical and horizontal scroll bars (where the width
+    /// of a horizontal scroll bar is what pedants may call its height). If the
+    /// backend uses overlay scroll bars then this width should be 0.
+    ///
+    /// This value may make sense to have as a computed property for some backends
+    /// such as `AppKitBackend` where plugging in a mouse can cause the default
+    /// scroll bar style to change. If something does cause this value to change,
+    /// ensure that the configured root environment change handler gets called so
+    /// that SwiftCrossUI can update the app's layout accordingly.
+    var scrollBarWidth: Int { get }
 
     /// Often in UI frameworks (such as Gtk), code is run in a callback
     /// after starting the app, and hence this generic root window creation
@@ -170,6 +181,12 @@ public protocol AppBackend {
 
     /// Creates a scrollable single-child container wrapping the given widget.
     func createScrollContainer(for child: Widget) -> Widget
+    /// Sets the presence of scroll bars along each axis of a scroll container.
+    func setScrollBarPresence(
+        ofScrollContainer scrollView: Widget,
+        hasVerticalScrollBar: Bool,
+        hasHorizontalScrollBar: Bool
+    )
 
     /// Creates a split view containing two children visible side by side.
     ///
@@ -350,6 +367,14 @@ extension AppBackend {
     }
 
     public func createScrollContainer(for child: Widget) -> Widget {
+        todo()
+    }
+
+    public func setScrollBarPresence(
+        ofScrollContainer scrollView: Widget,
+        hasVerticalScrollBar: Bool,
+        hasHorizontalScrollBar: Bool
+    ) {
         todo()
     }
 

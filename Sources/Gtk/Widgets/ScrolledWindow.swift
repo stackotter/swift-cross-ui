@@ -21,6 +21,14 @@ public class ScrolledWindow: Widget {
     @GObjectProperty(named: "propagate-natural-height") public var propagateNaturalHeight: Bool
     @GObjectProperty(named: "propagate-natural-width") public var propagateNaturalWidth: Bool
 
+    public func setScrollBarPresence(hasVerticalScrollBar: Bool, hasHorizontalScrollBar: Bool) {
+        gtk_scrolled_window_set_policy(
+            opaquePointer,
+            hasHorizontalScrollBar ? GTK_POLICY_AUTOMATIC : GTK_POLICY_NEVER,
+            hasVerticalScrollBar ? GTK_POLICY_AUTOMATIC : GTK_POLICY_NEVER
+        )
+    }
+
     public func setChild(_ child: Widget) {
         self.child?.parentWidget = nil
         self.child = child

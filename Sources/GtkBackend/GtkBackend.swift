@@ -20,6 +20,7 @@ public final class GtkBackend: AppBackend {
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
     public let defaultPaddingAmount = 10
+    public let scrollBarWidth = 0
 
     var gtkApp: Application
 
@@ -246,6 +247,18 @@ public final class GtkBackend: AppBackend {
         let scrollView = ScrolledWindow()
         scrollView.setChild(child)
         return scrollView
+    }
+
+    public func setScrollBarPresence(
+        ofScrollContainer scrollView: Widget,
+        hasVerticalScrollBar: Bool,
+        hasHorizontalScrollBar: Bool
+    ) {
+        let scrollView = scrollView as! ScrolledWindow
+        scrollView.setScrollBarPresence(
+            hasVerticalScrollBar: hasVerticalScrollBar,
+            hasHorizontalScrollBar: hasHorizontalScrollBar
+        )
     }
 
     // MARK: Passive views
