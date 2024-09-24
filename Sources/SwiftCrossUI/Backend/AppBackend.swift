@@ -173,6 +173,10 @@ public protocol AppBackend {
     /// Sets the background of a container.
     func setBackgroundColor(ofContainer widget: Widget, to color: Color)
 
+    /// Sets the corner radius of a widget (any widget). Should affect the view's border radius
+    /// as well.
+    func setCornerRadius(of widget: Widget, to radius: Int)
+
     /// Gets the natural size of a given widget. E.g. the natural size of a button may be the size
     /// of the label (without line wrapping) plus a bit of padding and a border.
     func naturalSize(of widget: Widget) -> SIMD2<Int>
@@ -363,6 +367,10 @@ extension AppBackend {
     // MARK: Containers
 
     public func setBackgroundColor(ofContainer widget: Widget, to color: Color) {
+        todo()
+    }
+
+    public func setCornerRadius(of widget: Widget, to radius: Int) {
         todo()
     }
 

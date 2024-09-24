@@ -190,6 +190,10 @@ public final class GtkBackend: AppBackend {
         widget.css.set(property: .backgroundColor(color.gtkColor))
     }
 
+    public func setCornerRadius(of widget: Widget, to radius: Int) {
+        widget.css.set(property: .cornerRadius(radius))
+    }
+
     public func naturalSize(of widget: Widget) -> SIMD2<Int> {
         let currentSize = widget.getSizeRequest()
         widget.setSizeRequest(width: -1, height: -1)

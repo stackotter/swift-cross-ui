@@ -231,6 +231,12 @@ public final class AppKitBackend: AppBackend {
         widget.layer?.backgroundColor = color.nsColor.cgColor
     }
 
+    public func setCornerRadius(of widget: Widget, to radius: Int) {
+        widget.clipsToBounds = true
+        widget.wantsLayer = true
+        widget.layer?.cornerRadius = CGFloat(radius)
+    }
+
     public func naturalSize(of widget: Widget) -> SIMD2<Int> {
         let size = widget.intrinsicContentSize
         return SIMD2(

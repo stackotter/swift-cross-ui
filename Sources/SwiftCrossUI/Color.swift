@@ -66,8 +66,10 @@ extension Color: ElementaryView {
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {
-        backend.setSize(of: widget, to: proposedSize)
-        backend.setBackgroundColor(ofContainer: widget, to: self)
+        if !dryRun {
+            backend.setSize(of: widget, to: proposedSize)
+            backend.setBackgroundColor(ofContainer: widget, to: self)
+        }
         return ViewSize(
             size: proposedSize,
             idealSize: SIMD2(10, 10),
