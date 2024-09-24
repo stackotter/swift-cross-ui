@@ -278,8 +278,9 @@ public final class GtkBackend: AppBackend {
         textView.label = content
         textView.wrap = true
         textView.lineWrapMode = .wordCharacter
+
         textView.css.clear()
-        textView.css.set(property: .foregroundColor(environment.foregroundColor.gtkColor))
+        textView.css.set(properties: Self.cssProperties(for: environment))
     }
 
     public func size(
@@ -411,9 +412,9 @@ public final class GtkBackend: AppBackend {
         // TODO: Update button label color using environment
         let button = button as! Gtk.Button
         button.label = label
-        button.css.clear()
-        button.css.set(property: .foregroundColor(environment.foregroundColor.gtkColor))
         button.clicked = { _ in action() }
+        button.css.clear()
+        button.css.set(properties: Self.cssProperties(for: environment))
     }
 
     public func createToggle() -> Widget {
@@ -523,14 +524,10 @@ public final class GtkBackend: AppBackend {
             hasChanged = true
         }
 
-        // Apply the current foreground color to the dropdown's labels
-        picker.cssProvider.loadCss(
-            from: """
-                .\(picker.css.cssClass) label {
-                    color: \(CSSProperty.rgba(environment.foregroundColor.gtkColor));
-                }
-                """
-        )
+        // Apply the current text styles to the dropdown's labels
+        var block = CSSBlock(forClass: picker.css.cssClass + " label")
+        block.set(properties: Self.cssProperties(for: environment))
+        picker.cssProvider.loadCss(from: block.stringRepresentation)
 
         guard hasChanged else {
             return
@@ -575,62 +572,41 @@ public final class GtkBackend: AppBackend {
         return container
     }
 
-    private func createSizeDecoupledContainer(for widget: Widget) -> Widget {
-        let innerContainer = Fixed()
-        innerContainer.put(widget, x: 0, y: 0)
-
-        let container = Box(orientation: .vertical, spacing: 0)
-        container.add(innerContainer)
-
-        // Set up a constraint layout to decouple the window's size from the child widget's size
-        // while keeping the child centered. This allows SwiftCrossUI to take full control of
-        // window resizing.
-        let constraintLayout = gtk_constraint_layout_new()!
-        let containerPointer = UnsafeMutableRawPointer(container.opaquePointer!)
-        let childPointer = UnsafeMutableRawPointer(widget.opaquePointer!)
-        let widthConstraint = gtk_constraint_new_constant(
-            containerPointer,
-            GTK_CONSTRAINT_ATTRIBUTE_WIDTH,
-            GTK_CONSTRAINT_RELATION_GE,
-            0,
-            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
-        )
-        let heightConstraint = gtk_constraint_new_constant(
-            containerPointer,
-            GTK_CONSTRAINT_ATTRIBUTE_WIDTH,
-            GTK_CONSTRAINT_RELATION_GE,
-            0,
-            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
-        )
-        let centerXConstraint = gtk_constraint_new(
-            containerPointer,
-            GTK_CONSTRAINT_ATTRIBUTE_CENTER_X,
-            GTK_CONSTRAINT_RELATION_EQ,
-            childPointer,
-            GTK_CONSTRAINT_ATTRIBUTE_CENTER_X,
-            1,
-            0,
-            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
-        )
-        let centerYConstraint = gtk_constraint_new(
-            containerPointer,
-            GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y,
-            GTK_CONSTRAINT_RELATION_EQ,
-            childPointer,
-            GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y,
-            1,
-            0,
-            Int32(GTK_CONSTRAINT_STRENGTH_REQUIRED.rawValue)
-        )
-        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), widthConstraint)
-        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), heightConstraint)
-        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), centerXConstraint)
-        gtk_constraint_layout_add_constraint(OpaquePointer(constraintLayout), centerYConstraint)
-        gtk_widget_set_layout_manager(
-            containerPointer.assumingMemoryBound(to: _GtkWidget.self),
-            constraintLayout
-        )
-
-        return container
+    private static func cssProperties(for environment: Environment) -> [CSSProperty] {
+        var properties: [CSSProperty] = []
+        properties.append(.foregroundColor(environment.foregroundColor.gtkColor))
+        switch environment.font {
+            case .system(let size, let weight, let design):
+                properties.append(.fontSize(size))
+                let weightNumber =
+                    switch weight {
+                        case .thin:
+                            100
+                        case .ultraLight:
+                            200
+                        case .light:
+                            300
+                        case .regular, .none:
+                            400
+                        case .medium:
+                            500
+                        case .semibold:
+                            600
+                        case .bold:
+                            700
+                        case .black:
+                            900
+                        case .heavy:
+                            900
+                    }
+                properties.append(.fontWeight(weightNumber))
+                switch design {
+                    case .monospaced:
+                        properties.append(.fontFamily("monospace"))
+                    case .default, .none:
+                        break
+                }
+        }
+        return properties
     }
 }

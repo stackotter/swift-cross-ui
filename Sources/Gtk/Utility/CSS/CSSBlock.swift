@@ -14,11 +14,11 @@ public struct CSSBlock: Equatable {
     /// The block's properties, keyed by property name.
     private var keyedProperties: [String: CSSProperty] = [:]
 
-    var stringRepresentation: String {
+    public var stringRepresentation: String {
         ".\(cssClass){\(keyedProperties.values.map(\.stringRepresentation).joined())}"
     }
 
-    init(forClass cssClass: String) {
+    public init(forClass cssClass: String) {
         self.cssClass = cssClass
     }
 

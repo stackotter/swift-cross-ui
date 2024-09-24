@@ -8,8 +8,6 @@ extension App {
 public final class AppKitBackend: AppBackend {
     public typealias Window = NSCustomWindow
 
-    public static let font = NSFont.systemFont(ofSize: 12)
-
     public typealias Widget = NSView
 
     public let defaultTableRowContentHeight = 20
@@ -108,7 +106,13 @@ public final class AppKitBackend: AppBackend {
     public func computeRootEnvironment(defaultEnvironment: Environment) -> Environment {
         let isDark = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark"
         let textColor: Color = isDark ? .white : .black
-        return defaultEnvironment.with(\.foregroundColor, textColor)
+        let font = Font.system(
+            size: Int(NSFont.systemFont(ofSize: 0.0).pointSize.rounded(.awayFromZero))
+        )
+        return
+            defaultEnvironment
+            .with(\.foregroundColor, textColor)
+            .with(\.font, font)
     }
 
     public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
@@ -299,10 +303,11 @@ public final class AppKitBackend: AppBackend {
             width: (proposedFrame?.x).map(CGFloat.init) ?? 0,
             height: .greatestFiniteMagnitude
         )
+        let font = Self.font(for: environment)
         let rect = NSString(string: text).boundingRect(
             with: proposedSize,
             options: [.usesLineFragmentOrigin],
-            attributes: [.font: Self.font]
+            attributes: [.font: font]
         )
         return SIMD2(
             Int(rect.size.width.rounded(.awayFromZero)),
@@ -311,9 +316,7 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func createTextView() -> Widget {
-        let textView = NSTextField(wrappingLabelWithString: "")
-        textView.font = Self.font
-        return textView
+        return NSTextField(wrappingLabelWithString: "")
     }
 
     public func updateTextView(_ textView: Widget, content: String, environment: Environment) {
@@ -333,6 +336,7 @@ public final class AppKitBackend: AppBackend {
     ) {
         let button = button as! NSButton
         button.attributedTitle = Self.attributedString(for: label, in: environment)
+        button.bezelStyle = .regularSquare
         button.onAction = { _ in
             action()
         }
@@ -422,6 +426,7 @@ public final class AppKitBackend: AppBackend {
             let picker = picker as! NSPopUpButton
             onChange(picker.indexOfSelectedItem)
         }
+        picker.bezelStyle = .regularSquare
     }
 
     public func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?) {
@@ -431,14 +436,6 @@ public final class AppKitBackend: AppBackend {
         } else {
             picker.select(nil)
         }
-    }
-
-    public func createStyleContainer(for child: Widget) -> Widget {
-        return child
-    }
-
-    public func setForegroundColor(ofStyleContainer container: Widget, to color: Color) {
-        // TODO: Implement foreground color
     }
 
     public func createTextField() -> Widget {
@@ -644,8 +641,51 @@ public final class AppKitBackend: AppBackend {
     ) -> NSAttributedString {
         NSAttributedString(
             string: text,
-            attributes: [.foregroundColor: environment.foregroundColor.nsColor]
+            attributes: [
+                .foregroundColor: environment.foregroundColor.nsColor,
+                .font: font(for: environment),
+            ]
         )
+    }
+
+    private static func font(for environment: Environment) -> NSFont {
+        switch environment.font {
+            case .system(let size, let weight, let design):
+                switch design {
+                    case .default, .none:
+                        NSFont.systemFont(
+                            ofSize: CGFloat(size), weight: weight.map(Self.weight(for:)) ?? .regular
+                        )
+                    case .monospaced:
+                        NSFont.monospacedSystemFont(
+                            ofSize: CGFloat(size),
+                            weight: weight.map(Self.weight(for:)) ?? .regular
+                        )
+                }
+        }
+    }
+
+    private static func weight(for weight: Font.Weight) -> NSFont.Weight {
+        switch weight {
+            case .black:
+                .black
+            case .bold:
+                .bold
+            case .heavy:
+                .heavy
+            case .light:
+                .light
+            case .medium:
+                .medium
+            case .regular:
+                .regular
+            case .semibold:
+                .semibold
+            case .thin:
+                .thin
+            case .ultraLight:
+                .ultraLight
+        }
     }
 
     public func createProgressSpinner() -> Widget {
@@ -655,6 +695,7 @@ public final class AppKitBackend: AppBackend {
         spinner.startAnimation(nil)
         return spinner
     }
+
 }
 
 class NSCustomTableView: NSTableView {

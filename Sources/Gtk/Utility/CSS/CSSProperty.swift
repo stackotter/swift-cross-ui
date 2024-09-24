@@ -54,6 +54,18 @@ public struct CSSProperty: Equatable {
         CSSProperty(key: "min-height", value: "\(height)px")
     }
 
+    public static func fontSize(_ size: Int) -> CSSProperty {
+        CSSProperty(key: "font-size", value: "\(size)px")
+    }
+
+    public static func fontWeight(_ weight: Int) -> CSSProperty {
+        CSSProperty(key: "font-weight", value: String(weight))
+    }
+
+    public static func fontFamily(_ family: String) -> CSSProperty {
+        CSSProperty(key: "font-family", value: family)
+    }
+
     public static func rgba(_ color: Color) -> String {
         let red = color.red * 255
         let green = color.green * 255

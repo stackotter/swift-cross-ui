@@ -4,6 +4,7 @@ public struct Environment {
     public var layoutAlignment: StackAlignment
     public var layoutSpacing: Int
     public var foregroundColor: Color
+    public var font: Font
 
     init() {
         onResize = { _ in }
@@ -11,6 +12,7 @@ public struct Environment {
         layoutAlignment = .center
         layoutSpacing = 10
         foregroundColor = .black
+        font = .system(size: 12)
     }
 
     public func with<T>(_ keyPath: WritableKeyPath<Self, T>, _ newValue: T) -> Self {
