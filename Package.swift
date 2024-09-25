@@ -140,7 +140,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/stackotter/swift-image-formats",
-            .upToNextMinor(from: "0.1.0")
+            .upToNextMinor(from: "0.1.1")
         ),
     ] + swift510Dependencies,
     targets: [

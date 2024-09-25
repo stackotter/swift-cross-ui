@@ -70,6 +70,10 @@ struct StrictFrameView<Child: View>: TypeSafeView {
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {
+        if dryRun, let width, let height {
+            return ViewSize(fixedSize: SIMD2(width, height))
+        }
+
         let proposedSize = SIMD2(
             width ?? proposedSize.x,
             height ?? proposedSize.y

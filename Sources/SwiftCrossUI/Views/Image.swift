@@ -2,15 +2,16 @@ import Foundation
 import ImageFormats
 
 /// A view that displays an image.
-public struct Image: View {
-    private var image: ImageFormats.Image<RGBA>?
+public struct Image: TypeSafeView, View {
     private var isResizable = false
+    private var source: Source
 
-    public var body: some View {
-        if let image {
-            _Image(image, resizable: isResizable)
-        }
+    enum Source: Equatable {
+        case url(URL, useFileExtension: Bool)
+        case image(ImageFormats.Image<RGBA>)
     }
+
+    public var body = EmptyView()
 
     /// Displays an image file. `png`, `jpg`, and `webp` are supported.
     /// - Parameters:
@@ -18,25 +19,13 @@ public struct Image: View {
     ///   - useFileExtension: If `true`, the file extension is used to determine the file type,
     ///     otherwise the first few ('magic') bytes of the file are used.
     public init(_ url: URL, useFileExtension: Bool = true) {
-        guard let data = try? Data(contentsOf: url) else {
-            return
-        }
-
-        let bytes = Array(data)
-        if useFileExtension {
-            image = try? ImageFormats.Image<RGBA>.load(
-                from: bytes,
-                usingFileExtension: url.pathExtension
-            )
-        } else {
-            image = try? ImageFormats.Image<RGBA>.load(from: bytes)
-        }
+        source = .url(url, useFileExtension: useFileExtension)
     }
 
     /// Displays an image from raw pixel data.
     /// - Parameter image: The image data to display.
     public init(_ image: ImageFormats.Image<RGBA>) {
-        self.image = image
+        source = .image(image)
     }
 
     /// Makes the image resize to fit the available space.
@@ -45,59 +34,127 @@ public struct Image: View {
         image.isResizable = true
         return image
     }
-}
 
-/// An internal implementation detail of ``Image``. Implements displaying of raw pixel data.
-struct _Image: ElementaryView, View {
-    private var image: ImageFormats.Image<RGBA>
-    private var resizable: Bool
+    init(_ source: Source, resizable: Bool) {
+        self.source = source
+        self.isResizable = resizable
+    }
 
-    init(_ image: ImageFormats.Image<RGBA>, resizable: Bool) {
-        self.image = image
-        self.resizable = resizable
+    func layoutableChildren<Backend: AppBackend>(
+        backend: Backend,
+        children: _ImageChildren
+    ) -> [LayoutSystem.LayoutableChild] {
+        []
+    }
+
+    func children<Backend: AppBackend>(
+        backend: Backend,
+        snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
+        environment: Environment
+    ) -> _ImageChildren {
+        _ImageChildren(backend: backend)
     }
 
     func asWidget<Backend: AppBackend>(
+        _ children: _ImageChildren,
         backend: Backend
     ) -> Backend.Widget {
-        return backend.createImageView()
+        children.container.into()
     }
 
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
+        children: _ImageChildren,
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {
-        if !dryRun {
-            backend.updateImageView(
-                widget,
-                rgbaData: image.data,
-                width: image.width,
-                height: image.height
-            )
+        let image: ImageFormats.Image<RGBA>?
+        if source != children.cachedImageSource {
+            switch source {
+                case .url(let url, let useFileExtension):
+                    if let data = try? Data(contentsOf: url) {
+                        let bytes = Array(data)
+                        if useFileExtension {
+                            image = try? ImageFormats.Image<RGBA>.load(
+                                from: bytes,
+                                usingFileExtension: url.pathExtension
+                            )
+                        } else {
+                            image = try? ImageFormats.Image<RGBA>.load(from: bytes)
+                        }
+                    } else {
+                        image = nil
+                    }
+                case .image(let sourceImage):
+                    image = sourceImage
+            }
+
+            children.cachedImageSource = source
+            children.cachedImage = image
+            children.imageChanged = true
+        } else {
+            image = children.cachedImage
         }
 
-        let idealSize = SIMD2(image.width, image.height)
+        let idealSize = SIMD2(image?.width ?? 0, image?.height ?? 0)
         let size: ViewSize
-        if resizable {
+        if isResizable {
             size = ViewSize(
-                size: proposedSize,
+                size: image == nil ? .zero : proposedSize,
                 idealSize: idealSize,
                 minimumWidth: 0,
                 minimumHeight: 0,
-                maximumWidth: nil,
-                maximumHeight: nil
+                maximumWidth: image == nil ? 0 : nil,
+                maximumHeight: image == nil ? 0 : nil
             )
         } else {
             size = ViewSize(fixedSize: idealSize)
         }
 
+        if !dryRun && children.imageChanged {
+            children.imageChanged = false
+            if let image {
+                backend.updateImageView(
+                    children.imageWidget.into(),
+                    rgbaData: image.data,
+                    width: image.width,
+                    height: image.height
+                )
+                if children.isContainerEmpty {
+                    backend.addChild(children.imageWidget.into(), to: children.container.into())
+                    backend.setPosition(ofChildAt: 0, in: children.container.into(), to: .zero)
+                }
+                children.isContainerEmpty = false
+            } else {
+                backend.removeAllChildren(of: children.container.into())
+                children.isContainerEmpty = true
+            }
+        }
+
         if !dryRun {
-            backend.setSize(of: widget, to: size.size)
+            backend.setSize(of: children.container.into(), to: size.size)
+            backend.setSize(of: children.imageWidget.into(), to: size.size)
         }
 
         return size
     }
+}
+
+class _ImageChildren: ViewGraphNodeChildren {
+    var cachedImageSource: Image.Source? = nil
+    var cachedImage: ImageFormats.Image<RGBA>? = nil
+    var container: AnyWidget
+    var imageWidget: AnyWidget
+    var imageChanged = false
+    var isContainerEmpty = true
+
+    init<Backend: AppBackend>(backend: Backend) {
+        container = AnyWidget(backend.createContainer())
+        imageWidget = AnyWidget(backend.createImageView())
+    }
+
+    var widgets: [AnyWidget] = []
+    var erasedNodes: [ErasedViewGraphNode] = []
 }
