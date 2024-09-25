@@ -35,11 +35,11 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     /// The backend used to create the view's widget.
     public var backend: Backend
 
-    /// Tracks whether ``cachedSize`` is still valid. Uses a conservative approach so it may
-    /// occasionally say that the cached size is invalid even when it's in reality still correct.
-    var cachedSizeIsValid: Bool
     /// The most recently computed size for the wrapped view.
-    var cachedSize: ViewSize
+    var currentSize: ViewSize?
+    /// A cache of computed sizes keyed by the proposed size they were for. Gets cleared before the
+    /// sizes become invalid.
+    var sizeCache: [SIMD2<Int>: ViewSize]
     /// The most recent size proposed by the parent view. Used when updating the wrapped
     /// view as a result of a state change rather than the parent view updating.
     private var lastProposedSize: SIMD2<Int>
@@ -85,8 +85,8 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
             snapshot?.isValid(for: NodeView.self) == true
             ? snapshot?.children : snapshot.map { [$0] }
 
-        cachedSizeIsValid = false
-        cachedSize = .empty
+        currentSize = nil
+        sizeCache = [:]
         lastProposedSize = .zero
         parentEnvironment = environment
 
@@ -126,12 +126,8 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     /// update as well, or the current view's child has propagated such an update upwards).
     private func bottomUpUpdate() {
         // First we compute what size the view will be after the update. If it will change size,
-        // propagate the update to this node's parent instead of updating straight away. The
-        // cachedSize is guaranteed to be the size that the view was after the last update.
-        // cachedSizeIsValid doesn't apply here because it only applies when claiming that
-        // cachedSize is actually what you'd get if you called update right now (which we're
-        // explicitly *not* doing).
-        let currentSize = cachedSize
+        // propagate the update to this node's parent instead of updating straight away.
+        let currentSize = currentSize
         let newSize = self.update(
             proposedSize: lastProposedSize,
             environment: parentEnvironment,
@@ -139,11 +135,11 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         )
 
         if newSize != currentSize {
-            self.cachedSize = newSize
-            self.cachedSizeIsValid = true
+            self.currentSize = newSize
+            sizeCache[lastProposedSize] = newSize
             parentEnvironment.onResize(newSize)
         } else {
-            cachedSize = self.update(
+            self.currentSize = self.update(
                 proposedSize: lastProposedSize,
                 environment: parentEnvironment,
                 dryRun: false
@@ -169,8 +165,19 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         environment: Environment,
         dryRun: Bool
     ) -> ViewSize {
-        if dryRun && cachedSizeIsValid && proposedSize == lastProposedSize {
+        if dryRun, let cachedSize = sizeCache[proposedSize] {
             return cachedSize
+        }
+
+        if dryRun, let currentSize,
+            ((Double(lastProposedSize.x) >= currentSize.maximumWidth
+                && Double(proposedSize.x) >= currentSize.maximumWidth)
+                || proposedSize.x == lastProposedSize.x)
+                && ((Double(lastProposedSize.y) >= currentSize.maximumHeight
+                    && Double(proposedSize.y) >= currentSize.maximumHeight)
+                    || proposedSize.y == lastProposedSize.y)
+        {
+            return currentSize
         }
 
         parentEnvironment = environment
@@ -182,7 +189,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
             view = newView
         }
 
-        cachedSize = view.update(
+        let size = view.update(
             widget,
             children: children,
             proposedSize: proposedSize,
@@ -192,13 +199,18 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         )
         backend.show(widget: widget)
 
-        // We assume that the view's size won't change between consecutive dry run updates and the
-        // following real update because groups of updates following that pattern are assumed to
+        // We assume that the view's sizing behaviour won't change between consecutive dry run updates
+        // and the following real update because groups of updates following that pattern are assumed to
         // be occurring within a single overarching view update. It may seem weird that we set it
         // to false after real updates, but that's because it may get invalidated between a real
         // update and the next dry-run update.
-        cachedSizeIsValid = dryRun
+        if !dryRun {
+            sizeCache = [:]
+        } else {
+            sizeCache[proposedSize] = size
+        }
 
-        return cachedSize
+        currentSize = size
+        return size
     }
 }
