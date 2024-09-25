@@ -856,27 +856,29 @@ class NSSplitViewResizingDelegate: NSObject, NSSplitViewDelegate {
     var minimumLeadingWidth = 0
     var maximumLeadingWidth = 0
     var isFirstUpdate = true
-    var systemIsResizing = false
+    /// Tracks whether AppKit is resizing the side bar (as opposed to the user resizing it).
+    var appKitIsResizing = false
 
     func setResizeHandler(_ handler: @escaping (_ paneWidths: [Int]) -> Void) {
         resizeHandler = handler
     }
 
     func splitView(_ splitView: NSSplitView, shouldAdjustSizeOfSubview view: NSView) -> Bool {
-        systemIsResizing = true
+        appKitIsResizing = true
         return true
     }
 
     func splitViewDidResizeSubviews(_ notification: Notification) {
-        let systemWasResizing = systemIsResizing
-        systemIsResizing = false
+        appKitIsResizing = false
         let splitView = notification.object! as! NSSplitView
         let paneWidths = splitView.subviews.map(\.frame.width).map { width in
             Int(width.rounded())
         }
         let previousWidth = leadingWidth
         leadingWidth = paneWidths[0]
-        if !systemWasResizing && leadingWidth != previousWidth {
+
+        // Only call the handler if the side bar has actually changed size.
+        if leadingWidth != previousWidth {
             resizeHandler?(paneWidths)
         }
     }
@@ -912,12 +914,19 @@ class NSSplitViewResizingDelegate: NSObject, NSSplitViewDelegate {
             splitView.setPosition(max(200, CGFloat(minimumLeadingWidth)), ofDividerAt: 0)
             isFirstUpdate = false
         } else {
-            if systemIsResizing {
+            let newWidth = splitView.subviews[0].frame.width
+            // If AppKit is trying to automatically resize our side bar (e.g. because the split
+            // view has changed size), only let it do so if not doing so would put out side bar
+            // outside of the allowed bounds.
+            if appKitIsResizing
+                && leadingWidth >= minimumLeadingWidth
+                && leadingWidth <= maximumLeadingWidth
+            {
                 splitView.setPosition(CGFloat(leadingWidth), ofDividerAt: 0)
             } else {
                 // Magic! Thanks https://stackoverflow.com/a/30494691. This one line fixed all
                 // of the split view resizing issues.
-                splitView.setPosition(splitView.subviews[0].frame.width, ofDividerAt: 0)
+                splitView.setPosition(newWidth, ofDividerAt: 0)
             }
         }
     }
