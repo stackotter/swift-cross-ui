@@ -169,7 +169,13 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
             return cachedSize
         }
 
-        if dryRun, let currentSize,
+        // Attempt to cleverly reuse the current size if we can know that it
+        // won't change. We must of course be in a dry run, have a known
+        // current size, and must've run at least one proper dry run update
+        // since the last update cycle (checked via`!sizeCache.isEmpty`) to
+        // ensure that the view has been updated at least once with the
+        // current view state.
+        if dryRun, let currentSize, !sizeCache.isEmpty,
             ((Double(lastProposedSize.x) >= currentSize.maximumWidth
                 && Double(proposedSize.x) >= currentSize.maximumWidth)
                 || proposedSize.x == lastProposedSize.x)
