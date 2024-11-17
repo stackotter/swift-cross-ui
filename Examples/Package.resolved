@@ -183,8 +183,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-hash",
       "state" : {
-        "revision" : "6e9301937718c3c0b2ce6bfd323a210a7490a007",
-        "version" : "0.6.3"
+        "revision" : "7151d95817516d96509fdfeb3faaa92f273df47f",
+        "version" : "0.6.4"
       }
     },
     {
@@ -192,8 +192,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-image-formats",
       "state" : {
-        "revision" : "02c079d0f28747e1e3c3bc20322cc79e007b6ac4",
-        "version" : "0.1.0"
+        "revision" : "1cf8d4e73a580b98c2ab47c04d75de2ee22e86a4",
+        "version" : "0.1.1"
       }
     },
     {
@@ -264,8 +264,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-png",
       "state" : {
-        "revision" : "313bfc017df44fd07abb792c615471c42c470ded",
-        "version" : "4.4.5"
+        "revision" : "9f6f85e1a0d299b7c938fbb61566e30db634c030",
+        "version" : "4.4.7"
       }
     },
     {

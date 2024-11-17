@@ -1,10 +1,15 @@
 extension View {
     /// Positions this view within an invisible frame having the specified minimum size constraints.
-    public func frame(width: Int? = nil, height: Int? = nil) -> some View {
+    public func frame(
+        width: Int? = nil,
+        height: Int? = nil,
+        alignment: Alignment = .center
+    ) -> some View {
         return StrictFrameView(
             self,
             width: width,
-            height: height
+            height: height,
+            alignment: alignment
         )
     }
 
@@ -15,7 +20,8 @@ extension View {
         maxWidth: Int? = nil,
         minHeight: Int? = nil,
         idealHeight: Int? = nil,
-        maxHeight: Int? = nil
+        maxHeight: Int? = nil,
+        alignment: Alignment = .center
     ) -> some View {
         return FlexibleFrameView(
             self,
@@ -24,7 +30,8 @@ extension View {
             maxWidth: maxWidth,
             minHeight: minHeight,
             idealHeight: idealHeight,
-            maxHeight: maxHeight
+            maxHeight: maxHeight,
+            alignment: alignment
         )
     }
 }
@@ -37,12 +44,15 @@ struct StrictFrameView<Child: View>: TypeSafeView {
     var width: Int?
     /// The exact height to make the view.
     var height: Int?
+    /// The alignment of the child within the frame.
+    var alignment: Alignment
 
     /// Wraps a child view with size constraints.
-    init(_ child: Child, width: Int?, height: Int?) {
+    init(_ child: Child, width: Int?, height: Int?, alignment: Alignment) {
         self.body = TupleView1(child)
         self.width = width
         self.height = height
+        self.alignment = alignment
     }
 
     func children<Backend: AppBackend>(
@@ -91,11 +101,10 @@ struct StrictFrameView<Child: View>: TypeSafeView {
             height ?? childSize.size.y
         )
         if !dryRun {
-            let childPosition =
-                SIMD2(
-                    frameSize.x - childSize.size.x,
-                    frameSize.y - childSize.size.y
-                ) / 2
+            let childPosition = alignment.position(
+                ofChild: childSize.size,
+                in: frameSize
+            )
             backend.setSize(of: widget, to: frameSize)
             backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
         }
@@ -124,6 +133,8 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
     var minHeight: Int?
     var idealHeight: Int?
     var maxHeight: Int?
+    /// The alignment of the child within the frame.
+    var alignment: Alignment
 
     /// Wraps a child view with size constraints.
     init(
@@ -133,7 +144,8 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         maxWidth: Int?,
         minHeight: Int?,
         idealHeight: Int?,
-        maxHeight: Int?
+        maxHeight: Int?,
+        alignment: Alignment
     ) {
         self.body = TupleView1(child)
         self.minWidth = minWidth
@@ -142,6 +154,7 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         self.idealHeight = idealHeight
         self.maxWidth = maxWidth
         self.maxHeight = maxHeight
+        self.alignment = alignment
     }
 
     func children<Backend: AppBackend>(
@@ -225,11 +238,10 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         }
 
         if !dryRun {
-            let childPosition =
-                SIMD2(
-                    frameSize.size.x - childSize.size.x,
-                    frameSize.size.y - childSize.size.y
-                ) / 2
+            let childPosition = alignment.position(
+                ofChild: childSize.size,
+                in: frameSize.size
+            )
             backend.setSize(of: widget, to: frameSize.size)
             backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
         }
