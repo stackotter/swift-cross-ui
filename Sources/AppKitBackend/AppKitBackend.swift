@@ -303,11 +303,10 @@ public final class AppKitBackend: AppBackend {
             width: (proposedFrame?.x).map(CGFloat.init) ?? 0,
             height: .greatestFiniteMagnitude
         )
-        let font = Self.font(for: environment)
         let rect = NSString(string: text).boundingRect(
             with: proposedSize,
             options: [.usesLineFragmentOrigin],
-            attributes: [.font: font]
+            attributes: Self.attributes(forTextIn: environment)
         )
         return SIMD2(
             Int(rect.size.width.rounded(.awayFromZero)),
@@ -644,11 +643,28 @@ public final class AppKitBackend: AppBackend {
     ) -> NSAttributedString {
         NSAttributedString(
             string: text,
-            attributes: [
-                .foregroundColor: environment.foregroundColor.nsColor,
-                .font: font(for: environment),
-            ]
+            attributes: attributes(forTextIn: environment)
         )
+    }
+
+    private static func attributes(
+        forTextIn environment: Environment
+    ) -> [NSAttributedString.Key: Any] {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment =
+            switch environment.multilineTextAlignment {
+                case .leading:
+                    .left
+                case .center:
+                    .center
+                case .trailing:
+                    .right
+            }
+        return [
+            .foregroundColor: environment.foregroundColor.nsColor,
+            .font: font(for: environment),
+            .paragraphStyle: paragraphStyle,
+        ]
     }
 
     private static func font(for environment: Environment) -> NSFont {

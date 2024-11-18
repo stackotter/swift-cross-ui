@@ -278,6 +278,15 @@ public final class GtkBackend: AppBackend {
         textView.label = content
         textView.wrap = true
         textView.lineWrapMode = .wordCharacter
+        textView.justify =
+            switch environment.multilineTextAlignment {
+                case .leading:
+                    Justification.left
+                case .center:
+                    Justification.center
+                case .trailing:
+                    Justification.right
+            }
 
         textView.css.clear()
         textView.css.set(properties: Self.cssProperties(for: environment))
