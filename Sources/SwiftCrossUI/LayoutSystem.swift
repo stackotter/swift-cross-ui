@@ -70,7 +70,7 @@ public enum LayoutSystem {
         let visibleChildrenCount = isHidden.count { hidden in
             !hidden
         }
-        let totalSpacing = (visibleChildrenCount - 1) * spacing
+        let totalSpacing = max(visibleChildrenCount - 1, 0) * spacing
         let proposedSizeWithoutSpacing = SIMD2(
             proposedSize.x - (orientation == .horizontal ? totalSpacing : 0),
             proposedSize.y - (orientation == .vertical ? totalSpacing : 0)
