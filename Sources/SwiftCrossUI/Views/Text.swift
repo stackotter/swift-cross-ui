@@ -21,9 +21,11 @@ public struct Text: ElementaryView, View {
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {
-        if !dryRun {
-            backend.updateTextView(widget, content: string, environment: environment)
-        }
+        // TODO: Avoid this
+        // Even in dry runs we must update the underlying text view widget
+        // because GtkBackend currently relies on querying the widget for text
+        // properties and such (via Pango).
+        backend.updateTextView(widget, content: string, environment: environment)
 
         let size = backend.size(
             of: string,
