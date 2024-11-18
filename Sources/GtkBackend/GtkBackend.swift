@@ -293,7 +293,7 @@ public final class GtkBackend: AppBackend {
         let (width, height) = pango.getTextSize(
             text,
             proposedWidth: (proposedFrame?.x).map(Double.init),
-            proposedHeight: (proposedFrame?.y).map(Double.init)
+            proposedHeight: nil
         )
         return SIMD2(width, height)
     }
