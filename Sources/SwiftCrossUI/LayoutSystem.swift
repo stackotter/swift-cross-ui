@@ -67,9 +67,9 @@ public enum LayoutSystem {
         // My thanks go to this great article for investigating and explaining
         // how SwiftUI determines child view 'flexibility':
         // https://www.objc.io/blog/2020/11/10/hstacks-child-ordering/
-        let visibleChildrenCount = isHidden.count(where: { hidden in
+        let visibleChildrenCount = isHidden.filter { hidden in
             !hidden
-        })
+        }.count
         let totalSpacing = max(visibleChildrenCount - 1, 0) * spacing
         let proposedSizeWithoutSpacing = SIMD2(
             proposedSize.x - (orientation == .horizontal ? totalSpacing : 0),
