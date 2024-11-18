@@ -313,7 +313,10 @@ public protocol AppBackend {
     /// The backend shouldn't wait until the user finishes typing to call the change handler;
     /// it should allow live access to the value.
     func updateTextField(
-        _ textField: Widget, placeholder: String, onChange: @escaping (String) -> Void
+        _ textField: Widget,
+        placeholder: String,
+        environment: Environment,
+        onChange: @escaping (String) -> Void
     )
     /// Sets the value of an editable text field.
     func setContent(ofTextField textField: Widget, to content: String)
@@ -501,7 +504,10 @@ extension AppBackend {
         todo()
     }
     public func updateTextField(
-        _ textField: Widget, placeholder: String, onChange: @escaping (String) -> Void
+        _ textField: Widget,
+        placeholder: String,
+        environment: Environment,
+        onChange: @escaping (String) -> Void
     ) {
         todo()
     }

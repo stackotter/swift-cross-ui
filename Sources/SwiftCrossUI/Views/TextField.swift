@@ -23,7 +23,11 @@ public struct TextField: ElementaryView, View {
         dryRun: Bool
     ) -> ViewSize {
         if !dryRun {
-            backend.updateTextField(widget, placeholder: placeholder) { newValue in
+            backend.updateTextField(
+                widget,
+                placeholder: placeholder,
+                environment: environment
+            ) { newValue in
                 self.value?.wrappedValue = newValue
             }
             if let value = value?.wrappedValue, value != backend.getContent(ofTextField: widget) {

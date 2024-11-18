@@ -444,7 +444,10 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func updateTextField(
-        _ textField: Widget, placeholder: String, onChange: @escaping (String) -> Void
+        _ textField: Widget,
+        placeholder: String,
+        environment: Environment,
+        onChange: @escaping (String) -> Void
     ) {
         let textField = textField as! NSObservableTextField
         textField.placeholderString = placeholder

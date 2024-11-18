@@ -477,13 +477,19 @@ public final class GtkBackend: AppBackend {
     }
 
     public func updateTextField(
-        _ textField: Widget, placeholder: String, onChange: @escaping (String) -> Void
+        _ textField: Widget,
+        placeholder: String,
+        environment: Environment,
+        onChange: @escaping (String) -> Void
     ) {
         let textField = textField as! Entry
         textField.placeholderText = placeholder
         textField.changed = { widget in
             onChange(widget.text)
         }
+
+        textField.css.clear()
+        textField.css.set(properties: Self.cssProperties(for: environment))
     }
 
     public func setContent(ofTextField textField: Widget, to content: String) {
