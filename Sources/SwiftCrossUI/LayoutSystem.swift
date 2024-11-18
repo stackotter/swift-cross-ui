@@ -233,6 +233,11 @@ public enum LayoutSystem {
             }
         }
 
+        // If the stack has been told to inherit its stack layout participation
+        // and all of its children are hidden, then the stack itself also
+        // shouldn't participate in stack layouts.
+        let shouldGetIgnoredInStackLayouts =
+            inheritStackLayoutParticipation && isHidden.allSatisfy { $0 }
         return ViewSize(
             size: size,
             idealSize: idealSize,
@@ -240,9 +245,7 @@ public enum LayoutSystem {
             minimumHeight: minimumHeight,
             maximumWidth: maximumWidth,
             maximumHeight: maximumHeight,
-            participateInStackLayoutsWhenEmpty:
-                inheritStackLayoutParticipation
-                && isHidden.allSatisfy { $0 }
+            participateInStackLayoutsWhenEmpty: !shouldGetIgnoredInStackLayouts
         )
     }
 }
