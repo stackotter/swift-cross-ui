@@ -71,7 +71,7 @@ public struct OptionalView<V: View>: TypeSafeView, View {
         } else {
             hasToggled = children.node != nil
             children.node = nil
-            size = .empty
+            size = .hidden
         }
         children.hasToggled = children.hasToggled || hasToggled
 

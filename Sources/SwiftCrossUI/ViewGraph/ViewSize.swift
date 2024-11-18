@@ -16,6 +16,19 @@ public struct ViewSize: Equatable {
         maximumHeight: 0
     )
 
+    /// The view update result for a hidden view. Differs from ``ViewSize/empty``
+    /// by stopping hidden views from participating in stack layouts (i.e.
+    /// getting spacing between the previous child and the hidden child).
+    public static let hidden = ViewSize(
+        size: .zero,
+        idealSize: .zero,
+        minimumWidth: 0,
+        minimumHeight: 0,
+        maximumWidth: 0,
+        maximumHeight: 0,
+        participateInStackLayoutsWhenEmpty: false
+    )
+
     /// The size that the view now takes up.
     public var size: SIMD2<Int>
     /// The size that the view ideally wants to take up.
@@ -28,6 +41,20 @@ public struct ViewSize: Equatable {
     public var maximumWidth: Double
     /// The maximum height that the view can take (if its width remains the same).
     public var maximumHeight: Double
+    /// Whether the view should participate in stack layouts when empty.
+    ///
+    /// If `false`, the view won't get any spacing before or after it in stack
+    /// layouts. For example, this is used by ``OptionalView`` when its
+    /// underlying view is `nil` to avoid having spacing between views that are
+    /// semantically 'not present'.
+    ///
+    /// Only takes effect when ``ViewSize/size`` is zero, to avoid any ambiguity
+    /// when the view has non-zero size as this option is really only intended
+    /// to be used for visually hidden views (what would it mean for a non-empty
+    /// view to not participate in the layout? would the spacing between the
+    /// previous view and the next go before or after the view? would the view
+    /// get forced to zero size?).
+    public var participateInStackLayoutsWhenEmpty: Bool
 
     public init(
         size: SIMD2<Int>,
@@ -35,7 +62,8 @@ public struct ViewSize: Equatable {
         minimumWidth: Int,
         minimumHeight: Int,
         maximumWidth: Double?,
-        maximumHeight: Double?
+        maximumHeight: Double?,
+        participateInStackLayoutsWhenEmpty: Bool = true
     ) {
         self.size = size
         self.idealSize = idealSize
@@ -52,6 +80,8 @@ public struct ViewSize: Equatable {
         // I believe is a good compromise.
         self.maximumWidth = maximumWidth ?? Double(1 << 53)
         self.maximumHeight = maximumHeight ?? Double(1 << 53)
+        self.participateInStackLayoutsWhenEmpty =
+            participateInStackLayoutsWhenEmpty
     }
 
     public init(fixedSize: SIMD2<Int>) {
@@ -61,5 +91,6 @@ public struct ViewSize: Equatable {
         minimumHeight = fixedSize.y
         maximumWidth = Double(fixedSize.x)
         maximumHeight = Double(fixedSize.y)
+        participateInStackLayoutsWhenEmpty = true
     }
 }

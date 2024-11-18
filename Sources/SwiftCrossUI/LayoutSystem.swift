@@ -27,29 +27,50 @@ public enum LayoutSystem {
         }
     }
 
+    /// - Parameter inheritStackLayoutParticipation: If `true`, the stack layout
+    ///   will have ``ViewSize/participateInStackLayoutsWhenEmpty`` set to `true`
+    ///   if all of its children have it set to true. This allows views such as
+    ///   ``Group`` to avoid changing stack layout participation (since ``Group``
+    ///   is meant to appear completely invisible to the layout system).
     public static func updateStackLayout<Backend: AppBackend>(
         container: Backend.Widget,
         children: [LayoutableChild],
         proposedSize: SIMD2<Int>,
         environment: Environment,
         backend: Backend,
-        dryRun: Bool
+        dryRun: Bool,
+        inheritStackLayoutParticipation: Bool = false
     ) -> ViewSize {
         let spacing = environment.layoutSpacing
         let alignment = environment.layoutAlignment
         let orientation = environment.layoutOrientation
-        let totalSpacing = (children.count - 1) * spacing
-
-        var spaceUsedAlongStackAxis = 0
-        var childrenRemaining = children.count
 
         var renderedChildren = [ViewSize](
             repeating: .empty,
             count: children.count
         )
 
-        // My thanks go to this great article for investigating and explaining how SwiftUI determines
-        // child view 'flexibility': https://www.objc.io/blog/2020/11/10/hstacks-child-ordering/
+        // Figure out which views to treat as hidden. This could be the cause
+        // of issues if a view has some threshold at which it suddenly becomes
+        // invisible.
+        var isHidden = [Bool](repeating: false, count: children.count)
+        for (i, child) in children.enumerated() {
+            let size = child.computeSize(
+                proposedSize: proposedSize,
+                environment: environment
+            )
+            isHidden[i] =
+                size.size == .zero
+                && !size.participateInStackLayoutsWhenEmpty
+        }
+
+        // My thanks go to this great article for investigating and explaining
+        // how SwiftUI determines child view 'flexibility':
+        // https://www.objc.io/blog/2020/11/10/hstacks-child-ordering/
+        let visibleChildrenCount = isHidden.count { hidden in
+            !hidden
+        }
+        let totalSpacing = (visibleChildrenCount - 1) * spacing
         let proposedSizeWithoutSpacing = SIMD2(
             proposedSize.x - (orientation == .horizontal ? totalSpacing : 0),
             proposedSize.y - (orientation == .vertical ? totalSpacing : 0)
@@ -66,11 +87,40 @@ public enum LayoutSystem {
                     size.maximumHeight - Double(size.minimumHeight)
             }
         }
-        let sortedChildren = zip(children.enumerated(), flexibilities).sorted { first, second in
-            first.1 <= second.1
-        }.map(\.0)
+        let sortedChildren = zip(children.enumerated(), flexibilities)
+            .sorted { first, second in
+                first.1 <= second.1
+            }
+            .map(\.0)
 
+        var spaceUsedAlongStackAxis = 0
+        var childrenRemaining = visibleChildrenCount
         for (index, child) in sortedChildren {
+            // No need to render visible children.
+            if isHidden[index] {
+                // Update child in case it has just changed from visible to hidden,
+                // and to make sure that the view is still hidden (if it's not then
+                // it's a bug with either the view or the layout system).
+                let size = child.update(
+                    proposedSize: .zero,
+                    environment: environment,
+                    dryRun: dryRun
+                )
+                if size.size != .zero || size.participateInStackLayoutsWhenEmpty {
+                    print("warning: Hidden view became visible on second update. Layout may break.")
+                }
+                renderedChildren[index] = ViewSize(
+                    size: .zero,
+                    idealSize: .zero,
+                    minimumWidth: 0,
+                    minimumHeight: 0,
+                    maximumWidth: 0,
+                    maximumHeight: 0,
+                    participateInStackLayoutsWhenEmpty: false
+                )
+                continue
+            }
+
             let proposedWidth: Double
             let proposedHeight: Double
             switch orientation {
@@ -149,6 +199,13 @@ public enum LayoutSystem {
             var x = 0
             var y = 0
             for (index, childSize) in renderedChildren.enumerated() {
+                // Avoid the whole iteration if the child is hidden. If there
+                // are weird positioning issues for views that do strange things
+                // then this could be the cause.
+                if isHidden[index] {
+                    continue
+                }
+
                 // Compute alignment
                 switch (orientation, alignment) {
                     case (.vertical, .leading):
@@ -182,7 +239,10 @@ public enum LayoutSystem {
             minimumWidth: minimumWidth,
             minimumHeight: minimumHeight,
             maximumWidth: maximumWidth,
-            maximumHeight: maximumHeight
+            maximumHeight: maximumHeight,
+            participateInStackLayoutsWhenEmpty:
+                inheritStackLayoutParticipation
+                && isHidden.allSatisfy { $0 }
         )
     }
 }

@@ -37,7 +37,8 @@ public struct Group<Content: View>: View {
             proposedSize: proposedSize,
             environment: environment,
             backend: backend,
-            dryRun: dryRun
+            dryRun: dryRun,
+            inheritStackLayoutParticipation: true
         )
         return size
     }
