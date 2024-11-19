@@ -91,7 +91,7 @@ struct Interface: Decodable, ClassLike {
     var glibTypeName: String
     var glibGetType: String
     var glibTypeStruct: String?
-    var doc: String
+    var doc: String?
     var prerequisites: [ConformancePrerequisite]
 
     var functions: [Function]
@@ -164,7 +164,7 @@ struct Enumeration: Decodable {
 struct Alias: Decodable {
     var name: String
     @Attribute var cType: String
-    var doc: String
+    var doc: String?
     @Element var type: String
 }
 
@@ -175,7 +175,7 @@ struct Class: Decodable, ClassLike {
     var parent: String?
     var abstract: Bool?
 
-    var doc: String
+    var doc: String?
     var constructors: [Constructor]
     var methods: [Method]
     var properties: [Property]
@@ -282,7 +282,7 @@ struct Conformance: Decodable {
 
 struct Signal: Decodable {
     var name: String
-    var when: String
+    var when: String?
     var noRecurse: Bool?
     var doc: String?
     var returnValue: ReturnValue
@@ -292,7 +292,8 @@ struct Signal: Decodable {
 struct Constructor: Decodable {
     var name: String
     var cIdentifier: String
-    var doc: String
+    var deprecated: Int?
+    var doc: String?
     var returnValue: ReturnValue
     var parameters: Parameters?
     var version: String?

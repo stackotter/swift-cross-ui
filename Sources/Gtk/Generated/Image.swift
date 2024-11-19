@@ -97,23 +97,6 @@ public class Image: Widget {
         widgetPointer = gtk_image_new_from_paintable(paintable)
     }
 
-    /// Creates a new `GtkImage` displaying @pixbuf.
-    ///
-    /// The `GtkImage` does not assume a reference to the pixbuf; you still
-    /// need to unref it if you own references. `GtkImage` will add its own
-    /// reference rather than adopting yours.
-    ///
-    /// This is a helper for [ctor@Gtk.Image.new_from_paintable], and you can't
-    /// get back the exact pixbuf once this is called, only a texture.
-    ///
-    /// Note that this function just creates an `GtkImage` from the pixbuf.
-    /// The `GtkImage` created will not react to state changes. Should you
-    /// want that, you should use [ctor@Gtk.Image.new_from_icon_name].
-    public init(pixbuf: OpaquePointer) {
-        super.init()
-        widgetPointer = gtk_image_new_from_pixbuf(pixbuf)
-    }
-
     /// Creates a new `GtkImage` displaying the resource file @resource_path.
     ///
     /// If the file isn’t found or can’t be loaded, the resulting `GtkImage` will

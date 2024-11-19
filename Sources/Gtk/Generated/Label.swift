@@ -348,10 +348,10 @@ public class Label: Widget {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::mnemonic-widget", handler: gCallback(handler12)) {
+        addSignal(name: "notify::natural-wrap-mode", handler: gCallback(handler12)) {
             [weak self] (_: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyMnemonicWidget?(self)
+            self.notifyNaturalWrapMode?(self)
         }
 
         let handler13:
@@ -360,10 +360,10 @@ public class Label: Widget {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::natural-wrap-mode", handler: gCallback(handler13)) {
+        addSignal(name: "notify::selectable", handler: gCallback(handler13)) {
             [weak self] (_: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyNaturalWrapMode?(self)
+            self.notifySelectable?(self)
         }
 
         let handler14:
@@ -372,10 +372,10 @@ public class Label: Widget {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::selectable", handler: gCallback(handler14)) {
+        addSignal(name: "notify::single-line-mode", handler: gCallback(handler14)) {
             [weak self] (_: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySelectable?(self)
+            self.notifySingleLineMode?(self)
         }
 
         let handler15:
@@ -384,10 +384,10 @@ public class Label: Widget {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::single-line-mode", handler: gCallback(handler15)) {
+        addSignal(name: "notify::tabs", handler: gCallback(handler15)) {
             [weak self] (_: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySingleLineMode?(self)
+            self.notifyTabs?(self)
         }
 
         let handler16:
@@ -396,10 +396,10 @@ public class Label: Widget {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::tabs", handler: gCallback(handler16)) {
+        addSignal(name: "notify::use-markup", handler: gCallback(handler16)) {
             [weak self] (_: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyTabs?(self)
+            self.notifyUseMarkup?(self)
         }
 
         let handler17:
@@ -408,10 +408,10 @@ public class Label: Widget {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::use-markup", handler: gCallback(handler17)) {
+        addSignal(name: "notify::use-underline", handler: gCallback(handler17)) {
             [weak self] (_: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyUseMarkup?(self)
+            self.notifyUseUnderline?(self)
         }
 
         let handler18:
@@ -420,10 +420,10 @@ public class Label: Widget {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::use-underline", handler: gCallback(handler18)) {
+        addSignal(name: "notify::width-chars", handler: gCallback(handler18)) {
             [weak self] (_: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyUseUnderline?(self)
+            self.notifyWidthChars?(self)
         }
 
         let handler19:
@@ -432,10 +432,10 @@ public class Label: Widget {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::width-chars", handler: gCallback(handler19)) {
+        addSignal(name: "notify::wrap", handler: gCallback(handler19)) {
             [weak self] (_: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyWidthChars?(self)
+            self.notifyWrap?(self)
         }
 
         let handler20:
@@ -444,10 +444,10 @@ public class Label: Widget {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::wrap", handler: gCallback(handler20)) {
+        addSignal(name: "notify::wrap-mode", handler: gCallback(handler20)) {
             [weak self] (_: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyWrap?(self)
+            self.notifyWrapMode?(self)
         }
 
         let handler21:
@@ -456,10 +456,10 @@ public class Label: Widget {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::wrap-mode", handler: gCallback(handler21)) {
+        addSignal(name: "notify::xalign", handler: gCallback(handler21)) {
             [weak self] (_: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyWrapMode?(self)
+            self.notifyXalign?(self)
         }
 
         let handler22:
@@ -468,19 +468,7 @@ public class Label: Widget {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::xalign", handler: gCallback(handler22)) {
-            [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
-            self.notifyXalign?(self)
-        }
-
-        let handler23:
-            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
-                { _, value1, data in
-                    SignalBox1<OpaquePointer>.run(data, value1)
-                }
-
-        addSignal(name: "notify::yalign", handler: gCallback(handler23)) {
+        addSignal(name: "notify::yalign", handler: gCallback(handler22)) {
             [weak self] (_: OpaquePointer) in
             guard let self = self else { return }
             self.notifyYalign?(self)
@@ -629,8 +617,6 @@ public class Label: Widget {
     public var notifyMaxWidthChars: ((Label) -> Void)?
 
     public var notifyMnemonicKeyval: ((Label) -> Void)?
-
-    public var notifyMnemonicWidget: ((Label) -> Void)?
 
     public var notifyNaturalWrapMode: ((Label) -> Void)?
 

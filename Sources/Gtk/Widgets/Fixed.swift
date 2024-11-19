@@ -67,6 +67,7 @@ public class Fixed: Widget {
     public func removeAllChildren() {
         for child in children {
             gtk_fixed_remove(castedPointer(), child.widgetPointer)
+            child.parentWidget = nil
         }
         children = []
     }

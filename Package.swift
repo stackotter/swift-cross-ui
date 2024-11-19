@@ -216,6 +216,25 @@ let package = Package(
                 "XMLCoder", .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
             ]
         ),
+        .systemLibrary(
+            name: "CGtk3",
+            pkgConfig: "gtk+-3.0",
+            providers: [
+                .brew(["gtk+3"]),
+                .apt(["libgtk-3-dev clang"]),
+            ]
+        ),
+        .target(
+            name: "Gtk3",
+            dependencies: ["CGtk3"],
+            exclude: ["LICENSE.md"],
+            swiftSettings: gtkSwiftSettings
+        ),
+        .executableTarget(
+            name: "Gtk3Example",
+            dependencies: ["Gtk3"],
+            resources: [.copy("GTK.png")]
+        ),
         .macro(
             name: "HotReloadingMacrosPlugin",
             dependencies: [

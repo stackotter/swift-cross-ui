@@ -71,17 +71,6 @@ public class Picture: Widget {
         widgetPointer = gtk_picture_new_for_paintable(paintable)
     }
 
-    /// Creates a new `GtkPicture` displaying @pixbuf.
-    ///
-    /// This is a utility function that calls [ctor@Gtk.Picture.new_for_paintable],
-    /// See that function for details.
-    ///
-    /// The pixbuf must not be modified after passing it to this function.
-    public init(pixbuf: OpaquePointer) {
-        super.init()
-        widgetPointer = gtk_picture_new_for_pixbuf(pixbuf)
-    }
-
     /// Creates a new `GtkPicture` displaying the resource at @resource_path.
     ///
     /// This is a utility function that calls [ctor@Gtk.Picture.new_for_file].

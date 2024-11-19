@@ -5,12 +5,14 @@ import SwiftSyntaxBuilder
 struct CommandLineArguments {
     var girFile: URL
     var outputDirectory: URL
+    var cGtkImport: String
 }
 
 @main
 struct GtkCodeGen {
     static let cTypeReplacements: [String: String] = [
         "const char*": "String",
+        "const gchar*": "String",
         "char*": "String",
         "gchar*": "String",
         "gboolean": "Bool",
@@ -22,6 +24,25 @@ struct GtkCodeGen {
         "GIcon*": "OpaquePointer",
         "GdkPixbuf*": "OpaquePointer",
         "GdkPaintable*": "OpaquePointer",
+    ]
+
+    /// Problematic signals which are excluded from the generated Swift
+    /// wrappers for now.
+    ///
+    /// `format-value` is problematic because it expects you to return a
+    /// string and then attempts to free the string when it's finished with
+    /// it, leading to a crash if the signal doesn't return a valid string
+    /// pointer (which it won't because our signal handlers never return
+    /// values with the current implementation).
+    static let excludedSignals: [String] = [
+        "format-value",
+        "notify::mnemonic-widget",
+    ]
+
+    /// Replacements applied to types which don't have the `ctype` attribute.
+    /// Only used by Gtk3 GIR conversion at the moment.
+    static let typeNameReplacements: [String: String] = [
+        "Gdk.Event": "GdkEvent"
     ]
 
     static let interfaces: [String] = [
@@ -43,16 +64,28 @@ struct GtkCodeGen {
             at: arguments.outputDirectory, withIntermediateDirectories: true
         )
 
-        try generateSources(for: gir, to: arguments.outputDirectory)
+        try generateSources(
+            for: gir,
+            to: arguments.outputDirectory,
+            cGtkImport: arguments.cGtkImport
+        )
     }
 
-    static func generateSources(for gir: GIR, to directory: URL) throws {
+    static func generateSources(
+        for gir: GIR,
+        to directory: URL,
+        cGtkImport: String
+    ) throws {
         let allowListedClasses = [
             "Button", "Entry", "Label", "TextView", "Range", "Scale", "Image", "DropDown",
             "Picture", "Switch", "Spinner",
         ]
         for class_ in gir.namespace.classes where allowListedClasses.contains(class_.name) {
-            let source = generateClass(class_, namespace: gir.namespace)
+            let source = generateClass(
+                class_,
+                namespace: gir.namespace,
+                cGtkImport: cGtkImport
+            )
             try save(source.description, to: directory, declName: class_.name)
         }
 
@@ -67,7 +100,7 @@ struct GtkCodeGen {
                 continue
             }
 
-            let source = generateEnum(enumeration)
+            let source = generateEnum(enumeration, cGtkImport: cGtkImport)
             try save(source.description, to: directory, declName: enumeration.name)
         }
 
@@ -77,12 +110,20 @@ struct GtkCodeGen {
             guard interface.version == nil else {
                 continue
             }
-            let source = generateProtocol(interface, namespace: gir.namespace)
+            let source = generateProtocol(
+                interface,
+                namespace: gir.namespace,
+                cGtkImport: cGtkImport
+            )
             try save(source.description, to: directory, declName: interface.name)
         }
     }
 
-    static func generateProtocol(_ interface: Interface, namespace: Namespace) -> String {
+    static func generateProtocol(
+        _ interface: Interface,
+        namespace: Namespace,
+        cGtkImport: String
+    ) -> String {
         var properties: [DeclSyntax] = []
         for property in interface.properties where property.version == nil {
             if let syntax = generateProperty(
@@ -101,7 +142,7 @@ struct GtkCodeGen {
 
         let source = SourceFileSyntax(
             """
-            import CGtk
+            import \(raw: cGtkImport)
 
             \(raw: docComment(interface.doc))
             public protocol \(raw: interface.name): GObjectRepresentable {
@@ -114,7 +155,7 @@ struct GtkCodeGen {
         return source.description
     }
 
-    static func generateEnum(_ enumeration: Enumeration) -> String {
+    static func generateEnum(_ enumeration: Enumeration, cGtkImport: String) -> String {
         // Filter out members which were introduced after 4.0
         let members = enumeration.members.filter { member in
             if member.version != nil {
@@ -170,7 +211,7 @@ struct GtkCodeGen {
 
         let source = SourceFileSyntax(
             """
-            import CGtk
+            import \(raw: cGtkImport)
 
             \(raw: docComment(enumeration.doc))
             public enum \(raw: enumeration.name): GValueRepresentableEnum {
@@ -213,16 +254,22 @@ struct GtkCodeGen {
             .joined(separator: "\n") ?? ""
     }
 
-    static func generateClass(_ class_: Class, namespace: Namespace) -> String {
+    static func generateClass(_ class_: Class, namespace: Namespace, cGtkImport: String) -> String {
         var initializers: [DeclSyntax] = []
         for constructor in class_.constructors {
-            let excludedParameterTypes: [String] = ["GListModel*", "GFile*"]
+            guard constructor.deprecated != 1 else {
+                continue
+            }
+
+            let excludedParameterTypes: [String] = [
+                "GListModel*", "GFile*", "cairo_surface_t*", "GdkPixbufAnimation*",
+            ]
             if let type = constructor.parameters?.parameters.first?.type?.cType,
                 excludedParameterTypes.contains(type)
             {
-                // TODO: Support GListModel, GFile and GtkExpression
                 continue
             }
+
             initializers.append(generateInitializer(constructor))
         }
 
@@ -265,6 +312,10 @@ struct GtkCodeGen {
             )
         }
 
+        signals = signals.filter { (classLike, signal) in
+            !excludedSignals.contains(signal.name)
+        }
+
         for (_, signal) in signals {
             properties.append(
                 generateSignalHandlerProperty(signal, className: class_.name, forProtocol: false)
@@ -303,7 +354,7 @@ struct GtkCodeGen {
 
         let source = SourceFileSyntax(
             """
-            import CGtk
+            import \(raw: cGtkImport)
 
             \(raw: docComment(class_.doc))
             public class \(raw: class_.name)\(raw: conformanceString) {
@@ -502,6 +553,8 @@ struct GtkCodeGen {
         } else if let name = type.name {
             if interfaces.contains(name) {
                 return "OpaquePointer"
+            } else if let replacement = typeNameReplacements[name] {
+                return replacement
             } else {
                 return namespace.cIdentifierPrefix + name
             }
@@ -590,8 +643,7 @@ struct GtkCodeGen {
     }
 
     static func convertCIdentifier(_ identifier: String) -> String {
-        // TODO: Keywords should possibly be escaped with backticks instead of underscored
-        let keywords = ["true", "false", "default", "switch", "import"]
+        let keywords = ["true", "false", "default", "switch", "import", "private", "class", "in"]
         if keywords.contains(identifier) {
             return "\(identifier)_"
         }
@@ -638,15 +690,16 @@ struct GtkCodeGen {
         let arguments = ProcessInfo.processInfo.arguments
 
         let helpRequested = arguments.contains("--help") || arguments.contains("-h")
-        let invalid = arguments.count != 3 && !helpRequested
+        let invalid = arguments.count != 4 && !helpRequested
         if invalid || helpRequested {
-            print("Usage: ./GtkCodeGen gtk_gir_file output_dir")
+            print("Usage: ./GtkCodeGen gtk_gir_file output_dir cgtk_import")
             Foundation.exit(invalid ? 1 : 0)
         }
 
         return CommandLineArguments(
             girFile: URL(fileURLWithPath: arguments[1]),
-            outputDirectory: URL(fileURLWithPath: arguments[2])
+            outputDirectory: URL(fileURLWithPath: arguments[2]),
+            cGtkImport: arguments[3]
         )
     }
 

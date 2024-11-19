@@ -1,6 +1,6 @@
 import Foundation
 
-extension String: CodingKey {
+extension String: @retroactive CodingKey {
     public init?(intValue: Int) {
         return nil
     }
