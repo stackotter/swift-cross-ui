@@ -1,6 +1,6 @@
 #include "gtk_custom_root_widget.h"
 
-G_DEFINE_FINAL_TYPE(GtkCustomRootWidget, gtk_custom_root_widget, GTK_TYPE_BIN)
+G_DEFINE_TYPE(GtkCustomRootWidget, gtk_custom_root_widget, GTK_TYPE_BIN)
 
 static void gtk_custom_root_widget_init(GtkCustomRootWidget *self) {
     gtk_widget_set_has_window(GTK_WIDGET(self), FALSE);
