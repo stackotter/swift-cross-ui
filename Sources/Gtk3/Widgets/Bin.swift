@@ -3,7 +3,13 @@
 //
 
 open class Bin: Container {
-    public func getChild() -> Widget? {
-        widgets.last
+    public var child: Widget?
+
+    public func setChild(to widget: Widget) {
+        if let child {
+            remove(child)
+        }
+        self.child = widget
+        add(widget)
     }
 }

@@ -112,15 +112,15 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             dryRun: true
         )
 
-        let newWindowSize = updateSize(
-            of: window,
+        let newWindowSize = computeNewWindowSize(
+            currentProposedSize: proposedWindowSize,
             backend: backend,
             contentSize: contentSize,
             environment: environment
         )
 
-        // Either restart the window update (if the content has caused the window to
-        // change size) or rerun the update but for real this time.
+        // Restart the window update if the content has caused the window to
+        // change size.
         if let newWindowSize {
             return update(
                 scene,
@@ -128,12 +128,22 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                 backend: backend,
                 environment: environment
             )
-        } else {
-            _ = viewGraph.update(
-                with: newScene?.body,
-                proposedSize: proposedWindowSize,
-                environment: environment,
-                dryRun: false
+        }
+
+        _ = viewGraph.update(
+            with: newScene?.body,
+            proposedSize: proposedWindowSize,
+            environment: environment,
+            dryRun: false
+        )
+
+        if scene.resizability.isResizable {
+            backend.setMinimumSize(
+                ofWindow: window,
+                to: SIMD2(
+                    contentSize.minimumWidth,
+                    contentSize.minimumHeight
+                )
             )
         }
 
@@ -146,6 +156,11 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             )
         )
 
+        let currentWindowSize = backend.size(ofWindow: window)
+        if currentWindowSize != proposedWindowSize {
+            backend.setSize(ofWindow: window, to: proposedWindowSize)
+        }
+
         if isFirstUpdate {
             backend.show(window: window)
             isFirstUpdate = false
@@ -154,39 +169,25 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         return contentSize
     }
 
-    public func updateSize<Backend: AppBackend>(
-        of window: Backend.Window,
+    public func computeNewWindowSize<Backend: AppBackend>(
+        currentProposedSize: SIMD2<Int>,
         backend: Backend,
         contentSize: ViewSize,
         environment: Environment
     ) -> SIMD2<Int>? {
-        let windowSize = backend.size(ofWindow: window)
         if scene.resizability.isResizable {
-            backend.setMinimumSize(
-                ofWindow: window,
-                to: SIMD2(
-                    contentSize.minimumWidth,
-                    contentSize.minimumHeight
-                )
-            )
-
-            if windowSize.x < contentSize.minimumWidth
-                || windowSize.y < contentSize.minimumHeight
+            if currentProposedSize.x < contentSize.minimumWidth
+                || currentProposedSize.y < contentSize.minimumHeight
             {
                 let newSize = SIMD2(
-                    max(windowSize.x, contentSize.minimumWidth),
-                    max(windowSize.y, contentSize.minimumHeight)
-                )
-                backend.setSize(
-                    ofWindow: window,
-                    to: newSize
+                    max(currentProposedSize.x, contentSize.minimumWidth),
+                    max(currentProposedSize.y, contentSize.minimumHeight)
                 )
                 return newSize
             } else {
                 return nil
             }
-        } else if contentSize.size != windowSize {
-            backend.setSize(ofWindow: window, to: contentSize.size)
+        } else if contentSize.size != currentProposedSize {
             return contentSize.size
         } else {
             return nil

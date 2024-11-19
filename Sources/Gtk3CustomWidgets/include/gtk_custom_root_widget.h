@@ -15,7 +15,7 @@ typedef struct {
 } Size;
 
 typedef struct _GtkCustomRootWidget {
-    GtkWidget parent_instance;
+    GtkBin parent_instance;
   
     gint minimum_width;
     gint minimum_height;
@@ -33,25 +33,27 @@ typedef struct _GtkCustomRootWidget {
 
 #define GTK_CUSTOM_ROOT_WIDGET_TYPE (gtk_custom_root_widget_get_type())
 
-G_DECLARE_FINAL_TYPE(GtkCustomRootWidget, gtk_custom_root_widget, GTK, CUSTOM_ROOT_WIDGET, GtkWidget)
+G_DECLARE_FINAL_TYPE(GtkCustomRootWidget, gtk_custom_root_widget, GTK, CUSTOM_ROOT_WIDGET, GtkBin)
+
+void gtk_custom_root_widget_realize(GtkWidget *widget);
 
 GtkSizeRequestMode gtk_custom_root_widget_size_request_mode(GtkWidget *widget);
 
-void gtk_custom_root_widget_measure(
+void gtk_custom_root_widget_get_preferred_width(
     GtkWidget *widget,
-    GtkOrientation orientation,
-    int for_size,
     int *minimum,
-    int *natural,
-    int *minimum_baseline,
-    int *natural_baseline
+    int *natural
+);
+
+void gtk_custom_root_widget_get_preferred_height(
+    GtkWidget *widget,
+    int *minimum,
+    int *natural
 );
 
 void gtk_custom_root_widget_allocate(
     GtkWidget *widget,
-    int width,
-    int height,
-    int baseline
+    GtkAllocation *allocation
 );
 
 GtkWidget *gtk_custom_root_widget_new(void);
@@ -64,6 +66,12 @@ void gtk_custom_root_widget_set_minimum_size(
     GtkCustomRootWidget *self,
     gint minimum_width,
     gint minimum_height
+);
+
+void gtk_custom_root_widget_set_natural_size(
+    GtkCustomRootWidget *self,
+    gint natural_width,
+    gint natural_height
 );
 
 void gtk_custom_root_widget_preempt_allocated_size(

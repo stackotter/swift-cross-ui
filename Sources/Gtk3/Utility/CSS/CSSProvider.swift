@@ -11,11 +11,13 @@ public class CSSProvider {
     ) {
         pointer = gtk_css_provider_new()
         self.context = context
+        g_object_ref(context)
         gtk_style_context_add_provider(context, OpaquePointer(pointer), priority)
     }
 
     deinit {
         gtk_style_context_remove_provider(context, OpaquePointer(pointer))
+        g_object_unref(context)
     }
 
     /// Loads data into css_provider.

@@ -331,8 +331,6 @@ public final class GtkBackend: AppBackend {
             return
         }
 
-        print("Updating image view")
-
         let imageView = imageView as! Gtk.Picture
         let buffer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: rgbaData.count)
         memcpy(buffer.baseAddress!, rgbaData, rgbaData.count)

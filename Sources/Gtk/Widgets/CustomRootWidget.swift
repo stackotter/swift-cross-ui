@@ -1,14 +1,6 @@
 import CGtk
 import GtkCustomWidgets
 
-final class CallbackBox {
-    let callback: () -> Void
-
-    init(callback: @escaping () -> Void) {
-        self.callback = callback
-    }
-}
-
 /// A custom widget made specifically for SwiftCrossUI. This widget provides the
 /// control of window and pane resizing that SwiftCrossUI requires.
 public class CustomRootWidget: Widget {
@@ -36,17 +28,6 @@ public class CustomRootWidget: Widget {
             castedPointer(),
             gint(minimumWidth),
             gint(minimumHeight)
-        )
-    }
-
-    public func setNaturalSize(
-        naturalWidth: Int,
-        naturalHeight: Int
-    ) {
-        gtk_custom_root_widget_set_natural_size(
-            castedPointer(),
-            gint(naturalWidth),
-            gint(naturalHeight)
         )
     }
 

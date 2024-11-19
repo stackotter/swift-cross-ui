@@ -5,8 +5,6 @@
 import CGtk3
 
 public class Window: Bin {
-    public var child: Widget?
-
     override public init() {
         super.init()
         widgetPointer = gtk_window_new(GTK_WINDOW_TOPLEVEL)
@@ -16,11 +14,6 @@ public class Window: Bin {
         super.init()
         self.widgetPointer = pointer
     }
-
-    // public static var rootWindow: Window {
-    //     gdk_display_get_default()
-    //     return Window(pointer: UnsafeMutablePointer<GtkWidget>(gdk_screen_get_root_window(gdk_screen_get_default())))
-    // }
 
     @GObjectProperty(named: "title") public var title: String?
 
@@ -50,7 +43,11 @@ public class Window: Bin {
             // just the current size of the window, except when the window is in full
             // screen, in which case the 'default size' is the size that the window
             // should return to when it leaves full screen.
-            defaultSize = newValue
+            defaultSize = Size(
+                width: newValue.width,
+                height: newValue.height
+            )
+            gtk_window_resize(castedPointer(), gint(newValue.width), gint(newValue.height))
         }
     }
 

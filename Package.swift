@@ -215,6 +215,10 @@ let package = Package(
             dependencies: ["Gtk"],
             resources: [.copy("GTK.png")]
         ),
+        .target(
+            name: "GtkCustomWidgets",
+            dependencies: ["CGtk"]
+        ),
         .executableTarget(
             name: "GtkCodeGen",
             dependencies: [
@@ -231,7 +235,7 @@ let package = Package(
         ),
         .target(
             name: "Gtk3",
-            dependencies: ["CGtk3"],
+            dependencies: ["CGtk3", "Gtk3CustomWidgets"],
             exclude: ["LICENSE.md"],
             swiftSettings: gtkSwiftSettings
         ),
@@ -239,6 +243,10 @@ let package = Package(
             name: "Gtk3Example",
             dependencies: ["Gtk3"],
             resources: [.copy("GTK.png")]
+        ),
+        .target(
+            name: "Gtk3CustomWidgets",
+            dependencies: ["CGtk3"]
         ),
         .macro(
             name: "HotReloadingMacrosPlugin",
@@ -249,10 +257,6 @@ let package = Package(
                 .product(name: "MacroToolkit", package: "swift-macro-toolkit"),
             ],
             swiftSettings: swiftSettings
-        ),
-        .target(
-            name: "GtkCustomWidgets",
-            dependencies: ["CGtk"]
         ),
     ] + swift510Targets
 )

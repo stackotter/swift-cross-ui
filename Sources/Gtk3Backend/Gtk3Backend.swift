@@ -73,41 +73,36 @@ public final class Gtk3Backend: AppBackend {
     }
 
     public func setChild(ofWindow window: Window, to child: Widget) {
-        window.add(child)
+        let container = CustomRootWidget()
+        container.setChild(to: child)
+        window.setChild(to: container)
     }
 
     public func size(ofWindow window: Window) -> SIMD2<Int> {
-        let size = window.size
+        let child = window.child! as! CustomRootWidget
+        let size = child.getSize()
         return SIMD2(size.width, size.height)
     }
 
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
-        let windowSize = window.defaultSize
-        let childSize = window.defaultSize
-        let decorationsSize = SIMD2(
-            windowSize.width - childSize.width,
-            windowSize.height - childSize.height
-        )
-        window.size = Size(
-            width: decorationsSize.x + newSize.x,
-            height: decorationsSize.y + newSize.y
-        )
-        // child.preemptAllocatedSize(allocatedWidth: newSize.x, allocatedHeight: newSize.y)
+        let child = window.child! as! CustomRootWidget
+        window.size = Size(width: newSize.x, height: newSize.y)
+        child.preemptAllocatedSize(allocatedWidth: newSize.x, allocatedHeight: newSize.y)
     }
 
     public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
-        window.setMinimumSize(to: Size(width: minimumSize.x, height: minimumSize.y))
+        let child = window.child! as! CustomRootWidget
+        child.setMinimumSize(minimumWidth: minimumSize.x, minimumHeight: minimumSize.y)
     }
 
     public func setResizeHandler(
         ofWindow window: Window,
         to action: @escaping (_ newSize: SIMD2<Int>) -> Void
     ) {
-        // TODO: Handle window resizing
-        // let child = window.getChild() as! CustomRootWidget
-        // child.setResizeHandler { size in
-        //     action(SIMD2(size.width, size.height))
-        // }
+        let child = window.child! as! CustomRootWidget
+        child.setResizeHandler { size in
+            action(SIMD2(size.width, size.height))
+        }
     }
 
     public func show(window: Window) {

@@ -17,11 +17,6 @@ public class Window: Widget {
         self.widgetPointer = pointer
     }
 
-    // public static var rootWindow: Window {
-    //     gdk_display_get_default()
-    //     return Window(pointer: UnsafeMutablePointer<GtkWidget>(gdk_screen_get_root_window(gdk_screen_get_default())))
-    // }
-
     @GObjectProperty(named: "title") public var title: String?
 
     public var defaultSize: Size {
