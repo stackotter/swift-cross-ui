@@ -230,8 +230,13 @@ public final class AppKitBackend: AppBackend {
         container.removeSubview(child)
     }
 
-    public func setBackgroundColor(ofContainer widget: Widget, to color: Color) {
+    public func createColorableRectangle() -> Widget {
+        let widget = NSView()
         widget.wantsLayer = true
+        return widget
+    }
+
+    public func setColor(ofColorableRectangle widget: Widget, to color: Color) {
         widget.layer?.backgroundColor = color.nsColor.cgColor
     }
 
@@ -560,7 +565,19 @@ public final class AppKitBackend: AppBackend {
         return imageView
     }
 
-    public func updateImageView(_ imageView: Widget, rgbaData: [UInt8], width: Int, height: Int) {
+    public func updateImageView(
+        _ imageView: Widget,
+        rgbaData: [UInt8],
+        width: Int,
+        height: Int,
+        targetWidth: Int,
+        targetHeight: Int,
+        dataHasChanged: Bool
+    ) {
+        guard dataHasChanged else {
+            return
+        }
+
         let imageView = imageView as! NSImageView
         var rgbaData = rgbaData
         let context = CGContext(

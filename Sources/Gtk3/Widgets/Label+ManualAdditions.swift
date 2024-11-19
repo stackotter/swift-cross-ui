@@ -13,4 +13,13 @@ extension Label {
             gtk_label_set_line_wrap_mode(castedPointer(), newValue.toPangoWrapMode())
         }
     }
+
+    public var wrap: Bool {
+        get {
+            self.getProperty(named: "wrap")
+        }
+        set {
+            self.setProperty(named: "wrap", newValue: newValue)
+        }
+    }
 }

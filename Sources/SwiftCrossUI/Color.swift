@@ -56,7 +56,7 @@ public struct Color {
 
 extension Color: ElementaryView {
     func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
-        backend.createContainer()
+        backend.createColorableRectangle()
     }
 
     func update<Backend: AppBackend>(
@@ -68,7 +68,7 @@ extension Color: ElementaryView {
     ) -> ViewSize {
         if !dryRun {
             backend.setSize(of: widget, to: proposedSize)
-            backend.setBackgroundColor(ofContainer: widget, to: self)
+            backend.setColor(ofColorableRectangle: widget, to: self)
         }
         return ViewSize(
             size: proposedSize,

@@ -276,7 +276,7 @@ struct GtkCodeGen {
         var properties: [DeclSyntax] = []
         for (classLike, property) in class_.getAllImplemented(\.properties, namespace: namespace) {
             guard
-                property.version == nil,
+                property.version == nil || property.version == "3.2",
                 property.name != "child",
                 let decl = generateProperty(
                     property, namespace: namespace, classLike: classLike, forProtocol: false

@@ -892,6 +892,10 @@ public class Entry: Widget, CellEditable, Editable {
 
     @GObjectProperty(named: "max-length") public var maxLength: Int
 
+    /// The text that will be displayed in the #GtkEntry when it is empty
+    /// and unfocused.
+    @GObjectProperty(named: "placeholder-text") public var placeholderText: String
+
     @GObjectProperty(named: "text") public var text: String
 
     @GObjectProperty(named: "visibility") public var visibility: Bool

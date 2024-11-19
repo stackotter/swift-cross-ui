@@ -1,11 +1,11 @@
 extension View {
     public func cornerRadius(_ radius: Int) -> some View {
-        CornerRadiusModifier(body: self, cornerRadius: radius)
+        CornerRadiusModifier(body: TupleView1(self), cornerRadius: radius)
     }
 }
 
 struct CornerRadiusModifier<Content: View>: View {
-    var body: Content
+    var body: TupleView1<Content>
     var cornerRadius: Int
 
     func update<Backend>(
@@ -16,7 +16,8 @@ struct CornerRadiusModifier<Content: View>: View {
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize where Backend: AppBackend {
-        let contentSize = body.update(
+        let vStack = VStack(content: body)
+        let contentSize = vStack.update(
             widget,
             children: children,
             proposedSize: proposedSize,

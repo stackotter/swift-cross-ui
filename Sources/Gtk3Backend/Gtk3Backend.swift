@@ -1,21 +1,21 @@
-import CGtk
+import CGtk3
 import Foundation
-import Gtk
+import Gtk3
 import SwiftCrossUI
 
 extension App {
-    public typealias Backend = GtkBackend
+    public typealias Backend = Gtk3Backend
 }
 
 extension SwiftCrossUI.Color {
-    public var gtkColor: Gtk.Color {
-        return Gtk.Color(red, green, blue, alpha)
+    public var gtkColor: Gtk3.Color {
+        return Gtk3.Color(Double(red), Double(green), Double(blue), Double(alpha))
     }
 }
 
-public final class GtkBackend: AppBackend {
-    public typealias Window = Gtk.Window
-    public typealias Widget = Gtk.Widget
+public final class Gtk3Backend: AppBackend {
+    public typealias Window = Gtk3.Window
+    public typealias Widget = Gtk3.Widget
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
@@ -46,12 +46,12 @@ public final class GtkBackend: AppBackend {
     }
 
     public func createWindow(withDefaultSize defaultSize: SIMD2<Int>?) -> Window {
-        let window: Gtk.Window
+        let window: Gtk3.Window
         if let precreatedWindow = precreatedWindow {
             self.precreatedWindow = nil
             window = precreatedWindow
         } else {
-            window = Gtk.Window()
+            window = Gtk3.Window()
         }
 
         if let defaultSize = defaultSize {
@@ -73,20 +73,17 @@ public final class GtkBackend: AppBackend {
     }
 
     public func setChild(ofWindow window: Window, to child: Widget) {
-        let container = wrapInCustomRootContainer(child)
-        window.setChild(container)
+        window.add(child)
     }
 
     public func size(ofWindow window: Window) -> SIMD2<Int> {
-        let child = window.getChild() as! CustomRootWidget
-        let size = child.getSize()
+        let size = window.size
         return SIMD2(size.width, size.height)
     }
 
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
-        let child = window.getChild() as! CustomRootWidget
         let windowSize = window.defaultSize
-        let childSize = child.getSize()
+        let childSize = window.defaultSize
         let decorationsSize = SIMD2(
             windowSize.width - childSize.width,
             windowSize.height - childSize.height
@@ -95,7 +92,7 @@ public final class GtkBackend: AppBackend {
             width: decorationsSize.x + newSize.x,
             height: decorationsSize.y + newSize.y
         )
-        child.preemptAllocatedSize(allocatedWidth: newSize.x, allocatedHeight: newSize.y)
+        // child.preemptAllocatedSize(allocatedWidth: newSize.x, allocatedHeight: newSize.y)
     }
 
     public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
@@ -106,14 +103,15 @@ public final class GtkBackend: AppBackend {
         ofWindow window: Window,
         to action: @escaping (_ newSize: SIMD2<Int>) -> Void
     ) {
-        let child = window.getChild() as! CustomRootWidget
-        child.setResizeHandler { size in
-            action(SIMD2(size.width, size.height))
-        }
+        // TODO: Handle window resizing
+        // let child = window.getChild() as! CustomRootWidget
+        // child.setResizeHandler { size in
+        //     action(SIMD2(size.width, size.height))
+        // }
     }
 
     public func show(window: Window) {
-        window.show()
+        window.showAll()
     }
 
     class ThreadActionContext {
@@ -163,7 +161,7 @@ public final class GtkBackend: AppBackend {
     // MARK: Containers
 
     public func createContainer() -> Widget {
-        return Fixed()
+        Fixed()
     }
 
     public func removeAllChildren(of container: Widget) {
@@ -178,7 +176,7 @@ public final class GtkBackend: AppBackend {
 
     public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
         let container = container as! Fixed
-        container.move(container.children[index], x: Double(position.x), y: Double(position.y))
+        container.move(container.children[index], x: position.x, y: position.y)
     }
 
     public func removeChild(_ child: Widget, from container: Widget) {
@@ -187,10 +185,13 @@ public final class GtkBackend: AppBackend {
     }
 
     public func createColorableRectangle() -> Widget {
-        return Fixed()
+        Box()
     }
 
-    public func setColor(ofColorableRectangle widget: Widget, to color: SwiftCrossUI.Color) {
+    public func setColor(
+        ofColorableRectangle widget: Widget,
+        to color: SwiftCrossUI.Color
+    ) {
         widget.css.set(property: .backgroundColor(color.gtkColor))
     }
 
@@ -210,50 +211,50 @@ public final class GtkBackend: AppBackend {
         widget.setSizeRequest(width: size.x, height: size.y)
     }
 
-    public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
-        let widget = Paned(orientation: .horizontal)
-        let leadingContainer = wrapInCustomRootContainer(leadingChild)
-        let trailingContainer = wrapInCustomRootContainer(trailingChild)
+    // public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
+    //     let widget = Paned(orientation: .horizontal)
+    //     let leadingContainer = wrapInCustomRootContainer(leadingChild)
+    //     let trailingContainer = wrapInCustomRootContainer(trailingChild)
 
-        widget.startChild = leadingContainer
-        widget.endChild = trailingContainer
-        widget.shrinkStartChild = false
-        widget.shrinkEndChild = false
+    //     widget.startChild = leadingContainer
+    //     widget.endChild = trailingContainer
+    //     widget.shrinkStartChild = false
+    //     widget.shrinkEndChild = false
 
-        widget.position = 200
-        return widget
-    }
+    //     widget.position = 200
+    //     return widget
+    // }
 
-    public func setResizeHandler(
-        ofSplitView splitView: Widget,
-        to action: @escaping (_ leadingWidth: Int, _ trailingWidth: Int) -> Void
-    ) {
-        let splitView = splitView as! Paned
-        splitView.notifyPosition = { splitView in
-            action(splitView.position, splitView.getNaturalSize().width - splitView.position)
-        }
-    }
+    // public func setResizeHandler(
+    //     ofSplitView splitView: Widget,
+    //     to action: @escaping (_ leadingWidth: Int, _ trailingWidth: Int) -> Void
+    // ) {
+    //     let splitView = splitView as! Paned
+    //     splitView.notifyPosition = { splitView in
+    //         action(splitView.position, splitView.getNaturalSize().width - splitView.position)
+    //     }
+    // }
 
-    public func sidebarWidth(ofSplitView splitView: Widget) -> Int {
-        let splitView = splitView as! Paned
-        return splitView.position
-    }
+    // public func sidebarWidth(ofSplitView splitView: Widget) -> Int {
+    //     let splitView = splitView as! Paned
+    //     return splitView.position
+    // }
 
-    public func setSidebarWidthBounds(
-        ofSplitView splitView: Widget,
-        minimum minimumWidth: Int,
-        maximum maximumWidth: Int
-    ) {
-        let splitView = splitView as! Paned
-        show(widget: splitView.startChild!)
-        let width = splitView.getNaturalSize().width
-        splitView.startChild?.setSizeRequest(width: minimumWidth, height: 0)
-        splitView.endChild?.setSizeRequest(width: width - maximumWidth, height: 0)
-    }
+    // public func setSidebarWidthBounds(
+    //     ofSplitView splitView: Widget,
+    //     minimum minimumWidth: Int,
+    //     maximum maximumWidth: Int
+    // ) {
+    //     let splitView = splitView as! Paned
+    //     show(widget: splitView.startChild!)
+    //     let width = splitView.getNaturalSize().width
+    //     splitView.startChild?.setSizeRequest(width: minimumWidth, height: 0)
+    //     splitView.endChild?.setSizeRequest(width: width - maximumWidth, height: 0)
+    // }
 
     public func createScrollContainer(for child: Widget) -> Widget {
         let scrollView = ScrolledWindow()
-        scrollView.setChild(child)
+        scrollView.add(child)
         return scrollView
     }
 
@@ -312,9 +313,9 @@ public final class GtkBackend: AppBackend {
     }
 
     public func createImageView() -> Widget {
-        let imageView = Gtk.Picture()
-        imageView.keepAspectRatio = false
-        imageView.canShrink = true
+        let imageView = Gtk3.Image()
+        // imageView.keepAspectRatio = false
+        // imageView.canShrink = true
         return imageView
     }
 
@@ -327,30 +328,17 @@ public final class GtkBackend: AppBackend {
         targetHeight: Int,
         dataHasChanged: Bool
     ) {
-        guard dataHasChanged else {
-            return
-        }
+        let imageView = imageView as! Gtk3.Image
 
-        print("Updating image view")
-
-        let imageView = imageView as! Gtk.Picture
-        let buffer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: rgbaData.count)
-        memcpy(buffer.baseAddress!, rgbaData, rgbaData.count)
-        let pixbuf = gdk_pixbuf_new_from_data(
-            buffer.baseAddress,
-            GDK_COLORSPACE_RGB,
-            1,
-            8,
-            Int32(width),
-            Int32(height),
-            Int32(width * 4),
-            { buffer, _ in
-                buffer?.deallocate()
-            },
-            nil
+        let pixbuf = Pixbuf(
+            rgbaData: rgbaData,
+            width: width,
+            height: height
         )
-        let texture = gdk_texture_new_for_pixbuf(pixbuf)!
-        imageView.setPaintable(texture)
+
+        let scaledPixbuf = pixbuf.scaled(toWidth: targetWidth, andHeight: targetHeight)
+
+        imageView.setPixbuf(scaledPixbuf.pointer)
     }
 
     // private class Tables {
@@ -437,7 +425,7 @@ public final class GtkBackend: AppBackend {
         environment: Environment
     ) {
         // TODO: Update button label color using environment
-        let button = button as! Gtk.Button
+        let button = button as! Gtk3.Button
         button.label = label
         button.clicked = { _ in action() }
         button.css.clear()
@@ -450,13 +438,13 @@ public final class GtkBackend: AppBackend {
 
     public func updateToggle(_ toggle: Widget, label: String, onChange: @escaping (Bool) -> Void) {
         (toggle as! ToggleButton).label = label
-        (toggle as! Gtk.ToggleButton).toggled = { widget in
+        (toggle as! Gtk3.ToggleButton).toggled = { widget in
             onChange(widget.active)
         }
     }
 
     public func setState(ofToggle toggle: Widget, to state: Bool) {
-        (toggle as! Gtk.ToggleButton).active = state
+        (toggle as! Gtk3.ToggleButton).active = state
     }
 
     public func createSwitch() -> Widget {
@@ -464,13 +452,13 @@ public final class GtkBackend: AppBackend {
     }
 
     public func updateSwitch(_ switchWidget: Widget, onChange: @escaping (Bool) -> Void) {
-        (switchWidget as! Gtk.Switch).notifyActive = { widget in
+        (switchWidget as! Gtk3.Switch).notifyActive = { widget in
             onChange(widget.active)
         }
     }
 
     public func setState(ofSwitch switchWidget: Widget, to state: Bool) {
-        (switchWidget as! Gtk.Switch).active = state
+        (switchWidget as! Gtk3.Switch).active = state
     }
 
     public func createSlider() -> Widget {
@@ -527,83 +515,77 @@ public final class GtkBackend: AppBackend {
         return (textField as! Entry).text
     }
 
-    public func createPicker() -> Widget {
-        return DropDown(strings: [])
-    }
+    // public func createPicker() -> Widget {
+    //     return DropDown(strings: [])
+    // }
 
-    public func updatePicker(
-        _ picker: Widget,
-        options: [String],
-        environment: Environment,
-        onChange: @escaping (Int?) -> Void
-    ) {
-        let picker = picker as! DropDown
+    // public func updatePicker(
+    //     _ picker: Widget,
+    //     options: [String],
+    //     environment: Environment,
+    //     onChange: @escaping (Int?) -> Void
+    // ) {
+    //     let picker = picker as! DropDown
 
-        // Check whether the options need to be updated or not (avoiding unnecessary updates is
-        // required to prevent an infinite loop caused by the onChange handler)
-        var hasChanged = false
-        for index in 0..<options.count {
-            guard
-                let item = gtk_string_list_get_string(picker.model, guint(index)),
-                String(cString: item) == options[index]
-            else {
-                hasChanged = true
-                break
-            }
-        }
+    //     // Check whether the options need to be updated or not (avoiding unnecessary updates is
+    //     // required to prevent an infinite loop caused by the onChange handler)
+    //     var hasChanged = false
+    //     for index in 0..<options.count {
+    //         guard
+    //             let item = gtk_string_list_get_string(picker.model, guint(index)),
+    //             String(cString: item) == options[index]
+    //         else {
+    //             hasChanged = true
+    //             break
+    //         }
+    //     }
 
-        // picker.model could be longer than options
-        if gtk_string_list_get_string(picker.model, guint(options.count)) != nil {
-            hasChanged = true
-        }
+    //     // picker.model could be longer than options
+    //     if gtk_string_list_get_string(picker.model, guint(options.count)) != nil {
+    //         hasChanged = true
+    //     }
 
-        // Apply the current text styles to the dropdown's labels
-        var block = CSSBlock(forClass: picker.css.cssClass + " label")
-        block.set(properties: Self.cssProperties(for: environment))
-        picker.cssProvider.loadCss(from: block.stringRepresentation)
+    //     // Apply the current text styles to the dropdown's labels
+    //     var block = CSSBlock(forClass: picker.css.cssClass + " label")
+    //     block.set(properties: Self.cssProperties(for: environment))
+    //     picker.cssProvider.loadCss(from: block.stringRepresentation)
 
-        guard hasChanged else {
-            return
-        }
+    //     guard hasChanged else {
+    //         return
+    //     }
 
-        picker.model = gtk_string_list_new(
-            UnsafePointer(
-                options
-                    .map({ UnsafePointer($0.unsafeUTF8Copy().baseAddress) })
-                    .unsafeCopy()
-                    .baseAddress
-            )
-        )
+    //     picker.model = gtk_string_list_new(
+    //         UnsafePointer(
+    //             options
+    //                 .map({ UnsafePointer($0.unsafeUTF8Copy().baseAddress) })
+    //                 .unsafeCopy()
+    //                 .baseAddress
+    //         )
+    //     )
 
-        picker.notifySelected = { picker in
-            if picker.selected == GTK_INVALID_LIST_POSITION {
-                onChange(nil)
-            } else {
-                onChange(picker.selected)
-            }
-        }
-    }
+    //     picker.notifySelected = { picker in
+    //         if picker.selected == GTK_INVALID_LIST_POSITION {
+    //             onChange(nil)
+    //         } else {
+    //             onChange(picker.selected)
+    //         }
+    //     }
+    // }
 
-    public func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?) {
-        let picker = picker as! DropDown
-        if selectedOption != picker.selected {
-            picker.selected = selectedOption ?? Int(GTK_INVALID_LIST_POSITION)
-        }
-    }
+    // public func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?) {
+    //     let picker = picker as! DropDown
+    //     if selectedOption != picker.selected {
+    //         picker.selected = selectedOption ?? Int(GTK_INVALID_LIST_POSITION)
+    //     }
+    // }
 
-    public func createProgressSpinner() -> Widget {
-        let spinner = Spinner()
-        spinner.spinning = true
-        return spinner
-    }
+    // public func createProgressSpinner() -> Widget {
+    //     let spinner = Spinner()
+    //     spinner.spinning = true
+    //     return spinner
+    // }
 
     // MARK: Helpers
-
-    private func wrapInCustomRootContainer(_ widget: Widget) -> Widget {
-        let container = CustomRootWidget()
-        container.setChild(to: widget)
-        return container
-    }
 
     private static func cssProperties(for environment: Environment) -> [CSSProperty] {
         var properties: [CSSProperty] = []

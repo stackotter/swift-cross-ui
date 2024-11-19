@@ -3,26 +3,17 @@ import CGtk3
 public struct Pixbuf {
     public let pointer: OpaquePointer
 
-    private class DestructorContext {
-        let bufferLength: Int
+    public init(rgbaData: [UInt8], width: Int, height: Int) {
+        let buffer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: rgbaData.count)
+        memcpy(buffer.baseAddress!, rgbaData, rgbaData.count)
 
-        init(bufferLength: Int) {
-            self.bufferLength = bufferLength
-        }
-    }
-
-    public init(rgbaData: [UInt8], width: Int, height: Int, format: Int, stride: Int) {
-        let bufferLength = rgbaData.count
-        let destructorContext = DestructorContext(
-            bufferLength: bufferLength
-        )
-        let buffer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: bufferLength)
         let width = gint(width)
         let height = gint(height)
         let hasAlpha = true.toGBoolean()
         let bitsPerSample: gint = 8
         let channels: gint = 4
         let rowStride = channels * gint(width)
+
         pointer = gdk_pixbuf_new_from_data(
             buffer.baseAddress,
             GDK_COLORSPACE_RGB,
@@ -31,15 +22,24 @@ public struct Pixbuf {
             width,
             height,
             rowStride,
-            { buffer, context in
-                let context = Unmanaged<DestructorContext>.fromOpaque(context!).takeRetainedValue()
-                let buffer = UnsafeMutableBufferPointer<UInt8>(
-                    start: buffer,
-                    count: context.bufferLength
-                )
-                buffer.deallocate()
+            { buffer, _ in
+                buffer?.deallocate()
             },
-            Unmanaged.passRetained(destructorContext).toOpaque()
+            nil
         )
+    }
+
+    private init(pointer: OpaquePointer) {
+        self.pointer = pointer
+    }
+
+    public func scaled(toWidth width: Int, andHeight height: Int) -> Pixbuf {
+        let newPointer = gdk_pixbuf_scale_simple(
+            pointer,
+            gint(width),
+            gint(height),
+            GDK_INTERP_BILINEAR
+        )
+        return Pixbuf(pointer: newPointer!)
     }
 }

@@ -113,14 +113,17 @@ public struct Image: TypeSafeView, View {
             size = ViewSize(fixedSize: idealSize)
         }
 
-        if !dryRun && children.imageChanged {
-            children.imageChanged = false
+        let hasResized = children.cachedImageDisplaySize != size.size
+        if !dryRun && (children.imageChanged || hasResized) {
             if let image {
                 backend.updateImageView(
                     children.imageWidget.into(),
                     rgbaData: image.data,
                     width: image.width,
-                    height: image.height
+                    height: image.height,
+                    targetWidth: size.size.x,
+                    targetHeight: size.size.y,
+                    dataHasChanged: children.imageChanged
                 )
                 if children.isContainerEmpty {
                     backend.addChild(children.imageWidget.into(), to: children.container.into())
@@ -131,7 +134,10 @@ public struct Image: TypeSafeView, View {
                 backend.removeAllChildren(of: children.container.into())
                 children.isContainerEmpty = true
             }
+            children.imageChanged = false
         }
+
+        children.cachedImageDisplaySize = size.size
 
         if !dryRun {
             backend.setSize(of: children.container.into(), to: size.size)
@@ -145,6 +151,7 @@ public struct Image: TypeSafeView, View {
 class _ImageChildren: ViewGraphNodeChildren {
     var cachedImageSource: Image.Source? = nil
     var cachedImage: ImageFormats.Image<RGBA>? = nil
+    var cachedImageDisplaySize: SIMD2<Int> = .zero
     var container: AnyWidget
     var imageWidget: AnyWidget
     var imageChanged = false

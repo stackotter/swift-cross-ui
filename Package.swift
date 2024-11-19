@@ -104,6 +104,7 @@ let package = Package(
         .library(name: "CursesBackend", type: libraryType, targets: ["CursesBackend"]),
         .library(name: "QtBackend", type: libraryType, targets: ["QtBackend"]),
         .library(name: "GtkBackend", type: libraryType, targets: ["GtkBackend"]),
+        .library(name: "Gtk3Backend", type: libraryType, targets: ["Gtk3Backend"]),
         .library(name: "DefaultBackend", type: libraryType, targets: ["DefaultBackend"]),
         .library(name: "Gtk", type: libraryType, targets: ["Gtk"]),
         .executable(name: "GtkExample", targets: ["GtkExample"]),
@@ -190,6 +191,10 @@ let package = Package(
         .target(
             name: "GtkBackend",
             dependencies: ["SwiftCrossUI", "Gtk", "CGtk"]
+        ),
+        .target(
+            name: "Gtk3Backend",
+            dependencies: ["SwiftCrossUI", "Gtk3", "CGtk3"]
         ),
         .systemLibrary(
             name: "CGtk",

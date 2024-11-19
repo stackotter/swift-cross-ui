@@ -165,8 +165,11 @@ public protocol AppBackend {
     func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>)
     /// Removes a child widget from a container (if the child is a direct child of the container).
     func removeChild(_ child: Widget, from container: Widget)
-    /// Sets the background of a container.
-    func setBackgroundColor(ofContainer widget: Widget, to color: Color)
+
+    /// Creates a rectangular widget with configurable color.
+    func createColorableRectangle() -> Widget
+    /// Sets the color of a colorable rectangle.
+    func setColor(ofColorableRectangle widget: Widget, to color: Color)
 
     /// Sets the corner radius of a widget (any widget). Should affect the view's border radius
     /// as well.
@@ -240,7 +243,24 @@ public protocol AppBackend {
     ///     to influence the size of the image on-screen).
     ///   - height: The height of the image in pixels (should only be used to interpret `rgbaData`, not
     ///     to influence the size of the image on-screen).
-    func updateImageView(_ imageView: Widget, rgbaData: [UInt8], width: Int, height: Int)
+    ///   - targetWidth: The width that the image must have on-screen. Guaranteed to match
+    ///     the width the widget will be given, so backends that don't have to manually
+    ///     scale the underlying pixel data can safely ignore this parameter.
+    ///   - targetHeight: the height that the image must have on-screen. Guaranteed to match
+    ///     the height the widget will be given, so backends that don't have to manually
+    ///     scale the underlying pixel data can safely ignore this parameter.
+    ///   - dataHasChanged: If `false`, then `rgbaData` hasn't changed since the last call,
+    ///     so backends that don't have to manually resize the image data don't have to do
+    ///     anything.
+    func updateImageView(
+        _ imageView: Widget,
+        rgbaData: [UInt8],
+        width: Int,
+        height: Int,
+        targetWidth: Int,
+        targetHeight: Int,
+        dataHasChanged: Bool
+    )
 
     /// Creates an empty table.
     func createTable() -> Widget
@@ -359,7 +379,11 @@ extension AppBackend {
 
     // MARK: Containers
 
-    public func setBackgroundColor(ofContainer widget: Widget, to color: Color) {
+    public func createColorableRectangle() -> Widget {
+        todo()
+    }
+
+    public func setColor(ofColorableRectangle widget: Widget) {
         todo()
     }
 
@@ -423,7 +447,15 @@ extension AppBackend {
         todo()
     }
 
-    public func updateImageView(_ imageView: Widget, rgbaData: [UInt8], width: Int, height: Int) {
+    public func updateImageView(
+        _ imageView: Widget,
+        rgbaData: [UInt8],
+        width: Int,
+        height: Int,
+        targetWidth: Int,
+        targetHeight: Int,
+        dataHasChanged: Bool
+    ) {
         todo()
     }
 
@@ -533,12 +565,7 @@ extension AppBackend {
         todo()
     }
 
-    // MARK: Modifiers
-
-    public func createStyleContainer(for child: Widget) -> Widget {
-        todo()
-    }
-    public func setForegroundColor(ofStyleContainer container: Widget, to color: Color) {
+    public func createProgressSpinner() -> Widget {
         todo()
     }
 }
