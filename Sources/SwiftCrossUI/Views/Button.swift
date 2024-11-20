@@ -31,6 +31,7 @@ public struct Button: ElementaryView, View {
         //   why all buttons lose their labels (until you click off the window, forcing it to
         //   refresh), but the reason Gtk 3 doesn't like it is that the window gets set smaller
         //   than its content I think.
+        //   See: https://github.com/stackotter/swift-cross-ui/blob/27f50579c52e79323c3c368512d37e95af576c25/Sources/SwiftCrossUI/Scenes/WindowGroupNode.swift#L140
         backend.updateButton(widget, label: label, action: action, environment: environment)
         return ViewSize(fixedSize: backend.naturalSize(of: widget))
     }
