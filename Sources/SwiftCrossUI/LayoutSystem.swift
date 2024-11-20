@@ -109,15 +109,7 @@ public enum LayoutSystem {
                 if size.size != .zero || size.participateInStackLayoutsWhenEmpty {
                     print("warning: Hidden view became visible on second update. Layout may break.")
                 }
-                renderedChildren[index] = ViewSize(
-                    size: .zero,
-                    idealSize: .zero,
-                    minimumWidth: 0,
-                    minimumHeight: 0,
-                    maximumWidth: 0,
-                    maximumHeight: 0,
-                    participateInStackLayoutsWhenEmpty: false
-                )
+                renderedChildren[index] = .hidden
                 continue
             }
 

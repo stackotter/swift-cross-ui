@@ -51,7 +51,7 @@ void gtk_custom_root_widget_get_preferred_height(
     int *natural
 );
 
-void gtk_custom_root_widget_allocate(
+void gtk_custom_root_widget_size_allocate(
     GtkWidget *widget,
     GtkAllocation *allocation
 );

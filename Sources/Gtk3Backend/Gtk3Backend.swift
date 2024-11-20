@@ -86,8 +86,11 @@ public final class Gtk3Backend: AppBackend {
 
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
         let child = window.child! as! CustomRootWidget
+        child.preemptAllocatedSize(
+            allocatedWidth: newSize.x,
+            allocatedHeight: newSize.y
+        )
         window.size = Size(width: newSize.x, height: newSize.y)
-        child.preemptAllocatedSize(allocatedWidth: newSize.x, allocatedHeight: newSize.y)
     }
 
     public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {

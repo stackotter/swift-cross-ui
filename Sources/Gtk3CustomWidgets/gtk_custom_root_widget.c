@@ -10,7 +10,7 @@ static void gtk_custom_root_widget_class_init(GtkCustomRootWidgetClass *klass) {
     GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
     widget_class->get_preferred_width = gtk_custom_root_widget_get_preferred_width;
     widget_class->get_preferred_height = gtk_custom_root_widget_get_preferred_height;
-    widget_class->size_allocate = gtk_custom_root_widget_allocate;
+    widget_class->size_allocate = gtk_custom_root_widget_size_allocate;
     widget_class->get_request_mode = gtk_custom_root_widget_size_request_mode;
     widget_class->realize = gtk_custom_root_widget_realize;
 }
@@ -57,7 +57,7 @@ void gtk_custom_root_widget_get_preferred_height(
     *natural = max(root_widget->natural_height, root_widget->minimum_height);
 }
 
-void gtk_custom_root_widget_allocate(
+void gtk_custom_root_widget_size_allocate(
     GtkWidget *widget,
     GtkAllocation *allocation
 ) {
@@ -65,13 +65,7 @@ void gtk_custom_root_widget_allocate(
     gtk_widget_set_allocation(widget, allocation);
     gtk_widget_size_allocate(root_widget->child, allocation);
 
-    if (!root_widget->has_been_allocated) {
-        if (allocation->width == root_widget->natural_width && allocation->height == root_widget->natural_height) {
-            root_widget->allocated_width = allocation->width;
-            root_widget->allocated_height = allocation->height;
-            return;
-        }
-    } else if (allocation->width == root_widget->allocated_width && allocation->height == root_widget->allocated_height) {
+    if (allocation->width == root_widget->allocated_width && allocation->height == root_widget->allocated_height) {
         return;
     }
 

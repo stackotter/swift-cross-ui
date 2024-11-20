@@ -22,7 +22,15 @@ public struct Button: ElementaryView, View {
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {
-        // TODO: Implement button sizing within SwiftCrossUI so that we can properly implement `dryRun`.
+        // TODO: Implement button sizing within SwiftCrossUI so that we can properly implement
+        //   `dryRun`. Relying on the backend for button sizing also makes the Gtk 3 backend
+        //   basically impossible to implement correctly, hence the
+        //   `finalContentSize != contentSize` check in WindowGroupNode to catch any weird
+        //   behaviour. Without that extra safety net logic, buttons all end up label-less
+        //   whenever the window grows due to a view containing buttons appearing. Not sure
+        //   why all buttons lose their labels (until you click off the window, forcing it to
+        //   refresh), but the reason Gtk 3 doesn't like it is that the window gets set smaller
+        //   than its content I think.
         backend.updateButton(widget, label: label, action: action, environment: environment)
         return ViewSize(fixedSize: backend.naturalSize(of: widget))
     }
