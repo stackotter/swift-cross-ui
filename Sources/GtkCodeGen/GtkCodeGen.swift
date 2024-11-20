@@ -78,7 +78,7 @@ struct GtkCodeGen {
     ) throws {
         let allowListedClasses = [
             "Button", "Entry", "Label", "TextView", "Range", "Scale", "Image", "DropDown",
-            "Picture", "Switch", "Spinner",
+            "Picture", "Switch", "Spinner", "ProgressBar",
         ]
         for class_ in gir.namespace.classes where allowListedClasses.contains(class_.name) {
             let source = generateClass(

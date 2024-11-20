@@ -576,11 +576,24 @@ public final class Gtk3Backend: AppBackend {
     //     }
     // }
 
-    // public func createProgressSpinner() -> Widget {
-    //     let spinner = Spinner()
-    //     spinner.spinning = true
-    //     return spinner
-    // }
+    public func createProgressSpinner() -> Widget {
+        let spinner = Spinner()
+        spinner.start()
+        return spinner
+    }
+
+    public func createProgressBar() -> Widget {
+        ProgressBar()
+    }
+
+    public func updateProgressBar(
+        _ widget: Widget,
+        progressFraction: Double?,
+        environment: Environment
+    ) {
+        let progressBar = widget as! ProgressBar
+        progressBar.fraction = progressFraction ?? 0
+    }
 
     // MARK: Helpers
 

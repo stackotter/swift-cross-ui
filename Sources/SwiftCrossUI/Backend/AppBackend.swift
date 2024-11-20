@@ -361,6 +361,14 @@ public protocol AppBackend {
 
     /// Creates an indeterminate progress spinner.
     func createProgressSpinner() -> Widget
+
+    /// Creates a progress bar.
+    func createProgressBar() -> Widget
+    /// Updates a progress bar to reflect the given progress (between 0 and 1), and the
+    /// current view environment.
+    /// - Parameter progressFraction: If `nil`, then the bar should show an indeterminate
+    ///   animation if possible.
+    func updateProgressBar(_ widget: Widget, progressFraction: Double?, environment: Environment)
 }
 
 extension AppBackend {
@@ -566,6 +574,17 @@ extension AppBackend {
     }
 
     public func createProgressSpinner() -> Widget {
+        todo()
+    }
+
+    public func createProgressBar() -> Widget {
+        todo()
+    }
+    func updateProgressBar(
+        _ widget: Widget,
+        progressFraction: Double?,
+        environment: Environment
+    ) {
         todo()
     }
 }

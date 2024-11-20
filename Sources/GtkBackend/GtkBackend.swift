@@ -595,6 +595,19 @@ public final class GtkBackend: AppBackend {
         return spinner
     }
 
+    public func createProgressBar() -> Widget {
+        ProgressBar()
+    }
+
+    public func updateProgressBar(
+        _ widget: Widget,
+        progressFraction: Double?,
+        environment: Environment
+    ) {
+        let progressBar = widget as! ProgressBar
+        progressBar.fraction = progressFraction ?? 0
+    }
+
     // MARK: Helpers
 
     private func wrapInCustomRootContainer(_ widget: Widget) -> Widget {
