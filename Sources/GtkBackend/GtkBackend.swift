@@ -439,7 +439,7 @@ public final class GtkBackend: AppBackend {
         button.label = label
         button.clicked = { _ in action() }
         button.css.clear()
-        button.css.set(properties: Self.cssProperties(for: environment))
+        button.css.set(properties: Self.cssProperties(for: environment, isControl: true))
     }
 
     public func createToggle() -> Widget {
@@ -514,7 +514,7 @@ public final class GtkBackend: AppBackend {
         }
 
         textField.css.clear()
-        textField.css.set(properties: Self.cssProperties(for: environment))
+        textField.css.set(properties: Self.cssProperties(for: environment, isControl: true))
     }
 
     public func setContent(ofTextField textField: Widget, to content: String) {
@@ -603,9 +603,12 @@ public final class GtkBackend: AppBackend {
         return container
     }
 
-    private static func cssProperties(for environment: Environment) -> [CSSProperty] {
+    private static func cssProperties(
+        for environment: Environment,
+        isControl: Bool = false
+    ) -> [CSSProperty] {
         var properties: [CSSProperty] = []
-        properties.append(.foregroundColor(environment.foregroundColor.gtkColor))
+        properties.append(.foregroundColor(environment.suggestedForegroundColor.gtkColor))
         switch environment.font {
             case .system(let size, let weight, let design):
                 properties.append(.fontSize(size))
@@ -638,6 +641,13 @@ public final class GtkBackend: AppBackend {
                         break
                 }
         }
+
+        if isControl {
+            properties.append(.backgroundColor(Color(1, 1, 1, 0.1)))
+            properties.append(CSSProperty(key: "border", value: "none"))
+            properties.append(CSSProperty(key: "box-shadow", value: "none"))
+        }
+
         return properties
     }
 }

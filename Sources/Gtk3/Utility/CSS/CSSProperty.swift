@@ -19,7 +19,7 @@ public struct CSSProperty: Equatable {
     }
 
     public static func backgroundColor(_ color: Color) -> CSSProperty {
-        CSSProperty(key: "background-color", value: rgba(color))
+        CSSProperty(key: "background", value: rgba(color))
     }
 
     public static func lineLimit(_ limit: Int) -> CSSProperty {
@@ -70,7 +70,7 @@ public struct CSSProperty: Equatable {
         let red = color.red * 255
         let green = color.green * 255
         let blue = color.blue * 255
-        let alpha = color.alpha * 255
+        let alpha = color.alpha
         return "rgba(\(red),\(green),\(blue),\(alpha))"
     }
 }

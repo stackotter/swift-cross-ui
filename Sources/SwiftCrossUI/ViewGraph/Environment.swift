@@ -3,18 +3,31 @@ public struct Environment {
     public var layoutOrientation: Orientation
     public var layoutAlignment: StackAlignment
     public var layoutSpacing: Int
-    public var foregroundColor: Color
     public var font: Font
     public var multilineTextAlignment: HorizontalAlignment
+
+    /// The current color scheme of the current view scope.
+    public var colorScheme: ColorScheme
+    /// The foreground color. `nil` means that the default foreground color of
+    /// the current color scheme should be used.
+    public var foregroundColor: Color?
+
+    /// The suggested foreground color for backends to use. Backends don't
+    /// neccessarily have to obey this when ``Environment/foregroundColor``
+    /// is `nil`.
+    public var suggestedForegroundColor: Color {
+        foregroundColor ?? colorScheme.defaultForegroundColor
+    }
 
     init() {
         onResize = { _ in }
         layoutOrientation = .vertical
         layoutAlignment = .center
         layoutSpacing = 10
-        foregroundColor = .black
+        foregroundColor = nil
         font = .system(size: 12)
         multilineTextAlignment = .leading
+        colorScheme = .light
     }
 
     public func with<T>(_ keyPath: WritableKeyPath<Self, T>, _ newValue: T) -> Self {

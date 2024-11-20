@@ -105,13 +105,12 @@ public final class AppKitBackend: AppBackend {
 
     public func computeRootEnvironment(defaultEnvironment: Environment) -> Environment {
         let isDark = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark"
-        let textColor: Color = isDark ? .white : .black
         let font = Font.system(
             size: Int(NSFont.systemFont(ofSize: 0.0).pointSize.rounded(.awayFromZero))
         )
         return
             defaultEnvironment
-            .with(\.foregroundColor, textColor)
+            .with(\.colorScheme, isDark ? .dark : .light)
             .with(\.font, font)
     }
 
@@ -320,7 +319,12 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func createTextView() -> Widget {
-        return NSTextField(wrappingLabelWithString: "")
+        let field = NSTextField(wrappingLabelWithString: "")
+        // Somewhat unintuitively, this changes the behaviour of the text field even
+        // though it's not editable. It prevents the text from resetting to default
+        // styles when clicked (yeah that happens...)
+        field.allowsEditingTextAttributes = true
+        return field
     }
 
     public func updateTextView(_ textView: Widget, content: String, environment: Environment) {
@@ -341,6 +345,7 @@ public final class AppKitBackend: AppBackend {
         let button = button as! NSButton
         button.attributedTitle = Self.attributedString(for: label, in: environment)
         button.bezelStyle = .regularSquare
+        button.appearance = environment.colorScheme.nsAppearance
         button.onAction = { _ in
             action()
         }
@@ -455,6 +460,7 @@ public final class AppKitBackend: AppBackend {
     ) {
         let textField = textField as! NSObservableTextField
         textField.placeholderString = placeholder
+        textField.appearance = environment.colorScheme.nsAppearance
         textField.onEdit = { textField in
             onChange(textField.stringValue)
         }
@@ -678,7 +684,7 @@ public final class AppKitBackend: AppBackend {
                     .right
             }
         return [
-            .foregroundColor: environment.foregroundColor.nsColor,
+            .foregroundColor: environment.suggestedForegroundColor.nsColor,
             .font: font(for: environment),
             .paragraphStyle: paragraphStyle,
         ]
@@ -774,6 +780,17 @@ class NSCustomTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataS
         selectionIndexesForProposedSelection proposedSelectionIndexes: IndexSet
     ) -> IndexSet {
         []
+    }
+}
+
+extension ColorScheme {
+    var nsAppearance: NSAppearance? {
+        switch self {
+            case .light:
+                return NSAppearance(named: .aqua)
+            case .dark:
+                return NSAppearance(named: .darkAqua)
+        }
     }
 }
 

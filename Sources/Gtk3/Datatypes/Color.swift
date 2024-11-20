@@ -18,6 +18,20 @@ public struct Color: Equatable {
         self.alpha = alpha
     }
 
+    public static func eightBit(
+        _ red: UInt8,
+        _ green: UInt8,
+        _ blue: UInt8,
+        _ alpha: UInt8 = 255
+    ) -> Color {
+        Color(
+            Double(red) / 255,
+            Double(green) / 255,
+            Double(blue) / 255,
+            Double(alpha) / 255
+        )
+    }
+
     public var gdkColor: GdkRGBA {
         return GdkRGBA(red: red, green: green, blue: blue, alpha: alpha)
     }
