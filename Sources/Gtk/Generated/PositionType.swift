@@ -16,7 +16,10 @@ public enum PositionType: GValueRepresentableEnum {
     /// The feature is at the bottom edge.
     case bottom
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_position_type_get_type()
+    }
+
     public init(from gtkEnum: GtkPositionType) {
         switch gtkEnum {
             case GTK_POS_LEFT:
@@ -32,7 +35,6 @@ public enum PositionType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPositionType {
         switch self {
             case .left:

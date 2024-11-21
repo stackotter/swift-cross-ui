@@ -21,7 +21,10 @@ public enum WindowType: GValueRepresentableEnum {
     /// A special window such as a tooltip.
     case popup
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_window_type_get_type()
+    }
+
     public init(from gtkEnum: GtkWindowType) {
         switch gtkEnum {
             case GTK_WINDOW_TOPLEVEL:
@@ -33,7 +36,6 @@ public enum WindowType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkWindowType {
         switch self {
             case .toplevel:

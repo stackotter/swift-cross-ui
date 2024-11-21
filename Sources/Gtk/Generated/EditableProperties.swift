@@ -26,7 +26,10 @@ public enum EditableProperties: GValueRepresentableEnum {
     /// The number of properties
     case numProperties
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_editable_properties_get_type()
+    }
+
     public init(from gtkEnum: GtkEditableProperties) {
         switch gtkEnum {
             case GTK_EDITABLE_PROP_TEXT:
@@ -52,7 +55,6 @@ public enum EditableProperties: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkEditableProperties {
         switch self {
             case .propText:

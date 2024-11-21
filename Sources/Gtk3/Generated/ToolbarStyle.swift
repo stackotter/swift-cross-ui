@@ -18,7 +18,10 @@ public enum ToolbarStyle: GValueRepresentableEnum {
     /// other, rather than vertically stacked
     case bothHoriz
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_toolbar_style_get_type()
+    }
+
     public init(from gtkEnum: GtkToolbarStyle) {
         switch gtkEnum {
             case GTK_TOOLBAR_ICONS:
@@ -34,7 +37,6 @@ public enum ToolbarStyle: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkToolbarStyle {
         switch self {
             case .icons:

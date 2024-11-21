@@ -11,7 +11,10 @@ public enum PageSet: GValueRepresentableEnum {
     /// Odd pages.
     case odd
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_page_set_get_type()
+    }
+
     public init(from gtkEnum: GtkPageSet) {
         switch gtkEnum {
             case GTK_PAGE_SET_ALL:
@@ -25,7 +28,6 @@ public enum PageSet: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPageSet {
         switch self {
             case .all:

@@ -10,7 +10,10 @@ public enum PackType: GValueRepresentableEnum {
     /// The child is packed into the end of the box
     case end
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_pack_type_get_type()
+    }
+
     public init(from gtkEnum: GtkPackType) {
         switch gtkEnum {
             case GTK_PACK_START:
@@ -22,7 +25,6 @@ public enum PackType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPackType {
         switch self {
             case .start:

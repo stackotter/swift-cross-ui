@@ -18,7 +18,10 @@ public enum AccessibleInvalidState: GValueRepresentableEnum {
     /// A spelling error was detected
     case spelling
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_accessible_invalid_state_get_type()
+    }
+
     public init(from gtkEnum: GtkAccessibleInvalidState) {
         switch gtkEnum {
             case GTK_ACCESSIBLE_INVALID_FALSE:
@@ -34,7 +37,6 @@ public enum AccessibleInvalidState: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkAccessibleInvalidState {
         switch self {
             case .false_:

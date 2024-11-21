@@ -10,7 +10,10 @@ public enum ResizeMode: GValueRepresentableEnum {
     /// Resize immediately. Deprecated.
     case immediate
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_resize_mode_get_type()
+    }
+
     public init(from gtkEnum: GtkResizeMode) {
         switch gtkEnum {
             case GTK_RESIZE_PARENT:
@@ -24,7 +27,6 @@ public enum ResizeMode: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkResizeMode {
         switch self {
             case .parent:

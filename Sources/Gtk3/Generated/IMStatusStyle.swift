@@ -12,7 +12,10 @@ public enum IMStatusStyle: GValueRepresentableEnum {
     /// Deprecated
     case none
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_im_status_style_get_type()
+    }
+
     public init(from gtkEnum: GtkIMStatusStyle) {
         switch gtkEnum {
             case GTK_IM_STATUS_NOTHING:
@@ -26,7 +29,6 @@ public enum IMStatusStyle: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkIMStatusStyle {
         switch self {
             case .nothing:

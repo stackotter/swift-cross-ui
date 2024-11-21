@@ -13,7 +13,10 @@ public enum PropagationLimit: GValueRepresentableEnum {
     /// that some event types have two targets (origin and destination).
     case sameNative
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_propagation_limit_get_type()
+    }
+
     public init(from gtkEnum: GtkPropagationLimit) {
         switch gtkEnum {
             case GTK_LIMIT_NONE:
@@ -25,7 +28,6 @@ public enum PropagationLimit: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPropagationLimit {
         switch self {
             case .none:

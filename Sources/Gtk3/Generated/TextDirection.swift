@@ -11,7 +11,10 @@ public enum TextDirection: GValueRepresentableEnum {
     /// Right to left text direction.
     case rtl
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_text_direction_get_type()
+    }
+
     public init(from gtkEnum: GtkTextDirection) {
         switch gtkEnum {
             case GTK_TEXT_DIR_NONE:
@@ -25,7 +28,6 @@ public enum TextDirection: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkTextDirection {
         switch self {
             case .none:

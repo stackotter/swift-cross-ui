@@ -27,7 +27,10 @@ public enum DeleteType: GValueRepresentableEnum {
     /// Delete only whitespace. Like M-\ in Emacs.
     case whitespace
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_delete_type_get_type()
+    }
+
     public init(from gtkEnum: GtkDeleteType) {
         switch gtkEnum {
             case GTK_DELETE_CHARS:
@@ -51,7 +54,6 @@ public enum DeleteType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkDeleteType {
         switch self {
             case .chars:

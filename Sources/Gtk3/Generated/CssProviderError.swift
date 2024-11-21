@@ -17,7 +17,10 @@ public enum CssProviderError: GValueRepresentableEnum {
     /// Unknown value.
     case unknownValue
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_css_provider_error_get_type()
+    }
+
     public init(from gtkEnum: GtkCssProviderError) {
         switch gtkEnum {
             case GTK_CSS_PROVIDER_ERROR_FAILED:
@@ -37,7 +40,6 @@ public enum CssProviderError: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkCssProviderError {
         switch self {
             case .failed:

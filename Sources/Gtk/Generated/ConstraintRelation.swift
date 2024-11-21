@@ -11,7 +11,10 @@ public enum ConstraintRelation: GValueRepresentableEnum {
     /// Greater than, or equal
     case ge
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_constraint_relation_get_type()
+    }
+
     public init(from gtkEnum: GtkConstraintRelation) {
         switch gtkEnum {
             case GTK_CONSTRAINT_RELATION_LE:
@@ -25,7 +28,6 @@ public enum ConstraintRelation: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkConstraintRelation {
         switch self {
             case .le:

@@ -11,7 +11,10 @@ public enum EventSequenceState: GValueRepresentableEnum {
     /// The sequence is denied.
     case denied
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_event_sequence_state_get_type()
+    }
+
     public init(from gtkEnum: GtkEventSequenceState) {
         switch gtkEnum {
             case GTK_EVENT_SEQUENCE_NONE:
@@ -25,7 +28,6 @@ public enum EventSequenceState: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkEventSequenceState {
         switch self {
             case .none:

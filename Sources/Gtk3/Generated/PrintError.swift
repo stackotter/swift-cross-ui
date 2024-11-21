@@ -15,7 +15,10 @@ public enum PrintError: GValueRepresentableEnum {
     /// or paper size from a key file.
     case invalidFile
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_print_error_get_type()
+    }
+
     public init(from gtkEnum: GtkPrintError) {
         switch gtkEnum {
             case GTK_PRINT_ERROR_GENERAL:
@@ -31,7 +34,6 @@ public enum PrintError: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPrintError {
         switch self {
             case .general:

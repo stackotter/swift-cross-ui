@@ -9,7 +9,10 @@ public enum EntryIconPosition: GValueRepresentableEnum {
     /// At the end of the entry (depending on the text direction).
     case secondary
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_entry_icon_position_get_type()
+    }
+
     public init(from gtkEnum: GtkEntryIconPosition) {
         switch gtkEnum {
             case GTK_ENTRY_ICON_PRIMARY:
@@ -21,7 +24,6 @@ public enum EntryIconPosition: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkEntryIconPosition {
         switch self {
             case .primary:

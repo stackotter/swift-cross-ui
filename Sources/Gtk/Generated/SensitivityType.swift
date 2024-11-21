@@ -13,7 +13,10 @@ public enum SensitivityType: GValueRepresentableEnum {
     /// The control is always insensitive
     case off
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_sensitivity_type_get_type()
+    }
+
     public init(from gtkEnum: GtkSensitivityType) {
         switch gtkEnum {
             case GTK_SENSITIVITY_AUTO:
@@ -27,7 +30,6 @@ public enum SensitivityType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkSensitivityType {
         switch self {
             case .auto:

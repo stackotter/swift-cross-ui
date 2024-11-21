@@ -17,7 +17,10 @@ public enum ConstraintVflParserError: GValueRepresentableEnum {
     /// Invalid or unknown relation
     case relation
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_constraint_vfl_parser_error_get_type()
+    }
+
     public init(from gtkEnum: GtkConstraintVflParserError) {
         switch gtkEnum {
             case GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL:
@@ -38,7 +41,6 @@ public enum ConstraintVflParserError: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkConstraintVflParserError {
         switch self {
             case .symbol:

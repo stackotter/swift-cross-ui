@@ -22,7 +22,10 @@ public enum AccessibleAutocomplete: GValueRepresentableEnum {
     /// appears after the caret in the input.
     case both
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_accessible_autocomplete_get_type()
+    }
+
     public init(from gtkEnum: GtkAccessibleAutocomplete) {
         switch gtkEnum {
             case GTK_ACCESSIBLE_AUTOCOMPLETE_NONE:
@@ -38,7 +41,6 @@ public enum AccessibleAutocomplete: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkAccessibleAutocomplete {
         switch self {
             case .none:

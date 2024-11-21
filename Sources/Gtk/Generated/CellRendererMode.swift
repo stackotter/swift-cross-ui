@@ -14,7 +14,10 @@ public enum CellRendererMode: GValueRepresentableEnum {
     /// The cell can be edited or otherwise modified.
     case editable
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_cell_renderer_mode_get_type()
+    }
+
     public init(from gtkEnum: GtkCellRendererMode) {
         switch gtkEnum {
             case GTK_CELL_RENDERER_MODE_INERT:
@@ -28,7 +31,6 @@ public enum CellRendererMode: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkCellRendererMode {
         switch self {
             case .inert:

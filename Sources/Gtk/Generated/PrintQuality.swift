@@ -13,7 +13,10 @@ public enum PrintQuality: GValueRepresentableEnum {
     /// Draft quality.
     case draft
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_print_quality_get_type()
+    }
+
     public init(from gtkEnum: GtkPrintQuality) {
         switch gtkEnum {
             case GTK_PRINT_QUALITY_LOW:
@@ -29,7 +32,6 @@ public enum PrintQuality: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPrintQuality {
         switch self {
             case .low:

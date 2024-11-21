@@ -9,7 +9,10 @@ public enum IconThemeError: GValueRepresentableEnum {
     /// An unspecified error occurred.
     case failed
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_icon_theme_error_get_type()
+    }
+
     public init(from gtkEnum: GtkIconThemeError) {
         switch gtkEnum {
             case GTK_ICON_THEME_NOT_FOUND:
@@ -21,7 +24,6 @@ public enum IconThemeError: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkIconThemeError {
         switch self {
             case .notFound:

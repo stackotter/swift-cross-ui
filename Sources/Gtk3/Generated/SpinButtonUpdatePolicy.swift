@@ -14,7 +14,10 @@ public enum SpinButtonUpdatePolicy: GValueRepresentableEnum {
     /// adjustment
     case ifValid
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_spin_button_update_policy_get_type()
+    }
+
     public init(from gtkEnum: GtkSpinButtonUpdatePolicy) {
         switch gtkEnum {
             case GTK_UPDATE_ALWAYS:
@@ -26,7 +29,6 @@ public enum SpinButtonUpdatePolicy: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkSpinButtonUpdatePolicy {
         switch self {
             case .always:

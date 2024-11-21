@@ -12,7 +12,10 @@ public enum IMPreeditStyle: GValueRepresentableEnum {
     /// Deprecated
     case none
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_im_preedit_style_get_type()
+    }
+
     public init(from gtkEnum: GtkIMPreeditStyle) {
         switch gtkEnum {
             case GTK_IM_PREEDIT_NOTHING:
@@ -26,7 +29,6 @@ public enum IMPreeditStyle: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkIMPreeditStyle {
         switch self {
             case .nothing:

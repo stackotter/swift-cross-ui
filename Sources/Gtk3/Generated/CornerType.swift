@@ -19,7 +19,10 @@ public enum CornerType: GValueRepresentableEnum {
     /// widget.
     case bottomRight
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_corner_type_get_type()
+    }
+
     public init(from gtkEnum: GtkCornerType) {
         switch gtkEnum {
             case GTK_CORNER_TOP_LEFT:
@@ -35,7 +38,6 @@ public enum CornerType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkCornerType {
         switch self {
             case .topLeft:

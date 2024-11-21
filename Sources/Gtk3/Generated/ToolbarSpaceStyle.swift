@@ -9,7 +9,10 @@ public enum ToolbarSpaceStyle: GValueRepresentableEnum {
     /// Use vertical lines for spacers.
     case line
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_toolbar_space_style_get_type()
+    }
+
     public init(from gtkEnum: GtkToolbarSpaceStyle) {
         switch gtkEnum {
             case GTK_TOOLBAR_SPACE_EMPTY:
@@ -21,7 +24,6 @@ public enum ToolbarSpaceStyle: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkToolbarSpaceStyle {
         switch self {
             case .empty:

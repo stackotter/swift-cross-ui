@@ -15,7 +15,10 @@ public enum PrintOperationResult: GValueRepresentableEnum {
     /// yet. This value will only be returned when running asynchronously.
     case inProgress
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_print_operation_result_get_type()
+    }
+
     public init(from gtkEnum: GtkPrintOperationResult) {
         switch gtkEnum {
             case GTK_PRINT_OPERATION_RESULT_ERROR:
@@ -31,7 +34,6 @@ public enum PrintOperationResult: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPrintOperationResult {
         switch self {
             case .error:

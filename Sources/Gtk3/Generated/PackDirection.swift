@@ -14,7 +14,10 @@ public enum PackDirection: GValueRepresentableEnum {
     /// Widgets are packed bottom-to-top
     case btt
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_pack_direction_get_type()
+    }
+
     public init(from gtkEnum: GtkPackDirection) {
         switch gtkEnum {
             case GTK_PACK_DIRECTION_LTR:
@@ -30,7 +33,6 @@ public enum PackDirection: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPackDirection {
         switch self {
             case .ltr:

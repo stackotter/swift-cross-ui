@@ -188,7 +188,10 @@ public enum AccessibleRole: GValueRepresentableEnum {
     /// Abstract role for windows.
     case window
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_accessible_role_get_type()
+    }
+
     public init(from gtkEnum: GtkAccessibleRole) {
         switch gtkEnum {
             case GTK_ACCESSIBLE_ROLE_ALERT:
@@ -352,7 +355,6 @@ public enum AccessibleRole: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkAccessibleRole {
         switch self {
             case .alert:

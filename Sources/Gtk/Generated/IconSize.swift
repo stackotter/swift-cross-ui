@@ -19,7 +19,10 @@ public enum IconSize: GValueRepresentableEnum {
     /// Large size, for example in an icon view
     case large
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_icon_size_get_type()
+    }
+
     public init(from gtkEnum: GtkIconSize) {
         switch gtkEnum {
             case GTK_ICON_SIZE_INHERIT:
@@ -33,7 +36,6 @@ public enum IconSize: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkIconSize {
         switch self {
             case .inherit:

@@ -9,7 +9,10 @@ public enum SortType: GValueRepresentableEnum {
     /// Sorting is in descending order.
     case descending
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_sort_type_get_type()
+    }
+
     public init(from gtkEnum: GtkSortType) {
         switch gtkEnum {
             case GTK_SORT_ASCENDING:
@@ -21,7 +24,6 @@ public enum SortType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkSortType {
         switch self {
             case .ascending:

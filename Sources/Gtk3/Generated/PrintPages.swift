@@ -13,7 +13,10 @@ public enum PrintPages: GValueRepresentableEnum {
     /// Selected pages.
     case selection
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_print_pages_get_type()
+    }
+
     public init(from gtkEnum: GtkPrintPages) {
         switch gtkEnum {
             case GTK_PRINT_PAGES_ALL:
@@ -29,7 +32,6 @@ public enum PrintPages: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPrintPages {
         switch self {
             case .all:

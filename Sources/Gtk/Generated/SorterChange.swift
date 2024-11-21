@@ -19,7 +19,10 @@ public enum SorterChange: GValueRepresentableEnum {
     /// that did return %GTK_ORDERING_EQUAL may not do so anymore.
     case moreStrict
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_sorter_change_get_type()
+    }
+
     public init(from gtkEnum: GtkSorterChange) {
         switch gtkEnum {
             case GTK_SORTER_CHANGE_DIFFERENT:
@@ -35,7 +38,6 @@ public enum SorterChange: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkSorterChange {
         switch self {
             case .different:

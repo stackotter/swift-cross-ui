@@ -16,7 +16,10 @@ public enum TextBufferTargetInfo: GValueRepresentableEnum {
     /// Text
     case text
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_text_buffer_target_info_get_type()
+    }
+
     public init(from gtkEnum: GtkTextBufferTargetInfo) {
         switch gtkEnum {
             case GTK_TEXT_BUFFER_TARGET_INFO_BUFFER_CONTENTS:
@@ -30,7 +33,6 @@ public enum TextBufferTargetInfo: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkTextBufferTargetInfo {
         switch self {
             case .bufferContents:

@@ -18,7 +18,10 @@ public enum CssParserError: GValueRepresentableEnum {
     /// The given value is not correct
     case unknownValue
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_css_parser_error_get_type()
+    }
+
     public init(from gtkEnum: GtkCssParserError) {
         switch gtkEnum {
             case GTK_CSS_PARSER_ERROR_FAILED:
@@ -36,7 +39,6 @@ public enum CssParserError: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkCssParserError {
         switch self {
             case .failed:

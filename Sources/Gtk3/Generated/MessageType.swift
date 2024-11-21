@@ -15,7 +15,10 @@ public enum MessageType: GValueRepresentableEnum {
     /// None of the above
     case other
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_message_type_get_type()
+    }
+
     public init(from gtkEnum: GtkMessageType) {
         switch gtkEnum {
             case GTK_MESSAGE_INFO:
@@ -33,7 +36,6 @@ public enum MessageType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkMessageType {
         switch self {
             case .info:

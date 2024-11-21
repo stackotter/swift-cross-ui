@@ -11,7 +11,10 @@ public enum PadActionType: GValueRepresentableEnum {
     /// Action is triggered by a pad strip
     case strip
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_pad_action_type_get_type()
+    }
+
     public init(from gtkEnum: GtkPadActionType) {
         switch gtkEnum {
             case GTK_PAD_ACTION_BUTTON:
@@ -25,7 +28,6 @@ public enum PadActionType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPadActionType {
         switch self {
             case .button:

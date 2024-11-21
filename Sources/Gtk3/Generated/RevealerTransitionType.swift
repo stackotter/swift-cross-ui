@@ -18,7 +18,10 @@ public enum RevealerTransitionType: GValueRepresentableEnum {
     /// Slide in from the top
     case slideDown
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_revealer_transition_type_get_type()
+    }
+
     public init(from gtkEnum: GtkRevealerTransitionType) {
         switch gtkEnum {
             case GTK_REVEALER_TRANSITION_TYPE_NONE:
@@ -38,7 +41,6 @@ public enum RevealerTransitionType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkRevealerTransitionType {
         switch self {
             case .none:

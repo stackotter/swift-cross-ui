@@ -12,7 +12,10 @@ public enum PathType: GValueRepresentableEnum {
     /// Deprecated
     case class_
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_path_type_get_type()
+    }
+
     public init(from gtkEnum: GtkPathType) {
         switch gtkEnum {
             case GTK_PATH_WIDGET:
@@ -26,7 +29,6 @@ public enum PathType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPathType {
         switch self {
             case .widget:

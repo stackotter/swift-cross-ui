@@ -13,7 +13,10 @@ public enum TreeViewColumnSizing: GValueRepresentableEnum {
     /// Columns are a fixed numbers of pixels wide.
     case fixed
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_tree_view_column_sizing_get_type()
+    }
+
     public init(from gtkEnum: GtkTreeViewColumnSizing) {
         switch gtkEnum {
             case GTK_TREE_VIEW_COLUMN_GROW_ONLY:
@@ -27,7 +30,6 @@ public enum TreeViewColumnSizing: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkTreeViewColumnSizing {
         switch self {
             case .growOnly:

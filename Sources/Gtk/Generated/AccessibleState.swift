@@ -34,7 +34,10 @@ public enum AccessibleState: GValueRepresentableEnum {
     /// is selected. Value type: boolean or undefined
     case selected
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_accessible_state_get_type()
+    }
+
     public init(from gtkEnum: GtkAccessibleState) {
         switch gtkEnum {
             case GTK_ACCESSIBLE_STATE_BUSY:
@@ -58,7 +61,6 @@ public enum AccessibleState: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkAccessibleState {
         switch self {
             case .busy:

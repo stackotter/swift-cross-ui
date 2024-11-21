@@ -11,7 +11,10 @@ public enum ArrowPlacement: GValueRepresentableEnum {
     /// Place both arrows at the bottom of the menu.
     case end
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_arrow_placement_get_type()
+    }
+
     public init(from gtkEnum: GtkArrowPlacement) {
         switch gtkEnum {
             case GTK_ARROWS_BOTH:
@@ -25,7 +28,6 @@ public enum ArrowPlacement: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkArrowPlacement {
         switch self {
             case .both:

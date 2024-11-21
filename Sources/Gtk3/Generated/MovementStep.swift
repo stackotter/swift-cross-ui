@@ -24,7 +24,10 @@ public enum MovementStep: GValueRepresentableEnum {
     /// Move horizontally by pages
     case horizontalPages
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_movement_step_get_type()
+    }
+
     public init(from gtkEnum: GtkMovementStep) {
         switch gtkEnum {
             case GTK_MOVEMENT_LOGICAL_POSITIONS:
@@ -52,7 +55,6 @@ public enum MovementStep: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkMovementStep {
         switch self {
             case .logicalPositions:

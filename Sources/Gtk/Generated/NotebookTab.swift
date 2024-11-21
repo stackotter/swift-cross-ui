@@ -9,7 +9,10 @@ public enum NotebookTab: GValueRepresentableEnum {
     /// The last tab in the notebook
     case last
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_notebook_tab_get_type()
+    }
+
     public init(from gtkEnum: GtkNotebookTab) {
         switch gtkEnum {
             case GTK_NOTEBOOK_TAB_FIRST:
@@ -21,7 +24,6 @@ public enum NotebookTab: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkNotebookTab {
         switch self {
             case .first:

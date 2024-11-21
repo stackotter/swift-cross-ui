@@ -11,7 +11,10 @@ public enum ButtonRole: GValueRepresentableEnum {
     /// A radio button
     case radio
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_button_role_get_type()
+    }
+
     public init(from gtkEnum: GtkButtonRole) {
         switch gtkEnum {
             case GTK_BUTTON_ROLE_NORMAL:
@@ -25,7 +28,6 @@ public enum ButtonRole: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkButtonRole {
         switch self {
             case .normal:

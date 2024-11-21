@@ -12,7 +12,10 @@ public enum CellRendererAccelMode: GValueRepresentableEnum {
     /// Other accelerator mode
     case other
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_cell_renderer_accel_mode_get_type()
+    }
+
     public init(from gtkEnum: GtkCellRendererAccelMode) {
         switch gtkEnum {
             case GTK_CELL_RENDERER_ACCEL_MODE_GTK:
@@ -24,7 +27,6 @@ public enum CellRendererAccelMode: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkCellRendererAccelMode {
         switch self {
             case .gtk:

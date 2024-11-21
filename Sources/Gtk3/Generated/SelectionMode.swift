@@ -21,7 +21,10 @@ public enum SelectionMode: GValueRepresentableEnum {
     /// Some widgets may also allow Click-drag to select a range of elements.
     case multiple
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_selection_mode_get_type()
+    }
+
     public init(from gtkEnum: GtkSelectionMode) {
         switch gtkEnum {
             case GTK_SELECTION_NONE:
@@ -37,7 +40,6 @@ public enum SelectionMode: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkSelectionMode {
         switch self {
             case .none:

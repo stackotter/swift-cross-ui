@@ -31,7 +31,10 @@ public enum ResponseType: GValueRepresentableEnum {
     /// Returned by Help buttons in GTK dialogs
     case help
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_response_type_get_type()
+    }
+
     public init(from gtkEnum: GtkResponseType) {
         switch gtkEnum {
             case GTK_RESPONSE_NONE:
@@ -61,7 +64,6 @@ public enum ResponseType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkResponseType {
         switch self {
             case .none:

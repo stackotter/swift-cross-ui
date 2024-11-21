@@ -2,14 +2,12 @@ import CGtk3
 
 public protocol GValueRepresentableEnum: GValueRepresentable {
     associatedtype GtkEnum: RawRepresentable
-    init(from gtkEnum: GtkEnum)
-    func toGtk() -> GtkEnum
-}
 
-extension GValueRepresentableEnum {
-    public static var type: GType {
-        GType(12 << G_TYPE_FUNDAMENTAL_SHIFT)
-    }
+    /// Converts a Gtk value to its corresponding swift representation.
+    init(from gtkEnum: GtkEnum)
+
+    /// Converts the value to its corresponding Gtk representation.
+    func toGtk() -> GtkEnum
 }
 
 extension GValueRepresentableEnum where GtkEnum.RawValue == Int32 {

@@ -16,7 +16,10 @@ public enum AccessibleTristate: GValueRepresentableEnum {
     /// The state is `mixed`
     case mixed
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_accessible_tristate_get_type()
+    }
+
     public init(from gtkEnum: GtkAccessibleTristate) {
         switch gtkEnum {
             case GTK_ACCESSIBLE_TRISTATE_FALSE:
@@ -30,7 +33,6 @@ public enum AccessibleTristate: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkAccessibleTristate {
         switch self {
             case .false_:

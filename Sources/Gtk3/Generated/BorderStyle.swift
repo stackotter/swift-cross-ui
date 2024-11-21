@@ -25,7 +25,10 @@ public enum BorderStyle: GValueRepresentableEnum {
     /// Looks as if it were coming out of the canvas
     case ridge
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_border_style_get_type()
+    }
+
     public init(from gtkEnum: GtkBorderStyle) {
         switch gtkEnum {
             case GTK_BORDER_STYLE_NONE:
@@ -53,7 +56,6 @@ public enum BorderStyle: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkBorderStyle {
         switch self {
             case .none:

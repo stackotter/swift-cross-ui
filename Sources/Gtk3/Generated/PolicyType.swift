@@ -15,7 +15,10 @@ public enum PolicyType: GValueRepresentableEnum {
     /// content determines the size.
     case never
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_policy_type_get_type()
+    }
+
     public init(from gtkEnum: GtkPolicyType) {
         switch gtkEnum {
             case GTK_POLICY_ALWAYS:
@@ -29,7 +32,6 @@ public enum PolicyType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPolicyType {
         switch self {
             case .always:

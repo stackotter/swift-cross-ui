@@ -26,7 +26,10 @@ public enum StateType: GValueRepresentableEnum {
     /// The widget has the keyboard focus.
     case focused
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_state_type_get_type()
+    }
+
     public init(from gtkEnum: GtkStateType) {
         switch gtkEnum {
             case GTK_STATE_NORMAL:
@@ -48,7 +51,6 @@ public enum StateType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkStateType {
         switch self {
             case .normal:

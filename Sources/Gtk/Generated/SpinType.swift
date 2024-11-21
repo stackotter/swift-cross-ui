@@ -20,7 +20,10 @@ public enum SpinType: GValueRepresentableEnum {
     /// Change by a specified amount.
     case userDefined
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_spin_type_get_type()
+    }
+
     public init(from gtkEnum: GtkSpinType) {
         switch gtkEnum {
             case GTK_SPIN_STEP_FORWARD:
@@ -42,7 +45,6 @@ public enum SpinType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkSpinType {
         switch self {
             case .stepForward:

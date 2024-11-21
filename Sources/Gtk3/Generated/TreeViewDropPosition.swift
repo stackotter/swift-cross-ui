@@ -13,7 +13,10 @@ public enum TreeViewDropPosition: GValueRepresentableEnum {
     /// Dropped row becomes a child or is inserted after
     case intoOrAfter
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_tree_view_drop_position_get_type()
+    }
+
     public init(from gtkEnum: GtkTreeViewDropPosition) {
         switch gtkEnum {
             case GTK_TREE_VIEW_DROP_BEFORE:
@@ -29,7 +32,6 @@ public enum TreeViewDropPosition: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkTreeViewDropPosition {
         switch self {
             case .before:

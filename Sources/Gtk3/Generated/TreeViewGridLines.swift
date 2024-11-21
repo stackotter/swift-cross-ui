@@ -13,7 +13,10 @@ public enum TreeViewGridLines: GValueRepresentableEnum {
     /// Horizontal and vertical grid lines.
     case both
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_tree_view_grid_lines_get_type()
+    }
+
     public init(from gtkEnum: GtkTreeViewGridLines) {
         switch gtkEnum {
             case GTK_TREE_VIEW_GRID_LINES_NONE:
@@ -29,7 +32,6 @@ public enum TreeViewGridLines: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkTreeViewGridLines {
         switch self {
             case .none:

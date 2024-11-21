@@ -20,7 +20,10 @@ public enum ImageType: GValueRepresentableEnum {
     /// The widget contains a `GdkPaintable`
     case paintable
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_image_type_get_type()
+    }
+
     public init(from gtkEnum: GtkImageType) {
         switch gtkEnum {
             case GTK_IMAGE_EMPTY:
@@ -36,7 +39,6 @@ public enum ImageType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkImageType {
         switch self {
             case .empty:

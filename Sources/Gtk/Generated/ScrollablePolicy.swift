@@ -10,7 +10,10 @@ public enum ScrollablePolicy: GValueRepresentableEnum {
     /// Scrollable adjustments are based on the natural size
     case natural
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_scrollable_policy_get_type()
+    }
+
     public init(from gtkEnum: GtkScrollablePolicy) {
         switch gtkEnum {
             case GTK_SCROLL_MINIMUM:
@@ -22,7 +25,6 @@ public enum ScrollablePolicy: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkScrollablePolicy {
         switch self {
             case .minimum:

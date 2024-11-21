@@ -69,7 +69,10 @@ public enum AccessibleRelation: GValueRepresentableEnum {
     /// set of listitems or treeitems. Value type: integer
     case setSize
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_accessible_relation_get_type()
+    }
+
     public init(from gtkEnum: GtkAccessibleRelation) {
         switch gtkEnum {
             case GTK_ACCESSIBLE_RELATION_ACTIVE_DESCENDANT:
@@ -113,7 +116,6 @@ public enum AccessibleRelation: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkAccessibleRelation {
         switch self {
             case .activeDescendant:

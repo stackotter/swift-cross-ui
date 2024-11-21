@@ -16,7 +16,10 @@ public enum CssParserWarning: GValueRepresentableEnum {
     /// A feature is not implemented
     case unimplemented
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_css_parser_warning_get_type()
+    }
+
     public init(from gtkEnum: GtkCssParserWarning) {
         switch gtkEnum {
             case GTK_CSS_PARSER_WARNING_DEPRECATED:
@@ -30,7 +33,6 @@ public enum CssParserWarning: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkCssParserWarning {
         switch self {
             case .deprecated:

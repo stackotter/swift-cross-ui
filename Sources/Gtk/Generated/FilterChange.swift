@@ -21,7 +21,10 @@ public enum FilterChange: GValueRepresentableEnum {
     /// still return %FALSE, others now may, too.
     case moreStrict
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_filter_change_get_type()
+    }
+
     public init(from gtkEnum: GtkFilterChange) {
         switch gtkEnum {
             case GTK_FILTER_CHANGE_DIFFERENT:
@@ -35,7 +38,6 @@ public enum FilterChange: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkFilterChange {
         switch self {
             case .different:

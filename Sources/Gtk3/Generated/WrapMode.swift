@@ -16,7 +16,10 @@ public enum WrapMode: GValueRepresentableEnum {
     /// that is not enough, also between graphemes
     case wordCharacter
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_wrap_mode_get_type()
+    }
+
     public init(from gtkEnum: GtkWrapMode) {
         switch gtkEnum {
             case GTK_WRAP_NONE:
@@ -32,7 +35,6 @@ public enum WrapMode: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkWrapMode {
         switch self {
             case .none:

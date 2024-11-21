@@ -17,7 +17,10 @@ public enum TextWindowType: GValueRepresentableEnum {
     /// Bottom border window.
     case bottom
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_text_window_type_get_type()
+    }
+
     public init(from gtkEnum: GtkTextWindowType) {
         switch gtkEnum {
             case GTK_TEXT_WINDOW_WIDGET:
@@ -37,7 +40,6 @@ public enum TextWindowType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkTextWindowType {
         switch self {
             case .widget:

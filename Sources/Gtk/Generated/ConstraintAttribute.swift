@@ -38,7 +38,10 @@ public enum ConstraintAttribute: GValueRepresentableEnum {
     /// The baseline of a widget
     case baseline
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_constraint_attribute_get_type()
+    }
+
     public init(from gtkEnum: GtkConstraintAttribute) {
         switch gtkEnum {
             case GTK_CONSTRAINT_ATTRIBUTE_NONE:
@@ -70,7 +73,6 @@ public enum ConstraintAttribute: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkConstraintAttribute {
         switch self {
             case .none:

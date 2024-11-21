@@ -19,7 +19,10 @@ public enum IconSize: GValueRepresentableEnum {
     /// Size appropriate for dialogs (48px)
     case dialog
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_icon_size_get_type()
+    }
+
     public init(from gtkEnum: GtkIconSize) {
         switch gtkEnum {
             case GTK_ICON_SIZE_INVALID:
@@ -41,7 +44,6 @@ public enum IconSize: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkIconSize {
         switch self {
             case .invalid:

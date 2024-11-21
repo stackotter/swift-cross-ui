@@ -30,7 +30,10 @@ public enum PrintStatus: GValueRepresentableEnum {
     /// The printing has been aborted.
     case finishedAborted
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_print_status_get_type()
+    }
+
     public init(from gtkEnum: GtkPrintStatus) {
         switch gtkEnum {
             case GTK_PRINT_STATUS_INITIAL:
@@ -56,7 +59,6 @@ public enum PrintStatus: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPrintStatus {
         switch self {
             case .initial:

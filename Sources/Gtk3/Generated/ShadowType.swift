@@ -19,7 +19,10 @@ public enum ShadowType: GValueRepresentableEnum {
     /// The outline has a raised 3d appearance.
     case etchedOut
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_shadow_type_get_type()
+    }
+
     public init(from gtkEnum: GtkShadowType) {
         switch gtkEnum {
             case GTK_SHADOW_NONE:
@@ -37,7 +40,6 @@ public enum ShadowType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkShadowType {
         switch self {
             case .none:

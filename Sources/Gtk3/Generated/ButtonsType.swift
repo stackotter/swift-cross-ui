@@ -23,7 +23,10 @@ public enum ButtonsType: GValueRepresentableEnum {
     /// OK and Cancel buttons
     case okCancel
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_buttons_type_get_type()
+    }
+
     public init(from gtkEnum: GtkButtonsType) {
         switch gtkEnum {
             case GTK_BUTTONS_NONE:
@@ -43,7 +46,6 @@ public enum ButtonsType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkButtonsType {
         switch self {
             case .none:

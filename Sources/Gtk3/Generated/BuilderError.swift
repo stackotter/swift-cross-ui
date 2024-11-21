@@ -43,7 +43,10 @@ public enum BuilderError: GValueRepresentableEnum {
     /// An object id is unknown
     case invalidId
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_builder_error_get_type()
+    }
+
     public init(from gtkEnum: GtkBuilderError) {
         switch gtkEnum {
             case GTK_BUILDER_ERROR_INVALID_TYPE_FUNCTION:
@@ -79,7 +82,6 @@ public enum BuilderError: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkBuilderError {
         switch self {
             case .invalidTypeFunction:

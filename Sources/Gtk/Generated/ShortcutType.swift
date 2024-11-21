@@ -29,7 +29,10 @@ public enum ShortcutType: GValueRepresentableEnum {
     /// The shortcut is a swipe gesture. GTK provides an icon and subtitle.
     case gestureSwipeRight
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_shortcut_type_get_type()
+    }
+
     public init(from gtkEnum: GtkShortcutType) {
         switch gtkEnum {
             case GTK_SHORTCUT_ACCELERATOR:
@@ -57,7 +60,6 @@ public enum ShortcutType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkShortcutType {
         switch self {
             case .accelerator:

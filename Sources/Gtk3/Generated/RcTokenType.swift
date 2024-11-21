@@ -88,7 +88,10 @@ public enum RcTokenType: GValueRepresentableEnum {
     /// Deprecated
     case last
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_rc_token_type_get_type()
+    }
+
     public init(from gtkEnum: GtkRcTokenType) {
         switch gtkEnum {
             case GTK_RC_TOKEN_INVALID:
@@ -176,7 +179,6 @@ public enum RcTokenType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkRcTokenType {
         switch self {
             case .invalid:

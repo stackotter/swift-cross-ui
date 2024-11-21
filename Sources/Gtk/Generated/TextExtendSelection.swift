@@ -12,7 +12,10 @@ public enum TextExtendSelection: GValueRepresentableEnum {
     /// a triple-click for example.
     case line
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_text_extend_selection_get_type()
+    }
+
     public init(from gtkEnum: GtkTextExtendSelection) {
         switch gtkEnum {
             case GTK_TEXT_EXTEND_SELECTION_WORD:
@@ -24,7 +27,6 @@ public enum TextExtendSelection: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkTextExtendSelection {
         switch self {
             case .word:

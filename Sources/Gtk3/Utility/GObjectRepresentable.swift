@@ -5,11 +5,11 @@ public protocol GObjectRepresentable {
 }
 
 extension GObjectRepresentable {
-    public func setProperty<V: GValueRepresentable>(named: String, newValue: V) {
+    public func setProperty<V: GValueRepresentable>(named name: String, newValue: V) {
         var v = GValue()
         let value = g_value_init(&v, V.type)!
         newValue.apply(to: value)
-        g_object_set_property(gobjectPointer, named, value)
+        g_object_set_property(gobjectPointer, name, value)
     }
 
     /// If this returned an optional at runtime and crashed; it is because the
@@ -19,10 +19,10 @@ extension GObjectRepresentable {
     /// -@GObjectProperty(named: "optional-value") var value: String
     /// +@GObjectProperty(named: "optional-value") var value: String?
     /// ```
-    public func getProperty<V: GValueRepresentable>(named: String) -> V {
+    public func getProperty<V: GValueRepresentable>(named name: String) -> V {
         var v = GValue()
         let value = g_value_init(&v, V.type)!
-        g_object_get_property(gobjectPointer, named, value)
+        g_object_get_property(gobjectPointer, name, value)
         return V(value)!
     }
 }

@@ -13,7 +13,10 @@ public enum PageOrientation: GValueRepresentableEnum {
     /// Reverse landscape mode.
     case reverseLandscape
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_page_orientation_get_type()
+    }
+
     public init(from gtkEnum: GtkPageOrientation) {
         switch gtkEnum {
             case GTK_PAGE_ORIENTATION_PORTRAIT:
@@ -29,7 +32,6 @@ public enum PageOrientation: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPageOrientation {
         switch self {
             case .portrait:

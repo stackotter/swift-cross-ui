@@ -30,7 +30,10 @@ public enum SystemSetting: GValueRepresentableEnum {
     /// icons to be looked up again
     case iconTheme
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_system_setting_get_type()
+    }
+
     public init(from gtkEnum: GtkSystemSetting) {
         switch gtkEnum {
             case GTK_SYSTEM_SETTING_DPI:
@@ -48,7 +51,6 @@ public enum SystemSetting: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkSystemSetting {
         switch self {
             case .dpi:

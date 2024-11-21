@@ -14,7 +14,10 @@ public enum SizeGroupMode: GValueRepresentableEnum {
     /// Group affects both horizontal and vertical requisition
     case both
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_size_group_mode_get_type()
+    }
+
     public init(from gtkEnum: GtkSizeGroupMode) {
         switch gtkEnum {
             case GTK_SIZE_GROUP_NONE:
@@ -30,7 +33,6 @@ public enum SizeGroupMode: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkSizeGroupMode {
         switch self {
             case .none:

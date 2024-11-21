@@ -12,7 +12,10 @@ public enum SizeRequestMode: GValueRepresentableEnum {
     /// Don’t trade height-for-width or width-for-height
     case constantSize
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_size_request_mode_get_type()
+    }
+
     public init(from gtkEnum: GtkSizeRequestMode) {
         switch gtkEnum {
             case GTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH:
@@ -26,7 +29,6 @@ public enum SizeRequestMode: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkSizeRequestMode {
         switch self {
             case .heightForWidth:

@@ -45,7 +45,10 @@ public enum InputPurpose: GValueRepresentableEnum {
     /// Allow any character, in addition to control codes
     case terminal
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_input_purpose_get_type()
+    }
+
     public init(from gtkEnum: GtkInputPurpose) {
         switch gtkEnum {
             case GTK_INPUT_PURPOSE_FREE_FORM:
@@ -75,7 +78,6 @@ public enum InputPurpose: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkInputPurpose {
         switch self {
             case .freeForm:

@@ -18,7 +18,10 @@ public enum BaselinePosition: GValueRepresentableEnum {
     /// Align the baseline at the bottom
     case bottom
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_baseline_position_get_type()
+    }
+
     public init(from gtkEnum: GtkBaselinePosition) {
         switch gtkEnum {
             case GTK_BASELINE_POSITION_TOP:
@@ -32,7 +35,6 @@ public enum BaselinePosition: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkBaselinePosition {
         switch self {
             case .top:

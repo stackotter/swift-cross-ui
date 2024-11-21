@@ -15,7 +15,10 @@ public enum ShortcutScope: GValueRepresentableEnum {
     /// the root widget.
     case global
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_shortcut_scope_get_type()
+    }
+
     public init(from gtkEnum: GtkShortcutScope) {
         switch gtkEnum {
             case GTK_SHORTCUT_SCOPE_LOCAL:
@@ -29,7 +32,6 @@ public enum ShortcutScope: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkShortcutScope {
         switch self {
             case .local:

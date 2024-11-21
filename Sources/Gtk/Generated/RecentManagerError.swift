@@ -24,7 +24,10 @@ public enum RecentManagerError: GValueRepresentableEnum {
     /// Unspecified error.
     case unknown
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_recent_manager_error_get_type()
+    }
+
     public init(from gtkEnum: GtkRecentManagerError) {
         switch gtkEnum {
             case GTK_RECENT_MANAGER_ERROR_NOT_FOUND:
@@ -46,7 +49,6 @@ public enum RecentManagerError: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkRecentManagerError {
         switch self {
             case .notFound:

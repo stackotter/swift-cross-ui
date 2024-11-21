@@ -16,7 +16,10 @@ public enum FileChooserError: GValueRepresentableEnum {
     /// (e.g. "http://foo" without a slash after that).
     case incompleteHostname
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_file_chooser_error_get_type()
+    }
+
     public init(from gtkEnum: GtkFileChooserError) {
         switch gtkEnum {
             case GTK_FILE_CHOOSER_ERROR_NONEXISTENT:
@@ -32,7 +35,6 @@ public enum FileChooserError: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkFileChooserError {
         switch self {
             case .nonexistent:

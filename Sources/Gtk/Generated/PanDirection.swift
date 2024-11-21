@@ -13,7 +13,10 @@ public enum PanDirection: GValueRepresentableEnum {
     /// Panned downwards
     case down
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_pan_direction_get_type()
+    }
+
     public init(from gtkEnum: GtkPanDirection) {
         switch gtkEnum {
             case GTK_PAN_DIRECTION_LEFT:
@@ -29,7 +32,6 @@ public enum PanDirection: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPanDirection {
         switch self {
             case .left:

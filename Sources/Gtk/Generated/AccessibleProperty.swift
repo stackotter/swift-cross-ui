@@ -70,7 +70,10 @@ public enum AccessibleProperty: GValueRepresentableEnum {
     /// of aria-valuenow for a range widget. Value type: string
     case valueText
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_accessible_property_get_type()
+    }
+
     public init(from gtkEnum: GtkAccessibleProperty) {
         switch gtkEnum {
             case GTK_ACCESSIBLE_PROPERTY_AUTOCOMPLETE:
@@ -116,7 +119,6 @@ public enum AccessibleProperty: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkAccessibleProperty {
         switch self {
             case .autocomplete:

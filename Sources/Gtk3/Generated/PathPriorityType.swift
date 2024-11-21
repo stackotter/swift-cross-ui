@@ -18,7 +18,10 @@ public enum PathPriorityType: GValueRepresentableEnum {
     /// Deprecated
     case highest
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_path_priority_type_get_type()
+    }
+
     public init(from gtkEnum: GtkPathPriorityType) {
         switch gtkEnum {
             case GTK_PATH_PRIO_LOWEST:
@@ -38,7 +41,6 @@ public enum PathPriorityType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPathPriorityType {
         switch self {
             case .lowest:

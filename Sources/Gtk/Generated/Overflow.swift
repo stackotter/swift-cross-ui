@@ -15,7 +15,10 @@ public enum Overflow: GValueRepresentableEnum {
     /// outside the area is not drawn and cannot be interacted with.
     case hidden
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_overflow_get_type()
+    }
+
     public init(from gtkEnum: GtkOverflow) {
         switch gtkEnum {
             case GTK_OVERFLOW_VISIBLE:
@@ -27,7 +30,6 @@ public enum Overflow: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkOverflow {
         switch self {
             case .visible:

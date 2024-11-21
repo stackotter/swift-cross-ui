@@ -16,7 +16,10 @@ public enum ButtonBoxStyle: GValueRepresentableEnum {
     /// (on the right for a HBox, or the bottom for a VBox).
     case end
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_button_box_style_get_type()
+    }
+
     public init(from gtkEnum: GtkButtonBoxStyle) {
         switch gtkEnum {
             case GTK_BUTTONBOX_SPREAD:
@@ -32,7 +35,6 @@ public enum ButtonBoxStyle: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkButtonBoxStyle {
         switch self {
             case .spread:

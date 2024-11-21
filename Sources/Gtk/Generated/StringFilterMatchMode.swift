@@ -14,7 +14,10 @@ public enum StringFilterMatchMode: GValueRepresentableEnum {
     /// with the search string.
     case prefix
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_string_filter_match_mode_get_type()
+    }
+
     public init(from gtkEnum: GtkStringFilterMatchMode) {
         switch gtkEnum {
             case GTK_STRING_FILTER_MATCH_MODE_EXACT:
@@ -28,7 +31,6 @@ public enum StringFilterMatchMode: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkStringFilterMatchMode {
         switch self {
             case .exact:

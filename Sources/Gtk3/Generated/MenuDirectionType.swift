@@ -13,7 +13,10 @@ public enum MenuDirectionType: GValueRepresentableEnum {
     /// To the previous menu item
     case prev
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_menu_direction_type_get_type()
+    }
+
     public init(from gtkEnum: GtkMenuDirectionType) {
         switch gtkEnum {
             case GTK_MENU_DIR_PARENT:
@@ -29,7 +32,6 @@ public enum MenuDirectionType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkMenuDirectionType {
         switch self {
             case .parent:

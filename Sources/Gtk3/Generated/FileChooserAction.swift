@@ -21,7 +21,10 @@ public enum FileChooserAction: GValueRepresentableEnum {
     /// new folder.
     case createFolder
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_file_chooser_action_get_type()
+    }
+
     public init(from gtkEnum: GtkFileChooserAction) {
         switch gtkEnum {
             case GTK_FILE_CHOOSER_ACTION_OPEN:
@@ -37,7 +40,6 @@ public enum FileChooserAction: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkFileChooserAction {
         switch self {
             case .open:

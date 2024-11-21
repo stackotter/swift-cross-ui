@@ -9,7 +9,10 @@ public enum WidgetHelpType: GValueRepresentableEnum {
     /// What’s this.
     case whatsThis
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_widget_help_type_get_type()
+    }
+
     public init(from gtkEnum: GtkWidgetHelpType) {
         switch gtkEnum {
             case GTK_WIDGET_HELP_TOOLTIP:
@@ -21,7 +24,6 @@ public enum WidgetHelpType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkWidgetHelpType {
         switch self {
             case .tooltip:

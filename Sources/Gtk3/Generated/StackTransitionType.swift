@@ -24,7 +24,10 @@ public enum StackTransitionType: GValueRepresentableEnum {
     /// Slide from top down or bottom up according to the order
     case slideUpDown
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_stack_transition_type_get_type()
+    }
+
     public init(from gtkEnum: GtkStackTransitionType) {
         switch gtkEnum {
             case GTK_STACK_TRANSITION_TYPE_NONE:
@@ -48,7 +51,6 @@ public enum StackTransitionType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkStackTransitionType {
         switch self {
             case .none:

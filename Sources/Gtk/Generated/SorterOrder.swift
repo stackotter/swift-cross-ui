@@ -14,7 +14,10 @@ public enum SorterOrder: GValueRepresentableEnum {
     /// different items will never cause this value to be returned.
     case total
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_sorter_order_get_type()
+    }
+
     public init(from gtkEnum: GtkSorterOrder) {
         switch gtkEnum {
             case GTK_SORTER_ORDER_PARTIAL:
@@ -28,7 +31,6 @@ public enum SorterOrder: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkSorterOrder {
         switch self {
             case .partial:

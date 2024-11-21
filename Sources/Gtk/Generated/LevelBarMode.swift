@@ -12,7 +12,10 @@ public enum LevelBarMode: GValueRepresentableEnum {
     /// The bar has a discrete mode
     case discrete
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_level_bar_mode_get_type()
+    }
+
     public init(from gtkEnum: GtkLevelBarMode) {
         switch gtkEnum {
             case GTK_LEVEL_BAR_MODE_CONTINUOUS:
@@ -24,7 +27,6 @@ public enum LevelBarMode: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkLevelBarMode {
         switch self {
             case .continuous:

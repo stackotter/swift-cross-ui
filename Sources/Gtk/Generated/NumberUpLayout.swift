@@ -22,7 +22,10 @@ public enum NumberUpLayout: GValueRepresentableEnum {
     /// ![](layout-btrl.png)
     case btrl
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_number_up_layout_get_type()
+    }
+
     public init(from gtkEnum: GtkNumberUpLayout) {
         switch gtkEnum {
             case GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_TOP_TO_BOTTOM:
@@ -46,7 +49,6 @@ public enum NumberUpLayout: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkNumberUpLayout {
         switch self {
             case .lrtb:

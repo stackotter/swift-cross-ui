@@ -100,7 +100,7 @@ struct GtkCodeGen {
                 continue
             }
 
-            let source = generateEnum(enumeration, cGtkImport: cGtkImport)
+            let source = generateEnum(enumeration, namespace: gir.namespace, cGtkImport: cGtkImport)
             try save(source.description, to: directory, declName: enumeration.name)
         }
 
@@ -155,7 +155,11 @@ struct GtkCodeGen {
         return source.description
     }
 
-    static func generateEnum(_ enumeration: Enumeration, cGtkImport: String) -> String {
+    static func generateEnum(
+        _ enumeration: Enumeration,
+        namespace: Namespace,
+        cGtkImport: String
+    ) -> String {
         // Filter out members which were introduced after 4.0
         let members = enumeration.members.filter { member in
             if member.version != nil {
@@ -209,6 +213,17 @@ struct GtkCodeGen {
             )
         }
 
+        // In some earlier versions of Gtk 3, G_TYPE_ENUM is abstract and can't be used
+        // as a catch-all type for enum values when setting GObject properties, so we
+        // have to dynamically fetch the type for the enum instead of letting it default
+        // to G_TYPE_ENUM.
+        let typeIdentifier = convertCamelCasingToSnake(enumeration.cType)
+        let typeProperty = """
+            public static var type: GType {
+                \(typeIdentifier)_get_type()
+            }
+            """
+
         let source = SourceFileSyntax(
             """
             import \(raw: cGtkImport)
@@ -219,7 +234,8 @@ struct GtkCodeGen {
 
                 \(raw: cases.map(\.description).joined(separator: "\n"))
 
-                /// Converts a Gtk value to its corresponding swift representation.
+                \(raw: typeProperty)
+
                 public init(from gtkEnum: \(raw: enumeration.cType)) {
                     switch gtkEnum {
                         \(raw: fromGtkConversionSwitchCases.map(\.description).joined(separator: "\n"))
@@ -228,7 +244,6 @@ struct GtkCodeGen {
                     }
                 }
 
-                /// Converts the value to its corresponding Gtk representation.
                 public func toGtk() -> \(raw: enumeration.cType) {
                     switch self {
                         \(raw: toGtkConversionSwitchCases.map(\.description).joined(separator: "\n"))
@@ -671,6 +686,41 @@ struct GtkCodeGen {
         }
         let first = parts.removeFirst()
         return first + parts.map(\.capitalized).joined()
+    }
+
+    static func convertCamelCasingToSnake(_ identifier: String) -> String {
+        var words: [[Character]] = []
+        var word: [Character] = []
+        for character in identifier {
+            if character.isUppercase {
+                if !word.isEmpty {
+                    words.append(word)
+                }
+                word = [Character](character.lowercased())
+            } else {
+                word.append(character)
+            }
+        }
+        if !word.isEmpty {
+            words.append(word)
+        }
+        var characters: [Character] = []
+        var previousWasSingleLetter = false
+        for (i, word) in words.enumerated() {
+            if i == 0 {
+                characters.append(contentsOf: word)
+            } else if previousWasSingleLetter && word.count == 1 {
+                characters.append(contentsOf: word)
+            } else {
+                characters.append("_")
+                characters.append(contentsOf: word)
+            }
+
+            if word.count == 1 {
+                previousWasSingleLetter = true
+            }
+        }
+        return String(characters)
     }
 
     static func convertCType(_ cType: String) -> String {

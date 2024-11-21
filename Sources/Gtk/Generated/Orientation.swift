@@ -11,7 +11,10 @@ public enum Orientation: GValueRepresentableEnum {
     /// The element is in vertical orientation.
     case vertical
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_orientation_get_type()
+    }
+
     public init(from gtkEnum: GtkOrientation) {
         switch gtkEnum {
             case GTK_ORIENTATION_HORIZONTAL:
@@ -23,7 +26,6 @@ public enum Orientation: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkOrientation {
         switch self {
             case .horizontal:

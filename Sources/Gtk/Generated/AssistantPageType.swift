@@ -35,7 +35,10 @@ public enum AssistantPageType: GValueRepresentableEnum {
     /// add its own buttons through gtk_assistant_add_action_widget().
     case custom
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_assistant_page_type_get_type()
+    }
+
     public init(from gtkEnum: GtkAssistantPageType) {
         switch gtkEnum {
             case GTK_ASSISTANT_PAGE_CONTENT:
@@ -55,7 +58,6 @@ public enum AssistantPageType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkAssistantPageType {
         switch self {
             case .content:

@@ -21,7 +21,10 @@ public enum DragResult: GValueRepresentableEnum {
     /// unspecified error.
     case error
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_drag_result_get_type()
+    }
+
     public init(from gtkEnum: GtkDragResult) {
         switch gtkEnum {
             case GTK_DRAG_RESULT_SUCCESS:
@@ -41,7 +44,6 @@ public enum DragResult: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkDragResult {
         switch self {
             case .success:

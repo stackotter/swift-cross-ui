@@ -13,7 +13,10 @@ public enum ExpanderStyle: GValueRepresentableEnum {
     /// The style used for an expanded subtree.
     case expanded
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_expander_style_get_type()
+    }
+
     public init(from gtkEnum: GtkExpanderStyle) {
         switch gtkEnum {
             case GTK_EXPANDER_COLLAPSED:
@@ -29,7 +32,6 @@ public enum ExpanderStyle: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkExpanderStyle {
         switch self {
             case .collapsed:

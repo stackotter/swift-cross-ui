@@ -18,7 +18,10 @@ public enum WindowPosition: GValueRepresentableEnum {
     /// parent (see gtk_window_set_transient_for()).
     case centerOnParent
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_window_position_get_type()
+    }
+
     public init(from gtkEnum: GtkWindowPosition) {
         switch gtkEnum {
             case GTK_WIN_POS_NONE:
@@ -36,7 +39,6 @@ public enum WindowPosition: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkWindowPosition {
         switch self {
             case .none:

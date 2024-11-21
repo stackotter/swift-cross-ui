@@ -17,7 +17,10 @@ public enum DirectionType: GValueRepresentableEnum {
     /// Move right.
     case right
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_direction_type_get_type()
+    }
+
     public init(from gtkEnum: GtkDirectionType) {
         switch gtkEnum {
             case GTK_DIR_TAB_FORWARD:
@@ -37,7 +40,6 @@ public enum DirectionType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkDirectionType {
         switch self {
             case .tabForward:

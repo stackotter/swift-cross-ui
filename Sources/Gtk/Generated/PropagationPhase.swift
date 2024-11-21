@@ -20,7 +20,10 @@ public enum PropagationPhase: GValueRepresentableEnum {
     /// grab broken handlers for controllers in this phase to be run.
     case target
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_propagation_phase_get_type()
+    }
+
     public init(from gtkEnum: GtkPropagationPhase) {
         switch gtkEnum {
             case GTK_PHASE_NONE:
@@ -36,7 +39,6 @@ public enum PropagationPhase: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPropagationPhase {
         switch self {
             case .none:

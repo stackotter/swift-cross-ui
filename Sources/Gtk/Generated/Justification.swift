@@ -13,7 +13,10 @@ public enum Justification: GValueRepresentableEnum {
     /// The text is placed is distributed across the label.
     case fill
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_justification_get_type()
+    }
+
     public init(from gtkEnum: GtkJustification) {
         switch gtkEnum {
             case GTK_JUSTIFY_LEFT:
@@ -29,7 +32,6 @@ public enum Justification: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkJustification {
         switch self {
             case .left:

@@ -11,7 +11,10 @@ public enum PrintDuplex: GValueRepresentableEnum {
     /// Vertical duplex.
     case vertical
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_print_duplex_get_type()
+    }
+
     public init(from gtkEnum: GtkPrintDuplex) {
         switch gtkEnum {
             case GTK_PRINT_DUPLEX_SIMPLEX:
@@ -25,7 +28,6 @@ public enum PrintDuplex: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPrintDuplex {
         switch self {
             case .simplex:

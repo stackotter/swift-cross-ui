@@ -37,7 +37,10 @@ public enum ScrollType: GValueRepresentableEnum {
     /// Scroll to end.
     case end
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_scroll_type_get_type()
+    }
+
     public init(from gtkEnum: GtkScrollType) {
         switch gtkEnum {
             case GTK_SCROLL_NONE:
@@ -77,7 +80,6 @@ public enum ScrollType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkScrollType {
         switch self {
             case .none:

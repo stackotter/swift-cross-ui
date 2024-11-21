@@ -13,7 +13,10 @@ public enum Unit: GValueRepresentableEnum {
     /// Dimensions in millimeters
     case mm
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_unit_get_type()
+    }
+
     public init(from gtkEnum: GtkUnit) {
         switch gtkEnum {
             case GTK_UNIT_NONE:
@@ -29,7 +32,6 @@ public enum Unit: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkUnit {
         switch self {
             case .none:

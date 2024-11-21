@@ -15,7 +15,10 @@ public enum AccessibleSort: GValueRepresentableEnum {
     /// descending has been applied.
     case other
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_accessible_sort_get_type()
+    }
+
     public init(from gtkEnum: GtkAccessibleSort) {
         switch gtkEnum {
             case GTK_ACCESSIBLE_SORT_NONE:
@@ -31,7 +34,6 @@ public enum AccessibleSort: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkAccessibleSort {
         switch self {
             case .none:

@@ -18,7 +18,10 @@ public enum FilterMatch: GValueRepresentableEnum {
     /// gtk_filter_match() will alays return %TRUE.
     case all
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_filter_match_get_type()
+    }
+
     public init(from gtkEnum: GtkFilterMatch) {
         switch gtkEnum {
             case GTK_FILTER_MATCH_SOME:
@@ -32,7 +35,6 @@ public enum FilterMatch: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkFilterMatch {
         switch self {
             case .some:

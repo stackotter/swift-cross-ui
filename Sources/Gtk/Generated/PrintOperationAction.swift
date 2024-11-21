@@ -17,7 +17,10 @@ public enum PrintOperationAction: GValueRepresentableEnum {
     /// the export-filename property to be set.
     case export
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_print_operation_action_get_type()
+    }
+
     public init(from gtkEnum: GtkPrintOperationAction) {
         switch gtkEnum {
             case GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG:
@@ -33,7 +36,6 @@ public enum PrintOperationAction: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkPrintOperationAction {
         switch self {
             case .printDialog:

@@ -16,7 +16,10 @@ public enum Ordering: GValueRepresentableEnum {
     /// The first value is larger than the second
     case larger
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_ordering_get_type()
+    }
+
     public init(from gtkEnum: GtkOrdering) {
         switch gtkEnum {
             case GTK_ORDERING_SMALLER:
@@ -30,7 +33,6 @@ public enum Ordering: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkOrdering {
         switch self {
             case .smaller:

@@ -16,7 +16,10 @@ public enum ConstraintStrength: GValueRepresentableEnum {
     /// A weak constraint
     case weak
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_constraint_strength_get_type()
+    }
+
     public init(from gtkEnum: GtkConstraintStrength) {
         switch gtkEnum {
             case GTK_CONSTRAINT_STRENGTH_REQUIRED:
@@ -32,7 +35,6 @@ public enum ConstraintStrength: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkConstraintStrength {
         switch self {
             case .required:

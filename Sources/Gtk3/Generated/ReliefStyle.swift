@@ -11,7 +11,10 @@ public enum ReliefStyle: GValueRepresentableEnum {
     /// No relief.
     case none
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_relief_style_get_type()
+    }
+
     public init(from gtkEnum: GtkReliefStyle) {
         switch gtkEnum {
             case GTK_RELIEF_NORMAL:
@@ -25,7 +28,6 @@ public enum ReliefStyle: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkReliefStyle {
         switch self {
             case .normal:

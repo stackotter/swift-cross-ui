@@ -17,7 +17,10 @@ public enum IconViewDropPosition: GValueRepresentableEnum {
     /// Dropped item is inserted below
     case dropBelow
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_icon_view_drop_position_get_type()
+    }
+
     public init(from gtkEnum: GtkIconViewDropPosition) {
         switch gtkEnum {
             case GTK_ICON_VIEW_NO_DROP:
@@ -37,7 +40,6 @@ public enum IconViewDropPosition: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkIconViewDropPosition {
         switch self {
             case .noDrop:

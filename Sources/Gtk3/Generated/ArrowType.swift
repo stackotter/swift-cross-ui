@@ -13,7 +13,10 @@ public enum ArrowType: GValueRepresentableEnum {
     /// Represents a right pointing arrow.
     case right
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_arrow_type_get_type()
+    }
+
     public init(from gtkEnum: GtkArrowType) {
         switch gtkEnum {
             case GTK_ARROW_UP:
@@ -29,7 +32,6 @@ public enum ArrowType: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkArrowType {
         switch self {
             case .up:

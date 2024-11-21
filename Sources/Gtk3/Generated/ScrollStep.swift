@@ -16,7 +16,10 @@ public enum ScrollStep: GValueRepresentableEnum {
     /// Scroll to the horizontal ends.
     case horizontalEnds
 
-    /// Converts a Gtk value to its corresponding swift representation.
+    public static var type: GType {
+        gtk_scroll_step_get_type()
+    }
+
     public init(from gtkEnum: GtkScrollStep) {
         switch gtkEnum {
             case GTK_SCROLL_STEPS:
@@ -36,7 +39,6 @@ public enum ScrollStep: GValueRepresentableEnum {
         }
     }
 
-    /// Converts the value to its corresponding Gtk representation.
     public func toGtk() -> GtkScrollStep {
         switch self {
             case .steps:
