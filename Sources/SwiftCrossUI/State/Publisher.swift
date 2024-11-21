@@ -73,97 +73,29 @@ public class Publisher {
         backend: Backend,
         action closure: @escaping () -> Void
     ) -> Cancellable {
-        // All of the concurrency related code is there to detect when updates can be merged
-        // together (a.k.a. when one of the updates is unnecessary).
-        let protectingQueue = DispatchQueue(label: "state update merging")
-        let concurrentUpdateHandlingQueue = DispatchQueue(
-            label: "concurrent update handling queue",
-            attributes: .concurrent
+        let serialUpdateHandlingQueue = DispatchQueue(
+            label: "serial update handling"
         )
-        let synchronizationSemaphore = DispatchSemaphore(value: 1)
-
-        // State shared betwen all calls to the closure defined below.
-        var updateIsQueued = false
-        var updateIsRunning = false
-        var aCurrentJobDidntHaveToWait = false
-
+        let semaphore = DispatchSemaphore(value: 1)
         return observe {
-            // I'm sorry if you have to make sense of this... Take my comments as a peace offering.
+            // Only allow one update to wait at a time.
+            guard semaphore.wait(timeout: .now()) == .success else {
+                return
+            }
 
-            // Hop to a dispatch queue to avoid blocking any threads in the Swift Structured
-            // Concurrency thread pool in the case that the state update originated from a task.
-            concurrentUpdateHandlingQueue.async {
-                // If no one is running, then we run without waiting, and if someone's running
-                // but no one's waiting, then we wait and prevent anyone else from waiting.
-                // This ensures that at least one update will always happen after every update
-                // received so far, without letting unnecessary updates queue up. The reason
-                // that we can merge updates like this is that all state updates are built equal;
-                // they don't carry any information other than that they happened.
-                var shouldWait = false
-                protectingQueue.sync {
-                    if !updateIsQueued {
-                        shouldWait = true
-                    }
-
-                    if updateIsRunning {
-                        updateIsQueued = true
-                    } else {
-                        updateIsRunning = true
-                        aCurrentJobDidntHaveToWait = true
-                    }
-                }
-
-                guard shouldWait else {
-                    return
-                }
-
-                // Waiting just involves attempting to jump to the main thread.
+            // Add update to queue. We use our own serial update handling queue since some
+            // backends don't have the concept of a main thread, leading to the possibility
+            // that two updates can run at once which would be inefficient and lead to
+            // incorrect results anyway.
+            serialUpdateHandlingQueue.async {
                 backend.runInMainThread {
-                    // This semaphore is used because some backends don't put us on the main
-                    // thread since they don't have the concept of a single UI thread like
-                    // macOS does.
-                    //
-                    // If `backend.runInMainThread` is truly putting us on the main thread,
-                    // then this never have to block significantly, otherwise we're just
-                    // blocking some random thread, so either way we're fine since we've
-                    // explicitly hopped to a dispatch queue to escape any cooperative
-                    // Swift Structured Concurrency thread pool the state update may have
-                    // originated from.
-                    synchronizationSemaphore.wait()
-
-                    protectingQueue.sync {
-                        // If a current job didn't have to wait, then that's us. Due to
-                        // concurrency that doesn't mean we were the first update triggered.
-                        // That is, we could've been the job that set `updateIsQueued` to
-                        // true while still being the job that reached this line first (before
-                        // the one that set `updateIsRunning` to true). And that's why I've
-                        // implemented the check in this way with a protected 'global' and not
-                        // a local variable (being first isn't a property we can know ahead
-                        // of time). I use 'global' in the sense of shared between all calls
-                        // to the state update handling closure for a given ViewGraphNode.
-                        //
-                        // The reason that `aCurrentJobDidntHaveToWait` is needed at all is
-                        // so that we can know whether `updateIsQueued`'s value is due to us
-                        // or someone else/no one.
-                        if aCurrentJobDidntHaveToWait {
-                            aCurrentJobDidntHaveToWait = false
-                        } else {
-                            updateIsQueued = false
-                        }
-                    }
+                    // Now that we're about to start, let another update queue up. If we
+                    // instead waited until we're finished the update, we'd introduce the
+                    // possibility of dropping updates that would've affected views that
+                    // we've already processed, leading to stale view contents.
+                    semaphore.signal()
 
                     closure()
-
-                    // If someone is waiting then we leave `updateIsRunning` equal to true
-                    // because they'll immediately begin running as soon as we exit and we
-                    // don't want an extra person queueing until they've actually started.
-                    protectingQueue.sync {
-                        if !updateIsQueued {
-                            updateIsRunning = false
-                        }
-                    }
-
-                    synchronizationSemaphore.signal()
                 }
             }
         }
