@@ -1,4 +1,6 @@
+import CoreFoundation
 import Dispatch
+import Foundation
 
 /// A type that produces valueless observations.
 public class Publisher {
@@ -10,6 +12,12 @@ public class Publisher {
     private var cancellables: [Cancellable] = []
     /// Human-readable tag for debugging purposes.
     private var tag: String?
+
+    /// The time at which the last update merging event occurred in
+    /// `observeOnMainThreadAvoidingStarvation`.
+    private var lastUpdateMergeTime: CFAbsoluteTime = 0
+    /// The amount of time taken per state update, exponentially averaged over time.
+    private var exponentiallySmoothedUpdateLength: Double = 0
 
     /// Creates a new independent publisher.
     public init() {}
@@ -58,18 +66,33 @@ public class Publisher {
         return self
     }
 
-    // TODO: English this explanation more better.
-    /// Observes a publisher for changes and runs an action on the main thread whenever
-    /// a change occurs. This pattern generally leads to starvation if events are produced
-    /// faster than the serial handler can handle them, so this method deals with that by
-    /// ensuring that only one update is allowed to be waiting at any given time. The
-    /// implementation guarantees that at least one update will occur after each update,
-    /// but if for example 4 updates arrive while a previous update is getting serviced,
-    /// then all 4 updates will get serviced by a single run of `closure`.
+    /// A specialized version of `observe(with:)` designed to mitigate main thread
+    /// starvation issues observed on weaker systems when using the Gtk3Backend.
     ///
-    /// Note that some backends don't have a concept of a main thread, so you the updates
-    /// won't always end up on a 'main thread', but they are guaranteed to run serially.
-    func observeOnMainThreadAvoidingStarvation<Backend: AppBackend>(
+    /// If observations are produced faster than the update handler (`closure`) can
+    /// run, then the main thread quickly saturates and there's not enough time
+    /// between view state updates for the backend to re-render the affected UI
+    /// elements.
+    ///
+    /// This method ensures that only one update can queue up at a time. When an
+    /// observation arrives while an update is already queued, the observation's
+    /// resulting update gets 'merged' (which just means dropped, but unlike a
+    /// dropped frame, a dropped update has no detrimental effects).
+    ///
+    /// When updates are getting merged often, this generally means that the
+    /// update handler is still running constantly (since there's always going to
+    /// be a new update waiting before the the running update completes). In this
+    /// situation we introduce a sleep after handling each update to give the backend
+    /// time to catch up. Hueristically I've found that a delay of 1.5x the length of
+    /// the update is required on my old Linux laptop using ``Gtk3Backend``, so I'm
+    /// going with that for now. Importantly, this delay is only used whenever updates
+    /// start running back-to-back with no gap so it shouldn't affect fast systems
+    /// like my Mac under any usual circumstances.
+    ///
+    /// If the provided backend has the notion of a main thread, then the update
+    /// handler will end up on that thread, but regardless of backend it's
+    /// guaranteed that updates will always run serially.
+    func observeAsUIUpdater<Backend: AppBackend>(
         backend: Backend,
         action closure: @escaping () -> Void
     ) -> Cancellable {
@@ -80,6 +103,13 @@ public class Publisher {
         return observe {
             // Only allow one update to wait at a time.
             guard semaphore.wait(timeout: .now()) == .success else {
+                // It's a bit of a hack but we just reuse the serial update handling queue
+                // for synchronisation since updating this variable isn't super time sensitive
+                // as long as it happens within the next update or two.
+                let mergeTime = CFAbsoluteTimeGetCurrent()
+                serialUpdateHandlingQueue.async {
+                    self.lastUpdateMergeTime = mergeTime
+                }
                 return
             }
 
@@ -95,7 +125,32 @@ public class Publisher {
                     // we've already processed, leading to stale view contents.
                     semaphore.signal()
 
+                    // Run the closure and while we're at it measure how long it takes
+                    // so that we can use it when throttling if updates start backing up.
+                    let start = CFAbsoluteTimeGetCurrent()
                     closure()
+                    let elapsed = CFAbsoluteTimeGetCurrent() - start
+
+                    // I chose exponential smoothing because it's simple to compute, doesn't
+                    // require storing a window of previous values, and quickly converges to
+                    // a sensible value when the average moves while still somewhat ignoring
+                    // outliers.
+                    self.exponentiallySmoothedUpdateLength =
+                        elapsed / 2 + self.exponentiallySmoothedUpdateLength / 2
+                }
+
+                if CFAbsoluteTimeGetCurrent() - self.lastUpdateMergeTime < 1 {
+                    // The factor of 1.5 was determined empirically. This algorithm is
+                    // open for improvements since it's purely here to reduce the risk
+                    // of UI freezes.
+                    let throttlingDelay = self.exponentiallySmoothedUpdateLength * 1.5
+
+                    // Sleeping on a dispatch queue generally isn't a good idea because
+                    // you prevent the queue from servicing any other work, but in this
+                    // case that's the whole point. The goal is to give the main thread
+                    // a break, which we do by blocking this queue and in effect guarding
+                    // the main thread from subsequent updates until we wake up again.
+                    Thread.sleep(forTimeInterval: throttlingDelay)
                 }
             }
         }

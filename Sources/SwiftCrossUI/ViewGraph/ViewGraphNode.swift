@@ -109,7 +109,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
 
         // Update the view and its children when state changes (children are always updated first).
         cancellable = view.state.didChange
-            .observeOnMainThreadAvoidingStarvation(backend: backend) { [weak self] in
+            .observeAsUIUpdater(backend: backend) { [weak self] in
                 guard let self = self else { return }
                 self.bottomUpUpdate()
             }
