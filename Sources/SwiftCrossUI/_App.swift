@@ -60,15 +60,15 @@ class _App<AppRoot: App> {
             )
             self.sceneGraphRoot = rootNode
 
-            self.cancellable = self.app.state.didChange.observe {
-                self.backend.runInMainThread {
+            self.cancellable = self.app.state.didChange
+                .observeOnMainThreadAvoidingStarvation(backend: self.backend) { [weak self] in
+                    guard let self = self else { return }
                     self.sceneGraphRoot?.update(
                         self.app.body,
                         backend: self.backend,
                         environment: self.environment
                     )
                 }
-            }
         }
     }
 }
