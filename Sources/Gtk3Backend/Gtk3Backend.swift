@@ -16,6 +16,7 @@ extension SwiftCrossUI.Color {
 public final class Gtk3Backend: AppBackend {
     public typealias Window = Gtk3.Window
     public typealias Widget = Gtk3.Widget
+    public typealias Menu = Gtk3.Menu
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
@@ -183,7 +184,7 @@ public final class Gtk3Backend: AppBackend {
     }
 
     public func createColorableRectangle() -> Widget {
-        Box()
+        return Box()
     }
 
     public func setColor(
@@ -191,6 +192,7 @@ public final class Gtk3Backend: AppBackend {
         to color: SwiftCrossUI.Color
     ) {
         widget.css.set(property: .backgroundColor(color.gtkColor))
+        widget.css.set(property: CSSProperty(key: "background-clip", value: "border-box"))
     }
 
     public func setCornerRadius(of widget: Widget, to radius: Int) {
@@ -596,6 +598,41 @@ public final class Gtk3Backend: AppBackend {
     ) {
         let progressBar = widget as! ProgressBar
         progressBar.fraction = progressFraction ?? 0
+    }
+
+    public func createPopoverMenu() -> Menu {
+        Gtk3.Menu()
+    }
+
+    public func updatePopoverMenu(
+        _ menu: Menu,
+        items: [(String, () -> Void)],
+        environment: Environment
+    ) {
+        menu.populate(items: items)
+        // menu.cssProvider.loadCss(
+        //     from: """
+        //         menu {
+        //             background: rgba(45, 45, 45, 1);
+        //             color: white;
+        //         }
+        //         menuitem:hover {
+        //             background: magenta;
+        //             color: white;
+        //         }
+        //         """)
+    }
+
+    public func showPopoverMenu(
+        _ menu: Menu,
+        at position: SIMD2<Int>,
+        relativeTo widget: Widget,
+        closeHandler handleClose: @escaping () -> Void
+    ) {
+        menu.popUpAtWidget(widget, relativePosition: position)
+        menu.onHide = {
+            handleClose()
+        }
     }
 
     // MARK: Helpers

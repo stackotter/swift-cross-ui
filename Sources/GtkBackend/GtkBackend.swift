@@ -16,6 +16,7 @@ extension SwiftCrossUI.Color {
 public final class GtkBackend: AppBackend {
     public typealias Window = Gtk.Window
     public typealias Widget = Gtk.Widget
+    public typealias Menu = Gtk.PopoverMenu
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
@@ -608,6 +609,56 @@ public final class GtkBackend: AppBackend {
         progressBar.fraction = progressFraction ?? 0
     }
 
+    public func createPopoverMenu() -> PopoverMenu {
+        let menu = Gtk.PopoverMenu()
+        menu.hasArrow = false
+        return menu
+    }
+
+    public func updatePopoverMenu(
+        _ menu: Menu,
+        items: [(String, () -> Void)],
+        environment: Environment
+    ) {
+        menu.populate(items: items)
+
+        let menuBackground: Gtk.Color
+        let menuItemHoverBackground: Gtk.Color
+        let foreground = environment.suggestedForegroundColor.gtkColor
+        switch environment.colorScheme {
+            case .light:
+                menuBackground = Gtk.Color(1, 1, 1)
+                menuItemHoverBackground = Gtk.Color(0.9, 0.9, 0.9)
+            case .dark:
+                menuBackground = Gtk.Color(0.175, 0.175, 0.175)
+                menuItemHoverBackground = Gtk.Color(1, 1, 1, 0.1)
+        }
+        menu.cssProvider.loadCss(
+            from: """
+                contents {
+                    background: \(CSSProperty.rgba(menuBackground));
+                }
+                contents modelbutton:hover, contents modelbutton:selected {
+                    background: \(CSSProperty.rgba(menuItemHoverBackground));
+                }
+                contents modelbutton label {
+                    color: \(CSSProperty.rgba(foreground));
+                }
+                """)
+    }
+
+    public func showPopoverMenu(
+        _ menu: Menu,
+        at position: SIMD2<Int>,
+        relativeTo widget: Widget,
+        closeHandler handleClose: @escaping () -> Void
+    ) {
+        menu.popUpAtWidget(widget, relativePosition: position)
+        menu.onHide = {
+            handleClose()
+        }
+    }
+
     // MARK: Helpers
 
     private func wrapInCustomRootContainer(_ widget: Widget) -> Widget {
@@ -656,7 +707,12 @@ public final class GtkBackend: AppBackend {
         }
 
         if isControl {
-            properties.append(.backgroundColor(Color(1, 1, 1, 0.1)))
+            switch environment.colorScheme {
+                case .light:
+                    properties.append(.backgroundColor(Color(0.9, 0.9, 0.9, 1)))
+                case .dark:
+                    properties.append(.backgroundColor(Color(1, 1, 1, 0.1)))
+            }
             properties.append(CSSProperty(key: "border", value: "none"))
             properties.append(CSSProperty(key: "box-shadow", value: "none"))
         }

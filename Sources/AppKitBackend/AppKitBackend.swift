@@ -10,6 +10,8 @@ public final class AppKitBackend: AppBackend {
 
     public typealias Widget = NSView
 
+    public typealias Menu = NSMenu
+
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
     public let defaultPaddingAmount = 10
@@ -766,6 +768,68 @@ public final class AppKitBackend: AppBackend {
             progressBar.stopAnimation(nil)
         }
     }
+
+    public func createPopoverMenu() -> Menu {
+        return NSMenu()
+    }
+
+    public func updatePopoverMenu(
+        _ menu: Menu,
+        items: [(String, () -> Void)],
+        environment: Environment
+    ) {
+        menu.appearance = environment.colorScheme.nsAppearance
+        menu.items = items.map { (label, action) in
+            let wrappedAction = Action(action)
+            let menuItem = NSCustomMenuItem(
+                title: label,
+                action: #selector(wrappedAction.run),
+                keyEquivalent: ""
+            )
+            menuItem.target = wrappedAction
+            menuItem.actionWrapper = wrappedAction
+            return menuItem
+        }
+    }
+
+    public func showPopoverMenu(
+        _ menu: Menu, at position: SIMD2<Int>, relativeTo widget: Widget,
+        closeHandler handleClose: @escaping () -> Void
+    ) {
+        // NSMenu.popUp(position:at:in:) blocks until the pop up is closed, and has to
+        // run on the main thread, so I'm not exactly sure how it doesn't break things,
+        // but it hasn't broken anything yet.
+        menu.popUp(
+            positioning: nil,
+            at: NSPoint(x: CGFloat(position.x + 2), y: CGFloat(position.y + 8)),
+            in: widget
+        )
+        handleClose()
+    }
+}
+
+final class NSCustomMenuItem: NSMenuItem {
+    /// This property's only purpose is to keep a strong reference to the wrapped
+    /// action so that it sticks around for long enough to be useful.
+    var actionWrapper: Action?
+}
+
+// TODO: Update all controls to use this style of action passing, seems way nicer
+//   than the existing associated keys based approach. And probably more efficient too.
+// Source: https://stackoverflow.com/a/36983811
+final class Action: NSObject {
+    private let action: () -> Void
+
+    init(_ action: @escaping () -> Void) {
+        self.action = action
+        super.init()
+    }
+
+    @objc func run() {
+        print("Running action")
+        action()
+    }
+
 }
 
 class NSCustomTableView: NSTableView {

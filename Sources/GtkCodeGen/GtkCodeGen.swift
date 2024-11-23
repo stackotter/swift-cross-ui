@@ -77,10 +77,21 @@ struct GtkCodeGen {
         cGtkImport: String
     ) throws {
         let allowListedClasses = [
-            "Button", "Entry", "Label", "TextView", "Range", "Scale", "Image", "DropDown",
-            "Picture", "Switch", "Spinner", "ProgressBar",
+            "Button", "Entry", "Label", "TextView", "Range", "Scale", "Image", "Switch", "Spinner",
+            "ProgressBar",
         ]
-        for class_ in gir.namespace.classes where allowListedClasses.contains(class_.name) {
+        let gtk3AllowListedClasses = ["MenuShell"]
+        let gtk4AllowListedClasses = ["Picture", "DropDown", "Popover"]
+        for class_ in gir.namespace.classes {
+            guard
+                allowListedClasses.contains(class_.name)
+                    || (gir.namespace.version == "3.0"
+                        && gtk3AllowListedClasses.contains(class_.name))
+                    || (gir.namespace.version == "4.0"
+                        && gtk4AllowListedClasses.contains(class_.name))
+            else {
+                continue
+            }
             let source = generateClass(
                 class_,
                 namespace: gir.namespace,

@@ -40,6 +40,7 @@ import Foundation
 public protocol AppBackend {
     associatedtype Window
     associatedtype Widget
+    associatedtype Menu
 
     init()
 
@@ -369,6 +370,21 @@ public protocol AppBackend {
     /// - Parameter progressFraction: If `nil`, then the bar should show an indeterminate
     ///   animation if possible.
     func updateProgressBar(_ widget: Widget, progressFraction: Double?, environment: Environment)
+
+    func createPopoverMenu() -> Menu
+
+    func updatePopoverMenu(
+        _ menu: Menu,
+        items: [(String, () -> Void)],
+        environment: Environment
+    )
+
+    func showPopoverMenu(
+        _ menu: Menu,
+        at position: SIMD2<Int>,
+        relativeTo widget: Widget,
+        closeHandler handleClose: @escaping () -> Void
+    )
 }
 
 extension AppBackend {
