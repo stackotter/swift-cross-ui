@@ -118,7 +118,7 @@ public struct Image: TypeSafeView, View {
             if let image {
                 backend.updateImageView(
                     children.imageWidget.into(),
-                    rgbaData: image.data,
+                    rgbaData: image.bytes,
                     width: image.width,
                     height: image.height,
                     targetWidth: size.size.x,
