@@ -93,8 +93,8 @@ public final class GtkBackend: AppBackend {
             windowSize.height - childSize.height
         )
         window.size = Size(
-            width: decorationsSize.x + newSize.x,
-            height: decorationsSize.y + newSize.y
+            width: newSize.x,
+            height: newSize.y
         )
         child.preemptAllocatedSize(allocatedWidth: newSize.x, allocatedHeight: newSize.y)
     }

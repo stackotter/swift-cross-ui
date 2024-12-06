@@ -31,7 +31,7 @@ public struct Group<Content: View>: View {
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {
-        let size = LayoutSystem.updateStackLayout(
+        LayoutSystem.updateStackLayout(
             container: widget,
             children: layoutableChildren(backend: backend, children: children),
             proposedSize: proposedSize,
@@ -40,6 +40,5 @@ public struct Group<Content: View>: View {
             dryRun: dryRun,
             inheritStackLayoutParticipation: true
         )
-        return size
     }
 }

@@ -109,12 +109,40 @@ struct StrictFrameView<Child: View>: TypeSafeView {
             backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
         }
 
+        let idealWidth: Int
+        let idealHeight: Int
+        if let width, let height {
+            idealWidth = width
+            idealHeight = height
+        } else if let width, height == nil {
+            idealWidth = width
+            idealHeight = childSize.idealHeightForProposedWidth
+        } else if let height, width == nil {
+            idealHeight = height
+            idealWidth = childSize.idealWidthForProposedHeight
+        } else {
+            idealWidth = childSize.idealSize.x
+            idealHeight = childSize.idealSize.y
+        }
+
+        let idealWidthForProposedHeight: Int
+        let idealHeightForProposedWidth: Int
+        if width == nil && height == nil {
+            idealWidthForProposedHeight = childSize.idealWidthForProposedHeight
+            idealHeightForProposedWidth = childSize.idealHeightForProposedWidth
+        } else {
+            idealWidthForProposedHeight = idealWidth
+            idealHeightForProposedWidth = idealHeight
+        }
+
         return ViewSize(
             size: frameSize,
             idealSize: SIMD2(
-                width ?? childSize.idealSize.x,
-                height ?? childSize.idealSize.y
+                idealWidth,
+                idealHeight
             ),
+            idealWidthForProposedHeight: idealWidthForProposedHeight,
+            idealHeightForProposedWidth: idealHeightForProposedWidth,
             minimumWidth: width ?? childSize.minimumWidth,
             minimumHeight: height ?? childSize.minimumHeight,
             maximumWidth: width.map(Double.init) ?? childSize.maximumWidth,
@@ -183,9 +211,6 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         dryRun: Bool
     ) -> ViewSize {
         var proposedFrameSize = proposedSize
-        if let idealWidth {
-            proposedFrameSize.x = min(proposedFrameSize.x, idealWidth)
-        }
         if let minWidth {
             proposedFrameSize.x = max(proposedFrameSize.x, minWidth)
         }
@@ -198,9 +223,6 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         if let maxHeight {
             proposedFrameSize.y = min(proposedFrameSize.y, maxHeight)
         }
-        if let idealHeight {
-            proposedFrameSize.y = min(proposedFrameSize.y, idealHeight)
-        }
 
         let childSize = children.child0.update(
             with: body.view0,
@@ -209,27 +231,50 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
             dryRun: dryRun
         )
 
+        // TODO: Fix idealSize propagation. When idealSize isn't possible, we
+        //   have to use idealWidthForProposedHeight and
+        //   idealHeightForProposedWidth, and sometimes we may also have to
+        //   perform an additional dryRun update to probe the child view.
+
         var frameSize = childSize
         if let minWidth {
             frameSize.size.x = max(frameSize.size.x, minWidth)
             frameSize.minimumWidth = minWidth
             frameSize.idealSize.x = max(frameSize.idealSize.x, minWidth)
+            frameSize.idealWidthForProposedHeight = max(
+                frameSize.idealWidthForProposedHeight,
+                minWidth
+            )
         }
         if let maxWidth {
             frameSize.size.x = min(frameSize.size.x, maxWidth)
             frameSize.idealSize.x = min(frameSize.idealSize.x, maxWidth)
             frameSize.maximumWidth = min(childSize.maximumWidth, Double(maxWidth))
+            frameSize.idealWidthForProposedHeight = min(
+                frameSize.idealWidthForProposedHeight,
+                maxWidth
+            )
         }
+
         if let minHeight {
             frameSize.size.y = max(frameSize.size.y, minHeight)
             frameSize.minimumHeight = minHeight
             frameSize.idealSize.y = max(frameSize.idealSize.y, minHeight)
+            frameSize.idealHeightForProposedWidth = max(
+                frameSize.idealHeightForProposedWidth,
+                minHeight
+            )
         }
         if let maxHeight {
             frameSize.size.y = min(frameSize.size.y, maxHeight)
             frameSize.idealSize.y = min(frameSize.idealSize.y, maxHeight)
             frameSize.maximumHeight = min(childSize.maximumHeight, Double(maxHeight))
+            frameSize.idealHeightForProposedWidth = min(
+                frameSize.idealHeightForProposedWidth,
+                maxHeight
+            )
         }
+
         if let idealWidth {
             frameSize.idealSize.x = idealWidth
         }

@@ -60,6 +60,8 @@ public struct Text: ElementaryView, View {
         return ViewSize(
             size: size,
             idealSize: idealSize,
+            idealWidthForProposedHeight: idealSize.x,
+            idealHeightForProposedWidth: size.y,
             minimumWidth: minimumWidth == 1 ? 0 : minimumWidth,
             minimumHeight: minimumHeight,
             maximumWidth: Double(idealSize.x),

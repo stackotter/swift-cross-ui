@@ -33,6 +33,14 @@ public struct ViewSize: Equatable {
     public var size: SIMD2<Int>
     /// The size that the view ideally wants to take up.
     public var idealSize: SIMD2<Int>
+    /// The width that the view ideally wants to take up assuming that the
+    /// proposed height doesn't change. Only really differs from `idealSize` for
+    /// views that have a trade-off between width and height (such as `Text`).
+    public var idealWidthForProposedHeight: Int
+    /// The height that the view ideally wants to take up assuming that the
+    /// proposed width doesn't change. Only really differs from `idealSize` for
+    /// views that have a trade-off between width and height (such as `Text`).
+    public var idealHeightForProposedWidth: Int
     /// The minimum width that the view can take (if its height remains the same).
     public var minimumWidth: Int
     /// The minimum height that the view can take (if its width remains the same).
@@ -59,6 +67,8 @@ public struct ViewSize: Equatable {
     public init(
         size: SIMD2<Int>,
         idealSize: SIMD2<Int>,
+        idealWidthForProposedHeight: Int? = nil,
+        idealHeightForProposedWidth: Int? = nil,
         minimumWidth: Int,
         minimumHeight: Int,
         maximumWidth: Double?,
@@ -67,6 +77,8 @@ public struct ViewSize: Equatable {
     ) {
         self.size = size
         self.idealSize = idealSize
+        self.idealWidthForProposedHeight = idealWidthForProposedHeight ?? idealSize.x
+        self.idealHeightForProposedWidth = idealHeightForProposedWidth ?? idealSize.y
         self.minimumWidth = minimumWidth
         self.minimumHeight = minimumHeight
         // Using `Double(1 << 53)` as the default allows us to differentiate between views
@@ -87,6 +99,8 @@ public struct ViewSize: Equatable {
     public init(fixedSize: SIMD2<Int>) {
         size = fixedSize
         idealSize = fixedSize
+        idealWidthForProposedHeight = fixedSize.x
+        idealHeightForProposedWidth = fixedSize.y
         minimumWidth = fixedSize.x
         minimumHeight = fixedSize.y
         maximumWidth = Double(fixedSize.x)

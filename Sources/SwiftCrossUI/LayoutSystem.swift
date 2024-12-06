@@ -150,6 +150,8 @@ public enum LayoutSystem {
 
         let size: SIMD2<Int>
         let idealSize: SIMD2<Int>
+        let idealWidthForProposedHeight: Int
+        let idealHeightForProposedWidth: Int
         let minimumWidth: Int
         let minimumHeight: Int
         let maximumWidth: Double?
@@ -169,6 +171,10 @@ public enum LayoutSystem {
                 maximumWidth =
                     renderedChildren.map(\.maximumWidth).reduce(0, +) + Double(totalSpacing)
                 maximumHeight = renderedChildren.map(\.maximumHeight).max()
+                idealWidthForProposedHeight =
+                    renderedChildren.map(\.idealWidthForProposedHeight).reduce(0, +) + totalSpacing
+                idealHeightForProposedWidth =
+                    renderedChildren.map(\.idealHeightForProposedWidth).max() ?? 0
             case .vertical:
                 size = SIMD2<Int>(
                     renderedChildren.map(\.size.x).max() ?? 0,
@@ -183,6 +189,10 @@ public enum LayoutSystem {
                 maximumWidth = renderedChildren.map(\.maximumWidth).max()
                 maximumHeight =
                     renderedChildren.map(\.maximumHeight).reduce(0, +) + Double(totalSpacing)
+                idealWidthForProposedHeight =
+                    renderedChildren.map(\.idealWidthForProposedHeight).max() ?? 0
+                idealHeightForProposedWidth =
+                    renderedChildren.map(\.idealHeightForProposedWidth).reduce(0, +) + totalSpacing
         }
 
         if !dryRun {
@@ -233,6 +243,8 @@ public enum LayoutSystem {
         return ViewSize(
             size: size,
             idealSize: idealSize,
+            idealWidthForProposedHeight: idealWidthForProposedHeight,
+            idealHeightForProposedWidth: idealHeightForProposedWidth,
             minimumWidth: minimumWidth,
             minimumHeight: minimumHeight,
             maximumWidth: maximumWidth,

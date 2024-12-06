@@ -149,7 +149,6 @@ public class PopoverMenu: Popover {
         gtk_popover_popup(castedPointer())
 
         gtk_widget_get_preferred_size(widgetPointer, &menuMinimumSize, &menuNaturalSize)
-        print(menuNaturalSize)
 
         // TODO: Figure out why this is actually happening and whether it's just specific to
         //   my machines. Probably just some weird menu CSS from the default themes, but

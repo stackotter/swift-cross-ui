@@ -77,6 +77,8 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
         return ViewSize(
             size: size,
             idealSize: childSize.idealSize &+ paddingSize,
+            idealWidthForProposedHeight: childSize.idealWidthForProposedHeight + paddingSize.x,
+            idealHeightForProposedWidth: childSize.idealHeightForProposedWidth + paddingSize.y,
             minimumWidth: childSize.minimumWidth + paddingSize.x,
             minimumHeight: childSize.minimumHeight + paddingSize.y,
             maximumWidth: childSize.maximumWidth + Double(paddingSize.x),

@@ -1,4 +1,5 @@
 import CGtk
+import Dispatch
 import GtkCustomWidgets
 
 /// A custom widget made specifically for SwiftCrossUI. This widget provides the
@@ -50,7 +51,15 @@ public class CustomRootWidget: Widget {
     }
 
     public func setResizeHandler(_ handler: @escaping (Size) -> Void) {
-        let box = SignalBox1<Size>(callback: handler)
+        let box = SignalBox1<Size> { size in
+            // Ensure that the handler can't mess with the current update.
+            // Otherwise if it goes and updates the whole view hierarchy then
+            // Gtk gets annoyed cause everything kinda gets pulled out from
+            // under it.
+            DispatchQueue.main.async {
+                handler(size)
+            }
+        }
         gtk_custom_root_widget_set_resize_callback(
             castedPointer(),
             { data, size in

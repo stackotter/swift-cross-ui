@@ -40,7 +40,9 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         parentEnvironment = environment
 
         backend.setResizeHandler(ofWindow: window) { [weak self] newSize in
-            guard let self else { return }
+            guard let self else {
+                return
+            }
             _ = self.update(
                 scene,
                 proposedWindowSize: newSize,
@@ -61,7 +63,9 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
 
         _ = update(
             newScene,
-            proposedWindowSize: backend.size(ofWindow: window),
+            proposedWindowSize: isFirstUpdate
+                ? (newScene ?? scene).defaultSize
+                : backend.size(ofWindow: window),
             backend: backend,
             environment: environment
         )
@@ -238,8 +242,8 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             } else {
                 return nil
             }
-        } else if contentSize.size != currentProposedSize {
-            return contentSize.size
+        } else if contentSize.idealSize != currentProposedSize {
+            return contentSize.idealSize
         } else {
             return nil
         }
