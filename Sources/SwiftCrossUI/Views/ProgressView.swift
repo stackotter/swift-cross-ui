@@ -45,10 +45,10 @@ public struct ProgressView<Label: View>: View {
 
     /// Creates a progress bar view. If `value` is `nil`, an indeterminate progress
     /// bar will be shown.
-    public init(_ label: Label, value: Double?) {
+    public init<Value: BinaryFloatingPoint>(_ label: Label, value: Value?) {
         self.label = label
         self.kind = .bar
-        self.progress = value
+        self.progress = value.map(Double.init)
     }
 }
 
@@ -69,10 +69,10 @@ extension ProgressView where Label == EmptyView {
 
     /// Creates a progress bar view. If `value` is `nil`, an indeterminate progress
     /// bar will be shown.
-    public init(value: Double?) {
+    public init<Value: BinaryFloatingPoint>(value: Value?) {
         self.label = EmptyView()
         self.kind = .bar
-        self.progress = value
+        self.progress = value.map(Double.init)
     }
 }
 
@@ -93,10 +93,10 @@ extension ProgressView where Label == Text {
 
     /// Creates a progress bar view. If `value` is `nil`, an indeterminate progress
     /// bar will be shown.
-    public init(_ label: String, value: Double?) {
+    public init<Value: BinaryFloatingPoint>(_ label: String, value: Value?) {
         self.label = Text(label)
         self.kind = .bar
-        self.progress = value
+        self.progress = value.map(Double.init)
     }
 }
 
