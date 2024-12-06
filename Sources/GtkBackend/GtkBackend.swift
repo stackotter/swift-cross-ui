@@ -188,7 +188,7 @@ public final class GtkBackend: AppBackend {
     }
 
     public func createColorableRectangle() -> Widget {
-        return Fixed()
+        return Box()
     }
 
     public func setColor(ofColorableRectangle widget: Widget, to color: SwiftCrossUI.Color) {
