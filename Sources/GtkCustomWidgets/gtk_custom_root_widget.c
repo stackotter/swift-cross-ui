@@ -28,11 +28,11 @@ void gtk_custom_root_widget_measure(
     switch (orientation) {
         case GTK_ORIENTATION_HORIZONTAL:
             *minimum = root_widget->minimum_width;
-            *natural = root_widget->natural_width;
+            *natural = 0;
             break;
         case GTK_ORIENTATION_VERTICAL:
             *minimum = root_widget->minimum_height;
-            *natural = root_widget->natural_height;
+            *natural = 0;
             break;
     }
 }
@@ -46,19 +46,14 @@ void gtk_custom_root_widget_allocate(
     GtkCustomRootWidget *root_widget = GTK_CUSTOM_ROOT_WIDGET(widget);
     gtk_widget_allocate(root_widget->child, width, height, 0, NULL);
 
-    if (!root_widget->has_been_allocated) {
-        if (width == root_widget->natural_width && height == root_widget->natural_height) {
-            root_widget->allocated_width = width;
-            root_widget->allocated_height = height;
-            return;
-        }
-    } else if (width == root_widget->allocated_width && height == root_widget->allocated_height) {
+    root_widget->has_been_allocated = true;
+
+    if (width == root_widget->allocated_width && height == root_widget->allocated_height) {
         return;
     }
 
     root_widget->allocated_width = width;
     root_widget->allocated_height = height;
-    root_widget->has_been_allocated = true;
 
     if (root_widget->resize_callback != NULL) {
         Size size = { .width = width, .height = height };
@@ -73,8 +68,6 @@ GtkWidget *gtk_custom_root_widget_new(void) {
     widget->resize_callback_data = NULL;
     widget->minimum_width = 0;
     widget->minimum_height = 0;
-    widget->natural_width = 0;
-    widget->natural_height = 0;
     widget->allocated_width = 0;
     widget->allocated_height = 0;
     widget->has_been_allocated = false;
@@ -88,12 +81,12 @@ void gtk_custom_root_widget_set_child(GtkCustomRootWidget *self, GtkWidget *chil
 }
 
 void gtk_custom_root_widget_get_size(GtkCustomRootWidget *widget, gint *width, gint *height) {
-    if (widget->has_been_allocated || widget->natural_width == 0 || widget->natural_height == 0) {
+    if (widget->has_been_allocated) {
         *width = widget->allocated_width;
         *height = widget->allocated_height;
     } else {
-        *width = widget->natural_width;
-        *height = widget->natural_height;
+        *width = 0;
+        *height = 0;
     }
 }
 

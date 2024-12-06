@@ -109,7 +109,9 @@ public final class GtkBackend: AppBackend {
     ) {
         let child = window.getChild() as! CustomRootWidget
         child.setResizeHandler { size in
-            action(SIMD2(size.width, size.height))
+            self.runInMainThread {
+                action(SIMD2(size.width, size.height))
+            }
         }
     }
 

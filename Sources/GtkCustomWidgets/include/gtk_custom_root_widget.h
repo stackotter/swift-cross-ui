@@ -19,8 +19,6 @@ typedef struct _GtkCustomRootWidget {
   
     gint minimum_width;
     gint minimum_height;
-    gint natural_width;
-    gint natural_height;
     gint allocated_width;
     gint allocated_height;
     gboolean has_been_allocated;
