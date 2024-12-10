@@ -67,21 +67,7 @@ public struct Menu: TypeSafeView {
         //   continue updating it even once it's open.
         let size = backend.naturalSize(of: widget)
 
-        let items = items.compactMap { item -> Button? in
-            guard case let .button(button) = item else {
-                return nil
-            }
-            return button
-        }
-        .map { button in
-            (
-                button.label,
-                {
-                    children.menu = nil
-                    button.action()
-                }
-            )
-        }
+        let content = resolve().content
 
         backend.updateButton(
             widget,
@@ -91,7 +77,7 @@ public struct Menu: TypeSafeView {
                 children.menu = menu
                 backend.updatePopoverMenu(
                     menu,
-                    items: items,
+                    content: content,
                     environment: environment
                 )
                 backend.showPopoverMenu(menu, at: SIMD2(0, size.y + 2), relativeTo: widget) {
@@ -100,7 +86,7 @@ public struct Menu: TypeSafeView {
             },
             environment: environment
         )
-        children.updateMenuIfShown(items: items, environment: environment, backend: backend)
+        children.updateMenuIfShown(content: content, environment: environment, backend: backend)
         return ViewSize(fixedSize: size)
     }
 }
@@ -114,7 +100,7 @@ class MenuStorage: ViewGraphNodeChildren {
     init() {}
 
     func updateMenuIfShown<Backend: AppBackend>(
-        items: [(String, () -> Void)],
+        content: ResolvedMenu,
         environment: Environment,
         backend: Backend
     ) {
@@ -123,7 +109,7 @@ class MenuStorage: ViewGraphNodeChildren {
         }
         backend.updatePopoverMenu(
             menu as! Backend.Menu,
-            items: items,
+            content: content,
             environment: environment
         )
     }

@@ -212,6 +212,14 @@ open class Widget: GObjectRepresentable {
         )
     }
 
+    public func insertActionGroup(_ name: String, _ actionGroup: any GActionGroup) {
+        gtk_widget_insert_action_group(
+            widgetPointer,
+            name,
+            actionGroup.actionGroupPointer
+        )
+    }
+
     @GObjectProperty(named: "name") public var name: String?
 
     @GObjectProperty(named: "opacity") public var opacity: Double

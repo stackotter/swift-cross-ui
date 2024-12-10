@@ -96,6 +96,15 @@ public class Menu: MenuShell {
         widgetPointer = gtk_menu_new_from_model(model)
     }
 
+    public func bindModel(_ model: GMenu) {
+        gtk_menu_shell_bind_model(
+            castedPointer(),
+            UnsafeMutablePointer(model.pointer),
+            nil,
+            false.toGBoolean()
+        )
+    }
+
     public func popUpAtWidget(_ widget: Widget, relativePosition: SIMD2<Int>) {
         setProperty(named: "rect-anchor-dx", newValue: relativePosition.x)
         setProperty(named: "rect-anchor-dy", newValue: relativePosition.y)
@@ -117,60 +126,6 @@ public class Menu: MenuShell {
         // the signal handlers when popping it up. If we add the signal handlers
         // any earlier then they don't work.
         registerSignalHandlers()
-    }
-
-    private class Action {
-        var run: () -> Void
-
-        init(_ action: @escaping () -> Void) {
-            run = action
-        }
-    }
-
-    public func populate(items: [(String, () -> Void)]) {
-        let handler:
-            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
-                { _, _, data in
-                    let action = Unmanaged<Action>.fromOpaque(data).takeUnretainedValue()
-                    action.run()
-                }
-
-        let model = g_menu_new()
-        let actionGroup = g_simple_action_group_new()
-        for (i, (label, action)) in items.enumerated() {
-            g_menu_append(model, label, "menu.action\(i)")
-
-            let action = Action(action)
-            let actionName = "action\(i)"
-            let simpleAction = g_simple_action_new(actionName, nil)
-
-            g_simple_action_set_enabled(simpleAction, true.toGBoolean())
-
-            g_signal_connect_data(
-                simpleAction.map(UnsafeMutableRawPointer.init),
-                "activate",
-                gCallback(handler),
-                Unmanaged<Action>.passRetained(action).toOpaque(),
-                { data, _ in
-                    Unmanaged<Action>.fromOpaque(data!).release()
-                },
-                G_CONNECT_AFTER
-            )
-
-            g_action_map_add_action(
-                actionGroup.map(OpaquePointer.init),
-                simpleAction
-            )
-        }
-
-        gtk_menu_shell_bind_model(
-            castedPointer(),
-            UnsafeMutablePointer<_GMenuModel>(model),
-            nil,
-            false.toGBoolean()
-        )
-
-        gtk_widget_insert_action_group(widgetPointer, "menu", actionGroup.map(OpaquePointer.init))
     }
 
     private func registerSignalHandlers() {

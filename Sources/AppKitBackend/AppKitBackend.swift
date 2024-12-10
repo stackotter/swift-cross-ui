@@ -100,9 +100,8 @@ public final class AppKitBackend: AppBackend {
         window.makeKeyAndOrderFront(nil)
     }
 
-    private static func renderSubmenu(_ submenu: ResolvedMenu.Submenu) -> NSMenuItem {
-        let renderedMenu = NSMenu()
-        for item in submenu.content.items {
+    private static func renderMenuItems(_ items: [ResolvedMenu.Item]) -> [NSMenuItem] {
+        items.map { item in
             switch item {
                 case .button(let label, let action):
                     // Custom subclass is used to keep strong reference to action
@@ -118,10 +117,17 @@ public final class AppKitBackend: AppBackend {
                         renderedItem.action = #selector(wrappedAction.run)
                         renderedItem.target = wrappedAction
                     }
-                    renderedMenu.addItem(renderedItem)
+                    return renderedItem
                 case .submenu(let submenu):
-                    renderedMenu.addItem(renderSubmenu(submenu))
+                    return renderSubmenu(submenu)
             }
+        }
+    }
+
+    private static func renderSubmenu(_ submenu: ResolvedMenu.Submenu) -> NSMenuItem {
+        let renderedMenu = NSMenu()
+        for item in renderMenuItems(submenu.content.items) {
+            renderedMenu.addItem(item)
         }
 
         let menuItem = NSMenuItem()
@@ -841,21 +847,11 @@ public final class AppKitBackend: AppBackend {
 
     public func updatePopoverMenu(
         _ menu: Menu,
-        items: [(String, () -> Void)],
+        content: ResolvedMenu,
         environment: Environment
     ) {
         menu.appearance = environment.colorScheme.nsAppearance
-        menu.items = items.map { (label, action) in
-            let wrappedAction = Action(action)
-            let menuItem = NSCustomMenuItem(
-                title: label,
-                action: #selector(wrappedAction.run),
-                keyEquivalent: ""
-            )
-            menuItem.target = wrappedAction
-            menuItem.actionWrapper = wrappedAction
-            return menuItem
-        }
+        menu.items = Self.renderMenuItems(content.items)
     }
 
     public func showPopoverMenu(

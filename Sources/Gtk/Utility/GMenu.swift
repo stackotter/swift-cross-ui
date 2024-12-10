@@ -2,11 +2,9 @@ import CGtk
 
 public class GMenu {
     var pointer: OpaquePointer
-    var actionMap: any GActionMap
 
-    public init(actionMap: any GActionMap) {
+    public init() {
         pointer = g_menu_new()
-        self.actionMap = actionMap
     }
 
     public func appendItem(label: String, actionName: String) {

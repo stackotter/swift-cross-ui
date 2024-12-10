@@ -167,56 +167,18 @@ public class PopoverMenu: Popover {
         )
     }
 
-    private class Action {
-        var run: () -> Void
-
-        init(_ action: @escaping () -> Void) {
-            run = action
+    private var _model: GMenu?
+    public var model: GMenu? {
+        get {
+            _model
         }
-    }
-
-    public func populate(items: [(String, () -> Void)]) {
-        let handler:
-            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
-                { _, _, data in
-                    let action = Unmanaged<Action>.fromOpaque(data).takeUnretainedValue()
-                    action.run()
-                }
-
-        let model = g_menu_new()
-        let actionGroup = g_simple_action_group_new()
-        for (i, (label, action)) in items.enumerated() {
-            g_menu_append(model, label, "menu.action\(i)")
-
-            let action = Action(action)
-            let actionName = "action\(i)"
-            let simpleAction = g_simple_action_new(actionName, nil)
-
-            g_simple_action_set_enabled(simpleAction, true.toGBoolean())
-
-            g_signal_connect_data(
-                simpleAction.map(UnsafeMutableRawPointer.init),
-                "activate",
-                gCallback(handler),
-                Unmanaged<Action>.passRetained(action).toOpaque(),
-                { data, _ in
-                    Unmanaged<Action>.fromOpaque(data!).release()
-                },
-                G_CONNECT_AFTER
+        set {
+            gtk_popover_menu_set_menu_model(
+                opaquePointer,
+                (newValue?.pointer).map(UnsafeMutablePointer.init)
             )
-
-            g_action_map_add_action(
-                actionGroup.map(OpaquePointer.init),
-                simpleAction
-            )
+            _model = newValue
         }
-
-        gtk_popover_menu_set_menu_model(
-            opaquePointer,
-            UnsafeMutablePointer<_GMenuModel>(model)
-        )
-
-        gtk_widget_insert_action_group(widgetPointer, "menu", actionGroup.map(OpaquePointer.init))
     }
 
     override func didMoveToParent() {

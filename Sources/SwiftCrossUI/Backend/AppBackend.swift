@@ -376,14 +376,17 @@ public protocol AppBackend {
     ///   animation if possible.
     func updateProgressBar(_ widget: Widget, progressFraction: Double?, environment: Environment)
 
+    /// Creates a popover menu (the sort you often see when right clicking on
+    /// apps). The menu won't be visible until you call
+    /// ``AppBackend/showPopoverMenu(_:at:relativeTo:closeHandler:)``.
     func createPopoverMenu() -> Menu
-
+    /// Updates a popover menu's content and appearance.
     func updatePopoverMenu(
         _ menu: Menu,
-        items: [(String, () -> Void)],
+        content: ResolvedMenu,
         environment: Environment
     )
-
+    /// Shows the popover menu at a position relative to the given widget.
     func showPopoverMenu(
         _ menu: Menu,
         at position: SIMD2<Int>,
@@ -611,6 +614,25 @@ extension AppBackend {
         _ widget: Widget,
         progressFraction: Double?,
         environment: Environment
+    ) {
+        todo()
+    }
+
+    public func createPopoverMenu() -> Menu {
+        todo()
+    }
+    public func updatePopoverMenu(
+        _ menu: Menu,
+        content: ResolvedMenu,
+        environment: Environment
+    ) {
+        todo()
+    }
+    public func showPopoverMenu(
+        _ menu: Menu,
+        at position: SIMD2<Int>,
+        relativeTo widget: Widget,
+        closeHandler handleClose: @escaping () -> Void
     ) {
         todo()
     }

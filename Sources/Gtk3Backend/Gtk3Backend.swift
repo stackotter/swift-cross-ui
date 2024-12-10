@@ -132,24 +132,37 @@ public final class Gtk3Backend: AppBackend {
         }
     }
 
-    private func renderSubmenu(
-        _ submenu: ResolvedMenu.Submenu,
-        actionPrefix: String
+    private func renderMenu(
+        _ menu: ResolvedMenu,
+        actionMap: any GActionMap,
+        actionNamespace: String,
+        actionPrefix: String?
     ) -> GMenu {
-        let model = GMenu(actionMap: gtkApp)
-        for (i, item) in submenu.content.items.enumerated() {
-            let actionName = "\(actionPrefix)_\(i)"
+        let model = GMenu()
+        for (i, item) in menu.items.enumerated() {
+            let actionName =
+                if let actionPrefix {
+                    "\(actionPrefix)_\(i)"
+                } else {
+                    "\(i)"
+                }
+
             switch item {
                 case .button(let label, let action):
                     if let action {
-                        gtkApp.addAction(named: actionName, action: action)
+                        actionMap.addAction(named: actionName, action: action)
                     }
 
-                    model.appendItem(label: label, actionName: "app.\(actionName)")
+                    model.appendItem(label: label, actionName: "\(actionNamespace).\(actionName)")
                 case .submenu(let submenu):
                     model.appendSubmenu(
                         label: submenu.label,
-                        content: renderSubmenu(submenu, actionPrefix: actionName)
+                        content: renderMenu(
+                            submenu.content,
+                            actionMap: actionMap,
+                            actionNamespace: actionNamespace,
+                            actionPrefix: actionName
+                        )
                     )
             }
         }
@@ -157,12 +170,14 @@ public final class Gtk3Backend: AppBackend {
     }
 
     private func renderMenuBar(_ submenus: [ResolvedMenu.Submenu]) -> GMenu {
-        let model = GMenu(actionMap: gtkApp)
+        let model = GMenu()
         for (i, submenu) in submenus.enumerated() {
             model.appendSubmenu(
                 label: submenu.label,
-                content: renderSubmenu(
-                    submenu,
+                content: renderMenu(
+                    submenu.content,
+                    actionMap: gtkApp,
+                    actionNamespace: "app",
                     actionPrefix: "\(i)"
                 )
             )
@@ -678,10 +693,20 @@ public final class Gtk3Backend: AppBackend {
 
     public func updatePopoverMenu(
         _ menu: Menu,
-        items: [(String, () -> Void)],
+        content: ResolvedMenu,
         environment: Environment
     ) {
-        menu.populate(items: items)
+        // Update menu model and action handlers
+        let actionGroup = Gtk3.GSimpleActionGroup()
+        let model = renderMenu(
+            content,
+            actionMap: actionGroup,
+            actionNamespace: "menu",
+            actionPrefix: nil
+        )
+        menu.bindModel(model)
+        menu.insertActionGroup("menu", actionGroup)
+
         // menu.cssProvider.loadCss(
         //     from: """
         //         menu {
