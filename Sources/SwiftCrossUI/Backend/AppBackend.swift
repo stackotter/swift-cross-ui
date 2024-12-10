@@ -131,6 +131,11 @@ public protocol AppBackend {
     /// implementations after propagating updates.
     func show(window: Window)
 
+    /// Sets the application's global menu. Some backends may make use of the host
+    /// platform's global menu bar (such as macOS's menu bar), and others may render their
+    /// own menu bar within the application.
+    func setApplicationMenu(_ submenus: [ResolvedMenu.Submenu])
+
     /// Runs an action in the app's main thread if required to perform UI updates
     /// by the backend. Predominantly used by ``Publisher`` to publish changes to a thread
     /// compatible with dispatching UI updates.
@@ -399,6 +404,12 @@ extension AppBackend {
     private func todo(_ function: String = #function) -> Never {
         print("\(type(of: self)): \(function) not implemented")
         Foundation.exit(1)
+    }
+
+    // MARK: Application
+
+    public func setApplicationMenu(_ submenus: [ResolvedMenu.Submenu]) {
+        todo()
     }
 
     // MARK: Containers

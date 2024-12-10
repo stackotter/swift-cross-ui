@@ -4,10 +4,28 @@
 
 import CGtk3
 
-public class Application {
+public class Application: GActionMap {
     let applicationPointer: UnsafeMutablePointer<GtkApplication>
     private(set) var applicationWindow: ApplicationWindow?
     private var windowCallback: ((ApplicationWindow) -> Void)?
+
+    public var actionMapPointer: OpaquePointer {
+        OpaquePointer(applicationPointer)
+    }
+
+    private var _menuBarModel: GMenu?
+    public var menuBarModel: GMenu? {
+        get {
+            _menuBarModel
+        }
+        set {
+            gtk_application_set_menubar(
+                applicationPointer,
+                (newValue?.pointer).map(UnsafeMutablePointer.init)
+            )
+            _menuBarModel = newValue
+        }
+    }
 
     public init(applicationId: String) {
         // Ignore the deprecation warning, making the change breaks support for platforms such as

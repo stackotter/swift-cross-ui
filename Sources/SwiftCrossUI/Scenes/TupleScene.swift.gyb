@@ -14,11 +14,18 @@ public struct TupleScene${i}<
     var scene${j}: Scene${j}
     %end
 
+    public var commands: Commands
+
     public init(
         ${",\n        ".join("_ scene%d: Scene%d" % (j, j) for j in range(i))}
     ) {
         %for j in range(i):
         self.scene${j} = scene${j}
+        %end
+
+        commands = Commands.empty
+        %for j in range(i):
+            .overlayed(with: scene${j}.commands)
         %end
     }
 }

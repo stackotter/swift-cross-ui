@@ -10,12 +10,18 @@ public struct TupleScene2<
     var scene0: Scene0
     var scene1: Scene1
 
+    public var commands: Commands
+
     public init(
         _ scene0: Scene0,
         _ scene1: Scene1
     ) {
         self.scene0 = scene0
         self.scene1 = scene1
+
+        commands = Commands.empty
+            .overlayed(with: scene0.commands)
+            .overlayed(with: scene1.commands)
     }
 }
 
@@ -64,6 +70,8 @@ public struct TupleScene3<
     var scene1: Scene1
     var scene2: Scene2
 
+    public var commands: Commands
+
     public init(
         _ scene0: Scene0,
         _ scene1: Scene1,
@@ -72,6 +80,11 @@ public struct TupleScene3<
         self.scene0 = scene0
         self.scene1 = scene1
         self.scene2 = scene2
+
+        commands = Commands.empty
+            .overlayed(with: scene0.commands)
+            .overlayed(with: scene1.commands)
+            .overlayed(with: scene2.commands)
     }
 }
 
@@ -128,6 +141,8 @@ public struct TupleScene4<
     var scene2: Scene2
     var scene3: Scene3
 
+    public var commands: Commands
+
     public init(
         _ scene0: Scene0,
         _ scene1: Scene1,
@@ -138,6 +153,12 @@ public struct TupleScene4<
         self.scene1 = scene1
         self.scene2 = scene2
         self.scene3 = scene3
+
+        commands = Commands.empty
+            .overlayed(with: scene0.commands)
+            .overlayed(with: scene1.commands)
+            .overlayed(with: scene2.commands)
+            .overlayed(with: scene3.commands)
     }
 }
 
@@ -202,6 +223,8 @@ public struct TupleScene5<
     var scene3: Scene3
     var scene4: Scene4
 
+    public var commands: Commands
+
     public init(
         _ scene0: Scene0,
         _ scene1: Scene1,
@@ -214,6 +237,13 @@ public struct TupleScene5<
         self.scene2 = scene2
         self.scene3 = scene3
         self.scene4 = scene4
+
+        commands = Commands.empty
+            .overlayed(with: scene0.commands)
+            .overlayed(with: scene1.commands)
+            .overlayed(with: scene2.commands)
+            .overlayed(with: scene3.commands)
+            .overlayed(with: scene4.commands)
     }
 }
 
@@ -286,6 +316,8 @@ public struct TupleScene6<
     var scene4: Scene4
     var scene5: Scene5
 
+    public var commands: Commands
+
     public init(
         _ scene0: Scene0,
         _ scene1: Scene1,
@@ -300,6 +332,14 @@ public struct TupleScene6<
         self.scene3 = scene3
         self.scene4 = scene4
         self.scene5 = scene5
+
+        commands = Commands.empty
+            .overlayed(with: scene0.commands)
+            .overlayed(with: scene1.commands)
+            .overlayed(with: scene2.commands)
+            .overlayed(with: scene3.commands)
+            .overlayed(with: scene4.commands)
+            .overlayed(with: scene5.commands)
     }
 }
 
@@ -380,6 +420,8 @@ public struct TupleScene7<
     var scene5: Scene5
     var scene6: Scene6
 
+    public var commands: Commands
+
     public init(
         _ scene0: Scene0,
         _ scene1: Scene1,
@@ -396,6 +438,15 @@ public struct TupleScene7<
         self.scene4 = scene4
         self.scene5 = scene5
         self.scene6 = scene6
+
+        commands = Commands.empty
+            .overlayed(with: scene0.commands)
+            .overlayed(with: scene1.commands)
+            .overlayed(with: scene2.commands)
+            .overlayed(with: scene3.commands)
+            .overlayed(with: scene4.commands)
+            .overlayed(with: scene5.commands)
+            .overlayed(with: scene6.commands)
     }
 }
 
@@ -484,6 +535,8 @@ public struct TupleScene8<
     var scene6: Scene6
     var scene7: Scene7
 
+    public var commands: Commands
+
     public init(
         _ scene0: Scene0,
         _ scene1: Scene1,
@@ -502,6 +555,16 @@ public struct TupleScene8<
         self.scene5 = scene5
         self.scene6 = scene6
         self.scene7 = scene7
+
+        commands = Commands.empty
+            .overlayed(with: scene0.commands)
+            .overlayed(with: scene1.commands)
+            .overlayed(with: scene2.commands)
+            .overlayed(with: scene3.commands)
+            .overlayed(with: scene4.commands)
+            .overlayed(with: scene5.commands)
+            .overlayed(with: scene6.commands)
+            .overlayed(with: scene7.commands)
     }
 }
 
@@ -598,6 +661,8 @@ public struct TupleScene9<
     var scene7: Scene7
     var scene8: Scene8
 
+    public var commands: Commands
+
     public init(
         _ scene0: Scene0,
         _ scene1: Scene1,
@@ -618,6 +683,17 @@ public struct TupleScene9<
         self.scene6 = scene6
         self.scene7 = scene7
         self.scene8 = scene8
+
+        commands = Commands.empty
+            .overlayed(with: scene0.commands)
+            .overlayed(with: scene1.commands)
+            .overlayed(with: scene2.commands)
+            .overlayed(with: scene3.commands)
+            .overlayed(with: scene4.commands)
+            .overlayed(with: scene5.commands)
+            .overlayed(with: scene6.commands)
+            .overlayed(with: scene7.commands)
+            .overlayed(with: scene8.commands)
     }
 }
 
@@ -722,6 +798,8 @@ public struct TupleScene10<
     var scene8: Scene8
     var scene9: Scene9
 
+    public var commands: Commands
+
     public init(
         _ scene0: Scene0,
         _ scene1: Scene1,
@@ -744,6 +822,18 @@ public struct TupleScene10<
         self.scene7 = scene7
         self.scene8 = scene8
         self.scene9 = scene9
+
+        commands = Commands.empty
+            .overlayed(with: scene0.commands)
+            .overlayed(with: scene1.commands)
+            .overlayed(with: scene2.commands)
+            .overlayed(with: scene3.commands)
+            .overlayed(with: scene4.commands)
+            .overlayed(with: scene5.commands)
+            .overlayed(with: scene6.commands)
+            .overlayed(with: scene7.commands)
+            .overlayed(with: scene8.commands)
+            .overlayed(with: scene9.commands)
     }
 }
 

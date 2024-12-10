@@ -7,7 +7,7 @@ import Foundation
 
 open class Widget: GObjectRepresentable {
     private var signals: [(UInt, Any)] = []
-    var widgetPointer: UnsafeMutablePointer<GtkWidget>?
+    public var widgetPointer: UnsafeMutablePointer<GtkWidget>?
 
     public var gobjectPointer: UnsafeMutablePointer<GObject> {
         return widgetPointer!.cast()

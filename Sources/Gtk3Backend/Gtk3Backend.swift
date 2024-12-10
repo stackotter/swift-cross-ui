@@ -14,7 +14,7 @@ extension SwiftCrossUI.Color {
 }
 
 public final class Gtk3Backend: AppBackend {
-    public typealias Window = Gtk3.Window
+    public typealias Window = Gtk3.ApplicationWindow
     public typealias Widget = Gtk3.Widget
     public typealias Menu = Gtk3.Menu
 
@@ -29,6 +29,10 @@ public final class Gtk3Backend: AppBackend {
     /// This is necessary because Gtk creates a root window no matter what, and
     /// this needs to be returned on the first call to `createWindow`.
     var precreatedWindow: Window?
+
+    /// All current windows associated with the application. Doesn't include the
+    /// precreated window until it gets 'created' via `createWindow`.
+    var windows: [Window] = []
 
     /// Creates a backend instance using the default app identifier `com.example.SwiftCrossUIApp`.
     convenience public init() {
@@ -47,13 +51,15 @@ public final class Gtk3Backend: AppBackend {
     }
 
     public func createWindow(withDefaultSize defaultSize: SIMD2<Int>?) -> Window {
-        let window: Gtk3.Window
+        let window: Gtk3.ApplicationWindow
         if let precreatedWindow = precreatedWindow {
             self.precreatedWindow = nil
             window = precreatedWindow
         } else {
-            window = Gtk3.Window()
+            window = Gtk3.ApplicationWindow(application: gtkApp)
         }
+
+        windows.append(window)
 
         if let defaultSize = defaultSize {
             window.defaultSize = Size(
@@ -79,6 +85,20 @@ public final class Gtk3Backend: AppBackend {
         window.setChild(to: container)
     }
 
+    private func menubarHeight(ofWindow window: Window) -> Int {
+        #if os(macOS)
+            return 0
+        #else
+            if window.showMenuBar {
+                // TODO: Don't hardcode this (if possible), because some Gtk
+                //   themes may affect the height of the menu bar.
+                25
+            } else {
+                0
+            }
+        #endif
+    }
+
     public func size(ofWindow window: Window) -> SIMD2<Int> {
         let child = window.child! as! CustomRootWidget
         let size = child.getSize()
@@ -91,7 +111,10 @@ public final class Gtk3Backend: AppBackend {
             allocatedWidth: newSize.x,
             allocatedHeight: newSize.y
         )
-        window.size = Size(width: newSize.x, height: newSize.y)
+        window.size = Size(
+            width: newSize.x,
+            height: newSize.y + menubarHeight(ofWindow: window)
+        )
     }
 
     public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
@@ -106,6 +129,55 @@ public final class Gtk3Backend: AppBackend {
         let child = window.child! as! CustomRootWidget
         child.setResizeHandler { size in
             action(SIMD2(size.width, size.height))
+        }
+    }
+
+    private func renderSubmenu(
+        _ submenu: ResolvedMenu.Submenu,
+        actionPrefix: String
+    ) -> GMenu {
+        let model = GMenu(actionMap: gtkApp)
+        for (i, item) in submenu.content.items.enumerated() {
+            let actionName = "\(actionPrefix)_\(i)"
+            switch item {
+                case .button(let label, let action):
+                    if let action {
+                        gtkApp.addAction(named: actionName, action: action)
+                    }
+
+                    model.appendItem(label: label, actionName: "app.\(actionName)")
+                case .submenu(let submenu):
+                    model.appendSubmenu(
+                        label: submenu.label,
+                        content: renderSubmenu(submenu, actionPrefix: actionName)
+                    )
+            }
+        }
+        return model
+    }
+
+    private func renderMenuBar(_ submenus: [ResolvedMenu.Submenu]) -> GMenu {
+        let model = GMenu(actionMap: gtkApp)
+        for (i, submenu) in submenus.enumerated() {
+            model.appendSubmenu(
+                label: submenu.label,
+                content: renderSubmenu(
+                    submenu,
+                    actionPrefix: "\(i)"
+                )
+            )
+        }
+
+        return model
+    }
+
+    public func setApplicationMenu(_ submenus: [ResolvedMenu.Submenu]) {
+        let model = renderMenuBar(submenus)
+        gtkApp.menuBarModel = model
+
+        let showMenuBar = !submenus.isEmpty
+        for window in windows {
+            window.showMenuBar = showMenuBar
         }
     }
 

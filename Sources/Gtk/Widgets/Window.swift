@@ -51,12 +51,6 @@ public class Window: Widget {
 
     @GObjectProperty(named: "resizable") public var resizable: Bool
 
-    private var _titleBar: Widget?
-    public var titlebar: Widget? {
-        get { return _titleBar }
-        set { gtk_window_set_titlebar(castedPointer(), newValue?.widgetPointer) }
-    }
-
     public func setMinimumSize(to minimumSize: Size) {
         gtk_widget_set_size_request(
             castedPointer(),

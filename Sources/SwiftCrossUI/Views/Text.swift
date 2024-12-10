@@ -1,7 +1,7 @@
 /// A text view.
 public struct Text: ElementaryView, View {
     /// The string to be shown in the text view.
-    private var string: String
+    var string: String
 
     /// Creates a new text view that displays a string with configurable wrapping.
     public init(_ string: String) {

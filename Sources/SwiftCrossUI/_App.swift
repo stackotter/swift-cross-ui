@@ -38,8 +38,9 @@ class _App<AppRoot: App> {
                 defaultEnvironment: baseEnvironment
             )
 
+            let body = self.app.body
             let rootNode = AppRoot.Body.Node(
-                from: self.app.body,
+                from: body,
                 backend: self.backend,
                 environment: self.environment
             )
@@ -50,6 +51,9 @@ class _App<AppRoot: App> {
                 )
                 self.forceRefresh()
             }
+
+            // Update application-wide menu
+            self.backend.setApplicationMenu(body.commands.resolve())
 
             rootNode.update(
                 nil,
@@ -63,11 +67,15 @@ class _App<AppRoot: App> {
             self.cancellable = self.app.state.didChange
                 .observeAsUIUpdater(backend: self.backend) { [weak self] in
                     guard let self = self else { return }
+
+                    let body = self.app.body
                     self.sceneGraphRoot?.update(
-                        self.app.body,
+                        body,
                         backend: self.backend,
                         environment: self.environment
                     )
+
+                    self.backend.setApplicationMenu(body.commands.resolve())
                 }
         }
     }

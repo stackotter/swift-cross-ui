@@ -52,6 +52,7 @@ public final class AppKitBackend: AppBackend {
             defer: true
         )
         window.delegate = window.resizeDelegate
+
         return window
     }
 
@@ -97,6 +98,71 @@ public final class AppKitBackend: AppBackend {
 
     public func show(window: Window) {
         window.makeKeyAndOrderFront(nil)
+    }
+
+    private static func renderSubmenu(_ submenu: ResolvedMenu.Submenu) -> NSMenuItem {
+        let renderedMenu = NSMenu()
+        for item in submenu.content.items {
+            switch item {
+                case .button(let label, let action):
+                    // Custom subclass is used to keep strong reference to action
+                    // wrapper.
+                    let renderedItem = NSCustomMenuItem(
+                        title: label,
+                        action: nil,
+                        keyEquivalent: ""
+                    )
+                    if let action {
+                        let wrappedAction = Action(action)
+                        renderedItem.actionWrapper = wrappedAction
+                        renderedItem.action = #selector(wrappedAction.run)
+                        renderedItem.target = wrappedAction
+                    }
+                    renderedMenu.addItem(renderedItem)
+                case .submenu(let submenu):
+                    renderedMenu.addItem(renderSubmenu(submenu))
+            }
+        }
+
+        let menuItem = NSMenuItem()
+        menuItem.title = submenu.label
+        menuItem.submenu = renderedMenu
+        return menuItem
+    }
+
+    /// The submenu pointed to by `helpMenu` still appears in `menuBar`. It's
+    /// whichever submenu has the name 'Help'.
+    private static func renderMenuBar(
+        _ submenus: [ResolvedMenu.Submenu]
+    ) -> (menuBar: NSMenu, helpMenu: NSMenu?) {
+        let menuBar = NSMenu()
+
+        // The first menu item is special and always takes on the name of the
+        // app. For now just create a dummy item for it.
+        let dummy = NSMenuItem()
+        dummy.submenu = NSMenu()
+        menuBar.addItem(dummy)
+
+        var helpMenu: NSMenu?
+        for submenu in submenus {
+            let renderedSubmenu = renderSubmenu(submenu)
+            menuBar.addItem(renderedSubmenu)
+
+            if submenu.label == "Help" {
+                helpMenu = renderedSubmenu.submenu
+            }
+        }
+
+        return (menuBar, helpMenu)
+    }
+
+    public func setApplicationMenu(_ submenus: [ResolvedMenu.Submenu]) {
+        let (menuBar, helpMenu) = Self.renderMenuBar(submenus)
+        NSApplication.shared.mainMenu = menuBar
+
+        // We point the app's `helpMenu` at whichever submenu is named 'Help'
+        // (if any) so that AppKit can install its help menu search function.
+        NSApplication.shared.helpMenu = helpMenu
     }
 
     public func runInMainThread(action: @escaping () -> Void) {
@@ -826,10 +892,8 @@ final class Action: NSObject {
     }
 
     @objc func run() {
-        print("Running action")
         action()
     }
-
 }
 
 class NSCustomTableView: NSTableView {

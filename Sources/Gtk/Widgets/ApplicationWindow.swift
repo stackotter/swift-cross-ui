@@ -9,4 +9,6 @@ public class ApplicationWindow: Window {
         super.init()
         widgetPointer = gtk_application_window_new(application.applicationPointer)
     }
+
+    @GObjectProperty(named: "show-menubar") public var showMenuBar: Bool
 }
