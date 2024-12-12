@@ -7,10 +7,9 @@ extension App {
 
 public final class AppKitBackend: AppBackend {
     public typealias Window = NSCustomWindow
-
     public typealias Widget = NSView
-
     public typealias Menu = NSMenu
+    public typealias Alert = NSAlert
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
@@ -867,6 +866,47 @@ public final class AppKitBackend: AppBackend {
             in: widget
         )
         handleClose()
+    }
+
+    public func createAlert() -> Alert {
+        NSAlert()
+    }
+
+    public func updateAlert(
+        _ alert: Alert,
+        title: String,
+        actionLabels: [String],
+        environment: Environment
+    ) {
+        alert.messageText = title
+        for label in actionLabels {
+            alert.addButton(withTitle: label)
+        }
+    }
+
+    public func showAlert(
+        _ alert: Alert,
+        window: Window,
+        responseHandler handleResponse: @escaping (Int) -> Void
+    ) {
+        alert.beginSheetModal(for: window) { response in
+            guard response != .stop, response != .continue else {
+                return
+            }
+
+            guard response != .abort, response != .cancel else {
+                print("warning: Got abort or cancel modal response, unexpected and unhandled")
+                return
+            }
+
+            let firstButton = NSApplication.ModalResponse.alertFirstButtonReturn.rawValue
+            let action = response.rawValue - firstButton
+            handleResponse(action)
+        }
+    }
+
+    public func dismissAlert(_ alert: Alert, window: Window) {
+        window.endSheet(alert.window)
     }
 }
 

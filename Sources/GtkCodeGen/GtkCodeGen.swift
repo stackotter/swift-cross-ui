@@ -283,7 +283,10 @@ struct GtkCodeGen {
     static func generateClass(_ class_: Class, namespace: Namespace, cGtkImport: String) -> String {
         var initializers: [DeclSyntax] = []
         for constructor in class_.constructors {
-            guard constructor.deprecated != 1 else {
+            guard
+                constructor.deprecated != 1
+                    || constructor.cIdentifier == "gtk_dialog_new"
+            else {
                 continue
             }
 
@@ -296,7 +299,12 @@ struct GtkCodeGen {
                 continue
             }
 
-            initializers.append(generateInitializer(constructor))
+            // We just silently skip initializers that require features we don't support.
+            guard let initializer = generateInitializer(constructor) else {
+                continue
+            }
+
+            initializers.append(initializer)
         }
 
         var properties: [DeclSyntax] = []
@@ -589,11 +597,16 @@ struct GtkCodeGen {
         }
     }
 
-    static func generateInitializer(_ constructor: Constructor) -> DeclSyntax {
-        let parameters = generateParameters(
-            constructor.parameters,
-            constructorName: constructor.name
-        )
+    static func generateInitializer(_ constructor: Constructor) -> DeclSyntax? {
+        guard
+            let parameters = generateParameters(
+                constructor.parameters,
+                constructorName: constructor.name
+            )
+        else {
+            return nil
+        }
+
         let modifiers = parameters.isEmpty ? "override " : ""
 
         return DeclSyntax(
@@ -610,9 +623,18 @@ struct GtkCodeGen {
     static func generateParameters(
         _ parameters: Parameters?,
         constructorName: String? = nil
-    ) -> String {
+    ) -> String? {
         guard var parameters = parameters?.parameters, !parameters.isEmpty else {
             return ""
+        }
+
+        // We don't support wrapping variadic functions (sounds like a political statement).
+        guard
+            !parameters.contains(where: { parameter in
+                parameter.name == "..."
+            })
+        else {
+            return nil
         }
 
         for (i, parameter) in parameters.enumerated() {

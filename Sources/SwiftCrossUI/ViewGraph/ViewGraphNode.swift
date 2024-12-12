@@ -164,6 +164,15 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         environment: Environment,
         dryRun: Bool
     ) -> ViewSize {
+        // Defensively ensure that all future scene implementations obey this
+        // precondition. By putting the check here instead of only in views
+        // that require `environment.window` (such as the alert modifier view),
+        // we decrease the likelihood of a bug like this flying under the radar.
+        precondition(
+            environment.window != nil,
+            "View graph updated without parent window present in environment"
+        )
+
         if dryRun, let cachedSize = sizeCache[proposedSize] {
             return cachedSize
         }

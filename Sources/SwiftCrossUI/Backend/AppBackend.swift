@@ -41,6 +41,7 @@ public protocol AppBackend {
     associatedtype Window
     associatedtype Widget
     associatedtype Menu
+    associatedtype Alert
 
     init()
 
@@ -393,6 +394,37 @@ public protocol AppBackend {
         relativeTo widget: Widget,
         closeHandler handleClose: @escaping () -> Void
     )
+
+    /// Creates an alert object (without showing it yet). Alerts contain a
+    /// title, an optional body, and a set of action buttons. They also
+    /// prevent users from interacting with the parent window until dimissed.
+    func createAlert() -> Alert
+    /// Updates the content and appearance of an alert. Can only be called once.
+    func updateAlert(
+        _ alert: Alert,
+        title: String,
+        actionLabels: [String],
+        environment: Environment
+    )
+    /// Shows an alert as a modal on top of or within the given window.
+    /// Users should be unable to interact with the parent window until the
+    /// alert gets dismissed. `handleResponse` must get called once an action
+    /// button is selected, with its sole argument representing the index of
+    /// the action selected (as per the `actionLabels` array). The alert will
+    /// have been hidden by the time the response handler gets called.
+    ///
+    /// Must only get called once for any given alert.
+    func showAlert(
+        _ alert: Alert,
+        window: Window,
+        responseHandler handleResponse: @escaping (Int) -> Void
+    )
+    /// Dismisses an alert programmatically without invoking the response
+    /// handler. Must only be called after
+    /// ``showAlert(_:window:responseHandler:)``.
+    ///
+    /// Must only get called once for any given alert.
+    func dismissAlert(_ alert: Alert, window: Window)
 }
 
 extension AppBackend {

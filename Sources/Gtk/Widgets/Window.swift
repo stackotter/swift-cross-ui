@@ -4,7 +4,7 @@
 
 import CGtk
 
-public class Window: Widget {
+open class Window: Widget {
     public var child: Widget?
 
     override public init() {
@@ -18,6 +18,20 @@ public class Window: Widget {
     }
 
     @GObjectProperty(named: "title") public var title: String?
+    @GObjectProperty(named: "resizable") public var resizable: Bool
+    @GObjectProperty(named: "modal") public var isModal: Bool
+    @GObjectProperty(named: "decorated") public var isDecorated: Bool
+
+    public func setTransient(for other: Window) {
+        gtk_window_set_transient_for(castedPointer(), other.castedPointer())
+    }
+
+    /// The window must not be used after destruction. The widget pointer is
+    /// defensively nulled out just in case you do.
+    public func destroy() {
+        gtk_window_destroy(castedPointer())
+        widgetPointer = nil
+    }
 
     public var defaultSize: Size {
         get {
@@ -48,8 +62,6 @@ public class Window: Widget {
             defaultSize = newValue
         }
     }
-
-    @GObjectProperty(named: "resizable") public var resizable: Bool
 
     public func setMinimumSize(to minimumSize: Size) {
         gtk_widget_set_size_request(

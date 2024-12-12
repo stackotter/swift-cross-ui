@@ -17,6 +17,7 @@ public final class Gtk3Backend: AppBackend {
     public typealias Window = Gtk3.ApplicationWindow
     public typealias Widget = Gtk3.Widget
     public typealias Menu = Gtk3.Menu
+    public typealias Alert = Gtk3.MessageDialog
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
@@ -730,6 +731,46 @@ public final class Gtk3Backend: AppBackend {
         menu.onHide = {
             handleClose()
         }
+    }
+
+    public func createAlert() -> Alert {
+        let dialog = Gtk3.MessageDialog()
+        // The Ubuntu Gtk3 theme seems to only set the bottom corner radii.
+        dialog.css.set(properties: [
+            .cornerRadius(13)
+        ])
+        return dialog
+    }
+
+    public func updateAlert(
+        _ alert: Alert,
+        title: String,
+        actionLabels: [String],
+        environment: Environment
+    ) {
+        alert.text = title
+        for (i, label) in actionLabels.enumerated() {
+            alert.addButton(label: label, responseId: i)
+        }
+    }
+
+    public func showAlert(
+        _ alert: Alert,
+        window: Window,
+        responseHandler handleResponse: @escaping (Int) -> Void
+    ) {
+        alert.response = { _, responseId in
+            alert.destroy()
+            handleResponse(responseId)
+        }
+        alert.isModal = true
+        alert.isDecorated = false
+        alert.setTransient(for: window)
+        alert.show()
+    }
+
+    public func dismissAlert(_ alert: Alert, window: Window) {
+        alert.destroy()
     }
 
     // MARK: Helpers

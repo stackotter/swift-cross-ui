@@ -4,7 +4,7 @@
 
 import CGtk3
 
-public class Window: Bin {
+open class Window: Bin {
     override public init() {
         super.init()
         widgetPointer = gtk_window_new(GTK_WINDOW_TOPLEVEL)
@@ -16,6 +16,20 @@ public class Window: Bin {
     }
 
     @GObjectProperty(named: "title") public var title: String?
+    @GObjectProperty(named: "resizable") public var resizable: Bool
+    @GObjectProperty(named: "modal") public var isModal: Bool
+    @GObjectProperty(named: "decorated") public var isDecorated: Bool
+
+    public func setTransient(for other: Window) {
+        gtk_window_set_transient_for(castedPointer(), other.castedPointer())
+    }
+
+    /// The window must not be used after destruction. The widget pointer is
+    /// defensively nulled out just in case you do.
+    public func destroy() {
+        gtk_widget_destroy(widgetPointer)
+        widgetPointer = nil
+    }
 
     public var defaultSize: Size {
         get {
@@ -50,8 +64,6 @@ public class Window: Bin {
             gtk_window_resize(castedPointer(), gint(newValue.width), gint(newValue.height))
         }
     }
-
-    @GObjectProperty(named: "resizable") public var resizable: Bool
 
     public func setMinimumSize(to minimumSize: Size) {
         gtk_widget_set_size_request(

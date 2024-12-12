@@ -19,6 +19,11 @@ public struct Environment {
         foregroundColor ?? colorScheme.defaultForegroundColor
     }
 
+    /// The backend's representation of the window that the current view is
+    /// in, if any. This is a very internal detail that should never get
+    /// exposed to users.
+    var window: Any?
+
     init() {
         onResize = { _ in }
         layoutOrientation = .vertical
@@ -28,6 +33,7 @@ public struct Environment {
         font = .system(size: 12)
         multilineTextAlignment = .leading
         colorScheme = .light
+        window = nil
     }
 
     public func with<T>(_ keyPath: WritableKeyPath<Self, T>, _ newValue: T) -> Self {

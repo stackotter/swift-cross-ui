@@ -94,18 +94,21 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             scene = newScene
         }
 
-        let environment = environment.with(\.onResize) { [weak self] _ in
-            guard let self = self else { return }
-            // TODO: Figure out whether this would still work if we didn't recompute the
-            //   scene's body. I have a vague feeling that it wouldn't work in all cases?
-            //   But I don't have the time to come up with a counterexample right now.
-            _ = self.update(
-                scene,
-                proposedWindowSize: backend.size(ofWindow: window),
-                backend: backend,
-                environment: environment
-            )
-        }
+        let environment =
+            environment
+            .with(\.onResize) { [weak self] _ in
+                guard let self = self else { return }
+                // TODO: Figure out whether this would still work if we didn't recompute the
+                //   scene's body. I have a vague feeling that it wouldn't work in all cases?
+                //   But I don't have the time to come up with a counterexample right now.
+                _ = self.update(
+                    scene,
+                    proposedWindowSize: backend.size(ofWindow: window),
+                    backend: backend,
+                    environment: environment
+                )
+            }
+            .with(\.window, window)
 
         // Perform a dry-run update of the root view to check if the window needs to
         // change size.

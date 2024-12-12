@@ -17,6 +17,7 @@ public final class GtkBackend: AppBackend {
     public typealias Window = Gtk.ApplicationWindow
     public typealias Widget = Gtk.Widget
     public typealias Menu = Gtk.PopoverMenu
+    public typealias Alert = Gtk.MessageDialog
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
@@ -110,10 +111,6 @@ public final class GtkBackend: AppBackend {
         let child = window.getChild() as! CustomRootWidget
         let windowSize = window.defaultSize
         let childSize = child.getSize()
-        let decorationsSize = SIMD2(
-            windowSize.width - childSize.width,
-            windowSize.height - childSize.height
-        )
 
         window.size = Size(
             width: newSize.x,
@@ -760,6 +757,41 @@ public final class GtkBackend: AppBackend {
         menu.onHide = {
             handleClose()
         }
+    }
+
+    public func createAlert() -> Alert {
+        Gtk.MessageDialog()
+    }
+
+    public func updateAlert(
+        _ alert: Alert,
+        title: String,
+        actionLabels: [String],
+        environment: Environment
+    ) {
+        alert.text = title
+        for (i, label) in actionLabels.enumerated() {
+            alert.addButton(label: label, responseId: i)
+        }
+    }
+
+    public func showAlert(
+        _ alert: Alert,
+        window: Window,
+        responseHandler handleResponse: @escaping (Int) -> Void
+    ) {
+        alert.response = { _, responseId in
+            alert.destroy()
+            handleResponse(responseId)
+        }
+        alert.isModal = true
+        alert.isDecorated = false
+        alert.setTransient(for: window)
+        alert.show()
+    }
+
+    public func dismissAlert(_ alert: Alert, window: Window) {
+        alert.destroy()
     }
 
     // MARK: Helpers
