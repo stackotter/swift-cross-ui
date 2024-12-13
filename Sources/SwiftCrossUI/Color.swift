@@ -22,12 +22,22 @@ public struct Color {
         self.alpha = alpha
     }
 
+    /// Multiplies the opacity of the color by the given amount.
+    public consuming func opacity(
+        _ opacity: Float
+    ) -> Color {
+        self.alpha *= opacity
+        return self
+    }
+
     /// Pure black.
     public static let black = Color(0.00, 0.00, 0.00)
     /// Pure blue.
     public static let blue = Color(0.00, 0.48, 1.00)
     /// Pure brown.
     public static let brown = Color(0.64, 0.52, 0.37)
+    /// Completely clear.
+    public static let clear = Color(0.50, 0.50, 0.50, 0.00)
     /// Pure cyan.
     public static let cyan = Color(0.33, 0.75, 0.94)
     /// Pure gray.
