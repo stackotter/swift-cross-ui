@@ -4,7 +4,7 @@ import Foundation
 /// `nil` if the user cancels the operation.
 public struct PresentFileSaveDialogAction {
     let backend: any AppBackend
-    let window: Any
+    let window: Any?
 
     public func callAsFunction(
         title: String = "Save",
@@ -18,6 +18,13 @@ public struct PresentFileSaveDialogAction {
         func chooseFile<Backend: AppBackend>(backend: Backend) async -> URL? {
             return await withCheckedContinuation { continuation in
                 backend.runInMainThread {
+                    let window: Backend.Window? =
+                        if let window = self.window {
+                            .some(window as! Backend.Window)
+                        } else {
+                            nil
+                        }
+
                     backend.showSaveDialog(
                         fileDialogOptions: FileDialogOptions(
                             title: title,
@@ -31,7 +38,7 @@ public struct PresentFileSaveDialogAction {
                             nameFieldLabel: nameFieldLabel,
                             defaultFileName: defaultFileName
                         ),
-                        window: window as! Backend.Window
+                        window: window
                     ) { result in
                         switch result {
                             case .success(let url):

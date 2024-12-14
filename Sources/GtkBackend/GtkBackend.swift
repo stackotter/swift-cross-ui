@@ -778,7 +778,7 @@ public final class GtkBackend: AppBackend {
 
     public func showAlert(
         _ alert: Alert,
-        window: Window,
+        window: Window?,
         responseHandler handleResponse: @escaping (Int) -> Void
     ) {
         alert.response = { _, responseId in
@@ -787,18 +787,18 @@ public final class GtkBackend: AppBackend {
         }
         alert.isModal = true
         alert.isDecorated = false
-        alert.setTransient(for: window)
+        alert.setTransient(for: window ?? windows[0])
         alert.show()
     }
 
-    public func dismissAlert(_ alert: Alert, window: Window) {
+    public func dismissAlert(_ alert: Alert, window: Window?) {
         alert.destroy()
     }
 
     public func showOpenDialog(
         fileDialogOptions: FileDialogOptions,
         openDialogOptions: OpenDialogOptions,
-        window: Window,
+        window: Window?,
         resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
     ) {
         showFileChooserDialog(
@@ -815,7 +815,7 @@ public final class GtkBackend: AppBackend {
     public func showSaveDialog(
         fileDialogOptions: FileDialogOptions,
         saveDialogOptions: SaveDialogOptions,
-        window: Window,
+        window: Window?,
         resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
     ) {
         showFileChooserDialog(
@@ -842,12 +842,12 @@ public final class GtkBackend: AppBackend {
         fileDialogOptions: FileDialogOptions,
         action: FileChooserAction,
         configure: (Gtk.FileChooserNative) -> Void,
-        window: Window,
+        window: Window?,
         resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
     ) {
         let chooser = Gtk.FileChooserNative(
             title: fileDialogOptions.title,
-            parent: window.widgetPointer.cast(),
+            parent: window?.widgetPointer.cast(),
             action: action.toGtk(),
             acceptLabel: fileDialogOptions.defaultButtonLabel,
             cancelLabel: "Cancel"

@@ -5,7 +5,7 @@ import Foundation
 /// in a single dialog. Returns `nil` if the user cancels the operation.
 public struct PresentSingleFileOpenDialogAction {
     let backend: any AppBackend
-    let window: Any
+    let window: Any?
 
     public func callAsFunction(
         title: String = "Open",
@@ -19,6 +19,13 @@ public struct PresentSingleFileOpenDialogAction {
         func chooseFile<Backend: AppBackend>(backend: Backend) async -> URL? {
             await withCheckedContinuation { continuation in
                 backend.runInMainThread {
+                    let window: Backend.Window? =
+                        if let window = self.window {
+                            .some(window as! Backend.Window)
+                        } else {
+                            nil
+                        }
+
                     backend.showOpenDialog(
                         fileDialogOptions: FileDialogOptions(
                             title: title,
@@ -33,7 +40,7 @@ public struct PresentSingleFileOpenDialogAction {
                             allowSelectingDirectories: allowSelectingDirectories,
                             allowMultipleSelections: false
                         ),
-                        window: window as! Backend.Window
+                        window: window
                     ) { result in
                         switch result {
                             case .success(let url):

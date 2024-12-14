@@ -415,33 +415,40 @@ public protocol AppBackend {
     /// have been hidden by the time the response handler gets called.
     ///
     /// Must only get called once for any given alert.
+    ///
+    /// If `window` is `nil`, the backend can either make the alert a whole
+    /// app modal, a standalone window, or a modal for a window of its choosing.
     func showAlert(
         _ alert: Alert,
-        window: Window,
+        window: Window?,
         responseHandler handleResponse: @escaping (Int) -> Void
     )
     /// Dismisses an alert programmatically without invoking the response
     /// handler. Must only be called after
     /// ``showAlert(_:window:responseHandler:)``.
-    ///
-    /// Must only get called once for any given alert.
-    func dismissAlert(_ alert: Alert, window: Window)
+    func dismissAlert(_ alert: Alert, window: Window?)
 
     /// Presents an 'Open file' dialog to the user for selecting files or
     /// folders.
+    ///
+    /// If `window` is `nil`, the backend can either make the dialog a whole
+    /// app modal, a standalone window, or a modal for a window of its choosing.
     func showOpenDialog(
         fileDialogOptions: FileDialogOptions,
         openDialogOptions: OpenDialogOptions,
-        window: Window,
+        window: Window?,
         resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
     )
 
     /// Presents a 'Save file' dialog to the user for selecting a file save
     /// destination.
+    ///
+    /// If `window` is `nil`, the backend can either make the dialog a whole
+    /// app modal, a standalone window, or a modal for a window of its choosing.
     func showSaveDialog(
         fileDialogOptions: FileDialogOptions,
         saveDialogOptions: SaveDialogOptions,
-        window: Window,
+        window: Window?,
         resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
     )
 }
@@ -705,19 +712,19 @@ extension AppBackend {
     }
     func showAlert(
         _ alert: Alert,
-        window: Window,
+        window: Window?,
         responseHandler handleResponse: @escaping (Int) -> Void
     ) {
         todo()
     }
-    func dismissAlert(_ alert: Alert, window: Window) {
+    func dismissAlert(_ alert: Alert, window: Window?) {
         todo()
     }
 
     public func showOpenDialog(
         fileDialogOptions: FileDialogOptions,
         openDialogOptions: OpenDialogOptions,
-        window: Window,
+        window: Window?,
         resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
     ) {
         todo()
@@ -725,7 +732,7 @@ extension AppBackend {
     public func showSaveDialog(
         fileDialogOptions: FileDialogOptions,
         saveDialogOptions: SaveDialogOptions,
-        window: Window,
+        window: Window?,
         resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
     ) {
         todo()

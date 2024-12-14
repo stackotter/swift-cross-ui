@@ -890,10 +890,10 @@ public final class AppKitBackend: AppBackend {
 
     public func showAlert(
         _ alert: Alert,
-        window: Window,
+        window: Window?,
         responseHandler handleResponse: @escaping (Int) -> Void
     ) {
-        alert.beginSheetModal(for: window) { response in
+        let completionHandler: (NSApplication.ModalResponse) -> Void = { response in
             guard response != .stop, response != .continue else {
                 return
             }
@@ -907,16 +907,30 @@ public final class AppKitBackend: AppBackend {
             let action = response.rawValue - firstButton
             handleResponse(action)
         }
+
+        if let window {
+            alert.beginSheetModal(
+                for: window,
+                completionHandler: completionHandler
+            )
+        } else {
+            let response = alert.runModal()
+            completionHandler(response)
+        }
     }
 
-    public func dismissAlert(_ alert: Alert, window: Window) {
-        window.endSheet(alert.window)
+    public func dismissAlert(_ alert: Alert, window: Window?) {
+        if let window {
+            window.endSheet(alert.window)
+        } else {
+            NSApplication.shared.stopModal()
+        }
     }
 
     public func showOpenDialog(
         fileDialogOptions: FileDialogOptions,
         openDialogOptions: OpenDialogOptions,
-        window: Window,
+        window: Window?,
         resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
     ) {
         let panel = NSOpenPanel()
@@ -932,7 +946,7 @@ public final class AppKitBackend: AppBackend {
         panel.canChooseFiles = openDialogOptions.allowSelectingFiles
         panel.canChooseDirectories = openDialogOptions.allowSelectingDirectories
 
-        panel.beginSheetModal(for: window) { response in
+        let handleResponse: (NSApplication.ModalResponse) -> Void = { response in
             guard response != .continue else {
                 return
             }
@@ -943,12 +957,19 @@ public final class AppKitBackend: AppBackend {
                 handleResult(.cancelled)
             }
         }
+
+        if let window {
+            panel.beginSheetModal(for: window, completionHandler: handleResponse)
+        } else {
+            let response = panel.runModal()
+            handleResponse(response)
+        }
     }
 
     public func showSaveDialog(
         fileDialogOptions: FileDialogOptions,
         saveDialogOptions: SaveDialogOptions,
-        window: Window,
+        window: Window?,
         resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
     ) {
         let panel = NSSavePanel()
@@ -963,7 +984,7 @@ public final class AppKitBackend: AppBackend {
         panel.nameFieldLabel = saveDialogOptions.nameFieldLabel ?? panel.nameFieldLabel
         panel.nameFieldStringValue = saveDialogOptions.defaultFileName ?? ""
 
-        panel.beginSheetModal(for: window) { response in
+        let handleResponse: (NSApplication.ModalResponse) -> Void = { response in
             guard response != .continue else {
                 return
             }
@@ -973,6 +994,13 @@ public final class AppKitBackend: AppBackend {
             } else {
                 handleResult(.cancelled)
             }
+        }
+
+        if let window {
+            panel.beginSheetModal(for: window, completionHandler: handleResponse)
+        } else {
+            let response = panel.runModal()
+            handleResponse(response)
         }
     }
 }
