@@ -27,7 +27,7 @@ struct AlertModifierView<Child: View>: TypeSafeView {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> Children {
         AlertModifierViewChildren(
             childNode: AnyViewGraphNode(
@@ -49,7 +49,7 @@ struct AlertModifierView<Child: View>: TypeSafeView {
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {

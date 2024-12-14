@@ -25,9 +25,10 @@ import CGtk3
 public class Button: Bin, Activatable {
     /// Creates a new #GtkButton widget. To add a child widget to the button,
     /// use gtk_container_add().
-    override public init() {
-        super.init()
-        widgetPointer = gtk_button_new()
+    public convenience init() {
+        self.init(
+            gtk_button_new()
+        )
     }
 
     /// Creates a new button containing an icon from the current icon theme.
@@ -38,16 +39,18 @@ public class Button: Bin, Activatable {
     ///
     /// This function is a convenience wrapper around gtk_button_new() and
     /// gtk_button_set_image().
-    public init(iconName: String, size: GtkIconSize) {
-        super.init()
-        widgetPointer = gtk_button_new_from_icon_name(iconName, size)
+    public convenience init(iconName: String, size: GtkIconSize) {
+        self.init(
+            gtk_button_new_from_icon_name(iconName, size)
+        )
     }
 
     /// Creates a #GtkButton widget with a #GtkLabel child containing the given
     /// text.
-    public init(label: String) {
-        super.init()
-        widgetPointer = gtk_button_new_with_label(label)
+    public convenience init(label: String) {
+        self.init(
+            gtk_button_new_with_label(label)
+        )
     }
 
     /// Creates a new #GtkButton containing a label.
@@ -56,14 +59,13 @@ public class Button: Bin, Activatable {
     /// underscores). The first underlined character represents a keyboard
     /// accelerator called a mnemonic.
     /// Pressing Alt and that key activates the button.
-    public init(mnemonic label: String) {
-        super.init()
-        widgetPointer = gtk_button_new_with_mnemonic(label)
+    public convenience init(mnemonic label: String) {
+        self.init(
+            gtk_button_new_with_mnemonic(label)
+        )
     }
 
     override func didMoveToParent() {
-        removeSignals()
-
         super.didMoveToParent()
 
         addSignal(name: "activate") { [weak self] () in
@@ -103,9 +105,9 @@ public class Button: Bin, Activatable {
                 }
 
         addSignal(name: "notify::always-show-image", handler: gCallback(handler6)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyAlwaysShowImage?(self)
+            self.notifyAlwaysShowImage?(self, param0)
         }
 
         let handler7:
@@ -115,9 +117,9 @@ public class Button: Bin, Activatable {
                 }
 
         addSignal(name: "notify::image", handler: gCallback(handler7)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyImage?(self)
+            self.notifyImage?(self, param0)
         }
 
         let handler8:
@@ -127,9 +129,9 @@ public class Button: Bin, Activatable {
                 }
 
         addSignal(name: "notify::image-position", handler: gCallback(handler8)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyImagePosition?(self)
+            self.notifyImagePosition?(self, param0)
         }
 
         let handler9:
@@ -139,9 +141,9 @@ public class Button: Bin, Activatable {
                 }
 
         addSignal(name: "notify::label", handler: gCallback(handler9)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyLabel?(self)
+            self.notifyLabel?(self, param0)
         }
 
         let handler10:
@@ -151,9 +153,9 @@ public class Button: Bin, Activatable {
                 }
 
         addSignal(name: "notify::relief", handler: gCallback(handler10)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyRelief?(self)
+            self.notifyRelief?(self, param0)
         }
 
         let handler11:
@@ -163,9 +165,9 @@ public class Button: Bin, Activatable {
                 }
 
         addSignal(name: "notify::use-stock", handler: gCallback(handler11)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyUseStock?(self)
+            self.notifyUseStock?(self, param0)
         }
 
         let handler12:
@@ -175,9 +177,9 @@ public class Button: Bin, Activatable {
                 }
 
         addSignal(name: "notify::use-underline", handler: gCallback(handler12)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyUseUnderline?(self)
+            self.notifyUseUnderline?(self, param0)
         }
 
         let handler13:
@@ -187,9 +189,9 @@ public class Button: Bin, Activatable {
                 }
 
         addSignal(name: "notify::xalign", handler: gCallback(handler13)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyXalign?(self)
+            self.notifyXalign?(self, param0)
         }
 
         let handler14:
@@ -199,9 +201,9 @@ public class Button: Bin, Activatable {
                 }
 
         addSignal(name: "notify::yalign", handler: gCallback(handler14)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyYalign?(self)
+            self.notifyYalign?(self, param0)
         }
 
         let handler15:
@@ -211,9 +213,9 @@ public class Button: Bin, Activatable {
                 }
 
         addSignal(name: "notify::related-action", handler: gCallback(handler15)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyRelatedAction?(self)
+            self.notifyRelatedAction?(self, param0)
         }
 
         let handler16:
@@ -223,9 +225,9 @@ public class Button: Bin, Activatable {
                 }
 
         addSignal(name: "notify::use-action-appearance", handler: gCallback(handler16)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyUseActionAppearance?(self)
+            self.notifyUseActionAppearance?(self, param0)
         }
     }
 
@@ -258,25 +260,25 @@ public class Button: Bin, Activatable {
     /// Emitted when the button is released.
     public var released: ((Button) -> Void)?
 
-    public var notifyAlwaysShowImage: ((Button) -> Void)?
+    public var notifyAlwaysShowImage: ((Button, OpaquePointer) -> Void)?
 
-    public var notifyImage: ((Button) -> Void)?
+    public var notifyImage: ((Button, OpaquePointer) -> Void)?
 
-    public var notifyImagePosition: ((Button) -> Void)?
+    public var notifyImagePosition: ((Button, OpaquePointer) -> Void)?
 
-    public var notifyLabel: ((Button) -> Void)?
+    public var notifyLabel: ((Button, OpaquePointer) -> Void)?
 
-    public var notifyRelief: ((Button) -> Void)?
+    public var notifyRelief: ((Button, OpaquePointer) -> Void)?
 
-    public var notifyUseStock: ((Button) -> Void)?
+    public var notifyUseStock: ((Button, OpaquePointer) -> Void)?
 
-    public var notifyUseUnderline: ((Button) -> Void)?
+    public var notifyUseUnderline: ((Button, OpaquePointer) -> Void)?
 
-    public var notifyXalign: ((Button) -> Void)?
+    public var notifyXalign: ((Button, OpaquePointer) -> Void)?
 
-    public var notifyYalign: ((Button) -> Void)?
+    public var notifyYalign: ((Button, OpaquePointer) -> Void)?
 
-    public var notifyRelatedAction: ((Button) -> Void)?
+    public var notifyRelatedAction: ((Button, OpaquePointer) -> Void)?
 
-    public var notifyUseActionAppearance: ((Button) -> Void)?
+    public var notifyUseActionAppearance: ((Button, OpaquePointer) -> Void)?
 }

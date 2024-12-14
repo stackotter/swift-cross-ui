@@ -24,7 +24,7 @@ public struct ZStack<Content: View>: View {
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {

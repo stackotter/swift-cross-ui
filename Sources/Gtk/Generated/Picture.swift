@@ -48,41 +48,43 @@ import CGtk
 /// `GtkPicture` uses the `GTK_ACCESSIBLE_ROLE_IMG` role.
 public class Picture: Widget {
     /// Creates a new empty `GtkPicture` widget.
-    override public init() {
-        super.init()
-        widgetPointer = gtk_picture_new()
+    public convenience init() {
+        self.init(
+            gtk_picture_new()
+        )
     }
 
     /// Creates a new `GtkPicture` displaying the file @filename.
     ///
     /// This is a utility function that calls [ctor@Gtk.Picture.new_for_file].
     /// See that function for details.
-    public init(filename: String) {
-        super.init()
-        widgetPointer = gtk_picture_new_for_filename(filename)
+    public convenience init(filename: String) {
+        self.init(
+            gtk_picture_new_for_filename(filename)
+        )
     }
 
     /// Creates a new `GtkPicture` displaying @paintable.
     ///
     /// The `GtkPicture` will track changes to the @paintable and update
     /// its size and contents in response to it.
-    public init(paintable: OpaquePointer) {
-        super.init()
-        widgetPointer = gtk_picture_new_for_paintable(paintable)
+    public convenience init(paintable: OpaquePointer) {
+        self.init(
+            gtk_picture_new_for_paintable(paintable)
+        )
     }
 
     /// Creates a new `GtkPicture` displaying the resource at @resource_path.
     ///
     /// This is a utility function that calls [ctor@Gtk.Picture.new_for_file].
     /// See that function for details.
-    public init(resourcePath: String) {
-        super.init()
-        widgetPointer = gtk_picture_new_for_resource(resourcePath)
+    public convenience init(resourcePath: String) {
+        self.init(
+            gtk_picture_new_for_resource(resourcePath)
+        )
     }
 
     override func didMoveToParent() {
-        removeSignals()
-
         super.didMoveToParent()
 
         let handler0:
@@ -92,9 +94,9 @@ public class Picture: Widget {
                 }
 
         addSignal(name: "notify::alternative-text", handler: gCallback(handler0)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyAlternativeText?(self)
+            self.notifyAlternativeText?(self, param0)
         }
 
         let handler1:
@@ -104,9 +106,9 @@ public class Picture: Widget {
                 }
 
         addSignal(name: "notify::can-shrink", handler: gCallback(handler1)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyCanShrink?(self)
+            self.notifyCanShrink?(self, param0)
         }
 
         let handler2:
@@ -116,9 +118,9 @@ public class Picture: Widget {
                 }
 
         addSignal(name: "notify::content-fit", handler: gCallback(handler2)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyContentFit?(self)
+            self.notifyContentFit?(self, param0)
         }
 
         let handler3:
@@ -128,9 +130,9 @@ public class Picture: Widget {
                 }
 
         addSignal(name: "notify::file", handler: gCallback(handler3)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyFile?(self)
+            self.notifyFile?(self, param0)
         }
 
         let handler4:
@@ -140,9 +142,9 @@ public class Picture: Widget {
                 }
 
         addSignal(name: "notify::keep-aspect-ratio", handler: gCallback(handler4)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyKeepAspectRatio?(self)
+            self.notifyKeepAspectRatio?(self, param0)
         }
 
         let handler5:
@@ -152,9 +154,9 @@ public class Picture: Widget {
                 }
 
         addSignal(name: "notify::paintable", handler: gCallback(handler5)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPaintable?(self)
+            self.notifyPaintable?(self, param0)
         }
     }
 
@@ -168,15 +170,15 @@ public class Picture: Widget {
     /// ratio.
     @GObjectProperty(named: "keep-aspect-ratio") public var keepAspectRatio: Bool
 
-    public var notifyAlternativeText: ((Picture) -> Void)?
+    public var notifyAlternativeText: ((Picture, OpaquePointer) -> Void)?
 
-    public var notifyCanShrink: ((Picture) -> Void)?
+    public var notifyCanShrink: ((Picture, OpaquePointer) -> Void)?
 
-    public var notifyContentFit: ((Picture) -> Void)?
+    public var notifyContentFit: ((Picture, OpaquePointer) -> Void)?
 
-    public var notifyFile: ((Picture) -> Void)?
+    public var notifyFile: ((Picture, OpaquePointer) -> Void)?
 
-    public var notifyKeepAspectRatio: ((Picture) -> Void)?
+    public var notifyKeepAspectRatio: ((Picture, OpaquePointer) -> Void)?
 
-    public var notifyPaintable: ((Picture) -> Void)?
+    public var notifyPaintable: ((Picture, OpaquePointer) -> Void)?
 }

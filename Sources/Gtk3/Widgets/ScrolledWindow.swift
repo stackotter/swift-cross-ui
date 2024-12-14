@@ -1,9 +1,8 @@
 import CGtk3
 
 public class ScrolledWindow: Bin {
-    public override init() {
-        super.init()
-        widgetPointer = gtk_scrolled_window_new(nil, nil)
+    public convenience init() {
+        self.init(gtk_scrolled_window_new(nil, nil))
     }
 
     override func didMoveToParent() {

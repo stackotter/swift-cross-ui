@@ -30,5 +30,5 @@ public protocol FontChooser: GObjectRepresentable {
     /// This usually happens when the user double clicks an item,
     /// or an item is selected and the user presses one of the keys
     /// Space, Shift+Space, Return or Enter.
-    var fontActivated: ((Self) -> Void)? { get set }
+    var fontActivated: ((Self, UnsafePointer<CChar>) -> Void)? { get set }
 }

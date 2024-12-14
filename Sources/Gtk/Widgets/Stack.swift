@@ -7,11 +7,8 @@ import CGtk
 open class Stack: Widget {
     private var pages = [Widget]()
 
-    public init(transitionDuration: Int, transitionType: StackTransitionType) {
-        super.init()
-
-        widgetPointer = gtk_stack_new()
-
+    public convenience init(transitionDuration: Int, transitionType: StackTransitionType) {
+        self.init(gtk_stack_new())
         self.transitionDuration = transitionDuration
         self.transitionType = transitionType
     }

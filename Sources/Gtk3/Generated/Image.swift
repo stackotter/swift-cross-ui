@@ -86,9 +86,10 @@ import CGtk3
 /// may appear on image CSS nodes: .icon-dropshadow, .lowres-icon.
 public class Image: Misc {
     /// Creates a new empty #GtkImage widget.
-    override public init() {
-        super.init()
-        widgetPointer = gtk_image_new()
+    public convenience init() {
+        self.init(
+            gtk_image_new()
+        )
     }
 
     /// Creates a new #GtkImage displaying the file @filename. If the file
@@ -107,27 +108,30 @@ public class Image: Misc {
     /// The storage type (gtk_image_get_storage_type()) of the returned
     /// image is not defined, it will be whatever is appropriate for
     /// displaying the file.
-    public init(filename: String) {
-        super.init()
-        widgetPointer = gtk_image_new_from_file(filename)
+    public convenience init(filename: String) {
+        self.init(
+            gtk_image_new_from_file(filename)
+        )
     }
 
     /// Creates a #GtkImage displaying an icon from the current icon theme.
     /// If the icon name isn’t known, a “broken image” icon will be
     /// displayed instead.  If the current icon theme is changed, the icon
     /// will be updated appropriately.
-    public init(icon: OpaquePointer, size: GtkIconSize) {
-        super.init()
-        widgetPointer = gtk_image_new_from_gicon(icon, size)
+    public convenience init(icon: OpaquePointer, size: GtkIconSize) {
+        self.init(
+            gtk_image_new_from_gicon(icon, size)
+        )
     }
 
     /// Creates a #GtkImage displaying an icon from the current icon theme.
     /// If the icon name isn’t known, a “broken image” icon will be
     /// displayed instead.  If the current icon theme is changed, the icon
     /// will be updated appropriately.
-    public init(iconName: String, size: GtkIconSize) {
-        super.init()
-        widgetPointer = gtk_image_new_from_icon_name(iconName, size)
+    public convenience init(iconName: String, size: GtkIconSize) {
+        self.init(
+            gtk_image_new_from_icon_name(iconName, size)
+        )
     }
 
     /// Creates a new #GtkImage displaying @pixbuf.
@@ -138,9 +142,10 @@ public class Image: Misc {
     /// Note that this function just creates an #GtkImage from the pixbuf. The
     /// #GtkImage created will not react to state changes. Should you want that,
     /// you should use gtk_image_new_from_icon_name().
-    public init(pixbuf: OpaquePointer) {
-        super.init()
-        widgetPointer = gtk_image_new_from_pixbuf(pixbuf)
+    public convenience init(pixbuf: OpaquePointer) {
+        self.init(
+            gtk_image_new_from_pixbuf(pixbuf)
+        )
     }
 
     /// Creates a new #GtkImage displaying the resource file @resource_path. If the file
@@ -159,14 +164,13 @@ public class Image: Misc {
     /// The storage type (gtk_image_get_storage_type()) of the returned
     /// image is not defined, it will be whatever is appropriate for
     /// displaying the file.
-    public init(resourcePath: String) {
-        super.init()
-        widgetPointer = gtk_image_new_from_resource(resourcePath)
+    public convenience init(resourcePath: String) {
+        self.init(
+            gtk_image_new_from_resource(resourcePath)
+        )
     }
 
     override func didMoveToParent() {
-        removeSignals()
-
         super.didMoveToParent()
 
         let handler0:
@@ -176,9 +180,9 @@ public class Image: Misc {
                 }
 
         addSignal(name: "notify::file", handler: gCallback(handler0)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyFile?(self)
+            self.notifyFile?(self, param0)
         }
 
         let handler1:
@@ -188,9 +192,9 @@ public class Image: Misc {
                 }
 
         addSignal(name: "notify::gicon", handler: gCallback(handler1)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyGicon?(self)
+            self.notifyGicon?(self, param0)
         }
 
         let handler2:
@@ -200,9 +204,9 @@ public class Image: Misc {
                 }
 
         addSignal(name: "notify::icon-name", handler: gCallback(handler2)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyIconName?(self)
+            self.notifyIconName?(self, param0)
         }
 
         let handler3:
@@ -212,9 +216,9 @@ public class Image: Misc {
                 }
 
         addSignal(name: "notify::icon-set", handler: gCallback(handler3)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyIconSet?(self)
+            self.notifyIconSet?(self, param0)
         }
 
         let handler4:
@@ -224,9 +228,9 @@ public class Image: Misc {
                 }
 
         addSignal(name: "notify::icon-size", handler: gCallback(handler4)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyIconSize?(self)
+            self.notifyIconSize?(self, param0)
         }
 
         let handler5:
@@ -236,9 +240,9 @@ public class Image: Misc {
                 }
 
         addSignal(name: "notify::pixbuf", handler: gCallback(handler5)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPixbuf?(self)
+            self.notifyPixbuf?(self, param0)
         }
 
         let handler6:
@@ -248,9 +252,9 @@ public class Image: Misc {
                 }
 
         addSignal(name: "notify::pixbuf-animation", handler: gCallback(handler6)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPixbufAnimation?(self)
+            self.notifyPixbufAnimation?(self, param0)
         }
 
         let handler7:
@@ -260,9 +264,9 @@ public class Image: Misc {
                 }
 
         addSignal(name: "notify::pixel-size", handler: gCallback(handler7)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPixelSize?(self)
+            self.notifyPixelSize?(self, param0)
         }
 
         let handler8:
@@ -272,9 +276,9 @@ public class Image: Misc {
                 }
 
         addSignal(name: "notify::resource", handler: gCallback(handler8)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyResource?(self)
+            self.notifyResource?(self, param0)
         }
 
         let handler9:
@@ -284,9 +288,9 @@ public class Image: Misc {
                 }
 
         addSignal(name: "notify::stock", handler: gCallback(handler9)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyStock?(self)
+            self.notifyStock?(self, param0)
         }
 
         let handler10:
@@ -296,9 +300,9 @@ public class Image: Misc {
                 }
 
         addSignal(name: "notify::storage-type", handler: gCallback(handler10)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyStorageType?(self)
+            self.notifyStorageType?(self, param0)
         }
 
         let handler11:
@@ -308,9 +312,9 @@ public class Image: Misc {
                 }
 
         addSignal(name: "notify::surface", handler: gCallback(handler11)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySurface?(self)
+            self.notifySurface?(self, param0)
         }
 
         let handler12:
@@ -320,9 +324,9 @@ public class Image: Misc {
                 }
 
         addSignal(name: "notify::use-fallback", handler: gCallback(handler12)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyUseFallback?(self)
+            self.notifyUseFallback?(self, param0)
         }
     }
 
@@ -330,29 +334,29 @@ public class Image: Misc {
 
     @GObjectProperty(named: "storage-type") public var storageType: ImageType
 
-    public var notifyFile: ((Image) -> Void)?
+    public var notifyFile: ((Image, OpaquePointer) -> Void)?
 
-    public var notifyGicon: ((Image) -> Void)?
+    public var notifyGicon: ((Image, OpaquePointer) -> Void)?
 
-    public var notifyIconName: ((Image) -> Void)?
+    public var notifyIconName: ((Image, OpaquePointer) -> Void)?
 
-    public var notifyIconSet: ((Image) -> Void)?
+    public var notifyIconSet: ((Image, OpaquePointer) -> Void)?
 
-    public var notifyIconSize: ((Image) -> Void)?
+    public var notifyIconSize: ((Image, OpaquePointer) -> Void)?
 
-    public var notifyPixbuf: ((Image) -> Void)?
+    public var notifyPixbuf: ((Image, OpaquePointer) -> Void)?
 
-    public var notifyPixbufAnimation: ((Image) -> Void)?
+    public var notifyPixbufAnimation: ((Image, OpaquePointer) -> Void)?
 
-    public var notifyPixelSize: ((Image) -> Void)?
+    public var notifyPixelSize: ((Image, OpaquePointer) -> Void)?
 
-    public var notifyResource: ((Image) -> Void)?
+    public var notifyResource: ((Image, OpaquePointer) -> Void)?
 
-    public var notifyStock: ((Image) -> Void)?
+    public var notifyStock: ((Image, OpaquePointer) -> Void)?
 
-    public var notifyStorageType: ((Image) -> Void)?
+    public var notifyStorageType: ((Image, OpaquePointer) -> Void)?
 
-    public var notifySurface: ((Image) -> Void)?
+    public var notifySurface: ((Image, OpaquePointer) -> Void)?
 
-    public var notifyUseFallback: ((Image) -> Void)?
+    public var notifyUseFallback: ((Image, OpaquePointer) -> Void)?
 }

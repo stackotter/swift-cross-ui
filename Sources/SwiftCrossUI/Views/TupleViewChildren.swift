@@ -21,7 +21,7 @@ public struct TupleViewChildren1<Child0: View>: ViewGraphNodeChildren {
         _ child0: Child0,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         let viewTypeNames = [
             ViewGraphSnapshotter.name(of: Child0.self)
@@ -64,7 +64,7 @@ public struct TupleViewChildren2<Child0: View, Child1: View>: ViewGraphNodeChild
         _ child1: Child1,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         let viewTypeNames = [
             ViewGraphSnapshotter.name(of: Child0.self),
@@ -119,7 +119,7 @@ public struct TupleViewChildren3<Child0: View, Child1: View, Child2: View>: View
         _ child2: Child2,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         let viewTypeNames = [
             ViewGraphSnapshotter.name(of: Child0.self),
@@ -188,7 +188,7 @@ public struct TupleViewChildren4<Child0: View, Child1: View, Child2: View, Child
         _ child3: Child3,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         let viewTypeNames = [
             ViewGraphSnapshotter.name(of: Child0.self),
@@ -269,7 +269,7 @@ public struct TupleViewChildren5<
         _ child4: Child4,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         let viewTypeNames = [
             ViewGraphSnapshotter.name(of: Child0.self),
@@ -362,7 +362,7 @@ public struct TupleViewChildren6<
         _ child5: Child5,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         let viewTypeNames = [
             ViewGraphSnapshotter.name(of: Child0.self),
@@ -467,7 +467,7 @@ public struct TupleViewChildren7<
         _ child6: Child6,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         let viewTypeNames = [
             ViewGraphSnapshotter.name(of: Child0.self),
@@ -585,7 +585,7 @@ public struct TupleViewChildren8<
         _ child7: Child7,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         let viewTypeNames = [
             ViewGraphSnapshotter.name(of: Child0.self),
@@ -715,7 +715,7 @@ public struct TupleViewChildren9<
         _ child8: Child8,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         let viewTypeNames = [
             ViewGraphSnapshotter.name(of: Child0.self),
@@ -857,7 +857,7 @@ public struct TupleViewChildren10<
         _ child9: Child9,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         let viewTypeNames = [
             ViewGraphSnapshotter.name(of: Child0.self),

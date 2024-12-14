@@ -13,7 +13,7 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> ScrollViewChildren<Content> {
         // TODO: Verify that snapshotting works correctly with this
         return ScrollViewChildren(
@@ -45,7 +45,7 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         _ widget: Backend.Widget,
         children: ScrollViewChildren<Content>,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {

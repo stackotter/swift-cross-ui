@@ -5,10 +5,10 @@
 import CGtk
 
 public class Calendar: Widget {
-    public override init() {
-        super.init()
-
-        widgetPointer = gtk_calendar_new()
+    public convenience init() {
+        self.init(
+            gtk_calendar_new()
+        )
     }
 
     /// The selected year. This property gets initially set to the current year.

@@ -12,7 +12,7 @@ public struct EmptyView: View {
     public func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> any ViewGraphNodeChildren {
         return EmptyViewChildren()
     }
@@ -40,7 +40,7 @@ public struct EmptyView: View {
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {

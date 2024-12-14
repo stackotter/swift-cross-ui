@@ -3,8 +3,8 @@ import CGtk3
 public class GSimpleAction: GAction, GObjectRepresentable {
     public var actionPointer: OpaquePointer
 
-    public var gobjectPointer: UnsafeMutablePointer<GObject> {
-        UnsafeMutablePointer<GObject>(actionPointer)
+    public var gobjectPointer: UnsafeMutablePointer<CGtk3.GObject> {
+        UnsafeMutablePointer<CGtk3.GObject>(actionPointer)
     }
 
     @GObjectProperty(named: "enabled") var enabled: Bool

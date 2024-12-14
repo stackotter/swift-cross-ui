@@ -62,7 +62,7 @@ extension Color: ElementaryView {
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {

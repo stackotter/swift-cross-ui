@@ -24,10 +24,12 @@ public class ViewGraph<Root: View> {
     private var currentRootViewSize: ViewSize
 
     /// The environment most recently provided by this node's parent scene.
-    private var parentEnvironment: Environment
+    private var parentEnvironment: EnvironmentValues
 
     /// Creates a view graph for a root view with a specific backend.
-    public init<Backend: AppBackend>(for view: Root, backend: Backend, environment: Environment) {
+    public init<Backend: AppBackend>(
+        for view: Root, backend: Backend, environment: EnvironmentValues
+    ) {
         rootNode = AnyViewGraphNode(for: view, backend: backend, environment: environment)
 
         self.view = view
@@ -67,7 +69,7 @@ public class ViewGraph<Root: View> {
     public func update(
         with newView: Root? = nil,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         dryRun: Bool
     ) -> ViewSize {
         parentEnvironment = environment

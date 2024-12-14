@@ -74,9 +74,12 @@ import CGtk3
 /// subnode with name value.
 public class Scale: Range {
     /// Creates a new #GtkScale.
-    public init(orientation: GtkOrientation, adjustment: UnsafeMutablePointer<GtkAdjustment>!) {
-        super.init()
-        widgetPointer = gtk_scale_new(orientation, adjustment)
+    public convenience init(
+        orientation: GtkOrientation, adjustment: UnsafeMutablePointer<GtkAdjustment>!
+    ) {
+        self.init(
+            gtk_scale_new(orientation, adjustment)
+        )
     }
 
     /// Creates a new scale widget with the given orientation that lets the
@@ -88,14 +91,15 @@ public class Scale: Range {
     /// Note that the way in which the precision is derived works best if @step
     /// is a power of ten. If the resulting precision is not suitable for your
     /// needs, use gtk_scale_set_digits() to correct it.
-    public init(range orientation: GtkOrientation, min: Double, max: Double, step: Double) {
-        super.init()
-        widgetPointer = gtk_scale_new_with_range(orientation, min, max, step)
+    public convenience init(
+        range orientation: GtkOrientation, min: Double, max: Double, step: Double
+    ) {
+        self.init(
+            gtk_scale_new_with_range(orientation, min, max, step)
+        )
     }
 
     override func didMoveToParent() {
-        removeSignals()
-
         super.didMoveToParent()
 
         let handler0:
@@ -105,9 +109,9 @@ public class Scale: Range {
                 }
 
         addSignal(name: "notify::digits", handler: gCallback(handler0)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyDigits?(self)
+            self.notifyDigits?(self, param0)
         }
 
         let handler1:
@@ -117,9 +121,9 @@ public class Scale: Range {
                 }
 
         addSignal(name: "notify::draw-value", handler: gCallback(handler1)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyDrawValue?(self)
+            self.notifyDrawValue?(self, param0)
         }
 
         let handler2:
@@ -129,9 +133,9 @@ public class Scale: Range {
                 }
 
         addSignal(name: "notify::has-origin", handler: gCallback(handler2)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyHasOrigin?(self)
+            self.notifyHasOrigin?(self, param0)
         }
 
         let handler3:
@@ -141,9 +145,9 @@ public class Scale: Range {
                 }
 
         addSignal(name: "notify::value-pos", handler: gCallback(handler3)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyValuePos?(self)
+            self.notifyValuePos?(self, param0)
         }
     }
 
@@ -155,11 +159,11 @@ public class Scale: Range {
 
     @GObjectProperty(named: "value-pos") public var valuePos: PositionType
 
-    public var notifyDigits: ((Scale) -> Void)?
+    public var notifyDigits: ((Scale, OpaquePointer) -> Void)?
 
-    public var notifyDrawValue: ((Scale) -> Void)?
+    public var notifyDrawValue: ((Scale, OpaquePointer) -> Void)?
 
-    public var notifyHasOrigin: ((Scale) -> Void)?
+    public var notifyHasOrigin: ((Scale, OpaquePointer) -> Void)?
 
-    public var notifyValuePos: ((Scale) -> Void)?
+    public var notifyValuePos: ((Scale, OpaquePointer) -> Void)?
 }

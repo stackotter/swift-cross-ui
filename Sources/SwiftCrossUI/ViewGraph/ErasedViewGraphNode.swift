@@ -11,7 +11,7 @@ public struct ErasedViewGraphNode {
         (
             _ newView: Any?,
             _ proposedSize: SIMD2<Int>,
-            _ environment: Environment,
+            _ environment: EnvironmentValues,
             _ dryRun: Bool
         ) -> (viewTypeMatched: Bool, size: ViewSize)
 
@@ -24,7 +24,7 @@ public struct ErasedViewGraphNode {
         for view: V,
         backend: Backend,
         snapshot: ViewGraphSnapshotter.NodeSnapshot? = nil,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         self.init(
             wrapping: ViewGraphNode(

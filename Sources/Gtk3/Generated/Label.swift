@@ -174,9 +174,10 @@ import CGtk3
 public class Label: Misc {
     /// Creates a new label with the given text inside it. You can
     /// pass %NULL to get an empty label widget.
-    public init(string: String) {
-        super.init()
-        widgetPointer = gtk_label_new(string)
+    public convenience init(string: String) {
+        self.init(
+            gtk_label_new(string)
+        )
     }
 
     /// Creates a new #GtkLabel, containing the text in @str.
@@ -193,14 +194,13 @@ public class Label: Misc {
     /// widget. For instance, if the label is inside a button or menu item,
     /// the button or menu item will automatically become the mnemonic widget
     /// and be activated by the mnemonic.
-    public init(mnemonic string: String) {
-        super.init()
-        widgetPointer = gtk_label_new_with_mnemonic(string)
+    public convenience init(mnemonic string: String) {
+        self.init(
+            gtk_label_new_with_mnemonic(string)
+        )
     }
 
     override func didMoveToParent() {
-        removeSignals()
-
         super.didMoveToParent()
 
         addSignal(name: "activate-current-link") { [weak self] () in
@@ -216,9 +216,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "activate-link", handler: gCallback(handler1)) {
-            [weak self] (_: UnsafePointer<CChar>) in
+            [weak self] (param0: UnsafePointer<CChar>) in
             guard let self = self else { return }
-            self.activateLink?(self)
+            self.activateLink?(self, param0)
         }
 
         addSignal(name: "copy-clipboard") { [weak self] () in
@@ -235,9 +235,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "move-cursor", handler: gCallback(handler3)) {
-            [weak self] (_: GtkMovementStep, _: Int, _: Bool) in
+            [weak self] (param0: GtkMovementStep, param1: Int, param2: Bool) in
             guard let self = self else { return }
-            self.moveCursor?(self)
+            self.moveCursor?(self, param0, param1, param2)
         }
 
         let handler4:
@@ -247,9 +247,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "populate-popup", handler: gCallback(handler4)) {
-            [weak self] (_: GtkMenu) in
+            [weak self] (param0: GtkMenu) in
             guard let self = self else { return }
-            self.populatePopup?(self)
+            self.populatePopup?(self, param0)
         }
 
         let handler5:
@@ -259,9 +259,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::angle", handler: gCallback(handler5)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyAngle?(self)
+            self.notifyAngle?(self, param0)
         }
 
         let handler6:
@@ -271,9 +271,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::attributes", handler: gCallback(handler6)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyAttributes?(self)
+            self.notifyAttributes?(self, param0)
         }
 
         let handler7:
@@ -283,9 +283,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::cursor-position", handler: gCallback(handler7)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyCursorPosition?(self)
+            self.notifyCursorPosition?(self, param0)
         }
 
         let handler8:
@@ -295,9 +295,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::ellipsize", handler: gCallback(handler8)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyEllipsize?(self)
+            self.notifyEllipsize?(self, param0)
         }
 
         let handler9:
@@ -307,9 +307,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::justify", handler: gCallback(handler9)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyJustify?(self)
+            self.notifyJustify?(self, param0)
         }
 
         let handler10:
@@ -319,9 +319,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::label", handler: gCallback(handler10)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyLabel?(self)
+            self.notifyLabel?(self, param0)
         }
 
         let handler11:
@@ -331,9 +331,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::lines", handler: gCallback(handler11)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyLines?(self)
+            self.notifyLines?(self, param0)
         }
 
         let handler12:
@@ -343,9 +343,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::max-width-chars", handler: gCallback(handler12)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyMaxWidthChars?(self)
+            self.notifyMaxWidthChars?(self, param0)
         }
 
         let handler13:
@@ -355,9 +355,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::mnemonic-keyval", handler: gCallback(handler13)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyMnemonicKeyval?(self)
+            self.notifyMnemonicKeyval?(self, param0)
         }
 
         let handler14:
@@ -367,9 +367,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::pattern", handler: gCallback(handler14)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPattern?(self)
+            self.notifyPattern?(self, param0)
         }
 
         let handler15:
@@ -379,9 +379,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::selectable", handler: gCallback(handler15)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySelectable?(self)
+            self.notifySelectable?(self, param0)
         }
 
         let handler16:
@@ -391,9 +391,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::selection-bound", handler: gCallback(handler16)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySelectionBound?(self)
+            self.notifySelectionBound?(self, param0)
         }
 
         let handler17:
@@ -403,9 +403,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::single-line-mode", handler: gCallback(handler17)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySingleLineMode?(self)
+            self.notifySingleLineMode?(self, param0)
         }
 
         let handler18:
@@ -415,9 +415,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::track-visited-links", handler: gCallback(handler18)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyTrackVisitedLinks?(self)
+            self.notifyTrackVisitedLinks?(self, param0)
         }
 
         let handler19:
@@ -427,9 +427,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::use-markup", handler: gCallback(handler19)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyUseMarkup?(self)
+            self.notifyUseMarkup?(self, param0)
         }
 
         let handler20:
@@ -439,9 +439,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::use-underline", handler: gCallback(handler20)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyUseUnderline?(self)
+            self.notifyUseUnderline?(self, param0)
         }
 
         let handler21:
@@ -451,9 +451,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::width-chars", handler: gCallback(handler21)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyWidthChars?(self)
+            self.notifyWidthChars?(self, param0)
         }
 
         let handler22:
@@ -463,9 +463,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::wrap", handler: gCallback(handler22)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyWrap?(self)
+            self.notifyWrap?(self, param0)
         }
 
         let handler23:
@@ -475,9 +475,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::wrap-mode", handler: gCallback(handler23)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyWrapMode?(self)
+            self.notifyWrapMode?(self, param0)
         }
 
         let handler24:
@@ -487,9 +487,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::xalign", handler: gCallback(handler24)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyXalign?(self)
+            self.notifyXalign?(self, param0)
         }
 
         let handler25:
@@ -499,9 +499,9 @@ public class Label: Misc {
                 }
 
         addSignal(name: "notify::yalign", handler: gCallback(handler25)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyYalign?(self)
+            self.notifyYalign?(self, param0)
         }
     }
 
@@ -540,7 +540,7 @@ public class Label: Misc {
     /// The signal which gets emitted to activate a URI.
     /// Applications may connect to it to override the default behaviour,
     /// which is to call gtk_show_uri_on_window().
-    public var activateLink: ((Label) -> Void)?
+    public var activateLink: ((Label, UnsafePointer<CChar>) -> Void)?
 
     /// The ::copy-clipboard signal is a
     /// [keybinding signal][GtkBindingSignal]
@@ -566,7 +566,7 @@ public class Label: Misc {
     /// - Arrow keys move by individual characters/lines
     /// - Ctrl-arrow key combinations move by words/paragraphs
     /// - Home/End keys move to the ends of the buffer
-    public var moveCursor: ((Label) -> Void)?
+    public var moveCursor: ((Label, GtkMovementStep, Int, Bool) -> Void)?
 
     /// The ::populate-popup signal gets emitted before showing the
     /// context menu of the label. Note that only selectable labels
@@ -574,47 +574,47 @@ public class Label: Misc {
     ///
     /// If you need to add items to the context menu, connect
     /// to this signal and append your menuitems to the @menu.
-    public var populatePopup: ((Label) -> Void)?
+    public var populatePopup: ((Label, GtkMenu) -> Void)?
 
-    public var notifyAngle: ((Label) -> Void)?
+    public var notifyAngle: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyAttributes: ((Label) -> Void)?
+    public var notifyAttributes: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyCursorPosition: ((Label) -> Void)?
+    public var notifyCursorPosition: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyEllipsize: ((Label) -> Void)?
+    public var notifyEllipsize: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyJustify: ((Label) -> Void)?
+    public var notifyJustify: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyLabel: ((Label) -> Void)?
+    public var notifyLabel: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyLines: ((Label) -> Void)?
+    public var notifyLines: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyMaxWidthChars: ((Label) -> Void)?
+    public var notifyMaxWidthChars: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyMnemonicKeyval: ((Label) -> Void)?
+    public var notifyMnemonicKeyval: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyPattern: ((Label) -> Void)?
+    public var notifyPattern: ((Label, OpaquePointer) -> Void)?
 
-    public var notifySelectable: ((Label) -> Void)?
+    public var notifySelectable: ((Label, OpaquePointer) -> Void)?
 
-    public var notifySelectionBound: ((Label) -> Void)?
+    public var notifySelectionBound: ((Label, OpaquePointer) -> Void)?
 
-    public var notifySingleLineMode: ((Label) -> Void)?
+    public var notifySingleLineMode: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyTrackVisitedLinks: ((Label) -> Void)?
+    public var notifyTrackVisitedLinks: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyUseMarkup: ((Label) -> Void)?
+    public var notifyUseMarkup: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyUseUnderline: ((Label) -> Void)?
+    public var notifyUseUnderline: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyWidthChars: ((Label) -> Void)?
+    public var notifyWidthChars: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyWrap: ((Label) -> Void)?
+    public var notifyWrap: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyWrapMode: ((Label) -> Void)?
+    public var notifyWrapMode: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyXalign: ((Label) -> Void)?
+    public var notifyXalign: ((Label, OpaquePointer) -> Void)?
 
-    public var notifyYalign: ((Label) -> Void)?
+    public var notifyYalign: ((Label, OpaquePointer) -> Void)?
 }

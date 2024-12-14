@@ -48,7 +48,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     private var cancellable: Cancellable?
 
     /// The environment most recently provided by this node's parent.
-    private var parentEnvironment: Environment
+    private var parentEnvironment: EnvironmentValues
 
     /// Creates a node for a given view while also creating the nodes for its children, creating
     /// the view's widget, and starting to observe its state for changes.
@@ -56,7 +56,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         for nodeView: NodeView,
         backend: Backend,
         snapshot: ViewGraphSnapshotter.NodeSnapshot? = nil,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         self.backend = backend
 
@@ -90,10 +90,18 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         lastProposedSize = .zero
         parentEnvironment = environment
 
+        let viewEnvironment = updateEnvironment(environment)
+
+        updateDynamicProperties(
+            of: view,
+            previousValue: nil,
+            environment: viewEnvironment
+        )
+
         let children = view.children(
             backend: backend,
             snapshots: childSnapshots,
-            environment: updateEnvironment(environment)
+            environment: viewEnvironment
         )
         self.children = children
 
@@ -146,7 +154,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         }
     }
 
-    private func updateEnvironment(_ environment: Environment) -> Environment {
+    private func updateEnvironment(_ environment: EnvironmentValues) -> EnvironmentValues {
         environment.with(\.onResize) { [weak self] _ in
             guard let self = self else { return }
             self.bottomUpUpdate()
@@ -161,7 +169,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     public func update(
         with newView: NodeView? = nil,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         dryRun: Bool
     ) -> ViewSize {
         // Defensively ensure that all future scene implementations obey this
@@ -197,17 +205,26 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         parentEnvironment = environment
         lastProposedSize = proposedSize
 
+        let previousView = newView != nil ? view : nil
         if let newView {
             var newView = newView
             newView.state = view.state
             view = newView
         }
 
+        let viewEnvironment = updateEnvironment(environment)
+
+        updateDynamicProperties(
+            of: view,
+            previousValue: previousView,
+            environment: viewEnvironment
+        )
+
         let size = view.update(
             widget,
             children: children,
             proposedSize: proposedSize,
-            environment: updateEnvironment(environment),
+            environment: viewEnvironment,
             backend: backend,
             dryRun: dryRun
         )

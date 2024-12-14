@@ -13,7 +13,7 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> Children {
         SplitViewChildren(
             wrapping: body.children(
@@ -39,7 +39,7 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {

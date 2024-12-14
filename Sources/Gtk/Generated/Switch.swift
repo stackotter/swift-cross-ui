@@ -35,14 +35,13 @@ import CGtk
 /// `GtkSwitch` uses the %GTK_ACCESSIBLE_ROLE_SWITCH role.
 public class Switch: Widget, Actionable {
     /// Creates a new `GtkSwitch` widget.
-    override public init() {
-        super.init()
-        widgetPointer = gtk_switch_new()
+    public convenience init() {
+        self.init(
+            gtk_switch_new()
+        )
     }
 
     override func didMoveToParent() {
-        removeSignals()
-
         super.didMoveToParent()
 
         addSignal(name: "activate") { [weak self] () in
@@ -56,9 +55,9 @@ public class Switch: Widget, Actionable {
                     SignalBox1<Bool>.run(data, value1)
                 }
 
-        addSignal(name: "state-set", handler: gCallback(handler1)) { [weak self] (_: Bool) in
+        addSignal(name: "state-set", handler: gCallback(handler1)) { [weak self] (param0: Bool) in
             guard let self = self else { return }
-            self.stateSet?(self)
+            self.stateSet?(self, param0)
         }
 
         let handler2:
@@ -68,9 +67,9 @@ public class Switch: Widget, Actionable {
                 }
 
         addSignal(name: "notify::active", handler: gCallback(handler2)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyActive?(self)
+            self.notifyActive?(self, param0)
         }
 
         let handler3:
@@ -80,9 +79,9 @@ public class Switch: Widget, Actionable {
                 }
 
         addSignal(name: "notify::state", handler: gCallback(handler3)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyState?(self)
+            self.notifyState?(self, param0)
         }
 
         let handler4:
@@ -92,9 +91,9 @@ public class Switch: Widget, Actionable {
                 }
 
         addSignal(name: "notify::action-name", handler: gCallback(handler4)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyActionName?(self)
+            self.notifyActionName?(self, param0)
         }
 
         let handler5:
@@ -104,9 +103,9 @@ public class Switch: Widget, Actionable {
                 }
 
         addSignal(name: "notify::action-target", handler: gCallback(handler5)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyActionTarget?(self)
+            self.notifyActionTarget?(self, param0)
         }
     }
 
@@ -141,13 +140,13 @@ public class Switch: Widget, Actionable {
     /// [method@Gtk.Switch.set_state] when the underlying state change is
     /// complete. The signal handler should return %TRUE to prevent the
     /// default handler from running.
-    public var stateSet: ((Switch) -> Void)?
+    public var stateSet: ((Switch, Bool) -> Void)?
 
-    public var notifyActive: ((Switch) -> Void)?
+    public var notifyActive: ((Switch, OpaquePointer) -> Void)?
 
-    public var notifyState: ((Switch) -> Void)?
+    public var notifyState: ((Switch, OpaquePointer) -> Void)?
 
-    public var notifyActionName: ((Switch) -> Void)?
+    public var notifyActionName: ((Switch, OpaquePointer) -> Void)?
 
-    public var notifyActionTarget: ((Switch) -> Void)?
+    public var notifyActionTarget: ((Switch, OpaquePointer) -> Void)?
 }

@@ -44,7 +44,7 @@ public final class TupleSceneNode${i}<
     public init<Backend: AppBackend>(
         from scene: NodeScene,
         backend: Backend,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         %for j in range(i):
         node${j} = Scene${j}.Node(from: scene.scene${j}, backend: backend, environment: environment)
@@ -54,7 +54,7 @@ public final class TupleSceneNode${i}<
     public func update<Backend: AppBackend>(
         _ newScene: NodeScene?,
         backend: Backend,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         %for j in range(i):
         node${j}.update(newScene?.scene${j}, backend: backend, environment: environment)

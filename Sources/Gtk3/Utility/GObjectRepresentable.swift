@@ -1,7 +1,7 @@
 import CGtk3
 
 public protocol GObjectRepresentable {
-    var gobjectPointer: UnsafeMutablePointer<GObject> { get }
+    var gobjectPointer: UnsafeMutablePointer<CGtk3.GObject> { get }
 }
 
 extension GObjectRepresentable {

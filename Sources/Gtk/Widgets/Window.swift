@@ -7,14 +7,8 @@ import CGtk
 open class Window: Widget {
     public var child: Widget?
 
-    override public init() {
-        super.init()
-        widgetPointer = gtk_window_new()
-    }
-
-    private init(pointer: UnsafeMutablePointer<GtkWidget>) {
-        super.init()
-        self.widgetPointer = pointer
+    public convenience init() {
+        self.init(gtk_window_new())
     }
 
     @GObjectProperty(named: "title") public var title: String?
@@ -26,11 +20,9 @@ open class Window: Widget {
         gtk_window_set_transient_for(castedPointer(), other.castedPointer())
     }
 
-    /// The window must not be used after destruction. The widget pointer is
-    /// defensively nulled out just in case you do.
+    /// The window must not be used after destruction.
     public func destroy() {
         gtk_window_destroy(castedPointer())
-        widgetPointer = nil
     }
 
     public var defaultSize: Size {

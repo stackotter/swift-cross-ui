@@ -5,22 +5,13 @@
 import CGtk
 import Foundation
 
-open class Widget: GObjectRepresentable {
-    private var signals: [(UInt, Any)] = []
-    public var widgetPointer: UnsafeMutablePointer<GtkWidget>?
-
-    public var gobjectPointer: UnsafeMutablePointer<GObject> {
-        return widgetPointer!.cast()
-    }
-
-    public var opaquePointer: OpaquePointer? {
-        return OpaquePointer(widgetPointer)
+open class Widget: GObject {
+    public var widgetPointer: UnsafeMutablePointer<GtkWidget> {
+        gobjectPointer.cast()
     }
 
     public weak var parentWidget: Widget? {
-        willSet {
-
-        }
+        willSet {}
         didSet {
             if parentWidget != nil {
                 didMoveToParent()
@@ -31,128 +22,12 @@ open class Widget: GObjectRepresentable {
         }
     }
 
-    init() {
-        widgetPointer = nil
+    func didMoveToParent() {
+        removeSignals()
+        registerSignals()
     }
-
-    func removeSignals() {
-        for (handlerId, _) in signals {
-            disconnectSignal(widgetPointer, handlerId: handlerId)
-        }
-
-        signals = []
-    }
-
-    func didMoveToParent() {}
 
     func didMoveFromParent() {}
-
-    /// Adds a signal that is not carrying any additional information.
-    func addSignal(name: String, callback: @escaping () -> Void) {
-        let box = SignalBox0(callback: callback)
-        let handler:
-            @convention(c) (
-                UnsafeMutableRawPointer, UnsafeMutableRawPointer
-            ) -> Void = { _, data in
-                let box = Unmanaged<SignalBox0>.fromOpaque(data).takeUnretainedValue()
-                box.callback()
-            }
-
-        let handlerId = connectSignal(
-            widgetPointer,
-            name: name,
-            data: Unmanaged.passUnretained(box).toOpaque(),
-            handler: unsafeBitCast(handler, to: GCallback.self)
-        )
-
-        signals.append((handlerId, box))
-    }
-
-    func addSignal<T1>(name: String, handler: GCallback, callback: @escaping (T1) -> Void) {
-        let box = SignalBox1(callback: callback)
-
-        let handlerId = connectSignal(
-            widgetPointer,
-            name: name,
-            data: Unmanaged.passUnretained(box).toOpaque(),
-            handler: handler
-        )
-
-        signals.append((handlerId, box))
-    }
-
-    func addSignal<T1, T2>(name: String, handler: GCallback, callback: @escaping (T1, T2) -> Void) {
-        let box = SignalBox2(callback: callback)
-
-        let handlerId = connectSignal(
-            widgetPointer,
-            name: name,
-            data: Unmanaged.passUnretained(box).toOpaque(),
-            handler: handler
-        )
-
-        signals.append((handlerId, box))
-    }
-
-    func addSignal<T1, T2, T3>(
-        name: String, handler: GCallback, callback: @escaping (T1, T2, T3) -> Void
-    ) {
-        let box = SignalBox3(callback: callback)
-
-        let handlerId = connectSignal(
-            widgetPointer,
-            name: name,
-            data: Unmanaged.passUnretained(box).toOpaque(),
-            handler: handler
-        )
-
-        signals.append((handlerId, box))
-    }
-
-    func addSignal<T1, T2, T3, T4>(
-        name: String, handler: GCallback, callback: @escaping (T1, T2, T3, T4) -> Void
-    ) {
-        let box = SignalBox4(callback: callback)
-
-        let handlerId = connectSignal(
-            widgetPointer,
-            name: name,
-            data: Unmanaged.passUnretained(box).toOpaque(),
-            handler: handler
-        )
-
-        signals.append((handlerId, box))
-    }
-
-    func addSignal<T1, T2, T3, T4, T5>(
-        name: String, handler: GCallback, callback: @escaping (T1, T2, T3, T4, T5) -> Void
-    ) {
-        let box = SignalBox5(callback: callback)
-
-        let handlerId = connectSignal(
-            widgetPointer,
-            name: name,
-            data: Unmanaged.passUnretained(box).toOpaque(),
-            handler: handler
-        )
-
-        signals.append((handlerId, box))
-    }
-
-    func addSignal<T1, T2, T3, T4, T5, T6>(
-        name: String, handler: GCallback, callback: @escaping (T1, T2, T3, T4, T5, T6) -> Void
-    ) {
-        let box = SignalBox6(callback: callback)
-
-        let handlerId = connectSignal(
-            widgetPointer,
-            name: name,
-            data: Unmanaged.passUnretained(box).toOpaque(),
-            handler: handler
-        )
-
-        signals.append((handlerId, box))
-    }
 
     /// The CSS rules applied directly to this widget.
     public lazy var css: CSSBlock = CSSBlock(forClass: customCSSClass) {

@@ -8,7 +8,7 @@ protocol TypeSafeView: View {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> Children
 
     func layoutableChildren<Backend: AppBackend>(
@@ -25,7 +25,7 @@ protocol TypeSafeView: View {
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize
@@ -35,7 +35,7 @@ extension TypeSafeView {
     public func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> any ViewGraphNodeChildren {
         let children: Children = children(
             backend: backend,
@@ -72,7 +72,7 @@ extension TypeSafeView {
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {

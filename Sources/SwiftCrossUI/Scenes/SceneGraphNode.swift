@@ -13,7 +13,7 @@ public protocol SceneGraphNode: AnyObject {
     init<Backend: AppBackend>(
         from scene: NodeScene,
         backend: Backend,
-        environment: Environment
+        environment: EnvironmentValues
     )
 
     /// Unlike views (which have state), scenes are only ever updated when they're
@@ -25,6 +25,6 @@ public protocol SceneGraphNode: AnyObject {
     func update<Backend: AppBackend>(
         _ newScene: NodeScene?,
         backend: Backend,
-        environment: Environment
+        environment: EnvironmentValues
     )
 }

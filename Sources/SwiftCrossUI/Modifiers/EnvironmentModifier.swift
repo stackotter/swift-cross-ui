@@ -2,9 +2,9 @@ struct EnvironmentModifier<Child: View>: TypeSafeView {
     typealias Children = TupleView1<Child>.Children
 
     var body: TupleView1<Child>
-    var modification: (Environment) -> Environment
+    var modification: (EnvironmentValues) -> EnvironmentValues
 
-    init(_ child: Child, modification: @escaping (Environment) -> Environment) {
+    init(_ child: Child, modification: @escaping (EnvironmentValues) -> EnvironmentValues) {
         self.body = TupleView1(child)
         self.modification = modification
     }
@@ -12,7 +12,7 @@ struct EnvironmentModifier<Child: View>: TypeSafeView {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> Children {
         body.children(
             backend: backend,
@@ -39,7 +39,7 @@ struct EnvironmentModifier<Child: View>: TypeSafeView {
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {

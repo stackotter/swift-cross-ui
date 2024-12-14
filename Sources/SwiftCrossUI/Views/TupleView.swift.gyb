@@ -34,7 +34,7 @@ public struct ${view}<${struct_parameters}>: TypeSafeView, View {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> Children {
         return Children(
             % for j in range(i + 1):
@@ -80,7 +80,7 @@ public struct ${view}<${struct_parameters}>: TypeSafeView, View {
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {

@@ -30,8 +30,6 @@ import CGtk3
 public class MenuShell: Container {
 
     override func didMoveToParent() {
-        removeSignals()
-
         super.didMoveToParent()
 
         let handler0:
@@ -40,9 +38,10 @@ public class MenuShell: Container {
                     SignalBox1<Bool>.run(data, value1)
                 }
 
-        addSignal(name: "activate-current", handler: gCallback(handler0)) { [weak self] (_: Bool) in
+        addSignal(name: "activate-current", handler: gCallback(handler0)) {
+            [weak self] (param0: Bool) in
             guard let self = self else { return }
-            self.activateCurrent?(self)
+            self.activateCurrent?(self, param0)
         }
 
         addSignal(name: "cancel") { [weak self] () in
@@ -58,9 +57,9 @@ public class MenuShell: Container {
                 }
 
         addSignal(name: "cycle-focus", handler: gCallback(handler2)) {
-            [weak self] (_: GtkDirectionType) in
+            [weak self] (param0: GtkDirectionType) in
             guard let self = self else { return }
-            self.cycleFocus?(self)
+            self.cycleFocus?(self, param0)
         }
 
         addSignal(name: "deactivate") { [weak self] () in
@@ -76,9 +75,9 @@ public class MenuShell: Container {
                 }
 
         addSignal(name: "insert", handler: gCallback(handler4)) {
-            [weak self] (_: GtkWidget, _: Int) in
+            [weak self] (param0: GtkWidget, param1: Int) in
             guard let self = self else { return }
-            self.insert?(self)
+            self.insert?(self, param0, param1)
         }
 
         let handler5:
@@ -89,9 +88,9 @@ public class MenuShell: Container {
                 }
 
         addSignal(name: "move-current", handler: gCallback(handler5)) {
-            [weak self] (_: GtkMenuDirectionType) in
+            [weak self] (param0: GtkMenuDirectionType) in
             guard let self = self else { return }
-            self.moveCurrent?(self)
+            self.moveCurrent?(self, param0)
         }
 
         let handler6:
@@ -100,9 +99,10 @@ public class MenuShell: Container {
                     SignalBox1<Int>.run(data, value1)
                 }
 
-        addSignal(name: "move-selected", handler: gCallback(handler6)) { [weak self] (_: Int) in
+        addSignal(name: "move-selected", handler: gCallback(handler6)) {
+            [weak self] (param0: Int) in
             guard let self = self else { return }
-            self.moveSelected?(self)
+            self.moveSelected?(self, param0)
         }
 
         addSignal(name: "selection-done") { [weak self] () in
@@ -117,15 +117,15 @@ public class MenuShell: Container {
                 }
 
         addSignal(name: "notify::take-focus", handler: gCallback(handler8)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyTakeFocus?(self)
+            self.notifyTakeFocus?(self, param0)
         }
     }
 
     /// An action signal that activates the current menu item within
     /// the menu shell.
-    public var activateCurrent: ((MenuShell) -> Void)?
+    public var activateCurrent: ((MenuShell, Bool) -> Void)?
 
     /// An action signal which cancels the selection within the menu shell.
     /// Causes the #GtkMenuShell::selection-done signal to be emitted.
@@ -133,7 +133,7 @@ public class MenuShell: Container {
 
     /// A keybinding signal which moves the focus in the
     /// given @direction.
-    public var cycleFocus: ((MenuShell) -> Void)?
+    public var cycleFocus: ((MenuShell, GtkDirectionType) -> Void)?
 
     /// This signal is emitted when a menu shell is deactivated.
     public var deactivate: ((MenuShell) -> Void)?
@@ -144,19 +144,19 @@ public class MenuShell: Container {
     /// parameter.
     ///
     /// The inverse of this signal is the GtkContainer::removed signal.
-    public var insert: ((MenuShell) -> Void)?
+    public var insert: ((MenuShell, GtkWidget, Int) -> Void)?
 
     /// An keybinding signal which moves the current menu item
     /// in the direction specified by @direction.
-    public var moveCurrent: ((MenuShell) -> Void)?
+    public var moveCurrent: ((MenuShell, GtkMenuDirectionType) -> Void)?
 
     /// The ::move-selected signal is emitted to move the selection to
     /// another item.
-    public var moveSelected: ((MenuShell) -> Void)?
+    public var moveSelected: ((MenuShell, Int) -> Void)?
 
     /// This signal is emitted when a selection has been
     /// completed within a menu shell.
     public var selectionDone: ((MenuShell) -> Void)?
 
-    public var notifyTakeFocus: ((MenuShell) -> Void)?
+    public var notifyTakeFocus: ((MenuShell, OpaquePointer) -> Void)?
 }

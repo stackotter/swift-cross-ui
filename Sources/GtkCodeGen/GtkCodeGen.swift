@@ -39,6 +39,13 @@ struct GtkCodeGen {
         "notify::mnemonic-widget",
     ]
 
+    static let excludedInterfaces: [String] = [
+        "Orientable",
+        "TreeModel",
+        "PrintOperationPreview",
+        "ColorChooser",
+    ]
+
     /// Replacements applied to types which don't have the `ctype` attribute.
     /// Only used by Gtk3 GIR conversion at the moment.
     static let typeNameReplacements: [String: String] = [
@@ -78,7 +85,7 @@ struct GtkCodeGen {
     ) throws {
         let allowListedClasses = [
             "Button", "Entry", "Label", "TextView", "Range", "Scale", "Image", "Switch", "Spinner",
-            "ProgressBar",
+            "ProgressBar", "FileChooserNative", "NativeDialog",
         ]
         let gtk3AllowListedClasses = ["MenuShell"]
         let gtk4AllowListedClasses = ["Picture", "DropDown", "Popover"]
@@ -115,8 +122,11 @@ struct GtkCodeGen {
             try save(source.description, to: directory, declName: enumeration.name)
         }
 
-        // TODO: Generate Orientable
-        for interface in gir.namespace.interfaces where interface.name != "Orientable" {
+        for interface in gir.namespace.interfaces {
+            guard !excludedInterfaces.contains(interface.name) else {
+                continue
+            }
+
             // Skip interfaces which were added since 4.0
             guard interface.version == nil else {
                 continue
@@ -147,7 +157,12 @@ struct GtkCodeGen {
         var signalProperties: [DeclSyntax] = []
         for signal in interface.signals {
             signalProperties.append(
-                generateSignalHandlerProperty(signal, className: "Self", forProtocol: true)
+                generateSignalHandlerProperty(
+                    signal,
+                    className: "Self",
+                    forProtocol: true,
+                    namespace: namespace
+                )
             )
         }
 
@@ -286,6 +301,7 @@ struct GtkCodeGen {
             guard
                 constructor.deprecated != 1
                     || constructor.cIdentifier == "gtk_dialog_new"
+                    || constructor.cIdentifier == "gtk_file_chooser_native_new"
             else {
                 continue
             }
@@ -352,17 +368,10 @@ struct GtkCodeGen {
 
         for (_, signal) in signals {
             properties.append(
-                generateSignalHandlerProperty(signal, className: class_.name, forProtocol: false)
-            )
-        }
-
-        var methods: [DeclSyntax] = []
-        if !signals.isEmpty {
-            methods.append(
-                generateDidMoveToParent(
-                    signals.map { signal in
-                        signal.1
-                    },
+                generateSignalHandlerProperty(
+                    signal,
+                    className: class_.name,
+                    forProtocol: false,
                     namespace: namespace
                 )
             )
@@ -370,7 +379,11 @@ struct GtkCodeGen {
 
         var conformances: [String] = []
         if let parent = class_.parent {
-            conformances.append(parent)
+            if parent == "GObject.Object" {
+                conformances.append("GObject")
+            } else {
+                conformances.append(parent)
+            }
         }
 
         for conformance in class_.getImplementedInterfaces(
@@ -384,6 +397,26 @@ struct GtkCodeGen {
             conformanceString = ""
         } else {
             conformanceString = ": \(conformances.joined(separator: ", "))"
+        }
+
+        var inheritanceChain = [class_.name]
+        var parent = class_.getParentClass(namespace: namespace)
+        while let currentParent = parent {
+            inheritanceChain.append(currentParent.name)
+            parent = currentParent.getParentClass(namespace: namespace)
+        }
+
+        var methods: [DeclSyntax] = []
+        if !signals.isEmpty {
+            methods.append(
+                generateSignalRegistrationMethod(
+                    signals.map { signal in
+                        signal.1
+                    },
+                    namespace: namespace,
+                    isWidget: inheritanceChain.contains("Widget")
+                )
+            )
         }
 
         let source = SourceFileSyntax(
@@ -408,7 +441,11 @@ struct GtkCodeGen {
         try source.write(to: file, atomically: false, encoding: .utf8)
     }
 
-    static func generateDidMoveToParent(_ signals: [Signal], namespace: Namespace) -> DeclSyntax {
+    static func generateSignalRegistrationMethod(
+        _ signals: [Signal],
+        namespace: Namespace,
+        isWidget: Bool
+    ) -> DeclSyntax {
         var exprs: [String] = []
 
         for (signalIndex, signal) in signals.enumerated() {
@@ -431,15 +468,20 @@ struct GtkCodeGen {
                 delimiter: "-"
             )
 
-            let parameters = parameterTypes.map { type in
-                "_: \(type)"
+            let parameters = parameterTypes.enumerated().map { (index, type) in
+                "param\(index): \(type)"
             }.joined(separator: ", ")
+
+            let extraArguments = (0..<parameterCount).map { index in
+                "param\(index)"
+            }
+            let arguments = (["self"] + extraArguments).joined(separator: ", ")
 
             let closure = ExprSyntax(
                 """
                 { [weak self] (\(raw: parameters)) in
                     guard let self = self else { return }
-                    self.\(raw: name)?(self)
+                    self.\(raw: name)?(\(raw: arguments))
                 }
                 """
             )
@@ -473,12 +515,12 @@ struct GtkCodeGen {
             exprs.append(expr.description)
         }
 
+        let methodName = isWidget ? "didMoveToParent" : "registerSignals"
+
         return DeclSyntax(
             """
-            override func didMoveToParent() {
-                removeSignals()
-
-                super.didMoveToParent()
+            \(raw: isWidget ? "" : "public") override func \(raw: methodName)() {
+                super.\(raw: methodName)()
 
                 \(raw: exprs.joined(separator: "\n\n"))
             }
@@ -487,9 +529,25 @@ struct GtkCodeGen {
     }
 
     static func generateSignalHandlerProperty(
-        _ signal: Signal, className: String, forProtocol: Bool
+        _ signal: Signal,
+        className: String,
+        forProtocol: Bool,
+        namespace: Namespace
     ) -> DeclSyntax {
-        // TODO: Correctly handle signals that take extra parameters
+        let parameterTypes = (signal.parameters?.parameters ?? []).map { parameter in
+            guard let girType = parameter.type else {
+                fatalError(
+                    "Missing c type for parameter '\(parameter.name)' of signal '\(signal.name)'"
+                )
+            }
+            var type = swiftType(girType, namespace: namespace)
+            if type == "String" {
+                type = "UnsafePointer<CChar>"
+            }
+            return type
+        }
+        let parameters = ([className] + parameterTypes).joined(separator: ", ")
+
         let name = convertDelimitedCasingToCamel(
             signal.name.replacingOccurrences(of: "::", with: "-"),
             delimiter: "-"
@@ -504,7 +562,7 @@ struct GtkCodeGen {
         return DeclSyntax(
             """
             \(raw: docComment(signal.doc))
-            \(raw: prefix)var \(raw: name): ((\(raw: className)) -> Void)?\(raw: suffix)
+            \(raw: prefix)var \(raw: name): ((\(raw: parameters)) -> Void)?\(raw: suffix)
             """
         )
     }
@@ -607,14 +665,13 @@ struct GtkCodeGen {
             return nil
         }
 
-        let modifiers = parameters.isEmpty ? "override " : ""
-
         return DeclSyntax(
             """
             \(raw: docComment(constructor.doc))
-            \(raw: modifiers)public init(\(raw: parameters)) {
-                super.init()
-                widgetPointer = \(raw: constructor.cIdentifier)(\(raw: generateArguments(constructor.parameters)))
+            public convenience init(\(raw: parameters)) {
+                self.init(
+                    \(raw: constructor.cIdentifier)(\(raw: generateArguments(constructor.parameters)))
+                )
             }
             """
         )

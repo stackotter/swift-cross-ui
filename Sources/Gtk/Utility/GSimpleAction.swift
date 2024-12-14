@@ -3,8 +3,8 @@ import CGtk
 public class GSimpleAction: GAction, GObjectRepresentable {
     public var actionPointer: OpaquePointer
 
-    public var gobjectPointer: UnsafeMutablePointer<GObject> {
-        UnsafeMutablePointer<GObject>(actionPointer)
+    public var gobjectPointer: UnsafeMutablePointer<CGtk.GObject> {
+        UnsafeMutablePointer<CGtk.GObject>(actionPointer)
     }
 
     @GObjectProperty(named: "enabled") var enabled: Bool
@@ -45,4 +45,6 @@ public class GSimpleAction: GAction, GObjectRepresentable {
             G_CONNECT_AFTER
         )
     }
+
+    public func registerSignals() {}
 }

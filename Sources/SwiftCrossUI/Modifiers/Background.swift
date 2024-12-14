@@ -16,7 +16,7 @@ struct BackgroundModifier<Background: View, Foreground: View>: TypeSafeView {
     func children<Backend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> TupleView2<Background, Foreground>.Children where Backend: AppBackend {
         body.children(backend: backend, snapshots: snapshots, environment: environment)
     }
@@ -38,7 +38,7 @@ struct BackgroundModifier<Background: View, Foreground: View>: TypeSafeView {
         _ widget: Backend.Widget,
         children: TupleView2<Background, Foreground>.Children,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize where Backend: AppBackend {

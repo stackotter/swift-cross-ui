@@ -115,9 +115,10 @@ open class Dialog: Window {
     /// Widgets should not be packed into the `GtkWindow`
     /// directly, but into the @content_area and @action_area,
     /// as described above.
-    override public init() {
-        super.init()
-        widgetPointer = gtk_dialog_new()
+    public convenience init() {
+        self.init(
+            gtk_dialog_new()
+        )
     }
 
     func registerSignalHandlers() {

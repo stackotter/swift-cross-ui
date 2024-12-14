@@ -43,7 +43,7 @@ public struct TupleViewChildren${i + 1}<${struct_type_parameters}>: ViewGraphNod
         % end
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         let viewTypeNames = [
             % for child in children:

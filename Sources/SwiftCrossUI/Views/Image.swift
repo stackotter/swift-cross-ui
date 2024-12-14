@@ -50,7 +50,7 @@ public struct Image: TypeSafeView, View {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> _ImageChildren {
         _ImageChildren(backend: backend)
     }
@@ -66,7 +66,7 @@ public struct Image: TypeSafeView, View {
         _ widget: Backend.Widget,
         children: _ImageChildren,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {

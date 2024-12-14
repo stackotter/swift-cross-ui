@@ -25,7 +25,7 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> NodeChildren {
         return EitherViewChildren(
             from: self,
@@ -46,7 +46,7 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
         _ widget: Backend.Widget,
         children: EitherViewChildren<A, B>,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {
@@ -168,7 +168,7 @@ class EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
         from view: EitherView<A, B>,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         // TODO: Ensure that this is valid in all circumstances. It should be, given that
         //   we're assuming that the parent view's state was restored from the same snapshot

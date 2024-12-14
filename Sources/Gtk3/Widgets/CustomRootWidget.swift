@@ -6,9 +6,8 @@ import Gtk3CustomWidgets
 public class CustomRootWidget: Widget {
     public var child: Widget?
 
-    override public init() {
-        super.init()
-        widgetPointer = gtk_custom_root_widget_new()
+    public convenience init() {
+        self.init(gtk_custom_root_widget_new())
     }
 
     public func setChild(to widget: Widget) {

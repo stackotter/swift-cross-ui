@@ -45,5 +45,5 @@ public protocol SelectionModel: GObjectRepresentable {
     /// items, they need to be queried manually. It is also not necessary for
     /// a model to change the selection state of any of the items in the selection
     /// model, though it would be rather useless to emit such a signal.
-    var selectionChanged: ((Self) -> Void)? { get set }
+    var selectionChanged: ((Self, UInt, UInt) -> Void)? { get set }
 }

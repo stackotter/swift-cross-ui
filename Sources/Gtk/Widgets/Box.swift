@@ -7,10 +7,8 @@ import CGtk
 open class Box: Widget, Orientable {
     public var children: [Widget] = []
 
-    public init(orientation: Orientation = .vertical, spacing: Int = 0) {
-        super.init()
-
-        widgetPointer = gtk_box_new(orientation.toGtk(), gint(spacing))
+    public convenience init(orientation: Orientation = .vertical, spacing: Int = 0) {
+        self.init(gtk_box_new(orientation.toGtk(), gint(spacing)))
     }
 
     override func didMoveToParent() {

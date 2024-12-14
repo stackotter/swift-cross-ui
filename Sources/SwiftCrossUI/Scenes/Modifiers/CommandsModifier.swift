@@ -24,7 +24,7 @@ public final class CommandsModifierNode<Content: Scene>: SceneGraphNode {
     public init<Backend: AppBackend>(
         from scene: NodeScene,
         backend: Backend,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         contentNode = Content.Node(
             from: scene.content,
@@ -36,7 +36,7 @@ public final class CommandsModifierNode<Content: Scene>: SceneGraphNode {
     public func update<Backend: AppBackend>(
         _ newScene: NodeScene?,
         backend: Backend,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         contentNode.update(
             newScene?.content,

@@ -5,14 +5,8 @@
 import CGtk3
 
 open class Window: Bin {
-    override public init() {
-        super.init()
-        widgetPointer = gtk_window_new(GTK_WINDOW_TOPLEVEL)
-    }
-
-    private init(pointer: UnsafeMutablePointer<GtkWidget>) {
-        super.init()
-        self.widgetPointer = pointer
+    public convenience init() {
+        self.init(gtk_window_new(GTK_WINDOW_TOPLEVEL))
     }
 
     @GObjectProperty(named: "title") public var title: String?
@@ -24,11 +18,9 @@ open class Window: Bin {
         gtk_window_set_transient_for(castedPointer(), other.castedPointer())
     }
 
-    /// The window must not be used after destruction. The widget pointer is
-    /// defensively nulled out just in case you do.
+    /// The window must not be used after destruction.
     public func destroy() {
         gtk_widget_destroy(widgetPointer)
-        widgetPointer = nil
     }
 
     public var defaultSize: Size {

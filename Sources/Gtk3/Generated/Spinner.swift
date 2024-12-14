@@ -13,14 +13,13 @@ import CGtk3
 /// active, the :checked pseudoclass is added to this node.
 public class Spinner: Widget {
     /// Returns a new spinner widget. Not yet started.
-    override public init() {
-        super.init()
-        widgetPointer = gtk_spinner_new()
+    public convenience init() {
+        self.init(
+            gtk_spinner_new()
+        )
     }
 
     override func didMoveToParent() {
-        removeSignals()
-
         super.didMoveToParent()
 
         let handler0:
@@ -30,11 +29,11 @@ public class Spinner: Widget {
                 }
 
         addSignal(name: "notify::active", handler: gCallback(handler0)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyActive?(self)
+            self.notifyActive?(self, param0)
         }
     }
 
-    public var notifyActive: ((Spinner) -> Void)?
+    public var notifyActive: ((Spinner, OpaquePointer) -> Void)?
 }

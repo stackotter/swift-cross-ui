@@ -17,14 +17,13 @@ import CGtk
 /// added to this node.
 public class Spinner: Widget {
     /// Returns a new spinner widget. Not yet started.
-    override public init() {
-        super.init()
-        widgetPointer = gtk_spinner_new()
+    public convenience init() {
+        self.init(
+            gtk_spinner_new()
+        )
     }
 
     override func didMoveToParent() {
-        removeSignals()
-
         super.didMoveToParent()
 
         let handler0:
@@ -34,14 +33,14 @@ public class Spinner: Widget {
                 }
 
         addSignal(name: "notify::spinning", handler: gCallback(handler0)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySpinning?(self)
+            self.notifySpinning?(self, param0)
         }
     }
 
     /// Whether the spinner is spinning
     @GObjectProperty(named: "spinning") public var spinning: Bool
 
-    public var notifySpinning: ((Spinner) -> Void)?
+    public var notifySpinning: ((Spinner, OpaquePointer) -> Void)?
 }

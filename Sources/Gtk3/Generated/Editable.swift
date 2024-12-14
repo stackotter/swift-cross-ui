@@ -56,7 +56,7 @@ public protocol Editable: GObjectRepresentable {
     /// prevent it from being deleted entirely. The @start_pos
     /// and @end_pos parameters are interpreted as for
     /// gtk_editable_delete_text().
-    var deleteText: ((Self) -> Void)? { get set }
+    var deleteText: ((Self, Int, Int) -> Void)? { get set }
 
     /// This signal is emitted when text is inserted into
     /// the widget by the user. The default handler for
@@ -65,5 +65,5 @@ public protocol Editable: GObjectRepresentable {
     /// stopping the signal with g_signal_stop_emission(), it
     /// is possible to modify the inserted text, or prevent
     /// it from being inserted entirely.
-    var insertText: ((Self) -> Void)? { get set }
+    var insertText: ((Self, UnsafePointer<CChar>, Int, gpointer) -> Void)? { get set }
 }

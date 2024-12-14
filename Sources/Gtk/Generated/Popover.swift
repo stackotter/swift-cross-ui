@@ -62,14 +62,13 @@ import CGtk
 /// used) and no box-shadow.
 public class Popover: Widget, Native, ShortcutManager {
     /// Creates a new `GtkPopover`.
-    override public init() {
-        super.init()
-        widgetPointer = gtk_popover_new()
+    public convenience init() {
+        self.init(
+            gtk_popover_new()
+        )
     }
 
     override func didMoveToParent() {
-        removeSignals()
-
         super.didMoveToParent()
 
         addSignal(name: "activate-default") { [weak self] () in
@@ -89,9 +88,9 @@ public class Popover: Widget, Native, ShortcutManager {
                 }
 
         addSignal(name: "notify::autohide", handler: gCallback(handler2)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyAutohide?(self)
+            self.notifyAutohide?(self, param0)
         }
 
         let handler3:
@@ -101,9 +100,9 @@ public class Popover: Widget, Native, ShortcutManager {
                 }
 
         addSignal(name: "notify::cascade-popdown", handler: gCallback(handler3)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyCascadePopdown?(self)
+            self.notifyCascadePopdown?(self, param0)
         }
 
         let handler4:
@@ -113,9 +112,9 @@ public class Popover: Widget, Native, ShortcutManager {
                 }
 
         addSignal(name: "notify::child", handler: gCallback(handler4)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyChild?(self)
+            self.notifyChild?(self, param0)
         }
 
         let handler5:
@@ -125,9 +124,9 @@ public class Popover: Widget, Native, ShortcutManager {
                 }
 
         addSignal(name: "notify::default-widget", handler: gCallback(handler5)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyDefaultWidget?(self)
+            self.notifyDefaultWidget?(self, param0)
         }
 
         let handler6:
@@ -137,9 +136,9 @@ public class Popover: Widget, Native, ShortcutManager {
                 }
 
         addSignal(name: "notify::has-arrow", handler: gCallback(handler6)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyHasArrow?(self)
+            self.notifyHasArrow?(self, param0)
         }
 
         let handler7:
@@ -149,9 +148,9 @@ public class Popover: Widget, Native, ShortcutManager {
                 }
 
         addSignal(name: "notify::mnemonics-visible", handler: gCallback(handler7)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyMnemonicsVisible?(self)
+            self.notifyMnemonicsVisible?(self, param0)
         }
 
         let handler8:
@@ -161,9 +160,9 @@ public class Popover: Widget, Native, ShortcutManager {
                 }
 
         addSignal(name: "notify::pointing-to", handler: gCallback(handler8)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPointingTo?(self)
+            self.notifyPointingTo?(self, param0)
         }
 
         let handler9:
@@ -173,9 +172,9 @@ public class Popover: Widget, Native, ShortcutManager {
                 }
 
         addSignal(name: "notify::position", handler: gCallback(handler9)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPosition?(self)
+            self.notifyPosition?(self, param0)
         }
     }
 
@@ -204,19 +203,19 @@ public class Popover: Widget, Native, ShortcutManager {
     /// Emitted when the popover is closed.
     public var closed: ((Popover) -> Void)?
 
-    public var notifyAutohide: ((Popover) -> Void)?
+    public var notifyAutohide: ((Popover, OpaquePointer) -> Void)?
 
-    public var notifyCascadePopdown: ((Popover) -> Void)?
+    public var notifyCascadePopdown: ((Popover, OpaquePointer) -> Void)?
 
-    public var notifyChild: ((Popover) -> Void)?
+    public var notifyChild: ((Popover, OpaquePointer) -> Void)?
 
-    public var notifyDefaultWidget: ((Popover) -> Void)?
+    public var notifyDefaultWidget: ((Popover, OpaquePointer) -> Void)?
 
-    public var notifyHasArrow: ((Popover) -> Void)?
+    public var notifyHasArrow: ((Popover, OpaquePointer) -> Void)?
 
-    public var notifyMnemonicsVisible: ((Popover) -> Void)?
+    public var notifyMnemonicsVisible: ((Popover, OpaquePointer) -> Void)?
 
-    public var notifyPointingTo: ((Popover) -> Void)?
+    public var notifyPointingTo: ((Popover, OpaquePointer) -> Void)?
 
-    public var notifyPosition: ((Popover) -> Void)?
+    public var notifyPosition: ((Popover, OpaquePointer) -> Void)?
 }

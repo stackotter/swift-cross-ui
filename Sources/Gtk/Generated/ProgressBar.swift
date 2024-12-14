@@ -48,14 +48,13 @@ import CGtk
 /// `GtkProgressBar` uses the %GTK_ACCESSIBLE_ROLE_PROGRESS_BAR role.
 public class ProgressBar: Widget, Orientable {
     /// Creates a new `GtkProgressBar`.
-    override public init() {
-        super.init()
-        widgetPointer = gtk_progress_bar_new()
+    public convenience init() {
+        self.init(
+            gtk_progress_bar_new()
+        )
     }
 
     override func didMoveToParent() {
-        removeSignals()
-
         super.didMoveToParent()
 
         let handler0:
@@ -65,9 +64,9 @@ public class ProgressBar: Widget, Orientable {
                 }
 
         addSignal(name: "notify::ellipsize", handler: gCallback(handler0)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyEllipsize?(self)
+            self.notifyEllipsize?(self, param0)
         }
 
         let handler1:
@@ -77,9 +76,9 @@ public class ProgressBar: Widget, Orientable {
                 }
 
         addSignal(name: "notify::fraction", handler: gCallback(handler1)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyFraction?(self)
+            self.notifyFraction?(self, param0)
         }
 
         let handler2:
@@ -89,9 +88,9 @@ public class ProgressBar: Widget, Orientable {
                 }
 
         addSignal(name: "notify::inverted", handler: gCallback(handler2)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyInverted?(self)
+            self.notifyInverted?(self, param0)
         }
 
         let handler3:
@@ -101,9 +100,9 @@ public class ProgressBar: Widget, Orientable {
                 }
 
         addSignal(name: "notify::pulse-step", handler: gCallback(handler3)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPulseStep?(self)
+            self.notifyPulseStep?(self, param0)
         }
 
         let handler4:
@@ -113,9 +112,9 @@ public class ProgressBar: Widget, Orientable {
                 }
 
         addSignal(name: "notify::show-text", handler: gCallback(handler4)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyShowText?(self)
+            self.notifyShowText?(self, param0)
         }
 
         let handler5:
@@ -125,9 +124,9 @@ public class ProgressBar: Widget, Orientable {
                 }
 
         addSignal(name: "notify::text", handler: gCallback(handler5)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyText?(self)
+            self.notifyText?(self, param0)
         }
 
         let handler6:
@@ -137,9 +136,9 @@ public class ProgressBar: Widget, Orientable {
                 }
 
         addSignal(name: "notify::orientation", handler: gCallback(handler6)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyOrientation?(self)
+            self.notifyOrientation?(self, param0)
         }
     }
 
@@ -170,17 +169,17 @@ public class ProgressBar: Widget, Orientable {
     /// The orientation of the orientable.
     @GObjectProperty(named: "orientation") public var orientation: Orientation
 
-    public var notifyEllipsize: ((ProgressBar) -> Void)?
+    public var notifyEllipsize: ((ProgressBar, OpaquePointer) -> Void)?
 
-    public var notifyFraction: ((ProgressBar) -> Void)?
+    public var notifyFraction: ((ProgressBar, OpaquePointer) -> Void)?
 
-    public var notifyInverted: ((ProgressBar) -> Void)?
+    public var notifyInverted: ((ProgressBar, OpaquePointer) -> Void)?
 
-    public var notifyPulseStep: ((ProgressBar) -> Void)?
+    public var notifyPulseStep: ((ProgressBar, OpaquePointer) -> Void)?
 
-    public var notifyShowText: ((ProgressBar) -> Void)?
+    public var notifyShowText: ((ProgressBar, OpaquePointer) -> Void)?
 
-    public var notifyText: ((ProgressBar) -> Void)?
+    public var notifyText: ((ProgressBar, OpaquePointer) -> Void)?
 
-    public var notifyOrientation: ((ProgressBar) -> Void)?
+    public var notifyOrientation: ((ProgressBar, OpaquePointer) -> Void)?
 }

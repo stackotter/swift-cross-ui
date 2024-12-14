@@ -49,18 +49,17 @@ import CGtk
 public class DropDown: Widget {
     /// Creates a new `GtkDropDown` that is populated with
     /// the strings.
-    public init(strings: [String]) {
-        super.init()
-        widgetPointer = gtk_drop_down_new_from_strings(
-            strings
-                .map({ UnsafePointer($0.unsafeUTF8Copy().baseAddress) })
-                .unsafeCopy()
-                .baseAddress!)
+    public convenience init(strings: [String]) {
+        self.init(
+            gtk_drop_down_new_from_strings(
+                strings
+                    .map({ UnsafePointer($0.unsafeUTF8Copy().baseAddress) })
+                    .unsafeCopy()
+                    .baseAddress!)
+        )
     }
 
     override func didMoveToParent() {
-        removeSignals()
-
         super.didMoveToParent()
 
         addSignal(name: "activate") { [weak self] () in
@@ -75,9 +74,9 @@ public class DropDown: Widget {
                 }
 
         addSignal(name: "notify::enable-search", handler: gCallback(handler1)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyEnableSearch?(self)
+            self.notifyEnableSearch?(self, param0)
         }
 
         let handler2:
@@ -87,9 +86,9 @@ public class DropDown: Widget {
                 }
 
         addSignal(name: "notify::expression", handler: gCallback(handler2)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyExpression?(self)
+            self.notifyExpression?(self, param0)
         }
 
         let handler3:
@@ -99,9 +98,9 @@ public class DropDown: Widget {
                 }
 
         addSignal(name: "notify::factory", handler: gCallback(handler3)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyFactory?(self)
+            self.notifyFactory?(self, param0)
         }
 
         let handler4:
@@ -111,9 +110,9 @@ public class DropDown: Widget {
                 }
 
         addSignal(name: "notify::header-factory", handler: gCallback(handler4)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyHeaderFactory?(self)
+            self.notifyHeaderFactory?(self, param0)
         }
 
         let handler5:
@@ -123,9 +122,9 @@ public class DropDown: Widget {
                 }
 
         addSignal(name: "notify::list-factory", handler: gCallback(handler5)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyListFactory?(self)
+            self.notifyListFactory?(self, param0)
         }
 
         let handler6:
@@ -135,9 +134,9 @@ public class DropDown: Widget {
                 }
 
         addSignal(name: "notify::model", handler: gCallback(handler6)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyModel?(self)
+            self.notifyModel?(self, param0)
         }
 
         let handler7:
@@ -147,9 +146,9 @@ public class DropDown: Widget {
                 }
 
         addSignal(name: "notify::search-match-mode", handler: gCallback(handler7)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySearchMatchMode?(self)
+            self.notifySearchMatchMode?(self, param0)
         }
 
         let handler8:
@@ -159,9 +158,9 @@ public class DropDown: Widget {
                 }
 
         addSignal(name: "notify::selected", handler: gCallback(handler8)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySelected?(self)
+            self.notifySelected?(self, param0)
         }
 
         let handler9:
@@ -171,9 +170,9 @@ public class DropDown: Widget {
                 }
 
         addSignal(name: "notify::selected-item", handler: gCallback(handler9)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySelectedItem?(self)
+            self.notifySelectedItem?(self, param0)
         }
 
         let handler10:
@@ -183,9 +182,9 @@ public class DropDown: Widget {
                 }
 
         addSignal(name: "notify::show-arrow", handler: gCallback(handler10)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyShowArrow?(self)
+            self.notifyShowArrow?(self, param0)
         }
     }
 
@@ -210,23 +209,23 @@ public class DropDown: Widget {
     /// emitting it causes the drop down to pop up its dropdown.
     public var activate: ((DropDown) -> Void)?
 
-    public var notifyEnableSearch: ((DropDown) -> Void)?
+    public var notifyEnableSearch: ((DropDown, OpaquePointer) -> Void)?
 
-    public var notifyExpression: ((DropDown) -> Void)?
+    public var notifyExpression: ((DropDown, OpaquePointer) -> Void)?
 
-    public var notifyFactory: ((DropDown) -> Void)?
+    public var notifyFactory: ((DropDown, OpaquePointer) -> Void)?
 
-    public var notifyHeaderFactory: ((DropDown) -> Void)?
+    public var notifyHeaderFactory: ((DropDown, OpaquePointer) -> Void)?
 
-    public var notifyListFactory: ((DropDown) -> Void)?
+    public var notifyListFactory: ((DropDown, OpaquePointer) -> Void)?
 
-    public var notifyModel: ((DropDown) -> Void)?
+    public var notifyModel: ((DropDown, OpaquePointer) -> Void)?
 
-    public var notifySearchMatchMode: ((DropDown) -> Void)?
+    public var notifySearchMatchMode: ((DropDown, OpaquePointer) -> Void)?
 
-    public var notifySelected: ((DropDown) -> Void)?
+    public var notifySelected: ((DropDown, OpaquePointer) -> Void)?
 
-    public var notifySelectedItem: ((DropDown) -> Void)?
+    public var notifySelectedItem: ((DropDown, OpaquePointer) -> Void)?
 
-    public var notifyShowArrow: ((DropDown) -> Void)?
+    public var notifyShowArrow: ((DropDown, OpaquePointer) -> Void)?
 }

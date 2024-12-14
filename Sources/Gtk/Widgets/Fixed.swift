@@ -41,9 +41,8 @@ public class Fixed: Widget {
     public var children: [Widget] = []
 
     /// Creates a new `GtkFixed`.
-    override public init() {
-        super.init()
-        widgetPointer = gtk_fixed_new()
+    public convenience init() {
+        self.init(gtk_fixed_new())
     }
 
     public func put(_ child: Widget, x: Double, y: Double) {

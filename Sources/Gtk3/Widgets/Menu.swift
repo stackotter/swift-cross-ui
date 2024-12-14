@@ -76,9 +76,8 @@ import CGtk3
 /// .top and .bottom style classes.
 public class Menu: MenuShell {
     /// Creates a new #GtkMenu
-    override public init() {
-        super.init()
-        widgetPointer = gtk_menu_new()
+    public convenience init() {
+        self.init(gtk_menu_new())
     }
 
     /// Creates a #GtkMenu and populates it with menu items and
@@ -91,9 +90,8 @@ public class Menu: MenuShell {
     ///
     /// Actions can also be added using gtk_widget_insert_action_group() on the menu's
     /// attach widget or on any of its parent widgets.
-    public init(model: UnsafeMutablePointer<GMenuModel>!) {
-        super.init()
-        widgetPointer = gtk_menu_new_from_model(model)
+    public convenience init(model: UnsafeMutablePointer<GMenuModel>!) {
+        self.init(gtk_menu_new_from_model(model))
     }
 
     public func bindModel(_ model: GMenu) {

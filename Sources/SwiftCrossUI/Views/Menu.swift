@@ -36,7 +36,7 @@ public struct Menu: TypeSafeView {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> Children {
         MenuStorage()
     }
@@ -59,7 +59,7 @@ public struct Menu: TypeSafeView {
         _ widget: Backend.Widget,
         children: MenuStorage,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {
@@ -101,7 +101,7 @@ class MenuStorage: ViewGraphNodeChildren {
 
     func updateMenuIfShown<Backend: AppBackend>(
         content: ResolvedMenu,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend
     ) {
         guard let menu else {

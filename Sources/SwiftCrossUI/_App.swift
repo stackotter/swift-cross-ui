@@ -13,16 +13,22 @@ class _App<AppRoot: App> {
     /// A cancellable handle to observation of the app's state .
     var cancellable: Cancellable?
     /// The root level environment.
-    var environment: Environment
+    var environment: EnvironmentValues
 
     /// Wraps a user's app implementation.
     init(_ app: AppRoot) {
         backend = app.backend
         self.app = app
-        self.environment = Environment()
+        self.environment = EnvironmentValues(backend: backend)
     }
 
     func forceRefresh() {
+        updateDynamicProperties(
+            of: self.app,
+            previousValue: nil,
+            environment: self.environment
+        )
+
         self.sceneGraphRoot?.update(
             self.app.body,
             backend: self.backend,
@@ -33,9 +39,15 @@ class _App<AppRoot: App> {
     /// Runs the app using the app's selected backend.
     func run() {
         backend.runMainLoop {
-            let baseEnvironment = Environment()
+            let baseEnvironment = EnvironmentValues(backend: self.backend)
             self.environment = self.backend.computeRootEnvironment(
                 defaultEnvironment: baseEnvironment
+            )
+
+            updateDynamicProperties(
+                of: self.app,
+                previousValue: nil,
+                environment: self.environment
             )
 
             let body = self.app.body
@@ -67,6 +79,12 @@ class _App<AppRoot: App> {
             self.cancellable = self.app.state.didChange
                 .observeAsUIUpdater(backend: self.backend) { [weak self] in
                     guard let self = self else { return }
+
+                    updateDynamicProperties(
+                        of: self.app,
+                        previousValue: nil,
+                        environment: self.environment
+                    )
 
                     let body = self.app.body
                     self.sceneGraphRoot?.update(

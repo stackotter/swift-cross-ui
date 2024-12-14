@@ -14,14 +14,14 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
     /// `false` after the first scene update.
     private var isFirstUpdate = true
     /// The environment most recently provided by this node's parent scene.
-    private var parentEnvironment: Environment
+    private var parentEnvironment: EnvironmentValues
     /// The container used to center the root view in the window.
     private var containerWidget: AnyWidget
 
     public init<Backend: AppBackend>(
         from scene: WindowGroup<Content>,
         backend: Backend,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         self.scene = scene
         viewGraph = ViewGraph(for: scene.body, backend: backend, environment: environment)
@@ -55,7 +55,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
     public func update<Backend: AppBackend>(
         _ newScene: WindowGroup<Content>?,
         backend: Backend,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
@@ -75,7 +75,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         _ newScene: WindowGroup<Content>?,
         proposedWindowSize: SIMD2<Int>,
         backend: Backend,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> ViewSize {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
@@ -231,7 +231,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         currentProposedSize: SIMD2<Int>,
         backend: Backend,
         contentSize: ViewSize,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> SIMD2<Int>? {
         if scene.resizability.isResizable {
             if currentProposedSize.x < contentSize.minimumWidth

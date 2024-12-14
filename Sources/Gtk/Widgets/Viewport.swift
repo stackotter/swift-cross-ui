@@ -3,9 +3,8 @@ import CGtk
 public class Viewport: Widget {
     var child: Widget?
 
-    public override init() {
-        super.init()
-        widgetPointer = gtk_viewport_new(nil, nil)
+    public convenience init() {
+        self.init(gtk_viewport_new(nil, nil))
     }
 
     public func setChild(_ child: Widget) {

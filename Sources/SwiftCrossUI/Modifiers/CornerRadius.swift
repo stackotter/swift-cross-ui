@@ -11,7 +11,7 @@ struct CornerRadiusModifier<Content: View>: View {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> any ViewGraphNodeChildren {
         body.children(backend: backend, snapshots: snapshots, environment: environment)
     }
@@ -34,7 +34,7 @@ struct CornerRadiusModifier<Content: View>: View {
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {

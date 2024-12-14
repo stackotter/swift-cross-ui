@@ -18,14 +18,13 @@ import CGtk3
 /// named slider. Neither of them is using any style classes.
 public class Switch: Widget, Activatable {
     /// Creates a new #GtkSwitch widget.
-    override public init() {
-        super.init()
-        widgetPointer = gtk_switch_new()
+    public convenience init() {
+        self.init(
+            gtk_switch_new()
+        )
     }
 
     override func didMoveToParent() {
-        removeSignals()
-
         super.didMoveToParent()
 
         addSignal(name: "activate") { [weak self] () in
@@ -39,9 +38,9 @@ public class Switch: Widget, Activatable {
                     SignalBox1<Bool>.run(data, value1)
                 }
 
-        addSignal(name: "state-set", handler: gCallback(handler1)) { [weak self] (_: Bool) in
+        addSignal(name: "state-set", handler: gCallback(handler1)) { [weak self] (param0: Bool) in
             guard let self = self else { return }
-            self.stateSet?(self)
+            self.stateSet?(self, param0)
         }
 
         let handler2:
@@ -51,9 +50,9 @@ public class Switch: Widget, Activatable {
                 }
 
         addSignal(name: "notify::active", handler: gCallback(handler2)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyActive?(self)
+            self.notifyActive?(self, param0)
         }
 
         let handler3:
@@ -63,9 +62,9 @@ public class Switch: Widget, Activatable {
                 }
 
         addSignal(name: "notify::state", handler: gCallback(handler3)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyState?(self)
+            self.notifyState?(self, param0)
         }
 
         let handler4:
@@ -75,9 +74,9 @@ public class Switch: Widget, Activatable {
                 }
 
         addSignal(name: "notify::related-action", handler: gCallback(handler4)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyRelatedAction?(self)
+            self.notifyRelatedAction?(self, param0)
         }
 
         let handler5:
@@ -87,9 +86,9 @@ public class Switch: Widget, Activatable {
                 }
 
         addSignal(name: "notify::use-action-appearance", handler: gCallback(handler5)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyUseActionAppearance?(self)
+            self.notifyUseActionAppearance?(self, param0)
         }
     }
 
@@ -115,13 +114,13 @@ public class Switch: Widget, Activatable {
     /// Visually, the underlying state is represented by the trough color of
     /// the switch, while the #GtkSwitch:active property is represented by the
     /// position of the switch.
-    public var stateSet: ((Switch) -> Void)?
+    public var stateSet: ((Switch, Bool) -> Void)?
 
-    public var notifyActive: ((Switch) -> Void)?
+    public var notifyActive: ((Switch, OpaquePointer) -> Void)?
 
-    public var notifyState: ((Switch) -> Void)?
+    public var notifyState: ((Switch, OpaquePointer) -> Void)?
 
-    public var notifyRelatedAction: ((Switch) -> Void)?
+    public var notifyRelatedAction: ((Switch, OpaquePointer) -> Void)?
 
-    public var notifyUseActionAppearance: ((Switch) -> Void)?
+    public var notifyUseActionAppearance: ((Switch, OpaquePointer) -> Void)?
 }

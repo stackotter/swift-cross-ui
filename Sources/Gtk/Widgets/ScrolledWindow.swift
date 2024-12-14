@@ -3,9 +3,8 @@ import CGtk
 public class ScrolledWindow: Widget {
     var child: Widget?
 
-    public override init() {
-        super.init()
-        widgetPointer = gtk_scrolled_window_new()
+    public convenience init() {
+        self.init(gtk_scrolled_window_new())
     }
 
     override func didMoveToParent() {

@@ -26,7 +26,7 @@ public struct HotReloadableView: TypeSafeView {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> HotReloadableViewChildren {
         let snapshot = snapshots?.count == 1 ? snapshots?.first : nil
         return HotReloadableViewChildren(
@@ -55,7 +55,7 @@ public struct HotReloadableView: TypeSafeView {
         _ widget: Backend.Widget,
         children: HotReloadableViewChildren,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {
@@ -122,7 +122,7 @@ class HotReloadableViewChildren: ViewGraphNodeChildren {
         from view: HotReloadableView,
         backend: Backend,
         snapshot: ViewGraphSnapshotter.NodeSnapshot?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         node = ErasedViewGraphNode(
             for: view.child,

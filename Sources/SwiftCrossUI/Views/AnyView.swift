@@ -19,7 +19,7 @@ public struct AnyView: TypeSafeView {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> AnyViewChildren {
         let snapshot = snapshots?.count == 1 ? snapshots?.first : nil
         return AnyViewChildren(
@@ -56,7 +56,7 @@ public struct AnyView: TypeSafeView {
         _ widget: Backend.Widget,
         children: AnyViewChildren,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {
@@ -124,7 +124,7 @@ class AnyViewChildren: ViewGraphNodeChildren {
         from view: AnyView,
         backend: Backend,
         snapshot: ViewGraphSnapshotter.NodeSnapshot?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         node = ErasedViewGraphNode(
             for: view.child,

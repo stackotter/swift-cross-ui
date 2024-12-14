@@ -25,7 +25,7 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> TupleViewChildren1<Child> {
         body.children(backend: backend, snapshots: snapshots, environment: environment)
     }
@@ -43,7 +43,7 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
         _ container: Backend.Widget,
         children: TupleViewChildren1<Child>,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {

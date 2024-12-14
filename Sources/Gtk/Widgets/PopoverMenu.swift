@@ -96,9 +96,10 @@ import CGtk
 /// %GTK_ACCESSIBLE_ROLE_MENU_ITEM_RADIO roles, depending on the
 /// action they are connected to.
 public class PopoverMenu: Popover {
-    public override init() {
-        super.init()
-        widgetPointer = gtk_popover_menu_new_from_model(nil)
+    public convenience init() {
+        self.init(
+            gtk_popover_menu_new_from_model(nil)
+        )
     }
 
     /// Creates a `GtkPopoverMenu` and populates it according to @model.
@@ -114,9 +115,10 @@ public class PopoverMenu: Popover {
     /// This function creates menus with sliding submenus.
     /// See [ctor@Gtk.PopoverMenu.new_from_model_full] for a way
     /// to control this.
-    public init(model: UnsafeMutablePointer<GMenuModel>!) {
-        super.init()
-        widgetPointer = gtk_popover_menu_new_from_model(model)
+    public convenience init(model: UnsafeMutablePointer<GMenuModel>!) {
+        self.init(
+            gtk_popover_menu_new_from_model(model)
+        )
     }
 
     /// Creates a `GtkPopoverMenu` and populates it according to @model.
@@ -126,9 +128,10 @@ public class PopoverMenu: Popover {
     /// This includes the `GtkApplicationWindow` to which the popover
     /// belongs. Actions can also be added using [method@Gtk.Widget.insert_action_group]
     /// on the parent widget or on any of its parent widgets.
-    public init(model: UnsafeMutablePointer<GMenuModel>!, flags: GtkPopoverMenuFlags) {
-        super.init()
-        widgetPointer = gtk_popover_menu_new_from_model_full(model, flags)
+    public convenience init(model: UnsafeMutablePointer<GMenuModel>!, flags: GtkPopoverMenuFlags) {
+        self.init(
+            gtk_popover_menu_new_from_model_full(model, flags)
+        )
     }
 
     /// This method is specifically tailored to SwiftCrossUI's use case.

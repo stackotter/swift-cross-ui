@@ -14,7 +14,7 @@ public struct OptionalView<V: View>: TypeSafeView, View {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> OptionalViewChildren<V> {
         // TODO: This is a conservative implementation, perhaps there are some situations
         //   where we could usefully use the snapshots even if there are too many.
@@ -38,7 +38,7 @@ public struct OptionalView<V: View>: TypeSafeView, View {
         _ widget: Backend.Widget,
         children: OptionalViewChildren<V>,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {
@@ -119,7 +119,7 @@ class OptionalViewChildren<V: View>: ViewGraphNodeChildren {
         from view: V?,
         backend: Backend,
         snapshot: ViewGraphSnapshotter.NodeSnapshot?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         if let view = view {
             node = AnyViewGraphNode(

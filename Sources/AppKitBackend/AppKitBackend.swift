@@ -176,7 +176,7 @@ public final class AppKitBackend: AppBackend {
         }
     }
 
-    public func computeRootEnvironment(defaultEnvironment: Environment) -> Environment {
+    public func computeRootEnvironment(defaultEnvironment: EnvironmentValues) -> EnvironmentValues {
         let isDark = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark"
         let font = Font.system(
             size: Int(NSFont.systemFont(ofSize: 0.0).pointSize.rounded(.awayFromZero))
@@ -358,7 +358,7 @@ public final class AppKitBackend: AppBackend {
         of text: String,
         whenDisplayedIn textView: Widget,
         proposedFrame: SIMD2<Int>?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> SIMD2<Int> {
         if let proposedFrame, proposedFrame.x == 0 {
             // We want the text to have the same height as it would have if it were
@@ -400,7 +400,11 @@ public final class AppKitBackend: AppBackend {
         return field
     }
 
-    public func updateTextView(_ textView: Widget, content: String, environment: Environment) {
+    public func updateTextView(
+        _ textView: Widget,
+        content: String,
+        environment: EnvironmentValues
+    ) {
         let field = textView as! NSTextField
         field.attributedStringValue = Self.attributedString(for: content, in: environment)
     }
@@ -413,7 +417,7 @@ public final class AppKitBackend: AppBackend {
         _ button: Widget,
         label: String,
         action: @escaping () -> Void,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         let button = button as! NSButton
         button.attributedTitle = Self.attributedString(for: label, in: environment)
@@ -494,7 +498,7 @@ public final class AppKitBackend: AppBackend {
     public func updatePicker(
         _ picker: Widget,
         options: [String],
-        environment: Environment,
+        environment: EnvironmentValues,
         onChange: @escaping (Int?) -> Void
     ) {
         let picker = picker as! NSPopUpButton
@@ -528,7 +532,7 @@ public final class AppKitBackend: AppBackend {
     public func updateTextField(
         _ textField: Widget,
         placeholder: String,
-        environment: Environment,
+        environment: EnvironmentValues,
         onChange: @escaping (String) -> Void
     ) {
         let textField = textField as! NSObservableTextField
@@ -696,7 +700,7 @@ public final class AppKitBackend: AppBackend {
     public func setColumnLabels(
         ofTable table: Widget,
         to labels: [String],
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         let table = (table as! NSScrollView).documentView as! NSCustomTableView
         var columnIndices: [ObjectIdentifier: Int] = [:]
@@ -735,7 +739,7 @@ public final class AppKitBackend: AppBackend {
 
     private static func attributedString(
         for text: String,
-        in environment: Environment
+        in environment: EnvironmentValues
     ) -> NSAttributedString {
         NSAttributedString(
             string: text,
@@ -744,7 +748,7 @@ public final class AppKitBackend: AppBackend {
     }
 
     private static func attributes(
-        forTextIn environment: Environment
+        forTextIn environment: EnvironmentValues
     ) -> [NSAttributedString.Key: Any] {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment =
@@ -763,7 +767,7 @@ public final class AppKitBackend: AppBackend {
         ]
     }
 
-    private static func font(for environment: Environment) -> NSFont {
+    private static func font(for environment: EnvironmentValues) -> NSFont {
         switch environment.font {
             case .system(let size, let weight, let design):
                 switch design {
@@ -823,7 +827,7 @@ public final class AppKitBackend: AppBackend {
     public func updateProgressBar(
         _ widget: Widget,
         progressFraction: Double?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         let progressBar = widget as! NSProgressIndicator
         progressBar.doubleValue = progressFraction ?? 0
@@ -847,7 +851,7 @@ public final class AppKitBackend: AppBackend {
     public func updatePopoverMenu(
         _ menu: Menu,
         content: ResolvedMenu,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         menu.appearance = environment.colorScheme.nsAppearance
         menu.items = Self.renderMenuItems(content.items)
@@ -876,7 +880,7 @@ public final class AppKitBackend: AppBackend {
         _ alert: Alert,
         title: String,
         actionLabels: [String],
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         alert.messageText = title
         for label in actionLabels {
@@ -907,6 +911,69 @@ public final class AppKitBackend: AppBackend {
 
     public func dismissAlert(_ alert: Alert, window: Window) {
         window.endSheet(alert.window)
+    }
+
+    public func showOpenDialog(
+        fileDialogOptions: FileDialogOptions,
+        openDialogOptions: OpenDialogOptions,
+        window: Window,
+        resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
+    ) {
+        let panel = NSOpenPanel()
+        panel.message = fileDialogOptions.title
+        panel.prompt = fileDialogOptions.defaultButtonLabel
+        panel.directoryURL = fileDialogOptions.initialDirectory
+        panel.showsHiddenFiles = fileDialogOptions.showHiddenFiles
+        panel.allowsOtherFileTypes = fileDialogOptions.allowOtherContentTypes
+
+        // TODO: allowedContentTypes
+
+        panel.allowsMultipleSelection = openDialogOptions.allowMultipleSelections
+        panel.canChooseFiles = openDialogOptions.allowSelectingFiles
+        panel.canChooseDirectories = openDialogOptions.allowSelectingDirectories
+
+        panel.beginSheetModal(for: window) { response in
+            guard response != .continue else {
+                return
+            }
+
+            if response == .OK {
+                handleResult(.success(panel.urls))
+            } else {
+                handleResult(.cancelled)
+            }
+        }
+    }
+
+    public func showSaveDialog(
+        fileDialogOptions: FileDialogOptions,
+        saveDialogOptions: SaveDialogOptions,
+        window: Window,
+        resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
+    ) {
+        let panel = NSSavePanel()
+        panel.message = fileDialogOptions.title
+        panel.prompt = fileDialogOptions.defaultButtonLabel
+        panel.directoryURL = fileDialogOptions.initialDirectory
+        panel.showsHiddenFiles = fileDialogOptions.showHiddenFiles
+        panel.allowsOtherFileTypes = fileDialogOptions.allowOtherContentTypes
+
+        // TODO: allowedContentTypes
+
+        panel.nameFieldLabel = saveDialogOptions.nameFieldLabel ?? panel.nameFieldLabel
+        panel.nameFieldStringValue = saveDialogOptions.defaultFileName ?? ""
+
+        panel.beginSheetModal(for: window) { response in
+            guard response != .continue else {
+                return
+            }
+
+            if response == .OK {
+                handleResult(.success(panel.url!))
+            } else {
+                handleResult(.cancelled)
+            }
+        }
     }
 }
 

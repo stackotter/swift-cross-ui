@@ -163,7 +163,7 @@ public protocol Editable: GObjectRepresentable {
     ///
     /// The @start_pos and @end_pos parameters are interpreted as for
     /// [method@Gtk.Editable.delete_text].
-    var deleteText: ((Self) -> Void)? { get set }
+    var deleteText: ((Self, Int, Int) -> Void)? { get set }
 
     /// Emitted when text is inserted into the widget by the user.
     ///
@@ -171,5 +171,5 @@ public protocol Editable: GObjectRepresentable {
     /// for inserting the text, so by connecting to this signal and then
     /// stopping the signal with g_signal_stop_emission(), it is possible
     /// to modify the inserted text, or prevent it from being inserted entirely.
-    var insertText: ((Self) -> Void)? { get set }
+    var insertText: ((Self, UnsafePointer<CChar>, Int, gpointer) -> Void)? { get set }
 }

@@ -1,19 +1,16 @@
 import CGtk3
 
 public class ToggleButton: Button {
-    override public init() {
-        super.init()
-        widgetPointer = gtk_toggle_button_new()
+    public convenience init() {
+        self.init(gtk_toggle_button_new())
     }
 
-    override public init(label: String) {
-        super.init()
-        widgetPointer = gtk_toggle_button_new_with_label(label)
+    public convenience init(label: String) {
+        self.init(gtk_toggle_button_new_with_label(label))
     }
 
-    override public init(mnemonic label: String) {
-        super.init()
-        widgetPointer = gtk_toggle_button_new_with_mnemonic(label)
+    public convenience init(mnemonic label: String) {
+        self.init(gtk_toggle_button_new_with_mnemonic(label))
     }
 
     override func didMoveToParent() {

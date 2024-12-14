@@ -24,7 +24,7 @@ public struct ForEach<
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> ForEachViewChildren<Items, Child> {
         return ForEachViewChildren(
             from: self,
@@ -45,7 +45,7 @@ public struct ForEach<
         _ widget: Backend.Widget,
         children: ForEachViewChildren<Items, Child>,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {
@@ -190,7 +190,7 @@ class ForEachViewChildren<
         from view: ForEach<Items, Child>,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         nodes = view.elements
             .map(view.child)

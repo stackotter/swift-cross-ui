@@ -58,9 +58,8 @@ import GtkCustomWidgets
 /// The `GtkMessageDialog` implementation of the `GtkBuildable` interface exposes
 /// the message area as an internal child with the name “message_area”.
 public class MessageDialog: Dialog {
-    public override init() {
-        super.init()
-        widgetPointer = wrapped_gtk_message_dialog_new()
+    public convenience init() {
+        self.init(wrapped_gtk_message_dialog_new())
     }
 
     @GObjectProperty(named: "text") public var text: String

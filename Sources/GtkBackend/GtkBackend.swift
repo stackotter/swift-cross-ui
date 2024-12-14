@@ -109,9 +109,6 @@ public final class GtkBackend: AppBackend {
 
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
         let child = window.getChild() as! CustomRootWidget
-        let windowSize = window.defaultSize
-        let childSize = child.getSize()
-
         window.size = Size(
             width: newSize.x,
             height: newSize.y + menubarHeight(ofWindow: window)
@@ -231,7 +228,7 @@ public final class GtkBackend: AppBackend {
         )
     }
 
-    public func computeRootEnvironment(defaultEnvironment: Environment) -> Environment {
+    public func computeRootEnvironment(defaultEnvironment: EnvironmentValues) -> EnvironmentValues {
         defaultEnvironment
     }
 
@@ -364,7 +361,11 @@ public final class GtkBackend: AppBackend {
         return label
     }
 
-    public func updateTextView(_ textView: Widget, content: String, environment: Environment) {
+    public func updateTextView(
+        _ textView: Widget,
+        content: String,
+        environment: EnvironmentValues
+    ) {
         let textView = textView as! Label
         textView.label = content
         textView.wrap = true
@@ -387,7 +388,7 @@ public final class GtkBackend: AppBackend {
         of text: String,
         whenDisplayedIn textView: Widget,
         proposedFrame: SIMD2<Int>?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> SIMD2<Int> {
         let pango = Pango(for: textView)
         let (width, height) = pango.getTextSize(
@@ -519,7 +520,7 @@ public final class GtkBackend: AppBackend {
         _ button: Widget,
         label: String,
         action: @escaping () -> Void,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         // TODO: Update button label color using environment
         let button = button as! Gtk.Button
@@ -549,7 +550,7 @@ public final class GtkBackend: AppBackend {
     }
 
     public func updateSwitch(_ switchWidget: Widget, onChange: @escaping (Bool) -> Void) {
-        (switchWidget as! Gtk.Switch).notifyActive = { widget in
+        (switchWidget as! Gtk.Switch).notifyActive = { widget, _ in
             onChange(widget.active)
         }
     }
@@ -591,7 +592,7 @@ public final class GtkBackend: AppBackend {
     public func updateTextField(
         _ textField: Widget,
         placeholder: String,
-        environment: Environment,
+        environment: EnvironmentValues,
         onChange: @escaping (String) -> Void
     ) {
         let textField = textField as! Entry
@@ -619,7 +620,7 @@ public final class GtkBackend: AppBackend {
     public func updatePicker(
         _ picker: Widget,
         options: [String],
-        environment: Environment,
+        environment: EnvironmentValues,
         onChange: @escaping (Int?) -> Void
     ) {
         let picker = picker as! DropDown
@@ -660,7 +661,7 @@ public final class GtkBackend: AppBackend {
             )
         )
 
-        picker.notifySelected = { picker in
+        picker.notifySelected = { picker, _ in
             if picker.selected == GTK_INVALID_LIST_POSITION {
                 onChange(nil)
             } else {
@@ -689,7 +690,7 @@ public final class GtkBackend: AppBackend {
     public func updateProgressBar(
         _ widget: Widget,
         progressFraction: Double?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         let progressBar = widget as! ProgressBar
         progressBar.fraction = progressFraction ?? 0
@@ -704,7 +705,7 @@ public final class GtkBackend: AppBackend {
     public func updatePopoverMenu(
         _ menu: Menu,
         content: ResolvedMenu,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         // Update menu model and action handlers
         let actionGroup = Gtk.GSimpleActionGroup()
@@ -767,7 +768,7 @@ public final class GtkBackend: AppBackend {
         _ alert: Alert,
         title: String,
         actionLabels: [String],
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         alert.text = title
         for (i, label) in actionLabels.enumerated() {
@@ -794,6 +795,97 @@ public final class GtkBackend: AppBackend {
         alert.destroy()
     }
 
+    public func showOpenDialog(
+        fileDialogOptions: FileDialogOptions,
+        openDialogOptions: OpenDialogOptions,
+        window: Window,
+        resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
+    ) {
+        showFileChooserDialog(
+            fileDialogOptions: fileDialogOptions,
+            action: .open,
+            configure: { chooser in
+                chooser.selectMultiple = openDialogOptions.allowMultipleSelections
+            },
+            window: window,
+            resultHandler: handleResult
+        )
+    }
+
+    public func showSaveDialog(
+        fileDialogOptions: FileDialogOptions,
+        saveDialogOptions: SaveDialogOptions,
+        window: Window,
+        resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
+    ) {
+        showFileChooserDialog(
+            fileDialogOptions: fileDialogOptions,
+            action: .save,
+            configure: { chooser in
+                if let defaultFileName = saveDialogOptions.defaultFileName {
+                    chooser.setCurrentName(defaultFileName)
+                }
+            },
+            window: window
+        ) { result in
+            switch result {
+                case .success(let urls):
+                    handleResult(.success(urls[0]))
+                case .cancelled:
+                    handleResult(.cancelled)
+            }
+        }
+
+    }
+
+    private func showFileChooserDialog(
+        fileDialogOptions: FileDialogOptions,
+        action: FileChooserAction,
+        configure: (Gtk.FileChooserNative) -> Void,
+        window: Window,
+        resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
+    ) {
+        let chooser = Gtk.FileChooserNative(
+            title: fileDialogOptions.title,
+            parent: window.widgetPointer.cast(),
+            action: action.toGtk(),
+            acceptLabel: fileDialogOptions.defaultButtonLabel,
+            cancelLabel: "Cancel"
+        )
+
+        if let initialDirectory = fileDialogOptions.initialDirectory {
+            chooser.setCurrentFolder(initialDirectory)
+        }
+
+        configure(chooser)
+
+        chooser.registerSignals()
+        chooser.response = { (_: NativeDialog, response: Int) -> Void in
+            // Release our intentional retain cycle which ironically only exists
+            // because of this line. The retain cycle keeps the file chooser
+            // around long enough for the user to respond (it gets released
+            // immediately if we don't do this in the response signal handler).
+            chooser.response = nil
+
+            let response = Int32(bitPattern: UInt32(UInt(response)))
+            if response == Int(ResponseType.accept.toGtk().rawValue) {
+                let files = chooser.getFiles()
+                var urls: [URL] = []
+                for i in 0..<files.count {
+                    let url = URL(
+                        fileURLWithPath: GFile(files[i]).path
+                    )
+                    urls.append(url)
+                }
+                handleResult(.success(urls))
+            } else {
+                handleResult(.cancelled)
+            }
+        }
+
+        gtk_native_dialog_show(chooser.gobjectPointer.cast())
+    }
+
     // MARK: Helpers
 
     private func wrapInCustomRootContainer(_ widget: Widget) -> Widget {
@@ -803,7 +895,7 @@ public final class GtkBackend: AppBackend {
     }
 
     private static func cssProperties(
-        for environment: Environment,
+        for environment: EnvironmentValues,
         isControl: Bool = false
     ) -> [CSSProperty] {
         var properties: [CSSProperty] = []

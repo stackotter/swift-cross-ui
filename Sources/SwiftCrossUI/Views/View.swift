@@ -17,7 +17,7 @@ public protocol View {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> any ViewGraphNodeChildren
 
     // TODO: Perhaps this can be split off into a separate protocol for the `TupleViewN`s
@@ -57,7 +57,7 @@ public protocol View {
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize
@@ -67,7 +67,7 @@ extension View {
     public func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> any ViewGraphNodeChildren {
         body.children(backend: backend, snapshots: snapshots, environment: environment)
     }
@@ -91,7 +91,7 @@ extension View {
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {

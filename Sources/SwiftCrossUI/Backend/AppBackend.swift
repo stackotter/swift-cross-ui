@@ -144,7 +144,7 @@ public protocol AppBackend {
 
     /// Computes the root environment for an app (e.g. by checking the system's current
     /// theme). May fall back on the provided defaults where reasonable.
-    func computeRootEnvironment(defaultEnvironment: Environment) -> Environment
+    func computeRootEnvironment(defaultEnvironment: EnvironmentValues) -> EnvironmentValues
     /// Sets the handler to be notified when the root environment may have to get
     /// recomputed. This is intended to only be called once. Calling it more than once
     /// may or may not override the previous handler.
@@ -223,7 +223,7 @@ public protocol AppBackend {
     /// by ``Text``.`
     func createTextView() -> Widget
     /// Sets the content and wrapping mode of a non-editable text view.
-    func updateTextView(_ textView: Widget, content: String, environment: Environment)
+    func updateTextView(_ textView: Widget, content: String, environment: EnvironmentValues)
     /// Gets the size that the given text would have if it were layed out attempting to stay
     /// within the proposed frame (most backends only use the proposed width and ignore the
     /// proposed height). The size returned by this function will be upheld by the layout
@@ -236,7 +236,7 @@ public protocol AppBackend {
         of text: String,
         whenDisplayedIn textView: Widget,
         proposedFrame: SIMD2<Int>?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> SIMD2<Int>
 
     /// Creates an image view from an image file (specified by path). Predominantly used
@@ -276,7 +276,7 @@ public protocol AppBackend {
     func setRowCount(ofTable table: Widget, to rows: Int)
     /// Sets the labels of a table's columns. Also sets the number of columns of the table to the
     /// number of labels provided.
-    func setColumnLabels(ofTable table: Widget, to labels: [String], environment: Environment)
+    func setColumnLabels(ofTable table: Widget, to labels: [String], environment: EnvironmentValues)
     /// Sets the contents of the table as a flat array of cells in order of and grouped by row. Also
     /// sets the height of each row's content.
     ///
@@ -293,7 +293,7 @@ public protocol AppBackend {
         _ button: Widget,
         label: String,
         action: @escaping () -> Void,
-        environment: Environment
+        environment: EnvironmentValues
     )
 
     /// Creates a labelled toggle that is either on or off. Predominantly used by
@@ -342,7 +342,7 @@ public protocol AppBackend {
     func updateTextField(
         _ textField: Widget,
         placeholder: String,
-        environment: Environment,
+        environment: EnvironmentValues,
         onChange: @escaping (String) -> Void
     )
     /// Sets the value of an editable text field.
@@ -360,7 +360,7 @@ public protocol AppBackend {
     func updatePicker(
         _ picker: Widget,
         options: [String],
-        environment: Environment,
+        environment: EnvironmentValues,
         onChange: @escaping (Int?) -> Void
     )
     /// Sets the index of the selected option of a picker.
@@ -375,7 +375,8 @@ public protocol AppBackend {
     /// current view environment.
     /// - Parameter progressFraction: If `nil`, then the bar should show an indeterminate
     ///   animation if possible.
-    func updateProgressBar(_ widget: Widget, progressFraction: Double?, environment: Environment)
+    func updateProgressBar(
+        _ widget: Widget, progressFraction: Double?, environment: EnvironmentValues)
 
     /// Creates a popover menu (the sort you often see when right clicking on
     /// apps). The menu won't be visible until you call
@@ -385,7 +386,7 @@ public protocol AppBackend {
     func updatePopoverMenu(
         _ menu: Menu,
         content: ResolvedMenu,
-        environment: Environment
+        environment: EnvironmentValues
     )
     /// Shows the popover menu at a position relative to the given widget.
     func showPopoverMenu(
@@ -404,7 +405,7 @@ public protocol AppBackend {
         _ alert: Alert,
         title: String,
         actionLabels: [String],
-        environment: Environment
+        environment: EnvironmentValues
     )
     /// Shows an alert as a modal on top of or within the given window.
     /// Users should be unable to interact with the parent window until the
@@ -425,6 +426,24 @@ public protocol AppBackend {
     ///
     /// Must only get called once for any given alert.
     func dismissAlert(_ alert: Alert, window: Window)
+
+    /// Presents an 'Open file' dialog to the user for selecting files or
+    /// folders.
+    func showOpenDialog(
+        fileDialogOptions: FileDialogOptions,
+        openDialogOptions: OpenDialogOptions,
+        window: Window,
+        resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
+    )
+
+    /// Presents a 'Save file' dialog to the user for selecting a file save
+    /// destination.
+    func showSaveDialog(
+        fileDialogOptions: FileDialogOptions,
+        saveDialogOptions: SaveDialogOptions,
+        window: Window,
+        resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
+    )
 }
 
 extension AppBackend {
@@ -501,14 +520,18 @@ extension AppBackend {
     public func createTextView(content: String, shouldWrap: Bool) -> Widget {
         todo()
     }
-    public func updateTextView(_ textView: Widget, content: String, environment: Environment) {
+    public func updateTextView(
+        _ textView: Widget,
+        content: String,
+        environment: EnvironmentValues
+    ) {
         todo()
     }
     public func size(
         of text: String,
         whenDisplayedIn textView: Widget,
         proposedFrame: SIMD2<Int>?,
-        environment: Environment
+        environment: EnvironmentValues
     ) -> SIMD2<Int> {
         todo()
     }
@@ -538,7 +561,7 @@ extension AppBackend {
     public func setColumnLabels(
         ofTable table: Widget,
         to labels: [String],
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         todo()
     }
@@ -559,7 +582,7 @@ extension AppBackend {
         _ button: Widget,
         label: String,
         action: @escaping () -> Void,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         todo()
     }
@@ -608,7 +631,7 @@ extension AppBackend {
     public func updateTextField(
         _ textField: Widget,
         placeholder: String,
-        environment: Environment,
+        environment: EnvironmentValues,
         onChange: @escaping (String) -> Void
     ) {
         todo()
@@ -626,7 +649,7 @@ extension AppBackend {
     public func updatePicker(
         _ picker: Widget,
         options: [String],
-        environment: Environment,
+        environment: EnvironmentValues,
         onChange: @escaping (Int?) -> Void
     ) {
         todo()
@@ -645,7 +668,7 @@ extension AppBackend {
     func updateProgressBar(
         _ widget: Widget,
         progressFraction: Double?,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         todo()
     }
@@ -656,7 +679,7 @@ extension AppBackend {
     public func updatePopoverMenu(
         _ menu: Menu,
         content: ResolvedMenu,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         todo()
     }
@@ -665,6 +688,45 @@ extension AppBackend {
         at position: SIMD2<Int>,
         relativeTo widget: Widget,
         closeHandler handleClose: @escaping () -> Void
+    ) {
+        todo()
+    }
+
+    public func createAlert() -> Alert {
+        todo()
+    }
+    public func updateAlert(
+        _ alert: Alert,
+        title: String,
+        actionLabels: [String],
+        environment: EnvironmentValues
+    ) {
+        todo()
+    }
+    func showAlert(
+        _ alert: Alert,
+        window: Window,
+        responseHandler handleResponse: @escaping (Int) -> Void
+    ) {
+        todo()
+    }
+    func dismissAlert(_ alert: Alert, window: Window) {
+        todo()
+    }
+
+    public func showOpenDialog(
+        fileDialogOptions: FileDialogOptions,
+        openDialogOptions: OpenDialogOptions,
+        window: Window,
+        resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
+    ) {
+        todo()
+    }
+    public func showSaveDialog(
+        fileDialogOptions: FileDialogOptions,
+        saveDialogOptions: SaveDialogOptions,
+        window: Window,
+        resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
     ) {
         todo()
     }

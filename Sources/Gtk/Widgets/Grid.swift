@@ -15,10 +15,8 @@ import CGtk
 public class Grid: Widget, Orientable {
     var widgets: [Widget] = []
 
-    public override init() {
-        super.init()
-
-        widgetPointer = gtk_grid_new()
+    public convenience init() {
+        self.init(gtk_grid_new())
     }
 
     public func attach(child: Widget, left: Int, top: Int, width: Int, height: Int) {

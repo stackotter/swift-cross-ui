@@ -16,7 +16,7 @@ public class AnyViewGraphNode<NodeView: View> {
         (
             _ newView: NodeView?,
             _ proposedSize: SIMD2<Int>,
-            _ environment: Environment,
+            _ environment: EnvironmentValues,
             _ dryRun: Bool
         ) -> ViewSize
     /// The type-erased getter for the node's widget.
@@ -51,7 +51,7 @@ public class AnyViewGraphNode<NodeView: View> {
         for view: NodeView,
         backend: Backend,
         snapshot: ViewGraphSnapshotter.NodeSnapshot? = nil,
-        environment: Environment
+        environment: EnvironmentValues
     ) {
         self.init(
             ViewGraphNode(
@@ -69,7 +69,7 @@ public class AnyViewGraphNode<NodeView: View> {
     public func update(
         with newView: NodeView?,
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         dryRun: Bool
     ) -> ViewSize {
         _updateWithNewView(newView, proposedSize, environment, dryRun)

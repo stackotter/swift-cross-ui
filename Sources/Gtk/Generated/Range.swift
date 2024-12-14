@@ -12,8 +12,6 @@ import CGtk
 public class Range: Widget, Orientable {
 
     override func didMoveToParent() {
-        removeSignals()
-
         super.didMoveToParent()
 
         let handler0:
@@ -22,9 +20,10 @@ public class Range: Widget, Orientable {
                     SignalBox1<Double>.run(data, value1)
                 }
 
-        addSignal(name: "adjust-bounds", handler: gCallback(handler0)) { [weak self] (_: Double) in
+        addSignal(name: "adjust-bounds", handler: gCallback(handler0)) {
+            [weak self] (param0: Double) in
             guard let self = self else { return }
-            self.adjustBounds?(self)
+            self.adjustBounds?(self, param0)
         }
 
         let handler1:
@@ -35,9 +34,9 @@ public class Range: Widget, Orientable {
                 }
 
         addSignal(name: "change-value", handler: gCallback(handler1)) {
-            [weak self] (_: GtkScrollType, _: Double) in
+            [weak self] (param0: GtkScrollType, param1: Double) in
             guard let self = self else { return }
-            self.changeValue?(self)
+            self.changeValue?(self, param0, param1)
         }
 
         let handler2:
@@ -47,9 +46,9 @@ public class Range: Widget, Orientable {
                 }
 
         addSignal(name: "move-slider", handler: gCallback(handler2)) {
-            [weak self] (_: GtkScrollType) in
+            [weak self] (param0: GtkScrollType) in
             guard let self = self else { return }
-            self.moveSlider?(self)
+            self.moveSlider?(self, param0)
         }
 
         addSignal(name: "value-changed") { [weak self] () in
@@ -64,9 +63,9 @@ public class Range: Widget, Orientable {
                 }
 
         addSignal(name: "notify::adjustment", handler: gCallback(handler4)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyAdjustment?(self)
+            self.notifyAdjustment?(self, param0)
         }
 
         let handler5:
@@ -76,9 +75,9 @@ public class Range: Widget, Orientable {
                 }
 
         addSignal(name: "notify::fill-level", handler: gCallback(handler5)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyFillLevel?(self)
+            self.notifyFillLevel?(self, param0)
         }
 
         let handler6:
@@ -88,9 +87,9 @@ public class Range: Widget, Orientable {
                 }
 
         addSignal(name: "notify::inverted", handler: gCallback(handler6)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyInverted?(self)
+            self.notifyInverted?(self, param0)
         }
 
         let handler7:
@@ -100,9 +99,9 @@ public class Range: Widget, Orientable {
                 }
 
         addSignal(name: "notify::restrict-to-fill-level", handler: gCallback(handler7)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyRestrictToFillLevel?(self)
+            self.notifyRestrictToFillLevel?(self, param0)
         }
 
         let handler8:
@@ -112,9 +111,9 @@ public class Range: Widget, Orientable {
                 }
 
         addSignal(name: "notify::round-digits", handler: gCallback(handler8)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyRoundDigits?(self)
+            self.notifyRoundDigits?(self, param0)
         }
 
         let handler9:
@@ -124,9 +123,9 @@ public class Range: Widget, Orientable {
                 }
 
         addSignal(name: "notify::show-fill-level", handler: gCallback(handler9)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyShowFillLevel?(self)
+            self.notifyShowFillLevel?(self, param0)
         }
 
         let handler10:
@@ -136,9 +135,9 @@ public class Range: Widget, Orientable {
                 }
 
         addSignal(name: "notify::orientation", handler: gCallback(handler10)) {
-            [weak self] (_: OpaquePointer) in
+            [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyOrientation?(self)
+            self.notifyOrientation?(self, param0)
         }
     }
 
@@ -167,7 +166,7 @@ public class Range: Widget, Orientable {
 
     /// Emitted before clamping a value, to give the application a
     /// chance to adjust the bounds.
-    public var adjustBounds: ((Range) -> Void)?
+    public var adjustBounds: ((Range, Double) -> Void)?
 
     /// Emitted when a scroll action is performed on a range.
     ///
@@ -181,27 +180,27 @@ public class Range: Widget, Orientable {
     /// the ::change-value signal is responsible for clamping the value
     /// to the desired number of decimal digits; the default GTK
     /// handler clamps the value based on [property@Gtk.Range:round-digits].
-    public var changeValue: ((Range) -> Void)?
+    public var changeValue: ((Range, GtkScrollType, Double) -> Void)?
 
     /// Virtual function that moves the slider.
     ///
     /// Used for keybindings.
-    public var moveSlider: ((Range) -> Void)?
+    public var moveSlider: ((Range, GtkScrollType) -> Void)?
 
     /// Emitted when the range value changes.
     public var valueChanged: ((Range) -> Void)?
 
-    public var notifyAdjustment: ((Range) -> Void)?
+    public var notifyAdjustment: ((Range, OpaquePointer) -> Void)?
 
-    public var notifyFillLevel: ((Range) -> Void)?
+    public var notifyFillLevel: ((Range, OpaquePointer) -> Void)?
 
-    public var notifyInverted: ((Range) -> Void)?
+    public var notifyInverted: ((Range, OpaquePointer) -> Void)?
 
-    public var notifyRestrictToFillLevel: ((Range) -> Void)?
+    public var notifyRestrictToFillLevel: ((Range, OpaquePointer) -> Void)?
 
-    public var notifyRoundDigits: ((Range) -> Void)?
+    public var notifyRoundDigits: ((Range, OpaquePointer) -> Void)?
 
-    public var notifyShowFillLevel: ((Range) -> Void)?
+    public var notifyShowFillLevel: ((Range, OpaquePointer) -> Void)?
 
-    public var notifyOrientation: ((Range) -> Void)?
+    public var notifyOrientation: ((Range, OpaquePointer) -> Void)?
 }

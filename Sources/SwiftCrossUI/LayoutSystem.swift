@@ -3,17 +3,17 @@ public enum LayoutSystem {
         private var update:
             (
                 _ proposedSize: SIMD2<Int>,
-                _ environment: Environment,
+                _ environment: EnvironmentValues,
                 _ dryRun: Bool
             ) -> ViewSize
 
-        public init(update: @escaping (SIMD2<Int>, Environment, Bool) -> ViewSize) {
+        public init(update: @escaping (SIMD2<Int>, EnvironmentValues, Bool) -> ViewSize) {
             self.update = update
         }
 
         public func update(
             proposedSize: SIMD2<Int>,
-            environment: Environment,
+            environment: EnvironmentValues,
             dryRun: Bool = false
         ) -> ViewSize {
             update(proposedSize, environment, dryRun)
@@ -21,7 +21,7 @@ public enum LayoutSystem {
 
         public func computeSize(
             proposedSize: SIMD2<Int>,
-            environment: Environment
+            environment: EnvironmentValues
         ) -> ViewSize {
             update(proposedSize, environment, true)
         }
@@ -36,7 +36,7 @@ public enum LayoutSystem {
         container: Backend.Widget,
         children: [LayoutableChild],
         proposedSize: SIMD2<Int>,
-        environment: Environment,
+        environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool,
         inheritStackLayoutParticipation: Bool = false
