@@ -6,9 +6,14 @@ public enum LayoutSystem {
                 _ environment: EnvironmentValues,
                 _ dryRun: Bool
             ) -> ViewSize
+        var tag: String?
 
-        public init(update: @escaping (SIMD2<Int>, EnvironmentValues, Bool) -> ViewSize) {
+        public init(
+            update: @escaping (SIMD2<Int>, EnvironmentValues, Bool) -> ViewSize,
+            tag: String? = nil
+        ) {
             self.update = update
+            self.tag = tag
         }
 
         public func update(
@@ -107,7 +112,12 @@ public enum LayoutSystem {
                     dryRun: dryRun
                 )
                 if size.size != .zero || size.participateInStackLayoutsWhenEmpty {
-                    print("warning: Hidden view became visible on second update. Layout may break.")
+                    print(
+                        """
+                        warning: Hidden view became visible on second update. \
+                        Layout may break. View: \(child.tag ?? "<unknown type>")
+                        """
+                    )
                 }
                 renderedChildren[index] = .hidden
                 continue

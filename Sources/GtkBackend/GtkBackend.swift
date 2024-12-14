@@ -807,7 +807,7 @@ public final class GtkBackend: AppBackend {
             configure: { chooser in
                 chooser.selectMultiple = openDialogOptions.allowMultipleSelections
             },
-            window: window,
+            window: window ?? windows[0],
             resultHandler: handleResult
         )
     }
@@ -826,7 +826,7 @@ public final class GtkBackend: AppBackend {
                     chooser.setCurrentName(defaultFileName)
                 }
             },
-            window: window
+            window: window ?? windows[0]
         ) { result in
             switch result {
                 case .success(let urls):

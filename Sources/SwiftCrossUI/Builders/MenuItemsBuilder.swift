@@ -17,32 +17,45 @@ public struct MenuItemsBuilder {
         first.items
     }
 
+    public static func buildPartialBlock<Items: Collection>(
+        first: ForEach<Items, [MenuItem]>
+    ) -> [MenuItem] {
+        first.elements.map(first.child).flatMap { $0 }
+    }
+
     public static func buildPartialBlock(
         accumulated: [MenuItem],
         next: Button
     ) -> [MenuItem] {
-        accumulated + [.button(next)]
+        accumulated + buildPartialBlock(first: next)
     }
 
     public static func buildPartialBlock(
         accumulated: [MenuItem],
         next: Text
     ) -> [MenuItem] {
-        accumulated + [.text(next)]
+        accumulated + buildPartialBlock(first: next)
     }
 
     public static func buildPartialBlock(
         accumulated: [MenuItem],
         next: Menu
     ) -> [MenuItem] {
-        accumulated + [.submenu(next)]
+        accumulated + buildPartialBlock(first: next)
     }
 
     public static func buildPartialBlock(
         accumulated: [MenuItem],
         next: Block
     ) -> [MenuItem] {
-        accumulated + next.items
+        accumulated + buildPartialBlock(first: next)
+    }
+
+    public static func buildPartialBlock<Items: Collection>(
+        accumulated: [MenuItem],
+        next: ForEach<Items, [MenuItem]>
+    ) -> [MenuItem] {
+        accumulated + buildPartialBlock(first: next)
     }
 
     public static func buildOptional(_ component: [MenuItem]?) -> Block {

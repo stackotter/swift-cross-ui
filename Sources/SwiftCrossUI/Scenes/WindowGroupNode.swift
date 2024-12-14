@@ -48,6 +48,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             guard let self else {
                 return
             }
+            print("Resized. newSize: \(newSize)")
             _ = self.update(
                 scene,
                 proposedWindowSize: newSize,
@@ -80,7 +81,8 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         _ newScene: WindowGroup<Content>?,
         proposedWindowSize: SIMD2<Int>,
         backend: Backend,
-        environment: EnvironmentValues
+        environment: EnvironmentValues,
+        windowSizeIsFinal: Bool = false
     ) -> ViewSize {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
@@ -121,33 +123,42 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             with: newScene?.body,
             proposedSize: proposedWindowSize,
             environment: environment,
-            dryRun: true
+            dryRun: windowSizeIsFinal
         )
 
-        let newWindowSize = computeNewWindowSize(
-            currentProposedSize: proposedWindowSize,
-            backend: backend,
-            contentSize: contentSize,
-            environment: environment
-        )
-
-        // Restart the window update if the content has caused the window to
-        // change size.
-        if let newWindowSize {
-            return update(
-                scene,
-                proposedWindowSize: newWindowSize,
+        if !windowSizeIsFinal {
+            let newWindowSize = computeNewWindowSize(
+                currentProposedSize: proposedWindowSize,
                 backend: backend,
+                contentSize: contentSize,
                 environment: environment
             )
+
+            // Restart the window update if the content has caused the window to
+            // change size. To avoid infinite recursion, we take the view's word
+            // and assume that it will take on the minimum/maximum size it claimed.
+            if let newWindowSize {
+                return update(
+                    scene,
+                    proposedWindowSize: newWindowSize,
+                    backend: backend,
+                    environment: environment,
+                    windowSizeIsFinal: true
+                )
+            }
         }
 
-        let finalContentSize = viewGraph.update(
-            with: newScene?.body,
-            proposedSize: proposedWindowSize,
-            environment: environment,
-            dryRun: false
-        )
+        let finalContentSize: ViewSize
+        if windowSizeIsFinal {
+            finalContentSize = contentSize
+        } else {
+            finalContentSize = viewGraph.update(
+                with: newScene?.body,
+                proposedSize: proposedWindowSize,
+                environment: environment,
+                dryRun: false
+            )
+        }
 
         // The Gtk 3 backend has some broken sizing code that can't really be
         // fixed due to the design of Gtk 3. Our layout system underestimates

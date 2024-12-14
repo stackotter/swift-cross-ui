@@ -1,16 +1,29 @@
 /// A view that displays a variable amount of children.
-public struct ForEach<
-    Items: Collection,
-    Child: View
->: TypeSafeView, View where Items.Index == Int {
-    typealias Children = ForEachViewChildren<Items, Child>
-
-    public var body = EmptyView()
-
+public struct ForEach<Items: Collection, Child> where Items.Index == Int {
     /// A variable-length collection of elements to display.
     var elements: Items
     /// A method to display the elements as views.
     var child: (Items.Element) -> Child
+}
+
+extension ForEach where Child == [MenuItem] {
+    /// Creates a view that creates child views on demand based on a collection of data.
+    @_disfavoredOverload
+    public init(
+        _ elements: Items,
+        @MenuItemsBuilder _ child: @escaping (Items.Element) -> [MenuItem]
+    ) {
+        self.elements = elements
+        self.child = child
+    }
+}
+
+extension ForEach: TypeSafeView, View where Child: View {
+    typealias Children = ForEachViewChildren<Items, Child>
+
+    public var body: EmptyView {
+        return EmptyView()
+    }
 
     /// Creates a view that creates child views on demand based on a collection of data.
     public init(

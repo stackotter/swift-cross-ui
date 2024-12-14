@@ -61,7 +61,8 @@ public struct ${view}<${struct_parameters}>: TypeSafeView, View {
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view${j}))"
             )
         )
         % end

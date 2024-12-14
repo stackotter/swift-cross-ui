@@ -44,7 +44,8 @@ public struct TupleView1<View0: View>: TypeSafeView, View {
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view0))"
             )
         )
         return layoutableChildren
@@ -127,7 +128,8 @@ public struct TupleView2<View0: View, View1: View>: TypeSafeView, View {
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view0))"
             )
         )
         layoutableChildren.append(
@@ -139,7 +141,8 @@ public struct TupleView2<View0: View, View1: View>: TypeSafeView, View {
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view1))"
             )
         )
         return layoutableChildren
@@ -225,7 +228,8 @@ public struct TupleView3<View0: View, View1: View, View2: View>: TypeSafeView, V
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view0))"
             )
         )
         layoutableChildren.append(
@@ -237,7 +241,8 @@ public struct TupleView3<View0: View, View1: View, View2: View>: TypeSafeView, V
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view1))"
             )
         )
         layoutableChildren.append(
@@ -249,7 +254,8 @@ public struct TupleView3<View0: View, View1: View, View2: View>: TypeSafeView, V
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view2))"
             )
         )
         return layoutableChildren
@@ -338,7 +344,8 @@ public struct TupleView4<View0: View, View1: View, View2: View, View3: View>: Ty
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view0))"
             )
         )
         layoutableChildren.append(
@@ -350,7 +357,8 @@ public struct TupleView4<View0: View, View1: View, View2: View, View3: View>: Ty
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view1))"
             )
         )
         layoutableChildren.append(
@@ -362,7 +370,8 @@ public struct TupleView4<View0: View, View1: View, View2: View, View3: View>: Ty
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view2))"
             )
         )
         layoutableChildren.append(
@@ -374,7 +383,8 @@ public struct TupleView4<View0: View, View1: View, View2: View, View3: View>: Ty
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view3))"
             )
         )
         return layoutableChildren
@@ -468,7 +478,8 @@ public struct TupleView5<View0: View, View1: View, View2: View, View3: View, Vie
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view0))"
             )
         )
         layoutableChildren.append(
@@ -480,7 +491,8 @@ public struct TupleView5<View0: View, View1: View, View2: View, View3: View, Vie
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view1))"
             )
         )
         layoutableChildren.append(
@@ -492,7 +504,8 @@ public struct TupleView5<View0: View, View1: View, View2: View, View3: View, Vie
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view2))"
             )
         )
         layoutableChildren.append(
@@ -504,7 +517,8 @@ public struct TupleView5<View0: View, View1: View, View2: View, View3: View, Vie
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view3))"
             )
         )
         layoutableChildren.append(
@@ -516,7 +530,8 @@ public struct TupleView5<View0: View, View1: View, View2: View, View3: View, Vie
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view4))"
             )
         )
         return layoutableChildren
@@ -616,7 +631,8 @@ public struct TupleView6<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view0))"
             )
         )
         layoutableChildren.append(
@@ -628,7 +644,8 @@ public struct TupleView6<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view1))"
             )
         )
         layoutableChildren.append(
@@ -640,7 +657,8 @@ public struct TupleView6<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view2))"
             )
         )
         layoutableChildren.append(
@@ -652,7 +670,8 @@ public struct TupleView6<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view3))"
             )
         )
         layoutableChildren.append(
@@ -664,7 +683,8 @@ public struct TupleView6<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view4))"
             )
         )
         layoutableChildren.append(
@@ -676,7 +696,8 @@ public struct TupleView6<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view5))"
             )
         )
         return layoutableChildren
@@ -779,7 +800,8 @@ public struct TupleView7<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view0))"
             )
         )
         layoutableChildren.append(
@@ -791,7 +813,8 @@ public struct TupleView7<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view1))"
             )
         )
         layoutableChildren.append(
@@ -803,7 +826,8 @@ public struct TupleView7<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view2))"
             )
         )
         layoutableChildren.append(
@@ -815,7 +839,8 @@ public struct TupleView7<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view3))"
             )
         )
         layoutableChildren.append(
@@ -827,7 +852,8 @@ public struct TupleView7<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view4))"
             )
         )
         layoutableChildren.append(
@@ -839,7 +865,8 @@ public struct TupleView7<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view5))"
             )
         )
         layoutableChildren.append(
@@ -851,7 +878,8 @@ public struct TupleView7<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view6))"
             )
         )
         return layoutableChildren
@@ -958,7 +986,8 @@ public struct TupleView8<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view0))"
             )
         )
         layoutableChildren.append(
@@ -970,7 +999,8 @@ public struct TupleView8<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view1))"
             )
         )
         layoutableChildren.append(
@@ -982,7 +1012,8 @@ public struct TupleView8<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view2))"
             )
         )
         layoutableChildren.append(
@@ -994,7 +1025,8 @@ public struct TupleView8<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view3))"
             )
         )
         layoutableChildren.append(
@@ -1006,7 +1038,8 @@ public struct TupleView8<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view4))"
             )
         )
         layoutableChildren.append(
@@ -1018,7 +1051,8 @@ public struct TupleView8<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view5))"
             )
         )
         layoutableChildren.append(
@@ -1030,7 +1064,8 @@ public struct TupleView8<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view6))"
             )
         )
         layoutableChildren.append(
@@ -1042,7 +1077,8 @@ public struct TupleView8<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view7))"
             )
         )
         return layoutableChildren
@@ -1154,7 +1190,8 @@ public struct TupleView9<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view0))"
             )
         )
         layoutableChildren.append(
@@ -1166,7 +1203,8 @@ public struct TupleView9<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view1))"
             )
         )
         layoutableChildren.append(
@@ -1178,7 +1216,8 @@ public struct TupleView9<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view2))"
             )
         )
         layoutableChildren.append(
@@ -1190,7 +1229,8 @@ public struct TupleView9<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view3))"
             )
         )
         layoutableChildren.append(
@@ -1202,7 +1242,8 @@ public struct TupleView9<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view4))"
             )
         )
         layoutableChildren.append(
@@ -1214,7 +1255,8 @@ public struct TupleView9<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view5))"
             )
         )
         layoutableChildren.append(
@@ -1226,7 +1268,8 @@ public struct TupleView9<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view6))"
             )
         )
         layoutableChildren.append(
@@ -1238,7 +1281,8 @@ public struct TupleView9<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view7))"
             )
         )
         layoutableChildren.append(
@@ -1250,7 +1294,8 @@ public struct TupleView9<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view8))"
             )
         )
         return layoutableChildren
@@ -1365,7 +1410,8 @@ public struct TupleView10<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view0))"
             )
         )
         layoutableChildren.append(
@@ -1377,7 +1423,8 @@ public struct TupleView10<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view1))"
             )
         )
         layoutableChildren.append(
@@ -1389,7 +1436,8 @@ public struct TupleView10<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view2))"
             )
         )
         layoutableChildren.append(
@@ -1401,7 +1449,8 @@ public struct TupleView10<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view3))"
             )
         )
         layoutableChildren.append(
@@ -1413,7 +1462,8 @@ public struct TupleView10<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view4))"
             )
         )
         layoutableChildren.append(
@@ -1425,7 +1475,8 @@ public struct TupleView10<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view5))"
             )
         )
         layoutableChildren.append(
@@ -1437,7 +1488,8 @@ public struct TupleView10<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view6))"
             )
         )
         layoutableChildren.append(
@@ -1449,7 +1501,8 @@ public struct TupleView10<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view7))"
             )
         )
         layoutableChildren.append(
@@ -1461,7 +1514,8 @@ public struct TupleView10<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view8))"
             )
         )
         layoutableChildren.append(
@@ -1473,7 +1527,8 @@ public struct TupleView10<
                         environment: environment,
                         dryRun: dryRun
                     )
-                }
+                },
+                tag: "\(type(of: view9))"
             )
         )
         return layoutableChildren
