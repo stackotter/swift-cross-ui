@@ -228,7 +228,6 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
             backend: backend,
             dryRun: dryRun
         )
-        backend.show(widget: widget)
 
         // We assume that the view's sizing behaviour won't change between consecutive dry run updates
         // and the following real update because groups of updates following that pattern are assumed to
@@ -236,6 +235,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         // to false after real updates, but that's because it may get invalidated between a real
         // update and the next dry-run update.
         if !dryRun {
+            backend.show(widget: widget)
             sizeCache = [:]
         } else {
             sizeCache[proposedSize] = size

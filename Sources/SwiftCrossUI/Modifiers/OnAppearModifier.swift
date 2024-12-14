@@ -7,12 +7,12 @@ extension View {
     /// if these docs have been kept up to date, the action gets called just
     /// before creating the view's widget.
     public func onAppear(perform action: @escaping () -> Void) -> some View {
-        OnAppearModifier(body: self, action: action)
+        OnAppearModifier(body: TupleView1(self), action: action)
     }
 }
 
-struct OnAppearModifier<Content: View>: LightweightView {
-    var body: Content
+struct OnAppearModifier<Content: View>: View {
+    var body: TupleView1<Content>
     var action: () -> Void
 
     func asWidget<Backend: AppBackend>(
@@ -20,6 +20,6 @@ struct OnAppearModifier<Content: View>: LightweightView {
         backend: Backend
     ) -> Backend.Widget {
         action()
-        return body.asWidget(children, backend: backend)
+        return defaultAsWidget(children, backend: backend)
     }
 }

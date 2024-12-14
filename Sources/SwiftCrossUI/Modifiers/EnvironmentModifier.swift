@@ -1,4 +1,4 @@
-struct EnvironmentModifier<Child: View>: LightweightView {
+struct EnvironmentModifier<Child: View>: View {
     var body: TupleView1<Child>
     var modification: (EnvironmentValues) -> EnvironmentValues
 

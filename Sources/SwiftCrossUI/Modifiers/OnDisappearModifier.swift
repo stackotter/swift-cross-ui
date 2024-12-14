@@ -5,12 +5,12 @@ extension View {
     /// down to the leaf views due to essentially relying on the `deinit` of the
     /// modifier view's ``ViewGraphNode``.
     public func onDisappear(perform action: @escaping () -> Void) -> some View {
-        OnDisappearModifier(body: self, action: action)
+        OnDisappearModifier(body: TupleView1(self), action: action)
     }
 }
 
-struct OnDisappearModifier<Content: View>: TypeSafeView {
-    var body: Content
+struct OnDisappearModifier<Content: View>: View {
+    var body: TupleView1<Content>
     var action: () -> Void
 
     func children<Backend: AppBackend>(
@@ -19,7 +19,7 @@ struct OnDisappearModifier<Content: View>: TypeSafeView {
         environment: EnvironmentValues
     ) -> OnDisappearModifierChildren {
         OnDisappearModifierChildren(
-            wrappedChildren: body.children(
+            wrappedChildren: defaultChildren(
                 backend: backend,
                 snapshots: snapshots,
                 environment: environment
@@ -32,7 +32,7 @@ struct OnDisappearModifier<Content: View>: TypeSafeView {
         backend: Backend,
         children: OnDisappearModifierChildren
     ) -> [LayoutSystem.LayoutableChild] {
-        body.layoutableChildren(
+        defaultLayoutableChildren(
             backend: backend,
             children: children.wrappedChildren
         )
@@ -42,7 +42,7 @@ struct OnDisappearModifier<Content: View>: TypeSafeView {
         _ children: OnDisappearModifierChildren,
         backend: Backend
     ) -> Backend.Widget {
-        body.asWidget(children.wrappedChildren, backend: backend)
+        defaultAsWidget(children.wrappedChildren, backend: backend)
     }
 
     func update<Backend: AppBackend>(
@@ -53,7 +53,7 @@ struct OnDisappearModifier<Content: View>: TypeSafeView {
         backend: Backend,
         dryRun: Bool
     ) -> ViewSize {
-        body.update(
+        defaultUpdate(
             widget,
             children: children.wrappedChildren,
             proposedSize: proposedSize,
