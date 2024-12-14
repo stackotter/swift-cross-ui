@@ -47,7 +47,19 @@ public struct EnvironmentValues {
     /// Presents an 'Open file' dialog fit for selecting a single file. Some
     /// backends only allow selecting either files or directories but not both
     /// in a single dialog. Returns `nil` if the user cancels the operation.
+    /// Must not be accessed via the ``Environment`` property wrapper at the
+    /// top-level of an ``App``. Only access it from ``View``s.
     public var chooseFile: PresentSingleFileOpenDialogAction {
+        guard let window else {
+            fatalError(
+                """
+                chooseFile cannot be accessed at the top level of an app as \
+                it must know which scene it's acting within. Access it from a \
+                View implementation or use the `.alert` view modifier if you \
+                want to present an alert directly within an App's body.
+                """
+            )
+        }
         return PresentSingleFileOpenDialogAction(
             backend: backend,
             window: window
@@ -55,11 +67,43 @@ public struct EnvironmentValues {
     }
 
     /// Presents a 'Save file' dialog fit for selecting a save destination.
-    /// Returns `nil` if the user cancels the operation.
+    /// Returns `nil` if the user cancels the operation. Must not be accessed
+    /// via the ``Environment`` property wrapper at the top-level of an ``App``.
+    /// Only access it from ``View``s.
     public var chooseFileSaveDestination: PresentFileSaveDialogAction {
+        guard let window else {
+            fatalError(
+                """
+                chooseFileSaveDestination cannot be accessed at the top level \
+                of an app as it must know which scene it's acting within. \
+                Access it from a View implementation or use the `.alert` view \
+                modifier if you want to present an alert directly within an \
+                App's body.
+                """
+            )
+        }
         return PresentFileSaveDialogAction(
             backend: backend,
             window: window
+        )
+    }
+
+    /// Presents an alert for the current window. Must not be accessed via
+    /// the ``Environment`` property wrapper at the top-level of an ``App``.
+    /// Only access it from ``View``s.
+    public var presentAlert: PresentAlertAction {
+        guard window != nil else {
+            fatalError(
+                """
+                presentAlert cannot be accessed at the top level of an app as \
+                it must know which scene it's acting within. Access it from a \
+                View implementation or use the `.alert` view modifier if you \
+                want to present an alert directly within an App's body.
+                """
+            )
+        }
+        return PresentAlertAction(
+            environment: self
         )
     }
 

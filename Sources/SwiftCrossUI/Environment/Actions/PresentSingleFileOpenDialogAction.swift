@@ -5,7 +5,7 @@ import Foundation
 /// in a single dialog. Returns `nil` if the user cancels the operation.
 public struct PresentSingleFileOpenDialogAction {
     let backend: any AppBackend
-    let window: Any?
+    let window: Any
 
     public func callAsFunction(
         title: String = "Open",

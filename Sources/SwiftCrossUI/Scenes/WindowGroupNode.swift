@@ -24,8 +24,13 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         environment: EnvironmentValues
     ) {
         self.scene = scene
-        viewGraph = ViewGraph(for: scene.body, backend: backend, environment: environment)
         let window = backend.createWindow(withDefaultSize: scene.defaultSize)
+
+        viewGraph = ViewGraph(
+            for: scene.body,
+            backend: backend,
+            environment: environment.with(\.window, window)
+        )
         let rootWidget = viewGraph.rootNode.concreteNode(for: Backend.self).widget
 
         let container = backend.createContainer()
