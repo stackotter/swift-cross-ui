@@ -2,6 +2,8 @@ public struct Menu: TypeSafeView {
     public var label: String
     public var items: [MenuItem]
 
+    var buttonWidth: Int?
+
     public var body = EmptyView()
 
     public init(_ label: String, @MenuItemsBuilder items: () -> [MenuItem]) {
@@ -65,10 +67,10 @@ public struct Menu: TypeSafeView {
     ) -> ViewSize {
         // TODO: Store popped menu in view graph node children so that we can
         //   continue updating it even once it's open.
-        let size = backend.naturalSize(of: widget)
+        var size = backend.naturalSize(of: widget)
+        size.x = buttonWidth ?? size.x
 
         let content = resolve().content
-
         backend.updateButton(
             widget,
             label: label,
@@ -86,8 +88,17 @@ public struct Menu: TypeSafeView {
             },
             environment: environment
         )
+        backend.setSize(of: widget, to: size)
+
         children.updateMenuIfShown(content: content, environment: environment, backend: backend)
         return ViewSize(fixedSize: size)
+    }
+
+    /// A temporary button width solution until arbitrary labels are supported.
+    public func _buttonWidth(_ width: Int?) -> Menu {
+        var menu = self
+        menu.buttonWidth = width
+        return menu
     }
 }
 

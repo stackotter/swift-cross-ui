@@ -420,7 +420,10 @@ public final class AppKitBackend: AppBackend {
         environment: EnvironmentValues
     ) {
         let button = button as! NSButton
-        button.attributedTitle = Self.attributedString(for: label, in: environment)
+        button.attributedTitle = Self.attributedString(
+            for: label,
+            in: environment.with(\.multilineTextAlignment, .center)
+        )
         button.bezelStyle = .regularSquare
         button.appearance = environment.colorScheme.nsAppearance
         button.onAction = { _ in

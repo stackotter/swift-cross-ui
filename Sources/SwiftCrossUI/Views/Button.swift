@@ -4,6 +4,8 @@ public struct Button: ElementaryView, View {
     var label: String
     /// The action to be performed when the button is clicked.
     var action: () -> Void
+    /// The button's forced width if provided.
+    var width: Int?
 
     /// Creates a button that displays a custom label.
     public init(_ label: String, action: @escaping () -> Void = {}) {
@@ -32,7 +34,25 @@ public struct Button: ElementaryView, View {
         //   refresh), but the reason Gtk 3 doesn't like it is that the window gets set smaller
         //   than its content I think.
         //   See: https://github.com/stackotter/swift-cross-ui/blob/27f50579c52e79323c3c368512d37e95af576c25/Sources/SwiftCrossUI/Scenes/WindowGroupNode.swift#L140
-        backend.updateButton(widget, label: label, action: action, environment: environment)
-        return ViewSize(fixedSize: backend.naturalSize(of: widget))
+        backend.updateButton(
+            widget,
+            label: label,
+            action: action,
+            environment: environment
+        )
+        let naturalSize = backend.naturalSize(of: widget)
+        let size = SIMD2(
+            width ?? naturalSize.x,
+            naturalSize.y
+        )
+        backend.setSize(of: widget, to: size)
+        return ViewSize(fixedSize: size)
+    }
+
+    /// A temporary button width solution until arbitrary labels are supported.
+    public func _buttonWidth(_ width: Int?) -> Button {
+        var button = self
+        button.width = width
+        return button
     }
 }

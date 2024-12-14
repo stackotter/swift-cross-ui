@@ -288,7 +288,7 @@ public protocol AppBackend {
     /// Creates a labelled button with an action triggered on click. Predominantly used
     /// by ``Button``.
     func createButton() -> Widget
-    /// Sets a button's label and action. The action replaces any existing actions..
+    /// Sets a button's label and action. The action replaces any existing actions.
     func updateButton(
         _ button: Widget,
         label: String,
