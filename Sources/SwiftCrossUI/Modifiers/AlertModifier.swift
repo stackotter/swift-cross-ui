@@ -70,7 +70,7 @@ struct AlertModifierView<Child: View>: TypeSafeView {
             )
             backend.showAlert(
                 alert,
-                window: environment.window! as! Backend.Window
+                window: .some(environment.window! as! Backend.Window)
             ) { responseId in
                 children.alert = nil
                 isPresented.wrappedValue = false
@@ -80,7 +80,7 @@ struct AlertModifierView<Child: View>: TypeSafeView {
         } else if isPresented.wrappedValue == false && children.alert != nil {
             backend.dismissAlert(
                 children.alert as! Backend.Alert,
-                window: environment.window! as! Backend.Window
+                window: .some(environment.window! as! Backend.Window)
             )
             children.alert = nil
         }

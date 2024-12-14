@@ -1,6 +1,4 @@
-struct EnvironmentModifier<Child: View>: TypeSafeView {
-    typealias Children = TupleView1<Child>.Children
-
+struct EnvironmentModifier<Child: View>: LightweightView {
     var body: TupleView1<Child>
     var modification: (EnvironmentValues) -> EnvironmentValues
 
@@ -13,7 +11,7 @@ struct EnvironmentModifier<Child: View>: TypeSafeView {
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
-    ) -> Children {
+    ) -> any ViewGraphNodeChildren {
         body.children(
             backend: backend,
             snapshots: snapshots,
@@ -21,23 +19,9 @@ struct EnvironmentModifier<Child: View>: TypeSafeView {
         )
     }
 
-    func layoutableChildren<Backend: AppBackend>(
-        backend: Backend,
-        children: Children
-    ) -> [LayoutSystem.LayoutableChild] {
-        []
-    }
-
-    func asWidget<Backend: AppBackend>(
-        _ children: Children,
-        backend: Backend
-    ) -> Backend.Widget {
-        return body.asWidget(children, backend: backend)
-    }
-
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: Children,
+        children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
         backend: Backend,
