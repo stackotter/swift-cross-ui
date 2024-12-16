@@ -537,7 +537,8 @@ public final class AppKitBackend: AppBackend {
         _ textField: Widget,
         placeholder: String,
         environment: EnvironmentValues,
-        onChange: @escaping (String) -> Void
+        onChange: @escaping (String) -> Void,
+        onSubmit: @escaping () -> Void
     ) {
         let textField = textField as! NSObservableTextField
         textField.placeholderString = placeholder
@@ -545,6 +546,7 @@ public final class AppKitBackend: AppBackend {
         textField.onEdit = { textField in
             onChange(textField.stringValue)
         }
+        textField.onSubmit = onSubmit
     }
 
     public func getContent(ofTextField textField: Widget) -> String {
@@ -1055,7 +1057,7 @@ final class NSCustomMenuItem: NSMenuItem {
 //   than the existing associated keys based approach. And probably more efficient too.
 // Source: https://stackoverflow.com/a/36983811
 final class Action: NSObject {
-    private let action: () -> Void
+    var action: () -> Void
 
     init(_ action: @escaping () -> Void) {
         self.action = action
@@ -1197,6 +1199,17 @@ class NSObservableTextField: NSTextField {
     }
 
     var onEdit: ((NSTextField) -> Void)?
+    var _onSubmitAction = Action({})
+    var onSubmit: () -> Void {
+        get {
+            _onSubmitAction.action
+        }
+        set {
+            _onSubmitAction.action = newValue
+            action = #selector(_onSubmitAction.run)
+            target = _onSubmitAction
+        }
+    }
 }
 
 // Source: https://gist.github.com/sindresorhus/3580ce9426fff8fafb1677341fca4815

@@ -26,10 +26,12 @@ public struct TextField: ElementaryView, View {
             backend.updateTextField(
                 widget,
                 placeholder: placeholder,
-                environment: environment
-            ) { newValue in
-                self.value?.wrappedValue = newValue
-            }
+                environment: environment,
+                onChange: { newValue in
+                    self.value?.wrappedValue = newValue
+                },
+                onSubmit: environment.onSubmit ?? {}
+            )
             if let value = value?.wrappedValue, value != backend.getContent(ofTextField: widget) {
                 backend.setContent(ofTextField: widget, to: value)
             }

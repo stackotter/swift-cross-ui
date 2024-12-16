@@ -335,7 +335,8 @@ public protocol AppBackend {
     func createTextField() -> Widget
     /// Sets the placeholder label and change handler of an editable text field. The new
     /// change handler replaces any existing change handlers, and is called whenever the
-    /// displayed value changes.
+    /// displayed value changes. `onSubmit` gets called when the user hits Enter/Return,
+    /// or whatever the backend decides counts as submission of the field.
     ///
     /// The backend shouldn't wait until the user finishes typing to call the change handler;
     /// it should allow live access to the value.
@@ -343,7 +344,8 @@ public protocol AppBackend {
         _ textField: Widget,
         placeholder: String,
         environment: EnvironmentValues,
-        onChange: @escaping (String) -> Void
+        onChange: @escaping (String) -> Void,
+        onSubmit: @escaping () -> Void
     )
     /// Sets the value of an editable text field.
     func setContent(ofTextField textField: Widget, to content: String)
@@ -650,7 +652,8 @@ extension AppBackend {
         _ textField: Widget,
         placeholder: String,
         environment: EnvironmentValues,
-        onChange: @escaping (String) -> Void
+        onChange: @escaping (String) -> Void,
+        onSubmit: @escaping () -> Void
     ) {
         todo()
     }

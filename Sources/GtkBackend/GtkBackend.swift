@@ -593,12 +593,16 @@ public final class GtkBackend: AppBackend {
         _ textField: Widget,
         placeholder: String,
         environment: EnvironmentValues,
-        onChange: @escaping (String) -> Void
+        onChange: @escaping (String) -> Void,
+        onSubmit: @escaping () -> Void
     ) {
         let textField = textField as! Entry
         textField.placeholderText = placeholder
         textField.changed = { widget in
             onChange(widget.text)
+        }
+        textField.activate = { _ in
+            onSubmit()
         }
 
         textField.css.clear()

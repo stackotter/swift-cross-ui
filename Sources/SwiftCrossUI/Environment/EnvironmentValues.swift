@@ -31,6 +31,10 @@ public struct EnvironmentValues {
         foregroundColor ?? colorScheme.defaultForegroundColor
     }
 
+    /// Called when a text field gets submitted (usually due to the user
+    /// pressing Enter/Return).
+    public var onSubmit: (() -> Void)?
+
     /// Called by view graph nodes when they resize due to an internal state
     /// change and end up changing size. Each view graph node sets its own
     /// handler when passing the environment on to its children, setting up
