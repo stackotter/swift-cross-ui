@@ -37,7 +37,7 @@ import CGtk
 /// If you know none of these things are an issue for your application,
 /// and prefer the simplicity of `GtkFixed`, by all means use the
 /// widget. But you should be aware of the tradeoffs.
-public class Fixed: Widget {
+open class Fixed: Widget {
     public var children: [Widget] = []
 
     /// Creates a new `GtkFixed`.

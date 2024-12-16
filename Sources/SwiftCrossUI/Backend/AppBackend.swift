@@ -451,6 +451,17 @@ public protocol AppBackend {
         window: Window?,
         resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
     )
+
+    /// Wraps a view in a container that can receive click events. Some
+    /// backends may not have to wrap the child, in which case they have the
+    /// freedom to just return the child as is.
+    func createClickTarget(wrapping child: Widget) -> Widget
+    /// Update the click target with a new click handler. Replaces the old
+    /// click handler.
+    func updateClickTarget(
+        _ clickTarget: Widget,
+        clickHandler handleClick: @escaping () -> Void
+    )
 }
 
 extension AppBackend {
@@ -734,6 +745,16 @@ extension AppBackend {
         saveDialogOptions: SaveDialogOptions,
         window: Window?,
         resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
+    ) {
+        todo()
+    }
+
+    public func createClickTarget(wrapping child: Widget) -> Widget {
+        todo()
+    }
+    public func updateClickTarget(
+        _ clickTarget: Widget,
+        clickHandler handleClick: @escaping () -> Void
     ) {
         todo()
     }

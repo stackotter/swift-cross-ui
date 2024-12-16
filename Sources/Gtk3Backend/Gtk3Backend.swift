@@ -867,6 +867,30 @@ public final class Gtk3Backend: AppBackend {
         gtk_native_dialog_show(chooser.gobjectPointer.cast())
     }
 
+    public func createClickTarget(wrapping child: Widget) -> Widget {
+        let eventBox = Gtk3.EventBox()
+        eventBox.setChild(to: child)
+        eventBox.aboveChild = true
+        return eventBox
+    }
+
+    public func updateClickTarget(
+        _ clickTarget: Widget,
+        clickHandler handleClick: @escaping () -> Void
+    ) {
+        clickTarget.onButtonPress = { _, buttonEvent in
+            let eventType = buttonEvent.type
+            guard
+                eventType == GDK_BUTTON_PRESS
+                    || eventType == GDK_2BUTTON_PRESS
+                    || eventType == GDK_3BUTTON_PRESS
+            else {
+                return
+            }
+            handleClick()
+        }
+    }
+
     // MARK: Helpers
 
     private static func cssProperties(

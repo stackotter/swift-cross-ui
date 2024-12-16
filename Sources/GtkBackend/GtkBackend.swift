@@ -886,6 +886,25 @@ public final class GtkBackend: AppBackend {
         gtk_native_dialog_show(chooser.gobjectPointer.cast())
     }
 
+    public func createClickTarget(wrapping child: Widget) -> Widget {
+        let gesture = Gtk.GestureClick()
+        child.addEventController(gesture)
+        return child
+    }
+
+    public func updateClickTarget(
+        _ clickTarget: Widget,
+        clickHandler handleClick: @escaping () -> Void
+    ) {
+        let gesture = clickTarget.eventControllers[0] as! Gtk.GestureClick
+        gesture.pressed = { _, nPress, _, _ in
+            guard nPress == 1 else {
+                return
+            }
+            handleClick()
+        }
+    }
+
     // MARK: Helpers
 
     private func wrapInCustomRootContainer(_ widget: Widget) -> Widget {

@@ -47,9 +47,9 @@ struct GtkCodeGen {
     ]
 
     /// Replacements applied to types which don't have the `ctype` attribute.
-    /// Only used by Gtk3 GIR conversion at the moment.
     static let typeNameReplacements: [String: String] = [
-        "Gdk.Event": "GdkEvent"
+        "Gdk.Event": "GdkEvent",
+        "Gdk.EventSequence": "OpaquePointer",
     ]
 
     static let interfaces: [String] = [
@@ -85,9 +85,10 @@ struct GtkCodeGen {
     ) throws {
         let allowListedClasses = [
             "Button", "Entry", "Label", "TextView", "Range", "Scale", "Image", "Switch", "Spinner",
-            "ProgressBar", "FileChooserNative", "NativeDialog",
+            "ProgressBar", "FileChooserNative", "NativeDialog", "GestureClick", "GestureSingle",
+            "Gesture", "EventController",
         ]
-        let gtk3AllowListedClasses = ["MenuShell"]
+        let gtk3AllowListedClasses = ["MenuShell", "EventBox"]
         let gtk4AllowListedClasses = ["Picture", "DropDown", "Popover"]
         for class_ in gir.namespace.classes {
             guard

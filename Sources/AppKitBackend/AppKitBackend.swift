@@ -397,6 +397,7 @@ public final class AppKitBackend: AppBackend {
         // though it's not editable. It prevents the text from resetting to default
         // styles when clicked (yeah that happens...)
         field.allowsEditingTextAttributes = true
+        field.isSelectable = false
         return field
     }
 
@@ -1005,6 +1006,42 @@ public final class AppKitBackend: AppBackend {
             let response = panel.runModal()
             handleResponse(response)
         }
+    }
+
+    public func createClickTarget(wrapping child: Widget) -> Widget {
+        let container = NSView()
+
+        container.addSubview(child)
+        child.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
+        child.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+        child.translatesAutoresizingMaskIntoConstraints = false
+
+        let clickTarget = NSCustomClickTarget()
+        container.addSubview(clickTarget)
+        clickTarget.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
+        clickTarget.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+        clickTarget.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
+        clickTarget.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
+        clickTarget.translatesAutoresizingMaskIntoConstraints = false
+
+        return container
+
+    }
+
+    public func updateClickTarget(
+        _ container: Widget,
+        clickHandler handleClick: @escaping () -> Void
+    ) {
+        let clickTarget = container.subviews[1] as! NSCustomClickTarget
+        clickTarget.leftClickHandler = handleClick
+    }
+}
+
+final class NSCustomClickTarget: NSView {
+    var leftClickHandler: (() -> Void)?
+
+    override func mouseDown(with event: NSEvent) {
+        leftClickHandler?()
     }
 }
 

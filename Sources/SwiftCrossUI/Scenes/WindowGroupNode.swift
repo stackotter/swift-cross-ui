@@ -48,7 +48,6 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             guard let self else {
                 return
             }
-            print("Resized. newSize: \(newSize)")
             _ = self.update(
                 scene,
                 proposedWindowSize: newSize,

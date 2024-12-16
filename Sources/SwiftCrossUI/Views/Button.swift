@@ -45,7 +45,11 @@ public struct Button: ElementaryView, View {
             width ?? naturalSize.x,
             naturalSize.y
         )
-        backend.setSize(of: widget, to: size)
+
+        if !dryRun {
+            backend.setSize(of: widget, to: size)
+        }
+
         return ViewSize(fixedSize: size)
     }
 

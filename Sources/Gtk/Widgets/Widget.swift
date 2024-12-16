@@ -10,6 +10,8 @@ open class Widget: GObject {
         gobjectPointer.cast()
     }
 
+    public private(set) var eventControllers: [EventController] = []
+
     public weak var parentWidget: Widget? {
         willSet {}
         didSet {
@@ -86,6 +88,12 @@ open class Widget: GObject {
             name,
             actionGroup.actionGroupPointer
         )
+    }
+
+    public func addEventController(_ controller: EventController) {
+        gtk_widget_add_controller(widgetPointer, controller.opaquePointer)
+        eventControllers.append(controller)
+        controller.registerSignals()
     }
 
     @GObjectProperty(named: "name") public var name: String?

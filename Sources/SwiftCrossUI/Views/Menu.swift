@@ -88,9 +88,12 @@ public struct Menu: TypeSafeView {
             },
             environment: environment
         )
-        backend.setSize(of: widget, to: size)
 
-        children.updateMenuIfShown(content: content, environment: environment, backend: backend)
+        if !dryRun {
+            backend.setSize(of: widget, to: size)
+            children.updateMenuIfShown(content: content, environment: environment, backend: backend)
+        }
+
         return ViewSize(fixedSize: size)
     }
 
