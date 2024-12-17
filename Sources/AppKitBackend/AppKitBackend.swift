@@ -3,6 +3,10 @@ import SwiftCrossUI
 
 extension App {
     public typealias Backend = AppKitBackend
+
+    public var backend: AppKitBackend {
+        AppKitBackend()
+    }
 }
 
 public final class AppKitBackend: AppBackend {

@@ -5,6 +5,10 @@ import SwiftCrossUI
 
 extension App {
     public typealias Backend = GtkBackend
+
+    public var backend: GtkBackend {
+        GtkBackend(appIdentifier: Self.metadata?.identifier)
+    }
 }
 
 extension SwiftCrossUI.Color {
@@ -35,17 +39,20 @@ public final class GtkBackend: AppBackend {
     /// precreated window until it gets 'created' via `createWindow`.
     var windows: [Window] = []
 
-    /// Creates a backend instance using the default app identifier `com.example.SwiftCrossUIApp`.
-    convenience public init() {
-        self.init(appIdentifier: "com.example.SwiftCrossUIApp")
+    // A separate initializer to satisfy ``AppBackend``'s requirements.
+    public convenience init() {
+        self.init(appIdentifier: nil)
     }
 
-    public init(appIdentifier: String) {
+    /// Creates a backend instance. If `appIdentifier` is `nil`, the default
+    /// identifier `com.example.SwiftCrossUIApp` is used.
+    public init(appIdentifier: String?) {
         gtkApp = Application(
-            applicationId: appIdentifier,
+            applicationId: appIdentifier ?? "com.example.SwiftCrossUIApp",
             flags: G_APPLICATION_HANDLES_OPEN
         )
         gtkApp.registerSession = true
+        print(appIdentifier)
     }
 
     public func runMainLoop(_ callback: @escaping () -> Void) {

@@ -9,6 +9,11 @@ public protocol App {
     /// The app's observed state.
     associatedtype State: Observable
 
+    /// Metadata loaded at app start up. By default SwiftCrossUI attempts
+    /// to load metadata inserted by Swift Bundler if present. Used by backends'
+    /// default ``App/backend`` implementations if not `nil`.
+    static var metadata: AppMetadata? { get }
+
     /// The application's backend.
     var backend: Backend { get }
 
@@ -26,9 +31,19 @@ public protocol App {
 /// this in your own code then something has gone very wrong...
 public var _forceRefresh: () -> Void = {}
 
+/// Metadata embedded by Swift Bundler if present. Loaded at app start up.
+private var swiftBundlerAppMetadata: AppMetadata?
+
 extension App {
+    /// Metadata loaded at app start up.
+    public static var metadata: AppMetadata? {
+        swiftBundlerAppMetadata
+    }
+
     /// Runs the application.
     public static func main() {
+        swiftBundlerAppMetadata = extractSwiftBundlerMetadata()
+
         let app = Self()
         let _app = _App(app)
         _forceRefresh = {
@@ -38,16 +53,56 @@ extension App {
         }
         _app.run()
     }
+
+    private static func extractSwiftBundlerMetadata() -> AppMetadata? {
+        guard let executable = Bundle.main.executableURL else {
+            print("No executable url")
+            return nil
+        }
+
+        guard let data = try? Data(contentsOf: executable) else {
+            print("warning: Executable failed to read self (to extract metadata)")
+            return nil
+        }
+
+        // Check if executable has Swift Bundler metadata magic bytes.
+        let bytes = Array(data)
+        guard bytes.suffix(8) == Array("SBUNMETA".utf8) else {
+            print("no magic bytes")
+            return nil
+        }
+
+        let lengthStart = bytes.count - 16
+        let jsonLength = parseBigEndianUInt64(startingAt: lengthStart, in: bytes)
+        let jsonStart = lengthStart - Int(jsonLength)
+        let jsonData = Data(bytes[jsonStart..<lengthStart])
+
+        do {
+            return try JSONDecoder().decode(
+                AppMetadata.self,
+                from: jsonData
+            )
+        } catch {
+            print("warning: Swift Bundler metadata present but couldn't be parsed")
+            print("  -> \(error)")
+            return nil
+        }
+    }
+
+    private static func parseBigEndianUInt64(
+        startingAt startIndex: Int,
+        in bytes: [UInt8]
+    ) -> UInt64 {
+        bytes[startIndex..<(startIndex + 8)].withUnsafeBytes { pointer in
+            let bigEndianValue = pointer.assumingMemoryBound(to: UInt64.self)
+                .baseAddress!.pointee
+            return UInt64(bigEndian: bigEndianValue)
+        }
+    }
 }
 
 extension App where State == EmptyState {
     public var state: State {
         EmptyState()
-    }
-}
-
-extension App {
-    public var backend: Backend {
-        Backend()
     }
 }
