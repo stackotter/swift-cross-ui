@@ -42,7 +42,7 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         let leadingWidth = backend.sidebarWidth(ofSplitView: widget)
         if !dryRun {
             backend.setResizeHandler(ofSplitView: widget) { _, _ in
@@ -51,7 +51,7 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
         }
 
         // Update pane children
-        let leadingContentSize = children.leadingChild.update(
+        let leadingResult = children.leadingChild.update(
             with: body.view0,
             proposedSize: SIMD2(
                 leadingWidth,
@@ -60,7 +60,7 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
             environment: environment,
             dryRun: dryRun
         )
-        let trailingContentSize = children.trailingChild.update(
+        let trailingResult = children.trailingChild.update(
             with: body.view1,
             proposedSize: SIMD2(
                 proposedSize.x - leadingWidth,
@@ -71,6 +71,8 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
         )
 
         // Update split view size and sidebar width bounds
+        let leadingContentSize = leadingResult.size
+        let trailingContentSize = trailingResult.size
         let size = SIMD2(
             max(proposedSize.x, leadingContentSize.size.x + trailingContentSize.size.x),
             max(proposedSize.y, max(leadingContentSize.size.y, trailingContentSize.size.y))
@@ -105,13 +107,17 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
             )
         }
 
-        return ViewSize(
-            size: size,
-            idealSize: leadingContentSize.idealSize &+ trailingContentSize.idealSize,
-            minimumWidth: leadingContentSize.minimumWidth + trailingContentSize.minimumWidth,
-            minimumHeight: max(leadingContentSize.minimumHeight, trailingContentSize.minimumHeight),
-            maximumWidth: nil,
-            maximumHeight: nil
+        return ViewUpdateResult(
+            size: ViewSize(
+                size: size,
+                idealSize: leadingContentSize.idealSize &+ trailingContentSize.idealSize,
+                minimumWidth: leadingContentSize.minimumWidth + trailingContentSize.minimumWidth,
+                minimumHeight: max(
+                    leadingContentSize.minimumHeight, trailingContentSize.minimumHeight),
+                maximumWidth: nil,
+                maximumHeight: nil
+            ),
+            childResults: [leadingResult, trailingResult]
         )
     }
 }

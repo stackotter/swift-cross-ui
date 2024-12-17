@@ -49,14 +49,14 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
-        let size: ViewSize
+    ) -> ViewUpdateResult {
+        let result: ViewUpdateResult
         let hasSwitchedCase: Bool
         switch storage {
             case .a(let a):
                 switch children.node {
                     case let .a(nodeA):
-                        size = nodeA.update(
+                        result = nodeA.update(
                             with: a,
                             proposedSize: proposedSize,
                             environment: environment,
@@ -70,7 +70,7 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
                             environment: environment
                         )
                         children.node = .a(nodeA)
-                        size = nodeA.update(
+                        result = nodeA.update(
                             with: a,
                             proposedSize: proposedSize,
                             environment: environment,
@@ -81,7 +81,7 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
             case .b(let b):
                 switch children.node {
                     case let .b(nodeB):
-                        size = nodeB.update(
+                        result = nodeB.update(
                             with: b,
                             proposedSize: proposedSize,
                             environment: environment,
@@ -95,7 +95,7 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
                             environment: environment
                         )
                         children.node = .b(nodeB)
-                        size = nodeB.update(
+                        result = nodeB.update(
                             with: b,
                             proposedSize: proposedSize,
                             environment: environment,
@@ -114,10 +114,10 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
         }
 
         if !dryRun {
-            backend.setSize(of: widget, to: size.size)
+            backend.setSize(of: widget, to: result.size.size)
         }
 
-        return size
+        return result
     }
 }
 

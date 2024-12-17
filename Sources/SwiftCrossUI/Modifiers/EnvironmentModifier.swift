@@ -26,8 +26,8 @@ struct EnvironmentModifier<Child: View>: View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
-        return body.update(
+    ) -> ViewUpdateResult {
+        body.update(
             widget,
             children: children,
             proposedSize: proposedSize,

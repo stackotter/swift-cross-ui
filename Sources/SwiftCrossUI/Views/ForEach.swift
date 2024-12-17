@@ -61,7 +61,7 @@ extension ForEach: TypeSafeView, View where Child: View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         func addChild(_ child: Backend.Widget) {
             if dryRun {
                 children.queuedChanges.append(.addChild(AnyWidget(child)))

@@ -58,8 +58,8 @@ public struct HotReloadableView: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
-        var (viewTypeMatched, size) = children.node.updateWithNewView(
+    ) -> ViewUpdateResult {
+        var (viewTypeMatched, result) = children.node.updateWithNewView(
             child,
             proposedSize,
             environment,
@@ -78,13 +78,13 @@ public struct HotReloadableView: TypeSafeView {
 
             // We can assume that the view types match since we just recreated the view
             // on the line above.
-            let (_, newSize) = children.node.updateWithNewView(
+            let (_, newResult) = children.node.updateWithNewView(
                 child,
                 proposedSize,
                 environment,
                 dryRun
             )
-            size = newSize
+            result = newResult
             children.hasChangedChild = true
         }
 
@@ -96,10 +96,10 @@ public struct HotReloadableView: TypeSafeView {
                 children.hasChangedChild = false
             }
 
-            backend.setSize(of: widget, to: size.size)
+            backend.setSize(of: widget, to: result.size.size)
         }
 
-        return size
+        return result
     }
 }
 

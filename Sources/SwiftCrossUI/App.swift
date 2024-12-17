@@ -32,11 +32,7 @@ extension App {
         let app = Self()
         let _app = _App(app)
         _forceRefresh = {
-            if String(describing: type(of: app.backend)) == "AppKitBackend" {
-                DispatchQueue.main.async {
-                    _app.forceRefresh()
-                }
-            } else {
+            app.backend.runInMainThread {
                 _app.forceRefresh()
             }
         }

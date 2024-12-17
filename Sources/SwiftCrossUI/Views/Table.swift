@@ -40,82 +40,87 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         let size = proposedSize
-        if !dryRun {
-            let rowContent = rows.map(columns.content(for:)).map(RowView.init(_:))
+        var cellResults: [ViewUpdateResult] = []
+        let rowContent = rows.map(columns.content(for:)).map(RowView.init(_:))
 
-            for (node, content) in zip(children.rowNodes, rowContent) {
-                // Updating a RowView simply updates the view stored within its node, so the proposedSize
-                // is irrelevant. We can just set it to `.zero`.
-                _ = node.update(
-                    with: content,
-                    proposedSize: .zero,
+        for (node, content) in zip(children.rowNodes, rowContent) {
+            // Updating a RowView simply updates the view stored within its node, so the proposedSize
+            // is irrelevant. We can just set it to `.zero`.
+            _ = node.update(
+                with: content,
+                proposedSize: .zero,
+                environment: environment,
+                dryRun: dryRun
+            )
+        }
+
+        let columnLabels = columns.labels
+        let columnCount = columnLabels.count
+        let remainder = rowContent.count - children.rowNodes.count
+        if remainder < 0 {
+            children.rowNodes.removeLast(-remainder)
+            children.cellContainerWidgets.removeLast(-remainder * columnCount)
+        } else if remainder > 0 {
+            for row in rowContent[children.rowNodes.count...] {
+                let rowNode = AnyViewGraphNode(
+                    for: row,
+                    backend: backend,
+                    environment: environment
+                )
+                children.rowNodes.append(rowNode)
+                for cellWidget in rowNode.getChildren().widgets(for: backend) {
+                    let cellContainer = backend.createContainer()
+                    backend.addChild(cellWidget, to: cellContainer)
+                    children.cellContainerWidgets.append(AnyWidget(cellContainer))
+                }
+            }
+        }
+
+        if !dryRun {
+            backend.setRowCount(ofTable: widget, to: rows.count)
+            backend.setColumnLabels(ofTable: widget, to: columnLabels, environment: environment)
+        }
+
+        let columnWidth = proposedSize.x / columnCount
+        var rowHeights: [Int] = []
+        for (rowIndex, (rowNode, content)) in zip(children.rowNodes, rowContent).enumerated() {
+            let rowCells = content.layoutableChildren(
+                backend: backend,
+                children: rowNode.getChildren()
+            )
+
+            var cellHeights: [Int] = []
+            for rowCell in rowCells {
+                let cellResult = rowCell.update(
+                    proposedSize: SIMD2(columnWidth, backend.defaultTableRowContentHeight),
                     environment: environment,
                     dryRun: dryRun
                 )
+                cellResults.append(cellResult)
+                cellHeights.append(cellResult.size.size.y)
             }
 
-            let columnLabels = columns.labels
-            let columnCount = columnLabels.count
-            let remainder = rowContent.count - children.rowNodes.count
-            if remainder < 0 {
-                children.rowNodes.removeLast(-remainder)
-                children.cellContainerWidgets.removeLast(-remainder * columnCount)
-            } else if remainder > 0 {
-                for row in rowContent[children.rowNodes.count...] {
-                    let rowNode = AnyViewGraphNode(
-                        for: row,
-                        backend: backend,
-                        environment: environment
+            let rowHeight =
+                max(cellHeights.max() ?? 0, backend.defaultTableRowContentHeight)
+                + backend.defaultTableCellVerticalPadding * 2
+            rowHeights.append(rowHeight)
+
+            for (columnIndex, cellHeight) in zip(0..<columnCount, cellHeights) {
+                let index = rowIndex * columnCount + columnIndex
+                backend.setPosition(
+                    ofChildAt: 0,
+                    in: children.cellContainerWidgets[index].into(),
+                    to: SIMD2(
+                        0,
+                        (rowHeight - cellHeight) / 2
                     )
-                    children.rowNodes.append(rowNode)
-                    for cellWidget in rowNode.getChildren().widgets(for: backend) {
-                        let cellContainer = backend.createContainer()
-                        backend.addChild(cellWidget, to: cellContainer)
-                        children.cellContainerWidgets.append(AnyWidget(cellContainer))
-                    }
-                }
-            }
-
-            backend.setRowCount(ofTable: widget, to: rows.count)
-            backend.setColumnLabels(ofTable: widget, to: columnLabels, environment: environment)
-
-            let columnWidth = proposedSize.x / columnCount
-            var rowHeights: [Int] = []
-            for (rowIndex, (rowNode, content)) in zip(children.rowNodes, rowContent).enumerated() {
-                let rowCells = content.layoutableChildren(
-                    backend: backend,
-                    children: rowNode.getChildren()
                 )
-
-                var cellHeights: [Int] = []
-                for rowCell in rowCells {
-                    let size = rowCell.update(
-                        proposedSize: SIMD2(columnWidth, backend.defaultTableRowContentHeight),
-                        environment: environment
-                    )
-                    cellHeights.append(size.size.y)
-                }
-
-                let rowHeight =
-                    max(cellHeights.max() ?? 0, backend.defaultTableRowContentHeight)
-                    + backend.defaultTableCellVerticalPadding * 2
-                rowHeights.append(rowHeight)
-
-                for (columnIndex, cellHeight) in zip(0..<columnCount, cellHeights) {
-                    let index = rowIndex * columnCount + columnIndex
-                    backend.setPosition(
-                        ofChildAt: 0,
-                        in: children.cellContainerWidgets[index].into(),
-                        to: SIMD2(
-                            0,
-                            (rowHeight - cellHeight) / 2
-                        )
-                    )
-                }
             }
+        }
 
+        if !dryRun {
             // TODO: Avoid overhead of converting `cellContainerWidgets` to `[AnyWidget]` and back again
             //   all the time.
             backend.setCells(
@@ -123,18 +128,21 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
                 to: children.cellContainerWidgets.map { $0.into() },
                 withRowHeights: rowHeights
             )
-
-            backend.setSize(of: widget, to: size)
         }
 
+        backend.setSize(of: widget, to: size)
+
         // TODO: Compute a proper ideal size for tables
-        return ViewSize(
-            size: size,
-            idealSize: .zero,
-            minimumWidth: 0,
-            minimumHeight: 0,
-            maximumWidth: nil,
-            maximumHeight: nil
+        return ViewUpdateResult(
+            size: ViewSize(
+                size: size,
+                idealSize: .zero,
+                minimumWidth: 0,
+                minimumHeight: 0,
+                maximumWidth: nil,
+                maximumHeight: nil
+            ),
+            childResults: cellResults
         )
     }
 }
@@ -194,7 +202,7 @@ struct RowView<Content: View>: View {
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
         backend: Backend
-    ) -> ViewSize {
-        return .empty
+    ) -> ViewUpdateResult {
+        return ViewUpdateResult.leafView(size: .empty)
     }
 }

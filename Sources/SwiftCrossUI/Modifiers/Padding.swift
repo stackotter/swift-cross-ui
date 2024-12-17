@@ -46,14 +46,14 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         let padding = padding ?? backend.defaultPaddingAmount
         let topPadding = edges.contains(.top) ? padding : 0
         let bottomPadding = edges.contains(.bottom) ? padding : 0
         let leadingPadding = edges.contains(.leading) ? padding : 0
         let trailingPadding = edges.contains(.trailing) ? padding : 0
 
-        let childSize = children.child0.update(
+        let childResult = children.child0.update(
             with: body.view0,
             proposedSize: SIMD2(
                 max(proposedSize.x - leadingPadding - trailingPadding, 0),
@@ -62,6 +62,7 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
             environment: environment,
             dryRun: dryRun
         )
+        let childSize = childResult.size
 
         let paddingSize = SIMD2(leadingPadding + trailingPadding, topPadding + bottomPadding)
         let size =
@@ -74,15 +75,18 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
             backend.setPosition(ofChildAt: 0, in: container, to: SIMD2(leadingPadding, topPadding))
         }
 
-        return ViewSize(
-            size: size,
-            idealSize: childSize.idealSize &+ paddingSize,
-            idealWidthForProposedHeight: childSize.idealWidthForProposedHeight + paddingSize.x,
-            idealHeightForProposedWidth: childSize.idealHeightForProposedWidth + paddingSize.y,
-            minimumWidth: childSize.minimumWidth + paddingSize.x,
-            minimumHeight: childSize.minimumHeight + paddingSize.y,
-            maximumWidth: childSize.maximumWidth + Double(paddingSize.x),
-            maximumHeight: childSize.maximumHeight + Double(paddingSize.y)
+        return ViewUpdateResult(
+            size: ViewSize(
+                size: size,
+                idealSize: childSize.idealSize &+ paddingSize,
+                idealWidthForProposedHeight: childSize.idealWidthForProposedHeight + paddingSize.x,
+                idealHeightForProposedWidth: childSize.idealHeightForProposedWidth + paddingSize.y,
+                minimumWidth: childSize.minimumWidth + paddingSize.x,
+                minimumHeight: childSize.minimumHeight + paddingSize.y,
+                maximumWidth: childSize.maximumWidth + Double(paddingSize.x),
+                maximumHeight: childSize.maximumHeight + Double(paddingSize.y)
+            ),
+            childResults: [childResult]
         )
     }
 }

@@ -96,7 +96,7 @@ public struct Slider: ElementaryView, View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         if !dryRun {
             backend.updateSlider(
                 widget,
@@ -125,13 +125,15 @@ public struct Slider: ElementaryView, View {
         }
 
         // TODO: Allow backends to specify their own ideal slider widths.
-        return ViewSize(
-            size: size,
-            idealSize: SIMD2(100, naturalSize.y),
-            minimumWidth: naturalSize.x,
-            minimumHeight: naturalSize.y,
-            maximumWidth: nil,
-            maximumHeight: Double(naturalSize.y)
+        return ViewUpdateResult.leafView(
+            size: ViewSize(
+                size: size,
+                idealSize: SIMD2(100, naturalSize.y),
+                minimumWidth: naturalSize.x,
+                minimumHeight: naturalSize.y,
+                maximumWidth: nil,
+                maximumHeight: Double(naturalSize.y)
+            )
         )
     }
 }

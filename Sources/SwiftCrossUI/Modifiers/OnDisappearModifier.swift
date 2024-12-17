@@ -52,7 +52,7 @@ struct OnDisappearModifier<Content: View>: View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         defaultUpdate(
             widget,
             children: children.wrappedChildren,

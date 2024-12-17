@@ -21,7 +21,7 @@ public struct TextField: ElementaryView, View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         if !dryRun {
             backend.updateTextField(
                 widget,
@@ -47,13 +47,15 @@ public struct TextField: ElementaryView, View {
         }
 
         // TODO: Allow backends to set their own ideal text field width
-        return ViewSize(
-            size: size,
-            idealSize: SIMD2(100, naturalHeight),
-            minimumWidth: 0,
-            minimumHeight: naturalHeight,
-            maximumWidth: nil,
-            maximumHeight: Double(naturalHeight)
+        return ViewUpdateResult.leafView(
+            size: ViewSize(
+                size: size,
+                idealSize: SIMD2(100, naturalHeight),
+                minimumWidth: 0,
+                minimumHeight: naturalHeight,
+                maximumWidth: nil,
+                maximumHeight: Double(naturalHeight)
+            )
         )
     }
 }

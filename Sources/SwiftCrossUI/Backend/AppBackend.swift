@@ -150,6 +150,10 @@ public protocol AppBackend {
     /// may or may not override the previous handler.
     func setRootEnvironmentChangeHandler(to action: @escaping () -> Void)
 
+    /// Sets the handler for URLs directed to the application (e.g. URLs
+    /// associated with a custom URL scheme).
+    func setIncomingURLHandler(to action: @escaping (URL) -> Void)
+
     /// Shows a widget after it has been created or updated (may be unnecessary
     /// for some backends). Predominantly used by ``ViewGraphNode`` after
     /// propagating updates.
@@ -483,6 +487,10 @@ extension AppBackend {
     // MARK: Application
 
     public func setApplicationMenu(_ submenus: [ResolvedMenu.Submenu]) {
+        todo()
+    }
+
+    public func setIncomingURLHandler(to action: @escaping (URL) -> Void) {
         todo()
     }
 

@@ -59,8 +59,8 @@ public struct AnyView: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
-        var (viewTypesMatched, size) = children.node.updateWithNewView(
+    ) -> ViewUpdateResult {
+        var (viewTypesMatched, result) = children.node.updateWithNewView(
             child,
             proposedSize,
             environment,
@@ -79,13 +79,13 @@ public struct AnyView: TypeSafeView {
 
             // We can just assume that the update succeeded because we just created the node
             // a few lines earlier (so it's guaranteed that the view types match).
-            let result = children.node.updateWithNewView(
+            let (_, newResult) = children.node.updateWithNewView(
                 child,
                 proposedSize,
                 environment,
                 dryRun
             )
-            size = result.size
+            result = newResult
         }
 
         // If the child view has changed types and this isn't a dry-run then switch to displaying
@@ -98,10 +98,10 @@ public struct AnyView: TypeSafeView {
         }
 
         if !dryRun {
-            backend.setSize(of: widget, to: size.size)
+            backend.setSize(of: widget, to: result.size.size)
         }
 
-        return size
+        return result
     }
 }
 

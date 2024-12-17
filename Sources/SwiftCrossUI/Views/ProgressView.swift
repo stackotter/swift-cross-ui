@@ -100,53 +100,44 @@ extension ProgressView where Label == Text {
     }
 }
 
-struct ProgressSpinnerView: View {
-    var body = EmptyView()
-
+struct ProgressSpinnerView: ElementaryView {
     init() {}
 
-    func asWidget<Backend: AppBackend>(
-        _ children: any ViewGraphNodeChildren,
-        backend: Backend
-    ) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
         backend.createProgressSpinner()
     }
 
-    func update<Backend>(
+    func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize where Backend: AppBackend {
-        ViewSize(fixedSize: backend.naturalSize(of: widget))
+    ) -> ViewUpdateResult {
+        ViewUpdateResult.leafView(
+            size: ViewSize(fixedSize: backend.naturalSize(of: widget))
+        )
     }
 }
 
-struct ProgressBarView: View {
-    var body = EmptyView()
+struct ProgressBarView: ElementaryView {
     var value: Double?
 
     init(value: Double?) {
         self.value = value
     }
 
-    func asWidget<Backend: AppBackend>(
-        _ children: any ViewGraphNodeChildren,
-        backend: Backend
-    ) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
         backend.createProgressBar()
     }
 
-    func update<Backend>(
+    func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize where Backend: AppBackend {
+    ) -> ViewUpdateResult {
         let height = backend.naturalSize(of: widget).y
         let size = SIMD2(
             proposedSize.x,
@@ -158,13 +149,15 @@ struct ProgressBarView: View {
             backend.setSize(of: widget, to: size)
         }
 
-        return ViewSize(
-            size: size,
-            idealSize: SIMD2(100, height),
-            minimumWidth: 0,
-            minimumHeight: height,
-            maximumWidth: nil,
-            maximumHeight: Double(height)
+        return ViewUpdateResult.leafView(
+            size: ViewSize(
+                size: size,
+                idealSize: SIMD2(100, height),
+                minimumWidth: 0,
+                minimumHeight: height,
+                maximumWidth: nil,
+                maximumHeight: Double(height)
+            )
         )
     }
 }

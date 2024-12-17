@@ -28,7 +28,7 @@ protocol TypeSafeView: View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize
+    ) -> ViewUpdateResult
 }
 
 extension TypeSafeView {
@@ -75,7 +75,7 @@ extension TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         update(
             widget,
             children: children as! Children,

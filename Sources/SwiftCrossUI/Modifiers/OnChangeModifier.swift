@@ -33,7 +33,7 @@ struct OnChangeModifier<Value: Equatable, Content: View>: View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         if let previousValue = state.previousValue, value != previousValue {
             action()
         } else if initial && state.previousValue == nil {

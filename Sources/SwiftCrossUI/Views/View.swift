@@ -60,7 +60,7 @@ public protocol View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize
+    ) -> ViewUpdateResult
 }
 
 extension View {
@@ -127,7 +127,7 @@ extension View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         defaultUpdate(
             widget,
             children: children,
@@ -147,7 +147,7 @@ extension View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         let vStack = VStack(content: body)
         return vStack.update(
             widget,

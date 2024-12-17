@@ -27,7 +27,11 @@ public final class AppKitBackend: AppBackend {
         )
     }
 
-    public init() {}
+    private let appDelegate = NSCustomApplicationDelegate()
+
+    public init() {
+        NSApplication.shared.delegate = appDelegate
+    }
 
     public func runMainLoop(_ callback: @escaping () -> Void) {
         callback()
@@ -206,6 +210,14 @@ public final class AppKitBackend: AppBackend {
         ) { notification in
             // Self.scrollBarWidth has changed
             action()
+        }
+    }
+
+    public func setIncomingURLHandler(to action: @escaping (URL) -> Void) {
+        appDelegate.onOpenURLs = { urls in
+            for url in urls {
+                action(url)
+            }
         }
     }
 
@@ -1360,4 +1372,12 @@ extension Notification.Name {
     static let AppleInterfaceThemeChangedNotification = Notification.Name(
         "AppleInterfaceThemeChangedNotification"
     )
+}
+
+final class NSCustomApplicationDelegate: NSObject, NSApplicationDelegate {
+    var onOpenURLs: (([URL]) -> Void)?
+
+    func application(_ application: NSApplication, open urls: [URL]) {
+        onOpenURLs?(urls)
+    }
 }

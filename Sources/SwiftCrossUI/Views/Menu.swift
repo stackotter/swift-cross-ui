@@ -64,7 +64,7 @@ public struct Menu: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         // TODO: Store popped menu in view graph node children so that we can
         //   continue updating it even once it's open.
         var size = backend.naturalSize(of: widget)
@@ -94,7 +94,7 @@ public struct Menu: TypeSafeView {
             children.updateMenuIfShown(content: content, environment: environment, backend: backend)
         }
 
-        return ViewSize(fixedSize: size)
+        return ViewUpdateResult.leafView(size: ViewSize(fixedSize: size))
     }
 
     /// A temporary button width solution until arbitrary labels are supported.

@@ -43,8 +43,8 @@ public struct EmptyView: View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
-        .empty
+    ) -> ViewUpdateResult {
+        ViewUpdateResult.leafView(size: .empty)
     }
 }
 

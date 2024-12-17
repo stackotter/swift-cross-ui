@@ -75,18 +75,20 @@ extension Color: ElementaryView {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         if !dryRun {
             backend.setSize(of: widget, to: proposedSize)
             backend.setColor(ofColorableRectangle: widget, to: self)
         }
-        return ViewSize(
-            size: proposedSize,
-            idealSize: SIMD2(10, 10),
-            minimumWidth: 0,
-            minimumHeight: 0,
-            maximumWidth: nil,
-            maximumHeight: nil
+        return ViewUpdateResult.leafView(
+            size: ViewSize(
+                size: proposedSize,
+                idealSize: SIMD2(10, 10),
+                minimumWidth: 0,
+                minimumHeight: 0,
+                maximumWidth: nil,
+                maximumHeight: nil
+            )
         )
     }
 }

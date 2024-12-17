@@ -41,12 +41,12 @@ public struct OptionalView<V: View>: TypeSafeView, View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         let hasToggled: Bool
-        let size: ViewSize
+        let result: ViewUpdateResult
         if let view = view {
             if let node = children.node {
-                size = node.update(
+                result = node.update(
                     with: view,
                     proposedSize: proposedSize,
                     environment: environment,
@@ -60,7 +60,7 @@ public struct OptionalView<V: View>: TypeSafeView, View {
                     environment: environment
                 )
                 children.node = node
-                size = node.update(
+                result = node.update(
                     with: view,
                     proposedSize: proposedSize,
                     environment: environment,
@@ -71,7 +71,7 @@ public struct OptionalView<V: View>: TypeSafeView, View {
         } else {
             hasToggled = children.node != nil
             children.node = nil
-            size = .hidden
+            result = ViewUpdateResult.leafView(size: .hidden)
         }
         children.hasToggled = children.hasToggled || hasToggled
 
@@ -85,10 +85,10 @@ public struct OptionalView<V: View>: TypeSafeView, View {
                 children.hasToggled = false
             }
 
-            backend.setSize(of: widget, to: size.size)
+            backend.setSize(of: widget, to: result.size.size)
         }
 
-        return size
+        return result
     }
 }
 

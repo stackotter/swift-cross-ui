@@ -35,11 +35,11 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     /// The backend used to create the view's widget.
     public var backend: Backend
 
-    /// The most recently computed size for the wrapped view.
-    var currentSize: ViewSize?
-    /// A cache of computed sizes keyed by the proposed size they were for. Gets cleared before the
-    /// sizes become invalid.
-    var sizeCache: [SIMD2<Int>: ViewSize]
+    /// The most recent update result for the wrapped view.
+    var currentResult: ViewUpdateResult?
+    /// A cache of update results keyed by the proposed size they were for. Gets cleared before the
+    /// results' sizes become invalid.
+    var resultCache: [SIMD2<Int>: ViewUpdateResult]
     /// The most recent size proposed by the parent view. Used when updating the wrapped
     /// view as a result of a state change rather than the parent view updating.
     private var lastProposedSize: SIMD2<Int>
@@ -85,8 +85,8 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
             snapshot?.isValid(for: NodeView.self) == true
             ? snapshot?.children : snapshot.map { [$0] }
 
-        currentSize = nil
-        sizeCache = [:]
+        currentResult = nil
+        resultCache = [:]
         lastProposedSize = .zero
         parentEnvironment = environment
 
@@ -134,19 +134,19 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     private func bottomUpUpdate() {
         // First we compute what size the view will be after the update. If it will change size,
         // propagate the update to this node's parent instead of updating straight away.
-        let currentSize = currentSize
-        let newSize = self.update(
+        let currentSize = currentResult?.size
+        let newResult = self.update(
             proposedSize: lastProposedSize,
             environment: parentEnvironment,
             dryRun: true
         )
 
-        if newSize != currentSize {
-            self.currentSize = newSize
-            sizeCache[lastProposedSize] = newSize
-            parentEnvironment.onResize(newSize)
+        if newResult.size != currentSize {
+            self.currentResult = newResult
+            resultCache[lastProposedSize] = newResult
+            parentEnvironment.onResize(newResult.size)
         } else {
-            self.currentSize = self.update(
+            self.currentResult = self.update(
                 proposedSize: lastProposedSize,
                 environment: parentEnvironment,
                 dryRun: false
@@ -171,7 +171,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         // Defensively ensure that all future scene implementations obey this
         // precondition. By putting the check here instead of only in views
         // that require `environment.window` (such as the alert modifier view),
@@ -181,8 +181,8 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
             "View graph updated without parent window present in environment"
         )
 
-        if dryRun, let cachedSize = sizeCache[proposedSize] {
-            return cachedSize
+        if dryRun, let cachedResult = resultCache[proposedSize] {
+            return cachedResult
         }
 
         // Attempt to cleverly reuse the current size if we can know that it
@@ -191,15 +191,15 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         // since the last update cycle (checked via`!sizeCache.isEmpty`) to
         // ensure that the view has been updated at least once with the
         // current view state.
-        if dryRun, let currentSize, !sizeCache.isEmpty,
-            ((Double(lastProposedSize.x) >= currentSize.maximumWidth
-                && Double(proposedSize.x) >= currentSize.maximumWidth)
+        if dryRun, let currentResult, !resultCache.isEmpty,
+            ((Double(lastProposedSize.x) >= currentResult.size.maximumWidth
+                && Double(proposedSize.x) >= currentResult.size.maximumWidth)
                 || proposedSize.x == lastProposedSize.x)
-                && ((Double(lastProposedSize.y) >= currentSize.maximumHeight
-                    && Double(proposedSize.y) >= currentSize.maximumHeight)
+                && ((Double(lastProposedSize.y) >= currentResult.size.maximumHeight
+                    && Double(proposedSize.y) >= currentResult.size.maximumHeight)
                     || proposedSize.y == lastProposedSize.y)
         {
-            return currentSize
+            return currentResult
         }
 
         parentEnvironment = environment
@@ -220,7 +220,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
             environment: viewEnvironment
         )
 
-        let size = view.update(
+        let result = view.update(
             widget,
             children: children,
             proposedSize: proposedSize,
@@ -236,12 +236,12 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         // update and the next dry-run update.
         if !dryRun {
             backend.show(widget: widget)
-            sizeCache = [:]
+            resultCache = [:]
         } else {
-            sizeCache[proposedSize] = size
+            resultCache[proposedSize] = result
         }
 
-        currentSize = size
-        return size
+        currentResult = result
+        return result
     }
 }

@@ -27,24 +27,24 @@ public struct ZStack<Content: View>: View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
-        var childSizes: [ViewSize] = []
+    ) -> ViewUpdateResult {
+        var childResults: [ViewUpdateResult] = []
         for child in layoutableChildren(backend: backend, children: children) {
-            let childSize = child.update(
+            let childResult = child.update(
                 proposedSize: proposedSize,
                 environment: environment,
                 dryRun: dryRun
             )
-            childSizes.append(childSize)
+            childResults.append(childResult)
         }
 
+        let childSizes = childResults.map(\.size)
         let size = ViewSize(
             size: SIMD2(
                 childSizes.map(\.size.x).max() ?? 0,
                 childSizes.map(\.size.y).max() ?? 0
             ),
             idealSize: SIMD2(
-
                 childSizes.map(\.idealSize.x).max() ?? 0,
                 childSizes.map(\.idealSize.y).max() ?? 0
             ),
@@ -61,6 +61,6 @@ public struct ZStack<Content: View>: View {
             }
         }
 
-        return size
+        return ViewUpdateResult(size: size, childResults: childResults)
     }
 }

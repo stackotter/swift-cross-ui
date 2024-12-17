@@ -13,47 +13,49 @@ struct BackgroundModifier<Background: View, Foreground: View>: TypeSafeView {
         body = TupleView2(background, foreground)
     }
 
-    func children<Backend>(
+    func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
-    ) -> TupleView2<Background, Foreground>.Children where Backend: AppBackend {
+    ) -> TupleView2<Background, Foreground>.Children {
         body.children(backend: backend, snapshots: snapshots, environment: environment)
     }
 
-    func layoutableChildren<Backend>(
+    func layoutableChildren<Backend: AppBackend>(
         backend: Backend,
         children: TupleView2<Background, Foreground>.Children
-    ) -> [LayoutSystem.LayoutableChild] where Backend: AppBackend {
+    ) -> [LayoutSystem.LayoutableChild] {
         []
     }
 
-    func asWidget<Backend>(
+    func asWidget<Backend: AppBackend>(
         _ children: TupleView2<Background, Foreground>.Children, backend: Backend
-    ) -> Backend.Widget where Backend: AppBackend {
+    ) -> Backend.Widget {
         body.asWidget(children, backend: backend)
     }
 
-    func update<Backend>(
+    func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleView2<Background, Foreground>.Children,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize where Backend: AppBackend {
-        let foregroundSize = children.child1.update(
+    ) -> ViewUpdateResult {
+        let foregroundResult = children.child1.update(
             with: body.view1,
             proposedSize: proposedSize,
             environment: environment,
             dryRun: dryRun
         )
-        let backgroundSize = children.child0.update(
+        let foregroundSize = foregroundResult.size
+        let backgroundResult = children.child0.update(
             with: body.view0,
             proposedSize: foregroundSize.size,
             environment: environment,
             dryRun: dryRun
         )
+        let backgroundSize = backgroundResult.size
 
         let frameSize = SIMD2(
             max(backgroundSize.size.x, foregroundSize.size.x),
@@ -70,13 +72,16 @@ struct BackgroundModifier<Background: View, Foreground: View>: TypeSafeView {
             backend.setSize(of: widget, to: frameSize)
         }
 
-        return ViewSize(
-            size: frameSize,
-            idealSize: foregroundSize.idealSize,
-            minimumWidth: max(backgroundSize.minimumWidth, foregroundSize.minimumWidth),
-            minimumHeight: max(backgroundSize.minimumHeight, foregroundSize.minimumHeight),
-            maximumWidth: max(backgroundSize.maximumWidth, foregroundSize.maximumWidth),
-            maximumHeight: max(backgroundSize.maximumHeight, foregroundSize.maximumHeight)
+        return ViewUpdateResult(
+            size: ViewSize(
+                size: frameSize,
+                idealSize: foregroundSize.idealSize,
+                minimumWidth: max(backgroundSize.minimumWidth, foregroundSize.minimumWidth),
+                minimumHeight: max(backgroundSize.minimumHeight, foregroundSize.minimumHeight),
+                maximumWidth: max(backgroundSize.maximumWidth, foregroundSize.maximumWidth),
+                maximumHeight: max(backgroundSize.maximumHeight, foregroundSize.maximumHeight)
+            ),
+            childResults: [backgroundResult, foregroundResult]
         )
     }
 }

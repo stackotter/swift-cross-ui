@@ -37,7 +37,7 @@ struct CornerRadiusModifier<Content: View>: View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         // We used to wrap the child content in a container and then set the corner
         // radius on that, since it was the simplest approach. But Gtk3Backend has
         // extremely poor corner radius support and only applies the corner radius
@@ -46,7 +46,7 @@ struct CornerRadiusModifier<Content: View>: View {
         // implement the modifier this way then you can at the very least set the
         // cornerRadius of a coloured rectangle, which is quite a common thing to
         // want to do.
-        let contentSize = body.update(
+        let contentResult = body.update(
             widget,
             children: children,
             proposedSize: proposedSize,
@@ -55,6 +55,6 @@ struct CornerRadiusModifier<Content: View>: View {
             dryRun: dryRun
         )
         backend.setCornerRadius(of: widget, to: cornerRadius)
-        return contentSize
+        return contentResult
     }
 }

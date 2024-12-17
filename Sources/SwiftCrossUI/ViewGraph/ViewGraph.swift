@@ -21,7 +21,7 @@ public class ViewGraph<Root: View> {
     /// change as opposed to a window resizing event).
     private var windowSize: SIMD2<Int>
     /// The current size of the root view.
-    private var currentRootViewSize: ViewSize
+    private var currentRootViewResult: ViewUpdateResult
 
     /// The environment most recently provided by this node's parent scene.
     private var parentEnvironment: EnvironmentValues
@@ -35,7 +35,11 @@ public class ViewGraph<Root: View> {
         self.view = view
         windowSize = .zero
         parentEnvironment = environment
-        currentRootViewSize = .empty
+        currentRootViewResult = ViewUpdateResult.leafView(size: .empty)
+
+        backend.setIncomingURLHandler { url in
+            self.currentRootViewResult.preferences.onOpenURL?(url)
+        }
 
         cancellable = view.state.didChange.observe { [weak self] in
             guard let self else { return }
@@ -43,21 +47,32 @@ public class ViewGraph<Root: View> {
                 // We first compute the root view's new size so that we don't end up
                 // updating the root view twice if we need to propagate the update to
                 // the parent scene.
-                let currentSize = self.currentRootViewSize
-                let newSize = self.update(
+                let currentResult = self.currentRootViewResult
+                let dryRunResult = self.update(
                     proposedSize: self.windowSize,
                     environment: self.parentEnvironment,
                     dryRun: true
                 )
-                if newSize != currentSize {
-                    self.currentRootViewSize = newSize
-                    environment.onResize(newSize)
+                if dryRunResult.size != currentResult.size {
+                    self.currentRootViewResult = dryRunResult
+                    environment.onResize(dryRunResult.size)
                 } else {
-                    _ = self.update(
+                    let finalResult = self.update(
                         proposedSize: self.windowSize,
                         environment: self.parentEnvironment,
                         dryRun: false
                     )
+                    if finalResult.size != dryRunResult.size {
+                        print(
+                            """
+                            warning: State-triggered view update had mismatch \
+                            between dry-run size and final size.
+                                  -> dryRunSize: \(dryRunResult.size)
+                                  -> finalSize:  \(finalResult.size)
+                            """
+                        )
+                    }
+                    self.currentRootViewResult = finalResult
                 }
             }
         }
@@ -71,16 +86,17 @@ public class ViewGraph<Root: View> {
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         parentEnvironment = environment
         windowSize = proposedSize
-        let size = rootNode.update(
+        let result = rootNode.update(
             with: newView ?? view,
             proposedSize: proposedSize,
             environment: parentEnvironment,
             dryRun: dryRun
         )
-        return size
+        self.currentRootViewResult = result
+        return result
     }
 
     public func snapshot() -> ViewGraphSnapshotter.NodeSnapshot {

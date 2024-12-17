@@ -23,7 +23,7 @@ public struct Spacer: ElementaryView, View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         let minLength = minLength ?? 0
 
         let size: SIMD2<Int>
@@ -49,13 +49,15 @@ public struct Spacer: ElementaryView, View {
         if !dryRun {
             backend.setSize(of: widget, to: size)
         }
-        return ViewSize(
-            size: size,
-            idealSize: SIMD2(minimumWidth, minimumHeight),
-            minimumWidth: minimumWidth,
-            minimumHeight: minimumHeight,
-            maximumWidth: maximumWidth,
-            maximumHeight: maximumHeight
+        return ViewUpdateResult.leafView(
+            size: ViewSize(
+                size: size,
+                idealSize: SIMD2(minimumWidth, minimumHeight),
+                minimumWidth: minimumWidth,
+                minimumHeight: minimumHeight,
+                maximumWidth: maximumWidth,
+                maximumHeight: maximumHeight
+            )
         )
     }
 }

@@ -82,7 +82,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         backend: Backend,
         environment: EnvironmentValues,
         windowSizeIsFinal: Bool = false
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
@@ -118,7 +118,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
 
         // Perform a dry-run update of the root view to check if the window needs to
         // change size.
-        let contentSize = viewGraph.update(
+        let contentResult = viewGraph.update(
             with: newScene?.body,
             proposedSize: proposedWindowSize,
             environment: environment,
@@ -129,7 +129,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             let newWindowSize = computeNewWindowSize(
                 currentProposedSize: proposedWindowSize,
                 backend: backend,
-                contentSize: contentSize,
+                contentSize: contentResult.size,
                 environment: environment
             )
 
@@ -147,11 +147,11 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             }
         }
 
-        let finalContentSize: ViewSize
+        let finalContentResult: ViewUpdateResult
         if windowSizeIsFinal {
-            finalContentSize = contentSize
+            finalContentResult = contentResult
         } else {
-            finalContentSize = viewGraph.update(
+            finalContentResult = viewGraph.update(
                 with: newScene?.body,
                 proposedSize: proposedWindowSize,
                 environment: environment,
@@ -180,14 +180,14 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         // Anyway, Gtk3Backend isn't really intended to be a recommended
         // backend so I think this is a fine solution for now (people should
         // only use Gtk3Backend if they can't use GtkBackend).
-        if finalContentSize != contentSize {
+        if finalContentResult.size != contentResult.size {
             print(
                 """
                 warning: Final window content size didn't match dry-run size. This is a sign that
                          either view size caching is broken or that backend.naturalSize(of:) is 
                          broken (or both).
-                      -> contentSize:      \(contentSize)
-                      -> finalContentSize: \(finalContentSize)
+                      -> contentSize:      \(contentResult.size)
+                      -> finalContentSize: \(finalContentResult.size)
                 """
             )
 
@@ -196,7 +196,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             let newWindowSize = computeNewWindowSize(
                 currentProposedSize: proposedWindowSize,
                 backend: backend,
-                contentSize: finalContentSize,
+                contentSize: finalContentResult.size,
                 environment: environment
             )
 
@@ -214,8 +214,8 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             backend.setMinimumSize(
                 ofWindow: window,
                 to: SIMD2(
-                    contentSize.minimumWidth,
-                    contentSize.minimumHeight
+                    contentResult.size.minimumWidth,
+                    contentResult.size.minimumHeight
                 )
             )
         }
@@ -224,8 +224,8 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             ofChildAt: 0,
             in: containerWidget.into(),
             to: SIMD2(
-                (proposedWindowSize.x - contentSize.size.x) / 2,
-                (proposedWindowSize.y - contentSize.size.y) / 2
+                (proposedWindowSize.x - contentResult.size.size.x) / 2,
+                (proposedWindowSize.y - contentResult.size.size.y) / 2
             )
         )
 
@@ -239,7 +239,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             isFirstUpdate = false
         }
 
-        return contentSize
+        return finalContentResult
     }
 
     public func computeNewWindowSize<Backend: AppBackend>(

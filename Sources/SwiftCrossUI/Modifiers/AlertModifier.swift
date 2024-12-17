@@ -52,8 +52,8 @@ struct AlertModifierView<Child: View>: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
-        let size = children.childNode.update(
+    ) -> ViewUpdateResult {
+        let childResult = children.childNode.update(
             with: child,
             proposedSize: proposedSize,
             environment: environment,
@@ -85,7 +85,7 @@ struct AlertModifierView<Child: View>: TypeSafeView {
             children.alert = nil
         }
 
-        return size
+        return childResult
     }
 }
 

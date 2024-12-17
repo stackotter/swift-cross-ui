@@ -48,14 +48,15 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         // Probe how big the child would like to be
-        let contentSize = children.child.update(
+        let childResult = children.child.update(
             with: body,
             proposedSize: proposedSize,
             environment: environment,
             dryRun: true
         )
+        let contentSize = childResult.size
 
         let scrollBarWidth = backend.scrollBarWidth
 
@@ -97,6 +98,7 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
             scrollViewHeight
         )
 
+        let finalResult: ViewUpdateResult
         if !dryRun {
             let proposedContentSize = SIMD2(
                 hasHorizontalScrollBar
@@ -105,12 +107,13 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
                     ? contentSize.idealSize.y : (contentSize.size.y - horizontalScrollBarHeight)
             )
 
-            let finalContentSize = children.child.update(
+            finalResult = children.child.update(
                 with: body,
                 proposedSize: proposedContentSize,
                 environment: environment,
                 dryRun: false
             )
+            let finalContentSize = finalResult.size
 
             let clipViewWidth = scrollViewSize.x - verticalScrollBarWidth
             let clipViewHeight = scrollViewSize.y - horizontalScrollBarHeight
@@ -133,16 +136,20 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
                 hasVerticalScrollBar: hasVerticalScrollBar,
                 hasHorizontalScrollBar: hasHorizontalScrollBar
             )
+        } else {
+            finalResult = childResult
         }
 
-        // TODO: Account for size required by scroll bars
-        return ViewSize(
-            size: scrollViewSize,
-            idealSize: contentSize.idealSize,
-            minimumWidth: minimumWidth,
-            minimumHeight: minimumHeight,
-            maximumWidth: nil,
-            maximumHeight: nil
+        return ViewUpdateResult(
+            size: ViewSize(
+                size: scrollViewSize,
+                idealSize: contentSize.idealSize,
+                minimumWidth: minimumWidth,
+                minimumHeight: minimumHeight,
+                maximumWidth: nil,
+                maximumHeight: nil
+            ),
+            childResults: [finalResult]
         )
     }
 }

@@ -69,7 +69,7 @@ public struct Image: TypeSafeView, View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         let image: ImageFormats.Image<RGBA>?
         if source != children.cachedImageSource {
             switch source {
@@ -144,7 +144,7 @@ public struct Image: TypeSafeView, View {
             backend.setSize(of: children.imageWidget.into(), to: size.size)
         }
 
-        return size
+        return ViewUpdateResult.leafView(size: size)
     }
 }
 

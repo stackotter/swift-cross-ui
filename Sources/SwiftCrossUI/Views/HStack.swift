@@ -36,7 +36,7 @@ public struct HStack<Content: View>: View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         return LayoutSystem.updateStackLayout(
             container: widget,
             children: layoutableChildren(backend: backend, children: children),

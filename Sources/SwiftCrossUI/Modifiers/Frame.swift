@@ -79,22 +79,19 @@ struct StrictFrameView<Child: View>: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
-        if dryRun, let width, let height {
-            return ViewSize(fixedSize: SIMD2(width, height))
-        }
-
+    ) -> ViewUpdateResult {
         let proposedSize = SIMD2(
             width ?? proposedSize.x,
             height ?? proposedSize.y
         )
 
-        let childSize = children.child0.update(
+        let childResult = children.child0.update(
             with: body.view0,
             proposedSize: proposedSize,
             environment: environment,
             dryRun: dryRun
         )
+        let childSize = childResult.size
 
         let frameSize = SIMD2(
             width ?? childSize.size.x,
@@ -135,18 +132,21 @@ struct StrictFrameView<Child: View>: TypeSafeView {
             idealHeightForProposedWidth = idealHeight
         }
 
-        return ViewSize(
-            size: frameSize,
-            idealSize: SIMD2(
-                idealWidth,
-                idealHeight
+        return ViewUpdateResult(
+            size: ViewSize(
+                size: frameSize,
+                idealSize: SIMD2(
+                    idealWidth,
+                    idealHeight
+                ),
+                idealWidthForProposedHeight: idealWidthForProposedHeight,
+                idealHeightForProposedWidth: idealHeightForProposedWidth,
+                minimumWidth: width ?? childSize.minimumWidth,
+                minimumHeight: height ?? childSize.minimumHeight,
+                maximumWidth: width.map(Double.init) ?? childSize.maximumWidth,
+                maximumHeight: height.map(Double.init) ?? childSize.maximumHeight
             ),
-            idealWidthForProposedHeight: idealWidthForProposedHeight,
-            idealHeightForProposedWidth: idealHeightForProposedWidth,
-            minimumWidth: width ?? childSize.minimumWidth,
-            minimumHeight: height ?? childSize.minimumHeight,
-            maximumWidth: width.map(Double.init) ?? childSize.maximumWidth,
-            maximumHeight: height.map(Double.init) ?? childSize.maximumHeight
+            childResults: [childResult]
         )
     }
 }
@@ -209,7 +209,7 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         var proposedFrameSize = proposedSize
         if let minWidth {
             proposedFrameSize.x = max(proposedFrameSize.x, minWidth)
@@ -224,12 +224,13 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
             proposedFrameSize.y = min(proposedFrameSize.y, maxHeight)
         }
 
-        let childSize = children.child0.update(
+        let childResult = children.child0.update(
             with: body.view0,
             proposedSize: proposedFrameSize,
             environment: environment,
             dryRun: dryRun
         )
+        let childSize = childResult.size
 
         // TODO: Fix idealSize propagation. When idealSize isn't possible, we
         //   have to use idealWidthForProposedHeight and
@@ -291,6 +292,9 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
             backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
         }
 
-        return frameSize
+        return ViewUpdateResult(
+            size: frameSize,
+            childResults: [childResult]
+        )
     }
 }

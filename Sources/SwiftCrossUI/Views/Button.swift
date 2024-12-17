@@ -23,7 +23,7 @@ public struct Button: ElementaryView, View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         // TODO: Implement button sizing within SwiftCrossUI so that we can properly implement
         //   `dryRun`. Relying on the backend for button sizing also makes the Gtk 3 backend
         //   basically impossible to implement correctly, hence the
@@ -50,7 +50,7 @@ public struct Button: ElementaryView, View {
             backend.setSize(of: widget, to: size)
         }
 
-        return ViewSize(fixedSize: size)
+        return ViewUpdateResult.leafView(size: ViewSize(fixedSize: size))
     }
 
     /// A temporary button width solution until arbitrary labels are supported.

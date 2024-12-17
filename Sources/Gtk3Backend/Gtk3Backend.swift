@@ -41,7 +41,11 @@ public final class Gtk3Backend: AppBackend {
     }
 
     public init(appIdentifier: String) {
-        gtkApp = Application(applicationId: appIdentifier)
+        gtkApp = Application(
+            applicationId: appIdentifier,
+            flags: G_APPLICATION_HANDLES_OPEN
+        )
+        gtkApp.registerSession = true
     }
 
     public func runMainLoop(_ callback: @escaping () -> Void) {
@@ -235,6 +239,14 @@ public final class Gtk3Backend: AppBackend {
 
     public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
         // TODO: React to theme changes
+    }
+
+    public func setIncomingURLHandler(to action: @escaping (URL) -> Void) {
+        gtkApp.onOpen = { urls in
+            for url in urls {
+                action(url)
+            }
+        }
     }
 
     public func show(widget: Widget) {

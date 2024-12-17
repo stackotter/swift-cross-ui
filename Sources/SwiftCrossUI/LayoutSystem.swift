@@ -5,11 +5,11 @@ public enum LayoutSystem {
                 _ proposedSize: SIMD2<Int>,
                 _ environment: EnvironmentValues,
                 _ dryRun: Bool
-            ) -> ViewSize
+            ) -> ViewUpdateResult
         var tag: String?
 
         public init(
-            update: @escaping (SIMD2<Int>, EnvironmentValues, Bool) -> ViewSize,
+            update: @escaping (SIMD2<Int>, EnvironmentValues, Bool) -> ViewUpdateResult,
             tag: String? = nil
         ) {
             self.update = update
@@ -20,15 +20,8 @@ public enum LayoutSystem {
             proposedSize: SIMD2<Int>,
             environment: EnvironmentValues,
             dryRun: Bool = false
-        ) -> ViewSize {
+        ) -> ViewUpdateResult {
             update(proposedSize, environment, dryRun)
-        }
-
-        public func computeSize(
-            proposedSize: SIMD2<Int>,
-            environment: EnvironmentValues
-        ) -> ViewSize {
-            update(proposedSize, environment, true)
         }
     }
 
@@ -45,13 +38,13 @@ public enum LayoutSystem {
         backend: Backend,
         dryRun: Bool,
         inheritStackLayoutParticipation: Bool = false
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         let spacing = environment.layoutSpacing
         let alignment = environment.layoutAlignment
         let orientation = environment.layoutOrientation
 
-        var renderedChildren = [ViewSize](
-            repeating: .empty,
+        var renderedChildren: [ViewUpdateResult] = Array(
+            repeating: ViewUpdateResult.leafView(size: .empty),
             count: children.count
         )
 
@@ -60,13 +53,12 @@ public enum LayoutSystem {
         // invisible.
         var isHidden = [Bool](repeating: false, count: children.count)
         for (i, child) in children.enumerated() {
-            let size = child.computeSize(
+            let result = child.update(
                 proposedSize: proposedSize,
-                environment: environment
+                environment: environment,
+                dryRun: true
             )
-            isHidden[i] =
-                size.size == .zero
-                && !size.participateInStackLayoutsWhenEmpty
+            isHidden[i] = result.participatesInStackLayouts
         }
 
         // My thanks go to this great article for investigating and explaining
@@ -81,10 +73,11 @@ public enum LayoutSystem {
             proposedSize.y - (orientation == .vertical ? totalSpacing : 0)
         )
         let flexibilities = children.map { child in
-            let size = child.computeSize(
+            let size = child.update(
                 proposedSize: proposedSizeWithoutSpacing,
-                environment: environment
-            )
+                environment: environment,
+                dryRun: true
+            ).size
             return switch orientation {
                 case .horizontal:
                     size.maximumWidth - Double(size.minimumWidth)
@@ -106,12 +99,12 @@ public enum LayoutSystem {
                 // Update child in case it has just changed from visible to hidden,
                 // and to make sure that the view is still hidden (if it's not then
                 // it's a bug with either the view or the layout system).
-                let size = child.update(
+                let result = child.update(
                     proposedSize: .zero,
                     environment: environment,
                     dryRun: dryRun
                 )
-                if size.size != .zero || size.participateInStackLayoutsWhenEmpty {
+                if result.participatesInStackLayouts {
                     print(
                         """
                         warning: Hidden view became visible on second update. \
@@ -119,7 +112,8 @@ public enum LayoutSystem {
                         """
                     )
                 }
-                renderedChildren[index] = .hidden
+                renderedChildren[index] = result
+                renderedChildren[index].size = .hidden
                 continue
             }
 
@@ -138,7 +132,7 @@ public enum LayoutSystem {
                     proposedWidth = Double(proposedSize.x)
             }
 
-            let childSize = child.update(
+            let childResult = child.update(
                 proposedSize: SIMD2<Int>(
                     Int(proposedWidth.rounded(.towardZero)),
                     Int(proposedHeight.rounded(.towardZero))
@@ -147,14 +141,14 @@ public enum LayoutSystem {
                 dryRun: dryRun
             )
 
-            renderedChildren[index] = childSize
+            renderedChildren[index] = childResult
             childrenRemaining -= 1
 
             switch orientation {
                 case .horizontal:
-                    spaceUsedAlongStackAxis += childSize.size.x
+                    spaceUsedAlongStackAxis += childResult.size.size.x
                 case .vertical:
-                    spaceUsedAlongStackAxis += childSize.size.y
+                    spaceUsedAlongStackAxis += childResult.size.size.y
             }
         }
 
@@ -169,40 +163,43 @@ public enum LayoutSystem {
         switch orientation {
             case .horizontal:
                 size = SIMD2<Int>(
-                    renderedChildren.map(\.size.x).reduce(0, +) + totalSpacing,
-                    renderedChildren.map(\.size.y).max() ?? 0
+                    renderedChildren.map(\.size.size.x).reduce(0, +) + totalSpacing,
+                    renderedChildren.map(\.size.size.y).max() ?? 0
                 )
                 idealSize = SIMD2<Int>(
-                    renderedChildren.map(\.idealSize.x).reduce(0, +) + totalSpacing,
-                    renderedChildren.map(\.idealSize.y).max() ?? 0
+                    renderedChildren.map(\.size.idealSize.x).reduce(0, +) + totalSpacing,
+                    renderedChildren.map(\.size.idealSize.y).max() ?? 0
                 )
-                minimumWidth = renderedChildren.map(\.minimumWidth).reduce(0, +) + totalSpacing
-                minimumHeight = renderedChildren.map(\.minimumHeight).max() ?? 0
+                minimumWidth = renderedChildren.map(\.size.minimumWidth).reduce(0, +) + totalSpacing
+                minimumHeight = renderedChildren.map(\.size.minimumHeight).max() ?? 0
                 maximumWidth =
-                    renderedChildren.map(\.maximumWidth).reduce(0, +) + Double(totalSpacing)
-                maximumHeight = renderedChildren.map(\.maximumHeight).max()
+                    renderedChildren.map(\.size.maximumWidth).reduce(0, +) + Double(totalSpacing)
+                maximumHeight = renderedChildren.map(\.size.maximumHeight).max()
                 idealWidthForProposedHeight =
-                    renderedChildren.map(\.idealWidthForProposedHeight).reduce(0, +) + totalSpacing
+                    renderedChildren.map(\.size.idealWidthForProposedHeight).reduce(0, +)
+                    + totalSpacing
                 idealHeightForProposedWidth =
-                    renderedChildren.map(\.idealHeightForProposedWidth).max() ?? 0
+                    renderedChildren.map(\.size.idealHeightForProposedWidth).max() ?? 0
             case .vertical:
                 size = SIMD2<Int>(
-                    renderedChildren.map(\.size.x).max() ?? 0,
-                    renderedChildren.map(\.size.y).reduce(0, +) + totalSpacing
+                    renderedChildren.map(\.size.size.x).max() ?? 0,
+                    renderedChildren.map(\.size.size.y).reduce(0, +) + totalSpacing
                 )
                 idealSize = SIMD2<Int>(
-                    renderedChildren.map(\.idealSize.x).max() ?? 0,
-                    renderedChildren.map(\.idealSize.y).reduce(0, +) + totalSpacing
+                    renderedChildren.map(\.size.idealSize.x).max() ?? 0,
+                    renderedChildren.map(\.size.idealSize.y).reduce(0, +) + totalSpacing
                 )
-                minimumWidth = renderedChildren.map(\.minimumWidth).max() ?? 0
-                minimumHeight = renderedChildren.map(\.minimumHeight).reduce(0, +) + totalSpacing
-                maximumWidth = renderedChildren.map(\.maximumWidth).max()
+                minimumWidth = renderedChildren.map(\.size.minimumWidth).max() ?? 0
+                minimumHeight =
+                    renderedChildren.map(\.size.minimumHeight).reduce(0, +) + totalSpacing
+                maximumWidth = renderedChildren.map(\.size.maximumWidth).max()
                 maximumHeight =
-                    renderedChildren.map(\.maximumHeight).reduce(0, +) + Double(totalSpacing)
+                    renderedChildren.map(\.size.maximumHeight).reduce(0, +) + Double(totalSpacing)
                 idealWidthForProposedHeight =
-                    renderedChildren.map(\.idealWidthForProposedHeight).max() ?? 0
+                    renderedChildren.map(\.size.idealWidthForProposedHeight).max() ?? 0
                 idealHeightForProposedWidth =
-                    renderedChildren.map(\.idealHeightForProposedWidth).reduce(0, +) + totalSpacing
+                    renderedChildren.map(\.size.idealHeightForProposedWidth).reduce(0, +)
+                    + totalSpacing
         }
 
         if !dryRun {
@@ -225,22 +222,22 @@ public enum LayoutSystem {
                     case (.horizontal, .leading):
                         y = 0
                     case (.vertical, .center):
-                        x = (size.x - childSize.size.x) / 2
+                        x = (size.x - childSize.size.size.x) / 2
                     case (.horizontal, .center):
-                        y = (size.y - childSize.size.y) / 2
+                        y = (size.y - childSize.size.size.y) / 2
                     case (.vertical, .trailing):
-                        x = (size.x - childSize.size.x)
+                        x = (size.x - childSize.size.size.x)
                     case (.horizontal, .trailing):
-                        y = (size.y - childSize.size.y)
+                        y = (size.y - childSize.size.size.y)
                 }
 
                 backend.setPosition(ofChildAt: index, in: container, to: SIMD2<Int>(x, y))
 
                 switch orientation {
                     case .horizontal:
-                        x += childSize.size.x + spacing
+                        x += childSize.size.size.x + spacing
                     case .vertical:
-                        y += childSize.size.y + spacing
+                        y += childSize.size.size.y + spacing
                 }
             }
         }
@@ -250,16 +247,20 @@ public enum LayoutSystem {
         // shouldn't participate in stack layouts.
         let shouldGetIgnoredInStackLayouts =
             inheritStackLayoutParticipation && isHidden.allSatisfy { $0 }
-        return ViewSize(
-            size: size,
-            idealSize: idealSize,
-            idealWidthForProposedHeight: idealWidthForProposedHeight,
-            idealHeightForProposedWidth: idealHeightForProposedWidth,
-            minimumWidth: minimumWidth,
-            minimumHeight: minimumHeight,
-            maximumWidth: maximumWidth,
-            maximumHeight: maximumHeight,
-            participateInStackLayoutsWhenEmpty: !shouldGetIgnoredInStackLayouts
+
+        return ViewUpdateResult(
+            size: ViewSize(
+                size: size,
+                idealSize: idealSize,
+                idealWidthForProposedHeight: idealWidthForProposedHeight,
+                idealHeightForProposedWidth: idealHeightForProposedWidth,
+                minimumWidth: minimumWidth,
+                minimumHeight: minimumHeight,
+                maximumWidth: maximumWidth,
+                maximumHeight: maximumHeight,
+                participateInStackLayoutsWhenEmpty: !shouldGetIgnoredInStackLayouts
+            ),
+            childResults: renderedChildren
         )
     }
 }

@@ -20,7 +20,7 @@ public struct Text: ElementaryView, View {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
+    ) -> ViewUpdateResult {
         // TODO: Avoid this
         // Even in dry runs we must update the underlying text view widget
         // because GtkBackend currently relies on querying the widget for text
@@ -57,15 +57,17 @@ public struct Text: ElementaryView, View {
             environment: environment
         ).y
 
-        return ViewSize(
-            size: size,
-            idealSize: idealSize,
-            idealWidthForProposedHeight: idealSize.x,
-            idealHeightForProposedWidth: size.y,
-            minimumWidth: minimumWidth == 1 ? 0 : minimumWidth,
-            minimumHeight: minimumHeight,
-            maximumWidth: Double(idealSize.x),
-            maximumHeight: Double(size.y)
+        return ViewUpdateResult.leafView(
+            size: ViewSize(
+                size: size,
+                idealSize: idealSize,
+                idealWidthForProposedHeight: idealSize.x,
+                idealHeightForProposedWidth: size.y,
+                minimumWidth: minimumWidth == 1 ? 0 : minimumWidth,
+                minimumHeight: minimumHeight,
+                maximumWidth: Double(idealSize.x),
+                maximumHeight: Double(size.y)
+            )
         )
     }
 }

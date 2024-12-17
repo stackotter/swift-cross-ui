@@ -38,17 +38,17 @@ struct OnClickModifier<Content: View>: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend,
         dryRun: Bool
-    ) -> ViewSize {
-        let size = children.child0.update(
+    ) -> ViewUpdateResult {
+        let childResult = children.child0.update(
             with: body.view0,
             proposedSize: proposedSize,
             environment: environment,
             dryRun: dryRun
         )
         if !dryRun {
-            backend.setSize(of: widget, to: size.size)
+            backend.setSize(of: widget, to: childResult.size.size)
             backend.updateClickTarget(widget, clickHandler: action)
         }
-        return size
+        return childResult
     }
 }
