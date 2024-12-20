@@ -142,7 +142,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                     proposedWindowSize: newWindowSize,
                     backend: backend,
                     environment: environment,
-                    windowSizeIsFinal: true
+                    windowSizeIsFinal: false
                 )
             }
         }

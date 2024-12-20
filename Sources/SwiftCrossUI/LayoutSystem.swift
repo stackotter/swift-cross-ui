@@ -58,7 +58,7 @@ public enum LayoutSystem {
                 environment: environment,
                 dryRun: true
             )
-            isHidden[i] = result.participatesInStackLayouts
+            isHidden[i] = !result.participatesInStackLayouts
         }
 
         // My thanks go to this great article for investigating and explaining

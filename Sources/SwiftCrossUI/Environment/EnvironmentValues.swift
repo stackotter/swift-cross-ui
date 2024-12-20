@@ -41,6 +41,16 @@ public struct EnvironmentValues {
     /// a bottom-up update chain up which resize events can propagate.
     var onResize: (_ newSize: ViewSize) -> Void
 
+    /// Brings the current window forward, not guaranteed to always bring
+    /// the window to the top (due to focus stealing prevention).
+    func bringWindowForward() {
+        func activate<Backend: AppBackend>(with backend: Backend) {
+            backend.activate(window: window as! Backend.Window)
+        }
+        activate(with: backend)
+        print("Activated")
+    }
+
     /// The backend's representation of the window that the current view is
     /// in, if any. This is a very internal detail that should never get
     /// exposed to users.

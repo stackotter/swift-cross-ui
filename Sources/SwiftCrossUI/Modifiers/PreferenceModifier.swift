@@ -1,6 +1,9 @@
 extension View {
-    public func preference<V>(key: WritableKeyPath<PreferenceValues, V>, value: V) -> some View {
-        PreferenceModifier(self) { preferences in
+    public func preference<V>(
+        key: WritableKeyPath<PreferenceValues, V>,
+        value: V
+    ) -> some View {
+        PreferenceModifier(self) { preferences, _ in
             var preferences = preferences
             preferences[keyPath: key] = value
             return preferences
@@ -10,11 +13,11 @@ extension View {
 
 struct PreferenceModifier<Child: View>: View {
     var body: TupleView1<Child>
-    var modification: (PreferenceValues) -> PreferenceValues
+    var modification: (PreferenceValues, EnvironmentValues) -> PreferenceValues
 
     init(
         _ child: Child,
-        modification: @escaping (PreferenceValues) -> PreferenceValues
+        modification: @escaping (PreferenceValues, EnvironmentValues) -> PreferenceValues
     ) {
         self.body = TupleView1(child)
         self.modification = modification
@@ -36,7 +39,7 @@ struct PreferenceModifier<Child: View>: View {
             backend: backend,
             dryRun: dryRun
         )
-        result.preferences = modification(result.preferences)
+        result.preferences = modification(result.preferences, environment)
         return result
     }
 }

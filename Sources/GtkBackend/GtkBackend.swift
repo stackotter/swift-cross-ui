@@ -147,6 +147,10 @@ public final class GtkBackend: AppBackend {
         window.show()
     }
 
+    public func activate(window: Window) {
+        window.present()
+    }
+
     private func renderMenu(
         _ menu: ResolvedMenu,
         actionMap: any GActionMap,

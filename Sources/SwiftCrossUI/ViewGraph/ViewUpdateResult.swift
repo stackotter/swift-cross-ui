@@ -28,6 +28,6 @@ public struct ViewUpdateResult {
     }
 
     public var participatesInStackLayouts: Bool {
-        size.size == .zero && !size.participateInStackLayoutsWhenEmpty
+        size.size != .zero || size.participateInStackLayoutsWhenEmpty
     }
 }

@@ -79,4 +79,8 @@ open class Window: Widget {
     public func getChild() -> Widget? {
         return child
     }
+
+    public func present() {
+        gtk_window_present(castedPointer())
+    }
 }

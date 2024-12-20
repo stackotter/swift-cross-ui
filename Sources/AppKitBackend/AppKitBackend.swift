@@ -107,6 +107,10 @@ public final class AppKitBackend: AppBackend {
         window.makeKeyAndOrderFront(nil)
     }
 
+    public func activate(window: Window) {
+        window.makeKeyAndOrderFront(nil)
+    }
+
     private static func renderMenuItems(_ items: [ResolvedMenu.Item]) -> [NSMenuItem] {
         items.map { item in
             switch item {

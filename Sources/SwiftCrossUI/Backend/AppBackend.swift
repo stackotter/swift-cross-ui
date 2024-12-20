@@ -129,6 +129,10 @@ public protocol AppBackend {
     /// for some backends). Predominantly used by window-based ``Scene``
     /// implementations after propagating updates.
     func show(window: Window)
+    /// Brings a window to the front if possible. Called when the window
+    /// receives an external URL or file to handle from the desktop environment.
+    /// May be used in other circumstances eventually.
+    func activate(window: Window)
 
     /// Sets the application's global menu. Some backends may make use of the host
     /// platform's global menu bar (such as macOS's menu bar), and others may render their

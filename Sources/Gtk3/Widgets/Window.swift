@@ -57,6 +57,10 @@ open class Window: Bin {
         }
     }
 
+    public func present() {
+        gtk_window_present(castedPointer())
+    }
+
     public func setMinimumSize(to minimumSize: Size) {
         gtk_widget_set_size_request(
             castedPointer(),

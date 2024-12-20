@@ -211,6 +211,10 @@ public final class Gtk3Backend: AppBackend {
         window.showAll()
     }
 
+    public func activate(window: Window) {
+        window.present()
+    }
+
     class ThreadActionContext {
         var action: () -> Void
 
