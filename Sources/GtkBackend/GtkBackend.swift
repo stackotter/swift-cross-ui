@@ -52,7 +52,6 @@ public final class GtkBackend: AppBackend {
             flags: G_APPLICATION_HANDLES_OPEN
         )
         gtkApp.registerSession = true
-        print(appIdentifier)
     }
 
     public func runMainLoop(_ callback: @escaping () -> Void) {
@@ -721,6 +720,20 @@ public final class GtkBackend: AppBackend {
     ) {
         let progressBar = widget as! ProgressBar
         progressBar.fraction = progressFraction ?? 0
+        let backgroundColor: Gtk.Color
+        switch environment.colorScheme {
+            case .light:
+                backgroundColor = Gtk.Color.eightBit(61, 61, 61, 38)
+            case .dark:
+                backgroundColor = Gtk.Color.eightBit(90, 90, 90)
+        }
+        progressBar.cssProvider.loadCss(
+            from: """
+                trough {
+                    background-color: \(CSSProperty.rgba(backgroundColor));
+                }
+                """
+        )
     }
 
     public func createPopoverMenu() -> PopoverMenu {

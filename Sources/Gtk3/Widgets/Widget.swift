@@ -19,7 +19,6 @@ open class Widget: GObject {
                 didMoveToParent()
             } else {
                 didMoveFromParent()
-                removeSignals()
             }
         }
     }

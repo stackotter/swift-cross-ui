@@ -22,6 +22,10 @@ public struct CSSProperty: Equatable {
         CSSProperty(key: "background", value: rgba(color))
     }
 
+    public static func caretColor(_ color: Color) -> CSSProperty {
+        CSSProperty(key: "caret-color", value: rgba(color))
+    }
+
     public static func lineLimit(_ limit: Int) -> CSSProperty {
         CSSProperty(key: "max-lines", value: "\(limit)")
     }

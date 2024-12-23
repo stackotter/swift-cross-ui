@@ -963,9 +963,11 @@ public final class Gtk3Backend: AppBackend {
                 case .light:
                     properties.append(.border(color: Color.eightBit(209, 209, 209), width: 1))
                     properties.append(.backgroundColor(Color(1, 1, 1, 1)))
+                    properties.append(.caretColor(Color.eightBit(139, 142, 143)))
                 case .dark:
                     properties.append(.border(color: Color.eightBit(32, 32, 32), width: 1))
                     properties.append(.backgroundColor(Color(1, 1, 1, 0.1)))
+                    properties.append(.caretColor(Color(1, 1, 1)))
             }
             properties.append(.init(key: "box-shadow", value: "none"))
         }
