@@ -25,7 +25,7 @@ var swift510Products: [Product] = []
             branch: "main"
         ),
         .package(
-            url: "https://github.com/thebrowsercompany/swift-winui",
+            url: "https://github.com/wabiverse/swift-winui",
             branch: "main"
         ),
     ]
