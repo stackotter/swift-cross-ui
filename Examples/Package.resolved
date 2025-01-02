@@ -253,7 +253,7 @@
     {
       "identity" : "swift-windowsappsdk",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/thebrowsercompany/swift-windowsappsdk",
+      "location" : "https://github.com/wabiverse/swift-windowsappsdk",
       "state" : {
         "branch" : "main",
         "revision" : "a7e1d90b323b4fb2a625c68f5f1ec8177254c26e"
@@ -271,7 +271,7 @@
     {
       "identity" : "swift-winui",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/thebrowsercompany/swift-winui",
+      "location" : "https://github.com/wabiverse/swift-winui",
       "state" : {
         "branch" : "main",
         "revision" : "4cb98fbb7ac7b7734c4c71e6e26d3bf11740c652"
