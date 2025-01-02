@@ -132,7 +132,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/apple/swift-syntax.git",
-            from: "510.0.0"
+            from: "600.0.1"
         ),
         .package(
             url: "https://github.com/stackotter/swift-macro-toolkit",
