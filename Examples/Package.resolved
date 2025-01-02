@@ -143,6 +143,15 @@
       }
     },
     {
+      "identity" : "swift-cwinrt",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/thebrowsercompany/swift-cwinrt",
+      "state" : {
+        "branch" : "main",
+        "revision" : "3e3d5a0270ebe8fb0bc738d24d4786a6cd0621eb"
+      }
+    },
+    {
       "identity" : "swift-filestreamer",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sersoft-gmbh/swift-filestreamer",
@@ -230,6 +239,42 @@
       "state" : {
         "revision" : "f9266c85189c2751589a50ea5aec72799797e471",
         "version" : "1.3.0"
+      }
+    },
+    {
+      "identity" : "swift-uwp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/thebrowsercompany/swift-uwp",
+      "state" : {
+        "branch" : "main",
+        "revision" : "4fe2fa05652f688ba5af57d0ce9e93961f6dea98"
+      }
+    },
+    {
+      "identity" : "swift-windowsappsdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/thebrowsercompany/swift-windowsappsdk",
+      "state" : {
+        "branch" : "main",
+        "revision" : "a7e1d90b323b4fb2a625c68f5f1ec8177254c26e"
+      }
+    },
+    {
+      "identity" : "swift-windowsfoundation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/thebrowsercompany/swift-windowsfoundation",
+      "state" : {
+        "branch" : "main",
+        "revision" : "dbe14563b6bb0eb9c761d8aff7f465afddf185f9"
+      }
+    },
+    {
+      "identity" : "swift-winui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/thebrowsercompany/swift-winui",
+      "state" : {
+        "branch" : "main",
+        "revision" : "4cb98fbb7ac7b7734c4c71e6e26d3bf11740c652"
       }
     },
     {

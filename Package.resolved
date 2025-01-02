@@ -1,23 +1,6 @@
 {
   "pins" : [
     {
-      "identity" : "asyncextensions",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/lhoward/AsyncExtensions",
-      "state" : {
-        "branch" : "linux",
-        "revision" : "2218eaa30dbdb39b063e92644fc28ed22e2cb942"
-      }
-    },
-    {
-      "identity" : "lvglswift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/PADL/LVGLSwift",
-      "state" : {
-        "revision" : "19c19a942153b50d61486faf1d0d45daf79e7be5"
-      }
-    },
-    {
       "identity" : "opencombine",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/OpenCombine/OpenCombine.git",
@@ -35,12 +18,12 @@
       }
     },
     {
-      "identity" : "swift-collections",
+      "identity" : "swift-cwinrt",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-collections.git",
+      "location" : "https://github.com/thebrowsercompany/swift-cwinrt",
       "state" : {
-        "revision" : "937e904258d22af6e447a0b72c0bc67583ef64a2",
-        "version" : "1.0.4"
+        "branch" : "main",
+        "revision" : "3e3d5a0270ebe8fb0bc738d24d4786a6cd0621eb"
       }
     },
     {
@@ -77,6 +60,42 @@
       "state" : {
         "revision" : "303e5c5c36d6a558407d364878df131c3546fad8",
         "version" : "510.0.2"
+      }
+    },
+    {
+      "identity" : "swift-uwp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/thebrowsercompany/swift-uwp",
+      "state" : {
+        "branch" : "main",
+        "revision" : "4fe2fa05652f688ba5af57d0ce9e93961f6dea98"
+      }
+    },
+    {
+      "identity" : "swift-windowsappsdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/wabiverse/swift-windowsappsdk",
+      "state" : {
+        "branch" : "main",
+        "revision" : "a7e1d90b323b4fb2a625c68f5f1ec8177254c26e"
+      }
+    },
+    {
+      "identity" : "swift-windowsfoundation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/thebrowsercompany/swift-windowsfoundation",
+      "state" : {
+        "branch" : "main",
+        "revision" : "dbe14563b6bb0eb9c761d8aff7f465afddf185f9"
+      }
+    },
+    {
+      "identity" : "swift-winui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/thebrowsercompany/swift-winui",
+      "state" : {
+        "branch" : "main",
+        "revision" : "4cb98fbb7ac7b7734c4c71e6e26d3bf11740c652"
       }
     },
     {

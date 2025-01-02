@@ -17,7 +17,7 @@ var swift510Products: [Product] = []
 #if swift(>=5.10)
     swift510Dependencies = [
         .package(
-            url: "https://github.com/thebrowsercompany/swift-windowsappsdk",
+            url: "https://github.com/wabiverse/swift-windowsappsdk",
             branch: "main"
         ),
         .package(
