@@ -129,8 +129,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-case-paths",
       "state" : {
-        "revision" : "71344dd930fde41e8f3adafe260adcbb2fc2a3dc",
-        "version" : "1.5.4"
+        "revision" : "bc92c4b27f9a84bfb498cdbfdf35d5a357e9161f",
+        "version" : "1.5.6"
       }
     },
     {
@@ -138,8 +138,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-cmark.git",
       "state" : {
-        "revision" : "3bc2f3e25df0cecc5dc269f7ccae65d0f386f06a",
-        "version" : "0.4.0"
+        "revision" : "3ccff77b2dc5b96b77db3da0d68d28068593fa53",
+        "version" : "0.5.0"
       }
     },
     {
@@ -147,8 +147,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections.git",
       "state" : {
-        "revision" : "9bf03ff58ce34478e66aaee630e491823326fd06",
-        "version" : "1.1.3"
+        "revision" : "671108c96644956dddcd89dd59c203dcdb36cec7",
+        "version" : "1.1.4"
       }
     },
     {
@@ -157,7 +157,7 @@
       "location" : "https://github.com/thebrowsercompany/swift-cwinrt",
       "state" : {
         "branch" : "main",
-        "revision" : "ad451d31fc7c1c60041c146d177cdaf5aaf1cf47"
+        "revision" : "3e3d5a0270ebe8fb0bc738d24d4786a6cd0621eb"
       }
     },
     {
@@ -165,8 +165,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sersoft-gmbh/swift-filestreamer",
       "state" : {
-        "revision" : "3505dfa1e2fdba28d0b8a599ac979240d970a362",
-        "version" : "0.8.1"
+        "revision" : "05723be208971c7738a729f9136e4605cc3b3ea5",
+        "version" : "0.9.0"
       }
     },
     {
@@ -192,8 +192,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-image-formats",
       "state" : {
-        "revision" : "9faed031093b597dfe6fcfa94e07c2ca20c23244",
-        "version" : "0.2.0"
+        "revision" : "116fd33035e2d98777eacc8e1bdf172155742e92",
+        "version" : "0.2.1"
       }
     },
     {
@@ -201,8 +201,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sersoft-gmbh/swift-inotify",
       "state" : {
-        "revision" : "cdfd330424b976416722ee28d1ccbb2c74059dd7",
-        "version" : "0.6.0"
+        "revision" : "c0d9233df3a1e87b323a4969933dfc06903ed14c",
+        "version" : "0.7.2"
       }
     },
     {
@@ -219,8 +219,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log",
       "state" : {
-        "revision" : "9cb486020ebf03bfa5b5df985387a14a98744537",
-        "version" : "1.6.1"
+        "revision" : "96a2f8a0fa41e9e09af4585e2724c4e825410b91",
+        "version" : "1.6.2"
       }
     },
     {
@@ -228,8 +228,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-macro-toolkit",
       "state" : {
-        "revision" : "687075e7bf976e121d083e922a07c7a9350ca85d",
-        "version" : "0.4.0"
+        "revision" : "2eded9c9a98cba42d70fb179d516231fffcff1e4",
+        "version" : "0.5.0"
       }
     },
     {
@@ -237,8 +237,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-markdown.git",
       "state" : {
-        "revision" : "4aae40bf6fff5286e0e1672329d17824ce16e081",
-        "version" : "0.4.0"
+        "revision" : "8f79cb175981458a0a27e76cb42fee8e17b1a993",
+        "version" : "0.5.0"
       }
     },
     {
@@ -271,7 +271,7 @@
     {
       "identity" : "swift-syntax",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-syntax.git",
+      "location" : "https://github.com/apple/swift-syntax",
       "state" : {
         "revision" : "fa8f95c2d536d6620cc2f504ebe8a6167c9fc2dd",
         "version" : "510.0.1"
@@ -282,8 +282,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-system.git",
       "state" : {
-        "revision" : "d2ba781702a1d8285419c15ee62fd734a9437ff5",
-        "version" : "1.3.2"
+        "revision" : "c8a44d836fe7913603e246acab7c528c2e780168",
+        "version" : "1.4.0"
       }
     },
     {
@@ -292,16 +292,16 @@
       "location" : "https://github.com/thebrowsercompany/swift-uwp",
       "state" : {
         "branch" : "main",
-        "revision" : "cfad0a43469211bf7eb58ed23af3d4a176faec07"
+        "revision" : "4fe2fa05652f688ba5af57d0ce9e93961f6dea98"
       }
     },
     {
       "identity" : "swift-windowsappsdk",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/thebrowsercompany/swift-windowsappsdk",
+      "location" : "https://github.com/wabiverse/swift-windowsappsdk",
       "state" : {
         "branch" : "main",
-        "revision" : "9706ffd7d96c680ed5544f88463bc4e39cd4546c"
+        "revision" : "36e2f6c261fcbffc303c107b24f705605f3908be"
       }
     },
     {
@@ -310,16 +310,16 @@
       "location" : "https://github.com/thebrowsercompany/swift-windowsfoundation",
       "state" : {
         "branch" : "main",
-        "revision" : "ba7a8b5000ed3f9f077000d1a31f2a0b19907657"
+        "revision" : "dbe14563b6bb0eb9c761d8aff7f465afddf185f9"
       }
     },
     {
       "identity" : "swift-winui",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/thebrowsercompany/swift-winui",
+      "location" : "https://github.com/wabiverse/swift-winui",
       "state" : {
         "branch" : "main",
-        "revision" : "41e7b0fd120fd68af1aa4a26080f63435e28b685"
+        "revision" : "0529457d9f360904b2009fd67cba90046ff252c4"
       }
     },
     {
@@ -345,8 +345,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/SwiftXcodeProj.git",
       "state" : {
-        "revision" : "46e9b907e3ec66010cf2204594549ff1dc195032",
-        "version" : "8.10.1"
+        "revision" : "182a1f69f0c77e1a152fba083b7fa814785824dd",
+        "version" : "8.11.0"
       }
     },
     {
@@ -380,8 +380,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mxcl/Version.git",
       "state" : {
-        "revision" : "1fe824b80d89201652e7eca7c9252269a1d85e25",
-        "version" : "2.0.1"
+        "revision" : "303a0f916772545e1e8667d3104f83be708a723c",
+        "version" : "2.1.0"
       }
     },
     {
@@ -398,8 +398,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/xctest-dynamic-overlay",
       "state" : {
-        "revision" : "96beb108a57f24c8476ae1f309239270772b2940",
-        "version" : "1.2.5"
+        "revision" : "a3f634d1a409c7979cabc0a71b3f26ffa9fc8af1",
+        "version" : "1.4.3"
       }
     },
     {
