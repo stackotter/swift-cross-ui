@@ -19,10 +19,10 @@ extension App {
 }
 
 class WinUIApplication: SwiftApplication {
-    static var callback: (() -> Void)?
+    static var callback: ((WinUIApplication) -> Void)?
 
     override func onLaunched(_ args: WinUI.LaunchActivatedEventArgs) {
-        Self.callback?()
+        Self.callback?(self)
     }
 }
 
@@ -57,7 +57,12 @@ public struct WinUIBackend: AppBackend {
     }
 
     public func runMainLoop(_ callback: @escaping () -> Void) {
-        WinUIApplication.callback = {
+        WinUIApplication.callback = { application in
+            // Toggle Switch has annoying default 'internal margins' (not Control
+            // margins that we can set directly) that we can luckily get rid of by
+            // overriding the relevant resource values.
+            application.resources.insert("ToggleSwitchPreContentMargin", 0.0 as Double)
+            application.resources.insert("ToggleSwitchPostContentMargin", 0.0 as Double)
             callback()
         }
         WinUIApplication.main()
@@ -181,7 +186,9 @@ public struct WinUIBackend: AppBackend {
     public func computeRootEnvironment(
         defaultEnvironment: EnvironmentValues
     ) -> EnvironmentValues {
-        return defaultEnvironment
+        return
+            defaultEnvironment
+            .with(\.font, .system(size: 14))
     }
 
     private func fatalError(_ message: String) -> Never {
@@ -271,6 +278,15 @@ public struct WinUIBackend: AppBackend {
                 18 + 8,
                 18 + 8
             )
+        } else if widget is WinUI.ToggleSwitch {
+            // WinUI sets the min-width of switches to 154 for whatever reason,
+            // and I don't know how to override that default from Swift, so I'm
+            // just hardcoding the size. This keeps getting jankier and
+            // jankier...
+            return SIMD2(
+                40,
+                20
+            )
         } else if let picker = widget as? CustomComboBox, picker.padding == noPadding {
             let label = TextBlock()
             label.text = picker.options[Int(max(picker.selectedIndex, 0))]
@@ -330,6 +346,14 @@ public struct WinUIBackend: AppBackend {
             //
             // Buttons seem to have 1 pixel of border on each side which also
             // gets ignored before first render.
+            adjustment = SIMD2(
+                11 + 11 + 2,
+                5 + 6 + 2
+            )
+        } else if let toggleButton = widget as? WinUI.ToggleButton,
+            toggleButton.padding == noPadding
+        {
+            // See the above comment regarding Button. Very similar situation.
             adjustment = SIMD2(
                 11 + 11 + 2,
                 5 + 6 + 2
@@ -655,6 +679,54 @@ public struct WinUIBackend: AppBackend {
         }
     }
 
+    public func createToggle() -> Widget {
+        let toggle = ToggleButton()
+        toggle.click.addHandler { [weak internalState] _, _ in
+            guard let internalState = internalState else {
+                return
+            }
+            internalState.toggleClickActions[ObjectIdentifier(toggle)]?(toggle.isChecked ?? false)
+        }
+        return toggle
+    }
+
+    public func updateToggle(_ toggle: Widget, label: String, onChange: @escaping (Bool) -> Void) {
+        let toggle = toggle as! ToggleButton
+        let block = TextBlock()
+        block.text = label
+        toggle.content = block
+        internalState.toggleClickActions[ObjectIdentifier(toggle)] = onChange
+    }
+
+    public func setState(ofToggle toggle: Widget, to state: Bool) {
+        (toggle as! ToggleButton).isChecked = state
+    }
+
+    public func createSwitch() -> Widget {
+        let toggleSwitch = ToggleSwitch()
+        toggleSwitch.offContent = ""
+        toggleSwitch.onContent = ""
+        toggleSwitch.padding = Thickness(left: 0, top: 0, right: 0, bottom: 0)
+        toggleSwitch.toggled.addHandler { [weak internalState] _, _ in
+            guard let internalState = internalState else {
+                return
+            }
+            internalState.switchClickActions[ObjectIdentifier(toggleSwitch)]?(toggleSwitch.isOn)
+        }
+        return toggleSwitch
+    }
+
+    public func updateSwitch(_ toggleSwitch: Widget, onChange: @escaping (Bool) -> Void) {
+        internalState.switchClickActions[ObjectIdentifier(toggleSwitch)] = onChange
+    }
+
+    public func setState(ofSwitch switchWidget: Widget, to state: Bool) {
+        let switchWidget = switchWidget as! ToggleSwitch
+        if switchWidget.isOn != state {
+            switchWidget.isOn = state
+        }
+    }
+
     // public func createTable(rows: Int, columns: Int) -> Widget {
     //     let grid = Grid()
     //     grid.columnSpacing = 10
@@ -698,47 +770,6 @@ public struct WinUIBackend: AppBackend {
     //     Grid.setColumn(widget, Int32(position.column))
     //     Grid.setRow(widget, Int32(position.row))
     //     grid.children.append(widget)
-    // }
-
-    // public func createToggle() -> Widget {
-    //     let toggle = ToggleButton()
-    //     toggle.click.addHandler { [weak internalState] _, _ in
-    //         guard let internalState = internalState else {
-    //             return
-    //         }
-    //         internalState.toggleClickActions[ObjectIdentifier(toggle)]?(toggle.isChecked ?? false)
-    //     }
-    //     return toggle
-    // }
-
-    // public func updateToggle(_ toggle: Widget, label: String, onChange: @escaping (Bool) -> Void) {
-    //     (toggle as! ToggleButton).content = label
-    //     internalState.toggleClickActions[ObjectIdentifier(toggle)] = onChange
-    // }
-
-    // public func setState(ofToggle toggle: Widget, to state: Bool) {
-    //     (toggle as! ToggleButton).isChecked = state
-    // }
-
-    // public func createSwitch() -> Widget {
-    //     let toggleSwitch = ToggleSwitch()
-    //     toggleSwitch.onContent = ""
-    //     toggleSwitch.offContent = ""
-    //     toggleSwitch.toggled.addHandler { [weak internalState] _, _ in
-    //         guard let internalState = internalState else {
-    //             return
-    //         }
-    //         internalState.switchClickActions[ObjectIdentifier(toggleSwitch)]?(toggleSwitch.isOn)
-    //     }
-    //     return toggleSwitch
-    // }
-
-    // public func updateSwitch(_ toggleSwitch: Widget, onChange: @escaping (Bool) -> Void) {
-    //     internalState.switchClickActions[ObjectIdentifier(toggleSwitch)] = onChange
-    // }
-
-    // public func setState(ofSwitch switchWidget: Widget, to state: Bool) {
-    //     (switchWidget as! ToggleSwitch).isOn = state
     // }
 }
 
