@@ -45,7 +45,7 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
     ) -> ViewUpdateResult {
         let leadingWidth = backend.sidebarWidth(ofSplitView: widget)
         if !dryRun {
-            backend.setResizeHandler(ofSplitView: widget) { _, _ in
+            backend.setResizeHandler(ofSplitView: widget) {
                 environment.onResize(.empty)
             }
         }
@@ -63,7 +63,7 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
         let trailingResult = children.trailingChild.update(
             with: body.view1,
             proposedSize: SIMD2(
-                proposedSize.x - leadingWidth,
+                proposedSize.x - max(leadingWidth, leadingResult.size.minimumWidth),
                 proposedSize.y
             ),
             environment: environment,

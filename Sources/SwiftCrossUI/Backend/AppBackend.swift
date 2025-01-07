@@ -212,7 +212,7 @@ public protocol AppBackend {
     /// Sets the function to be called when the split view's panes get resized.
     func setResizeHandler(
         ofSplitView splitView: Widget,
-        to action: @escaping (_ leadingWidth: Int, _ trailingWidth: Int) -> Void
+        to action: @escaping () -> Void
     )
     /// Gets the width of a split view's sidebar.
     func sidebarWidth(ofSplitView splitView: Widget) -> Int
@@ -531,7 +531,7 @@ extension AppBackend {
 
     public func setResizeHandler(
         ofSplitView splitView: Widget,
-        to action: @escaping (_ leadingWidth: Int, _ trailingWidth: Int) -> Void
+        to action: @escaping () -> Void
     ) {
         todo()
     }

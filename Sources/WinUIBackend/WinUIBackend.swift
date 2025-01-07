@@ -367,16 +367,15 @@ public struct WinUIBackend: AppBackend {
         proposedFrame: SIMD2<Int>?,
         environment: EnvironmentValues
     ) -> SIMD2<Int> {
-        let block = TextBlock()
-        block.text = text
+        let block = createTextView()
+        updateTextView(block, content: text, environment: environment)
 
-        missing("font design handling (monospace vs normal)")
-        environment.apply(to: block)
-
-        let allocation = WindowsFoundation.Size(
-            width: .infinity,
-            height: .infinity
-        )
+        let allocation =
+            proposedFrame.map(WindowsFoundation.Size.init(_:))
+            ?? WindowsFoundation.Size(
+                width: .infinity,
+                height: .infinity
+            )
         try! block.measure(allocation)
 
         let computedSize = block.desiredSize
@@ -387,7 +386,9 @@ public struct WinUIBackend: AppBackend {
     }
 
     public func createTextView() -> Widget {
-        return TextBlock()
+        let textBlock = TextBlock()
+        textBlock.textWrapping = __x_ABI_CMicrosoft_CUI_CXaml_CTextWrapping_Wrap
+        return textBlock
     }
 
     public func updateTextView(
@@ -397,6 +398,7 @@ public struct WinUIBackend: AppBackend {
     ) {
         let block = textView as! TextBlock
         block.text = content
+        missing("font design handling (monospace vs normal)")
         environment.apply(to: block)
     }
 
@@ -614,76 +616,44 @@ public struct WinUIBackend: AppBackend {
         imageView.source = bitmap
     }
 
-    // public func createOneOfContainer() -> Widget {
-    //     let frame = Frame()
-    //     frame.contentTransitions = TransitionCollection()
-    //     frame.contentTransitions.append(NavigationThemeTransition())
-    //     return frame
-    // }
+    public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
+        let splitView = CustomSplitView()
+        splitView.pane = leadingChild
+        splitView.content = trailingChild
+        splitView.isPaneOpen = true
+        splitView.displayMode = __x_ABI_CMicrosoft_CUI_CXaml_CControls_CSplitViewDisplayMode_Inline
+        return splitView
+    }
 
-    // public func addChild(_ child: Widget, toOneOfContainer container: Widget) {
-    //     let frame = container as! Frame
-    //     frame.content = child
-    //     // frame.contentTransitions.append(Transition(composing: child, createCallback: {})
-    // }
+    public func setResizeHandler(
+        ofSplitView splitView: Widget,
+        to action: @escaping () -> Void
+    ) {
+        // WinUI's SplitView currently doesn't support resizing, but we still
+        // store the sidebar resize handler because we programmatically resize
+        // the sidebar and call the handler whenever the minimum sidebar width
+        // changes.
+        let splitView = splitView as! CustomSplitView
+        splitView.sidebarResizeHandler = action
+    }
 
-    // public func setVisibleChild(ofOneOfContainer container: Widget, to child: Widget) {
-    //     // TODO: the frame.navigate method should allow to change the content of the frame
-    //     // with the specified animation (NavigationThemeTransition) but I fail to understant
-    //     // how to pass the child widget to it, so for now it just set the new content
-    //     let frame = container as! Frame
-    //     frame.content = child
-    //     // let _ = try! frame.navigate(TypeName(name: child.accessKey, kind: .custom))
-    // }
+    public func sidebarWidth(ofSplitView splitView: Widget) -> Int {
+        let splitView = splitView as! CustomSplitView
+        return Int(splitView.openPaneLength.rounded(.towardZero))
+    }
 
-    // public func removeChild(_: Widget, fromOneOfContainer _: Widget) {}
-
-    // public func createSpacer() -> Widget {
-    //     StackPanel()
-    // }
-
-    // public func updateSpacer(
-    //     _ spacer: Widget, expandHorizontally: Bool, expandVertically: Bool, minSize: Int
-    // ) {
-    //     let stackPanel = spacer as! StackPanel
-    //     if expandHorizontally {
-    //         stackPanel.minWidth = Double(minSize)
-    //     }
-    //     if expandVertically {
-    //         stackPanel.minHeight = Double(minSize)
-    //     }
-    // }
-
-    // public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
-    //     let grid = Grid()
-    //     let leadingColumn = ColumnDefinition()
-    //     let trailingColumn = ColumnDefinition()
-    //     leadingColumn.width = GridLength(value: 1, gridUnitType: .star)
-    //     trailingColumn.width = GridLength(value: 1, gridUnitType: .star)
-    //     grid.columnDefinitions.append(leadingColumn)
-    //     grid.columnDefinitions.append(trailingColumn)
-    //     Grid.setColumn(leadingChild, 0)
-    //     Grid.setColumn(trailingChild, 1)
-    //     grid.children.append(leadingChild)
-    //     grid.children.append(trailingChild)
-    //     return grid
-    // }
-
-    // public func getInheritedOrientation(of _: Widget) -> InheritedOrientation? {
-    //     InheritedOrientation.vertical
-    // }
-
-    // public func createFrameContainer(for child: Widget) -> Widget {
-    //     let frame = Frame()
-    //     frame.content = child
-    //     return frame
-    // }
-
-    // public func updateFrameContainer(_ container: Widget, minWidth: Int, minHeight: Int) {
-    //     let frame = container as! Frame
-    //     frame.minWidth = Double(minWidth)
-    //     frame.minHeight = Double(minHeight)
-    // }
+    public func setSidebarWidthBounds(
+        ofSplitView splitView: Widget,
+        minimum minimumWidth: Int,
+        maximum maximumWidth: Int
+    ) {
+        let splitView = splitView as! CustomSplitView
+        let newWidth = Double(max(minimumWidth, 10))
+        if newWidth != splitView.openPaneLength {
+            splitView.openPaneLength = newWidth
+            splitView.sidebarResizeHandler?()
+        }
+    }
 
     // public func createTable(rows: Int, columns: Int) -> Widget {
     //     let grid = Grid()
@@ -841,4 +811,17 @@ final class CustomComboBox: ComboBox {
     var options: [String] = []
     var onChangeSelection: ((Int?) -> Void)?
     var actualForegroundColor: UWP.Color = UWP.Color(a: 255, r: 0, g: 0, b: 0)
+}
+
+final class CustomSplitView: SplitView {
+    var sidebarResizeHandler: (() -> Void)?
+}
+
+extension WindowsFoundation.Size {
+    init(_ other: SIMD2<Int>) {
+        self.init(
+            width: Float(other.x),
+            height: Float(other.y)
+        )
+    }
 }

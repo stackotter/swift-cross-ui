@@ -645,11 +645,11 @@ public final class AppKitBackend: AppBackend {
 
     public func setResizeHandler(
         ofSplitView splitView: Widget,
-        to action: @escaping (_ leadingWidth: Int, _ trailingWidth: Int) -> Void
+        to action: @escaping () -> Void
     ) {
         let splitView = splitView as! NSCustomSplitView
-        splitView.resizingDelegate?.setResizeHandler { paneWidths in
-            action(paneWidths[0], paneWidths[1])
+        splitView.resizingDelegate?.setResizeHandler {
+            action()
         }
     }
 
@@ -1264,7 +1264,7 @@ class NSCustomSplitView: NSSplitView {
 }
 
 class NSSplitViewResizingDelegate: NSObject, NSSplitViewDelegate {
-    var resizeHandler: ((_ paneWidths: [Int]) -> Void)?
+    var resizeHandler: (() -> Void)?
     var leadingWidth = 0
     var minimumLeadingWidth = 0
     var maximumLeadingWidth = 0
@@ -1272,7 +1272,7 @@ class NSSplitViewResizingDelegate: NSObject, NSSplitViewDelegate {
     /// Tracks whether AppKit is resizing the side bar (as opposed to the user resizing it).
     var appKitIsResizing = false
 
-    func setResizeHandler(_ handler: @escaping (_ paneWidths: [Int]) -> Void) {
+    func setResizeHandler(_ handler: @escaping () -> Void) {
         resizeHandler = handler
     }
 
@@ -1292,7 +1292,7 @@ class NSSplitViewResizingDelegate: NSObject, NSSplitViewDelegate {
 
         // Only call the handler if the side bar has actually changed size.
         if leadingWidth != previousWidth {
-            resizeHandler?(paneWidths)
+            resizeHandler?()
         }
     }
 
