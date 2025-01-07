@@ -49,7 +49,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                 return
             }
             _ = self.update(
-                scene,
+                self.scene,
                 proposedWindowSize: newSize,
                 backend: backend,
                 environment: parentEnvironment
@@ -108,7 +108,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                 //   scene's body. I have a vague feeling that it wouldn't work in all cases?
                 //   But I don't have the time to come up with a counterexample right now.
                 _ = self.update(
-                    scene,
+                    self.scene,
                     proposedWindowSize: backend.size(ofWindow: window),
                     backend: backend,
                     environment: environment

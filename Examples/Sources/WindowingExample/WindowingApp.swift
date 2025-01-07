@@ -42,7 +42,7 @@ struct WindowingApp: App {
             }
         }
         .defaultSize(width: 200, height: 200)
-        .windowResizability(.contentSize)
+        .windowResizability(.contentMinSize)
 
         WindowGroup("Tertiary window") {
             #hotReloadable {
@@ -51,6 +51,6 @@ struct WindowingApp: App {
             }
         }
         .defaultSize(width: 200, height: 200)
-        .windowResizability(.contentSize)
+        .windowResizability(.contentMinSize)
     }
 }

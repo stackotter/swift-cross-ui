@@ -585,20 +585,34 @@ public struct WinUIBackend: AppBackend {
         (textField as! TextBox).text
     }
 
-    // public func createImageView(filePath: String) -> Widget {
-    //     let image = Image()
-    //     let bitMapImage = BitmapImage()
-    //     bitMapImage.uriSource = Uri(filePath)
-    //     image.source = bitMapImage
-    //     image.minHeight = 5
-    //     return image
-    // }
+    public func createImageView() -> Widget {
+        WinUI.Image()
+    }
 
-    // public func updateImageView(_ imageView: Widget, filePath: String) {
-    //     let bitMapImage = BitmapImage()
-    //     bitMapImage.uriSource = Uri(filePath)
-    //     (imageView as! WinUI.Image).source = bitMapImage
-    // }
+    public func updateImageView(
+        _ imageView: Widget,
+        rgbaData: [UInt8],
+        width: Int,
+        height: Int,
+        targetWidth: Int,
+        targetHeight: Int,
+        dataHasChanged: Bool
+    ) {
+        let imageView = imageView as! WinUI.Image
+        let bitmap = WriteableBitmap(Int32(width), Int32(height))
+        let buffer = try! bitmap.pixelBuffer.buffer!
+        memcpy(buffer, rgbaData, min(Int(bitmap.pixelBuffer.length), rgbaData.count))
+
+        // Convert RGBA to BGRA in-place.
+        for i in 0..<(width * height) {
+            let offset = i * 4
+            let tmp = buffer[offset]
+            buffer[offset] = buffer[offset + 2]
+            buffer[offset + 2] = tmp
+        }
+
+        imageView.source = bitmap
+    }
 
     // public func createOneOfContainer() -> Widget {
     //     let frame = Frame()
