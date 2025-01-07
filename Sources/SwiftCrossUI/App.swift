@@ -74,7 +74,7 @@ extension App {
 
     private static func extractSwiftBundlerMetadata() -> AppMetadata? {
         guard let executable = Bundle.main.executableURL else {
-            print("No executable url")
+            print("warning: No executable url")
             return nil
         }
 
@@ -86,7 +86,6 @@ extension App {
         // Check if executable has Swift Bundler metadata magic bytes.
         let bytes = Array(data)
         guard bytes.suffix(8) == Array("SBUNMETA".utf8) else {
-            print("no magic bytes")
             return nil
         }
 

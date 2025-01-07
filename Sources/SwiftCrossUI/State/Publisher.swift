@@ -1,4 +1,3 @@
-import CoreFoundation
 import Dispatch
 import Foundation
 
@@ -15,7 +14,7 @@ public class Publisher {
 
     /// The time at which the last update merging event occurred in
     /// `observeOnMainThreadAvoidingStarvation`.
-    private var lastUpdateMergeTime: CFAbsoluteTime = 0
+    private var lastUpdateMergeTime: TimeInterval = 0
     /// The amount of time taken per state update, exponentially averaged over time.
     private var exponentiallySmoothedUpdateLength: Double = 0
 
@@ -106,7 +105,7 @@ public class Publisher {
                 // It's a bit of a hack but we just reuse the serial update handling queue
                 // for synchronisation since updating this variable isn't super time sensitive
                 // as long as it happens within the next update or two.
-                let mergeTime = CFAbsoluteTimeGetCurrent()
+                let mergeTime = ProcessInfo.processInfo.systemUptime
                 serialUpdateHandlingQueue.async {
                     self.lastUpdateMergeTime = mergeTime
                 }
@@ -127,9 +126,9 @@ public class Publisher {
 
                     // Run the closure and while we're at it measure how long it takes
                     // so that we can use it when throttling if updates start backing up.
-                    let start = CFAbsoluteTimeGetCurrent()
+                    let start = ProcessInfo.processInfo.systemUptime
                     closure()
-                    let elapsed = CFAbsoluteTimeGetCurrent() - start
+                    let elapsed = ProcessInfo.processInfo.systemUptime - start
 
                     // I chose exponential smoothing because it's simple to compute, doesn't
                     // require storing a window of previous values, and quickly converges to
@@ -139,7 +138,7 @@ public class Publisher {
                         elapsed / 2 + self.exponentiallySmoothedUpdateLength / 2
                 }
 
-                if CFAbsoluteTimeGetCurrent() - self.lastUpdateMergeTime < 1 {
+                if ProcessInfo.processInfo.systemUptime - self.lastUpdateMergeTime < 1 {
                     // The factor of 1.5 was determined empirically. This algorithm is
                     // open for improvements since it's purely here to reduce the risk
                     // of UI freezes.
