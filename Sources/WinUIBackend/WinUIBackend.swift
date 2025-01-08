@@ -409,7 +409,7 @@ public struct WinUIBackend: AppBackend {
 
     public func createTextView() -> Widget {
         let textBlock = TextBlock()
-        textBlock.textWrapping = __x_ABI_CMicrosoft_CUI_CXaml_CTextWrapping_Wrap
+        textBlock.textWrapping = .wrap
         return textBlock
     }
 
@@ -452,9 +452,8 @@ public struct WinUIBackend: AppBackend {
     public func createScrollContainer(for child: Widget) -> Widget {
         let scrollViewer = WinUI.ScrollViewer()
         scrollViewer.content = child
-        child.horizontalAlignment =
-            __x_ABI_CMicrosoft_CUI_CXaml_CHorizontalAlignment_Left
-        child.verticalAlignment = __x_ABI_CMicrosoft_CUI_CXaml_CVerticalAlignment_Top
+        child.horizontalAlignment = .left
+        child.verticalAlignment = .top
         return scrollViewer
     }
 
@@ -466,24 +465,12 @@ public struct WinUIBackend: AppBackend {
         let scrollViewer = scrollView as! WinUI.ScrollViewer
 
         scrollViewer.isHorizontalRailEnabled = hasHorizontalScrollBar
-        scrollViewer.horizontalScrollMode =
-            hasHorizontalScrollBar
-            ? __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollMode_Enabled
-            : __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollMode_Disabled
-        scrollViewer.horizontalScrollBarVisibility =
-            hasHorizontalScrollBar
-            ? __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollBarVisibility_Visible
-            : __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollBarVisibility_Hidden
+        scrollViewer.horizontalScrollMode = hasHorizontalScrollBar ? .enabled : .disabled
+        scrollViewer.horizontalScrollBarVisibility = hasHorizontalScrollBar ? .visible : .hidden
 
         scrollViewer.isVerticalRailEnabled = hasVerticalScrollBar
-        scrollViewer.verticalScrollMode =
-            hasVerticalScrollBar
-            ? __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollMode_Enabled
-            : __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollMode_Disabled
-        scrollViewer.verticalScrollBarVisibility =
-            hasVerticalScrollBar
-            ? __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollBarVisibility_Visible
-            : __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollBarVisibility_Hidden
+        scrollViewer.verticalScrollMode = hasVerticalScrollBar ? .enabled : .disabled
+        scrollViewer.verticalScrollBarVisibility = hasVerticalScrollBar ? .visible : .hidden
     }
 
     public func createSlider() -> Widget {
@@ -495,6 +482,7 @@ public struct WinUIBackend: AppBackend {
             internalState.sliderChangeActions[ObjectIdentifier(slider)]?(
                 Double(event?.newValue ?? 0))
         }
+        slider.stepFrequency = 0.01
         return slider
     }
 
@@ -610,7 +598,7 @@ public struct WinUIBackend: AppBackend {
                 return
             }
 
-            if event?.key == __x_ABI_CWindows_CSystem_CVirtualKey_Enter {
+            if event?.key == .enter {
                 internalState.textFieldSubmitActions[ObjectIdentifier(textField)]?()
             }
         }
@@ -674,7 +662,7 @@ public struct WinUIBackend: AppBackend {
         splitView.pane = leadingChild
         splitView.content = trailingChild
         splitView.isPaneOpen = true
-        splitView.displayMode = __x_ABI_CMicrosoft_CUI_CXaml_CControls_CSplitViewDisplayMode_Inline
+        splitView.displayMode = .inline
         return splitView
     }
 

@@ -9,6 +9,7 @@ class ControlsState: Observable {
     @Observed var count = 0
     @Observed var exampleButtonState = false
     @Observed var exampleSwitchState = false
+    @Observed var sliderValue = 5.0
 }
 
 @main
@@ -42,6 +43,13 @@ struct ControlsApp: App {
                         Toggle("Toggle me:", active: state.$exampleSwitchState)
                             .toggleStyle(.switch)
                         Text("Currently enabled: \(state.exampleSwitchState)")
+                    }
+
+                    VStack {
+                        Text("Slider")
+                        Slider(state.$sliderValue, minimum: 0, maximum: 10)
+                            .frame(maxWidth: 200)
+                        Text("Value: \(String(format: "%.02f", state.sliderValue))")
                     }
                 }
             }
