@@ -28,79 +28,6 @@ class NotesState: Observable, Codable {
     var error: String?
 }
 
-struct OnChangeOfView<Value: Equatable, Child: View>: View {
-    var state = OnChangeOfViewState()
-
-    var currentValue: Value
-    var onChange: (Value) -> Void
-    var child: Child
-    var notifyInitial: Bool
-
-    class OnChangeOfViewState: Observable {
-        var value: Value?
-    }
-
-    init(
-        _ value: Value,
-        _ onChange: @escaping (Value) -> Void,
-        _ notifyInitial: Bool,
-        _ child: Child
-    ) {
-        self.currentValue = value
-        self.onChange = onChange
-        self.notifyInitial = notifyInitial
-        self.child = child
-    }
-
-    var body: some View {
-        if state.value != currentValue {
-            let isInitial = state.value != nil
-            state.value = currentValue
-            if !isInitial || notifyInitial {
-                onChange(currentValue)
-            }
-        }
-        return child
-    }
-}
-
-struct OnAppearView<Child: View>: View {
-    var state = OnAppearViewState()
-    var onAppear: () -> Void
-    var child: Child
-
-    class OnAppearViewState: Observable {
-        var hasAppeared = false
-    }
-
-    init(_ onAppear: @escaping () -> Void, _ child: Child) {
-        self.onAppear = onAppear
-        self.child = child
-    }
-
-    var body: some View {
-        if !state.hasAppeared {
-            state.hasAppeared = true
-            onAppear()
-        }
-        return child
-    }
-}
-
-extension View {
-    func onChange<Value>(
-        of value: Value,
-        initial: Bool = false,
-        _ action: @escaping (Value) -> Void
-    ) -> OnChangeOfView<Value, Self> {
-        OnChangeOfView(value, action, initial, self)
-    }
-
-    func onAppear(perform action: @escaping () -> Void) -> OnAppearView<Self> {
-        OnAppearView(action, self)
-    }
-}
-
 struct ContentView: View {
     let notesFile = URL(fileURLWithPath: "notes.json")
 
@@ -149,9 +76,9 @@ struct ContentView: View {
                     state.selectedNoteId = note.id
                 }
             }
-            .onChange(of: state.notes) { notes in
+            .onChange(of: state.notes) {
                 do {
-                    let data = try JSONEncoder().encode(notes)
+                    let data = try JSONEncoder().encode(state.notes)
                     try data.write(to: notesFile)
                 } catch {
                     print("Error: \(error)")

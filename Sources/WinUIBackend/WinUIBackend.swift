@@ -37,7 +37,7 @@ public struct WinUIBackend: AppBackend {
     public let defaultPaddingAmount = 10
 
     public var scrollBarWidth: Int {
-        fatalError("TODO")
+        12
     }
 
     private class InternalState {
@@ -61,8 +61,9 @@ public struct WinUIBackend: AppBackend {
             // Toggle Switch has annoying default 'internal margins' (not Control
             // margins that we can set directly) that we can luckily get rid of by
             // overriding the relevant resource values.
-            application.resources.insert("ToggleSwitchPreContentMargin", 0.0 as Double)
-            application.resources.insert("ToggleSwitchPostContentMargin", 0.0 as Double)
+            _ = application.resources.insert("ToggleSwitchPreContentMargin", 0.0 as Double)
+            _ = application.resources.insert("ToggleSwitchPostContentMargin", 0.0 as Double)
+
             callback()
         }
         WinUIApplication.main()
@@ -219,7 +220,6 @@ public struct WinUIBackend: AppBackend {
     public func addChild(_ child: Widget, to container: Widget) {
         let container = container as! Canvas
         container.children.append(child)
-        try! container.updateLayout()
     }
 
     public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
@@ -394,12 +394,10 @@ public struct WinUIBackend: AppBackend {
         let block = createTextView()
         updateTextView(block, content: text, environment: environment)
 
-        let allocation =
-            proposedFrame.map(WindowsFoundation.Size.init(_:))
-            ?? WindowsFoundation.Size(
-                width: .infinity,
-                height: .infinity
-            )
+        let allocation = WindowsFoundation.Size(
+            width: (proposedFrame?.x).map(Float.init(_:)) ?? .infinity,
+            height: .infinity
+        )
         try! block.measure(allocation)
 
         let computedSize = block.desiredSize
@@ -451,11 +449,42 @@ public struct WinUIBackend: AppBackend {
         internalState.buttonClickActions[ObjectIdentifier(button)] = action
     }
 
-    // public func createScrollContainer(for child: Widget) -> Widget {
-    //     let scrollViewer = ScrollViewer()
-    //     scrollViewer.content = child
-    //     return scrollViewer
-    // }
+    public func createScrollContainer(for child: Widget) -> Widget {
+        let scrollViewer = WinUI.ScrollViewer()
+        scrollViewer.content = child
+        child.horizontalAlignment =
+            __x_ABI_CMicrosoft_CUI_CXaml_CHorizontalAlignment_Left
+        child.verticalAlignment = __x_ABI_CMicrosoft_CUI_CXaml_CVerticalAlignment_Top
+        return scrollViewer
+    }
+
+    public func setScrollBarPresence(
+        ofScrollContainer scrollView: Widget,
+        hasVerticalScrollBar: Bool,
+        hasHorizontalScrollBar: Bool
+    ) {
+        let scrollViewer = scrollView as! WinUI.ScrollViewer
+
+        scrollViewer.isHorizontalRailEnabled = hasHorizontalScrollBar
+        scrollViewer.horizontalScrollMode =
+            hasHorizontalScrollBar
+            ? __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollMode_Enabled
+            : __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollMode_Disabled
+        scrollViewer.horizontalScrollBarVisibility =
+            hasHorizontalScrollBar
+            ? __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollBarVisibility_Visible
+            : __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollBarVisibility_Hidden
+
+        scrollViewer.isVerticalRailEnabled = hasVerticalScrollBar
+        scrollViewer.verticalScrollMode =
+            hasVerticalScrollBar
+            ? __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollMode_Enabled
+            : __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollMode_Disabled
+        scrollViewer.verticalScrollBarVisibility =
+            hasVerticalScrollBar
+            ? __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollBarVisibility_Visible
+            : __x_ABI_CMicrosoft_CUI_CXaml_CControls_CScrollBarVisibility_Hidden
+    }
 
     public func createSlider() -> Widget {
         let slider = Slider()
@@ -846,13 +875,4 @@ final class CustomComboBox: ComboBox {
 
 final class CustomSplitView: SplitView {
     var sidebarResizeHandler: (() -> Void)?
-}
-
-extension WindowsFoundation.Size {
-    init(_ other: SIMD2<Int>) {
-        self.init(
-            width: Float(other.x),
-            height: Float(other.y)
-        )
-    }
 }

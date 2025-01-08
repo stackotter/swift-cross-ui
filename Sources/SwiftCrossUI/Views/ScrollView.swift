@@ -76,20 +76,14 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
             scrollViewWidth = max(proposedSize.x, verticalScrollBarWidth)
             minimumWidth = verticalScrollBarWidth
         } else {
-            scrollViewWidth = max(
-                contentSize.size.x,
-                contentSize.minimumWidth + verticalScrollBarWidth
-            )
+            scrollViewWidth = contentSize.size.x + verticalScrollBarWidth
             minimumWidth = contentSize.minimumWidth + verticalScrollBarWidth
         }
         if axes.contains(.vertical) {
             scrollViewHeight = max(proposedSize.y, horizontalScrollBarHeight)
             minimumHeight = horizontalScrollBarHeight
         } else {
-            scrollViewHeight = max(
-                contentSize.size.y,
-                contentSize.minimumHeight + horizontalScrollBarHeight
-            )
+            scrollViewHeight = contentSize.size.y + horizontalScrollBarHeight
             minimumHeight = contentSize.minimumHeight + horizontalScrollBarHeight
         }
 
@@ -102,9 +96,11 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         if !dryRun {
             let proposedContentSize = SIMD2(
                 hasHorizontalScrollBar
-                    ? contentSize.idealSize.x : (contentSize.size.x - verticalScrollBarWidth),
+                    ? contentSize.idealSize.x
+                    : min(contentSize.size.x, proposedSize.x - verticalScrollBarWidth),
                 hasVerticalScrollBar
-                    ? contentSize.idealSize.y : (contentSize.size.y - horizontalScrollBarHeight)
+                    ? contentSize.idealSize.y
+                    : min(contentSize.size.y, proposedSize.y - horizontalScrollBarHeight)
             )
 
             finalResult = children.child.update(

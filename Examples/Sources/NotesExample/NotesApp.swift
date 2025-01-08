@@ -1,6 +1,9 @@
 import DefaultBackend
-import SwiftBundlerRuntime
 import SwiftCrossUI
+
+#if canImport(SwiftBundlerRuntime)
+    import SwiftBundlerRuntime
+#endif
 
 @main
 @HotReloadable
