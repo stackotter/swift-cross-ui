@@ -1197,7 +1197,7 @@ extension Color {
             calibratedRed: CGFloat(red),
             green: CGFloat(green),
             blue: CGFloat(blue),
-            alpha: 1
+            alpha: CGFloat(alpha)
         )
     }
 }
