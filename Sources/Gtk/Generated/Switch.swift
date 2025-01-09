@@ -17,6 +17,10 @@ import CGtk
 ///
 /// See [signal@Gtk.Switch::state-set] for details.
 ///
+/// # Shortcuts and Gestures
+///
+/// `GtkSwitch` supports pan and drag gestures to move the slider.
+///
 /// # CSS nodes
 ///
 /// ```
@@ -121,6 +125,7 @@ public class Switch: Widget, Actionable {
     /// See [signal@Gtk.Switch::state-set] for details.
     @GObjectProperty(named: "state") public var state: Bool
 
+    /// The name of the action with which this widget should be associated.
     @GObjectProperty(named: "action-name") public var actionName: String?
 
     /// Emitted to animate the switch.

@@ -4,7 +4,6 @@
 /// Has the same behaviour as ``Group`` when rendered directly.
 public struct TupleView1<View0: View>: TypeSafeView, View {
     public typealias Content = EmptyView
-    public typealias State = EmptyState
 
     typealias Children = TupleViewChildren1<View0>
 
@@ -85,7 +84,6 @@ public struct TupleView1<View0: View>: TypeSafeView, View {
 /// Has the same behaviour as ``Group`` when rendered directly.
 public struct TupleView2<View0: View, View1: View>: TypeSafeView, View {
     public typealias Content = EmptyView
-    public typealias State = EmptyState
 
     typealias Children = TupleViewChildren2<View0, View1>
 
@@ -182,7 +180,6 @@ public struct TupleView2<View0: View, View1: View>: TypeSafeView, View {
 /// Has the same behaviour as ``Group`` when rendered directly.
 public struct TupleView3<View0: View, View1: View, View2: View>: TypeSafeView, View {
     public typealias Content = EmptyView
-    public typealias State = EmptyState
 
     typealias Children = TupleViewChildren3<View0, View1, View2>
 
@@ -295,7 +292,6 @@ public struct TupleView3<View0: View, View1: View, View2: View>: TypeSafeView, V
 /// Has the same behaviour as ``Group`` when rendered directly.
 public struct TupleView4<View0: View, View1: View, View2: View, View3: View>: TypeSafeView, View {
     public typealias Content = EmptyView
-    public typealias State = EmptyState
 
     typealias Children = TupleViewChildren4<View0, View1, View2, View3>
 
@@ -426,7 +422,6 @@ public struct TupleView5<View0: View, View1: View, View2: View, View3: View, Vie
     TypeSafeView, View
 {
     public typealias Content = EmptyView
-    public typealias State = EmptyState
 
     typealias Children = TupleViewChildren5<View0, View1, View2, View3, View4>
 
@@ -573,7 +568,6 @@ public struct TupleView6<
     View0: View, View1: View, View2: View, View3: View, View4: View, View5: View
 >: TypeSafeView, View {
     public typealias Content = EmptyView
-    public typealias State = EmptyState
 
     typealias Children = TupleViewChildren6<View0, View1, View2, View3, View4, View5>
 
@@ -739,7 +733,6 @@ public struct TupleView7<
     View0: View, View1: View, View2: View, View3: View, View4: View, View5: View, View6: View
 >: TypeSafeView, View {
     public typealias Content = EmptyView
-    public typealias State = EmptyState
 
     typealias Children = TupleViewChildren7<View0, View1, View2, View3, View4, View5, View6>
 
@@ -922,7 +915,6 @@ public struct TupleView8<
     View7: View
 >: TypeSafeView, View {
     public typealias Content = EmptyView
-    public typealias State = EmptyState
 
     typealias Children = TupleViewChildren8<View0, View1, View2, View3, View4, View5, View6, View7>
 
@@ -1121,7 +1113,6 @@ public struct TupleView9<
     View7: View, View8: View
 >: TypeSafeView, View {
     public typealias Content = EmptyView
-    public typealias State = EmptyState
 
     typealias Children = TupleViewChildren9<
         View0, View1, View2, View3, View4, View5, View6, View7, View8
@@ -1338,7 +1329,6 @@ public struct TupleView10<
     View7: View, View8: View, View9: View
 >: TypeSafeView, View {
     public typealias Content = EmptyView
-    public typealias State = EmptyState
 
     typealias Children = TupleViewChildren10<
         View0, View1, View2, View3, View4, View5, View6, View7, View8, View9

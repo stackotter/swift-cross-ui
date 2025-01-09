@@ -44,8 +44,8 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     /// view as a result of a state change rather than the parent view updating.
     private var lastProposedSize: SIMD2<Int>
 
-    /// A cancellable handle to the view's state observation.
-    private var cancellable: Cancellable?
+    /// A cancellable handle to the view's state property observations.
+    private var cancellables: [Cancellable]
 
     /// The environment most recently provided by this node's parent.
     private var parentEnvironment: EnvironmentValues
@@ -61,24 +61,8 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         self.backend = backend
 
         // Restore node snapshot if present.
-        self.view = snapshot?.restore(to: nodeView) ?? nodeView
-
-        #if DEBUG
-            var mirror: Mirror? = Mirror(reflecting: self.view.state)
-            while let aClass = mirror {
-                for (label, property) in aClass.children {
-                    guard
-                        property is ObservedMarkerProtocol,
-                        let property = property as? Observable
-                    else {
-                        continue
-                    }
-
-                    property.didChange.tag(with: "(\(label ?? "_"): Observed<_>)")
-                }
-                mirror = aClass.superclassMirror
-            }
-        #endif
+        self.view = nodeView
+        snapshot?.restore(to: view)
 
         // First create the view's child nodes and widgets
         let childSnapshots =
@@ -89,6 +73,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         resultCache = [:]
         lastProposedSize = .zero
         parentEnvironment = environment
+        cancellables = []
 
         let viewEnvironment = updateEnvironment(environment)
 
@@ -116,16 +101,39 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         backend.tag(widget: widget, as: tag)
 
         // Update the view and its children when state changes (children are always updated first).
-        cancellable = view.state.didChange
-            .observeAsUIUpdater(backend: backend) { [weak self] in
-                guard let self = self else { return }
-                self.bottomUpUpdate()
+        let mirror = Mirror(reflecting: view)
+        for property in mirror.children {
+            if property.label == "state" && property.value is Observable {
+                print(
+                    """
+
+                    warning: The View.state protocol requirement has been removed in favour of
+                             SwiftUI-style @State annotations. Decorate \(NodeView.self).state
+                             with the @State property wrapper to restore previous behaviour.
+
+                    """
+                )
             }
+
+            guard let value = property.value as? StateProperty else {
+                continue
+            }
+
+            cancellables.append(
+                value.didChange
+                    .observeAsUIUpdater(backend: backend) { [weak self] in
+                        guard let self = self else { return }
+                        self.bottomUpUpdate()
+                    }
+            )
+        }
     }
 
     /// Stops observing the view's state.
     deinit {
-        cancellable?.cancel()
+        for cancellable in cancellables {
+            cancellable.cancel()
+        }
     }
 
     /// Triggers the view to be updated as part of a bottom-up chain of updates (where either the
@@ -146,11 +154,22 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
             resultCache[lastProposedSize] = newResult
             parentEnvironment.onResize(newResult.size)
         } else {
-            self.currentResult = self.update(
+            let finalResult = self.update(
                 proposedSize: lastProposedSize,
                 environment: parentEnvironment,
                 dryRun: false
             )
+            if finalResult.size != newResult.size {
+                print(
+                    """
+                    warning: State-triggered view update had mismatch \
+                    between dry-run size and final size.
+                          -> dry-run size: \(newResult.size)
+                          -> final size:   \(finalResult.size)
+                    """
+                )
+            }
+            self.currentResult = finalResult
         }
     }
 
@@ -205,11 +224,12 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         parentEnvironment = environment
         lastProposedSize = proposedSize
 
-        let previousView = newView != nil ? view : nil
+        let previousView: NodeView?
         if let newView {
-            var newView = newView
-            newView.state = view.state
+            previousView = view
             view = newView
+        } else {
+            previousView = nil
         }
 
         let viewEnvironment = updateEnvironment(environment)

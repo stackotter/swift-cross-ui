@@ -52,16 +52,12 @@ The wide variety of views available that you can combine to create complex UIs.
 
 Objects that are read from and/or written to as part of your app.
 
-- ``AppState``
+- ``State``
 - ``Binding``
-- ``Cancellable``
-- ``EmptyAppState``
-- ``EmptyState``
-- ``EmptyViewState``
 - ``Observable``
 - ``Observed``
 - ``Publisher``
-- ``ViewState``
+- ``Cancellable``
 
 ### Implementation Details
 

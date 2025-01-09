@@ -337,11 +337,11 @@ public final class Gtk3Backend: AppBackend {
 
     // public func setResizeHandler(
     //     ofSplitView splitView: Widget,
-    //     to action: @escaping (_ leadingWidth: Int, _ trailingWidth: Int) -> Void
+    //     to action: @escaping () -> Void
     // ) {
     //     let splitView = splitView as! Paned
     //     splitView.notifyPosition = { splitView in
-    //         action(splitView.position, splitView.getNaturalSize().width - splitView.position)
+    //         action()
     //     }
     // }
 

@@ -6,26 +6,22 @@ import SwiftCrossUI
     import SwiftBundlerRuntime
 #endif
 
-class WindowingAppState: Observable {
-    @Observed var title = "My window"
-    @Observed var resizable = false
-}
-
 @main
 @HotReloadable
 struct WindowingApp: App {
-    let state = WindowingAppState()
+    @State var title = "My window"
+    @State var resizable = false
 
     var body: some Scene {
-        WindowGroup(state.title) {
+        WindowGroup(title) {
             #hotReloadable {
                 VStack {
                     HStack {
                         Text("Window title:")
-                        TextField("My window", state.$title)
+                        TextField("My window", $title)
                     }
-                    Button(state.resizable ? "Disable resizing" : "Enable resizing") {
-                        state.resizable = !state.resizable
+                    Button(resizable ? "Disable resizing" : "Enable resizing") {
+                        resizable = !resizable
                     }
                     Image(Bundle.module.bundleURL.appendingPathComponent("Banner.png"))
                 }
@@ -33,7 +29,7 @@ struct WindowingApp: App {
             }
         }
         .defaultSize(width: 500, height: 500)
-        .windowResizability(state.resizable ? .contentMinSize : .contentSize)
+        .windowResizability(resizable ? .contentMinSize : .contentSize)
 
         WindowGroup("Secondary window") {
             #hotReloadable {
@@ -42,7 +38,7 @@ struct WindowingApp: App {
             }
         }
         .defaultSize(width: 200, height: 200)
-        .windowResizability(.contentSize)
+        .windowResizability(.contentMinSize)
 
         WindowGroup("Tertiary window") {
             #hotReloadable {
@@ -51,6 +47,6 @@ struct WindowingApp: App {
             }
         }
         .defaultSize(width: 200, height: 200)
-        .windowResizability(.contentSize)
+        .windowResizability(.contentMinSize)
     }
 }

@@ -6,8 +6,6 @@ public protocol App {
     associatedtype Backend: AppBackend
     /// The type of scene representing the content of the app.
     associatedtype Body: Scene
-    /// The app's observed state.
-    associatedtype State: Observable
 
     /// Metadata loaded at app start up. By default SwiftCrossUI attempts
     /// to load metadata inserted by Swift Bundler if present. Used by backends'
@@ -16,9 +14,6 @@ public protocol App {
 
     /// The application's backend.
     var backend: Backend { get }
-
-    /// The application's state.
-    var state: State { get }
 
     /// The content of the app.
     @SceneBuilder var body: Body { get }
@@ -74,7 +69,7 @@ extension App {
 
     private static func extractSwiftBundlerMetadata() -> AppMetadata? {
         guard let executable = Bundle.main.executableURL else {
-            print("No executable url")
+            print("warning: No executable url")
             return nil
         }
 
@@ -86,7 +81,6 @@ extension App {
         // Check if executable has Swift Bundler metadata magic bytes.
         let bytes = Array(data)
         guard bytes.suffix(8) == Array("SBUNMETA".utf8) else {
-            print("no magic bytes")
             return nil
         }
 
@@ -133,11 +127,5 @@ extension App {
                 .baseAddress!.pointee
             return UInt64(bigEndian: bigEndianValue)
         }
-    }
-}
-
-extension App where State == EmptyState {
-    public var state: State {
-        EmptyState()
     }
 }

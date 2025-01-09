@@ -16,7 +16,6 @@ extension View {
 struct AlertModifierView<Child: View>: TypeSafeView {
     typealias Children = AlertModifierViewChildren<Child>
 
-    var state = EmptyState()
     var body = EmptyView()
 
     var child: Child

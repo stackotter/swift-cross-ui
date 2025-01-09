@@ -141,7 +141,7 @@ public protocol AppBackend {
 
     /// Runs an action in the app's main thread if required to perform UI updates
     /// by the backend. Predominantly used by ``Publisher`` to publish changes to a thread
-    /// compatible with dispatching UI updates.
+    /// compatible with dispatching UI updates. Can be synchronous or asynchronous (for now).
     func runInMainThread(action: @escaping () -> Void)
 
     /// Computes the root environment for an app (e.g. by checking the system's current
@@ -212,7 +212,7 @@ public protocol AppBackend {
     /// Sets the function to be called when the split view's panes get resized.
     func setResizeHandler(
         ofSplitView splitView: Widget,
-        to action: @escaping (_ leadingWidth: Int, _ trailingWidth: Int) -> Void
+        to action: @escaping () -> Void
     )
     /// Gets the width of a split view's sidebar.
     func sidebarWidth(ofSplitView splitView: Widget) -> Int
@@ -384,7 +384,10 @@ public protocol AppBackend {
     /// - Parameter progressFraction: If `nil`, then the bar should show an indeterminate
     ///   animation if possible.
     func updateProgressBar(
-        _ widget: Widget, progressFraction: Double?, environment: EnvironmentValues)
+        _ widget: Widget,
+        progressFraction: Double?,
+        environment: EnvironmentValues
+    )
 
     /// Creates a popover menu (the sort you often see when right clicking on
     /// apps). The menu won't be visible until you call
@@ -502,7 +505,7 @@ extension AppBackend {
         todo()
     }
 
-    public func setColor(ofColorableRectangle widget: Widget) {
+    public func setColor(ofColorableRectangle widget: Widget, to color: Color) {
         todo()
     }
 
@@ -528,7 +531,7 @@ extension AppBackend {
 
     public func setResizeHandler(
         ofSplitView splitView: Widget,
-        to action: @escaping (_ leadingWidth: Int, _ trailingWidth: Int) -> Void
+        to action: @escaping () -> Void
     ) {
         todo()
     }
@@ -696,7 +699,7 @@ extension AppBackend {
     public func createProgressBar() -> Widget {
         todo()
     }
-    func updateProgressBar(
+    public func updateProgressBar(
         _ widget: Widget,
         progressFraction: Double?,
         environment: EnvironmentValues
@@ -734,14 +737,14 @@ extension AppBackend {
     ) {
         todo()
     }
-    func showAlert(
+    public func showAlert(
         _ alert: Alert,
         window: Window?,
         responseHandler handleResponse: @escaping (Int) -> Void
     ) {
         todo()
     }
-    func dismissAlert(_ alert: Alert, window: Window?) {
+    public func dismissAlert(_ alert: Alert, window: Window?) {
         todo()
     }
 

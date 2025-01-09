@@ -33,8 +33,8 @@ public enum AccessibleRelation: GValueRepresentableEnum {
     /// Identifies the element (or elements) that
     /// provide additional information related to the object. Value type: reference
     case details
-    /// Identifies the element that provides
-    /// an error message for an object. Value type: reference
+    /// Identifies the element (or elements) that
+    /// provide an error message for an object. Value type: reference
     case errorMessage
     /// Identifies the next element (or elements)
     /// in an alternate reading order of content which, at the user's discretion,

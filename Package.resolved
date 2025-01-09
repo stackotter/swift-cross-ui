@@ -1,5 +1,5 @@
 {
-  "originHash" : "b462c148b8bedbb548d40d964e2cf3ece9b7087069368c67f072ab4245edcd7c",
+  "originHash" : "b55d4bf824d7336695ac289f07259725feb6f0a2ded47658a9672c6c1d3f15fd",
   "pins" : [
     {
       "identity" : "jpeg",
@@ -11,20 +11,12 @@
       }
     },
     {
-      "identity" : "opencombine",
+      "identity" : "libpng",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/OpenCombine/OpenCombine.git",
+      "location" : "https://github.com/the-swift-collective/libpng",
       "state" : {
-        "revision" : "8576f0d579b27020beccbccc3ea6844f3ddfc2c2",
-        "version" : "0.14.0"
-      }
-    },
-    {
-      "identity" : "qlift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Longhanks/qlift",
-      "state" : {
-        "revision" : "ddab1f1ecc113ad4f8e05d2999c2734cdf706210"
+        "revision" : "0eff23aca92a086b7892831f5cb4f58e15be9449",
+        "version" : "1.6.45"
       }
     },
     {
@@ -55,21 +47,12 @@
       }
     },
     {
-      "identity" : "swift-hash",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stackotter/swift-hash",
-      "state" : {
-        "revision" : "7151d95817516d96509fdfeb3faaa92f273df47f",
-        "version" : "0.6.4"
-      }
-    },
-    {
       "identity" : "swift-image-formats",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-image-formats",
       "state" : {
-        "revision" : "116fd33035e2d98777eacc8e1bdf172155742e92",
-        "version" : "0.2.1"
+        "revision" : "d178ee2b59710512cf08df4b0ad78127b0389fca",
+        "version" : "0.3.0"
       }
     },
     {
@@ -91,15 +74,6 @@
       }
     },
     {
-      "identity" : "swift-png",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stackotter/swift-png",
-      "state" : {
-        "revision" : "9f6f85e1a0d299b7c938fbb61566e30db634c030",
-        "version" : "4.4.7"
-      }
-    },
-    {
       "identity" : "swift-syntax",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-syntax.git",
@@ -114,7 +88,7 @@
       "location" : "https://github.com/thebrowsercompany/swift-uwp",
       "state" : {
         "branch" : "main",
-        "revision" : "cfad0a43469211bf7eb58ed23af3d4a176faec07"
+        "revision" : "4fe2fa05652f688ba5af57d0ce9e93961f6dea98"
       }
     },
     {
@@ -123,7 +97,7 @@
       "location" : "https://github.com/wabiverse/swift-windowsappsdk",
       "state" : {
         "branch" : "main",
-        "revision" : "9706ffd7d96c680ed5544f88463bc4e39cd4546c"
+        "revision" : "36e2f6c261fcbffc303c107b24f705605f3908be"
       }
     },
     {
@@ -141,33 +115,7 @@
       "location" : "https://github.com/wabiverse/swift-winui",
       "state" : {
         "branch" : "main",
-        "revision" : "41e7b0fd120fd68af1aa4a26080f63435e28b685"
-      }
-    },
-    {
-      "identity" : "swiftterm",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/migueldeicaza/SwiftTerm.git",
-      "state" : {
-        "revision" : "e2b431dbf73f775fb4807a33e4572ffd3dc6933a",
-        "version" : "1.2.5"
-      }
-    },
-    {
-      "identity" : "termkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stackotter/TermKit",
-      "state" : {
-        "revision" : "163afa64f1257a0c026cc83ed8bc47a5f8fc9704"
-      }
-    },
-    {
-      "identity" : "textbufferkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/migueldeicaza/TextBufferKit.git",
-      "state" : {
-        "revision" : "7f3ed5b1d7288de34ad853544d802647be11cfcf",
-        "version" : "0.3.0"
+        "revision" : "0529457d9f360904b2009fd67cba90046ff252c4"
       }
     },
     {
@@ -177,6 +125,15 @@
       "state" : {
         "revision" : "b1e944cbd0ef33787b13f639a5418d55b3bed501",
         "version" : "0.17.1"
+      }
+    },
+    {
+      "identity" : "zlib",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/the-swift-collective/zlib.git",
+      "state" : {
+        "revision" : "f35d438c14187cb369dfd82603c3427dc66fbed5",
+        "version" : "1.3.1"
       }
     }
   ],

@@ -2,7 +2,6 @@
 public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeView, View {
     typealias Children = TableViewChildren<RowContent.RowContent>
 
-    public var state = EmptyState()
     public var body = EmptyView()
 
     /// The row data to display.

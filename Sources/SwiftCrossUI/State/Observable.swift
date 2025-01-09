@@ -39,9 +39,6 @@ extension Observable {
     public var didChange: Publisher {
         let publisher = Publisher()
             .tag(with: String(describing: type(of: self)))
-        guard type(of: self) != EmptyState.self else {
-            return publisher
-        }
 
         var mirror: Mirror? = Mirror(reflecting: self)
         while let aClass = mirror {

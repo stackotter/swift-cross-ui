@@ -14,9 +14,10 @@ struct Person {
     var occupation: String
 }
 
-class SpreadsheetState: Observable {
-    @Observed
-    var data = [
+@main
+@HotReloadable
+struct SpreadsheetApp: App {
+    @State var data = [
         Person(
             name: "Alice", age: 99, phone: "(+61)1234123412",
             email: "alice@example.com", occupation: "developer"
@@ -27,28 +28,21 @@ class SpreadsheetState: Observable {
         ),
     ]
 
-    @Observed
-    var greeting: String?
-}
-
-@main
-@HotReloadable
-struct SpreadsheetApp: App {
-    let state = SpreadsheetState()
+    @State var greeting: String?
 
     var body: some Scene {
         WindowGroup("Spreadsheet") {
             #hotReloadable {
                 VStack(spacing: 0) {
                     VStack {
-                        if let greeting = state.greeting {
+                        if let greeting = greeting {
                             Text(greeting)
                         } else {
                             Text("Pending greeting...")
                         }
                     }
                     .padding(10)
-                    Table(state.data) {
+                    Table(data) {
                         TableColumn("Name", value: \Person.name)
                         TableColumn("Age", value: \Person.age.description)
                         TableColumn("Phone", value: \Person.phone)
@@ -56,7 +50,7 @@ struct SpreadsheetApp: App {
                         TableColumn("Occupation", value: \Person.occupation)
                         TableColumn("Action") { (person: Person) in
                             Button("Greet") {
-                                state.greeting = "Hello, \(person.name)!"
+                                greeting = "Hello, \(person.name)!"
                             }
                         }
                     }

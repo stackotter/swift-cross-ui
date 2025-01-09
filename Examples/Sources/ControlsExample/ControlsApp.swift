@@ -6,15 +6,15 @@ import SwiftCrossUI
 #endif
 
 class ControlsState: Observable {
-    @Observed var count = 0
-    @Observed var exampleButtonState = false
-    @Observed var exampleSwitchState = false
 }
 
 @main
 @HotReloadable
 struct ControlsApp: App {
-    let state = ControlsState()
+    @State var count = 0
+    @State var exampleButtonState = false
+    @State var exampleSwitchState = false
+    @State var sliderValue = 5.0
 
     var body: some Scene {
         WindowGroup("ControlsApp") {
@@ -23,25 +23,32 @@ struct ControlsApp: App {
                     VStack {
                         Text("Button")
                         Button("Click me!") {
-                            state.count += 1
+                            count += 1
                         }
-                        Text("Count: \(state.count)")
+                        Text("Count: \(count)")
                     }
                     .padding(.bottom, 20)
 
                     VStack {
                         Text("Toggle button")
-                        Toggle("Toggle me!", active: state.$exampleButtonState)
+                        Toggle("Toggle me!", active: $exampleButtonState)
                             .toggleStyle(.button)
-                        Text("Currently enabled: \(state.exampleButtonState)")
+                        Text("Currently enabled: \(exampleButtonState)")
                     }
                     .padding(.bottom, 20)
 
                     VStack {
                         Text("Toggle switch")
-                        Toggle("Toggle me:", active: state.$exampleSwitchState)
+                        Toggle("Toggle me:", active: $exampleSwitchState)
                             .toggleStyle(.switch)
-                        Text("Currently enabled: \(state.exampleSwitchState)")
+                        Text("Currently enabled: \(exampleSwitchState)")
+                    }
+
+                    VStack {
+                        Text("Slider")
+                        Slider($sliderValue, minimum: 0, maximum: 10)
+                            .frame(maxWidth: 200)
+                        Text("Value: \(String(format: "%.02f", sliderValue))")
                     }
                 }
             }

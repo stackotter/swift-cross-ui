@@ -9,6 +9,12 @@ import CGtk
 /// almost any other standard `GtkWidget`. The most commonly used child is the
 /// `GtkLabel`.
 ///
+/// # Shortcuts and Gestures
+///
+/// The following signals have default keybindings:
+///
+/// - [signal@Gtk.Button::activate]
+///
 /// # CSS nodes
 ///
 /// `GtkButton` has a single CSS node with name button. The node will get the
@@ -194,6 +200,7 @@ public class Button: Widget, Actionable {
     /// to be used as mnemonic.
     @GObjectProperty(named: "use-underline") public var useUnderline: Bool
 
+    /// The name of the action with which this widget should be associated.
     @GObjectProperty(named: "action-name") public var actionName: String?
 
     /// Emitted to animate press then release.

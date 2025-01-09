@@ -2,11 +2,48 @@ import CGtk
 
 /// A widget that displays the contents of a [class@Gtk.TextBuffer].
 ///
-/// ![An example GtkTextview](multiline-text.png)
+/// ![An example GtkTextView](multiline-text.png)
 ///
 /// You may wish to begin by reading the [conceptual overview](section-text-widget.html),
 /// which gives an overview of all the objects and data types related to the
 /// text widget and how they work together.
+///
+/// ## Shortcuts and Gestures
+///
+/// `GtkTextView` supports the following keyboard shortcuts:
+///
+/// - <kbd>Shift</kbd>+<kbd>F10</kbd> or <kbd>Menu</kbd> opens the context menu.
+/// - <kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes the last modification.
+/// - <kbd>Ctrl</kbd>+<kbd>Y</kbd> or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd>
+/// redoes the last undone modification.
+///
+/// Additionally, the following signals have default keybindings:
+///
+/// - [signal@Gtk.TextView::backspace]
+/// - [signal@Gtk.TextView::copy-clipboard]
+/// - [signal@Gtk.TextView::cut-clipboard]
+/// - [signal@Gtk.TextView::delete-from-cursor]
+/// - [signal@Gtk.TextView::insert-emoji]
+/// - [signal@Gtk.TextView::move-cursor]
+/// - [signal@Gtk.TextView::paste-clipboard]
+/// - [signal@Gtk.TextView::select-all]
+/// - [signal@Gtk.TextView::toggle-cursor-visible]
+/// - [signal@Gtk.TextView::toggle-overwrite]
+///
+/// ## Actions
+///
+/// `GtkTextView` defines a set of built-in actions:
+///
+/// - `clipboard.copy` copies the contents to the clipboard.
+/// - `clipboard.cut` copies the contents to the clipboard and deletes it from
+/// the widget.
+/// - `clipboard.paste` inserts the contents of the clipboard into the widget.
+/// - `menu.popup` opens the context menu.
+/// - `misc.insert-emoji` opens the Emoji chooser.
+/// - `selection.delete` deletes the current selection.
+/// - `selection.select-all` selects all of the widgets content.
+/// - `text.redo` redoes the last change to the contents.
+/// - `text.undo` undoes the last change to the contents.
 ///
 /// ## CSS nodes
 ///
@@ -515,6 +552,7 @@ public class TextView: Widget, Scrollable {
     /// If the insertion cursor is shown.
     @GObjectProperty(named: "cursor-visible") public var cursorVisible: Bool
 
+    /// Whether the text can be modified by the user.
     @GObjectProperty(named: "editable") public var editable: Bool
 
     /// Amount to indent the paragraph, in pixels.
@@ -530,6 +568,7 @@ public class TextView: Widget, Scrollable {
     /// methods to adjust their behaviour.
     @GObjectProperty(named: "input-purpose") public var inputPurpose: InputPurpose
 
+    /// Left, right, or center justification.
     @GObjectProperty(named: "justification") public var justification: Justification
 
     /// The default left margin for text in the text view.
@@ -550,10 +589,13 @@ public class TextView: Widget, Scrollable {
     /// Whether entered text overwrites existing contents.
     @GObjectProperty(named: "overwrite") public var overwrite: Bool
 
+    /// Pixels of blank space above paragraphs.
     @GObjectProperty(named: "pixels-above-lines") public var pixelsAboveLines: Int
 
+    /// Pixels of blank space below paragraphs.
     @GObjectProperty(named: "pixels-below-lines") public var pixelsBelowLines: Int
 
+    /// Pixels of blank space between wrapped lines in a paragraph.
     @GObjectProperty(named: "pixels-inside-wrap") public var pixelsInsideWrap: Int
 
     /// The default right margin for text in the text view.
@@ -574,6 +616,7 @@ public class TextView: Widget, Scrollable {
     /// Don't confuse this property with [property@Gtk.Widget:margin-top].
     @GObjectProperty(named: "top-margin") public var topMargin: Int
 
+    /// Whether to wrap lines never, at word boundaries, or at character boundaries.
     @GObjectProperty(named: "wrap-mode") public var wrapMode: WrapMode
 
     /// Determines when horizontal scrolling should start.

@@ -26,17 +26,13 @@ enum Columns {
     case three
 }
 
-class SplitAppState: Observable {
-    @Observed var selectedArea: SubjectArea?
-    @Observed var selectedDetail: Any?
-    @Observed var columns: Columns = .two
-}
-
 struct ContentView: View {
-    var state = SplitAppState()
+    @State var selectedArea: SubjectArea?
+    @State var selectedDetail: Any?
+    @State var columns: Columns = .two
 
     var body: some View {
-        switch state.columns {
+        switch columns {
             case .two:
                 doubleColumn
             case .three:
@@ -48,14 +44,14 @@ struct ContentView: View {
     var doubleColumn: some View {
         NavigationSplitView {
             VStack {
-                Button("Science") { state.selectedArea = .science }
-                Button("Humanities") { state.selectedArea = .humanities }
+                Button("Science") { selectedArea = .science }
+                Button("Humanities") { selectedArea = .humanities }
                 Spacer()
-                Button("Switch to 3 column example") { state.columns = .three }
+                Button("Switch to 3 column example") { columns = .three }
             }.padding(10)
         } detail: {
             VStack {
-                switch state.selectedArea {
+                switch selectedArea {
                     case .science:
                         Text("Science")
                     case .humanities:
@@ -71,33 +67,33 @@ struct ContentView: View {
     var tripleColumn: some View {
         NavigationSplitView {
             VStack {
-                Button("Science") { state.selectedArea = .science }
-                Button("Humanities") { state.selectedArea = .humanities }
+                Button("Science") { selectedArea = .science }
+                Button("Humanities") { selectedArea = .humanities }
                 Spacer()
-                Button("Switch to 2 column example") { state.columns = .two }
+                Button("Switch to 2 column example") { columns = .two }
             }.padding(10)
         } content: {
             VStack {
-                switch state.selectedArea {
+                switch selectedArea {
                     case .science:
                         Text("Choose a science subject")
                             .padding(.bottom, 10)
-                        Button("Physics") { state.selectedDetail = ScienceSubject.physics }
-                        Button("Chemistry") { state.selectedDetail = ScienceSubject.chemistry }
+                        Button("Physics") { selectedDetail = ScienceSubject.physics }
+                        Button("Chemistry") { selectedDetail = ScienceSubject.chemistry }
                     case .humanities:
                         Text("Choose a humanities subject")
                             .padding(.bottom, 10)
-                        Button("English") { state.selectedDetail = HumanitiesSubject.english }
-                        Button("History") { state.selectedDetail = HumanitiesSubject.history }
+                        Button("English") { selectedDetail = HumanitiesSubject.english }
+                        Button("History") { selectedDetail = HumanitiesSubject.history }
                     case nil:
                         Text("Select an area")
                 }
             }
             .padding(10)
-            .frame(minWidth: 150)
+            .frame(minWidth: 190)
         } detail: {
             VStack {
-                switch state.selectedDetail {
+                switch selectedDetail {
                     case let subject as ScienceSubject:
                         switch subject {
                             case .physics:

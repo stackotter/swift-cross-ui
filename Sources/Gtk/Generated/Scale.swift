@@ -24,6 +24,15 @@ import CGtk
 /// the mark. It can be translated with the usual ”translatable” and
 /// “context” attributes.
 ///
+/// # Shortcuts and Gestures
+///
+/// `GtkPopoverMenu` supports the following keyboard shortcuts:
+///
+/// - Arrow keys, <kbd>+</kbd> and <kbd>-</kbd> will increment or decrement
+/// by step, or by page when combined with <kbd>Ctrl</kbd>.
+/// - <kbd>PgUp</kbd> and <kbd>PgDn</kbd> will increment or decrement by page.
+/// - <kbd>Home</kbd> and <kbd>End</kbd> will set the minimum or maximum value.
+///
 /// # CSS nodes
 ///
 /// ```
