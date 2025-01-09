@@ -103,7 +103,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         // Update the view and its children when state changes (children are always updated first).
         let mirror = Mirror(reflecting: view)
         for property in mirror.children {
-            if property.label == "state" && property.value is Observable {
+            if property.label == "state" && property.value is ObservableObject {
                 print(
                     """
 

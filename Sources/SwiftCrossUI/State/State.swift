@@ -42,7 +42,7 @@ public struct State<Value>: DynamicProperty, StateProperty {
     public init(wrappedValue initialValue: Value) {
         storage = Storage(initialValue)
 
-        if let initialValue = initialValue as? Observable {
+        if let initialValue = initialValue as? ObservableObject {
             _ = didChange.link(toUpstream: initialValue.didChange)
         }
     }

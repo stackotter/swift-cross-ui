@@ -54,8 +54,8 @@ Objects that are read from and/or written to as part of your app.
 
 - ``State``
 - ``Binding``
-- ``Observable``
-- ``Observed``
+- ``ObservableObject``
+- ``Published``
 - ``Publisher``
 - ``Cancellable``
 

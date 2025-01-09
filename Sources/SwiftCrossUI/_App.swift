@@ -79,7 +79,7 @@ class _App<AppRoot: App> {
 
             let mirror = Mirror(reflecting: self.app)
             for property in mirror.children {
-                if property.label == "state" && property.value is Observable {
+                if property.label == "state" && property.value is ObservableObject {
                     print(
                         """
 

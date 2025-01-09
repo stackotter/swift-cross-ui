@@ -5,9 +5,6 @@ import SwiftCrossUI
     import SwiftBundlerRuntime
 #endif
 
-class ControlsState: Observable {
-}
-
 @main
 @HotReloadable
 struct ControlsApp: App {

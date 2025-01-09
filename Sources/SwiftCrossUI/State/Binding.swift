@@ -18,9 +18,9 @@ public class Binding<Value> {
     private let setValue: (Value) -> Void
 
     /// Creates a binding with a custom getter and setter. To create a binding from
-    /// an observed state variable use its projected value instead: e.g. `state.$value`
-    /// will give you a binding for reading and writing `state.value` (assuming that
-    /// `state.value` is marked with `@Observed`).
+    /// an `@State` property use its projected value instead: e.g. `$myStateProperty`
+    /// will give you a binding for reading and writing `myStateProperty` (assuming that
+    /// `myStateProperty` is marked with `@State` at its declaration site).
     public init(get: @escaping () -> Value, set: @escaping (Value) -> Void) {
         self.getValue = get
         self.setValue = set

@@ -34,13 +34,8 @@ extension View {
     }
 }
 
-class TaskModifierState<Id: Equatable>: Observable {
-    var task: Task<(), any Error>?
-}
-
 struct TaskModifier<Id: Equatable, Content: View>: View {
-    @State
-    var task: Task<(), any Error>? = nil
+    @State var task: Task<(), any Error>? = nil
 
     var id: Id
     var content: Content
