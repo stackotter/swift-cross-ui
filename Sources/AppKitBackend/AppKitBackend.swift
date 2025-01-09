@@ -154,11 +154,10 @@ public final class AppKitBackend: AppBackend {
     ) -> (menuBar: NSMenu, helpMenu: NSMenu?) {
         let menuBar = NSMenu()
 
-        // The first menu item is special and always takes on the name of the
-        // app. For now just create a dummy item for it.
-        let dummy = NSMenuItem()
-        dummy.submenu = NSMenu()
-        menuBar.addItem(dummy)
+        // The first menu item is special and always takes on the name of the app.
+        let about = NSMenuItem()
+        about.submenu = createDefaultAboutMenu()
+        menuBar.addItem(about)
 
         var helpMenu: NSMenu?
         for submenu in submenus {
@@ -171,6 +170,26 @@ public final class AppKitBackend: AppBackend {
         }
 
         return (menuBar, helpMenu)
+    }
+
+    public static func createDefaultAboutMenu() -> NSMenu {
+        let appName = ProcessInfo.processInfo.processName
+        let appMenu = NSMenu(title: appName)
+        appMenu.addItem(withTitle: "About \(appName)", action: #selector(NSApp.orderFrontStandardAboutPanel(_:)), keyEquivalent: "")
+        appMenu.addItem(NSMenuItem.separator())
+
+        let hideMenu = appMenu.addItem(withTitle: "Hide \(appName)", action: #selector(NSApp.hide(_:)), keyEquivalent: "h")
+        hideMenu.keyEquivalentModifierMask = .command
+
+        let hideOthers = appMenu.addItem(withTitle: "Hide Others", action: #selector(NSApp.hideOtherApplications(_:)), keyEquivalent: "h")
+        hideOthers.keyEquivalentModifierMask = [.option, .command]
+
+        appMenu.addItem(withTitle: "Show All", action: #selector(NSApp.unhideAllApplications(_:)), keyEquivalent: "")
+
+        let quitMenu = appMenu.addItem(withTitle: "Quit \(appName)", action: #selector(NSApp.terminate(_:)), keyEquivalent: "q")
+        quitMenu.keyEquivalentModifierMask = .command
+
+        return appMenu
     }
 
     public func setApplicationMenu(_ submenus: [ResolvedMenu.Submenu]) {
