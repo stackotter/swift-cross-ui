@@ -64,6 +64,15 @@ public struct WinUIBackend: AppBackend {
             _ = application.resources.insert("ToggleSwitchPreContentMargin", 0.0 as Double)
             _ = application.resources.insert("ToggleSwitchPostContentMargin", 0.0 as Double)
 
+            // TODO: Read in previously hardcoded values from the application's
+            // resources dictionary for future-proofing. Example code for getting
+            // property values;
+            //   let iinspectable =
+            //       application.resources.lookup("ToggleSwitchPreContentMargin")!
+            //       as! WindowsFoundation.IInspectable
+            //   let pv: __ABI_Windows_Foundation.IPropertyValue = try! iinspectable.QueryInterface()
+            //   let value = try! pv.GetDoubleImpl()
+
             callback()
         }
         WinUIApplication.main()
