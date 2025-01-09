@@ -1,5 +1,5 @@
 {
-  "originHash" : "b1fa6d14189d2ef00c4dc42181afe6c52c067c46017ca82e8932c88f207c8504",
+  "originHash" : "b55d4bf824d7336695ac289f07259725feb6f0a2ded47658a9672c6c1d3f15fd",
   "pins" : [
     {
       "identity" : "jpeg",
@@ -17,23 +17,6 @@
       "state" : {
         "revision" : "0eff23aca92a086b7892831f5cb4f58e15be9449",
         "version" : "1.6.45"
-      }
-    },
-    {
-      "identity" : "opencombine",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/OpenCombine/OpenCombine.git",
-      "state" : {
-        "revision" : "8576f0d579b27020beccbccc3ea6844f3ddfc2c2",
-        "version" : "0.14.0"
-      }
-    },
-    {
-      "identity" : "qlift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Longhanks/qlift",
-      "state" : {
-        "revision" : "ddab1f1ecc113ad4f8e05d2999c2734cdf706210"
       }
     },
     {
@@ -86,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-macro-toolkit",
       "state" : {
-        "revision" : "687075e7bf976e121d083e922a07c7a9350ca85d",
-        "version" : "0.4.0"
+        "revision" : "e706aa98bc28f82677923f7b8f560bba6f90fac2",
+        "version" : "0.6.0"
       }
     },
     {
@@ -95,8 +78,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-syntax.git",
       "state" : {
-        "revision" : "303e5c5c36d6a558407d364878df131c3546fad8",
-        "version" : "510.0.2"
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
       }
     },
     {
@@ -133,32 +116,6 @@
       "state" : {
         "branch" : "main",
         "revision" : "0529457d9f360904b2009fd67cba90046ff252c4"
-      }
-    },
-    {
-      "identity" : "swiftterm",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/migueldeicaza/SwiftTerm.git",
-      "state" : {
-        "revision" : "e2b431dbf73f775fb4807a33e4572ffd3dc6933a",
-        "version" : "1.2.5"
-      }
-    },
-    {
-      "identity" : "termkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stackotter/TermKit",
-      "state" : {
-        "revision" : "163afa64f1257a0c026cc83ed8bc47a5f8fc9704"
-      }
-    },
-    {
-      "identity" : "textbufferkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/migueldeicaza/TextBufferKit.git",
-      "state" : {
-        "revision" : "7f3ed5b1d7288de34ad853544d802647be11cfcf",
-        "version" : "0.3.0"
       }
     },
     {

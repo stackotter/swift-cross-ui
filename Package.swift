@@ -11,42 +11,6 @@ if let version = getGtk4MinorVersion(), version >= 10 {
     gtkSwiftSettings.append(.define("GTK_4_10_PLUS"))
 }
 
-var swift510Dependencies: [Package.Dependency] = []
-var swift510Targets: [Target] = []
-var swift510Products: [Product] = []
-#if swift(>=5.10)
-    swift510Dependencies = [
-        .package(
-            url: "https://github.com/wabiverse/swift-windowsappsdk",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/thebrowsercompany/swift-windowsfoundation",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/wabiverse/swift-winui",
-            branch: "main"
-        ),
-    ]
-
-    swift510Products = [
-        .library(name: "WinUIBackend", targets: ["WinUIBackend"])
-    ]
-
-    swift510Targets = [
-        .target(
-            name: "WinUIBackend",
-            dependencies: [
-                "SwiftCrossUI",
-                .product(name: "WinUI", package: "swift-winui"),
-                .product(name: "WinAppSDK", package: "swift-windowsappsdk"),
-                .product(name: "WindowsFoundation", package: "swift-windowsfoundation"),
-            ]
-        )
-    ]
-#endif
-
 let defaultBackend: String
 if let backend = ProcessInfo.processInfo.environment["SCUI_DEFAULT_BACKEND"] {
     defaultBackend = backend
@@ -101,31 +65,20 @@ let package = Package(
     products: [
         .library(name: "SwiftCrossUI", type: libraryType, targets: ["SwiftCrossUI"]),
         .library(name: "AppKitBackend", type: libraryType, targets: ["AppKitBackend"]),
-        .library(name: "CursesBackend", type: libraryType, targets: ["CursesBackend"]),
-        .library(name: "QtBackend", type: libraryType, targets: ["QtBackend"]),
         .library(name: "GtkBackend", type: libraryType, targets: ["GtkBackend"]),
         .library(name: "Gtk3Backend", type: libraryType, targets: ["Gtk3Backend"]),
+        .library(name: "WinUIBackend", targets: ["WinUIBackend"]),
         .library(name: "DefaultBackend", type: libraryType, targets: ["DefaultBackend"]),
         .library(name: "Gtk", type: libraryType, targets: ["Gtk"]),
         .executable(name: "GtkExample", targets: ["GtkExample"]),
+        // .library(name: "CursesBackend", type: libraryType, targets: ["CursesBackend"]),
+        // .library(name: "QtBackend", type: libraryType, targets: ["QtBackend"]),
         // .library(name: "LVGLBackend", type: libraryType, targets: ["LVGLBackend"]),
-    ] + swift510Products,
+    ],
     dependencies: [
         .package(
             url: "https://github.com/CoreOffice/XMLCoder",
             from: "0.17.1"
-        ),
-        .package(
-            url: "https://github.com/stackotter/TermKit",
-            revision: "163afa64f1257a0c026cc83ed8bc47a5f8fc9704"
-        ),
-        // .package(
-        //     url: "https://github.com/PADL/LVGLSwift",
-        //     revision: "19c19a942153b50d61486faf1d0d45daf79e7be5"
-        // ),
-        .package(
-            url: "https://github.com/Longhanks/qlift",
-            revision: "ddab1f1ecc113ad4f8e05d2999c2734cdf706210"
         ),
         .package(
             url: "https://github.com/apple/swift-docc-plugin",
@@ -133,17 +86,41 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/apple/swift-syntax.git",
-            from: "510.0.0"
+            from: "600.0.0"
         ),
         .package(
             url: "https://github.com/stackotter/swift-macro-toolkit",
-            from: "0.4.0"
+            .upToNextMinor(from: "0.6.0")
         ),
         .package(
             url: "https://github.com/stackotter/swift-image-formats",
             .upToNextMinor(from: "0.3.0")
         ),
-    ] + swift510Dependencies,
+        .package(
+            url: "https://github.com/wabiverse/swift-windowsappsdk",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/thebrowsercompany/swift-windowsfoundation",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/wabiverse/swift-winui",
+            branch: "main"
+        ),
+        // .package(
+        //     url: "https://github.com/stackotter/TermKit",
+        //     revision: "163afa64f1257a0c026cc83ed8bc47a5f8fc9704"
+        // ),
+        // .package(
+        //     url: "https://github.com/PADL/LVGLSwift",
+        //     revision: "19c19a942153b50d61486faf1d0d45daf79e7be5"
+        // ),
+        // .package(
+        //     url: "https://github.com/Longhanks/qlift",
+        //     revision: "ddab1f1ecc113ad4f8e05d2999c2734cdf706210"
+        // ),
+    ],
     targets: [
         .target(
             name: "SwiftCrossUI",
@@ -172,22 +149,6 @@ let package = Package(
             ]
         ),
         .target(name: "AppKitBackend", dependencies: ["SwiftCrossUI"]),
-        .target(
-            name: "QtBackend",
-            dependencies: ["SwiftCrossUI", .product(name: "Qlift", package: "qlift")]
-        ),
-        .target(
-            name: "CursesBackend",
-            dependencies: ["SwiftCrossUI", "TermKit"]
-        ),
-        // .target(
-        //     name: "LVGLBackend",
-        //     dependencies: [
-        //         "SwiftCrossUI",
-        //         .product(name: "LVGL", package: "LVGLSwift"),
-        //         .product(name: "CLVGL", package: "LVGLSwift"),
-        //     ]
-        // ),
         .target(
             name: "GtkBackend",
             dependencies: ["SwiftCrossUI", "Gtk", "CGtk"]
@@ -258,7 +219,32 @@ let package = Package(
             ],
             swiftSettings: swiftSettings
         ),
-    ] + swift510Targets
+        .target(
+            name: "WinUIBackend",
+            dependencies: [
+                "SwiftCrossUI",
+                .product(name: "WinUI", package: "swift-winui"),
+                .product(name: "WinAppSDK", package: "swift-windowsappsdk"),
+                .product(name: "WindowsFoundation", package: "swift-windowsfoundation"),
+            ]
+        ),
+        // .target(
+        //     name: "CursesBackend",
+        //     dependencies: ["SwiftCrossUI", "TermKit"]
+        // ),
+        // .target(
+        //     name: "QtBackend",
+        //     dependencies: ["SwiftCrossUI", .product(name: "Qlift", package: "qlift")]
+        // ),
+        // .target(
+        //     name: "LVGLBackend",
+        //     dependencies: [
+        //         "SwiftCrossUI",
+        //         .product(name: "LVGL", package: "LVGLSwift"),
+        //         .product(name: "CLVGL", package: "LVGLSwift"),
+        //     ]
+        // ),
+    ]
 )
 
 func getGtk4MinorVersion() -> Int? {

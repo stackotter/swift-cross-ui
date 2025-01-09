@@ -10,30 +10,12 @@
       }
     },
     {
-      "identity" : "graphviz",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SwiftDocOrg/GraphViz.git",
-      "state" : {
-        "revision" : "70bebcf4597b9ce33e19816d6bbd4ba9b7bdf038",
-        "version" : "0.2.0"
-      }
-    },
-    {
       "identity" : "jpeg",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/jpeg",
       "state" : {
         "revision" : "a27e47f49479993b2541bc5f5c95d9354ed567a0",
         "version" : "1.0.2"
-      }
-    },
-    {
-      "identity" : "jsonutilities",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/yonaskolb/JSONUtilities.git",
-      "state" : {
-        "revision" : "128d2ffc22467f69569ef8ff971683e2393191a0",
-        "version" : "4.2.0"
       }
     },
     {
@@ -46,29 +28,12 @@
       }
     },
     {
-      "identity" : "opencombine",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/OpenCombine/OpenCombine.git",
-      "state" : {
-        "revision" : "8576f0d579b27020beccbccc3ea6844f3ddfc2c2",
-        "version" : "0.14.0"
-      }
-    },
-    {
       "identity" : "pathkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kylef/PathKit.git",
       "state" : {
         "revision" : "3bfd2737b700b9a36565a8c94f4ad2b050a5e574",
         "version" : "1.0.1"
-      }
-    },
-    {
-      "identity" : "qlift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Longhanks/qlift",
-      "state" : {
-        "revision" : "ddab1f1ecc113ad4f8e05d2999c2734cdf706210"
       }
     },
     {
@@ -108,15 +73,6 @@
       }
     },
     {
-      "identity" : "swift-argument-parser",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser.git",
-      "state" : {
-        "revision" : "41982a3656a71c768319979febd796c6fd111d5c",
-        "version" : "1.5.0"
-      }
-    },
-    {
       "identity" : "swift-async-algorithms",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-async-algorithms.git",
@@ -130,7 +86,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-bundler",
       "state" : {
-        "revision" : "d5b56cf7cc967d262ad5330b83849069fcba7821"
+        "revision" : "412e8a3838456654138ac807406aba27599762f1"
       }
     },
     {
@@ -140,15 +96,6 @@
       "state" : {
         "revision" : "bc92c4b27f9a84bfb498cdbfdf35d5a357e9161f",
         "version" : "1.5.6"
-      }
-    },
-    {
-      "identity" : "swift-cmark",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-cmark.git",
-      "state" : {
-        "revision" : "3ccff77b2dc5b96b77db3da0d68d28068593fa53",
-        "version" : "0.5.0"
       }
     },
     {
@@ -174,17 +121,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sersoft-gmbh/swift-filestreamer",
       "state" : {
-        "revision" : "05723be208971c7738a729f9136e4605cc3b3ea5",
-        "version" : "0.9.0"
-      }
-    },
-    {
-      "identity" : "swift-format",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-format",
-      "state" : {
-        "revision" : "7c60a5d1f508965a87ed66b6e58e9392af4b36af",
-        "version" : "510.0.1"
+        "revision" : "b01ff214cc629718a8729f33d2a8b88e47532dbd",
+        "version" : "0.6.0"
       }
     },
     {
@@ -201,8 +139,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sersoft-gmbh/swift-inotify",
       "state" : {
-        "revision" : "c0d9233df3a1e87b323a4969933dfc06903ed14c",
-        "version" : "0.7.2"
+        "revision" : "aaaaff43d5ddfe05f18c373fd811cc45f9301c86",
+        "version" : "0.4.0"
       }
     },
     {
@@ -228,17 +166,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-macro-toolkit",
       "state" : {
-        "revision" : "2eded9c9a98cba42d70fb179d516231fffcff1e4",
-        "version" : "0.5.0"
-      }
-    },
-    {
-      "identity" : "swift-markdown",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-markdown.git",
-      "state" : {
-        "revision" : "8f79cb175981458a0a27e76cb42fee8e17b1a993",
-        "version" : "0.5.0"
+        "revision" : "e706aa98bc28f82677923f7b8f560bba6f90fac2",
+        "version" : "0.6.0"
       }
     },
     {
@@ -262,10 +191,10 @@
     {
       "identity" : "swift-syntax",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-syntax",
+      "location" : "https://github.com/swiftlang/swift-syntax",
       "state" : {
-        "revision" : "fa8f95c2d536d6620cc2f504ebe8a6167c9fc2dd",
-        "version" : "510.0.1"
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
       }
     },
     {
@@ -314,24 +243,6 @@
       }
     },
     {
-      "identity" : "swiftcli",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/jakeheis/SwiftCLI.git",
-      "state" : {
-        "revision" : "2e949055d9797c1a6bddcda0e58dada16cc8e970",
-        "version" : "6.0.3"
-      }
-    },
-    {
-      "identity" : "swiftterm",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/migueldeicaza/SwiftTerm.git",
-      "state" : {
-        "revision" : "e2b431dbf73f775fb4807a33e4572ffd3dc6933a",
-        "version" : "1.2.5"
-      }
-    },
-    {
       "identity" : "swiftxcodeproj",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/SwiftXcodeProj.git",
@@ -341,29 +252,12 @@
       }
     },
     {
-      "identity" : "termkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stackotter/TermKit",
-      "state" : {
-        "revision" : "163afa64f1257a0c026cc83ed8bc47a5f8fc9704"
-      }
-    },
-    {
-      "identity" : "textbufferkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/migueldeicaza/TextBufferKit.git",
-      "state" : {
-        "revision" : "7f3ed5b1d7288de34ad853544d802647be11cfcf",
-        "version" : "0.3.0"
-      }
-    },
-    {
       "identity" : "tomlkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/furby-tm/TOMLKit",
+      "location" : "https://github.com/stackotter/TOMLKit",
       "state" : {
-        "revision" : "f2b3e80a19c7fb3d42e3cfda98076cef8f0d1bd7",
-        "version" : "0.5.6"
+        "revision" : "18a7db47209b83ad969196dbc4eb4904ee9955d0",
+        "version" : "0.6.1"
       }
     },
     {
@@ -373,15 +267,6 @@
       "state" : {
         "revision" : "303a0f916772545e1e8667d3104f83be708a723c",
         "version" : "2.1.0"
-      }
-    },
-    {
-      "identity" : "xcodegen",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stackotter/XcodeGen",
-      "state" : {
-        "revision" : "adbf99beb7afb4844774d14e9275da9a503a427c",
-        "version" : "2.35.1"
       }
     },
     {
