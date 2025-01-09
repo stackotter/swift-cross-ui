@@ -16,11 +16,6 @@ protocol ElementaryView: View where Content == EmptyView {
 }
 
 extension ElementaryView {
-    /// This default prevents ``EmptyView/body`` from getting called.
-    public var flexibility: Int {
-        0
-    }
-
     public var body: EmptyView {
         return EmptyView()
     }

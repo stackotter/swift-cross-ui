@@ -21,24 +21,20 @@ enum HumanitiesSubject: Codable {
     case history
 }
 
-class NavigationAppState: Observable {
-    @Observed var path = NavigationPath()
-}
-
 @main
 @HotReloadable
 struct NavigationApp: App {
-    let state = NavigationAppState()
+    @State var path = NavigationPath()
 
     var body: some Scene {
         WindowGroup("Navigation") {
             #hotReloadable {
-                NavigationStack(path: state.$path) {
+                NavigationStack(path: $path) {
                     Text("Learn about subject areas")
                         .padding(.bottom, 10)
 
-                    NavigationLink("Science", value: SubjectArea.science, path: state.$path)
-                    NavigationLink("Humanities", value: SubjectArea.humanities, path: state.$path)
+                    NavigationLink("Science", value: SubjectArea.science, path: $path)
+                    NavigationLink("Humanities", value: SubjectArea.humanities, path: $path)
                 }
                 .navigationDestination(for: SubjectArea.self) { area in
                     switch area {
@@ -47,17 +43,17 @@ struct NavigationApp: App {
                                 .padding(.bottom, 10)
 
                             NavigationLink(
-                                "Physics", value: ScienceSubject.physics, path: state.$path)
+                                "Physics", value: ScienceSubject.physics, path: $path)
                             NavigationLink(
-                                "Chemistry", value: ScienceSubject.chemistry, path: state.$path)
+                                "Chemistry", value: ScienceSubject.chemistry, path: $path)
                         case .humanities:
                             Text("Choose a humanities subject")
                                 .padding(.bottom, 10)
 
                             NavigationLink(
-                                "English", value: HumanitiesSubject.english, path: state.$path)
+                                "English", value: HumanitiesSubject.english, path: $path)
                             NavigationLink(
-                                "History", value: HumanitiesSubject.history, path: state.$path)
+                                "History", value: HumanitiesSubject.history, path: $path)
                     }
 
                     backButton
@@ -91,7 +87,7 @@ struct NavigationApp: App {
     @ViewBuilder
     var backButton: some View {
         Button("Back") {
-            state.path.removeLast()
+            path.removeLast()
         }
         .padding(.top, 10)
     }

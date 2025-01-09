@@ -46,27 +46,23 @@ import SwiftCrossUI
 // Import whichever backend you need
 import DefaultBackend
 
-class CounterState: Observable {
-    @Observed var count = 0
-}
-
 @main
 struct CounterApp: App {
     // Optionally, you can explicitly select which imported backend to use (if you only
     // import one backend then this is done automatically).
     //  typealias Backend = DefaultBackend
 
-    var state = CounterState()
+    @State var count = 0
 
     var body: some Scene {
         WindowGroup("CounterApp") {
             HStack {
                 Button("-") {
-                    state.count -= 1
+                    count -= 1
                 }
-                Text("Count: \(state.count)")
+                Text("Count: \(count)")
                 Button("+") {
-                  state.count += 1
+                  count += 1
                 }
             }
             .padding(10)

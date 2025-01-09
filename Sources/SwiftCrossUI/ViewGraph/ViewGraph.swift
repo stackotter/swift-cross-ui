@@ -40,42 +40,6 @@ public class ViewGraph<Root: View> {
         backend.setIncomingURLHandler { url in
             self.currentRootViewResult.preferences.onOpenURL?(url)
         }
-
-        cancellable = view.state.didChange.observe { [weak self] in
-            guard let self else { return }
-            backend.runInMainThread {
-                // We first compute the root view's new size so that we don't end up
-                // updating the root view twice if we need to propagate the update to
-                // the parent scene.
-                let currentResult = self.currentRootViewResult
-                let dryRunResult = self.update(
-                    proposedSize: self.windowSize,
-                    environment: self.parentEnvironment,
-                    dryRun: true
-                )
-                if dryRunResult.size != currentResult.size {
-                    self.currentRootViewResult = dryRunResult
-                    environment.onResize(dryRunResult.size)
-                } else {
-                    let finalResult = self.update(
-                        proposedSize: self.windowSize,
-                        environment: self.parentEnvironment,
-                        dryRun: false
-                    )
-                    if finalResult.size != dryRunResult.size {
-                        print(
-                            """
-                            warning: State-triggered view update had mismatch \
-                            between dry-run size and final size.
-                                  -> dryRunSize: \(dryRunResult.size)
-                                  -> finalSize:  \(finalResult.size)
-                            """
-                        )
-                    }
-                    self.currentRootViewResult = finalResult
-                }
-            }
-        }
     }
 
     /// Recomputes the entire UI (e.g. due to the root view's state updating).

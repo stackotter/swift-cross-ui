@@ -9,6 +9,12 @@ import CGtk
 /// Apart from signals for monitoring the parameters of the adjustment,
 /// `GtkRange` provides properties and methods for setting a
 /// “fill level” on range widgets. See [method@Gtk.Range.set_fill_level].
+///
+/// # Shortcuts and Gestures
+///
+/// The `GtkRange` slider is draggable. Holding the <kbd>Shift</kbd> key while
+/// dragging, or initiating the drag with a long-press will enable the
+/// fine-tuning mode.
 public class Range: Widget, Orientable {
 
     override func didMoveToParent() {

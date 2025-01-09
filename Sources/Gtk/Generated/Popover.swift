@@ -29,6 +29,17 @@ import CGtk
 /// <section><attribute name="display-hint">horizontal-buttons</attribute><item><attribute name="label">Cut</attribute><attribute name="action">app.cut</attribute><attribute name="verb-icon">edit-cut-symbolic</attribute></item><item><attribute name="label">Copy</attribute><attribute name="action">app.copy</attribute><attribute name="verb-icon">edit-copy-symbolic</attribute></item><item><attribute name="label">Paste</attribute><attribute name="action">app.paste</attribute><attribute name="verb-icon">edit-paste-symbolic</attribute></item></section>
 /// ```
 ///
+/// # Shortcuts and Gestures
+///
+/// `GtkPopover` supports the following keyboard shortcuts:
+///
+/// - <kbd>Escape</kbd> closes the popover.
+/// - <kbd>Alt</kbd> makes the mnemonics visible.
+///
+/// The following signals have default keybindings:
+///
+/// - [signal@Gtk.Popover::activate-default]
+///
 /// # CSS nodes
 ///
 /// ```
@@ -198,6 +209,8 @@ public class Popover: Widget, Native, ShortcutManager {
     /// Emitted whend the user activates the default widget.
     ///
     /// This is a [keybinding signal](class.SignalAction.html).
+    ///
+    /// The default binding for this signal is <kbd>Enter</kbd>.
     public var activateDefault: ((Popover) -> Void)?
 
     /// Emitted when the popover is closed.

@@ -5,14 +5,10 @@ import SwiftCrossUI
     import SwiftBundlerRuntime
 #endif
 
-class StressTestState: Observable {
-    @Observed
-    var tab = 0
-
-    @Observed
-    var values: [Int: [String]] = [:]
-
-    let options: [String] = [
+@main
+@HotReloadable
+struct StressTestApp: App {
+    static let options: [String] = [
         "red",
         "green",
         "blue",
@@ -26,32 +22,30 @@ class StressTestState: Observable {
         "bar",
         "baz",
     ]
-}
 
-@main
-@HotReloadable
-struct StressTestApp: App {
-    let state = StressTestState()
+    @State var tab = 0
+
+    @State var values: [Int: [String]] = [:]
 
     var body: some Scene {
         WindowGroup("Stress Tester") {
             #hotReloadable {
                 NavigationSplitView {
                     VStack {
-                        Button("List 1") { state.tab = 0 }
-                        Button("List 2") { state.tab = 1 }
+                        Button("List 1") { tab = 0 }
+                        Button("List 2") { tab = 1 }
                     }.padding(10)
                 } detail: {
                     VStack {
                         Button("Generate") {
                             var values: [String] = []
                             for _ in 0..<1000 {
-                                values.append(state.options.randomElement()!)
+                                values.append(Self.options.randomElement()!)
                             }
 
-                            state.values[state.tab] = values
+                            self.values[tab] = values
                         }
-                        if let values = state.values[state.tab] {
+                        if let values = values[tab] {
                             ScrollView {
                                 ForEach(values) { value in
                                     Text(value)

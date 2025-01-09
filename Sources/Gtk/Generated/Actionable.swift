@@ -14,7 +14,7 @@ import CGtk
 /// are added with [method@Gtk.Widget.insert_action_group] will be consulted
 /// as well.
 public protocol Actionable: GObjectRepresentable {
-
+    /// The name of the action with which this widget should be associated.
     var actionName: String? { get set }
 
 }

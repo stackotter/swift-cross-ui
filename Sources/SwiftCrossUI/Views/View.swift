@@ -2,12 +2,6 @@
 public protocol View {
     /// The view's content (composed of other views).
     associatedtype Content: View
-    /// The view's observed state.
-    associatedtype State: Observable
-
-    /// The views observed state. Any observed changes cause ``View/body`` to be recomputed,
-    /// and the view itself to be updated.
-    var state: State { get set }
 
     /// The view's contents.
     @ViewBuilder var body: Content { get }
@@ -158,17 +152,4 @@ extension View {
             dryRun: dryRun
         )
     }
-}
-
-extension View where State == EmptyState {
-    // swiftlint:disable unused_setter_value
-    public var state: State {
-        get {
-            EmptyState()
-        }
-        set {
-            return
-        }
-    }
-    // swiftlint:enable unused_setter_value
 }

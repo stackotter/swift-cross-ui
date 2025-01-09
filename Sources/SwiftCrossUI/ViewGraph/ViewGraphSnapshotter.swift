@@ -3,13 +3,19 @@ import Foundation
 public struct ViewGraphSnapshotter: ErasedViewGraphNodeTransformer {
     public struct NodeSnapshot: CustomDebugStringConvertible, Equatable {
         var viewTypeName: String
-        var state: StateSnapshot?
+        /// Property names mapped to encoded JSON objects
+        var state: [String: Data]
         var children: [NodeSnapshot]
 
         public var debugDescription: String {
             var description = "\(viewTypeName)"
-            if let state = state {
-                description += "\n| state: \(state.debugDescription)"
+            if !state.isEmpty {
+                description += "\n| state: {"
+                for (propertyName, data) in state {
+                    let encodedState = String(data: data, encoding: .utf8) ?? "<invalid utf-8>"
+                    description += "\n|   \(propertyName): \(encodedState),"
+                }
+                description += "\n| }"
             }
 
             if !children.isEmpty {
@@ -37,42 +43,25 @@ public struct ViewGraphSnapshotter: ErasedViewGraphNodeTransformer {
             name(of: V.self) == viewTypeName
         }
 
-        public func restore<V: View>(to view: V) -> V {
+        public func restore<V: View>(to view: V) {
             guard isValid(for: V.self) else {
-                return view
+                return
             }
 
-            switch state {
-                case let .encoded(data):
-                    return Self.setState(of: view, to: data)
-                case .encodingFailure, .none:
-                    return view
-            }
+            Self.updateState(of: view, withSnapshot: state)
         }
 
-        private static func setState<V: View>(of view: V, to data: Data) -> V {
-            guard
-                let decodable = V.State.self as? Codable.Type,
-                let state = try? JSONDecoder().decode(decodable, from: data)
-            else {
-                return view
-            }
-            var view = view
-            view.state = state as! V.State
-            return view
-        }
-    }
-
-    public enum StateSnapshot: CustomDebugStringConvertible, Equatable {
-        case encodingFailure
-        case encoded(Data)
-
-        public var debugDescription: String {
-            switch self {
-                case .encodingFailure:
-                    return "failedToEncode"
-                case let .encoded(data):
-                    return String(data: data, encoding: .utf8) ?? "invalidUTF8"
+        private static func updateState<V: View>(of view: V, withSnapshot state: [String: Data]) {
+            let mirror = Mirror(reflecting: view)
+            for property in mirror.children {
+                guard
+                    let stateProperty = property as? StateProperty,
+                    let propertyName = property.label,
+                    let encodedState = state[propertyName]
+                else {
+                    continue
+                }
+                stateProperty.tryRestoreFromSnapshot(encodedState)
             }
         }
     }
@@ -86,15 +75,17 @@ public struct ViewGraphSnapshotter: ErasedViewGraphNodeTransformer {
     }
 
     public static func snapshot<V: View>(of node: AnyViewGraphNode<V>) -> NodeSnapshot {
-        let stateSnapshot: StateSnapshot?
-        if let state = node.getView().state as? Codable {
-            if let encodedState = try? JSONEncoder().encode(state) {
-                stateSnapshot = .encoded(encodedState)
-            } else {
-                stateSnapshot = .encodingFailure
+        var stateSnapshot: [String: Data] = [:]
+        let mirror = Mirror(reflecting: node.getView())
+        for property in mirror.children {
+            guard
+                let propertyName = property.label,
+                let property = property as? StateProperty,
+                let encodedState = try? property.snapshot()
+            else {
+                continue
             }
-        } else {
-            stateSnapshot = nil
+            stateSnapshot[propertyName] = encodedState
         }
 
         let nodeChildren = node.getChildren().erasedNodes

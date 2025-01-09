@@ -37,11 +37,6 @@ public class Publisher {
         return Cancellable { [weak self] in
             guard let self = self else { return }
             self.observations[id] = nil
-            if self.observations.isEmpty {
-                for cancellable in self.cancellables {
-                    cancellable.cancel()
-                }
-            }
         }
         .tag(with: tag)
     }

@@ -129,6 +129,9 @@ import CGtk
 /// and [signal@Gtk.Editable::delete-text] signals, you will need to connect
 /// to them on the delegate obtained via [method@Gtk.Editable.get_delegate].
 public protocol Editable: GObjectRepresentable {
+    /// The current position of the insertion cursor in chars.
+    var cursorPosition: Int { get set }
+
     /// Whether the entry contents can be edited.
     var editable: Bool { get set }
 
@@ -143,6 +146,11 @@ public protocol Editable: GObjectRepresentable {
 
     /// Number of characters to leave space for in the entry.
     var widthChars: Int { get set }
+
+    /// The horizontal alignment, from 0 (left) to 1 (right).
+    ///
+    /// Reversed for RTL layouts.
+    var xalign: Float { get set }
 
     /// Emitted at the end of a single user-visible operation on the
     /// contents.

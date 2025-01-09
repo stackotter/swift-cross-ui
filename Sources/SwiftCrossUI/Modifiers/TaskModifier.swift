@@ -39,7 +39,8 @@ class TaskModifierState<Id: Equatable>: Observable {
 }
 
 struct TaskModifier<Id: Equatable, Content: View>: View {
-    var state = TaskModifierState<Id>()
+    @State
+    var task: Task<(), any Error>? = nil
 
     var id: Id
     var content: Content
@@ -52,13 +53,13 @@ struct TaskModifier<Id: Equatable, Content: View>: View {
         return
             content
             .onChange(of: id, initial: true) {
-                state.task?.cancel()
-                state.task = Task(priority: priority) {
+                task?.cancel()
+                task = Task(priority: priority) {
                     await action()
                 }
             }
             .onDisappear {
-                state.task?.cancel()
+                task?.cancel()
             }
     }
 }

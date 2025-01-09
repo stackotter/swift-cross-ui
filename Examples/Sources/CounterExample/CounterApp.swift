@@ -5,25 +5,21 @@ import SwiftCrossUI
     import SwiftBundlerRuntime
 #endif
 
-class CounterState: Observable {
-    @Observed var count = 0
-}
-
 @main
 @HotReloadable
 struct CounterApp: App {
-    let state = CounterState()
+    @State var count = 0
 
     var body: some Scene {
-        WindowGroup("CounterExample: \(state.count)") {
+        WindowGroup("CounterExample: \(count)") {
             #hotReloadable {
                 HStack(spacing: 20) {
                     Button("-") {
-                        state.count -= 1
+                        count -= 1
                     }
-                    Text("Count: \(state.count)")
+                    Text("Count: \(count)")
                     Button("+") {
-                        state.count += 1
+                        count += 1
                     }
                 }
                 .padding()

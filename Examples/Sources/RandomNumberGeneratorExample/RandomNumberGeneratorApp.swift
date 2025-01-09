@@ -5,13 +5,6 @@ import SwiftCrossUI
     import SwiftBundlerRuntime
 #endif
 
-class RandomNumberGeneratorState: Observable {
-    @Observed var minNum = 0
-    @Observed var maxNum = 100
-    @Observed var randomNumber = 0
-    @Observed var colorOption: ColorOption? = ColorOption.red
-}
-
 enum ColorOption: String, CaseIterable {
     case red
     case green
@@ -32,22 +25,25 @@ enum ColorOption: String, CaseIterable {
 @main
 @HotReloadable
 struct RandomNumberGeneratorApp: App {
-    let state = RandomNumberGeneratorState()
+    @State var minNum = 0
+    @State var maxNum = 100
+    @State var randomNumber = 0
+    @State var colorOption: ColorOption? = ColorOption.red
 
     var body: some Scene {
         WindowGroup("Random Number Generator") {
             #hotReloadable {
                 VStack {
-                    Text("Random Number: \(state.randomNumber)")
+                    Text("Random Number: \(randomNumber)")
                     Button("Generate") {
-                        state.randomNumber = Int.random(in: Int(state.minNum)...Int(state.maxNum))
+                        randomNumber = Int.random(in: Int(minNum)...Int(maxNum))
                     }
 
                     Text("Minimum:")
                     Slider(
-                        state.$minNum.onChange { newValue in
-                            if newValue > state.maxNum {
-                                state.minNum = state.maxNum
+                        $minNum.onChange { newValue in
+                            if newValue > maxNum {
+                                minNum = maxNum
                             }
                         },
                         minimum: 0,
@@ -56,9 +52,9 @@ struct RandomNumberGeneratorApp: App {
 
                     Text("Maximum:")
                     Slider(
-                        state.$maxNum.onChange { newValue in
-                            if newValue < state.minNum {
-                                state.maxNum = state.minNum
+                        $maxNum.onChange { newValue in
+                            if newValue < minNum {
+                                maxNum = minNum
                             }
                         },
                         minimum: 0,
@@ -67,11 +63,11 @@ struct RandomNumberGeneratorApp: App {
 
                     HStack {
                         Text("Choose a color:")
-                        Picker(of: ColorOption.allCases, selection: state.$colorOption)
+                        Picker(of: ColorOption.allCases, selection: $colorOption)
                     }
                 }
                 .padding(10)
-                .foregroundColor(state.colorOption?.color ?? .red)
+                .foregroundColor(colorOption?.color ?? .red)
             }
         }
         .defaultSize(width: 500, height: 0)

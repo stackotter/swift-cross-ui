@@ -5,41 +5,37 @@ import SwiftCrossUI
     import SwiftBundlerRuntime
 #endif
 
-class GreetingGeneratorState: Observable {
-    @Observed var name = ""
-    @Observed var greetings: [String] = []
-}
-
 @main
 @HotReloadable
 struct GreetingGeneratorApp: App {
-    let state = GreetingGeneratorState()
+    @State var name = ""
+    @State var greetings: [String] = []
 
     var body: some Scene {
         WindowGroup("Greeting Generator") {
             #hotReloadable {
                 VStack {
-                    TextField("Name", state.$name)
+                    TextField("Name", $name)
                     HStack {
                         Button("Generate") {
-                            state.greetings.append("Hello, \(state.name)!")
+                            greetings.append("Hello, \(name)!")
                         }
                         Button("Reset") {
-                            state.greetings = []
-                            state.name = ""
+                            greetings = []
+                            name = ""
                         }
                     }
 
-                    if let latest = state.greetings.last {
+                    if let latest = greetings.last {
                         Text(latest)
                             .padding(.top, 5)
 
-                        if state.greetings.count > 1 {
+                        if greetings.count > 1 {
                             Text("History:")
                                 .padding(.top, 20)
 
                             ScrollView {
-                                ForEach(state.greetings.reversed()[1...]) { greeting in
+                                ForEach(greetings.reversed()[1...]) { greeting in
                                     Text(greeting)
                                 }
                             }

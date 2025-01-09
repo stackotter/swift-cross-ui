@@ -796,6 +796,9 @@ public class Entry: Widget, CellEditable, Editable {
     /// actual text (“password mode”).
     @GObjectProperty(named: "visibility") public var visibility: Bool
 
+    /// The current position of the insertion cursor in chars.
+    @GObjectProperty(named: "cursor-position") public var cursorPosition: Int
+
     /// Whether the entry contents can be edited.
     @GObjectProperty(named: "editable") public var editable: Bool
 
@@ -810,6 +813,11 @@ public class Entry: Widget, CellEditable, Editable {
 
     /// Number of characters to leave space for in the entry.
     @GObjectProperty(named: "width-chars") public var widthChars: Int
+
+    /// The horizontal alignment, from 0 (left) to 1 (right).
+    ///
+    /// Reversed for RTL layouts.
+    @GObjectProperty(named: "xalign") public var xalign: Float
 
     /// Emitted when the entry is activated.
     ///

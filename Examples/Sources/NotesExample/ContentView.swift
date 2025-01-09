@@ -7,9 +7,10 @@ struct Note: Codable, Equatable {
     var content: String
 }
 
-class NotesState: Observable, Codable {
-    @Observed
-    var notes: [Note] = [
+struct ContentView: View {
+    let notesFile = URL(fileURLWithPath: "notes.json")
+
+    @State var notes: [Note] = [
         Note(title: "Hello, world!", content: "Welcome SwiftCrossNotes!"),
         Note(
             title: "Shopping list",
@@ -21,25 +22,17 @@ class NotesState: Observable, Codable {
         ),
     ]
 
-    @Observed
-    var selectedNoteId: UUID?
+    @State var selectedNoteId: UUID?
 
-    @Observed
-    var error: String?
-}
-
-struct ContentView: View {
-    let notesFile = URL(fileURLWithPath: "notes.json")
-
-    var state = NotesState()
+    @State var error: String?
 
     var selectedNote: Binding<Note>? {
-        guard let id = state.selectedNoteId else {
+        guard let id = selectedNoteId else {
             return nil
         }
 
         guard
-            let index = state.notes.firstIndex(where: { note in
+            let index = notes.firstIndex(where: { note in
                 note.id == id
             })
         else {
@@ -49,10 +42,10 @@ struct ContentView: View {
         // TODO: This is unsafe, index could change/not exist anymore
         return Binding(
             get: {
-                state.notes[index]
+                notes[index]
             },
             set: { newValue in
-                state.notes[index] = newValue
+                notes[index] = newValue
             }
         )
     }
@@ -60,29 +53,29 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
             VStack {
-                ForEach(state.notes) { note in
+                ForEach(notes) { note in
                     Button(note.title) {
-                        state.selectedNoteId = note.id
+                        selectedNoteId = note.id
                     }
                 }
                 Spacer()
-                if let error = state.error {
+                if let error = error {
                     Text(error)
                         .foregroundColor(.red)
                 }
                 Button("New note") {
                     let note = Note(title: "Untitled", content: "")
-                    state.notes.append(note)
-                    state.selectedNoteId = note.id
+                    notes.append(note)
+                    selectedNoteId = note.id
                 }
             }
-            .onChange(of: state.notes) {
+            .onChange(of: notes) {
                 do {
-                    let data = try JSONEncoder().encode(state.notes)
+                    let data = try JSONEncoder().encode(notes)
                     try data.write(to: notesFile)
                 } catch {
                     print("Error: \(error)")
-                    state.error = "Failed to save notes"
+                    self.error = "Failed to save notes"
                 }
             }
             .onAppear {
@@ -92,10 +85,10 @@ struct ContentView: View {
 
                 do {
                     let data = try Data(contentsOf: notesFile)
-                    state.notes = try JSONDecoder().decode([Note].self, from: data)
+                    notes = try JSONDecoder().decode([Note].self, from: data)
                 } catch {
                     print("Error: \(error)")
-                    state.error = "Failed to load notes"
+                    self.error = "Failed to load notes"
                 }
             }
             .padding(10)

@@ -16,7 +16,6 @@ public struct ErasedViewGraphNode {
         ) -> (viewTypeMatched: Bool, size: ViewUpdateResult)
 
     public var getWidget: () -> AnyWidget
-    public var getState: () -> Data?
     public var viewType: any View.Type
     public var backendType: any AppBackend.Type
 
@@ -66,12 +65,6 @@ public struct ErasedViewGraphNode {
         }
         getWidget = {
             return AnyWidget(node.widget)
-        }
-        getState = {
-            guard let encodable = node.view.state as? any Codable else {
-                return nil
-            }
-            return try? JSONEncoder().encode(encodable)
         }
     }
 

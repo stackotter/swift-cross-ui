@@ -10,8 +10,8 @@ class _App<AppRoot: App> {
     let backend: AppRoot.Backend
     /// The root of the app's scene graph.
     var sceneGraphRoot: AppRoot.Body.Node?
-    /// A cancellable handle to observation of the app's state .
-    var cancellable: Cancellable?
+    /// Cancellables for observations of the app's state properties.
+    var cancellables: [Cancellable]
     /// The root level environment.
     var environment: EnvironmentValues
 
@@ -20,6 +20,7 @@ class _App<AppRoot: App> {
         backend = app.backend
         self.app = app
         self.environment = EnvironmentValues(backend: backend)
+        self.cancellables = []
     }
 
     func forceRefresh() {
@@ -76,8 +77,26 @@ class _App<AppRoot: App> {
             )
             self.sceneGraphRoot = rootNode
 
-            self.cancellable = self.app.state.didChange
-                .observeAsUIUpdater(backend: self.backend) { [weak self] in
+            let mirror = Mirror(reflecting: self.app)
+            for property in mirror.children {
+                if property.label == "state" && property.value is Observable {
+                    print(
+                        """
+
+                        warning: The App.state protocol requirement has been removed in favour of
+                                 SwiftUI-style @State annotations. Decorate \(AppRoot.self).state
+                                 with the @State property wrapper to restore previous behaviour.
+
+                        """
+                    )
+                }
+
+                guard let value = property.value as? StateProperty else {
+                    continue
+                }
+
+                let cancellable = value.didChange.observeAsUIUpdater(backend: self.backend) {
+                    [weak self] in
                     guard let self = self else { return }
 
                     updateDynamicProperties(
@@ -95,6 +114,8 @@ class _App<AppRoot: App> {
 
                     self.backend.setApplicationMenu(body.commands.resolve())
                 }
+                self.cancellables.append(cancellable)
+            }
         }
     }
 }

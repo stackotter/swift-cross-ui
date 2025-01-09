@@ -7,6 +7,40 @@ import CGtk
 ///
 /// ![An example GtkLabel](label.png)
 ///
+/// ## Shortcuts and Gestures
+///
+/// `GtkLabel` supports the following keyboard shortcuts, when the cursor is
+/// visible:
+///
+/// - <kbd>Shift</kbd>+<kbd>F10</kbd> or <kbd>Menu</kbd> opens the context menu.
+/// - <kbd>Ctrl</kbd>+<kbd>A</kbd> or <kbd>Ctrl</kbd>+<kbd>&sol;</kbd>
+/// selects all.
+/// - <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> or
+/// <kbd>Ctrl</kbd>+<kbd>&bsol;</kbd> unselects all.
+///
+/// Additionally, the following signals have default keybindings:
+///
+/// - [signal@Gtk.Label::activate-current-link]
+/// - [signal@Gtk.Label::copy-clipboard]
+/// - [signal@Gtk.Label::move-cursor]
+///
+/// ## Actions
+///
+/// `GtkLabel` defines a set of built-in actions:
+///
+/// - `clipboard.copy` copies the text to the clipboard.
+/// - `clipboard.cut` doesn't do anything, since text in labels can't be deleted.
+/// - `clipboard.paste` doesn't do anything, since text in labels can't be
+/// edited.
+/// - `link.open` opens the link, when activated on a link inside the label.
+/// - `link.copy` copies the link to the clipboard, when activated on a link
+/// inside the label.
+/// - `menu.popup` opens the context menu.
+/// - `selection.delete` doesn't do anything, since text in labels can't be
+/// deleted.
+/// - `selection.select-all` selects all of the text, if the label allows
+/// selection.
+///
 /// ## CSS nodes
 ///
 /// ```
@@ -592,8 +626,8 @@ public class Label: Widget {
     /// programmatically.
     ///
     /// The default bindings for this signal come in two variants,
-    /// the variant with the Shift modifier extends the selection,
-    /// the variant without the Shift modifier does not.
+    /// the variant with the <kbd>Shift</kbd> modifier extends the selection,
+    /// the variant without the <kbd>Shift</kbd> modifier does not.
     /// There are too many key combinations to list them all here.
     ///
     /// - <kbd>←</kbd>, <kbd>→</kbd>, <kbd>↑</kbd>, <kbd>↓</kbd>

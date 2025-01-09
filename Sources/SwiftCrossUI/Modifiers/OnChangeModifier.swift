@@ -13,12 +13,10 @@ extension View {
     }
 }
 
-class OnChangeModifierState<Value: Equatable>: Observable {
-    var previousValue: Value?
-}
-
 struct OnChangeModifier<Value: Equatable, Content: View>: View {
-    var state = OnChangeModifierState<Value>()
+    // TODO: This probably doesn't have to trigger view updates. We're only
+    //   really using @State here to persist the data.
+    @State var previousValue: Value?
 
     var body: TupleView1<Content>
 
@@ -34,12 +32,15 @@ struct OnChangeModifier<Value: Equatable, Content: View>: View {
         backend: Backend,
         dryRun: Bool
     ) -> ViewUpdateResult {
-        if let previousValue = state.previousValue, value != previousValue {
+        if let previousValue = previousValue, value != previousValue {
             action()
-        } else if initial && state.previousValue == nil {
+        } else if initial && previousValue == nil {
             action()
         }
-        state.previousValue = value
+
+        if previousValue != value {
+            previousValue = value
+        }
 
         return defaultUpdate(
             widget,
