@@ -18,7 +18,7 @@ internal final class RootViewController: UIViewController {
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        return nil
+        fatalError("init(coder:) is not used for the root view controller")
     }
 
     override func loadView() {
@@ -44,7 +44,6 @@ internal final class RootViewController: UIViewController {
         view.subviews.forEach { $0.removeFromSuperview() }
         view.addSubview(child)
 
-        child.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             child.topAnchor.constraint(equalTo: view.topAnchor),
             child.bottomAnchor.constraint(equalTo: view.bottomAnchor),

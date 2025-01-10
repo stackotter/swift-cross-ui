@@ -20,11 +20,6 @@ internal final class ButtonWidget: WrapperWidget<UIButton> {
         super.init(child: UIButton())
         child.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        return nil
-    }
 }
 
 internal final class TextFieldWidget: WrapperWidget<UITextField>, UITextFieldDelegate {

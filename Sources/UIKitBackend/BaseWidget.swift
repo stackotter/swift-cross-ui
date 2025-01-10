@@ -1,5 +1,5 @@
 //
-//  Untitled.swift
+//  BaseWidget.swift
 //  swift-cross-ui
 //
 //  Created by William Baker on 1/10/25.
@@ -45,7 +45,7 @@ public class BaseWidget: UIView {
         }
     }
 
-    init() {
+    internal init() {
         super.init(frame: .zero)
 
         self.clipsToBounds = true
