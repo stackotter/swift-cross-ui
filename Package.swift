@@ -61,7 +61,7 @@ switch ProcessInfo.processInfo.environment["SCUI_LIBRARY_TYPE"] {
 
 let package = Package(
     name: "swift-cross-ui",
-    platforms: [.macOS(.v10_15)],
+    platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13)],
     products: [
         .library(name: "SwiftCrossUI", type: libraryType, targets: ["SwiftCrossUI"]),
         .library(name: "AppKitBackend", type: libraryType, targets: ["AppKitBackend"]),
@@ -145,7 +145,11 @@ let package = Package(
         .target(
             name: "DefaultBackend",
             dependencies: [
-                .target(name: defaultBackend)
+                .target(name: defaultBackend, condition: .when(platforms: [.linux, .macOS, .windows])),
+                // Non-desktop platforms need to be handled separately:
+                // Only one backend is supported, and `#if` won't work because it's evaluated
+                // on the compiling desktop, not the target.
+                .target(name: "UIKitBackend", condition: .when(platforms: [.iOS, .tvOS])),
             ]
         ),
         .target(name: "AppKitBackend", dependencies: ["SwiftCrossUI"]),
@@ -219,6 +223,7 @@ let package = Package(
             ],
             swiftSettings: swiftSettings
         ),
+        .target(name: "UIKitBackend", dependencies: ["SwiftCrossUI"]),
         .target(
             name: "WinUIBackend",
             dependencies: [
