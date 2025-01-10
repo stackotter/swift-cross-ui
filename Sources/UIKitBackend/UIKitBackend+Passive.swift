@@ -9,82 +9,46 @@ import SwiftCrossUI
 import UIKit
 
 extension UIKitBackend {
-    internal static func uiFont(for font: Font) -> UIFont {
-        switch font {
-        case .system(size: let size, weight: let weight, design: let design):
-            let weight: UIFont.Weight = switch weight {
-                case .black:
-                    .black
-                case .bold:
-                    .bold
-                case .heavy:
-                    .heavy
-                case .light:
-                    .light
-                case .medium:
-                    .medium
-                case .regular, nil:
-                    .regular
-                case .semibold:
-                    .semibold
-                case .thin:
-                    .thin
-                case .ultraLight:
-                    .ultraLight
-                }
-            
-            switch design {
-            case .monospaced:
-                return .monospacedSystemFont(ofSize: CGFloat(size), weight: weight)
-            default:
-                return .systemFont(ofSize: CGFloat(size), weight: weight)
-            }
-        }
-    }
-    
     internal static func attributedString(
         text: String,
         environment: EnvironmentValues
     ) -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = switch environment.multilineTextAlignment {
-            case .center:
-                .center
-            case .leading:
-                .natural
-            case .trailing:
-                UIScreen.main.traitCollection.layoutDirection == .rightToLeft ? .left : .right
+        paragraphStyle.alignment =
+            switch environment.multilineTextAlignment {
+                case .center:
+                    .center
+                case .leading:
+                    .natural
+                case .trailing:
+                    UIScreen.main.traitCollection.layoutDirection == .rightToLeft ? .left : .right
             }
         paragraphStyle.lineBreakMode = .byWordWrapping
-        
+
         return NSAttributedString(
             string: text,
             attributes: [
-                .font: uiFont(for: environment.font),
-                .foregroundColor: UIColor(
-                    red: CGFloat(environment.suggestedForegroundColor.red),
-                    green: CGFloat(environment.suggestedForegroundColor.green),
-                    blue: CGFloat(environment.suggestedForegroundColor.blue),
-                    alpha: CGFloat(environment.suggestedForegroundColor.alpha)
-                ),
-                .paragraphStyle: paragraphStyle
+                .font: environment.font.uiFont,
+                .foregroundColor: UIColor(color: environment.suggestedForegroundColor),
+                .paragraphStyle: paragraphStyle,
             ]
         )
     }
-    
+
     public func createTextView() -> Widget {
-        UILabel()
+        WrapperWidget<UILabel>()
     }
-    
+
     public func updateTextView(
         _ textView: Widget,
         content: String,
         environment: EnvironmentValues
     ) {
-        let label = textView as! UILabel
-        label.attributedText = UIKitBackend.attributedString(text: content, environment: environment)
+        let wrapper = textView as! WrapperWidget<UILabel>
+        wrapper.child.attributedText = UIKitBackend.attributedString(
+            text: content, environment: environment)
     }
-    
+
     public func size(
         of text: String,
         whenDisplayedIn textView: Widget,
@@ -92,9 +56,12 @@ extension UIKitBackend {
         environment: EnvironmentValues
     ) -> SIMD2<Int> {
         let attributedString = UIKitBackend.attributedString(text: text, environment: environment)
-        let boundingSize = if let proposedFrame { CGSize(width: CGFloat(proposedFrame.x), height: .greatestFiniteMagnitude) } else {
-            CGSize(width: .greatestFiniteMagnitude, height: UIKitBackend.uiFont(for: environment.font).lineHeight)
-        }
+        let boundingSize =
+            if let proposedFrame {
+                CGSize(width: CGFloat(proposedFrame.x), height: .greatestFiniteMagnitude)
+            } else {
+                CGSize(width: .greatestFiniteMagnitude, height: environment.font.uiFont.lineHeight)
+            }
         let size = attributedString.boundingRect(
             with: boundingSize,
             options: proposedFrame == nil ? [] : [.usesLineFragmentOrigin],
@@ -105,11 +72,11 @@ extension UIKitBackend {
             Int(size.height.rounded(.awayFromZero))
         )
     }
-    
+
     public func createImageView() -> Widget {
-        UIImageView()
+        WrapperWidget<UIImageView>()
     }
-    
+
     public func updateImageView(
         _ imageView: Widget,
         rgbaData: [UInt8],
@@ -120,7 +87,7 @@ extension UIKitBackend {
         dataHasChanged: Bool
     ) {
         guard dataHasChanged else { return }
-        let uiImageView = imageView as! UIImageView
+        let wrapper = imageView as! WrapperWidget<UIImageView>
         let ciImage = CIImage(
             bitmapData: Data(rgbaData),
             bytesPerRow: width * 4,
@@ -128,6 +95,6 @@ extension UIKitBackend {
             format: .RGBA8,
             colorSpace: .init(name: CGColorSpace.sRGB)
         )
-        uiImageView.image = .init(ciImage: ciImage)
+        wrapper.child.image = .init(ciImage: ciImage)
     }
 }
