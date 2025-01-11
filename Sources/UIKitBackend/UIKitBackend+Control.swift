@@ -78,6 +78,8 @@ internal final class PickerWidget: WrapperWidget<UIPickerView>, UIPickerViewData
         options.count + 1
     }
 
+    // For some reason, if compiling for tvOS, the compiler complains if I even attempt
+    // to define these methods.
     #if os(iOS)
         func pickerView(
             _: UIPickerView,

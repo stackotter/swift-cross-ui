@@ -8,7 +8,7 @@
 import SwiftCrossUI
 import UIKit
 
-final class ScrollWidget: WrapperWidget<UIScrollView> {
+internal final class ScrollWidget: WrapperWidget<UIScrollView> {
     private var childWidthConstraint: NSLayoutConstraint?
     private var childHeightConstraint: NSLayoutConstraint?
 
