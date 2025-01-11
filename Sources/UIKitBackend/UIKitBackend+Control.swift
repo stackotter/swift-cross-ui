@@ -49,6 +49,8 @@ internal final class TextFieldWidget: WrapperWidget<UITextField>, UITextFieldDel
     }
 }
 
+@available(tvOS, unavailable)
+@available(macCatalyst, unavailable)
 internal final class PickerWidget: WrapperWidget<UIPickerView>, UIPickerViewDataSource,
     UIPickerViewDelegate
 {
@@ -76,50 +78,126 @@ internal final class PickerWidget: WrapperWidget<UIPickerView>, UIPickerViewData
         options.count + 1
     }
 
-    func pickerView(
-        _: UIPickerView,
-        titleForRow row: Int,
-        forComponent _: Int
-    ) -> String? {
-        switch row {
-            case 0:
-                ""
-            case 1...options.count:
-                options[row - 1]
-            default:
-                nil
+    #if os(iOS)
+        func pickerView(
+            _: UIPickerView,
+            titleForRow row: Int,
+            forComponent _: Int
+        ) -> String? {
+            switch row {
+                case 0:
+                    ""
+                case 1...options.count:
+                    options[row - 1]
+                default:
+                    nil
+            }
         }
-    }
 
-    func pickerView(
-        _: UIPickerView,
-        didSelectRow row: Int,
-        inComponent _: Int
-    ) {
-        onSelect?(row > 0 ? row - 1 : nil)
-    }
+        func pickerView(
+            _: UIPickerView,
+            didSelectRow row: Int,
+            inComponent _: Int
+        ) {
+            onSelect?(row > 0 ? row - 1 : nil)
+        }
+    #endif
 }
 
-internal final class SwitchWidget: WrapperWidget<UISwitch> {
-    var onChange: ((Bool) -> Void)?
+#if os(tvOS)
+    internal final class SwitchWidget: WrapperWidget<UISegmentedControl> {
+        var onChange: ((Bool) -> Void)?
 
-    @objc
-    func switchFlipped() {
-        onChange?(child.isOn)
+        @objc
+        func switchFlipped() {
+            onChange?(child.selectedSegmentIndex == 1)
+        }
+
+        init() {
+            // TODO: localization?
+            super.init(
+                child: UISegmentedControl(items: [
+                    "OFF" as NSString,
+                    "ON" as NSString,
+                ]))
+
+            child.addTarget(self, action: #selector(switchFlipped), for: .valueChanged)
+        }
+
+        func setOn(_ on: Bool) {
+            child.selectedSegmentIndex = on ? 1 : 0
+        }
     }
+#else
+    internal final class SwitchWidget: WrapperWidget<UISwitch> {
+        var onChange: ((Bool) -> Void)?
 
-    init() {
-        super.init(child: UISwitch())
+        @objc
+        func switchFlipped() {
+            onChange?(child.isOn)
+        }
 
-        // On iOS 14 and later, UISwitch can be either a switch or a checkbox. We have no
-        // control over this on iOS 13 or any tvOS, but when possible, prefer a switch.
-        #if os(iOS) || targetEnvironment(macCatalyst)
+        init() {
+            super.init(child: UISwitch())
+
+            // On iOS 14 and later, UISwitch can be either a switch or a checkbox (and I believe
+            // it's a checkbox by default on Mac Catalyst). We have no control over this on
+            // iOS 13, but when possible, prefer a switch.
             if #available(iOS 14, macCatalyst 14, *) {
                 child.preferredStyle = .sliding
             }
-        #endif
 
-        child.addTarget(self, action: #selector(switchFlipped), for: .valueChanged)
+            child.addTarget(self, action: #selector(switchFlipped), for: .valueChanged)
+        }
+
+        func setOn(_ on: Bool) {
+            child.setOn(on, animated: true)
+        }
+    }
+#endif
+
+internal final class ClickableWidget: WrapperWidget<BaseWidget> {
+    private var gestureRecognizer: UITapGestureRecognizer!
+    var onClick: (() -> Void)?
+
+    override init(child: BaseWidget) {
+        super.init(child: child)
+
+        gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewTouched))
+        gestureRecognizer.cancelsTouchesInView = true
+        child.addGestureRecognizer(gestureRecognizer)
+    }
+
+    @objc
+    func viewTouched() {
+        onClick?()
+    }
+}
+
+@available(tvOS, unavailable)
+internal final class SliderWidget: WrapperWidget<UISlider> {
+    var onChange: ((Double) -> Void)?
+
+    private var _decimalPlaces = 17
+    var decimalPlaces: Int {
+        get { _decimalPlaces }
+        set {
+            _decimalPlaces = max(0, min(newValue, 17))
+        }
+    }
+
+    @objc
+    func sliderMoved() {
+        onChange?(
+            (Double(child.value) * pow(10.0, Double(decimalPlaces)))
+                .rounded(.toNearestOrEven)
+                / pow(10.0, Double(decimalPlaces))
+        )
+    }
+
+    init() {
+        super.init(child: UISlider())
+        child.addTarget(self, action: #selector(sliderMoved), for: .valueChanged)
     }
 }
 
@@ -174,25 +252,28 @@ extension UIKitBackend {
         return textFieldWidget.child.text ?? ""
     }
 
-    public func createPicker() -> Widget {
-        PickerWidget()
-    }
+    #if os(iOS)
+        public func createPicker() -> Widget {
+            PickerWidget()
+        }
 
-    public func updatePicker(
-        _ picker: Widget,
-        options: [String],
-        environment: EnvironmentValues,
-        onChange: @escaping (Int?) -> Void
-    ) {
-        let pickerWidget = picker as! PickerWidget
-        pickerWidget.onSelect = onChange
-        pickerWidget.options = options
-    }
+        public func updatePicker(
+            _ picker: Widget,
+            options: [String],
+            environment: EnvironmentValues,
+            onChange: @escaping (Int?) -> Void
+        ) {
+            let pickerWidget = picker as! PickerWidget
+            pickerWidget.onSelect = onChange
+            pickerWidget.options = options
+        }
 
-    public func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?) {
-        let pickerWidget = picker as! PickerWidget
-        pickerWidget.child.selectRow((selectedOption ?? -1) + 1, inComponent: 0, animated: false)
-    }
+        public func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?) {
+            let pickerWidget = picker as! PickerWidget
+            pickerWidget.child.selectRow(
+                (selectedOption ?? -1) + 1, inComponent: 0, animated: false)
+        }
+    #endif
 
     public func createSwitch() -> Widget {
         SwitchWidget()
@@ -205,6 +286,43 @@ extension UIKitBackend {
 
     public func setState(ofSwitch switchWidget: Widget, to state: Bool) {
         let wrapper = switchWidget as! SwitchWidget
-        wrapper.child.setOn(state, animated: true)
+        wrapper.setOn(state)
     }
+
+    public func createClickTarget(wrapping child: Widget) -> Widget {
+        ClickableWidget(child: child)
+    }
+
+    public func updateClickTarget(
+        _ clickTarget: Widget,
+        clickHandler handleClick: @escaping () -> Void
+    ) {
+        let wrapper = clickTarget as! ClickableWidget
+        wrapper.onClick = handleClick
+    }
+
+    #if os(iOS) || targetEnvironment(macCatalyst)
+        public func createSlider() -> Widget {
+            SliderWidget()
+        }
+
+        public func updateSlider(
+            _ slider: Widget,
+            minimum: Double,
+            maximum: Double,
+            decimalPlaces: Int,
+            onChange: @escaping (Double) -> Void
+        ) {
+            let sliderWidget = slider as! SliderWidget
+            sliderWidget.child.minimumValue = Float(minimum)
+            sliderWidget.child.maximumValue = Float(maximum)
+            sliderWidget.onChange = onChange
+            sliderWidget.decimalPlaces = decimalPlaces
+        }
+
+        public func setValue(ofSlider slider: Widget, to value: Double) {
+            let sliderWidget = slider as! SliderWidget
+            sliderWidget.child.setValue(Float(value), animated: true)
+        }
+    #endif
 }

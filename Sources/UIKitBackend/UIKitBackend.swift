@@ -18,11 +18,10 @@ internal var mainWindow: UIWindow?
 internal var hasReturnedAWindow = false
 
 public final class UIKitBackend: AppBackend {
-    public typealias Widget = BaseWidget
-    public typealias Alert = UIAlertController
-
     public let scrollBarWidth = 0
     public let defaultPaddingAmount = 15
+
+    // TODO: When tables are supported, update these
     public let defaultTableRowContentHeight = -1
     public let defaultTableCellVerticalPadding = -1
 
@@ -80,9 +79,9 @@ public final class UIKitBackend: AppBackend {
     public func show(widget: Widget) {
     }
 
-    public typealias Menu = Void
+    // TODO: Menus
+    public typealias Menu = Never
     public func setApplicationMenu(_ submenus: [ResolvedMenu.Submenu]) {
-        // TODO
     }
 }
 

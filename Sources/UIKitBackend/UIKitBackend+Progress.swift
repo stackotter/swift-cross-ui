@@ -21,7 +21,13 @@ extension UIKitBackend {
     }
 
     public func createProgressBar() -> Widget {
-        WrapperWidget(child: UIProgressView(progressViewStyle: .bar))
+        let style: UIProgressView.Style
+        #if os(tvOS)
+            style = .default
+        #else
+            style = .bar
+        #endif
+        return WrapperWidget(child: UIProgressView(progressViewStyle: style))
     }
 
     public func updateProgressBar(

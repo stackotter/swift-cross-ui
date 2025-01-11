@@ -17,22 +17,18 @@ extension UIColor {
             alpha: CGFloat(color.alpha)
         )
     }
+}
 
-    internal var swiftCrossUIColor: Color {
-        let ciColor = CIColor(color: self)
+extension Color {
+    internal init(_ uiColor: UIColor) {
+        let ciColor = CIColor(color: uiColor)
 
-        return Color(
+        self.init(
             Float(ciColor.red),
             Float(ciColor.green),
             Float(ciColor.blue),
             Float(ciColor.alpha)
         )
-    }
-}
-
-extension Color {
-    internal init(_ uiColor: UIColor) {
-        self = uiColor.swiftCrossUIColor
     }
 
     internal var uiColor: UIColor {

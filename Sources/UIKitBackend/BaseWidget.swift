@@ -48,7 +48,6 @@ public class BaseWidget: UIView {
     internal init() {
         super.init(frame: .zero)
 
-        self.clipsToBounds = true
         self.translatesAutoresizingMaskIntoConstraints = false
     }
 
@@ -91,6 +90,10 @@ public class BaseWidget: UIView {
         updateLeftConstraint()
         updateTopConstraint()
     }
+}
+
+extension UIKitBackend {
+    public typealias Widget = BaseWidget
 }
 
 internal class WrapperWidget<View: UIView>: BaseWidget {
