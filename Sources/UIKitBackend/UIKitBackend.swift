@@ -8,8 +8,14 @@
 import SwiftCrossUI
 import UIKit
 
+// Since the SceneDelegate and ApplicationDelegate are created by UIKit, SwiftCrossUI can't
+// connect them to the UIKitBackend instance. Global variables is the only solution I can
+// think of :(
 private var onBecomeActive: (() -> Void)?
 private var onLaunchFromUrl: ((URL) -> Void)?
+
+internal var mainWindow: UIWindow?
+internal var hasReturnedAWindow = false
 
 public final class UIKitBackend: AppBackend {
     public typealias Widget = BaseWidget
@@ -19,8 +25,6 @@ public final class UIKitBackend: AppBackend {
     public let defaultPaddingAmount = 15
     public let defaultTableRowContentHeight = -1
     public let defaultTableCellVerticalPadding = -1
-
-    public var appDelegateType: ApplicationDelegate.Type = ApplicationDelegate.self
 
     internal var onTraitCollectionChange: (() -> Void)?
 
@@ -32,7 +36,7 @@ public final class UIKitBackend: AppBackend {
             CommandLine.argc,
             CommandLine.unsafeArgv,
             NSStringFromClass(UIApplication.self),
-            NSStringFromClass(appDelegateType)
+            NSStringFromClass(ApplicationDelegate.self)
         )
     }
 
@@ -90,24 +94,22 @@ extension App {
     }
 }
 
-open class ApplicationDelegate: UIResponder, UIApplicationDelegate {
-    /// Tells the delegate that the app has become active.
-    ///
-    /// - Important: If you override this method in a subclass, you must call
-    /// `super.applicationDidBecomeActive(application)` as the first step of your implementation.
-    open func applicationDidBecomeActive(_ application: UIApplication) {
+internal class ApplicationDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow? {
+        get {
+            mainWindow
+        }
+        set {
+            mainWindow = newValue
+        }
+    }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
         onBecomeActive?()
         onBecomeActive = nil
     }
 
-    /// Tells the delegate that the launch process is almost done and the app is almost
-    /// ready to run.
-    ///
-    /// If you override this method in a subclass, you should call
-    /// `super.application(application, didFinishLaunchingWithOptions: launchOptions)` at
-    /// some point on your implementation. You do not necessarily need to return the same
-    /// value as the super call.
-    open func application(
+    func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
@@ -118,5 +120,35 @@ open class ApplicationDelegate: UIResponder, UIApplicationDelegate {
         }
 
         return true
+    }
+}
+
+/// The root class for scene delegates of SwiftCrossUI apps.
+///
+/// SwiftCrossUI apps do not have to be scene-based. If you are writing a scene-based app,
+/// derive your scene delegate from this class.
+open class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    public var window: UIWindow? {
+        willSet {
+            mainWindow = newValue
+        }
+    }
+
+    /// Tells the delegate about the addition of a scene to the app.
+    ///
+    /// - Important: If you override this method in a subclass, you must call
+    /// `super.scene(scene, willConnectTo: session, options: connectionOptions)`
+    /// at some point in your implementation.
+    open func scene(
+        _ scene: UIScene,
+        willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
+        guard let windowScene = scene as? UIWindowScene else { return }
+        let window = UIWindow(windowScene: windowScene)
+        self.window = window
+
+        onBecomeActive?()
+        onBecomeActive = nil
     }
 }

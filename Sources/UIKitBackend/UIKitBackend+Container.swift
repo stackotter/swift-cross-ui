@@ -8,6 +8,60 @@
 import SwiftCrossUI
 import UIKit
 
+final class ScrollWidget: WrapperWidget<UIScrollView> {
+    private var childWidthConstraint: NSLayoutConstraint?
+    private var childHeightConstraint: NSLayoutConstraint?
+
+    private let innerChild: BaseWidget
+
+    init(child innerChild: BaseWidget) {
+        self.innerChild = innerChild
+        super.init(child: UIScrollView())
+
+        child.addSubview(innerChild)
+
+        NSLayoutConstraint.activate([
+            innerChild.topAnchor.constraint(equalTo: child.contentLayoutGuide.topAnchor),
+            innerChild.bottomAnchor.constraint(equalTo: child.contentLayoutGuide.bottomAnchor),
+            innerChild.leftAnchor.constraint(equalTo: child.contentLayoutGuide.leftAnchor),
+            innerChild.rightAnchor.constraint(equalTo: child.contentLayoutGuide.rightAnchor),
+        ])
+    }
+
+    func setScrollBars(
+        hasVerticalScrollBar: Bool,
+        hasHorizontalScrollBar: Bool
+    ) {
+        switch (hasVerticalScrollBar, childHeightConstraint?.isActive) {
+            case (true, true):
+                childHeightConstraint!.isActive = false
+            case (false, nil):
+                childHeightConstraint = innerChild.heightAnchor.constraint(
+                    equalTo: child.heightAnchor)
+                fallthrough
+            case (false, false):
+                childHeightConstraint!.isActive = true
+            default:
+                break
+        }
+
+        switch (hasHorizontalScrollBar, childWidthConstraint?.isActive) {
+            case (true, true):
+                childWidthConstraint!.isActive = false
+            case (false, nil):
+                childWidthConstraint = innerChild.widthAnchor.constraint(equalTo: child.widthAnchor)
+                fallthrough
+            case (false, false):
+                childWidthConstraint!.isActive = true
+            default:
+                break
+        }
+
+        child.showsVerticalScrollIndicator = hasVerticalScrollBar
+        child.showsHorizontalScrollIndicator = hasHorizontalScrollBar
+    }
+}
+
 extension UIKitBackend {
     public func createContainer() -> Widget {
         BaseWidget()
@@ -68,5 +122,18 @@ extension UIKitBackend {
         widget.height = size.y
     }
 
-    // TODO: Scroll containers
+    public func createScrollContainer(for child: Widget) -> Widget {
+        ScrollWidget(child: child)
+    }
+
+    public func setScrollBarPresence(
+        ofScrollContainer scrollView: Widget,
+        hasVerticalScrollBar: Bool,
+        hasHorizontalScrollBar: Bool
+    ) {
+        let scrollWidget = scrollView as! ScrollWidget
+        scrollWidget.setScrollBars(
+            hasVerticalScrollBar: hasVerticalScrollBar,
+            hasHorizontalScrollBar: hasHorizontalScrollBar)
+    }
 }

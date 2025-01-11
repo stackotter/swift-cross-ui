@@ -131,6 +131,11 @@ public struct WinUIBackend: AppBackend {
         return out
     }
 
+    public func isFixedSizeWindow(_ window: Window) -> Bool {
+        // TODO: Detect whether window is fullscreen
+        return false
+    }
+
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
         let size = UWP.SizeInt32(
             width: Int32(newSize.x),

@@ -57,13 +57,15 @@ internal final class PickerWidget: WrapperWidget<UIPickerView>, UIPickerViewData
             child.reloadComponent(0)
         }
     }
-    var onSelect: ((Int) -> Void)?
+    var onSelect: ((Int?) -> Void)?
 
     init() {
         super.init(child: UIPickerView())
 
         child.dataSource = self
         child.delegate = self
+
+        child.selectRow(0, inComponent: 0, animated: false)
     }
 
     func numberOfComponents(in _: UIPickerView) -> Int {
@@ -71,7 +73,7 @@ internal final class PickerWidget: WrapperWidget<UIPickerView>, UIPickerViewData
     }
 
     func pickerView(_: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        options.count
+        options.count + 1
     }
 
     func pickerView(
@@ -79,7 +81,14 @@ internal final class PickerWidget: WrapperWidget<UIPickerView>, UIPickerViewData
         titleForRow row: Int,
         forComponent _: Int
     ) -> String? {
-        options.indices ~= row ? options[row] : nil
+        switch row {
+            case 0:
+                ""
+            case 1...options.count:
+                options[row - 1]
+            default:
+                nil
+        }
     }
 
     func pickerView(
@@ -87,7 +96,30 @@ internal final class PickerWidget: WrapperWidget<UIPickerView>, UIPickerViewData
         didSelectRow row: Int,
         inComponent _: Int
     ) {
-        onSelect?(row)
+        onSelect?(row > 0 ? row - 1 : nil)
+    }
+}
+
+internal final class SwitchWidget: WrapperWidget<UISwitch> {
+    var onChange: ((Bool) -> Void)?
+
+    @objc
+    func switchFlipped() {
+        onChange?(child.isOn)
+    }
+
+    init() {
+        super.init(child: UISwitch())
+
+        // On iOS 14 and later, UISwitch can be either a switch or a checkbox. We have no
+        // control over this on iOS 13 or any tvOS, but when possible, prefer a switch.
+        #if os(iOS) || targetEnvironment(macCatalyst)
+            if #available(iOS 14, macCatalyst 14, *) {
+                child.preferredStyle = .sliding
+            }
+        #endif
+
+        child.addTarget(self, action: #selector(switchFlipped), for: .valueChanged)
     }
 }
 
@@ -158,8 +190,21 @@ extension UIKitBackend {
     }
 
     public func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?) {
-        guard let selectedOption else { return }
         let pickerWidget = picker as! PickerWidget
-        pickerWidget.child.selectRow(selectedOption, inComponent: 0, animated: false)
+        pickerWidget.child.selectRow((selectedOption ?? -1) + 1, inComponent: 0, animated: false)
+    }
+
+    public func createSwitch() -> Widget {
+        SwitchWidget()
+    }
+
+    public func updateSwitch(_ switchWidget: Widget, onChange: @escaping (Bool) -> Void) {
+        let wrapper = switchWidget as! SwitchWidget
+        wrapper.onChange = onChange
+    }
+
+    public func setState(ofSwitch switchWidget: Widget, to state: Bool) {
+        let wrapper = switchWidget as! SwitchWidget
+        wrapper.child.setOn(state, animated: true)
     }
 }

@@ -61,7 +61,7 @@ public class BaseWidget: UIView {
         leftConstraint?.isActive = false
         guard let superview else { return }
         leftConstraint = self.leftAnchor.constraint(
-            equalTo: superview.leftAnchor, constant: CGFloat(x))
+            equalTo: superview.safeAreaLayoutGuide.leftAnchor, constant: CGFloat(x))
         leftConstraint!.isActive = true
     }
 
@@ -69,7 +69,7 @@ public class BaseWidget: UIView {
         topConstraint?.isActive = false
         guard let superview else { return }
         topConstraint = self.topAnchor.constraint(
-            equalTo: superview.topAnchor, constant: CGFloat(y))
+            equalTo: superview.safeAreaLayoutGuide.topAnchor, constant: CGFloat(y))
         topConstraint!.isActive = true
     }
 
@@ -113,5 +113,9 @@ internal class WrapperWidget<View: UIView>: BaseWidget {
 
     var child: View {
         subviews[0] as! View
+    }
+
+    override var intrinsicContentSize: CGSize {
+        child.intrinsicContentSize
     }
 }

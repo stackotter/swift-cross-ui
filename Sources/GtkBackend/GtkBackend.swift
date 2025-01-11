@@ -117,6 +117,11 @@ public final class GtkBackend: AppBackend {
         return SIMD2(size.width, size.height)
     }
 
+    public func isFixedSizeWindow(_ window: Window) -> Bool {
+        // TODO: Detect whether window is fullscreen
+        return false
+    }
+
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
         let child = window.getChild() as! CustomRootWidget
         window.size = Size(

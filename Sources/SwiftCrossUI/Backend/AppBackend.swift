@@ -11,8 +11,9 @@ import Foundation
 /// ``AppBackend/setTitle(ofWindow:to:)``, ``AppBackend/setResizability(ofWindow:to:)``,
 /// ``AppBackend/setChild(ofWindow:to:)``, ``AppBackend/show(window:)``,
 /// ``AppBackend/runMainLoop()``, ``AppBackend/runInMainThread(action:)``,
-/// ``AppBackend/show(widget:)``. Many of these can simply be given dummy
-/// implementations until you're ready to implement them properly.
+/// ``AppBackend/isFixedSizeWindow(_:)``, ``AppBackend/show(widget:)``.
+/// Many of these can simply be given dummy implementations until you're ready
+/// to implement them properly.
 ///
 /// If you need to modify the children of a widget after creation but there
 /// aren't update methods available, this is an intentional limitation to
@@ -112,6 +113,9 @@ public protocol AppBackend {
     func setChild(ofWindow window: Window, to child: Widget)
     /// Gets the size of the given window in pixels.
     func size(ofWindow window: Window) -> SIMD2<Int>
+    /// Check whether a window is programmatically resizable. This value does not necessarily
+    /// reflect whether the window is resizable by the user.
+    func isFixedSizeWindow(_ window: Window) -> Bool
     /// Sets the size of the given window in pixels.
     func setSize(ofWindow window: Window, to newSize: SIMD2<Int>)
     /// Sets the minimum width and height of the window. Prevents the user from making the
