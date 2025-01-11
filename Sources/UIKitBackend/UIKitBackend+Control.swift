@@ -254,7 +254,7 @@ extension UIKitBackend {
         return textFieldWidget.child.text ?? ""
     }
 
-    #if os(iOS)
+    #if os(iOS) && !targetEnvironment(macCatalyst)
         public func createPicker() -> Widget {
             PickerWidget()
         }
@@ -303,7 +303,7 @@ extension UIKitBackend {
         wrapper.onClick = handleClick
     }
 
-    #if os(iOS) || targetEnvironment(macCatalyst)
+    #if os(iOS)
         public func createSlider() -> Widget {
             SliderWidget()
         }

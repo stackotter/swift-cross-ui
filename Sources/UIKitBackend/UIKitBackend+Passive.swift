@@ -36,7 +36,9 @@ extension UIKitBackend {
     }
 
     public func createTextView() -> Widget {
-        WrapperWidget<UILabel>()
+        let widget = WrapperWidget<UILabel>()
+        widget.child.numberOfLines = 0
+        return widget
     }
 
     public func updateTextView(

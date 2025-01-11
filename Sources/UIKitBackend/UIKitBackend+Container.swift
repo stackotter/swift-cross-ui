@@ -112,8 +112,8 @@ extension UIKitBackend {
     public func naturalSize(of widget: Widget) -> SIMD2<Int> {
         let size = widget.intrinsicContentSize
         return SIMD2(
-            Int(size.width),
-            Int(size.height)
+            Int(size.width.rounded(.awayFromZero)),
+            Int(size.height.rounded(.awayFromZero))
         )
     }
 
