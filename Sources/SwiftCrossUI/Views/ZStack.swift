@@ -5,7 +5,7 @@ public struct ZStack<Content: View>: View {
         self.init(content: content())
     }
 
-    public init(content: Content) {
+    init(content: Content) {
         body = content
     }
 
@@ -59,6 +59,7 @@ public struct ZStack<Content: View>: View {
                 let position = (size.size &- childSize.size) / 2
                 backend.setPosition(ofChildAt: i, in: widget, to: position)
             }
+            backend.setSize(of: widget, to: size.size)
         }
 
         return ViewUpdateResult(size: size, childResults: childResults)
