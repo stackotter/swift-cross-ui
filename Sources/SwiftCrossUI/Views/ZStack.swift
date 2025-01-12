@@ -1,11 +1,19 @@
 public struct ZStack<Content: View>: View {
+    public var alignment: Alignment
     public var body: Content
 
-    public init(@ViewBuilder content: () -> Content) {
-        self.init(content: content())
+    public init(
+        alignment: Alignment = .center,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.init(
+            alignment: alignment,
+            content: content()
+        )
     }
 
-    init(content: Content) {
+    init(alignment: Alignment, content: Content) {
+        self.alignment = alignment
         body = content
     }
 
@@ -56,7 +64,10 @@ public struct ZStack<Content: View>: View {
 
         if !dryRun {
             for (i, childSize) in childSizes.enumerated() {
-                let position = (size.size &- childSize.size) / 2
+                let position = alignment.position(
+                    ofChild: childSize.size,
+                    in: size.size
+                )
                 backend.setPosition(ofChildAt: i, in: widget, to: position)
             }
             backend.setSize(of: widget, to: size.size)
