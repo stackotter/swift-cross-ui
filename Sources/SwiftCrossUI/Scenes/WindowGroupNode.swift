@@ -125,7 +125,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             with: newScene?.body,
             proposedSize: proposedWindowSize,
             environment: environment,
-            dryRun: windowSizeIsFinal
+            dryRun: !windowSizeIsFinal
         )
 
         if !windowSizeIsFinal {
