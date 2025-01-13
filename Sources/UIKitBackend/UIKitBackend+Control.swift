@@ -18,13 +18,16 @@ internal final class ButtonWidget: WrapperWidget<UIButton> {
 
     init() {
         let type: UIButton.ButtonType
+        let event: UIControl.Event
         #if os(tvOS)
             type = .system
+            event = .primaryActionTriggered
         #else
             type = .custom
+            event = .touchUpInside
         #endif
         super.init(child: UIButton(type: type))
-        child.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        child.addTarget(self, action: #selector(buttonTapped), for: event)
     }
 }
 
@@ -221,11 +224,27 @@ extension UIKitBackend {
         environment: EnvironmentValues
     ) {
         let buttonWidget = button as! ButtonWidget
-        buttonWidget.child.setAttributedTitle(
-            UIKitBackend.attributedString(
-                text: label, environment: environment, defaultForegroundColor: .link),
-            for: .normal
-        )
+
+        // tvOS's buttons change foreground color when focused. If we set an
+        // attributed string for `.normal` we also have to set another for
+        // `.focused` with a colour that's readable on a white background.
+        // However, with that approach the label's color animates too slowly
+        // and all round looks quite sloppy. Therefore, it's safest to just
+        // ignore foreground color for buttons on tvOS until we have a better
+        // solution.
+        #if os(tvOS)
+            buttonWidget.child.setTitle(label, for: .normal)
+        #else
+            buttonWidget.child.setAttributedTitle(
+                UIKitBackend.attributedString(
+                    text: label,
+                    environment: environment,
+                    defaultForegroundColor: .link
+                ),
+                for: .normal
+            )
+        #endif
+
         buttonWidget.onTap = action
     }
 
