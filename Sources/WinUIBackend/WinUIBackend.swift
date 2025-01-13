@@ -35,6 +35,8 @@ public struct WinUIBackend: AppBackend {
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
     public let defaultPaddingAmount = 10
+    public let requiresToggleSwitchSpacer = false
+    public let defaultToggleStyle = ToggleStyle.button
 
     public var scrollBarWidth: Int {
         12

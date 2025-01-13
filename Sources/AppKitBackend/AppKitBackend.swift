@@ -18,6 +18,8 @@ public final class AppKitBackend: AppBackend {
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
     public let defaultPaddingAmount = 10
+    public let requiresToggleSwitchSpacer = false
+    public let defaultToggleStyle = ToggleStyle.button
 
     public var scrollBarWidth: Int {
         // We assume that all scrollers have their controlSize set to `.regular` by default.

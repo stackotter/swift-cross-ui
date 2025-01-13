@@ -20,6 +20,8 @@ internal var hasReturnedAWindow = false
 public final class UIKitBackend: AppBackend {
     public let scrollBarWidth = 0
     public let defaultPaddingAmount = 15
+    public let requiresToggleSwitchSpacer = true
+    public let defaultToggleStyle = ToggleStyle.switch
 
     // TODO: When tables are supported, update these
     public let defaultTableRowContentHeight = -1
@@ -62,8 +64,6 @@ public final class UIKitBackend: AppBackend {
             default:
                 break
         }
-
-        environment.foregroundColor = Color(UIColor.label)
 
         return environment
     }

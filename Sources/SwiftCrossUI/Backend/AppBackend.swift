@@ -67,6 +67,10 @@ public protocol AppBackend {
     /// ensure that the configured root environment change handler gets called so
     /// that SwiftCrossUI can update the app's layout accordingly.
     var scrollBarWidth: Int { get }
+    /// If `true`, a toggle in the ``ToggleStyle/switch`` style grows to fill its parent container.
+    var requiresToggleSwitchSpacer: Bool { get }
+    /// The default style for toggles.
+    var defaultToggleStyle: ToggleStyle { get }
 
     /// Often in UI frameworks (such as Gtk), code is run in a callback
     /// after starting the app, and hence this generic root window creation

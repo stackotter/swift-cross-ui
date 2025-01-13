@@ -17,7 +17,13 @@ internal final class ButtonWidget: WrapperWidget<UIButton> {
     }
 
     init() {
-        super.init(child: UIButton())
+        let type: UIButton.ButtonType
+        #if os(tvOS)
+            type = .system
+        #else
+            type = .custom
+        #endif
+        super.init(child: UIButton(type: type))
         child.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
 }
@@ -216,7 +222,8 @@ extension UIKitBackend {
     ) {
         let buttonWidget = button as! ButtonWidget
         buttonWidget.child.setAttributedTitle(
-            UIKitBackend.attributedString(text: label, environment: environment),
+            UIKitBackend.attributedString(
+                text: label, environment: environment, defaultForegroundColor: .link),
             for: .normal
         )
         buttonWidget.onTap = action

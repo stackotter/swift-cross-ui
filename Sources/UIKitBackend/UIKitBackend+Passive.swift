@@ -11,7 +11,8 @@ import UIKit
 extension UIKitBackend {
     internal static func attributedString(
         text: String,
-        environment: EnvironmentValues
+        environment: EnvironmentValues,
+        defaultForegroundColor: UIColor = .label
     ) -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment =
@@ -29,7 +30,7 @@ extension UIKitBackend {
             string: text,
             attributes: [
                 .font: environment.font.uiFont,
-                .foregroundColor: UIColor(color: environment.suggestedForegroundColor),
+                .foregroundColor: environment.foregroundColor?.uiColor ?? defaultForegroundColor,
                 .paragraphStyle: paragraphStyle,
             ]
         )

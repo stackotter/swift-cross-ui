@@ -27,6 +27,8 @@ public final class GtkBackend: AppBackend {
     public let defaultTableCellVerticalPadding = 4
     public let defaultPaddingAmount = 10
     public let scrollBarWidth = 0
+    public let requiresToggleSwitchSpacer = false
+    public let defaultToggleStyle = ToggleStyle.button
 
     var gtkApp: Application
 
