@@ -26,9 +26,14 @@ public class ViewGraph<Root: View> {
     /// The environment most recently provided by this node's parent scene.
     private var parentEnvironment: EnvironmentValues
 
+    private var isFirstUpdate = true
+    private var setIncomingURLHandler: (@escaping (URL) -> Void) -> Void
+
     /// Creates a view graph for a root view with a specific backend.
     public init<Backend: AppBackend>(
-        for view: Root, backend: Backend, environment: EnvironmentValues
+        for view: Root,
+        backend: Backend,
+        environment: EnvironmentValues
     ) {
         rootNode = AnyViewGraphNode(for: view, backend: backend, environment: environment)
 
@@ -36,10 +41,7 @@ public class ViewGraph<Root: View> {
         windowSize = .zero
         parentEnvironment = environment
         currentRootViewResult = ViewUpdateResult.leafView(size: .empty)
-
-        backend.setIncomingURLHandler { url in
-            self.currentRootViewResult.preferences.onOpenURL?(url)
-        }
+        setIncomingURLHandler = backend.setIncomingURLHandler(to:)
     }
 
     /// Recomputes the entire UI (e.g. due to the root view's state updating).
@@ -60,6 +62,12 @@ public class ViewGraph<Root: View> {
             dryRun: dryRun
         )
         self.currentRootViewResult = result
+        if isFirstUpdate, !dryRun {
+            setIncomingURLHandler { url in
+                self.currentRootViewResult.preferences.onOpenURL?(url)
+            }
+            isFirstUpdate = false
+        }
         return result
     }
 

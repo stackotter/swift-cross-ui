@@ -1,7 +1,7 @@
 import SwiftCrossUI
 import UIKit
 
-internal final class ButtonWidget: WrapperWidget<UIButton> {
+final class ButtonWidget: WrapperWidget<UIButton> {
     var onTap: (() -> Void)?
 
     @objc
@@ -24,7 +24,7 @@ internal final class ButtonWidget: WrapperWidget<UIButton> {
     }
 }
 
-internal final class TextFieldWidget: WrapperWidget<UITextField>, UITextFieldDelegate {
+final class TextFieldWidget: WrapperWidget<UITextField>, UITextFieldDelegate {
     var onChange: ((String) -> Void)?
     var onSubmit: (() -> Void)?
 
@@ -53,7 +53,7 @@ internal final class TextFieldWidget: WrapperWidget<UITextField>, UITextFieldDel
 
 @available(tvOS, unavailable)
 @available(macCatalyst, unavailable)
-internal final class PickerWidget: WrapperWidget<UIPickerView>, UIPickerViewDataSource,
+final class PickerWidget: WrapperWidget<UIPickerView>, UIPickerViewDataSource,
     UIPickerViewDelegate
 {
     var options: [String] = [] {
@@ -109,7 +109,7 @@ internal final class PickerWidget: WrapperWidget<UIPickerView>, UIPickerViewData
 }
 
 #if os(tvOS)
-    internal final class SwitchWidget: WrapperWidget<UISegmentedControl> {
+    final class SwitchWidget: WrapperWidget<UISegmentedControl> {
         var onChange: ((Bool) -> Void)?
 
         @objc
@@ -133,7 +133,7 @@ internal final class PickerWidget: WrapperWidget<UIPickerView>, UIPickerViewData
         }
     }
 #else
-    internal final class SwitchWidget: WrapperWidget<UISwitch> {
+    final class SwitchWidget: WrapperWidget<UISwitch> {
         var onChange: ((Bool) -> Void)?
 
         @objc
@@ -160,7 +160,7 @@ internal final class PickerWidget: WrapperWidget<UIPickerView>, UIPickerViewData
     }
 #endif
 
-internal final class ClickableWidget: WrapperWidget<BaseWidget> {
+final class ClickableWidget: WrapperWidget<BaseWidget> {
     private var gestureRecognizer: UITapGestureRecognizer!
     var onClick: (() -> Void)?
 
@@ -179,7 +179,7 @@ internal final class ClickableWidget: WrapperWidget<BaseWidget> {
 }
 
 @available(tvOS, unavailable)
-internal final class SliderWidget: WrapperWidget<UISlider> {
+final class SliderWidget: WrapperWidget<UISlider> {
     var onChange: ((Double) -> Void)?
 
     private var _decimalPlaces = 17

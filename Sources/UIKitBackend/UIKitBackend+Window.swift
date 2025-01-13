@@ -1,6 +1,6 @@
 import UIKit
 
-internal final class RootViewController: UIViewController {
+final class RootViewController: UIViewController {
     unowned var backend: UIKitBackend
     var resizeHandler: ((CGSize) -> Void)?
 
@@ -50,9 +50,9 @@ extension UIKitBackend {
     public func createWindow(withDefaultSize _: SIMD2<Int>?) -> Window {
         var window: UIWindow
 
-        if !hasReturnedAWindow {
-            hasReturnedAWindow = true
-            window = mainWindow ?? UIWindow()
+        if !Self.hasReturnedAWindow {
+            Self.hasReturnedAWindow = true
+            window = Self.mainWindow ?? UIWindow()
         } else {
             window = UIWindow()
         }
@@ -95,18 +95,16 @@ extension UIKitBackend {
 
     public func show(window: Window) {
         window.makeKeyAndVisible()
-        mainWindow = window
     }
 
     public func activate(window: Window) {
         window.makeKeyAndVisible()
-        mainWindow = window
     }
 
-    public func isFixedSizeWindow(_ window: Window) -> Bool {
+    public func isWindowProgrammaticallyResizable(_ window: Window) -> Bool {
         // On iPad, some windows are user-resizable, but UIKit windows are never
         // programmatically resizable.
-        true
+        false
     }
 
     public func setResizability(ofWindow window: Window, to resizable: Bool) {

@@ -2,7 +2,7 @@ import SwiftCrossUI
 import UIKit
 
 extension UIColor {
-    internal convenience init(color: Color) {
+    convenience init(color: Color) {
         self.init(
             red: CGFloat(color.red),
             green: CGFloat(color.green),
@@ -13,7 +13,7 @@ extension UIColor {
 }
 
 extension Color {
-    internal init(_ uiColor: UIColor) {
+    init(_ uiColor: UIColor) {
         let ciColor = CIColor(color: uiColor)
 
         self.init(
@@ -24,7 +24,7 @@ extension Color {
         )
     }
 
-    internal var uiColor: UIColor {
+    var uiColor: UIColor {
         UIColor(color: self)
     }
 }

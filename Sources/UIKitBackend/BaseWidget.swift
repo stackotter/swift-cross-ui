@@ -6,7 +6,7 @@ public class BaseWidget: UIView {
     private var widthConstraint: NSLayoutConstraint?
     private var heightConstraint: NSLayoutConstraint?
 
-    internal var x = 0 {
+    var x = 0 {
         didSet {
             if x != oldValue {
                 updateLeftConstraint()
@@ -14,7 +14,7 @@ public class BaseWidget: UIView {
         }
     }
 
-    internal var y = 0 {
+    var y = 0 {
         didSet {
             if y != oldValue {
                 updateTopConstraint()
@@ -22,7 +22,7 @@ public class BaseWidget: UIView {
         }
     }
 
-    internal var width = 0 {
+    var width = 0 {
         didSet {
             if width != oldValue {
                 updateWidthConstraint()
@@ -30,7 +30,7 @@ public class BaseWidget: UIView {
         }
     }
 
-    internal var height = 0 {
+    var height = 0 {
         didSet {
             if height != oldValue {
                 updateHeightConstraint()
@@ -38,7 +38,7 @@ public class BaseWidget: UIView {
         }
     }
 
-    internal init() {
+    init() {
         super.init(frame: .zero)
 
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +89,7 @@ extension UIKitBackend {
     public typealias Widget = BaseWidget
 }
 
-internal class WrapperWidget<View: UIView>: BaseWidget {
+class WrapperWidget<View: UIView>: BaseWidget {
     init(child: View) {
         super.init()
 

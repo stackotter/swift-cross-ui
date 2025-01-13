@@ -1,16 +1,15 @@
 import SwiftCrossUI
 import UIKit
 
-// Since the SceneDelegate and ApplicationDelegate are created by UIKit, SwiftCrossUI can't
-// connect them to the UIKitBackend instance. Global variables is the only solution I can
-// think of :(
-private var onBecomeActive: (() -> Void)?
-private var onLaunchFromUrl: ((URL) -> Void)?
-
-internal var mainWindow: UIWindow?
-internal var hasReturnedAWindow = false
-
 public final class UIKitBackend: AppBackend {
+    static var onBecomeActive: (() -> Void)?
+    static var onReceiveURL: ((URL) -> Void)?
+    static var queuedURLs: [URL] = []
+
+    /// The first window to get created.
+    static var mainWindow: UIWindow?
+    static var hasReturnedAWindow = false
+
     public let scrollBarWidth = 0
     public let defaultPaddingAmount = 15
     public let requiresToggleSwitchSpacer = true
@@ -20,12 +19,14 @@ public final class UIKitBackend: AppBackend {
     public let defaultTableRowContentHeight = -1
     public let defaultTableCellVerticalPadding = -1
 
-    internal var onTraitCollectionChange: (() -> Void)?
-
+    var onTraitCollectionChange: (() -> Void)?
     public func runMainLoop(
         _ callback: @escaping () -> Void
     ) {
-        onBecomeActive = callback
+        Self.onReceiveURL = { url in
+            Self.queuedURLs.append(url)
+        }
+        Self.onBecomeActive = callback
         UIApplicationMain(
             CommandLine.argc,
             CommandLine.unsafeArgv,
@@ -35,7 +36,17 @@ public final class UIKitBackend: AppBackend {
     }
 
     public func setIncomingURLHandler(to action: @escaping (URL) -> Void) {
-        onLaunchFromUrl = action
+        // If the app wasn't already open, URLs can arrive before the view graph
+        // gets a chance to register a handler. To fix this we store any early
+        // URLs and replay them when the register gets added.
+        runInMainThread {
+            for url in Self.queuedURLs {
+                action(url)
+            }
+            Self.queuedURLs = []
+        }
+
+        Self.onReceiveURL = action
     }
 
     public func computeRootEnvironment(defaultEnvironment: EnvironmentValues) -> EnvironmentValues {
@@ -86,29 +97,45 @@ extension App {
     }
 }
 
-internal class ApplicationDelegate: UIResponder, UIApplicationDelegate {
+class ApplicationDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow? {
         get {
-            mainWindow
+            UIKitBackend.mainWindow
         }
         set {
-            mainWindow = newValue
+            UIKitBackend.mainWindow = newValue
         }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        onBecomeActive?()
-        onBecomeActive = nil
+        UIKitBackend.onBecomeActive?()
+
+        // We only want to notify the first time. Otherwise the app's view
+        // graph gets regenerated every time the app gets foregrounded,
+        // causing very strange results.
+        UIKitBackend.onBecomeActive = nil
     }
 
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        if let onLaunchFromUrl,
+        if let onReceiveURL = UIKitBackend.onReceiveURL,
             let url = launchOptions?[.url] as? URL
         {
-            onLaunchFromUrl(url)
+            onReceiveURL(url)
+        }
+
+        return true
+    }
+
+    func application(
+        _ app: UIApplication,
+        open url: URL,
+        options: [UIApplication.OpenURLOptionsKey: Any] = [:]
+    ) -> Bool {
+        if let onReceiveURL = UIKitBackend.onReceiveURL {
+            onReceiveURL(url)
         }
 
         return true
@@ -122,7 +149,7 @@ internal class ApplicationDelegate: UIResponder, UIApplicationDelegate {
 open class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     public var window: UIWindow? {
         willSet {
-            mainWindow = newValue
+            UIKitBackend.mainWindow = newValue
         }
     }
 
@@ -140,7 +167,25 @@ open class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         self.window = window
 
-        onBecomeActive?()
-        onBecomeActive = nil
+        UIKitBackend.onBecomeActive?()
+
+        // We only want to notify the first time. Otherwise the app's view
+        // graph gets regenerated every time the app gets foregrounded,
+        // causing very strange results.
+        UIKitBackend.onBecomeActive = nil
+
+        if let onReceiveURL = UIKitBackend.onReceiveURL,
+            let url = connectionOptions.userActivities.first?.webpageURL
+        {
+            onReceiveURL(url)
+        }
+    }
+
+    open func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        if let onReceiveURL = UIKitBackend.onReceiveURL,
+            let url = userActivity.webpageURL
+        {
+            onReceiveURL(url)
+        }
     }
 }

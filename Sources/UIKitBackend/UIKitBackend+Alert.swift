@@ -3,10 +3,10 @@ import UIKit
 
 extension UIKitBackend {
     public final class Alert {
-        internal let controller: UIAlertController
-        internal var handler: ((Int) -> Void)?
+        let controller: UIAlertController
+        var handler: ((Int) -> Void)?
 
-        internal init() {
+        init() {
             self.controller = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         }
     }
@@ -25,9 +25,9 @@ extension UIKitBackend {
 
         for (i, actionLabel) in actionLabels.enumerated() {
             let action = UIAlertAction(title: actionLabel, style: .default) {
-                [unowned self, weak alert] _ in
+                [weak alert] _ in
                 guard let alert else { return }
-                alert.handler!(i)
+                alert.handler?(i)
             }
             alert.controller.addAction(action)
         }
@@ -38,7 +38,7 @@ extension UIKitBackend {
         window: Window?,
         responseHandler handleResponse: @escaping (Int) -> Void
     ) {
-        guard let window = window ?? mainWindow else {
+        guard let window = window ?? Self.mainWindow else {
             assertionFailure("Could not find window in which to display alert")
             return
         }
@@ -49,6 +49,5 @@ extension UIKitBackend {
 
     public func dismissAlert(_ alert: Alert, window: Window?) {
         alert.controller.dismiss(animated: false)
-
     }
 }

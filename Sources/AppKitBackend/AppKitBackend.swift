@@ -73,7 +73,7 @@ public final class AppKitBackend: AppBackend {
         )
     }
 
-    public func isFixedSizeWindow(_ window: Window) -> Bool {
+    public func isWindowProgrammaticallyResizable(_ window: Window) -> Bool {
         !window.styleMask.contains(.fullScreen)
     }
 
@@ -183,24 +183,35 @@ public final class AppKitBackend: AppBackend {
         let appMenu = NSMenu(title: appName)
         appMenu.addItem(
             withTitle: "About \(appName)",
-            action: #selector(NSApp.orderFrontStandardAboutPanel(_:)), keyEquivalent: "")
+            action: #selector(NSApp.orderFrontStandardAboutPanel(_:)),
+            keyEquivalent: ""
+        )
         appMenu.addItem(NSMenuItem.separator())
 
         let hideMenu = appMenu.addItem(
-            withTitle: "Hide \(appName)", action: #selector(NSApp.hide(_:)), keyEquivalent: "h")
+            withTitle: "Hide \(appName)",
+            action: #selector(NSApp.hide(_:)),
+            keyEquivalent: "h"
+        )
         hideMenu.keyEquivalentModifierMask = .command
 
         let hideOthers = appMenu.addItem(
-            withTitle: "Hide Others", action: #selector(NSApp.hideOtherApplications(_:)),
-            keyEquivalent: "h")
+            withTitle: "Hide Others",
+            action: #selector(NSApp.hideOtherApplications(_:)),
+            keyEquivalent: "h"
+        )
         hideOthers.keyEquivalentModifierMask = [.option, .command]
 
         appMenu.addItem(
-            withTitle: "Show All", action: #selector(NSApp.unhideAllApplications(_:)),
-            keyEquivalent: "")
+            withTitle: "Show All",
+            action: #selector(NSApp.unhideAllApplications(_:)),
+            keyEquivalent: ""
+        )
 
         let quitMenu = appMenu.addItem(
-            withTitle: "Quit \(appName)", action: #selector(NSApp.terminate(_:)), keyEquivalent: "q"
+            withTitle: "Quit \(appName)",
+            action: #selector(NSApp.terminate(_:)),
+            keyEquivalent: "q"
         )
         quitMenu.keyEquivalentModifierMask = .command
 

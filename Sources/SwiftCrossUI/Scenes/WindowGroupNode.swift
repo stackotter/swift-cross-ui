@@ -52,7 +52,9 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                 self.scene,
                 proposedWindowSize: newSize,
                 backend: backend,
-                environment: parentEnvironment
+                environment: parentEnvironment,
+                windowSizeIsFinal:
+                    !backend.isWindowProgrammaticallyResizable(window)
             )
         }
     }
@@ -66,16 +68,17 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
 
-        let isFixedSize = backend.isFixedSizeWindow(window)
+        let isProgramaticallyResizable =
+            backend.isWindowProgrammaticallyResizable(window)
 
         _ = update(
             newScene,
-            proposedWindowSize: isFirstUpdate && !isFixedSize
+            proposedWindowSize: isFirstUpdate && isProgramaticallyResizable
                 ? (newScene ?? scene).defaultSize
                 : backend.size(ofWindow: window),
             backend: backend,
             environment: environment,
-            windowSizeIsFinal: isFixedSize
+            windowSizeIsFinal: !isProgramaticallyResizable
         )
     }
 
@@ -119,16 +122,18 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             }
             .with(\.window, window)
 
-        // Perform a dry-run update of the root view to check if the window needs to
-        // change size.
-        let contentResult = viewGraph.update(
-            with: newScene?.body,
-            proposedSize: proposedWindowSize,
-            environment: environment,
-            dryRun: !windowSizeIsFinal
-        )
-
+        let dryRunResult: ViewUpdateResult?
         if !windowSizeIsFinal {
+            // Perform a dry-run update of the root view to check if the window
+            // needs to change size.
+            let contentResult = viewGraph.update(
+                with: newScene?.body,
+                proposedSize: proposedWindowSize,
+                environment: environment,
+                dryRun: true
+            )
+            dryRunResult = contentResult
+
             let newWindowSize = computeNewWindowSize(
                 currentProposedSize: proposedWindowSize,
                 backend: backend,
@@ -148,6 +153,8 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                     windowSizeIsFinal: false
                 )
             }
+        } else {
+            dryRunResult = nil
         }
 
         let finalContentResult = viewGraph.update(
@@ -178,14 +185,14 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         // Anyway, Gtk3Backend isn't really intended to be a recommended
         // backend so I think this is a fine solution for now (people should
         // only use Gtk3Backend if they can't use GtkBackend).
-        if finalContentResult.size != contentResult.size {
+        if let dryRunResult, finalContentResult.size != dryRunResult.size {
             print(
                 """
                 warning: Final window content size didn't match dry-run size. This is a sign that
                          either view size caching is broken or that backend.naturalSize(of:) is 
                          broken (or both).
-                      -> contentSize:      \(contentResult.size)
-                      -> finalContentSize: \(finalContentResult.size)
+                      -> dryRunResult.size:       \(dryRunResult.size)
+                      -> finalContentResult.size: \(finalContentResult.size)
                 """
             )
 
@@ -203,17 +210,20 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                     scene,
                     proposedWindowSize: newWindowSize,
                     backend: backend,
-                    environment: environment
+                    environment: environment,
+                    windowSizeIsFinal: true
                 )
             }
         }
 
+        // Set this even if the window isn't programmatically resizable
+        // because the window may still be user resizable.
         if scene.resizability.isResizable {
             backend.setMinimumSize(
                 ofWindow: window,
                 to: SIMD2(
-                    contentResult.size.minimumWidth,
-                    contentResult.size.minimumHeight
+                    finalContentResult.size.minimumWidth,
+                    finalContentResult.size.minimumHeight
                 )
             )
         }
@@ -222,8 +232,8 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             ofChildAt: 0,
             in: containerWidget.into(),
             to: SIMD2(
-                (proposedWindowSize.x - contentResult.size.size.x) / 2,
-                (proposedWindowSize.y - contentResult.size.size.y) / 2
+                (proposedWindowSize.x - finalContentResult.size.size.x) / 2,
+                (proposedWindowSize.y - finalContentResult.size.size.y) / 2
             )
         )
 

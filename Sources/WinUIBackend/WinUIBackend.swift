@@ -144,9 +144,9 @@ public final class WinUIBackend: AppBackend {
         return out
     }
 
-    public func isFixedSizeWindow(_ window: Window) -> Bool {
+    public func isWindowProgrammaticallyResizable(_ window: Window) -> Bool {
         // TODO: Detect whether window is fullscreen
-        return false
+        return true
     }
 
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {

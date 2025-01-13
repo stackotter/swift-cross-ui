@@ -2,7 +2,7 @@ import SwiftCrossUI
 import UIKit
 
 extension UIKitBackend {
-    internal static func attributedString(
+    static func attributedString(
         text: String,
         environment: EnvironmentValues,
         defaultForegroundColor: UIColor = .label

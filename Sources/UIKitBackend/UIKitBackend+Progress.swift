@@ -1,7 +1,7 @@
 import SwiftCrossUI
 import UIKit
 
-internal final class ProgressSpinner: WrapperWidget<UIActivityIndicatorView> {
+final class ProgressSpinner: WrapperWidget<UIActivityIndicatorView> {
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         child.startAnimating()
