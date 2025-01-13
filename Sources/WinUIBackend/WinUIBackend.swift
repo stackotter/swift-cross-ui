@@ -26,11 +26,11 @@ class WinUIApplication: SwiftApplication {
     }
 }
 
-public struct WinUIBackend: AppBackend {
+public final class WinUIBackend: AppBackend {
     public typealias Window = WinUI.Window
     public typealias Widget = WinUI.FrameworkElement
     public typealias Menu = Void
-    public typealias Alert = Void
+    public typealias Alert = WinUI.ContentDialog
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
@@ -53,6 +53,11 @@ public struct WinUIBackend: AppBackend {
     }
 
     private var internalState: InternalState
+    /// WinUI only allows one dialog at a time (subsequent dialogs throw
+    /// exceptions), so we limit ourselves.
+    private var dialogSemaphore = DispatchSemaphore(value: 1)
+
+    private var windows: [Window] = []
 
     public init() {
         internalState = InternalState()
@@ -82,6 +87,12 @@ public struct WinUIBackend: AppBackend {
 
     public func createWindow(withDefaultSize size: SIMD2<Int>?) -> Window {
         let window = Window()
+        windows.append(window)
+        window.closed.addHandler { _, _ in
+            self.windows.removeAll { other in
+                window === other
+            }
+        }
 
         if internalState.dispatcherQueue == nil {
             internalState.dispatcherQueue = window.dispatcherQueue
@@ -206,12 +217,6 @@ public struct WinUIBackend: AppBackend {
         return
             defaultEnvironment
             .with(\.font, .system(size: 14))
-    }
-
-    private func fatalError(_ message: String) -> Never {
-        print(message)
-        fflush(stdout)
-        Foundation.exit(1)
     }
 
     public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
@@ -757,6 +762,64 @@ public struct WinUIBackend: AppBackend {
         let switchWidget = switchWidget as! ToggleSwitch
         if switchWidget.isOn != state {
             switchWidget.isOn = state
+        }
+    }
+
+    public func createAlert() -> Alert {
+        ContentDialog()
+    }
+
+    public func updateAlert(
+        _ alert: Alert,
+        title: String,
+        actionLabels: [String],
+        environment: EnvironmentValues
+    ) {
+        alert.title = title
+        if actionLabels.count >= 1 {
+            alert.primaryButtonText = actionLabels[0]
+        }
+        if actionLabels.count >= 2 {
+            alert.secondaryButtonText = actionLabels[1]
+        }
+        if actionLabels.count >= 3 {
+            alert.closeButtonText = actionLabels[2]
+        }
+    }
+
+    public func showAlert(
+        _ alert: Alert,
+        window: Window?,
+        responseHandler handleResponse: @escaping (Int) -> Void
+    ) {
+        // WinUI only allows one dialog at a time so we limit ourselves using
+        // a semaphore.
+        guard let window = window ?? windows.first else {
+            print("warning: WinUI can't show alert without window")
+            return
+        }
+
+        alert.xamlRoot = window.content.xamlRoot
+        dialogSemaphore.wait()
+        let promise = try! alert.showAsync()!
+        promise.completed = { operation, status in
+            self.dialogSemaphore.signal()
+            guard
+                status == .completed,
+                let operation,
+                let result = try? operation.getResults()
+            else {
+                return
+            }
+            let index =
+                switch result {
+                    case .primary: 0
+                    case .secondary: 1
+                    case .none: 2
+                    default:
+                        fatalError("WinUIBackend: Invalid dialog response")
+                }
+            handleResponse(index)
         }
     }
 
