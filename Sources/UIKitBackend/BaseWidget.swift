@@ -1,10 +1,3 @@
-//
-//  BaseWidget.swift
-//  swift-cross-ui
-//
-//  Created by William Baker on 1/10/25.
-//
-
 import UIKit
 
 public class BaseWidget: UIView {

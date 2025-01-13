@@ -1,10 +1,3 @@
-//
-//  UIKitBackend+Container.swift
-//  swift-cross-ui
-//
-//  Created by William Baker on 1/9/25.
-//
-
 import SwiftCrossUI
 import UIKit
 
