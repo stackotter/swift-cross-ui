@@ -27,6 +27,8 @@ public final class GtkBackend: AppBackend {
     public let defaultTableCellVerticalPadding = 4
     public let defaultPaddingAmount = 10
     public let scrollBarWidth = 0
+    public let requiresToggleSwitchSpacer = false
+    public let defaultToggleStyle = ToggleStyle.button
 
     var gtkApp: Application
 
@@ -115,6 +117,11 @@ public final class GtkBackend: AppBackend {
         let child = window.getChild() as! CustomRootWidget
         let size = child.getSize()
         return SIMD2(size.width, size.height)
+    }
+
+    public func isFixedSizeWindow(_ window: Window) -> Bool {
+        // TODO: Detect whether window is fullscreen
+        return false
     }
 
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {

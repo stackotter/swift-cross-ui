@@ -16,6 +16,9 @@
 #elseif canImport(CursesBackend)
     import CursesBackend
     public typealias DefaultBackend = CursesBackend
+#elseif canImport(UIKitBackend)
+    import UIKitBackend
+    public typealias DefaultBackend = UIKitBackend
 #else
     #error("Unknown backend selected")
 #endif

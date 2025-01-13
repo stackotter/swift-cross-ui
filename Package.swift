@@ -61,7 +61,7 @@ switch ProcessInfo.processInfo.environment["SCUI_LIBRARY_TYPE"] {
 
 let package = Package(
     name: "swift-cross-ui",
-    platforms: [.macOS(.v10_15)],
+    platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .macCatalyst(.v13)],
     products: [
         .library(name: "SwiftCrossUI", type: libraryType, targets: ["SwiftCrossUI"]),
         .library(name: "AppKitBackend", type: libraryType, targets: ["AppKitBackend"]),
@@ -69,6 +69,7 @@ let package = Package(
         .library(name: "Gtk3Backend", type: libraryType, targets: ["Gtk3Backend"]),
         .library(name: "WinUIBackend", targets: ["WinUIBackend"]),
         .library(name: "DefaultBackend", type: libraryType, targets: ["DefaultBackend"]),
+        .library(name: "UIKitBackend", type: libraryType, targets: ["UIKitBackend"]),
         .library(name: "Gtk", type: libraryType, targets: ["Gtk"]),
         .executable(name: "GtkExample", targets: ["GtkExample"]),
         // .library(name: "CursesBackend", type: libraryType, targets: ["CursesBackend"]),
@@ -145,7 +146,11 @@ let package = Package(
         .target(
             name: "DefaultBackend",
             dependencies: [
-                .target(name: defaultBackend)
+                .target(name: defaultBackend, condition: .when(platforms: [.linux, .macOS, .windows])),
+                // Non-desktop platforms need to be handled separately:
+                // Only one backend is supported, and `#if` won't work because it's evaluated
+                // on the compiling desktop, not the target.
+                .target(name: "UIKitBackend", condition: .when(platforms: [.iOS, .tvOS, .macCatalyst])),
             ]
         ),
         .target(name: "AppKitBackend", dependencies: ["SwiftCrossUI"]),
@@ -219,6 +224,7 @@ let package = Package(
             ],
             swiftSettings: swiftSettings
         ),
+        .target(name: "UIKitBackend", dependencies: ["SwiftCrossUI"]),
         .target(
             name: "WinUIBackend",
             dependencies: [

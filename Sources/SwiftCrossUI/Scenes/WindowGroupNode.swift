@@ -66,13 +66,16 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
 
+        let isFixedSize = backend.isFixedSizeWindow(window)
+
         _ = update(
             newScene,
-            proposedWindowSize: isFirstUpdate
+            proposedWindowSize: isFirstUpdate && !isFixedSize
                 ? (newScene ?? scene).defaultSize
                 : backend.size(ofWindow: window),
             backend: backend,
-            environment: environment
+            environment: environment,
+            windowSizeIsFinal: isFixedSize
         )
     }
 
@@ -147,17 +150,12 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             }
         }
 
-        let finalContentResult: ViewUpdateResult
-        if windowSizeIsFinal {
-            finalContentResult = contentResult
-        } else {
-            finalContentResult = viewGraph.update(
-                with: newScene?.body,
-                proposedSize: proposedWindowSize,
-                environment: environment,
-                dryRun: false
-            )
-        }
+        let finalContentResult = viewGraph.update(
+            with: newScene?.body,
+            proposedSize: proposedWindowSize,
+            environment: environment,
+            dryRun: false
+        )
 
         // The Gtk 3 backend has some broken sizing code that can't really be
         // fixed due to the design of Gtk 3. Our layout system underestimates

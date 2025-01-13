@@ -18,6 +18,8 @@ public final class AppKitBackend: AppBackend {
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
     public let defaultPaddingAmount = 10
+    public let requiresToggleSwitchSpacer = false
+    public let defaultToggleStyle = ToggleStyle.button
 
     public var scrollBarWidth: Int {
         // We assume that all scrollers have their controlSize set to `.regular` by default.
@@ -69,6 +71,10 @@ public final class AppKitBackend: AppBackend {
             Int(contentRect.width.rounded(.towardZero)),
             Int(contentRect.height.rounded(.towardZero))
         )
+    }
+
+    public func isFixedSizeWindow(_ window: Window) -> Bool {
+        !window.styleMask.contains(.fullScreen)
     }
 
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
@@ -175,18 +181,27 @@ public final class AppKitBackend: AppBackend {
     public static func createDefaultAboutMenu() -> NSMenu {
         let appName = ProcessInfo.processInfo.processName
         let appMenu = NSMenu(title: appName)
-        appMenu.addItem(withTitle: "About \(appName)", action: #selector(NSApp.orderFrontStandardAboutPanel(_:)), keyEquivalent: "")
+        appMenu.addItem(
+            withTitle: "About \(appName)",
+            action: #selector(NSApp.orderFrontStandardAboutPanel(_:)), keyEquivalent: "")
         appMenu.addItem(NSMenuItem.separator())
 
-        let hideMenu = appMenu.addItem(withTitle: "Hide \(appName)", action: #selector(NSApp.hide(_:)), keyEquivalent: "h")
+        let hideMenu = appMenu.addItem(
+            withTitle: "Hide \(appName)", action: #selector(NSApp.hide(_:)), keyEquivalent: "h")
         hideMenu.keyEquivalentModifierMask = .command
 
-        let hideOthers = appMenu.addItem(withTitle: "Hide Others", action: #selector(NSApp.hideOtherApplications(_:)), keyEquivalent: "h")
+        let hideOthers = appMenu.addItem(
+            withTitle: "Hide Others", action: #selector(NSApp.hideOtherApplications(_:)),
+            keyEquivalent: "h")
         hideOthers.keyEquivalentModifierMask = [.option, .command]
 
-        appMenu.addItem(withTitle: "Show All", action: #selector(NSApp.unhideAllApplications(_:)), keyEquivalent: "")
+        appMenu.addItem(
+            withTitle: "Show All", action: #selector(NSApp.unhideAllApplications(_:)),
+            keyEquivalent: "")
 
-        let quitMenu = appMenu.addItem(withTitle: "Quit \(appName)", action: #selector(NSApp.terminate(_:)), keyEquivalent: "q")
+        let quitMenu = appMenu.addItem(
+            withTitle: "Quit \(appName)", action: #selector(NSApp.terminate(_:)), keyEquivalent: "q"
+        )
         quitMenu.keyEquivalentModifierMask = .command
 
         return appMenu

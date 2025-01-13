@@ -35,6 +35,8 @@ public struct WinUIBackend: AppBackend {
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
     public let defaultPaddingAmount = 10
+    public let requiresToggleSwitchSpacer = false
+    public let defaultToggleStyle = ToggleStyle.button
 
     public var scrollBarWidth: Int {
         12
@@ -129,6 +131,11 @@ public struct WinUIBackend: AppBackend {
             Int(size.height)
         )
         return out
+    }
+
+    public func isFixedSizeWindow(_ window: Window) -> Bool {
+        // TODO: Detect whether window is fullscreen
+        return false
     }
 
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
