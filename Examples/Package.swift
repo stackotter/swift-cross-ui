@@ -15,7 +15,7 @@ let exampleDependencies: [Target.Dependency] = [
 
 let package = Package(
     name: "Examples",
-    platforms: [.macOS(.v10_15)],
+    platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .macCatalyst(.v13)],
     dependencies: [
         .package(name: "swift-cross-ui", path: ".."),
         .package(

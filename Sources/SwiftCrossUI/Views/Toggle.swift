@@ -2,7 +2,7 @@ public struct Toggle: View {
     @Environment(\.backend) var backend
 
     /// The style of toggle shown.
-    var selectedToggleStyle: ToggleStyle
+    var selectedToggleStyle: ToggleStyle?
     /// The label to be shown on or beside the toggle.
     var label: String
     /// Whether the toggle is active or not.
@@ -10,13 +10,12 @@ public struct Toggle: View {
 
     /// Creates a toggle that displays a custom label.
     public init(_ label: String, active: Binding<Bool>) {
-        self.selectedToggleStyle = backend.defaultToggleStyle
         self.label = label
         self.active = active
     }
 
     public var body: some View {
-        switch selectedToggleStyle {
+        switch selectedToggleStyle ?? backend.defaultToggleStyle {
             case .switch:
                 HStack {
                     Text(label)
