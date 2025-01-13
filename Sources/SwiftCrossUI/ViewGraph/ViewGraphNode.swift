@@ -210,15 +210,34 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         // since the last update cycle (checked via`!sizeCache.isEmpty`) to
         // ensure that the view has been updated at least once with the
         // current view state.
-        if dryRun, let currentResult, !resultCache.isEmpty,
-            ((Double(lastProposedSize.x) >= currentResult.size.maximumWidth
+        if dryRun, let currentResult, !resultCache.isEmpty {
+            // If both the previous and current proposed sizes are larger than
+            // the view's previously computed maximum size, reuse the previous
+            // result (currentResult).
+            if ((Double(lastProposedSize.x) >= currentResult.size.maximumWidth
                 && Double(proposedSize.x) >= currentResult.size.maximumWidth)
                 || proposedSize.x == lastProposedSize.x)
                 && ((Double(lastProposedSize.y) >= currentResult.size.maximumHeight
                     && Double(proposedSize.y) >= currentResult.size.maximumHeight)
                     || proposedSize.y == lastProposedSize.y)
-        {
-            return currentResult
+            {
+                return currentResult
+            }
+
+            // If the view has already been updated this update cycle and claims
+            // to be fixed size (maximumSize == minimumSize) then reuse the current
+            // result.
+            let maximumSize = SIMD2(
+                currentResult.size.maximumWidth,
+                currentResult.size.maximumHeight
+            )
+            let minimumSize = SIMD2(
+                Double(currentResult.size.minimumWidth),
+                Double(currentResult.size.minimumHeight)
+            )
+            if maximumSize == minimumSize {
+                return currentResult
+            }
         }
 
         parentEnvironment = environment
