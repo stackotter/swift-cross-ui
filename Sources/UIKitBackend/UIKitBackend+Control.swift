@@ -51,63 +51,6 @@ final class TextFieldWidget: WrapperWidget<UITextField>, UITextFieldDelegate {
     }
 }
 
-@available(tvOS, unavailable)
-@available(macCatalyst, unavailable)
-final class PickerWidget: WrapperWidget<UIPickerView>, UIPickerViewDataSource,
-    UIPickerViewDelegate
-{
-    var options: [String] = [] {
-        didSet {
-            child.reloadComponent(0)
-        }
-    }
-    var onSelect: ((Int?) -> Void)?
-
-    init() {
-        super.init(child: UIPickerView())
-
-        child.dataSource = self
-        child.delegate = self
-
-        child.selectRow(0, inComponent: 0, animated: false)
-    }
-
-    func numberOfComponents(in _: UIPickerView) -> Int {
-        1
-    }
-
-    func pickerView(_: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        options.count + 1
-    }
-
-    // For some reason, if compiling for tvOS, the compiler complains if I even attempt
-    // to define these methods.
-    #if os(iOS)
-        func pickerView(
-            _: UIPickerView,
-            titleForRow row: Int,
-            forComponent _: Int
-        ) -> String? {
-            switch row {
-                case 0:
-                    ""
-                case 1...options.count:
-                    options[row - 1]
-                default:
-                    nil
-            }
-        }
-
-        func pickerView(
-            _: UIPickerView,
-            didSelectRow row: Int,
-            inComponent _: Int
-        ) {
-            onSelect?(row > 0 ? row - 1 : nil)
-        }
-    #endif
-}
-
 #if os(tvOS)
     final class SwitchWidget: WrapperWidget<UISegmentedControl> {
         var onChange: ((Bool) -> Void)?
@@ -272,29 +215,6 @@ extension UIKitBackend {
 
         return textFieldWidget.child.text ?? ""
     }
-
-    #if os(iOS) && !targetEnvironment(macCatalyst)
-        public func createPicker() -> Widget {
-            PickerWidget()
-        }
-
-        public func updatePicker(
-            _ picker: Widget,
-            options: [String],
-            environment: EnvironmentValues,
-            onChange: @escaping (Int?) -> Void
-        ) {
-            let pickerWidget = picker as! PickerWidget
-            pickerWidget.onSelect = onChange
-            pickerWidget.options = options
-        }
-
-        public func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?) {
-            let pickerWidget = picker as! PickerWidget
-            pickerWidget.child.selectRow(
-                (selectedOption ?? -1) + 1, inComponent: 0, animated: false)
-        }
-    #endif
 
     public func createSwitch() -> Widget {
         SwitchWidget()

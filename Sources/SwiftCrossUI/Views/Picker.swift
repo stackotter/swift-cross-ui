@@ -29,7 +29,6 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
         backend: Backend,
         dryRun: Bool
     ) -> ViewUpdateResult {
-        // TODO: Implement picker sizing within SwiftCrossUI so that we can properly implement `dryRun`.
         backend.updatePicker(
             widget,
             options: options.map { "\($0)" },
@@ -44,8 +43,30 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
         }
         backend.setSelectedOption(ofPicker: widget, to: selectedOptionIndex)
 
-        return ViewUpdateResult.leafView(
-            size: ViewSize(fixedSize: backend.naturalSize(of: widget))
-        )
+        // Special handling for UIKitBackend:
+        // When backed by a UITableView, its natural size is -1 x -1,
+        // but it can and should be as large as reasonable
+        let size = backend.naturalSize(of: widget)
+        if size == SIMD2(-1, -1) {
+            if !dryRun {
+                backend.setSize(of: widget, to: proposedSize)
+            }
+
+            return ViewUpdateResult.leafView(
+                size: ViewSize(
+                    size: proposedSize,
+                    idealSize: SIMD2(10, 10),
+                    minimumWidth: 0,
+                    minimumHeight: 0,
+                    maximumWidth: nil,
+                    maximumHeight: nil
+                )
+            )
+        } else {
+            // TODO: Implement picker sizing within SwiftCrossUI so that we can properly implement `dryRun`.
+            return ViewUpdateResult.leafView(
+                size: ViewSize(fixedSize: size)
+            )
+        }
     }
 }
