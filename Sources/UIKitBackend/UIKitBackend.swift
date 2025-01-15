@@ -20,6 +20,13 @@ public final class UIKitBackend: AppBackend {
     public let defaultTableCellVerticalPadding = -1
 
     var onTraitCollectionChange: (() -> Void)?
+
+    private let appDelegateClass: ApplicationDelegate.Type
+
+    public init(appDelegateClass: ApplicationDelegate.Type = ApplicationDelegate.self) {
+        self.appDelegateClass = appDelegateClass
+    }
+
     public func runMainLoop(
         _ callback: @escaping () -> Void
     ) {
@@ -31,7 +38,7 @@ public final class UIKitBackend: AppBackend {
             CommandLine.argc,
             CommandLine.unsafeArgv,
             NSStringFromClass(UIApplication.self),
-            NSStringFromClass(ApplicationDelegate.self)
+            NSStringFromClass(appDelegateClass)
         )
     }
 
@@ -97,8 +104,33 @@ extension App {
     }
 }
 
-class ApplicationDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow? {
+/// The root class for application delegates of SwiftCrossUI apps.
+///
+/// In order to use a custom application delegate, pass your class to ``UIKitBackend/init(appDelegateClass:)``:
+///
+/// ```swift
+/// import SwiftCrossUI
+/// import UIKitBackend
+///
+/// class MyAppDelegate: ApplicationDelegate {
+///     // UIApplicationDelegate methods here
+/// }
+///
+/// @main
+/// struct SwiftCrossUI_TestApp: App {
+///     var backend: UIKitBackend {
+///         UIKitBackend(appDelegateClass: MyAppDelegate.self)
+///     }
+///
+///     var body: some Scene {
+///         WindowGroup {
+///             // View code here
+///         }
+///     }
+/// }
+/// ```
+open class ApplicationDelegate: UIResponder, UIApplicationDelegate {
+    public var window: UIWindow? {
         get {
             UIKitBackend.mainWindow
         }
@@ -107,7 +139,16 @@ class ApplicationDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    func applicationDidBecomeActive(_ application: UIApplication) {
+    public required override init() {
+        super.init()
+    }
+
+    /// Tells the delegate that the app has become active.
+    ///
+    /// - Important: If you override this method in a subclass, you must call
+    /// `super.applicationDidBecomeActive(application)` as the first step of your
+    /// implementation.
+    open func applicationDidBecomeActive(_ application: UIApplication) {
         UIKitBackend.onBecomeActive?()
 
         // We only want to notify the first time. Otherwise the app's view
@@ -116,7 +157,14 @@ class ApplicationDelegate: UIResponder, UIApplicationDelegate {
         UIKitBackend.onBecomeActive = nil
     }
 
-    func application(
+    /// Tells the delegate that the launch process is almost done and the app is almost ready
+    /// to run.
+    ///
+    /// If you override this method in a subclass, you should call
+    /// `super.application(application, didFinishLaunchingWithOptions: launchOptions)`
+    /// at some point in your implementation. You do not necessarily have to return the same
+    /// value as this `super` call.
+    open func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
@@ -129,7 +177,13 @@ class ApplicationDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func application(
+    /// Asks the delegate to open a resource specified by a URL, and provides a dictionary of launch options.
+    ///
+    /// If you override this method in a subclass, you should call
+    /// `super.application(app, open: url, options: options` at some point in your
+    /// implementation. You do not necessarily have to return the same value as this `super`
+    /// call.
+    open func application(
         _ app: UIApplication,
         open url: URL,
         options: [UIApplication.OpenURLOptionsKey: Any] = [:]
