@@ -281,6 +281,28 @@ public final class WinUIBackend: AppBackend {
         canvas.background = brush
     }
 
+    public func setCornerRadius(of widget: Widget, to radius: Int) {
+        let visual: WinAppSDK.Visual = try! widget.getVisualInternal()
+
+        let geometry = try! visual.compositor.createRoundedRectangleGeometry()!
+        geometry.cornerRadius = WindowsFoundation.Vector2(
+            x: Float(radius),
+            y: Float(radius)
+        )
+
+        // We assume that SwiftCrossUI has explicitly set the size of the
+        // underlying widget.
+        geometry.size = WindowsFoundation.Vector2(
+            x: Float(widget.width),
+            y: Float(widget.height)
+        )
+
+        let clip = try! visual.compositor.createGeometricClip()!
+        clip.geometry = geometry
+
+        visual.clip = clip
+    }
+
     public func naturalSize(of widget: Widget) -> SIMD2<Int> {
         let allocation = WindowsFoundation.Size(
             width: .infinity,
@@ -823,6 +845,37 @@ public final class WinUIBackend: AppBackend {
         }
     }
 
+    public func createClickTarget(wrapping child: Widget) -> Widget {
+        let clickTarget = ClickTarget()
+        addChild(child, to: clickTarget)
+        clickTarget.child = child
+
+        // Set a background so that the click target's entire area gets hit
+        // tested. The background we set is transparent so that it doesn't
+        // change the visual appearance of the view.
+        let brush = SolidColorBrush()
+        brush.color = UWP.Color(a: 0, r: 0, g: 0, b: 0)
+        clickTarget.background = brush
+
+        clickTarget.pointerPressed.addHandler { [weak clickTarget] _, _ in
+            guard let clickTarget else {
+                return
+            }
+            clickTarget.clickHandler?()
+        }
+        return clickTarget
+    }
+
+    public func updateClickTarget(
+        _ clickTarget: Widget,
+        clickHandler handleClick: @escaping () -> Void
+    ) {
+        let clickTarget = clickTarget as! ClickTarget
+        clickTarget.clickHandler = handleClick
+        clickTarget.width = clickTarget.child!.width
+        clickTarget.height = clickTarget.child!.height
+    }
+
     // public func createTable(rows: Int, columns: Int) -> Widget {
     //     let grid = Grid()
     //     grid.columnSpacing = 10
@@ -942,4 +995,9 @@ final class CustomComboBox: ComboBox {
 
 final class CustomSplitView: SplitView {
     var sidebarResizeHandler: (() -> Void)?
+}
+
+final class ClickTarget: WinUI.Canvas {
+    var clickHandler: (() -> Void)?
+    var child: WinUI.FrameworkElement?
 }

@@ -54,7 +54,9 @@ struct CornerRadiusModifier<Content: View>: View {
             backend: backend,
             dryRun: dryRun
         )
-        backend.setCornerRadius(of: widget, to: cornerRadius)
+        if !dryRun {
+            backend.setCornerRadius(of: widget, to: cornerRadius)
+        }
         return contentResult
     }
 }
