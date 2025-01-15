@@ -19,6 +19,8 @@ public final class UIKitBackend: AppBackend {
     public let defaultTableRowContentHeight = -1
     public let defaultTableCellVerticalPadding = -1
 
+    public init() {}
+
     var onTraitCollectionChange: (() -> Void)?
     public func runMainLoop(
         _ callback: @escaping () -> Void

@@ -45,6 +45,9 @@ public protocol AppBackend {
     associatedtype Menu
     associatedtype Alert
 
+    /// Creates an instance of the backend.
+    init()
+
     /// The default height of a table row excluding cell padding. This is a
     /// recommendation by the backend that SwiftCrossUI won't necessarily
     /// follow in all cases.

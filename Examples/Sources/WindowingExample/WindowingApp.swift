@@ -69,7 +69,6 @@ struct AlertDemo: View {
 struct WindowingApp: App {
     @State var title = "My window"
     @State var resizable = false
-    @State var errorMessage: String? = nil
 
     var body: some Scene {
         WindowGroup(title) {
