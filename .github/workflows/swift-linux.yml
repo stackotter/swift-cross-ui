@@ -2,8 +2,11 @@ name: Build Linux
 
 on:
   push:
+    branches-ignore:
+      - 'gh-pages'
   pull_request:
-    branches: [ main ]
+    branches-ignore:
+      - 'gh-pages'
 
 jobs:
   build-linux:
