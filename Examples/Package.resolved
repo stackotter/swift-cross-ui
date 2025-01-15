@@ -130,8 +130,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-image-formats",
       "state" : {
-        "revision" : "d178ee2b59710512cf08df4b0ad78127b0389fca",
-        "version" : "0.3.0"
+        "revision" : "05a0169a2a5e9365a058e9aa13da5937be6e2586",
+        "version" : "0.3.1"
       }
     },
     {
@@ -148,8 +148,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-libwebp",
       "state" : {
-        "revision" : "a2868991d916fb2c9ccd2714b77fb52aeea8d2ec",
-        "version" : "0.1.0"
+        "revision" : "61dc3787c764022ad2f5ab4f9994a569afe86f9f",
+        "version" : "0.2.0"
       }
     },
     {
