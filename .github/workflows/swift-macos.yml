@@ -30,6 +30,9 @@ jobs:
         swift build --target GreetingGeneratorExample && \
         swift build --target NavigationExample && \
         swift build --target SplitExample && \
+        swift build --target StressTestExample && \
+        swift build --target SpreadsheetExample && \
+        swift build --target NotesExample && \
         swift build --target GtkExample
     # Calling `swift test` results in all targets getting built including targets such as WinUIBackend which
     # aren't available on macOS.

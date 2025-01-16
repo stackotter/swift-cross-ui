@@ -41,8 +41,12 @@ jobs:
       with:
         path: vcpkg_installed
         key: vcpkg-${{ steps.triplet.outputs.lowercase }}-${{ hashFiles('vcpkg.json') }}
-    - name: Build
+    - name: Build SwiftCrossUI
       env:
         PKG_CONFIG_PATH: ${{ github.workspace }}/vcpkg_installed/${{ steps.triplet.outputs.lowercase }}/lib/pkgconfig
       # Only build the library target to work around apple/swift-package-manager#6644
       run: swift build --target SwiftCrossUI -v
+    - name: Build WinUIBackend
+      run: swift build --target WinUIBackend
+    - name: Build GtkBackend
+      run: swift build --target GtkBackend

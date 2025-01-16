@@ -31,6 +31,9 @@ jobs:
         swift build --target GreetingGeneratorExample && \
         swift build --target NavigationExample && \
         swift build --target SplitExample && \
+        swift build --target StressTestExample && \
+        swift build --target SpreadsheetExample && \
+        swift build --target NotesExample && \
         swift build --target GtkExample
     # - name: Test
     #   run: swift test
