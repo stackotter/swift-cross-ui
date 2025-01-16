@@ -14,6 +14,8 @@ jobs:
       run: |
         sudo apt update && \
         sudo apt install -y libgtk-4-dev clang
+    - name: Swift Version
+      run: swift --version
     - name: Compile Docs
       run: |
         set -eux
@@ -39,7 +41,8 @@ jobs:
           --output-path gh-pages/docs \
           --source-service github \
           --source-service-base-url https://github.com/stackotter/swift-cross-ui/blob/main \
-          --checkout-path $(pwd)
+          --checkout-path $(pwd) \
+          --verbose
 
         CURRENT_COMMIT_HASH=`git rev-parse --short HEAD`
 
