@@ -19,13 +19,15 @@ public final class UIKitBackend: AppBackend {
     public let defaultTableRowContentHeight = -1
     public let defaultTableCellVerticalPadding = -1
 
-    public init() {}
-
     var onTraitCollectionChange: (() -> Void)?
 
     private let appDelegateClass: ApplicationDelegate.Type
 
-    public init(appDelegateClass: ApplicationDelegate.Type = ApplicationDelegate.self) {
+    public init() {
+        self.appDelegateClass = ApplicationDelegate.self
+    }
+
+    public init(appDelegateClass: ApplicationDelegate.Type) {
         self.appDelegateClass = appDelegateClass
     }
 

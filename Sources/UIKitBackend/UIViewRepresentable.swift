@@ -28,21 +28,31 @@ where Content == Never {
     /// the view hierarchy (i.e. through bindings), and is often the view's delegate.
     func makeCoordinator() -> Coordinator
 
-    /// Compute the view's preferred size.
+    /// Compute the view's size.
     /// - Parameters:
     ///   - proposal: The proposed frame for the view to render in.
     ///   - uiVIew: The view being queried for its preferred size.
     ///   - context: The context, including the coordinator and environment values.
-    /// - Returns: The preferred size for the view, ideally one that fits within `proposal`,
-    /// or `nil` to use a default size for this view.
-    func sizeThatFits(
-        _ proposal: CGSize, uiView: UIViewType, context: UIViewRepresentableContext<Coordinator>
-    ) -> CGSize?
+    /// - Returns: Information about the view's size. The ``SwiftCrossUI/ViewSize/size``
+    /// property is what frame the view will actually be rendered with if the current layout
+    /// pass is not a dry run, while the other properties are used to inform the layout engine
+    /// how big or small the view can be. Pass `nil` for the maximum width/height if the view
+    /// has no maximum size (and therefore may occupy the entire screen).
+    ///
+    /// The default implementation uses `uiView.intrinsicContentSize` and `uiView.sizeThatFits(_:)`
+    /// to determine the return value.
+    func determineViewSize(
+        for proposal: SIMD2<Int>, uiView: UIViewType,
+        context: UIViewRepresentableContext<Coordinator>
+    ) -> ViewSize
 
     /// Called to clean up the view when it's removed.
     /// - Parameters:
-    ///   - uiVIew: The view being queried for its preferred size.
+    ///   - uiVIew: The view being dismantled.
     ///   - coordinator: The coordinator.
+    ///
+    /// This method is called after all UIKit lifecycle methods, such as
+    /// `uiView.didMoveToSuperview()`.
     ///
     /// The default implementation does nothing.
     static func dismantleUIView(_ uiView: UIViewType, coordinator: Coordinator)
@@ -53,17 +63,30 @@ extension UIViewRepresentable {
         // no-op
     }
 
-    public func sizeThatFits(
-        _ proposal: CGSize, uiView: UIViewType, context _: UIViewRepresentableContext<Coordinator>
-    ) -> CGSize? {
-        // For many growable views, such as WKWebView, sizeThatFits just returns the current
-        // size -- which is 0 x 0 on first render. So, check if the view can grow to fill
-        // the available space first.
-        let intrinsicContentSize = uiView.intrinsicContentSize
-        if intrinsicContentSize.width < 0.0 || intrinsicContentSize.height < 0.0 {
-            return nil
-        }
-        return uiView.sizeThatFits(proposal)
+    public func determineViewSize(
+        for proposal: SIMD2<Int>, uiView: UIViewType,
+        context _: UIViewRepresentableContext<Coordinator>
+    ) -> ViewSize {
+        let intrinsicSize = uiView.intrinsicContentSize
+        let sizeThatFits = uiView.sizeThatFits(
+            CGSize(width: CGFloat(proposal.x), height: CGFloat(proposal.y)))
+        let roundedSize = SIMD2(
+            Int(sizeThatFits.width.rounded(.up)),
+            Int(sizeThatFits.height.rounded(.up)))
+        return ViewSize(
+            size: SIMD2(
+                intrinsicSize.width < 0.0 ? proposal.x : min(proposal.x, roundedSize.x),
+                intrinsicSize.height < 0.0 ? proposal.y : min(proposal.y, roundedSize.y)
+            ),
+            idealSize: SIMD2(
+                intrinsicSize.width < 0.0 ? proposal.x : roundedSize.x,
+                intrinsicSize.height < 0.0 ? proposal.y : roundedSize.y
+            ),
+            minimumWidth: max(0, Int(intrinsicSize.width.rounded(.awayFromZero))),
+            minimumHeight: max(0, Int(intrinsicSize.height.rounded(.awayFromZero))),
+            maximumWidth: nil,
+            maximumHeight: nil
+        )
     }
 }
 
@@ -108,34 +131,14 @@ where Self: UIViewRepresentable {
         dryRun: Bool
     ) -> ViewUpdateResult {
         let representingWidget = widget as! RepresentingWidget<Self>
-        representingWidget.updateContext(environment: environment)
+        representingWidget.update(with: environment)
 
-        let preferredSize =
-            representingWidget.representable.sizeThatFits(
-                CGSize(width: proposedSize.x, height: proposedSize.y),
+        let size =
+            representingWidget.representable.determineViewSize(
+                for: proposedSize,
                 uiView: representingWidget.subview,
                 context: representingWidget.context!
-            ) ?? representingWidget.subview.intrinsicContentSize
-
-        let roundedSize = SIMD2(
-            Int(preferredSize.width.rounded(.awayFromZero)),
-            Int(preferredSize.height.rounded(.awayFromZero)))
-
-        // Not only does -1 x -1 mean "grow to fill", UIKit allows you to return -1 for only one axis!
-        let size = ViewSize(
-            size: SIMD2(
-                roundedSize.x < 0 ? proposedSize.x : min(proposedSize.x, roundedSize.x),
-                roundedSize.y < 0 ? proposedSize.y : min(proposedSize.y, roundedSize.y)
-            ),
-            idealSize: SIMD2(
-                roundedSize.x < 0 ? proposedSize.x : roundedSize.x,
-                roundedSize.y < 0 ? proposedSize.y : roundedSize.y
-            ),
-            minimumWidth: roundedSize.x > proposedSize.x ? roundedSize.x : 0,
-            minimumHeight: roundedSize.y > proposedSize.y ? roundedSize.y : 0,
-            maximumWidth: nil,
-            maximumHeight: nil
-        )
+            )
 
         if !dryRun {
             representingWidget.width = size.size.x
@@ -173,7 +176,7 @@ final class RepresentingWidget<Representable: UIViewRepresentable>: BaseWidget {
         return view
     }()
 
-    func updateContext(environment: EnvironmentValues) {
+    func update(with environment: EnvironmentValues) {
         if context == nil {
             context = .init(coordinator: representable.makeCoordinator(), environment: environment)
         } else {
