@@ -18,11 +18,11 @@ jobs:
       uses: ASzc/change-string-case-action@v5
       with:
         string: ${{ runner.arch }}-${{ runner.os }}
-    - name: Install Swift 5.8
+    - name: Install Swift 5.10
       uses: compnerd/gha-setup-swift@main
       with:
-        branch: swift-5.8-release
-        tag: 5.8-RELEASE
+        branch: swift-5.10-release
+        tag: 5.10-RELEASE
     - uses: actions/checkout@v3
     - name: Restore Dependency Cache
       id: cache
