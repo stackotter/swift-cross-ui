@@ -76,6 +76,7 @@
       },
       {
         "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WindowQa",
         "text" : "Window"
       },
       {
@@ -90,7 +91,7 @@
     ],
     "remoteSource" : {
       "fileName" : "AppBackend.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/AppBackend.swift#L97"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/AppBackend.swift#L143"
     },
     "required" : true,
     "role" : "symbol",
@@ -106,7 +107,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -142,7 +143,9 @@
               "text" : "."
             },
             {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/Window",
               "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WindowQa",
               "text" : "Window"
             },
             {
@@ -225,6 +228,32 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/Window": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "associatedtype"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Window"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/Window",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "Window",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/window"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/show(window:)": {
   "abstract" : [
     {
@@ -288,6 +317,7 @@
     },
     {
       "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WindowQa",
       "text" : "Window"
     },
     {

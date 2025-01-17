@@ -35,7 +35,7 @@
     ],
     "remoteSource" : {
       "fileName" : "ErasedViewGraphNode.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ErasedViewGraphNode.swift#L67"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ErasedViewGraphNode.swift#L93"
     },
     "required" : true,
     "role" : "symbol",
@@ -51,7 +51,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {

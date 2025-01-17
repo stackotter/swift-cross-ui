@@ -54,8 +54,8 @@
       }
     ],
     "remoteSource" : {
-      "fileName" : "TupleScene2.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/TupleScene2.swift#L14"
+      "fileName" : "TupleScene.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/TupleScene.swift#L32"
     },
     "role" : "symbol",
     "roleHeading" : "Type Alias",
@@ -70,7 +70,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -101,7 +101,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "text" : "S0"
+              "text" : "Scene0"
             },
             {
               "kind" : "text",
@@ -109,7 +109,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "text" : "S1"
+              "text" : "Scene1"
             },
             {
               "kind" : "text",

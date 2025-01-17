@@ -55,7 +55,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -567,7 +567,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : " modifier to constrain height if necessary.",
+      "text" : " moVStack to constrain height if necessary.",
       "type" : "text"
     }
   ],
@@ -711,7 +711,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn": {
   "abstract" : [
     {
-      "text" : "A column that displays a view for each row in a table.",
+      "text" : "A labelled column with a view for each row in a table.",
       "type" : "text"
     }
   ],

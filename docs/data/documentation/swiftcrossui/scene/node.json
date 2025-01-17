@@ -66,7 +66,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -120,7 +120,9 @@
               "text" : "."
             },
             {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene\/Node",
               "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI5SceneP4NodeQa",
               "text" : "Node"
             },
             {
@@ -128,7 +130,9 @@
               "text" : "."
             },
             {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SceneGraphNode\/NodeScene",
               "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI14SceneGraphNodeP0fD0Qa",
               "text" : "NodeScene"
             }
           ]
@@ -302,6 +306,44 @@
   "title" : "SceneGraphNode",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scenegraphnode"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/SceneGraphNode/NodeScene": {
+  "abstract" : [
+    {
+      "text" : "The type of scene managed by this node.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "associatedtype"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "NodeScene"
+    },
+    {
+      "kind" : "text",
+      "text" : " : "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI5SceneP",
+      "text" : "Scene"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SceneGraphNode\/NodeScene",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "NodeScene",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scenegraphnode\/nodescene"
 }
 }
 }

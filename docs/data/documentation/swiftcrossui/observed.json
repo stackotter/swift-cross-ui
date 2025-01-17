@@ -1,29 +1,13 @@
 {
-  "abstract" : [
+  "deprecationSummary" : [
     {
-      "text" : "A wrapper which publishes a change whenever the wrapped value is set. If the wrapped value is",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ", its ",
-      "type" : "text"
-    },
-    {
-      "code" : "didChange",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " publisher will also be forwarded to the wrapper’s publisher.",
-      "type" : "text"
+      "inlineContent" : [
+        {
+          "text" : "Replace Observed with Published",
+          "type" : "text"
+        }
+      ],
+      "type" : "paragraph"
     }
   ],
   "hierarchy" : {
@@ -39,11 +23,11 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI8ObservedC",
+    "externalID" : "s:12SwiftCrossUI8Observeda",
     "fragments" : [
       {
         "kind" : "keyword",
-        "text" : "class"
+        "text" : "typealias"
       },
       {
         "kind" : "text",
@@ -65,13 +49,16 @@
         "text" : "Observed"
       }
     ],
+    "platforms" : [
+
+    ],
     "remoteSource" : {
-      "fileName" : "Observed.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Observed.swift#L38"
+      "fileName" : "Published.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Published.swift#L125"
     },
     "role" : "symbol",
-    "roleHeading" : "Class",
-    "symbolKind" : "class",
+    "roleHeading" : "Type Alias",
+    "symbolKind" : "typealias",
     "title" : "Observed"
   },
   "primaryContentSections" : [
@@ -82,28 +69,12 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
-              "kind" : "attribute",
-              "text" : "@propertyWrapper"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
               "kind" : "keyword",
-              "text" : "final"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "keyword",
-              "text" : "class"
+              "text" : "typealias"
             },
             {
               "kind" : "text",
@@ -115,90 +86,18 @@
             },
             {
               "kind" : "text",
-              "text" : "<"
+              "text" : " = "
             },
             {
-              "kind" : "genericParameter",
-              "text" : "Value"
-            },
-            {
-              "kind" : "text",
-              "text" : ">"
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Published",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI9PublishedC",
+              "text" : "Published"
             }
           ]
         }
       ],
       "kind" : "declarations"
-    },
-    {
-      "content" : [
-        {
-          "anchor" : "overview",
-          "level" : 2,
-          "text" : "Overview",
-          "type" : "heading"
-        },
-        {
-          "inlineContent" : [
-            {
-              "text" : "A compile time warning is emitted if the wrapper is applied to a class which isn’t",
-              "type" : "text"
-            },
-            {
-              "text" : " ",
-              "type" : "text"
-            },
-            {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
-              "isActive" : true,
-              "type" : "reference"
-            },
-            {
-              "text" : " because this is considered undesired behaviour. Only replacing the value with a",
-              "type" : "text"
-            },
-            {
-              "text" : " ",
-              "type" : "text"
-            },
-            {
-              "text" : "new instance of the class would cause a change to be published; changing the class’ properties",
-              "type" : "text"
-            },
-            {
-              "text" : " ",
-              "type" : "text"
-            },
-            {
-              "text" : "would not. The warning will show up as a deprecation, but it isn’t (as you could guess from the",
-              "type" : "text"
-            },
-            {
-              "text" : " ",
-              "type" : "text"
-            },
-            {
-              "text" : "accompanying message).",
-              "type" : "text"
-            }
-          ],
-          "type" : "paragraph"
-        }
-      ],
-      "kind" : "content"
-    }
-  ],
-  "relationshipsSections" : [
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ObservedMarkerProtocol",
-        "doc:\/\/SwiftCrossUI\/Se",
-        "doc:\/\/SwiftCrossUI\/SE"
-      ],
-      "kind" : "relationships",
-      "title" : "Conforms To",
-      "type" : "conformsTo"
     }
   ],
   "schemaVersion" : {
@@ -208,55 +107,6 @@
   },
   "sections" : [
 
-  ],
-  "seeAlsoSections" : [
-    {
-      "generated" : true,
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppState",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Cancellable",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyAppState",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyState",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState"
-      ],
-      "title" : "States"
-    }
-  ],
-  "topicSections" : [
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/init(wrappedValue:)-4hr3j",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/init(wrappedValue:)-8e6q2",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/init(wrappedValue:)-8qd3l"
-      ],
-      "title" : "Initializers"
-    },
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/didChange",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/projectedValue",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/wrappedValue"
-      ],
-      "title" : "Instance Properties"
-    },
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/valueDidChange(publish:)"
-      ],
-      "title" : "Instance Methods"
-    },
-    {
-      "generated" : true,
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/Decodable-Implementations",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/Encodable-Implementations"
-      ],
-      "title" : "Default Implementations"
-    }
   ],
   "variants" : [
     {
@@ -272,16 +122,6 @@
   ]
 , 
 "references": {
-"doc://SwiftCrossUI/SE": {
-  "identifier" : "doc:\/\/SwiftCrossUI\/SE",
-  "title" : "Swift.Encodable",
-  "type" : "unresolvable"
-},
-"doc://SwiftCrossUI/Se": {
-  "identifier" : "doc:\/\/SwiftCrossUI\/Se",
-  "title" : "Swift.Decodable",
-  "type" : "unresolvable"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI": {
   "abstract" : [
     {
@@ -296,221 +136,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppState": {
-  "abstract" : [
-
-  ],
-  "deprecated" : true,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "AppState"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppState",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "AppState"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "AppState",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appstate"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Binding": {
-  "abstract" : [
-    {
-      "text" : "A value that can read and write a value owned by a source of truth. Can be thought of",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "as a writable reference to the value.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "class"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "Binding"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Binding",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "Binding"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "Binding",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/binding"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Cancellable": {
-  "abstract" : [
-    {
-      "text" : "Will run a ‘cancel’ action when the cancellable falls out of scope (gets",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "deinit’d by ARC). Protects against calling the action twice.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "class"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "Cancellable"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Cancellable",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "Cancellable"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "Cancellable",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/cancellable"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyAppState": {
-  "abstract" : [
-
-  ],
-  "deprecated" : true,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "EmptyAppState"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyAppState",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "EmptyAppState"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "EmptyAppState",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/emptyappstate"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyState": {
-  "abstract" : [
-    {
-      "text" : "The state to use for stateless apps and views.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "class"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "EmptyState"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyState",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "EmptyState"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "EmptyState",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/emptystate"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewState": {
-  "abstract" : [
-
-  ],
-  "deprecated" : true,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "EmptyViewState"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewState",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "EmptyViewState"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "EmptyViewState",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/emptyviewstate"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observable": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ObservableObject": {
   "abstract" : [
     {
       "text" : "An object that can be observed for changes.",
@@ -528,54 +154,31 @@
     },
     {
       "kind" : "identifier",
-      "text" : "Observable"
+      "text" : "ObservableObject"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ObservableObject",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "Observable"
+      "text" : "ObservableObject"
     }
   ],
   "role" : "symbol",
-  "title" : "Observable",
+  "title" : "ObservableObject",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/observable"
+  "url" : "\/documentation\/swiftcrossui\/observableobject"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed": {
   "abstract" : [
-    {
-      "text" : "A wrapper which publishes a change whenever the wrapped value is set. If the wrapped value is",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ", its ",
-      "type" : "text"
-    },
-    {
-      "code" : "didChange",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " publisher will also be forwarded to the wrapper’s publisher.",
-      "type" : "text"
-    }
+
   ],
+  "deprecated" : true,
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "class"
+      "text" : "typealias"
     },
     {
       "kind" : "text",
@@ -599,136 +202,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/observed"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/Decodable-Implementations": {
-  "abstract" : [
-
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/Decodable-Implementations",
-  "kind" : "article",
-  "role" : "collectionGroup",
-  "title" : "Decodable Implementations",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/observed\/decodable-implementations"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/Encodable-Implementations": {
-  "abstract" : [
-
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/Encodable-Implementations",
-  "kind" : "article",
-  "role" : "collectionGroup",
-  "title" : "Encodable Implementations",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/observed\/encodable-implementations"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/didChange": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Published": {
   "abstract" : [
     {
-      "text" : "A publisher that publishes any observable changes made to ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/wrappedValue",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "let"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "didChange"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9PublisherC",
-      "text" : "Publisher"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/didChange",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "didChange",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/observed\/didchange"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/init(wrappedValue:)-4hr3j": {
-  "abstract" : [
-    {
-      "text" : "Creates a publishing wrapper around a value type or ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " class.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "identifier",
-      "text" : "init"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "wrappedValue"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Value"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/init(wrappedValue:)-4hr3j",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "init(wrappedValue:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/observed\/init(wrappedvalue:)-4hr3j"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/init(wrappedValue:)-8e6q2": {
-  "abstract" : [
-    {
-      "text" : "Creates a wrapper around a non-Observable class. Setting ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/wrappedValue",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " to a new",
+      "text" : "A wrapper which publishes a change whenever the wrapped value is set. If",
       "type" : "text"
     },
     {
@@ -736,178 +213,24 @@
       "type" : "text"
     },
     {
-      "text" : "instance of the class is the only change that will get published. This is hardly ever",
+      "text" : "the wrapped value is ",
       "type" : "text"
     },
     {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "intentional, so this initializer variant contains a deprecation warning to warn developers",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "(but does nothing functionally different).",
-      "type" : "text"
-    }
-  ],
-  "deprecated" : true,
-  "fragments" : [
-    {
-      "kind" : "identifier",
-      "text" : "init"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "wrappedValue"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Value"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/init(wrappedValue:)-8e6q2",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "init(wrappedValue:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/observed\/init(wrappedvalue:)-8e6q2"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/init(wrappedValue:)-8qd3l": {
-  "abstract" : [
-    {
-      "text" : "Creates a publishing wrapper around a value type or ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ObservableObject",
       "isActive" : true,
       "type" : "reference"
     },
     {
-      "text" : " class.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "identifier",
-      "text" : "init"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "wrappedValue"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Value"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/init(wrappedValue:)-8qd3l",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "init(wrappedValue:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/observed\/init(wrappedvalue:)-8qd3l"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/projectedValue": {
-  "abstract" : [
-    {
-      "text" : "A binding to the inner value.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "projectedValue"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI7BindingC",
-      "text" : "Binding"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Value"
-    },
-    {
-      "kind" : "text",
-      "text" : ">"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/projectedValue",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "projectedValue",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/observed\/projectedvalue"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/valueDidChange(publish:)": {
-  "abstract" : [
-    {
-      "text" : "Handles changing a value. If ",
+      "text" : ", its ",
       "type" : "text"
     },
     {
-      "code" : "publish",
+      "code" : "didChange",
       "type" : "codeVoice"
     },
     {
-      "text" : " is ",
-      "type" : "text"
-    },
-    {
-      "code" : "false",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " the change won’t be published, but if the",
+      "text" : " publisher will",
       "type" : "text"
     },
     {
@@ -915,199 +238,7 @@
       "type" : "text"
     },
     {
-      "text" : "wrapped value is ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " the new upstream publisher will still get relinked.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "valueDidChange"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "publish"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sb",
-      "text" : "Bool"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/valueDidChange(publish:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "valueDidChange(publish:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/observed\/valuedidchange(publish:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observed/wrappedValue": {
-  "abstract" : [
-    {
-      "text" : "The underlying wrapped value.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "wrappedValue"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Value"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed\/wrappedValue",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "wrappedValue",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/observed\/wrappedvalue"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ObservedMarkerProtocol": {
-  "abstract" : [
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " values nested within an ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " object will only have their changes published by",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "the parent ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " if marked with this marker protocol. This avoids uncertainty around which",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "properties will or will not have their changes published by the parent. For clarity reasons, you",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "shouldn’t conform your own types to this protocol. Instead, apply the ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observed",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " property",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "wrapper when needed.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "protocol"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ObservedMarkerProtocol"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ObservedMarkerProtocol",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ObservedMarkerProtocol"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ObservedMarkerProtocol",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/observedmarkerprotocol"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Publisher": {
-  "abstract" : [
-    {
-      "text" : "A type that produces valueless observations.",
+      "text" : "also be forwarded to the wrapper’s publisher.",
       "type" : "text"
     }
   ],
@@ -1122,53 +253,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "Publisher"
+      "text" : "Published"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Publisher",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Published",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "Publisher"
+      "text" : "Published"
     }
   ],
   "role" : "symbol",
-  "title" : "Publisher",
+  "title" : "Published",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/publisher"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewState": {
-  "abstract" : [
-
-  ],
-  "deprecated" : true,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewState"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewState",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewState"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewState",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewstate"
+  "url" : "\/documentation\/swiftcrossui\/published"
 }
 }
 }

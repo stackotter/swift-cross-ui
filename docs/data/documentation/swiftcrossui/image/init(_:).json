@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Creates an image displaying an image file.",
+      "text" : "Displays an image from raw pixel data.",
       "type" : "text"
     }
   ],
@@ -19,7 +19,7 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI5ImageVyACSScfc",
+    "externalID" : "s:12SwiftCrossUI5ImageVyAC0D7FormatsABVyAD4RGBAVGcfc",
     "fragments" : [
       {
         "kind" : "identifier",
@@ -31,12 +31,21 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:SS",
-        "text" : "String"
+        "preciseIdentifier" : "s:12ImageFormats0A0V",
+        "text" : "Image"
       },
       {
         "kind" : "text",
-        "text" : ")"
+        "text" : "<"
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:12ImageFormats4RGBAV",
+        "text" : "RGBA"
+      },
+      {
+        "kind" : "text",
+        "text" : ">)"
       }
     ],
     "modules" : [
@@ -46,7 +55,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Image.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Image.swift#L7"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Image.swift#L27"
     },
     "role" : "symbol",
     "roleHeading" : "Initializer",
@@ -61,7 +70,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -82,7 +91,7 @@
             },
             {
               "kind" : "internalParam",
-              "text" : "path"
+              "text" : "image"
             },
             {
               "kind" : "text",
@@ -90,17 +99,45 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:SS",
-              "text" : "String"
+              "preciseIdentifier" : "s:12ImageFormats0A0V",
+              "text" : "Image"
             },
             {
               "kind" : "text",
-              "text" : ")"
+              "text" : "<"
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12ImageFormats4RGBAV",
+              "text" : "RGBA"
+            },
+            {
+              "kind" : "text",
+              "text" : ">)"
             }
           ]
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "kind" : "parameters",
+      "parameters" : [
+        {
+          "content" : [
+            {
+              "inlineContent" : [
+                {
+                  "text" : "The image data to display.",
+                  "type" : "text"
+                }
+              ],
+              "type" : "paragraph"
+            }
+          ],
+          "name" : "image"
+        }
+      ]
     }
   ],
   "schemaVersion" : {
@@ -176,7 +213,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Image/init(_:)": {
   "abstract" : [
     {
-      "text" : "Creates an image displaying an image file.",
+      "text" : "Displays an image from raw pixel data.",
       "type" : "text"
     }
   ],
@@ -191,12 +228,21 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
+      "preciseIdentifier" : "s:12ImageFormats0A0V",
+      "text" : "Image"
     },
     {
       "kind" : "text",
-      "text" : ")"
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12ImageFormats4RGBAV",
+      "text" : "RGBA"
+    },
+    {
+      "kind" : "text",
+      "text" : ">)"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/init(_:)",

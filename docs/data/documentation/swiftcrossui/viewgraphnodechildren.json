@@ -30,7 +30,7 @@
       "type" : "text"
     },
     {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView1",
       "isActive" : true,
       "type" : "reference"
     },
@@ -43,7 +43,7 @@
       "type" : "text"
     },
     {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView2",
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView2",
       "isActive" : true,
       "type" : "reference"
     },
@@ -93,7 +93,7 @@
     ],
     "remoteSource" : {
       "fileName" : "ViewGraphNodeChildren.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewGraphNodeChildren.swift#L6"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewGraphNodeChildren.swift#L5"
     },
     "role" : "symbol",
     "roleHeading" : "Protocol",
@@ -108,7 +108,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -132,17 +132,17 @@
   "relationshipsSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren1",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren2",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren3",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren4",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren5",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren6",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren7",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren8",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren9"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewChildren",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren1",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren10",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren2",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren3",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren4",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren5",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren6",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren7",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren8",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren9"
       ],
       "kind" : "relationships",
       "title" : "Conforming Types",
@@ -164,9 +164,8 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyViewGraphNode",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewChildren",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableBuilder",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraph",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode"
       ],
@@ -183,7 +182,6 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren\/asSingleWidget(backend:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren\/widgets(for:)"
       ],
       "title" : "Instance Methods"
@@ -392,7 +390,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/emptyview"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewGraphNodeChildren": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewChildren": {
   "abstract" : [
     {
       "text" : "The children of a node with no children.",
@@ -410,21 +408,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "EmptyViewGraphNodeChildren"
+      "text" : "EmptyViewChildren"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewGraphNodeChildren",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewChildren",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "EmptyViewGraphNodeChildren"
+      "text" : "EmptyViewChildren"
     }
   ],
   "role" : "symbol",
-  "title" : "EmptyViewGraphNodeChildren",
+  "title" : "EmptyViewChildren",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/emptyviewgraphnodechildren"
+  "url" : "\/documentation\/swiftcrossui\/emptyviewchildren"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach": {
   "abstract" : [
@@ -503,41 +501,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/optionalview"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/TableBuilder": {
-  "abstract" : [
-    {
-      "text" : "A result builder for constructing a table’s columns.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "TableBuilder"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableBuilder",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "TableBuilder"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "TableBuilder",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/tablebuilder"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView1": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView1": {
   "abstract" : [
     {
       "text" : "A view with exactly 1 children. Autogenerated as an alternative to Swift’s not yet",
@@ -563,23 +527,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "VariadicView1"
+      "text" : "TupleView1"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView1",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "VariadicView1"
+      "text" : "TupleView1"
     }
   ],
   "role" : "symbol",
-  "title" : "VariadicView1",
+  "title" : "TupleView1",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/variadicview1"
+  "url" : "\/documentation\/swiftcrossui\/tupleview1"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView10": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView10": {
   "abstract" : [
     {
       "text" : "A view with exactly 10 children. Autogenerated as an alternative to Swift’s not yet",
@@ -605,23 +569,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "VariadicView10"
+      "text" : "TupleView10"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView10",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView10",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "VariadicView10"
+      "text" : "TupleView10"
     }
   ],
   "role" : "symbol",
-  "title" : "VariadicView10",
+  "title" : "TupleView10",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/variadicview10"
+  "url" : "\/documentation\/swiftcrossui\/tupleview10"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView2": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView2": {
   "abstract" : [
     {
       "text" : "A view with exactly 2 children. Autogenerated as an alternative to Swift’s not yet",
@@ -647,23 +611,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "VariadicView2"
+      "text" : "TupleView2"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView2",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView2",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "VariadicView2"
+      "text" : "TupleView2"
     }
   ],
   "role" : "symbol",
-  "title" : "VariadicView2",
+  "title" : "TupleView2",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/variadicview2"
+  "url" : "\/documentation\/swiftcrossui\/tupleview2"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView3": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView3": {
   "abstract" : [
     {
       "text" : "A view with exactly 3 children. Autogenerated as an alternative to Swift’s not yet",
@@ -689,23 +653,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "VariadicView3"
+      "text" : "TupleView3"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView3",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView3",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "VariadicView3"
+      "text" : "TupleView3"
     }
   ],
   "role" : "symbol",
-  "title" : "VariadicView3",
+  "title" : "TupleView3",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/variadicview3"
+  "url" : "\/documentation\/swiftcrossui\/tupleview3"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView4": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView4": {
   "abstract" : [
     {
       "text" : "A view with exactly 4 children. Autogenerated as an alternative to Swift’s not yet",
@@ -731,23 +695,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "VariadicView4"
+      "text" : "TupleView4"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView4",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView4",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "VariadicView4"
+      "text" : "TupleView4"
     }
   ],
   "role" : "symbol",
-  "title" : "VariadicView4",
+  "title" : "TupleView4",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/variadicview4"
+  "url" : "\/documentation\/swiftcrossui\/tupleview4"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView5": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView5": {
   "abstract" : [
     {
       "text" : "A view with exactly 5 children. Autogenerated as an alternative to Swift’s not yet",
@@ -773,23 +737,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "VariadicView5"
+      "text" : "TupleView5"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView5",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView5",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "VariadicView5"
+      "text" : "TupleView5"
     }
   ],
   "role" : "symbol",
-  "title" : "VariadicView5",
+  "title" : "TupleView5",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/variadicview5"
+  "url" : "\/documentation\/swiftcrossui\/tupleview5"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView6": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView6": {
   "abstract" : [
     {
       "text" : "A view with exactly 6 children. Autogenerated as an alternative to Swift’s not yet",
@@ -815,23 +779,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "VariadicView6"
+      "text" : "TupleView6"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView6",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView6",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "VariadicView6"
+      "text" : "TupleView6"
     }
   ],
   "role" : "symbol",
-  "title" : "VariadicView6",
+  "title" : "TupleView6",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/variadicview6"
+  "url" : "\/documentation\/swiftcrossui\/tupleview6"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView7": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView7": {
   "abstract" : [
     {
       "text" : "A view with exactly 7 children. Autogenerated as an alternative to Swift’s not yet",
@@ -857,23 +821,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "VariadicView7"
+      "text" : "TupleView7"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView7",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView7",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "VariadicView7"
+      "text" : "TupleView7"
     }
   ],
   "role" : "symbol",
-  "title" : "VariadicView7",
+  "title" : "TupleView7",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/variadicview7"
+  "url" : "\/documentation\/swiftcrossui\/tupleview7"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView8": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView8": {
   "abstract" : [
     {
       "text" : "A view with exactly 8 children. Autogenerated as an alternative to Swift’s not yet",
@@ -899,23 +863,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "VariadicView8"
+      "text" : "TupleView8"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView8",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView8",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "VariadicView8"
+      "text" : "TupleView8"
     }
   ],
   "role" : "symbol",
-  "title" : "VariadicView8",
+  "title" : "TupleView8",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/variadicview8"
+  "url" : "\/documentation\/swiftcrossui\/tupleview8"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView9": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView9": {
   "abstract" : [
     {
       "text" : "A view with exactly 9 children. Autogenerated as an alternative to Swift’s not yet",
@@ -941,21 +905,491 @@
     },
     {
       "kind" : "identifier",
-      "text" : "VariadicView9"
+      "text" : "TupleView9"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView9",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView9",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "VariadicView9"
+      "text" : "TupleView9"
     }
   ],
   "role" : "symbol",
-  "title" : "VariadicView9",
+  "title" : "TupleView9",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/variadicview9"
+  "url" : "\/documentation\/swiftcrossui\/tupleview9"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleViewChildren1": {
+  "abstract" : [
+    {
+      "text" : "A fixed-length strongly-typed collection of 1 child nodes. A counterpart to",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView1",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren1"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren1",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren1"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleViewChildren1",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupleviewchildren1"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleViewChildren10": {
+  "abstract" : [
+    {
+      "text" : "A fixed-length strongly-typed collection of 10 child nodes. A counterpart to",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView10",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren10"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren10",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren10"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleViewChildren10",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupleviewchildren10"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleViewChildren2": {
+  "abstract" : [
+    {
+      "text" : "A fixed-length strongly-typed collection of 2 child nodes. A counterpart to",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView2",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren2"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren2",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren2"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleViewChildren2",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupleviewchildren2"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleViewChildren3": {
+  "abstract" : [
+    {
+      "text" : "A fixed-length strongly-typed collection of 3 child nodes. A counterpart to",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView3",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren3"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren3",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren3"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleViewChildren3",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupleviewchildren3"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleViewChildren4": {
+  "abstract" : [
+    {
+      "text" : "A fixed-length strongly-typed collection of 4 child nodes. A counterpart to",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView4",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren4"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren4",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren4"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleViewChildren4",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupleviewchildren4"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleViewChildren5": {
+  "abstract" : [
+    {
+      "text" : "A fixed-length strongly-typed collection of 5 child nodes. A counterpart to",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView5",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren5"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren5",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren5"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleViewChildren5",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupleviewchildren5"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleViewChildren6": {
+  "abstract" : [
+    {
+      "text" : "A fixed-length strongly-typed collection of 6 child nodes. A counterpart to",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView6",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren6"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren6",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren6"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleViewChildren6",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupleviewchildren6"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleViewChildren7": {
+  "abstract" : [
+    {
+      "text" : "A fixed-length strongly-typed collection of 7 child nodes. A counterpart to",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView7",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren7"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren7",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren7"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleViewChildren7",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupleviewchildren7"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleViewChildren8": {
+  "abstract" : [
+    {
+      "text" : "A fixed-length strongly-typed collection of 8 child nodes. A counterpart to",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView8",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren8"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren8",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren8"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleViewChildren8",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupleviewchildren8"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleViewChildren9": {
+  "abstract" : [
+    {
+      "text" : "A fixed-length strongly-typed collection of 9 child nodes. A counterpart to",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView9",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren9"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren9",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleViewChildren9"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleViewChildren9",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupleviewchildren9"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
@@ -1141,7 +1575,7 @@
       "type" : "text"
     },
     {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView1",
       "isActive" : true,
       "type" : "reference"
     },
@@ -1154,7 +1588,7 @@
       "type" : "text"
     },
     {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView2",
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView2",
       "isActive" : true,
       "type" : "reference"
     },
@@ -1189,82 +1623,6 @@
   "title" : "ViewGraphNodeChildren",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren/asSingleWidget(backend:)": {
-  "abstract" : [
-    {
-      "text" : "Bundles the node’s children into a single layout-transparent container (will take",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "on the orientation of its parent).",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "asSingleWidget"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "genericParameter",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ">("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren\/asSingleWidget(backend:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "asSingleWidget(backend:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren\/assinglewidget(backend:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren/erasedNodes": {
   "abstract" : [
@@ -1311,7 +1669,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren/widgets": {
   "abstract" : [
     {
-      "text" : "The widget’s of the children. Type-erased to avoid the type of the currently",
+      "text" : "The widget of the children. Type-erased to avoid the type of the currently",
       "type" : "text"
     },
     {
@@ -1441,6 +1799,7 @@
     },
     {
       "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WidgetQa",
       "text" : "Widget"
     },
     {
@@ -1454,476 +1813,6 @@
   "title" : "widgets(for:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren\/widgets(for:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren1": {
-  "abstract" : [
-    {
-      "text" : "A fixed-length strongly-typed collection of 1 child nodes. A counterpart to",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren1"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren1",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren1"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewGraphNodeChildren1",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren1"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren10": {
-  "abstract" : [
-    {
-      "text" : "A fixed-length strongly-typed collection of 10 child nodes. A counterpart to",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView10",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren10"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren10",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren10"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewGraphNodeChildren10",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren10"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren2": {
-  "abstract" : [
-    {
-      "text" : "A fixed-length strongly-typed collection of 2 child nodes. A counterpart to",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView2",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren2"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren2",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren2"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewGraphNodeChildren2",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren2"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren3": {
-  "abstract" : [
-    {
-      "text" : "A fixed-length strongly-typed collection of 3 child nodes. A counterpart to",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView3",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren3"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren3",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren3"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewGraphNodeChildren3",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren3"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren4": {
-  "abstract" : [
-    {
-      "text" : "A fixed-length strongly-typed collection of 4 child nodes. A counterpart to",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView4",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren4"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren4",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren4"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewGraphNodeChildren4",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren4"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren5": {
-  "abstract" : [
-    {
-      "text" : "A fixed-length strongly-typed collection of 5 child nodes. A counterpart to",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView5",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren5"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren5",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren5"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewGraphNodeChildren5",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren5"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren6": {
-  "abstract" : [
-    {
-      "text" : "A fixed-length strongly-typed collection of 6 child nodes. A counterpart to",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView6",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren6"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren6",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren6"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewGraphNodeChildren6",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren6"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren7": {
-  "abstract" : [
-    {
-      "text" : "A fixed-length strongly-typed collection of 7 child nodes. A counterpart to",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView7",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren7"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren7",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren7"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewGraphNodeChildren7",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren7"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren8": {
-  "abstract" : [
-    {
-      "text" : "A fixed-length strongly-typed collection of 8 child nodes. A counterpart to",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView8",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren8"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren8",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren8"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewGraphNodeChildren8",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren8"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren9": {
-  "abstract" : [
-    {
-      "text" : "A fixed-length strongly-typed collection of 9 child nodes. A counterpart to",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView9",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren9"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren9",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewGraphNodeChildren9"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewGraphNodeChildren9",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren9"
 }
 }
 }

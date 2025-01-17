@@ -80,7 +80,7 @@
     ],
     "remoteSource" : {
       "fileName" : "ViewBuilder.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Builders\/ViewBuilder.swift#L69"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Builders\/ViewBuilder.swift#L91"
     },
     "role" : "symbol",
     "roleHeading" : "Type Method",
@@ -95,7 +95,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {

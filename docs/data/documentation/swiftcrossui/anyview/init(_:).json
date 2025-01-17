@@ -21,7 +21,7 @@
       },
       {
         "kind" : "text",
-        "text" : "("
+        "text" : "(any "
       },
       {
         "kind" : "typeIdentifier",
@@ -55,7 +55,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -80,7 +80,7 @@
             },
             {
               "kind" : "text",
-              "text" : ": "
+              "text" : ": any "
             },
             {
               "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
@@ -216,7 +216,7 @@
     },
     {
       "kind" : "text",
-      "text" : "("
+      "text" : "(any "
     },
     {
       "kind" : "typeIdentifier",

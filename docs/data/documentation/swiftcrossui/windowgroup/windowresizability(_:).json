@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Sets the resizability of a window. By default windows are resizable.",
+      "text" : "Sets the resizability of a window.",
       "type" : "text"
     }
   ],
@@ -71,7 +71,7 @@
     ],
     "remoteSource" : {
       "fileName" : "WindowGroup.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/WindowGroup.swift#L43"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/WindowGroup.swift#L52"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",
@@ -86,7 +86,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -244,7 +244,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowGroup/windowResizability(_:)": {
   "abstract" : [
     {
-      "text" : "Sets the resizability of a window. By default windows are resizable.",
+      "text" : "Sets the resizability of a window.",
       "type" : "text"
     }
   ],

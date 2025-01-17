@@ -72,7 +72,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Toggle.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Toggle.swift#L10"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Toggle.swift#L12"
     },
     "role" : "symbol",
     "roleHeading" : "Initializer",
@@ -87,7 +87,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {

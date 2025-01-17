@@ -29,7 +29,7 @@
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "Swift",
-    "externalID" : "s:e:s:s5NeverO12SwiftCrossUIE12NodeChildrena",
+    "externalID" : "s:e:s:s5NeverO12SwiftCrossUIE4bodyABvp",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -72,7 +72,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -118,12 +118,6 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/init()"
       ],
       "title" : "Initializers"
-    },
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/NodeChildren"
-      ],
-      "title" : "Type Aliases"
     },
     {
       "generated" : true,
@@ -266,37 +260,6 @@
   "title" : "Never",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/swift\/never"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Swift/Never/NodeChildren": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "NodeChildren"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/NodeChildren",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "NodeChildren"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "Never.NodeChildren",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/swift\/never\/nodechildren"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Swift/Never/View-Implementations": {
   "abstract" : [

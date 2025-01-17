@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Runs the backend’s main run loop. The app will exit when this method",
+      "text" : "Often in UI frameworks (such as Gtk), code is run in a callback",
       "type" : "text"
     },
     {
@@ -9,7 +9,23 @@
       "type" : "text"
     },
     {
-      "text" : "returns. This wall always be the first method called by SwiftCrossUI.",
+      "text" : "after starting the app, and hence this generic root window creation",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "API must reflect that. This is always the first method to be called",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "and is where boilerplate app setup should happen.",
       "type" : "text"
     }
   ],
@@ -62,7 +78,7 @@
     ],
     "remoteSource" : {
       "fileName" : "AppBackend.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/AppBackend.swift#L74"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/AppBackend.swift#L102"
     },
     "required" : true,
     "role" : "symbol",
@@ -78,7 +94,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -142,6 +158,23 @@
           "level" : 2,
           "text" : "Discussion",
           "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Runs the backend’s main run loop. The app will exit when this method",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "returns. This wall always be the first method called by SwiftCrossUI.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
         },
         {
           "inlineContent" : [
@@ -354,7 +387,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/runMainLoop(_:)": {
   "abstract" : [
     {
-      "text" : "Runs the backend’s main run loop. The app will exit when this method",
+      "text" : "Often in UI frameworks (such as Gtk), code is run in a callback",
       "type" : "text"
     },
     {
@@ -362,7 +395,23 @@
       "type" : "text"
     },
     {
-      "text" : "returns. This wall always be the first method called by SwiftCrossUI.",
+      "text" : "after starting the app, and hence this generic root window creation",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "API must reflect that. This is always the first method to be called",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "and is where boilerplate app setup should happen.",
       "type" : "text"
     }
   ],

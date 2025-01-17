@@ -64,7 +64,7 @@
     ],
     "remoteSource" : {
       "fileName" : "EmptyView.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/EmptyView.swift#L30"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/EmptyView.swift#L62"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Property",
@@ -79,7 +79,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {

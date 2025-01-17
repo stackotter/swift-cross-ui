@@ -84,7 +84,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -238,7 +238,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : " modifier to constrain height if necessary.",
+      "text" : " moVStack to constrain height if necessary.",
       "type" : "text"
     }
   ],

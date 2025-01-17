@@ -51,7 +51,7 @@
       },
       {
         "kind" : "text",
-        "text" : ">("
+        "text" : ">(any "
       },
       {
         "kind" : "typeIdentifier",
@@ -88,6 +88,7 @@
       },
       {
         "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WidgetQa",
         "text" : "Widget"
       }
     ],
@@ -114,7 +115,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -155,7 +156,7 @@
             },
             {
               "kind" : "text",
-              "text" : ": "
+              "text" : ": any "
             },
             {
               "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren",
@@ -192,7 +193,9 @@
               "text" : "."
             },
             {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/Widget",
               "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WidgetQa",
               "text" : "Widget"
             },
             {
@@ -253,7 +256,20 @@
               "type" : "text"
             },
             {
-              "text" : "For example, a view displaying one of two children should use",
+              "text" : "For example, a view displaying one of two children should use ",
+              "type" : "text"
+            },
+            {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createContainer()",
+              "isActive" : true,
+              "type" : "reference"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "to create a container for the displayed child instead of just directly returning the widget",
               "type" : "text"
             },
             {
@@ -261,11 +277,7 @@
               "type" : "text"
             },
             {
-              "code" : "AppBackend\/createEitherContainer(initiallyContaining:)",
-              "type" : "codeVoice"
-            },
-            {
-              "text" : " as a container for the currently",
+              "text" : "of the currently displayed child (which would result in you not being able to ever switch",
               "type" : "text"
             },
             {
@@ -273,7 +285,7 @@
               "type" : "text"
             },
             {
-              "text" : "displayed child instead of just returning the widget of the currently displayed child,",
+              "text" : "to displaying the other child). This constraint significantly simplifies view implementations",
               "type" : "text"
             },
             {
@@ -281,7 +293,7 @@
               "type" : "text"
             },
             {
-              "text" : "which would result in you not being able to ever switch to displaying the other child.",
+              "text" : "without requiring widgets to be re-created after every single update.",
               "type" : "text"
             }
           ],
@@ -361,6 +373,86 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/Widget": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "associatedtype"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Widget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/Widget",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "Widget",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/widget"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createContainer()": {
+  "abstract" : [
+    {
+      "text" : "Creates a container in which children can be layed out by SwiftCrossUI using exact",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "pixel positions.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "createContainer"
+    },
+    {
+      "kind" : "text",
+      "text" : "() -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WidgetQa",
+      "text" : "Widget"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createContainer()",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "createContainer()",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createcontainer()"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach": {
   "abstract" : [
     {
@@ -395,7 +487,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/foreach"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView1": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView1": {
   "abstract" : [
     {
       "text" : "A view with exactly 1 children. Autogenerated as an alternative to Swift’s not yet",
@@ -421,23 +513,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "VariadicView1"
+      "text" : "TupleView1"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView1",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "VariadicView1"
+      "text" : "TupleView1"
     }
   ],
   "role" : "symbol",
-  "title" : "VariadicView1",
+  "title" : "TupleView1",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/variadicview1"
+  "url" : "\/documentation\/swiftcrossui\/tupleview1"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/VariadicView2": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView2": {
   "abstract" : [
     {
       "text" : "A view with exactly 2 children. Autogenerated as an alternative to Swift’s not yet",
@@ -463,21 +555,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "VariadicView2"
+      "text" : "TupleView2"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView2",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView2",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "VariadicView2"
+      "text" : "TupleView2"
     }
   ],
   "role" : "symbol",
-  "title" : "VariadicView2",
+  "title" : "TupleView2",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/variadicview2"
+  "url" : "\/documentation\/swiftcrossui\/tupleview2"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
@@ -540,7 +632,7 @@
     },
     {
       "kind" : "text",
-      "text" : ">("
+      "text" : ">(any "
     },
     {
       "kind" : "typeIdentifier",
@@ -577,6 +669,7 @@
     },
     {
       "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WidgetQa",
       "text" : "Widget"
     }
   ],
@@ -618,7 +711,7 @@
     },
     {
       "kind" : "text",
-      "text" : ">("
+      "text" : ">(any "
     },
     {
       "kind" : "typeIdentifier",
@@ -655,6 +748,7 @@
     },
     {
       "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WidgetQa",
       "text" : "Widget"
     }
   ],
@@ -698,7 +792,7 @@
       "type" : "text"
     },
     {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView1",
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView1",
       "isActive" : true,
       "type" : "reference"
     },
@@ -711,7 +805,7 @@
       "type" : "text"
     },
     {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VariadicView2",
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView2",
       "isActive" : true,
       "type" : "reference"
     },

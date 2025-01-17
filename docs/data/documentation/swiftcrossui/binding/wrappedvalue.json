@@ -43,7 +43,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Binding.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Binding.swift#L5"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Binding.swift#L6"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Property",
@@ -58,7 +58,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {

@@ -47,6 +47,7 @@
       },
       {
         "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:12SwiftCrossUI4ViewP7ContentQa",
         "text" : "Content"
       }
     ],
@@ -57,7 +58,7 @@
     ],
     "remoteSource" : {
       "fileName" : "View.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/View.swift#L13"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/View.swift#L7"
     },
     "required" : true,
     "role" : "symbol",
@@ -73,7 +74,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -115,7 +116,9 @@
               "text" : "."
             },
             {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/Content",
               "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI4ViewP7ContentQa",
               "text" : "Content"
             },
             {
@@ -206,6 +209,44 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/Content": {
+  "abstract" : [
+    {
+      "text" : "The view’s content (composed of other views).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "associatedtype"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Content"
+    },
+    {
+      "kind" : "text",
+      "text" : " : "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/Content",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "Content",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view\/content"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/body": {
   "abstract" : [
     {
@@ -240,6 +281,7 @@
     },
     {
       "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP7ContentQa",
       "text" : "Content"
     }
   ],

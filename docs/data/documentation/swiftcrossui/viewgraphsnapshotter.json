@@ -55,7 +55,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -119,12 +119,6 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphSnapshotter\/snapshot(of:)"
       ],
       "title" : "Type Methods"
-    },
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphSnapshotter\/StateSnapshot"
-      ],
-      "title" : "Enumerations"
     }
   ],
   "variants" : [
@@ -247,37 +241,6 @@
   "title" : "ViewGraphSnapshotter.NodeSnapshot",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/nodesnapshot"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphSnapshotter/StateSnapshot": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "enum"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "StateSnapshot"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphSnapshotter\/StateSnapshot",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "StateSnapshot"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewGraphSnapshotter.StateSnapshot",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter\/statesnapshot"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphSnapshotter/init()": {
   "abstract" : [

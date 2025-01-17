@@ -26,7 +26,7 @@
       "type" : "text"
     },
     {
-      "text" : "compatible with dispatching UI updates.",
+      "text" : "compatible with dispatching UI updates. Can be synchronous or asynchronous (for now).",
       "type" : "text"
     }
   ],
@@ -87,7 +87,7 @@
     ],
     "remoteSource" : {
       "fileName" : "AppBackend.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/AppBackend.swift#L102"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/AppBackend.swift#L157"
     },
     "required" : true,
     "role" : "symbol",
@@ -103,7 +103,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -251,7 +251,7 @@
       "type" : "text"
     },
     {
-      "text" : "compatible with dispatching UI updates.",
+      "text" : "compatible with dispatching UI updates. Can be synchronous or asynchronous (for now).",
       "type" : "text"
     }
   ],

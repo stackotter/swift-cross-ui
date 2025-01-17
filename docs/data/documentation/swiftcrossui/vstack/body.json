@@ -57,7 +57,7 @@
     ],
     "remoteSource" : {
       "fileName" : "VStack.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/VStack.swift#L3"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/VStack.swift#L5"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Property",
@@ -72,7 +72,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {

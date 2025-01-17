@@ -90,6 +90,7 @@
       },
       {
         "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:s10SetAlgebraP7ElementQa",
         "text" : "Element"
       },
       {
@@ -118,7 +119,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -147,6 +148,7 @@
             },
             {
               "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:s10SetAlgebraP7ElementQa",
               "text" : "Element"
             },
             {
@@ -337,6 +339,7 @@
     },
     {
       "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s10SetAlgebraP7ElementQa",
       "text" : "Element"
     },
     {

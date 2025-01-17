@@ -1,7 +1,48 @@
 {
   "abstract" : [
     {
-      "text" : "Adds a specific padding amount to each edge of this view.",
+      "text" : "Adds padding to a view. If ",
+      "type" : "text"
+    },
+    {
+      "code" : "amount",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " is ",
+      "type" : "text"
+    },
+    {
+      "code" : "nil",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ", then a backend-specific default value",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "is used. Separate from ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:_:)",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " because overload resolution didn’t",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "like the double default parameters.",
       "type" : "text"
     }
   ],
@@ -21,7 +62,7 @@
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI4ViewPAAE7paddingyQrSiF::SYNTHESIZED::s:12SwiftCrossUI10EitherViewV",
+    "externalID" : "s:12SwiftCrossUI4ViewPAAE7paddingyQrSiSgF::SYNTHESIZED::s:12SwiftCrossUI10EitherViewV",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -46,7 +87,7 @@
       },
       {
         "kind" : "text",
-        "text" : ") -> "
+        "text" : "?) -> "
       },
       {
         "kind" : "keyword",
@@ -69,7 +110,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Padding.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/Padding.swift#L3"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/Padding.swift#L5"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",
@@ -84,7 +125,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -126,7 +167,7 @@
             },
             {
               "kind" : "text",
-              "text" : ") -> "
+              "text" : "? = nil) -> "
             },
             {
               "kind" : "keyword",
@@ -245,7 +286,48 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView/padding(_:)": {
   "abstract" : [
     {
-      "text" : "Adds a specific padding amount to each edge of this view.",
+      "text" : "Adds padding to a view. If ",
+      "type" : "text"
+    },
+    {
+      "code" : "amount",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " is ",
+      "type" : "text"
+    },
+    {
+      "code" : "nil",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ", then a backend-specific default value",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "is used. Separate from ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:_:)",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " because overload resolution didn’t",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "like the double default parameters.",
       "type" : "text"
     }
   ],
@@ -273,7 +355,7 @@
     },
     {
       "kind" : "text",
-      "text" : ") -> "
+      "text" : "?) -> "
     },
     {
       "kind" : "keyword",
@@ -329,6 +411,102 @@
   "title" : "View",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/padding(_:_:)": {
+  "abstract" : [
+    {
+      "text" : "Adds padding to a view. If ",
+      "type" : "text"
+    },
+    {
+      "code" : "amount",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " is ",
+      "type" : "text"
+    },
+    {
+      "code" : "nil",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ", then a backend-specific default value",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "is used.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "padding"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4EdgeO",
+      "text" : "Edge"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4EdgeO3SetV",
+      "text" : "Set"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : "?) -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "padding(_:_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view\/padding(_:_:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewBuilder": {
   "abstract" : [

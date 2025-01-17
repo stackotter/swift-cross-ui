@@ -53,7 +53,7 @@
     ],
     "remoteSource" : {
       "fileName" : "ViewGraph.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewGraph.swift#L39"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewGraph.swift#L74"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",
@@ -68,7 +68,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {

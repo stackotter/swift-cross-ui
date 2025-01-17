@@ -46,7 +46,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Image.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Image.swift#L2"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Image.swift#L5"
     },
     "role" : "symbol",
     "roleHeading" : "Structure",
@@ -61,7 +61,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -132,14 +132,20 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/init(_:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/init(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/init(_:useFileExtension:)"
       ],
       "title" : "Initializers"
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/asWidget(backend:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/update(_:backend:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/body"
+      ],
+      "title" : "Instance Properties"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/resizable()"
       ],
       "title" : "Instance Methods"
     },
@@ -394,14 +400,14 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/image\/view-implementations"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Image/asWidget(backend:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Image/body": {
   "abstract" : [
 
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "func"
+      "text" : "var"
     },
     {
       "kind" : "text",
@@ -409,23 +415,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "asWidget"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "genericParameter",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ">("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "backend"
+      "text" : "body"
     },
     {
       "kind" : "text",
@@ -433,36 +423,21 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
+      "preciseIdentifier" : "s:12SwiftCrossUI9EmptyViewV",
+      "text" : "EmptyView"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/asWidget(backend:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/body",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "asWidget(backend:)",
+  "title" : "body",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/image\/aswidget(backend:)"
+  "url" : "\/documentation\/swiftcrossui\/image\/body"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Image/init(_:)": {
   "abstract" : [
     {
-      "text" : "Creates an image displaying an image file.",
+      "text" : "Displays an image from raw pixel data.",
       "type" : "text"
     }
   ],
@@ -477,12 +452,21 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
+      "preciseIdentifier" : "s:12ImageFormats0A0V",
+      "text" : "Image"
     },
     {
       "kind" : "text",
-      "text" : ")"
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12ImageFormats4RGBAV",
+      "text" : "RGBA"
+    },
+    {
+      "kind" : "text",
+      "text" : ">)"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/init(_:)",
@@ -492,9 +476,86 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/image\/init(_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Image/update(_:backend:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Image/init(_:useFileExtension:)": {
   "abstract" : [
-
+    {
+      "text" : "Displays an image file. ",
+      "type" : "text"
+    },
+    {
+      "code" : "png",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ", ",
+      "type" : "text"
+    },
+    {
+      "code" : "jpg",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ", and ",
+      "type" : "text"
+    },
+    {
+      "code" : "webp",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " are supported.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:10Foundation3URLV",
+      "text" : "URL"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "useFileExtension"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/init(_:useFileExtension:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(_:useFileExtension:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/image\/init(_:usefileextension:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Image/resizable()": {
+  "abstract" : [
+    {
+      "text" : "Makes the image resize to fit the available space.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -507,59 +568,24 @@
     },
     {
       "kind" : "identifier",
-      "text" : "update"
+      "text" : "resizable"
     },
     {
       "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "genericParameter",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ">("
+      "text" : "() -> "
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
+      "preciseIdentifier" : "s:12SwiftCrossUI5ImageV",
+      "text" : "Image"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/update(_:backend:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/resizable()",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "update(_:backend:)",
+  "title" : "resizable()",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/image\/update(_:backend:)"
+  "url" : "\/documentation\/swiftcrossui\/image\/resizable()"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationLink": {
   "abstract" : [
@@ -746,7 +772,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : " modifier to constrain height if necessary.",
+      "text" : " moVStack to constrain height if necessary.",
       "type" : "text"
     }
   ],
@@ -890,7 +916,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn": {
   "abstract" : [
     {
-      "text" : "A column that displays a view for each row in a table.",
+      "text" : "A labelled column with a view for each row in a table.",
       "type" : "text"
     }
   ],

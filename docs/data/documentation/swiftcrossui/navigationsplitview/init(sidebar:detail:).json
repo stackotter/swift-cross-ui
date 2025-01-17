@@ -34,7 +34,7 @@
       ],
       "constraints" : [
         {
-          "code" : "SideBar",
+          "code" : "Sidebar",
           "type" : "codeVoice"
         },
         {
@@ -104,7 +104,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "SideBar"
+        "text" : "Sidebar"
       },
       {
         "kind" : "text",
@@ -134,7 +134,7 @@
     ],
     "remoteSource" : {
       "fileName" : "NavigationSplitView.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/NavigationSplitView.swift#L46"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/NavigationSplitView.swift#L43"
     },
     "role" : "symbol",
     "roleHeading" : "Initializer",
@@ -149,7 +149,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -184,7 +184,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "text" : "SideBar"
+              "text" : "Sidebar"
             },
             {
               "kind" : "text",
@@ -318,7 +318,7 @@
     ],
     "constraints" : [
       {
-        "code" : "SideBar",
+        "code" : "Sidebar",
         "type" : "codeVoice"
       },
       {
@@ -386,7 +386,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "SideBar"
+      "text" : "Sidebar"
     },
     {
       "kind" : "text",

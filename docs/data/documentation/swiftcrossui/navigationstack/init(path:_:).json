@@ -71,7 +71,7 @@
     ],
     "remoteSource" : {
       "fileName" : "NavigationStack.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/NavigationStack.swift#L42"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/NavigationStack.swift#L52"
     },
     "role" : "symbol",
     "roleHeading" : "Initializer",
@@ -86,7 +86,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {

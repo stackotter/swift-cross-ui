@@ -9,11 +9,19 @@
       "type" : "text"
     },
     {
-      "text" : "an observed state variable use its projected value instead: e.g. ",
+      "text" : "an ",
       "type" : "text"
     },
     {
-      "code" : "state.$value",
+      "code" : "@State",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " property use its projected value instead: e.g. ",
+      "type" : "text"
+    },
+    {
+      "code" : "$myStateProperty",
       "type" : "codeVoice"
     },
     {
@@ -25,7 +33,7 @@
       "type" : "text"
     },
     {
-      "code" : "state.value",
+      "code" : "myStateProperty",
       "type" : "codeVoice"
     },
     {
@@ -37,7 +45,7 @@
       "type" : "text"
     },
     {
-      "code" : "state.value",
+      "code" : "myStateProperty",
       "type" : "codeVoice"
     },
     {
@@ -45,11 +53,11 @@
       "type" : "text"
     },
     {
-      "code" : "@Observed",
+      "code" : "@State",
       "type" : "codeVoice"
     },
     {
-      "text" : ").",
+      "text" : " at its declaration site).",
       "type" : "text"
     }
   ],
@@ -126,7 +134,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Binding.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Binding.swift#L23"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/State\/Binding.swift#L24"
     },
     "role" : "symbol",
     "roleHeading" : "Initializer",
@@ -141,7 +149,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -304,11 +312,19 @@
       "type" : "text"
     },
     {
-      "text" : "an observed state variable use its projected value instead: e.g. ",
+      "text" : "an ",
       "type" : "text"
     },
     {
-      "code" : "state.$value",
+      "code" : "@State",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " property use its projected value instead: e.g. ",
+      "type" : "text"
+    },
+    {
+      "code" : "$myStateProperty",
       "type" : "codeVoice"
     },
     {
@@ -320,7 +336,7 @@
       "type" : "text"
     },
     {
-      "code" : "state.value",
+      "code" : "myStateProperty",
       "type" : "codeVoice"
     },
     {
@@ -332,7 +348,7 @@
       "type" : "text"
     },
     {
-      "code" : "state.value",
+      "code" : "myStateProperty",
       "type" : "codeVoice"
     },
     {
@@ -340,11 +356,11 @@
       "type" : "text"
     },
     {
-      "code" : "@Observed",
+      "code" : "@State",
       "type" : "codeVoice"
     },
     {
-      "text" : ").",
+      "text" : " at its declaration site).",
       "type" : "text"
     }
   ],

@@ -35,7 +35,7 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI10AppBackendP12createWindow15withDefaultSize0G0QzAA0J0VSg_tF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendP12createWindow15withDefaultSize0G0Qzs5SIMD2VySiGSg_tF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -63,12 +63,21 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI4SizeV",
-        "text" : "Size"
+        "preciseIdentifier" : "s:s5SIMD2V",
+        "text" : "SIMD2"
       },
       {
         "kind" : "text",
-        "text" : "?) -> "
+        "text" : "<"
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:Si",
+        "text" : "Int"
+      },
+      {
+        "kind" : "text",
+        "text" : ">?) -> "
       },
       {
         "kind" : "typeIdentifier",
@@ -80,6 +89,7 @@
       },
       {
         "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WindowQa",
         "text" : "Window"
       }
     ],
@@ -90,7 +100,7 @@
     ],
     "remoteSource" : {
       "fileName" : "AppBackend.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/AppBackend.swift#L86"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/AppBackend.swift#L114"
     },
     "required" : true,
     "role" : "symbol",
@@ -106,7 +116,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -142,14 +152,22 @@
               "text" : ": "
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Size",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI4SizeV",
-              "text" : "Size"
+              "preciseIdentifier" : "s:s5SIMD2V",
+              "text" : "SIMD2"
             },
             {
               "kind" : "text",
-              "text" : "?) -> "
+              "text" : "<"
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:Si",
+              "text" : "Int"
+            },
+            {
+              "kind" : "text",
+              "text" : ">?) -> "
             },
             {
               "kind" : "typeIdentifier",
@@ -160,7 +178,9 @@
               "text" : "."
             },
             {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/Window",
               "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WindowQa",
               "text" : "Window"
             }
           ]
@@ -284,6 +304,32 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/Window": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "associatedtype"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Window"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/Window",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "Window",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/window"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createWindow(withDefaultSize:)": {
   "abstract" : [
     {
@@ -334,12 +380,21 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI4SizeV",
-      "text" : "Size"
+      "preciseIdentifier" : "s:s5SIMD2V",
+      "text" : "SIMD2"
     },
     {
       "kind" : "text",
-      "text" : "?) -> "
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ">?) -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -351,6 +406,7 @@
     },
     {
       "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WindowQa",
       "text" : "Window"
     }
   ],
@@ -361,40 +417,6 @@
   "title" : "createWindow(withDefaultSize:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createwindow(withdefaultsize:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Size": {
-  "abstract" : [
-    {
-      "text" : "A 2-dimensional size (in unspecified units).",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "Size"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Size",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "Size"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "Size",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/size"
 }
 }
 }

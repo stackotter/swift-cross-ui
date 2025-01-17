@@ -61,7 +61,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -82,11 +82,67 @@
             },
             {
               "kind" : "genericParameter",
-              "text" : "Row"
+              "text" : "RowValue"
             },
             {
               "kind" : "text",
-              "text" : ">"
+              "text" : ", "
+            },
+            {
+              "kind" : "genericParameter",
+              "text" : "RowContent"
+            },
+            {
+              "kind" : "text",
+              "text" : "> "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "where"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "RowValue"
+            },
+            {
+              "kind" : "text",
+              "text" : " == "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "RowContent"
+            },
+            {
+              "kind" : "text",
+              "text" : "."
+            },
+            {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableRowContent\/RowValue",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI15TableRowContentP0E5ValueQa",
+              "text" : "RowValue"
+            },
+            {
+              "kind" : "text",
+              "text" : ", "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "RowContent"
+            },
+            {
+              "kind" : "text",
+              "text" : " : "
+            },
+            {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableRowContent",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI15TableRowContentP",
+              "text" : "TableRowContent"
             }
           ]
         }
@@ -150,10 +206,9 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Table\/asWidget(backend:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Table\/update(_:backend:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Table\/body"
       ],
-      "title" : "Instance Methods"
+      "title" : "Instance Properties"
     },
     {
       "generated" : true,
@@ -580,7 +635,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : " modifier to constrain height if necessary.",
+      "text" : " moVStack to constrain height if necessary.",
       "type" : "text"
     }
   ],
@@ -732,14 +787,14 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/table\/view-implementations"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Table/asWidget(backend:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Table/body": {
   "abstract" : [
 
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "func"
+      "text" : "var"
     },
     {
       "kind" : "text",
@@ -747,23 +802,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "asWidget"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "genericParameter",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ">("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "backend"
+      "text" : "body"
     },
     {
       "kind" : "text",
@@ -771,31 +810,16 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
+      "preciseIdentifier" : "s:12SwiftCrossUI9EmptyViewV",
+      "text" : "EmptyView"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Table\/asWidget(backend:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Table\/body",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "asWidget(backend:)",
+  "title" : "body",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/table\/aswidget(backend:)"
+  "url" : "\/documentation\/swiftcrossui\/table\/body"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Table/init(_:_:)": {
   "abstract" : [
@@ -815,28 +839,19 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Row"
+      "text" : "RowValue"
     },
     {
       "kind" : "text",
-      "text" : "], () -> ["
+      "text" : "], () -> "
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI11TableColumnV",
-      "text" : "TableColumn"
+      "text" : "RowContent"
     },
     {
       "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Row"
-    },
-    {
-      "kind" : "text",
-      "text" : ">])"
+      "text" : ")"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Table\/init(_:_:)",
@@ -846,79 +861,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/table\/init(_:_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Table/update(_:backend:)": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "update"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "genericParameter",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ">("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Widget"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ")"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Table\/update(_:backend:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "update(_:backend:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/table\/update(_:backend:)"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn": {
   "abstract" : [
     {
-      "text" : "A column that displays a view for each row in a table.",
+      "text" : "A labelled column with a view for each row in a table.",
       "type" : "text"
     }
   ],
@@ -948,6 +894,63 @@
   "title" : "TableColumn",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/tablecolumn"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TableRowContent": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TableRowContent"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableRowContent",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TableRowContent"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TableRowContent",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tablerowcontent"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TableRowContent/RowValue": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "associatedtype"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RowValue"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableRowContent\/RowValue",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "RowValue",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tablerowcontent\/rowvalue"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text": {
   "abstract" : [

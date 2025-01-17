@@ -1,0 +1,372 @@
+{
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:12SwiftCrossUI17FileDialogOptionsV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "struct"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "FileDialogOptions"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "FileDialogOptions"
+      }
+    ],
+    "remoteSource" : {
+      "fileName" : "FileDialogOptions.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/FileDialogOptions.swift#L3"
+    },
+    "role" : "symbol",
+    "roleHeading" : "Structure",
+    "symbolKind" : "struct",
+    "title" : "FileDialogOptions"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "struct"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "FileDialogOptions"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions\/allowOtherContentTypes",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions\/allowedContentTypes",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions\/defaultButtonLabel",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions\/initialDirectory",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions\/showHiddenFiles",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions\/title"
+      ],
+      "title" : "Instance Properties"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/filedialogoptions"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/FileDialogOptions": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "FileDialogOptions"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "FileDialogOptions"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "FileDialogOptions",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/filedialogoptions"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/FileDialogOptions/allowOtherContentTypes": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "allowOtherContentTypes"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions\/allowOtherContentTypes",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "allowOtherContentTypes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/filedialogoptions\/allowothercontenttypes"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/FileDialogOptions/allowedContentTypes": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "allowedContentTypes"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI11ContentTypeV",
+      "text" : "ContentType"
+    },
+    {
+      "kind" : "text",
+      "text" : "]"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions\/allowedContentTypes",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "allowedContentTypes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/filedialogoptions\/allowedcontenttypes"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/FileDialogOptions/defaultButtonLabel": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "defaultButtonLabel"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions\/defaultButtonLabel",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "defaultButtonLabel",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/filedialogoptions\/defaultbuttonlabel"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/FileDialogOptions/initialDirectory": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "initialDirectory"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:10Foundation3URLV",
+      "text" : "URL"
+    },
+    {
+      "kind" : "text",
+      "text" : "?"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions\/initialDirectory",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "initialDirectory",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/filedialogoptions\/initialdirectory"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/FileDialogOptions/showHiddenFiles": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "showHiddenFiles"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions\/showHiddenFiles",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "showHiddenFiles",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/filedialogoptions\/showhiddenfiles"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/FileDialogOptions/title": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "title"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions\/title",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "title",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/filedialogoptions\/title"
+}
+}
+}

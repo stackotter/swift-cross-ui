@@ -13,7 +13,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : " modifier to constrain height if necessary.",
+      "text" : " moVStack to constrain height if necessary.",
       "type" : "text"
     }
   ],
@@ -73,7 +73,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -178,21 +178,16 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/init(_:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/init(_:_:)"
       ],
       "title" : "Initializers"
     },
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/axes",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/body"
       ],
       "title" : "Instance Properties"
-    },
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/asWidget(_:backend:)-4vqmz"
-      ],
-      "title" : "Instance Methods"
     },
     {
       "generated" : true,
@@ -619,7 +614,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : " modifier to constrain height if necessary.",
+      "text" : " moVStack to constrain height if necessary.",
       "type" : "text"
     }
   ],
@@ -661,14 +656,14 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scrollview\/view-implementations"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/asWidget(_:backend:)-4vqmz": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/axes": {
   "abstract" : [
 
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "func"
+      "text" : "var"
     },
     {
       "kind" : "text",
@@ -676,32 +671,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "asWidget"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "genericParameter",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ">("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI21ViewGraphNodeChildrenP",
-      "text" : "ViewGraphNodeChildren"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "backend"
+      "text" : "axes"
     },
     {
       "kind" : "text",
@@ -709,15 +679,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Backend"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Backend"
+      "preciseIdentifier" : "s:12SwiftCrossUI4AxisO",
+      "text" : "Axis"
     },
     {
       "kind" : "text",
@@ -725,15 +688,16 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Widget"
+      "preciseIdentifier" : "s:12SwiftCrossUI4AxisO3SetV",
+      "text" : "Set"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/asWidget(_:backend:)-4vqmz",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/axes",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "asWidget(_:backend:)",
+  "title" : "axes",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/scrollview\/aswidget(_:backend:)-4vqmz"
+  "url" : "\/documentation\/swiftcrossui\/scrollview\/axes"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/body": {
   "abstract" : [
@@ -758,7 +722,20 @@
     },
     {
       "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI6VStackV",
+      "text" : "VStack"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
       "text" : "Content"
+    },
+    {
+      "kind" : "text",
+      "text" : ">"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/body",
@@ -768,10 +745,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scrollview\/body"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/init(_:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/init(_:_:)": {
   "abstract" : [
     {
-      "text" : "Wraps a view in a scrollable container.",
+      "text" : "Wraps a view in a VStackrcontent: ollable container.",
       "type" : "text"
     }
   ],
@@ -782,7 +759,25 @@
     },
     {
       "kind" : "text",
-      "text" : "(() -> "
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4AxisO",
+      "text" : "Axis"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4AxisO3SetV",
+      "text" : "Set"
+    },
+    {
+      "kind" : "text",
+      "text" : ", () -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -793,12 +788,12 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/init(_:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/init(_:_:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "init(_:)",
+  "title" : "init(_:_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/scrollview\/init(_:)"
+  "url" : "\/documentation\/swiftcrossui\/scrollview\/init(_:_:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider": {
   "abstract" : [
@@ -913,7 +908,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn": {
   "abstract" : [
     {
-      "text" : "A column that displays a view for each row in a table.",
+      "text" : "A labelled column with a view for each row in a table.",
       "type" : "text"
     }
   ],

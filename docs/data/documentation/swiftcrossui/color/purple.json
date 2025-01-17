@@ -58,7 +58,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Color.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Color.swift#L46"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Color.swift#L56"
     },
     "role" : "symbol",
     "roleHeading" : "Type Property",
@@ -73,7 +73,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {

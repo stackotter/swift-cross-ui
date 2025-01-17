@@ -54,7 +54,7 @@
     ],
     "remoteSource" : {
       "fileName" : "App.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/App.swift#L31"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/App.swift#L57"
     },
     "role" : "symbol",
     "roleHeading" : "Type Method",
@@ -69,7 +69,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {

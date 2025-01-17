@@ -35,7 +35,7 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI11WindowGroupVyACyxGSSSg_xyXEtcfc",
+    "externalID" : "s:12SwiftCrossUI11WindowGroupVyACyxGSSSg_xyctcfc",
     "fragments" : [
       {
         "kind" : "identifier",
@@ -70,7 +70,7 @@
     ],
     "remoteSource" : {
       "fileName" : "WindowGroup.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/WindowGroup.swift#L22"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/WindowGroup.swift#L33"
     },
     "role" : "symbol",
     "roleHeading" : "Initializer",
@@ -85,7 +85,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -149,7 +149,15 @@
             },
             {
               "kind" : "text",
-              "text" : ": () -> "
+              "text" : ": "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "@escaping"
+            },
+            {
+              "kind" : "text",
+              "text" : " () -> "
             },
             {
               "kind" : "typeIdentifier",

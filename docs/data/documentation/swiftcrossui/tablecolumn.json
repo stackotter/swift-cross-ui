@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "A column that displays a view for each row in a table.",
+      "text" : "A labelled column with a view for each row in a table.",
       "type" : "text"
     }
   ],
@@ -61,7 +61,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -82,11 +82,41 @@
             },
             {
               "kind" : "genericParameter",
-              "text" : "Row"
+              "text" : "RowValue"
             },
             {
               "kind" : "text",
-              "text" : ">"
+              "text" : ", "
+            },
+            {
+              "kind" : "genericParameter",
+              "text" : "Content"
+            },
+            {
+              "kind" : "text",
+              "text" : "> "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "where"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "text" : "Content"
+            },
+            {
+              "kind" : "text",
+              "text" : " : "
+            },
+            {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+              "text" : "View"
             }
           ]
         }
@@ -134,15 +164,15 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/init(_:value:)-2t5t",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/init(_:value:)-33ros"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/init(_:content:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/init(_:value:)"
       ],
       "title" : "Initializers"
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/title",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/value"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/content",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/label"
       ],
       "title" : "Instance Properties"
     }
@@ -564,7 +594,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : " modifier to constrain height if necessary.",
+      "text" : " moVStack to constrain height if necessary.",
       "type" : "text"
     }
   ],
@@ -708,7 +738,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn": {
   "abstract" : [
     {
-      "text" : "A column that displays a view for each row in a table.",
+      "text" : "A labelled column with a view for each row in a table.",
       "type" : "text"
     }
   ],
@@ -739,13 +769,89 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/tablecolumn"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn/init(_:value:)-2t5t": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn/content": {
   "abstract" : [
     {
-      "text" : "Creates a labelled column that displays a string convertible property.",
+      "text" : "The content displayed for this column of each row of the table.",
       "type" : "text"
     }
   ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "content"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "RowValue"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Content"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/content",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "content",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tablecolumn\/content"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn/init(_:content:)": {
+  "abstract" : [
+    {
+      "text" : "Creates a column.",
+      "type" : "text"
+    }
+  ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "Content",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " conforms to ",
+        "type" : "text"
+      },
+      {
+        "code" : "View",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
   "fragments" : [
     {
       "kind" : "identifier",
@@ -753,15 +859,7 @@
     },
     {
       "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "genericParameter",
-      "text" : "Value"
-    },
-    {
-      "kind" : "text",
-      "text" : ">("
+      "text" : "("
     },
     {
       "kind" : "typeIdentifier",
@@ -774,52 +872,75 @@
     },
     {
       "kind" : "externalParam",
-      "text" : "value"
+      "text" : "content"
     },
     {
       "kind" : "text",
-      "text" : ": "
+      "text" : ": ("
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s7KeyPathC",
-      "text" : "KeyPath"
+      "text" : "RowValue"
     },
     {
       "kind" : "text",
-      "text" : "<"
+      "text" : ") -> "
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Row"
+      "text" : "Content"
     },
     {
       "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Value"
-    },
-    {
-      "kind" : "text",
-      "text" : ">)"
+      "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/init(_:value:)-2t5t",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/init(_:content:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "init(_:value:)",
+  "title" : "init(_:content:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/tablecolumn\/init(_:value:)-2t5t"
+  "url" : "\/documentation\/swiftcrossui\/tablecolumn\/init(_:content:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn/init(_:value:)-33ros": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn/init(_:value:)": {
   "abstract" : [
     {
-      "text" : "Creates a labelled column that displays a string property.",
+      "text" : "Creates a column with that displays a string property and has a text label.",
       "type" : "text"
     }
   ],
+  "conformance" : {
+    "availabilityPrefix" : [
+      {
+        "text" : "Available when",
+        "type" : "text"
+      }
+    ],
+    "conformancePrefix" : [
+      {
+        "text" : "Conforms when",
+        "type" : "text"
+      }
+    ],
+    "constraints" : [
+      {
+        "code" : "Content",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : " is ",
+        "type" : "text"
+      },
+      {
+        "code" : "Text",
+        "type" : "codeVoice"
+      },
+      {
+        "text" : ".",
+        "type" : "text"
+      }
+    ]
+  },
   "fragments" : [
     {
       "kind" : "identifier",
@@ -857,7 +978,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Row"
+      "text" : "RowValue"
     },
     {
       "kind" : "text",
@@ -873,16 +994,19 @@
       "text" : ">)"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/init(_:value:)-33ros",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/init(_:value:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "init(_:value:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/tablecolumn\/init(_:value:)-33ros"
+  "url" : "\/documentation\/swiftcrossui\/tablecolumn\/init(_:value:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn/title": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn/label": {
   "abstract" : [
-
+    {
+      "text" : "The label displayed at the top of the column (also known as the column title).",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -895,7 +1019,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "title"
+      "text" : "label"
     },
     {
       "kind" : "text",
@@ -907,54 +1031,12 @@
       "text" : "String"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/title",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/label",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "title",
+  "title" : "label",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/tablecolumn\/title"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn/value": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "value"
-    },
-    {
-      "kind" : "text",
-      "text" : ": ("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Row"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn\/value",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "value",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/tablecolumn\/value"
+  "url" : "\/documentation\/swiftcrossui\/tablecolumn\/label"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text": {
   "abstract" : [

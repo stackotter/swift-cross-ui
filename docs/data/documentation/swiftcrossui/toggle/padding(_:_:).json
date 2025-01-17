@@ -1,7 +1,31 @@
 {
   "abstract" : [
     {
-      "text" : "Adds an equal padding amount to specific edges of this view.",
+      "text" : "Adds padding to a view. If ",
+      "type" : "text"
+    },
+    {
+      "code" : "amount",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " is ",
+      "type" : "text"
+    },
+    {
+      "code" : "nil",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ", then a backend-specific default value",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "is used.",
       "type" : "text"
     }
   ],
@@ -21,7 +45,7 @@
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI4ViewPAAE7paddingyQrAA4EdgeO3SetV_SitF::SYNTHESIZED::s:12SwiftCrossUI6ToggleV",
+    "externalID" : "s:12SwiftCrossUI4ViewPAAE7paddingyQrAA4EdgeO3SetV_SiSgtF::SYNTHESIZED::s:12SwiftCrossUI6ToggleV",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -64,7 +88,7 @@
       },
       {
         "kind" : "text",
-        "text" : ") -> "
+        "text" : "?) -> "
       },
       {
         "kind" : "keyword",
@@ -87,7 +111,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Padding.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/Padding.swift#L8"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/Padding.swift#L11"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",
@@ -102,7 +126,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -155,7 +179,7 @@
             },
             {
               "kind" : "text",
-              "text" : ", "
+              "text" : " = .all, "
             },
             {
               "kind" : "externalParam",
@@ -180,7 +204,7 @@
             },
             {
               "kind" : "text",
-              "text" : ") -> "
+              "text" : "? = nil) -> "
             },
             {
               "kind" : "keyword",
@@ -355,7 +379,31 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Toggle/padding(_:_:)": {
   "abstract" : [
     {
-      "text" : "Adds an equal padding amount to specific edges of this view.",
+      "text" : "Adds padding to a view. If ",
+      "type" : "text"
+    },
+    {
+      "code" : "amount",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " is ",
+      "type" : "text"
+    },
+    {
+      "code" : "nil",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ", then a backend-specific default value",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "is used.",
       "type" : "text"
     }
   ],
@@ -401,7 +449,7 @@
     },
     {
       "kind" : "text",
-      "text" : ") -> "
+      "text" : "?) -> "
     },
     {
       "kind" : "keyword",

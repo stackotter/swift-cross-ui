@@ -61,7 +61,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -103,9 +103,8 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/Backend",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/Body-swift.associatedtype",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/State-swift.associatedtype"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/Backend-swift.associatedtype",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/Body-swift.associatedtype"
       ],
       "title" : "Associated Types"
     },
@@ -117,11 +116,16 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/body-swift.property",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/identifier",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/state-49rq3"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/backend-swift.property",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/body-swift.property"
       ],
       "title" : "Instance Properties"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/metadata-8wl5c"
+      ],
+      "title" : "Type Properties"
     },
     {
       "identifiers" : [
@@ -192,7 +196,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/app"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/Backend": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/Backend-swift.associatedtype": {
   "abstract" : [
     {
       "text" : "The backend used to render the app.",
@@ -222,13 +226,13 @@
       "text" : "AppBackend"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/Backend",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/Backend-swift.associatedtype",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "Backend",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/app\/backend"
+  "url" : "\/documentation\/swiftcrossui\/app\/backend-swift.associatedtype"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/App/Body-swift.associatedtype": {
   "abstract" : [
@@ -268,17 +272,17 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/app\/body-swift.associatedtype"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/State-swift.associatedtype": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/backend-swift.property": {
   "abstract" : [
     {
-      "text" : "The app’s observed state.",
+      "text" : "The application’s backend.",
       "type" : "text"
     }
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "associatedtype"
+      "text" : "var"
     },
     {
       "kind" : "text",
@@ -286,25 +290,33 @@
     },
     {
       "kind" : "identifier",
-      "text" : "State"
+      "text" : "backend"
     },
     {
       "kind" : "text",
-      "text" : " : "
+      "text" : ": "
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10ObservableP",
-      "text" : "Observable"
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI3AppP7BackendQa",
+      "text" : "Backend"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/State-swift.associatedtype",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/backend-swift.property",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "State",
+  "title" : "backend",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/app\/state-swift.associatedtype"
+  "url" : "\/documentation\/swiftcrossui\/app\/backend-swift.property"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/App/body-swift.property": {
   "abstract" : [
@@ -340,6 +352,7 @@
     },
     {
       "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI3AppP4BodyQa",
       "text" : "Body"
     }
   ],
@@ -350,44 +363,6 @@
   "title" : "body",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/app\/body-swift.property"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/identifier": {
-  "abstract" : [
-    {
-      "text" : "The application’s identifier.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "identifier"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:SS",
-      "text" : "String"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/identifier",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "identifier",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/app\/identifier"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/App/init()": {
   "abstract" : [
@@ -454,15 +429,56 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/app\/main()"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/state-49rq3": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App/metadata-8wl5c": {
   "abstract" : [
     {
-      "text" : "The application’s state.",
+      "text" : "Metadata loaded at app start up. By default SwiftCrossUI attempts",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "to load metadata inserted by Swift Bundler if present. Used by backends’",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "default ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/backend-swift.property",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " implementations if not ",
+      "type" : "text"
+    },
+    {
+      "code" : "nil",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
       "type" : "text"
     }
   ],
   "defaultImplementations" : 1,
   "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
     {
       "kind" : "keyword",
       "text" : "var"
@@ -473,7 +489,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "state"
+      "text" : "metadata"
     },
     {
       "kind" : "text",
@@ -481,24 +497,21 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
+      "preciseIdentifier" : "s:12SwiftCrossUI11AppMetadataV",
+      "text" : "AppMetadata"
     },
     {
       "kind" : "text",
-      "text" : "."
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "State"
+      "text" : "?"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/state-49rq3",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App\/metadata-8wl5c",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "state",
+  "title" : "metadata",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/app\/state-49rq3"
+  "url" : "\/documentation\/swiftcrossui\/app\/metadata-8wl5c"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/SceneBuilder": {
   "abstract" : [

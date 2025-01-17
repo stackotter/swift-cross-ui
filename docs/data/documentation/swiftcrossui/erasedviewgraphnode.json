@@ -55,7 +55,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -87,7 +87,7 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/init(for:backend:snapshot:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/init(for:backend:snapshot:environment:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/init(wrapping:)-9jp0a",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/init(wrapping:)-9xgtd"
       ],
@@ -96,10 +96,8 @@
     {
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/backendType",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/getState",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/getWidget",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/node",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/updateNode",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/updateWithNewView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/viewType"
       ],
@@ -190,7 +188,7 @@
     },
     {
       "kind" : "text",
-      "text" : ": "
+      "text" : ": any "
     },
     {
       "kind" : "typeIdentifier",
@@ -208,44 +206,6 @@
   "title" : "backendType",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/backendtype"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ErasedViewGraphNode/getState": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "getState"
-    },
-    {
-      "kind" : "text",
-      "text" : ": () -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:10Foundation4DataV",
-      "text" : "Data"
-    },
-    {
-      "kind" : "text",
-      "text" : "?"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/getState",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "getState",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/getstate"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ErasedViewGraphNode/getWidget": {
   "abstract" : [
@@ -281,7 +241,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/getwidget"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ErasedViewGraphNode/init(for:backend:snapshot:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ErasedViewGraphNode/init(for:backend:snapshot:environment:)": {
   "abstract" : [
 
   ],
@@ -366,15 +326,32 @@
     },
     {
       "kind" : "text",
-      "text" : "?)"
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "environment"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI17EnvironmentValuesV",
+      "text" : "EnvironmentValues"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/init(for:backend:snapshot:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/init(for:backend:snapshot:environment:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "init(for:backend:snapshot:)",
+  "title" : "init(for:backend:snapshot:environment:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/init(for:backend:snapshot:)"
+  "url" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/init(for:backend:snapshot:environment:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ErasedViewGraphNode/init(wrapping:)-9jp0a": {
   "abstract" : [
@@ -568,7 +545,7 @@
     },
     {
       "kind" : "text",
-      "text" : ": "
+      "text" : ": any "
     },
     {
       "kind" : "typeIdentifier",
@@ -599,43 +576,64 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/transform(with:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ErasedViewGraphNode/updateNode": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "updateNode"
-    },
-    {
-      "kind" : "text",
-      "text" : ": () -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/updateNode",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "updateNode",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/updatenode"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ErasedViewGraphNode/updateWithNewView": {
   "abstract" : [
-
+    {
+      "text" : "If the new view doesn’t have the same type as the old view then the returned",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "value will have ",
+      "type" : "text"
+    },
+    {
+      "code" : "viewTypeMatched",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " set to ",
+      "type" : "text"
+    },
+    {
+      "code" : "false",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ", allowing views such as ",
+      "type" : "text"
+    },
+    {
+      "code" : "AnyView",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "to choose how to react to a mismatch. In ",
+      "type" : "text"
+    },
+    {
+      "code" : "AnyView",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : "’s case this means throwing away",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "the current view graph node and creating a new one for the new view type.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -660,12 +658,69 @@
     },
     {
       "kind" : "text",
-      "text" : ") -> "
+      "text" : "?, "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s5SIMD2V",
+      "text" : "SIMD2"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ">, "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI17EnvironmentValuesV",
+      "text" : "EnvironmentValues"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
     },
     {
       "kind" : "typeIdentifier",
       "preciseIdentifier" : "s:Sb",
       "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> (viewTypeMatched"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ", size"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI16ViewUpdateResultV",
+      "text" : "ViewUpdateResult"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode\/updateWithNewView",
@@ -694,7 +749,7 @@
     },
     {
       "kind" : "text",
-      "text" : ": "
+      "text" : ": any "
     },
     {
       "kind" : "typeIdentifier",

@@ -63,7 +63,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Button.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Button.swift#L9"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Button.swift#L11"
     },
     "role" : "symbol",
     "roleHeading" : "Initializer",
@@ -78,7 +78,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {

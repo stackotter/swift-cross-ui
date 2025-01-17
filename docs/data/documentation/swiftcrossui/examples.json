@@ -270,6 +270,22 @@
           ],
           "syntax" : null,
           "type" : "codeListing"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "If you want to try out an example with a backend other than the default, you can do that too;",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "code" : [
+            "SCUI_DEFAULT_BACKEND=QtBackend swift run ExampleToRun"
+          ],
+          "syntax" : null,
+          "type" : "codeListing"
         }
       ],
       "kind" : "content"

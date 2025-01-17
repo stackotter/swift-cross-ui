@@ -41,7 +41,7 @@
       },
       {
         "kind" : "genericParameter",
-        "text" : "S0"
+        "text" : "Scene0"
       },
       {
         "kind" : "text",
@@ -49,7 +49,7 @@
       },
       {
         "kind" : "genericParameter",
-        "text" : "S1"
+        "text" : "Scene1"
       },
       {
         "kind" : "text",
@@ -57,7 +57,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "S0"
+        "text" : "Scene0"
       },
       {
         "kind" : "text",
@@ -65,7 +65,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "S1"
+        "text" : "Scene1"
       },
       {
         "kind" : "text",
@@ -82,7 +82,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "S0"
+        "text" : "Scene0"
       },
       {
         "kind" : "text",
@@ -90,7 +90,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "S1"
+        "text" : "Scene1"
       },
       {
         "kind" : "text",
@@ -119,7 +119,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -148,7 +148,7 @@
             },
             {
               "kind" : "genericParameter",
-              "text" : "S0"
+              "text" : "Scene0"
             },
             {
               "kind" : "text",
@@ -156,7 +156,7 @@
             },
             {
               "kind" : "genericParameter",
-              "text" : "S1"
+              "text" : "Scene1"
             },
             {
               "kind" : "text",
@@ -180,7 +180,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "text" : "S0"
+              "text" : "Scene0"
             },
             {
               "kind" : "text",
@@ -204,7 +204,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "text" : "S1"
+              "text" : "Scene1"
             },
             {
               "kind" : "text",
@@ -222,7 +222,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "text" : "S0"
+              "text" : "Scene0"
             },
             {
               "kind" : "text",
@@ -230,7 +230,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "text" : "S1"
+              "text" : "Scene1"
             },
             {
               "kind" : "text",
@@ -246,7 +246,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "text" : "S0"
+              "text" : "Scene0"
             },
             {
               "kind" : "text",
@@ -264,7 +264,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "text" : "S1"
+              "text" : "Scene1"
             },
             {
               "kind" : "text",
@@ -433,7 +433,7 @@
     },
     {
       "kind" : "genericParameter",
-      "text" : "S0"
+      "text" : "Scene0"
     },
     {
       "kind" : "text",
@@ -441,7 +441,7 @@
     },
     {
       "kind" : "genericParameter",
-      "text" : "S1"
+      "text" : "Scene1"
     },
     {
       "kind" : "text",
@@ -449,7 +449,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "S0"
+      "text" : "Scene0"
     },
     {
       "kind" : "text",
@@ -457,7 +457,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "S1"
+      "text" : "Scene1"
     },
     {
       "kind" : "text",
@@ -474,7 +474,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "S0"
+      "text" : "Scene0"
     },
     {
       "kind" : "text",
@@ -482,7 +482,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "S1"
+      "text" : "Scene1"
     },
     {
       "kind" : "text",

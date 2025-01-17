@@ -96,7 +96,7 @@
     ],
     "remoteSource" : {
       "fileName" : "WindowGroup.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/WindowGroup.swift#L33"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/WindowGroup.swift#L45"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",
@@ -111,7 +111,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {

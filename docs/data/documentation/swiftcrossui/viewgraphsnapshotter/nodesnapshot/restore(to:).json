@@ -14,7 +14,7 @@
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI20ViewGraphSnapshotterV12NodeSnapshotV7restore2toxx_tAA0D0RzlF",
+    "externalID" : "s:12SwiftCrossUI20ViewGraphSnapshotterV12NodeSnapshotV7restore2toyx_tAA0D0RzlF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -54,11 +54,7 @@
       },
       {
         "kind" : "text",
-        "text" : ") -> "
-      },
-      {
-        "kind" : "typeIdentifier",
-        "text" : "V"
+        "text" : ")"
       }
     ],
     "modules" : [
@@ -68,7 +64,7 @@
     ],
     "remoteSource" : {
       "fileName" : "ViewGraphSnapshotter.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewGraphSnapshotter.swift#L40"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewGraphSnapshotter.swift#L46"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",
@@ -83,7 +79,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -132,15 +128,7 @@
             },
             {
               "kind" : "text",
-              "text" : ") -> "
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "V"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
+              "text" : ") "
             },
             {
               "kind" : "keyword",
@@ -345,11 +333,7 @@
     },
     {
       "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "V"
+      "text" : ")"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphSnapshotter\/NodeSnapshot\/restore(to:)",

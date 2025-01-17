@@ -1,0 +1,1052 @@
+{
+  "abstract" : [
+    {
+      "text" : "The size of a view. Includes ideal size, and minimum\/maximum width and height",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "along with the size you’d expect.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:12SwiftCrossUI8ViewSizeV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "struct"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "ViewSize"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "ViewSize"
+      }
+    ],
+    "remoteSource" : {
+      "fileName" : "ViewSize.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewSize.swift#L8"
+    },
+    "role" : "symbol",
+    "roleHeading" : "Structure",
+    "symbolKind" : "struct",
+    "title" : "ViewSize"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "struct"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "ViewSize"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "overview",
+          "level" : 2,
+          "text" : "Overview",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The width and height components of the view’s minimum and maximum sizes are",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "stored separately to make it extra clear that they don’t always form some",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "sort of achievable minimum\/maximum size. The provided minimum\/maximum bounds",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "may only be achievable along a single axis at a time.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
+    }
+  ],
+  "relationshipsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/SQ"
+      ],
+      "kind" : "relationships",
+      "title" : "Conforms To",
+      "type" : "conformsTo"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/init(fixedSize:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/init(size:idealSize:idealWidthForProposedHeight:idealHeightForProposedWidth:minimumWidth:minimumHeight:maximumWidth:maximumHeight:participateInStackLayoutsWhenEmpty:)"
+      ],
+      "title" : "Initializers"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/idealHeightForProposedWidth",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/idealSize",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/idealWidthForProposedHeight",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/maximumHeight",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/maximumWidth",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/minimumHeight",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/minimumWidth",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/participateInStackLayoutsWhenEmpty",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/size"
+      ],
+      "title" : "Instance Properties"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/empty",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/hidden"
+      ],
+      "title" : "Type Properties"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/Equatable-Implementations"
+      ],
+      "title" : "Default Implementations"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/viewsize"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/SQ": {
+  "identifier" : "doc:\/\/SwiftCrossUI\/SQ",
+  "title" : "Swift.Equatable",
+  "type" : "unresolvable"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize": {
+  "abstract" : [
+    {
+      "text" : "The size of a view. Includes ideal size, and minimum\/maximum width and height",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "along with the size you’d expect.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewSize"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewSize"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewSize",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/Equatable-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/Equatable-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Equatable Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize\/equatable-implementations"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/empty": {
+  "abstract" : [
+    {
+      "text" : "The view update result for an empty view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "empty"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI8ViewSizeV",
+      "text" : "ViewSize"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/empty",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "empty",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize\/empty"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/hidden": {
+  "abstract" : [
+    {
+      "text" : "The view update result for a hidden view. Differs from ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/empty",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "by stopping hidden views from participating in stack layouts (i.e.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "getting spacing between the previous child and the hidden child).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "hidden"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI8ViewSizeV",
+      "text" : "ViewSize"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/hidden",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "hidden",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize\/hidden"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/idealHeightForProposedWidth": {
+  "abstract" : [
+    {
+      "text" : "The height that the view ideally wants to take up assuming that the",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "proposed width doesn’t change. Only really differs from ",
+      "type" : "text"
+    },
+    {
+      "code" : "idealSize",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " for",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "views that have a trade-off between width and height (such as ",
+      "type" : "text"
+    },
+    {
+      "code" : "Text",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ").",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "idealHeightForProposedWidth"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/idealHeightForProposedWidth",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "idealHeightForProposedWidth",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize\/idealheightforproposedwidth"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/idealSize": {
+  "abstract" : [
+    {
+      "text" : "The size that the view ideally wants to take up.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "idealSize"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s5SIMD2V",
+      "text" : "SIMD2"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ">"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/idealSize",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "idealSize",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize\/idealsize"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/idealWidthForProposedHeight": {
+  "abstract" : [
+    {
+      "text" : "The width that the view ideally wants to take up assuming that the",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "proposed height doesn’t change. Only really differs from ",
+      "type" : "text"
+    },
+    {
+      "code" : "idealSize",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " for",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "views that have a trade-off between width and height (such as ",
+      "type" : "text"
+    },
+    {
+      "code" : "Text",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ").",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "idealWidthForProposedHeight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/idealWidthForProposedHeight",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "idealWidthForProposedHeight",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize\/idealwidthforproposedheight"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/init(fixedSize:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "fixedSize"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s5SIMD2V",
+      "text" : "SIMD2"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ">)"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/init(fixedSize:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(fixedSize:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize\/init(fixedsize:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/init(size:idealSize:idealWidthForProposedHeight:idealHeightForProposedWidth:minimumWidth:minimumHeight:maximumWidth:maximumHeight:participateInStackLayoutsWhenEmpty:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "size"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s5SIMD2V",
+      "text" : "SIMD2"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ">, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "idealSize"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s5SIMD2V",
+      "text" : "SIMD2"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ">, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "idealWidthForProposedHeight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "idealHeightForProposedWidth"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "minimumWidth"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "minimumHeight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "maximumWidth"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "maximumHeight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "participateInStackLayoutsWhenEmpty"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/init(size:idealSize:idealWidthForProposedHeight:idealHeightForProposedWidth:minimumWidth:minimumHeight:maximumWidth:maximumHeight:participateInStackLayoutsWhenEmpty:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(size:idealSize:idealWidthForProposedHeight:idealHeightForProposedWidth:minimumWidth:minimumHeight:maximumWidth:maximumHeight:participateInStackLayoutsWhenEmpty:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize\/init(size:idealsize:idealwidthforproposedheight:idealheightforproposedwidth:minimumwidth:minimumheight:maximumwidth:maximumheight:participateinstacklayoutswhenempty:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/maximumHeight": {
+  "abstract" : [
+    {
+      "text" : "The maximum height that the view can take (if its width remains the same).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "maximumHeight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/maximumHeight",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "maximumHeight",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize\/maximumheight"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/maximumWidth": {
+  "abstract" : [
+    {
+      "text" : "The maximum width that the view can take (if its height remains the same).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "maximumWidth"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/maximumWidth",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "maximumWidth",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize\/maximumwidth"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/minimumHeight": {
+  "abstract" : [
+    {
+      "text" : "The minimum height that the view can take (if its width remains the same).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "minimumHeight"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/minimumHeight",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "minimumHeight",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize\/minimumheight"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/minimumWidth": {
+  "abstract" : [
+    {
+      "text" : "The minimum width that the view can take (if its height remains the same).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "minimumWidth"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/minimumWidth",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "minimumWidth",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize\/minimumwidth"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/participateInStackLayoutsWhenEmpty": {
+  "abstract" : [
+    {
+      "text" : "Whether the view should participate in stack layouts when empty.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "participateInStackLayoutsWhenEmpty"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/participateInStackLayoutsWhenEmpty",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "participateInStackLayoutsWhenEmpty",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize\/participateinstacklayoutswhenempty"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/size": {
+  "abstract" : [
+    {
+      "text" : "The size that the view now takes up.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "size"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s5SIMD2V",
+      "text" : "SIMD2"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ">"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/size",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "size",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize\/size"
+}
+}
+}

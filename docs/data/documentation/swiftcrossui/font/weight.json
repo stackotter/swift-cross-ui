@@ -1,0 +1,459 @@
+{
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:12SwiftCrossUI4FontO6WeightO",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "enum"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "Weight"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "Weight"
+      }
+    ],
+    "remoteSource" : {
+      "fileName" : "Font.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Font.swift#L4"
+    },
+    "role" : "symbol",
+    "roleHeading" : "Enumeration",
+    "symbolKind" : "enum",
+    "title" : "Font.Weight"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "enum"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "Weight"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "relationshipsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/SQ",
+        "doc:\/\/SwiftCrossUI\/SH"
+      ],
+      "kind" : "relationships",
+      "title" : "Conforms To",
+      "type" : "conformsTo"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/black",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/bold",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/heavy",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/light",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/medium",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/regular",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/semibold",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/thin",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/ultraLight"
+      ],
+      "title" : "Enumeration Cases"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/Equatable-Implementations"
+      ],
+      "title" : "Default Implementations"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/font\/weight"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/SH": {
+  "identifier" : "doc:\/\/SwiftCrossUI\/SH",
+  "title" : "Swift.Hashable",
+  "type" : "unresolvable"
+},
+"doc://SwiftCrossUI/SQ": {
+  "identifier" : "doc:\/\/SwiftCrossUI\/SQ",
+  "title" : "Swift.Equatable",
+  "type" : "unresolvable"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Font": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Font"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Font"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Font",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/font"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Font/Weight": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Weight"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Weight"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Font.Weight",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/font\/weight"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Font/Weight/Equatable-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/Equatable-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Equatable Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/font\/weight\/equatable-implementations"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Font/Weight/black": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "black"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/black",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "Font.Weight.black",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/font\/weight\/black"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Font/Weight/bold": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "bold"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/bold",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "Font.Weight.bold",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/font\/weight\/bold"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Font/Weight/heavy": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "heavy"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/heavy",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "Font.Weight.heavy",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/font\/weight\/heavy"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Font/Weight/light": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "light"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/light",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "Font.Weight.light",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/font\/weight\/light"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Font/Weight/medium": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "medium"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/medium",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "Font.Weight.medium",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/font\/weight\/medium"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Font/Weight/regular": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "regular"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/regular",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "Font.Weight.regular",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/font\/weight\/regular"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Font/Weight/semibold": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "semibold"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/semibold",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "Font.Weight.semibold",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/font\/weight\/semibold"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Font/Weight/thin": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "thin"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/thin",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "Font.Weight.thin",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/font\/weight\/thin"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Font/Weight/ultraLight": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ultraLight"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/ultraLight",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "Font.Weight.ultraLight",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/font\/weight\/ultralight"
+}
+}
+}

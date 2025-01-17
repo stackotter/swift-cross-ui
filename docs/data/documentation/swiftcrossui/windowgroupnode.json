@@ -87,7 +87,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -171,13 +171,15 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroupNode\/init(from:backend:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroupNode\/init(from:backend:environment:)"
       ],
       "title" : "Initializers"
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroupNode\/update(_:backend:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroupNode\/computeNewWindowSize(currentProposedSize:backend:contentSize:environment:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroupNode\/update(_:backend:environment:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroupNode\/update(_:proposedWindowSize:backend:environment:windowSizeIsFinal:)"
       ],
       "title" : "Instance Methods"
     },
@@ -433,7 +435,138 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/windowgroupnode\/nodescene"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowGroupNode/init(from:backend:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowGroupNode/computeNewWindowSize(currentProposedSize:backend:contentSize:environment:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "computeNewWindowSize"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "currentProposedSize"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s5SIMD2V",
+      "text" : "SIMD2"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ">, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "contentSize"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI8ViewSizeV",
+      "text" : "ViewSize"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "environment"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI17EnvironmentValuesV",
+      "text" : "EnvironmentValues"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s5SIMD2V",
+      "text" : "SIMD2"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ">?"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroupNode\/computeNewWindowSize(currentProposedSize:backend:contentSize:environment:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "computeNewWindowSize(currentProposedSize:backend:contentSize:environment:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowgroupnode\/computenewwindowsize(currentproposedsize:backend:contentsize:environment:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowGroupNode/init(from:backend:environment:)": {
   "abstract" : [
 
   ],
@@ -493,17 +626,34 @@
     },
     {
       "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "environment"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI17EnvironmentValuesV",
+      "text" : "EnvironmentValues"
+    },
+    {
+      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroupNode\/init(from:backend:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroupNode\/init(from:backend:environment:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "init(from:backend:)",
+  "title" : "init(from:backend:environment:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/windowgroupnode\/init(from:backend:)"
+  "url" : "\/documentation\/swiftcrossui\/windowgroupnode\/init(from:backend:environment:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowGroupNode/update(_:backend:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowGroupNode/update(_:backend:environment:)": {
   "abstract" : [
 
   ],
@@ -563,15 +713,167 @@
     },
     {
       "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "environment"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI17EnvironmentValuesV",
+      "text" : "EnvironmentValues"
+    },
+    {
+      "kind" : "text",
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroupNode\/update(_:backend:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroupNode\/update(_:backend:environment:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "update(_:backend:)",
+  "title" : "update(_:backend:environment:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/windowgroupnode\/update(_:backend:)"
+  "url" : "\/documentation\/swiftcrossui\/windowgroupnode\/update(_:backend:environment:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowGroupNode/update(_:proposedWindowSize:backend:environment:windowSizeIsFinal:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "update"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "genericParameter",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ">("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI11WindowGroupV",
+      "text" : "WindowGroup"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Content"
+    },
+    {
+      "kind" : "text",
+      "text" : ">?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "proposedWindowSize"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s5SIMD2V",
+      "text" : "SIMD2"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ">, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Backend"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "environment"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI17EnvironmentValuesV",
+      "text" : "EnvironmentValues"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "windowSizeIsFinal"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI16ViewUpdateResultV",
+      "text" : "ViewUpdateResult"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroupNode\/update(_:proposedWindowSize:backend:environment:windowSizeIsFinal:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "update(_:proposedWindowSize:backend:environment:windowSizeIsFinal:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowgroupnode\/update(_:proposedwindowsize:backend:environment:windowsizeisfinal:)"
 }
 }
 }

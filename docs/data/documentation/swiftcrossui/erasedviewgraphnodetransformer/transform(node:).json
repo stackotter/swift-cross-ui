@@ -90,6 +90,7 @@
       },
       {
         "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:12SwiftCrossUI30ErasedViewGraphNodeTransformerP6ReturnQa",
         "text" : "Return"
       }
     ],
@@ -100,7 +101,7 @@
     ],
     "remoteSource" : {
       "fileName" : "ErasedViewGraphNode.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ErasedViewGraphNode.swift#L69"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ErasedViewGraphNode.swift#L95"
     },
     "required" : true,
     "role" : "symbol",
@@ -116,7 +117,7 @@
             "swift"
           ],
           "platforms" : [
-            "Linux"
+            "macOS"
           ],
           "tokens" : [
             {
@@ -194,7 +195,9 @@
               "text" : "."
             },
             {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNodeTransformer\/Return",
               "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI30ErasedViewGraphNodeTransformerP6ReturnQa",
               "text" : "Return"
             },
             {
@@ -348,6 +351,32 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/erasedviewgraphnodetransformer"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ErasedViewGraphNodeTransformer/Return": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "associatedtype"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Return"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNodeTransformer\/Return",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "Return",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/erasedviewgraphnodetransformer\/return"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ErasedViewGraphNodeTransformer/transform(node:)": {
   "abstract" : [
 
@@ -428,6 +457,7 @@
     },
     {
       "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI30ErasedViewGraphNodeTransformerP6ReturnQa",
       "text" : "Return"
     }
   ],
