@@ -36,8 +36,10 @@ where Content == Never {
     /// - Returns: Information about the view's size. The ``SwiftCrossUI/ViewSize/size``
     /// property is what frame the view will actually be rendered with if the current layout
     /// pass is not a dry run, while the other properties are used to inform the layout engine
-    /// how big or small the view can be. Pass `nil` for the maximum width/height if the view
-    /// has no maximum size (and therefore may occupy the entire screen).
+    /// how big or small the view can be. The ``SwiftCrossUI/ViewSize/idealSize`` property
+    /// should not vary with the `proposal`, and should only depend on the view's contents.
+    /// Pass `nil` for the maximum width/height if the view has no maximum size (and therefore
+    /// may occupy the entire screen).
     ///
     /// The default implementation uses `uiView.intrinsicContentSize` and `uiView.sizeThatFits(_:)`
     /// to determine the return value.
@@ -70,20 +72,27 @@ extension UIViewRepresentable {
         let intrinsicSize = uiView.intrinsicContentSize
         let sizeThatFits = uiView.sizeThatFits(
             CGSize(width: CGFloat(proposal.x), height: CGFloat(proposal.y)))
-        let roundedSize = SIMD2(
+
+        let roundedSizeThatFits = SIMD2(
             Int(sizeThatFits.width.rounded(.up)),
             Int(sizeThatFits.height.rounded(.up)))
+        let roundedIntrinsicSize = SIMD2(
+            Int(intrinsicSize.width.rounded(.awayFromZero)),
+            Int(intrinsicSize.height.rounded(.awayFromZero)))
+
         return ViewSize(
             size: SIMD2(
-                intrinsicSize.width < 0.0 ? proposal.x : min(proposal.x, roundedSize.x),
-                intrinsicSize.height < 0.0 ? proposal.y : min(proposal.y, roundedSize.y)
+                intrinsicSize.width < 0.0 ? proposal.x : roundedSizeThatFits.x,
+                intrinsicSize.height < 0.0 ? proposal.y : roundedSizeThatFits.y
             ),
+            // The 10 here is a somewhat arbitrary constant value so that it's always the same.
+            // See also `Color` and `Picker`, which use the same constant.
             idealSize: SIMD2(
-                intrinsicSize.width < 0.0 ? proposal.x : roundedSize.x,
-                intrinsicSize.height < 0.0 ? proposal.y : roundedSize.y
+                intrinsicSize.width < 0.0 ? 10 : roundedIntrinsicSize.x,
+                intrinsicSize.height < 0.0 ? 10 : roundedIntrinsicSize.y
             ),
-            minimumWidth: max(0, Int(intrinsicSize.width.rounded(.awayFromZero))),
-            minimumHeight: max(0, Int(intrinsicSize.height.rounded(.awayFromZero))),
+            minimumWidth: max(0, roundedIntrinsicSize.x),
+            minimumHeight: max(0, roundedIntrinsicSize.x),
             maximumWidth: nil,
             maximumHeight: nil
         )
