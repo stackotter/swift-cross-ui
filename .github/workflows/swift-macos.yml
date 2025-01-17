@@ -23,6 +23,7 @@ jobs:
         cd Examples && \
         swift build --target SwiftCrossUI && \
         swift build --target GtkBackend && \
+        swift build --target AppKitBackend && \
         swift build --target CounterExample && \
         swift build --target ControlsExample && \
         swift build --target RandomNumberGeneratorExample && \

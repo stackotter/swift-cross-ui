@@ -6,21 +6,16 @@ on:
 
 jobs:
   update-docs:
-    runs-on: ubuntu-latest
-
+    runs-on: macos-14
     steps:
+    - name: Force Xcode 15.4
+      run: sudo xcode-select -switch /Applications/Xcode_15.4.app
     - uses: actions/checkout@v3
-    - name: Install Dependencies
-      run: |
-        sudo apt update && \
-        sudo apt install -y libgtk-4-dev clang
     - name: Swift Version
       run: swift --version
     - name: Compile Docs
       run: |
         set -eux
-
-        cd /home/runner/work/swift-cross-ui/swift-cross-ui
 
         git config user.email "stackotter@stackotter.dev"
         git config user.name "stackotter"
@@ -29,7 +24,6 @@ jobs:
         git worktree add --checkout gh-pages origin/gh-pages
 
         export DOCC_JSON_PRETTYPRINT="YES"
-
         export SWIFTPM_ENABLE_COMMAND_PLUGINS=1
         swift package \
           --allow-writing-to-directory gh-pages/docs \
