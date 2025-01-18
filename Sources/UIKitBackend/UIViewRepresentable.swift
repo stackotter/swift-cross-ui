@@ -81,7 +81,7 @@ func defaultViewSize(proposal: SIMD2<Int>, view: UIView) -> ViewSize {
             intrinsicSize.height < 0.0 ? 10 : Int(intrinsicSize.height.rounded(.awayFromZero))
         ),
         minimumWidth: Int(minimumSize.width.rounded(.towardZero)),
-        minimumHeight: Int(minimumSize.width.rounded(.towardZero)),
+        minimumHeight: Int(minimumSize.height.rounded(.towardZero)),
         maximumWidth: maximumSize.width,
         maximumHeight: maximumSize.height
     )

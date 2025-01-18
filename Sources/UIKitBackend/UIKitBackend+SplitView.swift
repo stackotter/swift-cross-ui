@@ -8,7 +8,7 @@ import UIKit
         private let sidebarContainer: ContainerWidget
         private let mainContainer: ContainerWidget
 
-        init(sidebarWidget: any WidgetProtocol, mainWidget: any WidgetProtocol) {
+        init(sidebarWidget: some WidgetProtocol, mainWidget: some WidgetProtocol) {
             // UISplitViewController requires its children to be controllers, not views
             sidebarContainer = ContainerWidget(child: sidebarWidget)
             mainContainer = ContainerWidget(child: mainWidget)

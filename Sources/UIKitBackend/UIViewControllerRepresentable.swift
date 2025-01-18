@@ -148,24 +148,24 @@ final class ControllerRepresentingWidget<Representable: UIViewControllerRepresen
     var representable: Representable
     var context: UIViewControllerRepresentableContext<Representable.Coordinator>?
 
-    lazy var subcontroller: Representable.UIViewControllerType =
-        {
-            let subcontroller = representable.makeUIViewController(context: context!)
+    lazy var subcontroller: Representable.UIViewControllerType = {
+        let subcontroller = representable.makeUIViewController(context: context!)
 
-            view.addSubview(subcontroller.view)
-            addChild(subcontroller)
-            subcontroller.didMove(toParent: self)
+        view.addSubview(subcontroller.view)
+        addChild(subcontroller)
 
-            subcontroller.view.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                subcontroller.view.topAnchor.constraint(equalTo: view.topAnchor),
-                subcontroller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                subcontroller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                subcontroller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            ])
+        subcontroller.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            subcontroller.view.topAnchor.constraint(equalTo: view.topAnchor),
+            subcontroller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            subcontroller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            subcontroller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
 
-            return subcontroller
-        }()
+        subcontroller.didMove(toParent: self)
+
+        return subcontroller
+    }()
 
     func update(with environment: EnvironmentValues) {
         if context == nil {
