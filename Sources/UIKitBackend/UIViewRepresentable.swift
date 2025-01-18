@@ -150,8 +150,8 @@ where Self: UIViewRepresentable {
             )
 
         if !dryRun {
-            representingWidget.width = size.size.x
-            representingWidget.height = size.size.y
+            representingWidget.frame.size.width = CGFloat(size.size.x)
+            representingWidget.frame.size.height = CGFloat(size.size.y)
         }
 
         return ViewUpdateResult.leafView(size: size)
@@ -165,7 +165,7 @@ where Coordinator == Void {
     }
 }
 
-final class RepresentingWidget<Representable: UIViewRepresentable>: BaseWidget {
+final class RepresentingWidget<Representable: UIViewRepresentable>: BaseViewWidget {
     var representable: Representable
     var context: UIViewRepresentableContext<Representable.Coordinator>?
 
