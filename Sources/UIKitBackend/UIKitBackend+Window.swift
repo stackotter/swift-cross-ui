@@ -44,6 +44,7 @@ final class RootViewController: UIViewController {
             addChild(childController)
             childController.didMove(toParent: self)
         }
+        childWidget = child
 
         NSLayoutConstraint.activate([
             child.view.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
