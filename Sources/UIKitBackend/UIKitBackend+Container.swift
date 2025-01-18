@@ -68,7 +68,7 @@ extension UIKitBackend {
     }
 
     public func addChild(_ child: Widget, to container: Widget) {
-        child.add(toWidget: container)
+        container.add(childWidget: child)
     }
 
     public func setPosition(

@@ -10,9 +10,9 @@ public protocol WidgetProtocol: UIResponder {
     var controller: UIViewController? { get }
 
     var childWidgets: [any WidgetProtocol] { get set }
-    var parentWidget: (any WidgetProtocol)? { get }
+    var parentWidget: (any WidgetProtocol)? { get set }
 
-    func add(toWidget other: some WidgetProtocol)
+    func add(childWidget: some WidgetProtocol)
     func removeFromParentWidget()
 }
 
@@ -136,13 +136,23 @@ class BaseViewWidget: UIView, WidgetProtocolHelpers {
         updateTopConstraint()
     }
 
-    func add(toWidget other: some WidgetProtocol) {
-        if parentWidget === other { return }
-        removeFromParentWidget()
+    func add(childWidget: some WidgetProtocol) {
+        if childWidget.parentWidget === self { return }
+        childWidget.removeFromParentWidget()
 
-        other.view.addSubview(self)
-        parentWidget = other
-        other.childWidgets.append(self)
+        let childController = childWidget.controller
+
+        addSubview(childWidget.view)
+
+        if let controller,
+            let childController
+        {
+            controller.addChild(childController)
+            childController.didMove(toParent: controller)
+        }
+
+        childWidgets.append(childWidget)
+        childWidget.parentWidget = self
     }
 
     func removeFromParentWidget() {
@@ -208,19 +218,21 @@ class BaseControllerWidget: UIViewController, WidgetProtocolHelpers {
         fatalError("init(coder:) is not used for this view")
     }
 
-    func add(toWidget other: some WidgetProtocol) {
-        if parentWidget === other { return }
-        removeFromParentWidget()
+    func add(childWidget: some WidgetProtocol) {
+        if childWidget.parentWidget === self { return }
+        childWidget.removeFromParentWidget()
 
-        other.view.addSubview(view)
+        let childController = childWidget.controller
 
-        if let otherController = other.controller {
-            otherController.addChild(self)
-            didMove(toParent: otherController)
+        view.addSubview(childWidget.view)
+
+        if let childController {
+            addChild(childController)
+            childController.didMove(toParent: self)
         }
 
-        parentWidget = other
-        other.childWidgets.append(self)
+        childWidgets.append(childWidget)
+        childWidget.parentWidget = self
     }
 
     func removeFromParentWidget() {
@@ -270,6 +282,32 @@ class ContainerWidget: BaseControllerWidget {
     init(child: some WidgetProtocol) {
         self.child = child
         super.init()
-        child.add(toWidget: self)
+        add(childWidget: child)
+    }
+}
+
+class WrapperControllerWidget<Controller: UIViewController>: BaseControllerWidget {
+    let child: Controller
+
+    init(child: Controller) {
+        self.child = child
+        super.init()
+    }
+
+    override func loadView() {
+        super.loadView()
+
+        view.addSubview(child.view)
+        addChild(child)
+
+        child.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            child.view.topAnchor.constraint(equalTo: view.topAnchor),
+            child.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            child.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            child.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+
+        child.didMove(toParent: self)
     }
 }
