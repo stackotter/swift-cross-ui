@@ -31,7 +31,7 @@ where Content == Never {
     /// Compute the view's size.
     /// - Parameters:
     ///   - proposal: The proposed frame for the view to render in.
-    ///   - uiVIew: The view being queried for its preferred size.
+    ///   - uiView: The view being queried for its preferred size.
     ///   - context: The context, including the coordinator and environment values.
     /// - Returns: Information about the view's size. The ``SwiftCrossUI/ViewSize/size``
     /// property is what frame the view will actually be rendered with if the current layout
@@ -41,7 +41,7 @@ where Content == Never {
     /// Pass `nil` for the maximum width/height if the view has no maximum size (and therefore
     /// may occupy the entire screen).
     ///
-    /// The default implementation uses `uiView.intrinsicContentSize` and `uiView.sizeThatFits(_:)`
+    /// The default implementation uses `uiView.intrinsicContentSize` and `uiView.systemLayoutSizeFitting(_:)`
     /// to determine the return value.
     func determineViewSize(
         for proposal: SIMD2<Int>, uiView: UIViewType,
@@ -50,14 +50,41 @@ where Content == Never {
 
     /// Called to clean up the view when it's removed.
     /// - Parameters:
-    ///   - uiVIew: The view being dismantled.
+    ///   - uiView: The view being dismantled.
     ///   - coordinator: The coordinator.
     ///
     /// This method is called after all UIKit lifecycle methods, such as
-    /// `uiView.didMoveToSuperview()`.
+    /// `uiView.didMoveToWindow()`.
     ///
     /// The default implementation does nothing.
     static func dismantleUIView(_ uiView: UIViewType, coordinator: Coordinator)
+}
+
+// Used both here and by UIViewControllerRepresentable
+func defaultViewSize(proposal: SIMD2<Int>, view: UIView) -> ViewSize {
+    let intrinsicSize = view.intrinsicContentSize
+
+    let sizeThatFits = view.systemLayoutSizeFitting(
+        CGSize(width: CGFloat(proposal.x), height: CGFloat(proposal.y)))
+
+    let minimumSize = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+    let maximumSize = view.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
+
+    return ViewSize(
+        size: SIMD2(
+            Int(sizeThatFits.width.rounded(.up)),
+            Int(sizeThatFits.height.rounded(.up))),
+        // The 10 here is a somewhat arbitrary constant value so that it's always the same.
+        // See also `Color` and `Picker`, which use the same constant.
+        idealSize: SIMD2(
+            intrinsicSize.width < 0.0 ? 10 : Int(intrinsicSize.width.rounded(.awayFromZero)),
+            intrinsicSize.height < 0.0 ? 10 : Int(intrinsicSize.height.rounded(.awayFromZero))
+        ),
+        minimumWidth: Int(minimumSize.width.rounded(.towardZero)),
+        minimumHeight: Int(minimumSize.width.rounded(.towardZero)),
+        maximumWidth: maximumSize.width,
+        maximumHeight: maximumSize.height
+    )
 }
 
 extension UIViewRepresentable {
@@ -69,33 +96,7 @@ extension UIViewRepresentable {
         for proposal: SIMD2<Int>, uiView: UIViewType,
         context _: UIViewRepresentableContext<Coordinator>
     ) -> ViewSize {
-        let intrinsicSize = uiView.intrinsicContentSize
-        let sizeThatFits = uiView.sizeThatFits(
-            CGSize(width: CGFloat(proposal.x), height: CGFloat(proposal.y)))
-
-        let roundedSizeThatFits = SIMD2(
-            Int(sizeThatFits.width.rounded(.up)),
-            Int(sizeThatFits.height.rounded(.up)))
-        let roundedIntrinsicSize = SIMD2(
-            Int(intrinsicSize.width.rounded(.awayFromZero)),
-            Int(intrinsicSize.height.rounded(.awayFromZero)))
-
-        return ViewSize(
-            size: SIMD2(
-                intrinsicSize.width < 0.0 ? proposal.x : roundedSizeThatFits.x,
-                intrinsicSize.height < 0.0 ? proposal.y : roundedSizeThatFits.y
-            ),
-            // The 10 here is a somewhat arbitrary constant value so that it's always the same.
-            // See also `Color` and `Picker`, which use the same constant.
-            idealSize: SIMD2(
-                intrinsicSize.width < 0.0 ? 10 : roundedIntrinsicSize.x,
-                intrinsicSize.height < 0.0 ? 10 : roundedIntrinsicSize.y
-            ),
-            minimumWidth: max(0, roundedIntrinsicSize.x),
-            minimumHeight: max(0, roundedIntrinsicSize.x),
-            maximumWidth: nil,
-            maximumHeight: nil
-        )
+        defaultViewSize(proposal: proposal, view: uiView)
     }
 }
 
@@ -124,7 +125,7 @@ where Self: UIViewRepresentable {
         _: any ViewGraphNodeChildren,
         backend _: Backend
     ) -> Backend.Widget {
-        if let widget = RepresentingWidget(representable: self) as? Backend.Widget {
+        if let widget = ViewRepresentingWidget(representable: self) as? Backend.Widget {
             return widget
         } else {
             fatalError("UIViewRepresentable requested by \(Backend.self)")
@@ -139,7 +140,7 @@ where Self: UIViewRepresentable {
         backend _: Backend,
         dryRun: Bool
     ) -> ViewUpdateResult {
-        let representingWidget = widget as! RepresentingWidget<Self>
+        let representingWidget = widget as! ViewRepresentingWidget<Self>
         representingWidget.update(with: environment)
 
         let size =
@@ -150,8 +151,8 @@ where Self: UIViewRepresentable {
             )
 
         if !dryRun {
-            representingWidget.frame.size.width = CGFloat(size.size.x)
-            representingWidget.frame.size.height = CGFloat(size.size.y)
+            representingWidget.width = size.size.x
+            representingWidget.height = size.size.y
         }
 
         return ViewUpdateResult.leafView(size: size)
@@ -165,7 +166,7 @@ where Coordinator == Void {
     }
 }
 
-final class RepresentingWidget<Representable: UIViewRepresentable>: BaseViewWidget {
+final class ViewRepresentingWidget<Representable: UIViewRepresentable>: BaseViewWidget {
     var representable: Representable
     var context: UIViewRepresentableContext<Representable.Coordinator>?
 

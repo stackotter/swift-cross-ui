@@ -1,29 +1,28 @@
 import SwiftCrossUI
 import UIKit
 
-final class ScrollWidget: ContainerWidget, UIScrollViewDelegate {
+final class ScrollWidget: ContainerWidget {
     private var scrollView = UIScrollView()
     private var childWidthConstraint: NSLayoutConstraint?
     private var childHeightConstraint: NSLayoutConstraint?
-    
+
     private lazy var contentLayoutGuideConstraints: [NSLayoutConstraint] = [
         scrollView.contentLayoutGuide.leadingAnchor.constraint(equalTo: child.view.leadingAnchor),
         scrollView.contentLayoutGuide.trailingAnchor.constraint(equalTo: child.view.trailingAnchor),
         scrollView.contentLayoutGuide.topAnchor.constraint(equalTo: child.view.topAnchor),
-        scrollView.contentLayoutGuide.bottomAnchor.constraint(equalTo: child.view.bottomAnchor)
+        scrollView.contentLayoutGuide.bottomAnchor.constraint(equalTo: child.view.bottomAnchor),
     ]
-    
+
     override func loadView() {
         view = scrollView
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.delegate = self
     }
-    
+
     override func viewWillLayoutSubviews() {
         NSLayoutConstraint.activate(contentLayoutGuideConstraints)
         super.viewWillLayoutSubviews()
     }
-    
+
     func setScrollBars(
         hasVerticalScrollBar: Bool,
         hasHorizontalScrollBar: Bool
@@ -45,7 +44,8 @@ final class ScrollWidget: ContainerWidget, UIScrollViewDelegate {
             case (true, true):
                 childWidthConstraint!.isActive = false
             case (false, nil):
-            childWidthConstraint = child.view.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+                childWidthConstraint = child.view.widthAnchor.constraint(
+                    equalTo: scrollView.widthAnchor)
                 fallthrough
             case (false, false):
                 childWidthConstraint!.isActive = true

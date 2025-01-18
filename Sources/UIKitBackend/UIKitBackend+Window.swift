@@ -37,17 +37,17 @@ final class RootViewController: UIViewController {
     func setChild(to child: some WidgetProtocol) {
         childWidget?.removeFromParentWidget()
         child.removeFromParentWidget()
-        
+
         let childController = child.controller
         view.addSubview(child.view)
         if let childController {
             addChild(childController)
             childController.didMove(toParent: self)
         }
-        
+
         NSLayoutConstraint.activate([
             child.view.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            child.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor)
+            child.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
         ])
     }
 }

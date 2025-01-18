@@ -5,13 +5,13 @@ public protocol WidgetProtocol: UIResponder {
     var y: Int { get set }
     var width: Int { get set }
     var height: Int { get set }
-    
+
     var view: UIView! { get }
     var controller: UIViewController? { get }
-    
+
     var childWidgets: [any WidgetProtocol] { get set }
     var parentWidget: (any WidgetProtocol)? { get }
-    
+
     func add(toWidget other: some WidgetProtocol)
     func removeFromParentWidget()
 }
@@ -20,7 +20,7 @@ extension UIKitBackend {
     public typealias Widget = any WidgetProtocol
 }
 
-fileprivate protocol WidgetProtocolHelpers: WidgetProtocol {
+private protocol WidgetProtocolHelpers: WidgetProtocol {
     var leftConstraint: NSLayoutConstraint? { get set }
     var topConstraint: NSLayoutConstraint? { get set }
     var widthConstraint: NSLayoutConstraint? { get set }
@@ -35,7 +35,9 @@ extension WidgetProtocolHelpers {
             equalTo: superview.safeAreaLayoutGuide.leftAnchor, constant: CGFloat(x))
         // Set the constraint priority for leftConstraint (and topConstraint) to just under
         // "required" so that we don't get warnings about unsatisfiable constraints from
-        // scroll views.
+        // scroll views, which position relative to their contentLayoutGuide instead.
+        // This *should* be high enough that it won't cause any problems unless there was
+        // a constraint conflict anyways.
         leftConstraint!.priority = .init(UILayoutPriority.required.rawValue - 1.0)
         leftConstraint!.isActive = true
     }
@@ -99,12 +101,12 @@ class BaseViewWidget: UIView, WidgetProtocolHelpers {
             }
         }
     }
-    
+
     var childWidgets: [any WidgetProtocol] = []
     weak var parentWidget: (any WidgetProtocol)?
-    
+
     var view: UIView! { self }
-    
+
     var controller: UIViewController? {
         var responder: UIResponder = self
         while let next = responder.next {
@@ -133,19 +135,20 @@ class BaseViewWidget: UIView, WidgetProtocolHelpers {
         updateLeftConstraint()
         updateTopConstraint()
     }
-    
+
     func add(toWidget other: some WidgetProtocol) {
         if parentWidget === other { return }
         removeFromParentWidget()
-        
+
         other.view.addSubview(self)
         parentWidget = other
         other.childWidgets.append(self)
     }
-    
+
     func removeFromParentWidget() {
         if let parentWidget {
-            parentWidget.childWidgets.remove(at: parentWidget.childWidgets.firstIndex { $0 === self }!)
+            parentWidget.childWidgets.remove(
+                at: parentWidget.childWidgets.firstIndex { $0 === self }!)
             self.parentWidget = nil
         }
         removeFromSuperview()
@@ -189,40 +192,41 @@ class BaseControllerWidget: UIViewController, WidgetProtocolHelpers {
             }
         }
     }
-    
+
     var childWidgets: [any WidgetProtocol]
     weak var parentWidget: (any WidgetProtocol)?
-    
+
     var controller: UIViewController? { self }
-    
+
     init() {
         childWidgets = []
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) is not used for this view")
     }
-    
+
     func add(toWidget other: some WidgetProtocol) {
         if parentWidget === other { return }
         removeFromParentWidget()
-        
+
         other.view.addSubview(view)
-        
+
         if let otherController = other.controller {
             otherController.addChild(self)
             didMove(toParent: otherController)
         }
-        
+
         parentWidget = other
         other.childWidgets.append(self)
     }
-    
+
     func removeFromParentWidget() {
         if let parentWidget {
-            parentWidget.childWidgets.remove(at: parentWidget.childWidgets.firstIndex { $0 === self }!)
+            parentWidget.childWidgets.remove(
+                at: parentWidget.childWidgets.firstIndex { $0 === self }!)
             self.parentWidget = nil
         }
         if let parent {
@@ -262,7 +266,7 @@ class WrapperWidget<View: UIView>: BaseViewWidget {
 
 class ContainerWidget: BaseControllerWidget {
     let child: any WidgetProtocol
-    
+
     init(child: some WidgetProtocol) {
         self.child = child
         super.init()
