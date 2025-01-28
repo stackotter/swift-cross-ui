@@ -1,51 +1,51 @@
 format_version = 2
 
 [apps.ControlsExample]
-identifier = 'dev.stackotter.ControlsExample'
+identifier = 'dev.swiftcrossui.ControlsExample'
 product = 'ControlsExample'
 version = '0.1.0'
 
 [apps.CounterExample]
-identifier = 'dev.stackotter.CounterExample'
+identifier = 'dev.swiftcrossui.CounterExample'
 product = 'CounterExample'
 version = '0.1.0'
 
 [apps.RandomNumberGeneratorExample]
-identifier = 'dev.stackotter.RandomNumberGeneratorExample'
+identifier = 'dev.swiftcrossui.RandomNumberGeneratorExample'
 product = 'RandomNumberGeneratorExample'
 version = '0.1.0'
 
 [apps.WindowingExample]
-identifier = 'dev.stackotter.WindowingExample'
+identifier = 'dev.swiftcrossui.WindowingExample'
 product = 'WindowingExample'
 version = '0.1.0'
 
 [apps.GreetingGeneratorExample]
-identifier = 'dev.stackotter.GreetingGeneratorExample'
+identifier = 'dev.swiftcrossui.GreetingGeneratorExample'
 product = 'GreetingGeneratorExample'
 version = '0.1.0'
 
 [apps.NavigationExample]
-identifier = 'dev.stackotter.NavigationExample'
+identifier = 'dev.swiftcrossui.NavigationExample'
 product = 'NavigationExample'
 version = '0.1.0'
 
 [apps.SplitExample]
-identifier = 'dev.stackotter.SplitExample'
+identifier = 'dev.swiftcrossui.SplitExample'
 product = 'SplitExample'
 version = '0.1.0'
 
 [apps.SpreadsheetExample]
-identifier = 'dev.stackotter.SpreadsheetExample'
+identifier = 'dev.swiftcrossui.SpreadsheetExample'
 product = 'SpreadsheetExample'
 version = '0.1.0'
 
 [apps.StressTestExample]
-identifier = 'dev.stackotter.StressTestExample'
+identifier = 'dev.swiftcrossui.StressTestExample'
 product = 'StressTestExample'
 version = '0.1.0'
 
 [apps.NotesExample]
-identifier = 'dev.stackotter.NotesExample'
+identifier = 'dev.swiftcrossui.NotesExample'
 product = 'NotesExample'
 version = '0.1.0'
