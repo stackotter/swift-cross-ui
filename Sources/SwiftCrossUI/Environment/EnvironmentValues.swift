@@ -95,6 +95,15 @@ public struct EnvironmentValues {
         )
     }
 
+    /// Opens a URL with the default application. May present an application
+    /// picker if multiple applications are registered for the given URL
+    /// protocol.
+    public var openURL: OpenURLAction {
+        return OpenURLAction(
+            backend: backend
+        )
+    }
+
     /// Creates the default environment.
     init<Backend: AppBackend>(backend: Backend) {
         self.backend = backend

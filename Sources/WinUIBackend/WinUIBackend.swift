@@ -195,6 +195,10 @@ public final class WinUIBackend: AppBackend {
         try! window.activate()
     }
 
+    public func openExternalURL(_ url: URL) throws {
+        UWP.Launcher.launchUriAsync(WindowsFoundation.Uri(url.absoluteString))
+    }
+
     public func runInMainThread(action: @escaping () -> Void) {
         _ = try! internalState.dispatcherQueue!.tryEnqueue(.normal) {
             action()

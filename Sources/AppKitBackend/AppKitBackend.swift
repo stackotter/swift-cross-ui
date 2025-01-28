@@ -117,6 +117,10 @@ public final class AppKitBackend: AppBackend {
         window.makeKeyAndOrderFront(nil)
     }
 
+    public func openExternalURL(_ url: URL) throws {
+        NSWorkspace.shared.open(url)
+    }
+
     private static func renderMenuItems(_ items: [ResolvedMenu.Item]) -> [NSMenuItem] {
         items.map { item in
             switch item {

@@ -168,6 +168,10 @@ public protocol AppBackend {
     /// associated with a custom URL scheme).
     func setIncomingURLHandler(to action: @escaping (URL) -> Void)
 
+    /// Opens an external URL in the system browser or app registered for the
+    /// URL's protocol.
+    func openExternalURL(_ url: URL) throws
+
     /// Shows a widget after it has been created or updated (may be unnecessary
     /// for some backends). Predominantly used by ``ViewGraphNode`` after
     /// propagating updates.
@@ -499,6 +503,12 @@ extension AppBackend {
     private func todo(_ function: String = #function) -> Never {
         print("\(type(of: self)): \(function) not implemented")
         Foundation.exit(1)
+    }
+
+    // MARK: System
+
+    public func openExternalURL(_ url: URL) throws {
+        todo()
     }
 
     // MARK: Application

@@ -157,6 +157,11 @@ public final class GtkBackend: AppBackend {
         window.present()
     }
 
+    public func openExternalURL(_ url: URL) throws {
+        // Used instead of gtk_uri_launcher_launch to maintain <4.10 compatibility
+        gtk_show_uri(nil, url.absoluteString, GDK_CURRENT_TIME)
+    }
+
     private func renderMenu(
         _ menu: ResolvedMenu,
         actionMap: any GActionMap,
