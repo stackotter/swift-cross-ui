@@ -50,6 +50,7 @@ public final class WinUIBackend: AppBackend {
         var textFieldChangeActions: [ObjectIdentifier: (String) -> Void] = [:]
         var textFieldSubmitActions: [ObjectIdentifier: () -> Void] = [:]
         var dispatcherQueue: WinAppSDK.DispatcherQueue?
+        var themeChangeAction: (() -> Void)?
     }
 
     private var internalState: InternalState
@@ -70,6 +71,11 @@ public final class WinUIBackend: AppBackend {
             // overriding the relevant resource values.
             _ = application.resources.insert("ToggleSwitchPreContentMargin", 0.0 as Double)
             _ = application.resources.insert("ToggleSwitchPostContentMargin", 0.0 as Double)
+
+            // Handle theme changes
+            UWP.UISettings().colorValuesChanged.addHandler { _, _ in
+                self.internalState.themeChangeAction?()
+            }
 
             // TODO: Read in previously hardcoded values from the application's
             // resources dictionary for future-proofing. Example code for getting
@@ -185,6 +191,9 @@ public final class WinUIBackend: AppBackend {
     public func setChild(ofWindow window: Window, to widget: Widget) {
         window.content = widget
         try! widget.updateLayout()
+        widget.actualThemeChanged.addHandler { _, _ in
+            self.internalState.themeChangeAction?()
+        }
     }
 
     public func show(window: Window) {
@@ -196,7 +205,7 @@ public final class WinUIBackend: AppBackend {
     }
 
     public func openExternalURL(_ url: URL) throws {
-        UWP.Launcher.launchUriAsync(WindowsFoundation.Uri(url.absoluteString))
+        _ = UWP.Launcher.launchUriAsync(WindowsFoundation.Uri(url.absoluteString))
     }
 
     public func runInMainThread(action: @escaping () -> Void) {
@@ -218,14 +227,22 @@ public final class WinUIBackend: AppBackend {
     public func computeRootEnvironment(
         defaultEnvironment: EnvironmentValues
     ) -> EnvironmentValues {
+        // Source: https://learn.microsoft.com/en-us/windows/apps/desktop/modernize/ui/apply-windows-themes#know-when-dark-mode-is-enabled
+        let backgroundColor = try! UWP.UISettings().getColorValue(.background)
+
+        let green = Int(backgroundColor.g)
+        let red = Int(backgroundColor.r)
+        let blue = Int(backgroundColor.b)
+        let isLight = 5 * green + 2 * red + blue > 8 * 128
+
         return
             defaultEnvironment
             .with(\.font, .system(size: 14))
+            .with(\.colorScheme, isLight ? .light : .dark)
     }
 
     public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
-        print("Implement set root environment change handler")
-        // TODO
+        internalState.themeChangeAction = action
     }
 
     public func setIncomingURLHandler(to action: @escaping (URL) -> Void) {
@@ -494,6 +511,13 @@ public final class WinUIBackend: AppBackend {
         button.content = block
         environment.apply(to: block)
         internalState.buttonClickActions[ObjectIdentifier(button)] = action
+
+        switch environment.colorScheme {
+            case .light:
+                button.requestedTheme = .light
+            case .dark:
+                button.requestedTheme = .dark
+        }
     }
 
     public func createScrollContainer(for child: Widget) -> Widget {
@@ -544,6 +568,14 @@ public final class WinUIBackend: AppBackend {
         slider.minimum = minimum
         slider.maximum = maximum
         internalState.sliderChangeActions[ObjectIdentifier(slider)] = onChange
+
+        // TODO: Add environment to updateSlider API
+        // switch environment.colorScheme {
+        //     case .light:
+        //         slider.requestedTheme = .light
+        //     case .dark:
+        //         slider.requestedTheme = .dark
+        // }
     }
 
     public func setValue(ofSlider slider: Widget, to value: Double) {
@@ -585,6 +617,13 @@ public final class WinUIBackend: AppBackend {
         environment.apply(to: picker)
         picker.actualForegroundColor = environment.suggestedForegroundColor.uwpColor
 
+        switch environment.colorScheme {
+            case .light:
+                picker.requestedTheme = .light
+            case .dark:
+                picker.requestedTheme = .dark
+        }
+
         // Only update options past this point, otherwise the early return
         // will cause issues.
         guard options.count > 0 else {
@@ -622,7 +661,7 @@ public final class WinUIBackend: AppBackend {
         }
 
         missing("proper picker updating logic")
-        missing("picker environment handling")
+        missing("picker font handling")
 
         picker.options = options
     }
@@ -664,7 +703,14 @@ public final class WinUIBackend: AppBackend {
         internalState.textFieldChangeActions[ObjectIdentifier(textField)] = onChange
         internalState.textFieldSubmitActions[ObjectIdentifier(textField)] = onSubmit
 
-        missing("text field environment handling")
+        switch environment.colorScheme {
+            case .light:
+                textField.requestedTheme = .light
+            case .dark:
+                textField.requestedTheme = .dark
+        }
+
+        missing("text field font handling")
     }
 
     public func setContent(ofTextField textField: Widget, to content: String) {
@@ -760,6 +806,15 @@ public final class WinUIBackend: AppBackend {
         block.text = label
         toggle.content = block
         internalState.toggleClickActions[ObjectIdentifier(toggle)] = onChange
+
+        // TODO: Add environment to updateToggle API. Rename updateToggle etc to
+        //   updateToggleButton etc
+        // switch environment.colorScheme {
+        //     case .light:
+        //         toggle.requestedTheme = .light
+        //     case .dark:
+        //         toggle.requestedTheme = .dark
+        // }
     }
 
     public func setState(ofToggle toggle: Widget, to state: Bool) {
@@ -782,6 +837,14 @@ public final class WinUIBackend: AppBackend {
 
     public func updateSwitch(_ toggleSwitch: Widget, onChange: @escaping (Bool) -> Void) {
         internalState.switchClickActions[ObjectIdentifier(toggleSwitch)] = onChange
+
+        // TODO: Add environment to updateSwitch API
+        // switch environment.colorScheme {
+        //     case .light:
+        //         toggleSwitch.requestedTheme = .light
+        //     case .dark:
+        //         toggleSwitch.requestedTheme = .dark
+        // }
     }
 
     public func setState(ofSwitch switchWidget: Widget, to state: Bool) {
@@ -810,6 +873,13 @@ public final class WinUIBackend: AppBackend {
         }
         if actionLabels.count >= 3 {
             alert.closeButtonText = actionLabels[2]
+        }
+
+        switch environment.colorScheme {
+            case .light:
+                alert.requestedTheme = .light
+            case .dark:
+                alert.requestedTheme = .dark
         }
     }
 
@@ -933,6 +1003,15 @@ extension SwiftCrossUI.Color {
             r: UInt8((red * Float(UInt8.max)).rounded()),
             g: UInt8((green * Float(UInt8.max)).rounded()),
             b: UInt8((blue * Float(UInt8.max)).rounded())
+        )
+    }
+
+    init(uwpColor: UWP.Color) {
+        self.init(
+            Float(uwpColor.r) / Float(UInt8.max),
+            Float(uwpColor.g) / Float(UInt8.max),
+            Float(uwpColor.b) / Float(UInt8.max),
+            Float(uwpColor.a) / Float(UInt8.max)
         )
     }
 }
