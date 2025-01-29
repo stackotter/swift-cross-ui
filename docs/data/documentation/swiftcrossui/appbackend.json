@@ -556,6 +556,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/getContent(ofTextField:)-755gm",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/isWindowProgrammaticallyResizable(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/naturalSize(of:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/openExternalURL(_:)-59ruj",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeAllChildren(of:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeChild(_:from:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/runInMainThread(action:)",
@@ -2829,6 +2830,61 @@
   "title" : "naturalSize(of:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/naturalsize(of:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/openExternalURL(_:)-59ruj": {
+  "abstract" : [
+    {
+      "text" : "Opens an external URL in the system browser or app registered for the",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "URL’s protocol.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "openExternalURL"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:10Foundation3URLV",
+      "text" : "URL"
+    },
+    {
+      "kind" : "text",
+      "text" : ") "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "throws"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/openExternalURL(_:)-59ruj",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "openExternalURL(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/openexternalurl(_:)-59ruj"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/removeAllChildren(of:)": {
   "abstract" : [

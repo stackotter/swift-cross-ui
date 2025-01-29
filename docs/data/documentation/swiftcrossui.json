@@ -204,6 +204,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/MenuItemsBuilder",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OpenDialogOptions",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OpenURLAction",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PreferenceValues",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentAlertAction",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentFileSaveDialogAction",
@@ -2681,6 +2682,48 @@
   "title" : "OpenDialogOptions",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/opendialogoptions"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/OpenURLAction": {
+  "abstract" : [
+    {
+      "text" : "Opens a URL with the default application. May present an application picker",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "if multiple applications are registered for the given URL protocol.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "OpenURLAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OpenURLAction",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "OpenURLAction"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "OpenURLAction",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/openurlaction"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalView": {
   "abstract" : [

@@ -5928,6 +5928,24 @@
                 "type" : "method"
               },
               {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/openexternalurl(_:)-5d30",
+                        "title" : "func openExternalURL(URL) throws",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/openexternalurl(_:)-59ruj",
+                "title" : "func openExternalURL(URL) throws",
+                "type" : "method"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/removeallchildren(of:)",
                 "title" : "func removeAllChildren(of: Self.Widget)",
                 "type" : "method"
@@ -7698,6 +7716,11 @@
                 "type" : "property"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/environmentvalues\/openurl",
+                "title" : "var openURL: OpenURLAction",
+                "type" : "property"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/environmentvalues\/presentalert",
                 "title" : "var presentAlert: PresentAlertAction",
                 "type" : "property"
@@ -8555,6 +8578,22 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/opendialogoptions",
             "title" : "OpenDialogOptions",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/openurlaction\/callasfunction(_:)",
+                "title" : "func callAsFunction(URL)",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/openurlaction",
+            "title" : "OpenURLAction",
             "type" : "struct"
           },
           {
