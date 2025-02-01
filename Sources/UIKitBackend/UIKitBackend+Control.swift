@@ -103,16 +103,16 @@ final class TextFieldWidget: WrapperWidget<UITextField>, UITextFieldDelegate {
     }
 #endif
 
-final class ClickableWidget: WrapperWidget<BaseWidget> {
+final class ClickableWidget: ContainerWidget {
     private var gestureRecognizer: UITapGestureRecognizer!
     var onClick: (() -> Void)?
 
-    override init(child: BaseWidget) {
+    override init(child: some WidgetProtocol) {
         super.init(child: child)
 
         gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewTouched))
         gestureRecognizer.cancelsTouchesInView = true
-        child.addGestureRecognizer(gestureRecognizer)
+        child.view.addGestureRecognizer(gestureRecognizer)
     }
 
     @objc

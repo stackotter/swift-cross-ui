@@ -1,7 +1,7 @@
 import SwiftCrossUI
 import UIKit
 
-protocol Picker: BaseWidget {
+protocol Picker: WidgetProtocol {
     func setOptions(to options: [String])
     func setChangeHandler(to onChange: @escaping (Int?) -> Void)
     func setSelectedOption(to index: Int?)
