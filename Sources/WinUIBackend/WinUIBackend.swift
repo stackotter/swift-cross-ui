@@ -27,7 +27,7 @@ class WinUIApplication: SwiftApplication {
 }
 
 public final class WinUIBackend: AppBackend {
-    public typealias Window = WinUI.Window
+    public typealias Window = CustomWindow
     public typealias Widget = WinUI.FrameworkElement
     public typealias Menu = Void
     public typealias Alert = WinUI.ContentDialog
@@ -92,7 +92,7 @@ public final class WinUIBackend: AppBackend {
     }
 
     public func createWindow(withDefaultSize size: SIMD2<Int>?) -> Window {
-        let window = Window()
+        let window = CustomWindow()
         windows.append(window)
         window.closed.addHandler { _, _ in
             self.windows.removeAll { other in
@@ -145,7 +145,7 @@ public final class WinUIBackend: AppBackend {
         let size = window.appWindow.clientSize
         let out = SIMD2(
             Int(size.width),
-            Int(size.height)
+            Int(size.height) - CustomWindow.menuBarHeight
         )
         return out
     }
@@ -158,7 +158,7 @@ public final class WinUIBackend: AppBackend {
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
         let size = UWP.SizeInt32(
             width: Int32(newSize.x),
-            height: Int32(newSize.y)
+            height: Int32(newSize.y + CustomWindow.menuBarHeight)
         )
         try! window.appWindow.resizeClient(size)
     }
@@ -174,7 +174,7 @@ public final class WinUIBackend: AppBackend {
         window.sizeChanged.addHandler { _, args in
             let size = SIMD2(
                 Int(args!.size.width.rounded(.awayFromZero)),
-                Int(args!.size.height.rounded(.awayFromZero))
+                Int(args!.size.height.rounded(.awayFromZero)) - CustomWindow.menuBarHeight
             )
             action(size)
         }
@@ -189,7 +189,7 @@ public final class WinUIBackend: AppBackend {
     }
 
     public func setChild(ofWindow window: Window, to widget: Widget) {
-        window.content = widget
+        window.setChild(widget)
         try! widget.updateLayout()
         widget.actualThemeChanged.addHandler { _, _ in
             self.internalState.themeChangeAction?()
@@ -220,8 +220,43 @@ public final class WinUIBackend: AppBackend {
         // print("missing: \(message)")
     }
 
+    private func renderItems(_ items: [ResolvedMenu.Item]) -> [MenuFlyoutItemBase] {
+        items.map { item in
+            switch item {
+                case .button(let label, let action):
+                    let widget = MenuFlyoutItem()
+                    widget.text = label
+                    widget.click.addHandler { _, _ in
+                        action?()
+                    }
+                    return widget
+                case .submenu(let submenu):
+                    let widget = MenuFlyoutSubItem()
+                    widget.text = submenu.label
+                    for subitem in renderItems(submenu.content.items) {
+                        widget.items.append(subitem)
+                    }
+                    return widget
+            }
+        }
+    }
+
     public func setApplicationMenu(_ submenus: [ResolvedMenu.Submenu]) {
-        missing("setApplicationMenu(_:) implementation")
+        let items = submenus.map { submenu in
+            let item = MenuBarItem()
+            item.title = submenu.label
+            for subitem in renderItems(submenu.content.items) {
+                item.items.append(subitem)
+            }
+            return item
+        }
+
+        for window in windows {
+            window.menuBar.items.clear()
+            for item in items {
+                window.menuBar.items.append(item)
+            }
+        }
     }
 
     public func computeRootEnvironment(
@@ -919,6 +954,50 @@ public final class WinUIBackend: AppBackend {
         }
     }
 
+    // public func showOpenDialog(
+    //     fileDialogOptions: FileDialogOptions,
+    //     openDialogOptions: OpenDialogOptions,
+    //     window: Window?,
+    //     resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
+    // ) {
+    //     let picker = FileOpenPicker()
+    //     // TODO: Associate the picker with a window. Requires some janky WinUI
+    //     //   Win32 interop kinda stuff I believe.
+    //     if openDialogOptions.allowMultipleSelections {
+    //         let promise = try! picker.pickMultipleFilesAsync()!
+    //         promise.completed = { operation, status in
+    //             guard
+    //                 status == .completed,
+    //                 let operation,
+    //                 let result = try? operation.getResults()
+    //             else {
+    //                 return
+    //             }
+    //             print(result)
+    //         }
+    //     } else {
+    //         let promise = try! picker.pickSingleFileAsync()!
+    //         promise.completed = { operation, status in
+    //             guard
+    //                 status == .completed,
+    //                 let operation,
+    //                 let result = try? operation.getResults()
+    //             else {
+    //                 return
+    //             }
+    //             print(result)
+    //         }
+    //     }
+    // }
+
+    // public func showSaveDialog(
+    //     fileDialogOptions: FileDialogOptions,
+    //     saveDialogOptions: SaveDialogOptions,
+    //     window: Window?,
+    //     resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
+    // ) {
+    // }
+
     public func createClickTarget(wrapping child: Widget) -> Widget {
         let clickTarget = ClickTarget()
         addChild(child, to: clickTarget)
@@ -1083,4 +1162,38 @@ final class CustomSplitView: SplitView {
 final class ClickTarget: WinUI.Canvas {
     var clickHandler: (() -> Void)?
     var child: WinUI.FrameworkElement?
+}
+
+public class CustomWindow: WinUI.Window {
+    /// Hardcoded menu bar height from MenuBar_themeresources.xaml in the
+    /// microsoft-ui-xaml repository.
+    static let menuBarHeight = 40
+
+    var menuBar = WinUI.MenuBar()
+    var child: WinUIBackend.Widget?
+    var grid: WinUI.Grid
+
+    public override init() {
+        grid = WinUI.Grid()
+
+        super.init()
+
+        let menuBarRowDefinition = WinUI.RowDefinition()
+        menuBarRowDefinition.height = WinUI.GridLength(
+            value: Double(Self.menuBarHeight),
+            gridUnitType: .pixel
+        )
+        let contentRowDefinition = WinUI.RowDefinition()
+        grid.rowDefinitions.append(menuBarRowDefinition)
+        grid.rowDefinitions.append(contentRowDefinition)
+        grid.children.append(menuBar)
+        WinUI.Grid.setRow(menuBar, 0)
+        self.content = grid
+    }
+
+    public func setChild(_ child: WinUIBackend.Widget) {
+        self.child = child
+        grid.children.append(child)
+        WinUI.Grid.setRow(child, 1)
+    }
 }
