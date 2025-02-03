@@ -18,9 +18,9 @@ final class ScrollWidget: ContainerWidget {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    override func viewWillLayoutSubviews() {
+    override func updateViewConstraints() {
         NSLayoutConstraint.activate(contentLayoutGuideConstraints)
-        super.viewWillLayoutSubviews()
+        super.updateViewConstraints()
     }
 
     func setScrollBars(

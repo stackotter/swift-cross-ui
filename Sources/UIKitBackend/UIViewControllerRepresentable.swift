@@ -16,11 +16,11 @@ where Content == Never {
         -> UIViewControllerType
 
     /// Update the view with new values.
+    /// - Note: This may be called even when `context` has not changed.
     /// - Parameters:
     ///   - uiViewController: The controller to update.
     ///   - context: The context, including the coordinator and potentially new environment
     ///   values.
-    /// - Note: This may be called even when `context` has not changed.
     func updateUIViewController(
         _ uiViewController: UIViewControllerType,
         context: UIViewControllerRepresentableContext<Coordinator>)
@@ -32,31 +32,31 @@ where Content == Never {
     func makeCoordinator() -> Coordinator
 
     /// Compute the view's size.
+    ///
+    /// The default implementation uses `uiViewController.view.intrinsicContentSize` and
+    /// `uiViewController.view.systemLayoutSizeFitting(_:)` to determine the return value.
     /// - Parameters:
     ///   - proposal: The proposed frame for the view to render in.
     ///   - uiViewController: The controller being queried for its view's preferred size.
     ///   - context: The context, including the coordinator and environment values.
     /// - Returns: Information about the view's size. The ``SwiftCrossUI/ViewSize/size``
-    /// property is what frame the view will actually be rendered with if the current layout
-    /// pass is not a dry run, while the other properties are used to inform the layout engine
-    /// how big or small the view can be. The ``SwiftCrossUI/ViewSize/idealSize`` property
-    /// should not vary with the `proposal`, and should only depend on the view's contents.
-    /// Pass `nil` for the maximum width/height if the view has no maximum size (and therefore
-    /// may occupy the entire screen).
-    ///
-    /// The default implementation uses `uiViewController.view.intrinsicContentSize` and
-    /// `uiViewController.view.systemLayoutSizeFitting(_:)` to determine the return value.
+    ///   property is what frame the view will actually be rendered with if the current layout
+    ///   pass is not a dry run, while the other properties are used to inform the layout
+    ///   engine how big or small the view can be. The ``SwiftCrossUI/ViewSize/idealSize``
+    ///   property should not vary with the `proposal`, and should only depend on the view's
+    ///   contents. Pass `nil` for the maximum width/height if the view has no maximum size
+    ///   (and therefore may occupy the entire screen).
     func determineViewSize(
         for proposal: SIMD2<Int>, uiViewController: UIViewControllerType,
         context: UIViewControllerRepresentableContext<Coordinator>
     ) -> ViewSize
 
     /// Called to clean up the view when it's removed.
+    ///
+    /// The default implementation does nothing.
     /// - Parameters:
     ///   - uiViewController: The controller being dismantled.
     ///   - coordinator: The coordinator.
-    ///
-    /// The default implementation does nothing.
     static func dismantleUIViewController(
         _ uiViewController: UIViewControllerType, coordinator: Coordinator)
 }

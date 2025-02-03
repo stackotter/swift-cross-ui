@@ -29,38 +29,70 @@ private protocol WidgetProtocolHelpers: WidgetProtocol {
 
 extension WidgetProtocolHelpers {
     func updateLeftConstraint() {
-        leftConstraint?.isActive = false
-        guard let superview = view.superview else { return }
-        leftConstraint = view.leftAnchor.constraint(
-            equalTo: superview.safeAreaLayoutGuide.leftAnchor, constant: CGFloat(x))
-        // Set the constraint priority for leftConstraint (and topConstraint) to just under
-        // "required" so that we don't get warnings about unsatisfiable constraints from
-        // scroll views, which position relative to their contentLayoutGuide instead.
-        // This *should* be high enough that it won't cause any problems unless there was
-        // a constraint conflict anyways.
-        leftConstraint!.priority = .init(UILayoutPriority.required.rawValue - 1.0)
-        leftConstraint!.isActive = true
+        guard let superview = view.superview else {
+            leftConstraint?.isActive = false
+            return
+        }
+
+        if let leftConstraint,
+            leftConstraint.secondAnchor === superview.safeAreaLayoutGuide.leftAnchor
+        {
+            leftConstraint.constant = CGFloat(x)
+            leftConstraint.isActive = true
+        } else {
+            self.leftConstraint?.isActive = false
+            let leftConstraint = view.leftAnchor.constraint(
+                equalTo: superview.safeAreaLayoutGuide.leftAnchor, constant: CGFloat(x))
+            self.leftConstraint = leftConstraint
+            // Set the constraint priority for leftConstraint (and topConstraint) to just
+            // under "required" so that we don't get warnings about unsatisfiable constraints
+            // from scroll views, which position relative to their contentLayoutGuide instead.
+            // This *should* be high enough that it won't cause any problems unless there was
+            // a constraint conflict anyways.
+            leftConstraint.priority = .init(UILayoutPriority.required.rawValue - 1.0)
+            leftConstraint.isActive = true
+        }
     }
 
     func updateTopConstraint() {
-        topConstraint?.isActive = false
-        guard let superview = view.superview else { return }
-        topConstraint = view.topAnchor.constraint(
-            equalTo: superview.safeAreaLayoutGuide.topAnchor, constant: CGFloat(y))
-        topConstraint!.priority = .init(UILayoutPriority.required.rawValue - 1.0)
-        topConstraint!.isActive = true
+        guard let superview = view.superview else {
+            topConstraint?.isActive = false
+            return
+        }
+
+        if let topConstraint,
+            topConstraint.secondAnchor === superview.safeAreaLayoutGuide.topAnchor
+        {
+            topConstraint.constant = CGFloat(y)
+            topConstraint.isActive = true
+        } else {
+            self.topConstraint?.isActive = false
+            let topConstraint = view.topAnchor.constraint(
+                equalTo: superview.safeAreaLayoutGuide.topAnchor, constant: CGFloat(y))
+            self.topConstraint = topConstraint
+            topConstraint.priority = .init(UILayoutPriority.required.rawValue - 1.0)
+            topConstraint.isActive = true
+        }
     }
 
     func updateWidthConstraint() {
-        widthConstraint?.isActive = false
-        widthConstraint = view.widthAnchor.constraint(equalToConstant: CGFloat(width))
-        widthConstraint!.isActive = true
+        if let widthConstraint {
+            widthConstraint.constant = CGFloat(width)
+        } else {
+            let widthConstraint = view.widthAnchor.constraint(equalToConstant: CGFloat(width))
+            self.widthConstraint = widthConstraint
+            widthConstraint.isActive = true
+        }
     }
 
     func updateHeightConstraint() {
-        heightConstraint?.isActive = false
-        heightConstraint = view.heightAnchor.constraint(equalToConstant: CGFloat(height))
-        heightConstraint!.isActive = true
+        if let heightConstraint {
+            heightConstraint.constant = CGFloat(height)
+        } else {
+            let heightConstraint = view.heightAnchor.constraint(equalToConstant: CGFloat(height))
+            self.heightConstraint = heightConstraint
+            heightConstraint.isActive = true
+        }
     }
 }
 
