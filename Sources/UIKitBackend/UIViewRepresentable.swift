@@ -12,6 +12,7 @@ where Content == Never {
     associatedtype Coordinator = Void
 
     /// Create the initial UIView instance.
+    @MainActor
     func makeUIView(context: UIViewRepresentableContext<Coordinator>) -> UIViewType
 
     /// Update the view with new values.
@@ -20,12 +21,14 @@ where Content == Never {
     ///   - context: The context, including the coordinator and potentially new environment
     ///   values.
     /// - Note: This may be called even when `context` has not changed.
+    @MainActor
     func updateUIView(_ uiView: UIViewType, context: UIViewRepresentableContext<Coordinator>)
 
     /// Make the coordinator for this view.
     ///
     /// The coordinator is used when the view needs to communicate changes to the rest of
     /// the view hierarchy (i.e. through bindings), and is often the view's delegate.
+    @MainActor
     func makeCoordinator() -> Coordinator
 
     /// Compute the view's size.
