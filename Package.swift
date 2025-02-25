@@ -235,10 +235,15 @@ let package = Package(
             name: "WinUIBackend",
             dependencies: [
                 "SwiftCrossUI",
+                "WinUIInterop",
                 .product(name: "WinUI", package: "swift-winui"),
                 .product(name: "WinAppSDK", package: "swift-windowsappsdk"),
                 .product(name: "WindowsFoundation", package: "swift-windowsfoundation"),
             ]
+        ),
+        .target(
+            name: "WinUIInterop",
+            dependencies: []
         ),
         // .target(
         //     name: "CursesBackend",

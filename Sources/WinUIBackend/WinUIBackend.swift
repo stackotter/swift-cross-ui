@@ -954,49 +954,49 @@ public final class WinUIBackend: AppBackend {
         }
     }
 
-    // public func showOpenDialog(
-    //     fileDialogOptions: FileDialogOptions,
-    //     openDialogOptions: OpenDialogOptions,
-    //     window: Window?,
-    //     resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
-    // ) {
-    //     let picker = FileOpenPicker()
-    //     // TODO: Associate the picker with a window. Requires some janky WinUI
-    //     //   Win32 interop kinda stuff I believe.
-    //     if openDialogOptions.allowMultipleSelections {
-    //         let promise = try! picker.pickMultipleFilesAsync()!
-    //         promise.completed = { operation, status in
-    //             guard
-    //                 status == .completed,
-    //                 let operation,
-    //                 let result = try? operation.getResults()
-    //             else {
-    //                 return
-    //             }
-    //             print(result)
-    //         }
-    //     } else {
-    //         let promise = try! picker.pickSingleFileAsync()!
-    //         promise.completed = { operation, status in
-    //             guard
-    //                 status == .completed,
-    //                 let operation,
-    //                 let result = try? operation.getResults()
-    //             else {
-    //                 return
-    //             }
-    //             print(result)
-    //         }
-    //     }
-    // }
+    public func showOpenDialog(
+        fileDialogOptions: FileDialogOptions,
+        openDialogOptions: OpenDialogOptions,
+        window: Window?,
+        resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
+    ) {
+        let picker = FileOpenPicker()
+        // TODO: Associate the picker with a window. Requires some janky WinUI
+        //   Win32 interop kinda stuff I believe.
+        if openDialogOptions.allowMultipleSelections {
+            let promise = try! picker.pickMultipleFilesAsync()!
+            promise.completed = { operation, status in
+                guard
+                    status == .completed,
+                    let operation,
+                    let result = try? operation.getResults()
+                else {
+                    return
+                }
+                print(result)
+            }
+        } else {
+            let promise = try! picker.pickSingleFileAsync()!
+            promise.completed = { operation, status in
+                guard
+                    status == .completed,
+                    let operation,
+                    let result = try? operation.getResults()
+                else {
+                    return
+                }
+                print(result)
+            }
+        }
+    }
 
-    // public func showSaveDialog(
-    //     fileDialogOptions: FileDialogOptions,
-    //     saveDialogOptions: SaveDialogOptions,
-    //     window: Window?,
-    //     resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
-    // ) {
-    // }
+    public func showSaveDialog(
+        fileDialogOptions: FileDialogOptions,
+        saveDialogOptions: SaveDialogOptions,
+        window: Window?,
+        resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
+    ) {
+    }
 
     public func createClickTarget(wrapping child: Widget) -> Widget {
         let clickTarget = ClickTarget()
