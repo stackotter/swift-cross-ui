@@ -3,6 +3,7 @@ import UIKit
 final class RootViewController: UIViewController {
     unowned var backend: UIKitBackend
     var resizeHandler: ((CGSize) -> Void)?
+    private var childWidget: (any WidgetProtocol)?
 
     init(backend: UIKitBackend) {
         self.backend = backend
@@ -33,13 +34,21 @@ final class RootViewController: UIViewController {
         backend.onTraitCollectionChange?()
     }
 
-    func setChild(to child: UIView) {
-        view.subviews.forEach { $0.removeFromSuperview() }
-        view.addSubview(child)
+    func setChild(to child: some WidgetProtocol) {
+        childWidget?.removeFromParentWidget()
+        child.removeFromParentWidget()
+
+        let childController = child.controller
+        view.addSubview(child.view)
+        if let childController {
+            addChild(childController)
+            childController.didMove(toParent: self)
+        }
+        childWidget = child
 
         NSLayoutConstraint.activate([
-            child.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            child.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
+            child.view.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            child.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
         ])
     }
 }
@@ -76,9 +85,8 @@ extension UIKitBackend {
         // of the screen could be obscured (e.g. covered by the notch). In the future we
         // might want to let users decide what to do, but for now, lie and say that the safe
         // area insets aren't even part of the window.
-        // If/when this is updated, ``RootViewController/setChild(to:)``,
-        // ``BaseWidget/updateLeftConstraint()``, and ``BaseWidget/updateTopConstraint()``
-        // will also need to be updated.
+        // If/when this is updated, ``RootViewController`` and ``WidgetProtocolHelpers`` will
+        // also need to be updated.
         let size = window.safeAreaLayoutGuide.layoutFrame.size
         return SIMD2(Int(size.width), Int(size.height))
     }

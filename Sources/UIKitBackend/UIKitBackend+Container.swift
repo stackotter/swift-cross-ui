@@ -1,24 +1,26 @@
 import SwiftCrossUI
 import UIKit
 
-final class ScrollWidget: WrapperWidget<UIScrollView> {
+final class ScrollWidget: ContainerWidget {
+    private var scrollView = UIScrollView()
     private var childWidthConstraint: NSLayoutConstraint?
     private var childHeightConstraint: NSLayoutConstraint?
 
-    private let innerChild: BaseWidget
+    private lazy var contentLayoutGuideConstraints: [NSLayoutConstraint] = [
+        scrollView.contentLayoutGuide.leadingAnchor.constraint(equalTo: child.view.leadingAnchor),
+        scrollView.contentLayoutGuide.trailingAnchor.constraint(equalTo: child.view.trailingAnchor),
+        scrollView.contentLayoutGuide.topAnchor.constraint(equalTo: child.view.topAnchor),
+        scrollView.contentLayoutGuide.bottomAnchor.constraint(equalTo: child.view.bottomAnchor),
+    ]
 
-    init(child innerChild: BaseWidget) {
-        self.innerChild = innerChild
-        super.init(child: UIScrollView())
+    override func loadView() {
+        view = scrollView
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+    }
 
-        child.addSubview(innerChild)
-
-        NSLayoutConstraint.activate([
-            innerChild.topAnchor.constraint(equalTo: child.contentLayoutGuide.topAnchor),
-            innerChild.bottomAnchor.constraint(equalTo: child.contentLayoutGuide.bottomAnchor),
-            innerChild.leftAnchor.constraint(equalTo: child.contentLayoutGuide.leftAnchor),
-            innerChild.rightAnchor.constraint(equalTo: child.contentLayoutGuide.rightAnchor),
-        ])
+    override func updateViewConstraints() {
+        NSLayoutConstraint.activate(contentLayoutGuideConstraints)
+        super.updateViewConstraints()
     }
 
     func setScrollBars(
@@ -29,8 +31,8 @@ final class ScrollWidget: WrapperWidget<UIScrollView> {
             case (true, true):
                 childHeightConstraint!.isActive = false
             case (false, nil):
-                childHeightConstraint = innerChild.heightAnchor.constraint(
-                    equalTo: child.heightAnchor)
+                childHeightConstraint = child.view.heightAnchor.constraint(
+                    equalTo: scrollView.heightAnchor)
                 fallthrough
             case (false, false):
                 childHeightConstraint!.isActive = true
@@ -42,7 +44,8 @@ final class ScrollWidget: WrapperWidget<UIScrollView> {
             case (true, true):
                 childWidthConstraint!.isActive = false
             case (false, nil):
-                childWidthConstraint = innerChild.widthAnchor.constraint(equalTo: child.widthAnchor)
+                childWidthConstraint = child.view.widthAnchor.constraint(
+                    equalTo: scrollView.widthAnchor)
                 fallthrough
             case (false, false):
                 childWidthConstraint!.isActive = true
@@ -50,22 +53,22 @@ final class ScrollWidget: WrapperWidget<UIScrollView> {
                 break
         }
 
-        child.showsVerticalScrollIndicator = hasVerticalScrollBar
-        child.showsHorizontalScrollIndicator = hasHorizontalScrollBar
+        scrollView.showsVerticalScrollIndicator = hasVerticalScrollBar
+        scrollView.showsHorizontalScrollIndicator = hasHorizontalScrollBar
     }
 }
 
 extension UIKitBackend {
     public func createContainer() -> Widget {
-        BaseWidget()
+        BaseViewWidget()
     }
 
     public func removeAllChildren(of container: Widget) {
-        container.subviews.forEach { $0.removeFromSuperview() }
+        container.childWidgets.forEach { $0.removeFromParentWidget() }
     }
 
     public func addChild(_ child: Widget, to container: Widget) {
-        container.addSubview(child)
+        container.add(childWidget: child)
     }
 
     public func setPosition(
@@ -73,37 +76,36 @@ extension UIKitBackend {
         in container: Widget,
         to position: SIMD2<Int>
     ) {
-        guard index < container.subviews.count else {
+        guard index < container.childWidgets.count else {
             assertionFailure("Attempting to set position of nonexistent subview")
             return
         }
 
-        let child = container.subviews[index] as! BaseWidget
+        let child = container.childWidgets[index]
         child.x = position.x
         child.y = position.y
     }
 
     public func removeChild(_ child: Widget, from container: Widget) {
-        assert(child.isDescendant(of: container))
-        child.removeFromSuperview()
+        assert(child.view.isDescendant(of: container.view))
+        child.removeFromParentWidget()
     }
 
     public func createColorableRectangle() -> Widget {
-        BaseWidget()
+        BaseViewWidget()
     }
 
     public func setColor(ofColorableRectangle widget: Widget, to color: Color) {
-        widget.backgroundColor = color.uiColor
+        widget.view.backgroundColor = color.uiColor
     }
 
     public func setCornerRadius(of widget: Widget, to radius: Int) {
-        widget.layer.cornerRadius = CGFloat(radius)
-        widget.layer.masksToBounds = true
-        widget.setNeedsLayout()
+        widget.view.layer.cornerRadius = CGFloat(radius)
+        widget.view.layer.masksToBounds = true
     }
 
     public func naturalSize(of widget: Widget) -> SIMD2<Int> {
-        let size = widget.intrinsicContentSize
+        let size = widget.view.intrinsicContentSize
         return SIMD2(
             Int(size.width.rounded(.awayFromZero)),
             Int(size.height.rounded(.awayFromZero))
