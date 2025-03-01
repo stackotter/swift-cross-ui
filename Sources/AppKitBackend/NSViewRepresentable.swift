@@ -27,7 +27,6 @@ public protocol NSViewRepresentable: View where Content == Never {
     ///
     /// The coordinator is used when the view needs to communicate changes to the rest of
     /// the view hierarchy (i.e. through bindings), and is often the view's delegate.
-    @MainActor
     func makeCoordinator() -> Coordinator
 
     /// Compute the view's size.
@@ -151,6 +150,11 @@ extension View where Self: NSViewRepresentable {
                 context: representingWidget.context!
             )
 
+        if !dryRun {
+            representingWidget.width = size.size.x
+            representingWidget.height = size.size.y
+        }
+
         return ViewUpdateResult.leafView(size: size)
     }
 }
@@ -162,20 +166,26 @@ extension NSViewRepresentable where Coordinator == Void {
 }
 
 
-final class RepresentingWidget<Representable: NSViewRepresentable> {
+final class RepresentingWidget<Representable: NSViewRepresentable>: BaseWidget {
     var representable: Representable
     var context: NSViewRepresentableContext<Representable.Coordinator>?
 
-    @MainActor
     lazy var subview: Representable.NSViewType = {
         let view = representable.makeNSView(context: context!)
 
+        self.addSubview(view)
+
         view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            view.topAnchor.constraint(equalTo: self.topAnchor),
+            view.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            view.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+        ])
 
         return view
     }()
 
-    @MainActor
     func update(with environment: EnvironmentValues) {
         if context == nil {
             context = .init(coordinator: representable.makeCoordinator(), environment: environment)
@@ -187,5 +197,12 @@ final class RepresentingWidget<Representable: NSViewRepresentable> {
 
     init(representable: Representable) {
         self.representable = representable
+        super.init()
+    }
+
+    deinit {
+        if let context {
+            Representable.dismantleNSView(subview, coordinator: context.coordinator)
+        }
     }
 }
