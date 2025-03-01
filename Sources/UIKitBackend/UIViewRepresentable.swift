@@ -46,6 +46,7 @@ where Content == Never {
     ///
     /// The default implementation uses `uiView.intrinsicContentSize` and `uiView.systemLayoutSizeFitting(_:)`
     /// to determine the return value.
+    @MainActor
     func determineViewSize(
         for proposal: SIMD2<Int>, uiView: UIViewType,
         context: UIViewRepresentableContext<Coordinator>
