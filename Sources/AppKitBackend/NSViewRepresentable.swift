@@ -120,10 +120,72 @@ extension View where Self: NSViewRepresentable {
     ) -> [LayoutSystem.LayoutableChild] {
         []
     }
+
+    public func asWidget<Backend: AppBackend>(
+        _: any ViewGraphNodeChildren,
+        backend _: Backend
+    ) -> Backend.Widget {
+        if let widget = RepresentingWidget(representable: self) as? Backend.Widget {
+            return widget
+        } else {
+            fatalError("NSViewRepresentable requested by \(Backend.self)")
+        }
+    }
+
+    @MainActor
+    public func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children _: any ViewGraphNodeChildren,
+        proposedSize: SIMD2<Int>,
+        environment: EnvironmentValues,
+        backend _: Backend,
+        dryRun: Bool
+    ) -> ViewUpdateResult {
+        let representingWidget = widget as! RepresentingWidget<Self>
+        representingWidget.update(with: environment)
+
+        let size =
+            representingWidget.representable.determineViewSize(
+                for: proposedSize,
+                nsView: representingWidget.subview,
+                context: representingWidget.context!
+            )
+
+        return ViewUpdateResult.leafView(size: size)
+    }
 }
 
 extension NSViewRepresentable where Coordinator == Void {
     public func makeCoordinator() {
         return ()
+    }
+}
+
+
+final class RepresentingWidget<Representable: NSViewRepresentable> {
+    var representable: Representable
+    var context: NSViewRepresentableContext<Representable.Coordinator>?
+
+    @MainActor
+    lazy var subview: Representable.NSViewType = {
+        let view = representable.makeNSView(context: context!)
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
+    }()
+
+    @MainActor
+    func update(with environment: EnvironmentValues) {
+        if context == nil {
+            context = .init(coordinator: representable.makeCoordinator(), environment: environment)
+        } else {
+            context!.environment = environment
+            representable.updateNSView(subview, context: context!)
+        }
+    }
+
+    init(representable: Representable) {
+        self.representable = representable
     }
 }
