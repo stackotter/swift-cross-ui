@@ -27,6 +27,7 @@ public protocol NSViewRepresentable: View where Content == Never {
     ///
     /// The coordinator is used when the view needs to communicate changes to the rest of
     /// the view hierarchy (i.e. through bindings), and is often the view's delegate.
+    @MainActor
     func makeCoordinator() -> Coordinator
 
     /// Compute the view's size.
