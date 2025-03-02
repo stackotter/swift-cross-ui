@@ -44,7 +44,6 @@ public protocol NSViewRepresentable: View where Content == Never {
     ///
     /// The default implementation uses `nsView.intrinsicContentSize` and `nsView.sizeThatFits(_:)`
     /// to determine the return value.
-    @MainActor
     func determineViewSize(
         for proposal: SIMD2<Int>, nsView: NSViewType,
         context: NSViewRepresentableContext<Coordinator>
@@ -131,7 +130,6 @@ extension View where Self: NSViewRepresentable {
         }
     }
 
-    @MainActor
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children _: any ViewGraphNodeChildren,
