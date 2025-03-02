@@ -1,5 +1,5 @@
 {
-  "originHash" : "d7660de3524ddfd94fb5ed75c380bbcda1ec9d99cc0b74dee8d2f70756063c78",
+  "originHash" : "221fb04e97a64f8c2af1115148d6ced51af05f9f0f177402133694a73d9d2b94",
   "pins" : [
     {
       "identity" : "jpeg",
@@ -34,7 +34,7 @@
       "location" : "https://github.com/thebrowsercompany/swift-cwinrt",
       "state" : {
         "branch" : "main",
-        "revision" : "ad451d31fc7c1c60041c146d177cdaf5aaf1cf47"
+        "revision" : "3e3d5a0270ebe8fb0bc738d24d4786a6cd0621eb"
       }
     },
     {
@@ -106,7 +106,7 @@
       "location" : "https://github.com/thebrowsercompany/swift-windowsfoundation",
       "state" : {
         "branch" : "main",
-        "revision" : "ba7a8b5000ed3f9f077000d1a31f2a0b19907657"
+        "revision" : "dbe14563b6bb0eb9c761d8aff7f465afddf185f9"
       }
     },
     {
