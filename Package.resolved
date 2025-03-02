@@ -1,5 +1,5 @@
 {
-  "originHash" : "9bdf10c7a21892e3f103174fa966d5a212af3dfca1608849b243319bfbb3d005",
+  "originHash" : "d7660de3524ddfd94fb5ed75c380bbcda1ec9d99cc0b74dee8d2f70756063c78",
   "pins" : [
     {
       "identity" : "jpeg",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "0eff23aca92a086b7892831f5cb4f58e15be9449",
         "version" : "1.6.45"
+      }
+    },
+    {
+      "identity" : "libwebp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/the-swift-collective/libwebp",
+      "state" : {
+        "revision" : "5f745a17b9a5c2a4283f17c2cde4517610ab5f99",
+        "version" : "1.4.1"
       }
     },
     {
@@ -51,17 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-image-formats",
       "state" : {
-        "revision" : "05a0169a2a5e9365a058e9aa13da5937be6e2586",
-        "version" : "0.3.1"
-      }
-    },
-    {
-      "identity" : "swift-libwebp",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stackotter/swift-libwebp",
-      "state" : {
-        "revision" : "61dc3787c764022ad2f5ab4f9994a569afe86f9f",
-        "version" : "0.2.0"
+        "revision" : "697bd8aa62bef7d74a1383454e3534a527769e41",
+        "version" : "0.3.2"
       }
     },
     {

@@ -71,7 +71,7 @@ public final class UIKitBackend: AppBackend {
             design: .default
         )
 
-        switch UIScreen.main.traitCollection.userInterfaceStyle {
+        switch UITraitCollection.current.userInterfaceStyle {
             case .light:
                 environment.colorScheme = .light
             case .dark:

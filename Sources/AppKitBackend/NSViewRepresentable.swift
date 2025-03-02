@@ -1,28 +1,27 @@
+import AppKit
 import SwiftCrossUI
-import UIKit
 
-public struct UIViewRepresentableContext<Coordinator> {
+public struct NSViewRepresentableContext<Coordinator> {
     public let coordinator: Coordinator
     public internal(set) var environment: EnvironmentValues
 }
 
-public protocol UIViewRepresentable: View
-where Content == Never {
-    associatedtype UIViewType: UIView
+public protocol NSViewRepresentable: View where Content == Never {
+    associatedtype NSViewType: NSView
     associatedtype Coordinator = Void
 
-    /// Create the initial UIView instance.
+    /// Create the initial NSView instance.
     @MainActor
-    func makeUIView(context: UIViewRepresentableContext<Coordinator>) -> UIViewType
+    func makeNSView(context: NSViewRepresentableContext<Coordinator>) -> NSViewType
 
     /// Update the view with new values.
     /// - Parameters:
-    ///   - uiView: The view to update.
+    ///   - nsView: The view to update.
     ///   - context: The context, including the coordinator and potentially new environment
     ///   values.
     /// - Note: This may be called even when `context` has not changed.
     @MainActor
-    func updateUIView(_ uiView: UIViewType, context: UIViewRepresentableContext<Coordinator>)
+    func updateNSView(_ nsView: NSViewType, context: NSViewRepresentableContext<Coordinator>)
 
     /// Make the coordinator for this view.
     ///
@@ -34,7 +33,7 @@ where Content == Never {
     /// Compute the view's size.
     /// - Parameters:
     ///   - proposal: The proposed frame for the view to render in.
-    ///   - uiView: The view being queried for its preferred size.
+    ///   - nsVIew: The view being queried for its preferred size.
     ///   - context: The context, including the coordinator and environment values.
     /// - Returns: Information about the view's size. The ``SwiftCrossUI/ViewSize/size``
     /// property is what frame the view will actually be rendered with if the current layout
@@ -44,68 +43,64 @@ where Content == Never {
     /// Pass `nil` for the maximum width/height if the view has no maximum size (and therefore
     /// may occupy the entire screen).
     ///
-    /// The default implementation uses `uiView.intrinsicContentSize` and `uiView.systemLayoutSizeFitting(_:)`
+    /// The default implementation uses `nsView.intrinsicContentSize` and `nsView.sizeThatFits(_:)`
     /// to determine the return value.
-    @MainActor
     func determineViewSize(
-        for proposal: SIMD2<Int>, uiView: UIViewType,
-        context: UIViewRepresentableContext<Coordinator>
+        for proposal: SIMD2<Int>, nsView: NSViewType,
+        context: NSViewRepresentableContext<Coordinator>
     ) -> ViewSize
 
     /// Called to clean up the view when it's removed.
     /// - Parameters:
-    ///   - uiView: The view being dismantled.
+    ///   - nsVIew: The view being dismantled.
     ///   - coordinator: The coordinator.
     ///
-    /// This method is called after all UIKit lifecycle methods, such as
-    /// `uiView.didMoveToWindow()`.
+    /// This method is called after all AppKit lifecycle methods, such as
+    /// `nsView.didMoveToSuperview()`.
     ///
     /// The default implementation does nothing.
-    static func dismantleUIView(_ uiView: UIViewType, coordinator: Coordinator)
+    static func dismantleNSView(_ nsView: NSViewType, coordinator: Coordinator)
 }
 
-// Used both here and by UIViewControllerRepresentable
-func defaultViewSize(proposal: SIMD2<Int>, view: UIView) -> ViewSize {
-    let intrinsicSize = view.intrinsicContentSize
-
-    let sizeThatFits = view.systemLayoutSizeFitting(
-        CGSize(width: CGFloat(proposal.x), height: CGFloat(proposal.y)))
-
-    let minimumSize = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-    let maximumSize = view.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
-
-    return ViewSize(
-        size: SIMD2(
-            Int(sizeThatFits.width.rounded(.up)),
-            Int(sizeThatFits.height.rounded(.up))),
-        // The 10 here is a somewhat arbitrary constant value so that it's always the same.
-        // See also `Color` and `Picker`, which use the same constant.
-        idealSize: SIMD2(
-            intrinsicSize.width < 0.0 ? 10 : Int(intrinsicSize.width.rounded(.awayFromZero)),
-            intrinsicSize.height < 0.0 ? 10 : Int(intrinsicSize.height.rounded(.awayFromZero))
-        ),
-        minimumWidth: Int(minimumSize.width.rounded(.towardZero)),
-        minimumHeight: Int(minimumSize.height.rounded(.towardZero)),
-        maximumWidth: maximumSize.width,
-        maximumHeight: maximumSize.height
-    )
-}
-
-extension UIViewRepresentable {
-    public static func dismantleUIView(_: UIViewType, coordinator _: Coordinator) {
+extension NSViewRepresentable {
+    public static func dismantleNSView(_: NSViewType, coordinator _: Coordinator) {
         // no-op
     }
 
     public func determineViewSize(
-        for proposal: SIMD2<Int>, uiView: UIViewType,
-        context _: UIViewRepresentableContext<Coordinator>
+        for proposal: SIMD2<Int>, nsView: NSViewType,
+        context _: NSViewRepresentableContext<Coordinator>
     ) -> ViewSize {
-        defaultViewSize(proposal: proposal, view: uiView)
+        let intrinsicSize = nsView.intrinsicContentSize
+        let sizeThatFits = nsView.fittingSize
+
+        let roundedSizeThatFits = SIMD2(
+            Int(sizeThatFits.width.rounded(.up)),
+            Int(sizeThatFits.height.rounded(.up)))
+        let roundedIntrinsicSize = SIMD2(
+            Int(intrinsicSize.width.rounded(.awayFromZero)),
+            Int(intrinsicSize.height.rounded(.awayFromZero)))
+
+        return ViewSize(
+            size: SIMD2(
+                intrinsicSize.width < 0.0 ? proposal.x : roundedSizeThatFits.x,
+                intrinsicSize.height < 0.0 ? proposal.y : roundedSizeThatFits.y
+            ),
+            // The 10 here is a somewhat arbitrary constant value so that it's always the same.
+            // See also `Color` and `Picker`, which use the same constant.
+            idealSize: SIMD2(
+                intrinsicSize.width < 0.0 ? 10 : roundedIntrinsicSize.x,
+                intrinsicSize.height < 0.0 ? 10 : roundedIntrinsicSize.y
+            ),
+            minimumWidth: max(0, roundedIntrinsicSize.x),
+            minimumHeight: max(0, roundedIntrinsicSize.x),
+            maximumWidth: nil,
+            maximumHeight: nil
+        )
     }
 }
 
-extension View
-where Self: UIViewRepresentable {
+extension View where Self: NSViewRepresentable {
     public var body: Never {
         preconditionFailure("This should never be called")
     }
@@ -129,53 +124,69 @@ where Self: UIViewRepresentable {
         _: any ViewGraphNodeChildren,
         backend _: Backend
     ) -> Backend.Widget {
-        if let widget = ViewRepresentingWidget(representable: self) as? Backend.Widget {
+        if let widget = RepresentingWidget(representable: self) as? Backend.Widget {
             return widget
         } else {
-            fatalError("UIViewRepresentable requested by \(Backend.self)")
+            fatalError("NSViewRepresentable requested by \(Backend.self)")
         }
     }
 
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children _: any ViewGraphNodeChildren,
+        children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend _: Backend,
+        backend: Backend,
         dryRun: Bool
     ) -> ViewUpdateResult {
-        let representingWidget = widget as! ViewRepresentingWidget<Self>
+        guard let backend = backend as? AppKitBackend else {
+            fatalError("NSViewRepresentable updated by \(Backend.self)")
+        }
+
+        let representingWidget = widget as! RepresentingWidget<Self>
         representingWidget.update(with: environment)
 
         let size =
             representingWidget.representable.determineViewSize(
                 for: proposedSize,
-                uiView: representingWidget.subview,
+                nsView: representingWidget.subview,
                 context: representingWidget.context!
             )
 
         if !dryRun {
-            representingWidget.width = size.size.x
-            representingWidget.height = size.size.y
+            backend.setSize(of: representingWidget, to: size.size)
         }
 
         return ViewUpdateResult.leafView(size: size)
     }
 }
 
-extension UIViewRepresentable
-where Coordinator == Void {
+extension NSViewRepresentable where Coordinator == Void {
     public func makeCoordinator() {
         return ()
     }
 }
 
-final class ViewRepresentingWidget<Representable: UIViewRepresentable>: BaseViewWidget {
+/// Exists to handle `deinit`, the rest of the stuff is just in here cause
+/// it's a convenient location.
+final class RepresentingWidget<Representable: NSViewRepresentable>: NSView {
     var representable: Representable
-    var context: UIViewRepresentableContext<Representable.Coordinator>?
+    var context: NSViewRepresentableContext<Representable.Coordinator>?
 
-    lazy var subview: Representable.UIViewType = {
-        let view = representable.makeUIView(context: context!)
+    init(representable: Representable) {
+        self.representable = representable
+        super.init(frame: .zero)
+
+        self.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) is not used for this view")
+    }
+
+    lazy var subview: Representable.NSViewType = {
+        let view = representable.makeNSView(context: context!)
 
         self.addSubview(view)
 
@@ -195,18 +206,13 @@ final class ViewRepresentingWidget<Representable: UIViewRepresentable>: BaseView
             context = .init(coordinator: representable.makeCoordinator(), environment: environment)
         } else {
             context!.environment = environment
-            representable.updateUIView(subview, context: context!)
+            representable.updateNSView(subview, context: context!)
         }
-    }
-
-    init(representable: Representable) {
-        self.representable = representable
-        super.init()
     }
 
     deinit {
         if let context {
-            Representable.dismantleUIView(subview, coordinator: context.coordinator)
+            Representable.dismantleNSView(subview, coordinator: context.coordinator)
         }
     }
 }

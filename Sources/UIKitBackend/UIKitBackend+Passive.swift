@@ -15,7 +15,7 @@ extension UIKitBackend {
                 case .leading:
                     .natural
                 case .trailing:
-                    UIScreen.main.traitCollection.layoutDirection == .rightToLeft ? .left : .right
+                    UITraitCollection.current.layoutDirection == .rightToLeft ? .left : .right
             }
         paragraphStyle.lineBreakMode = .byWordWrapping
 
