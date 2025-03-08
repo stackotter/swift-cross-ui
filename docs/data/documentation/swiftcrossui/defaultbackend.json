@@ -1,0 +1,212 @@
+{
+  "abstract" : [
+    {
+      "text" : "An adaptive backend which uses different backends under the hood depending on the target operating system.",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DefaultBackend"
+  },
+  "kind" : "article",
+  "metadata" : {
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "role" : "article",
+    "roleHeading" : "Article",
+    "title" : "DefaultBackend"
+  },
+  "primaryContentSections" : [
+    {
+      "content" : [
+        {
+          "anchor" : "Overview",
+          "level" : 2,
+          "text" : "Overview",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The beauty of SwiftCrossUI is that you can write your app once and have it look native everywhere. For this reason I recommend using ",
+              "type" : "text"
+            },
+            {
+              "code" : "DefaultBackend",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " unless you’ve got particular constraints. On macOS it uses ",
+              "type" : "text"
+            },
+            {
+              "code" : "AppKitBackend",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : ", on Windows it uses ",
+              "type" : "text"
+            },
+            {
+              "code" : "WinUIBackend",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : ", on Linux it uses ",
+              "type" : "text"
+            },
+            {
+              "code" : "GtkBackend",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : ", and on iOS and tvOS it uses ",
+              "type" : "text"
+            },
+            {
+              "code" : "UIKitBackend",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : ".",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppKitBackend",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/UIKitBackend",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WinUIBackend",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBackend",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Gtk3Backend"
+      ],
+      "title" : "Backends"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/defaultbackend"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppKitBackend": {
+  "abstract" : [
+    {
+      "text" : "SwiftCrossUI’s native macOS backend built on AppKit.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppKitBackend",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "AppKitBackend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appkitbackend"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Gtk3Backend": {
+  "abstract" : [
+    {
+      "text" : "A secondary Linux backend for older distros without Gtk 4.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Gtk3Backend",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "Gtk3Backend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtk3backend"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkBackend": {
+  "abstract" : [
+    {
+      "text" : "SwiftCrossUI’s native Linux backend built on Gtk 4.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBackend",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "GtkBackend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkbackend"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/UIKitBackend": {
+  "abstract" : [
+    {
+      "text" : "SwiftCrossUI’s native iOS and tvOS backend built on UIKit.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/UIKitBackend",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "UIKitBackend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/uikitbackend"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WinUIBackend": {
+  "abstract" : [
+    {
+      "text" : "SwiftCrossUI’s native Windows backend built on WinUI 3.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WinUIBackend",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "WinUIBackend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/winuibackend"
+}
+}
+}

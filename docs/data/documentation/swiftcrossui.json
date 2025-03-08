@@ -62,10 +62,35 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Basic-Usage",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Quick-Start",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Examples"
       ],
       "title" : "Getting Started"
+    },
+    {
+      "abstract" : [
+        {
+          "text" : "SwiftCrossUI has a variety of backends tailored to different operating systems. The beauty of SwiftCrossUI is that you can write your app once and have it look native everywhere. For this reason I recommend using ",
+          "type" : "text"
+        },
+        {
+          "code" : "DefaultBackend",
+          "type" : "codeVoice"
+        },
+        {
+          "text" : " unless you’ve got particular constraints.",
+          "type" : "text"
+        }
+      ],
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DefaultBackend",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppKitBackend",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/UIKitBackend",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WinUIBackend",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBackend",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Gtk3Backend"
+      ],
+      "title" : "Backends"
     },
     {
       "abstract" : [
@@ -149,6 +174,13 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNodeChildren"
       ],
       "title" : "Implementation Details"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/QtBackend"
+      ],
+      "title" : "Articles"
     },
     {
       "identifiers" : [
@@ -733,6 +765,20 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppKitBackend": {
+  "abstract" : [
+    {
+      "text" : "SwiftCrossUI’s native macOS backend built on AppKit.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppKitBackend",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "AppKitBackend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appkitbackend"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppMetadata": {
   "abstract" : [
     {
@@ -800,20 +846,6 @@
   "title" : "Axis",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/axis"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Basic-Usage": {
-  "abstract" : [
-    {
-      "text" : "The basics of setting up and using SwiftCrossUI.",
-      "type" : "text"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Basic-Usage",
-  "kind" : "article",
-  "role" : "article",
-  "title" : "Basic Usage",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/basic-usage"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Binding": {
   "abstract" : [
@@ -1232,6 +1264,20 @@
   "title" : "ContentType",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/contenttype"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/DefaultBackend": {
+  "abstract" : [
+    {
+      "text" : "An adaptive backend which uses different backends under the hood depending on the target operating system.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DefaultBackend",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "DefaultBackend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/defaultbackend"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/DialogResult": {
   "abstract" : [
@@ -2030,6 +2076,34 @@
   "title" : "Group",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/group"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Gtk3Backend": {
+  "abstract" : [
+    {
+      "text" : "A secondary Linux backend for older distros without Gtk 4.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Gtk3Backend",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "Gtk3Backend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtk3backend"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkBackend": {
+  "abstract" : [
+    {
+      "text" : "SwiftCrossUI’s native Linux backend built on Gtk 4.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBackend",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "GtkBackend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gtkbackend"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/HStack": {
   "abstract" : [
@@ -3274,6 +3348,31 @@
   "title" : "Publisher",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/publisher"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/QtBackend": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/QtBackend",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "QtBackend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/qtbackend"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Quick-Start": {
+  "abstract" : [
+    {
+      "text" : "Creating a cross-platform SwiftCrossUI app with Swift Bundler.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Quick-Start",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "Quick start",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/quick-start"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ResolvedMenu": {
   "abstract" : [
@@ -5693,6 +5792,20 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/tupleviewchildren9"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/UIKitBackend": {
+  "abstract" : [
+    {
+      "text" : "SwiftCrossUI’s native iOS and tvOS backend built on UIKit.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/UIKitBackend",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "UIKitBackend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/uikitbackend"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack": {
   "abstract" : [
     {
@@ -6175,6 +6288,20 @@
   "title" : "ViewUpdateResult",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewupdateresult"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WinUIBackend": {
+  "abstract" : [
+    {
+      "text" : "SwiftCrossUI’s native Windows backend built on WinUI 3.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WinUIBackend",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "WinUIBackend",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/winuibackend"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowGroup": {
   "abstract" : [

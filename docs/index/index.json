@@ -8,13 +8,47 @@
             "type" : "groupMarker"
           },
           {
-            "path" : "\/documentation\/swiftcrossui\/basic-usage",
-            "title" : "Basic Usage",
+            "path" : "\/documentation\/swiftcrossui\/quick-start",
+            "title" : "Quick start",
             "type" : "article"
           },
           {
             "path" : "\/documentation\/swiftcrossui\/examples",
             "title" : "Examples",
+            "type" : "article"
+          },
+          {
+            "title" : "Backends",
+            "type" : "groupMarker"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/defaultbackend",
+            "title" : "DefaultBackend",
+            "type" : "article"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/appkitbackend",
+            "title" : "AppKitBackend",
+            "type" : "article"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/uikitbackend",
+            "title" : "UIKitBackend",
+            "type" : "article"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/winuibackend",
+            "title" : "WinUIBackend",
+            "type" : "article"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtkbackend",
+            "title" : "GtkBackend",
+            "type" : "article"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/gtk3backend",
+            "title" : "Gtk3Backend",
             "type" : "article"
           },
           {
@@ -5062,6 +5096,15 @@
             "path" : "\/documentation\/swiftcrossui\/viewgraphnodechildren",
             "title" : "ViewGraphNodeChildren",
             "type" : "protocol"
+          },
+          {
+            "title" : "Articles",
+            "type" : "groupMarker"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/qtbackend",
+            "title" : "QtBackend",
+            "type" : "article"
           },
           {
             "title" : "Classes",
