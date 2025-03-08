@@ -185,13 +185,6 @@
       "title" : "Implementation Details"
     },
     {
-      "generated" : true,
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/QtBackend"
-      ],
-      "title" : "Articles"
-    },
-    {
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyWidget",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandsModifierNode",
@@ -3369,17 +3362,6 @@
   "title" : "Publisher",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/publisher"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/QtBackend": {
-  "abstract" : [
-
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/QtBackend",
-  "kind" : "article",
-  "role" : "article",
-  "title" : "QtBackend",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/qtbackend"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Quick-Start": {
   "abstract" : [

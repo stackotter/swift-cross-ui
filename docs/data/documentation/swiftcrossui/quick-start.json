@@ -39,7 +39,7 @@
         {
           "inlineContent" : [
             {
-              "text" : "Although not strictly required, I recommend using ",
+              "text" : "This quick start guide uses ",
               "type" : "text"
             },
             {
@@ -48,7 +48,7 @@
               "type" : "reference"
             },
             {
-              "text" : " to build SwiftCrossUI apps; it simplifies many aspects of cross-platform distribution a great deal and provides a platform-agnostic configuration format for specifying things such as app icons and custom URL schemes. As such, this quick start guide focuses on Swift Bundler.",
+              "text" : ". Although not strictly required, it simplifies many aspects of cross-platform distribution and provides a platform-agnostic configuration format for specifying things such as app icons and custom URL schemes.",
               "type" : "text"
             }
           ],
@@ -80,7 +80,7 @@
               "type" : "codeVoice"
             },
             {
-              "text" : " is the preferred installation method as of the last update to this quick start guide.",
+              "text" : " is the preferred installation method on macOS and Linux as of the last update to this quick start guide.",
               "type" : "text"
             }
           ],

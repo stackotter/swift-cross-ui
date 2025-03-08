@@ -5098,15 +5098,6 @@
             "type" : "protocol"
           },
           {
-            "title" : "Articles",
-            "type" : "groupMarker"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/qtbackend",
-            "title" : "QtBackend",
-            "type" : "article"
-          },
-          {
             "title" : "Classes",
             "type" : "groupMarker"
           },
