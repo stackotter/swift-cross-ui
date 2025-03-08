@@ -11,6 +11,8 @@
 
 A SwiftUI-like framework for creating cross-platform apps in Swift (5.10+).
 
+To dive right in with SwiftCrossUI, check out [the SwiftCrossUI quick start guide](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/quick-start).
+
 > [!NOTE]
 > SwiftCrossUI does not attempt to replicate SwiftUI's API perfectly since that would be a constantly-moving target and SwiftUI has many entrenched Apple-centric concepts. That said, SwiftCrossUI's built-in views and scenes share much of their API surface with their SwiftUI cousins, and over time SwiftCrossUI will likely adopt many of SwiftUI's commonly-used APIs.
 
@@ -21,8 +23,6 @@ A SwiftUI-like framework for creating cross-platform apps in Swift (5.10+).
 - [Documentation](#documentation)
 - [Basic example](#basic-example)
 - [Backends](#backends)
-- [More examples](#more-examples)
-- [Quick start](#quick-start)
 
 ## Community
 
@@ -38,7 +38,7 @@ Here's the [documentation site](https://stackotter.github.io/swift-cross-ui/docu
 
 ## Basic example
 
-Here's a simple example app demonstrating how easy it is to get started with SwiftCrossUI:
+Here's a simple example app demonstrating how easy it is to get started with SwiftCrossUI. For a more detailed walkthrough, check out our [quick start guide](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/quick-start)
 
 ```swift
 import PackageDescription
@@ -89,83 +89,21 @@ cd swift-cross-ui/Examples
 swift run CounterExample
 ```
 
-The documentation contains [a detailed list of all examples]()
+The documentation contains [a detailed list of all examples](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/examples)
 
 ## Backends
 
-SwiftCrossUI has a variety of backends tailored to different operating systems. The beauty of SwiftCrossUI is that you can write your app once and have it look native everywhere. For this reason I recommend using `DefaultBackend` unless you've got particular constraints.
+SwiftCrossUI has a variety of backends tailored to different operating systems. The beauty of SwiftCrossUI is that you can write your app once and have it look native everywhere. For this reason I recommend using [DefaultBackend](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/defaultbackend) unless you've got particular constraints.
 
 > [!TIP]
 > Click through each backend name for detailed system requirements and installation instructions.
 
-- `DefaultBackend`: Adapts to your target operating system. On macOS it uses `AppKitBackend`, on Windows it uses `WinUIBackend`, on Linux it uses `GtkBackend`, and on iOS and tvOS it uses `UIKitBackend`.
-- `AppKitBackend`: The native macOS backend. Supports all SwiftCrossUI features.
-- `UIKitBackend`: The native iOS & tvOS backend. Supports most SwiftCrossUI features.
-- `WinUIBackend`: The native Windows backend. Supports most SwiftCrossUI features.
-- `GtkBackend`: Works on Linux, macOS, and Windows. Requires gtk 4 to be installed. Supports most SwiftCrossUI features.
-- `Gtk3Backend`: Exists to target older Linux distributions. Requires gtk 3 to be installed. Supports most SwiftCrossUI features. Quite buggy on macOS due to underlying Gtk 3 bugs.
+- [DefaultBackend](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/defaultbackend): Adapts to your target operating system. On macOS it uses [AppKitBackend](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/appkitbackend), on Windows it uses [WinUIBackend](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/winuibackend), on Linux it uses [GtkBackend](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/gtkbackend), and on iOS and tvOS it uses [UIKitBackend](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/uikitbackend).
+- [AppKitBackend](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/appkitbackend): The native macOS backend. Supports all SwiftCrossUI features.
+- [UIKitBackend](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/uikitbackend): The native iOS & tvOS backend. Supports most SwiftCrossUI features.
+- [WinUIBackend](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/winuibackend): The native Windows backend. Supports most SwiftCrossUI features.
+- [GtkBackend](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/gtkbackend): Works on Linux, macOS, and Windows. Requires gtk 4 to be installed. Supports most SwiftCrossUI features.
+- [Gtk3Backend](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/gtk3backend): Exists to target older Linux distributions. Requires gtk 3 to be installed. Supports most SwiftCrossUI features. Quite buggy on macOS due to underlying Gtk 3 bugs.
 
 > [!TIP]
-> If you're using `DefaultBackend`, you can override the underlying backend during compilation by setting the `SCUI_DEFAULT_BACKEND` environment variable to the name of the desired backend. This is useful when you e.g. want to test the Gtk version of your app while using a Mac. Note that this only works for built-in backends and still requires the chosen backend to be compatible with your machine.
-
-## More examples
-
-SwiftCrossUI includes many example apps, demonstrating most of its basic features.
-
-- `CounterExample`: a simple app with buttons to increase and decrease a count.
-- `RandomNumberGeneratorExample`, a simple app to generate random numbers between a minimum and maximum.
-- `WindowingExample`: a simple app showcasing how ``WindowGroup`` is used to make multi-window apps and
-  control the properties of each window.
-- `GreetingGeneratorExample`: a simple app demonstrating dynamic state and the ``ForEach`` view.
-- `FileViewerExample`: an app showcasing integration with the system's file chooser.
-- `NavigationExample`: an app showcasing ``NavigationStack`` and related concepts.
-- `SplitExample`: an app showcasing sidebar-based navigation with multiple levels.
-- `StressTestExample`: an app used to test view update performance.
-- `SpreadsheetExample`: an app showcasing tables.
-- `ControlsExample`: an app showcasing the various types of controls available.
-
-## Quick start
-
-Although not strictly required, I recommend using [Swift Bundler](https://github.com/stackotter/swift-bundler) to build SwiftCrossUI apps; it simplifies many aspects of cross-platform distribution a great deal and provides a platform-agnostic configuration format for specifying things such as app icons and custom URL schemes. As such, this quick start guide will focus on Swift Bundler.
-
-### Installing Swift Bundler
-
-Follow [the installation instructions in Swift Bundler's readme](https://github.com/stackotter/swift-bundler?tab=readme-ov-file#installation-). `mint` is the preferred installation method as of the last update to this quick start guide.
-
-### Installing system dependencies
-
-Each backend has different requirements. In this guide we'll use `DefaultBackend` which uses `AppKitBackend` on macOS, `GtkBackend` on Linux, `WinUIBackend` on Windows, and `UIKitBackend` on iOS/tvOS. Click through the backend relevant to your machine for detailed installation requirements. `AppKitBackend` and `UIKitBackend` have no system dependencies; users of those two backends can skip this step.
-
-### Using Swift Bundler's SwiftCrossUI template
-
-Swift Bundler provides many built-in templates; we'll use the `SwiftCrossUI` template. The `SwiftCrossUI` template uses `DefaultBackend` to select the most appropriate backend at compile time.
-
-```sh
-swift bundler create HelloWorld --template SwiftCrossUI
-cd HelloWorld
-```
-
-### Running your app
-
-Running your new app with Swift Bundler is as simple as it gets!
-
-```sh
-swift bundler run
-```
-
-On macOS you can provide the `--device <device_name_or_id>` option to run the app on a connacted iOS or tvOS device, or the `--simulator <simulator_name_or_id>` option to run the app in a simulator.
-
-```sh
-# You can use any substring of the target device name. For example,
-# "iPhone" matches any device connected with "iPhone" in its name.
-swift bundler run --device "iPhone"
-swift bundler run --simulator "iPhone 15"
-```
-
-### Making a change
-
-Open `Sources/HelloWorld/HelloWorldApp.swift` in an editor of your choosing. Change `"Hello, World!"` to `"Hello, Earth!"`. Repeat the previous step to verify that your changes get reflected.
-
-### All done
-
-You're good to go! If you make something cool with SwiftCrossUI let us know so we can add your project to our showcase once the SwiftCrossUI website is up and running!
+> If you're using DefaultBackend, you can override the underlying backend during compilation by setting the `SCUI_DEFAULT_BACKEND` environment variable to the name of the desired backend. This is useful when you e.g. want to test the Gtk version of your app while using a Mac. Note that this only works for built-in backends and still requires the chosen backend to be compatible with your machine.

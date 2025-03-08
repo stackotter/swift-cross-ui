@@ -1,10 +1,10 @@
 # ``SwiftCrossUI``
 
-Create cross-platform desktop apps for macOS, Linux and Windows.
+Create cross-platform desktop apps for macOS, Linux, Windows, iOS and tvOS.
 
 ## Overview
 
-SwiftCrossUI implements a simple API similar but not identical to SwiftUI, allowing you to use the basic concepts of SwiftUI to create a cross-platofrm desktop app. SwiftCrossUI is designed to be flexible and can work with different backends, but has a focus on using GTK+ through SwiftGTK.
+SwiftCrossUI takes inspiration from SwiftUI, allowing you to use the basic concepts of SwiftUI to create cross-platform desktop apps. SwiftCrossUI provides your users with a native experience on every platform via a suite of backends built on top of various UI frameworks (see [Backends](#backends)).
 
 ## Topics
 

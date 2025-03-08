@@ -4,7 +4,7 @@ SwiftCrossUI's native iOS and tvOS backend built on UIKit.
 
 ## Overview
 
-`UIKitBackend` is the default backend on iOS and tvOS, supports most current SwiftCrossUI features, and targets iOS/tvOS 13+. It doesn't have any system dependencies other than a few system frameworks included on all iOS/tvOS devices.
+`UIKitBackend` is the default backend on iOS and tvOS, supports most current SwiftCrossUI features on iOS at least, and targets iOS/tvOS 13+. It doesn't have any system dependencies other than a few system frameworks included on all iOS/tvOS devices.
 
 ## Usage
 

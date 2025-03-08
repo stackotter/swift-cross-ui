@@ -1,16 +1,16 @@
 # Gtk3Backend
 
-A secondary Linux backend for older distros without Gtk 4.
+A secondary Linux backend built on Gtk 3 (for older distros without Gtk 4).
 
 ## Overview
 
-This backend supports Linux, macOS and Windows (maybe?), but its support for non-Linux platforms is significantly worse than `GtkBackend`'s (due to underlying Gtk 3 issues). Even on Linux, it's recommended to use `GtkBackend` over `Gtk3Backend` where possible.
+This backend supports Linux, macOS and Windows (maybe?), but its support for non-Linux platforms is significantly worse than <doc:GtkBackend>'s (due to underlying Gtk 3 issues). Even on Linux, it's recommended to use <doc:GtkBackend> over Gtk3Backend where possible.
 
-> Warning: Non-Linux `Gtk3Backend` support is not a priority of this backend, and should only be used during development (e.g. to test your Linux UI natively on a Mac). There are multiple better choices of backend available on each non-Linux platform.
+> Warning: Non-Linux Gtk3Backend support is not a priority of this backend, and should only be used during development (e.g. to test your Linux UI natively on a Mac). There are multiple better choices of backend available on each non-Linux platform.
 
 ## System dependencies
 
-Before you can use `Gtk3Backend` you must install the required system dependencies for your platform.
+Before you can use Gtk3Backend you must install the required system dependencies for your platform.
 
 ### Linux
 
@@ -19,7 +19,7 @@ sudo apt install libgtk-3-dev
 ```
 Figure 1: *installing Gtk 3 dev on an apt-based Linux distro*
 
-If you are on a non-apt distro and the `GtkBackend` requirements end up differing significantly from the requirements stated above, please open a GitHub issue or PR so that we can improve the documentation.
+If you are on a non-apt distro and the Gtk3Backend requirements end up differing significantly from the requirements stated above, please open a GitHub issue or PR so that we can improve the documentation.
 
 ### macOS
 
@@ -34,7 +34,7 @@ It should also be possible to use `gtk3` installed via MacPorts, but I have not 
 
 ### Windows
 
-`gtk3` installation has not been tested on Windows, and neither has `Gtk3Backend`, although there shouldn't be anything to stop it from working (🤞). Follow the `gtk4` installation instructions from <doc:GtkBackend> and replace `gtk` with `gtk3` in any vcpkg commands or `vcpkg.json` manifest files.
+`gtk3` installation has not been tested on Windows, and neither has Gtk3Backend, although there shouldn't be anything to stop it from working (🤞). Follow the `gtk4` installation instructions from <doc:GtkBackend> and replace `gtk` with `gtk3` in any vcpkg commands or `vcpkg.json` manifest files.
 
 If you try this on Windows open a GitHub issue (even if it works without changes) so that we can fix any issues you faced and update this documentation.
 

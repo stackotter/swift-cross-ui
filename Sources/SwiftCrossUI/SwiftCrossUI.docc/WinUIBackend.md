@@ -4,19 +4,17 @@ SwiftCrossUI's native Windows backend built on WinUI 3.
 
 ## Overview
 
-`WinUIBackend` supports both ARM64 and x64 Windows 10/11 computers. It is the recommended backend to use when compiling SwiftCrossUI apps for Windows, as it aims to provide the most native experience.
+WinUIBackend supports both ARM64 and x64 Windows 10/11 computers. It is the recommended backend to use when compiling SwiftCrossUI apps for Windows, as it aims to provide the most native experience.
 
 ## System dependencies
 
-Before you can use `WinUIBackend` there are two main dependencies that you must install; Windows SDK 10.0.17736 and WindowsAppSDK 1.5-preview1. The former is only required at compile time while the later is only required at runtime.
+Before you can use WinUIBackend you must install two dependencies; the former is only required at compile time while the later is only required at runtime.
 
-```sh
-winget install --id Microsoft.WindowsSDK.10.0.17736
-```
-Figure 1: *Installing the required Windows SDK version using `winget`*
-
-1. Install the required Windows SDK version using the command in Figure 1
-2. Install the required WindowsAppSDK version using [this download link](https://aka.ms/windowsappsdk/1.5/1.5.240205001-preview1/windowsappruntimeinstall-x64.exe)
+1. Install Windows SDK 10.0.17736;
+   ```sh
+   winget install --id Microsoft.WindowsSDK.10.0.17736
+   ```
+2. Install the WindowsAppSDK 1.5.240205001-preview1 variant for your architecture; [x64](https://aka.ms/windowsappsdk/1.5/1.5.240205001-preview1/windowsappruntimeinstall-x64.exe)/[arm64](https://aka.ms/windowsappsdk/1.5/1.5.240205001-preview1/windowsappruntimeinstall-arm64.exe)
 
 ## Usage
 
@@ -39,7 +37,7 @@ let package = Package(
   ...
 )
 ```
-Figure 2: *adding `WinUIBackend` to an executable target*
+Figure 1: *adding `WinUIBackend` to an executable target*
 
 ```swift
 import SwiftCrossUI
@@ -60,4 +58,4 @@ struct YourApp: App {
   }
 }
 ```
-Figure 3: *using `WinUIBackend`*
+Figure 2: *using `WinUIBackend`*
