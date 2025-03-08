@@ -4,11 +4,11 @@ Creating a cross-platform SwiftCrossUI app with Swift Bundler.
 
 ## Overview
 
-Although not strictly required, I recommend using [Swift Bundler](https://github.com/stackotter/swift-bundler) to build SwiftCrossUI apps; it simplifies many aspects of cross-platform distribution a great deal and provides a platform-agnostic configuration format for specifying things such as app icons and custom URL schemes. As such, this quick start guide focuses on Swift Bundler.
+This quick start guide uses [Swift Bundler](https://github.com/stackotter/swift-bundler). Although not strictly required, it simplifies many aspects of cross-platform distribution and provides a platform-agnostic configuration format for specifying things such as app icons and custom URL schemes.
 
 ## Installing Swift Bundler
 
-Follow [the installation instructions in Swift Bundler's readme](https://github.com/stackotter/swift-bundler?tab=readme-ov-file#installation-). `mint` is the preferred installation method as of the last update to this quick start guide.
+Follow [the installation instructions in Swift Bundler's readme](https://github.com/stackotter/swift-bundler?tab=readme-ov-file#installation-). `mint` is the preferred installation method on macOS and Linux as of the last update to this quick start guide.
 
 ## Installing system dependencies
 
