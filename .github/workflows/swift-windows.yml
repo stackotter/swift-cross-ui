@@ -8,43 +8,57 @@ on:
     branches-ignore:
       - 'gh-pages'
 
+defaults:
+  run: # Use powershell because bash is not supported: https://github.com/compnerd/gha-setup-swift/issues/18#issuecomment-1705524890
+    shell: pwsh
+
 jobs:
   build-windows:
-    runs-on: windows-latest
+    runs-on: windows-2019 # Windows SDK lower than 10.0.26100 is needed until https://github.com/swiftlang/swift/pull/79751 released!
 
     steps:
+    - name: Setup VS Dev Environment
+      uses: seanmiddleditch/gha-setup-vsdevenv@v5
+
+    - name: Setup
+      uses: compnerd/gha-setup-swift@v0.2.3
+      with:
+        branch: swift-5.10-release
+        tag: 5.10-RELEASE
+
     - name: Compute vcpkg Triplet
       id: triplet
       uses: ASzc/change-string-case-action@v5
       with:
         string: ${{ runner.arch }}-${{ runner.os }}
-    - name: Install Swift 6.0
-      uses: compnerd/gha-setup-swift@main
-      with:
-        branch: swift-6.0-release
-        tag: 6.0-RELEASE
+
     - uses: actions/checkout@v3
+
     - name: Restore Dependency Cache
       id: cache
       uses: actions/cache/restore@v3
       with:
         path: vcpkg_installed
         key: vcpkg-${{ steps.triplet.outputs.lowercase }}-${{ hashFiles('vcpkg.json') }}
+
     - name: Build and Install Dependencies
       if: steps.cache.outputs.cache-hit != 'true'
       env:
         VCPKG_DEFAULT_TRIPLET: ${{ steps.triplet.outputs.lowercase }}
       run: vcpkg install
+
     - name: Save Dependency Cache
       if: steps.cache.outputs.cache-hit != 'true'
       uses: actions/cache/save@v3
       with:
         path: vcpkg_installed
         key: vcpkg-${{ steps.triplet.outputs.lowercase }}-${{ hashFiles('vcpkg.json') }}
+
     - name: Build SwiftCrossUI
       env:
         PKG_CONFIG_PATH: ${{ github.workspace }}/vcpkg_installed/${{ steps.triplet.outputs.lowercase }}/lib/pkgconfig
       # Only build the library target to work around apple/swift-package-manager#6644
       run: swift build --target SwiftCrossUI -v
+
     - name: Build WinUIBackend
       run: swift build --target WinUIBackend
