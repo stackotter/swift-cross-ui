@@ -39,48 +39,168 @@
         {
           "inlineContent" : [
             {
-              "text" : "The beauty of SwiftCrossUI is that you can write your app once and have it look native everywhere. For this reason I recommend using ",
+              "text" : "The beauty of SwiftCrossUI is that you can write your app once and have it look native everywhere. For this reason I recommend using DefaultBackend unless you’ve got particular constraints. It uses ",
               "type" : "text"
             },
             {
-              "code" : "DefaultBackend",
-              "type" : "codeVoice"
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppKitBackend",
+              "isActive" : true,
+              "type" : "reference"
             },
             {
-              "text" : " unless you’ve got particular constraints. On macOS it uses ",
+              "text" : " on macOS, ",
               "type" : "text"
             },
             {
-              "code" : "AppKitBackend",
-              "type" : "codeVoice"
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WinUIBackend",
+              "isActive" : true,
+              "type" : "reference"
             },
             {
-              "text" : ", on Windows it uses ",
+              "text" : " on Window, ",
               "type" : "text"
             },
             {
-              "code" : "WinUIBackend",
-              "type" : "codeVoice"
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBackend",
+              "isActive" : true,
+              "type" : "reference"
             },
             {
-              "text" : ", on Linux it uses ",
+              "text" : " on Linux, and on ",
               "type" : "text"
             },
             {
-              "code" : "GtkBackend",
-              "type" : "codeVoice"
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/UIKitBackend",
+              "isActive" : true,
+              "type" : "reference"
             },
             {
-              "text" : ", and on iOS and tvOS it uses ",
+              "text" : " on iOS\/tvOS.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "content" : [
+            {
+              "inlineContent" : [
+                {
+                  "text" : "If you’re using DefaultBackend, you can override the underlying backend during compilation by setting the ",
+                  "type" : "text"
+                },
+                {
+                  "code" : "SCUI_DEFAULT_BACKEND",
+                  "type" : "codeVoice"
+                },
+                {
+                  "text" : " environment variable to the name of the desired backend. This is useful when you e.g. want to test the Gtk version of your app while using a Mac. Note that this only works for built-in backends and still requires the chosen backend to be compatible with your machine.",
+                  "type" : "text"
+                }
+              ],
+              "type" : "paragraph"
+            }
+          ],
+          "name" : "Tip",
+          "style" : "tip",
+          "type" : "aside"
+        },
+        {
+          "anchor" : "Usage",
+          "level" : 2,
+          "text" : "Usage",
+          "type" : "heading"
+        },
+        {
+          "code" : [
+            "...",
+            "",
+            "let package = Package(",
+            "  ...",
+            "  targets: [",
+            "    ...",
+            "    .executableTarget(",
+            "      name: \"YourApp\",",
+            "      dependencies: [",
+            "        .product(name: \"SwiftCrossUI\", package: \"swift-cross-ui\"),",
+            "        .product(name: \"DefaultBackend\", package: \"swift-cross-ui\"),",
+            "      ]",
+            "    )",
+            "    ...",
+            "  ]",
+            "  ...",
+            ")"
+          ],
+          "syntax" : "swift",
+          "type" : "codeListing"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Figure 1: ",
               "type" : "text"
             },
             {
-              "code" : "UIKitBackend",
-              "type" : "codeVoice"
+              "inlineContent" : [
+                {
+                  "text" : "adding ",
+                  "type" : "text"
+                },
+                {
+                  "code" : "DefaultBackend",
+                  "type" : "codeVoice"
+                },
+                {
+                  "text" : " to an executable target",
+                  "type" : "text"
+                }
+              ],
+              "type" : "emphasis"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "code" : [
+            "import SwiftCrossUI",
+            "import Backend",
+            "",
+            "@main",
+            "struct YourApp: App {",
+            "  \/\/ You can explicitly initialize your app's chosen backend if you desire.",
+            "  \/\/ This happens automatically when you import any of the built-in backends.",
+            "  \/\/",
+            "  \/\/ var backend = DefaultBackend()",
+            "",
+            "  var body: some Scene {",
+            "    WindowGroup {",
+            "      Text(\"Hello, World!\")",
+            "        .padding()",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax" : "swift",
+          "type" : "codeListing"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Figure 2: ",
+              "type" : "text"
             },
             {
-              "text" : ".",
-              "type" : "text"
+              "inlineContent" : [
+                {
+                  "text" : "using ",
+                  "type" : "text"
+                },
+                {
+                  "code" : "DefaultBackend",
+                  "type" : "codeVoice"
+                }
+              ],
+              "type" : "emphasis"
             }
           ],
           "type" : "paragraph"
@@ -127,7 +247,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI": {
   "abstract" : [
     {
-      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "text" : "Create cross-platform desktop apps for macOS, Linux, Windows, iOS and tvOS.",
       "type" : "text"
     }
   ],
@@ -155,7 +275,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Gtk3Backend": {
   "abstract" : [
     {
-      "text" : "A secondary Linux backend for older distros without Gtk 4.",
+      "text" : "A secondary Linux backend built on Gtk 3 (for older distros without Gtk 4).",
       "type" : "text"
     }
   ],

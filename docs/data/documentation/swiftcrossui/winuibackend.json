@@ -39,11 +39,7 @@
         {
           "inlineContent" : [
             {
-              "code" : "WinUIBackend",
-              "type" : "codeVoice"
-            },
-            {
-              "text" : " supports both ARM64 and x64 Windows 10\/11 computers. It is the recommended backend to use when compiling SwiftCrossUI apps for Windows, as it aims to provide the most native experience.",
+              "text" : "WinUIBackend supports both ARM64 and x64 Windows 10\/11 computers. It is the recommended backend to use when compiling SwiftCrossUI apps for Windows, as it aims to provide the most native experience.",
               "type" : "text"
             }
           ],
@@ -58,45 +54,8 @@
         {
           "inlineContent" : [
             {
-              "text" : "Before you can use ",
+              "text" : "Before you can use WinUIBackend you must install two dependencies; the former is only required at compile time while the later is only required at runtime.",
               "type" : "text"
-            },
-            {
-              "code" : "WinUIBackend",
-              "type" : "codeVoice"
-            },
-            {
-              "text" : " there are two main dependencies that you must install; Windows SDK 10.0.17736 and WindowsAppSDK 1.5-preview1. The former is only required at compile time while the later is only required at runtime.",
-              "type" : "text"
-            }
-          ],
-          "type" : "paragraph"
-        },
-        {
-          "code" : [
-            "winget install --id Microsoft.WindowsSDK.10.0.17736"
-          ],
-          "syntax" : "sh",
-          "type" : "codeListing"
-        },
-        {
-          "inlineContent" : [
-            {
-              "text" : "Figure 1: ",
-              "type" : "text"
-            },
-            {
-              "inlineContent" : [
-                {
-                  "text" : "Installing the required Windows SDK version using ",
-                  "type" : "text"
-                },
-                {
-                  "code" : "winget",
-                  "type" : "codeVoice"
-                }
-              ],
-              "type" : "emphasis"
             }
           ],
           "type" : "paragraph"
@@ -108,11 +67,18 @@
                 {
                   "inlineContent" : [
                     {
-                      "text" : "Install the required Windows SDK version using the command in Figure 1",
+                      "text" : "Install Windows SDK 10.0.17736;",
                       "type" : "text"
                     }
                   ],
                   "type" : "paragraph"
+                },
+                {
+                  "code" : [
+                    "winget install --id Microsoft.WindowsSDK.10.0.17736"
+                  ],
+                  "syntax" : "sh",
+                  "type" : "codeListing"
                 }
               ]
             },
@@ -121,11 +87,20 @@
                 {
                   "inlineContent" : [
                     {
-                      "text" : "Install the required WindowsAppSDK version using ",
+                      "text" : "Install the WindowsAppSDK 1.5.240205001-preview1 variant for your architecture; ",
                       "type" : "text"
                     },
                     {
                       "identifier" : "https:\/\/aka.ms\/windowsappsdk\/1.5\/1.5.240205001-preview1\/windowsappruntimeinstall-x64.exe",
+                      "isActive" : true,
+                      "type" : "reference"
+                    },
+                    {
+                      "text" : "\/",
+                      "type" : "text"
+                    },
+                    {
+                      "identifier" : "https:\/\/aka.ms\/windowsappsdk\/1.5\/1.5.240205001-preview1\/windowsappruntimeinstall-arm64.exe",
                       "isActive" : true,
                       "type" : "reference"
                     }
@@ -169,7 +144,7 @@
         {
           "inlineContent" : [
             {
-              "text" : "Figure 2: ",
+              "text" : "Figure 1: ",
               "type" : "text"
             },
             {
@@ -218,7 +193,7 @@
         {
           "inlineContent" : [
             {
-              "text" : "Figure 3: ",
+              "text" : "Figure 2: ",
               "type" : "text"
             },
             {
@@ -279,7 +254,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI": {
   "abstract" : [
     {
-      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "text" : "Create cross-platform desktop apps for macOS, Linux, Windows, iOS and tvOS.",
       "type" : "text"
     }
   ],
@@ -321,7 +296,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Gtk3Backend": {
   "abstract" : [
     {
-      "text" : "A secondary Linux backend for older distros without Gtk 4.",
+      "text" : "A secondary Linux backend built on Gtk 3 (for older distros without Gtk 4).",
       "type" : "text"
     }
   ],
@@ -360,12 +335,24 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/uikitbackend"
 },
-"https://aka.ms/windowsappsdk/1.5/1.5.240205001-preview1/windowsappruntimeinstall-x64.exe": {
-  "identifier" : "https:\/\/aka.ms\/windowsappsdk\/1.5\/1.5.240205001-preview1\/windowsappruntimeinstall-x64.exe",
-  "title" : "this download link",
+"https://aka.ms/windowsappsdk/1.5/1.5.240205001-preview1/windowsappruntimeinstall-arm64.exe": {
+  "identifier" : "https:\/\/aka.ms\/windowsappsdk\/1.5\/1.5.240205001-preview1\/windowsappruntimeinstall-arm64.exe",
+  "title" : "arm64",
   "titleInlineContent" : [
     {
-      "text" : "this download link",
+      "text" : "arm64",
+      "type" : "text"
+    }
+  ],
+  "type" : "link",
+  "url" : "https:\/\/aka.ms\/windowsappsdk\/1.5\/1.5.240205001-preview1\/windowsappruntimeinstall-arm64.exe"
+},
+"https://aka.ms/windowsappsdk/1.5/1.5.240205001-preview1/windowsappruntimeinstall-x64.exe": {
+  "identifier" : "https:\/\/aka.ms\/windowsappsdk\/1.5\/1.5.240205001-preview1\/windowsappruntimeinstall-x64.exe",
+  "title" : "x64",
+  "titleInlineContent" : [
+    {
+      "text" : "x64",
       "type" : "text"
     }
   ],

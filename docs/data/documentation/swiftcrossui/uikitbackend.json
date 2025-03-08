@@ -43,7 +43,7 @@
               "type" : "codeVoice"
             },
             {
-              "text" : " is the default backend on iOS and tvOS, supports most current SwiftCrossUI features, and targets iOS\/tvOS 13+. It doesn’t have any system dependencies other than a few system frameworks included on all iOS\/tvOS devices.",
+              "text" : " is the default backend on iOS and tvOS, supports most current SwiftCrossUI features on iOS at least, and targets iOS\/tvOS 13+. It doesn’t have any system dependencies other than a few system frameworks included on all iOS\/tvOS devices.",
               "type" : "text"
             }
           ],
@@ -197,7 +197,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI": {
   "abstract" : [
     {
-      "text" : "Create cross-platform desktop apps for macOS, Linux and Windows.",
+      "text" : "Create cross-platform desktop apps for macOS, Linux, Windows, iOS and tvOS.",
       "type" : "text"
     }
   ],
@@ -239,7 +239,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Gtk3Backend": {
   "abstract" : [
     {
-      "text" : "A secondary Linux backend for older distros without Gtk 4.",
+      "text" : "A secondary Linux backend built on Gtk 3 (for older distros without Gtk 4).",
       "type" : "text"
     }
   ],
