@@ -10,8 +10,19 @@ SwiftCrossUI implements a simple API similar but not identical to SwiftUI, allow
 
 ### Getting Started
 
-- <doc:Basic-Usage>
+- <doc:Quick-Start>
 - <doc:Examples>
+
+### Backends
+
+SwiftCrossUI has a variety of backends tailored to different operating systems. The beauty of SwiftCrossUI is that you can write your app once and have it look native everywhere. For this reason I recommend using `DefaultBackend` unless you've got particular constraints.
+
+- <doc:DefaultBackend>
+- <doc:AppKitBackend>
+- <doc:UIKitBackend>
+- <doc:WinUIBackend>
+- <doc:GtkBackend>
+- <doc:Gtk3Backend>
 
 ### App Structure
 
