@@ -36,7 +36,5 @@ jobs:
         swift build --target SpreadsheetExample && \
         swift build --target NotesExample && \
         swift build --target GtkExample
-    # Calling `swift test` results in all targets getting built including targets such as WinUIBackend which
-    # aren't available on macOS.
-    # - name: Test
-    #   run: swift test
+    - name: Test
+      run: swift test --test-product swift-cross-uiPackageTests

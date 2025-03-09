@@ -36,5 +36,5 @@ jobs:
         swift build --target SpreadsheetExample && \
         swift build --target NotesExample && \
         swift build --target GtkExample
-    # - name: Test
-    #   run: swift test
+    - name: Test
+      run: swift test --test-product swift-cross-uiPackageTests
