@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Wraps a view in a VStackrcontent: ollable container.",
+      "text" : "Wraps a view in a scrollable container.",
       "type" : "text"
     }
   ],
@@ -288,7 +288,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : " moVStack to constrain height if necessary.",
+      "text" : " modifier to constrain height if necessary.",
       "type" : "text"
     }
   ],
@@ -322,7 +322,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/init(_:_:)": {
   "abstract" : [
     {
-      "text" : "Wraps a view in a VStackrcontent: ollable container.",
+      "text" : "Wraps a view in a scrollable container.",
       "type" : "text"
     }
   ],

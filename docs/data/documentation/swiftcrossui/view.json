@@ -1155,7 +1155,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : " moVStack to constrain height if necessary.",
+      "text" : " modifier to constrain height if necessary.",
       "type" : "text"
     }
   ],
@@ -4455,7 +4455,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/update(_:children:proposedSize:environment:backend:dryRun:)-3tixh": {
   "abstract" : [
     {
-      "text" : "Updates the view’s widget after a state change occurs (although the change isn’t guaranteed",
+      "text" : "Updates the view’s widget after a state change occurs (although the",
       "type" : "text"
     },
     {
@@ -4463,7 +4463,11 @@
       "type" : "text"
     },
     {
-      "text" : "to have affected this particular view). ",
+      "text" : "change isn’t guaranteed to have affected this particular view).",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
       "type" : "text"
     },
     {
@@ -4471,7 +4475,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : " is the size suggested by the parent",
+      "text" : " is the size suggested by the parent container, but child",
       "type" : "text"
     },
     {
@@ -4479,7 +4483,7 @@
       "type" : "text"
     },
     {
-      "text" : "container, but child views always get the final call on their own size.",
+      "text" : "views always get the final call on their own size.",
       "type" : "text"
     }
   ],

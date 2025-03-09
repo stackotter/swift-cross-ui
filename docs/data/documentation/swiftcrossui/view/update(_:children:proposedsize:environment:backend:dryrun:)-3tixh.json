@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "Updates the view’s widget after a state change occurs (although the change isn’t guaranteed",
+      "text" : "Updates the view’s widget after a state change occurs (although the",
       "type" : "text"
     },
     {
@@ -9,7 +9,11 @@
       "type" : "text"
     },
     {
-      "text" : "to have affected this particular view). ",
+      "text" : "change isn’t guaranteed to have affected this particular view).",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
       "type" : "text"
     },
     {
@@ -17,7 +21,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : " is the size suggested by the parent",
+      "text" : " is the size suggested by the parent container, but child",
       "type" : "text"
     },
     {
@@ -25,7 +29,7 @@
       "type" : "text"
     },
     {
-      "text" : "container, but child views always get the final call on their own size.",
+      "text" : "views always get the final call on their own size.",
       "type" : "text"
     }
   ],
@@ -200,7 +204,7 @@
     ],
     "remoteSource" : {
       "fileName" : "View.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/View.swift#L50"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/View.swift#L54"
     },
     "required" : true,
     "role" : "symbol",
@@ -425,7 +429,15 @@
                   "type" : "codeVoice"
                 },
                 {
-                  "text" : ", avoids updating the UI and only computes sizing.",
+                  "text" : ", avoids updating the UI and only computes",
+                  "type" : "text"
+                },
+                {
+                  "text" : " ",
+                  "type" : "text"
+                },
+                {
+                  "text" : "sizing.",
                   "type" : "text"
                 }
               ],
@@ -467,7 +479,7 @@
         {
           "inlineContent" : [
             {
-              "text" : "Always called once immediately after creating the view’s widget with. This helps reduce",
+              "text" : "Always called once immediately after creating the view’s widget with.",
               "type" : "text"
             },
             {
@@ -475,7 +487,7 @@
               "type" : "text"
             },
             {
-              "text" : "code duplication between ",
+              "text" : "This helps reduce code duplication between ",
               "type" : "text"
             },
             {
@@ -954,7 +966,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/update(_:children:proposedSize:environment:backend:dryRun:)-3tixh": {
   "abstract" : [
     {
-      "text" : "Updates the view’s widget after a state change occurs (although the change isn’t guaranteed",
+      "text" : "Updates the view’s widget after a state change occurs (although the",
       "type" : "text"
     },
     {
@@ -962,7 +974,11 @@
       "type" : "text"
     },
     {
-      "text" : "to have affected this particular view). ",
+      "text" : "change isn’t guaranteed to have affected this particular view).",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
       "type" : "text"
     },
     {
@@ -970,7 +986,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : " is the size suggested by the parent",
+      "text" : " is the size suggested by the parent container, but child",
       "type" : "text"
     },
     {
@@ -978,7 +994,7 @@
       "type" : "text"
     },
     {
-      "text" : "container, but child views always get the final call on their own size.",
+      "text" : "views always get the final call on their own size.",
       "type" : "text"
     }
   ],

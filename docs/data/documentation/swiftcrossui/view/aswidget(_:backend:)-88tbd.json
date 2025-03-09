@@ -99,7 +99,7 @@
     ],
     "remoteSource" : {
       "fileName" : "View.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/View.swift#L37"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/View.swift#L39"
     },
     "required" : true,
     "role" : "symbol",
@@ -240,7 +240,7 @@
         {
           "inlineContent" : [
             {
-              "text" : "A view is represented by the same widget instance for the whole time that it’s visible even",
+              "text" : "A view is represented by the same widget instance for the whole time",
               "type" : "text"
             },
             {
@@ -248,7 +248,7 @@
               "type" : "text"
             },
             {
-              "text" : "if its content is changing; keep that in mind while deciding the structure of the widget.",
+              "text" : "that it’s visible even if its content is changing; keep that in mind",
               "type" : "text"
             },
             {
@@ -256,7 +256,15 @@
               "type" : "text"
             },
             {
-              "text" : "For example, a view displaying one of two children should use ",
+              "text" : "while deciding the structure of the widget. For example, a view",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "displaying one of two children should use ",
               "type" : "text"
             },
             {
@@ -269,7 +277,7 @@
               "type" : "text"
             },
             {
-              "text" : "to create a container for the displayed child instead of just directly returning the widget",
+              "text" : "to create a container for the displayed child instead of just directly",
               "type" : "text"
             },
             {
@@ -277,7 +285,7 @@
               "type" : "text"
             },
             {
-              "text" : "of the currently displayed child (which would result in you not being able to ever switch",
+              "text" : "returning the widget of the currently displayed child (which would result",
               "type" : "text"
             },
             {
@@ -285,7 +293,7 @@
               "type" : "text"
             },
             {
-              "text" : "to displaying the other child). This constraint significantly simplifies view implementations",
+              "text" : "in you not being able to ever switch to displaying the other child). This",
               "type" : "text"
             },
             {
@@ -293,7 +301,15 @@
               "type" : "text"
             },
             {
-              "text" : "without requiring widgets to be re-created after every single update.",
+              "text" : "constraint significantly simplifies view implementations without",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "requiring widgets to be re-created after every single update.",
               "type" : "text"
             }
           ],

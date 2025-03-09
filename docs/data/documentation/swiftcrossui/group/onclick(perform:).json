@@ -13,17 +13,6 @@
       "type" : "text"
     }
   ],
-  "deprecationSummary" : [
-    {
-      "inlineContent" : [
-        {
-          "text" : "Renamed to onTapGesture",
-          "type" : "text"
-        }
-      ],
-      "type" : "paragraph"
-    }
-  ],
   "hierarchy" : {
     "paths" : [
       [

@@ -568,7 +568,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : " moVStack to constrain height if necessary.",
+      "text" : " modifier to constrain height if necessary.",
       "type" : "text"
     }
   ],

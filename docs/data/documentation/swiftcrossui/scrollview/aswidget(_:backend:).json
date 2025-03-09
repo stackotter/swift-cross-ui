@@ -101,7 +101,7 @@
     ],
     "remoteSource" : {
       "fileName" : "View.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/View.swift#L100"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/View.swift#L104"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",
@@ -376,7 +376,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : " moVStack to constrain height if necessary.",
+      "text" : " modifier to constrain height if necessary.",
       "type" : "text"
     }
   ],

@@ -13,17 +13,6 @@
       "type" : "text"
     }
   ],
-  "deprecationSummary" : [
-    {
-      "inlineContent" : [
-        {
-          "text" : "Renamed to onTapGesture",
-          "type" : "text"
-        }
-      ],
-      "type" : "paragraph"
-    }
-  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -241,7 +230,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : " moVStack to constrain height if necessary.",
+      "text" : " modifier to constrain height if necessary.",
       "type" : "text"
     }
   ],
