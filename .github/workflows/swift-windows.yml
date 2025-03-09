@@ -7,6 +7,7 @@ on:
   pull_request:
     branches-ignore:
       - 'gh-pages'
+  workflow_dispatch:
 
 defaults:
   run: # Use powershell because bash is not supported: https://github.com/compnerd/gha-setup-swift/issues/18#issuecomment-1705524890
@@ -23,8 +24,8 @@ jobs:
     - name: Setup
       uses: compnerd/gha-setup-swift@v0.2.3
       with:
-        branch: swift-5.10-release
-        tag: 5.10-RELEASE
+        branch: swift-6.0-release
+        tag: 6.0-RELEASE
 
     - name: Compute vcpkg Triplet
       id: triplet
