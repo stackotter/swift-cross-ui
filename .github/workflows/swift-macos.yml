@@ -38,3 +38,8 @@ jobs:
         swift build --target GtkExample
     - name: Test
       run: swift test --test-product swift-cross-uiPackageTests
+    - name: Upload snapshot
+      uses: actions/upload-artifact@v4
+      with:
+        name: snapshot
+        path: snapshot.tiff

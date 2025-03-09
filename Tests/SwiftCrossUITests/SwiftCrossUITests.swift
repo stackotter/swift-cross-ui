@@ -86,6 +86,8 @@ final class SwiftCrossUITests: XCTestCase {
             backend.setSize(of: view, to: result.size.size)
             backend.setSize(ofWindow: window, to: result.size.size)
 
+            try Self.snapshotView(view).write(to: URL(fileURLWithPath: "snapshot.tiff"))
+
             XCTAssertEqual(
                 result.size,
                 ViewSize(fixedSize: SIMD2(94, 95)),
@@ -96,7 +98,6 @@ final class SwiftCrossUITests: XCTestCase {
                 result.preferences.onOpenURL == nil,
                 "onOpenURL not nil"
             )
-
         }
 
         static func snapshotView(_ view: NSView) throws -> Data {
