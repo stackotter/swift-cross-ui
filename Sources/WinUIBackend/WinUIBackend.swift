@@ -998,35 +998,35 @@ public final class WinUIBackend: AppBackend {
     // ) {
     // }
 
-    public func createClickTarget(wrapping child: Widget) -> Widget {
-        let clickTarget = ClickTarget()
-        addChild(child, to: clickTarget)
-        clickTarget.child = child
+    public func createTapGestureTarget(wrapping child: Widget) -> Widget {
+        let tapGestureTarget = TapGestureTarget()
+        addChild(child, to: tapGestureTarget)
+        tapGestureTarget.child = child
 
         // Set a background so that the click target's entire area gets hit
         // tested. The background we set is transparent so that it doesn't
         // change the visual appearance of the view.
         let brush = SolidColorBrush()
         brush.color = UWP.Color(a: 0, r: 0, g: 0, b: 0)
-        clickTarget.background = brush
+        tapGestureTarget.background = brush
 
-        clickTarget.pointerPressed.addHandler { [weak clickTarget] _, _ in
-            guard let clickTarget else {
+        tapGestureTarget.pointerPressed.addHandler { [weak tapGestureTarget] _, _ in
+            guard let tapGestureTarget else {
                 return
             }
-            clickTarget.clickHandler?()
+            tapGestureTarget.clickHandler?()
         }
-        return clickTarget
+        return tapGestureTarget
     }
 
-    public func updateClickTarget(
-        _ clickTarget: Widget,
-        clickHandler handleClick: @escaping () -> Void
+    public func updateTapGestureTarget(
+        _ tapGestureTarget: Widget,
+        action: @escaping () -> Void
     ) {
-        let clickTarget = clickTarget as! ClickTarget
-        clickTarget.clickHandler = handleClick
-        clickTarget.width = clickTarget.child!.width
-        clickTarget.height = clickTarget.child!.height
+        let tapGestureTarget = tapGestureTarget as! TapGestureTarget
+        tapGestureTarget.clickHandler = action
+        tapGestureTarget.width = tapGestureTarget.child!.width
+        tapGestureTarget.height = tapGestureTarget.child!.height
     }
 
     // public func createTable(rows: Int, columns: Int) -> Widget {
@@ -1159,7 +1159,7 @@ final class CustomSplitView: SplitView {
     var sidebarResizeHandler: (() -> Void)?
 }
 
-final class ClickTarget: WinUI.Canvas {
+final class TapGestureTarget: WinUI.Canvas {
     var clickHandler: (() -> Void)?
     var child: WinUI.FrameworkElement?
 }

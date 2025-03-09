@@ -103,9 +103,9 @@ final class TextFieldWidget: WrapperWidget<UITextField>, UITextFieldDelegate {
     }
 #endif
 
-final class ClickableWidget: ContainerWidget {
+final class TappableWidget: ContainerWidget {
     private var gestureRecognizer: UITapGestureRecognizer!
-    var onClick: (() -> Void)?
+    var onTap: (() -> Void)?
 
     override init(child: some WidgetProtocol) {
         super.init(child: child)
@@ -117,7 +117,7 @@ final class ClickableWidget: ContainerWidget {
 
     @objc
     func viewTouched() {
-        onClick?()
+        onTap?()
     }
 }
 
@@ -230,16 +230,16 @@ extension UIKitBackend {
         wrapper.setOn(state)
     }
 
-    public func createClickTarget(wrapping child: Widget) -> Widget {
-        ClickableWidget(child: child)
+    public func createTapGestureTarget(wrapping child: Widget) -> Widget {
+        TappableWidget(child: child)
     }
 
-    public func updateClickTarget(
-        _ clickTarget: Widget,
-        clickHandler handleClick: @escaping () -> Void
+    public func updateTapGestureTarget(
+        _ tapGestureTarget: Widget,
+        action: @escaping () -> Void
     ) {
-        let wrapper = clickTarget as! ClickableWidget
-        wrapper.onClick = handleClick
+        let wrapper = tapGestureTarget as! TappableWidget
+        wrapper.onTap = action
     }
 
     #if os(iOS)

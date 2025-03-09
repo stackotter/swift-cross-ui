@@ -26,7 +26,9 @@ public final class Gtk3Backend: AppBackend {
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
     public let defaultPaddingAmount = 10
+    public let requiresToggleSwitchSpacer = false
     public let scrollBarWidth = 0
+    public let defaultToggleStyle = ToggleStyle.button
 
     var gtkApp: Application
 
@@ -114,6 +116,11 @@ public final class Gtk3Backend: AppBackend {
         let child = window.child! as! CustomRootWidget
         let size = child.getSize()
         return SIMD2(size.width, size.height)
+    }
+
+    public func isWindowProgrammaticallyResizable(_ window: Window) -> Bool {
+        // TODO: Detect whether window is fullscreen
+        return true
     }
 
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
@@ -217,7 +224,16 @@ public final class Gtk3Backend: AppBackend {
 
     public func openExternalURL(_ url: URL) throws {
         // Used instead of gtk_uri_launcher_launch to maintain <4.10 compatibility
-        gtk_show_uri(nil, url.absoluteString, guint(GDK_CURRENT_TIME))
+        var error: UnsafeMutablePointer<GError>? = nil
+        gtk_show_uri(nil, url.absoluteString, guint(GDK_CURRENT_TIME), &error)
+
+        if let error {
+            throw Gtk3Error(
+                code: Int(error.pointee.code),
+                domain: Int(error.pointee.domain),
+                message: String(cString: error.pointee.message)
+            )
+        }
     }
 
     class ThreadActionContext {
@@ -898,18 +914,18 @@ public final class Gtk3Backend: AppBackend {
         gtk_native_dialog_show(chooser.gobjectPointer.cast())
     }
 
-    public func createClickTarget(wrapping child: Widget) -> Widget {
+    public func createTapGestureTarget(wrapping child: Widget) -> Widget {
         let eventBox = Gtk3.EventBox()
         eventBox.setChild(to: child)
         eventBox.aboveChild = true
         return eventBox
     }
 
-    public func updateClickTarget(
-        _ clickTarget: Widget,
-        clickHandler handleClick: @escaping () -> Void
+    public func updateTapGestureTarget(
+        _ tapGestureTarget: Widget,
+        action: @escaping () -> Void
     ) {
-        clickTarget.onButtonPress = { _, buttonEvent in
+        tapGestureTarget.onButtonPress = { _, buttonEvent in
             let eventType = buttonEvent.type
             guard
                 eventType == GDK_BUTTON_PRESS
@@ -918,7 +934,7 @@ public final class Gtk3Backend: AppBackend {
             else {
                 return
             }
-            handleClick()
+            action()
         }
     }
 
@@ -985,5 +1001,15 @@ extension UnsafeMutablePointer {
     func cast<T>() -> UnsafeMutablePointer<T> {
         let pointer = UnsafeRawPointer(self).bindMemory(to: T.self, capacity: 1)
         return UnsafeMutablePointer<T>(mutating: pointer)
+    }
+}
+
+struct Gtk3Error: LocalizedError {
+    var code: Int
+    var domain: Int
+    var message: String
+
+    var errorDescription: String? {
+        "gerror: code=\(code), domain=\(domain), message=\(message)"
     }
 }

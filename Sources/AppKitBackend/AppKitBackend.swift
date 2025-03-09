@@ -1079,36 +1079,41 @@ public final class AppKitBackend: AppBackend {
         }
     }
 
-    public func createClickTarget(wrapping child: Widget) -> Widget {
+    public func createTapGestureTarget(wrapping child: Widget) -> Widget {
         let container = NSView()
 
         container.addSubview(child)
-        child.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
-        child.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+        child.leadingAnchor.constraint(equalTo: container.leadingAnchor)
+            .isActive = true
+        child.topAnchor.constraint(equalTo: container.topAnchor)
+            .isActive = true
         child.translatesAutoresizingMaskIntoConstraints = false
 
-        let clickTarget = NSCustomClickTarget()
-        container.addSubview(clickTarget)
-        clickTarget.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
-        clickTarget.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
-        clickTarget.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
-        clickTarget.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
-        clickTarget.translatesAutoresizingMaskIntoConstraints = false
+        let tapGestureTarget = NSCustomTapGestureTarget()
+        container.addSubview(tapGestureTarget)
+        tapGestureTarget.leadingAnchor.constraint(equalTo: container.leadingAnchor)
+            .isActive = true
+        tapGestureTarget.topAnchor.constraint(equalTo: container.topAnchor)
+            .isActive = true
+        tapGestureTarget.trailingAnchor.constraint(equalTo: container.trailingAnchor)
+            .isActive = true
+        tapGestureTarget.bottomAnchor.constraint(equalTo: container.bottomAnchor)
+            .isActive = true
+        tapGestureTarget.translatesAutoresizingMaskIntoConstraints = false
 
         return container
-
     }
 
-    public func updateClickTarget(
+    public func updateTapGestureTarget(
         _ container: Widget,
-        clickHandler handleClick: @escaping () -> Void
+        action: @escaping () -> Void
     ) {
-        let clickTarget = container.subviews[1] as! NSCustomClickTarget
-        clickTarget.leftClickHandler = handleClick
+        let tapGestureTarget = container.subviews[1] as! NSCustomTapGestureTarget
+        tapGestureTarget.leftClickHandler = action
     }
 }
 
-final class NSCustomClickTarget: NSView {
+final class NSCustomTapGestureTarget: NSView {
     var leftClickHandler: (() -> Void)?
 
     override func mouseDown(with event: NSEvent) {

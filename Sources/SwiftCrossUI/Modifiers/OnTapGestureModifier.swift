@@ -1,12 +1,20 @@
 extension View {
+    /// Adds an action to perform when the user taps or clicks this view.
+    ///
+    /// Any tappable elements within the view will no longer be tappable.
+    public func onTapGesture(perform action: @escaping () -> Void) -> some View {
+        OnTapGestureModifier(body: TupleView1(self), action: action)
+    }
+
     /// Adds an action to run when this view is clicked. Any clickable elements
     /// within the view will no longer be clickable.
+    @available(*, deprecated, message: "Renamed to onTapGesture")
     public func onClick(perform action: @escaping () -> Void) -> some View {
-        OnClickModifier(body: TupleView1(self), action: action)
+        onTapGesture(perform: action)
     }
 }
 
-struct OnClickModifier<Content: View>: TypeSafeView {
+struct OnTapGestureModifier<Content: View>: TypeSafeView {
     typealias Children = TupleView1<Content>.Children
 
     var body: TupleView1<Content>
@@ -28,7 +36,7 @@ struct OnClickModifier<Content: View>: TypeSafeView {
         _ children: Children,
         backend: Backend
     ) -> Backend.Widget {
-        backend.createClickTarget(wrapping: children.child0.widget.into())
+        backend.createTapGestureTarget(wrapping: children.child0.widget.into())
     }
 
     func update<Backend: AppBackend>(
@@ -47,7 +55,7 @@ struct OnClickModifier<Content: View>: TypeSafeView {
         )
         if !dryRun {
             backend.setSize(of: widget, to: childResult.size.size)
-            backend.updateClickTarget(widget, clickHandler: action)
+            backend.updateTapGestureTarget(widget, action: action)
         }
         return childResult
     }
