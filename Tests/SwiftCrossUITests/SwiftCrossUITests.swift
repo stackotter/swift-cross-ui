@@ -2,6 +2,30 @@ import XCTest
 
 @testable import SwiftCrossUI
 
+#if canImport(AppKitBackend)
+    @testable import AppKitBackend
+#endif
+
+struct CounterView: View {
+    @State var count = 0
+
+    var body: some View {
+        VStack {
+            Button("Decrease") { count -= 1 }
+            Text("Count: 1")
+            Button("Increase") { count += 1 }
+        }.padding()
+    }
+}
+
+struct XCTError: LocalizedError {
+    var message: String
+
+    var errorDescription: String? {
+        message
+    }
+}
+
 final class SwiftCrossUITests: XCTestCase {
     func testCodableNavigationPath() throws {
         var path = NavigationPath()
@@ -39,4 +63,57 @@ final class SwiftCrossUITests: XCTestCase {
 
         return original == decoded
     }
+
+    #if canImport(AppKitBackend)
+        func testBasicLayout() throws {
+            let backend = AppKitBackend()
+            let window = backend.createWindow(withDefaultSize: SIMD2(200, 200))
+            let environment = EnvironmentValues(backend: backend)
+                .with(\.window, window)
+            let viewGraph = ViewGraph(
+                for: CounterView(),
+                backend: backend,
+                environment: environment
+            )
+            backend.setChild(ofWindow: window, to: viewGraph.rootNode.widget.into())
+
+            let result = viewGraph.update(
+                proposedSize: SIMD2(200, 200),
+                environment: environment,
+                dryRun: false
+            )
+            let view: AppKitBackend.Widget = viewGraph.rootNode.widget.into()
+            backend.setSize(of: view, to: result.size.size)
+            backend.setSize(ofWindow: window, to: result.size.size)
+
+            XCTAssertEqual(
+                result.size,
+                ViewSize(fixedSize: SIMD2(94, 95)),
+                "View update result mismatch"
+            )
+
+            XCTAssert(
+                result.preferences.onOpenURL == nil,
+                "onOpenURL not nil"
+            )
+
+        }
+
+        static func snapshotView(_ view: NSView) throws -> Data {
+            view.wantsLayer = true
+            view.layer?.backgroundColor = CGColor.white
+
+            guard let bitmap = view.bitmapImageRepForCachingDisplay(in: view.bounds) else {
+                throw XCTError(message: "Failed to create bitmap backing")
+            }
+
+            view.cacheDisplay(in: view.bounds, to: bitmap)
+
+            guard let data = bitmap.tiffRepresentation else {
+                throw XCTError(message: "Failed to create tiff representation")
+            }
+
+            return data
+        }
+    #endif
 }

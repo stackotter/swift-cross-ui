@@ -67,7 +67,7 @@ let package = Package(
         .library(name: "AppKitBackend", type: libraryType, targets: ["AppKitBackend"]),
         .library(name: "GtkBackend", type: libraryType, targets: ["GtkBackend"]),
         .library(name: "Gtk3Backend", type: libraryType, targets: ["Gtk3Backend"]),
-        .library(name: "WinUIBackend", targets: ["WinUIBackend"]),
+        .library(name: "WinUIBackend", type: libraryType, targets: ["WinUIBackend"]),
         .library(name: "DefaultBackend", type: libraryType, targets: ["DefaultBackend"]),
         .library(name: "UIKitBackend", type: libraryType, targets: ["UIKitBackend"]),
         .library(name: "Gtk", type: libraryType, targets: ["Gtk"]),
@@ -141,7 +141,10 @@ let package = Package(
         ),
         .testTarget(
             name: "SwiftCrossUITests",
-            dependencies: ["SwiftCrossUI"]
+            dependencies: [
+                "SwiftCrossUI",
+                .target(name: "AppKitBackend", condition: .when(platforms: [.macOS])),
+            ]
         ),
         .target(
             name: "DefaultBackend",
