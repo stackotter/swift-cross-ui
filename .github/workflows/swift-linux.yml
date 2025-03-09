@@ -17,13 +17,14 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt update && \
-        sudo apt install -y libgtk-4-dev clang
+        sudo apt install -y libgtk-4-dev libgtk-3-dev clang
     - name: Build
       run: |
-        swift build --target GtkCodeGen && \
         cd Examples && \
+        swift build --target GtkCodeGen && \
         swift build --target SwiftCrossUI && \
         swift build --target GtkBackend && \
+        swift build --target Gtk3Backend && \
         swift build --target CounterExample && \
         swift build --target ControlsExample && \
         swift build --target RandomNumberGeneratorExample && \

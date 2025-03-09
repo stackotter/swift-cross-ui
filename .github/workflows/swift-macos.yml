@@ -16,13 +16,14 @@ jobs:
       run: sudo xcode-select -switch /Applications/Xcode_15.4.app
     - uses: actions/checkout@v3
     - name: Install Dependencies
-      run: brew install pkg-config gtk4 || echo "This step 'fails' every time but it's just a brew linking error - not important."
+      run: brew install pkg-config gtk4 gtk+3 || echo "This step 'fails' every time but it's just a brew linking error - not important."
     - name: Build
       run: |
-        swift build --target GtkCodeGen && \
         cd Examples && \
+        swift build --target GtkCodeGen && \
         swift build --target SwiftCrossUI && \
         swift build --target GtkBackend && \
+        swift build --target Gtk3Backend && \
         swift build --target AppKitBackend && \
         swift build --target CounterExample && \
         swift build --target ControlsExample && \
