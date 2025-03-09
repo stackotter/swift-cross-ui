@@ -55,6 +55,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView10\/onDisappear(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView10\/onOpenURL(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView10\/onSubmit(perform:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView10\/onTapGesture(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView10\/overlay(content:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView10\/padding(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView10\/padding(_:_:)",
@@ -1482,6 +1483,7 @@
       "type" : "text"
     }
   ],
+  "deprecated" : true,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -1781,6 +1783,68 @@
   "title" : "onSubmit(perform:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/tupleview10\/onsubmit(perform:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView10/onTapGesture(perform:)": {
+  "abstract" : [
+    {
+      "text" : "Adds an action to perform when the user taps or clicks this view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "onTapGesture"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "perform"
+    },
+    {
+      "kind" : "text",
+      "text" : ": () -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView10\/onTapGesture(perform:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "onTapGesture(perform:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupleview10\/ontapgesture(perform:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView10/overlay(content:)": {
   "abstract" : [

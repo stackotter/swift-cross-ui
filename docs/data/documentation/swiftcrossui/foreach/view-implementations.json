@@ -62,6 +62,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/onDisappear(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/onOpenURL(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/onSubmit(perform:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/onTapGesture(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/overlay(content:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/padding(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/padding(_:_:)",
@@ -1579,6 +1580,7 @@
       "type" : "text"
     }
   ],
+  "deprecated" : true,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -1878,6 +1880,68 @@
   "title" : "onSubmit(perform:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/foreach\/onsubmit(perform:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach/onTapGesture(perform:)": {
+  "abstract" : [
+    {
+      "text" : "Adds an action to perform when the user taps or clicks this view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "onTapGesture"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "perform"
+    },
+    {
+      "kind" : "text",
+      "text" : ": () -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s4Voida",
+      "text" : "Void"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/onTapGesture(perform:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "onTapGesture(perform:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/foreach\/ontapgesture(perform:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach/overlay(content:)": {
   "abstract" : [

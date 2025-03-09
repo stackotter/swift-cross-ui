@@ -5,7 +5,7 @@
       "type" : "text"
     },
     {
-      "code" : "AppBackend.createClickTarget(wrapping:)",
+      "code" : "AppBackend.createTapGestureTarget(wrapping:)",
       "type" : "codeVoice"
     },
     {
@@ -18,18 +18,18 @@
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createClickTarget(wrapping:)-ibj9"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTapGestureTarget(wrapping:)-94nof"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createClickTarget(wrapping:)-9tdzh"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTapGestureTarget(wrapping:)-1mdsj"
   },
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE17createClickTarget8wrapping6WidgetQzAG_tF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE22createTapGestureTarget8wrapping6WidgetQzAG_tF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -41,7 +41,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "createClickTarget"
+        "text" : "createTapGestureTarget"
       },
       {
         "kind" : "text",
@@ -98,7 +98,7 @@
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "createClickTarget(wrapping:)"
+    "title" : "createTapGestureTarget(wrapping:)"
   },
   "primaryContentSections" : [
     {
@@ -121,7 +121,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "createClickTarget"
+              "text" : "createTapGestureTarget"
             },
             {
               "kind" : "text",
@@ -192,7 +192,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/createclicktarget(wrapping:)-9tdzh"
+        "\/documentation\/swiftcrossui\/appbackend\/createtapgesturetarget(wrapping:)-1mdsj"
       ],
       "traits" : [
         {
@@ -277,7 +277,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/widget"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createClickTarget(wrapping:)-9tdzh": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTapGestureTarget(wrapping:)-1mdsj": {
   "abstract" : [
 
   ],
@@ -292,7 +292,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createClickTarget"
+      "text" : "createTapGestureTarget"
     },
     {
       "kind" : "text",
@@ -337,17 +337,17 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createClickTarget(wrapping:)-9tdzh",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTapGestureTarget(wrapping:)-1mdsj",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "createClickTarget(wrapping:)",
+  "title" : "createTapGestureTarget(wrapping:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createclicktarget(wrapping:)-9tdzh"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtapgesturetarget(wrapping:)-1mdsj"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createClickTarget(wrapping:)-ibj9": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTapGestureTarget(wrapping:)-94nof": {
   "abstract" : [
     {
-      "text" : "Wraps a view in a container that can receive click events. Some",
+      "text" : "Wraps a view in a container that can receive tap gestures. Some",
       "type" : "text"
     },
     {
@@ -355,7 +355,7 @@
       "type" : "text"
     },
     {
-      "text" : "backends may not have to wrap the child, in which case they have the",
+      "text" : "backends may not have to wrap the child, in which case they may",
       "type" : "text"
     },
     {
@@ -363,7 +363,7 @@
       "type" : "text"
     },
     {
-      "text" : "freedom to just return the child as is.",
+      "text" : "just return the child as is.",
       "type" : "text"
     }
   ],
@@ -379,7 +379,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "createClickTarget"
+      "text" : "createTapGestureTarget"
     },
     {
       "kind" : "text",
@@ -424,13 +424,13 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createClickTarget(wrapping:)-ibj9",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTapGestureTarget(wrapping:)-94nof",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createClickTarget(wrapping:)",
+  "title" : "createTapGestureTarget(wrapping:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createclicktarget(wrapping:)-ibj9"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtapgesturetarget(wrapping:)-94nof"
 }
 }
 }

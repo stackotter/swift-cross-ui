@@ -1,35 +1,49 @@
 {
   "abstract" : [
     {
-      "text" : "Inherited from ",
+      "text" : "Wraps a view in a container that can receive tap gestures. Some",
       "type" : "text"
     },
     {
-      "code" : "AppBackend.updateClickTarget(_:clickHandler:)",
-      "type" : "codeVoice"
+      "text" : " ",
+      "type" : "text"
     },
     {
-      "text" : ".",
+      "text" : "backends may not have to wrap the child, in which case they may",
       "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "just return the child as is.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementationsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTapGestureTarget(wrapping:)-1mdsj"
+      ],
+      "title" : "AppBackend Implementations"
     }
   ],
   "hierarchy" : {
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateClickTarget(_:clickHandler:)-6hfh7"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateClickTarget(_:clickHandler:)-50aba"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTapGestureTarget(wrapping:)-94nof"
   },
   "kind" : "symbol",
   "metadata" : {
-    "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI10AppBackendPAAE17updateClickTarget_12clickHandlery6WidgetQz_yyctF",
+    "externalID" : "s:12SwiftCrossUI10AppBackendP22createTapGestureTarget8wrapping6WidgetQzAG_tF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -41,11 +55,19 @@
       },
       {
         "kind" : "identifier",
-        "text" : "updateClickTarget"
+        "text" : "createTapGestureTarget"
       },
       {
         "kind" : "text",
         "text" : "("
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "wrapping"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
       },
       {
         "kind" : "typeIdentifier",
@@ -62,24 +84,20 @@
       },
       {
         "kind" : "text",
-        "text" : ", "
-      },
-      {
-        "kind" : "externalParam",
-        "text" : "clickHandler"
-      },
-      {
-        "kind" : "text",
-        "text" : ": () -> "
+        "text" : ") -> "
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:s4Voida",
-        "text" : "Void"
+        "text" : "Self"
       },
       {
         "kind" : "text",
-        "text" : ")"
+        "text" : "."
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WidgetQa",
+        "text" : "Widget"
       }
     ],
     "modules" : [
@@ -89,12 +107,13 @@
     ],
     "remoteSource" : {
       "fileName" : "AppBackend.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/AppBackend.swift#L793"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/AppBackend.swift#L485"
     },
+    "required" : true,
     "role" : "symbol",
     "roleHeading" : "Instance Method",
     "symbolKind" : "method",
-    "title" : "updateClickTarget(_:clickHandler:)"
+    "title" : "createTapGestureTarget(wrapping:)"
   },
   "primaryContentSections" : [
     {
@@ -117,7 +136,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "updateClickTarget"
+              "text" : "createTapGestureTarget"
             },
             {
               "kind" : "text",
@@ -125,7 +144,7 @@
             },
             {
               "kind" : "externalParam",
-              "text" : "_"
+              "text" : "wrapping"
             },
             {
               "kind" : "text",
@@ -133,7 +152,7 @@
             },
             {
               "kind" : "internalParam",
-              "text" : "clickTarget"
+              "text" : "child"
             },
             {
               "kind" : "text",
@@ -155,40 +174,21 @@
             },
             {
               "kind" : "text",
-              "text" : ", "
-            },
-            {
-              "kind" : "externalParam",
-              "text" : "clickHandler"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "internalParam",
-              "text" : "handleClick"
-            },
-            {
-              "kind" : "text",
-              "text" : ": "
-            },
-            {
-              "kind" : "keyword",
-              "text" : "@escaping"
-            },
-            {
-              "kind" : "text",
-              "text" : " () -> "
+              "text" : ") -> "
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:s4Voida",
-              "text" : "Void"
+              "text" : "Self"
             },
             {
               "kind" : "text",
-              "text" : ")"
+              "text" : "."
+            },
+            {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/Widget",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WidgetQa",
+              "text" : "Widget"
             }
           ]
         }
@@ -207,7 +207,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/swiftcrossui\/appbackend\/updateclicktarget(_:clickhandler:)-50aba"
+        "\/documentation\/swiftcrossui\/appbackend\/createtapgesturetarget(wrapping:)-94nof"
       ],
       "traits" : [
         {
@@ -292,7 +292,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/widget"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateClickTarget(_:clickHandler:)-50aba": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTapGestureTarget(wrapping:)-1mdsj": {
   "abstract" : [
 
   ],
@@ -307,11 +307,19 @@
     },
     {
       "kind" : "identifier",
-      "text" : "updateClickTarget"
+      "text" : "createTapGestureTarget"
     },
     {
       "kind" : "text",
       "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "wrapping"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
     },
     {
       "kind" : "typeIdentifier",
@@ -328,37 +336,33 @@
     },
     {
       "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "clickHandler"
-    },
-    {
-      "kind" : "text",
-      "text" : ": () -> "
+      "text" : ") -> "
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
+      "text" : "Self"
     },
     {
       "kind" : "text",
-      "text" : ")"
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WidgetQa",
+      "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateClickTarget(_:clickHandler:)-50aba",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTapGestureTarget(wrapping:)-1mdsj",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "updateClickTarget(_:clickHandler:)",
+  "title" : "createTapGestureTarget(wrapping:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/updateclicktarget(_:clickhandler:)-50aba"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtapgesturetarget(wrapping:)-1mdsj"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateClickTarget(_:clickHandler:)-6hfh7": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTapGestureTarget(wrapping:)-94nof": {
   "abstract" : [
     {
-      "text" : "Update the click target with a new click handler. Replaces the old",
+      "text" : "Wraps a view in a container that can receive tap gestures. Some",
       "type" : "text"
     },
     {
@@ -366,7 +370,15 @@
       "type" : "text"
     },
     {
-      "text" : "click handler.",
+      "text" : "backends may not have to wrap the child, in which case they may",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "just return the child as is.",
       "type" : "text"
     }
   ],
@@ -382,11 +394,19 @@
     },
     {
       "kind" : "identifier",
-      "text" : "updateClickTarget"
+      "text" : "createTapGestureTarget"
     },
     {
       "kind" : "text",
       "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "wrapping"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
     },
     {
       "kind" : "typeIdentifier",
@@ -403,33 +423,29 @@
     },
     {
       "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "clickHandler"
-    },
-    {
-      "kind" : "text",
-      "text" : ": () -> "
+      "text" : ") -> "
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
+      "text" : "Self"
     },
     {
       "kind" : "text",
-      "text" : ")"
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WidgetQa",
+      "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateClickTarget(_:clickHandler:)-6hfh7",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTapGestureTarget(wrapping:)-94nof",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "updateClickTarget(_:clickHandler:)",
+  "title" : "createTapGestureTarget(wrapping:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/updateclicktarget(_:clickhandler:)-6hfh7"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtapgesturetarget(wrapping:)-94nof"
 }
 }
 }
