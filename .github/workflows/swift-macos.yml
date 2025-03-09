@@ -19,8 +19,8 @@ jobs:
       run: brew install pkg-config gtk4 gtk+3 || echo "This step 'fails' every time but it's just a brew linking error - not important."
     - name: Build
       run: |
-        cd Examples && \
         swift build --target GtkCodeGen && \
+        cd Examples && \
         swift build --target SwiftCrossUI && \
         swift build --target GtkBackend && \
         swift build --target Gtk3Backend && \
