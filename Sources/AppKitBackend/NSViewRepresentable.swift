@@ -6,8 +6,12 @@ public struct NSViewRepresentableContext<Coordinator> {
     public internal(set) var environment: EnvironmentValues
 }
 
+/// A wrapper that you use to integrate an AppKit view into your SwiftCrossUI
+/// view hierarchy.
 public protocol NSViewRepresentable: View where Content == Never {
+    /// The underlying AppKit view.
     associatedtype NSViewType: NSView
+    /// A type providing persistent storage for representable implementations.
     associatedtype Coordinator = Void
 
     /// Create the initial NSView instance.
@@ -17,48 +21,52 @@ public protocol NSViewRepresentable: View where Content == Never {
     /// Update the view with new values.
     /// - Parameters:
     ///   - nsView: The view to update.
-    ///   - context: The context, including the coordinator and potentially new environment
-    ///   values.
+    ///   - context: The context, including the coordinator and potentially new
+    ///     environment values.
     /// - Note: This may be called even when `context` has not changed.
     @MainActor
-    func updateNSView(_ nsView: NSViewType, context: NSViewRepresentableContext<Coordinator>)
+    func updateNSView(
+        _ nsView: NSViewType,
+        context: NSViewRepresentableContext<Coordinator>
+    )
 
     /// Make the coordinator for this view.
     ///
-    /// The coordinator is used when the view needs to communicate changes to the rest of
-    /// the view hierarchy (i.e. through bindings), and is often the view's delegate.
+    /// The coordinator is used when the view needs to communicate changes to
+    /// the rest of the view hierarchy (i.e. through bindings), and is often the
+    /// view's delegate.
     @MainActor
     func makeCoordinator() -> Coordinator
 
     /// Compute the view's size.
+    ///
+    /// The default implementation uses `nsView.intrinsicContentSize` and
+    /// `nsView.sizeThatFits(_:)` to determine the return value.
     /// - Parameters:
     ///   - proposal: The proposed frame for the view to render in.
     ///   - nsVIew: The view being queried for its preferred size.
     ///   - context: The context, including the coordinator and environment values.
     /// - Returns: Information about the view's size. The ``SwiftCrossUI/ViewSize/size``
-    /// property is what frame the view will actually be rendered with if the current layout
-    /// pass is not a dry run, while the other properties are used to inform the layout engine
-    /// how big or small the view can be. The ``SwiftCrossUI/ViewSize/idealSize`` property
-    /// should not vary with the `proposal`, and should only depend on the view's contents.
-    /// Pass `nil` for the maximum width/height if the view has no maximum size (and therefore
-    /// may occupy the entire screen).
-    ///
-    /// The default implementation uses `nsView.intrinsicContentSize` and `nsView.sizeThatFits(_:)`
-    /// to determine the return value.
+    ///   property is what frame the view will actually be rendered with if the
+    ///   current layout pass is not a dry run, while the other properties are
+    ///   used to inform the layout engine how big or small the view can be. The
+    ///   ``SwiftCrossUI/ViewSize/idealSize`` property should not vary with the
+    ///   `proposal`, and should only depend on the view's contents. Pass `nil`
+    ///   for the maximum width/height if the view has no maximum size (and
+    ///   therefore may occupy the entire screen).
     func determineViewSize(
-        for proposal: SIMD2<Int>, nsView: NSViewType,
+        for proposal: SIMD2<Int>,
+        nsView: NSViewType,
         context: NSViewRepresentableContext<Coordinator>
     ) -> ViewSize
 
     /// Called to clean up the view when it's removed.
+    ///
+    /// This method is called after all AppKit lifecycle methods, such as
+    /// `nsView.didMoveToSuperview()`. The default implementation does nothing.
     /// - Parameters:
     ///   - nsVIew: The view being dismantled.
     ///   - coordinator: The coordinator.
-    ///
-    /// This method is called after all AppKit lifecycle methods, such as
-    /// `nsView.didMoveToSuperview()`.
-    ///
-    /// The default implementation does nothing.
     static func dismantleNSView(_ nsView: NSViewType, coordinator: Coordinator)
 }
 
@@ -146,12 +154,11 @@ extension View where Self: NSViewRepresentable {
         let representingWidget = widget as! RepresentingWidget<Self>
         representingWidget.update(with: environment)
 
-        let size =
-            representingWidget.representable.determineViewSize(
-                for: proposedSize,
-                nsView: representingWidget.subview,
-                context: representingWidget.context!
-            )
+        let size = representingWidget.representable.determineViewSize(
+            for: proposedSize,
+            nsView: representingWidget.subview,
+            context: representingWidget.context!
+        )
 
         if !dryRun {
             backend.setSize(of: representingWidget, to: size.size)
@@ -203,7 +210,10 @@ final class RepresentingWidget<Representable: NSViewRepresentable>: NSView {
 
     func update(with environment: EnvironmentValues) {
         if context == nil {
-            context = .init(coordinator: representable.makeCoordinator(), environment: environment)
+            context = .init(
+                coordinator: representable.makeCoordinator(),
+                environment: environment
+            )
         } else {
             context!.environment = environment
             representable.updateNSView(subview, context: context!)

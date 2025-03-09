@@ -27,25 +27,29 @@ public protocol View {
 
     /// Creates the view's widget using the supplied backend.
     ///
-    /// A view is represented by the same widget instance for the whole time that it's visible even
-    /// if its content is changing; keep that in mind while deciding the structure of the widget.
-    /// For example, a view displaying one of two children should use ``AppBackend/createContainer()``
-    /// to create a container for the displayed child instead of just directly returning the widget
-    /// of the currently displayed child (which would result in you not being able to ever switch
-    /// to displaying the other child). This constraint significantly simplifies view implementations
-    /// without requiring widgets to be re-created after every single update.
+    /// A view is represented by the same widget instance for the whole time
+    /// that it's visible even if its content is changing; keep that in mind
+    /// while deciding the structure of the widget. For example, a view
+    /// displaying one of two children should use ``AppBackend/createContainer()``
+    /// to create a container for the displayed child instead of just directly
+    /// returning the widget of the currently displayed child (which would result
+    /// in you not being able to ever switch to displaying the other child). This
+    /// constraint significantly simplifies view implementations without
+    /// requiring widgets to be re-created after every single update.
     func asWidget<Backend: AppBackend>(
         _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget
 
-    /// Updates the view's widget after a state change occurs (although the change isn't guaranteed
-    /// to have affected this particular view). `proposedSize` is the size suggested by the parent
-    /// container, but child views always get the final call on their own size.
+    /// Updates the view's widget after a state change occurs (although the
+    /// change isn't guaranteed to have affected this particular view).
+    /// `proposedSize` is the size suggested by the parent container, but child
+    /// views always get the final call on their own size.
     ///
-    /// Always called once immediately after creating the view's widget with. This helps reduce
-    /// code duplication between `asWidget` and `update`.
-    /// - Parameter dryRun: If `true`, avoids updating the UI and only computes sizing.
+    /// Always called once immediately after creating the view's widget with.
+    /// This helps reduce code duplication between `asWidget` and `update`.
+    /// - Parameter dryRun: If `true`, avoids updating the UI and only computes
+    ///   sizing.
     /// - Returns: The view's new size.
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
