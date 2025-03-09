@@ -8,7 +8,7 @@ extension View {
 
     /// Adds an action to run when this view is clicked. Any clickable elements
     /// within the view will no longer be clickable.
-    @available(*, deprecated, message: "Renamed to onTapGesture")
+    @available(*, deprecated, renamed: "onTapGesture(perform:)")
     public func onClick(perform action: @escaping () -> Void) -> some View {
         onTapGesture(perform: action)
     }
