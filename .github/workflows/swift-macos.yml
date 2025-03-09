@@ -40,6 +40,7 @@ jobs:
       run: swift test --test-product swift-cross-uiPackageTests
     - name: Upload snapshot
       uses: actions/upload-artifact@v4
+      if: always()
       with:
         name: snapshot
         path: snapshot.tiff
