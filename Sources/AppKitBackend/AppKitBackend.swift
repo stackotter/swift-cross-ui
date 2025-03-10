@@ -1402,6 +1402,16 @@ class NSSplitViewResizingDelegate: NSObject, NSSplitViewDelegate {
 public class NSCustomWindow: NSWindow {
     var resizeDelegate = ResizeDelegate()
 
+    /// Allows the backing scale factor to be overridden. Useful for keeping
+    /// UI tests consistent across devices.
+    ///
+    /// Idea from https://github.com/pointfreeco/swift-snapshot-testing/pull/533
+    public var backingScaleFactorOverride: CGFloat?
+
+    public override var backingScaleFactor: CGFloat {
+        backingScaleFactorOverride ?? super.backingScaleFactor
+    }
+
     class ResizeDelegate: NSObject, NSWindowDelegate {
         var resizeHandler: ((SIMD2<Int>) -> Void)?
 
