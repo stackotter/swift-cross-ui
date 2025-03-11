@@ -5684,6 +5684,11 @@
                 "type" : "property"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/requiresimageupdateonscalefactorchange",
+                "title" : "var requiresImageUpdateOnScaleFactorChange: Bool",
+                "type" : "property"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/requirestoggleswitchspacer",
                 "title" : "var requiresToggleSwitchSpacer: Bool",
                 "type" : "property"
@@ -5710,6 +5715,11 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/computerootenvironment(defaultenvironment:)",
                 "title" : "func computeRootEnvironment(defaultEnvironment: EnvironmentValues) -> EnvironmentValues",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/computewindowenvironment(window:rootenvironment:)",
+                "title" : "func computeWindowEnvironment(window: Self.Window, rootEnvironment: EnvironmentValues) -> EnvironmentValues",
                 "type" : "method"
               },
               {
@@ -6417,6 +6427,11 @@
                 ],
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/setvalue(ofslider:to:)-9cjjs",
                 "title" : "func setValue(ofSlider: Self.Widget, to: Double)",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/setwindowenvironmentchangehandler(of:to:)",
+                "title" : "func setWindowEnvironmentChangeHandler(of: Self.Window, to: () -> Void)",
                 "type" : "method"
               },
               {
@@ -7877,6 +7892,11 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/environmentvalues\/suggestedforegroundcolor",
                 "title" : "var suggestedForegroundColor: Color",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/environmentvalues\/windowscalefactor",
+                "title" : "var windowScaleFactor: Int",
                 "type" : "property"
               },
               {

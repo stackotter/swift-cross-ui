@@ -121,7 +121,8 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/onSubmit",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/openURL",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/presentAlert",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/suggestedForegroundColor"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/suggestedForegroundColor",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/windowScaleFactor"
       ],
       "title" : "Instance Properties"
     },
@@ -972,6 +973,43 @@
   "title" : "suggestedForegroundColor",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/environmentvalues\/suggestedforegroundcolor"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/windowScaleFactor": {
+  "abstract" : [
+    {
+      "text" : "The scale factor of the current window.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "windowScaleFactor"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/windowScaleFactor",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "windowScaleFactor",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environmentvalues\/windowscalefactor"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/with(_:_:)": {
   "abstract" : [
