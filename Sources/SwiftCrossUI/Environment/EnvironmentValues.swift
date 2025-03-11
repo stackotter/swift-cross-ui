@@ -35,6 +35,9 @@ public struct EnvironmentValues {
     /// pressing Enter/Return).
     public var onSubmit: (() -> Void)?
 
+    /// The scale factor of the current window.
+    public var windowScaleFactor: Int
+
     /// Called by view graph nodes when they resize due to an internal state
     /// change and end up changing size. Each view graph node sets its own
     /// handler when passing the environment on to its children, setting up
@@ -116,6 +119,7 @@ public struct EnvironmentValues {
         font = .system(size: 12)
         multilineTextAlignment = .leading
         colorScheme = .light
+        windowScaleFactor = 1
         window = nil
     }
 

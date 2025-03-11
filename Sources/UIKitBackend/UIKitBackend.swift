@@ -19,6 +19,8 @@ public final class UIKitBackend: AppBackend {
     public let defaultTableRowContentHeight = -1
     public let defaultTableCellVerticalPadding = -1
 
+    public let requiresImageUpdateOnScaleFactorChange = false
+
     var onTraitCollectionChange: (() -> Void)?
 
     private let appDelegateClass: ApplicationDelegate.Type
@@ -85,6 +87,21 @@ public final class UIKitBackend: AppBackend {
 
     public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
         onTraitCollectionChange = action
+    }
+
+    public func computeWindowEnvironment(
+        window: Window,
+        rootEnvironment: EnvironmentValues
+    ) -> EnvironmentValues {
+        // TODO: Record window scale factor in here
+        rootEnvironment
+    }
+
+    public func setWindowEnvironmentChangeHandler(
+        of window: Window,
+        to action: @escaping () -> Void
+    ) {
+        // TODO: Notify when window scale factor changes
     }
 
     public func runInMainThread(action: @escaping () -> Void) {

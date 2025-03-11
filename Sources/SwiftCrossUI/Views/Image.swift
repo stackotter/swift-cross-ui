@@ -114,7 +114,12 @@ public struct Image: TypeSafeView, View {
         }
 
         let hasResized = children.cachedImageDisplaySize != size.size
-        if !dryRun && (children.imageChanged || hasResized) {
+        if !dryRun
+            && (children.imageChanged
+                || hasResized
+                || (backend.requiresImageUpdateOnScaleFactorChange
+                    && children.lastScaleFactor != environment.windowScaleFactor))
+        {
             if let image {
                 backend.updateImageView(
                     children.imageWidget.into(),
@@ -135,6 +140,7 @@ public struct Image: TypeSafeView, View {
                 children.isContainerEmpty = true
             }
             children.imageChanged = false
+            children.lastScaleFactor = environment.windowScaleFactor
         }
 
         children.cachedImageDisplaySize = size.size
@@ -156,6 +162,7 @@ class _ImageChildren: ViewGraphNodeChildren {
     var imageWidget: AnyWidget
     var imageChanged = false
     var isContainerEmpty = true
+    var lastScaleFactor = 1
 
     init<Backend: AppBackend>(backend: Backend) {
         container = AnyWidget(backend.createContainer())

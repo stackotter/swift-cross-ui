@@ -52,7 +52,21 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                 self.scene,
                 proposedWindowSize: newSize,
                 backend: backend,
-                environment: parentEnvironment,
+                environment: self.parentEnvironment,
+                windowSizeIsFinal:
+                    !backend.isWindowProgrammaticallyResizable(window)
+            )
+        }
+
+        backend.setWindowEnvironmentChangeHandler(of: window) { [weak self] in
+            guard let self else {
+                return
+            }
+            _ = self.update(
+                self.scene,
+                proposedWindowSize: backend.size(ofWindow: window),
+                backend: backend,
+                environment: self.parentEnvironment,
                 windowSizeIsFinal:
                     !backend.isWindowProgrammaticallyResizable(window)
             )
@@ -107,7 +121,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         }
 
         let environment =
-            environment
+            backend.computeWindowEnvironment(window: window, rootEnvironment: environment)
             .with(\.onResize) { [weak self] _ in
                 guard let self = self else { return }
                 // TODO: Figure out whether this would still work if we didn't recompute the

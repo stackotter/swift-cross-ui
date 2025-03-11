@@ -29,6 +29,7 @@ public final class GtkBackend: AppBackend {
     public let scrollBarWidth = 0
     public let requiresToggleSwitchSpacer = false
     public let defaultToggleStyle = ToggleStyle.button
+    public let requiresImageUpdateOnScaleFactorChange = false
 
     var gtkApp: Application
 
@@ -260,6 +261,21 @@ public final class GtkBackend: AppBackend {
 
     public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
         // TODO: React to theme changes
+    }
+
+    public func computeWindowEnvironment(
+        window: Window,
+        rootEnvironment: EnvironmentValues
+    ) -> EnvironmentValues {
+        // TODO: Record window scale factor in here
+        rootEnvironment
+    }
+
+    public func setWindowEnvironmentChangeHandler(
+        of window: Window,
+        to action: @escaping () -> Void
+    ) {
+        // TODO: Notify when window scale factor changes
     }
 
     public func setIncomingURLHandler(to action: @escaping (URL) -> Void) {

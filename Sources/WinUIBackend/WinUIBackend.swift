@@ -37,6 +37,7 @@ public final class WinUIBackend: AppBackend {
     public let defaultPaddingAmount = 10
     public let requiresToggleSwitchSpacer = false
     public let defaultToggleStyle = ToggleStyle.button
+    public let requiresImageUpdateOnScaleFactorChange = false
 
     public var scrollBarWidth: Int {
         12
@@ -278,6 +279,21 @@ public final class WinUIBackend: AppBackend {
 
     public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
         internalState.themeChangeAction = action
+    }
+
+    public func computeWindowEnvironment(
+        window: Window,
+        rootEnvironment: EnvironmentValues
+    ) -> EnvironmentValues {
+        // TODO: Record window scale factor in here
+        rootEnvironment
+    }
+
+    public func setWindowEnvironmentChangeHandler(
+        of window: Window,
+        to action: @escaping () -> Void
+    ) {
+        // TODO: Notify when window scale factor changes
     }
 
     public func setIncomingURLHandler(to action: @escaping (URL) -> Void) {

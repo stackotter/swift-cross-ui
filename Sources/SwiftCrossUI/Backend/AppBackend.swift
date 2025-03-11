@@ -75,6 +75,15 @@ public protocol AppBackend {
     var requiresToggleSwitchSpacer: Bool { get }
     /// The default style for toggles.
     var defaultToggleStyle: ToggleStyle { get }
+    /// If `true`, all images in a window will get updated when the window's
+    /// scale factor changes (``EnvironmentValues/windowScaleFactor``).
+    ///
+    /// Backends based on modern UI frameworks can usually get away with setting
+    /// this to `false`, but backends such as `Gtk3Backend` have to set this to
+    /// `true` to properly support HiDPI (aka Retina) displays because they
+    /// manually rescale the image meaning that it must get rescaled when the
+    /// scale factor changes.
+    var requiresImageUpdateOnScaleFactorChange: Bool { get }
 
     /// Often in UI frameworks (such as Gtk), code is run in a callback
     /// after starting the app, and hence this generic root window creation
@@ -163,6 +172,23 @@ public protocol AppBackend {
     /// recomputed. This is intended to only be called once. Calling it more than once
     /// may or may not override the previous handler.
     func setRootEnvironmentChangeHandler(to action: @escaping () -> Void)
+
+    /// Computes a window's environment based off the root environment. This may involve
+    /// updating ``EnvironmentValues/windowScaleFactor`` etc.
+    func computeWindowEnvironment(
+        window: Window,
+        rootEnvironment: EnvironmentValues
+    ) -> EnvironmentValues
+    /// Sets the handler to be notified when the window's contribution to the
+    /// environment may have to be recomputed. Use this for things such as
+    /// updating a window's scale factor in the environment when the window
+    /// changes displays.
+    ///
+    /// In future this may be useful for color space handling.
+    func setWindowEnvironmentChangeHandler(
+        of window: Window,
+        to action: @escaping () -> Void
+    )
 
     /// Sets the handler for URLs directed to the application (e.g. URLs
     /// associated with a custom URL scheme).
