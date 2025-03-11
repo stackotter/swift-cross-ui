@@ -259,6 +259,9 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
             environment: viewEnvironment
         )
 
+        if !dryRun {
+            backend.show(widget: widget)
+        }
         let result = view.update(
             widget,
             children: children,
@@ -274,7 +277,6 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         // to false after real updates, but that's because it may get invalidated between a real
         // update and the next dry-run update.
         if !dryRun {
-            backend.show(widget: widget)
             resultCache = [:]
         } else {
             resultCache[proposedSize] = result

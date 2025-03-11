@@ -449,8 +449,6 @@ public final class Gtk3Backend: AppBackend {
 
     public func createImageView() -> Widget {
         let imageView = Gtk3.Image()
-        // imageView.keepAspectRatio = false
-        // imageView.canShrink = true
         return imageView
     }
 
@@ -471,9 +469,13 @@ public final class Gtk3Backend: AppBackend {
             height: height
         )
 
-        let scaledPixbuf = pixbuf.scaled(toWidth: targetWidth, andHeight: targetHeight)
+        let surface = pixbuf.hidpiAwareScaled(
+            toLogicalWidth: targetWidth,
+            andLogicalHeight: targetHeight,
+            for: imageView
+        )
 
-        imageView.setPixbuf(scaledPixbuf.pointer)
+        imageView.setCairoSurface(surface)
     }
 
     // private class Tables {

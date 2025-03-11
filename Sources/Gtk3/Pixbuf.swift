@@ -42,4 +42,27 @@ public struct Pixbuf {
         )
         return Pixbuf(pointer: newPointer!)
     }
+
+    public func hidpiAwareScaled(
+        toLogicalWidth logicalWidth: Int,
+        andLogicalHeight logicalHeight: Int,
+        for widget: Image
+    ) -> CairoSurface {
+        // Get scaling and compute device dimensions from logical dimensions
+        // (device dimensions being the target dimensions in terms of device
+        // pixels, not the dimensions of the device)
+        let scale = gtk_widget_get_scale_factor(widget.widgetPointer)
+        let deviceWidth = logicalWidth * Int(scale)
+        let deviceHeight = logicalHeight * Int(scale)
+        let scaledPixbuf = self.scaled(
+            toWidth: deviceWidth,
+            andHeight: deviceHeight
+        )
+        let surface = gdk_cairo_surface_create_from_pixbuf(
+            scaledPixbuf.pointer,
+            scale,
+            gtk_widget_get_window(widget.widgetPointer)
+        )!
+        return CairoSurface(pointer: surface)
+    }
 }
