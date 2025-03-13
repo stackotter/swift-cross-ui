@@ -202,6 +202,14 @@ extension UIKitBackend {
         textFieldWidget.child.textColor = UIColor(color: environment.suggestedForegroundColor)
         textFieldWidget.onChange = onChange
         textFieldWidget.onSubmit = onSubmit
+
+        if let updateToolbar = environment.updateToolbar {
+            let toolbar = (textFieldWidget.child.inputAccessoryView as? UIToolbar) ?? UIToolbar()
+            updateToolbar(toolbar)
+            textFieldWidget.child.inputAccessoryView = toolbar
+        } else {
+            textFieldWidget.child.inputAccessoryView = nil
+        }
     }
 
     public func setContent(ofTextField textField: Widget, to content: String) {

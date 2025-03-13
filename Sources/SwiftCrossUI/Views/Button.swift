@@ -1,9 +1,9 @@
 /// A control that initiates an action.
 public struct Button: ElementaryView, View {
     /// The label to show on the button.
-    var label: String
+    package var label: String
     /// The action to be performed when the button is clicked.
-    var action: () -> Void
+    package var action: () -> Void
     /// The button's forced width if provided.
     var width: Int?
 

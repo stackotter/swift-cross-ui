@@ -138,7 +138,7 @@ extension View {
 
     /// The default `View.update` implementation. Haters may see this as a
     /// composition lover re-implementing inheritance; I see it as innovation.
-    func defaultUpdate<Backend: AppBackend>(
+    package func defaultUpdate<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
