@@ -45,14 +45,14 @@ public struct EnvironmentValues {
     var onResize: (_ newSize: ViewSize) -> Void
 
     // Backing storage for extensible subscript
-    private var extraKeys: [ObjectIdentifier: Any]
+    private var extraValues: [ObjectIdentifier: Any]
 
     public subscript<T: EnvironmentKey>(_ key: T.Type) -> T.Value {
         get {
-            extraKeys[ObjectIdentifier(T.self), default: T.defaultValue] as! T.Value
+            extraValues[ObjectIdentifier(T.self), default: T.defaultValue] as! T.Value
         }
         set {
-            extraKeys[ObjectIdentifier(T.self)] = newValue
+            extraValues[ObjectIdentifier(T.self)] = newValue
         }
     }
 
@@ -133,7 +133,7 @@ public struct EnvironmentValues {
         colorScheme = .light
         windowScaleFactor = 1
         window = nil
-        extraKeys = [:]
+        extraValues = [:]
     }
 
     /// Returns a copy of the environment with the specified property set to the
@@ -145,7 +145,7 @@ public struct EnvironmentValues {
     }
 }
 
-/// A key that can be used to extend the environment over the built-in values.
+/// A key that can be used to extend the environment with new properties.
 public protocol EnvironmentKey {
     /// The type of value the key can hold.
     associatedtype Value

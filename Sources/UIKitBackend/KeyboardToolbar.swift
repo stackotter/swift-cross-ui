@@ -3,6 +3,11 @@ import UIKit
 
 /// An item which can be displayed in a keyboard toolbar. Implementers of this do not have
 /// to implement ``SwiftCrossUI/View``.
+///
+/// Toolbar items are expected to be "stateless". Mutations of `@State` properties of toolbar
+/// items will not cause the toolbar to be updated. The toolbar is only updated when the view
+/// containing the ``View/keyboardToolbar(animateChanges:body:)`` modifier is updated, so any
+/// state necessary for the toolbar should live in the view itself.
 public protocol ToolbarItem {
     /// Convert the item to a `UIBarButtonItem`, which will be placed in the keyboard toolbar.
     func asBarButtonItem() -> UIBarButtonItem
@@ -38,10 +43,6 @@ public enum ToolbarBuilder {
 
     public static func buildEither(second component: Component) -> Component {
         component
-    }
-
-    public static func buildFinalResult(_ component: Component) -> [UIBarButtonItem] {
-        component.map { $0.asBarButtonItem() }
     }
 }
 
@@ -80,9 +81,9 @@ extension Spacer: ToolbarItem {
         if let minLength, minLength > 0 {
             print(
                 """
-                Warning: Spacer's minLength is ignored inside keyboard toolbars, as \
-                flexible-length spacers cannot specify a minimum width. Use `.frame(width:)` \
-                for a fixed-length spacer.
+                Warning: Spacer's minLength property is ignored within keyboard toolbars \
+                due to UIKit limitations. Use `Spacer()` for unconstrained spacers and \
+                `Spacer().frame(width: _)` for fixed-length spacers.
                 """
             )
         }
@@ -168,11 +169,11 @@ extension View {
     ///   - body: The toolbar's contents
     public func keyboardToolbar(
         animateChanges: Bool = true,
-        @ToolbarBuilder body: @escaping () -> [UIBarButtonItem]
+        @ToolbarBuilder body: @escaping () -> ToolbarBuilder.Component
     ) -> some View {
         EnvironmentModifier(self) { environment in
             environment.with(\.updateToolbar) { toolbar in
-                toolbar.setItems(body(), animated: animateChanges)
+                toolbar.setItems(body().map { $0.asBarButtonItem() }, animated: animateChanges)
                 toolbar.sizeToFit()
             }
         }
