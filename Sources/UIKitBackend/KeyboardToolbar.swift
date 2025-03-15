@@ -224,9 +224,12 @@ final class KeyboardToolbar: UIToolbar {
     private func updateErasedItem<T: ToolbarItem>(_ expression: T, _ item: UIBarButtonItem)
         -> UIBarButtonItem
     {
-        var castedItem = item as! T.ItemType
-        expression.updateBarButtonItem(&castedItem)
-        return castedItem
+        if var castedItem = item as? T.ItemType {
+            expression.updateBarButtonItem(&castedItem)
+            return castedItem
+        } else {
+            return expression.createBarButtonItem()
+        }
     }
 
     /// DFS on the `component` tree
