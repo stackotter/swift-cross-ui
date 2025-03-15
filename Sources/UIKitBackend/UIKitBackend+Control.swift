@@ -104,20 +104,43 @@ final class TextFieldWidget: WrapperWidget<UITextField>, UITextFieldDelegate {
 #endif
 
 final class TappableWidget: ContainerWidget {
-    private var gestureRecognizer: UITapGestureRecognizer!
-    var onTap: (() -> Void)?
+    private var tapGestureRecognizer: UITapGestureRecognizer?
+    private var longPressGestureRecognizer: UILongPressGestureRecognizer?
+
+    var onTap: (() -> Void)? {
+        didSet {
+            if onTap != nil && tapGestureRecognizer == nil {
+                let gestureRecognizer = UITapGestureRecognizer(
+                    target: self, action: #selector(viewTouched))
+                child.view.addGestureRecognizer(gestureRecognizer)
+                self.tapGestureRecognizer = gestureRecognizer
+            }
+        }
+    }
+
+    var onLongPress: (() -> Void)? {
+        didSet {
+            if onLongPress != nil && longPressGestureRecognizer == nil {
+                let gestureRecognizer = UILongPressGestureRecognizer(
+                    target: self, action: #selector(viewTouched))
+                child.view.addGestureRecognizer(gestureRecognizer)
+                self.longPressGestureRecognizer = gestureRecognizer
+            }
+        }
+    }
 
     override init(child: some WidgetProtocol) {
         super.init(child: child)
-
-        gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewTouched))
-        gestureRecognizer.cancelsTouchesInView = true
-        child.view.addGestureRecognizer(gestureRecognizer)
     }
 
     @objc
     func viewTouched() {
         onTap?()
+    }
+
+    @objc
+    func viewLongPressed() {
+        onLongPress?()
     }
 }
 
@@ -238,16 +261,25 @@ extension UIKitBackend {
         wrapper.setOn(state)
     }
 
-    public func createTapGestureTarget(wrapping child: Widget) -> Widget {
-        TappableWidget(child: child)
+    public func createTapGestureTarget(wrapping child: Widget, gesture _: TapGesture) -> Widget {
+        if child is TappableWidget {
+            child
+        } else {
+            TappableWidget(child: child)
+        }
     }
 
     public func updateTapGestureTarget(
         _ tapGestureTarget: Widget,
+        gesture: TapGesture,
         action: @escaping () -> Void
     ) {
         let wrapper = tapGestureTarget as! TappableWidget
-        wrapper.onTap = action
+        if gesture == .primary {
+            wrapper.onTap = action
+        } else {
+            wrapper.onLongPress = action
+        }
     }
 
     #if os(iOS)
