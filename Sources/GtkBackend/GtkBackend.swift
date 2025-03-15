@@ -957,14 +957,15 @@ public final class GtkBackend: AppBackend {
     public func createTapGestureTarget(wrapping child: Widget, gesture: TapGesture) -> Widget {
         var gtkGesture: GestureSingle
         switch gesture.kind {
-        case .primary:
-            gtkGesture = GestureClick()
-        case .secondary:
-            gtkGesture = GestureClick()
-            gtk_gesture_single_set_button(gtkGesture.opaquePointer, 2)
-        case .longPress:
-            fatalError("TODO")
+            case .primary:
+                gtkGesture = GestureClick()
+            case .secondary:
+                gtkGesture = GestureClick()
+                gtk_gesture_single_set_button(gtkGesture.opaquePointer, 3)
+            case .longPress:
+                gtkGesture = GestureLongPress()
         }
+        child.addEventController(gtkGesture)
         return child
     }
 
@@ -975,9 +976,10 @@ public final class GtkBackend: AppBackend {
     ) {
         switch gesture.kind {
             case .primary:
-                let gesture = tapGestureTarget.eventControllers.first {
-                    $0 is GestureClick && gtk_gesture_single_get_button($0.opaquePointer) == 1
-                } as! GestureClick
+                let gesture =
+                    tapGestureTarget.eventControllers.first {
+                        $0 is GestureClick && gtk_gesture_single_get_button($0.opaquePointer) == 1
+                    } as! GestureClick
                 gesture.pressed = { _, nPress, _, _ in
                     guard nPress == 1 else {
                         return
@@ -985,9 +987,10 @@ public final class GtkBackend: AppBackend {
                     action()
                 }
             case .secondary:
-                let gesture = tapGestureTarget.eventControllers.first {
-                    $0 is GestureClick && gtk_gesture_single_get_button($0.opaquePointer) == 2
-                } as! GestureClick
+                let gesture =
+                    tapGestureTarget.eventControllers.first {
+                        $0 is GestureClick && gtk_gesture_single_get_button($0.opaquePointer) == 3
+                    } as! GestureClick
                 gesture.pressed = { _, nPress, _, _ in
                     guard nPress == 1 else {
                         return
@@ -995,7 +998,12 @@ public final class GtkBackend: AppBackend {
                     action()
                 }
             case .longPress:
-                fatalError("TODO")
+                let gesture =
+                    tapGestureTarget.eventControllers.lazy.compactMap { $0 as? GestureLongPress }
+                    .first!
+                gesture.pressed = { _, _, _ in
+                    action()
+                }
         }
     }
 
