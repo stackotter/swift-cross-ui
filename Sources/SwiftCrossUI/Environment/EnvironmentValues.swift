@@ -44,6 +44,18 @@ public struct EnvironmentValues {
     /// a bottom-up update chain up which resize events can propagate.
     var onResize: (_ newSize: ViewSize) -> Void
 
+    // Backing storage for extensible subscript
+    private var extraValues: [ObjectIdentifier: Any]
+
+    public subscript<T: EnvironmentKey>(_ key: T.Type) -> T.Value {
+        get {
+            extraValues[ObjectIdentifier(T.self), default: T.defaultValue] as! T.Value
+        }
+        set {
+            extraValues[ObjectIdentifier(T.self)] = newValue
+        }
+    }
+
     /// Brings the current window forward, not guaranteed to always bring
     /// the window to the top (due to focus stealing prevention).
     func bringWindowForward() {
@@ -121,6 +133,7 @@ public struct EnvironmentValues {
         colorScheme = .light
         windowScaleFactor = 1
         window = nil
+        extraValues = [:]
     }
 
     /// Returns a copy of the environment with the specified property set to the
@@ -130,4 +143,12 @@ public struct EnvironmentValues {
         environment[keyPath: keyPath] = newValue
         return environment
     }
+}
+
+/// A key that can be used to extend the environment with new properties.
+public protocol EnvironmentKey {
+    /// The type of value the key can hold.
+    associatedtype Value
+    /// The default value for the key.
+    static var defaultValue: Value { get }
 }
