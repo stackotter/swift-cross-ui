@@ -6844,6 +6844,31 @@
                 "type" : "groupMarker"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/environmentkey\/value",
+                "title" : "Value",
+                "type" : "associatedtype"
+              },
+              {
+                "title" : "Type Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/environmentkey\/defaultvalue",
+                "title" : "static var defaultValue: Self.Value",
+                "type" : "property"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/environmentkey",
+            "title" : "EnvironmentKey",
+            "type" : "protocol"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Associated Types",
+                "type" : "groupMarker"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/erasedviewgraphnodetransformer\/return",
                 "title" : "Return",
                 "type" : "associatedtype"
@@ -7907,6 +7932,15 @@
                 "path" : "\/documentation\/swiftcrossui\/environmentvalues\/with(_:_:)",
                 "title" : "func with<T>(WritableKeyPath<EnvironmentValues, T>, T) -> EnvironmentValues",
                 "type" : "method"
+              },
+              {
+                "title" : "Subscripts",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/environmentvalues\/subscript(_:)",
+                "title" : "subscript<T>(T.Type) -> T.Value",
+                "type" : "subscript"
               }
             ],
             "path" : "\/documentation\/swiftcrossui\/environmentvalues",

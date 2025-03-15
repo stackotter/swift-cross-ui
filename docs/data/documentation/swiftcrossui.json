@@ -206,6 +206,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DoubleConvertible",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DynamicProperty",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentKey",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNodeTransformer",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PublishedMarkerProtocol",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene",
@@ -1753,6 +1754,40 @@
   "title" : "Environment",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/environment"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentKey": {
+  "abstract" : [
+    {
+      "text" : "A key that can be used to extend the environment with new properties.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EnvironmentKey"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentKey",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EnvironmentKey"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EnvironmentKey",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environmentkey"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues": {
   "abstract" : [
