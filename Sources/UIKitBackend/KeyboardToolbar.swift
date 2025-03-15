@@ -9,75 +9,90 @@ import UIKit
 /// containing the ``View/keyboardToolbar(animateChanges:body:)`` modifier is updated, so any
 /// state necessary for the toolbar should live in the view itself.
 public protocol ToolbarItem {
-    /// Convert the item to a `UIBarButtonItem`, which will be placed in the keyboard toolbar.
-    func asBarButtonItem() -> UIBarButtonItem
+    /// The type of bar button item used to represent this item in UIKit.
+    associatedtype ItemType: UIBarButtonItem
+
+    /// Convert the item to an instance of `ItemType`.
+    func createBarButtonItem() -> ItemType
+
+    /// Update the item with new information (e.g. updated bindings). May be a no-op.
+    func updateBarButtonItem(_ item: inout ItemType)
 }
 
 @resultBuilder
 public enum ToolbarBuilder {
-    public typealias Component = [any ToolbarItem]
-
-    public static func buildExpression(_ expression: some ToolbarItem) -> Component {
-        [expression]
+    public enum Component {
+        case expression(any ToolbarItem)
+        case block([Component])
+        case array([Component])
+        indirect case optional(Component?)
+        indirect case eitherFirst(Component)
+        indirect case eitherSecond(Component)
     }
+    public typealias FinalResult = Component
 
     public static func buildExpression(_ expression: any ToolbarItem) -> Component {
-        [expression]
+        .expression(expression)
     }
 
     public static func buildBlock(_ components: Component...) -> Component {
-        components.flatMap { $0 }
+        .block(components)
     }
 
     public static func buildArray(_ components: [Component]) -> Component {
-        components.flatMap { $0 }
+        .array(components)
     }
 
     public static func buildOptional(_ component: Component?) -> Component {
-        component ?? []
+        .optional(component)
     }
 
     public static func buildEither(first component: Component) -> Component {
-        component
+        .eitherFirst(component)
     }
 
     public static func buildEither(second component: Component) -> Component {
-        component
-    }
-}
-
-final class CallbackBarButtonItem: UIBarButtonItem {
-    private var callback: () -> Void
-
-    init(title: String, callback: @escaping () -> Void) {
-        self.callback = callback
-        super.init()
-
-        self.title = title
-        self.target = self
-        self.action = #selector(onTap)
-    }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) is not used for this item")
-    }
-
-    @objc
-    func onTap() {
-        callback()
+        .eitherSecond(component)
     }
 }
 
 extension Button: ToolbarItem {
-    public func asBarButtonItem() -> UIBarButtonItem {
-        CallbackBarButtonItem(title: label, callback: action)
+    public final class ItemType: UIBarButtonItem {
+        var callback: () -> Void
+
+        init(title: String, callback: @escaping () -> Void) {
+            self.callback = callback
+            super.init()
+
+            self.title = title
+            self.target = self
+            self.action = #selector(onTap)
+        }
+
+        @available(*, unavailable)
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) is not used for this item")
+        }
+
+        @objc
+        func onTap() {
+            callback()
+        }
+    }
+
+    public func createBarButtonItem() -> ItemType {
+        ItemType(title: label, callback: action)
+    }
+
+    public func updateBarButtonItem(_ item: inout ItemType) {
+        item.callback = action
+        item.title = label
     }
 }
 
 @available(iOS 14, macCatalyst 14, tvOS 14, *)
 extension Spacer: ToolbarItem {
-    public func asBarButtonItem() -> UIBarButtonItem {
+    public func createBarButtonItem() -> UIBarButtonItem {
         if let minLength, minLength > 0 {
             print(
                 """
@@ -89,18 +104,29 @@ extension Spacer: ToolbarItem {
         }
         return .flexibleSpace()
     }
+
+    public func updateBarButtonItem(_: inout UIBarButtonItem) {
+        // no-op
+    }
 }
 
 struct FixedWidthToolbarItem<Base: ToolbarItem>: ToolbarItem {
     var base: Base
     var width: Int?
 
-    func asBarButtonItem() -> UIBarButtonItem {
-        let item = base.asBarButtonItem()
+    func createBarButtonItem() -> Base.ItemType {
+        let item = base.createBarButtonItem()
         if let width {
             item.width = CGFloat(width)
         }
         return item
+    }
+
+    func updateBarButtonItem(_ item: inout Base.ItemType) {
+        base.updateBarButtonItem(&item)
+        if let width {
+            item.width = CGFloat(width)
+        }
     }
 }
 
@@ -109,12 +135,16 @@ struct FixedWidthToolbarItem<Base: ToolbarItem>: ToolbarItem {
 struct FixedWidthSpacerItem: ToolbarItem {
     var width: Int?
 
-    func asBarButtonItem() -> UIBarButtonItem {
+    func createBarButtonItem() -> UIBarButtonItem {
         if let width {
             .fixedSpace(CGFloat(width))
         } else {
             .flexibleSpace()
         }
+    }
+
+    func updateBarButtonItem(_ item: inout UIBarButtonItem) {
+        item = createBarButtonItem()
     }
 }
 
@@ -122,10 +152,15 @@ struct ColoredToolbarItem<Base: ToolbarItem>: ToolbarItem {
     var base: Base
     var color: Color
 
-    func asBarButtonItem() -> UIBarButtonItem {
-        let item = base.asBarButtonItem()
+    func createBarButtonItem() -> Base.ItemType {
+        let item = base.createBarButtonItem()
         item.tintColor = color.uiColor
         return item
+    }
+
+    func updateBarButtonItem(_ item: inout Base.ItemType) {
+        base.updateBarButtonItem(&item)
+        item.tintColor = color.uiColor
     }
 }
 
@@ -150,12 +185,94 @@ extension ToolbarItem {
     }
 }
 
+indirect enum ToolbarItemLocation: Hashable {
+    case expression(inside: ToolbarItemLocation?)
+    case block(index: Int, inside: ToolbarItemLocation?)
+    case array(index: Int, inside: ToolbarItemLocation?)
+    case optional(inside: ToolbarItemLocation?)
+    case eitherFirst(inside: ToolbarItemLocation?)
+    case eitherSecond(inside: ToolbarItemLocation?)
+}
+
+final class KeyboardToolbar: UIToolbar {
+    var locations: [ToolbarItemLocation: UIBarButtonItem] = [:]
+
+    func setItems(
+        _ components: ToolbarBuilder.FinalResult,
+        animated: Bool
+    ) {
+        var newItems: [UIBarButtonItem] = []
+        var newLocations: [ToolbarItemLocation: UIBarButtonItem] = [:]
+
+        visitItems(component: components, inside: nil) { location, expression in
+            var item =
+                if let oldItem = locations[location] {
+                    updateErasedItem(expression, oldItem)
+                } else {
+                    expression.createBarButtonItem()
+                }
+
+            newItems.append(item)
+            newLocations[location] = item
+        }
+
+        super.setItems(newItems, animated: animated)
+        self.locations = newLocations
+    }
+
+    /// Used to open the existential to call ``ToolbarItem/updateBarButtonItem(_:)``.
+    private func updateErasedItem<T: ToolbarItem>(_ expression: T, _ item: UIBarButtonItem)
+        -> UIBarButtonItem
+    {
+        var castedItem = item as! T.ItemType
+        expression.updateBarButtonItem(&castedItem)
+        return castedItem
+    }
+
+    /// DFS on the `component` tree
+    private func visitItems(
+        component: ToolbarBuilder.Component,
+        inside container: ToolbarItemLocation?,
+        callback: (ToolbarItemLocation, any ToolbarItem) -> Void
+    ) {
+        switch component {
+            case .expression(let expression):
+                callback(.expression(inside: container), expression)
+            case .block(let elements):
+                for (i, element) in elements.enumerated() {
+                    visitItems(
+                        component: element, inside: .block(index: i, inside: container),
+                        callback: callback)
+                }
+            case .array(let elements):
+                for (i, element) in elements.enumerated() {
+                    visitItems(
+                        component: element, inside: .array(index: i, inside: container),
+                        callback: callback)
+                }
+            case .optional(let element):
+                if let element {
+                    visitItems(
+                        component: element, inside: .optional(inside: container), callback: callback
+                    )
+                }
+            case .eitherFirst(let element):
+                visitItems(
+                    component: element, inside: .eitherFirst(inside: container), callback: callback)
+            case .eitherSecond(let element):
+                visitItems(
+                    component: element, inside: .eitherSecond(inside: container), callback: callback
+                )
+        }
+    }
+}
+
 enum ToolbarKey: EnvironmentKey {
-    static let defaultValue: ((UIToolbar) -> Void)? = nil
+    static let defaultValue: ((KeyboardToolbar) -> Void)? = nil
 }
 
 extension EnvironmentValues {
-    var updateToolbar: ((UIToolbar) -> Void)? {
+    var updateToolbar: ((KeyboardToolbar) -> Void)? {
         get { self[ToolbarKey.self] }
         set { self[ToolbarKey.self] = newValue }
     }
@@ -169,11 +286,11 @@ extension View {
     ///   - body: The toolbar's contents
     public func keyboardToolbar(
         animateChanges: Bool = true,
-        @ToolbarBuilder body: @escaping () -> ToolbarBuilder.Component
+        @ToolbarBuilder body: @escaping () -> ToolbarBuilder.FinalResult
     ) -> some View {
         EnvironmentModifier(self) { environment in
             environment.with(\.updateToolbar) { toolbar in
-                toolbar.setItems(body().map { $0.asBarButtonItem() }, animated: animateChanges)
+                toolbar.setItems(body(), animated: animateChanges)
                 toolbar.sizeToFit()
             }
         }
