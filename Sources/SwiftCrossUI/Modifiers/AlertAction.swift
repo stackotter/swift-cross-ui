@@ -9,4 +9,11 @@ public struct AlertAction {
 
     public var label: String
     public var action: () -> Void
+
+    public init(
+        label: String, 
+        action: @escaping () -> Void) {
+        self.label = label
+        self.action = action
+    }
 }
