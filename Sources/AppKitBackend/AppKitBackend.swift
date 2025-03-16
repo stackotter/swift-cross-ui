@@ -1095,7 +1095,11 @@ public final class AppKitBackend: AppBackend {
         }
     }
 
-    public func createTapGestureTarget(wrapping child: Widget) -> Widget {
+    public func createTapGestureTarget(wrapping child: Widget, gesture _: TapGesture) -> Widget {
+        if child is NSCustomTapGestureTarget {
+            return child
+        }
+
         let container = NSView()
 
         container.addSubview(child)
@@ -1122,18 +1126,78 @@ public final class AppKitBackend: AppBackend {
 
     public func updateTapGestureTarget(
         _ container: Widget,
+        gesture: TapGesture,
         action: @escaping () -> Void
     ) {
         let tapGestureTarget = container.subviews[1] as! NSCustomTapGestureTarget
-        tapGestureTarget.leftClickHandler = action
+        switch gesture.kind {
+            case .primary:
+                tapGestureTarget.leftClickHandler = action
+            case .secondary:
+                tapGestureTarget.rightClickHandler = action
+            case .longPress:
+                tapGestureTarget.longPressHandler = action
+        }
     }
 }
 
 final class NSCustomTapGestureTarget: NSView {
-    var leftClickHandler: (() -> Void)?
+    var leftClickHandler: (() -> Void)? {
+        didSet {
+            if leftClickHandler != nil && leftClickRecognizer == nil {
+                let gestureRecognizer = NSClickGestureRecognizer(
+                    target: self, action: #selector(leftClick))
+                addGestureRecognizer(gestureRecognizer)
+                leftClickRecognizer = gestureRecognizer
+            }
+        }
+    }
+    var rightClickHandler: (() -> Void)? {
+        didSet {
+            if rightClickHandler != nil && rightClickRecognizer == nil {
+                let gestureRecognizer = NSClickGestureRecognizer(
+                    target: self, action: #selector(rightClick))
+                gestureRecognizer.buttonMask = 1 << 1
+                addGestureRecognizer(gestureRecognizer)
+                rightClickRecognizer = gestureRecognizer
+            }
+        }
+    }
+    var longPressHandler: (() -> Void)? {
+        didSet {
+            if longPressHandler != nil && longPressRecognizer == nil {
+                let gestureRecognizer = NSPressGestureRecognizer(
+                    target: self, action: #selector(longPress))
+                // Both GTK and UIKit default to half a second for long presses
+                gestureRecognizer.minimumPressDuration = 0.5
+                addGestureRecognizer(gestureRecognizer)
+                longPressRecognizer = gestureRecognizer
+            }
+        }
+    }
 
-    override func mouseDown(with event: NSEvent) {
+    private var leftClickRecognizer: NSClickGestureRecognizer?
+    private var rightClickRecognizer: NSClickGestureRecognizer?
+    private var longPressRecognizer: NSPressGestureRecognizer?
+
+    @objc
+    func leftClick() {
         leftClickHandler?()
+    }
+
+    @objc
+    func rightClick() {
+        rightClickHandler?()
+    }
+
+    @objc
+    func longPress(sender: NSPressGestureRecognizer) {
+        // GTK emits the event once as soon as the gesture is recognized.
+        // AppKit emits it twice, once when it's recognized and once when you release the mouse button.
+        // For consistency, ignore the second event.
+        if sender.state != .ended {
+            longPressHandler?()
+        }
     }
 }
 
