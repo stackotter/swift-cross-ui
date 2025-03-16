@@ -204,7 +204,8 @@ extension UIKitBackend {
         textFieldWidget.onSubmit = onSubmit
 
         if let updateToolbar = environment.updateToolbar {
-            let toolbar = (textFieldWidget.child.inputAccessoryView as? UIToolbar) ?? UIToolbar()
+            let toolbar =
+                (textFieldWidget.child.inputAccessoryView as? KeyboardToolbar) ?? KeyboardToolbar()
             updateToolbar(toolbar)
             textFieldWidget.child.inputAccessoryView = toolbar
         } else {
