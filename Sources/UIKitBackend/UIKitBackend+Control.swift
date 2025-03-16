@@ -122,7 +122,7 @@ final class TappableWidget: ContainerWidget {
         didSet {
             if onLongPress != nil && longPressGestureRecognizer == nil {
                 let gestureRecognizer = UILongPressGestureRecognizer(
-                    target: self, action: #selector(viewTouched))
+                    target: self, action: #selector(viewLongPressed(sender:)))
                 child.view.addGestureRecognizer(gestureRecognizer)
                 self.longPressGestureRecognizer = gestureRecognizer
             }
@@ -139,8 +139,13 @@ final class TappableWidget: ContainerWidget {
     }
 
     @objc
-    func viewLongPressed() {
-        onLongPress?()
+    func viewLongPressed(sender: UILongPressGestureRecognizer) {
+        // GTK emits the event once as soon as the gesture is recognized.
+        // UIKit emits it twice, once when it's recognized and once when you lift your finger.
+        // For consistency, ignore the second event.
+        if sender.state != .ended {
+            onLongPress?()
+        }
     }
 }
 
