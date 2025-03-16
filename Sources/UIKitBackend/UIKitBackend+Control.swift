@@ -129,10 +129,6 @@ final class TappableWidget: ContainerWidget {
         }
     }
 
-    override init(child: some WidgetProtocol) {
-        super.init(child: child)
-    }
-
     @objc
     func viewTouched() {
         onTap?()

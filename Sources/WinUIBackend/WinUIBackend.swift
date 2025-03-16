@@ -1014,7 +1014,10 @@ public final class WinUIBackend: AppBackend {
     // ) {
     // }
 
-    public func createTapGestureTarget(wrapping child: Widget) -> Widget {
+    public func createTapGestureTarget(wrapping child: Widget, gesture: TapGesture) -> Widget {
+        if gesture != .primary {
+            fatalError("Unsupported gesture type \(gesture)")
+        }
         let tapGestureTarget = TapGestureTarget()
         addChild(child, to: tapGestureTarget)
         tapGestureTarget.child = child
@@ -1037,8 +1040,12 @@ public final class WinUIBackend: AppBackend {
 
     public func updateTapGestureTarget(
         _ tapGestureTarget: Widget,
+        gesture: TapGesture,
         action: @escaping () -> Void
     ) {
+        if gesture != .primary {
+            fatalError("Unsupported gesture type \(gesture)")
+        }
         let tapGestureTarget = tapGestureTarget as! TapGestureTarget
         tapGestureTarget.clickHandler = action
         tapGestureTarget.width = tapGestureTarget.child!.width
