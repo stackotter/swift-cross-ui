@@ -1096,7 +1096,7 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func createTapGestureTarget(wrapping child: Widget, gesture _: TapGesture) -> Widget {
-        if child is NSCustomTapGestureTarget {
+        if child.subviews.count >= 2 && child.subviews[1] is NSCustomTapGestureTarget {
             return child
         }
 
