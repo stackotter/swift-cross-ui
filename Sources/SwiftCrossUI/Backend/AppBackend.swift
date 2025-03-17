@@ -814,11 +814,12 @@ extension AppBackend {
         todo()
     }
 
-    public func createTapGestureTarget(wrapping child: Widget) -> Widget {
+    public func createTapGestureTarget(wrapping child: Widget, gesture: TapGesture) -> Widget {
         todo()
     }
     public func updateTapGestureTarget(
         _ clickTarget: Widget,
+        gesture: TapGesture,
         action: @escaping () -> Void
     ) {
         todo()

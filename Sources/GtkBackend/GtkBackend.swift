@@ -961,7 +961,7 @@ public final class GtkBackend: AppBackend {
                 gtkGesture = GestureClick()
             case .secondary:
                 gtkGesture = GestureClick()
-                gtk_gesture_single_set_button(gtkGesture.opaquePointer, 3)
+                gtk_gesture_single_set_button(gtkGesture.opaquePointer, guint(GDK_BUTTON_SECONDARY))
             case .longPress:
                 gtkGesture = GestureLongPress()
         }
@@ -978,7 +978,8 @@ public final class GtkBackend: AppBackend {
             case .primary:
                 let gesture =
                     tapGestureTarget.eventControllers.first {
-                        $0 is GestureClick && gtk_gesture_single_get_button($0.opaquePointer) == 1
+                        $0 is GestureClick
+                            && gtk_gesture_single_get_button($0.opaquePointer) == GDK_BUTTON_PRIMARY
                     } as! GestureClick
                 gesture.pressed = { _, nPress, _, _ in
                     guard nPress == 1 else {
@@ -989,7 +990,9 @@ public final class GtkBackend: AppBackend {
             case .secondary:
                 let gesture =
                     tapGestureTarget.eventControllers.first {
-                        $0 is GestureClick && gtk_gesture_single_get_button($0.opaquePointer) == 3
+                        $0 is GestureClick
+                            && gtk_gesture_single_get_button($0.opaquePointer)
+                                == GDK_BUTTON_SECONDARY
                     } as! GestureClick
                 gesture.pressed = { _, nPress, _, _ in
                     guard nPress == 1 else {
