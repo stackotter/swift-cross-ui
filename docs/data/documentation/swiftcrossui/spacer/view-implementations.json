@@ -55,7 +55,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/onDisappear(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/onOpenURL(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/onSubmit(perform:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/onTapGesture(perform:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/onTapGesture(gesture:perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/overlay(content:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/padding(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/padding(_:_:)",
@@ -1784,7 +1784,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/spacer\/onsubmit(perform:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/onTapGesture(perform:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/onTapGesture(gesture:perform:)": {
   "abstract" : [
     {
       "text" : "Adds an action to perform when the user taps or clicks this view.",
@@ -1807,6 +1807,23 @@
     {
       "kind" : "text",
       "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "gesture"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10TapGestureV",
+      "text" : "TapGesture"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
     },
     {
       "kind" : "externalParam",
@@ -1839,12 +1856,12 @@
       "text" : "View"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/onTapGesture(perform:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer\/onTapGesture(gesture:perform:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "onTapGesture(perform:)",
+  "title" : "onTapGesture(gesture:perform:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/spacer\/ontapgesture(perform:)"
+  "url" : "\/documentation\/swiftcrossui\/spacer\/ontapgesture(gesture:perform:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Spacer/overlay(content:)": {
   "abstract" : [

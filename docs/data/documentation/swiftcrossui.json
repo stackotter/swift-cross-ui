@@ -248,6 +248,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ResolvedMenu",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SaveDialogOptions",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableRowBuilder",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TapGesture",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene10",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene2",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene3",
@@ -3941,6 +3942,37 @@
   "title" : "TableRowContent",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/tablerowcontent"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TapGesture": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TapGesture"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TapGesture",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TapGesture"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TapGesture",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tapgesture"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text": {
   "abstract" : [

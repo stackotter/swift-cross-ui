@@ -55,7 +55,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/onDisappear(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/onOpenURL(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/onSubmit(perform:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/onTapGesture(perform:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/onTapGesture(gesture:perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/overlay(content:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/padding(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/padding(_:_:)",
@@ -1776,7 +1776,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/picker\/onsubmit(perform:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/onTapGesture(perform:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/onTapGesture(gesture:perform:)": {
   "abstract" : [
     {
       "text" : "Adds an action to perform when the user taps or clicks this view.",
@@ -1799,6 +1799,23 @@
     {
       "kind" : "text",
       "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "gesture"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10TapGestureV",
+      "text" : "TapGesture"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
     },
     {
       "kind" : "externalParam",
@@ -1831,12 +1848,12 @@
       "text" : "View"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/onTapGesture(perform:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker\/onTapGesture(gesture:perform:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "onTapGesture(perform:)",
+  "title" : "onTapGesture(gesture:perform:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/picker\/ontapgesture(perform:)"
+  "url" : "\/documentation\/swiftcrossui\/picker\/ontapgesture(gesture:perform:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker/overlay(content:)": {
   "abstract" : [

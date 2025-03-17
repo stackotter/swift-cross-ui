@@ -548,7 +548,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSplitView(leadingChild:trailingChild:)-3iqgg",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createSwitch()-2f7xv",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTable()-3xtll",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTapGestureTarget(wrapping:)-94nof",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTapGestureTarget(wrapping:gesture:)-1ftxc",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextField()-6jp68",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView()",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTextView(content:shouldWrap:)",
@@ -606,7 +606,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateProgressBar(_:progressFraction:environment:)-6qqia",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSlider(_:minimum:maximum:decimalPlaces:onChange:)-8we73",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateSwitch(_:onChange:)-9nbu9",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateTapGestureTarget(_:action:)-3z4j6",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateTapGestureTarget(_:gesture:action:)-2rz1h",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateTextField(_:placeholder:environment:onChange:onSubmit:)-43yir",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateTextView(_:content:environment:)-3p9mh",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateToggle(_:label:onChange:)-4usuo"
@@ -1946,7 +1946,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/createtable()-3xtll"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTapGestureTarget(wrapping:)-94nof": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTapGestureTarget(wrapping:gesture:)-1ftxc": {
   "abstract" : [
     {
       "text" : "Wraps a view in a container that can receive tap gestures. Some",
@@ -2010,6 +2010,23 @@
     },
     {
       "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "gesture"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10TapGestureV",
+      "text" : "TapGesture"
+    },
+    {
+      "kind" : "text",
       "text" : ") -> "
     },
     {
@@ -2026,13 +2043,13 @@
       "text" : "Widget"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTapGestureTarget(wrapping:)-94nof",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/createTapGestureTarget(wrapping:gesture:)-1ftxc",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "createTapGestureTarget(wrapping:)",
+  "title" : "createTapGestureTarget(wrapping:gesture:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtapgesturetarget(wrapping:)-94nof"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/createtapgesturetarget(wrapping:gesture:)-1ftxc"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/createTextField()-6jp68": {
   "abstract" : [
@@ -7567,7 +7584,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/updateswitch(_:onchange:)-9nbu9"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateTapGestureTarget(_:action:)-3z4j6": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateTapGestureTarget(_:gesture:action:)-2rz1h": {
   "abstract" : [
     {
       "text" : "Update the tap gesture target with a new action. Replaces the old",
@@ -7619,6 +7636,23 @@
     },
     {
       "kind" : "externalParam",
+      "text" : "gesture"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10TapGestureV",
+      "text" : "TapGesture"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
       "text" : "action"
     },
     {
@@ -7635,13 +7669,13 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateTapGestureTarget(_:action:)-3z4j6",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateTapGestureTarget(_:gesture:action:)-2rz1h",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
-  "title" : "updateTapGestureTarget(_:action:)",
+  "title" : "updateTapGestureTarget(_:gesture:action:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatetapgesturetarget(_:action:)-3z4j6"
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatetapgesturetarget(_:gesture:action:)-2rz1h"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateTextField(_:placeholder:environment:onChange:onSubmit:)-43yir": {
   "abstract" : [

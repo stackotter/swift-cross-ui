@@ -63,7 +63,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/onDisappear(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/onOpenURL(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/onSubmit(perform:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/onTapGesture(perform:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/onTapGesture(gesture:perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/overlay(content:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/padding(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/padding(_:_:)",
@@ -1890,7 +1890,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/swift\/never\/onsubmit(perform:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Swift/Never/onTapGesture(perform:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Swift/Never/onTapGesture(gesture:perform:)": {
   "abstract" : [
     {
       "text" : "Adds an action to perform when the user taps or clicks this view.",
@@ -1913,6 +1913,23 @@
     {
       "kind" : "text",
       "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "gesture"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10TapGestureV",
+      "text" : "TapGesture"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
     },
     {
       "kind" : "externalParam",
@@ -1945,12 +1962,12 @@
       "text" : "View"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/onTapGesture(perform:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Swift\/Never\/onTapGesture(gesture:perform:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "onTapGesture(perform:)",
+  "title" : "onTapGesture(gesture:perform:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/swift\/never\/ontapgesture(perform:)"
+  "url" : "\/documentation\/swiftcrossui\/swift\/never\/ontapgesture(gesture:perform:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Swift/Never/overlay(content:)": {
   "abstract" : [

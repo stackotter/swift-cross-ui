@@ -55,7 +55,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/onDisappear(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/onOpenURL(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/onSubmit(perform:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/onTapGesture(perform:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/onTapGesture(gesture:perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/overlay(content:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/padding(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/padding(_:_:)",
@@ -1776,7 +1776,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/color\/onsubmit(perform:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/onTapGesture(perform:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/onTapGesture(gesture:perform:)": {
   "abstract" : [
     {
       "text" : "Adds an action to perform when the user taps or clicks this view.",
@@ -1799,6 +1799,23 @@
     {
       "kind" : "text",
       "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "gesture"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10TapGestureV",
+      "text" : "TapGesture"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
     },
     {
       "kind" : "externalParam",
@@ -1831,12 +1848,12 @@
       "text" : "View"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/onTapGesture(perform:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color\/onTapGesture(gesture:perform:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "onTapGesture(perform:)",
+  "title" : "onTapGesture(gesture:perform:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/color\/ontapgesture(perform:)"
+  "url" : "\/documentation\/swiftcrossui\/color\/ontapgesture(gesture:perform:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color/overlay(content:)": {
   "abstract" : [

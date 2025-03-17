@@ -417,8 +417,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/button\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/button\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -745,8 +745,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/color\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/color\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -940,8 +940,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/foreach\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1144,8 +1144,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/hstack\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1348,8 +1348,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/image\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/image\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1538,8 +1538,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1819,8 +1819,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2018,8 +2018,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2213,8 +2213,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/picker\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/picker\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2408,8 +2408,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/scrollview\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2608,8 +2608,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/slider\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/slider\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2803,8 +2803,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/spacer\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2993,8 +2993,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/table\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/table\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3223,8 +3223,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/text\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/text\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3418,8 +3418,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/textfield\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3617,8 +3617,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/toggle\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3840,8 +3840,8 @@
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/view\/ontapgesture(perform:)",
-                "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                "path" : "\/documentation\/swiftcrossui\/view\/ontapgesture(gesture:perform:)",
+                "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                 "type" : "method"
               },
               {
@@ -4057,8 +4057,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/vstack\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -4571,8 +4571,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/eitherview\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -4790,8 +4790,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/emptyview\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/emptyview\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -5021,8 +5021,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/optionalview\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -5966,8 +5966,8 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createtapgesturetarget(wrapping:)-1mdsj",
-                        "title" : "func createTapGestureTarget(wrapping: Self.Widget) -> Self.Widget",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createtapgesturetarget(wrapping:gesture:)-1we4u",
+                        "title" : "func createTapGestureTarget(wrapping: Self.Widget, gesture: TapGesture) -> Self.Widget",
                         "type" : "method"
                       }
                     ],
@@ -5975,8 +5975,8 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/createtapgesturetarget(wrapping:)-94nof",
-                "title" : "func createTapGestureTarget(wrapping: Self.Widget) -> Self.Widget",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createtapgesturetarget(wrapping:gesture:)-1ftxc",
+                "title" : "func createTapGestureTarget(wrapping: Self.Widget, gesture: TapGesture) -> Self.Widget",
                 "type" : "method"
               },
               {
@@ -6724,8 +6724,8 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatetapgesturetarget(_:action:)-4uxbu",
-                        "title" : "func updateTapGestureTarget(Self.Widget, action: () -> Void)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatetapgesturetarget(_:gesture:action:)-ls0d",
+                        "title" : "func updateTapGestureTarget(Self.Widget, gesture: TapGesture, action: () -> Void)",
                         "type" : "method"
                       }
                     ],
@@ -6733,8 +6733,8 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatetapgesturetarget(_:action:)-3z4j6",
-                "title" : "func updateTapGestureTarget(Self.Widget, action: () -> Void)",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatetapgesturetarget(_:gesture:action:)-2rz1h",
+                "title" : "func updateTapGestureTarget(Self.Widget, gesture: TapGesture, action: () -> Void)",
                 "type" : "method"
               },
               {
@@ -7332,8 +7332,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/anyview\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/anyview\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -7717,8 +7717,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/divider\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/divider\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -8238,8 +8238,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/group\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/group\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -8433,8 +8433,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -8633,8 +8633,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/menu\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/menu\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -9077,8 +9077,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/progressview\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/progressview\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -9300,6 +9300,52 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/tablerowbuilder",
             "title" : "TableRowBuilder",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Type Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tapgesture\/longpress",
+                "title" : "static let longPress: TapGesture",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tapgesture\/primary",
+                "title" : "static let primary: TapGesture",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/tapgesture\/secondary",
+                "title" : "static let secondary: TapGesture",
+                "type" : "property"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Operators",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tapgesture\/!=(_:_:)",
+                    "title" : "static func != (Self, Self) -> Bool",
+                    "type" : "op"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/tapgesture\/equatable-implementations",
+                "title" : "Equatable Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/tapgesture",
+            "title" : "TapGesture",
             "type" : "struct"
           },
           {
@@ -10643,8 +10689,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/tupleview1\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/tupleview1\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -10892,8 +10938,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/tupleview10\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/tupleview10\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -11101,8 +11147,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/tupleview2\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/tupleview2\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -11315,8 +11361,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/tupleview3\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/tupleview3\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -11534,8 +11580,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/tupleview4\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/tupleview4\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -11758,8 +11804,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/tupleview5\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/tupleview5\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -11987,8 +12033,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/tupleview6\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/tupleview6\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -12221,8 +12267,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/tupleview7\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/tupleview7\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -12460,8 +12506,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/tupleview8\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/tupleview8\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -12704,8 +12750,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/tupleview9\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/tupleview9\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -14002,8 +14048,8 @@
                     "type" : "method"
                   },
                   {
-                    "path" : "\/documentation\/swiftcrossui\/zstack\/ontapgesture(perform:)",
-                    "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                    "path" : "\/documentation\/swiftcrossui\/zstack\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15426,8 +15472,8 @@
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/ontapgesture(perform:)",
-                        "title" : "func onTapGesture(perform: () -> Void) -> some View",
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/ontapgesture(gesture:perform:)",
+                        "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
                         "type" : "method"
                       },
                       {

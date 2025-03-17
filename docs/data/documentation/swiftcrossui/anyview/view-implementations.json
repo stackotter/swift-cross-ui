@@ -55,7 +55,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView\/onDisappear(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView\/onOpenURL(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView\/onSubmit(perform:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView\/onTapGesture(perform:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView\/onTapGesture(gesture:perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView\/overlay(content:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView\/padding(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView\/padding(_:_:)",
@@ -1813,7 +1813,7 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/anyview\/onsubmit(perform:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyView/onTapGesture(perform:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyView/onTapGesture(gesture:perform:)": {
   "abstract" : [
     {
       "text" : "Adds an action to perform when the user taps or clicks this view.",
@@ -1836,6 +1836,23 @@
     {
       "kind" : "text",
       "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "gesture"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10TapGestureV",
+      "text" : "TapGesture"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
     },
     {
       "kind" : "externalParam",
@@ -1868,12 +1885,12 @@
       "text" : "View"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView\/onTapGesture(perform:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView\/onTapGesture(gesture:perform:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "onTapGesture(perform:)",
+  "title" : "onTapGesture(gesture:perform:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/anyview\/ontapgesture(perform:)"
+  "url" : "\/documentation\/swiftcrossui\/anyview\/ontapgesture(gesture:perform:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AnyView/overlay(content:)": {
   "abstract" : [
