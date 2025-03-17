@@ -508,11 +508,12 @@ public protocol AppBackend {
     /// Wraps a view in a container that can receive tap gestures. Some
     /// backends may not have to wrap the child, in which case they may
     /// just return the child as is.
-    func createTapGestureTarget(wrapping child: Widget) -> Widget
+    func createTapGestureTarget(wrapping child: Widget, gesture: TapGesture) -> Widget
     /// Update the tap gesture target with a new action. Replaces the old
     /// action.
     func updateTapGestureTarget(
         _ tapGestureTarget: Widget,
+        gesture: TapGesture,
         action: @escaping () -> Void
     )
 }
@@ -813,11 +814,12 @@ extension AppBackend {
         todo()
     }
 
-    public func createTapGestureTarget(wrapping child: Widget) -> Widget {
+    public func createTapGestureTarget(wrapping child: Widget, gesture: TapGesture) -> Widget {
         todo()
     }
     public func updateTapGestureTarget(
         _ clickTarget: Widget,
+        gesture: TapGesture,
         action: @escaping () -> Void
     ) {
         todo()

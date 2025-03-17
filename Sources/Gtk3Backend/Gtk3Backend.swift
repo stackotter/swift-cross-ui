@@ -934,7 +934,10 @@ public final class Gtk3Backend: AppBackend {
         gtk_native_dialog_show(chooser.gobjectPointer.cast())
     }
 
-    public func createTapGestureTarget(wrapping child: Widget) -> Widget {
+    public func createTapGestureTarget(wrapping child: Widget, gesture: TapGesture) -> Widget {
+        if gesture != .primary {
+            fatalError("Unsupported gesture type \(gesture)")
+        }
         let eventBox = Gtk3.EventBox()
         eventBox.setChild(to: child)
         eventBox.aboveChild = true
@@ -943,8 +946,12 @@ public final class Gtk3Backend: AppBackend {
 
     public func updateTapGestureTarget(
         _ tapGestureTarget: Widget,
+        gesture: TapGesture,
         action: @escaping () -> Void
     ) {
+        if gesture != .primary {
+            fatalError("Unsupported gesture type \(gesture)")
+        }
         tapGestureTarget.onButtonPress = { _, buttonEvent in
             let eventType = buttonEvent.type
             guard
