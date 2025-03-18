@@ -84,6 +84,8 @@ public protocol AppBackend {
     /// manually rescale the image meaning that it must get rescaled when the
     /// scale factor changes.
     var requiresImageUpdateOnScaleFactorChange: Bool { get }
+    /// How the backend handles menu rendering. Affects which menu-related methods are called.
+    var menuImplementationStyle: MenuImplementationStyle { get }
 
     /// Often in UI frameworks (such as Gtk), code is run in a callback
     /// after starting the app, and hence this generic root window creation
@@ -343,6 +345,14 @@ public protocol AppBackend {
         action: @escaping () -> Void,
         environment: EnvironmentValues
     )
+    /// Sets a button's label and menu. May not be called depending on the value of
+    /// ``menuImplementationStyle``.
+    func updateButton(
+        _ button: Widget,
+        label: String,
+        menu: Menu,
+        environment: EnvironmentValues
+    )
 
     /// Creates a labelled toggle that is either on or off. Predominantly used by
     /// ``Toggle``.
@@ -441,7 +451,8 @@ public protocol AppBackend {
         content: ResolvedMenu,
         environment: EnvironmentValues
     )
-    /// Shows the popover menu at a position relative to the given widget.
+    /// Shows the popover menu at a position relative to the given widget. May not be called
+    /// depending on the value of ``menuImplementationStyle``.
     func showPopoverMenu(
         _ menu: Menu,
         at position: SIMD2<Int>,
@@ -664,6 +675,14 @@ extension AppBackend {
         _ button: Widget,
         label: String,
         action: @escaping () -> Void,
+        environment: EnvironmentValues
+    ) {
+        todo()
+    }
+    public func updateButton(
+        _ button: Widget,
+        label: String,
+        menu: Menu,
         environment: EnvironmentValues
     ) {
         todo()

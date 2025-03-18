@@ -30,6 +30,7 @@ public final class GtkBackend: AppBackend {
     public let requiresToggleSwitchSpacer = false
     public let defaultToggleStyle = ToggleStyle.button
     public let requiresImageUpdateOnScaleFactorChange = false
+    public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
 
     var gtkApp: Application
 

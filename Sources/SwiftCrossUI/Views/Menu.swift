@@ -71,27 +71,45 @@ public struct Menu: TypeSafeView {
         size.x = buttonWidth ?? size.x
 
         let content = resolve().content
-        backend.updateButton(
-            widget,
-            label: label,
-            action: {
-                let menu = backend.createPopoverMenu()
+        switch backend.menuImplementationStyle {
+            case .dynamicPopover:
+                backend.updateButton(
+                    widget,
+                    label: label,
+                    action: {
+                        let menu = backend.createPopoverMenu()
+                        children.menu = menu
+                        backend.updatePopoverMenu(
+                            menu,
+                            content: content,
+                            environment: environment
+                        )
+                        backend.showPopoverMenu(menu, at: SIMD2(0, size.y + 2), relativeTo: widget)
+                        {
+                            children.menu = nil
+                        }
+                    },
+                    environment: environment
+                )
+
+                if !dryRun {
+                    backend.setSize(of: widget, to: size)
+                    children.updateMenuIfShown(
+                        content: content, environment: environment, backend: backend)
+                }
+            case .menuButton:
+                let menu = children.menu as? Backend.Menu ?? backend.createPopoverMenu()
                 children.menu = menu
                 backend.updatePopoverMenu(
                     menu,
                     content: content,
                     environment: environment
                 )
-                backend.showPopoverMenu(menu, at: SIMD2(0, size.y + 2), relativeTo: widget) {
-                    children.menu = nil
-                }
-            },
-            environment: environment
-        )
+                backend.updateButton(widget, label: label, menu: menu, environment: environment)
 
-        if !dryRun {
-            backend.setSize(of: widget, to: size)
-            children.updateMenuIfShown(content: content, environment: environment, backend: backend)
+                if !dryRun {
+                    backend.setSize(of: widget, to: size)
+                }
         }
 
         return ViewUpdateResult.leafView(size: ViewSize(fixedSize: size))

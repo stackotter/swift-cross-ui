@@ -21,6 +21,7 @@ public final class AppKitBackend: AppBackend {
     public let requiresToggleSwitchSpacer = false
     public let defaultToggleStyle = ToggleStyle.button
     public let requiresImageUpdateOnScaleFactorChange = false
+    public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
 
     public var scrollBarWidth: Int {
         // We assume that all scrollers have their controlSize set to `.regular` by default.
