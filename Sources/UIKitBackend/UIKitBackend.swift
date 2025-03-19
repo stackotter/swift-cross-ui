@@ -14,6 +14,7 @@ public final class UIKitBackend: AppBackend {
     public let defaultPaddingAmount = 15
     public let requiresToggleSwitchSpacer = true
     public let defaultToggleStyle = ToggleStyle.switch
+    public let menuImplementationStyle = MenuImplementationStyle.menuButton
 
     // TODO: When tables are supported, update these
     public let defaultTableRowContentHeight = -1
@@ -110,11 +111,6 @@ public final class UIKitBackend: AppBackend {
 
     public func show(widget: Widget) {
     }
-
-    // TODO: Menus
-    public typealias Menu = Never
-    public func setApplicationMenu(_ submenus: [ResolvedMenu.Submenu]) {
-    }
 }
 
 extension App {
@@ -159,6 +155,8 @@ open class ApplicationDelegate: UIResponder, UIApplicationDelegate {
             UIKitBackend.mainWindow = newValue
         }
     }
+
+    var menu: [ResolvedMenu.Submenu] = []
 
     public required override init() {
         super.init()
@@ -214,6 +212,49 @@ open class ApplicationDelegate: UIResponder, UIApplicationDelegate {
         }
 
         return true
+    }
+
+    /// Map a menu's label to its identifier.
+    ///
+    /// The commands API only gives control over the label of each menu. Override this method if
+    /// you also need to control the menus' identifiers.
+    ///
+    /// This method is only used on Mac Catalyst.
+    open func mapMenuIdentifier(_ label: String) -> UIMenu.Identifier {
+        switch label {
+            case "File": .file
+            case "Edit": .edit
+            case "View": .view
+            case "Window": .window
+            case "Help": .help
+            default:
+                if let bundleId = Bundle.main.bundleIdentifier {
+                    .init(rawValue: "\(bundleId).\(label)")
+                } else {
+                    .init(rawValue: label)
+                }
+        }
+    }
+
+    /// Asks the receiving responder to add and remove items from a menu system.
+    ///
+    /// When targeting Mac Catalyst, you should call `super.buildMenu(with: builder)` at some
+    /// point in your implementation. If you do not, then calls to
+    /// ``SwiftCrossUI/Scene/commands(_:)`` will have no effect.
+    open override func buildMenu(with builder: any UIMenuBuilder) {
+        guard builder.system == .main else { return }
+
+        for submenu in menu {
+            let menuIdentifier = mapMenuIdentifier(submenu.label)
+            let menu = UIKitBackend.transformMenu(
+                content: submenu.content, label: submenu.label, identifier: menuIdentifier)
+
+            if builder.menu(for: menuIdentifier) == nil {
+                builder.insertChild(menu, atEndOfMenu: .root)
+            } else {
+                builder.replace(menu: menuIdentifier, with: menu)
+            }
+        }
     }
 }
 
