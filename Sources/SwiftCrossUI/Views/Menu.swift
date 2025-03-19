@@ -1,10 +1,8 @@
-public struct Menu: TypeSafeView {
+public struct Menu {
     public var label: String
     public var items: [MenuItem]
 
     var buttonWidth: Int?
-
-    public var body = EmptyView()
 
     public init(_ label: String, @MenuItemsBuilder items: () -> [MenuItem]) {
         self.label = label
@@ -34,6 +32,11 @@ public struct Menu: TypeSafeView {
             }
         )
     }
+}
+
+@available(iOS 14, macCatalyst 14, tvOS 17, *)
+extension Menu: TypeSafeView {
+    public var body: EmptyView { return EmptyView() }
 
     func children<Backend: AppBackend>(
         backend: Backend,
