@@ -8,6 +8,7 @@ import UIKit
 /// items will not cause the toolbar to be updated. The toolbar is only updated when the view
 /// containing the ``View/keyboardToolbar(animateChanges:body:)`` modifier is updated, so any
 /// state necessary for the toolbar should live in the view itself.
+@available(tvOS, unavailable)
 public protocol ToolbarItem {
     /// The type of bar button item used to represent this item in UIKit.
     associatedtype ItemType: UIBarButtonItem
@@ -19,6 +20,7 @@ public protocol ToolbarItem {
     func updateBarButtonItem(_ item: inout ItemType)
 }
 
+@available(tvOS, unavailable)
 @resultBuilder
 public enum ToolbarBuilder {
     public enum Component {
@@ -56,6 +58,7 @@ public enum ToolbarBuilder {
     }
 }
 
+@available(tvOS, unavailable)
 extension Button: ToolbarItem {
     public final class ItemType: UIBarButtonItem {
         var callback: () -> Void
@@ -91,6 +94,7 @@ extension Button: ToolbarItem {
 }
 
 @available(iOS 14, macCatalyst 14, tvOS 14, *)
+@available(tvOS, unavailable)
 extension Spacer: ToolbarItem {
     public func createBarButtonItem() -> UIBarButtonItem {
         if let minLength, minLength > 0 {
@@ -110,6 +114,7 @@ extension Spacer: ToolbarItem {
     }
 }
 
+@available(tvOS, unavailable)
 struct FixedWidthToolbarItem<Base: ToolbarItem>: ToolbarItem {
     var base: Base
     var width: Int?
@@ -132,6 +137,7 @@ struct FixedWidthToolbarItem<Base: ToolbarItem>: ToolbarItem {
 
 // Setting width on a flexible space is ignored, you must use a fixed space from the outset
 @available(iOS 14, macCatalyst 14, tvOS 14, *)
+@available(tvOS, unavailable)
 struct FixedWidthSpacerItem: ToolbarItem {
     var width: Int?
 
@@ -148,6 +154,7 @@ struct FixedWidthSpacerItem: ToolbarItem {
     }
 }
 
+@available(tvOS, unavailable)
 struct ColoredToolbarItem<Base: ToolbarItem>: ToolbarItem {
     var base: Base
     var color: Color
@@ -164,13 +171,14 @@ struct ColoredToolbarItem<Base: ToolbarItem>: ToolbarItem {
     }
 }
 
+@available(tvOS, unavailable)
 extension ToolbarItem {
     /// A toolbar item with the specified width.
     ///
     /// If `width` is positive, the item will have that exact width. If `width` is zero or
     /// nil, the item will have its natural size.
     public func frame(width: Int?) -> any ToolbarItem {
-        if #available(iOS 14, macCatalyst 14, tvOS 14, *),
+        if #available(iOS 14, macCatalyst 14, *),
             self is Spacer || self is FixedWidthSpacerItem
         {
             FixedWidthSpacerItem(width: width)
@@ -185,6 +193,7 @@ extension ToolbarItem {
     }
 }
 
+@available(tvOS, unavailable)
 indirect enum ToolbarItemLocation: Hashable {
     case expression(inside: ToolbarItemLocation?)
     case block(index: Int, inside: ToolbarItemLocation?)
@@ -194,6 +203,7 @@ indirect enum ToolbarItemLocation: Hashable {
     case eitherSecond(inside: ToolbarItemLocation?)
 }
 
+@available(tvOS, unavailable)
 final class KeyboardToolbar: UIToolbar {
     var locations: [ToolbarItemLocation: UIBarButtonItem] = [:]
 
@@ -205,7 +215,7 @@ final class KeyboardToolbar: UIToolbar {
         var newLocations: [ToolbarItemLocation: UIBarButtonItem] = [:]
 
         visitItems(component: components, inside: nil) { location, expression in
-            var item =
+            let item =
                 if let oldItem = locations[location] {
                     updateErasedItem(expression, oldItem)
                 } else {
@@ -270,10 +280,12 @@ final class KeyboardToolbar: UIToolbar {
     }
 }
 
+@available(tvOS, unavailable)
 enum ToolbarKey: EnvironmentKey {
     static let defaultValue: ((KeyboardToolbar) -> Void)? = nil
 }
 
+@available(tvOS, unavailable)
 extension EnvironmentValues {
     var updateToolbar: ((KeyboardToolbar) -> Void)? {
         get { self[ToolbarKey.self] }
@@ -287,6 +299,7 @@ extension View {
     ///   - animateChanges: Whether to animate updates when an item is added, removed, or
     ///     updated
     ///   - body: The toolbar's contents
+    @available(tvOS, unavailable)
     public func keyboardToolbar(
         animateChanges: Bool = true,
         @ToolbarBuilder body: @escaping () -> ToolbarBuilder.FinalResult
