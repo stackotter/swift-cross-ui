@@ -246,7 +246,7 @@ open class ApplicationDelegate: UIResponder, UIApplicationDelegate {
 
         for submenu in menu {
             let menuIdentifier = mapMenuIdentifier(submenu.label)
-            let menu = UIKitBackend.transformMenu(
+            let menu = UIKitBackend.buildMenu(
                 content: submenu.content, label: submenu.label, identifier: menuIdentifier)
 
             if builder.menu(for: menuIdentifier) == nil {

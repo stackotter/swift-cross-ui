@@ -10,7 +10,7 @@ extension UIKitBackend {
         return Menu()
     }
 
-    static func transformMenu(
+    static func buildMenu(
         content: ResolvedMenu,
         label: String,
         identifier: UIMenu.Identifier? = nil
@@ -24,7 +24,7 @@ extension UIKitBackend {
                         UIAction(title: label, attributes: .disabled) { _ in }
                     }
                 case let .submenu(submenu):
-                    transformMenu(content: submenu.content, label: submenu.label)
+                    buildMenu(content: submenu.content, label: submenu.label)
             }
         }
 
@@ -34,7 +34,7 @@ extension UIKitBackend {
     public func updatePopoverMenu(
         _ menu: Menu, content: ResolvedMenu, environment _: EnvironmentValues
     ) {
-        menu.uiMenu = UIKitBackend.transformMenu(content: content, label: "")
+        menu.uiMenu = UIKitBackend.buildMenu(content: content, label: "")
     }
 
     public func updateButton(

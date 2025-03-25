@@ -1,5 +1,5 @@
 /// A button that shows a popover menu when clicked.
-/// 
+///
 /// Due to technical limitations, the minimum supported OS's for menu buttons in UIKitBackend
 /// are iOS 14 and tvOS 17.
 public struct Menu {
