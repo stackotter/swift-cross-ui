@@ -1,3 +1,7 @@
+/// A button that shows a popover menu when clicked.
+/// 
+/// Due to technical limitations, the minimum supported OS's for menu buttons in UIKitBackend
+/// are iOS 14 and tvOS 17.
 public struct Menu {
     public var label: String
     public var items: [MenuItem]
@@ -87,8 +91,11 @@ extension Menu: TypeSafeView {
                             content: content,
                             environment: environment
                         )
-                        backend.showPopoverMenu(menu, at: SIMD2(0, size.y + 2), relativeTo: widget)
-                        {
+                        backend.showPopoverMenu(
+                            menu,
+                            at: SIMD2(0, size.y + 2),
+                            relativeTo: widget
+                        ) {
                             children.menu = nil
                         }
                     },
@@ -98,7 +105,10 @@ extension Menu: TypeSafeView {
                 if !dryRun {
                     backend.setSize(of: widget, to: size)
                     children.updateMenuIfShown(
-                        content: content, environment: environment, backend: backend)
+                        content: content,
+                        environment: environment,
+                        backend: backend
+                    )
                 }
             case .menuButton:
                 let menu = children.menu as? Backend.Menu ?? backend.createPopoverMenu()

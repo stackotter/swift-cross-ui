@@ -10,7 +10,7 @@ public enum MenuImplementationStyle {
     /// ``AppBackend/showPopoverMenu(_:at:relativeTo:closeHandler:)``. For these backends,
     /// ``AppBackend/createPopoverMenu()`` is not called until after the button is tapped.
     case dynamicPopover
-    /// The backend requires menus to be constructed and passed to buttons ahead-of-time.
+    /// The backend requires menus to be constructed and attached to buttons ahead-of-time.
     ///
     /// Backends that use this style must implement
     /// ``AppBackend/updateButton(_:label:menu:environment:)``.
