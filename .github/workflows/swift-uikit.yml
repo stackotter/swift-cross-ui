@@ -1,4 +1,4 @@
-name: Build macOS
+name: Build UIKitBackend
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - 'gh-pages'
 
 jobs:
-  build-mac:
+  build-uikit:
     runs-on: macos-14
     steps:
     - name: Force Xcode 15.4
