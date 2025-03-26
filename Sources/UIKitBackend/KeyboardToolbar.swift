@@ -93,8 +93,11 @@ extension Button: ToolbarItem {
     }
 }
 
-@available(iOS 14, macCatalyst 14, tvOS 14, *)
-@available(tvOS, unavailable)
+// Despite the fact that this is unavailable on tvOS, the `introduced: 14`
+// clause is required for all current Swift versions to accept it.
+// See https://forums.swift.org/t/contradictory-available-s-are-required/78831
+@available(iOS 14, macCatalyst 14, *)
+@available(tvOS, unavailable, introduced: 14)
 extension Spacer: ToolbarItem {
     public func createBarButtonItem() -> UIBarButtonItem {
         if let minLength, minLength > 0 {
@@ -136,8 +139,8 @@ struct FixedWidthToolbarItem<Base: ToolbarItem>: ToolbarItem {
 }
 
 // Setting width on a flexible space is ignored, you must use a fixed space from the outset
-@available(iOS 14, macCatalyst 14, tvOS 14, *)
-@available(tvOS, unavailable)
+@available(iOS 14, macCatalyst 14, *)
+@available(tvOS, unavailable, introduced: 14)
 struct FixedWidthSpacerItem: ToolbarItem {
     var width: Int?
 
