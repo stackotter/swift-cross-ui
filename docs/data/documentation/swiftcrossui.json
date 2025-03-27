@@ -321,6 +321,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HorizontalAlignment",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/InheritedOrientation",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/LayoutSystem",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/MenuImplementationStyle",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/MenuItem",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Orientation",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StackAlignment",
@@ -2419,7 +2420,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Menu": {
   "abstract" : [
-
+    {
+      "text" : "A button that shows a popover menu when clicked.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -2447,6 +2451,40 @@
   "title" : "Menu",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/menu"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/MenuImplementationStyle": {
+  "abstract" : [
+    {
+      "text" : "How a backend implements popover menus.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "MenuImplementationStyle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/MenuImplementationStyle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "MenuImplementationStyle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "MenuImplementationStyle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/menuimplementationstyle"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/MenuItem": {
   "abstract" : [

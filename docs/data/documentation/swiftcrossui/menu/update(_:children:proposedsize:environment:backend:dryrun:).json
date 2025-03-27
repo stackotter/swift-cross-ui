@@ -569,7 +569,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Menu": {
   "abstract" : [
-
+    {
+      "text" : "A button that shows a popover menu when clicked.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

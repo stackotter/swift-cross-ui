@@ -5684,6 +5684,11 @@
                 "type" : "property"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/menuimplementationstyle",
+                "title" : "var menuImplementationStyle: MenuImplementationStyle",
+                "type" : "property"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/requiresimageupdateonscalefactorchange",
                 "title" : "var requiresImageUpdateOnScaleFactorChange: Bool",
                 "type" : "property"
@@ -6609,6 +6614,24 @@
                 ],
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/updatebutton(_:label:action:environment:)-w9qd",
                 "title" : "func updateButton(Self.Widget, label: String, action: () -> Void, environment: EnvironmentValues)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatebutton(_:label:menu:environment:)-17ypq",
+                        "title" : "func updateButton(Self.Widget, label: String, menu: Self.Menu, environment: EnvironmentValues)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatebutton(_:label:menu:environment:)-6mdv1",
+                "title" : "func updateButton(Self.Widget, label: String, menu: Self.Menu, environment: EnvironmentValues)",
                 "type" : "method"
               },
               {
@@ -8503,11 +8526,6 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/menu\/body",
-                "title" : "var body: EmptyView",
-                "type" : "property"
-              },
-              {
                 "path" : "\/documentation\/swiftcrossui\/menu\/items",
                 "title" : "var items: [MenuItem]",
                 "type" : "property"
@@ -8523,6 +8541,15 @@
               },
               {
                 "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/menu\/body",
+                    "title" : "var body: EmptyView",
+                    "type" : "property"
+                  },
                   {
                     "title" : "Instance Methods",
                     "type" : "groupMarker"
@@ -15078,6 +15105,47 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/layoutsystem",
             "title" : "LayoutSystem",
+            "type" : "enum"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Enumeration Cases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/menuimplementationstyle\/dynamicpopover",
+                "title" : "case dynamicPopover",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/menuimplementationstyle\/menubutton",
+                "title" : "case menuButton",
+                "type" : "case"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Operators",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/menuimplementationstyle\/!=(_:_:)",
+                    "title" : "static func != (Self, Self) -> Bool",
+                    "type" : "op"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/menuimplementationstyle\/equatable-implementations",
+                "title" : "Equatable Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/menuimplementationstyle",
+            "title" : "MenuImplementationStyle",
             "type" : "enum"
           },
           {

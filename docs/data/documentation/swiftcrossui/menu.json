@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "A button that shows a popover menu when clicked.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -40,7 +46,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Menu.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Menu.swift#L1"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Menu.swift#L5"
     },
     "role" : "symbol",
     "roleHeading" : "Structure",
@@ -74,6 +80,34 @@
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "overview",
+          "level" : 2,
+          "text" : "Overview",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Due to technical limitations, the minimum supported OS’s for menu buttons in UIKitBackend",
+              "type" : "text"
+            },
+            {
+              "text" : " ",
+              "type" : "text"
+            },
+            {
+              "text" : "are iOS 14 and tvOS 17.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
     }
   ],
   "relationshipsSections" : [
@@ -103,7 +137,6 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/body",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/items",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/label"
       ],
@@ -147,7 +180,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Menu": {
   "abstract" : [
-
+    {
+      "text" : "A button that shows a popover menu when clicked.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -186,40 +222,6 @@
   "title" : "View Implementations",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/menu\/view-implementations"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Menu/body": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "body"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9EmptyViewV",
-      "text" : "EmptyView"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/body",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "body",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/menu\/body"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Menu/init(_:items:)": {
   "abstract" : [

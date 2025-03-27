@@ -57,7 +57,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Menu.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Menu.swift#L9"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Menu.swift#L11"
     },
     "role" : "symbol",
     "roleHeading" : "Initializer",
@@ -215,7 +215,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Menu": {
   "abstract" : [
-
+    {
+      "text" : "A button that shows a popover menu when clicked.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

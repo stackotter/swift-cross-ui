@@ -34,6 +34,13 @@
     {
       "generated" : true,
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/body"
+      ],
+      "title" : "Instance Properties"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/alert(_:isPresented:actions:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/asWidget(_:backend:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/background(_:)",
@@ -98,7 +105,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Menu": {
   "abstract" : [
-
+    {
+      "text" : "A button that shows a popover menu when clicked.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -353,6 +363,40 @@
   "title" : "background(_:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/menu\/background(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Menu/body": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "body"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI9EmptyViewV",
+      "text" : "EmptyView"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/body",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "body",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/menu\/body"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Menu/bold()": {
   "abstract" : [

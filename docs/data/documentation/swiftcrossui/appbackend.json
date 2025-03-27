@@ -522,6 +522,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/defaultTableCellVerticalPadding",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/defaultTableRowContentHeight",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/defaultToggleStyle",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/menuImplementationStyle",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/requiresImageUpdateOnScaleFactorChange",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/requiresToggleSwitchSpacer",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/scrollBarWidth"
@@ -600,6 +601,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/tag(widget:as:)-6ohtd",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateAlert(_:title:actionLabels:environment:)-8tkm4",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateButton(_:label:action:environment:)-w9qd",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateButton(_:label:menu:environment:)-6mdv1",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateImageView(_:rgbaData:width:height:targetWidth:targetHeight:dataHasChanged:)-69rlk",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updatePicker(_:options:environment:onChange:)-23us",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updatePopoverMenu(_:content:environment:)-6o9qa",
@@ -1464,20 +1466,7 @@
       "type" : "text"
     },
     {
-      "text" : "apps). The menu won’t be visible until you call",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/showPopoverMenu(_:at:relativeTo:closeHandler:)-u69a",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ".",
+      "text" : "apps). The menu won’t be visible when first created.",
       "type" : "text"
     }
   ],
@@ -2863,6 +2852,52 @@
   "title" : "isWindowProgrammaticallyResizable(_:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/iswindowprogrammaticallyresizable(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/menuImplementationStyle": {
+  "abstract" : [
+    {
+      "text" : "How the backend handles rendering of menu buttons. Affects which menu-related methods",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "are called.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "menuImplementationStyle"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI23MenuImplementationStyleO",
+      "text" : "MenuImplementationStyle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/menuImplementationStyle",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "menuImplementationStyle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/menuimplementationstyle"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/naturalSize(of:)": {
   "abstract" : [
@@ -6040,7 +6075,29 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/showPopoverMenu(_:at:relativeTo:closeHandler:)-u69a": {
   "abstract" : [
     {
-      "text" : "Shows the popover menu at a position relative to the given widget.",
+      "text" : "Shows the popover menu at a position relative to the given widget. Only used when",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/menuImplementationStyle",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " is ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/MenuImplementationStyle\/dynamicPopover",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
       "type" : "text"
     }
   ],
@@ -6896,6 +6953,138 @@
   "title" : "updateButton(_:label:action:environment:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/updatebutton(_:label:action:environment:)-w9qd"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateButton(_:label:menu:environment:)-6mdv1": {
+  "abstract" : [
+    {
+      "text" : "Sets a button’s label and menu. Only used when ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/menuImplementationStyle",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " is",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/MenuImplementationStyle\/menuButton",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "updateButton"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP6WidgetQa",
+      "text" : "Widget"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "label"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "menu"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10AppBackendP4MenuQa",
+      "text" : "Menu"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "environment"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI17EnvironmentValuesV",
+      "text" : "EnvironmentValues"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateButton(_:label:menu:environment:)-6mdv1",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "updateButton(_:label:menu:environment:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/updatebutton(_:label:menu:environment:)-6mdv1"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/updateImageView(_:rgbaData:width:height:targetWidth:targetHeight:dataHasChanged:)-69rlk": {
   "abstract" : [
@@ -8128,6 +8317,62 @@
   "title" : "Image",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/image"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/MenuImplementationStyle/dynamicPopover": {
+  "abstract" : [
+    {
+      "text" : "The backend can show popover menus arbitrarily.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "dynamicPopover"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/MenuImplementationStyle\/dynamicPopover",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "MenuImplementationStyle.dynamicPopover",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/menuimplementationstyle\/dynamicpopover"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/MenuImplementationStyle/menuButton": {
+  "abstract" : [
+    {
+      "text" : "The backend requires menus to be constructed and attached to buttons ahead-of-time.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "menuButton"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/MenuImplementationStyle\/menuButton",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "MenuImplementationStyle.menuButton",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/menuimplementationstyle\/menubutton"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker": {
   "abstract" : [

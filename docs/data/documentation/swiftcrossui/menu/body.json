@@ -17,7 +17,8 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/View-Implementations"
       ]
     ]
   },
@@ -27,6 +28,7 @@
   },
   "kind" : "symbol",
   "metadata" : {
+    "extendedModule" : "SwiftCrossUI",
     "externalID" : "s:12SwiftCrossUI4MenuV4bodyAA9EmptyViewVvp",
     "fragments" : [
       {
@@ -56,9 +58,32 @@
         "name" : "SwiftCrossUI"
       }
     ],
+    "platforms" : [
+      {
+        "beta" : false,
+        "deprecated" : false,
+        "introducedAt" : "14.0",
+        "name" : "iOS",
+        "unavailable" : false
+      },
+      {
+        "beta" : false,
+        "deprecated" : false,
+        "introducedAt" : "14.0",
+        "name" : "Mac Catalyst",
+        "unavailable" : false
+      },
+      {
+        "beta" : false,
+        "deprecated" : false,
+        "introducedAt" : "17.0",
+        "name" : "tvOS",
+        "unavailable" : false
+      }
+    ],
     "remoteSource" : {
       "fileName" : "Menu.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Menu.swift#L7"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Menu.swift#L43"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Property",
@@ -97,6 +122,18 @@
               "kind" : "typeIdentifier",
               "preciseIdentifier" : "s:12SwiftCrossUI9EmptyViewV",
               "text" : "EmptyView"
+            },
+            {
+              "kind" : "text",
+              "text" : " { "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "get"
+            },
+            {
+              "kind" : "text",
+              "text" : " }"
             }
           ]
         }
@@ -193,7 +230,10 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Menu": {
   "abstract" : [
-
+    {
+      "text" : "A button that shows a popover menu when clicked.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -221,6 +261,17 @@
   "title" : "Menu",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/menu"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Menu/View-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/View-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "View Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/menu\/view-implementations"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Menu/body": {
   "abstract" : [
