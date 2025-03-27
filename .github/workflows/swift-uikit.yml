@@ -1,0 +1,61 @@
+name: Build UIKitBackend
+
+on:
+  push:
+    branches-ignore:
+      - 'gh-pages'
+  pull_request:
+    branches-ignore:
+      - 'gh-pages'
+
+jobs:
+  build-uikit:
+    runs-on: macos-14
+    strategy:
+      matrix:
+        devicetype:
+          - iPhone
+          - iPad
+          - TV
+    steps:
+    - name: Force Xcode 15.4
+      run: sudo xcode-select -switch /Applications/Xcode_15.4.app
+    - uses: actions/checkout@v3
+    - name: Build
+      run: |
+        set -uo pipefail
+        devicetype=${{ matrix.devicetype }}
+        set +e
+        deviceid=$(xcrun simctl list devices $devicetype available | grep -v -- -- | tail -n 1 | grep -oE '[0-9A-F\-]{36}')
+        if [ $? -eq 0 ]; then
+          set -e
+          (
+            buildtarget () {
+              xcodebuild -scheme "$1" -destination "id=$deviceid" build
+            }
+
+            buildtarget SwiftCrossUI
+            buildtarget UIKitBackend
+
+            cd Examples
+
+            buildtarget CounterExample
+            buildtarget GreetingGeneratorExample
+            buildtarget NavigationExample
+            buildtarget StressTestExample
+            buildtarget NotesExample
+
+            if [ $devicetype != TV ]; then
+              # Slider is not implemented for tvOS
+              buildtarget ControlsExample
+              buildtarget RandomNumberGeneratorExample
+            fi
+
+            if [ $devicetype = iPad ]; then
+              # NavigationSplitView is only implemented for iPad
+              buildtarget SplitExample
+            fi
+          )
+        else
+          echo "No $devicetype simulators found" >&2
+        fi

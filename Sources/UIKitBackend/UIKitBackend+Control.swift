@@ -241,14 +241,17 @@ extension UIKitBackend {
         textFieldWidget.onChange = onChange
         textFieldWidget.onSubmit = onSubmit
 
-        if let updateToolbar = environment.updateToolbar {
-            let toolbar =
-                (textFieldWidget.child.inputAccessoryView as? KeyboardToolbar) ?? KeyboardToolbar()
-            updateToolbar(toolbar)
-            textFieldWidget.child.inputAccessoryView = toolbar
-        } else {
-            textFieldWidget.child.inputAccessoryView = nil
-        }
+        #if os(iOS)
+            if let updateToolbar = environment.updateToolbar {
+                let toolbar =
+                    (textFieldWidget.child.inputAccessoryView as? KeyboardToolbar)
+                    ?? KeyboardToolbar()
+                updateToolbar(toolbar)
+                textFieldWidget.child.inputAccessoryView = toolbar
+            } else {
+                textFieldWidget.child.inputAccessoryView = nil
+            }
+        #endif
     }
 
     public func setContent(ofTextField textField: Widget, to content: String) {
