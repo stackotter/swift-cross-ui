@@ -38,6 +38,7 @@ public final class WinUIBackend: AppBackend {
     public let requiresToggleSwitchSpacer = false
     public let defaultToggleStyle = ToggleStyle.button
     public let requiresImageUpdateOnScaleFactorChange = false
+    public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
 
     public var scrollBarWidth: Int {
         12

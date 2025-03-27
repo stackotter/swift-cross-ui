@@ -1,10 +1,12 @@
-public struct Menu: TypeSafeView {
+/// A button that shows a popover menu when clicked.
+///
+/// Due to technical limitations, the minimum supported OS's for menu buttons in UIKitBackend
+/// are iOS 14 and tvOS 17.
+public struct Menu {
     public var label: String
     public var items: [MenuItem]
 
     var buttonWidth: Int?
-
-    public var body = EmptyView()
 
     public init(_ label: String, @MenuItemsBuilder items: () -> [MenuItem]) {
         self.label = label
@@ -34,6 +36,11 @@ public struct Menu: TypeSafeView {
             }
         )
     }
+}
+
+@available(iOS 14, macCatalyst 14, tvOS 17, *)
+extension Menu: TypeSafeView {
+    public var body: EmptyView { return EmptyView() }
 
     func children<Backend: AppBackend>(
         backend: Backend,
@@ -71,27 +78,51 @@ public struct Menu: TypeSafeView {
         size.x = buttonWidth ?? size.x
 
         let content = resolve().content
-        backend.updateButton(
-            widget,
-            label: label,
-            action: {
-                let menu = backend.createPopoverMenu()
+        switch backend.menuImplementationStyle {
+            case .dynamicPopover:
+                backend.updateButton(
+                    widget,
+                    label: label,
+                    action: {
+                        let menu = backend.createPopoverMenu()
+                        children.menu = menu
+                        backend.updatePopoverMenu(
+                            menu,
+                            content: content,
+                            environment: environment
+                        )
+                        backend.showPopoverMenu(
+                            menu,
+                            at: SIMD2(0, size.y + 2),
+                            relativeTo: widget
+                        ) {
+                            children.menu = nil
+                        }
+                    },
+                    environment: environment
+                )
+
+                if !dryRun {
+                    backend.setSize(of: widget, to: size)
+                    children.updateMenuIfShown(
+                        content: content,
+                        environment: environment,
+                        backend: backend
+                    )
+                }
+            case .menuButton:
+                let menu = children.menu as? Backend.Menu ?? backend.createPopoverMenu()
                 children.menu = menu
                 backend.updatePopoverMenu(
                     menu,
                     content: content,
                     environment: environment
                 )
-                backend.showPopoverMenu(menu, at: SIMD2(0, size.y + 2), relativeTo: widget) {
-                    children.menu = nil
-                }
-            },
-            environment: environment
-        )
+                backend.updateButton(widget, label: label, menu: menu, environment: environment)
 
-        if !dryRun {
-            backend.setSize(of: widget, to: size)
-            children.updateMenuIfShown(content: content, environment: environment, backend: backend)
+                if !dryRun {
+                    backend.setSize(of: widget, to: size)
+                }
         }
 
         return ViewUpdateResult.leafView(size: ViewSize(fixedSize: size))

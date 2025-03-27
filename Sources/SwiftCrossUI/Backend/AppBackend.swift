@@ -84,6 +84,9 @@ public protocol AppBackend {
     /// manually rescale the image meaning that it must get rescaled when the
     /// scale factor changes.
     var requiresImageUpdateOnScaleFactorChange: Bool { get }
+    /// How the backend handles rendering of menu buttons. Affects which menu-related methods
+    /// are called.
+    var menuImplementationStyle: MenuImplementationStyle { get }
 
     /// Often in UI frameworks (such as Gtk), code is run in a callback
     /// after starting the app, and hence this generic root window creation
@@ -343,6 +346,14 @@ public protocol AppBackend {
         action: @escaping () -> Void,
         environment: EnvironmentValues
     )
+    /// Sets a button's label and menu. Only used when ``menuImplementationStyle`` is
+    /// ``MenuImplementationStyle/menuButton``.
+    func updateButton(
+        _ button: Widget,
+        label: String,
+        menu: Menu,
+        environment: EnvironmentValues
+    )
 
     /// Creates a labelled toggle that is either on or off. Predominantly used by
     /// ``Toggle``.
@@ -432,8 +443,7 @@ public protocol AppBackend {
     )
 
     /// Creates a popover menu (the sort you often see when right clicking on
-    /// apps). The menu won't be visible until you call
-    /// ``AppBackend/showPopoverMenu(_:at:relativeTo:closeHandler:)``.
+    /// apps). The menu won't be visible when first created.
     func createPopoverMenu() -> Menu
     /// Updates a popover menu's content and appearance.
     func updatePopoverMenu(
@@ -441,7 +451,8 @@ public protocol AppBackend {
         content: ResolvedMenu,
         environment: EnvironmentValues
     )
-    /// Shows the popover menu at a position relative to the given widget.
+    /// Shows the popover menu at a position relative to the given widget. Only used when
+    /// ``menuImplementationStyle`` is ``MenuImplementationStyle/dynamicPopover``.
     func showPopoverMenu(
         _ menu: Menu,
         at position: SIMD2<Int>,
@@ -664,6 +675,14 @@ extension AppBackend {
         _ button: Widget,
         label: String,
         action: @escaping () -> Void,
+        environment: EnvironmentValues
+    ) {
+        todo()
+    }
+    public func updateButton(
+        _ button: Widget,
+        label: String,
+        menu: Menu,
         environment: EnvironmentValues
     ) {
         todo()

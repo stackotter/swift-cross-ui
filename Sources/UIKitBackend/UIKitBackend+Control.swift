@@ -2,7 +2,15 @@ import SwiftCrossUI
 import UIKit
 
 final class ButtonWidget: WrapperWidget<UIButton> {
-    var onTap: (() -> Void)?
+    private let event: UIControl.Event
+
+    var onTap: (() -> Void)? {
+        didSet {
+            if oldValue == nil {
+                child.addTarget(self, action: #selector(buttonTapped), for: event)
+            }
+        }
+    }
 
     @objc
     func buttonTapped() {
@@ -11,7 +19,6 @@ final class ButtonWidget: WrapperWidget<UIButton> {
 
     init() {
         let type: UIButton.ButtonType
-        let event: UIControl.Event
         #if os(tvOS)
             type = .system
             event = .primaryActionTriggered
@@ -20,7 +27,6 @@ final class ButtonWidget: WrapperWidget<UIButton> {
             event = .touchUpInside
         #endif
         super.init(child: UIButton(type: type))
-        child.addTarget(self, action: #selector(buttonTapped), for: event)
     }
 }
 
@@ -177,14 +183,11 @@ extension UIKitBackend {
         ButtonWidget()
     }
 
-    public func updateButton(
-        _ button: Widget,
-        label: String,
-        action: @escaping () -> Void,
+    func setButtonTitle(
+        _ buttonWidget: ButtonWidget,
+        _ label: String,
         environment: EnvironmentValues
     ) {
-        let buttonWidget = button as! ButtonWidget
-
         // tvOS's buttons change foreground color when focused. If we set an
         // attributed string for `.normal` we also have to set another for
         // `.focused` with a colour that's readable on a white background.
@@ -204,6 +207,17 @@ extension UIKitBackend {
                 for: .normal
             )
         #endif
+    }
+
+    public func updateButton(
+        _ button: Widget,
+        label: String,
+        action: @escaping () -> Void,
+        environment: EnvironmentValues
+    ) {
+        let buttonWidget = button as! ButtonWidget
+
+        setButtonTitle(buttonWidget, label, environment: environment)
 
         buttonWidget.onTap = action
     }
