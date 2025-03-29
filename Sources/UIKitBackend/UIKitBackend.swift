@@ -111,6 +111,10 @@ public final class UIKitBackend: AppBackend {
 
     public func show(widget: Widget) {
     }
+
+    public func openExternalURL(_ url: URL) throws {
+        UIApplication.shared.open(url)
+    }
 }
 
 extension App {

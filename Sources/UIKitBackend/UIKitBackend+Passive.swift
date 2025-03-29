@@ -41,8 +41,11 @@ extension UIKitBackend {
         environment: EnvironmentValues
     ) {
         let wrapper = textView as! WrapperWidget<UILabel>
+        wrapper.child.overrideUserInterfaceStyle = environment.colorScheme.userInterfaceStyle
         wrapper.child.attributedText = UIKitBackend.attributedString(
-            text: content, environment: environment)
+            text: content,
+            environment: environment
+        )
     }
 
     public func size(
