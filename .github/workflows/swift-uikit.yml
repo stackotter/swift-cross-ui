@@ -20,6 +20,8 @@ jobs:
     steps:
     - name: Force Xcode 15.4
       run: sudo xcode-select -switch /Applications/Xcode_15.4.app
+    - name: Install xcbeautify
+      run: brew install xcbeautify
     - uses: actions/checkout@v3
     - name: Build
       run: |
@@ -31,7 +33,7 @@ jobs:
           set -e
           (
             buildtarget () {
-              xcodebuild -scheme "$1" -destination "id=$deviceid" build
+              xcodebuild -scheme "$1" -destination "id=$deviceid" build | xcbeautify --renderer github-actions
             }
 
             buildtarget SwiftCrossUI
