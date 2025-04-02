@@ -44,6 +44,7 @@ public protocol AppBackend {
     associatedtype Widget
     associatedtype Menu
     associatedtype Alert
+    associatedtype Path
 
     /// Creates an instance of the backend.
     init()
@@ -527,6 +528,24 @@ public protocol AppBackend {
         gesture: TapGesture,
         action: @escaping () -> Void
     )
+
+    // MARK: Paths
+    /// Create a path. It will not be shown until ``renderPath(_:container:)`` is called.
+    func createPath() -> Path
+    /// Update a path. The updates do not need to be visible before ``renderPath(_:container:)``
+    /// is called.
+    /// - Parameters:
+    ///   - path: The path to be updated.
+    ///   - source: The source to copy the path from.
+    ///   - pointsChanged: If `false`, the ``Path/actions`` of the source have not changed.
+    func updatePath(_ path: Path, _ source: SwiftCrossUI.Path, pointsChanged: Bool)
+    /// Draw a path to the screen.
+    /// - Parameters:
+    ///   - path: The path to be rendered.
+    ///   - container: The container widget that the path will render in. It has no other
+    ///     children.
+    ///   - environment: The environment values, including color.
+    func renderPath(_ path: Path, container: Widget, environment: EnvironmentValues)
 }
 
 extension AppBackend {
@@ -841,6 +860,17 @@ extension AppBackend {
         gesture: TapGesture,
         action: @escaping () -> Void
     ) {
+        todo()
+    }
+
+    // MARK: Paths
+    func createPath() -> Path {
+        todo()
+    }
+    func updatePath(_ path: Path, _ source: SwiftCrossUI.Path, pointsChanged: Bool) {
+        todo()
+    }
+    func renderPath(_ path: Path, container: Widget, environment: EnvironmentValues) {
         todo()
     }
 }
