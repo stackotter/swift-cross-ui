@@ -38,58 +38,56 @@ extension UIKitBackend {
             for action in source.actions {
                 switch action {
                     case .moveTo(let point):
-                        path.move(to: CGPoint(x: Double(point.x), y: Double(point.y)))
+                        path.move(to: CGPoint(x: point.x, y: point.y))
                     case .lineTo(let point):
-                        path.addLine(to: CGPoint(x: Double(point.x), y: Double(point.y)))
+                        path.addLine(to: CGPoint(x: point.x, y: point.y))
                     case .quadCurve(let control, let end):
                         path.addQuadCurve(
-                            to: CGPoint(x: Double(end.x), y: Double(end.y)),
-                            controlPoint: CGPoint(x: Double(control.x), y: Double(control.y)))
+                            to: CGPoint(x: end.x, y: end.y),
+                            controlPoint: CGPoint(x: control.x, y: control.y)
+                        )
                     case .cubicCurve(let control1, let control2, let end):
                         path.addCurve(
-                            to: CGPoint(x: Double(end.x), y: Double(end.y)),
-                            controlPoint1: CGPoint(x: Double(control1.x), y: Double(control1.y)),
-                            controlPoint2: CGPoint(x: Double(control2.x), y: Double(control2.y)))
+                            to: CGPoint(x: end.x, y: end.y),
+                            controlPoint1: CGPoint(x: control1.x, y: control1.y),
+                            controlPoint2: CGPoint(x: control2.x, y: control2.y)
+                        )
                     case .rectangle(let rect):
                         let cgPath: CGMutablePath = path.cgPath.mutableCopy()!
                         cgPath.addRect(
-                            CGRect(
-                                x: CGFloat(rect.x),
-                                y: CGFloat(rect.y),
-                                width: CGFloat(rect.width),
-                                height: CGFloat(rect.height)
-                            )
+                            CGRect(x: rect.x, y: rect.y, width: rect.width, height: rect.height)
                         )
                         path.cgPath = cgPath
                     case .circle(let center, let radius):
                         let cgPath: CGMutablePath = path.cgPath.mutableCopy()!
                         cgPath.addEllipse(
                             in: CGRect(
-                                x: CGFloat(center.x - radius),
-                                y: CGFloat(center.y - radius),
-                                width: CGFloat(radius * 2.0),
-                                height: CGFloat(radius * 2.0)
+                                x: center.x - radius,
+                                y: center.y - radius,
+                                width: radius * 2.0,
+                                height: radius * 2.0
                             )
                         )
                         path.cgPath = cgPath
                     case .arc(let center, let radius, let startAngle, let endAngle, let clockwise):
                         path.addArc(
-                            withCenter: CGPoint(x: Double(center.x), y: Double(center.y)),
+                            withCenter: CGPoint(x: center.x, y: center.y),
                             radius: CGFloat(radius),
                             startAngle: CGFloat(startAngle),
                             endAngle: CGFloat(endAngle),
                             clockwise: clockwise
                         )
                     case .transform(let transform):
-                        let cgAT = CGAffineTransform(
-                            a: Double(transform.linearTransform.x),
-                            b: Double(transform.linearTransform.y),
-                            c: Double(transform.linearTransform.z),
-                            d: Double(transform.linearTransform.w),
-                            tx: Double(transform.translation.x),
-                            ty: Double(transform.translation.y)
+                        path.apply(
+                            CGAffineTransform(
+                                a: transform.linearTransform.x,
+                                b: transform.linearTransform.y,
+                                c: transform.linearTransform.z,
+                                d: transform.linearTransform.w,
+                                tx: transform.translation.x,
+                                ty: transform.translation.y
+                            )
                         )
-                        path.apply(cgAT)
                 }
             }
         }
@@ -101,6 +99,6 @@ extension UIKitBackend {
         maskLayer.path = path.cgPath
         maskLayer.fillRule = path.usesEvenOddFillRule ? .evenOdd : .nonZero
         container.view.layer.mask = maskLayer
-        container.view.backgroundColor = .red  // TODO
+        container.view.backgroundColor = environment.suggestedForegroundColor.uiColor
     }
 }
