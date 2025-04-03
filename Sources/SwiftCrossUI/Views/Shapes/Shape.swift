@@ -40,7 +40,8 @@ extension Shape {
         let storage = children as! ShapeStorage
         let size = size(fitting: proposedSize)
 
-        let path = path(in: Path.Rect(x: 0.0, y: 0.0, width: Double(size.x), height: Double(size.y)))
+        let path = path(
+            in: Path.Rect(x: 0.0, y: 0.0, width: Double(size.x), height: Double(size.y)))
         let pointsChanged = storage.oldPath?.actions != path.actions
         storage.oldPath = path
 

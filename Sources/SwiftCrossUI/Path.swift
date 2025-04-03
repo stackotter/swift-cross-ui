@@ -49,6 +49,9 @@ public struct AffineTransform: Equatable, CustomDebugStringConvertible {
     /// [ x  y ]
     /// [ z  w ]
     /// ```
+    /// - Remark: The matrices in some graphics frameworks, such as WinUI's `Matrix` and
+    /// CoreGraphics' `CGAffineTransform`, take the transpose of this matrix. The reason for
+    /// this difference is left- vs right-multiplication; the values are identical.
     public var linearTransform: SIMD4<Double>
     /// The translation applied after the linear transformation.
     public var translation: SIMD2<Double>
@@ -73,14 +76,13 @@ public struct AffineTransform: Equatable, CustomDebugStringConvertible {
     }
 
     public static func rotation(radians: Double, center: SIMD2<Double>) -> AffineTransform {
-        // Making the sine negative so that positive rotations are clockwise
-        let sine = sin(-radians)
+        let sine = sin(radians)
         let cosine = cos(radians)
         return AffineTransform(
             linearTransform: SIMD4(x: cosine, y: -sine, z: sine, w: cosine),
             translation: SIMD2(
-                x: -center.x * cosine - center.y * sine + center.x,
-                y: center.x * sine - center.y * cosine + center.y
+                x: -center.x * cosine + center.y * sine + center.x,
+                y: -center.x * sine - center.y * cosine + center.y
             )
         )
     }
@@ -95,7 +97,8 @@ public struct AffineTransform: Equatable, CustomDebugStringConvertible {
     )
 
     public func inverted() -> AffineTransform? {
-        let determinant = linearTransform.x * linearTransform.w - linearTransform.y * linearTransform.z
+        let determinant =
+            linearTransform.x * linearTransform.w - linearTransform.y * linearTransform.z
         if determinant == 0.0 {
             return nil
         }

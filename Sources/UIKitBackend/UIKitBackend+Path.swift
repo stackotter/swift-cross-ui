@@ -78,16 +78,7 @@ extension UIKitBackend {
                             clockwise: clockwise
                         )
                     case .transform(let transform):
-                        path.apply(
-                            CGAffineTransform(
-                                a: transform.linearTransform.x,
-                                b: transform.linearTransform.y,
-                                c: transform.linearTransform.z,
-                                d: transform.linearTransform.w,
-                                tx: transform.translation.x,
-                                ty: transform.translation.y
-                            )
-                        )
+                        path.apply(CGAffineTransform(transform))
                 }
             }
         }
@@ -100,5 +91,27 @@ extension UIKitBackend {
         maskLayer.fillRule = path.usesEvenOddFillRule ? .evenOdd : .nonZero
         container.view.layer.mask = maskLayer
         container.view.backgroundColor = environment.suggestedForegroundColor.uiColor
+    }
+}
+
+extension CGAffineTransform {
+    public init(_ transform: AffineTransform) {
+        self.init(
+            a: transform.linearTransform.x,
+            b: transform.linearTransform.z,
+            c: transform.linearTransform.y,
+            d: transform.linearTransform.w,
+            tx: transform.translation.x,
+            ty: transform.translation.y
+        )
+    }
+}
+
+extension AffineTransform {
+    public init(cg transform: CGAffineTransform) {
+        self.init(
+            linearTransform: SIMD4(x: transform.a, y: transform.c, z: transform.b, w: transform.d),
+            translation: SIMD2(x: transform.tx, y: transform.ty)
+        )
     }
 }
