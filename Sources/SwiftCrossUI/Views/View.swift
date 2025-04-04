@@ -76,7 +76,7 @@ extension View {
 
     /// The default `View.children` implementation. Haters may see this as a
     /// composition lover re-implementing inheritance; I see it as innovation.
-    func defaultChildren<Backend: AppBackend>(
+    public func defaultChildren<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
@@ -94,7 +94,7 @@ extension View {
     /// The default `View.layoutableChildren` implementation. Haters may see
     /// this as a composition lover re-implementing inheritance; I see it as
     /// innovation.
-    func defaultLayoutableChildren<Backend: AppBackend>(
+    public func defaultLayoutableChildren<Backend: AppBackend>(
         backend: Backend,
         children: any ViewGraphNodeChildren
     ) -> [LayoutSystem.LayoutableChild] {
@@ -110,7 +110,7 @@ extension View {
 
     /// The default `View.asWidget` implementation. Haters may see this as a
     /// composition lover re-implementing inheritance; I see it as innovation.
-    func defaultAsWidget<Backend: AppBackend>(
+    public func defaultAsWidget<Backend: AppBackend>(
         _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget {
@@ -138,7 +138,7 @@ extension View {
 
     /// The default `View.update` implementation. Haters may see this as a
     /// composition lover re-implementing inheritance; I see it as innovation.
-    func defaultUpdate<Backend: AppBackend>(
+    public func defaultUpdate<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
