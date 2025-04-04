@@ -20,11 +20,15 @@ public enum StrokeJoin {
 }
 
 public struct StrokeStyle {
-    public var width: Double = 1.0
-    public var cap: StrokeCap = .butt
-    public var join: StrokeJoin = .miter(limit: 10.0)
+    public var width: Double
+    public var cap: StrokeCap
+    public var join: StrokeJoin
 
-    public static let none = StrokeStyle(width: 0.0)
+    public init(width: Double, cap: StrokeCap = .butt, join: StrokeJoin = .miter(limit: 10.0)) {
+        self.width = width
+        self.cap = cap
+        self.join = join
+    }
 }
 
 /// An enum describing how a path is shaded.
@@ -181,6 +185,8 @@ public struct Path {
         public var width: Double { size.x }
         public var height: Double { size.y }
 
+        public var center: SIMD2<Double> { size * 0.5 + origin }
+
         public init(x: Double, y: Double, width: Double, height: Double) {
             origin = SIMD2(x: x, y: y)
             size = SIMD2(x: width, y: height)
@@ -203,7 +209,7 @@ public struct Path {
             clockwise: Bool
         )
         case transform(AffineTransform)
-        //        case subpath([Action], FillRule)
+        case subpath([Action], FillRule)
     }
 
     /// A list of every action that has been performed on this path.
@@ -214,7 +220,7 @@ public struct Path {
     /// to each action.
     public private(set) var actions: [Action] = []
     public private(set) var fillRule: FillRule = .evenOdd
-    public private(set) var strokeStyle: StrokeStyle = .none
+    public private(set) var strokeStyle = StrokeStyle(width: 1.0)
 
     public init() {}
 
@@ -274,8 +280,13 @@ public struct Path {
         return self
     }
 
-    public consuming func transform(_ transform: AffineTransform) -> Path {
+    public consuming func applyTransform(_ transform: AffineTransform) -> Path {
         actions.append(.transform(transform))
+        return self
+    }
+
+    public consuming func addSubpath(_ subpath: Path) -> Path {
+        actions.append(.subpath(subpath.actions, subpath.fillRule))
         return self
     }
 

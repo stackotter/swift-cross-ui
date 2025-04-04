@@ -544,8 +544,16 @@ public protocol AppBackend {
     ///   - path: The path to be rendered.
     ///   - container: The container widget that the path will render in. It has no other
     ///     children.
-    ///   - environment: The environment values, including color.
-    func renderPath(_ path: Path, container: Widget, environment: EnvironmentValues)
+    ///   - strokeColor: The color to draw the path's stroke.
+    ///   - fillColor: The color to shade the path's fill.
+    ///   - overrideStrokeStyle: If present, a value to override the path's stroke style.
+    func renderPath(
+        _ path: Path,
+        container: Widget,
+        strokeColor: Color,
+        fillColor: Color,
+        overrideStrokeStyle: StrokeStyle?
+    )
 }
 
 extension AppBackend {
@@ -870,7 +878,13 @@ extension AppBackend {
     func updatePath(_ path: Path, _ source: SwiftCrossUI.Path, pointsChanged: Bool) {
         todo()
     }
-    func renderPath(_ path: Path, container: Widget, environment: EnvironmentValues) {
+    func renderPath(
+        _ path: Path,
+        container: Widget,
+        strokeColor: Color,
+        fillColor: Color,
+        overrideStrokeStyle: StrokeStyle?
+    ) {
         todo()
     }
 }
