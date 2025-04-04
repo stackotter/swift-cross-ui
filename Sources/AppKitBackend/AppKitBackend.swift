@@ -615,7 +615,10 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func createTextField() -> Widget {
-        let field = NSObservableTextField()
+        // Using the `(string:)` initializer ensures that the TextField scrolls
+        // smoothly on horizontal overflow instead of jumping a full width at a
+        // time.
+        let field = NSObservableTextField(string: "")
         return field
     }
 
