@@ -66,7 +66,26 @@ public final class WinUIBackend: AppBackend {
         internalState = InternalState()
     }
 
+    struct Error: LocalizedError {
+        var message: String
+
+        var errorDescription: String? {
+            message
+        }
+    }
+
     public func runMainLoop(_ callback: @escaping () -> Void) {
+        do {
+            try Self.attachToParentConsole()
+        } catch {
+            // We essentially just ignore if this fails because it's just a QoL
+            // debugging feature, and if it fails then any warning we print likely
+            // won't get seen anyway. But I don't trust my Windows knowledge enough
+            // to assert that it's impossible to view logs on failure, so let's
+            // print a warning anyway.
+            print("Warning: Failed to attach to parent console: \(error.localizedDescription)")
+        }
+
         WinUIApplication.callback = { application in
             // Toggle Switch has annoying default 'internal margins' (not Control
             // margins that we can set directly) that we can luckily get rid of by
