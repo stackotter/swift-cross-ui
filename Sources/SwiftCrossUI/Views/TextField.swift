@@ -6,9 +6,21 @@ public struct TextField: ElementaryView, View {
     private var value: Binding<String>?
 
     /// Creates an editable text field with a given placeholder.
+    public init(_ placeholder: String = "", text: Binding<String>) {
+        self.placeholder = placeholder
+        self.value = text
+    }
+
+    /// Creates an editable text field with a given placeholder.
+    @available(
+        *, deprecated,
+        message: "Use TextField(_:text:) instead",
+        renamed: "TextField.init(_:text:)"
+    )
     public init(_ placeholder: String = "", _ value: Binding<String>? = nil) {
         self.placeholder = placeholder
-        self.value = value
+        var dummy = ""
+        self.value = value ?? Binding(get: { dummy }, set: { dummy = $0 })
     }
 
     public func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
