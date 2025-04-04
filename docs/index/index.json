@@ -347,6 +347,26 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/button\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/button\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/button\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/button\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/button\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -675,6 +695,26 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/color\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/color\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/color\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/color\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/color\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -867,6 +907,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreach\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -1074,6 +1134,26 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/hstack\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -1278,6 +1358,26 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/image\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/image\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/image\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/image\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/image\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -1465,6 +1565,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/navigationlink\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -1749,6 +1869,26 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -1948,6 +2088,26 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/navigationstack\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -2143,6 +2303,26 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/picker\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/picker\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/picker\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/picker\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/picker\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -2335,6 +2515,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/scrollview\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -2538,6 +2738,26 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/slider\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/slider\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/slider\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/slider\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/slider\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -2733,6 +2953,26 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/spacer\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -2920,6 +3160,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/table\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -3153,6 +3413,26 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/text\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/text\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/text\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/text\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/text\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -3345,6 +3625,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/textfield\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -3544,6 +3844,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/toggle\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -3754,6 +4074,26 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/view\/cornerradius(_:)",
                 "title" : "func cornerRadius(Int) -> some View",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/view\/defaultaswidget(_:backend:)",
+                "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/view\/defaultchildren(backend:snapshots:environment:)",
+                "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/view\/defaultlayoutablechildren(backend:children:)",
+                "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/view\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                 "type" : "method"
               },
               {
@@ -3984,6 +4324,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/vstack\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -4501,6 +4861,26 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/eitherview\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -4717,6 +5097,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/emptyview\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyview\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyview\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyview\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyview\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -4948,6 +5348,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalview\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -7285,6 +7705,26 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/anyview\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/anyview\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/anyview\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/anyview\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/anyview\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -7667,6 +8107,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/divider\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/divider\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/divider\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/divider\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/divider\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -8191,6 +8651,26 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/group\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/group\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/group\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/group\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/group\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -8383,6 +8863,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -8587,6 +9087,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/menu\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/menu\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/menu\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/menu\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/menu\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -9031,6 +9551,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/progressview\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/progressview\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/progressview\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/progressview\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/progressview\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -10646,6 +11186,26 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview1\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview1\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview1\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview1\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview1\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -10895,6 +11455,26 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview10\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview10\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview10\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview10\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview10\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -11101,6 +11681,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview2\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview2\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview2\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview2\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview2\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -11315,6 +11915,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview3\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview3\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview3\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview3\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview3\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -11534,6 +12154,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview4\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview4\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview4\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview4\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview4\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -11758,6 +12398,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview5\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview5\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview5\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview5\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview5\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -11987,6 +12647,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview6\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview6\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview6\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview6\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview6\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -12221,6 +12901,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview7\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview7\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview7\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview7\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview7\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -12460,6 +13160,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview8\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview8\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview8\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview8\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview8\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -12704,6 +13424,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview9\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview9\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview9\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview9\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview9\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -14002,6 +14742,26 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/zstack\/cornerradius(_:)",
                     "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/zstack\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/zstack\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/zstack\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/zstack\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
                   },
                   {
@@ -15467,6 +16227,26 @@
                       {
                         "path" : "\/documentation\/swiftcrossui\/swift\/never\/cornerradius(_:)",
                         "title" : "func cornerRadius(Int) -> some View",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/defaultaswidget(_:backend:)",
+                        "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/defaultchildren(backend:snapshots:environment:)",
+                        "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/defaultlayoutablechildren(backend:children:)",
+                        "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                        "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                         "type" : "method"
                       },
                       {
