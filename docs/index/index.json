@@ -8404,7 +8404,7 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/environmentvalues\/windowscalefactor",
-                "title" : "var windowScaleFactor: Int",
+                "title" : "var windowScaleFactor: Double",
                 "type" : "property"
               },
               {
