@@ -162,7 +162,7 @@ class _ImageChildren: ViewGraphNodeChildren {
     var imageWidget: AnyWidget
     var imageChanged = false
     var isContainerEmpty = true
-    var lastScaleFactor = 1
+    var lastScaleFactor: Double = 1
 
     init<Backend: AppBackend>(backend: Backend) {
         container = AnyWidget(backend.createContainer())

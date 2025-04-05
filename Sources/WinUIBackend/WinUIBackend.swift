@@ -5,6 +5,7 @@ import UWP
 import WinAppSDK
 import WinUI
 import WindowsFoundation
+import WinSDK
 
 // Many force tries are required for the WinUI backend but we don't really want them
 // anywhere else so just disable them for this file.
@@ -85,6 +86,9 @@ public final class WinUIBackend: AppBackend {
             // print a warning anyway.
             print("Warning: Failed to attach to parent console: \(error.localizedDescription)")
         }
+        
+        // Ensure that the app's windows adapt to DPI changes at runtime
+        SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2)
 
         WinUIApplication.callback = { application in
             // Toggle Switch has annoying default 'internal margins' (not Control
@@ -112,7 +116,7 @@ public final class WinUIBackend: AppBackend {
         WinUIApplication.main()
     }
 
-    public func createWindow(withDefaultSize size: SIMD2<Int>?) -> Window {
+    public func createWindow(withDefaultSize size: SIMD2<Int>?) -> Window {        
         let window = CustomWindow()
         windows.append(window)
         window.closed.addHandler { _, _ in
@@ -177,9 +181,12 @@ public final class WinUIBackend: AppBackend {
     }
 
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
+        let scaleFactor = window.scaleFactor
+        let width = scaleFactor * Double(newSize.x)
+        let height = scaleFactor * Double(newSize.y + CustomWindow.menuBarHeight)
         let size = UWP.SizeInt32(
-            width: Int32(newSize.x),
-            height: Int32(newSize.y + CustomWindow.menuBarHeight)
+            width: Int32(width.rounded(.towardZero)),
+            height: Int32(height.rounded(.towardZero))
         )
         try! window.appWindow.resizeClient(size)
     }
@@ -304,8 +311,9 @@ public final class WinUIBackend: AppBackend {
     public func computeWindowEnvironment(
         window: Window,
         rootEnvironment: EnvironmentValues
-    ) -> EnvironmentValues {
-        // TODO: Record window scale factor in here
+    ) -> EnvironmentValues {        
+        // TODO: Compute window scale factor (easy enough, but we would also have to keep
+        //   it up-to-date then, which is kinda annoying for now)
         rootEnvironment
     }
 
@@ -990,49 +998,49 @@ public final class WinUIBackend: AppBackend {
         }
     }
 
-    // public func showOpenDialog(
-    //     fileDialogOptions: FileDialogOptions,
-    //     openDialogOptions: OpenDialogOptions,
-    //     window: Window?,
-    //     resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
-    // ) {
-    //     let picker = FileOpenPicker()
-    //     // TODO: Associate the picker with a window. Requires some janky WinUI
-    //     //   Win32 interop kinda stuff I believe.
-    //     if openDialogOptions.allowMultipleSelections {
-    //         let promise = try! picker.pickMultipleFilesAsync()!
-    //         promise.completed = { operation, status in
-    //             guard
-    //                 status == .completed,
-    //                 let operation,
-    //                 let result = try? operation.getResults()
-    //             else {
-    //                 return
-    //             }
-    //             print(result)
-    //         }
-    //     } else {
-    //         let promise = try! picker.pickSingleFileAsync()!
-    //         promise.completed = { operation, status in
-    //             guard
-    //                 status == .completed,
-    //                 let operation,
-    //                 let result = try? operation.getResults()
-    //             else {
-    //                 return
-    //             }
-    //             print(result)
-    //         }
-    //     }
-    // }
+    public func showOpenDialog(
+        fileDialogOptions: FileDialogOptions,
+        openDialogOptions: OpenDialogOptions,
+        window: Window?,
+        resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
+    ) {
+        let picker = FileOpenPicker()
+        // TODO: Associate the picker with a window. Requires some janky WinUI
+        //   Win32 interop kinda stuff I believe.
+        if openDialogOptions.allowMultipleSelections {
+            let promise = try! picker.pickMultipleFilesAsync()!
+            promise.completed = { operation, status in
+                guard
+                    status == .completed,
+                    let operation,
+                    let result = try? operation.getResults()
+                else {
+                    return
+                }
+                print(result)
+            }
+        } else {
+            let promise = try! picker.pickSingleFileAsync()!
+            promise.completed = { operation, status in
+                guard
+                    status == .completed,
+                    let operation,
+                    let result = try? operation.getResults()
+                else {
+                    return
+                }
+                print(result)
+            }
+        }
+    }
 
-    // public func showSaveDialog(
-    //     fileDialogOptions: FileDialogOptions,
-    //     saveDialogOptions: SaveDialogOptions,
-    //     window: Window?,
-    //     resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
-    // ) {
-    // }
+    public func showSaveDialog(
+        fileDialogOptions: FileDialogOptions,
+        saveDialogOptions: SaveDialogOptions,
+        window: Window?,
+        resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
+    ) {
+    }
 
     public func createTapGestureTarget(wrapping child: Widget, gesture: TapGesture) -> Widget {
         if gesture != .primary {
@@ -1215,6 +1223,34 @@ public class CustomWindow: WinUI.Window {
     var menuBar = WinUI.MenuBar()
     var child: WinUIBackend.Widget?
     var grid: WinUI.Grid
+    var cachedAppWindow: WinAppSDK.AppWindow!
+
+    var scaleFactor: Double {
+        // I'm leaving this code here for future travellers. Be warned that this always
+        // seems to return 100% even if the scale factor is set to 125% in settings.
+        // Perhaps it's only the device's built-in default scaling? But that seems pretty
+        // useless, and isn't what the docs seem to imply.
+        //
+        //   var deviceScaleFactor = SCALE_125_PERCENT
+        //   _ = GetScaleFactorForMonitor(monitor, &deviceScaleFactor)
+
+        let hwnd = cachedAppWindow.getHWND()!
+        let monitor = MonitorFromWindow(hwnd, DWORD(bitPattern: MONITOR_DEFAULTTONEAREST))!
+
+        var x: UINT = 0
+        var y: UINT = 0
+        let result = GetDpiForMonitor(monitor, MDT_EFFECTIVE_DPI, &x, &y);
+
+        let windowScaleFactor: Double
+        if result == S_OK {
+            windowScaleFactor = Double(x) / Double(USER_DEFAULT_SCREEN_DPI)
+        } else {
+            print("Warning: Failed to get window scale factor, defaulting to 1.0")
+            windowScaleFactor = 1
+        }
+        
+        return windowScaleFactor
+    }
 
     public override init() {
         grid = WinUI.Grid()
@@ -1232,6 +1268,10 @@ public class CustomWindow: WinUI.Window {
         grid.children.append(menuBar)
         WinUI.Grid.setRow(menuBar, 0)
         self.content = grid
+
+        // Caching appWindow is apparently a good idea in terms of performance:
+        // https://github.com/thebrowsercompany/swift-winrt/issues/199#issuecomment-2611006020
+        cachedAppWindow = appWindow
     }
 
     public func setChild(_ child: WinUIBackend.Widget) {

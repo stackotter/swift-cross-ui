@@ -279,7 +279,7 @@ public final class Gtk3Backend: AppBackend {
         rootEnvironment: EnvironmentValues
     ) -> EnvironmentValues {
         let windowScaleFactor = Int(gtk_widget_get_scale_factor(window.widgetPointer))
-        return rootEnvironment.with(\.windowScaleFactor, windowScaleFactor)
+        return rootEnvironment.with(\.windowScaleFactor, Double(windowScaleFactor))
     }
 
     public func setWindowEnvironmentChangeHandler(

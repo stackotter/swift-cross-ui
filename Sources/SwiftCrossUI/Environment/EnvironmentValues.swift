@@ -36,7 +36,7 @@ public struct EnvironmentValues {
     public var onSubmit: (() -> Void)?
 
     /// The scale factor of the current window.
-    public var windowScaleFactor: Int
+    public var windowScaleFactor: Double
 
     /// Called by view graph nodes when they resize due to an internal state
     /// change and end up changing size. Each view graph node sets its own
@@ -69,7 +69,7 @@ public struct EnvironmentValues {
     /// The backend's representation of the window that the current view is
     /// in, if any. This is a very internal detail that should never get
     /// exposed to users.
-    var window: Any?
+    package var window: Any?
     /// The backend in use. Mustn't change throughout the app's lifecycle.
     let backend: any AppBackend
 
