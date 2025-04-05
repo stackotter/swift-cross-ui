@@ -132,7 +132,8 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/init(_:_:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/init(_:_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/init(_:text:)"
       ],
       "title" : "Initializers"
     },
@@ -895,6 +896,7 @@
       "type" : "text"
     }
   ],
+  "deprecated" : true,
   "fragments" : [
     {
       "kind" : "identifier",
@@ -938,6 +940,65 @@
   "title" : "init(_:_:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/textfield\/init(_:_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/init(_:text:)": {
+  "abstract" : [
+    {
+      "text" : "Creates an editable text field with a given placeholder.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "text"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI7BindingC",
+      "text" : "Binding"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ">)"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/init(_:text:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init(_:text:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/textfield\/init(_:text:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField/update(_:proposedSize:environment:backend:dryRun:)": {
   "abstract" : [

@@ -3569,6 +3569,11 @@
                 "type" : "init"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/textfield\/init(_:text:)",
+                "title" : "init(String, text: Binding<String>)",
+                "type" : "init"
+              },
+              {
                 "title" : "Instance Methods",
                 "type" : "groupMarker"
               },
