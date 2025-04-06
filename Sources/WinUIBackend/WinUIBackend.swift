@@ -6,6 +6,7 @@ import WinAppSDK
 import WinUI
 import WindowsFoundation
 import WinSDK
+import WinUIInterop
 
 // Many force tries are required for the WinUI backend but we don't really want them
 // anywhere else so just disable them for this file.
@@ -1005,8 +1006,14 @@ public final class WinUIBackend: AppBackend {
         resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
     ) {
         let picker = FileOpenPicker()
-        // TODO: Associate the picker with a window. Requires some janky WinUI
-        //   Win32 interop kinda stuff I believe.
+        
+        let window = window ?? windows[0]
+        let hwnd = window.getHWND()!
+        let interface: SwiftIInitializeWithWindow = try! picker.thisPtr.QueryInterface()
+        try! interface.initialize(with: hwnd)
+
+        picker.fileTypeFilter.append("*")
+
         if openDialogOptions.allowMultipleSelections {
             let promise = try! picker.pickMultipleFilesAsync()!
             promise.completed = { operation, status in
@@ -1015,9 +1022,14 @@ public final class WinUIBackend: AppBackend {
                     let operation,
                     let result = try? operation.getResults()
                 else {
+                    handleResult(.cancelled)
                     return
                 }
-                print(result)
+                
+                let files = Array(result).compactMap { $0 }
+                    .map(\.path)
+                    .map(URL.init(fileURLWithPath:))
+                handleResult(.success(files))
             }
         } else {
             let promise = try! picker.pickSingleFileAsync()!
@@ -1027,9 +1039,12 @@ public final class WinUIBackend: AppBackend {
                     let operation,
                     let result = try? operation.getResults()
                 else {
+                    handleResult(.cancelled)
                     return
                 }
-                print(result)
+                
+                let file = URL(fileURLWithPath: result.path)
+                handleResult(.success([file]))
             }
         }
     }
@@ -1040,6 +1055,28 @@ public final class WinUIBackend: AppBackend {
         window: Window?,
         resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
     ) {
+        let picker = FileSavePicker()
+
+        let window = window ?? windows[0]
+        let hwnd = window.getHWND()!
+        let interface: SwiftIInitializeWithWindow = try! picker.thisPtr.QueryInterface()
+        try! interface.initialize(with: hwnd)
+        
+        _ = picker.fileTypeChoices.insert("Text", [".txt"].toVector())
+        let promise = try! picker.pickSaveFileAsync()!
+        promise.completed = { operation, status in
+            guard
+                status == .completed,
+                let operation,
+                let result = try? operation.getResults()
+            else {
+                handleResult(.cancelled)
+                return
+            }
+            
+            let file = URL(fileURLWithPath: result.path)
+            handleResult(.success(file))
+        }
     }
 
     public func createTapGestureTarget(wrapping child: Widget, gesture: TapGesture) -> Widget {
@@ -1213,6 +1250,23 @@ final class CustomSplitView: SplitView {
 final class TapGestureTarget: WinUI.Canvas {
     var clickHandler: (() -> Void)?
     var child: WinUI.FrameworkElement?
+}
+
+class SwiftIInitializeWithWindow: WindowsFoundation.IUnknown {
+    override class var IID: WindowsFoundation.IID {
+        WindowsFoundation.IID(
+            Data1: 0x3E68D4BD,
+            Data2: 0x7135,
+            Data3: 0x4D10,
+            Data4: (0x80, 0x18, 0x9F, 0xB6, 0xD9, 0xF3, 0x3F, 0xA1)
+        )
+    }
+    
+    func initialize(with hwnd: HWND) throws {
+        _ = try perform(as: IInitializeWithWindow.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Initialize(pThis, hwnd))
+        }
+    }
 }
 
 public class CustomWindow: WinUI.Window {
