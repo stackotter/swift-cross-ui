@@ -449,6 +449,15 @@ public final class WinUIBackend: AppBackend {
                 // The default minimum picker height is 32 pixels
                 max(Int(labelSize.height) + 12, 32)
             )
+        } else if let spinner = widget as? ProgressRing {
+            // ProgressRing appears to kind of grow to fill by default, but
+            // SwiftCrossUI expects progress spinners to be fixed size, which
+            // results in WinUI progress rings getting given astronomically
+            // large fixed dimensions and causing crashes. To work around that,
+            // we just override their 'natural size' to 32x32, which is based off
+            // the defaults set in the following code from the WinUI repository:
+            // https://github.com/marcelwgn/microsoft-ui-xaml/blob/ff21f9b212cea2191b959649e45e52486c8465aa/src/controls/dev/ProgressRing/ProgressRing.xaml#L12 
+            return SIMD2(32, 32)
         }
 
         let oldWidth = widget.width
@@ -1115,6 +1124,32 @@ public final class WinUIBackend: AppBackend {
         tapGestureTarget.clickHandler = action
         tapGestureTarget.width = tapGestureTarget.child!.width
         tapGestureTarget.height = tapGestureTarget.child!.height
+    }
+
+    public func createProgressSpinner() -> Widget {
+        let spinner = ProgressRing()
+        spinner.isIndeterminate = true
+        return spinner
+    }
+
+    public func createProgressBar() -> Widget {
+        let progressBar = ProgressBar()
+        progressBar.maximum = 10_000
+        return progressBar
+    }
+
+    public func updateProgressBar(
+        _ widget: Widget,
+        progressFraction: Double?,
+        environment: EnvironmentValues
+    ) {
+        let progressBar = widget as! ProgressBar
+        if let progressFraction = progressFraction {
+            progressBar.isIndeterminate = false
+            progressBar.value = progressBar.maximum * progressFraction
+        } else {
+            progressBar.isIndeterminate = true
+        }
     }
 
     // public func createTable(rows: Int, columns: Int) -> Widget {
