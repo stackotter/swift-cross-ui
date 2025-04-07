@@ -82,11 +82,11 @@ let package = Package(
             from: "0.17.1"
         ),
         .package(
-            url: "https://github.com/apple/swift-docc-plugin",
+            url: "https://github.com/swiftlang/swift-docc-plugin",
             from: "1.0.0"
         ),
         .package(
-            url: "https://github.com/apple/swift-syntax.git",
+            url: "https://github.com/swiftlang/swift-syntax.git",
             from: "600.0.0"
         ),
         .package(
