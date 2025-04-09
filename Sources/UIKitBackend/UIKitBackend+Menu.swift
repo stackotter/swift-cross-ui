@@ -10,6 +10,7 @@ extension UIKitBackend {
         return Menu()
     }
 
+    @available(tvOS 14, *)
     static func buildMenu(
         content: ResolvedMenu,
         label: String,
@@ -34,7 +35,11 @@ extension UIKitBackend {
     public func updatePopoverMenu(
         _ menu: Menu, content: ResolvedMenu, environment _: EnvironmentValues
     ) {
-        menu.uiMenu = UIKitBackend.buildMenu(content: content, label: "")
+        if #available(iOS 14, macCatalyst 14, tvOS 17, *) {
+            menu.uiMenu = UIKitBackend.buildMenu(content: content, label: "")
+        } else {
+            preconditionFailure("Current OS is too old to support menu buttons.")
+        }
     }
 
     public func updateButton(

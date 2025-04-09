@@ -273,7 +273,7 @@ class BaseControllerWidget: UIViewController, WidgetProtocolHelpers {
                 at: parentWidget.childWidgets.firstIndex { $0 === self }!)
             self.parentWidget = nil
         }
-        if let parent {
+        if parent != nil {
             willMove(toParent: nil)
             removeFromParent()
         }
