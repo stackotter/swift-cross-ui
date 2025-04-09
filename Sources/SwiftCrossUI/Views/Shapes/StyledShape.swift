@@ -11,7 +11,9 @@ struct StyledShapeImpl<Base: Shape>: StyledShape {
     var strokeStyle: StrokeStyle?
 
     init(
-        base: Base, strokeColor: Color? = nil, fillColor: Color? = nil,
+        base: Base,
+        strokeColor: Color? = nil,
+        fillColor: Color? = nil,
         strokeStyle: StrokeStyle? = nil
     ) {
         self.base = base
@@ -48,8 +50,12 @@ extension Shape {
 
 extension StyledShape {
     public func update<Backend: AppBackend>(
-        _ widget: Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>,
-        environment: EnvironmentValues, backend: Backend, dryRun: Bool
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        proposedSize: SIMD2<Int>,
+        environment: EnvironmentValues,
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let storage = children as! ShapeStorage
         let size = size(fitting: proposedSize)

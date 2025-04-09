@@ -171,6 +171,9 @@ public struct AffineTransform: Equatable, CustomDebugStringConvertible {
 }
 
 public struct Path {
+    /// A rectangle in 2-D space.
+    ///
+    /// This type is inspired by `CGRect`.
     public struct Rect: Equatable {
         public var origin: SIMD2<Double>
         public var size: SIMD2<Double>
@@ -186,6 +189,8 @@ public struct Path {
         public var height: Double { size.y }
 
         public var center: SIMD2<Double> { size * 0.5 + origin }
+        public var maxX: Double { size.x + origin.x }
+        public var maxY: Double { size.y + origin.y }
 
         public init(x: Double, y: Double, width: Double, height: Double) {
             origin = SIMD2(x: x, y: y)
@@ -209,7 +214,6 @@ public struct Path {
             clockwise: Bool
         )
         case transform(AffineTransform)
-        case subpath([Action], FillRule)
     }
 
     /// A list of every action that has been performed on this path.
@@ -286,10 +290,14 @@ public struct Path {
     }
 
     public consuming func addSubpath(_ subpath: Path) -> Path {
-        actions.append(.subpath(subpath.actions, subpath.fillRule))
+        actions.append(contentsOf: subpath.actions)
         return self
     }
 
+    /// Set the default stroke style for the path.
+    ///
+    /// This is not necessarily respected; it can be overridden by ``Shape/stroke(_:style:)``,
+    /// and is lost when the path is passed to ``addSubpath(_:)``.
     public consuming func stroke(style: StrokeStyle) -> Path {
         strokeStyle = style
         return self
@@ -298,5 +306,20 @@ public struct Path {
     public consuming func fillRule(_ rule: FillRule) -> Path {
         fillRule = rule
         return self
+    }
+}
+
+extension Path {
+    @inlinable
+    public consuming func `if`(
+        _ condition: Bool,
+        then ifTrue: (consuming Path) -> Path,
+        else ifFalse: (consuming Path) -> Path = { $0 }
+    ) -> Path {
+        if condition {
+            ifTrue(self)
+        } else {
+            ifFalse(self)
+        }
     }
 }

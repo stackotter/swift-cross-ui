@@ -1,6 +1,7 @@
 public protocol Shape: View
 where Content == EmptyView {
     /// Draw the path for this shape.
+    ///
     func path(in bounds: Path.Rect) -> Path
     /// Determine the ideal size of this shape given the proposed bounds.
     ///
@@ -49,8 +50,12 @@ extension Shape {
     }
 
     public func update<Backend: AppBackend>(
-        _ widget: Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>,
-        environment: EnvironmentValues, backend: Backend, dryRun: Bool
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        proposedSize: SIMD2<Int>,
+        environment: EnvironmentValues,
+        backend: Backend,
+        dryRun: Bool
     ) -> ViewUpdateResult {
         let storage = children as! ShapeStorage
         let size = size(fitting: proposedSize)

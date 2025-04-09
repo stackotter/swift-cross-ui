@@ -40,63 +40,53 @@ extension UIKitBackend {
         if pointsChanged {
             path.removeAllPoints()
 
-            applyActions(source.actions, to: path)
-        }
-    }
-
-    func applyActions(_ actions: [SwiftCrossUI.Path.Action], to path: UIBezierPath) {
-        for action in actions {
-            switch action {
-                case .moveTo(let point):
-                    path.move(to: CGPoint(x: point.x, y: point.y))
-                case .lineTo(let point):
-                    path.addLine(to: CGPoint(x: point.x, y: point.y))
-                case .quadCurve(let control, let end):
-                    path.addQuadCurve(
-                        to: CGPoint(x: end.x, y: end.y),
-                        controlPoint: CGPoint(x: control.x, y: control.y)
-                    )
-                case .cubicCurve(let control1, let control2, let end):
-                    path.addCurve(
-                        to: CGPoint(x: end.x, y: end.y),
-                        controlPoint1: CGPoint(x: control1.x, y: control1.y),
-                        controlPoint2: CGPoint(x: control2.x, y: control2.y)
-                    )
-                case .rectangle(let rect):
-                    let cgPath: CGMutablePath = path.cgPath.mutableCopy()!
-                    cgPath.addRect(
-                        CGRect(x: rect.x, y: rect.y, width: rect.width, height: rect.height)
-                    )
-                    path.cgPath = cgPath
-                case .circle(let center, let radius):
-                    let cgPath: CGMutablePath = path.cgPath.mutableCopy()!
-                    cgPath.addEllipse(
-                        in: CGRect(
-                            x: center.x - radius,
-                            y: center.y - radius,
-                            width: radius * 2.0,
-                            height: radius * 2.0
+            for action in source.actions {
+                switch action {
+                    case .moveTo(let point):
+                        path.move(to: CGPoint(x: point.x, y: point.y))
+                    case .lineTo(let point):
+                        path.addLine(to: CGPoint(x: point.x, y: point.y))
+                    case .quadCurve(let control, let end):
+                        path.addQuadCurve(
+                            to: CGPoint(x: end.x, y: end.y),
+                            controlPoint: CGPoint(x: control.x, y: control.y)
                         )
-                    )
-                    path.cgPath = cgPath
-                case .arc(let center, let radius, let startAngle, let endAngle, let clockwise):
-                    path.addArc(
-                        withCenter: CGPoint(x: center.x, y: center.y),
-                        radius: CGFloat(radius),
-                        startAngle: CGFloat(startAngle),
-                        endAngle: CGFloat(endAngle),
-                        clockwise: clockwise
-                    )
-                case .transform(let transform):
-                    path.apply(CGAffineTransform(transform))
-                case .subpath(let actions, let fillRule):
-                    let subpath = UIBezierPath()
-                    subpath.usesEvenOddFillRule = (fillRule == .evenOdd)
-                    applyActions(actions, to: subpath)
-                    path.append(subpath)
+                    case .cubicCurve(let control1, let control2, let end):
+                        path.addCurve(
+                            to: CGPoint(x: end.x, y: end.y),
+                            controlPoint1: CGPoint(x: control1.x, y: control1.y),
+                            controlPoint2: CGPoint(x: control2.x, y: control2.y)
+                        )
+                    case .rectangle(let rect):
+                        let cgPath: CGMutablePath = path.cgPath.mutableCopy()!
+                        cgPath.addRect(
+                            CGRect(x: rect.x, y: rect.y, width: rect.width, height: rect.height)
+                        )
+                        path.cgPath = cgPath
+                    case .circle(let center, let radius):
+                        let cgPath: CGMutablePath = path.cgPath.mutableCopy()!
+                        cgPath.addEllipse(
+                            in: CGRect(
+                                x: center.x - radius,
+                                y: center.y - radius,
+                                width: radius * 2.0,
+                                height: radius * 2.0
+                            )
+                        )
+                        path.cgPath = cgPath
+                    case .arc(let center, let radius, let startAngle, let endAngle, let clockwise):
+                        path.addArc(
+                            withCenter: CGPoint(x: center.x, y: center.y),
+                            radius: CGFloat(radius),
+                            startAngle: CGFloat(startAngle),
+                            endAngle: CGFloat(endAngle),
+                            clockwise: clockwise
+                        )
+                    case .transform(let transform):
+                        path.apply(CGAffineTransform(transform))
+                }
             }
         }
-
     }
 
     public func renderPath(
