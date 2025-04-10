@@ -28,6 +28,15 @@
       }
     },
     {
+      "identity" : "flyingfox",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swhitty/FlyingFox",
+      "state" : {
+        "revision" : "3ad076e081749cef043e25ac01719a503b772113",
+        "version" : "0.22.0"
+      }
+    },
+    {
       "identity" : "jpeg",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/jpeg",
@@ -82,15 +91,6 @@
       }
     },
     {
-      "identity" : "socket",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stackotter/Socket",
-      "state" : {
-        "revision" : "9945adfb7b2b089b1f9963db31544f604d260293",
-        "version" : "0.3.3"
-      }
-    },
-    {
       "identity" : "spectre",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kylef/Spectre.git",
@@ -140,7 +140,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-bundler",
       "state" : {
-        "revision" : "7a3ee20eaeb3cf1aa1f0a9a056c01c9c4ccb6e2a"
+        "revision" : "d42d7ffda684cfed9edcfd3581b8127f1dc55c2e"
       }
     },
     {
