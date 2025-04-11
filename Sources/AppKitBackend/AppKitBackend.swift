@@ -1195,98 +1195,105 @@ public final class AppKitBackend: AppBackend {
 
         if pointsChanged {
             path.removeAllPoints()
+            applyActions(source.actions, to: path)
+        }
+    }
 
-            for action in source.actions {
-                switch action {
-                    case .moveTo(let point):
-                        path.move(to: NSPoint(x: point.x, y: point.y))
-                    case .lineTo(let point):
-                        if path.isEmpty {
-                            path.move(to: .zero)
-                        }
-                        path.line(to: NSPoint(x: point.x, y: point.y))
-                    case .quadCurve(let control, let end):
-                        if path.isEmpty {
-                            path.move(to: .zero)
-                        }
+    func applyActions(_ actions: [SwiftCrossUI.Path.Action], to path: NSBezierPath) {
+        for action in actions {
+            switch action {
+                case .moveTo(let point):
+                    path.move(to: NSPoint(x: point.x, y: point.y))
+                case .lineTo(let point):
+                    if path.isEmpty {
+                        path.move(to: .zero)
+                    }
+                    path.line(to: NSPoint(x: point.x, y: point.y))
+                case .quadCurve(let control, let end):
+                    if path.isEmpty {
+                        path.move(to: .zero)
+                    }
 
-                        if #available(macOS 14, *) {
-                            // Use the native quadratic curve function
-                            path.curve(
-                                to: NSPoint(x: end.x, y: end.y),
-                                controlPoint: NSPoint(x: control.x, y: control.y)
-                            )
-                        } else {
-                            let start = path.currentPoint
-                            // Build a cubic curve that follows the same path as the quadratic
-                            path.curve(
-                                to: NSPoint(x: end.x, y: end.y),
-                                controlPoint1: NSPoint(
-                                    x: (start.x + 2.0 * control.x) / 3.0,
-                                    y: (start.y + 2.0 * control.y) / 3.0
-                                ),
-                                controlPoint2: NSPoint(
-                                    x: (2.0 * control.x + end.x) / 3.0,
-                                    y: (2.0 * control.y + end.y) / 3.0
-                                )
-                            )
-                        }
-                    case .cubicCurve(let control1, let control2, let end):
-                        if path.isEmpty {
-                            path.move(to: .zero)
-                        }
-
+                    if #available(macOS 14, *) {
+                        // Use the native quadratic curve function
                         path.curve(
                             to: NSPoint(x: end.x, y: end.y),
-                            controlPoint1: NSPoint(x: control1.x, y: control1.y),
-                            controlPoint2: NSPoint(x: control2.x, y: control2.y)
+                            controlPoint: NSPoint(x: control.x, y: control.y)
                         )
-                    case .rectangle(let rect):
-                        path.appendRect(
-                            NSRect(
-                                origin: NSPoint(x: rect.x, y: rect.y),
-                                size: NSSize(
-                                    width: CGFloat(rect.width),
-                                    height: CGFloat(rect.height)
-                                )
+                    } else {
+                        let start = path.currentPoint
+                        // Build a cubic curve that follows the same path as the quadratic
+                        path.curve(
+                            to: NSPoint(x: end.x, y: end.y),
+                            controlPoint1: NSPoint(
+                                x: (start.x + 2.0 * control.x) / 3.0,
+                                y: (start.y + 2.0 * control.y) / 3.0
+                            ),
+                            controlPoint2: NSPoint(
+                                x: (2.0 * control.x + end.x) / 3.0,
+                                y: (2.0 * control.y + end.y) / 3.0
                             )
                         )
-                    case .circle(let center, let radius):
-                        path.appendOval(
-                            in: NSRect(
-                                origin: NSPoint(x: center.x - radius, y: center.y - radius),
-                                size: NSSize(
-                                    width: CGFloat(radius) * 2.0,
-                                    height: CGFloat(radius) * 2.0
-                                )
+                    }
+                case .cubicCurve(let control1, let control2, let end):
+                    if path.isEmpty {
+                        path.move(to: .zero)
+                    }
+
+                    path.curve(
+                        to: NSPoint(x: end.x, y: end.y),
+                        controlPoint1: NSPoint(x: control1.x, y: control1.y),
+                        controlPoint2: NSPoint(x: control2.x, y: control2.y)
+                    )
+                case .rectangle(let rect):
+                    path.appendRect(
+                        NSRect(
+                            origin: NSPoint(x: rect.x, y: rect.y),
+                            size: NSSize(
+                                width: CGFloat(rect.width),
+                                height: CGFloat(rect.height)
                             )
                         )
-                    case .arc(
-                        let center,
-                        let radius,
-                        let startAngle,
-                        let endAngle,
-                        let clockwise
-                    ):
-                        path.appendArc(
-                            withCenter: NSPoint(x: center.x, y: center.y),
-                            radius: CGFloat(radius),
-                            startAngle: CGFloat(startAngle),
-                            endAngle: CGFloat(endAngle),
-                            clockwise: clockwise
-                        )
-                    case .transform(let transform):
-                        path.transform(
-                            using: Foundation.AffineTransform(
-                                m11: CGFloat(transform.linearTransform.x),
-                                m12: CGFloat(transform.linearTransform.z),
-                                m21: CGFloat(transform.linearTransform.y),
-                                m22: CGFloat(transform.linearTransform.w),
-                                tX: CGFloat(transform.translation.x),
-                                tY: CGFloat(transform.translation.y)
+                    )
+                case .circle(let center, let radius):
+                    path.appendOval(
+                        in: NSRect(
+                            origin: NSPoint(x: center.x - radius, y: center.y - radius),
+                            size: NSSize(
+                                width: CGFloat(radius) * 2.0,
+                                height: CGFloat(radius) * 2.0
                             )
                         )
-                }
+                    )
+                case .arc(
+                    let center,
+                    let radius,
+                    let startAngle,
+                    let endAngle,
+                    let clockwise
+                ):
+                    path.appendArc(
+                        withCenter: NSPoint(x: center.x, y: center.y),
+                        radius: CGFloat(radius),
+                        startAngle: CGFloat(startAngle),
+                        endAngle: CGFloat(endAngle),
+                        clockwise: clockwise
+                    )
+                case .transform(let transform):
+                    path.transform(
+                        using: Foundation.AffineTransform(
+                            m11: CGFloat(transform.linearTransform.x),
+                            m12: CGFloat(transform.linearTransform.z),
+                            m21: CGFloat(transform.linearTransform.y),
+                            m22: CGFloat(transform.linearTransform.w),
+                            tX: CGFloat(transform.translation.x),
+                            tY: CGFloat(transform.translation.y)
+                        )
+                    )
+                case .subpath(let subpathActions):
+                    let subpath = NSBezierPath()
+                    applyActions(subpathActions, to: subpath)
+                    path.append(subpath)
             }
         }
     }

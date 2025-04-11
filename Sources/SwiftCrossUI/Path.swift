@@ -214,6 +214,7 @@ public struct Path {
             clockwise: Bool
         )
         case transform(AffineTransform)
+        case subpath([Action])
     }
 
     /// A list of every action that has been performed on this path.
@@ -290,7 +291,7 @@ public struct Path {
     }
 
     public consuming func addSubpath(_ subpath: Path) -> Path {
-        actions.append(contentsOf: subpath.actions)
+        actions.append(.subpath(subpath.actions))
         return self
     }
 

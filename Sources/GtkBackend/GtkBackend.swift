@@ -22,6 +22,7 @@ public final class GtkBackend: AppBackend {
     public typealias Widget = Gtk.Widget
     public typealias Menu = Gtk.PopoverMenu
     public typealias Alert = Gtk.MessageDialog
+    public typealias Path = Never
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
