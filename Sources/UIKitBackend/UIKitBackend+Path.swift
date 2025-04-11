@@ -1,8 +1,22 @@
 import SwiftCrossUI
 import UIKit
 
+final class PathWidget: BaseViewWidget {
+    let shapeLayer = CAShapeLayer()
+
+    override init() {
+        super.init()
+
+        layer.addSublayer(shapeLayer)
+    }
+}
+
 extension UIKitBackend {
     public typealias Path = UIBezierPath
+
+    public func createPathWidget() -> any WidgetProtocol {
+        BaseViewWidget()
+    }
 
     public func createPath() -> UIBezierPath {
         UIBezierPath()
@@ -100,7 +114,8 @@ extension UIKitBackend {
             applyStrokeStyle(overrideStrokeStyle, to: path)
         }
 
-        let shapeLayer = container.view.layer.sublayers?[0] as? CAShapeLayer ?? CAShapeLayer()
+        let widget = container as! PathWidget
+        let shapeLayer = widget.shapeLayer
 
         shapeLayer.path = path.cgPath
         shapeLayer.lineWidth = path.lineWidth
@@ -129,10 +144,6 @@ extension UIKitBackend {
 
         shapeLayer.strokeColor = strokeColor.cgColor
         shapeLayer.fillColor = fillColor.cgColor
-
-        if shapeLayer.superlayer !== container.view.layer {
-            container.view.layer.addSublayer(shapeLayer)
-        }
     }
 }
 

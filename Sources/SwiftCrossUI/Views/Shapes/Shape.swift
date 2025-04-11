@@ -42,7 +42,7 @@ extension Shape {
     public func asWidget<Backend: AppBackend>(
         _ children: any ViewGraphNodeChildren, backend: Backend
     ) -> Backend.Widget {
-        let container = backend.createContainer()
+        let container = backend.createPathWidget()
         let storage = children as! ShapeStorage
         storage.backendPath = backend.createPath()
         storage.oldPath = nil

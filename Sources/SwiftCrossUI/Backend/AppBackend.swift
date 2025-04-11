@@ -530,6 +530,8 @@ public protocol AppBackend {
     )
 
     // MARK: Paths
+    /// Create a widget that can contain a path.
+    func createPathWidget() -> Widget
     /// Create a path. It will not be shown until ``renderPath(_:container:)`` is called.
     func createPath() -> Path
     /// Update a path. The updates do not need to be visible before ``renderPath(_:container:)``
@@ -542,8 +544,8 @@ public protocol AppBackend {
     /// Draw a path to the screen.
     /// - Parameters:
     ///   - path: The path to be rendered.
-    ///   - container: The container widget that the path will render in. It has no other
-    ///     children.
+    ///   - container: The container widget that the path will render in. Created with
+    ///     ``createPathWidget()``.
     ///   - strokeColor: The color to draw the path's stroke.
     ///   - fillColor: The color to shade the path's fill.
     ///   - overrideStrokeStyle: If present, a value to override the path's stroke style.
@@ -872,13 +874,16 @@ extension AppBackend {
     }
 
     // MARK: Paths
-    func createPath() -> Path {
+    public func createPathWidget() -> Widget {
         todo()
     }
-    func updatePath(_ path: Path, _ source: SwiftCrossUI.Path, pointsChanged: Bool) {
+    public func createPath() -> Path {
         todo()
     }
-    func renderPath(
+    public func updatePath(_ path: Path, _ source: SwiftCrossUI.Path, pointsChanged: Bool) {
+        todo()
+    }
+    public func renderPath(
         _ path: Path,
         container: Widget,
         strokeColor: Color,
