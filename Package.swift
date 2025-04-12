@@ -98,16 +98,16 @@ let package = Package(
             .upToNextMinor(from: "0.3.2")
         ),
         .package(
-            url: "https://github.com/wabiverse/swift-windowsappsdk",
-            branch: "main"
+            url: "https://github.com/stackotter/swift-windowsappsdk",
+            branch: "5caed8b4f1b4abc6fc89b8f0a8fa20f3edfab14a"
         ),
         .package(
             url: "https://github.com/thebrowsercompany/swift-windowsfoundation",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/wabiverse/swift-winui",
-            branch: "main"
+            url: "https://github.com/stackotter/swift-winui",
+            branch: "42fe0034b7162f2de71ceea95725915d1147455a"
         ),
         // .package(
         //     url: "https://github.com/stackotter/TermKit",
