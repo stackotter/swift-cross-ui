@@ -19,7 +19,6 @@ extension App {
         WinUIBackend()
     }
 }
-
 class WinUIApplication: SwiftApplication {
     static var callback: ((WinUIApplication) -> Void)?
 
@@ -27,12 +26,12 @@ class WinUIApplication: SwiftApplication {
         Self.callback?(self)
     }
 }
-
 public final class WinUIBackend: AppBackend {
     public typealias Window = CustomWindow
     public typealias Widget = WinUI.FrameworkElement
     public typealias Menu = Void
     public typealias Alert = WinUI.ContentDialog
+    public typealias Path = GeometryGroupHolder
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
@@ -1163,6 +1162,234 @@ public final class WinUIBackend: AppBackend {
         }
     }
 
+    public func createPathWidget() -> Widget {
+        WinUI.Path()
+    }
+
+    public func createPath() -> Path {
+        GeometryGroupHolder()
+    }
+
+    public func updatePath(_ path: Path, _ source: SwiftCrossUI.Path, pointsChanged: Bool) {
+        path.strokeStyle = source.strokeStyle
+
+        if pointsChanged {
+            path.group.children.clear()
+            applyActions(source.actions, to: path.group.children)
+        }
+
+        path.group.fillRule =
+            switch source.fillRule {
+                case .evenOdd:
+                    .evenOdd
+                case .winding:
+                    .nonzero
+            }
+    }
+
+    func requirePathFigure(
+        _ collection: WinUI.GeometryCollection,
+        lastPoint: Point
+    ) -> PathFigure {
+        var pathGeo: PathGeometry
+        if collection.size > 0,
+           let castedLast = collection.getAt(collection.size - 1) as? PathGeometry {
+            pathGeo = castedLast
+        } else {
+            pathGeo = PathGeometry()
+            collection.append(pathGeo)
+        }
+
+        var figure: PathFigure
+        if pathGeo.figures.size > 0 {
+            // Note: the if check and force-unwrap is necessary. You can't do an `if let`
+            // here because PathFigureCollection uses unsigned integers for its indices so
+            // `size - 1` would underflow (causing a fatalError) if it's empty.
+            figure = pathGeo.figures.getAt(pathGeo.figures.size - 1)!
+        } else {
+            figure = PathFigure()
+            figure.startPoint = lastPoint
+            pathGeo.figures.append(figure)
+        }
+
+        return figure
+    }
+
+    func applyActions(_ actions: [SwiftCrossUI.Path.Action], to geometry: WinUI.GeometryCollection) {
+        var lastPoint = Point(x: 0.0, y: 0.0)
+
+        for action in actions {
+            switch action {
+                case .moveTo(let point):
+                    lastPoint = Point(x: Float(point.x), y: Float(point.y))
+
+                    if geometry.size > 0,
+                       let pathGeo = geometry.getAt(geometry.size - 1) as? PathGeometry,
+                       pathGeo.figures.size > 0 {
+                        let figure = pathGeo.figures.getAt(pathGeo.figures.size - 1)!
+                        if figure.segments.size > 0 {
+                            let newFigure = PathFigure()
+                            newFigure.startPoint = lastPoint
+                            pathGeo.figures.append(newFigure)
+                        } else {
+                            figure.startPoint = lastPoint
+                        }
+                    }
+                case .lineTo(let point):
+                    let wfPoint = Point(x: Float(point.x), y: Float(point.y))
+                    defer { lastPoint = wfPoint }
+
+                    let figure = requirePathFigure(geometry, lastPoint: lastPoint)
+
+                    let segment = LineSegment()
+                    segment.point = wfPoint
+                    figure.segments.append(segment)
+                case .quadCurve(let control, let end):
+                    let wfControl = Point(x: Float(control.x), y: Float(control.y))
+                    let wfEnd = Point(x: Float(end.x), y: Float(end.y))
+                    defer { lastPoint = wfEnd }
+
+                    let figure = requirePathFigure(geometry, lastPoint: lastPoint)
+
+                    let segment = QuadraticBezierSegment ()
+                    segment.point1 = wfControl
+                    segment.point2 = wfEnd
+                    figure.segments.append(segment)
+                case .cubicCurve(let control1, let control2, let end):
+                    let wfControl1 = Point(x: Float(control1.x), y: Float(control1.y))
+                    let wfControl2 = Point(x: Float(control2.x), y: Float(control2.y))
+                    let wfEnd = Point(x: Float(end.x), y: Float(end.y))
+                    defer { lastPoint = wfEnd }
+
+                    let figure = requirePathFigure(geometry, lastPoint: lastPoint)
+
+                    let segment = BezierSegment()
+                    segment.point1 = wfControl1
+                    segment.point2 = wfControl2
+                    segment.point3 = wfEnd
+                    figure.segments.append(segment)
+                case .rectangle(let rect):
+                    let rectGeo = RectangleGeometry()
+                    rectGeo.rect = Rect(
+                        x: Float(rect.x),
+                        y: Float(rect.y),
+                        width: Float(rect.width),
+                        height: Float(rect.height)
+                    )
+                    geometry.append(rectGeo)
+                case .circle(let center, let radius):
+                    let ellipse = EllipseGeometry()
+                    ellipse.radiusX = radius
+                    ellipse.radiusY = radius
+                    ellipse.center = Point(x: Float(center.x), y: Float(center.y))
+                    geometry.append(ellipse)
+                case .arc(
+                    let center,
+                    let radius,
+                    let startAngle,
+                    let endAngle,
+                    let clockwise
+                ):
+                    let endPoint = Point(
+                        x: Float(center.x + radius * cos(endAngle)),
+                        y: Float(center.y + radius * sin(endAngle))
+                    )
+                    defer { lastPoint = endPoint }
+
+                    let figure = requirePathFigure(geometry, lastPoint: lastPoint)
+
+                    let segment = ArcSegment()
+
+                    if clockwise {
+                        if startAngle < endAngle {
+                            segment.isLargeArc = (endAngle - startAngle > .pi)
+                        } else {
+                            segment.isLargeArc = (startAngle - endAngle < .pi)
+                        }
+                        segment.sweepDirection = .clockwise
+                    } else {
+                        if startAngle < endAngle {
+                            segment.isLargeArc = (endAngle - startAngle < .pi)
+                        } else {
+                            segment.isLargeArc = (startAngle - endAngle > .pi)
+                        }
+                        segment.sweepDirection = .counterclockwise
+                    }
+
+                    segment.point = endPoint
+                    segment.size = Size(width: Float(radius), height: Float(radius))
+
+                    figure.segments.append(segment)
+                case .transform(let transform):
+                    let matrixTransform = MatrixTransform()
+                    matrixTransform.matrix = Matrix(
+                        m11: transform.linearTransform.x,
+                        m12: transform.linearTransform.z,
+                        m21: transform.linearTransform.y,
+                        m22: transform.linearTransform.w,
+                        offsetX: transform.translation.x,
+                        offsetY: transform.translation.y
+                    )
+
+                    for case let geo? in geometry {
+                        if geo.transform == nil {
+                            geo.transform = matrixTransform
+                        } else if let group = geo.transform as? TransformGroup {
+                            group.children.append(matrixTransform)
+                        } else {
+                            let group = TransformGroup()
+                            group.children.append(geo.transform)
+                            group.children.append(matrixTransform)
+                            geo.transform = group
+                        }
+                    }
+                case .subpath(let actions):
+                    let subGeo = GeometryGroup()
+                    applyActions(actions, to: subGeo.children)
+                    geometry.append(subGeo)
+            }
+        }
+    }
+
+    public func renderPath(
+        _ path: Path,
+        container: Widget,
+        strokeColor: SwiftCrossUI.Color,
+        fillColor: SwiftCrossUI.Color,
+        overrideStrokeStyle: StrokeStyle?
+    ) {
+        let winUiPath = container as! WinUI.Path
+        let strokeStyle = overrideStrokeStyle ?? path.strokeStyle!
+
+        winUiPath.fill = WinUI.SolidColorBrush(fillColor.uwpColor)
+        winUiPath.stroke = WinUI.SolidColorBrush(strokeColor.uwpColor)
+        winUiPath.strokeThickness = strokeStyle.width
+
+        switch strokeStyle.cap {
+            case .butt:
+                winUiPath.strokeStartLineCap = .flat
+                winUiPath.strokeEndLineCap = .flat
+            case .round:
+                winUiPath.strokeStartLineCap = .round
+                winUiPath.strokeEndLineCap = .round
+            case .square:
+                winUiPath.strokeStartLineCap = .square
+                winUiPath.strokeEndLineCap = .square
+        }
+
+        switch strokeStyle.join {
+            case .miter(let limit):
+                winUiPath.strokeMiterLimit = limit
+                winUiPath.strokeLineJoin = .miter
+            case .round:
+                winUiPath.strokeLineJoin = .round
+            case .bevel:
+                winUiPath.strokeLineJoin = .bevel
+        }
+
+        winUiPath.data = path.group
+    }
+
     // public func createTable(rows: Int, columns: Int) -> Widget {
     //     let grid = Grid()
     //     grid.columnSpacing = 10
@@ -1379,4 +1606,9 @@ public class CustomWindow: WinUI.Window {
         grid.children.append(child)
         WinUI.Grid.setRow(child, 1)
     }
+}
+
+public final class GeometryGroupHolder {
+    var group = GeometryGroup()
+    var strokeStyle: StrokeStyle?
 }

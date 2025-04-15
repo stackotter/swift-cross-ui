@@ -1,5 +1,5 @@
 {
-  "originHash" : "b91f917bbebb41572e4a589a5f5f3fa23970b5412aa202d7d5a9ffd85f7382b3",
+  "originHash" : "b27fd5296427d0b831ec73c4d0cea714e68fa1e046809b1001bb42cf87171755",
   "pins" : [
     {
       "identity" : "jpeg",
@@ -112,7 +112,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-winui",
       "state" : {
-        "revision" : "42fe0034b7162f2de71ceea95725915d1147455a"
+        "revision" : "a81bc36e3ac056fbc740e9df30ff0d80af5ecd21"
       }
     },
     {

@@ -175,8 +175,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-crypto",
       "state" : {
-        "revision" : "a6ce32a18b81b04ce7e897d1d98df6eb2da04786",
-        "version" : "3.12.2"
+        "revision" : "e8d6eba1fef23ae5b359c46b03f7d94be2f41fed",
+        "version" : "3.12.3"
       }
     },
     {
@@ -308,7 +308,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-winui",
       "state" : {
-        "revision" : "42fe0034b7162f2de71ceea95725915d1147455a"
+        "revision" : "a81bc36e3ac056fbc740e9df30ff0d80af5ecd21"
       }
     },
     {
@@ -343,8 +343,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/yonaskolb/XcodeGen",
       "state" : {
-        "revision" : "82c6ab9bbd5b6075fc0887d897733fc0c4ffc9ab",
-        "version" : "2.42.0"
+        "revision" : "7193eb447a6f60061f069e07bc1efd32d73c0e19",
+        "version" : "2.43.0"
       }
     },
     {
@@ -352,8 +352,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tuist/XcodeProj",
       "state" : {
-        "revision" : "447c159b0c5fb047a024fd8d942d4a76cf47dde0",
-        "version" : "8.16.0"
+        "revision" : "dc3b87a4e69f9cd06c6cb16199f5d0472e57ef6b",
+        "version" : "8.24.3"
       }
     },
     {

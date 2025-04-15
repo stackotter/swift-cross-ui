@@ -266,6 +266,24 @@ public struct Path {
         return self
     }
 
+    /// Add an arc segment to the path.
+    /// 
+    /// The behavior is not defined if the starting point is not what is implied by `center`,
+    /// `radius`, and `startAngle`. Some backends (such as UIKit) will add a line segment
+    /// to connect the arc to the starting point, while others (such as WinUI) will move the
+    /// arc in unintuitive ways. If this arc is the first segment of the current path, or
+    /// the previous segment was a rectangle or circle, be sure to call ``move(to:)`` before
+    /// this.
+    /// - Parameters:
+    ///   - center: The location of the center of the circle.
+    ///   - radius: The radius of the circle.
+    ///   - startAngle: The angle of the start of the arc, measured in radians clockwise from
+    //      right. Must be between 0 and 2pi (inclusive).
+    ///   - endAngle: The angle of the end of the arc, measured in radians clockwise from right.
+    ///     Must be between 0 and 2pi (inclusive).
+    ///   - clockwise: `true` if the arc is to be drawn clockwise, `false` if the arc is to
+    ///     be drawn counter-clockwise. Used to determine whether to draw the larger arc or
+    ///     the smaller arc identified by the given start and end angles.
     public consuming func addArc(
         center: SIMD2<Double>,
         radius: Double,
@@ -273,6 +291,7 @@ public struct Path {
         endAngle: Double,
         clockwise: Bool
     ) -> Path {
+        assert((0.0 ... (2.0 * .pi)).contains(startAngle) && (0.0 ... (2.0 * .pi)).contains(endAngle))
         actions.append(
             .arc(
                 center: center,
