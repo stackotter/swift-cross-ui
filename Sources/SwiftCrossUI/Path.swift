@@ -267,7 +267,7 @@ public struct Path {
     }
 
     /// Add an arc segment to the path.
-    /// 
+    ///
     /// The behavior is not defined if the starting point is not what is implied by `center`,
     /// `radius`, and `startAngle`. Some backends (such as UIKit) will add a line segment
     /// to connect the arc to the starting point, while others (such as WinUI) will move the
@@ -291,7 +291,7 @@ public struct Path {
         endAngle: Double,
         clockwise: Bool
     ) -> Path {
-        assert((0.0 ... (2.0 * .pi)).contains(startAngle) && (0.0 ... (2.0 * .pi)).contains(endAngle))
+        assert((0.0...(2.0 * .pi)).contains(startAngle) && (0.0...(2.0 * .pi)).contains(endAngle))
         actions.append(
             .arc(
                 center: center,

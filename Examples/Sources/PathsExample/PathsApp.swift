@@ -1,6 +1,6 @@
-import SwiftCrossUI
 import DefaultBackend
-import Foundation // for sin, cos
+import Foundation  // for sin, cos
+import SwiftCrossUI
 
 struct ArcShape: StyledShape {
     var startAngle: Double
@@ -13,7 +13,7 @@ struct ArcShape: StyledShape {
 
     func path(in bounds: Path.Rect) -> Path {
         let radius = min(bounds.width, bounds.height) / 2.0 - 2.5
-        
+
         return Path()
             .move(to: bounds.center + radius * SIMD2(x: cos(startAngle), y: sin(startAngle)))
             .addArc(
@@ -53,31 +53,63 @@ struct PathsApp: App {
                             Text("Clockwise")
 
                             HStack {
-                                ArcShape(startAngle: .pi * 2.0/3.0, endAngle: .pi * 1.5, clockwise: true)
+                                ArcShape(
+                                    startAngle: .pi * 2.0 / 3.0,
+                                    endAngle: .pi * 1.5,
+                                    clockwise: true
+                                )
 
-                                ArcShape(startAngle: .pi * 1.5, endAngle: .pi * 1.0/3.0, clockwise: true)
-                            }
-
-                            HStack {                            
-                                ArcShape(startAngle: .pi * 1.5, endAngle: .pi * 2.0/3.0, clockwise: true)
-
-                                ArcShape(startAngle: .pi * 1.0/3.0, endAngle: .pi * 1.5, clockwise: true)
-                            }
-                        }
-                        
-                        VStack {
-                            Text("Counter-clockwise")
-
-                            HStack {                            
-                                ArcShape(startAngle: .pi * 1.5, endAngle: .pi * 2.0/3.0, clockwise: false)
-
-                                ArcShape(startAngle: .pi * 1.0/3.0, endAngle: .pi * 1.5, clockwise: false)
+                                ArcShape(
+                                    startAngle: .pi * 1.5,
+                                    endAngle: .pi * 1.0 / 3.0,
+                                    clockwise: true
+                                )
                             }
 
                             HStack {
-                                ArcShape(startAngle: .pi * 2.0/3.0, endAngle: .pi * 1.5, clockwise: false)
+                                ArcShape(
+                                    startAngle: .pi * 1.5,
+                                    endAngle: .pi * 2.0 / 3.0,
+                                    clockwise: true
+                                )
 
-                                ArcShape(startAngle: .pi * 1.5, endAngle: .pi * 1.0/3.0, clockwise: false)
+                                ArcShape(
+                                    startAngle: .pi * 1.0 / 3.0,
+                                    endAngle: .pi * 1.5,
+                                    clockwise: true
+                                )
+                            }
+                        }
+
+                        VStack {
+                            Text("Counter-clockwise")
+
+                            HStack {
+                                ArcShape(
+                                    startAngle: .pi * 1.5,
+                                    endAngle: .pi * 2.0 / 3.0,
+                                    clockwise: false
+                                )
+
+                                ArcShape(
+                                    startAngle: .pi * 1.0 / 3.0,
+                                    endAngle: .pi * 1.5,
+                                    clockwise: false
+                                )
+                            }
+
+                            HStack {
+                                ArcShape(
+                                    startAngle: .pi * 2.0 / 3.0,
+                                    endAngle: .pi * 1.5,
+                                    clockwise: false
+                                )
+
+                                ArcShape(
+                                    startAngle: .pi * 1.5,
+                                    endAngle: .pi * 1.0 / 3.0,
+                                    clockwise: false
+                                )
                             }
                         }
                     }.padding()

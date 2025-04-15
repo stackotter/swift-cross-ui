@@ -1193,7 +1193,8 @@ public final class WinUIBackend: AppBackend {
     ) -> PathFigure {
         var pathGeo: PathGeometry
         if collection.size > 0,
-           let castedLast = collection.getAt(collection.size - 1) as? PathGeometry {
+            let castedLast = collection.getAt(collection.size - 1) as? PathGeometry
+        {
             pathGeo = castedLast
         } else {
             pathGeo = PathGeometry()
@@ -1215,7 +1216,8 @@ public final class WinUIBackend: AppBackend {
         return figure
     }
 
-    func applyActions(_ actions: [SwiftCrossUI.Path.Action], to geometry: WinUI.GeometryCollection) {
+    func applyActions(_ actions: [SwiftCrossUI.Path.Action], to geometry: WinUI.GeometryCollection)
+    {
         var lastPoint = Point(x: 0.0, y: 0.0)
 
         for action in actions {
@@ -1224,8 +1226,9 @@ public final class WinUIBackend: AppBackend {
                     lastPoint = Point(x: Float(point.x), y: Float(point.y))
 
                     if geometry.size > 0,
-                       let pathGeo = geometry.getAt(geometry.size - 1) as? PathGeometry,
-                       pathGeo.figures.size > 0 {
+                        let pathGeo = geometry.getAt(geometry.size - 1) as? PathGeometry,
+                        pathGeo.figures.size > 0
+                    {
                         let figure = pathGeo.figures.getAt(pathGeo.figures.size - 1)!
                         if figure.segments.size > 0 {
                             let newFigure = PathFigure()
@@ -1251,7 +1254,7 @@ public final class WinUIBackend: AppBackend {
 
                     let figure = requirePathFigure(geometry, lastPoint: lastPoint)
 
-                    let segment = QuadraticBezierSegment ()
+                    let segment = QuadraticBezierSegment()
                     segment.point1 = wfControl
                     segment.point2 = wfEnd
                     figure.segments.append(segment)
