@@ -1346,6 +1346,14 @@ public final class WinUIBackend: AppBackend {
                             geo.transform = group
                         }
                     }
+
+                    if geometry.size > 0,
+                        let pathGeo = geometry.getAt(geometry.size - 1) as? PathGeometry,
+                        pathGeo.figures.contains(where: { ($0?.segments.size ?? 0) > 0 })
+                    {
+                        // Start a new PathGeometry so that transforms don't apply going forward
+                        geometry.append(PathGeometry())
+                    }
                 case .subpath(let actions):
                     let subGeo = GeometryGroup()
                     applyActions(actions, to: subGeo.children)
