@@ -281,19 +281,17 @@
     {
       "identity" : "swift-uwp",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/thebrowsercompany/swift-uwp",
+      "location" : "https://github.com/stackotter/swift-uwp",
       "state" : {
-        "branch" : "main",
-        "revision" : "4fe2fa05652f688ba5af57d0ce9e93961f6dea98"
+        "revision" : "6e5c0089d599fc47c7f052521e1b546e54c7dc13"
       }
     },
     {
       "identity" : "swift-windowsappsdk",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/wabiverse/swift-windowsappsdk",
+      "location" : "https://github.com/stackotter/swift-windowsappsdk",
       "state" : {
-        "branch" : "main",
-        "revision" : "36e2f6c261fcbffc303c107b24f705605f3908be"
+        "revision" : "5caed8b4f1b4abc6fc89b8f0a8fa20f3edfab14a"
       }
     },
     {
@@ -308,10 +306,9 @@
     {
       "identity" : "swift-winui",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/wabiverse/swift-winui",
+      "location" : "https://github.com/stackotter/swift-winui",
       "state" : {
-        "branch" : "main",
-        "revision" : "0529457d9f360904b2009fd67cba90046ff252c4"
+        "revision" : "42fe0034b7162f2de71ceea95725915d1147455a"
       }
     },
     {

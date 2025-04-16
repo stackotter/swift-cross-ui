@@ -2,10 +2,14 @@ import CGtk3
 
 /// Swift representation of a Gtk CSS provider
 public class CSSProvider {
-    var pointer: UnsafeMutablePointer<GtkCssProvider>
-    var context: UnsafeMutablePointer<GtkStyleContext>
+    public var pointer: UnsafeMutablePointer<GtkCssProvider>
+    var context: UnsafeMutablePointer<GtkStyleContext>?
 
-    init(
+    public init() {
+        pointer = gtk_css_provider_new()
+    }
+
+    public init(
         forContext context: UnsafeMutablePointer<GtkStyleContext>,
         priority: UInt32 = UInt32(GTK_STYLE_PROVIDER_PRIORITY_APPLICATION)
     ) {
@@ -16,6 +20,10 @@ public class CSSProvider {
     }
 
     deinit {
+        guard let context else {
+            return
+        }
+
         gtk_style_context_remove_provider(context, OpaquePointer(pointer))
         g_object_unref(context)
     }

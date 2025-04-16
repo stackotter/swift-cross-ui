@@ -62,6 +62,21 @@ public final class Gtk3Backend: AppBackend {
         gtkApp.run { window in
             self.precreatedWindow = window
             callback()
+
+            let provider = CSSProvider()
+            provider.loadCss(
+                from: """
+                .dialog-vbox .horizontal .vertical {
+                    padding-top: 20px;
+                    margin-bottom: -10px;
+                }
+                """
+            )
+            gtk_style_context_add_provider_for_screen(
+                gdk_screen_get_default(),
+                OpaquePointer(provider.pointer),
+                guint(GTK_STYLE_PROVIDER_PRIORITY_APPLICATION)
+            )
         }
     }
 
