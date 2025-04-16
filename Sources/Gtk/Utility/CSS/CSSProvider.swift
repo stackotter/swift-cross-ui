@@ -5,7 +5,7 @@ public class CSSProvider {
     var pointer: UnsafeMutablePointer<GtkCssProvider>
     var display: OpaquePointer
 
-    init(
+    public init(
         forDisplay display: OpaquePointer = gdk_display_get_default(),
         priority: UInt32 = UInt32(GTK_STYLE_PROVIDER_PRIORITY_APPLICATION)
     ) {
@@ -24,6 +24,7 @@ public class CSSProvider {
     ///
     /// Deprecated since: 4.12
     public func loadCss(from data: String) {
+        // TODO: Connect to parsing-error signal to log parsing errors.
         gtk_css_provider_load_from_data(pointer, data, gssize(data.count))
     }
 }

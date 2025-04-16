@@ -70,6 +70,14 @@ public final class Gtk3Backend: AppBackend {
                     padding-top: 11px;
                     margin-bottom: -10px;
                 }
+
+                @binding-set DisableEscape {
+                    unbind "Escape";
+                }
+
+                messagedialog {
+                    -gtk-key-bindings: DisableEscape;
+                }
                 """
             )
             gtk_style_context_add_provider_for_screen(
@@ -822,10 +830,12 @@ public final class Gtk3Backend: AppBackend {
 
     public func createAlert() -> Alert {
         let dialog = Gtk3.MessageDialog()
+
         // The Ubuntu Gtk3 theme seems to only set the bottom corner radii.
         dialog.css.set(properties: [
             .cornerRadius(13)
         ])
+
         return dialog
     }
 
@@ -847,6 +857,14 @@ public final class Gtk3Backend: AppBackend {
         responseHandler handleResponse: @escaping (Int) -> Void
     ) {
         alert.response = { _, responseId in
+            guard responseId != Int(UInt32(bitPattern: -4)) else {
+                // Ignore escape key for now. Once we support detecting
+                // the primary and secondary actions of alerts we can wire
+                // this up to whichever action is the default cancellation
+                // action.
+                return
+            }
+
             alert.destroy()
             handleResponse(responseId)
         }

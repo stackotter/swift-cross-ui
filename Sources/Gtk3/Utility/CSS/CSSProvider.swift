@@ -34,5 +34,9 @@ public class CSSProvider {
     public func loadCss(from data: String) {
         var error: UnsafeMutablePointer<GError>? = nil
         gtk_css_provider_load_from_data(pointer, data, gssize(data.count), &error)
+        if let error {
+            let message = String(cString: error.pointee.message)
+            print("warning: Failed to load CSS: \(message)")
+        }
     }
 }
