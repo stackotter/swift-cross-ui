@@ -34,8 +34,13 @@ struct GtkCodeGen {
     /// it, leading to a crash if the signal doesn't return a valid string
     /// pointer (which it won't because our signal handlers never return
     /// values with the current implementation).
+    ///
+    /// `populate-popup` is problematic because it crashes Gtk3 on Rocky
+    /// Linux 8 whenever a user right clicks an Entry. Not sure why but
+    /// we don't need this signal for now so I've disabled it.
     static let excludedSignals: [String] = [
         "format-value",
+        "populate-popup",
         "notify::mnemonic-widget",
     ]
 
@@ -157,6 +162,10 @@ struct GtkCodeGen {
 
         var signalProperties: [DeclSyntax] = []
         for signal in interface.signals {
+            guard !excludedSignals.contains(signal.name) else {
+                continue
+            }
+
             signalProperties.append(
                 generateSignalHandlerProperty(
                     signal,

@@ -1,5 +1,5 @@
-import WinSDK
 import Foundation
+import WinSDK
 
 extension WinUIBackend {
     /// Attaches the app's standard IO streams to the parent's console.
@@ -18,7 +18,7 @@ extension WinUIBackend {
             try Self.redirectConsoleIO()
         }
     }
-    
+
     /// Releases existing files associated with the app's standard IO streams.
     private static func releaseConsole() throws {
         var fp = UnsafeMutablePointer<FILE>?.none
@@ -47,7 +47,7 @@ extension WinUIBackend {
     /// Adjusts the size of the app's console output buffer.
     private static func adjustConsoleBuffer(_ minLength: SHORT) throws {
         let handle = GetStdHandle(STD_OUTPUT_HANDLE)
-        var consoleInfo = CONSOLE_SCREEN_BUFFER_INFO();
+        var consoleInfo = CONSOLE_SCREEN_BUFFER_INFO()
         guard GetConsoleScreenBufferInfo(handle, &consoleInfo) else {
             throw Error(message: "Failed to get console screen buffer info")
         }

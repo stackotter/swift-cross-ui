@@ -3,10 +3,10 @@ import Foundation
 import SwiftCrossUI
 import UWP
 import WinAppSDK
-import WinUI
-import WindowsFoundation
 import WinSDK
+import WinUI
 import WinUIInterop
+import WindowsFoundation
 
 // Many force tries are required for the WinUI backend but we don't really want them
 // anywhere else so just disable them for this file.
@@ -87,7 +87,7 @@ public final class WinUIBackend: AppBackend {
             // print a warning anyway.
             print("Warning: Failed to attach to parent console: \(error.localizedDescription)")
         }
-        
+
         // Ensure that the app's windows adapt to DPI changes at runtime
         SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2)
 
@@ -117,7 +117,7 @@ public final class WinUIBackend: AppBackend {
         WinUIApplication.main()
     }
 
-    public func createWindow(withDefaultSize size: SIMD2<Int>?) -> Window {        
+    public func createWindow(withDefaultSize size: SIMD2<Int>?) -> Window {
         let window = CustomWindow()
         windows.append(window)
         window.closed.addHandler { _, _ in
@@ -312,7 +312,7 @@ public final class WinUIBackend: AppBackend {
     public func computeWindowEnvironment(
         window: Window,
         rootEnvironment: EnvironmentValues
-    ) -> EnvironmentValues {        
+    ) -> EnvironmentValues {
         // TODO: Compute window scale factor (easy enough, but we would also have to keep
         //   it up-to-date then, which is kinda annoying for now)
         rootEnvironment
@@ -456,7 +456,7 @@ public final class WinUIBackend: AppBackend {
             // large fixed dimensions and causing crashes. To work around that,
             // we just override their 'natural size' to 32x32, which is based off
             // the defaults set in the following code from the WinUI repository:
-            // https://github.com/marcelwgn/microsoft-ui-xaml/blob/ff21f9b212cea2191b959649e45e52486c8465aa/src/controls/dev/ProgressRing/ProgressRing.xaml#L12 
+            // https://github.com/marcelwgn/microsoft-ui-xaml/blob/ff21f9b212cea2191b959649e45e52486c8465aa/src/controls/dev/ProgressRing/ProgressRing.xaml#L12
             return SIMD2(32, 32)
         }
 
@@ -1026,7 +1026,7 @@ public final class WinUIBackend: AppBackend {
         resultHandler handleResult: @escaping (DialogResult<[URL]>) -> Void
     ) {
         let picker = FileOpenPicker()
-        
+
         let window = window ?? windows[0]
         let hwnd = window.getHWND()!
         let interface: SwiftIInitializeWithWindow = try! picker.thisPtr.QueryInterface()
@@ -1045,7 +1045,7 @@ public final class WinUIBackend: AppBackend {
                     handleResult(.cancelled)
                     return
                 }
-                
+
                 let files = Array(result).compactMap { $0 }
                     .map(\.path)
                     .map(URL.init(fileURLWithPath:))
@@ -1062,7 +1062,7 @@ public final class WinUIBackend: AppBackend {
                     handleResult(.cancelled)
                     return
                 }
-                
+
                 let file = URL(fileURLWithPath: result.path)
                 handleResult(.success([file]))
             }
@@ -1081,7 +1081,7 @@ public final class WinUIBackend: AppBackend {
         let hwnd = window.getHWND()!
         let interface: SwiftIInitializeWithWindow = try! picker.thisPtr.QueryInterface()
         try! interface.initialize(with: hwnd)
-        
+
         _ = picker.fileTypeChoices.insert("Text", [".txt"].toVector())
         let promise = try! picker.pickSaveFileAsync()!
         promise.completed = { operation, status in
@@ -1093,7 +1093,7 @@ public final class WinUIBackend: AppBackend {
                 handleResult(.cancelled)
                 return
             }
-            
+
             let file = URL(fileURLWithPath: result.path)
             handleResult(.success(file))
         }
@@ -1301,13 +1301,13 @@ final class TapGestureTarget: WinUI.Canvas {
 class SwiftIInitializeWithWindow: WindowsFoundation.IUnknown {
     override class var IID: WindowsFoundation.IID {
         WindowsFoundation.IID(
-            Data1: 0x3E68D4BD,
+            Data1: 0x3E68_D4BD,
             Data2: 0x7135,
             Data3: 0x4D10,
             Data4: (0x80, 0x18, 0x9F, 0xB6, 0xD9, 0xF3, 0x3F, 0xA1)
         )
     }
-    
+
     func initialize(with hwnd: HWND) throws {
         _ = try perform(as: IInitializeWithWindow.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Initialize(pThis, hwnd))
@@ -1339,7 +1339,7 @@ public class CustomWindow: WinUI.Window {
 
         var x: UINT = 0
         var y: UINT = 0
-        let result = GetDpiForMonitor(monitor, MDT_EFFECTIVE_DPI, &x, &y);
+        let result = GetDpiForMonitor(monitor, MDT_EFFECTIVE_DPI, &x, &y)
 
         let windowScaleFactor: Double
         if result == S_OK {
@@ -1348,7 +1348,7 @@ public class CustomWindow: WinUI.Window {
             print("Warning: Failed to get window scale factor, defaulting to 1.0")
             windowScaleFactor = 1
         }
-        
+
         return windowScaleFactor
     }
 
