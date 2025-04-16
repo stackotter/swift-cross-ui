@@ -67,7 +67,7 @@ public final class Gtk3Backend: AppBackend {
             provider.loadCss(
                 from: """
                 .dialog-vbox .horizontal .vertical {
-                    padding-top: 20px;
+                    padding-top: 11px;
                     margin-bottom: -10px;
                 }
                 """
