@@ -12,13 +12,10 @@ struct ArcShape: StyledShape {
     let strokeStyle: StrokeStyle? = StrokeStyle(width: 5.0)
 
     func path(in bounds: Path.Rect) -> Path {
-        let radius = min(bounds.width, bounds.height) / 2.0 - 2.5
-
-        return Path()
-            .move(to: bounds.center + radius * SIMD2(x: cos(startAngle), y: sin(startAngle)))
+        Path()
             .addArc(
                 center: bounds.center,
-                radius: radius,
+                radius: min(bounds.width, bounds.height) / 2.0 - 2.5,
                 startAngle: startAngle,
                 endAngle: endAngle,
                 clockwise: clockwise

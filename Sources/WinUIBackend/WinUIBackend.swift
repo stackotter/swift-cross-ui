@@ -1293,6 +1293,10 @@ public final class WinUIBackend: AppBackend {
                     let endAngle,
                     let clockwise
                 ):
+                    let startPoint = Point(
+                        x: Float(center.x + radius * cos(startAngle)),
+                        y: Float(center.y + radius * sin(startAngle))
+                    )
                     let endPoint = Point(
                         x: Float(center.x + radius * cos(endAngle)),
                         y: Float(center.y + radius * sin(endAngle))
@@ -1300,6 +1304,16 @@ public final class WinUIBackend: AppBackend {
                     defer { lastPoint = endPoint }
 
                     let figure = requirePathFigure(geometry, lastPoint: lastPoint)
+
+                    if startPoint != lastPoint {
+                        if figure.segments.size > 0 {
+                            let connector = LineSegment()
+                            connector.point = startPoint
+                            figure.segments.append(connector)
+                        } else {
+                            figure.startPoint = startPoint
+                        }
+                    }
 
                     let segment = ArcSegment()
 

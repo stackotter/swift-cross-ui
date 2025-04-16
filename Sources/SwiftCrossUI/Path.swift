@@ -267,13 +267,6 @@ public struct Path {
     }
 
     /// Add an arc segment to the path.
-    ///
-    /// The behavior is not defined if the starting point is not what is implied by `center`,
-    /// `radius`, and `startAngle`. Some backends (such as UIKit) will add a line segment
-    /// to connect the arc to the starting point, while others (such as WinUI) will move the
-    /// arc in unintuitive ways. If this arc is the first segment of the current path, or
-    /// the previous segment was a rectangle or circle, be sure to call ``move(to:)`` before
-    /// this.
     /// - Parameters:
     ///   - center: The location of the center of the circle.
     ///   - radius: The radius of the circle.
