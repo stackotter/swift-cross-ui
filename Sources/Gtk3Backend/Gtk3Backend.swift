@@ -22,6 +22,7 @@ public final class Gtk3Backend: AppBackend {
     public typealias Widget = Gtk3.Widget
     public typealias Menu = Gtk3.Menu
     public typealias Alert = Gtk3.MessageDialog
+    public typealias Path = Never
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
