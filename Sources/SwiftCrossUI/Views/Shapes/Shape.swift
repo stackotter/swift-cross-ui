@@ -1,7 +1,39 @@
+/// A 2-D shape that can be drawn as a view.
+///
+/// If no stroke color or fill color is specified, the default is no stroke and a fill of the
+/// current foreground color.
 public protocol Shape: View
 where Content == EmptyView {
     /// Draw the path for this shape.
     ///
+    /// The bounds passed to a shape that is immediately drawn as a view will always have an
+    /// origin of (0, 0). However, you may pass a different bounding box to subpaths. For example,
+    /// this code draws a rectangle in the left half of the bounds and an ellipse in the right half:
+    /// ```swift
+    /// func path(in bounds: Path.Rect) -> Path {
+    ///     Path()
+    ///         .addSubpath(
+    ///             Rectangle().path(
+    ///                 in: Path.Rect(
+    ///                     x: bounds.x,
+    ///                     y: bounds.y,
+    ///                     width: bounds.width / 2.0,
+    ///                     height: bounds.height
+    ///                 )
+    ///             )
+    ///         )
+    ///         .addSubpath(
+    ///             Ellipse().path(
+    ///                 in: Path.Rect(
+    ///                     x: bounds.center.x,
+    ///                     y: bounds.y,
+    ///                     width: bounds.width / 2.0,
+    ///                     height: bounds.height
+    ///                 )
+    ///             )
+    ///         )
+    /// }
+    /// ```
     func path(in bounds: Path.Rect) -> Path
     /// Determine the ideal size of this shape given the proposed bounds.
     ///
@@ -11,7 +43,7 @@ where Content == EmptyView {
     ///   frame the shape will actually be rendered with if the current layout pass is not
     ///   a dry run, while the other properties are used to inform the layout engine how big
     ///   or small the shape can be. The ``ViewSize/idealSize`` property should not vary with
-    ///   the `proposal`, and should only depend on the view's contents. Pass `nil` for the
+    ///   the `proposal`, and should only depend on the shape's contents. Pass `nil` for the
     ///   maximum width/height if the shape has no maximum size (and therefore may occupy
     ///   the entire screen).
     func size(fitting proposal: SIMD2<Int>) -> ViewSize
@@ -24,8 +56,8 @@ extension Shape {
         return ViewSize(
             size: proposal,
             idealSize: SIMD2(x: 10, y: 10),
-            minimumWidth: 1,
-            minimumHeight: 1,
+            minimumWidth: 0,
+            minimumHeight: 0,
             maximumWidth: nil,
             maximumHeight: nil
         )

@@ -31,7 +31,7 @@ public struct RoundedRectangle: Shape {
     )
 
     // This corresponds to r_{min} in the above Desmos link. This is the minimum ratio of
-    // cornerRadius to half the side length at which the superellipse is ignored. Above this,
+    // cornerRadius to half the side length at which the superellipse is not applicable. Above this,
     // line segments and circular arcs are used.
     private static let rMin = 0.441968022436
 

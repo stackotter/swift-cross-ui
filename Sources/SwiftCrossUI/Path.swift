@@ -229,16 +229,32 @@ public struct Path {
 
     public init() {}
 
+    /// Move the path's current point to the given point.
+    ///
+    /// This does not draw a line segment. For that, see ``addLine(to:)``.
+    ///
+    /// If ``addLine(to:)``, ``addQuadCurve(control:to:)``,
+    /// ``addCubicCurve(control1:control2:to:)``, or
+    /// ``addArc(center:radius:startAngle:endAngle:clockwise:)`` is called on an empty path
+    /// without calling this method first, the start point is implicitly (0, 0).
     public consuming func move(to point: SIMD2<Double>) -> Path {
         actions.append(.moveTo(point))
         return self
     }
 
+    /// Add a line segment from the current point to the given point.
+    ///
+    /// After this, the path's current point will be the endpoint of this line segment.
     public consuming func addLine(to point: SIMD2<Double>) -> Path {
         actions.append(.lineTo(point))
         return self
     }
 
+    /// Add a quadratic Bézier curve to the path.
+    ///
+    /// This creates an order-2 curve starting at the path's current point, bending towards
+    /// `control`, and ending at `endPoint`. After this, the path's current point will be
+    /// `endPoint`.
     public consuming func addQuadCurve(
         control: SIMD2<Double>,
         to endPoint: SIMD2<Double>
@@ -247,6 +263,11 @@ public struct Path {
         return self
     }
 
+    /// Add a cubic Bézier curve to the path.
+    ///
+    /// This creates an order-3 curve starting at the path's current point, bending towards
+    /// `control1` and `control2`, and ending at `endPoint`. After this, the path's current
+    /// point will be `endPoint`.
     public consuming func addCubicCurve(
         control1: SIMD2<Double>,
         control2: SIMD2<Double>,
@@ -267,6 +288,9 @@ public struct Path {
     }
 
     /// Add an arc segment to the path.
+    ///
+    /// After this, the path's current point will be the endpoint implied by `center`, `radius`,
+    /// and `endAngle`.
     /// - Parameters:
     ///   - center: The location of the center of the circle.
     ///   - radius: The radius of the circle.
@@ -297,11 +321,21 @@ public struct Path {
         return self
     }
 
+    /// Apply the given transform to the segments in the path so far.
+    ///
+    /// While this may adjust the path's current point, it does not otherwise affect segments
+    /// that are added to the path after this method call.
     public consuming func applyTransform(_ transform: AffineTransform) -> Path {
         actions.append(.transform(transform))
         return self
     }
 
+    /// Add the entirety of another path as part of this path.
+    ///
+    /// This can be necessary to section off transforms, as transforms applied to `subpath`
+    /// will not affect this path.
+    ///
+    /// The fill rule and preferred stroke style of the subpath are ignored.
     public consuming func addSubpath(_ subpath: Path) -> Path {
         actions.append(.subpath(subpath.actions))
         return self
@@ -316,6 +350,7 @@ public struct Path {
         return self
     }
 
+    /// Set the fill rule for the path.
     public consuming func fillRule(_ rule: FillRule) -> Path {
         fillRule = rule
         return self

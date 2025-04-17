@@ -1,3 +1,4 @@
+/// A shape that has style information attached to it, including color and stroke style.
 public protocol StyledShape: Shape {
     var strokeColor: Color? { get }
     var fillColor: Color? { get }

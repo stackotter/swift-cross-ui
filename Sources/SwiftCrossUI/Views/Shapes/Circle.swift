@@ -14,8 +14,8 @@ public struct Circle: Shape {
             idealSize: SIMD2(x: 10, y: 10),
             idealWidthForProposedHeight: proposal.y,
             idealHeightForProposedWidth: proposal.x,
-            minimumWidth: 1,
-            minimumHeight: 1,
+            minimumWidth: 0,
+            minimumHeight: 0,
             maximumWidth: nil,
             maximumHeight: nil
         )
