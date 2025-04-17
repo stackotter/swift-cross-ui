@@ -8,6 +8,8 @@ The beauty of SwiftCrossUI is that you can write your app once and have it look 
 
 > Tip: If you're using DefaultBackend, you can override the underlying backend during compilation by setting the `SCUI_DEFAULT_BACKEND` environment variable to the name of the desired backend. This is useful when you e.g. want to test the Gtk version of your app while using a Mac. Note that this only works for built-in backends and still requires the chosen backend to be compatible with your machine.
 
+> Warning: When using `SCUI_DEFAULT_BACKEND` to switch underlying backends, you may encounter some linker-related missing symbol errors. These are caused by a SwiftPM bug and usually disappear if you run `swift package clean` before attempting to build your app again.
+
 ## Usage
 
 ```swift
@@ -33,7 +35,7 @@ Figure 1: *adding `DefaultBackend` to an executable target*
 
 ```swift
 import SwiftCrossUI
-import Backend
+import DefaultBackend
 
 @main
 struct YourApp: App {
