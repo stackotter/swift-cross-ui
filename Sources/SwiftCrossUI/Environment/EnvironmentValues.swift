@@ -119,6 +119,17 @@ public struct EnvironmentValues {
         )
     }
 
+    /// Reveals a file in the system's file manager. This opens
+    /// the file's enclosing directory and highlighting the file.
+    ///
+    /// `nil` on platforms that don't support revealing files, e.g.
+    /// iOS.
+    public var revealFile: RevealFileAction? {
+        return RevealFileAction(
+            backend: backend
+        )
+    }
+
     /// Creates the default environment.
     init<Backend: AppBackend>(backend: Backend) {
         self.backend = backend

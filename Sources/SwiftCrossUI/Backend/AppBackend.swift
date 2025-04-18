@@ -88,6 +88,10 @@ public protocol AppBackend {
     /// are called.
     var menuImplementationStyle: MenuImplementationStyle { get }
 
+    /// Whether the backend can reveal files in the system file manager or not.
+    /// Mobile backends generally can't.
+    var canRevealFiles: Bool { get }
+
     /// Often in UI frameworks (such as Gtk), code is run in a callback
     /// after starting the app, and hence this generic root window creation
     /// API must reflect that. This is always the first method to be called
@@ -200,6 +204,10 @@ public protocol AppBackend {
     /// Opens an external URL in the system browser or app registered for the
     /// URL's protocol.
     func openExternalURL(_ url: URL) throws
+
+    /// Reveals a file in the system's file manager. This opens
+    /// the file's enclosing directory and highlighting the file.
+    func revealFile(_ url: URL) throws
 
     /// Shows a widget after it has been created or updated (may be unnecessary
     /// for some backends). Predominantly used by ``ViewGraphNode`` after
@@ -546,6 +554,10 @@ extension AppBackend {
     // MARK: System
 
     public func openExternalURL(_ url: URL) throws {
+        todo()
+    }
+
+    public func revealFile(_ url: URL) throws {
         todo()
     }
 

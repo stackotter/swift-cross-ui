@@ -31,6 +31,7 @@ public final class GtkBackend: AppBackend {
     public let defaultToggleStyle = ToggleStyle.button
     public let requiresImageUpdateOnScaleFactorChange = false
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
+    public let canRevealFiles = true
 
     var gtkApp: Application
 
@@ -162,6 +163,39 @@ public final class GtkBackend: AppBackend {
     public func openExternalURL(_ url: URL) throws {
         // Used instead of gtk_uri_launcher_launch to maintain <4.10 compatibility
         gtk_show_uri(nil, url.absoluteString, guint(GDK_CURRENT_TIME))
+    }
+
+    public func revealFile(_ url: URL) throws {
+        var success = false
+
+        #if !os(Windows)
+            let fileURI = url.absoluteString.replacingOccurrences(
+                of: ",",
+                with: "\\,"
+            )
+            let process = Process()
+            process.arguments = [
+                "dbus-send", "--print-reply",
+                "--dest=org.freedesktop.FileManager1",
+                "/org/freedesktop/FileManager1",
+                "org.freedesktop.FileManager1.ShowItems",
+                "array:string:\(fileURI)",
+                "string:"
+            ]
+            process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
+
+            do {
+                try process.run()
+                process.waitUntilExit()
+
+                success = process.terminationStatus == 0
+            } catch {
+                break
+            }
+        #endif
+
+        // Fall back to opening the parent directory without highlighting the file.
+        try openExternalURL(url.deletingLastPathComponent())
     }
 
     private func renderMenu(

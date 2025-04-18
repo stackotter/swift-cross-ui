@@ -22,6 +22,8 @@ public final class UIKitBackend: AppBackend {
 
     public let requiresImageUpdateOnScaleFactorChange = false
 
+    public let canRevealFiles = false
+
     var onTraitCollectionChange: (() -> Void)?
 
     private let appDelegateClass: ApplicationDelegate.Type

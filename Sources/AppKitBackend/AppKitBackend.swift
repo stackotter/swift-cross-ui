@@ -22,6 +22,7 @@ public final class AppKitBackend: AppBackend {
     public let defaultToggleStyle = ToggleStyle.button
     public let requiresImageUpdateOnScaleFactorChange = false
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
+    public let canRevealFiles = true
 
     public var scrollBarWidth: Int {
         // We assume that all scrollers have their controlSize set to `.regular` by default.
@@ -121,6 +122,10 @@ public final class AppKitBackend: AppBackend {
 
     public func openExternalURL(_ url: URL) throws {
         NSWorkspace.shared.open(url)
+    }
+
+    public func revealFile(_ url: URL) throws {
+        NSWorkspace.shared.activateFileViewerSelecting([url])
     }
 
     private static func renderMenuItems(_ items: [ResolvedMenu.Item]) -> [NSMenuItem] {
