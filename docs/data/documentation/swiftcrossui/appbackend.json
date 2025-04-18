@@ -518,6 +518,7 @@
     },
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/canRevealFiles",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/defaultPaddingAmount",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/defaultTableCellVerticalPadding",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/defaultTableRowContentHeight",
@@ -562,6 +563,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/openExternalURL(_:)-59ruj",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeAllChildren(of:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/removeChild(_:from:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/revealFile(_:)-2bue1",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/runInMainThread(action:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/runMainLoop(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/setApplicationMenu(_:)-9pswa",
@@ -930,6 +932,52 @@
   "title" : "addChild(_:to:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/addchild(_:to:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/canRevealFiles": {
+  "abstract" : [
+    {
+      "text" : "Whether the backend can reveal files in the system file manager or not.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Mobile backends generally can’t.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "canRevealFiles"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/canRevealFiles",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "canRevealFiles",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/canrevealfiles"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/computeRootEnvironment(defaultEnvironment:)": {
   "abstract" : [
@@ -3288,6 +3336,61 @@
   "title" : "requiresToggleSwitchSpacer",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/requirestoggleswitchspacer"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/revealFile(_:)-2bue1": {
+  "abstract" : [
+    {
+      "text" : "Reveals a file in the system’s file manager. This opens",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "the file’s enclosing directory and highlighting the file.",
+      "type" : "text"
+    }
+  ],
+  "defaultImplementations" : 1,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "revealFile"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:10Foundation3URLV",
+      "text" : "URL"
+    },
+    {
+      "kind" : "text",
+      "text" : ") "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "throws"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/revealFile(_:)-2bue1",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "revealFile(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/appbackend\/revealfile(_:)-2bue1"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend/runInMainThread(action:)": {
   "abstract" : [

@@ -246,6 +246,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentSingleFileOpenDialogAction",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ProgressView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ResolvedMenu",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RevealFileAction",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SaveDialogOptions",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableRowBuilder",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TapGesture",
@@ -3492,6 +3493,48 @@
   "title" : "ResolvedMenu",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/resolvedmenu"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/RevealFileAction": {
+  "abstract" : [
+    {
+      "text" : "Reveals a file in the system’s file manager. This opens",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "the file’s enclosing directory and highlighting the file.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RevealFileAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RevealFileAction",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RevealFileAction"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RevealFileAction",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/revealfileaction"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/SaveDialogOptions": {
   "abstract" : [

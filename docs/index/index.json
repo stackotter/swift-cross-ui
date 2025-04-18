@@ -6089,6 +6089,11 @@
                 "type" : "groupMarker"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/canrevealfiles",
+                "title" : "var canRevealFiles: Bool",
+                "type" : "property"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/defaultpaddingamount",
                 "title" : "var defaultPaddingAmount: Int",
                 "type" : "property"
@@ -6532,6 +6537,24 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/removechild(_:from:)",
                 "title" : "func removeChild(Self.Widget, from: Self.Widget)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/revealfile(_:)-38w7n",
+                        "title" : "func revealFile(URL) throws",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/revealfile(_:)-2bue1",
+                "title" : "func revealFile(URL) throws",
                 "type" : "method"
               },
               {
@@ -8403,6 +8426,11 @@
                 "type" : "property"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/environmentvalues\/revealfile",
+                "title" : "var revealFile: RevealFileAction?",
+                "type" : "property"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/environmentvalues\/suggestedforegroundcolor",
                 "title" : "var suggestedForegroundColor: Color",
                 "type" : "property"
@@ -9785,6 +9813,22 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/resolvedmenu",
             "title" : "ResolvedMenu",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/revealfileaction\/callasfunction(_:)",
+                "title" : "func callAsFunction(URL)",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/revealfileaction",
+            "title" : "RevealFileAction",
             "type" : "struct"
           },
           {

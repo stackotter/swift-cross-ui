@@ -121,6 +121,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/onSubmit",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/openURL",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/presentAlert",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/revealFile",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/suggestedForegroundColor",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/windowScaleFactor"
       ],
@@ -914,6 +915,55 @@
   "title" : "presentAlert",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/environmentvalues\/presentalert"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/revealFile": {
+  "abstract" : [
+    {
+      "text" : "Reveals a file in the system’s file manager. This opens",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "the file’s enclosing directory and highlighting the file.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "revealFile"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI16RevealFileActionV",
+      "text" : "RevealFileAction"
+    },
+    {
+      "kind" : "text",
+      "text" : "?"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/revealFile",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "revealFile",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environmentvalues\/revealfile"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/subscript(_:)": {
   "abstract" : [
