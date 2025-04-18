@@ -190,12 +190,15 @@ public final class GtkBackend: AppBackend {
 
                 success = process.terminationStatus == 0
             } catch {
-                break
+
             }
         #endif
 
-        // Fall back to opening the parent directory without highlighting the file.
-        try openExternalURL(url.deletingLastPathComponent())
+        if !success {
+            // Fall back to opening the parent directory without highlighting
+            // the file.
+            try openExternalURL(url.deletingLastPathComponent())
+        }
     }
 
     private func renderMenu(
