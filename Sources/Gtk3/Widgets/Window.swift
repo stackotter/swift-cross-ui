@@ -68,4 +68,8 @@ open class Window: Bin {
             gint(minimumSize.height)
         )
     }
+
+    public func setPosition(to position: WindowPosition) {
+        gtk_window_set_position(castedPointer(), position.toGtk())
+    }
 }

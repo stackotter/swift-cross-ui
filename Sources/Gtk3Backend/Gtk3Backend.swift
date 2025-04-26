@@ -94,6 +94,7 @@ public final class Gtk3Backend: AppBackend {
         if let precreatedWindow = precreatedWindow {
             self.precreatedWindow = nil
             window = precreatedWindow
+            window.setPosition(to: .center)
         } else {
             window = Gtk3.ApplicationWindow(application: gtkApp)
         }
