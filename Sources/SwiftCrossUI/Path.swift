@@ -299,8 +299,8 @@ public struct Path {
     ///   - endAngle: The angle of the end of the arc, measured in radians clockwise from right.
     ///     Must be between 0 and 2pi (inclusive).
     ///   - clockwise: `true` if the arc is to be drawn clockwise, `false` if the arc is to
-    ///     be drawn counter-clockwise. Used to determine whether to draw the larger arc or
-    ///     the smaller arc identified by the given start and end angles.
+    ///     be drawn counter-clockwise. Used to determine which of the two possible arcs to
+    ///     draw between the given start and end angles.
     public consuming func addArc(
         center: SIMD2<Double>,
         radius: Double,

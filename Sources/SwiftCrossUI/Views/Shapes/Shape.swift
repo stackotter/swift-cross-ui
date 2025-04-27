@@ -2,8 +2,7 @@
 ///
 /// If no stroke color or fill color is specified, the default is no stroke and a fill of the
 /// current foreground color.
-public protocol Shape: View
-where Content == EmptyView {
+public protocol Shape: View where Content == EmptyView {
     /// Draw the path for this shape.
     ///
     /// The bounds passed to a shape that is immediately drawn as a view will always have an
@@ -44,8 +43,7 @@ where Content == EmptyView {
     ///   a dry run, while the other properties are used to inform the layout engine how big
     ///   or small the shape can be. The ``ViewSize/idealSize`` property should not vary with
     ///   the `proposal`, and should only depend on the shape's contents. Pass `nil` for the
-    ///   maximum width/height if the shape has no maximum size (and therefore may occupy
-    ///   the entire screen).
+    ///   maximum width/height if the shape has no maximum size.
     func size(fitting proposal: SIMD2<Int>) -> ViewSize
 }
 

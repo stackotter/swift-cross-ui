@@ -1191,26 +1191,26 @@ public final class WinUIBackend: AppBackend {
         _ collection: WinUI.GeometryCollection,
         lastPoint: Point
     ) -> PathFigure {
-        var pathGeo: PathGeometry
+        var pathGeometry: PathGeometry
         if collection.size > 0,
             let castedLast = collection.getAt(collection.size - 1) as? PathGeometry
         {
-            pathGeo = castedLast
+            pathGeometry = castedLast
         } else {
-            pathGeo = PathGeometry()
-            collection.append(pathGeo)
+            pathGeometry = PathGeometry()
+            collection.append(pathGeometry)
         }
 
         var figure: PathFigure
-        if pathGeo.figures.size > 0 {
+        if pathGeometry.figures.size > 0 {
             // Note: the if check and force-unwrap is necessary. You can't do an `if let`
             // here because PathFigureCollection uses unsigned integers for its indices so
             // `size - 1` would underflow (causing a fatalError) if it's empty.
-            figure = pathGeo.figures.getAt(pathGeo.figures.size - 1)!
+            figure = pathGeometry.figures.getAt(pathGeometry.figures.size - 1)!
         } else {
             figure = PathFigure()
             figure.startPoint = lastPoint
-            pathGeo.figures.append(figure)
+            pathGeometry.figures.append(figure)
         }
 
         return figure
@@ -1226,14 +1226,14 @@ public final class WinUIBackend: AppBackend {
                     lastPoint = Point(x: Float(point.x), y: Float(point.y))
 
                     if geometry.size > 0,
-                        let pathGeo = geometry.getAt(geometry.size - 1) as? PathGeometry,
-                        pathGeo.figures.size > 0
+                        let pathGeometry = geometry.getAt(geometry.size - 1) as? PathGeometry,
+                        pathGeometry.figures.size > 0
                     {
-                        let figure = pathGeo.figures.getAt(pathGeo.figures.size - 1)!
+                        let figure = pathGeometry.figures.getAt(pathGeometry.figures.size - 1)!
                         if figure.segments.size > 0 {
                             let newFigure = PathFigure()
                             newFigure.startPoint = lastPoint
-                            pathGeo.figures.append(newFigure)
+                            pathGeometry.figures.append(newFigure)
                         } else {
                             figure.startPoint = lastPoint
                         }
@@ -1362,8 +1362,8 @@ public final class WinUIBackend: AppBackend {
                     }
 
                     if geometry.size > 0,
-                        let pathGeo = geometry.getAt(geometry.size - 1) as? PathGeometry,
-                        pathGeo.figures.contains(where: { ($0?.segments.size ?? 0) > 0 })
+                        let pathGeometry = geometry.getAt(geometry.size - 1) as? PathGeometry,
+                        pathGeometry.figures.contains(where: { ($0?.segments.size ?? 0) > 0 })
                     {
                         // Start a new PathGeometry so that transforms don't apply going forward
                         geometry.append(PathGeometry())

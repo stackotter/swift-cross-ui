@@ -30,6 +30,10 @@ extension Color {
 
     var cgColor: CGColor {
         CGColor(
-            red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
+            red: CGFloat(red),
+            green: CGFloat(green),
+            blue: CGFloat(blue),
+            alpha: CGFloat(alpha)
+        )
     }
 }

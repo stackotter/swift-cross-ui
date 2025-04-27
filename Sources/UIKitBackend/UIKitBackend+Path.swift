@@ -129,25 +129,29 @@ extension UIKitBackend {
         shapeLayer.miterLimit = path.miterLimit
         shapeLayer.fillRule = path.usesEvenOddFillRule ? .evenOdd : .nonZero
 
-        shapeLayer.lineJoin =
-            switch path.lineJoinStyle {
-                case .miter:
-                    .miter
-                case .round:
-                    .round
-                case .bevel:
-                    .bevel
-            }
+        switch path.lineJoinStyle {
+            case .miter:
+                shapeLayer.lineJoin = .miter
+            case .round:
+                shapeLayer.lineJoin = .round
+            case .bevel:
+                shapeLayer.lineJoin = .bevel
+            @unknown default:
+                print("Warning: unrecognized lineJoinStyle \(path.lineJoinStyle)")
+                shapeLayer.lineJoin = .miter
+        }
 
-        shapeLayer.lineCap =
-            switch path.lineCapStyle {
-                case .butt:
-                    .butt
-                case .round:
-                    .round
-                case .square:
-                    .square
-            }
+        switch path.lineCapStyle {
+            case .butt:
+                shapeLayer.lineCap = .butt
+            case .round:
+                shapeLayer.lineCap = .round
+            case .square:
+                shapeLayer.lineCap = .square
+            @unknown default:
+                print("Warning: unrecognized lineCapStyle \(path.lineCapStyle)")
+                shapeLayer.lineCap = .butt
+        }
 
         shapeLayer.strokeColor = strokeColor.cgColor
         shapeLayer.fillColor = fillColor.cgColor
