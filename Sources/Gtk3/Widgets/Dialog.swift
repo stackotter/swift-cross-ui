@@ -122,7 +122,11 @@ open class Dialog: Window {
     func registerSignalHandlers() {
         removeSignals()
 
-        super.didMoveToParent()
+        // This seems sensible but causes crashes when people click outside of
+        // dialogs on Rocky Linux 8. Not quite sure what the root cause is, but
+        // it presents as a crash inside swift_retain inside SignalBox1.run (when
+        // the callback gets called) for the "button-press-event" signal.
+        //   super.didMoveToParent()
 
         addSignal(name: "close") { [weak self] () in
             guard let self = self else { return }
