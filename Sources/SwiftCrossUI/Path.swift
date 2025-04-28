@@ -361,13 +361,13 @@ extension Path {
     @inlinable
     public consuming func `if`(
         _ condition: Bool,
-        then ifTrue: (consuming Path) -> Path,
-        else ifFalse: (consuming Path) -> Path = { $0 }
-    ) -> Path {
+        then ifTrue: (consuming Path) throws -> Path,
+        else ifFalse: (consuming Path) throws -> Path = { $0 }
+    ) rethrows -> Path {
         if condition {
-            ifTrue(self)
+            try ifTrue(self)
         } else {
-            ifFalse(self)
+            try ifFalse(self)
         }
     }
 }
