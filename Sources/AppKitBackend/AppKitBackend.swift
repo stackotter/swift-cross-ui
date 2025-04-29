@@ -642,19 +642,21 @@ public final class AppKitBackend: AppBackend {
         }
         textField.onSubmit = onSubmit
 
-        textField.contentType =
-            switch environment.textContentType {
-                case .url:
-                    .URL
-                case .phoneNumber:
-                    .telephoneNumber
-                case .name:
-                    .name
-                case .emailAddress:
-                    .emailAddress
-                default:
-                    nil
-            }
+        if #available(macOS 14, *) {
+            textField.contentType =
+                switch environment.textContentType {
+                    case .url:
+                        .URL
+                    case .phoneNumber:
+                        .telephoneNumber
+                    case .name:
+                        .name
+                    case .emailAddress:
+                        .emailAddress
+                    default:
+                        nil
+                }
+        }
     }
 
     public func getContent(ofTextField textField: Widget) -> String {
