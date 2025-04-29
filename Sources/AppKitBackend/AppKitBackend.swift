@@ -641,6 +641,20 @@ public final class AppKitBackend: AppBackend {
             onChange(textField.stringValue)
         }
         textField.onSubmit = onSubmit
+
+        textField.contentType =
+            switch environment.textContentType {
+                case .url:
+                    .URL
+                case .phoneNumber:
+                    .telephoneNumber
+                case .name:
+                    .name
+                case .emailAddress:
+                    .emailAddress
+                default:
+                    nil
+            }
     }
 
     public func getContent(ofTextField textField: Widget) -> String {

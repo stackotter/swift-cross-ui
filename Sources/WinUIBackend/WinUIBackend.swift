@@ -801,6 +801,38 @@ public final class WinUIBackend: AppBackend {
         }
 
         missing("text field font handling")
+
+        let inputScope: InputScopeNameValue =
+            switch environment.textContentType {
+                case .decimal(_):
+                    .number
+                case .digits(_):
+                    .digits
+                case .emailAddress:
+                    .emailSmtpAddress
+                case .name:
+                    .personalFullName
+                case .phoneNumber:
+                    .telephoneNumber
+                case .text:
+                    .default
+                case .url:
+                    .url
+            }
+
+        setInputScope(for: textField, to: inputScope)
+    }
+
+    private func setInputScope(for textField: TextBox, to value: InputScopeNameValue) {
+        if let inputScope = textField.inputScope,
+            inputScope.names.count == 1
+        {
+            inputScope.names[0] = value
+        } else {
+            let inputScope = InputScope()
+            inputScope.names.add(value)
+            textField.inputScope = inputScope
+        }
     }
 
     public func setContent(ofTextField textField: Widget, to content: String) {
