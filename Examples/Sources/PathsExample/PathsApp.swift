@@ -37,6 +37,7 @@ struct ArcShape: StyledShape {
     }
 }
 
+@main
 struct PathsApp: App {
     var body: some Scene {
         WindowGroup("PathsApp") {
@@ -120,6 +121,3 @@ struct PathsApp: App {
         }
     }
 }
-
-// Even though this file isn't called main.swift, `@main` isn't allowed and this is
-PathsApp.main()

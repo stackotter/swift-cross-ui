@@ -49,3 +49,8 @@ version = '0.1.0'
 identifier = 'dev.swiftcrossui.NotesExample'
 product = 'NotesExample'
 version = '0.1.0'
+
+[apps.PathsExample]
+identifier = 'dev.swiftcrossui.PathsExample'
+product = 'PathsExample'
+version = '0.1.0'

@@ -1275,8 +1275,8 @@ public final class AppKitBackend: AppBackend {
                     path.appendArc(
                         withCenter: NSPoint(x: center.x, y: center.y),
                         radius: CGFloat(radius),
-                        startAngle: CGFloat(startAngle),
-                        endAngle: CGFloat(endAngle),
+                        startAngle: CGFloat(startAngle * 180.0 / .pi),
+                        endAngle: CGFloat(endAngle * 180.0 / .pi),
                         clockwise: clockwise
                     )
                 case .transform(let transform):

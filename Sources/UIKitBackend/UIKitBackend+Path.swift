@@ -15,7 +15,7 @@ extension UIKitBackend {
     public typealias Path = UIBezierPath
 
     public func createPathWidget() -> any WidgetProtocol {
-        BaseViewWidget()
+        PathWidget()
     }
 
     public func createPath() -> UIBezierPath {
