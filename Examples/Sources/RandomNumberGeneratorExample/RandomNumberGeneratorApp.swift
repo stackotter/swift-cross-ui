@@ -39,7 +39,7 @@ struct RandomNumberGeneratorApp: App {
                         randomNumber = Int.random(in: Int(minNum)...Int(maxNum))
                     }
 
-                    Text("Minimum:")
+                    Text("Minimum: \(minNum)")
                     Slider(
                         $minNum.onChange { newValue in
                             if newValue > maxNum {
@@ -50,7 +50,7 @@ struct RandomNumberGeneratorApp: App {
                         maximum: 100
                     )
 
-                    Text("Maximum:")
+                    Text("Maximum: \(maxNum)")
                     Slider(
                         $maxNum.onChange { newValue in
                             if newValue < minNum {
