@@ -70,7 +70,7 @@ struct RandomNumberGeneratorApp: App {
                 .foregroundColor(colorOption?.color ?? .red)
             }
         }
-        .defaultSize(width: 500, height: 0)
+        .defaultSize(width: 500, height: 300)
         .windowResizability(.contentMinSize)
     }
 }
