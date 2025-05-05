@@ -76,7 +76,7 @@ struct WindowingApp: App {
                 VStack {
                     HStack {
                         Text("Window title:")
-                        TextField("My window", $title)
+                        TextField("My window", text: $title)
                     }
 
                     Button(resizable ? "Disable resizing" : "Enable resizing") {
