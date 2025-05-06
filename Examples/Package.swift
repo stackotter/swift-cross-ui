@@ -65,5 +65,9 @@ let package = Package(
             name: "NotesExample",
             dependencies: exampleDependencies
         ),
+        .executableTarget(
+            name: "PickerExample",
+            dependencies: exampleDependencies
+        ),
     ]
 )
