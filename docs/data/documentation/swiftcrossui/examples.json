@@ -146,23 +146,6 @@
                 {
                   "inlineContent" : [
                     {
-                      "code" : "FileViewerExample",
-                      "type" : "codeVoice"
-                    },
-                    {
-                      "text" : ", an app showcasing integration with the system’s file chooser.",
-                      "type" : "text"
-                    }
-                  ],
-                  "type" : "paragraph"
-                }
-              ]
-            },
-            {
-              "content" : [
-                {
-                  "inlineContent" : [
-                    {
                       "code" : "NavigationExample",
                       "type" : "codeVoice"
                     },
