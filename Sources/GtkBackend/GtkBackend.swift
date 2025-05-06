@@ -764,8 +764,9 @@ public final class GtkBackend: AppBackend {
 
     public func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?) {
         let picker = picker as! DropDown
-        if selectedOption != picker.selected {
-            picker.selected = selectedOption ?? Int(GTK_INVALID_LIST_POSITION)
+        if let selectedOption, selectedOption != picker.selected {
+            // Don't to assign GTK_INVALID_LIST_POSITION to picker.selected as it leads to crash
+            picker.selected = selectedOption
         }
     }
 
