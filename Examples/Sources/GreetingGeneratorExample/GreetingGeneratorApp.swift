@@ -15,7 +15,7 @@ struct GreetingGeneratorApp: App {
         WindowGroup("Greeting Generator") {
             #hotReloadable {
                 VStack {
-                    TextField("Name", $name)
+                    TextField("Name", text: $name)
                     HStack {
                         Button("Generate") {
                             greetings.append("Hello, \(name)!")
