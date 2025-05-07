@@ -49,8 +49,3 @@ version = '0.1.0'
 identifier = 'dev.swiftcrossui.NotesExample'
 product = 'NotesExample'
 version = '0.1.0'
-
-[apps.PickerExample]
-identifier = 'dev.swiftcrossui.PickerExample'
-product = 'PickerExample'
-version = '0.1.0'

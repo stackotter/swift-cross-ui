@@ -17,7 +17,6 @@ A few examples are included with SwiftCrossUI to demonstrate some of its basic f
 - `StressTestExample`, an app used to test view update performance.
 - `SpreadsheetExample`, an app showcasing tables.
 - `ControlsExample`, an app showcasing the various types of controls available.
-- `PickerExample`, an app showcasing `Picker` to choose one option from several available.
 
 To run an example, either select the example under schemes at the top of the window (in Xcode), or run it from the command line like so:
 
