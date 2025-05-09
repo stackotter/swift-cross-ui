@@ -46,6 +46,7 @@ jobs:
             buildtarget NavigationExample
             buildtarget StressTestExample
             buildtarget NotesExample
+            buildtarget PathsExample
 
             if [ $devicetype != TV ]; then
               # Slider is not implemented for tvOS

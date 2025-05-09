@@ -9,6 +9,6 @@ DerivedData/
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 /.vscode
 *.pyc
-/.swiftpm
+.swiftpm
 vcpkg_installed/
 *.trace

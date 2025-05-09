@@ -35,6 +35,7 @@ jobs:
         swift build --target StressTestExample && \
         swift build --target SpreadsheetExample && \
         swift build --target NotesExample && \
-        swift build --target GtkExample
+        swift build --target GtkExample && \
+        swift build --target PathsExample
     - name: Test
       run: swift test --test-product swift-cross-uiPackageTests

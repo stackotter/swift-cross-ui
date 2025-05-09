@@ -27,4 +27,13 @@ extension Color {
     var uiColor: UIColor {
         UIColor(color: self)
     }
+
+    var cgColor: CGColor {
+        CGColor(
+            red: CGFloat(red),
+            green: CGFloat(green),
+            blue: CGFloat(blue),
+            alpha: CGFloat(alpha)
+        )
+    }
 }
