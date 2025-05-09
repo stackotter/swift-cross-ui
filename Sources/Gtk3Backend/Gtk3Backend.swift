@@ -86,6 +86,20 @@ public final class Gtk3Backend: AppBackend {
                 OpaquePointer(provider.pointer),
                 guint(GTK_STYLE_PROVIDER_PRIORITY_APPLICATION)
             )
+
+            Self.mainRunLoopTicklingLoop()
+        }
+    }
+
+    private static func mainRunLoopTicklingLoop(nextDelayMilliseconds: Int? = nil) {
+        Self.runInMainThread(afterMilliseconds: nextDelayMilliseconds ?? 50) {
+            let nextDate = RunLoop.main.limitDate(forMode: .default)
+            // This isn't expected to be nil, but if it is we can just loop
+            // again quickly with the default delay.
+            let nextDelay = nextDate.map {
+                return max(min(Int($0.timeIntervalSinceNow * 1000), 50), 0)
+            }
+            mainRunLoopTicklingLoop(nextDelayMilliseconds: nextDelay)
         }
     }
 
@@ -320,6 +334,28 @@ public final class Gtk3Backend: AppBackend {
                     .takeUnretainedValue()
                 action.action()
 
+                return 0
+            },
+            Unmanaged<ThreadActionContext>.passRetained(action).toOpaque(),
+            { _ in }
+        )
+    }
+
+    private static func runInMainThread(afterMilliseconds delay: Int, action: @escaping () -> Void) {
+        let action = ThreadActionContext(action: action)
+        g_timeout_add_full(
+            0,
+            guint(max(0, delay)),
+            { context in
+                guard let context = context else {
+                    fatalError("Gtk action callback called without context")
+                }
+
+                let action = Unmanaged<ThreadActionContext>.fromOpaque(context)
+                    .takeUnretainedValue()
+                action.action()
+
+                // Cancel the recurring timeout after one iteration
                 return 0
             },
             Unmanaged<ThreadActionContext>.passRetained(action).toOpaque(),
