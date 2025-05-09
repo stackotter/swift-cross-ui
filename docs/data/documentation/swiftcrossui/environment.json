@@ -280,7 +280,7 @@
       "type" : "text"
     },
     {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body",
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body-2j1pw",
       "isActive" : true,
       "type" : "reference"
     },
@@ -658,13 +658,14 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/environmentvalues\/choosefile"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/body": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/body-2j1pw": {
   "abstract" : [
     {
       "text" : "The view’s contents.",
       "type" : "text"
     }
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -696,13 +697,13 @@
       "text" : "Content"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body-2j1pw",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "body",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view\/body"
+  "url" : "\/documentation\/swiftcrossui\/view\/body-2j1pw"
 }
 }
 }

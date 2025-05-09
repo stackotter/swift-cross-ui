@@ -85,11 +85,23 @@
   "relationshipsSections" : [
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shape",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StyledShape"
+      ],
+      "kind" : "relationships",
+      "title" : "Inherited By",
+      "type" : "inheritedBy"
+    },
+    {
+      "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Capsule",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Circle",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Ellipse",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Group",
@@ -104,6 +116,8 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ProgressView",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Rectangle",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RoundedRectangle",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer",
@@ -175,7 +189,7 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body-2j1pw"
       ],
       "title" : "Instance Properties"
     },
@@ -352,6 +366,40 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/button"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Capsule": {
+  "abstract" : [
+    {
+      "text" : "A rounded rectangle whose corner radius is equal to half the length of its shortest side.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Capsule"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Capsule",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Capsule"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Capsule",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/capsule"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/CellPosition": {
   "abstract" : [
     {
@@ -385,6 +433,37 @@
   "title" : "CellPosition",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/cellposition"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Circle": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Circle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Circle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Circle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Circle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/circle"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color": {
   "abstract" : [
@@ -512,6 +591,37 @@
   "title" : "EitherView",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/eitherview"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Ellipse": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Ellipse"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Ellipse",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Ellipse"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Ellipse",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/ellipse"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyView": {
   "abstract" : [
@@ -1147,6 +1257,71 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/progressview"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Rectangle": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Rectangle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Rectangle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Rectangle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Rectangle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/rectangle"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/RoundedRectangle": {
+  "abstract" : [
+    {
+      "text" : "A rounded rectangle.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RoundedRectangle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RoundedRectangle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RoundedRectangle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RoundedRectangle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/roundedrectangle"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView": {
   "abstract" : [
     {
@@ -1192,6 +1367,40 @@
   "title" : "ScrollView",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scrollview"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Shape": {
+  "abstract" : [
+    {
+      "text" : "A 2-D shape that can be drawn as a view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Shape"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shape",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Shape"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Shape",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/shape"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider": {
   "abstract" : [
@@ -1268,6 +1477,40 @@
   "title" : "Spacer",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/spacer"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/StyledShape": {
+  "abstract" : [
+    {
+      "text" : "A shape that has style information attached to it, including color and stroke style.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "StyledShape"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StyledShape",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "StyledShape"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "StyledShape",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/styledshape"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Swift/Never": {
   "abstract" : [
@@ -2107,7 +2350,7 @@
       "type" : "text"
     }
   ],
-  "defaultImplementations" : 1,
+  "defaultImplementations" : 2,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -2238,13 +2481,14 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view\/background(_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/body": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/body-2j1pw": {
   "abstract" : [
     {
       "text" : "The view’s contents.",
       "type" : "text"
     }
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -2276,13 +2520,13 @@
       "text" : "Content"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body-2j1pw",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "body",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view\/body"
+  "url" : "\/documentation\/swiftcrossui\/view\/body-2j1pw"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/bold()": {
   "abstract" : [
@@ -2341,7 +2585,7 @@
       "type" : "text"
     }
   ],
-  "defaultImplementations" : 1,
+  "defaultImplementations" : 2,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -4751,7 +4995,7 @@
       "type" : "text"
     },
     {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body",
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body-2j1pw",
       "isActive" : true,
       "type" : "reference"
     },
@@ -4887,7 +5131,7 @@
       "type" : "text"
     },
     {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body",
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body-2j1pw",
       "isActive" : true,
       "type" : "reference"
     },
@@ -5011,7 +5255,7 @@
       "type" : "text"
     }
   ],
-  "defaultImplementations" : 1,
+  "defaultImplementations" : 2,
   "fragments" : [
     {
       "kind" : "keyword",

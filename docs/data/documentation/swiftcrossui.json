@@ -211,23 +211,29 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PublishedMarkerProtocol",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SceneGraphNode",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shape",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StyledShape",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableRowContent"
       ],
       "title" : "Protocols"
     },
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AffineTransform",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AlertAction",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AlertActionsBuilder",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Alignment",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppMetadata",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Capsule",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Circle",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandMenu",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Commands",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandsBuilder",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandsModifier",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ContentType",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Ellipse",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyTableRowContent",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues",
@@ -240,14 +246,18 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/MenuItemsBuilder",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OpenDialogOptions",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OpenURLAction",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Path",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PreferenceValues",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentAlertAction",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentFileSaveDialogAction",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentSingleFileOpenDialogAction",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ProgressView",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Rectangle",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ResolvedMenu",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RevealFileAction",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RoundedRectangle",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SaveDialogOptions",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StrokeStyle",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableRowBuilder",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TapGesture",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene10",
@@ -318,6 +328,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DialogResult",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileChooserResult",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FillRule",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HorizontalAlignment",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/InheritedOrientation",
@@ -326,6 +337,8 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/MenuItem",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Orientation",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StackAlignment",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StrokeCap",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StrokeJoin",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ToggleStyle",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VerticalAlignment",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowResizability"
@@ -378,6 +391,40 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AffineTransform": {
+  "abstract" : [
+    {
+      "text" : "A type representing an affine transformation on a 2-D point.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "AffineTransform"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AffineTransform",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "AffineTransform"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "AffineTransform",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/affinetransform"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AlertAction": {
   "abstract" : [
@@ -983,6 +1030,40 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/cancellable"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Capsule": {
+  "abstract" : [
+    {
+      "text" : "A rounded rectangle whose corner radius is equal to half the length of its shortest side.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Capsule"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Capsule",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Capsule"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Capsule",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/capsule"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/CellPosition": {
   "abstract" : [
     {
@@ -1016,6 +1097,37 @@
   "title" : "CellPosition",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/cellposition"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Circle": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Circle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Circle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Circle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Circle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/circle"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Color": {
   "abstract" : [
@@ -1431,7 +1543,7 @@
       "type" : "text"
     },
     {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body",
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body-2j1pw",
       "isActive" : true,
       "type" : "reference"
     },
@@ -1575,6 +1687,37 @@
   "title" : "EitherView",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/eitherview"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Ellipse": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Ellipse"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Ellipse",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Ellipse"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Ellipse",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/ellipse"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyTableRowContent": {
   "abstract" : [
@@ -2021,6 +2164,40 @@
   "title" : "FileDialogOptions",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/filedialogoptions"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/FillRule": {
+  "abstract" : [
+    {
+      "text" : "An enum describing how a path is shaded.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "FillRule"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FillRule",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "FillRule"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "FillRule",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/fillrule"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Font": {
   "abstract" : [
@@ -2965,6 +3142,37 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/orientation"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Path": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Path"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Path",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Path"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Path",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/path"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Picker": {
   "abstract" : [
     {
@@ -3452,6 +3660,37 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/quick-start"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Rectangle": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Rectangle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Rectangle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Rectangle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Rectangle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/rectangle"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ResolvedMenu": {
   "abstract" : [
     {
@@ -3535,6 +3774,40 @@
   "title" : "RevealFileAction",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/revealfileaction"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/RoundedRectangle": {
+  "abstract" : [
+    {
+      "text" : "A rounded rectangle.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RoundedRectangle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RoundedRectangle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RoundedRectangle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RoundedRectangle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/roundedrectangle"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/SaveDialogOptions": {
   "abstract" : [
@@ -3739,6 +4012,40 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scrollview"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Shape": {
+  "abstract" : [
+    {
+      "text" : "A 2-D shape that can be drawn as a view.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Shape"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shape",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Shape"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Shape",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/shape"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Slider": {
   "abstract" : [
     {
@@ -3879,6 +4186,133 @@
   "title" : "State",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/state"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/StrokeCap": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "StrokeCap"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StrokeCap",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "StrokeCap"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "StrokeCap",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/strokecap"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/StrokeJoin": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "StrokeJoin"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StrokeJoin",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "StrokeJoin"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "StrokeJoin",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/strokejoin"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/StrokeStyle": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "StrokeStyle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StrokeStyle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "StrokeStyle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "StrokeStyle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/strokestyle"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/StyledShape": {
+  "abstract" : [
+    {
+      "text" : "A shape that has style information attached to it, including color and stroke style.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "StyledShape"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StyledShape",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "StyledShape"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "StyledShape",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/styledshape"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Swift": {
   "abstract" : [
@@ -6059,13 +6493,14 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/body": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/body-2j1pw": {
   "abstract" : [
     {
       "text" : "The view’s contents.",
       "type" : "text"
     }
   ],
+  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -6097,13 +6532,13 @@
       "text" : "Content"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body-2j1pw",
   "kind" : "symbol",
   "required" : true,
   "role" : "symbol",
   "title" : "body",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view\/body"
+  "url" : "\/documentation\/swiftcrossui\/view\/body-2j1pw"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewBuilder": {
   "abstract" : [

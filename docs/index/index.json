@@ -4012,7 +4012,20 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/swiftcrossui\/view\/body",
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/view\/body-9or6d",
+                        "title" : "var body: EmptyView",
+                        "type" : "property"
+                      }
+                    ],
+                    "title" : "View Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/view\/body-2j1pw",
                 "title" : "var body: Self.Content",
                 "type" : "property"
               },
@@ -4029,6 +4042,11 @@
                 "children" : [
                   {
                     "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-8a6xi",
+                        "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                        "type" : "method"
+                      },
                       {
                         "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-7s16u",
                         "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
@@ -4059,6 +4077,11 @@
                     "children" : [
                       {
                         "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:environment:)-5v4xq",
+                        "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:environment:)-7mvvw",
                         "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
                         "type" : "method"
                       }
@@ -4228,6 +4251,11 @@
                 "children" : [
                   {
                     "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:proposedsize:environment:backend:dryrun:)-5duo6",
+                        "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                        "type" : "method"
+                      },
                       {
                         "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:proposedsize:environment:backend:dryrun:)-27j1y",
                         "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
@@ -6066,6 +6094,11 @@
                 "type" : "associatedtype"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/path",
+                "title" : "Path",
+                "type" : "associatedtype"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/widget",
                 "title" : "Widget",
                 "type" : "associatedtype"
@@ -6232,6 +6265,42 @@
                 ],
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/createimageview()-1ap9w",
                 "title" : "func createImageView() -> Self.Widget",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createpath()-t6ct",
+                        "title" : "func createPath() -> Self.Path",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createpath()-8bbir",
+                "title" : "func createPath() -> Self.Path",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/createpathwidget()-3kwd0",
+                        "title" : "func createPathWidget() -> Self.Widget",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/createpathwidget()-8zuas",
+                "title" : "func createPathWidget() -> Self.Widget",
                 "type" : "method"
               },
               {
@@ -6537,6 +6606,24 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/appbackend\/removechild(_:from:)",
                 "title" : "func removeChild(Self.Widget, from: Self.Widget)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/renderpath(_:container:strokecolor:fillcolor:overridestrokestyle:)-2qfb0",
+                        "title" : "func renderPath(Self.Path, container: Self.Widget, strokeColor: Color, fillColor: Color, overrideStrokeStyle: StrokeStyle?)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/renderpath(_:container:strokecolor:fillcolor:overridestrokestyle:)-4vucy",
+                "title" : "func renderPath(Self.Path, container: Self.Widget, strokeColor: Color, fillColor: Color, overrideStrokeStyle: StrokeStyle?)",
                 "type" : "method"
               },
               {
@@ -7105,6 +7192,24 @@
                   {
                     "children" : [
                       {
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatepath(_:_:pointschanged:)-57x8k",
+                        "title" : "func updatePath(Self.Path, Path, pointsChanged: Bool)",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "AppBackend Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatepath(_:_:pointschanged:)-qr8t",
+                "title" : "func updatePath(Self.Path, Path, pointsChanged: Bool)",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
                         "path" : "\/documentation\/swiftcrossui\/appbackend\/updatepicker(_:options:environment:onchange:)-3viw7",
                         "title" : "func updatePicker(Self.Widget, options: [String], environment: EnvironmentValues, onChange: (Int?) -> Void)",
                         "type" : "method"
@@ -7434,6 +7539,96 @@
           {
             "children" : [
               {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/shape\/fill(_:)",
+                "title" : "func fill(Color) -> some StyledShape",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/shape\/path(in:)",
+                "title" : "func path(in: Path.Rect) -> Path",
+                "type" : "method"
+              },
+              {
+                "children" : [
+                  {
+                    "children" : [
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/shape\/size(fitting:)-74jf0",
+                        "title" : "func size(fitting: SIMD2<Int>) -> ViewSize",
+                        "type" : "method"
+                      }
+                    ],
+                    "title" : "Shape Implementations",
+                    "type" : "groupMarker"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/shape\/size(fitting:)-3m51l",
+                "title" : "func size(fitting: SIMD2<Int>) -> ViewSize",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/shape\/stroke(_:style:)",
+                "title" : "func stroke(Color, style: StrokeStyle?) -> some StyledShape",
+                "type" : "method"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/shape",
+            "title" : "Shape",
+            "type" : "protocol"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/styledshape\/fillcolor",
+                "title" : "var fillColor: Color?",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/styledshape\/strokecolor",
+                "title" : "var strokeColor: Color?",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/styledshape\/strokestyle",
+                "title" : "var strokeStyle: StrokeStyle?",
+                "type" : "property"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/styledshape\/update(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/styledshape\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/styledshape",
+            "title" : "StyledShape",
+            "type" : "protocol"
+          },
+          {
+            "children" : [
+              {
                 "title" : "Associated Types",
                 "type" : "groupMarker"
               },
@@ -7473,6 +7668,108 @@
           {
             "title" : "Structures",
             "type" : "groupMarker"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/affinetransform\/init(lineartransform:translation:)",
+                "title" : "init(linearTransform: SIMD4<Double>, translation: SIMD2<Double>)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/affinetransform\/debugdescription",
+                "title" : "var debugDescription: String",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/affinetransform\/lineartransform",
+                "title" : "var linearTransform: SIMD4<Double>",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/affinetransform\/translation",
+                "title" : "var translation: SIMD2<Double>",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/affinetransform\/followedby(_:)",
+                "title" : "func followedBy(AffineTransform) -> AffineTransform",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/affinetransform\/inverted()",
+                "title" : "func inverted() -> AffineTransform?",
+                "type" : "method"
+              },
+              {
+                "title" : "Type Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/affinetransform\/identity",
+                "title" : "static let identity: AffineTransform",
+                "type" : "property"
+              },
+              {
+                "title" : "Type Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/affinetransform\/rotation(degrees:center:)",
+                "title" : "static func rotation(degrees: Double, center: SIMD2<Double>) -> AffineTransform",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/affinetransform\/rotation(radians:center:)",
+                "title" : "static func rotation(radians: Double, center: SIMD2<Double>) -> AffineTransform",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/affinetransform\/scaling(by:)",
+                "title" : "static func scaling(by: Double) -> AffineTransform",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/affinetransform\/translation(x:y:)",
+                "title" : "static func translation(x: Double, y: Double) -> AffineTransform",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Operators",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/affinetransform\/!=(_:_:)",
+                    "title" : "static func != (Self, Self) -> Bool",
+                    "type" : "op"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/affinetransform\/equatable-implementations",
+                "title" : "Equatable Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/affinetransform",
+            "title" : "AffineTransform",
+            "type" : "struct"
           },
           {
             "children" : [
@@ -7919,6 +8216,526 @@
                 "type" : "groupMarker"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/capsule\/init()",
+                "title" : "init()",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/capsule\/path(in:)",
+                "title" : "func path(in: Path.Rect) -> Path",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/fill(_:)",
+                    "title" : "func fill(Color) -> some StyledShape",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/size(fitting:)",
+                    "title" : "func size(fitting: SIMD2<Int>) -> ViewSize",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/stroke(_:style:)",
+                    "title" : "func stroke(Color, style: StrokeStyle?) -> some StyledShape",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/capsule\/shape-implementations",
+                "title" : "Shape Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/body",
+                    "title" : "var body: EmptyView",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/alert(_:ispresented:actions:)",
+                    "title" : "func alert(String, isPresented: Binding<Bool>, actions: () -> [AlertAction]) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/aswidget(_:backend:)-2vfck",
+                    "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/aswidget(_:backend:)-82hcb",
+                    "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/background(_:)",
+                    "title" : "func background<Background>(Background) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/bold()",
+                    "title" : "func bold() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/children(backend:snapshots:environment:)-19yw0",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/children(backend:snapshots:environment:)-9igdv",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/colorscheme(_:)",
+                    "title" : "func colorScheme(ColorScheme) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/cornerradius(_:)",
+                    "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/font(_:)",
+                    "title" : "func font(Font) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/frame(width:height:alignment:)",
+                    "title" : "func frame(width: Int?, height: Int?, alignment: Alignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/if(_:apply:)",
+                    "title" : "func `if`<Result>(Bool, apply: (Self) -> Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/iflet(_:apply:)",
+                    "title" : "func ifLet<Value, Result>(Value?, apply: (Self, Value) -> Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/layoutablechildren(backend:children:)",
+                    "title" : "func layoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/multilinetextalignment(_:)",
+                    "title" : "func multilineTextAlignment(HorizontalAlignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/onappear(perform:)",
+                    "title" : "func onAppear(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/onchange(of:initial:perform:)",
+                    "title" : "func onChange<Value>(of: Value, initial: Bool, perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/onclick(perform:)",
+                    "title" : "func onClick(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/ondisappear(perform:)",
+                    "title" : "func onDisappear(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/onopenurl(perform:)",
+                    "title" : "func onOpenURL(perform: (URL) -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/onsubmit(perform:)",
+                    "title" : "func onSubmit(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/overlay(content:)",
+                    "title" : "func overlay(content: () -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/padding(_:)",
+                    "title" : "func padding(Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/preference(key:value:)",
+                    "title" : "func preference<V>(key: WritableKeyPath<PreferenceValues, V>, value: V) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/submitscope()",
+                    "title" : "func submitScope() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/task(id:priority:_:)",
+                    "title" : "func task<Id>(id: Id, priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/task(priority:_:)",
+                    "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/update(_:children:proposedsize:environment:backend:dryrun:)-42rp8",
+                    "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/update(_:children:proposedsize:environment:backend:dryrun:)-57rdj",
+                    "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/capsule\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/capsule",
+            "title" : "Capsule",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/circle\/init()",
+                "title" : "init()",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/circle\/path(in:)",
+                "title" : "func path(in: Path.Rect) -> Path",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/circle\/size(fitting:)",
+                "title" : "func size(fitting: SIMD2<Int>) -> ViewSize",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/fill(_:)",
+                    "title" : "func fill(Color) -> some StyledShape",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/stroke(_:style:)",
+                    "title" : "func stroke(Color, style: StrokeStyle?) -> some StyledShape",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/circle\/shape-implementations",
+                "title" : "Shape Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/body",
+                    "title" : "var body: EmptyView",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/alert(_:ispresented:actions:)",
+                    "title" : "func alert(String, isPresented: Binding<Bool>, actions: () -> [AlertAction]) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/aswidget(_:backend:)-2bm8",
+                    "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/aswidget(_:backend:)-9sli8",
+                    "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/background(_:)",
+                    "title" : "func background<Background>(Background) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/bold()",
+                    "title" : "func bold() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/children(backend:snapshots:environment:)-7mbu3",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/children(backend:snapshots:environment:)-7te8s",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/colorscheme(_:)",
+                    "title" : "func colorScheme(ColorScheme) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/cornerradius(_:)",
+                    "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/font(_:)",
+                    "title" : "func font(Font) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/frame(width:height:alignment:)",
+                    "title" : "func frame(width: Int?, height: Int?, alignment: Alignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/if(_:apply:)",
+                    "title" : "func `if`<Result>(Bool, apply: (Self) -> Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/iflet(_:apply:)",
+                    "title" : "func ifLet<Value, Result>(Value?, apply: (Self, Value) -> Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/layoutablechildren(backend:children:)",
+                    "title" : "func layoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/multilinetextalignment(_:)",
+                    "title" : "func multilineTextAlignment(HorizontalAlignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/onappear(perform:)",
+                    "title" : "func onAppear(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/onchange(of:initial:perform:)",
+                    "title" : "func onChange<Value>(of: Value, initial: Bool, perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/onclick(perform:)",
+                    "title" : "func onClick(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/ondisappear(perform:)",
+                    "title" : "func onDisappear(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/onopenurl(perform:)",
+                    "title" : "func onOpenURL(perform: (URL) -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/onsubmit(perform:)",
+                    "title" : "func onSubmit(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/overlay(content:)",
+                    "title" : "func overlay(content: () -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/padding(_:)",
+                    "title" : "func padding(Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/preference(key:value:)",
+                    "title" : "func preference<V>(key: WritableKeyPath<PreferenceValues, V>, value: V) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/submitscope()",
+                    "title" : "func submitScope() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/task(id:priority:_:)",
+                    "title" : "func task<Id>(id: Id, priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/task(priority:_:)",
+                    "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/update(_:children:proposedsize:environment:backend:dryrun:)-1ph",
+                    "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/update(_:children:proposedsize:environment:backend:dryrun:)-34fns",
+                    "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/circle\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/circle",
+            "title" : "Circle",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/commandmenu\/init(_:content:)",
                 "title" : "init(String, content: () -> [MenuItem])",
                 "type" : "init"
@@ -8280,6 +9097,266 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/divider",
             "title" : "Divider",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/ellipse\/init()",
+                "title" : "init()",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/ellipse\/path(in:)",
+                "title" : "func path(in: Path.Rect) -> Path",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/fill(_:)",
+                    "title" : "func fill(Color) -> some StyledShape",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/size(fitting:)",
+                    "title" : "func size(fitting: SIMD2<Int>) -> ViewSize",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/stroke(_:style:)",
+                    "title" : "func stroke(Color, style: StrokeStyle?) -> some StyledShape",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/ellipse\/shape-implementations",
+                "title" : "Shape Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/body",
+                    "title" : "var body: EmptyView",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/alert(_:ispresented:actions:)",
+                    "title" : "func alert(String, isPresented: Binding<Bool>, actions: () -> [AlertAction]) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/aswidget(_:backend:)-5o2vr",
+                    "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/aswidget(_:backend:)-688az",
+                    "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/background(_:)",
+                    "title" : "func background<Background>(Background) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/bold()",
+                    "title" : "func bold() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/children(backend:snapshots:environment:)-2yw0g",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/children(backend:snapshots:environment:)-6zvx6",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/colorscheme(_:)",
+                    "title" : "func colorScheme(ColorScheme) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/cornerradius(_:)",
+                    "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/font(_:)",
+                    "title" : "func font(Font) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/frame(width:height:alignment:)",
+                    "title" : "func frame(width: Int?, height: Int?, alignment: Alignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/if(_:apply:)",
+                    "title" : "func `if`<Result>(Bool, apply: (Self) -> Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/iflet(_:apply:)",
+                    "title" : "func ifLet<Value, Result>(Value?, apply: (Self, Value) -> Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/layoutablechildren(backend:children:)",
+                    "title" : "func layoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/multilinetextalignment(_:)",
+                    "title" : "func multilineTextAlignment(HorizontalAlignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/onappear(perform:)",
+                    "title" : "func onAppear(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/onchange(of:initial:perform:)",
+                    "title" : "func onChange<Value>(of: Value, initial: Bool, perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/onclick(perform:)",
+                    "title" : "func onClick(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/ondisappear(perform:)",
+                    "title" : "func onDisappear(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/onopenurl(perform:)",
+                    "title" : "func onOpenURL(perform: (URL) -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/onsubmit(perform:)",
+                    "title" : "func onSubmit(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/overlay(content:)",
+                    "title" : "func overlay(content: () -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/padding(_:)",
+                    "title" : "func padding(Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/preference(key:value:)",
+                    "title" : "func preference<V>(key: WritableKeyPath<PreferenceValues, V>, value: V) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/submitscope()",
+                    "title" : "func submitScope() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/task(id:priority:_:)",
+                    "title" : "func task<Id>(id: Id, priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/task(priority:_:)",
+                    "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/update(_:children:proposedsize:environment:backend:dryrun:)-5q6jg",
+                    "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/update(_:children:proposedsize:environment:backend:dryrun:)-92gq1",
+                    "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/ellipse\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/ellipse",
+            "title" : "Ellipse",
             "type" : "struct"
           },
           {
@@ -9397,6 +10474,279 @@
           {
             "children" : [
               {
+                "title" : "Structures",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Initializers",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/rect\/init(origin:size:)",
+                    "title" : "init(origin: SIMD2<Double>, size: SIMD2<Double>)",
+                    "type" : "init"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/rect\/init(x:y:width:height:)",
+                    "title" : "init(x: Double, y: Double, width: Double, height: Double)",
+                    "type" : "init"
+                  },
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/rect\/center",
+                    "title" : "var center: SIMD2<Double>",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/rect\/height",
+                    "title" : "var height: Double",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/rect\/maxx",
+                    "title" : "var maxX: Double",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/rect\/maxy",
+                    "title" : "var maxY: Double",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/rect\/origin",
+                    "title" : "var origin: SIMD2<Double>",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/rect\/size",
+                    "title" : "var size: SIMD2<Double>",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/rect\/width",
+                    "title" : "var width: Double",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/rect\/x",
+                    "title" : "var x: Double",
+                    "type" : "property"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/rect\/y",
+                    "title" : "var y: Double",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Default Implementations",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "children" : [
+                      {
+                        "title" : "Operators",
+                        "type" : "groupMarker"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/path\/rect\/!=(_:_:)",
+                        "title" : "static func != (Self, Self) -> Bool",
+                        "type" : "op"
+                      }
+                    ],
+                    "path" : "\/documentation\/swiftcrossui\/path\/rect\/equatable-implementations",
+                    "title" : "Equatable Implementations",
+                    "type" : "symbol"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/path\/rect",
+                "title" : "Path.Rect",
+                "type" : "struct"
+              },
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/init()",
+                "title" : "init()",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/actions",
+                "title" : "var actions: [Path.Action]",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/fillrule",
+                "title" : "var fillRule: FillRule",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/strokestyle",
+                "title" : "var strokeStyle: StrokeStyle",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/addarc(center:radius:startangle:endangle:clockwise:)",
+                "title" : "func addArc(center: SIMD2<Double>, radius: Double, startAngle: Double, endAngle: Double, clockwise: Bool) -> Path",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/addcircle(center:radius:)",
+                "title" : "func addCircle(center: SIMD2<Double>, radius: Double) -> Path",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/addcubiccurve(control1:control2:to:)",
+                "title" : "func addCubicCurve(control1: SIMD2<Double>, control2: SIMD2<Double>, to: SIMD2<Double>) -> Path",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/addline(to:)",
+                "title" : "func addLine(to: SIMD2<Double>) -> Path",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/addquadcurve(control:to:)",
+                "title" : "func addQuadCurve(control: SIMD2<Double>, to: SIMD2<Double>) -> Path",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/addrectangle(_:)",
+                "title" : "func addRectangle(Path.Rect) -> Path",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/addsubpath(_:)",
+                "title" : "func addSubpath(Path) -> Path",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/applytransform(_:)",
+                "title" : "func applyTransform(AffineTransform) -> Path",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/fillrule(_:)",
+                "title" : "func fillRule(FillRule) -> Path",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/if(_:then:else:)",
+                "title" : "func `if`(Bool, then: (consuming Path) throws -> Path, else: (consuming Path) throws -> Path) rethrows -> Path",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/move(to:)",
+                "title" : "func move(to: SIMD2<Double>) -> Path",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/path\/stroke(style:)",
+                "title" : "func stroke(style: StrokeStyle) -> Path",
+                "type" : "method"
+              },
+              {
+                "title" : "Enumerations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Enumeration Cases",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/action\/arc(center:radius:startangle:endangle:clockwise:)",
+                    "title" : "case arc(center: SIMD2<Double>, radius: Double, startAngle: Double, endAngle: Double, clockwise: Bool)",
+                    "type" : "case"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/action\/circle(center:radius:)",
+                    "title" : "case circle(center: SIMD2<Double>, radius: Double)",
+                    "type" : "case"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/action\/cubiccurve(control1:control2:end:)",
+                    "title" : "case cubicCurve(control1: SIMD2<Double>, control2: SIMD2<Double>, end: SIMD2<Double>)",
+                    "type" : "case"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/action\/lineto(_:)",
+                    "title" : "case lineTo(SIMD2<Double>)",
+                    "type" : "case"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/action\/moveto(_:)",
+                    "title" : "case moveTo(SIMD2<Double>)",
+                    "type" : "case"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/action\/quadcurve(control:end:)",
+                    "title" : "case quadCurve(control: SIMD2<Double>, end: SIMD2<Double>)",
+                    "type" : "case"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/action\/rectangle(_:)",
+                    "title" : "case rectangle(Path.Rect)",
+                    "type" : "case"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/action\/subpath(_:)",
+                    "title" : "case subpath([Path.Action])",
+                    "type" : "case"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/path\/action\/transform(_:)",
+                    "title" : "case transform(AffineTransform)",
+                    "type" : "case"
+                  },
+                  {
+                    "title" : "Default Implementations",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "children" : [
+                      {
+                        "title" : "Operators",
+                        "type" : "groupMarker"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/path\/action\/!=(_:_:)",
+                        "title" : "static func != (Self, Self) -> Bool",
+                        "type" : "op"
+                      }
+                    ],
+                    "path" : "\/documentation\/swiftcrossui\/path\/action\/equatable-implementations",
+                    "title" : "Equatable Implementations",
+                    "type" : "symbol"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/path\/action",
+                "title" : "Path.Action",
+                "type" : "enum"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/path",
+            "title" : "Path",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
                 "title" : "Initializers",
                 "type" : "groupMarker"
               },
@@ -9734,6 +11084,266 @@
           {
             "children" : [
               {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/rectangle\/init()",
+                "title" : "init()",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/rectangle\/path(in:)",
+                "title" : "func path(in: Path.Rect) -> Path",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/fill(_:)",
+                    "title" : "func fill(Color) -> some StyledShape",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/size(fitting:)",
+                    "title" : "func size(fitting: SIMD2<Int>) -> ViewSize",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/stroke(_:style:)",
+                    "title" : "func stroke(Color, style: StrokeStyle?) -> some StyledShape",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/rectangle\/shape-implementations",
+                "title" : "Shape Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/body",
+                    "title" : "var body: EmptyView",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/alert(_:ispresented:actions:)",
+                    "title" : "func alert(String, isPresented: Binding<Bool>, actions: () -> [AlertAction]) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/aswidget(_:backend:)-345k",
+                    "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/aswidget(_:backend:)-7wn12",
+                    "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/background(_:)",
+                    "title" : "func background<Background>(Background) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/bold()",
+                    "title" : "func bold() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/children(backend:snapshots:environment:)-1ubtt",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/children(backend:snapshots:environment:)-2hcii",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/colorscheme(_:)",
+                    "title" : "func colorScheme(ColorScheme) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/cornerradius(_:)",
+                    "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/font(_:)",
+                    "title" : "func font(Font) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/frame(width:height:alignment:)",
+                    "title" : "func frame(width: Int?, height: Int?, alignment: Alignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/if(_:apply:)",
+                    "title" : "func `if`<Result>(Bool, apply: (Self) -> Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/iflet(_:apply:)",
+                    "title" : "func ifLet<Value, Result>(Value?, apply: (Self, Value) -> Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/layoutablechildren(backend:children:)",
+                    "title" : "func layoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/multilinetextalignment(_:)",
+                    "title" : "func multilineTextAlignment(HorizontalAlignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/onappear(perform:)",
+                    "title" : "func onAppear(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/onchange(of:initial:perform:)",
+                    "title" : "func onChange<Value>(of: Value, initial: Bool, perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/onclick(perform:)",
+                    "title" : "func onClick(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/ondisappear(perform:)",
+                    "title" : "func onDisappear(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/onopenurl(perform:)",
+                    "title" : "func onOpenURL(perform: (URL) -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/onsubmit(perform:)",
+                    "title" : "func onSubmit(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/overlay(content:)",
+                    "title" : "func overlay(content: () -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/padding(_:)",
+                    "title" : "func padding(Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/preference(key:value:)",
+                    "title" : "func preference<V>(key: WritableKeyPath<PreferenceValues, V>, value: V) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/submitscope()",
+                    "title" : "func submitScope() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/task(id:priority:_:)",
+                    "title" : "func task<Id>(id: Id, priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/task(priority:_:)",
+                    "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/update(_:children:proposedsize:environment:backend:dryrun:)-13uxk",
+                    "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/update(_:children:proposedsize:environment:backend:dryrun:)-9dbo7",
+                    "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/rectangle\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/rectangle",
+            "title" : "Rectangle",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
                 "title" : "Structures",
                 "type" : "groupMarker"
               },
@@ -9834,6 +11444,275 @@
           {
             "children" : [
               {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/init(cornerradius:)",
+                "title" : "init(cornerRadius: Double)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/cornerradius",
+                "title" : "var cornerRadius: Double",
+                "type" : "property"
+              },
+              {
+                "title" : "Instance Methods",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/path(in:)",
+                "title" : "func path(in: Path.Rect) -> Path",
+                "type" : "method"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/fill(_:)",
+                    "title" : "func fill(Color) -> some StyledShape",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/size(fitting:)",
+                    "title" : "func size(fitting: SIMD2<Int>) -> ViewSize",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/stroke(_:style:)",
+                    "title" : "func stroke(Color, style: StrokeStyle?) -> some StyledShape",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/shape-implementations",
+                "title" : "Shape Implementations",
+                "type" : "symbol"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Instance Properties",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/body",
+                    "title" : "var body: EmptyView",
+                    "type" : "property"
+                  },
+                  {
+                    "title" : "Instance Methods",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/alert(_:ispresented:actions:)",
+                    "title" : "func alert(String, isPresented: Binding<Bool>, actions: () -> [AlertAction]) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/aswidget(_:backend:)-qglr",
+                    "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/aswidget(_:backend:)-zveh",
+                    "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/background(_:)",
+                    "title" : "func background<Background>(Background) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/bold()",
+                    "title" : "func bold() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/children(backend:snapshots:environment:)-32eo7",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/children(backend:snapshots:environment:)-4q998",
+                    "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/colorscheme(_:)",
+                    "title" : "func colorScheme(ColorScheme) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/cornerradius(_:)",
+                    "title" : "func cornerRadius(Int) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/defaultaswidget(_:backend:)",
+                    "title" : "func defaultAsWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/defaultchildren(backend:snapshots:environment:)",
+                    "title" : "func defaultChildren<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/defaultlayoutablechildren(backend:children:)",
+                    "title" : "func defaultLayoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
+                    "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/font(_:)",
+                    "title" : "func font(Font) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/foregroundcolor(_:)",
+                    "title" : "func foregroundColor(Color) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/frame(width:height:alignment:)",
+                    "title" : "func frame(width: Int?, height: Int?, alignment: Alignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/if(_:apply:)",
+                    "title" : "func `if`<Result>(Bool, apply: (Self) -> Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/iflet(_:apply:)",
+                    "title" : "func ifLet<Value, Result>(Value?, apply: (Self, Value) -> Result) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/layoutablechildren(backend:children:)",
+                    "title" : "func layoutableChildren<Backend>(backend: Backend, children: any ViewGraphNodeChildren) -> [LayoutSystem.LayoutableChild]",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/multilinetextalignment(_:)",
+                    "title" : "func multilineTextAlignment(HorizontalAlignment) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/onappear(perform:)",
+                    "title" : "func onAppear(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/onchange(of:initial:perform:)",
+                    "title" : "func onChange<Value>(of: Value, initial: Bool, perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/onclick(perform:)",
+                    "title" : "func onClick(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/ondisappear(perform:)",
+                    "title" : "func onDisappear(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/onopenurl(perform:)",
+                    "title" : "func onOpenURL(perform: (URL) -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/onsubmit(perform:)",
+                    "title" : "func onSubmit(perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/ontapgesture(gesture:perform:)",
+                    "title" : "func onTapGesture(gesture: TapGesture, perform: () -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/overlay(content:)",
+                    "title" : "func overlay(content: () -> some View) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/padding(_:)",
+                    "title" : "func padding(Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/padding(_:_:)",
+                    "title" : "func padding(Edge.Set, Int?) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/preference(key:value:)",
+                    "title" : "func preference<V>(key: WritableKeyPath<PreferenceValues, V>, value: V) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/submitscope()",
+                    "title" : "func submitScope() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/task(id:priority:_:)",
+                    "title" : "func task<Id>(id: Id, priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/task(priority:_:)",
+                    "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/update(_:children:proposedsize:environment:backend:dryrun:)-31anr",
+                    "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/update(_:children:proposedsize:environment:backend:dryrun:)-8i3dq",
+                    "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/view-implementations",
+                "title" : "View Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/roundedrectangle",
+            "title" : "RoundedRectangle",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
                 "title" : "Instance Properties",
                 "type" : "groupMarker"
               },
@@ -9850,6 +11729,41 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/savedialogoptions",
             "title" : "SaveDialogOptions",
+            "type" : "struct"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Initializers",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/strokestyle\/init(width:cap:join:)",
+                "title" : "init(width: Double, cap: StrokeCap, join: StrokeJoin)",
+                "type" : "init"
+              },
+              {
+                "title" : "Instance Properties",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/strokestyle\/cap",
+                "title" : "var cap: StrokeCap",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/strokestyle\/join",
+                "title" : "var join: StrokeJoin",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/strokestyle\/width",
+                "title" : "var width: Double",
+                "type" : "property"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/strokestyle",
+            "title" : "StrokeStyle",
             "type" : "struct"
           },
           {
@@ -15654,6 +17568,47 @@
                 "type" : "groupMarker"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/fillrule\/evenodd",
+                "title" : "case evenOdd",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/fillrule\/winding",
+                "title" : "case winding",
+                "type" : "case"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Operators",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/fillrule\/!=(_:_:)",
+                    "title" : "static func != (Self, Self) -> Bool",
+                    "type" : "op"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/fillrule\/equatable-implementations",
+                "title" : "Equatable Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/fillrule",
+            "title" : "FillRule",
+            "type" : "enum"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Enumeration Cases",
+                "type" : "groupMarker"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/font\/system(size:weight:design:)",
                 "title" : "case system(size: Int, weight: Font.Weight?, design: Font.Design?)",
                 "type" : "case"
@@ -16068,6 +18023,78 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/stackalignment",
             "title" : "StackAlignment",
+            "type" : "enum"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Enumeration Cases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/strokecap\/butt",
+                "title" : "case butt",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/strokecap\/round",
+                "title" : "case round",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/strokecap\/square",
+                "title" : "case square",
+                "type" : "case"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Operators",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/strokecap\/!=(_:_:)",
+                    "title" : "static func != (Self, Self) -> Bool",
+                    "type" : "op"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/strokecap\/equatable-implementations",
+                "title" : "Equatable Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/strokecap",
+            "title" : "StrokeCap",
+            "type" : "enum"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Enumeration Cases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/strokejoin\/bevel",
+                "title" : "case bevel",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/strokejoin\/miter(limit:)",
+                "title" : "case miter(limit: Double)",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/strokejoin\/round",
+                "title" : "case round",
+                "type" : "case"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/strokejoin",
+            "title" : "StrokeJoin",
             "type" : "enum"
           },
           {
