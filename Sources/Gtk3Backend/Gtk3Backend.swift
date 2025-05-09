@@ -87,7 +87,9 @@ public final class Gtk3Backend: AppBackend {
                 guint(GTK_STYLE_PROVIDER_PRIORITY_APPLICATION)
             )
 
-            Self.mainRunLoopTicklingLoop()
+            #if !os(macOS)
+                Self.mainRunLoopTicklingLoop()
+            #endif
         }
     }
 

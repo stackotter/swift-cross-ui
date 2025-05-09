@@ -64,7 +64,9 @@ public final class GtkBackend: AppBackend {
             self.precreatedWindow = window
             callback()
 
-            Self.mainRunLoopTicklingLoop()
+            #if !os(macOS)
+                Self.mainRunLoopTicklingLoop()
+            #endif
         }
     }
 
