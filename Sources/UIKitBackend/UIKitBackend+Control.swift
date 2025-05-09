@@ -240,6 +240,36 @@ extension UIKitBackend {
         textFieldWidget.child.textColor = UIColor(color: environment.suggestedForegroundColor)
         textFieldWidget.onChange = onChange
         textFieldWidget.onSubmit = onSubmit
+        
+        switch environment.textContentType {
+            case .text:
+                textFieldWidget.child.keyboardType = .default
+                textFieldWidget.child.textContentType = nil
+            case .digits(ascii: false):
+                textFieldWidget.child.keyboardType = .numberPad
+                textFieldWidget.child.textContentType = nil
+            case .digits(ascii: true):
+                textFieldWidget.child.keyboardType = .asciiCapableNumberPad
+                textFieldWidget.child.textContentType = nil
+            case .url:
+                textFieldWidget.child.keyboardType = .URL
+                textFieldWidget.child.textContentType = .URL
+            case .phoneNumber:
+                textFieldWidget.child.keyboardType = .phonePad
+                textFieldWidget.child.textContentType = .telephoneNumber
+            case .name:
+                textFieldWidget.child.keyboardType = .namePhonePad
+                textFieldWidget.child.textContentType = .name
+            case .decimal(signed: false):
+                textFieldWidget.child.keyboardType = .decimalPad
+                textFieldWidget.child.textContentType = nil
+            case .decimal(signed: true):
+                textFieldWidget.child.keyboardType = .numbersAndPunctuation
+                textFieldWidget.child.textContentType = nil
+            case .emailAddress:
+                textFieldWidget.child.keyboardType = .emailAddress
+                textFieldWidget.child.textContentType = .emailAddress
+        }
 
         #if os(iOS)
             if let updateToolbar = environment.updateToolbar {

@@ -38,6 +38,9 @@ public struct EnvironmentValues {
     /// The scale factor of the current window.
     public var windowScaleFactor: Double
 
+    /// The type of on-screen keyboard to show when a text field is focused.
+    public var textContentType: TextContentType
+
     /// Called by view graph nodes when they resize due to an internal state
     /// change and end up changing size. Each view graph node sets its own
     /// handler when passing the environment on to its children, setting up
@@ -143,6 +146,7 @@ public struct EnvironmentValues {
         multilineTextAlignment = .leading
         colorScheme = .light
         windowScaleFactor = 1
+        textContentType = .text
         window = nil
         extraValues = [:]
     }
