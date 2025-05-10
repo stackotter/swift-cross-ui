@@ -58,7 +58,6 @@ jobs:
     - name: Build SwiftCrossUI
       env:
         PKG_CONFIG_PATH: ${{ github.workspace }}/vcpkg_installed/${{ steps.triplet.outputs.lowercase }}/lib/pkgconfig
-    # Requires 6.0, and 6.0 is broken in CI for now.
-    # - name: Build WinUIBackend
-    #   run: swift build --target WinUIBackend
       run: swift build -v
+    - name: Build WinUIBackend
+      run: swift build --target WinUIBackend
