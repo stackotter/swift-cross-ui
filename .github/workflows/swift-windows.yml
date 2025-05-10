@@ -58,6 +58,6 @@ jobs:
     - name: Build SwiftCrossUI
       env:
         PKG_CONFIG_PATH: ${{ github.workspace }}/vcpkg_installed/${{ steps.triplet.outputs.lowercase }}/lib/pkgconfig
-      run: swift build -v
+      run: swift build --target SwiftCrossUI -v
     - name: Build WinUIBackend
       run: swift build --target WinUIBackend
