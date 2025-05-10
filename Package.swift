@@ -95,18 +95,6 @@ let package = Package(
             url: "https://github.com/stackotter/swift-image-formats",
             .upToNextMinor(from: "0.3.2")
         ),
-        .package(
-            url: "https://github.com/stackotter/swift-windowsappsdk",
-            branch: "5caed8b4f1b4abc6fc89b8f0a8fa20f3edfab14a"
-        ),
-        .package(
-            url: "https://github.com/thebrowsercompany/swift-windowsfoundation",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/stackotter/swift-winui",
-            branch: "a81bc36e3ac056fbc740e9df30ff0d80af5ecd21"
-        ),
         // .package(
         //     url: "https://github.com/stackotter/TermKit",
         //     revision: "163afa64f1257a0c026cc83ed8bc47a5f8fc9704"
@@ -263,6 +251,21 @@ let package = Package(
 #elseif os(Windows)
     package.products.append(contentsOf: [
         .library(name: "WinUIBackend", type: libraryType, targets: ["WinUIBackend"])
+    ])
+
+    package.dependencies.append(contentsOf: [
+        .package(
+            url: "https://github.com/stackotter/swift-windowsappsdk",
+            branch: "5caed8b4f1b4abc6fc89b8f0a8fa20f3edfab14a"
+        ),
+        .package(
+            url: "https://github.com/thebrowsercompany/swift-windowsfoundation",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/stackotter/swift-winui",
+            branch: "a81bc36e3ac056fbc740e9df30ff0d80af5ecd21"
+        ),
     ])
 
     package.targets.append(contentsOf: [
