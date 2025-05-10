@@ -64,12 +64,9 @@ let package = Package(
     platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .macCatalyst(.v13)],
     products: [
         .library(name: "SwiftCrossUI", type: libraryType, targets: ["SwiftCrossUI"]),
-        .library(name: "AppKitBackend", type: libraryType, targets: ["AppKitBackend"]),
         .library(name: "GtkBackend", type: libraryType, targets: ["GtkBackend"]),
         .library(name: "Gtk3Backend", type: libraryType, targets: ["Gtk3Backend"]),
-        .library(name: "WinUIBackend", type: libraryType, targets: ["WinUIBackend"]),
         .library(name: "DefaultBackend", type: libraryType, targets: ["DefaultBackend"]),
-        .library(name: "UIKitBackend", type: libraryType, targets: ["UIKitBackend"]),
         .library(name: "Gtk", type: libraryType, targets: ["Gtk"]),
         .library(name: "Gtk3", type: libraryType, targets: ["Gtk3"]),
         .executable(name: "GtkExample", targets: ["GtkExample"]),
@@ -163,7 +160,6 @@ let package = Package(
                 ),
             ]
         ),
-        .target(name: "AppKitBackend", dependencies: ["SwiftCrossUI"]),
         .target(
             name: "GtkBackend",
             dependencies: ["SwiftCrossUI", "Gtk", "CGtk"]
@@ -234,21 +230,7 @@ let package = Package(
             ],
             swiftSettings: swiftSettings
         ),
-        .target(name: "UIKitBackend", dependencies: ["SwiftCrossUI"]),
-        .target(
-            name: "WinUIBackend",
-            dependencies: [
-                "SwiftCrossUI",
-                "WinUIInterop",
-                .product(name: "WinUI", package: "swift-winui"),
-                .product(name: "WinAppSDK", package: "swift-windowsappsdk"),
-                .product(name: "WindowsFoundation", package: "swift-windowsfoundation"),
-            ]
-        ),
-        .target(
-            name: "WinUIInterop",
-            dependencies: []
-        ),
+
         // .target(
         //     name: "CursesBackend",
         //     dependencies: ["SwiftCrossUI", "TermKit"]
@@ -267,6 +249,39 @@ let package = Package(
         // ),
     ]
 )
+
+#if os(macOS)
+    package.products.append(contentsOf: [
+        .library(name: "UIKitBackend", type: libraryType, targets: ["UIKitBackend"]),
+        .library(name: "AppKitBackend", type: libraryType, targets: ["AppKitBackend"]),
+    ])
+
+    package.targets.append(contentsOf: [
+        .target(name: "AppKitBackend", dependencies: ["SwiftCrossUI"]),
+        .target(name: "UIKitBackend", dependencies: ["SwiftCrossUI"]),
+    ])
+#elseif os(Windows)
+    package.products.append(contentsOf: [
+        .library(name: "WinUIBackend", type: libraryType, targets: ["WinUIBackend"])
+    ])
+
+    package.targets.append(contentsOf: [
+        .target(
+            name: "WinUIBackend",
+            dependencies: [
+                "SwiftCrossUI",
+                "WinUIInterop",
+                .product(name: "WinUI", package: "swift-winui"),
+                .product(name: "WinAppSDK", package: "swift-windowsappsdk"),
+                .product(name: "WindowsFoundation", package: "swift-windowsfoundation"),
+            ]
+        ),
+        .target(
+            name: "WinUIInterop",
+            dependencies: []
+        ),
+    ])
+#endif
 
 func getGtk4MinorVersion() -> Int? {
     #if os(Windows)
