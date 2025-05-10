@@ -125,13 +125,6 @@ let package = Package(
                 "Scenes/TupleScene.swift.gyb",
             ]
         ),
-        .testTarget(
-            name: "SwiftCrossUITests",
-            dependencies: [
-                "SwiftCrossUI",
-                .target(name: "AppKitBackend", condition: .when(platforms: [.macOS])),
-            ]
-        ),
         .target(
             name: "DefaultBackend",
             dependencies: [
@@ -247,6 +240,14 @@ let package = Package(
     package.targets.append(contentsOf: [
         .target(name: "AppKitBackend", dependencies: ["SwiftCrossUI"]),
         .target(name: "UIKitBackend", dependencies: ["SwiftCrossUI"]),
+
+        .testTarget(
+            name: "SwiftCrossUITests",
+            dependencies: [
+                "SwiftCrossUI",
+                .target(name: "AppKitBackend", condition: .when(platforms: [.macOS])),
+            ]
+        ),
     ])
 #elseif os(Windows)
     package.products.append(contentsOf: [
@@ -283,6 +284,23 @@ let package = Package(
             name: "WinUIInterop",
             dependencies: []
         ),
+        .testTarget(
+            name: "SwiftCrossUITests",
+            dependencies: [
+                "SwiftCrossUI",
+                .target(name: "WinUIBackend", condition: .when(platforms: [.windows])),
+            ]
+        ),
+    ])
+#else
+    package.targets.append(contentsOf: [
+        .testTarget(
+            name: "SwiftCrossUITests",
+            dependencies: [
+                "SwiftCrossUI",
+                "DefaultBackend",
+            ]
+        )
     ])
 #endif
 
