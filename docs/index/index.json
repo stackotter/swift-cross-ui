@@ -4043,12 +4043,12 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-7s16u",
+                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-8a6xi",
                         "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-8a6xi",
+                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-7s16u",
                         "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
                         "type" : "method"
                       }
