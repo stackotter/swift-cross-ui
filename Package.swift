@@ -11,6 +11,10 @@ if let version = getGtk4MinorVersion(), version >= 10 {
     gtkSwiftSettings.append(.define("GTK_4_10_PLUS"))
 }
 
+// On macOS, test both code paths with `brew unlink gtk4`, `brew link gtk4` to make the lookup fail/succeed.
+let didFindGTK4 = getGtk4MinorVersion() != nil
+let didFindGTK3 = isGtk3Installed()
+
 let defaultBackend: String
 if let backend = ProcessInfo.processInfo.environment["SCUI_DEFAULT_BACKEND"] {
     defaultBackend = backend
@@ -20,7 +24,13 @@ if let backend = ProcessInfo.processInfo.environment["SCUI_DEFAULT_BACKEND"] {
     #elseif os(Windows)
         defaultBackend = "WinUIBackend"
     #else
-        defaultBackend = "GtkBackend"
+        if didFindGTK4 {
+            defaultBackend = "GtkBackend"
+        } else if didFindGTK3 {
+            defaultBackend = "Gtk3Backend"
+        } else {
+            fatalError("Neither GTK4 not GTK3 found")
+        }
     #endif
 }
 
@@ -64,21 +74,12 @@ let package = Package(
     platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .macCatalyst(.v13)],
     products: [
         .library(name: "SwiftCrossUI", type: libraryType, targets: ["SwiftCrossUI"]),
-        .library(name: "GtkBackend", type: libraryType, targets: ["GtkBackend"]),
-        .library(name: "Gtk3Backend", type: libraryType, targets: ["Gtk3Backend"]),
         .library(name: "DefaultBackend", type: libraryType, targets: ["DefaultBackend"]),
-        .library(name: "Gtk", type: libraryType, targets: ["Gtk"]),
-        .library(name: "Gtk3", type: libraryType, targets: ["Gtk3"]),
-        .executable(name: "GtkExample", targets: ["GtkExample"]),
         // .library(name: "CursesBackend", type: libraryType, targets: ["CursesBackend"]),
         // .library(name: "QtBackend", type: libraryType, targets: ["QtBackend"]),
         // .library(name: "LVGLBackend", type: libraryType, targets: ["LVGLBackend"]),
     ],
     dependencies: [
-        .package(
-            url: "https://github.com/CoreOffice/XMLCoder",
-            from: "0.17.1"
-        ),
         .package(
             url: "https://github.com/swiftlang/swift-docc-plugin",
             from: "1.0.0"
@@ -141,6 +142,51 @@ let package = Package(
                 ),
             ]
         ),
+        .macro(
+            name: "HotReloadingMacrosPlugin",
+            dependencies: [
+                .product(name: "SwiftSyntax", package: "swift-syntax"),
+                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
+                .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
+                .product(name: "MacroToolkit", package: "swift-macro-toolkit"),
+            ],
+            swiftSettings: swiftSettings
+        ),
+
+        // .target(
+        //     name: "CursesBackend",
+        //     dependencies: ["SwiftCrossUI", "TermKit"]
+        // ),
+        // .target(
+        //     name: "QtBackend",
+        //     dependencies: ["SwiftCrossUI", .product(name: "Qlift", package: "qlift")]
+        // ),
+        // .target(
+        //     name: "LVGLBackend",
+        //     dependencies: [
+        //         "SwiftCrossUI",
+        //         .product(name: "LVGL", package: "LVGLSwift"),
+        //         .product(name: "CLVGL", package: "LVGLSwift"),
+        //     ]
+        // ),
+    ]
+)
+
+if didFindGTK4 {
+    package.dependencies.append(contentsOf: [
+        .package(
+            url: "https://github.com/CoreOffice/XMLCoder",
+            from: "0.17.1"
+        )
+    ])
+
+    package.products.append(contentsOf: [
+        .library(name: "Gtk", type: libraryType, targets: ["Gtk"]),
+        .library(name: "GtkBackend", type: libraryType, targets: ["GtkBackend"]),
+        .executable(name: "GtkExample", targets: ["GtkExample"]),
+    ])
+
+    package.targets.append(contentsOf: [
         .target(
             name: "GtkBackend",
             dependencies: ["SwiftCrossUI", "Gtk", "CGtk"]
@@ -175,9 +221,20 @@ let package = Package(
         .executableTarget(
             name: "GtkCodeGen",
             dependencies: [
-                "XMLCoder", .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
+                "XMLCoder",
+                .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
             ]
         ),
+    ])
+}
+
+if didFindGTK3 {
+    package.products.append(contentsOf: [
+        .library(name: "Gtk3", type: libraryType, targets: ["Gtk3"]),
+        .library(name: "Gtk3Backend", type: libraryType, targets: ["Gtk3Backend"]),
+    ])
+
+    package.targets.append(contentsOf: [
         .systemLibrary(
             name: "CGtk3",
             pkgConfig: "gtk+-3.0",
@@ -201,35 +258,9 @@ let package = Package(
             name: "Gtk3CustomWidgets",
             dependencies: ["CGtk3"]
         ),
-        .macro(
-            name: "HotReloadingMacrosPlugin",
-            dependencies: [
-                .product(name: "SwiftSyntax", package: "swift-syntax"),
-                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
-                .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
-                .product(name: "MacroToolkit", package: "swift-macro-toolkit"),
-            ],
-            swiftSettings: swiftSettings
-        ),
 
-        // .target(
-        //     name: "CursesBackend",
-        //     dependencies: ["SwiftCrossUI", "TermKit"]
-        // ),
-        // .target(
-        //     name: "QtBackend",
-        //     dependencies: ["SwiftCrossUI", .product(name: "Qlift", package: "qlift")]
-        // ),
-        // .target(
-        //     name: "LVGLBackend",
-        //     dependencies: [
-        //         "SwiftCrossUI",
-        //         .product(name: "LVGL", package: "LVGLSwift"),
-        //         .product(name: "CLVGL", package: "LVGLSwift"),
-        //     ]
-        // ),
-    ]
-)
+    ])
+}
 
 #if os(macOS)
     package.products.append(contentsOf: [
@@ -345,4 +376,9 @@ func getGtk4MinorVersion() -> Int? {
         return nil
     }
     return minor
+}
+
+func isGtk3Installed() -> Bool {
+    // FIXME: Stub
+    return false
 }
