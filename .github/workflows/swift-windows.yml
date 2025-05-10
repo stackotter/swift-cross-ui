@@ -15,17 +15,17 @@ defaults:
 
 jobs:
   build-windows:
-    runs-on: windows-2019 # Windows SDK lower than 10.0.26100 is needed until https://github.com/swiftlang/swift/pull/79751 released!
+    runs-on: windows-latest
 
     steps:
     - name: Setup VS Dev Environment
       uses: seanmiddleditch/gha-setup-vsdevenv@v5
 
     - name: Setup
-      uses: compnerd/gha-setup-swift@v0.2.3
+      uses: compnerd/gha-setup-swift@v0.3.0
       with:
-        branch: swift-5.10-release
-        tag: 5.10-RELEASE
+        branch: swift-6.1-release
+        tag: 6.1-RELEASE
 
     - name: Compute vcpkg Triplet
       id: triplet
@@ -58,8 +58,6 @@ jobs:
     - name: Build SwiftCrossUI
       env:
         PKG_CONFIG_PATH: ${{ github.workspace }}/vcpkg_installed/${{ steps.triplet.outputs.lowercase }}/lib/pkgconfig
-      # Only build the library target to work around apple/swift-package-manager#6644
       run: swift build --target SwiftCrossUI -v
-    # Requires 6.0, and 6.0 is broken in CI for now.
-    # - name: Build WinUIBackend
-    #   run: swift build --target WinUIBackend
+    - name: Build WinUIBackend
+      run: swift build --target WinUIBackend
