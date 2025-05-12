@@ -653,7 +653,7 @@ public final class AppKitBackend: AppBackend {
                         .name
                     case .emailAddress:
                         .emailAddress
-                    default:
+                    case .text, .digits(_), .decimal(_):
                         nil
                 }
         }
