@@ -6,14 +6,18 @@ import SwiftCrossUI
     import SwiftBundlerRuntime
 #endif
 
-enum SubjectArea: String, CaseIterable {
+enum SubjectArea: String, CaseIterable, Identifiable {
+    var id: Self { self }
+
     case science = "Science"
     case humanities = "Humanities"
 }
 
-enum Subject: Hashable {
+enum Subject: Hashable, Identifiable {
     case science(ScienceSubject)
     case humanities(HumanitiesSubject)
+
+    var id: Self { self }
 
     var rawValue: String {
         switch self {
