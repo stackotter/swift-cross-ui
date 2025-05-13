@@ -820,10 +820,10 @@ public final class WinUIBackend: AppBackend {
                     .url
             }
 
-        setInputScope(for: textField, to: inputScope)
+        setInputScope(for: textField, to: InputScopeName(inputScope))
     }
 
-    private func setInputScope(for textField: TextBox, to value: InputScopeNameValue) {
+    private func setInputScope(for textField: TextBox, to value: InputScopeName) {
         if let inputScope = textField.inputScope,
             inputScope.names.count == 1
         {
