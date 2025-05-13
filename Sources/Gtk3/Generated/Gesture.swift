@@ -89,7 +89,7 @@ import CGtk3
 /// - Enabling %GDK_TOUCHPAD_GESTURE_MASK on their #GdkWindows
 /// - If the gesture has %GTK_PHASE_NONE, ensuring events of type
 /// %GDK_TOUCHPAD_SWIPE and %GDK_TOUCHPAD_PINCH are handled by the #GtkGesture
-public class Gesture: EventController {
+open class Gesture: EventController {
 
     public override func registerSignals() {
         super.registerSignals()

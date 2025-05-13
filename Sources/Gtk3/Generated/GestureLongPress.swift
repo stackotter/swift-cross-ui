@@ -7,7 +7,7 @@ import CGtk3
 /// If the touchpoint is lifted before the timeout passes, or if it drifts
 /// too far of the initial press point, the #GtkGestureLongPress::cancelled
 /// signal will be emitted.
-public class GestureLongPress: GestureSingle {
+open class GestureLongPress: GestureSingle {
     /// Returns a newly created #GtkGesture that recognizes long presses.
     public convenience init(widget: UnsafeMutablePointer<GtkWidget>!) {
         self.init(

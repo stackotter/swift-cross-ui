@@ -1,13 +1,16 @@
 import Foundation
 
 struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
-    typealias Children = SplitViewChildren<Sidebar, Detail>
+    typealias Children = SplitViewChildren<EnvironmentModifier<Sidebar>, Detail>
 
-    var body: TupleView2<Sidebar, Detail>
+    var body: TupleView2<EnvironmentModifier<Sidebar>, Detail>
 
     /// Creates a two column split view.
     init(@ViewBuilder sidebar: () -> Sidebar, @ViewBuilder detail: () -> Detail) {
-        body = TupleView2(sidebar(), detail())
+        body = TupleView2(
+            EnvironmentModifier(sidebar()) { $0.with(\.listStyle, .sidebar) },
+            detail()
+        )
     }
 
     func children<Backend: AppBackend>(

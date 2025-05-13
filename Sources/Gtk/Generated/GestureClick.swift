@@ -1,13 +1,13 @@
 import CGtk
 
-/// `GtkGestureClick` is a `GtkGesture` implementation for clicks.
+/// Recognizes click gestures.
 ///
 /// It is able to recognize multiple clicks on a nearby zone, which
 /// can be listened for through the [signal@Gtk.GestureClick::pressed]
 /// signal. Whenever time or distance between clicks exceed the GTK
 /// defaults, [signal@Gtk.GestureClick::stopped] is emitted, and the
 /// click counter is reset.
-public class GestureClick: GestureSingle {
+open class GestureClick: GestureSingle {
     /// Returns a newly created `GtkGesture` that recognizes
     /// single and multiple presses.
     public convenience init() {

@@ -171,7 +171,7 @@ import CGtk3
 ///
 /// It is possible to implement custom handling for links and their tooltips with
 /// the #GtkLabel::activate-link signal and the gtk_label_get_current_uri() function.
-public class Label: Misc {
+open class Label: Misc {
     /// Creates a new label with the given text inside it. You can
     /// pass %NULL to get an empty label widget.
     public convenience init(string: String) {

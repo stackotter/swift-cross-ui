@@ -1,9 +1,9 @@
 import CGtk
 
-/// Native dialogs are platform dialogs that don't use `GtkDialog`.
+/// Base class for platform dialogs that don't use `GtkDialog`.
 ///
-/// They are used in order to integrate better with a platform, by
-/// looking the same as other native applications and supporting
+/// Native dialogs are used in order to integrate better with a platform,
+/// by looking the same as other native applications and supporting
 /// platform specific features.
 ///
 /// The [class@Gtk.Dialog] functions cannot be used on such objects,
@@ -17,7 +17,7 @@ import CGtk
 /// toplevel widgets, and GTK does not keep them alive. It is your
 /// responsibility to keep a reference until you are done with the
 /// object.
-public class NativeDialog: GObject {
+open class NativeDialog: GObject {
 
     public override func registerSignals() {
         super.registerSignals()

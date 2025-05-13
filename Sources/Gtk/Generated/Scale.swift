@@ -1,8 +1,8 @@
 import CGtk
 
-/// A `GtkScale` is a slider control used to select a numeric value.
+/// Allows to select a numeric value with a slider control.
 ///
-/// ![An example GtkScale](scales.png)
+/// <picture><source srcset="scales-dark.png" media="(prefers-color-scheme: dark)"><img alt="An example GtkScale" src="scales.png"></picture>
 ///
 /// To use it, you’ll probably want to investigate the methods on its base
 /// class, [class@Gtk.Range], in addition to the methods for `GtkScale` itself.
@@ -88,8 +88,8 @@ import CGtk
 ///
 /// # Accessibility
 ///
-/// `GtkScale` uses the %GTK_ACCESSIBLE_ROLE_SLIDER role.
-public class Scale: Range {
+/// `GtkScale` uses the [enum@Gtk.AccessibleRole.slider] role.
+open class Scale: Range {
     /// Creates a new `GtkScale`.
     public convenience init(
         orientation: GtkOrientation, adjustment: UnsafeMutablePointer<GtkAdjustment>!

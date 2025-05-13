@@ -3,19 +3,19 @@ import CGtk
 /// Describes the known strictness of a filter.
 ///
 /// Note that for filters where the strictness is not known,
-/// %GTK_FILTER_MATCH_SOME is always an acceptable value,
+/// `GTK_FILTER_MATCH_SOME` is always an acceptable value,
 /// even if a filter does match all or no items.
 public enum FilterMatch: GValueRepresentableEnum {
     public typealias GtkEnum = GtkFilterMatch
 
     /// The filter matches some items,
-    /// gtk_filter_match() may return %TRUE or %FALSE
+    /// [method@Gtk.Filter.match] may return true or false
     case some
     /// The filter does not match any item,
-    /// gtk_filter_match() will always return %FALSE.
+    /// [method@Gtk.Filter.match] will always return false
     case none
     /// The filter matches all items,
-    /// gtk_filter_match() will alays return %TRUE.
+    /// [method@Gtk.Filter.match] will alays return true
     case all
 
     public static var type: GType {

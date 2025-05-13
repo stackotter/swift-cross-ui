@@ -9,7 +9,8 @@ public enum PrintOperationAction: GValueRepresentableEnum {
     /// Show the print dialog.
     case printDialog
     /// Start to print without showing
-    /// the print dialog, based on the current print settings.
+    /// the print dialog, based on the current print settings, if possible.
+    /// Depending on the platform, a print dialog might appear anyway.
     case print
     /// Show the print preview.
     case preview

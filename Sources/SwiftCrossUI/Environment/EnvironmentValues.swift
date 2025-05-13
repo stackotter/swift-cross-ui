@@ -44,6 +44,9 @@ public struct EnvironmentValues {
     /// a bottom-up update chain up which resize events can propagate.
     var onResize: (_ newSize: ViewSize) -> Void
 
+    /// The style of list to use.
+    package var listStyle: ListStyle
+
     // Backing storage for extensible subscript
     private var extraValues: [ObjectIdentifier: Any]
 
@@ -145,6 +148,7 @@ public struct EnvironmentValues {
         windowScaleFactor = 1
         window = nil
         extraValues = [:]
+        listStyle = .default
     }
 
     /// Returns a copy of the environment with the specified property set to the

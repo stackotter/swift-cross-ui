@@ -22,7 +22,7 @@ import CGtk3
 /// #GtkLockButton, #GtkColorButton, #GtkFontButton or #GtkFileChooserButton use
 /// style classes such as .toggle, .popup, .scale, .lock, .color, .font, .file
 /// to differentiate themselves from a plain GtkButton.
-public class Button: Bin, Activatable {
+open class Button: Bin, Activatable {
     /// Creates a new #GtkButton widget. To add a child widget to the button,
     /// use gtk_container_add().
     public convenience init() {

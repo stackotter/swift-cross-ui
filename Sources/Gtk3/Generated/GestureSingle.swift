@@ -12,7 +12,7 @@ import CGtk3
 /// to interact with through gtk_gesture_single_set_button(), or react to any
 /// mouse button by setting 0. While the gesture is active, the button being
 /// currently pressed can be known through gtk_gesture_single_get_current_button().
-public class GestureSingle: Gesture {
+open class GestureSingle: Gesture {
 
     public override func registerSignals() {
         super.registerSignals()

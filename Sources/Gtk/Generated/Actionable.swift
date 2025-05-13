@@ -1,7 +1,6 @@
 import CGtk
 
-/// The `GtkActionable` interface provides a convenient way of associating
-/// widgets with actions.
+/// Provides a way to associate widgets with actions.
 ///
 /// It primarily consists of two properties: [property@Gtk.Actionable:action-name]
 /// and [property@Gtk.Actionable:action-target]. There are also some convenience

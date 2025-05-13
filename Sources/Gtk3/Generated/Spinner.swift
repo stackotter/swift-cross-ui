@@ -11,7 +11,7 @@ import CGtk3
 ///
 /// GtkSpinner has a single CSS node with the name spinner. When the animation is
 /// active, the :checked pseudoclass is added to this node.
-public class Spinner: Widget {
+open class Spinner: Widget {
     /// Returns a new spinner widget. Not yet started.
     public convenience init() {
         self.init(

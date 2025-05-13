@@ -4,21 +4,21 @@ import CGtk
 /// using the filter to optimize refiltering items.
 ///
 /// If you are writing an implementation and are not sure which
-/// value to pass, %GTK_FILTER_CHANGE_DIFFERENT is always a correct
+/// value to pass, `GTK_FILTER_CHANGE_DIFFERENT` is always a correct
 /// choice.
 public enum FilterChange: GValueRepresentableEnum {
     public typealias GtkEnum = GtkFilterChange
 
     /// The filter change cannot be
-    /// described with any of the other enumeration values.
+    /// described with any of the other enumeration values
     case different
     /// The filter is less strict than
-    /// it was before: All items that it used to return %TRUE for
-    /// still return %TRUE, others now may, too.
+    /// it was before: All items that it used to return true
+    /// still return true, others now may, too.
     case lessStrict
     /// The filter is more strict than
-    /// it was before: All items that it used to return %FALSE for
-    /// still return %FALSE, others now may, too.
+    /// it was before: All items that it used to return false
+    /// still return false, others now may, too.
     case moreStrict
 
     public static var type: GType {

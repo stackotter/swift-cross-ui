@@ -18,7 +18,10 @@ public enum AccessibleProperty: GValueRepresentableEnum {
     case hasPopup
     /// Indicates keyboard shortcuts that an
     /// author has implemented to activate or give focus to an element. Value type:
-    /// string
+    /// string. The format of the value is a space-separated list of shortcuts, with
+    /// each shortcut consisting of one or more modifiers (`Control`, `Alt` or `Shift`),
+    /// followed by a non-modifier key, all separated by `+`.
+    /// Examples: `F2`, `Alt-F`, `Control+Shift+N`
     case keyShortcuts
     /// Defines a string value that labels the current
     /// element. Value type: string

@@ -1,10 +1,34 @@
 import Foundation
 import SwiftCrossUI
 
-struct Note: Codable, Equatable {
+struct Note: Codable, Equatable, Identifiable {
     var id = UUID()
     var title: String
     var content: String
+
+    var truncatedDescription: String {
+        let firstLine = content.split(separator: "\n").first ?? []
+        let words = firstLine.split(separator: " ", omittingEmptySubsequences: false)
+        let limit = 20
+        var output = ""
+        for (index, word) in words.enumerated() {
+            let addition = (index == 0 ? "" : " ") + word
+            guard output.count + addition.count <= limit else {
+                if index == 0 {
+                    // We should at least output a little snippet
+                    output += word.prefix(limit)
+                }
+                break
+            }
+            output += addition
+        }
+        if content.isEmpty {
+            output = "No content"
+        } else if output.count < content.count {
+            output += "..."
+        }
+        return output
+    }
 }
 
 struct ContentView: View {
@@ -14,11 +38,7 @@ struct ContentView: View {
         Note(title: "Hello, world!", content: "Welcome SwiftCrossNotes!"),
         Note(
             title: "Shopping list",
-            content: """
-                - Carrots
-                - Mushrooms
-                - Pasta
-                """
+            content: "Carrots, mushrooms, and party pies"
         ),
     ]
 
@@ -53,21 +73,27 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
             VStack {
-                ForEach(notes) { note in
-                    Button(note.title) {
-                        selectedNoteId = note.id
+                ScrollView {
+                    List(notes, selection: $selectedNoteId) { note in
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text(note.title.isEmpty ? "Untitled" : note.title)
+                            Text(note.truncatedDescription)
+                                .foregroundColor(.gray)
+                                .font(.system(size: 12))
+                        }
                     }
+                    .padding(10)
                 }
-                Spacer()
                 if let error = error {
                     Text(error)
                         .foregroundColor(.red)
                 }
                 Button("New note") {
-                    let note = Note(title: "Untitled", content: "")
+                    let note = Note(title: "", content: "")
                     notes.append(note)
                     selectedNoteId = note.id
                 }
+                .padding(10)
             }
             .onChange(of: notes) {
                 do {
@@ -91,23 +117,26 @@ struct ContentView: View {
                     self.error = "Failed to load notes"
                 }
             }
-            .padding(10)
         } detail: {
-            VStack {
+            VStack(alignment: .leading) {
                 if let selectedNote = selectedNote {
-                    VStack(spacing: 0) {
+                    VStack(alignment: .leading, spacing: 4) {
                         Text("Title")
-                        TextField("Title", selectedNote.title)
-                    }.padding(.bottom, 10)
+                        TextField("Title", text: selectedNote.title)
+                    }
 
-                    VStack(spacing: 0) {
+                    VStack(alignment: .leading, spacing: 4) {
                         Text("Content")
-                        TextField("Content", selectedNote.content)
+                        TextField("Content", text: selectedNote.content)
                     }
                 } else {
                     Text("Select a note...")
                 }
-            }.padding(10)
+            }
+            .frame(maxWidth: 400)
+            .padding(10)
+
+            Spacer()
         }
     }
 }

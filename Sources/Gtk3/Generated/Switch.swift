@@ -16,7 +16,7 @@ import CGtk3
 ///
 /// GtkSwitch has two css nodes, the main node with the name switch and a subnode
 /// named slider. Neither of them is using any style classes.
-public class Switch: Widget, Activatable {
+open class Switch: Widget, Activatable {
     /// Creates a new #GtkSwitch widget.
     public convenience init() {
         self.init(

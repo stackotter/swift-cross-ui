@@ -60,10 +60,39 @@ public final class GtkBackend: AppBackend {
         gtkApp.registerSession = true
     }
 
+    var globalCSSProvider: CSSProvider?
+
     public func runMainLoop(_ callback: @escaping () -> Void) {
         gtkApp.run { window in
             self.precreatedWindow = window
             callback()
+
+            let provider = CSSProvider()
+            provider.loadCss(
+                from: """
+                    list {
+                        background: none;
+                    }
+
+                    list > row {
+                        padding: 0;
+                        min-height: 0;
+                    }
+
+                    .navigation-sidebar {
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    .navigation-sidebar > row { margin: 0;
+                        padding: 0;
+                    }
+                    """
+            )
+
+            // Keep a reference around so that the provider doesn't get removed as
+            // soon as we exit this scope.
+            self.globalCSSProvider = provider
 
             #if !os(macOS)
                 Self.mainRunLoopTicklingLoop()
@@ -197,7 +226,7 @@ public final class GtkBackend: AppBackend {
                 "/org/freedesktop/FileManager1",
                 "org.freedesktop.FileManager1.ShowItems",
                 "array:string:\(fileURI)",
-                "string:"
+                "string:",
             ]
             process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
 
@@ -478,6 +507,65 @@ public final class GtkBackend: AppBackend {
             hasVerticalScrollBar: hasVerticalScrollBar,
             hasHorizontalScrollBar: hasHorizontalScrollBar
         )
+    }
+
+    public func createSelectableListView() -> Widget {
+        let listView = CustomListBox()
+        listView.selectionMode = .single
+        gtk_widget_add_css_class(listView.widgetPointer, "navigation-sidebar")
+        return listView
+    }
+
+    public func baseItemPadding(
+        ofSelectableListView listView: Widget
+    ) -> SwiftCrossUI.EdgeInsets {
+        SwiftCrossUI.EdgeInsets()
+    }
+
+    public func minimumRowSize(ofSelectableListView listView: Widget) -> SIMD2<Int> {
+        .zero
+    }
+
+    public func setItems(
+        ofSelectableListView listView: Widget,
+        to items: [Widget],
+        withRowHeights rowHeights: [Int]
+    ) {
+        let listView = listView as! CustomListBox
+        listView.removeAll()
+        for item in items {
+            listView.append(item)
+        }
+    }
+
+    public func setSelectionHandler(
+        forSelectableListView listView: Widget,
+        to action: @escaping (_ selectedIndex: Int) -> Void
+    ) {
+        let listView = listView as! CustomListBox
+        listView.rowSelected = { _, selectedRow in
+            guard let selectedRow else {
+                return
+            }
+            let selection = Int(gtk_list_box_row_get_index(selectedRow))
+            guard selection != listView.cachedSelection else {
+                return
+            }
+            listView.cachedSelection = selection
+            action(selection)
+        }
+    }
+
+    public func setSelectedItem(ofSelectableListView listView: Widget, toItemAt index: Int?) {
+        let listView = listView as! ListBox
+        let handler = listView.rowSelected
+        listView.rowSelected = nil
+        if let index {
+            listView.selectRow(at: index)
+        } else {
+            listView.unselectAll()
+        }
+        listView.rowSelected = handler
     }
 
     // MARK: Passive views
@@ -1174,4 +1262,8 @@ extension UnsafeMutablePointer {
         let pointer = UnsafeRawPointer(self).bindMemory(to: T.self, capacity: 1)
         return UnsafeMutablePointer<T>(mutating: pointer)
     }
+}
+
+class CustomListBox: ListBox {
+    var cachedSelection: Int? = nil
 }

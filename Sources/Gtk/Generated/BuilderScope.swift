@@ -1,7 +1,6 @@
 import CGtk
 
-/// `GtkBuilderScope` is an interface to provide language binding support
-/// to `GtkBuilder`.
+/// Provides language binding support to `GtkBuilder`.
 ///
 /// The goal of `GtkBuilderScope` is to look up programming-language-specific
 /// values for strings that are given in a `GtkBuilder` UI file.

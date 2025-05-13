@@ -664,6 +664,7 @@ public final class AppKitBackend: AppBackend {
         documentView.translatesAutoresizingMaskIntoConstraints = false
         documentView.addView(child, in: .top)
         scrollView.documentView = documentView
+
         scrollView.drawsBackground = false
 
         documentView.topAnchor.constraint(equalTo: clipView.topAnchor).isActive = true
@@ -684,6 +685,70 @@ public final class AppKitBackend: AppBackend {
         let scrollView = scrollView as! NSScrollView
         scrollView.hasVerticalScroller = hasVerticalScrollBar
         scrollView.hasHorizontalScroller = hasHorizontalScrollBar
+    }
+
+    public func createSelectableListView() -> Widget {
+        let scrollView = NSDisabledScrollView()
+        scrollView.hasHorizontalScroller = false
+        scrollView.hasVerticalScroller = false
+
+        let listView = NSCustomTableView()
+        listView.delegate = listView.customDelegate
+        listView.dataSource = listView.customDelegate
+        listView.allowsColumnSelection = false
+        let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("list-column"))
+        listView.customDelegate.columnCount = 1
+        listView.customDelegate.columnIndices = [
+            ObjectIdentifier(column): 0
+        ]
+        listView.customDelegate.allowSelections = true
+        listView.backgroundColor = .clear
+        listView.headerView = nil
+        listView.addTableColumn(column)
+        if #available(macOS 11.0, *) {
+            listView.style = .plain
+        }
+
+        scrollView.documentView = listView
+        listView.enclosingScrollView?.drawsBackground = false
+        return scrollView
+    }
+
+    public func baseItemPadding(
+        ofSelectableListView listView: Widget
+    ) -> SwiftCrossUI.EdgeInsets {
+        // TODO: Figure out if there's a way to compute this more directly. At
+        //   the moment these are just figures from empirical observations.
+        SwiftCrossUI.EdgeInsets(top: 0, bottom: 0, leading: 8, trailing: 8)
+    }
+
+    public func minimumRowSize(ofSelectableListView listView: Widget) -> SIMD2<Int> {
+        .zero
+    }
+
+    public func setItems(
+        ofSelectableListView listView: Widget,
+        to items: [Widget],
+        withRowHeights rowHeights: [Int]
+    ) {
+        let listView = (listView as! NSScrollView).documentView! as! NSCustomTableView
+        listView.customDelegate.rowCount = items.count
+        listView.customDelegate.widgets = items
+        listView.customDelegate.rowHeights = rowHeights
+        listView.reloadData()
+    }
+
+    public func setSelectionHandler(
+        forSelectableListView listView: Widget,
+        to action: @escaping (_ selectedIndex: Int) -> Void
+    ) {
+        let listView = (listView as! NSScrollView).documentView! as! NSCustomTableView
+        listView.customDelegate.selectionHandler = action
+    }
+
+    public func setSelectedItem(ofSelectableListView listView: Widget, toItemAt index: Int?) {
+        let listView = (listView as! NSScrollView).documentView! as! NSCustomTableView
+        listView.selectRowIndexes(IndexSet([index].compactMap { $0 }), byExtendingSelection: false)
     }
 
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
@@ -1415,6 +1480,8 @@ class NSCustomTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataS
     var columnIndices: [ObjectIdentifier: Int] = [:]
     var rowCount = 0
     var columnCount = 0
+    var allowSelections = false
+    var selectionHandler: ((Int) -> Void)?
 
     func numberOfRows(in tableView: NSTableView) -> Int {
         return rowCount
@@ -1444,7 +1511,19 @@ class NSCustomTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataS
         _ tableView: NSTableView,
         selectionIndexesForProposedSelection proposedSelectionIndexes: IndexSet
     ) -> IndexSet {
-        []
+        if allowSelections {
+            selectionHandler?(proposedSelectionIndexes.first!)
+            return proposedSelectionIndexes
+        } else {
+            return []
+        }
+    }
+
+    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
+        let view = NSTableRowView()
+        view.wantsLayer = true
+        view.layer?.cornerRadius = 5
+        return view
     }
 }
 
@@ -1713,5 +1792,13 @@ final class NSCustomApplicationDelegate: NSObject, NSApplicationDelegate {
 
     func application(_ application: NSApplication, open urls: [URL]) {
         onOpenURLs?(urls)
+    }
+}
+
+/// A scroll view with scrolling gestures disabled. Used as a dummy scroll view to
+/// allow us to properly set the width of NSTableView (had some weird issues).
+final class NSDisabledScrollView: NSScrollView {
+    override func scrollWheel(with event: NSEvent) {
+        self.nextResponder?.scrollWheel(with: event)
     }
 }

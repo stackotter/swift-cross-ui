@@ -1,11 +1,11 @@
 import CGtk
 
-/// A `GtkSpinner` widget displays an icon-size spinning animation.
+/// Displays an icon-size spinning animation.
 ///
 /// It is often used as an alternative to a [class@Gtk.ProgressBar]
 /// for displaying indefinite activity, instead of actual progress.
 ///
-/// ![An example GtkSpinner](spinner.png)
+/// <picture><source srcset="spinner-dark.png" media="(prefers-color-scheme: dark)"><img alt="An example GtkSpinner" src="spinner.png"></picture>
 ///
 /// To start the animation, use [method@Gtk.Spinner.start], to stop it
 /// use [method@Gtk.Spinner.stop].
@@ -15,7 +15,7 @@ import CGtk
 /// `GtkSpinner` has a single CSS node with the name spinner.
 /// When the animation is active, the :checked pseudoclass is
 /// added to this node.
-public class Spinner: Widget {
+open class Spinner: Widget {
     /// Returns a new spinner widget. Not yet started.
     public convenience init() {
         self.init(

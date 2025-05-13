@@ -1,6 +1,6 @@
 import CGtk
 
-/// `GtkGestureLongPress` is a `GtkGesture` for long presses.
+/// Recognizes long press gestures.
 ///
 /// This gesture is also known as “Press and Hold”.
 ///
@@ -15,7 +15,7 @@ import CGtk
 /// determined by the [property@Gtk.Settings:gtk-long-press-time] setting.
 /// It can be modified by the [property@Gtk.GestureLongPress:delay-factor]
 /// property.
-public class GestureLongPress: GestureSingle {
+open class GestureLongPress: GestureSingle {
     /// Returns a newly created `GtkGesture` that recognizes long presses.
     public convenience init() {
         self.init(

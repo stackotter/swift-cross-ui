@@ -28,8 +28,6 @@ public enum Align: GValueRepresentableEnum {
     case end
     /// Center natural width of widget inside the allocation
     case center
-    /// Align the widget according to the baseline.
-    case baseline
 
     public static var type: GType {
         gtk_align_get_type()
@@ -45,8 +43,6 @@ public enum Align: GValueRepresentableEnum {
                 self = .end
             case GTK_ALIGN_CENTER:
                 self = .center
-            case GTK_ALIGN_BASELINE:
-                self = .baseline
             default:
                 fatalError("Unsupported GtkAlign enum value: \(gtkEnum.rawValue)")
         }
@@ -62,8 +58,6 @@ public enum Align: GValueRepresentableEnum {
                 return GTK_ALIGN_END
             case .center:
                 return GTK_ALIGN_CENTER
-            case .baseline:
-                return GTK_ALIGN_BASELINE
         }
     }
 }

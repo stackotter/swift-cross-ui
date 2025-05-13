@@ -1,7 +1,6 @@
 import CGtk
 
-/// `GtkRange` is the common base class for widgets which visualize an
-/// adjustment.
+/// Base class for widgets which visualize an adjustment.
 ///
 /// Widgets that are derived from `GtkRange` include
 /// [class@Gtk.Scale] and [class@Gtk.Scrollbar].
@@ -15,7 +14,7 @@ import CGtk
 /// The `GtkRange` slider is draggable. Holding the <kbd>Shift</kbd> key while
 /// dragging, or initiating the drag with a long-press will enable the
 /// fine-tuning mode.
-public class Range: Widget, Orientable {
+open class Range: Widget, Orientable {
 
     override func didMoveToParent() {
         super.didMoveToParent()

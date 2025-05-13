@@ -1,9 +1,8 @@
 import CGtk
 
-/// `GtkDropDown` is a widget that allows the user to choose an item
-/// from a list of options.
+/// Allows the user to choose an item from a list of options.
 ///
-/// ![An example GtkDropDown](drop-down.png)
+/// <picture><source srcset="drop-down-dark.png" media="(prefers-color-scheme: dark)"><img alt="An example GtkDropDown" src="drop-down.png"></picture>
 ///
 /// The `GtkDropDown` displays the [selected][property@Gtk.DropDown:selected]
 /// choice.
@@ -45,8 +44,8 @@ import CGtk
 ///
 /// ## Accessibility
 ///
-/// `GtkDropDown` uses the %GTK_ACCESSIBLE_ROLE_COMBO_BOX role.
-public class DropDown: Widget {
+/// `GtkDropDown` uses the [enum@Gtk.AccessibleRole.combo_box] role.
+open class DropDown: Widget {
     /// Creates a new `GtkDropDown` that is populated with
     /// the strings.
     public convenience init(strings: [String]) {

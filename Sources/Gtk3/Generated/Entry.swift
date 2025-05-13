@@ -72,7 +72,7 @@ import CGtk3
 /// depending on where they are shown in relation to the selection. If there is
 /// just a single handle for the text cursor, it gets the style class
 /// .insertion-cursor.
-public class Entry: Widget, CellEditable, Editable {
+open class Entry: Widget, CellEditable, Editable {
     /// Creates a new entry.
     public convenience init() {
         self.init(

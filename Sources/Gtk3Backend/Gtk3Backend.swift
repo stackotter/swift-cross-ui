@@ -68,19 +68,38 @@ public final class Gtk3Backend: AppBackend {
             let provider = CSSProvider()
             provider.loadCss(
                 from: """
-                .dialog-vbox .horizontal .vertical {
-                    padding-top: 11px;
-                    margin-bottom: -10px;
-                }
+                    .dialog-vbox .horizontal .vertical {
+                        padding-top: 11px;
+                        margin-bottom: -10px;
+                    }
 
-                @binding-set DisableEscape {
-                    unbind "Escape";
-                }
+                    @binding-set DisableEscape {
+                        unbind "Escape";
+                    }
 
-                messagedialog {
-                    -gtk-key-bindings: DisableEscape;
-                }
-                """
+                    messagedialog {
+                        -gtk-key-bindings: DisableEscape;
+                    }
+
+                    list {
+                        background: none;
+                    }
+
+                    list > row {
+                        padding: 0;
+                        min-height: 0;
+                    }
+
+                    .navigation-sidebar {
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    .navigation-sidebar > row {
+                        margin: 0;
+                        padding: 0;
+                    }
+                    """
             )
             gtk_style_context_add_provider_for_screen(
                 gdk_screen_get_default(),
@@ -295,7 +314,7 @@ public final class Gtk3Backend: AppBackend {
                 "/org/freedesktop/FileManager1",
                 "org.freedesktop.FileManager1.ShowItems",
                 "array:string:\(fileURI)",
-                "string:"
+                "string:",
             ]
             process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
 
@@ -461,46 +480,47 @@ public final class Gtk3Backend: AppBackend {
         widget.setSizeRequest(width: size.x, height: size.y)
     }
 
-    // public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
-    //     let widget = Paned(orientation: .horizontal)
-    //     let leadingContainer = wrapInCustomRootContainer(leadingChild)
-    //     let trailingContainer = wrapInCustomRootContainer(trailingChild)
+    public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
+        let widget = Paned(orientation: .horizontal)
 
-    //     widget.startChild = leadingContainer
-    //     widget.endChild = trailingContainer
-    //     widget.shrinkStartChild = false
-    //     widget.shrinkEndChild = false
+        let leadingContainer = CustomRootWidget()
+        leadingContainer.setChild(to: leadingChild)
+        widget.startChild = leadingContainer
 
-    //     widget.position = 200
-    //     return widget
-    // }
+        let trailingContainer = CustomRootWidget()
+        trailingContainer.setChild(to: trailingChild)
+        widget.endChild = trailingContainer
 
-    // public func setResizeHandler(
-    //     ofSplitView splitView: Widget,
-    //     to action: @escaping () -> Void
-    // ) {
-    //     let splitView = splitView as! Paned
-    //     splitView.notifyPosition = { splitView in
-    //         action()
-    //     }
-    // }
+        widget.position = 200
+        return widget
+    }
 
-    // public func sidebarWidth(ofSplitView splitView: Widget) -> Int {
-    //     let splitView = splitView as! Paned
-    //     return splitView.position
-    // }
+    public func setResizeHandler(
+        ofSplitView splitView: Widget,
+        to action: @escaping () -> Void
+    ) {
+        let splitView = splitView as! Paned
+        splitView.notifyPosition = { splitView in
+            action()
+        }
+    }
 
-    // public func setSidebarWidthBounds(
-    //     ofSplitView splitView: Widget,
-    //     minimum minimumWidth: Int,
-    //     maximum maximumWidth: Int
-    // ) {
-    //     let splitView = splitView as! Paned
-    //     show(widget: splitView.startChild!)
-    //     let width = splitView.getNaturalSize().width
-    //     splitView.startChild?.setSizeRequest(width: minimumWidth, height: 0)
-    //     splitView.endChild?.setSizeRequest(width: width - maximumWidth, height: 0)
-    // }
+    public func sidebarWidth(ofSplitView splitView: Widget) -> Int {
+        let splitView = splitView as! Paned
+        return splitView.position
+    }
+
+    public func setSidebarWidthBounds(
+        ofSplitView splitView: Widget,
+        minimum minimumWidth: Int,
+        maximum maximumWidth: Int
+    ) {
+        let splitView = splitView as! Paned
+        show(widget: splitView.startChild!)
+        let width = splitView.getNaturalSize().width
+        splitView.startChild?.setSizeRequest(width: minimumWidth, height: 0)
+        splitView.endChild?.setSizeRequest(width: width - maximumWidth, height: 0)
+    }
 
     public func createScrollContainer(for child: Widget) -> Widget {
         let scrollView = ScrolledWindow()
@@ -518,6 +538,59 @@ public final class Gtk3Backend: AppBackend {
             hasVerticalScrollBar: hasVerticalScrollBar,
             hasHorizontalScrollBar: hasHorizontalScrollBar
         )
+    }
+
+    public func createSelectableListView() -> Widget {
+        let listView = ListBox()
+        listView.selectionMode = .single
+        return listView
+    }
+
+    public func baseItemPadding(
+        ofSelectableListView listView: Widget
+    ) -> SwiftCrossUI.EdgeInsets {
+        SwiftCrossUI.EdgeInsets()
+    }
+
+    public func minimumRowSize(ofSelectableListView listView: Widget) -> SIMD2<Int> {
+        .zero
+    }
+
+    public func setItems(
+        ofSelectableListView listView: Widget,
+        to items: [Widget],
+        withRowHeights rowHeights: [Int]
+    ) {
+        let listView = listView as! ListBox
+        listView.removeAll()
+        for item in items {
+            listView.add(item)
+        }
+    }
+
+    public func setSelectionHandler(
+        forSelectableListView listView: Widget,
+        to action: @escaping (_ selectedIndex: Int) -> Void
+    ) {
+        let listView = listView as! ListBox
+        listView.rowSelected = { _, selectedRow in
+            guard let selectedRow else {
+                return
+            }
+            action(Int(gtk_list_box_row_get_index(selectedRow)))
+        }
+    }
+
+    public func setSelectedItem(ofSelectableListView listView: Widget, toItemAt index: Int?) {
+        let listView = listView as! ListBox
+        let handler = listView.rowSelected
+        listView.rowSelected = nil
+        if let index {
+            listView.selectRow(at: index)
+        } else {
+            listView.unselectAll()
+        }
+        listView.rowSelected = handler
     }
 
     // MARK: Passive views

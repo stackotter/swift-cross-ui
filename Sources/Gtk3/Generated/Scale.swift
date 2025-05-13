@@ -72,7 +72,7 @@ import CGtk3
 ///
 /// If the scale is displaying the value (see #GtkScale:draw-value), there is
 /// subnode with name value.
-public class Scale: Range {
+open class Scale: Range {
     /// Creates a new #GtkScale.
     public convenience init(
         orientation: GtkOrientation, adjustment: UnsafeMutablePointer<GtkAdjustment>!

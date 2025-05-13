@@ -27,7 +27,7 @@ import CGtk3
 /// a selected menu item.) The current menu is the menu that
 /// contains the current menu item. It will always have a GTK
 /// grab and receive all key presses.
-public class MenuShell: Container {
+open class MenuShell: Container {
 
     override func didMoveToParent() {
         super.didMoveToParent()

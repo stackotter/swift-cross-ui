@@ -1,7 +1,6 @@
 import CGtk
 
-/// `GtkGestureSingle` is a `GtkGestures` subclass optimized for singe-touch
-/// and mouse gestures.
+/// A `GtkGesture` subclass optimized for singe-touch and mouse gestures.
 ///
 /// Under interaction, these gestures stick to the first interacting sequence,
 /// which is accessible through [method@Gtk.GestureSingle.get_current_sequence]
@@ -14,7 +13,7 @@ import CGtk
 /// to any mouse button by setting it to 0. While the gesture is active, the
 /// button being currently pressed can be known through
 /// [method@Gtk.GestureSingle.get_current_button].
-public class GestureSingle: Gesture {
+open class GestureSingle: Gesture {
 
     public override func registerSignals() {
         super.registerSignals()

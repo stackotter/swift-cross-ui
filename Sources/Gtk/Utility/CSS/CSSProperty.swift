@@ -14,6 +14,10 @@ public struct CSSProperty: Equatable {
         self.value = value
     }
 
+    public static func padding(_ amount: String) -> CSSProperty {
+        CSSProperty(key: "padding", value: amount)
+    }
+
     public static func foregroundColor(_ color: Color) -> CSSProperty {
         CSSProperty(key: "color", value: rgba(color))
     }

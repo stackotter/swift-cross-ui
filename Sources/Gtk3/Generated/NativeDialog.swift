@@ -15,7 +15,7 @@ import CGtk3
 /// There is also a gtk_native_dialog_run() helper that makes it easy
 /// to run any native dialog in a modal way with a recursive mainloop,
 /// similar to gtk_dialog_run().
-public class NativeDialog: GObject {
+open class NativeDialog: GObject {
 
     public override func registerSignals() {
         super.registerSignals()
