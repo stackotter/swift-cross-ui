@@ -42,6 +42,25 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
 
     public init<Data: RandomAccessCollection>(
         _ data: Data,
+        id: KeyPath<Data.Element, SelectionValue>,
+        selection: Binding<SelectionValue?>
+    ) where Data.Element: CustomStringConvertible, RowView == Text, Data.Index == Int {
+        self.init(data, id: id, selection: selection) { item in
+            return Text(item.description)
+        }
+    }
+
+    public init<Data: RandomAccessCollection>(
+        _ data: Data,
+        id: KeyPath<Data.Element, SelectionValue>,
+        selection: Binding<SelectionValue?>,
+        @ViewBuilder rowContent: @escaping (Data.Element) -> RowView
+    ) where Data.Index == Int {
+        self.init(data, id: { $0[keyPath: id] }, selection: selection, rowContent: rowContent)
+    }
+
+    public init<Data: RandomAccessCollection>(
+        _ data: Data,
         id: @escaping (Data.Element) -> SelectionValue,
         selection: Binding<SelectionValue?>,
         @ViewBuilder rowContent: @escaping (Data.Element) -> RowView
