@@ -830,7 +830,7 @@ public final class WinUIBackend: AppBackend {
             inputScope.names[0] = value
         } else {
             let inputScope = InputScope()
-            inputScope.names.add(value)
+            inputScope.names.append(value)
             textField.inputScope = inputScope
         }
     }
