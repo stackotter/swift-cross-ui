@@ -61,7 +61,8 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView\/onSubmit(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView\/onTapGesture(gesture:perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView\/overlay(content:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView\/padding(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView\/padding(_:)-4313d",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView\/padding(_:)-5ho24",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView\/padding(_:_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView\/preference(key:value:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView\/submitScope()",
@@ -2427,7 +2428,61 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/optionalview\/overlay(content:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalView/padding(_:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalView/padding(_:)-4313d": {
+  "abstract" : [
+    {
+      "text" : "Adds padding to a view with a different amount for each edge.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "padding"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10EdgeInsetsV",
+      "text" : "EdgeInsets"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView\/padding(_:)-4313d",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "padding(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/optionalview\/padding(_:)-4313d"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalView/padding(_:)-5ho24": {
   "abstract" : [
     {
       "text" : "Adds padding to a view. If ",
@@ -2515,12 +2570,12 @@
       "text" : "View"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView\/padding(_:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView\/padding(_:)-5ho24",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "padding(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/optionalview\/padding(_:)"
+  "url" : "\/documentation\/swiftcrossui\/optionalview\/padding(_:)-5ho24"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalView/padding(_:_:)": {
   "abstract" : [
@@ -2541,7 +2596,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : ", then a backend-specific default value",
+      "text" : ", then a backend-specific",
       "type" : "text"
     },
     {
@@ -2549,7 +2604,7 @@
       "type" : "text"
     },
     {
-      "text" : "is used.",
+      "text" : "default value is used.",
       "type" : "text"
     }
   ],
@@ -3221,7 +3276,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : ", then a backend-specific default value",
+      "text" : ", then a backend-specific",
       "type" : "text"
     },
     {
@@ -3229,7 +3284,7 @@
       "type" : "text"
     },
     {
-      "text" : "is used.",
+      "text" : "default value is used.",
       "type" : "text"
     }
   ],

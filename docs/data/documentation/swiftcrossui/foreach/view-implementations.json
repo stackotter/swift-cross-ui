@@ -68,7 +68,8 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/onSubmit(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/onTapGesture(gesture:perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/overlay(content:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/padding(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/padding(_:)-2qe57",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/padding(_:)-93r9e",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/padding(_:_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/preference(key:value:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/submitScope()",
@@ -2523,7 +2524,61 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/foreach\/overlay(content:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach/padding(_:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach/padding(_:)-2qe57": {
+  "abstract" : [
+    {
+      "text" : "Adds padding to a view with a different amount for each edge.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "padding"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10EdgeInsetsV",
+      "text" : "EdgeInsets"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/padding(_:)-2qe57",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "padding(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/foreach\/padding(_:)-2qe57"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach/padding(_:)-93r9e": {
   "abstract" : [
     {
       "text" : "Adds padding to a view. If ",
@@ -2611,12 +2666,12 @@
       "text" : "View"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/padding(_:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach\/padding(_:)-93r9e",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "padding(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/foreach\/padding(_:)"
+  "url" : "\/documentation\/swiftcrossui\/foreach\/padding(_:)-93r9e"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach/padding(_:_:)": {
   "abstract" : [
@@ -2637,7 +2692,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : ", then a backend-specific default value",
+      "text" : ", then a backend-specific",
       "type" : "text"
     },
     {
@@ -2645,7 +2700,7 @@
       "type" : "text"
     },
     {
-      "text" : "is used.",
+      "text" : "default value is used.",
       "type" : "text"
     }
   ],
@@ -3317,7 +3372,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : ", then a backend-specific default value",
+      "text" : ", then a backend-specific",
       "type" : "text"
     },
     {
@@ -3325,7 +3380,7 @@
       "type" : "text"
     },
     {
-      "text" : "is used.",
+      "text" : "default value is used.",
       "type" : "text"
     }
   ],

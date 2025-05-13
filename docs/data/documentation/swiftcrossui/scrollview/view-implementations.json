@@ -61,7 +61,8 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/onSubmit(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/onTapGesture(gesture:perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/overlay(content:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/padding(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/padding(_:)-3tdbs",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/padding(_:)-40k85",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/padding(_:_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/preference(key:value:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/submitScope()",
@@ -2430,7 +2431,61 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scrollview\/overlay(content:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/padding(_:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/padding(_:)-3tdbs": {
+  "abstract" : [
+    {
+      "text" : "Adds padding to a view with a different amount for each edge.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "padding"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10EdgeInsetsV",
+      "text" : "EdgeInsets"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/padding(_:)-3tdbs",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "padding(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scrollview\/padding(_:)-3tdbs"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/padding(_:)-40k85": {
   "abstract" : [
     {
       "text" : "Adds padding to a view. If ",
@@ -2518,12 +2573,12 @@
       "text" : "View"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/padding(_:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/padding(_:)-40k85",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "padding(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/scrollview\/padding(_:)"
+  "url" : "\/documentation\/swiftcrossui\/scrollview\/padding(_:)-40k85"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ScrollView/padding(_:_:)": {
   "abstract" : [
@@ -2544,7 +2599,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : ", then a backend-specific default value",
+      "text" : ", then a backend-specific",
       "type" : "text"
     },
     {
@@ -2552,7 +2607,7 @@
       "type" : "text"
     },
     {
-      "text" : "is used.",
+      "text" : "default value is used.",
       "type" : "text"
     }
   ],
@@ -3224,7 +3279,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : ", then a backend-specific default value",
+      "text" : ", then a backend-specific",
       "type" : "text"
     },
     {
@@ -3232,7 +3287,7 @@
       "type" : "text"
     },
     {
-      "text" : "is used.",
+      "text" : "default value is used.",
       "type" : "text"
     }
   ],

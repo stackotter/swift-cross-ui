@@ -61,7 +61,8 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/onSubmit(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/onTapGesture(gesture:perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/overlay(content:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/padding(_:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/padding(_:)-4gjfl",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/padding(_:)-8ka24",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/padding(_:_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/preference(key:value:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/submitScope()",
@@ -2434,7 +2435,61 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/divider\/overlay(content:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Divider/padding(_:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Divider/padding(_:)-4gjfl": {
+  "abstract" : [
+    {
+      "text" : "Adds padding to a view with a different amount for each edge.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "padding"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI10EdgeInsetsV",
+      "text" : "EdgeInsets"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/padding(_:)-4gjfl",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "padding(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/divider\/padding(_:)-4gjfl"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Divider/padding(_:)-8ka24": {
   "abstract" : [
     {
       "text" : "Adds padding to a view. If ",
@@ -2522,12 +2577,12 @@
       "text" : "View"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/padding(_:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/padding(_:)-8ka24",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "padding(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/divider\/padding(_:)"
+  "url" : "\/documentation\/swiftcrossui\/divider\/padding(_:)-8ka24"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Divider/padding(_:_:)": {
   "abstract" : [
@@ -2548,7 +2603,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : ", then a backend-specific default value",
+      "text" : ", then a backend-specific",
       "type" : "text"
     },
     {
@@ -2556,7 +2611,7 @@
       "type" : "text"
     },
     {
-      "text" : "is used.",
+      "text" : "default value is used.",
       "type" : "text"
     }
   ],
@@ -3228,7 +3283,7 @@
       "type" : "codeVoice"
     },
     {
-      "text" : ", then a backend-specific default value",
+      "text" : ", then a backend-specific",
       "type" : "text"
     },
     {
@@ -3236,7 +3291,7 @@
       "type" : "text"
     },
     {
-      "text" : "is used.",
+      "text" : "default value is used.",
       "type" : "text"
     }
   ],

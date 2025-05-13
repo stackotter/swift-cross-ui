@@ -233,6 +233,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandsModifier",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ContentType",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EdgeInsets",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Ellipse",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyTableRowContent",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment",
@@ -242,6 +243,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Group",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadableView",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/List",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/MenuItemsBuilder",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OpenDialogOptions",
@@ -1645,6 +1647,40 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/edge"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EdgeInsets": {
+  "abstract" : [
+    {
+      "text" : "Insets for the sides of a rectangle. Generally used to represent view padding.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EdgeInsets"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EdgeInsets",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EdgeInsets"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EdgeInsets",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/edgeinsets"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView": {
   "abstract" : [
     {
@@ -2595,6 +2631,37 @@
   "title" : "LayoutSystem",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/layoutsystem"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/List": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "List"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/List",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "List"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "List",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/list"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Menu": {
   "abstract" : [
