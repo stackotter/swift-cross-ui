@@ -1,6 +1,6 @@
 import CGtk
 
-/// `GtkEditable` is an interface for text editing widgets.
+/// Interface for single-line text editing widgets.
 ///
 /// Typical examples of editable widgets are [class@Gtk.Entry] and
 /// [class@Gtk.SpinButton]. It contains functions for generically manipulating

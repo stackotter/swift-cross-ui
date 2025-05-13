@@ -158,6 +158,7 @@ struct Enumeration: Decodable {
         var cIdentifier: String
         var doc: String?
         var version: String?
+        var docDeprecated: String?
     }
 }
 

@@ -1,6 +1,6 @@
 import CGtk
 
-/// `GtkSelectionModel` is an interface that add support for selection to list models.
+/// An interface that adds support for selection to list models.
 ///
 /// This support is then used by widgets using list models to add the ability
 /// to select and unselect various items.

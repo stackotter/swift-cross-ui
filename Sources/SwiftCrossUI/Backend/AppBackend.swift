@@ -257,6 +257,32 @@ public protocol AppBackend {
         hasHorizontalScrollBar: Bool
     )
 
+    /// Creates a list with selectable rows.
+    func createSelectableListView() -> Widget
+    /// Gets the amount of padding introduced by the backend around the content of
+    /// each row. Ideally backends should get rid of base padding so that SwiftCrossUI
+    /// can give developers more freedom, but this isn't always possible.
+    func baseItemPadding(ofSelectableListView listView: Widget) -> EdgeInsets
+    /// Gets the minimum size for rows in the list view. This doesn't necessarily have to
+    /// be just for hard requirements enforced by the backend, it can also just be an
+    /// idiomatic minimum size for the platform.
+    func minimumRowSize(ofSelectableListView listView: Widget) -> SIMD2<Int>
+    /// Sets the items of a selectable list along with their heights. Row heights should
+    /// include base item padding (i.e. they should be the external height of the row rather
+    /// than the internal height).
+    func setItems(
+        ofSelectableListView listView: Widget,
+        to items: [Widget],
+        withRowHeights rowHeights: [Int]
+    )
+    /// Sets the action to perform when a user selects an item in the list.
+    func setSelectionHandler(
+        forSelectableListView listView: Widget,
+        to action: @escaping (_ selectedIndex: Int) -> Void
+    )
+    /// Sets the list's selected item by index.
+    func setSelectedItem(ofSelectableListView listView: Widget, toItemAt index: Int?)
+
     /// Creates a split view containing two children visible side by side.
     ///
     /// If you need to modify the leading and trailing children after creation nest them
@@ -623,6 +649,37 @@ extension AppBackend {
         hasVerticalScrollBar: Bool,
         hasHorizontalScrollBar: Bool
     ) {
+        todo()
+    }
+
+    public func createSelectableListView() -> Widget {
+        todo()
+    }
+
+    public func baseItemPadding(ofSelectableListView listView: Widget) -> EdgeInsets {
+        todo()
+    }
+
+    public func minimumRowSize(ofSelectableListView listView: Widget) -> SIMD2<Int> {
+        todo()
+    }
+
+    public func setItems(
+        ofSelectableListView listView: Widget,
+        to items: [Widget],
+        withRowHeights rowHeights: [Int]
+    ) {
+        todo()
+    }
+
+    public func setSelectionHandler(
+        forSelectableListView listView: Widget,
+        to action: @escaping (_ selectedIndex: Int) -> Void
+    ) {
+        todo()
+    }
+
+    public func setSelectedItem(ofSelectableListView listView: Widget, toItemAt index: Int?) {
         todo()
     }
 

@@ -9,10 +9,16 @@ open class GObject: GObjectRepresentable {
 
     public init<T>(_ pointer: UnsafeMutablePointer<T>) {
         gobjectPointer = pointer.cast()
+        g_object_ref(gobjectPointer)
     }
 
     public init(_ pointer: OpaquePointer) {
         gobjectPointer = UnsafeMutablePointer(pointer)
+        g_object_ref(gobjectPointer)
+    }
+
+    deinit {
+        g_object_unref(gobjectPointer)
     }
 
     private var signals: [(UInt, Any)] = []

@@ -1,11 +1,10 @@
 import CGtk
 
-/// The `GtkLabel` widget displays a small amount of text.
+/// Displays a small amount of text.
 ///
-/// As the name implies, most labels are used to label another widget
-/// such as a [class@Button].
+/// Most labels are used to label another widget (such as an [class@Entry]).
 ///
-/// ![An example GtkLabel](label.png)
+/// <picture><source srcset="label-dark.png" media="(prefers-color-scheme: dark)"><img alt="An example GtkLabel" src="label.png"></picture>
 ///
 /// ## Shortcuts and Gestures
 ///
@@ -84,7 +83,7 @@ import CGtk
 ///
 /// ## Accessibility
 ///
-/// `GtkLabel` uses the %GTK_ACCESSIBLE_ROLE_LABEL role.
+/// `GtkLabel` uses the [enum@Gtk.AccessibleRole.label] role.
 ///
 /// ## Mnemonics
 ///
@@ -129,9 +128,8 @@ import CGtk
 ///
 /// ## Markup (styled text)
 ///
-/// To make it easy to format text in a label (changing colors,
-/// fonts, etc.), label text can be provided in a simple
-/// markup format:
+/// To make it easy to format text in a label (changing colors, fonts, etc.),
+/// label text can be provided in a simple markup format:
 ///
 /// Here’s how to create a label with a small font:
 /// ```c
@@ -142,7 +140,7 @@ import CGtk
 /// (See the Pango manual for complete documentation] of available
 /// tags, [func@Pango.parse_markup])
 ///
-/// The markup passed to [method@Gtk.Label.set_markup] must be valid; for example,
+/// The markup passed to [method@Gtk.Label.set_markup] must be valid XML; for example,
 /// literal `<`, `>` and `&` characters must be escaped as `&lt;`, `&gt;`, and `&amp;`.
 /// If you pass text obtained from the user, file, or a network to
 /// [method@Gtk.Label.set_markup], you’ll want to escape it with
@@ -153,16 +151,16 @@ import CGtk
 /// attributes in some cases. Be careful though; [struct@Pango.AttrList] tends
 /// to cause internationalization problems, unless you’re applying attributes
 /// to the entire string (i.e. unless you set the range of each attribute
-/// to [0, %G_MAXINT)). The reason is that specifying the start_index and
-/// end_index for a [struct@Pango.Attribute] requires knowledge of the exact
+/// to [0, `G_MAXINT`)). The reason is that specifying the `start_index` and
+/// `end_index` for a [struct@Pango.Attribute] requires knowledge of the exact
 /// string being displayed, so translations will cause problems.
 ///
 /// ## Selectable labels
 ///
 /// Labels can be made selectable with [method@Gtk.Label.set_selectable].
-/// Selectable labels allow the user to copy the label contents to
-/// the clipboard. Only labels that contain useful-to-copy information—such
-/// as error messages—should be made selectable.
+/// Selectable labels allow the user to copy the label contents to the
+/// clipboard. Only labels that contain useful-to-copy information — such
+/// as error messages — should be made selectable.
 ///
 /// ## Text layout
 ///
@@ -190,11 +188,11 @@ import CGtk
 /// ## Links
 ///
 /// GTK supports markup for clickable hyperlinks in addition to regular Pango
-/// markup. The markup for links is borrowed from HTML, using the `<a>` with
-/// “href“, “title“ and “class“ attributes. GTK renders links similar to the
-/// way they appear in web browsers, with colored, underlined text. The “title“
-/// attribute is displayed as a tooltip on the link. The “class“ attribute is
-/// used as style class on the CSS node for the link.
+/// markup. The markup for links is borrowed from HTML, using the `<a>` tag
+/// with “href“, “title“ and “class“ attributes. GTK renders links similar to
+/// the way they appear in web browsers, with colored, underlined text. The
+/// “title“ attribute is displayed as a tooltip on the link. The “class“
+/// attribute is used as style class on the CSS node for the link.
 ///
 /// An example of inline links looks like this:
 ///
@@ -210,17 +208,17 @@ import CGtk
 /// It is possible to implement custom handling for links and their tooltips
 /// with the [signal@Gtk.Label::activate-link] signal and the
 /// [method@Gtk.Label.get_current_uri] function.
-public class Label: Widget {
+open class Label: Widget {
     /// Creates a new label with the given text inside it.
     ///
-    /// You can pass %NULL to get an empty label widget.
+    /// You can pass `NULL` to get an empty label widget.
     public convenience init(string: String) {
         self.init(
             gtk_label_new(string)
         )
     }
 
-    /// Creates a new `GtkLabel`, containing the text in @str.
+    /// Creates a new label with the given text inside it, and a mnemonic.
     ///
     /// If characters in @str are preceded by an underscore, they are
     /// underlined. If you need a literal underscore character in a label, use
@@ -230,7 +228,7 @@ public class Label: Widget {
     /// [method@Gtk.Label.set_mnemonic_widget].
     ///
     /// If [method@Gtk.Label.set_mnemonic_widget] is not called, then the first
-    /// activatable ancestor of the `GtkLabel` will be chosen as the mnemonic
+    /// activatable ancestor of the label will be chosen as the mnemonic
     /// widget. For instance, if the label is inside a button or menu item,
     /// the button or menu item will automatically become the mnemonic widget
     /// and be activated by the mnemonic.
@@ -519,20 +517,30 @@ public class Label: Widget {
     ///
     /// If the string contains Pango markup (see [func@Pango.parse_markup]),
     /// you will have to set the [property@Gtk.Label:use-markup] property to
-    /// %TRUE in order for the label to display the markup attributes. See also
+    /// true in order for the label to display the markup attributes. See also
     /// [method@Gtk.Label.set_markup] for a convenience function that sets both
     /// this property and the [property@Gtk.Label:use-markup] property at the
     /// same time.
     ///
     /// If the string contains underlines acting as mnemonics, you will have to
-    /// set the [property@Gtk.Label:use-underline] property to %TRUE in order
+    /// set the [property@Gtk.Label:use-underline] property to true in order
     /// for the label to display them.
     @GObjectProperty(named: "label") public var label: String
 
     /// The number of lines to which an ellipsized, wrapping label
-    /// should be limited.
+    /// should display before it gets ellipsized. This both prevents the label
+    /// from ellipsizing before this many lines are displayed, and limits the
+    /// height request of the label to this many lines.
+    ///
+    /// ::: warning
+    /// Setting this property has unintuitive and unfortunate consequences
+    /// for the minimum _width_ of the label. Specifically, if the height
+    /// of the label is such that it fits a smaller number of lines than
+    /// the value of this property, the label can not be ellipsized at all,
+    /// which means it must be wide enough to fit all the text fully.
     ///
     /// This property has no effect if the label is not wrapping or ellipsized.
+    ///
     /// Set this property to -1 if you don't want to limit the number of lines.
     @GObjectProperty(named: "lines") public var lines: Int
 
@@ -540,8 +548,8 @@ public class Label: Widget {
     ///
     /// If this property is set to -1, the width will be calculated automatically.
     ///
-    /// See the section on [text layout](class.Label.html#text-layout) for details of how
-    /// [property@Gtk.Label:width-chars] and [property@Gtk.Label:max-width-chars]
+    /// See the section on [text layout](class.Label.html#text-layout) for details
+    /// of how [property@Gtk.Label:width-chars] and [property@Gtk.Label:max-width-chars]
     /// determine the width of ellipsized and wrapped labels.
     @GObjectProperty(named: "max-width-chars") public var maxWidthChars: Int
 
@@ -559,12 +567,12 @@ public class Label: Widget {
     /// of text changes would be distracting, e.g. in a statusbar.
     @GObjectProperty(named: "single-line-mode") public var singleLineMode: Bool
 
-    /// %TRUE if the text of the label includes Pango markup.
+    /// True if the text of the label includes Pango markup.
     ///
     /// See [func@Pango.parse_markup].
     @GObjectProperty(named: "use-markup") public var useMarkup: Bool
 
-    /// %TRUE if the text of the label indicates a mnemonic with an _
+    /// True if the text of the label indicates a mnemonic with an `_`
     /// before the mnemonic character.
     @GObjectProperty(named: "use-underline") public var useUnderline: Bool
 
@@ -572,12 +580,12 @@ public class Label: Widget {
     ///
     /// If this property is set to -1, the width will be calculated automatically.
     ///
-    /// See the section on [text layout](class.Label.html#text-layout) for details of how
-    /// [property@Gtk.Label:width-chars] and [property@Gtk.Label:max-width-chars]
+    /// See the section on [text layout](class.Label.html#text-layout) for details
+    /// of how [property@Gtk.Label:width-chars] and [property@Gtk.Label:max-width-chars]
     /// determine the width of ellipsized and wrapped labels.
     @GObjectProperty(named: "width-chars") public var widthChars: Int
 
-    /// %TRUE if the label text will wrap if it gets too wide.
+    /// True if the label text will wrap if it gets too wide.
     @GObjectProperty(named: "wrap") public var wrap: Bool
 
     /// The horizontal alignment of the label text inside its size allocation.
@@ -594,7 +602,7 @@ public class Label: Widget {
 
     /// Gets emitted when the user activates a link in the label.
     ///
-    /// The ::activate-current-link is a [keybinding signal](class.SignalAction.html).
+    /// The `::activate-current-link` is a [keybinding signal](class.SignalAction.html).
     ///
     /// Applications may also emit the signal with g_signal_emit_by_name()
     /// if they need to control activation of URIs programmatically.
@@ -610,23 +618,23 @@ public class Label: Widget {
 
     /// Gets emitted to copy the selection to the clipboard.
     ///
-    /// The ::copy-clipboard signal is a [keybinding signal](class.SignalAction.html).
+    /// The `::copy-clipboard` signal is a [keybinding signal](class.SignalAction.html).
     ///
     /// The default binding for this signal is <kbd>Ctrl</kbd>+<kbd>c</kbd>.
     public var copyClipboard: ((Label) -> Void)?
 
     /// Gets emitted when the user initiates a cursor movement.
     ///
-    /// The ::move-cursor signal is a [keybinding signal](class.SignalAction.html).
+    /// The `::move-cursor` signal is a [keybinding signal](class.SignalAction.html).
     /// If the cursor is not visible in @entry, this signal causes the viewport to
     /// be moved instead.
     ///
     /// Applications should not connect to it, but may emit it with
-    /// g_signal_emit_by_name() if they need to control the cursor
-    /// programmatically.
+    /// [func@GObject.signal_emit_by_name] if they need to control
+    /// the cursor programmatically.
     ///
-    /// The default bindings for this signal come in two variants,
-    /// the variant with the <kbd>Shift</kbd> modifier extends the selection,
+    /// The default bindings for this signal come in two variants, the
+    /// variant with the <kbd>Shift</kbd> modifier extends the selection,
     /// the variant without the <kbd>Shift</kbd> modifier does not.
     /// There are too many key combinations to list them all here.
     ///

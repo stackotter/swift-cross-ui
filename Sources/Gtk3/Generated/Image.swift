@@ -84,7 +84,7 @@ import CGtk3
 ///
 /// GtkImage has a single CSS node with the name image. The style classes
 /// may appear on image CSS nodes: .icon-dropshadow, .lowres-icon.
-public class Image: Misc {
+open class Image: Misc {
     /// Creates a new empty #GtkImage widget.
     public convenience init() {
         self.init(
@@ -131,20 +131,6 @@ public class Image: Misc {
     public convenience init(iconName: String, size: GtkIconSize) {
         self.init(
             gtk_image_new_from_icon_name(iconName, size)
-        )
-    }
-
-    /// Creates a new #GtkImage displaying @pixbuf.
-    /// The #GtkImage does not assume a reference to the
-    /// pixbuf; you still need to unref it if you own references.
-    /// #GtkImage will add its own reference rather than adopting yours.
-    ///
-    /// Note that this function just creates an #GtkImage from the pixbuf. The
-    /// #GtkImage created will not react to state changes. Should you want that,
-    /// you should use gtk_image_new_from_icon_name().
-    public convenience init(pixbuf: OpaquePointer) {
-        self.init(
-            gtk_image_new_from_pixbuf(pixbuf)
         )
     }
 

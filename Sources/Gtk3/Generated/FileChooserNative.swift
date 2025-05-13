@@ -156,7 +156,7 @@ import CGtk3
 /// * Any #GtkFileFilter added with a custom filter.
 ///
 /// * Shortcut folders.
-public class FileChooserNative: NativeDialog, FileChooser {
+open class FileChooserNative: NativeDialog, FileChooser {
     /// Creates a new #GtkFileChooserNative.
     public convenience init(
         title: String, parent: UnsafeMutablePointer<GtkWindow>!, action: GtkFileChooserAction,

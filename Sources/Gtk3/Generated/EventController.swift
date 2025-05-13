@@ -3,7 +3,7 @@ import CGtk3
 /// #GtkEventController is a base, low-level implementation for event
 /// controllers. Those react to a series of #GdkEvents, and possibly trigger
 /// actions as a consequence of those.
-public class EventController: GObject {
+open class EventController: GObject {
 
     public override func registerSignals() {
         super.registerSignals()

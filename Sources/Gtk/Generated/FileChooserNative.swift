@@ -146,7 +146,7 @@ import CGtk
 /// are not supported:
 ///
 /// * Shortcut folders.
-public class FileChooserNative: NativeDialog, FileChooser {
+open class FileChooserNative: NativeDialog, FileChooser {
     /// Creates a new `GtkFileChooserNative`.
     public convenience init(
         title: String, parent: UnsafeMutablePointer<GtkWindow>!, action: GtkFileChooserAction,

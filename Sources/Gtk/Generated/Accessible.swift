@@ -1,12 +1,11 @@
 import CGtk
 
-/// `GtkAccessible` is an interface for describing UI elements for
-/// Assistive Technologies.
+/// An interface for describing UI elements for Assistive Technologies.
 ///
 /// Every accessible implementation has:
 ///
 /// - a “role”, represented by a value of the [enum@Gtk.AccessibleRole] enumeration
-/// - an “attribute”, represented by a set of [enum@Gtk.AccessibleState],
+/// - “attributes”, represented by a set of [enum@Gtk.AccessibleState],
 /// [enum@Gtk.AccessibleProperty] and [enum@Gtk.AccessibleRelation] values
 ///
 /// The role cannot be changed after instantiating a `GtkAccessible`
@@ -22,8 +21,10 @@ import CGtk
 /// by reimplementing the [vfunc@Gtk.Accessible.get_accessible_parent],
 /// [vfunc@Gtk.Accessible.get_first_accessible_child] and
 /// [vfunc@Gtk.Accessible.get_next_accessible_sibling] virtual functions.
+///
 /// Note that you can not create a top-level accessible object as of now,
 /// which means that you must always have a parent accessible object.
+///
 /// Also note that when an accessible object does not correspond to a widget,
 /// and it has children, whose implementation you don't control,
 /// it is necessary to ensure the correct shape of the a11y tree

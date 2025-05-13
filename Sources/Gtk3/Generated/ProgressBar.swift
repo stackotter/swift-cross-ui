@@ -39,7 +39,7 @@ import CGtk3
 /// .right, .top or .bottom added when the progress 'touches' the corresponding
 /// end of the GtkProgressBar. The .osd class on the progressbar node is for use
 /// in overlays like the one Epiphany has for page loading progress.
-public class ProgressBar: Widget, Orientable {
+open class ProgressBar: Widget, Orientable {
     /// Creates a new #GtkProgressBar.
     public convenience init() {
         self.init(

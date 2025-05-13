@@ -108,7 +108,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/stackotter/swift-winui",
-            branch: "a81bc36e3ac056fbc740e9df30ff0d80af5ecd21"
+            branch: "fad446caf8f40370d82a043ec293646023e07e61"
         ),
         // .package(
         //     url: "https://github.com/stackotter/TermKit",

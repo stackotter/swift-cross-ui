@@ -3,7 +3,7 @@ import CGtk3
 /// The #GtkEventBox widget is a subclass of #GtkBin which also has its
 /// own window. It is useful since it allows you to catch events for widgets
 /// which do not have their own window.
-public class EventBox: Bin {
+open class EventBox: Bin {
     /// Creates a new #GtkEventBox.
     public convenience init() {
         self.init(

@@ -1,8 +1,8 @@
 import CGtk
 
-/// `GtkSwitch` is a "light switch" that has two states: on or off.
+/// Shows a "light switch" that has two states: on or off.
 ///
-/// ![An example GtkSwitch](switch.png)
+/// <picture><source srcset="switch-dark.png" media="(prefers-color-scheme: dark)"><img alt="An example GtkSwitch" src="switch.png"></picture>
 ///
 /// The user can control which state should be active by clicking the
 /// empty area, or by dragging the slider.
@@ -13,7 +13,7 @@ import CGtk
 /// trough color indicates the present underlying state (represented by the
 /// [property@Gtk.Switch:state] property).
 ///
-/// ![GtkSwitch with delayed state change](switch-state.png)
+/// <picture><source srcset="switch-state-dark.png" media="(prefers-color-scheme: dark)"><img alt="GtkSwitch with delayed state change" src="switch-state.png"></picture>
 ///
 /// See [signal@Gtk.Switch::state-set] for details.
 ///
@@ -36,8 +36,8 @@ import CGtk
 ///
 /// # Accessibility
 ///
-/// `GtkSwitch` uses the %GTK_ACCESSIBLE_ROLE_SWITCH role.
-public class Switch: Widget, Actionable {
+/// `GtkSwitch` uses the [enum@Gtk.AccessibleRole.switch] role.
+open class Switch: Widget, Actionable {
     /// Creates a new `GtkSwitch` widget.
     public convenience init() {
         self.init(

@@ -23,7 +23,7 @@ struct StressTestApp: App {
         "baz",
     ]
 
-    @State var tab = 0
+    @State var tab: Int? = 0
 
     @State var values: [Int: [String]] = [:]
 
@@ -31,10 +31,11 @@ struct StressTestApp: App {
         WindowGroup("Stress Tester") {
             #hotReloadable {
                 NavigationSplitView {
-                    VStack {
-                        Button("List 1") { tab = 0 }
-                        Button("List 2") { tab = 1 }
-                    }.padding(10)
+                    ScrollView {
+                        List([0, 1], id: \.self, selection: $tab) { tab in
+                            Text("List \(tab + 1)")
+                        }.padding(10)
+                    }
                 } detail: {
                     VStack {
                         Button("Generate") {
@@ -43,9 +44,9 @@ struct StressTestApp: App {
                                 values.append(Self.options.randomElement()!)
                             }
 
-                            self.values[tab] = values
+                            self.values[tab!] = values
                         }
-                        if let values = values[tab] {
+                        if let values = values[tab!] {
                             ScrollView {
                                 ForEach(values) { value in
                                     Text(value)

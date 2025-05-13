@@ -24,22 +24,22 @@ open class Widget: GObject {
     }
 
     func didMoveToParent() {
-        let handler1:
-            @convention(c) (
-                UnsafeMutableRawPointer,
-                GdkEventButton,
-                UnsafeMutableRawPointer
-            ) -> Void = { _, value1, data in
-                SignalBox1<GdkEventButton>.run(data, value1)
-            }
+        // let handler1:
+        //     @convention(c) (
+        //         UnsafeMutableRawPointer,
+        //         GdkEventButton,
+        //         UnsafeMutableRawPointer
+        //     ) -> Void = { _, value1, data in
+        //         SignalBox1<GdkEventButton>.run(data, value1)
+        //     }
 
-        addSignal(
-            name: "button-press-event",
-            handler: gCallback(handler1)
-        ) { [weak self] (buttonEvent: GdkEventButton) in
-            guard let self = self else { return }
-            self.onButtonPress?(self, buttonEvent)
-        }
+        // addSignal(
+        //     name: "button-press-event",
+        //     handler: gCallback(handler1)
+        // ) { [weak self] (buttonEvent: GdkEventButton) in
+        //     guard let self = self else { return }
+        //     self.onButtonPress?(self, buttonEvent)
+        // }
     }
 
     func didMoveFromParent() {}

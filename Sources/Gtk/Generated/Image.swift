@@ -1,8 +1,8 @@
 import CGtk
 
-/// The `GtkImage` widget displays an image.
+/// Displays an image.
 ///
-/// ![An example GtkImage](image.png)
+/// picture><source srcset="image-dark.png" media="(prefers-color-scheme: dark)"><img alt="An example GtkImage" src="image.png"></picture>
 ///
 /// Various kinds of object can be displayed as an image; most typically,
 /// you would load a `GdkTexture` from a file, using the convenience function
@@ -38,8 +38,8 @@ import CGtk
 ///
 /// ## Accessibility
 ///
-/// `GtkImage` uses the `GTK_ACCESSIBLE_ROLE_IMG` role.
-public class Image: Widget {
+/// `GtkImage` uses the [enum@Gtk.AccessibleRole.img] role.
+open class Image: Widget {
     /// Creates a new empty `GtkImage` widget.
     public convenience init() {
         self.init(

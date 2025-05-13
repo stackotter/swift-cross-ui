@@ -1,6 +1,6 @@
 import CGtk
 
-/// Used to indicate the direction in which an arrow should point.
+/// Indicates the direction in which an arrow should point.
 public enum ArrowType: GValueRepresentableEnum {
     public typealias GtkEnum = GtkArrowType
 

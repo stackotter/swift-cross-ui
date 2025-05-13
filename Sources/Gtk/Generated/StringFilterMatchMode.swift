@@ -5,13 +5,13 @@ public enum StringFilterMatchMode: GValueRepresentableEnum {
     public typealias GtkEnum = GtkStringFilterMatchMode
 
     /// The search string and
-    /// text must match exactly.
+    /// text must match exactly
     case exact
     /// The search string
-    /// must be contained as a substring inside the text.
+    /// must be contained as a substring inside the text
     case substring
     /// The text must begin
-    /// with the search string.
+    /// with the search string
     case prefix
 
     public static var type: GType {

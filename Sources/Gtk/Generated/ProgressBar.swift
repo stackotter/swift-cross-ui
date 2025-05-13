@@ -1,12 +1,11 @@
 import CGtk
 
-/// `GtkProgressBar` is typically used to display the progress of a long
-/// running operation.
+/// Displays the progress of a long-running operation.
 ///
-/// It provides a visual clue that processing is underway. `GtkProgressBar`
-/// can be used in two different modes: percentage mode and activity mode.
+/// `GtkProgressBar` provides a visual clue that processing is underway.
+/// It can be used in two different modes: percentage mode and activity mode.
 ///
-/// ![An example GtkProgressBar](progressbar.png)
+/// <picture><source srcset="progressbar-dark.png" media="(prefers-color-scheme: dark)"><img alt="An example GtkProgressBar" src="progressbar.png"></picture>
 ///
 /// When an application can determine how much work needs to take place
 /// (e.g. read a fixed number of bytes from a file) and can monitor its
@@ -45,8 +44,8 @@ import CGtk
 ///
 /// # Accessibility
 ///
-/// `GtkProgressBar` uses the %GTK_ACCESSIBLE_ROLE_PROGRESS_BAR role.
-public class ProgressBar: Widget, Orientable {
+/// `GtkProgressBar` uses the [enum@Gtk.AccessibleRole.progress_bar] role.
+open class ProgressBar: Widget, Orientable {
     /// Creates a new `GtkProgressBar`.
     public convenience init() {
         self.init(

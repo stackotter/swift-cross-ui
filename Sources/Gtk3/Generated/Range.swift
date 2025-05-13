@@ -7,7 +7,7 @@ import CGtk3
 /// #GtkRange provides properties and methods for influencing the sensitivity
 /// of the “steppers”. It also provides properties and methods for setting a
 /// “fill level” on range widgets. See gtk_range_set_fill_level().
-public class Range: Widget, Orientable {
+open class Range: Widget, Orientable {
 
     override func didMoveToParent() {
         super.didMoveToParent()

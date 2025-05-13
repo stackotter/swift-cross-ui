@@ -1,6 +1,6 @@
 import CGtk
 
-/// Determines the page role inside a `GtkAssistant`.
+/// Determines the role of a page inside a `GtkAssistant`.
 ///
 /// The role is used to handle buttons sensitivity and visibility.
 ///

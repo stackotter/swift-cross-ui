@@ -1,6 +1,6 @@
 import CGtk
 
-/// `GtkGesture` is the base class for gesture recognition.
+/// The base class for gesture recognition.
 ///
 /// Although `GtkGesture` is quite generalized to serve as a base for
 /// multi-touch gestures, it is suitable to implement single-touch and
@@ -89,7 +89,7 @@ import CGtk
 ///
 /// - If the gesture has %GTK_PHASE_NONE, ensuring events of type
 /// %GDK_TOUCHPAD_SWIPE and %GDK_TOUCHPAD_PINCH are handled by the `GtkGesture`
-public class Gesture: EventController {
+open class Gesture: EventController {
 
     public override func registerSignals() {
         super.registerSignals()

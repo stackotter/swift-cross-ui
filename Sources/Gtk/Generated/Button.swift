@@ -1,9 +1,8 @@
 import CGtk
 
-/// The `GtkButton` widget is generally used to trigger a callback function that is
-/// called when the button is pressed.
+/// Calls a callback function when the button is clicked.
 ///
-/// ![An example GtkButton](button.png)
+/// <picture><source srcset="button-dark.png" media="(prefers-color-scheme: dark)"><img alt="An example GtkButton" src="button.png"></picture>
 ///
 /// The `GtkButton` widget can hold any valid child widget. That is, it can hold
 /// almost any other standard `GtkWidget`. The most commonly used child is the
@@ -35,8 +34,8 @@ import CGtk
 ///
 /// # Accessibility
 ///
-/// `GtkButton` uses the %GTK_ACCESSIBLE_ROLE_BUTTON role.
-public class Button: Widget, Actionable {
+/// `GtkButton` uses the [enum@Gtk.AccessibleRole.button] role.
+open class Button: Widget, Actionable {
     /// Creates a new `GtkButton` widget.
     ///
     /// To add a child widget to the button, use [method@Gtk.Button.set_child].

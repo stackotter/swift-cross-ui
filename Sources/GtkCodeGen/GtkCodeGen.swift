@@ -24,6 +24,8 @@ struct GtkCodeGen {
         "GIcon*": "OpaquePointer",
         "GdkPixbuf*": "OpaquePointer",
         "GdkPaintable*": "OpaquePointer",
+        "GtkSelectionModel*": "OpaquePointer?",
+        "GtkListItemFactory*": "OpaquePointer?",
     ]
 
     /// Problematic signals which are excluded from the generated Swift
@@ -38,10 +40,17 @@ struct GtkCodeGen {
     /// `populate-popup` is problematic because it crashes Gtk3 on Rocky
     /// Linux 8 whenever a user right clicks an Entry. Not sure why but
     /// we don't need this signal for now so I've disabled it.
+    ///
+    /// `select-all` and `unselect-all` are problematic because they
+    /// clash with the methods of the same name that actually perform the
+    /// actions. Will have to implement some better signal naming to avoid
+    /// this issue if these ever need to be reintroduced.
     static let excludedSignals: [String] = [
         "format-value",
         "populate-popup",
         "notify::mnemonic-widget",
+        "select-all",
+        "unselect-all",
     ]
 
     static let excludedInterfaces: [String] = [
@@ -64,6 +73,11 @@ struct GtkCodeGen {
     static let unshorteningMap: [String: String] = [
         "char": "character",
         "str": "string",
+    ]
+
+    static let excludedConstructors: [String] = [
+        "gtk_image_new_from_pixbuf",
+        "gtk_picture_new_for_pixbuf",
     ]
 
     static func main() throws {
@@ -91,7 +105,7 @@ struct GtkCodeGen {
         let allowListedClasses = [
             "Button", "Entry", "Label", "TextView", "Range", "Scale", "Image", "Switch", "Spinner",
             "ProgressBar", "FileChooserNative", "NativeDialog", "GestureClick", "GestureSingle",
-            "Gesture", "EventController", "GestureLongPress",
+            "Gesture", "EventController", "GestureLongPress", "ListBox",
         ]
         let gtk3AllowListedClasses = ["MenuShell", "EventBox"]
         let gtk4AllowListedClasses = ["Picture", "DropDown", "Popover"]
@@ -196,9 +210,12 @@ struct GtkCodeGen {
         namespace: Namespace,
         cGtkImport: String
     ) -> String {
-        // Filter out members which were introduced after 4.0
+        // Filter out deprecated members and members which were introduced after 4.0
         let members = enumeration.members.filter { member in
-            if member.version != nil {
+            guard
+                member.version == nil,
+                member.docDeprecated == nil
+            else {
                 return false
             }
 
@@ -316,6 +333,10 @@ struct GtkCodeGen {
                 continue
             }
 
+            guard !excludedConstructors.contains(constructor.cIdentifier) else {
+                continue
+            }
+
             let excludedParameterTypes: [String] = [
                 "GListModel*", "GFile*", "cairo_surface_t*", "GdkPixbufAnimation*",
             ]
@@ -351,8 +372,16 @@ struct GtkCodeGen {
         //   signal handler generation code so jankily. Ideally we should decouple the signal generation
         //   code from the GIR types a bit more so that we can synthesize signals without having to
         //   create fake GIR entries.
+        var seenProperties: Set<String> = []
         var signals = class_.getAllImplemented(\.signals, namespace: namespace)
         for (classLike, property) in class_.getAllImplemented(\.properties, namespace: namespace) {
+            // Sometimes there are duplicates (presumably with different values of `when`),
+            // so we only generate the first occurence.
+            guard !seenProperties.contains(property.name) else {
+                continue
+            }
+            seenProperties.insert(property.name)
+
             signals.append(
                 (
                     classLike,
@@ -434,7 +463,7 @@ struct GtkCodeGen {
             import \(raw: cGtkImport)
 
             \(raw: docComment(class_.doc))
-            public class \(raw: class_.name)\(raw: conformanceString) {
+            open class \(raw: class_.name)\(raw: conformanceString) {
                 \(raw: initializers.map(\.description).joined(separator: "\n\n"))
 
                 \(raw: methods.map(\.description).joined(separator: "\n\n"))
@@ -470,6 +499,15 @@ struct GtkCodeGen {
                 var type = swiftType(girType, namespace: namespace)
                 if type == "String" {
                     type = "UnsafePointer<CChar>"
+                } else if type == "GtkListBoxRow" {
+                    // [NOTE:1]
+                    // Just a hardcoded hack for now. Not sure how else we're
+                    // meant to know that the row-selected and row-activated
+                    // signals on ListBox take their parameters as pointers
+                    // instead of raw structs (without looking into the C code).
+                    // We could probably look through all classes and if we find
+                    // one matching the parameter type assume it's a pointer?
+                    type = "UnsafeMutablePointer<\(type)>\(parameter.nullable == true ? "?" : "")"
                 }
                 return type
             }
@@ -553,6 +591,9 @@ struct GtkCodeGen {
             var type = swiftType(girType, namespace: namespace)
             if type == "String" {
                 type = "UnsafePointer<CChar>"
+            } else if type == "GtkListBoxRow" {
+                // See [NOTE:1]
+                type = "UnsafeMutablePointer<\(type)>\(parameter.nullable == true ? "?" : "")"
             }
             return type
         }
