@@ -6,12 +6,10 @@ extension ListBox {
     }
 
     public func removeAll() {
-        var index = 0
-        while let row = gtk_list_box_get_row_at_index(opaquePointer, gint(index)) {
+        while let row = gtk_list_box_get_row_at_index(opaquePointer, 0) {
             gtk_list_box_row_set_child(row, nil)
-            index += 1
+            gtk_list_box_remove(opaquePointer, row.cast())
         }
-        gtk_list_box_remove_all(opaquePointer)
     }
 
     /// Returns `true` on success.
