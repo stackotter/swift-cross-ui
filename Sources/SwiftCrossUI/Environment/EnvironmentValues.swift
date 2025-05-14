@@ -38,6 +38,16 @@ public struct EnvironmentValues {
     /// The scale factor of the current window.
     public var windowScaleFactor: Double
 
+    /// The type of input that text fields represent.
+    ///
+    /// This affects autocomplete suggestions, and on devices with no physical keyboard, which
+    /// on-screen keyboard to use.
+    ///
+    /// Do not use this in place of validation, even if you only plan on supporting mobile
+    /// devices, as this does not restrict copy-paste and many mobile devices support bluetooth
+    /// keyboards.
+    public var textContentType: TextContentType
+
     /// Called by view graph nodes when they resize due to an internal state
     /// change and end up changing size. Each view graph node sets its own
     /// handler when passing the environment on to its children, setting up
@@ -146,6 +156,7 @@ public struct EnvironmentValues {
         multilineTextAlignment = .leading
         colorScheme = .light
         windowScaleFactor = 1
+        textContentType = .text
         window = nil
         extraValues = [:]
         listStyle = .default
