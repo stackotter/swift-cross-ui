@@ -1,0 +1,399 @@
+{
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:12SwiftCrossUI15TextContentTypeO",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "enum"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "TextContentType"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "SwiftCrossUI"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "TextContentType"
+      }
+    ],
+    "remoteSource" : {
+      "fileName" : "TextContentType.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/TextContentType.swift#L1"
+    },
+    "role" : "symbol",
+    "roleHeading" : "Enumeration",
+    "symbolKind" : "enum",
+    "title" : "TextContentType"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "enum"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "TextContentType"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType\/decimal(signed:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType\/digits(ascii:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType\/emailAddress",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType\/name",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType\/phoneNumber",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType\/text",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType\/url"
+      ],
+      "title" : "Enumeration Cases"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/swiftcrossui\/textcontenttype"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI": {
+  "abstract" : [
+    {
+      "text" : "Create cross-platform desktop apps for macOS, Linux, Windows, iOS and tvOS.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "SwiftCrossUI",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextContentType": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TextContentType"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TextContentType"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TextContentType",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/textcontenttype"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextContentType/decimal(signed:)": {
+  "abstract" : [
+    {
+      "text" : "A number.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "decimal"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "signed"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType\/decimal(signed:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TextContentType.decimal(signed:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/textcontenttype\/decimal(signed:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextContentType/digits(ascii:)": {
+  "abstract" : [
+    {
+      "text" : "Just digits.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "digits"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "ascii"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType\/digits(ascii:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TextContentType.digits(ascii:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/textcontenttype\/digits(ascii:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextContentType/emailAddress": {
+  "abstract" : [
+    {
+      "text" : "An email address.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "emailAddress"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType\/emailAddress",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TextContentType.emailAddress",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/textcontenttype\/emailaddress"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextContentType/name": {
+  "abstract" : [
+    {
+      "text" : "A person’s name.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "name"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType\/name",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TextContentType.name",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/textcontenttype\/name"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextContentType/phoneNumber": {
+  "abstract" : [
+    {
+      "text" : "A phone number.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "phoneNumber"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType\/phoneNumber",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TextContentType.phoneNumber",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/textcontenttype\/phonenumber"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextContentType/text": {
+  "abstract" : [
+    {
+      "text" : "Plain text.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType\/text",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TextContentType.text",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/textcontenttype\/text"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextContentType/url": {
+  "abstract" : [
+    {
+      "text" : "A URL.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "case"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "url"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType\/url",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "TextContentType.url",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/textcontenttype\/url"
+}
+}
+}

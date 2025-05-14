@@ -341,6 +341,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StackAlignment",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StrokeCap",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StrokeJoin",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ToggleStyle",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VerticalAlignment",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowResizability"
@@ -4589,6 +4590,37 @@
   "title" : "Text",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/text"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TextContentType": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TextContentType"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextContentType",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TextContentType"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TextContentType",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/textcontenttype"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TextField": {
   "abstract" : [

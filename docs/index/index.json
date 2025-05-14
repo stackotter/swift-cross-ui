@@ -482,6 +482,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/button\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/button\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -835,6 +840,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/color\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/color\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -1052,6 +1062,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreach\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1284,6 +1299,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/hstack\/update(_:children:proposedsize:environment:backend:dryrun:)-8ugp1",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -1513,6 +1533,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/image\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/image\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -1725,6 +1750,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/navigationlink\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2034,6 +2064,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -2258,6 +2293,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/navigationstack\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -2478,6 +2518,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/picker\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/picker\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -2695,6 +2740,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/scrollview\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2923,6 +2973,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/slider\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/slider\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -3143,6 +3198,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/spacer\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -3355,6 +3415,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/table\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3613,6 +3678,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/text\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/text\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -3838,6 +3908,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/textfield\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -4059,6 +4134,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/toggle\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -4333,16 +4413,21 @@
                 "type" : "method"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/view\/textcontenttype(_:)",
+                "title" : "func textContentType(TextContentType) -> some View",
+                "type" : "method"
+              },
+              {
                 "children" : [
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:proposedsize:environment:backend:dryrun:)-5duo6",
+                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:proposedsize:environment:backend:dryrun:)-27j1y",
                         "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:proposedsize:environment:backend:dryrun:)-27j1y",
+                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:proposedsize:environment:backend:dryrun:)-5duo6",
                         "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                         "type" : "method"
                       }
@@ -4577,6 +4662,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/vstack\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -5119,6 +5209,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/eitherview\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -5360,6 +5455,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/emptyview\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyview\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -5616,6 +5716,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalview\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -8378,6 +8483,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/anyview\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/anyview\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -8673,6 +8783,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/capsule\/update(_:children:proposedsize:environment:backend:dryrun:)-42rp8",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -8935,6 +9050,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/circle\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -9318,6 +9438,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/divider\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/divider\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -9638,6 +9763,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/ellipse\/update(_:children:proposedsize:environment:backend:dryrun:)-5q6jg",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -9808,6 +9938,11 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/environmentvalues\/suggestedforegroundcolor",
                 "title" : "var suggestedForegroundColor: Color",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/environmentvalues\/textcontenttype",
+                "title" : "var textContentType: TextContentType",
                 "type" : "property"
               },
               {
@@ -10194,6 +10329,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/group\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/group\/update(_:children:proposedsize:environment:backend:dryrun:)-5w9zm",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -10411,6 +10551,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -10654,6 +10799,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/list\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/list\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -10880,6 +11030,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/menu\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/menu\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -11625,6 +11780,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/progressview\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/progressview\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -11882,6 +12042,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/rectangle\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -12256,6 +12421,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -13852,6 +14022,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview1\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview1\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -14126,6 +14301,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview10\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview10\/update(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -14357,6 +14537,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview2\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview2\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -14596,6 +14781,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview3\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview3\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -14840,6 +15030,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview4\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview4\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15089,6 +15284,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview5\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview5\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15343,6 +15543,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview6\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview6\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15602,6 +15807,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview7\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview7\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15866,6 +16076,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview8\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview8\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -16135,6 +16350,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview9\/task(priority:_:)",
                     "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview9\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
                     "type" : "method"
                   },
                   {
@@ -17461,6 +17681,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/zstack\/textcontenttype(_:)",
+                    "title" : "func textContentType(TextContentType) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/zstack\/update(_:children:proposedsize:environment:backend:dryrun:)-3h6xx",
                     "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                     "type" : "method"
@@ -18727,6 +18952,52 @@
                 "type" : "groupMarker"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/textcontenttype\/decimal(signed:)",
+                "title" : "case decimal(signed: Bool)",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/textcontenttype\/digits(ascii:)",
+                "title" : "case digits(ascii: Bool)",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/textcontenttype\/emailaddress",
+                "title" : "case emailAddress",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/textcontenttype\/name",
+                "title" : "case name",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/textcontenttype\/phonenumber",
+                "title" : "case phoneNumber",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/textcontenttype\/text",
+                "title" : "case text",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/textcontenttype\/url",
+                "title" : "case url",
+                "type" : "case"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/textcontenttype",
+            "title" : "TextContentType",
+            "type" : "enum"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Enumeration Cases",
+                "type" : "groupMarker"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/togglestyle\/button",
                 "title" : "case button",
                 "type" : "case"
@@ -19061,6 +19332,11 @@
                       {
                         "path" : "\/documentation\/swiftcrossui\/swift\/never\/task(priority:_:)",
                         "title" : "func task(priority: TaskPriority, () async -> Void) -> some View",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/textcontenttype(_:)",
+                        "title" : "func textContentType(TextContentType) -> some View",
                         "type" : "method"
                       },
                       {
