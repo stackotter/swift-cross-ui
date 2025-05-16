@@ -1,4 +1,45 @@
 public enum LayoutSystem {
+    static func width(forHeight height: Int, aspectRatio: Double) -> Int {
+        Int((Double(height) * aspectRatio).rounded(.towardZero))
+    }
+
+    static func height(forWidth width: Int, aspectRatio: Double) -> Int {
+        Int((Double(width) / aspectRatio).rounded(.towardZero))
+    }
+
+    static func aspectRatio(of frame: SIMD2<Double>) -> Double {
+        if frame.x == 0 || frame.y == 0 {
+            // Even though we could technically compute an aspect ratio when the
+            // ideal width is 0, it leads to a lot of annoying usecases and isn't
+            // very meaningful, so we default to 1 in that case as well as the
+            // division by zero case.
+            return 1
+        } else {
+            return frame.x / frame.y
+        }
+    }
+
+    static func frameSize(
+        forProposedSize proposedSize: SIMD2<Int>,
+        aspectRatio: Double,
+        contentMode: ContentMode
+    ) -> SIMD2<Int> {
+        let widthForHeight = width(forHeight: proposedSize.y, aspectRatio: aspectRatio)
+        let heightForWidth = height(forWidth: proposedSize.x, aspectRatio: aspectRatio)
+        switch contentMode {
+            case .fill:
+                return SIMD2(
+                    max(proposedSize.x, widthForHeight),
+                    max(proposedSize.y, heightForWidth)
+                )
+            case .fit:
+                return SIMD2(
+                    min(proposedSize.x, widthForHeight),
+                    min(proposedSize.y, heightForWidth)
+                )
+        }
+    }
+
     public struct LayoutableChild {
         private var update:
             (

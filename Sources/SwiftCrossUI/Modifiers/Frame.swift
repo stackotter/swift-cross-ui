@@ -49,7 +49,7 @@ struct StrictFrameView<Child: View>: TypeSafeView {
 
     /// Wraps a child view with size constraints.
     init(_ child: Child, width: Int?, height: Int?, alignment: Alignment) {
-        self.body = TupleView1(child)
+        body = TupleView1(child)
         self.width = width
         self.height = height
         self.alignment = alignment

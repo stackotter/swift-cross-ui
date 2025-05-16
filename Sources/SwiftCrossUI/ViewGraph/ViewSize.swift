@@ -64,6 +64,13 @@ public struct ViewSize: Equatable {
     /// get forced to zero size?).
     public var participateInStackLayoutsWhenEmpty: Bool
 
+    /// The view's ideal aspect ratio, computed from ``ViewSize/idealSize``. If
+    /// either of the view's ideal dimensions are 0, then the aspect ratio
+    /// defaults to 1.
+    public var idealAspectRatio: Double {
+        LayoutSystem.aspectRatio(of: SIMD2(idealSize))
+    }
+
     public init(
         size: SIMD2<Int>,
         idealSize: SIMD2<Int>,
