@@ -91,7 +91,7 @@ struct AspectRatioView<Child: View>: TypeSafeView {
         )
 
         let childResult = children.child0.update(
-            with: body.view0,
+            with: nil,
             proposedSize: proposedFrameSize,
             environment: environment,
             dryRun: dryRun
