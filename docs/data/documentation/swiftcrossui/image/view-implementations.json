@@ -47,6 +47,8 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/defaultChildren(backend:snapshots:environment:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/defaultLayoutableChildren(backend:children:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/defaultUpdate(_:children:proposedSize:environment:backend:dryRun:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/fixedSize()",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/fixedSize(horizontal:vertical:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/font(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
@@ -1269,6 +1271,124 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/image\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Image/fixedSize()": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "fixedSize"
+    },
+    {
+      "kind" : "text",
+      "text" : "() -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/fixedSize()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "fixedSize()",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/image\/fixedsize()"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Image/fixedSize(horizontal:vertical:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "fixedSize"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "horizontal"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "vertical"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image\/fixedSize(horizontal:vertical:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "fixedSize(horizontal:vertical:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/image\/fixedsize(horizontal:vertical:)"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Image/font(_:)": {
   "abstract" : [
 
@@ -1442,8 +1562,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
     },
     {
       "kind" : "text",
@@ -1493,8 +1613,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
     },
     {
       "kind" : "text",

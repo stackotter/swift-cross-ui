@@ -20,7 +20,7 @@
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI4ViewPAAE5frame8minWidth05idealG003maxG00F6Height0hJ00iJ09alignmentQrSiSg_A5lA9AlignmentVtF",
+    "externalID" : "s:12SwiftCrossUI4ViewPAAE5frame8minWidth05idealG003maxG00F6Height0hJ00iJ09alignmentQrSiSg_ALSdSgA2lmA9AlignmentVtF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -82,8 +82,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Si",
-        "text" : "Int"
+        "preciseIdentifier" : "s:Sd",
+        "text" : "Double"
       },
       {
         "kind" : "text",
@@ -133,8 +133,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Si",
-        "text" : "Int"
+        "preciseIdentifier" : "s:Sd",
+        "text" : "Double"
       },
       {
         "kind" : "text",
@@ -256,8 +256,8 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Si",
-              "text" : "Int"
+              "preciseIdentifier" : "s:Sd",
+              "text" : "Double"
             },
             {
               "kind" : "text",
@@ -307,8 +307,8 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Si",
-              "text" : "Int"
+              "preciseIdentifier" : "s:Sd",
+              "text" : "Double"
             },
             {
               "kind" : "text",
@@ -528,8 +528,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
     },
     {
       "kind" : "text",
@@ -579,8 +579,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
     },
     {
       "kind" : "text",

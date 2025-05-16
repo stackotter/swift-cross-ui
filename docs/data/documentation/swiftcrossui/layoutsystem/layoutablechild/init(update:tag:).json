@@ -102,7 +102,7 @@
     ],
     "remoteSource" : {
       "fileName" : "LayoutSystem.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Layout\/LayoutSystem.swift#L52"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Layout\/LayoutSystem.swift#L56"
     },
     "role" : "symbol",
     "roleHeading" : "Initializer",

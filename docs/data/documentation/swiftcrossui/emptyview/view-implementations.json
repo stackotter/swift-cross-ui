@@ -47,6 +47,8 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView\/defaultChildren(backend:snapshots:environment:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView\/defaultLayoutableChildren(backend:children:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView\/defaultUpdate(_:children:proposedSize:environment:backend:dryRun:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView\/fixedSize()",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView\/fixedSize(horizontal:vertical:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView\/font(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView\/foregroundColor(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView\/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
@@ -1286,6 +1288,124 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/emptyview\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyView/fixedSize()": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "fixedSize"
+    },
+    {
+      "kind" : "text",
+      "text" : "() -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView\/fixedSize()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "fixedSize()",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyview\/fixedsize()"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyView/fixedSize(horizontal:vertical:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "fixedSize"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "horizontal"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "vertical"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView\/fixedSize(horizontal:vertical:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "fixedSize(horizontal:vertical:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptyview\/fixedsize(horizontal:vertical:)"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyView/font(_:)": {
   "abstract" : [
 
@@ -1459,8 +1579,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
     },
     {
       "kind" : "text",
@@ -1510,8 +1630,8 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
     },
     {
       "kind" : "text",

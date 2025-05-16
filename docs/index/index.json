@@ -377,6 +377,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/button\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/button\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/button\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -388,7 +398,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/button\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -745,6 +755,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/color\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/color\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/color\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -756,7 +776,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/color\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -980,6 +1000,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/foreach\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -991,7 +1021,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreach\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1224,6 +1254,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/hstack\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -1235,7 +1275,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/hstack\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1468,6 +1508,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/image\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/image\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/image\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -1479,7 +1529,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/image\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1698,6 +1748,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/navigationlink\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -1709,7 +1769,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/navigationlink\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2019,6 +2079,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -2030,7 +2100,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2258,6 +2328,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/navigationstack\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -2269,7 +2349,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/navigationstack\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2493,6 +2573,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/picker\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/picker\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/picker\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -2504,7 +2594,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/picker\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2728,6 +2818,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/scrollview\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -2739,7 +2839,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/scrollview\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2968,6 +3068,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/slider\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/slider\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/slider\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -2979,7 +3089,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/slider\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3203,6 +3313,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/spacer\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -3214,7 +3334,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/spacer\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3433,6 +3553,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/table\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/table\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -3444,7 +3574,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/table\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3703,6 +3833,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/text\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/text\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/text\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -3714,7 +3854,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/text\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3943,6 +4083,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/textfield\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -3954,7 +4104,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/textfield\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -4182,6 +4332,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/toggle\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -4193,7 +4353,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/toggle\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -4455,6 +4615,16 @@
                 "type" : "method"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/view\/fixedsize()",
+                "title" : "func fixedSize() -> some View",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/view\/fixedsize(horizontal:vertical:)",
+                "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                "type" : "method"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/view\/font(_:)",
                 "title" : "func font(Font) -> some View",
                 "type" : "method"
@@ -4466,7 +4636,7 @@
               },
               {
                 "path" : "\/documentation\/swiftcrossui\/view\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                 "type" : "method"
               },
               {
@@ -4592,12 +4762,12 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:proposedsize:environment:backend:dryrun:)-5duo6",
+                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:proposedsize:environment:backend:dryrun:)-27j1y",
                         "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:proposedsize:environment:backend:dryrun:)-27j1y",
+                        "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:proposedsize:environment:backend:dryrun:)-5duo6",
                         "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                         "type" : "method"
                       }
@@ -4730,6 +4900,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/vstack\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -4741,7 +4921,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/vstack\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -5284,6 +5464,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/eitherview\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -5295,7 +5485,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/eitherview\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -5543,6 +5733,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/emptyview\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyview\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/emptyview\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -5554,7 +5754,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/emptyview\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -5814,6 +6014,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/optionalview\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -5825,7 +6035,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalview\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -8588,6 +8798,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/anyview\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/anyview\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/anyview\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -8599,7 +8819,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/anyview\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -8898,6 +9118,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/capsule\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -8909,7 +9139,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/capsule\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -9178,6 +9408,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/circle\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -9189,7 +9429,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/circle\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -9573,6 +9813,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/divider\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/divider\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/divider\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -9584,7 +9834,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/divider\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -9908,6 +10158,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/ellipse\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -9919,7 +10179,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/ellipse\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -10484,6 +10744,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/group\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/group\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/group\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -10495,7 +10765,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/group\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -10719,6 +10989,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -10730,7 +11010,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -10974,6 +11254,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/list\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/list\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/list\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -10985,7 +11275,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/list\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -11218,6 +11508,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/menu\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/menu\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/menu\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -11229,7 +11529,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/menu\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -11975,6 +12275,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/progressview\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/progressview\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/progressview\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -11986,7 +12296,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/progressview\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -12250,6 +12560,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/rectangle\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -12261,7 +12581,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/rectangle\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -12639,6 +12959,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -12650,7 +12980,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -14247,6 +14577,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview1\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview1\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview1\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -14258,7 +14598,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview1\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -14536,6 +14876,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview10\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview10\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview10\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -14547,7 +14897,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview10\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -14785,6 +15135,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview2\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview2\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview2\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -14796,7 +15156,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview2\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15039,6 +15399,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview3\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview3\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview3\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -15050,7 +15420,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview3\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15298,6 +15668,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview4\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview4\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview4\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -15309,7 +15689,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview4\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15562,6 +15942,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview5\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview5\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview5\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -15573,7 +15963,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview5\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15831,6 +16221,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview6\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview6\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview6\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -15842,7 +16242,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview6\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -16105,6 +16505,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview7\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview7\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview7\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -16116,7 +16526,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview7\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -16384,6 +16794,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview8\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview8\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview8\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -16395,7 +16815,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview8\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -16668,6 +17088,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview9\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview9\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview9\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -16679,7 +17109,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview9\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -18011,6 +18441,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/zstack\/fixedsize()",
+                    "title" : "func fixedSize() -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/zstack\/fixedsize(horizontal:vertical:)",
+                    "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/zstack\/font(_:)",
                     "title" : "func font(Font) -> some View",
                     "type" : "method"
@@ -18022,7 +18462,7 @@
                   },
                   {
                     "path" : "\/documentation\/swiftcrossui\/zstack\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                    "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                     "type" : "method"
                   },
                   {
@@ -19716,6 +20156,16 @@
                         "type" : "method"
                       },
                       {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/fixedsize()",
+                        "title" : "func fixedSize() -> some View",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/fixedsize(horizontal:vertical:)",
+                        "title" : "func fixedSize(horizontal: Bool, vertical: Bool) -> some View",
+                        "type" : "method"
+                      },
+                      {
                         "path" : "\/documentation\/swiftcrossui\/swift\/never\/font(_:)",
                         "title" : "func font(Font) -> some View",
                         "type" : "method"
@@ -19727,7 +20177,7 @@
                       },
                       {
                         "path" : "\/documentation\/swiftcrossui\/swift\/never\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)",
-                        "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Int?, minHeight: Int?, idealHeight: Int?, maxHeight: Int?, alignment: Alignment) -> some View",
+                        "title" : "func frame(minWidth: Int?, idealWidth: Int?, maxWidth: Double?, minHeight: Int?, idealHeight: Int?, maxHeight: Double?, alignment: Alignment) -> some View",
                         "type" : "method"
                       },
                       {
