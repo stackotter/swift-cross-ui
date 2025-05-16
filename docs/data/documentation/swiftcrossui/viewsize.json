@@ -54,7 +54,7 @@
     ],
     "remoteSource" : {
       "fileName" : "ViewSize.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewSize.swift#L8"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Layout\/ViewSize.swift#L8"
     },
     "role" : "symbol",
     "roleHeading" : "Structure",
@@ -162,6 +162,7 @@
     },
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/idealAspectRatio",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/idealHeightForProposedWidth",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/idealSize",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/idealWidthForProposedHeight",
@@ -385,6 +386,68 @@
   "title" : "hidden",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewsize\/hidden"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/idealAspectRatio": {
+  "abstract" : [
+    {
+      "text" : "The view’s ideal aspect ratio, computed from ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/idealSize",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ". If",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "either of the view’s ideal dimensions are 0, then the aspect ratio",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "defaults to 1.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "idealAspectRatio"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewSize\/idealAspectRatio",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "idealAspectRatio",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewsize\/idealaspectratio"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewSize/idealHeightForProposedWidth": {
   "abstract" : [

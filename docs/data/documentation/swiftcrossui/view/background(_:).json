@@ -68,8 +68,8 @@
       }
     ],
     "remoteSource" : {
-      "fileName" : "Background.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/Background.swift#L2"
+      "fileName" : "BackgroundModifier.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Layout\/BackgroundModifier.swift#L2"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

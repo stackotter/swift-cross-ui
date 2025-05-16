@@ -144,7 +144,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Path.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Path.swift#L304"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Values\/Path.swift#L304"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

@@ -120,7 +120,7 @@
     ],
     "remoteSource" : {
       "fileName" : "AlertModifier.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/AlertModifier.swift#L2"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/AlertModifier.swift#L2"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

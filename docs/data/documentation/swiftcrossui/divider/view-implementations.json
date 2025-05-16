@@ -36,6 +36,8 @@
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/alert(_:isPresented:actions:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/asWidget(_:backend:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/aspectRatio(_:contentMode:)-5fe46",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/aspectRatio(_:contentMode:)-69839",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/background(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/bold()",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/children(backend:snapshots:environment:)",
@@ -320,6 +322,165 @@
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/divider\/aswidget(_:backend:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Divider/aspectRatio(_:contentMode:)-5fe46": {
+  "abstract" : [
+    {
+      "text" : "Constrains a view to maintain an aspect ratio matching that of the",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "provided size.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "aspectRatio"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s5SIMD2V",
+      "text" : "SIMD2"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ">, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "contentMode"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI11ContentModeO",
+      "text" : "ContentMode"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/aspectRatio(_:contentMode:)-5fe46",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "aspectRatio(_:contentMode:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/divider\/aspectratio(_:contentmode:)-5fe46"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Divider/aspectRatio(_:contentMode:)-69839": {
+  "abstract" : [
+    {
+      "text" : "Constrains a view to maintain a specific aspect ratio.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "aspectRatio"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "contentMode"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI11ContentModeO",
+      "text" : "ContentMode"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider\/aspectRatio(_:contentMode:)-69839",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "aspectRatio(_:contentMode:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/divider\/aspectratio(_:contentmode:)-69839"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Divider/background(_:)": {
   "abstract" : [

@@ -104,8 +104,8 @@
       }
     ],
     "remoteSource" : {
-      "fileName" : "Padding.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/Padding.swift#L38"
+      "fileName" : "PaddingModifier.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Layout\/PaddingModifier.swift#L38"
     },
     "role" : "symbol",
     "roleHeading" : "Initializer",

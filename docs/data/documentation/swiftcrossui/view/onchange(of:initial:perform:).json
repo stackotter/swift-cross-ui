@@ -111,7 +111,7 @@
     ],
     "remoteSource" : {
       "fileName" : "OnChangeModifier.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/OnChangeModifier.swift#L2"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Handlers\/OnChangeModifier.swift#L2"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

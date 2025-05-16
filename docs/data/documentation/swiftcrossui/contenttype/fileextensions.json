@@ -48,7 +48,7 @@
     ],
     "remoteSource" : {
       "fileName" : "ContentType.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/ContentType.swift#L11"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Values\/ContentType.swift#L11"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Property",

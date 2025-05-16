@@ -68,7 +68,7 @@
     ],
     "remoteSource" : {
       "fileName" : "TextContentTypeModifier.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/TextContentTypeModifier.swift#L6"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/TextContentTypeModifier.swift#L6"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

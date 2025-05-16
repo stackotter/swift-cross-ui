@@ -76,8 +76,8 @@
       }
     ],
     "remoteSource" : {
-      "fileName" : "CornerRadius.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/CornerRadius.swift#L2"
+      "fileName" : "CornerRadiusModifier.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Style\/CornerRadiusModifier.swift#L2"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

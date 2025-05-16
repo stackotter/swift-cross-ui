@@ -70,7 +70,7 @@
     ],
     "remoteSource" : {
       "fileName" : "OverlayModifier.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/OverlayModifier.swift#L2"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Layout\/OverlayModifier.swift#L2"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

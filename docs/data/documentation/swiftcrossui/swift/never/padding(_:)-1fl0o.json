@@ -69,8 +69,8 @@
       }
     ],
     "remoteSource" : {
-      "fileName" : "Padding.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/Padding.swift#L17"
+      "fileName" : "PaddingModifier.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Layout\/PaddingModifier.swift#L17"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

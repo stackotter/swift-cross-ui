@@ -44,7 +44,7 @@
     ],
     "remoteSource" : {
       "fileName" : "AlertAction.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/AlertAction.swift#L11"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Environment\/Actions\/AlertAction.swift#L11"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Property",

@@ -111,7 +111,7 @@
     ],
     "remoteSource" : {
       "fileName" : "PreferenceModifier.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/PreferenceModifier.swift#L2"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/PreferenceModifier.swift#L2"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

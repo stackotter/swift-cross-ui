@@ -124,7 +124,7 @@
     ],
     "remoteSource" : {
       "fileName" : "ConditionalApplicationModifier.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/ConditionalApplicationModifier.swift#L13"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/ConditionalApplicationModifier.swift#L13"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

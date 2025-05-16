@@ -83,7 +83,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Path.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Path.swift#L208"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Values\/Path.swift#L208"
     },
     "role" : "symbol",
     "roleHeading" : "Case",

@@ -36,6 +36,8 @@
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/alert(_:isPresented:actions:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/asWidget(_:backend:)-17pw2",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/aspectRatio(_:contentMode:)-29133",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/aspectRatio(_:contentMode:)-91n62",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/background(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/bold()",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/children(backend:snapshots:environment:)",
@@ -304,6 +306,165 @@
   "title" : "asWidget(_:backend:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/vstack\/aswidget(_:backend:)-17pw2"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/aspectRatio(_:contentMode:)-29133": {
+  "abstract" : [
+    {
+      "text" : "Constrains a view to maintain a specific aspect ratio.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "aspectRatio"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "contentMode"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI11ContentModeO",
+      "text" : "ContentMode"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/aspectRatio(_:contentMode:)-29133",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "aspectRatio(_:contentMode:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/vstack\/aspectratio(_:contentmode:)-29133"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/aspectRatio(_:contentMode:)-91n62": {
+  "abstract" : [
+    {
+      "text" : "Constrains a view to maintain an aspect ratio matching that of the",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "provided size.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "aspectRatio"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s5SIMD2V",
+      "text" : "SIMD2"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sd",
+      "text" : "Double"
+    },
+    {
+      "kind" : "text",
+      "text" : ">, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "contentMode"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI11ContentModeO",
+      "text" : "ContentMode"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack\/aspectRatio(_:contentMode:)-91n62",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "aspectRatio(_:contentMode:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/vstack\/aspectratio(_:contentmode:)-91n62"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/VStack/background(_:)": {
   "abstract" : [

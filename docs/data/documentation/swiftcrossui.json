@@ -327,6 +327,7 @@
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Axis",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ColorScheme",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ContentMode",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DialogResult",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileChooserResult",
@@ -1363,6 +1364,40 @@
   "title" : "CommandsModifierNode",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/commandsmodifiernode"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ContentMode": {
+  "abstract" : [
+    {
+      "text" : "How a view fills the available space.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ContentMode"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ContentMode",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ContentMode"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ContentMode",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/contentmode"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ContentType": {
   "abstract" : [

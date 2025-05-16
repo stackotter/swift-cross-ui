@@ -69,7 +69,7 @@
     ],
     "remoteSource" : {
       "fileName" : "ViewUpdateResult.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewUpdateResult.swift#L26"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Layout\/ViewUpdateResult.swift#L26"
     },
     "role" : "symbol",
     "roleHeading" : "Type Method",

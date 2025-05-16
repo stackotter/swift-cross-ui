@@ -90,7 +90,7 @@
     ],
     "remoteSource" : {
       "fileName" : "AppMetadata.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/AppMetadata.swift#L10"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Values\/AppMetadata.swift#L10"
     },
     "role" : "symbol",
     "roleHeading" : "Initializer",

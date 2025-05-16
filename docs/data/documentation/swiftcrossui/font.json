@@ -40,7 +40,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Font.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Font.swift#L1"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Values\/Font.swift#L1"
     },
     "role" : "symbol",
     "roleHeading" : "Enumeration",

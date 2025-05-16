@@ -78,7 +78,7 @@
     ],
     "remoteSource" : {
       "fileName" : "ColorSchemeModifier.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/ColorSchemeModifier.swift#L2"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Style\/ColorSchemeModifier.swift#L2"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

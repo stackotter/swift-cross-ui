@@ -40,7 +40,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Path.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Path.swift#L12"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Values\/Path.swift#L12"
     },
     "role" : "symbol",
     "roleHeading" : "Enumeration",

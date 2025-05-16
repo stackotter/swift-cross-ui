@@ -111,8 +111,8 @@
       }
     ],
     "remoteSource" : {
-      "fileName" : "Frame.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/Frame.swift#L3"
+      "fileName" : "FrameModifier.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Layout\/FrameModifier.swift#L3"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

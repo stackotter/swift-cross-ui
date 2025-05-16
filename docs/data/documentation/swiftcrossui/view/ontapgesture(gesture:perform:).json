@@ -93,7 +93,7 @@
     ],
     "remoteSource" : {
       "fileName" : "OnTapGestureModifier.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/OnTapGestureModifier.swift#L24"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Handlers\/OnTapGestureModifier.swift#L24"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

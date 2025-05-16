@@ -94,7 +94,7 @@
     ],
     "remoteSource" : {
       "fileName" : "OnOpenURLModifier.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/OnOpenURLModifier.swift#L4"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Handlers\/OnOpenURLModifier.swift#L4"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

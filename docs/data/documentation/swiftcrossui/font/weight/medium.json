@@ -36,7 +36,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Font.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Font.swift#L9"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Values\/Font.swift#L9"
     },
     "role" : "symbol",
     "roleHeading" : "Case",

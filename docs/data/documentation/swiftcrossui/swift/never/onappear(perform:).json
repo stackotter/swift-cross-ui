@@ -78,7 +78,7 @@
     ],
     "remoteSource" : {
       "fileName" : "OnAppearModifier.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/OnAppearModifier.swift#L9"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Lifecycle\/OnAppearModifier.swift#L9"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

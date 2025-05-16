@@ -50,7 +50,7 @@
     ],
     "remoteSource" : {
       "fileName" : "ViewSize.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewSize.swift#L45"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Layout\/ViewSize.swift#L45"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Property",

@@ -202,7 +202,7 @@
     ],
     "remoteSource" : {
       "fileName" : "ViewSize.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/ViewGraph\/ViewSize.swift#L67"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Layout\/ViewSize.swift#L74"
     },
     "role" : "symbol",
     "roleHeading" : "Initializer",

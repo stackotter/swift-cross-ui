@@ -131,7 +131,7 @@
     ],
     "remoteSource" : {
       "fileName" : "OnSubmitModifier.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/OnSubmitModifier.swift#L7"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Handlers\/OnSubmitModifier.swift#L7"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

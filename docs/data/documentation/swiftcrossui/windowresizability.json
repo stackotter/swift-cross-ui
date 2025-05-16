@@ -46,7 +46,7 @@
     ],
     "remoteSource" : {
       "fileName" : "WindowResizability.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Scenes\/WindowResizability.swift#L2"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Values\/WindowResizability.swift#L2"
     },
     "role" : "symbol",
     "roleHeading" : "Enumeration",

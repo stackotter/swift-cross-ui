@@ -53,7 +53,7 @@
     ],
     "remoteSource" : {
       "fileName" : "FontModifier.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/FontModifier.swift#L8"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Style\/FontModifier.swift#L8"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

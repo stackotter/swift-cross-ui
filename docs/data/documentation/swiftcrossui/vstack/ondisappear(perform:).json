@@ -77,7 +77,7 @@
     ],
     "remoteSource" : {
       "fileName" : "OnDisappearModifier.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/OnDisappearModifier.swift#L7"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Lifecycle\/OnDisappearModifier.swift#L7"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

@@ -62,7 +62,7 @@
     ],
     "remoteSource" : {
       "fileName" : "AppMetadata.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/AppMetadata.swift#L8"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Values\/AppMetadata.swift#L8"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Property",

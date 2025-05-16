@@ -152,7 +152,7 @@
     ],
     "remoteSource" : {
       "fileName" : "TaskModifier.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/TaskModifier.swift#L9"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Lifecycle\/TaskModifier.swift#L9"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

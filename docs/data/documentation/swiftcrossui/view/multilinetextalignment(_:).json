@@ -75,8 +75,8 @@
       }
     ],
     "remoteSource" : {
-      "fileName" : "MultilineTextAlignment.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Modifiers\/MultilineTextAlignment.swift#L4"
+      "fileName" : "MultilineTextAlignmentModifier.swift",
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Views\/Modifiers\/Layout\/MultilineTextAlignmentModifier.swift#L4"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",

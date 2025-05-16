@@ -50,7 +50,7 @@
     ],
     "remoteSource" : {
       "fileName" : "Color.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Color.swift#L4"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Values\/Color.swift#L4"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Property",

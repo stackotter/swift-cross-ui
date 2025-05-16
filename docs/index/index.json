@@ -322,6 +322,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/button\/aspectratio(_:contentmode:)-7b5is",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/button\/aspectratio(_:contentmode:)-7in25",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/button\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -680,6 +690,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/color\/aspectratio(_:contentmode:)-9cy3x",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/color\/aspectratio(_:contentmode:)-9kb9d",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/color\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -902,6 +922,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreach\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/aspectratio(_:contentmode:)-6dtr2",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/aspectratio(_:contentmode:)-6spf9",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1139,6 +1169,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/aspectratio(_:contentmode:)-2fx44",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/aspectratio(_:contentmode:)-5ldej",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/hstack\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -1373,6 +1413,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/image\/aspectratio(_:contentmode:)-3qmcn",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/image\/aspectratio(_:contentmode:)-6lzmp",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/image\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -1590,6 +1640,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/navigationlink\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/aspectratio(_:contentmode:)-1kpza",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/aspectratio(_:contentmode:)-3cvd8",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1904,6 +1964,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/aspectratio(_:contentmode:)-5fnpf",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/aspectratio(_:contentmode:)-8axu7",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -2133,6 +2203,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/aspectratio(_:contentmode:)-6113n",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/aspectratio(_:contentmode:)-696pg",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/navigationstack\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -2358,6 +2438,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/picker\/aspectratio(_:contentmode:)-45ms1",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/picker\/aspectratio(_:contentmode:)-6eeh",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/picker\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -2580,6 +2670,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/scrollview\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/aspectratio(_:contentmode:)-1me86",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/aspectratio(_:contentmode:)-600zj",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2813,6 +2913,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/slider\/aspectratio(_:contentmode:)-6e8gq",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/slider\/aspectratio(_:contentmode:)-7nya5",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/slider\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -3038,6 +3148,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/aspectratio(_:contentmode:)-8li32",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/aspectratio(_:contentmode:)-9b7ve",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/spacer\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -3255,6 +3375,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/table\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/aspectratio(_:contentmode:)-69mv0",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/aspectratio(_:contentmode:)-7k7x3",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3518,6 +3648,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/text\/aspectratio(_:contentmode:)-9saw8",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/text\/aspectratio(_:contentmode:)-vt3t",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/text\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -3745,6 +3885,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/textfield\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/aspectratio(_:contentmode:)-70enb",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/aspectratio(_:contentmode:)-uqpq",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3977,6 +4127,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/aspectratio(_:contentmode:)-8d9dw",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/aspectratio(_:contentmode:)-bmrf",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/toggle\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -4203,12 +4363,12 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-7s16u",
+                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-8a6xi",
                         "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-8a6xi",
+                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-7s16u",
                         "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
                         "type" : "method"
                       }
@@ -4219,6 +4379,16 @@
                 ],
                 "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-88tbd",
                 "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/view\/aspectratio(_:contentmode:)-7gr7e",
+                "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/view\/aspectratio(_:contentmode:)-dbvm",
+                "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
                 "type" : "method"
               },
               {
@@ -4236,12 +4406,12 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:environment:)-5v4xq",
+                        "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:environment:)-7mvvw",
                         "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:environment:)-7mvvw",
+                        "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:environment:)-5v4xq",
                         "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
                         "type" : "method"
                       }
@@ -4502,6 +4672,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/vstack\/aswidget(_:backend:)-17pw2",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/aspectratio(_:contentmode:)-29133",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/aspectratio(_:contentmode:)-91n62",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -5049,6 +5229,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/aspectratio(_:contentmode:)-6pv4u",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/aspectratio(_:contentmode:)-72ns",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/eitherview\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -5295,6 +5485,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/emptyview\/aswidget(_:backend:)-wmuy",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyview\/aspectratio(_:contentmode:)-4u0z5",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyview\/aspectratio(_:contentmode:)-9yty6",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -5556,6 +5756,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalview\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/aspectratio(_:contentmode:)-1nu7q",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/aspectratio(_:contentmode:)-3dtst",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -8323,6 +8533,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/anyview\/aspectratio(_:contentmode:)-24fmb",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/anyview\/aspectratio(_:contentmode:)-2jiay",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/anyview\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -8618,6 +8838,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/aspectratio(_:contentmode:)-6q20q",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/aspectratio(_:contentmode:)-8ud67",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/capsule\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -8885,6 +9115,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/circle\/aswidget(_:backend:)-9sli8",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/aspectratio(_:contentmode:)-4y0ee",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/aspectratio(_:contentmode:)-9037t",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -9278,6 +9518,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/divider\/aspectratio(_:contentmode:)-5fe46",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/divider\/aspectratio(_:contentmode:)-69839",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/divider\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -9595,6 +9845,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/ellipse\/aswidget(_:backend:)-688az",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/aspectratio(_:contentmode:)-4higo",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/aspectratio(_:contentmode:)-5eih1",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -10169,6 +10429,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/group\/aspectratio(_:contentmode:)-7oame",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/group\/aspectratio(_:contentmode:)-8c2w8",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/group\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -10391,6 +10661,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/aspectratio(_:contentmode:)-11ctd",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/aspectratio(_:contentmode:)-5blye",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -10639,6 +10919,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/list\/aspectratio(_:contentmode:)-1qlyv",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/list\/aspectratio(_:contentmode:)-9kegb",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/list\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -10870,6 +11160,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/menu\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/menu\/aspectratio(_:contentmode:)-2dc4z",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/menu\/aspectratio(_:contentmode:)-9xhxw",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -11620,6 +11920,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/progressview\/aspectratio(_:contentmode:)-4b6w2",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/progressview\/aspectratio(_:contentmode:)-7prjw",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/progressview\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -11877,6 +12187,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/rectangle\/aswidget(_:backend:)-7wn12",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/aspectratio(_:contentmode:)-3lgri",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/aspectratio(_:contentmode:)-67sk7",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -12256,6 +12576,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/aswidget(_:backend:)-zveh",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/aspectratio(_:contentmode:)-7eh2o",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/aspectratio(_:contentmode:)-9s7y0",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -13862,6 +14192,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview1\/aspectratio(_:contentmode:)-4rkej",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview1\/aspectratio(_:contentmode:)-6gkmh",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview1\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -14141,6 +14481,16 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview10\/aspectratio(_:contentmode:)-7l67k",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview10\/aspectratio(_:contentmode:)-bqsy",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview10\/background(_:)",
                     "title" : "func background<Background>(Background) -> some View",
                     "type" : "method"
@@ -14377,6 +14727,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview2\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview2\/aspectratio(_:contentmode:)-4rkpj",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview2\/aspectratio(_:contentmode:)-6gkid",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -14621,6 +14981,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview3\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview3\/aspectratio(_:contentmode:)-4rl0n",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview3\/aspectratio(_:contentmode:)-6gk01",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -14870,6 +15240,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview4\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview4\/aspectratio(_:contentmode:)-4riuj",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview4\/aspectratio(_:contentmode:)-6gjw5",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15124,6 +15504,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview5\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview5\/aspectratio(_:contentmode:)-4rj5n",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview5\/aspectratio(_:contentmode:)-6gjdl",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15383,6 +15773,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview6\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview6\/aspectratio(_:contentmode:)-4rjgv",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview6\/aspectratio(_:contentmode:)-6gj9p",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15647,6 +16047,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview7\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview7\/aspectratio(_:contentmode:)-4rjsf",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview7\/aspectratio(_:contentmode:)-6gixt",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15916,6 +16326,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview8\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview8\/aspectratio(_:contentmode:)-4rhln",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview8\/aspectratio(_:contentmode:)-6gigt",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -16190,6 +16610,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview9\/aswidget(_:backend:)",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview9\/aspectratio(_:contentmode:)-4rhwr",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview9\/aspectratio(_:contentmode:)-6gibt",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -17261,6 +17691,11 @@
                 "type" : "groupMarker"
               },
               {
+                "path" : "\/documentation\/swiftcrossui\/viewsize\/idealaspectratio",
+                "title" : "var idealAspectRatio: Double",
+                "type" : "property"
+              },
+              {
                 "path" : "\/documentation\/swiftcrossui\/viewsize\/idealheightforproposedwidth",
                 "title" : "var idealHeightForProposedWidth: Int",
                 "type" : "property"
@@ -17518,6 +17953,16 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/zstack\/aswidget(_:backend:)-6ij7f",
                     "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/zstack\/aspectratio(_:contentmode:)-4kxfc",
+                    "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/zstack\/aspectratio(_:contentmode:)-773q2",
+                    "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                     "type" : "method"
                   },
                   {
@@ -18023,6 +18468,47 @@
             ],
             "path" : "\/documentation\/swiftcrossui\/colorscheme",
             "title" : "ColorScheme",
+            "type" : "enum"
+          },
+          {
+            "children" : [
+              {
+                "title" : "Enumeration Cases",
+                "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/contentmode\/fill",
+                "title" : "case fill",
+                "type" : "case"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/contentmode\/fit",
+                "title" : "case fit",
+                "type" : "case"
+              },
+              {
+                "title" : "Default Implementations",
+                "type" : "groupMarker"
+              },
+              {
+                "children" : [
+                  {
+                    "title" : "Operators",
+                    "type" : "groupMarker"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/contentmode\/!=(_:_:)",
+                    "title" : "static func != (Self, Self) -> Bool",
+                    "type" : "op"
+                  }
+                ],
+                "path" : "\/documentation\/swiftcrossui\/contentmode\/equatable-implementations",
+                "title" : "Equatable Implementations",
+                "type" : "symbol"
+              }
+            ],
+            "path" : "\/documentation\/swiftcrossui\/contentmode",
+            "title" : "ContentMode",
             "type" : "enum"
           },
           {
@@ -19172,6 +19658,16 @@
                       {
                         "path" : "\/documentation\/swiftcrossui\/swift\/never\/aswidget(_:backend:)",
                         "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/aspectratio(_:contentmode:)-5or3n",
+                        "title" : "func aspectRatio(SIMD2<Double>, contentMode: ContentMode) -> some View",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/aspectratio(_:contentmode:)-9tbkr",
+                        "title" : "func aspectRatio(Double?, contentMode: ContentMode) -> some View",
                         "type" : "method"
                       },
                       {
