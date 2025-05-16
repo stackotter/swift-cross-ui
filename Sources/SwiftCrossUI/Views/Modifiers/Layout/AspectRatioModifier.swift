@@ -45,7 +45,6 @@ struct AspectRatioView<Child: View>: TypeSafeView {
         self.aspectRatio = aspectRatio
         self.contentMode = contentMode
     }
-
     
     func children<Backend: AppBackend>(
         backend: Backend,

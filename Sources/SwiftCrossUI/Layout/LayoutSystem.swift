@@ -1,10 +1,14 @@
 public enum LayoutSystem {
     static func width(forHeight height: Int, aspectRatio: Double) -> Int {
-        Int((Double(height) * aspectRatio).rounded(.towardZero))
+        roundSize(Double(height) * aspectRatio)
     }
 
     static func height(forWidth width: Int, aspectRatio: Double) -> Int {
-        Int((Double(width) / aspectRatio).rounded(.towardZero))
+        roundSize(Double(width) / aspectRatio)
+    }
+
+    static func roundSize(_ size: Double) -> Int {
+        Int(size.rounded(.towardZero))
     }
 
     static func aspectRatio(of frame: SIMD2<Double>) -> Double {
