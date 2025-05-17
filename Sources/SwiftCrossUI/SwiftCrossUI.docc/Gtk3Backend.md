@@ -1,6 +1,6 @@
 # Gtk3Backend
 
-A secondary Linux backend built on Gtk 3 (for older distros without Gtk 4).
+A secondary Linux backend built on top of Gtk 3 (for older distros without Gtk 4).
 
 ## Overview
 

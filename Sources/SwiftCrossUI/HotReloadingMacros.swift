@@ -13,6 +13,7 @@ public macro HotReloadable() =
 public macro hotReloadable<T: View>(@ViewBuilder _ expr: () -> T) -> HotReloadableView =
     #externalMacro(module: "HotReloadingMacrosPlugin", type: "HotReloadableExprMacro")
 
+@_documentation(visibility: internal)
 public struct ExprLocation: Hashable {
     var line: Int
     var column: Int

@@ -1,6 +1,6 @@
 # WinUIBackend
 
-SwiftCrossUI's native Windows backend built on WinUI 3.
+SwiftCrossUI's native Windows backend built on top of WinUI 3.
 
 ## Overview
 

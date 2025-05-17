@@ -1,6 +1,7 @@
 import Foundation
 
-/// A backend that can be used to run an app (e.g. Gtk or Qt).
+/// A backend that can be used to run an app. Usually built on top of an
+/// existing UI framework.
 ///
 /// Default placeholder implementations are available for all non-essential
 /// app lifecycle methods. These implementations will fatally crash when called

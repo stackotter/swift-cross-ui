@@ -1,6 +1,6 @@
 # GtkBackend
 
-SwiftCrossUI's native Linux backend built on Gtk 4.
+SwiftCrossUI's native Linux backend built on top of Gtk 4.
 
 ## Overview
 

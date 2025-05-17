@@ -1,6 +1,6 @@
 # AppKitBackend
 
-SwiftCrossUI's native macOS backend built on AppKit.
+SwiftCrossUI's native macOS backend built on top of AppKit.
 
 ## Overview
 

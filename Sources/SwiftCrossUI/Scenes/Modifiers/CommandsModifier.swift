@@ -1,27 +1,27 @@
 extension Scene {
-    public func commands(@CommandsBuilder _ commands: () -> Commands) -> CommandsModifier<Self> {
+    public func commands(@CommandsBuilder _ commands: () -> Commands) -> some Scene {
         CommandsModifier(content: self, newCommands: commands())
     }
 }
 
-public struct CommandsModifier<Content: Scene>: Scene {
-    public typealias Node = CommandsModifierNode<Content>
+struct CommandsModifier<Content: Scene>: Scene {
+    typealias Node = CommandsModifierNode<Content>
 
-    public var content: Content
-    public var commands: Commands
+    var content: Content
+    var commands: Commands
 
-    public init(content: Content, newCommands: Commands) {
+    init(content: Content, newCommands: Commands) {
         self.content = content
         self.commands = content.commands.overlayed(with: newCommands)
     }
 }
 
-public final class CommandsModifierNode<Content: Scene>: SceneGraphNode {
-    public typealias NodeScene = CommandsModifier<Content>
+final class CommandsModifierNode<Content: Scene>: SceneGraphNode {
+    typealias NodeScene = CommandsModifier<Content>
 
     var contentNode: Content.Node
 
-    public init<Backend: AppBackend>(
+    init<Backend: AppBackend>(
         from scene: NodeScene,
         backend: Backend,
         environment: EnvironmentValues
@@ -33,7 +33,7 @@ public final class CommandsModifierNode<Content: Scene>: SceneGraphNode {
         )
     }
 
-    public func update<Backend: AppBackend>(
+    func update<Backend: AppBackend>(
         _ newScene: NodeScene?,
         backend: Backend,
         environment: EnvironmentValues
