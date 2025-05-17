@@ -47,6 +47,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView2\/defaultChildren(backend:snapshots:environment:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView2\/defaultLayoutableChildren(backend:children:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView2\/defaultUpdate(_:children:proposedSize:environment:backend:dryRun:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView2\/disabled(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView2\/fixedSize()",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView2\/fixedSize(horizontal:vertical:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView2\/font(_:)",
@@ -1278,6 +1279,68 @@
   "title" : "defaultUpdate(_:children:proposedSize:environment:backend:dryRun:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/tupleview2\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView2/disabled(_:)": {
+  "abstract" : [
+    {
+      "text" : "Disables user interaction in any subviews that support disabling",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "interaction.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "disabled"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView2\/disabled(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "disabled(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupleview2\/disabled(_:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView2/fixedSize()": {
   "abstract" : [

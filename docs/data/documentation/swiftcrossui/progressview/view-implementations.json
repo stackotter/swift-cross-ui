@@ -47,6 +47,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ProgressView\/defaultChildren(backend:snapshots:environment:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ProgressView\/defaultLayoutableChildren(backend:children:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ProgressView\/defaultUpdate(_:children:proposedSize:environment:backend:dryRun:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ProgressView\/disabled(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ProgressView\/fixedSize()",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ProgressView\/fixedSize(horizontal:vertical:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ProgressView\/font(_:)",
@@ -1267,6 +1268,68 @@
   "title" : "defaultUpdate(_:children:proposedSize:environment:backend:dryRun:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/progressview\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ProgressView/disabled(_:)": {
+  "abstract" : [
+    {
+      "text" : "Disables user interaction in any subviews that support disabling",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "interaction.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "disabled"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ProgressView\/disabled(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "disabled(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/progressview\/disabled(_:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ProgressView/fixedSize()": {
   "abstract" : [

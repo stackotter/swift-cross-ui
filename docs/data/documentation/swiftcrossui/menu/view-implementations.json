@@ -54,6 +54,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/defaultChildren(backend:snapshots:environment:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/defaultLayoutableChildren(backend:children:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/defaultUpdate(_:children:proposedSize:environment:backend:dryRun:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/disabled(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/fixedSize()",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/fixedSize(horizontal:vertical:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/font(_:)",
@@ -1311,6 +1312,68 @@
   "title" : "defaultUpdate(_:children:proposedSize:environment:backend:dryRun:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/menu\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Menu/disabled(_:)": {
+  "abstract" : [
+    {
+      "text" : "Disables user interaction in any subviews that support disabling",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "interaction.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "disabled"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Menu\/disabled(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "disabled(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/menu\/disabled(_:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Menu/fixedSize()": {
   "abstract" : [

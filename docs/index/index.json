@@ -377,6 +377,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/button\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/button\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -755,6 +760,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/color\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/color\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -997,6 +1007,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/foreach\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/foreach\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -1254,6 +1269,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/hstack\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/hstack\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -1508,6 +1528,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/image\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/image\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -1745,6 +1770,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/navigationlink\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/navigationlink\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -2079,6 +2109,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/navigationsplitview\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -2328,6 +2363,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/navigationstack\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/navigationstack\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -2573,6 +2613,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/picker\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/picker\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -2815,6 +2860,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/scrollview\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/scrollview\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3068,6 +3118,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/slider\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/slider\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -3313,6 +3368,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/spacer\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/spacer\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -3550,6 +3610,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/table\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/table\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -3833,6 +3898,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/text\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/text\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -4080,6 +4150,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/textfield\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/textfield\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -4332,6 +4407,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/toggle\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/toggle\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -4523,12 +4603,12 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-8a6xi",
+                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-7s16u",
                         "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-7s16u",
+                        "path" : "\/documentation\/swiftcrossui\/view\/aswidget(_:backend:)-8a6xi",
                         "title" : "func asWidget<Backend>(any ViewGraphNodeChildren, backend: Backend) -> Backend.Widget",
                         "type" : "method"
                       }
@@ -4566,12 +4646,12 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:environment:)-7mvvw",
+                        "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:environment:)-5v4xq",
                         "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
                         "type" : "method"
                       },
                       {
-                        "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:environment:)-5v4xq",
+                        "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:environment:)-7mvvw",
                         "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
                         "type" : "method"
                       }
@@ -4612,6 +4692,11 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/view\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                 "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                "type" : "method"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/view\/disabled(_:)",
+                "title" : "func disabled(Bool) -> some View",
                 "type" : "method"
               },
               {
@@ -4897,6 +4982,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/vstack\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/vstack\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -5464,6 +5554,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/eitherview\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/eitherview\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -5730,6 +5825,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/emptyview\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/emptyview\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -6011,6 +6111,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/optionalview\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/optionalview\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -7876,8 +7981,8 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatebutton(_:label:action:environment:)-8warc",
-                        "title" : "func updateButton(Self.Widget, label: String, action: () -> Void, environment: EnvironmentValues)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatebutton(_:label:environment:action:)-203xv",
+                        "title" : "func updateButton(Self.Widget, label: String, environment: EnvironmentValues, action: () -> Void)",
                         "type" : "method"
                       }
                     ],
@@ -7885,8 +7990,8 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatebutton(_:label:action:environment:)-w9qd",
-                "title" : "func updateButton(Self.Widget, label: String, action: () -> Void, environment: EnvironmentValues)",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatebutton(_:label:environment:action:)-2n3zk",
+                "title" : "func updateButton(Self.Widget, label: String, environment: EnvironmentValues, action: () -> Void)",
                 "type" : "method"
               },
               {
@@ -7912,8 +8017,8 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updateimageview(_:rgbadata:width:height:targetwidth:targetheight:datahaschanged:)-26vof",
-                        "title" : "func updateImageView(Self.Widget, rgbaData: [UInt8], width: Int, height: Int, targetWidth: Int, targetHeight: Int, dataHasChanged: Bool)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updateimageview(_:rgbadata:width:height:targetwidth:targetheight:datahaschanged:environment:)-8k80s",
+                        "title" : "func updateImageView(Self.Widget, rgbaData: [UInt8], width: Int, height: Int, targetWidth: Int, targetHeight: Int, dataHasChanged: Bool, environment: EnvironmentValues)",
                         "type" : "method"
                       }
                     ],
@@ -7921,8 +8026,8 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/updateimageview(_:rgbadata:width:height:targetwidth:targetheight:datahaschanged:)-69rlk",
-                "title" : "func updateImageView(Self.Widget, rgbaData: [UInt8], width: Int, height: Int, targetWidth: Int, targetHeight: Int, dataHasChanged: Bool)",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/updateimageview(_:rgbadata:width:height:targetwidth:targetheight:datahaschanged:environment:)-i1xa",
+                "title" : "func updateImageView(Self.Widget, rgbaData: [UInt8], width: Int, height: Int, targetWidth: Int, targetHeight: Int, dataHasChanged: Bool, environment: EnvironmentValues)",
                 "type" : "method"
               },
               {
@@ -7930,8 +8035,8 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatepath(_:_:pointschanged:)-57x8k",
-                        "title" : "func updatePath(Self.Path, Path, pointsChanged: Bool)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatepath(_:_:pointschanged:environment:)-964c1",
+                        "title" : "func updatePath(Self.Path, Path, pointsChanged: Bool, environment: EnvironmentValues)",
                         "type" : "method"
                       }
                     ],
@@ -7939,8 +8044,8 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatepath(_:_:pointschanged:)-qr8t",
-                "title" : "func updatePath(Self.Path, Path, pointsChanged: Bool)",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatepath(_:_:pointschanged:environment:)-4sbf4",
+                "title" : "func updatePath(Self.Path, Path, pointsChanged: Bool, environment: EnvironmentValues)",
                 "type" : "method"
               },
               {
@@ -8002,8 +8107,8 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updateslider(_:minimum:maximum:decimalplaces:onchange:)-tkt2",
-                        "title" : "func updateSlider(Self.Widget, minimum: Double, maximum: Double, decimalPlaces: Int, onChange: (Double) -> Void)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updateslider(_:minimum:maximum:decimalplaces:environment:onchange:)-2lta3",
+                        "title" : "func updateSlider(Self.Widget, minimum: Double, maximum: Double, decimalPlaces: Int, environment: EnvironmentValues, onChange: (Double) -> Void)",
                         "type" : "method"
                       }
                     ],
@@ -8011,8 +8116,8 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/updateslider(_:minimum:maximum:decimalplaces:onchange:)-8we73",
-                "title" : "func updateSlider(Self.Widget, minimum: Double, maximum: Double, decimalPlaces: Int, onChange: (Double) -> Void)",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/updateslider(_:minimum:maximum:decimalplaces:environment:onchange:)-3pt9j",
+                "title" : "func updateSlider(Self.Widget, minimum: Double, maximum: Double, decimalPlaces: Int, environment: EnvironmentValues, onChange: (Double) -> Void)",
                 "type" : "method"
               },
               {
@@ -8020,8 +8125,8 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updateswitch(_:onchange:)-7nqm8",
-                        "title" : "func updateSwitch(Self.Widget, onChange: (Bool) -> Void)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updateswitch(_:environment:onchange:)-1t5bn",
+                        "title" : "func updateSwitch(Self.Widget, environment: EnvironmentValues, onChange: (Bool) -> Void)",
                         "type" : "method"
                       }
                     ],
@@ -8029,8 +8134,8 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/updateswitch(_:onchange:)-9nbu9",
-                "title" : "func updateSwitch(Self.Widget, onChange: (Bool) -> Void)",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/updateswitch(_:environment:onchange:)-1yge",
+                "title" : "func updateSwitch(Self.Widget, environment: EnvironmentValues, onChange: (Bool) -> Void)",
                 "type" : "method"
               },
               {
@@ -8038,8 +8143,8 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatetapgesturetarget(_:gesture:action:)-ls0d",
-                        "title" : "func updateTapGestureTarget(Self.Widget, gesture: TapGesture, action: () -> Void)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatetapgesturetarget(_:gesture:environment:action:)-774ap",
+                        "title" : "func updateTapGestureTarget(Self.Widget, gesture: TapGesture, environment: EnvironmentValues, action: () -> Void)",
                         "type" : "method"
                       }
                     ],
@@ -8047,8 +8152,8 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatetapgesturetarget(_:gesture:action:)-2rz1h",
-                "title" : "func updateTapGestureTarget(Self.Widget, gesture: TapGesture, action: () -> Void)",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatetapgesturetarget(_:gesture:environment:action:)-2cuii",
+                "title" : "func updateTapGestureTarget(Self.Widget, gesture: TapGesture, environment: EnvironmentValues, action: () -> Void)",
                 "type" : "method"
               },
               {
@@ -8092,8 +8197,8 @@
                   {
                     "children" : [
                       {
-                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatetoggle(_:label:onchange:)-7xe03",
-                        "title" : "func updateToggle(Self.Widget, label: String, onChange: (Bool) -> Void)",
+                        "path" : "\/documentation\/swiftcrossui\/appbackend\/updatetoggle(_:label:environment:onchange:)-8oj38",
+                        "title" : "func updateToggle(Self.Widget, label: String, environment: EnvironmentValues, onChange: (Bool) -> Void)",
                         "type" : "method"
                       }
                     ],
@@ -8101,8 +8206,8 @@
                     "type" : "groupMarker"
                   }
                 ],
-                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatetoggle(_:label:onchange:)-4usuo",
-                "title" : "func updateToggle(Self.Widget, label: String, onChange: (Bool) -> Void)",
+                "path" : "\/documentation\/swiftcrossui\/appbackend\/updatetoggle(_:label:environment:onchange:)-27i2d",
+                "title" : "func updateToggle(Self.Widget, label: String, environment: EnvironmentValues, onChange: (Bool) -> Void)",
                 "type" : "method"
               }
             ],
@@ -8798,6 +8903,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/anyview\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/anyview\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -9118,6 +9228,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/capsule\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/capsule\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -9405,6 +9520,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/circle\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/circle\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -9813,6 +9933,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/divider\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/divider\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -10158,6 +10283,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/ellipse\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/ellipse\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -10413,6 +10543,11 @@
               {
                 "path" : "\/documentation\/swiftcrossui\/environmentvalues\/foregroundcolor",
                 "title" : "var foregroundColor: Color?",
+                "type" : "property"
+              },
+              {
+                "path" : "\/documentation\/swiftcrossui\/environmentvalues\/isenabled",
+                "title" : "var isEnabled: Bool",
                 "type" : "property"
               },
               {
@@ -10744,6 +10879,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/group\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/group\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -10986,6 +11126,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/hotreloadableview\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -11254,6 +11399,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/list\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/list\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -11505,6 +11655,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/menu\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/menu\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -12275,6 +12430,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/progressview\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/progressview\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -12557,6 +12717,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/rectangle\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/rectangle\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -12956,6 +13121,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/roundedrectangle\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -14577,6 +14747,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview1\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview1\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -14876,6 +15051,11 @@
                     "type" : "method"
                   },
                   {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview10\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
+                    "type" : "method"
+                  },
+                  {
                     "path" : "\/documentation\/swiftcrossui\/tupleview10\/fixedsize()",
                     "title" : "func fixedSize() -> some View",
                     "type" : "method"
@@ -15132,6 +15312,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview2\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview2\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15396,6 +15581,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview3\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview3\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15665,6 +15855,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview4\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview4\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -15939,6 +16134,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview5\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview5\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -16218,6 +16418,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview6\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview6\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -16502,6 +16707,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview7\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview7\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -16791,6 +17001,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview8\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview8\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -17085,6 +17300,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/tupleview9\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/tupleview9\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -18438,6 +18658,11 @@
                   {
                     "path" : "\/documentation\/swiftcrossui\/zstack\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                     "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                    "type" : "method"
+                  },
+                  {
+                    "path" : "\/documentation\/swiftcrossui\/zstack\/disabled(_:)",
+                    "title" : "func disabled(Bool) -> some View",
                     "type" : "method"
                   },
                   {
@@ -20153,6 +20378,11 @@
                       {
                         "path" : "\/documentation\/swiftcrossui\/swift\/never\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)",
                         "title" : "func defaultUpdate<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
+                        "type" : "method"
+                      },
+                      {
+                        "path" : "\/documentation\/swiftcrossui\/swift\/never\/disabled(_:)",
+                        "title" : "func disabled(Bool) -> some View",
                         "type" : "method"
                       },
                       {

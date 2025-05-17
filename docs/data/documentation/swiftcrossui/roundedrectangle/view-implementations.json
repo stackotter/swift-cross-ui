@@ -56,6 +56,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RoundedRectangle\/defaultChildren(backend:snapshots:environment:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RoundedRectangle\/defaultLayoutableChildren(backend:children:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RoundedRectangle\/defaultUpdate(_:children:proposedSize:environment:backend:dryRun:)",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RoundedRectangle\/disabled(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RoundedRectangle\/fixedSize()",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RoundedRectangle\/fixedSize(horizontal:vertical:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RoundedRectangle\/font(_:)",
@@ -1490,6 +1491,68 @@
   "title" : "defaultUpdate(_:children:proposedSize:environment:backend:dryRun:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/roundedrectangle\/defaultupdate(_:children:proposedsize:environment:backend:dryrun:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/RoundedRectangle/disabled(_:)": {
+  "abstract" : [
+    {
+      "text" : "Disables user interaction in any subviews that support disabling",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "interaction.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "disabled"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "some"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
+      "text" : "View"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RoundedRectangle\/disabled(_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "disabled(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/roundedrectangle\/disabled(_:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/RoundedRectangle/fixedSize()": {
   "abstract" : [
