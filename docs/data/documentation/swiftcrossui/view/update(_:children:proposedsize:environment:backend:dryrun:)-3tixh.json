@@ -36,8 +36,8 @@
   "defaultImplementationsSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/update(_:children:proposedSize:environment:backend:dryRun:)-27j1y",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/update(_:children:proposedSize:environment:backend:dryRun:)-5duo6"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/update(_:children:proposedSize:environment:backend:dryRun:)-5duo6",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/update(_:children:proposedSize:environment:backend:dryRun:)-27j1y"
       ],
       "title" : "View Implementations"
     }
