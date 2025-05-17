@@ -1515,6 +1515,16 @@ public final class WinUIBackend: AppBackend {
                     geometry.append(subGeo)
             }
         }
+
+        // Cleanup: remove empty paths
+        // Having empty paths in the geometry group causes rendering it to silently crash
+        for i in (0..<geometry.size).reversed() {
+            if let pathGeo = geometry.getAt(i) as? PathGeometry,
+                pathGeo.figures.size == 0
+            {
+                geometry.removeAt(i)
+            }
+        }
     }
 
     public func renderPath(
