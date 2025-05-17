@@ -16,7 +16,9 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene-graph"
       ]
     ]
   },
@@ -125,7 +127,6 @@
   "relationshipsSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandsModifierNode",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleSceneNode10",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleSceneNode2",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleSceneNode3",
@@ -149,6 +150,32 @@
   },
   "sections" : [
 
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroupNode",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene2",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene3",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene4",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene5",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene6",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene7",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene8",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene9",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene10",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleSceneNode2",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleSceneNode3",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleSceneNode4",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleSceneNode5",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleSceneNode6",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleSceneNode7",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleSceneNode8",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleSceneNode9",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleSceneNode10"
+      ]
+    }
   ],
   "topicSections" : [
     {
@@ -198,36 +225,27 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/CommandsModifierNode": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Implementation-details": {
   "abstract" : [
 
   ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "class"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "CommandsModifierNode"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandsModifierNode",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "CommandsModifierNode"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "CommandsModifierNode",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Implementation details",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/commandsmodifiernode"
+  "url" : "\/documentation\/swiftcrossui\/implementation-details"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scene-graph": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene-graph",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Scene graph",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scene-graph"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/SceneGraphNode": {
   "abstract" : [
@@ -518,6 +536,285 @@
   "title" : "update(_:backend:environment:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scenegraphnode\/update(_:backend:environment:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleScene10": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene10"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene10",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene10"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleScene10",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tuplescene10"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleScene2": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene2"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene2",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene2"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleScene2",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tuplescene2"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleScene3": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene3"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene3",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene3"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleScene3",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tuplescene3"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleScene4": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene4"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene4",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene4"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleScene4",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tuplescene4"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleScene5": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene5"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene5",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene5"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleScene5",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tuplescene5"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleScene6": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene6"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene6",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene6"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleScene6",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tuplescene6"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleScene7": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene7"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene7",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene7"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleScene7",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tuplescene7"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleScene8": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene8"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene8",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene8"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleScene8",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tuplescene8"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleScene9": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene9"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene9",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleScene9"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleScene9",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tuplescene9"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleSceneNode10": {
   "abstract" : [

@@ -9,6 +9,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shapes",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Path"
       ]
     ]
@@ -423,6 +424,17 @@
   "title" : "addQuadCurve(control:to:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/path\/addquadcurve(control:to:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Shapes": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shapes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Shapes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/shapes"
 }
 }
 }

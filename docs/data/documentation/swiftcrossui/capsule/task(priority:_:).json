@@ -26,6 +26,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shapes",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Capsule",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Capsule\/View-Implementations"
       ]
@@ -411,6 +412,17 @@
   "title" : "task(priority:_:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/capsule\/task(priority:_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Shapes": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shapes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Shapes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/shapes"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

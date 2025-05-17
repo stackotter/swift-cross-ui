@@ -3,6 +3,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Controls",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button"
       ]
     ]
@@ -3599,6 +3600,17 @@
   "title" : "update(_:children:proposedSize:environment:backend:dryRun:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/button\/update(_:children:proposedsize:environment:backend:dryrun:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Controls": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Controls",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Controls",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/controls"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/body-2j1pw": {
   "abstract" : [

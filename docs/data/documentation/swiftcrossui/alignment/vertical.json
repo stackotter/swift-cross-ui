@@ -9,6 +9,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Layout",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Alignment"
       ]
     ]
@@ -202,6 +203,17 @@
   "title" : "vertical",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/alignment\/vertical"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Layout": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Layout",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Layout",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/layout"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/VerticalAlignment": {
   "abstract" : [

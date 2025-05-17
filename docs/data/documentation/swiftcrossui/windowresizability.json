@@ -8,7 +8,8 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes"
       ]
     ]
   },
@@ -101,6 +102,15 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroup"
+      ],
+      "title" : "Windows"
+    }
+  ],
   "topicSections" : [
     {
       "identifiers" : [
@@ -155,6 +165,67 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scenes": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Scenes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scenes"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowGroup": {
+  "abstract" : [
+    {
+      "text" : "A scene that presents a group of identically structured windows. Currently",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "only supports having a single instance of the window but will eventually",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "support duplicating the window.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "WindowGroup"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroup",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "WindowGroup"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "WindowGroup",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/windowgroup"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowResizability": {
   "abstract" : [

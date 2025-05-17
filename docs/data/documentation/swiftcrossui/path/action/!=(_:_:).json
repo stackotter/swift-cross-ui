@@ -17,6 +17,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shapes",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Path",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Path\/Action",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Path\/Action\/Equatable-Implementations"
@@ -350,6 +351,17 @@
   "title" : "Equatable Implementations",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/path\/action\/equatable-implementations"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Shapes": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shapes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Shapes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/shapes"
 }
 }
 }

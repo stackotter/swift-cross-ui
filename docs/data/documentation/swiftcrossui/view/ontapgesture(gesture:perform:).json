@@ -9,7 +9,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Gestures"
       ]
     ]
   },
@@ -238,6 +238,14 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TapGesture"
+      ]
+    }
+  ],
   "variants" : [
     {
       "paths" : [
@@ -265,6 +273,17 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Gestures": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Gestures",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Gestures",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gestures"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TapGesture": {
   "abstract" : [

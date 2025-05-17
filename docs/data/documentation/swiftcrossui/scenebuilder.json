@@ -8,7 +8,8 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes"
       ]
     ]
   },
@@ -102,10 +103,9 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene"
       ],
-      "title" : "App Structure"
+      "title" : "Creating scenes"
     }
   ],
   "topicSections" : [
@@ -153,10 +153,26 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/App": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scene": {
   "abstract" : [
     {
-      "text" : "An application.",
+      "text" : "A scene wraps a root view and dictates how it is displayed (e.g. in a window or",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "a menu bar). Scenes can also be a composition of multiple child scenes instead",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "of wrapping a root view.",
       "type" : "text"
     }
   ],
@@ -171,21 +187,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "App"
+      "text" : "Scene"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "App"
+      "text" : "Scene"
     }
   ],
   "role" : "symbol",
-  "title" : "App",
+  "title" : "Scene",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/app"
+  "url" : "\/documentation\/swiftcrossui\/scene"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/SceneBuilder": {
   "abstract" : [
@@ -1991,47 +2007,16 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scenebuilder\/buildblock(_:_:_:_:_:_:_:_:_:_:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewBuilder": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scenes": {
   "abstract" : [
-    {
-      "text" : "A result builder used to compose views together into composite views in",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "a declarative manner.",
-      "type" : "text"
-    }
+
   ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewBuilder"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewBuilder"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewBuilder",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Scenes",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewbuilder"
+  "url" : "\/documentation\/swiftcrossui\/scenes"
 }
 }
 }

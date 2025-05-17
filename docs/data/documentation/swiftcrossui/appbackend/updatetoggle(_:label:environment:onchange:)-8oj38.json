@@ -17,6 +17,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Custom-backends",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend\/updateToggle(_:label:environment:onChange:)-27i2d"
       ]
@@ -132,7 +133,7 @@
     ],
     "remoteSource" : {
       "fileName" : "AppBackend.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/AppBackend.swift#L812"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/AppBackend.swift#L813"
     },
     "role" : "symbol",
     "roleHeading" : "Instance Method",
@@ -314,7 +315,15 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
     {
-      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "text" : "A backend that can be used to run an app. Usually built on top of an",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "existing UI framework.",
       "type" : "text"
     }
   ],
@@ -595,6 +604,17 @@
   "title" : "updateToggle(_:label:environment:onChange:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/updatetoggle(_:label:environment:onchange:)-8oj38"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Custom-backends": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Custom-backends",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Custom backends",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/custom-backends"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues": {
   "abstract" : [

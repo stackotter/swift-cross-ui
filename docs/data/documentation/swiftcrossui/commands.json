@@ -2,7 +2,8 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes"
       ]
     ]
   },
@@ -84,6 +85,17 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene\/commands",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandsBuilder",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandMenu"
+      ],
+      "title" : "Commands"
+    }
+  ],
   "topicSections" : [
     {
       "identifiers" : [
@@ -125,6 +137,37 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/CommandMenu": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "CommandMenu"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandMenu",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "CommandMenu"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "CommandMenu",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/commandmenu"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Commands": {
   "abstract" : [
@@ -249,6 +292,98 @@
   "title" : "overlayed(with:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/commands\/overlayed(with:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/CommandsBuilder": {
+  "abstract" : [
+    {
+      "text" : "A builder for ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Commands",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "CommandsBuilder"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandsBuilder",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "CommandsBuilder"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "CommandsBuilder",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/commandsbuilder"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scene/commands": {
+  "abstract" : [
+    {
+      "text" : "The commands to be propagated up from the scene.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "commands"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI8CommandsV",
+      "text" : "Commands"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene\/commands",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "commands",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scene\/commands"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scenes": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Scenes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scenes"
 }
 }
 }

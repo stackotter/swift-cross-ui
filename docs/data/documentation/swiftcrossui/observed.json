@@ -13,7 +13,8 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Deprecated"
       ]
     ]
   },
@@ -108,6 +109,15 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable"
+      ]
+    }
+  ],
   "variants" : [
     {
       "paths" : [
@@ -135,6 +145,49 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Deprecated": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Deprecated",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Deprecated",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/deprecated"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Observable": {
+  "abstract" : [
+
+  ],
+  "deprecated" : true,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Observable"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Observable",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Observable"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Observable",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/observable"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ObservableObject": {
   "abstract" : [
@@ -268,6 +321,38 @@
   "title" : "Published",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/published"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent": {
+  "abstract" : [
+
+  ],
+  "deprecated" : true,
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewContent"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewContent",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewcontent"
 }
 }
 }

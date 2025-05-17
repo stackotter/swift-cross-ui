@@ -9,6 +9,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-fundamentals",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Axis",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Axis\/Set"
       ]
@@ -289,6 +290,17 @@
   "title" : "horizontal",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/axis\/set\/horizontal"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View-fundamentals": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-fundamentals",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "View fundamentals",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view-fundamentals"
 }
 }
 }

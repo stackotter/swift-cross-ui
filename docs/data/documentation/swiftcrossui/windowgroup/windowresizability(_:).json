@@ -9,6 +9,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WindowGroup"
       ]
     ]
@@ -190,6 +191,17 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scenes": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Scenes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scenes"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowGroup": {
   "abstract" : [

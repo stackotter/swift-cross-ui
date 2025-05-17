@@ -17,6 +17,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-fundamentals",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Axis",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Axis\/Set",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Axis\/Set\/SetAlgebra-Implementations"
@@ -286,6 +287,17 @@
   "title" : "subtract(_:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/axis\/set\/subtract(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View-fundamentals": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-fundamentals",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "View fundamentals",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view-fundamentals"
 }
 }
 }

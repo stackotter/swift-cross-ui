@@ -25,6 +25,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-fundamentals",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView\/View-Implementations"
       ]
@@ -278,7 +279,15 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
     {
-      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "text" : "A backend that can be used to run an app. Usually built on top of an",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "existing UI framework.",
       "type" : "text"
     }
   ],
@@ -603,6 +612,17 @@
   "title" : "TupleView2",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/tupleview2"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View-fundamentals": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-fundamentals",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "View fundamentals",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view-fundamentals"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphNodeChildren": {
   "abstract" : [

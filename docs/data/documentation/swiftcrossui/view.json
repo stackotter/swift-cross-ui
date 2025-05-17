@@ -8,7 +8,8 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-fundamentals"
       ]
     ]
   },
@@ -156,29 +157,24 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CellPosition",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HorizontalAlignment",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HStack",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationLink",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationPath",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationSplitView",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Picker",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Slider",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Table",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VerticalAlignment",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ZStack",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Text",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Toggle",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VStack"
-      ],
-      "title" : "Views"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Image",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Color",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Divider",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Spacer",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Group",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ScrollView",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Axis",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ProgressView",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyView"
+      ]
     }
   ],
   "topicSections" : [
@@ -201,10 +197,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/aspectRatio(_:contentMode:)-7gr7e",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/aspectRatio(_:contentMode:)-dbvm",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/background(_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/bold()",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/children(backend:snapshots:environment:)-3yoia",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/colorScheme(_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/cornerRadius(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/defaultAsWidget(_:backend:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/defaultChildren(backend:snapshots:environment:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/defaultLayoutableChildren(backend:children:)",
@@ -212,10 +205,6 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/disabled(_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/fixedSize()",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/fixedSize(horizontal:vertical:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/font(_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/foregroundColor(_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/frame(width:height:alignment:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/if(_:apply:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/ifLet(_:apply:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/layoutableChildren(backend:children:)-5lkh8",
@@ -226,12 +215,9 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/onDisappear(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/onOpenURL(perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/onSubmit(perform:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/onTapGesture(gesture:perform:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/overlay(content:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:)-1i0ji",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:)-1t7vm",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/padding(_:_:)",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/preference(key:value:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/submitScope()",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/task(id:priority:_:)",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/task(priority:_:)",
@@ -340,6 +326,40 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/anyview"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Axis": {
+  "abstract" : [
+    {
+      "text" : "An axis in a 2D coordinate system.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Axis"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Axis",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Axis"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Axis",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/axis"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Button": {
   "abstract" : [
     {
@@ -407,40 +427,6 @@
   "title" : "Capsule",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/capsule"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/CellPosition": {
-  "abstract" : [
-    {
-      "text" : "The position of a cell in a table (with row and column numbers starting from 0).",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "CellPosition"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CellPosition",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "CellPosition"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "CellPosition",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/cellposition"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Circle": {
   "abstract" : [
@@ -856,6 +842,40 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/hstack"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HorizontalAlignment": {
+  "abstract" : [
+    {
+      "text" : "Alignment of items layed out along the horizontal axis.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "HorizontalAlignment"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HorizontalAlignment",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "HorizontalAlignment"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "HorizontalAlignment",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/horizontalalignment"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/HotReloadableView": {
   "abstract" : [
     {
@@ -1085,40 +1105,6 @@
   "title" : "NavigationLink",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/navigationlink"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationPath": {
-  "abstract" : [
-    {
-      "text" : "A type-erased list of data representing the content of a navigation stack.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "NavigationPath"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationPath",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "NavigationPath"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "NavigationPath",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/navigationpath"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationSplitView": {
   "abstract" : [
@@ -1628,40 +1614,6 @@
   "title" : "Table",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/table"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/TableColumn": {
-  "abstract" : [
-    {
-      "text" : "A labelled column with a view for each row in a table.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "TableColumn"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TableColumn",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "TableColumn"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "TableColumn",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/tablecolumn"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Text": {
   "abstract" : [
@@ -2216,6 +2168,40 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/vstack"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/VerticalAlignment": {
+  "abstract" : [
+    {
+      "text" : "Alignment of items layed out along the vertical axis.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "VerticalAlignment"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/VerticalAlignment",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "VerticalAlignment"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "VerticalAlignment",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/verticalalignment"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [
     {
@@ -2249,6 +2235,17 @@
   "title" : "View",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View-fundamentals": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-fundamentals",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "View fundamentals",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view-fundamentals"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/Content": {
   "abstract" : [
@@ -2726,48 +2723,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view\/body-2j1pw"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/bold()": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "bold"
-    },
-    {
-      "kind" : "text",
-      "text" : "() -> "
-    },
-    {
-      "kind" : "keyword",
-      "text" : "some"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
-      "text" : "View"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/bold()",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "bold()",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view\/bold()"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/children(backend:snapshots:environment:)-3yoia": {
   "abstract" : [
     {
@@ -2881,108 +2836,6 @@
   "title" : "children(backend:snapshots:environment:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:environment:)-3yoia"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/colorScheme(_:)": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "colorScheme"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI11ColorSchemeO",
-      "text" : "ColorScheme"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "keyword",
-      "text" : "some"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
-      "text" : "View"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/colorScheme(_:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "colorScheme(_:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view\/colorscheme(_:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/cornerRadius(_:)": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "cornerRadius"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "keyword",
-      "text" : "some"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
-      "text" : "View"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/cornerRadius(_:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "cornerRadius(_:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view\/cornerradius(_:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/defaultAsWidget(_:backend:)": {
   "abstract" : [
@@ -3663,371 +3516,6 @@
   "title" : "fixedSize(horizontal:vertical:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view\/fixedsize(horizontal:vertical:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/font(_:)": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "font"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI4FontO",
-      "text" : "Font"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "keyword",
-      "text" : "some"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
-      "text" : "View"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/font(_:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "font(_:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view\/font(_:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/foregroundColor(_:)": {
-  "abstract" : [
-    {
-      "text" : "Sets the color of the foreground elements displayed by this view.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "foregroundColor"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI5ColorV",
-      "text" : "Color"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "keyword",
-      "text" : "some"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
-      "text" : "View"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/foregroundColor(_:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "foregroundColor(_:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view\/foregroundcolor(_:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)": {
-  "abstract" : [
-    {
-      "text" : "Positions this view within an invisible frame having the specified minimum size constraints.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "frame"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "minWidth"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : "?, "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "idealWidth"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : "?, "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "maxWidth"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
-    },
-    {
-      "kind" : "text",
-      "text" : "?, "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "minHeight"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : "?, "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "idealHeight"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : "?, "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "maxHeight"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sd",
-      "text" : "Double"
-    },
-    {
-      "kind" : "text",
-      "text" : "?, "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "alignment"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9AlignmentV",
-      "text" : "Alignment"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "keyword",
-      "text" : "some"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
-      "text" : "View"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view\/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/frame(width:height:alignment:)": {
-  "abstract" : [
-    {
-      "text" : "Positions this view within an invisible frame having the specified minimum size constraints.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "frame"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "width"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : "?, "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "height"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Si",
-      "text" : "Int"
-    },
-    {
-      "kind" : "text",
-      "text" : "?, "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "alignment"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI9AlignmentV",
-      "text" : "Alignment"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "keyword",
-      "text" : "some"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
-      "text" : "View"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/frame(width:height:alignment:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "frame(width:height:alignment:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view\/frame(width:height:alignment:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/if(_:apply:)": {
   "abstract" : [
@@ -4884,85 +4372,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view\/onsubmit(perform:)"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/onTapGesture(gesture:perform:)": {
-  "abstract" : [
-    {
-      "text" : "Adds an action to perform when the user taps or clicks this view.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "onTapGesture"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "gesture"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI10TapGestureV",
-      "text" : "TapGesture"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "perform"
-    },
-    {
-      "kind" : "text",
-      "text" : ": () -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s4Voida",
-      "text" : "Void"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "keyword",
-      "text" : "some"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
-      "text" : "View"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/onTapGesture(gesture:perform:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "onTapGesture(gesture:perform:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view\/ontapgesture(gesture:perform:)"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/overlay(content:)": {
   "abstract" : [
 
@@ -5266,106 +4675,6 @@
   "title" : "padding(_:_:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view\/padding(_:_:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/preference(key:value:)": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "func"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "preference"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "genericParameter",
-      "text" : "V"
-    },
-    {
-      "kind" : "text",
-      "text" : ">("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "key"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s15WritableKeyPathC",
-      "text" : "WritableKeyPath"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI16PreferenceValuesV",
-      "text" : "PreferenceValues"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "V"
-    },
-    {
-      "kind" : "text",
-      "text" : ">, "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "value"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "V"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "keyword",
-      "text" : "some"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP",
-      "text" : "View"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/preference(key:value:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "preference(key:value:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view\/preference(key:value:)"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/submitScope()": {
   "abstract" : [
@@ -5932,38 +5241,6 @@
   "title" : "ViewBuilder",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewbuilder"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewContent": {
-  "abstract" : [
-
-  ],
-  "deprecated" : true,
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewContent"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewContent",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewContent"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewContent",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewcontent"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ZStack": {
   "abstract" : [

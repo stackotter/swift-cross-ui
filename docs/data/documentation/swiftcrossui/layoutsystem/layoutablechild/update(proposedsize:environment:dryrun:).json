@@ -3,6 +3,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/LayoutSystem",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/LayoutSystem\/LayoutableChild"
       ]
@@ -297,6 +298,17 @@
   "title" : "EnvironmentValues",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/environmentvalues"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Implementation-details": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Implementation details",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/implementation-details"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/LayoutSystem": {
   "abstract" : [

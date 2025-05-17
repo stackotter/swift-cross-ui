@@ -25,6 +25,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Custom-backends",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppBackend"
       ]
     ]
@@ -74,7 +75,7 @@
     ],
     "remoteSource" : {
       "fileName" : "AppBackend.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/AppBackend.swift#L207"
+      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Backend\/AppBackend.swift#L208"
     },
     "required" : true,
     "role" : "symbol",
@@ -183,7 +184,15 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
     {
-      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "text" : "A backend that can be used to run an app. Usually built on top of an",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "existing UI framework.",
       "type" : "text"
     }
   ],
@@ -310,6 +319,17 @@
   "title" : "openExternalURL(_:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/openexternalurl(_:)-5d30"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Custom-backends": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Custom-backends",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Custom backends",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/custom-backends"
 }
 }
 }

@@ -3,6 +3,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ContentType"
       ]
     ]
@@ -306,6 +307,17 @@
   "title" : "init(name:mimeTypes:fileExtensions:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/contenttype\/init(name:mimetypes:fileextensions:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Environment": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Environment",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environment"
 }
 }
 }

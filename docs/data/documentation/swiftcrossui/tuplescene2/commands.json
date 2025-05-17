@@ -17,6 +17,8 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene-graph",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene2"
       ]
     ]
@@ -170,6 +172,28 @@
   "title" : "Commands",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/commands"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Implementation-details": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Implementation details",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/implementation-details"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scene-graph": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene-graph",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Scene graph",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scene-graph"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleScene2": {
   "abstract" : [

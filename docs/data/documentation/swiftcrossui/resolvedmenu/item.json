@@ -9,6 +9,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Custom-backends",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ResolvedMenu"
       ]
     ]
@@ -127,6 +128,17 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Custom-backends": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Custom-backends",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Custom backends",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/custom-backends"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ResolvedMenu": {
   "abstract" : [

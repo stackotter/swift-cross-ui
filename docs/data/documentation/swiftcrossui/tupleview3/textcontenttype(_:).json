@@ -9,6 +9,8 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-graph",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView3",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView3\/View-Implementations"
       ]
@@ -217,6 +219,17 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Implementation-details": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Implementation details",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/implementation-details"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TextContentType": {
   "abstract" : [
 
@@ -388,6 +401,17 @@
   "title" : "View",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View-graph": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-graph",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "View graph",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view-graph"
 }
 }
 }

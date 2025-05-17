@@ -3,6 +3,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/State-basics",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/State"
       ]
     ]
@@ -230,6 +231,17 @@
   "title" : "State",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/state"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/State-basics": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/State-basics",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "State basics",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/state-basics"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/State/projectedValue": {
   "abstract" : [

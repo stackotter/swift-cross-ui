@@ -90,6 +90,16 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes"
+      ],
+      "title" : "App structure"
+    }
+  ],
   "topicSections" : [
     {
       "identifiers" : [
@@ -133,6 +143,40 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/App": {
+  "abstract" : [
+    {
+      "text" : "An application.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "App"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/App",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "App"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "App",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/app"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppMetadata": {
   "abstract" : [
@@ -370,6 +414,17 @@
   "title" : "version",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appmetadata\/version"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scenes": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Scenes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scenes"
 }
 }
 }

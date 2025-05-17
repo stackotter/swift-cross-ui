@@ -9,6 +9,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Custom-backends",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/MenuImplementationStyle"
       ]
     ]
@@ -400,6 +401,17 @@
   "title" : "showPopoverMenu(_:at:relativeTo:closeHandler:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/showpopovermenu(_:at:relativeto:closehandler:)-u69a"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Custom-backends": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Custom-backends",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Custom backends",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/custom-backends"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/MenuImplementationStyle": {
   "abstract" : [

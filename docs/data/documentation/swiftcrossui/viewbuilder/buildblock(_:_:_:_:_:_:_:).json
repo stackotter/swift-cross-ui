@@ -3,6 +3,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-fundamentals",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder"
       ]
     ]
@@ -803,6 +804,17 @@
   "title" : "View",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View-fundamentals": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-fundamentals",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "View fundamentals",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view-fundamentals"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewBuilder": {
   "abstract" : [

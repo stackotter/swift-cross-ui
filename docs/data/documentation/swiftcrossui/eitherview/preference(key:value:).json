@@ -17,6 +17,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView\/View-Implementations"
       ]
@@ -432,6 +433,17 @@
   "title" : "preference(key:value:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/eitherview\/preference(key:value:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Implementation-details": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Implementation details",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/implementation-details"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/PreferenceValues": {
   "abstract" : [

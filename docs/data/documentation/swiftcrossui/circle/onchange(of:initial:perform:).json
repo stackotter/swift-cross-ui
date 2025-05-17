@@ -17,6 +17,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shapes",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Circle",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Circle\/View-Implementations"
       ]
@@ -468,6 +469,17 @@
   "title" : "onChange(of:initial:perform:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/circle\/onchange(of:initial:perform:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Shapes": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shapes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Shapes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/shapes"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

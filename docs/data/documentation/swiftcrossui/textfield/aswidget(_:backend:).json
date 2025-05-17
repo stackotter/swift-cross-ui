@@ -17,6 +17,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Controls",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TextField\/View-Implementations"
       ]
@@ -270,7 +271,15 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
     {
-      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "text" : "A backend that can be used to run an app. Usually built on top of an",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "existing UI framework.",
       "type" : "text"
     }
   ],
@@ -326,6 +335,17 @@
   "title" : "Widget",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/widget"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Controls": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Controls",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Controls",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/controls"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach": {
   "abstract" : [

@@ -1,42 +1,4 @@
 {
-  "abstract" : [
-    {
-      "text" : "A property wrapper used to access environment values within a ",
-      "type" : "text"
-    },
-    {
-      "code" : "View",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " or",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "code" : "App",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : ". Must not be used before the view graph accesses the view or app’s",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "code" : "body",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " (i.e. don’t access it from an initializer).",
-      "type" : "text"
-    }
-  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -48,171 +10,17 @@
     "interfaceLanguage" : "swift",
     "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment"
   },
-  "kind" : "symbol",
+  "kind" : "article",
   "metadata" : {
-    "externalID" : "s:12SwiftCrossUI11EnvironmentV",
-    "fragments" : [
-      {
-        "kind" : "keyword",
-        "text" : "struct"
-      },
-      {
-        "kind" : "text",
-        "text" : " "
-      },
-      {
-        "kind" : "identifier",
-        "text" : "Environment"
-      }
-    ],
     "modules" : [
       {
         "name" : "SwiftCrossUI"
       }
     ],
-    "navigatorTitle" : [
-      {
-        "kind" : "identifier",
-        "text" : "Environment"
-      }
-    ],
-    "remoteSource" : {
-      "fileName" : "Environment.swift",
-      "url" : "https:\/\/github.com\/stackotter\/swift-cross-ui\/blob\/main\/Sources\/SwiftCrossUI\/Environment\/Environment.swift#L38"
-    },
-    "role" : "symbol",
-    "roleHeading" : "Structure",
-    "symbolKind" : "struct",
+    "role" : "collectionGroup",
+    "roleHeading" : "API Collection",
     "title" : "Environment"
   },
-  "primaryContentSections" : [
-    {
-      "declarations" : [
-        {
-          "languages" : [
-            "swift"
-          ],
-          "platforms" : [
-            "macOS"
-          ],
-          "tokens" : [
-            {
-              "kind" : "attribute",
-              "text" : "@propertyWrapper"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "keyword",
-              "text" : "struct"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "identifier",
-              "text" : "Environment"
-            },
-            {
-              "kind" : "text",
-              "text" : "<"
-            },
-            {
-              "kind" : "genericParameter",
-              "text" : "Value"
-            },
-            {
-              "kind" : "text",
-              "text" : ">"
-            }
-          ]
-        }
-      ],
-      "kind" : "declarations"
-    },
-    {
-      "content" : [
-        {
-          "anchor" : "overview",
-          "level" : 2,
-          "text" : "Overview",
-          "type" : "heading"
-        },
-        {
-          "code" : [
-            "struct ContentView: View {",
-            "    @Environment(\\.colorScheme) var colorScheme",
-            "",
-            "    var body: some View {",
-            "        Text(\"Current color scheme: \\(colorScheme)\")",
-            "            .background(colorScheme == .light ? Color.black : Color.white)",
-            "    }",
-            "}"
-          ],
-          "syntax" : null,
-          "type" : "codeListing"
-        },
-        {
-          "inlineContent" : [
-            {
-              "text" : "The environment also contains UI-related actions, such as the",
-              "type" : "text"
-            },
-            {
-              "text" : " ",
-              "type" : "text"
-            },
-            {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/chooseFile",
-              "isActive" : true,
-              "type" : "reference"
-            },
-            {
-              "text" : " action used to present ‘Open file’ dialogs.",
-              "type" : "text"
-            }
-          ],
-          "type" : "paragraph"
-        },
-        {
-          "code" : [
-            "struct ContentView: View {",
-            "    @Environment(\\.chooseFile) var chooseFile",
-            "",
-            "    var body: some View {",
-            "        Button(\"Open\") {",
-            "            Task {",
-            "                guard let file = await chooseFile() else {",
-            "                    print(\"No file chosen\")",
-            "                    return",
-            "                }",
-            "",
-            "                print(\"The user chose: \\(file.path)\")",
-            "            }",
-            "        }",
-            "    }",
-            "}"
-          ],
-          "syntax" : null,
-          "type" : "codeListing"
-        }
-      ],
-      "kind" : "content"
-    }
-  ],
-  "relationshipsSections" : [
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DynamicProperty"
-      ],
-      "kind" : "relationships",
-      "title" : "Conforms To",
-      "type" : "conformsTo"
-    }
-  ],
   "schemaVersion" : {
     "major" : 0,
     "minor" : 3,
@@ -221,24 +29,58 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/State-basics",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Preferences"
+      ],
+      "title" : "State"
+    }
+  ],
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment\/init(_:)"
-      ],
-      "title" : "Initializers"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues"
+      ]
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment\/wrappedValue"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/layoutOrientation",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Orientation",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/layoutAlignment",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StackAlignment"
       ],
-      "title" : "Instance Properties"
+      "title" : "Layout"
     },
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment\/update(with:previousValue:)"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/openURL",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OpenURLAction",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/revealFile",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RevealFileAction",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/chooseFileSaveDestination",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentFileSaveDialogAction",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SaveDialogOptions",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ContentType",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/chooseFile",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OpenDialogOptions",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentSingleFileOpenDialogAction",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileChooserResult",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/presentAlert",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentAlertAction",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AlertAction",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AlertActionsBuilder"
       ],
-      "title" : "Instance Methods"
+      "title" : "Actions"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentKey"
+      ],
+      "title" : "Custom environment values"
     }
   ],
   "variants" : [
@@ -269,10 +111,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/DynamicProperty": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AlertAction": {
   "abstract" : [
     {
-      "text" : "A property wrapper updated by the view graph before each access to",
+      "text" : "An alert action button. Only backends should interface with this type",
       "type" : "text"
     },
     {
@@ -280,110 +122,15 @@
       "type" : "text"
     },
     {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body-2j1pw",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : ". Conforming types should use internal mutability (see ",
+      "text" : "directly. See ",
       "type" : "text"
     },
     {
-      "code" : "Box",
+      "code" : "View\/alert(_:isPresented:actions:message:)",
       "type" : "codeVoice"
     },
     {
-      "text" : ")",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "to implement this protocol’s non-mutable methods if required. This",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "protocol avoids mutation to allow state properties and such to be",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "captured even though views are structs.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "protocol"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "DynamicProperty"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/DynamicProperty",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "DynamicProperty"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "DynamicProperty",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/dynamicproperty"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Environment": {
-  "abstract" : [
-    {
-      "text" : "A property wrapper used to access environment values within a ",
-      "type" : "text"
-    },
-    {
-      "code" : "View",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " or",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "code" : "App",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : ". Must not be used before the view graph accesses the view or app’s",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "code" : "body",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " (i.e. don’t access it from an initializer).",
+      "text" : ".",
       "type" : "text"
     }
   ],
@@ -398,77 +145,41 @@
     },
     {
       "kind" : "identifier",
-      "text" : "Environment"
+      "text" : "AlertAction"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AlertAction",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "Environment"
+      "text" : "AlertAction"
     }
   ],
   "role" : "symbol",
-  "title" : "Environment",
+  "title" : "AlertAction",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/environment"
+  "url" : "\/documentation\/swiftcrossui\/alertaction"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Environment/init(_:)": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AlertActionsBuilder": {
   "abstract" : [
-
-  ],
-  "fragments" : [
     {
-      "kind" : "identifier",
-      "text" : "init"
+      "text" : "A builder for ",
+      "type" : "text"
     },
     {
-      "kind" : "text",
-      "text" : "("
+      "code" : "[AlertAction]",
+      "type" : "codeVoice"
     },
     {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:s7KeyPathC",
-      "text" : "KeyPath"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI17EnvironmentValuesV",
-      "text" : "EnvironmentValues"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Value"
-    },
-    {
-      "kind" : "text",
-      "text" : ">)"
+      "text" : ".",
+      "type" : "text"
     }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment\/init(_:)",
-  "kind" : "symbol",
-  "role" : "symbol",
-  "title" : "init(_:)",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/environment\/init(_:)"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Environment/update(with:previousValue:)": {
-  "abstract" : [
-
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "func"
+      "text" : "struct"
     },
     {
       "kind" : "text",
@@ -476,70 +187,33 @@
     },
     {
       "kind" : "identifier",
-      "text" : "update"
-    },
-    {
-      "kind" : "text",
-      "text" : "("
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "with"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI17EnvironmentValuesV",
-      "text" : "EnvironmentValues"
-    },
-    {
-      "kind" : "text",
-      "text" : ", "
-    },
-    {
-      "kind" : "externalParam",
-      "text" : "previousValue"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI11EnvironmentV",
-      "text" : "Environment"
-    },
-    {
-      "kind" : "text",
-      "text" : "<"
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Value"
-    },
-    {
-      "kind" : "text",
-      "text" : ">?)"
+      "text" : "AlertActionsBuilder"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment\/update(with:previousValue:)",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AlertActionsBuilder",
   "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "AlertActionsBuilder"
+    }
+  ],
   "role" : "symbol",
-  "title" : "update(with:previousValue:)",
+  "title" : "AlertActionsBuilder",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/environment\/update(with:previousvalue:)"
+  "url" : "\/documentation\/swiftcrossui\/alertactionsbuilder"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Environment/wrappedValue": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ContentType": {
   "abstract" : [
-
+    {
+      "text" : "A content type corresponding to a specific file\/data format.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "var"
+      "text" : "struct"
     },
     {
       "kind" : "text",
@@ -547,23 +221,105 @@
     },
     {
       "kind" : "identifier",
-      "text" : "wrappedValue"
+      "text" : "ContentType"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ContentType",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ContentType"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ContentType",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/contenttype"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentKey": {
+  "abstract" : [
+    {
+      "text" : "A key that can be used to extend the environment with new properties.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
     },
     {
       "kind" : "text",
-      "text" : ": "
+      "text" : " "
     },
     {
-      "kind" : "typeIdentifier",
-      "text" : "Value"
+      "kind" : "identifier",
+      "text" : "EnvironmentKey"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment\/wrappedValue",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentKey",
   "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EnvironmentKey"
+    }
+  ],
   "role" : "symbol",
-  "title" : "wrappedValue",
+  "title" : "EnvironmentKey",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/environment\/wrappedvalue"
+  "url" : "\/documentation\/swiftcrossui\/environmentkey"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues": {
+  "abstract" : [
+    {
+      "text" : "The environment used when constructing scenes and views. Each scene or view",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "gets to modify the environment before passing it on to its children, which",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "is the basis of many view modifiers.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EnvironmentValues"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EnvironmentValues"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EnvironmentValues",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environmentvalues"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/chooseFile": {
   "abstract" : [
@@ -658,14 +414,61 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/environmentvalues\/choosefile"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/View/body-2j1pw": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/chooseFileSaveDestination": {
   "abstract" : [
     {
-      "text" : "The view’s contents.",
+      "text" : "Presents a ‘Save file’ dialog fit for selecting a save destination.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Returns ",
+      "type" : "text"
+    },
+    {
+      "code" : "nil",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if the user cancels the operation. Displays as a modal",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "for the current window, or the entire app if accessed outside of a",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "scene’s view graph (in which case the backend can decide whether to",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "make it an app modal, a standalone window, or a modal for a window of",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "its chooosing).",
       "type" : "text"
     }
   ],
-  "defaultImplementations" : 1,
   "fragments" : [
     {
       "kind" : "keyword",
@@ -677,7 +480,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "body"
+      "text" : "chooseFileSaveDestination"
     },
     {
       "kind" : "text",
@@ -685,25 +488,864 @@
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
+      "preciseIdentifier" : "s:12SwiftCrossUI27PresentFileSaveDialogActionV",
+      "text" : "PresentFileSaveDialogAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/chooseFileSaveDestination",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "chooseFileSaveDestination",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environmentvalues\/choosefilesavedestination"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/layoutAlignment": {
+  "abstract" : [
+    {
+      "text" : "The current stack alignment. Inherited by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " and ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Group",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " so",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "that they can be used without affecting layout.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
     },
     {
       "kind" : "text",
-      "text" : "."
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "layoutAlignment"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI4ViewP7ContentQa",
-      "text" : "Content"
+      "preciseIdentifier" : "s:12SwiftCrossUI14StackAlignmentO",
+      "text" : "StackAlignment"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View\/body-2j1pw",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/layoutAlignment",
   "kind" : "symbol",
-  "required" : true,
   "role" : "symbol",
-  "title" : "body",
+  "title" : "layoutAlignment",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/view\/body-2j1pw"
+  "url" : "\/documentation\/swiftcrossui\/environmentvalues\/layoutalignment"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/layoutOrientation": {
+  "abstract" : [
+    {
+      "text" : "The current stack orientation. Inherited by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " and ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Group",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " so",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "that they can be used without affecting layout.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "layoutOrientation"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI11OrientationO",
+      "text" : "Orientation"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/layoutOrientation",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "layoutOrientation",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environmentvalues\/layoutorientation"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/openURL": {
+  "abstract" : [
+    {
+      "text" : "Opens a URL with the default application. May present an application",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "picker if multiple applications are registered for the given URL",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "protocol.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "openURL"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI13OpenURLActionV",
+      "text" : "OpenURLAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/openURL",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "openURL",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environmentvalues\/openurl"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/presentAlert": {
+  "abstract" : [
+    {
+      "text" : "Presents an alert for the current window, or the entire app if accessed",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "outside of a scene’s view graph (in which case the backend can decide",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "whether to make it an app modal, a standalone window, or a modal for a",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "window of its choosing).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "presentAlert"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI18PresentAlertActionV",
+      "text" : "PresentAlertAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/presentAlert",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "presentAlert",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environmentvalues\/presentalert"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/revealFile": {
+  "abstract" : [
+    {
+      "text" : "Reveals a file in the system’s file manager. This opens",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "the file’s enclosing directory and highlighting the file.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "revealFile"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI16RevealFileActionV",
+      "text" : "RevealFileAction"
+    },
+    {
+      "kind" : "text",
+      "text" : "?"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/revealFile",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "revealFile",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environmentvalues\/revealfile"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/FileChooserResult": {
+  "abstract" : [
+    {
+      "text" : "The result returned when a user either selects a file or dismisses the",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "file chooser dialog.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "FileChooserResult"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileChooserResult",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "FileChooserResult"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "FileChooserResult",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/filechooserresult"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/FileDialogOptions": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "FileDialogOptions"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "FileDialogOptions"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "FileDialogOptions",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/filedialogoptions"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach": {
+  "abstract" : [
+    {
+      "text" : "A view that displays a variable amount of children.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ForEach"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ForEach"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ForEach",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/foreach"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Group": {
+  "abstract" : [
+    {
+      "text" : "A view that groups views together without affecting their layout (allowing",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "modifiers to be applied to a whole group of views at once).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Group"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Group",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Group"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Group",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/group"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/OpenDialogOptions": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "OpenDialogOptions"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OpenDialogOptions",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "OpenDialogOptions"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "OpenDialogOptions",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/opendialogoptions"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/OpenURLAction": {
+  "abstract" : [
+    {
+      "text" : "Opens a URL with the default application. May present an application picker",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "if multiple applications are registered for the given URL protocol.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "OpenURLAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OpenURLAction",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "OpenURLAction"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "OpenURLAction",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/openurlaction"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Orientation": {
+  "abstract" : [
+    {
+      "text" : "The orientation of a view (usually in reference to a stack view).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Orientation"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Orientation",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Orientation"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Orientation",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/orientation"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Preferences": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Preferences",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Preferences",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/preferences"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/PresentAlertAction": {
+  "abstract" : [
+    {
+      "text" : "Presents an alert to the user. Returns once an action has been selected and",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "the corresponding action handler has been run. Returns the index of the",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "selected action. By default, the alert will have a single button labelled",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "code" : "OK",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ". All buttons will dismiss the alert even if you provide your own",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "actions.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "PresentAlertAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentAlertAction",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "PresentAlertAction"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "PresentAlertAction",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/presentalertaction"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/PresentFileSaveDialogAction": {
+  "abstract" : [
+    {
+      "text" : "Presents a ‘Save file’ dialog fit for selecting a save destination. Returns",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "code" : "nil",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if the user cancels the operation.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "PresentFileSaveDialogAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentFileSaveDialogAction",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "PresentFileSaveDialogAction"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "PresentFileSaveDialogAction",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/presentfilesavedialogaction"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/PresentSingleFileOpenDialogAction": {
+  "abstract" : [
+    {
+      "text" : "Presents an ‘Open file’ dialog fit for selecting a single file. Some",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "backends only allow selecting either files or directories but not both",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "in a single dialog. Returns ",
+      "type" : "text"
+    },
+    {
+      "code" : "nil",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if the user cancels the operation.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "PresentSingleFileOpenDialogAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentSingleFileOpenDialogAction",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "PresentSingleFileOpenDialogAction"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "PresentSingleFileOpenDialogAction",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/presentsinglefileopendialogaction"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/RevealFileAction": {
+  "abstract" : [
+    {
+      "text" : "Reveals a file in the system’s file manager. This opens",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "the file’s enclosing directory and highlighting the file.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RevealFileAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RevealFileAction",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RevealFileAction"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RevealFileAction",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/revealfileaction"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/SaveDialogOptions": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SaveDialogOptions"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SaveDialogOptions",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SaveDialogOptions"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "SaveDialogOptions",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/savedialogoptions"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/StackAlignment": {
+  "abstract" : [
+    {
+      "text" : "Alignment of items layed out along either a horizontal or vertical axis.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "StackAlignment"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StackAlignment",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "StackAlignment"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "StackAlignment",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/stackalignment"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/State-basics": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/State-basics",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "State basics",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/state-basics"
 }
 }
 }

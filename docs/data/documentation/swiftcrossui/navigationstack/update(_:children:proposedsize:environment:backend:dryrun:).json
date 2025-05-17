@@ -17,6 +17,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Navigation",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack\/View-Implementations"
       ]
@@ -426,7 +427,15 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppBackend": {
   "abstract" : [
     {
-      "text" : "A backend that can be used to run an app (e.g. Gtk or Qt).",
+      "text" : "A backend that can be used to run an app. Usually built on top of an",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "existing UI framework.",
       "type" : "text"
     }
   ],
@@ -566,6 +575,17 @@
   "title" : "ForEach",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/foreach"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Navigation": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Navigation",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Navigation",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigation"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStack": {
   "abstract" : [

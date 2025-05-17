@@ -44,7 +44,8 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment"
       ]
     ]
   },
@@ -126,6 +127,30 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/openURL",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OpenURLAction",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/revealFile",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RevealFileAction",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/chooseFileSaveDestination",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentFileSaveDialogAction",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SaveDialogOptions",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ContentType",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/chooseFile",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OpenDialogOptions",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentSingleFileOpenDialogAction",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileChooserResult",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/presentAlert",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AlertAction",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AlertActionsBuilder"
+      ],
+      "title" : "Actions"
+    }
+  ],
   "topicSections" : [
     {
       "identifiers" : [
@@ -161,6 +186,630 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AlertAction": {
+  "abstract" : [
+    {
+      "text" : "An alert action button. Only backends should interface with this type",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "directly. See ",
+      "type" : "text"
+    },
+    {
+      "code" : "View\/alert(_:isPresented:actions:message:)",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "AlertAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AlertAction",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "AlertAction"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "AlertAction",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/alertaction"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AlertActionsBuilder": {
+  "abstract" : [
+    {
+      "text" : "A builder for ",
+      "type" : "text"
+    },
+    {
+      "code" : "[AlertAction]",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "AlertActionsBuilder"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AlertActionsBuilder",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "AlertActionsBuilder"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "AlertActionsBuilder",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/alertactionsbuilder"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ContentType": {
+  "abstract" : [
+    {
+      "text" : "A content type corresponding to a specific file\/data format.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ContentType"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ContentType",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ContentType"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ContentType",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/contenttype"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Environment": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Environment",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environment"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/chooseFile": {
+  "abstract" : [
+    {
+      "text" : "Presents an ‘Open file’ dialog fit for selecting a single file. Some",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "backends only allow selecting either files or directories but not both",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "in a single dialog. Returns ",
+      "type" : "text"
+    },
+    {
+      "code" : "nil",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if the user cancels the operation.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Displays as a modal for the current window, or the entire app if",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "accessed outside of a scene’s view graph (in which case the backend",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "can decide whether to make it an app modal, a standalone window, or a",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "window of its choosing).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "chooseFile"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI33PresentSingleFileOpenDialogActionV",
+      "text" : "PresentSingleFileOpenDialogAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/chooseFile",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "chooseFile",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environmentvalues\/choosefile"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/chooseFileSaveDestination": {
+  "abstract" : [
+    {
+      "text" : "Presents a ‘Save file’ dialog fit for selecting a save destination.",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "Returns ",
+      "type" : "text"
+    },
+    {
+      "code" : "nil",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if the user cancels the operation. Displays as a modal",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "for the current window, or the entire app if accessed outside of a",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "scene’s view graph (in which case the backend can decide whether to",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "make it an app modal, a standalone window, or a modal for a window of",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "its chooosing).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "chooseFileSaveDestination"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI27PresentFileSaveDialogActionV",
+      "text" : "PresentFileSaveDialogAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/chooseFileSaveDestination",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "chooseFileSaveDestination",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environmentvalues\/choosefilesavedestination"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/openURL": {
+  "abstract" : [
+    {
+      "text" : "Opens a URL with the default application. May present an application",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "picker if multiple applications are registered for the given URL",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "protocol.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "openURL"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI13OpenURLActionV",
+      "text" : "OpenURLAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/openURL",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "openURL",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environmentvalues\/openurl"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/presentAlert": {
+  "abstract" : [
+    {
+      "text" : "Presents an alert for the current window, or the entire app if accessed",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "outside of a scene’s view graph (in which case the backend can decide",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "whether to make it an app modal, a standalone window, or a modal for a",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "window of its choosing).",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "presentAlert"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI18PresentAlertActionV",
+      "text" : "PresentAlertAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/presentAlert",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "presentAlert",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environmentvalues\/presentalert"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/revealFile": {
+  "abstract" : [
+    {
+      "text" : "Reveals a file in the system’s file manager. This opens",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "the file’s enclosing directory and highlighting the file.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "revealFile"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI16RevealFileActionV",
+      "text" : "RevealFileAction"
+    },
+    {
+      "kind" : "text",
+      "text" : "?"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/revealFile",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "revealFile",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environmentvalues\/revealfile"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/FileChooserResult": {
+  "abstract" : [
+    {
+      "text" : "The result returned when a user either selects a file or dismisses the",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "file chooser dialog.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "FileChooserResult"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileChooserResult",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "FileChooserResult"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "FileChooserResult",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/filechooserresult"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/FileDialogOptions": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "FileDialogOptions"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/FileDialogOptions",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "FileDialogOptions"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "FileDialogOptions",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/filedialogoptions"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/OpenDialogOptions": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "OpenDialogOptions"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OpenDialogOptions",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "OpenDialogOptions"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "OpenDialogOptions",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/opendialogoptions"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/OpenURLAction": {
+  "abstract" : [
+    {
+      "text" : "Opens a URL with the default application. May present an application picker",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "if multiple applications are registered for the given URL protocol.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "OpenURLAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OpenURLAction",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "OpenURLAction"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "OpenURLAction",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/openurlaction"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/PresentAlertAction": {
   "abstract" : [
@@ -299,6 +948,183 @@
   "title" : "callAsFunction(_:actions:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/presentalertaction\/callasfunction(_:actions:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/PresentFileSaveDialogAction": {
+  "abstract" : [
+    {
+      "text" : "Presents a ‘Save file’ dialog fit for selecting a save destination. Returns",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "code" : "nil",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if the user cancels the operation.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "PresentFileSaveDialogAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentFileSaveDialogAction",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "PresentFileSaveDialogAction"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "PresentFileSaveDialogAction",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/presentfilesavedialogaction"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/PresentSingleFileOpenDialogAction": {
+  "abstract" : [
+    {
+      "text" : "Presents an ‘Open file’ dialog fit for selecting a single file. Some",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "backends only allow selecting either files or directories but not both",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "in a single dialog. Returns ",
+      "type" : "text"
+    },
+    {
+      "code" : "nil",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if the user cancels the operation.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "PresentSingleFileOpenDialogAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PresentSingleFileOpenDialogAction",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "PresentSingleFileOpenDialogAction"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "PresentSingleFileOpenDialogAction",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/presentsinglefileopendialogaction"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/RevealFileAction": {
+  "abstract" : [
+    {
+      "text" : "Reveals a file in the system’s file manager. This opens",
+      "type" : "text"
+    },
+    {
+      "text" : " ",
+      "type" : "text"
+    },
+    {
+      "text" : "the file’s enclosing directory and highlighting the file.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RevealFileAction"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RevealFileAction",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RevealFileAction"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RevealFileAction",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/revealfileaction"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/SaveDialogOptions": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SaveDialogOptions"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SaveDialogOptions",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SaveDialogOptions"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "SaveDialogOptions",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/savedialogoptions"
 }
 }
 }

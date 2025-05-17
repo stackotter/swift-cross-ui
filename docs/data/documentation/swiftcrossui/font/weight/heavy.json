@@ -3,6 +3,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Styling",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight"
       ]
@@ -194,6 +195,17 @@
   "title" : "Font.Weight.heavy",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/font\/weight\/heavy"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Styling": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Styling",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Styling",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/styling"
 }
 }
 }

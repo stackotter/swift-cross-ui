@@ -17,6 +17,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Styling",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font\/Weight\/Equatable-Implementations"
@@ -347,6 +348,17 @@
   "title" : "Equatable Implementations",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/font\/weight\/equatable-implementations"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Styling": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Styling",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Styling",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/styling"
 }
 }
 }

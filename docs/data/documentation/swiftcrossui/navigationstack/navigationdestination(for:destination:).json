@@ -9,6 +9,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Navigation",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack"
       ]
     ]
@@ -524,6 +525,17 @@
   "title" : "EitherView",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/eitherview"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Navigation": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Navigation",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Navigation",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigation"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStack": {
   "abstract" : [

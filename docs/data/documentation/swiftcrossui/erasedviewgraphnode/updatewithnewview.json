@@ -61,6 +61,8 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-graph",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode"
       ]
     ]
@@ -549,6 +551,28 @@
   "title" : "updateWithNewView",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/erasedviewgraphnode\/updatewithnewview"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Implementation-details": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Implementation details",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/implementation-details"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View-graph": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-graph",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "View graph",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view-graph"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewUpdateResult": {
   "abstract" : [

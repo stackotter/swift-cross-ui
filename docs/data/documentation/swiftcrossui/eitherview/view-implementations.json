@@ -3,6 +3,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView"
       ]
     ]
@@ -3608,6 +3609,17 @@
   "title" : "update(_:children:proposedSize:environment:backend:dryRun:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/eitherview\/update(_:children:proposedsize:environment:backend:dryrun:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Implementation-details": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Implementation details",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/implementation-details"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View/body-2j1pw": {
   "abstract" : [

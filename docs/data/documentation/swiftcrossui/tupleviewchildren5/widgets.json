@@ -17,6 +17,8 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-graph",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren5"
       ]
     ]
@@ -214,6 +216,17 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/anywidget"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Implementation-details": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Implementation details",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/implementation-details"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView5": {
   "abstract" : [
     {
@@ -340,6 +353,17 @@
   "title" : "widgets",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/tupleviewchildren5\/widgets"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View-graph": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-graph",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "View graph",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view-graph"
 }
 }
 }

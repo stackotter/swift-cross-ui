@@ -26,6 +26,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Controls",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Button\/View-Implementations"
       ]
@@ -411,6 +412,17 @@
   "title" : "task(priority:_:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/button\/task(priority:_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Controls": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Controls",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Controls",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/controls"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

@@ -3,6 +3,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Styling",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Font"
       ]
     ]
@@ -447,6 +448,17 @@
   "title" : "Font.system(size:weight:design:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/font\/system(size:weight:design:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Styling": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Styling",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Styling",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/styling"
 }
 }
 }

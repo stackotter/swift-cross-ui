@@ -17,6 +17,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Tables",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent9"
       ]
     ]
@@ -358,6 +359,17 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Tables": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Tables",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Tables",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tables"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleTableRowContent9": {
   "abstract" : [

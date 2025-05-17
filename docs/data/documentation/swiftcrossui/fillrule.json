@@ -8,7 +8,8 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shapes"
       ]
     ]
   },
@@ -100,6 +101,17 @@
   },
   "sections" : [
 
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StrokeCap",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StrokeJoin",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StrokeStyle"
+      ],
+      "title" : "Styling"
+    }
   ],
   "topicSections" : [
     {
@@ -255,6 +267,110 @@
   "title" : "FillRule.winding",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/fillrule\/winding"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Shapes": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shapes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Shapes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/shapes"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/StrokeCap": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "StrokeCap"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StrokeCap",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "StrokeCap"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "StrokeCap",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/strokecap"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/StrokeJoin": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "StrokeJoin"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StrokeJoin",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "StrokeJoin"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "StrokeJoin",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/strokejoin"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/StrokeStyle": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "StrokeStyle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StrokeStyle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "StrokeStyle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "StrokeStyle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/strokestyle"
 }
 }
 }

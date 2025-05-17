@@ -3,6 +3,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AlertActionsBuilder"
       ]
     ]
@@ -398,6 +399,17 @@
   "title" : "buildPartialBlock(first:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/alertactionsbuilder\/buildpartialblock(first:)-46b4k"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Environment": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Environment",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environment"
 }
 }
 }

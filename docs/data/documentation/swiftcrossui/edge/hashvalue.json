@@ -17,6 +17,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Layout",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/RawRepresentable-Implementations"
       ]
@@ -326,6 +327,17 @@
   "title" : "hashValue",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/edge\/hashvalue"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Layout": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Layout",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Layout",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/layout"
 }
 }
 }

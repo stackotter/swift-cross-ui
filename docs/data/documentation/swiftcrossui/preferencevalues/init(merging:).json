@@ -3,6 +3,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Preferences",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/PreferenceValues"
       ]
     ]
@@ -210,6 +211,17 @@
   "title" : "init(merging:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/preferencevalues\/init(merging:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Preferences": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Preferences",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Preferences",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/preferences"
 }
 }
 }

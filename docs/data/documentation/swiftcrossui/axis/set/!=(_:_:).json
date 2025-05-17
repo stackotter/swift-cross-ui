@@ -17,6 +17,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-fundamentals",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Axis",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Axis\/Set",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Axis\/Set\/Equatable-Implementations"
@@ -353,6 +354,17 @@
   "title" : "Equatable Implementations",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/axis\/set\/equatable-implementations"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View-fundamentals": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-fundamentals",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "View fundamentals",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/view-fundamentals"
 }
 }
 }

@@ -1,14 +1,15 @@
 {
   "abstract" : [
     {
-      "text" : "A secondary Linux backend built on Gtk 3 (for older distros without Gtk 4).",
+      "text" : "A secondary Linux backend built on top of Gtk 3 (for older distros without Gtk 4).",
       "type" : "text"
     }
   ],
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Built-in-backends"
       ]
     ]
   },
@@ -396,8 +397,7 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/UIKitBackend",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/WinUIBackend",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/GtkBackend"
-      ],
-      "title" : "Backends"
+      ]
     }
   ],
   "variants" : [
@@ -431,7 +431,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/AppKitBackend": {
   "abstract" : [
     {
-      "text" : "SwiftCrossUI’s native macOS backend built on AppKit.",
+      "text" : "SwiftCrossUI’s native macOS backend built on top of AppKit.",
       "type" : "text"
     }
   ],
@@ -441,6 +441,17 @@
   "title" : "AppKitBackend",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appkitbackend"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Built-in-backends": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Built-in-backends",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Built-in backends",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/built-in-backends"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/DefaultBackend": {
   "abstract" : [
@@ -459,7 +470,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkBackend": {
   "abstract" : [
     {
-      "text" : "SwiftCrossUI’s native Linux backend built on Gtk 4.",
+      "text" : "SwiftCrossUI’s native Linux backend built on top of Gtk 4.",
       "type" : "text"
     }
   ],
@@ -473,7 +484,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/UIKitBackend": {
   "abstract" : [
     {
-      "text" : "SwiftCrossUI’s native iOS and tvOS backend built on UIKit.",
+      "text" : "SwiftCrossUI’s native iOS and tvOS backend built on top of UIKit.",
       "type" : "text"
     }
   ],
@@ -487,7 +498,7 @@
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WinUIBackend": {
   "abstract" : [
     {
-      "text" : "SwiftCrossUI’s native Windows backend built on WinUI 3.",
+      "text" : "SwiftCrossUI’s native Windows backend built on top of WinUI 3.",
       "type" : "text"
     }
   ],

@@ -55,7 +55,9 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-graph"
       ]
     ]
   },
@@ -161,15 +163,34 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyViewGraphNode",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewChildren",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraph",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode"
-      ],
-      "title" : "Implementation Details"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphNode",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AnyViewGraphNode",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphSnapshotter",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNodeTransformer",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyViewChildren",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView1",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView2",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView3",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView4",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView5",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView6",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView7",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView8",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView9",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleView10",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren1",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren2",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren3",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren4",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren5",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren6",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren7",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren8",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren9",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleViewChildren10"
+      ]
     }
   ],
   "topicSections" : [
@@ -296,100 +317,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/anyviewgraphnode"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EitherView": {
-  "abstract" : [
-    {
-      "text" : "A view used by ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " to support if\/else conditional statements.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "EitherView"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EitherView",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "EitherView"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "EitherView",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/eitherview"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyView": {
-  "abstract" : [
-    {
-      "text" : "A placeholder view used by elementary ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " implementations which don’t have bodies. Fatally",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "crashes if rendered.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "EmptyView"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyView",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "EmptyView"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "EmptyView",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/emptyview"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyViewChildren": {
   "abstract" : [
     {
@@ -423,6 +350,68 @@
   "title" : "EmptyViewChildren",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/emptyviewchildren"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ErasedViewGraphNode": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ErasedViewGraphNode"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNode",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ErasedViewGraphNode"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ErasedViewGraphNode",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/erasedviewgraphnode"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ErasedViewGraphNodeTransformer": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ErasedViewGraphNodeTransformer"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ErasedViewGraphNodeTransformer",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ErasedViewGraphNodeTransformer"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ErasedViewGraphNodeTransformer",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/erasedviewgraphnodetransformer"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ForEach": {
   "abstract" : [
@@ -458,48 +447,16 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/foreach"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/OptionalView": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Implementation-details": {
   "abstract" : [
-    {
-      "text" : "A view used by ",
-      "type" : "text"
-    },
-    {
-      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
-      "isActive" : true,
-      "type" : "reference"
-    },
-    {
-      "text" : " to support non-exhaustive if statements.",
-      "type" : "text"
-    }
+
   ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "OptionalView"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/OptionalView",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "OptionalView"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "OptionalView",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Implementation-details",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Implementation details",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/optionalview"
+  "url" : "\/documentation\/swiftcrossui\/implementation-details"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleView1": {
   "abstract" : [
@@ -1425,47 +1382,16 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/view"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewBuilder": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/View-graph": {
   "abstract" : [
-    {
-      "text" : "A result builder used to compose views together into composite views in",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "a declarative manner.",
-      "type" : "text"
-    }
+
   ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewBuilder"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewBuilder"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewBuilder",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View-graph",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "View graph",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewbuilder"
+  "url" : "\/documentation\/swiftcrossui\/view-graph"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraph": {
   "abstract" : [
@@ -1813,6 +1739,37 @@
   "title" : "widgets(for:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/viewgraphnodechildren\/widgets(for:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewGraphSnapshotter": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphSnapshotter"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewGraphSnapshotter",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "ViewGraphSnapshotter"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "ViewGraphSnapshotter",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/viewgraphsnapshotter"
 }
 }
 }

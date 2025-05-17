@@ -35,7 +35,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment"
       ]
     ]
   },
@@ -130,6 +130,17 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Orientation",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/layoutAlignment",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StackAlignment"
+      ],
+      "title" : "Layout"
+    }
+  ],
   "variants" : [
     {
       "paths" : [
@@ -158,10 +169,39 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Environment": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Environment",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/environment"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/layoutAlignment": {
   "abstract" : [
     {
-      "text" : "The environment used when constructing scenes and views. Each scene or view",
+      "text" : "The current stack alignment. Inherited by ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ForEach",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " and ",
+      "type" : "text"
+    },
+    {
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Group",
+      "isActive" : true,
+      "type" : "reference"
+    },
+    {
+      "text" : " so",
       "type" : "text"
     },
     {
@@ -169,22 +209,14 @@
       "type" : "text"
     },
     {
-      "text" : "gets to modify the environment before passing it on to its children, which",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "is the basis of many view modifiers.",
+      "text" : "that they can be used without affecting layout.",
       "type" : "text"
     }
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "struct"
+      "text" : "var"
     },
     {
       "kind" : "text",
@@ -192,21 +224,24 @@
     },
     {
       "kind" : "identifier",
-      "text" : "EnvironmentValues"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues",
-  "kind" : "symbol",
-  "navigatorTitle" : [
+      "text" : "layoutAlignment"
+    },
     {
-      "kind" : "identifier",
-      "text" : "EnvironmentValues"
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:12SwiftCrossUI14StackAlignmentO",
+      "text" : "StackAlignment"
     }
   ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EnvironmentValues\/layoutAlignment",
+  "kind" : "symbol",
   "role" : "symbol",
-  "title" : "EnvironmentValues",
+  "title" : "layoutAlignment",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/environmentvalues"
+  "url" : "\/documentation\/swiftcrossui\/environmentvalues\/layoutalignment"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/EnvironmentValues/layoutOrientation": {
   "abstract" : [
@@ -380,6 +415,40 @@
   "title" : "Orientation",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/orientation"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/StackAlignment": {
+  "abstract" : [
+    {
+      "text" : "Alignment of items layed out along either a horizontal or vertical axis.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "StackAlignment"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StackAlignment",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "StackAlignment"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "StackAlignment",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/stackalignment"
 }
 }
 }

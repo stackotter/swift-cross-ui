@@ -3,6 +3,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Gestures",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TapGesture"
       ]
     ]
@@ -66,6 +67,17 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Gestures": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Gestures",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Gestures",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/gestures"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TapGesture": {
   "abstract" : [

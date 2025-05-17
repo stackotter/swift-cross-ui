@@ -3,7 +3,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/View"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Styling"
       ]
     ]
   },
@@ -180,6 +180,17 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Styling": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Styling",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Styling",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/styling"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

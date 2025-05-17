@@ -17,7 +17,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Layout",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge\/Set\/SetAlgebra-Implementations"
       ]
@@ -153,40 +153,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge": {
-  "abstract" : [
-    {
-      "text" : "Indicates a specific edge of a rectangle.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "enum"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "Edge"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Edge",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "Edge"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "Edge",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/edge"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Edge/Set": {
   "abstract" : [
     {
@@ -265,6 +231,17 @@
   "title" : "isEmpty",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/edge\/set\/isempty"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Layout": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Layout",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Layout",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/layout"
 }
 }
 }

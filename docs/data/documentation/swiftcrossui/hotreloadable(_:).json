@@ -2,7 +2,8 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Hot-reloading"
       ]
     ]
   },
@@ -193,6 +194,14 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadable()"
+      ]
+    }
+  ],
   "variants" : [
     {
       "paths" : [
@@ -220,6 +229,46 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Hot-reloading": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Hot-reloading",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Hot reloading",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hot-reloading"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/HotReloadable()": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "macro"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "HotReloadable"
+    },
+    {
+      "kind" : "text",
+      "text" : "()"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/HotReloadable()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "HotReloadable()",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hotreloadable()"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/HotReloadableView": {
   "abstract" : [

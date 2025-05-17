@@ -8,7 +8,8 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shapes"
       ]
     ]
   },
@@ -111,6 +112,19 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shape",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Rectangle",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RoundedRectangle",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Ellipse",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Capsule",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Circle"
+      ]
+    }
+  ],
   "topicSections" : [
     {
       "identifiers" : [
@@ -156,6 +170,167 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Capsule": {
+  "abstract" : [
+    {
+      "text" : "A rounded rectangle whose corner radius is equal to half the length of its shortest side.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Capsule"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Capsule",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Capsule"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Capsule",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/capsule"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Circle": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Circle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Circle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Circle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Circle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/circle"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Ellipse": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Ellipse"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Ellipse",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Ellipse"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Ellipse",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/ellipse"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Rectangle": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "Rectangle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Rectangle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "Rectangle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "Rectangle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/rectangle"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/RoundedRectangle": {
+  "abstract" : [
+    {
+      "text" : "A rounded rectangle.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "RoundedRectangle"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RoundedRectangle",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "RoundedRectangle"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "RoundedRectangle",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/roundedrectangle"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Shape": {
   "abstract" : [
     {
@@ -189,6 +364,17 @@
   "title" : "Shape",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/shape"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Shapes": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shapes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Shapes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/shapes"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/StyledShape": {
   "abstract" : [

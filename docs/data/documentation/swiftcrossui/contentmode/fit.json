@@ -17,6 +17,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Layout",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ContentMode"
       ]
     ]
@@ -190,6 +191,17 @@
   "title" : "ContentMode.fit",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/contentmode\/fit"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Layout": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Layout",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Layout",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/layout"
 }
 }
 }

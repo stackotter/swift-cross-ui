@@ -3,6 +3,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SceneBuilder"
       ]
     ]
@@ -707,6 +708,17 @@
   "title" : "buildBlock(_:_:_:_:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scenebuilder\/buildblock(_:_:_:_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scenes": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Scenes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scenes"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleScene4": {
   "abstract" : [

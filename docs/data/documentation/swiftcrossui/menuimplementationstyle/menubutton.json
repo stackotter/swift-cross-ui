@@ -9,6 +9,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Custom-backends",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/MenuImplementationStyle"
       ]
     ]
@@ -323,6 +324,17 @@
   "title" : "updateButton(_:label:menu:environment:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/appbackend\/updatebutton(_:label:menu:environment:)-6mdv1"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Custom-backends": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Custom-backends",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Custom backends",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/custom-backends"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/MenuImplementationStyle": {
   "abstract" : [

@@ -9,6 +9,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Tables",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Table",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Table\/View-Implementations"
       ]
@@ -431,6 +432,17 @@
   "title" : "frame(width:height:alignment:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/table\/frame(width:height:alignment:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Tables": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Tables",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Tables",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tables"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

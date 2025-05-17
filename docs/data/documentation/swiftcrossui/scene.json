@@ -24,7 +24,8 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes"
       ]
     ]
   },
@@ -121,7 +122,6 @@
   "relationshipsSections" : [
     {
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandsModifier",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene10",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene2",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleScene3",
@@ -146,18 +146,21 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SceneBuilder"
+      ],
+      "title" : "Creating scenes"
+    }
+  ],
   "topicSections" : [
     {
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene\/Node"
       ],
       "title" : "Associated Types"
-    },
-    {
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene\/commands"
-      ],
-      "title" : "Instance Properties"
     },
     {
       "identifiers" : [
@@ -193,37 +196,6 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/CommandsModifier": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "CommandsModifier"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandsModifier",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "CommandsModifier"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "CommandsModifier",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/commandsmodifier"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Scene": {
   "abstract" : [
@@ -313,44 +285,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scene\/node"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scene/commands": {
-  "abstract" : [
-    {
-      "text" : "The commands to be propagated up from the scene.",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "var"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "commands"
-    },
-    {
-      "kind" : "text",
-      "text" : ": "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI8CommandsV",
-      "text" : "Commands"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene\/commands",
-  "kind" : "symbol",
-  "required" : true,
-  "role" : "symbol",
-  "title" : "commands",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/scene\/commands"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Scene/commands(_:)": {
   "abstract" : [
 
@@ -382,21 +316,17 @@
       "text" : ") -> "
     },
     {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI16CommandsModifierV",
-      "text" : "CommandsModifier"
+      "kind" : "keyword",
+      "text" : "some"
     },
     {
       "kind" : "text",
-      "text" : "<"
+      "text" : " "
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : ">"
+      "preciseIdentifier" : "s:12SwiftCrossUI5SceneP",
+      "text" : "Scene"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene\/commands(_:)",
@@ -405,6 +335,51 @@
   "title" : "commands(_:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scene\/commands(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/SceneBuilder": {
+  "abstract" : [
+    {
+      "text" : "Builds an app’s root scene by composing other scenes together.",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "SceneBuilder"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SceneBuilder",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "SceneBuilder"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "SceneBuilder",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scenebuilder"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scenes": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Scenes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scenes"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleScene10": {
   "abstract" : [

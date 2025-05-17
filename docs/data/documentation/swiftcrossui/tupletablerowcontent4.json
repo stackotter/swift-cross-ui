@@ -2,7 +2,8 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Tables"
       ]
     ]
   },
@@ -214,6 +215,24 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyTableRowContent",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent1",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent2",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent3",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent5",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent6",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent7",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent8",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent9",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent10"
+      ],
+      "title" : "Table row content"
+    }
+  ],
   "topicSections" : [
     {
       "identifiers" : [
@@ -272,6 +291,37 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/EmptyTableRowContent": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "EmptyTableRowContent"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/EmptyTableRowContent",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "EmptyTableRowContent"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "EmptyTableRowContent",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/emptytablerowcontent"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TableRowContent": {
   "abstract" : [
 
@@ -302,6 +352,141 @@
   "title" : "TableRowContent",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/tablerowcontent"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Tables": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Tables",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Tables",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tables"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleTableRowContent1": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent1"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent1",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent1"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleTableRowContent1",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupletablerowcontent1"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleTableRowContent10": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent10"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent10",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent10"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleTableRowContent10",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupletablerowcontent10"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleTableRowContent2": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent2"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent2",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent2"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleTableRowContent2",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupletablerowcontent2"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleTableRowContent3": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent3"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent3",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent3"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleTableRowContent3",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupletablerowcontent3"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleTableRowContent4": {
   "abstract" : [
@@ -838,6 +1023,161 @@
   "title" : "labels",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/tupletablerowcontent4\/labels"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleTableRowContent5": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent5"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent5",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent5"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleTableRowContent5",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupletablerowcontent5"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleTableRowContent6": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent6"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent6",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent6"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleTableRowContent6",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupletablerowcontent6"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleTableRowContent7": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent7"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent7",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent7"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleTableRowContent7",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupletablerowcontent7"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleTableRowContent8": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent8"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent8",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent8"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleTableRowContent8",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupletablerowcontent8"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleTableRowContent9": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent9"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent9",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "TupleTableRowContent9"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "TupleTableRowContent9",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tupletablerowcontent9"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/View": {
   "abstract" : [

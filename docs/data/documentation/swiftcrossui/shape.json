@@ -8,7 +8,8 @@
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shapes"
       ]
     ]
   },
@@ -193,6 +194,19 @@
   },
   "sections" : [
 
+  ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/StyledShape",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Rectangle",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/RoundedRectangle",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Ellipse",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Capsule",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Circle"
+      ]
+    }
   ],
   "topicSections" : [
     {
@@ -726,6 +740,17 @@
   "title" : "stroke(_:style:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/shape\/stroke(_:style:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Shapes": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Shapes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Shapes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/shapes"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/StyledShape": {
   "abstract" : [

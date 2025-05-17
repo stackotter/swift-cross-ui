@@ -3,6 +3,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene"
       ]
     ]
@@ -14,7 +15,7 @@
   "kind" : "symbol",
   "metadata" : {
     "extendedModule" : "SwiftCrossUI",
-    "externalID" : "s:12SwiftCrossUI5ScenePAAE8commandsyAA16CommandsModifierVyxGAA0F0VyXEF",
+    "externalID" : "s:12SwiftCrossUI5ScenePAAE8commandsyQrAA8CommandsVyXEF",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -42,21 +43,17 @@
         "text" : ") -> "
       },
       {
-        "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:12SwiftCrossUI16CommandsModifierV",
-        "text" : "CommandsModifier"
+        "kind" : "keyword",
+        "text" : "some"
       },
       {
         "kind" : "text",
-        "text" : "<"
+        "text" : " "
       },
       {
         "kind" : "typeIdentifier",
-        "text" : "Self"
-      },
-      {
-        "kind" : "text",
-        "text" : ">"
+        "preciseIdentifier" : "s:12SwiftCrossUI5SceneP",
+        "text" : "Scene"
       }
     ],
     "modules" : [
@@ -141,22 +138,22 @@
               "text" : ") -> "
             },
             {
-              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandsModifier",
-              "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:12SwiftCrossUI16CommandsModifierV",
-              "text" : "CommandsModifier"
+              "kind" : "keyword",
+              "text" : "some"
             },
             {
               "kind" : "text",
-              "text" : "<"
+              "text" : " "
             },
             {
+              "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene",
               "kind" : "typeIdentifier",
-              "text" : "Self"
+              "preciseIdentifier" : "s:12SwiftCrossUI5SceneP",
+              "text" : "Scene"
             },
             {
               "kind" : "text",
-              "text" : ">"
+              "text" : "\n"
             }
           ]
         }
@@ -274,37 +271,6 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/commandsbuilder"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/CommandsModifier": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "CommandsModifier"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandsModifier",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "CommandsModifier"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "CommandsModifier",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/commandsmodifier"
-},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Scene": {
   "abstract" : [
     {
@@ -386,21 +352,17 @@
       "text" : ") -> "
     },
     {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:12SwiftCrossUI16CommandsModifierV",
-      "text" : "CommandsModifier"
+      "kind" : "keyword",
+      "text" : "some"
     },
     {
       "kind" : "text",
-      "text" : "<"
+      "text" : " "
     },
     {
       "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : ">"
+      "preciseIdentifier" : "s:12SwiftCrossUI5SceneP",
+      "text" : "Scene"
     }
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene\/commands(_:)",
@@ -409,6 +371,17 @@
   "title" : "commands(_:)",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scene\/commands(_:)"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scenes": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Scenes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scenes"
 }
 }
 }

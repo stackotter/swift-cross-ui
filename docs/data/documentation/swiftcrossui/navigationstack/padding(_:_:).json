@@ -33,6 +33,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Navigation",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/NavigationStack\/View-Implementations"
       ]
@@ -333,6 +334,17 @@
   "title" : "Edge.Set",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/edge\/set"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Navigation": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Navigation",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Navigation",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/navigation"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStack": {
   "abstract" : [

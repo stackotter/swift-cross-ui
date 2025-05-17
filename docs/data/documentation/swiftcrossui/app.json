@@ -94,10 +94,10 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SceneBuilder",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppMetadata",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes"
       ],
-      "title" : "App Structure"
+      "title" : "App structure"
     }
   ],
   "topicSections" : [
@@ -513,10 +513,10 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/app\/metadata-8wl5c"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/SceneBuilder": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/AppMetadata": {
   "abstract" : [
     {
-      "text" : "Builds an app’s root scene by composing other scenes together.",
+      "text" : "Metadata loaded at app start up.",
       "type" : "text"
     }
   ],
@@ -531,63 +531,32 @@
     },
     {
       "kind" : "identifier",
-      "text" : "SceneBuilder"
+      "text" : "AppMetadata"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/SceneBuilder",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/AppMetadata",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "SceneBuilder"
+      "text" : "AppMetadata"
     }
   ],
   "role" : "symbol",
-  "title" : "SceneBuilder",
+  "title" : "AppMetadata",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/scenebuilder"
+  "url" : "\/documentation\/swiftcrossui\/appmetadata"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/ViewBuilder": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scenes": {
   "abstract" : [
-    {
-      "text" : "A result builder used to compose views together into composite views in",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "a declarative manner.",
-      "type" : "text"
-    }
+
   ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "ViewBuilder"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ViewBuilder",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "ViewBuilder"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "ViewBuilder",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Scenes",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/viewbuilder"
+  "url" : "\/documentation\/swiftcrossui\/scenes"
 }
 }
 }

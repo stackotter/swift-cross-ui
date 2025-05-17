@@ -137,66 +137,11 @@
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Environment": {
   "abstract" : [
-    {
-      "text" : "A property wrapper used to access environment values within a ",
-      "type" : "text"
-    },
-    {
-      "code" : "View",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " or",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "code" : "App",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : ". Must not be used before the view graph accesses the view or app’s",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "code" : "body",
-      "type" : "codeVoice"
-    },
-    {
-      "text" : " (i.e. don’t access it from an initializer).",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "struct"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "Environment"
-    }
+
   ],
   "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Environment",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "Environment"
-    }
-  ],
-  "role" : "symbol",
+  "kind" : "article",
+  "role" : "collectionGroup",
   "title" : "Environment",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/environment"

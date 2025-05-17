@@ -286,7 +286,7 @@
     {
       "generated" : true,
       "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Quick-Start"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Hot-reloading"
       ],
       "title" : "Getting Started"
     }
@@ -353,6 +353,17 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/foreach"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Hot-reloading": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Hot-reloading",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Hot reloading",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hot-reloading"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/NavigationStack": {
   "abstract" : [
     {
@@ -386,20 +397,6 @@
   "title" : "NavigationStack",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/navigationstack"
-},
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Quick-Start": {
-  "abstract" : [
-    {
-      "text" : "Creating a cross-platform SwiftCrossUI app with Swift Bundler.",
-      "type" : "text"
-    }
-  ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Quick-Start",
-  "kind" : "article",
-  "role" : "article",
-  "title" : "Quick start",
-  "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/quick-start"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/WindowGroup": {
   "abstract" : [

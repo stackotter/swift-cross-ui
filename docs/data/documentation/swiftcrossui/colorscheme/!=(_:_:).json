@@ -17,6 +17,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Styling",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ColorScheme",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/ColorScheme\/Equatable-Implementations"
       ]
@@ -315,6 +316,17 @@
   "title" : "Equatable Implementations",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/colorscheme\/equatable-implementations"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Styling": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Styling",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Styling",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/styling"
 }
 }
 }

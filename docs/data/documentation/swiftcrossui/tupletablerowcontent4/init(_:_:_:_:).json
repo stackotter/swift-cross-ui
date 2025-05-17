@@ -3,6 +3,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Tables",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/TupleTableRowContent4"
       ]
     ]
@@ -400,6 +401,17 @@
   "title" : "TableColumn",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/tablecolumn"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Tables": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Tables",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Tables",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/tables"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/TupleTableRowContent4": {
   "abstract" : [

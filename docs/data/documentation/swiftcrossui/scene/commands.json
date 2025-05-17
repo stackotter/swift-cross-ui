@@ -9,7 +9,7 @@
     "paths" : [
       [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI",
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene"
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes"
       ]
     ]
   },
@@ -117,6 +117,17 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Commands",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandsBuilder",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandMenu"
+      ],
+      "title" : "Commands"
+    }
+  ],
   "variants" : [
     {
       "paths" : [
@@ -144,6 +155,37 @@
   "title" : "SwiftCrossUI",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/CommandMenu": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "CommandMenu"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandMenu",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "CommandMenu"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "CommandMenu",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/commandmenu"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Commands": {
   "abstract" : [
@@ -176,33 +218,26 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/commands"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scene": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/CommandsBuilder": {
   "abstract" : [
     {
-      "text" : "A scene wraps a root view and dictates how it is displayed (e.g. in a window or",
+      "text" : "A builder for ",
       "type" : "text"
     },
     {
-      "text" : " ",
-      "type" : "text"
+      "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Commands",
+      "isActive" : true,
+      "type" : "reference"
     },
     {
-      "text" : "a menu bar). Scenes can also be a composition of multiple child scenes instead",
-      "type" : "text"
-    },
-    {
-      "text" : " ",
-      "type" : "text"
-    },
-    {
-      "text" : "of wrapping a root view.",
+      "text" : ".",
       "type" : "text"
     }
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "protocol"
+      "text" : "struct"
     },
     {
       "kind" : "text",
@@ -210,21 +245,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "Scene"
+      "text" : "CommandsBuilder"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scene",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/CommandsBuilder",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "Scene"
+      "text" : "CommandsBuilder"
     }
   ],
   "role" : "symbol",
-  "title" : "Scene",
+  "title" : "CommandsBuilder",
   "type" : "topic",
-  "url" : "\/documentation\/swiftcrossui\/scene"
+  "url" : "\/documentation\/swiftcrossui\/commandsbuilder"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Scene/commands": {
   "abstract" : [
@@ -263,6 +298,17 @@
   "title" : "commands",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scene\/commands"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Scenes": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Scenes",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Scenes",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/scenes"
 }
 }
 }
