@@ -37,6 +37,35 @@ struct ArcShape: StyledShape {
     }
 }
 
+struct TestCurveShape: StyledShape {
+    var strokeColor: Color? = Color.purple
+    let fillColor: Color? = nil
+    let strokeStyle: StrokeStyle? = StrokeStyle(width: 3.0, cap: .round)
+
+    func path(in bounds: Path.Rect) -> Path {
+        Path()
+            .move(to: SIMD2(x: bounds.x + 1.5, y: bounds.y + 1.5))
+            .addCubicCurve(
+                control1: SIMD2(x: bounds.maxX, y: bounds.center.y),
+                control2: SIMD2(x: bounds.x, y: bounds.center.y),
+                to: SIMD2(x: bounds.maxX - 1.5, y: bounds.maxY - 1.5)
+            )
+            .addSubpath(
+                RoundedRectangle(cornerRadius: 12.0)
+                    .path(
+                        in: Path.Rect(
+                            x: bounds.x + (1.0 - 0.5.squareRoot()) * bounds.width / 2.0,
+                            y: bounds.y + (1.0 - 0.5.squareRoot()) * bounds.height / 2.0,
+                            width: bounds.width * 0.5.squareRoot(),
+                            height: bounds.height * 0.5.squareRoot()
+                        )
+                    )
+                    .applyTransform(.rotation(degrees: 60.0, center: bounds.center))
+            )
+            .applyTransform(.rotation(degrees: -15.0, center: bounds.center))
+    }
+}
+
 @main
 struct PathsApp: App {
     var body: some Scene {
@@ -114,8 +143,7 @@ struct PathsApp: App {
                 }
                 .padding()
 
-                Ellipse()
-                    .fill(.blue)
+                TestCurveShape()
                     .padding()
             }
         }
