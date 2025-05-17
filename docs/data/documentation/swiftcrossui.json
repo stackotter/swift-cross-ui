@@ -71,6 +71,7 @@
   "topicSections" : [
     {
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Quick-start",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Examples",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Hot-reloading"
       ],
@@ -134,13 +135,6 @@
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Deprecated"
       ],
       "title" : "Other"
-    },
-    {
-      "generated" : true,
-      "identifiers" : [
-        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Quick-Start"
-      ],
-      "title" : "Articles"
     },
     {
       "identifiers" : [
@@ -392,14 +386,14 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/preferences"
 },
-"doc://SwiftCrossUI/documentation/SwiftCrossUI/Quick-Start": {
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Quick-start": {
   "abstract" : [
     {
       "text" : "Creating a cross-platform SwiftCrossUI app with Swift Bundler.",
       "type" : "text"
     }
   ],
-  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Quick-Start",
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Quick-start",
   "kind" : "article",
   "role" : "article",
   "title" : "Quick start",

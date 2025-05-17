@@ -14,7 +14,7 @@
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Quick-Start"
+    "url" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Quick-start"
   },
   "kind" : "article",
   "metadata" : {
@@ -334,6 +334,16 @@
   "sections" : [
 
   ],
+  "seeAlsoSections" : [
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Examples",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Hot-reloading"
+      ],
+      "title" : "Getting Started"
+    }
+  ],
   "variants" : [
     {
       "paths" : [
@@ -390,6 +400,20 @@
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/defaultbackend"
 },
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Examples": {
+  "abstract" : [
+    {
+      "text" : "An overview of the examples included with SwiftCrossUI.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Examples",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "Examples",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/examples"
+},
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/GtkBackend": {
   "abstract" : [
     {
@@ -403,6 +427,17 @@
   "title" : "GtkBackend",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/gtkbackend"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Hot-reloading": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Hot-reloading",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Hot reloading",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/hot-reloading"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/UIKitBackend": {
   "abstract" : [

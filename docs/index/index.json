@@ -8,6 +8,11 @@
             "type" : "groupMarker"
           },
           {
+            "path" : "\/documentation\/swiftcrossui\/quick-start",
+            "title" : "Quick start",
+            "type" : "article"
+          },
+          {
             "path" : "\/documentation\/swiftcrossui\/examples",
             "title" : "Examples",
             "type" : "article"
@@ -2142,12 +2147,12 @@
                       {
                         "children" : [
                           {
-                            "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:environment:)-5v4xq",
+                            "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:environment:)-7mvvw",
                             "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
                             "type" : "method"
                           },
                           {
-                            "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:environment:)-7mvvw",
+                            "path" : "\/documentation\/swiftcrossui\/view\/children(backend:snapshots:environment:)-5v4xq",
                             "title" : "func children<Backend>(backend: Backend, snapshots: [ViewGraphSnapshotter.NodeSnapshot]?, environment: EnvironmentValues) -> any ViewGraphNodeChildren",
                             "type" : "method"
                           }
@@ -20234,15 +20239,6 @@
             "path" : "\/documentation\/swiftcrossui\/deprecated",
             "title" : "Deprecated",
             "type" : "symbol"
-          },
-          {
-            "title" : "Articles",
-            "type" : "groupMarker"
-          },
-          {
-            "path" : "\/documentation\/swiftcrossui\/quick-start",
-            "title" : "Quick start",
-            "type" : "article"
           },
           {
             "title" : "Extended Modules",
