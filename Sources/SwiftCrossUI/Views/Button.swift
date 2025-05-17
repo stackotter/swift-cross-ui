@@ -37,8 +37,8 @@ public struct Button: ElementaryView, View {
         backend.updateButton(
             widget,
             label: label,
-            action: action,
-            environment: environment
+            environment: environment,
+            action: action
         )
         let naturalSize = backend.naturalSize(of: widget)
         let size = SIMD2(

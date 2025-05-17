@@ -509,8 +509,8 @@ public final class AppKitBackend: AppBackend {
     public func updateButton(
         _ button: Widget,
         label: String,
-        action: @escaping () -> Void,
-        environment: EnvironmentValues
+        environment: EnvironmentValues,
+        action: @escaping () -> Void
     ) {
         let button = button as! NSButton
         button.attributedTitle = Self.attributedString(
@@ -519,6 +519,7 @@ public final class AppKitBackend: AppBackend {
         )
         button.bezelStyle = .regularSquare
         button.appearance = environment.colorScheme.nsAppearance
+        button.isEnabled = environment.isEnabled
         button.onAction = { _ in
             action()
         }
@@ -528,8 +529,13 @@ public final class AppKitBackend: AppBackend {
         return NSSwitch()
     }
 
-    public func updateSwitch(_ toggleSwitch: Widget, onChange: @escaping (Bool) -> Void) {
+    public func updateSwitch(
+        _ toggleSwitch: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    ) {
         let toggleSwitch = toggleSwitch as! NSSwitch
+        toggleSwitch.isEnabled = environment.isEnabled
         toggleSwitch.onAction = { toggleSwitch in
             let toggleSwitch = toggleSwitch as! NSSwitch
             onChange(toggleSwitch.state == .on)
@@ -547,8 +553,14 @@ public final class AppKitBackend: AppBackend {
         return toggle
     }
 
-    public func updateToggle(_ toggle: Widget, label: String, onChange: @escaping (Bool) -> Void) {
+    public func updateToggle(
+        _ toggle: Widget,
+        label: String,
+        environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    ) {
         let toggle = toggle as! NSButton
+        toggle.isEnabled = environment.isEnabled
         toggle.title = label
         toggle.onAction = { toggle in
             let toggle = toggle as! NSButton
@@ -570,6 +582,7 @@ public final class AppKitBackend: AppBackend {
         minimum: Double,
         maximum: Double,
         decimalPlaces: Int,
+        environment: EnvironmentValues,
         onChange: @escaping (Double) -> Void
     ) {
         // TODO: Implement decimalPlaces
@@ -580,6 +593,7 @@ public final class AppKitBackend: AppBackend {
             let slider = slider as! NSSlider
             onChange(slider.doubleValue)
         }
+        slider.isEnabled = environment.isEnabled
     }
 
     public func setValue(ofSlider slider: Widget, to value: Double) {
@@ -598,6 +612,7 @@ public final class AppKitBackend: AppBackend {
         onChange: @escaping (Int?) -> Void
     ) {
         let picker = picker as! NSPopUpButton
+        picker.isEnabled = environment.isEnabled
         picker.menu?.removeAllItems()
         for option in options {
             let item = NSMenuItem()
@@ -636,6 +651,7 @@ public final class AppKitBackend: AppBackend {
         onSubmit: @escaping () -> Void
     ) {
         let textField = textField as! NSObservableTextField
+        textField.isEnabled = environment.isEnabled
         textField.placeholderString = placeholder
         textField.appearance = environment.colorScheme.nsAppearance
         textField.onEdit = { textField in
@@ -837,7 +853,8 @@ public final class AppKitBackend: AppBackend {
         height: Int,
         targetWidth: Int,
         targetHeight: Int,
-        dataHasChanged: Bool
+        dataHasChanged: Bool,
+        environment: EnvironmentValues
     ) {
         guard dataHasChanged else {
             return
@@ -1187,10 +1204,6 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func createTapGestureTarget(wrapping child: Widget, gesture _: TapGesture) -> Widget {
-        if child.subviews.count >= 2 && child.subviews[1] is NSCustomTapGestureTarget {
-            return child
-        }
-
         let container = NSView()
 
         container.addSubview(child)
@@ -1218,15 +1231,26 @@ public final class AppKitBackend: AppBackend {
     public func updateTapGestureTarget(
         _ container: Widget,
         gesture: TapGesture,
+        environment: EnvironmentValues,
         action: @escaping () -> Void
     ) {
         let tapGestureTarget = container.subviews[1] as! NSCustomTapGestureTarget
-        switch gesture.kind {
-            case .primary:
+        switch (gesture.kind, environment.isEnabled) {
+            case (_, false):
+                tapGestureTarget.leftClickHandler = nil
+                tapGestureTarget.rightClickHandler = nil
+                tapGestureTarget.longPressHandler = nil
+            case (.primary, true):
                 tapGestureTarget.leftClickHandler = action
-            case .secondary:
+                tapGestureTarget.rightClickHandler = nil
+                tapGestureTarget.longPressHandler = nil
+            case (.secondary, true):
+                tapGestureTarget.leftClickHandler = nil
                 tapGestureTarget.rightClickHandler = action
-            case .longPress:
+                tapGestureTarget.longPressHandler = nil
+            case (.longPress, true):
+                tapGestureTarget.leftClickHandler = nil
+                tapGestureTarget.rightClickHandler = nil
                 tapGestureTarget.longPressHandler = action
         }
     }
@@ -1276,7 +1300,12 @@ public final class AppKitBackend: AppBackend {
         }
     }
 
-    public func updatePath(_ path: Path, _ source: SwiftCrossUI.Path, pointsChanged: Bool) {
+    public func updatePath(
+        _ path: Path,
+        _ source: SwiftCrossUI.Path,
+        pointsChanged: Bool,
+        environment: EnvironmentValues
+    ) {
         applyStrokeStyle(source.strokeStyle, to: path)
 
         if pointsChanged {
@@ -1412,9 +1441,13 @@ final class NSCustomTapGestureTarget: NSView {
                     target: self, action: #selector(leftClick))
                 addGestureRecognizer(gestureRecognizer)
                 leftClickRecognizer = gestureRecognizer
+            } else if leftClickHandler == nil, let leftClickRecognizer {
+                removeGestureRecognizer(leftClickRecognizer)
+                self.leftClickHandler = nil
             }
         }
     }
+
     var rightClickHandler: (() -> Void)? {
         didSet {
             if rightClickHandler != nil && rightClickRecognizer == nil {
@@ -1423,9 +1456,13 @@ final class NSCustomTapGestureTarget: NSView {
                 gestureRecognizer.buttonMask = 1 << 1
                 addGestureRecognizer(gestureRecognizer)
                 rightClickRecognizer = gestureRecognizer
+            } else if rightClickHandler == nil, let rightClickRecognizer {
+                removeGestureRecognizer(rightClickRecognizer)
+                self.rightClickHandler = nil
             }
         }
     }
+
     var longPressHandler: (() -> Void)? {
         didSet {
             if longPressHandler != nil && longPressRecognizer == nil {
@@ -1435,6 +1472,9 @@ final class NSCustomTapGestureTarget: NSView {
                 gestureRecognizer.minimumPressDuration = 0.5
                 addGestureRecognizer(gestureRecognizer)
                 longPressRecognizer = gestureRecognizer
+            } else if longPressHandler == nil, let longPressRecognizer {
+                removeGestureRecognizer(longPressRecognizer)
+                self.longPressRecognizer = nil
             }
         }
     }

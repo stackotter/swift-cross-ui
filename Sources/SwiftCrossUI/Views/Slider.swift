@@ -102,7 +102,8 @@ public struct Slider: ElementaryView, View {
                 widget,
                 minimum: minimum,
                 maximum: maximum,
-                decimalPlaces: decimalPlaces
+                decimalPlaces: decimalPlaces,
+                environment: environment
             ) { [weak value] newValue in
                 guard let value = value else {
                     return

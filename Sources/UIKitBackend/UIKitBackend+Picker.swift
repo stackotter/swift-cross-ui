@@ -5,6 +5,7 @@ protocol Picker: WidgetProtocol {
     func setOptions(to options: [String])
     func setChangeHandler(to onChange: @escaping (Int?) -> Void)
     func setSelectedOption(to index: Int?)
+    func setEnabled(_ isEnabled: Bool)
 }
 
 @available(tvOS, unavailable)
@@ -35,6 +36,10 @@ final class UIPickerViewPicker: WrapperWidget<UIPickerView>, Picker, UIPickerVie
     func setSelectedOption(to index: Int?) {
         child.selectRow(
             (index ?? -1) + 1, inComponent: 0, animated: false)
+    }
+
+    func setEnabled(_ isEnabled: Bool) {
+        child.isUserInteractionEnabled = isEnabled
     }
 
     func numberOfComponents(in _: UIPickerView) -> Int {
@@ -109,6 +114,10 @@ final class UITableViewPicker: WrapperWidget<UITableView>, Picker, UITableViewDe
         }
     }
 
+    func setEnabled(_ isEnabled: Bool) {
+        child.isUserInteractionEnabled = isEnabled
+    }
+
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         options.count
     }
@@ -148,10 +157,11 @@ extension UIKitBackend {
     public func updatePicker(
         _ picker: Widget,
         options: [String],
-        environment _: EnvironmentValues,
+        environment: EnvironmentValues,
         onChange: @escaping (Int?) -> Void
     ) {
         let pickerWidget = picker as! any Picker
+        pickerWidget.setEnabled(environment.isEnabled)
         pickerWidget.setChangeHandler(to: onChange)
         pickerWidget.setOptions(to: options)
     }

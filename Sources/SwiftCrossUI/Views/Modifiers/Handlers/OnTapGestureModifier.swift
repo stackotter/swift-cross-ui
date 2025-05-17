@@ -77,7 +77,12 @@ struct OnTapGestureModifier<Content: View>: TypeSafeView {
         )
         if !dryRun {
             backend.setSize(of: widget, to: childResult.size.size)
-            backend.updateTapGestureTarget(widget, gesture: gesture, action: action)
+            backend.updateTapGestureTarget(
+                widget,
+                gesture: gesture,
+                environment: environment,
+                action: action
+            )
         }
         return childResult
     }

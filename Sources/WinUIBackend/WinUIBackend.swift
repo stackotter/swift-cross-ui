@@ -19,6 +19,7 @@ extension App {
         WinUIBackend()
     }
 }
+
 class WinUIApplication: SwiftApplication {
     static var callback: ((WinUIApplication) -> Void)?
 
@@ -26,6 +27,7 @@ class WinUIApplication: SwiftApplication {
         Self.callback?(self)
     }
 }
+
 public final class WinUIBackend: AppBackend {
     public typealias Window = CustomWindow
     public typealias Widget = WinUI.FrameworkElement
@@ -591,22 +593,16 @@ public final class WinUIBackend: AppBackend {
     public func updateButton(
         _ button: Widget,
         label: String,
-        action: @escaping () -> Void,
-        environment: EnvironmentValues
+        environment: EnvironmentValues,
+        action: @escaping () -> Void
     ) {
         let button = button as! WinUI.Button
         let block = TextBlock()
         block.text = label
         button.content = block
         environment.apply(to: block)
+        environment.apply(to: button)
         internalState.buttonClickActions[ObjectIdentifier(button)] = action
-
-        switch environment.colorScheme {
-            case .light:
-                button.requestedTheme = .light
-            case .dark:
-                button.requestedTheme = .dark
-        }
     }
 
     public func createScrollContainer(for child: Widget) -> Widget {
@@ -760,20 +756,14 @@ public final class WinUIBackend: AppBackend {
         minimum: Double,
         maximum: Double,
         decimalPlaces _: Int,
+        environment: EnvironmentValues,
         onChange: @escaping (Double) -> Void
     ) {
         let slider = slider as! WinUI.Slider
         slider.minimum = minimum
         slider.maximum = maximum
+        environment.apply(to: slider)
         internalState.sliderChangeActions[ObjectIdentifier(slider)] = onChange
-
-        // TODO: Add environment to updateSlider API
-        // switch environment.colorScheme {
-        //     case .light:
-        //         slider.requestedTheme = .light
-        //     case .dark:
-        //         slider.requestedTheme = .dark
-        // }
     }
 
     public func setValue(ofSlider slider: Widget, to value: Double) {
@@ -814,13 +804,6 @@ public final class WinUIBackend: AppBackend {
         picker.onChangeSelection = onChange
         environment.apply(to: picker)
         picker.actualForegroundColor = environment.suggestedForegroundColor.uwpColor
-
-        switch environment.colorScheme {
-            case .light:
-                picker.requestedTheme = .light
-            case .dark:
-                picker.requestedTheme = .dark
-        }
 
         // Only update options past this point, otherwise the early return
         // will cause issues.
@@ -900,13 +883,7 @@ public final class WinUIBackend: AppBackend {
         textField.placeholderText = placeholder
         internalState.textFieldChangeActions[ObjectIdentifier(textField)] = onChange
         internalState.textFieldSubmitActions[ObjectIdentifier(textField)] = onSubmit
-
-        switch environment.colorScheme {
-            case .light:
-                textField.requestedTheme = .light
-            case .dark:
-                textField.requestedTheme = .dark
-        }
+        environment.apply(to: textField)
 
         missing("text field font handling")
 
@@ -962,7 +939,8 @@ public final class WinUIBackend: AppBackend {
         height: Int,
         targetWidth: Int,
         targetHeight: Int,
-        dataHasChanged: Bool
+        dataHasChanged: Bool,
+        environment: EnvironmentValues
     ) {
         let imageView = imageView as! WinUI.Image
         let bitmap = WriteableBitmap(Int32(width), Int32(height))
@@ -1041,21 +1019,38 @@ public final class WinUIBackend: AppBackend {
         return toggle
     }
 
-    public func updateToggle(_ toggle: Widget, label: String, onChange: @escaping (Bool) -> Void) {
+    public func updateToggle(
+        _ toggle: Widget,
+        label: String,
+        environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    ) {
         let toggle = toggle as! ToggleButton
         let block = TextBlock()
         block.text = label
         toggle.content = block
-        internalState.toggleClickActions[ObjectIdentifier(toggle)] = onChange
 
-        // TODO: Add environment to updateToggle API. Rename updateToggle etc to
-        //   updateToggleButton etc
-        // switch environment.colorScheme {
-        //     case .light:
-        //         toggle.requestedTheme = .light
-        //     case .dark:
-        //         toggle.requestedTheme = .dark
-        // }
+        // Use opposite color scheme for label if checked to match WinUI's default
+        // behaviour.
+        environment.with(
+            \.colorScheme,
+            toggle.isChecked == true
+                ? environment.colorScheme.opposite
+                : environment.colorScheme
+        ).apply(to: block)
+
+        environment.apply(to: toggle)
+
+        internalState.toggleClickActions[ObjectIdentifier(toggle)] = { state in
+            onChange(state)
+
+            // Update label color scheme just in case the update doesn't get
+            // propagated back to us (e.g. if the user passes in a dummy binding)
+            environment.with(
+                \.colorScheme,
+                state ? environment.colorScheme.opposite : environment.colorScheme
+            ).apply(to: block)
+        }
     }
 
     public func setState(ofToggle toggle: Widget, to state: Bool) {
@@ -1076,16 +1071,14 @@ public final class WinUIBackend: AppBackend {
         return toggleSwitch
     }
 
-    public func updateSwitch(_ toggleSwitch: Widget, onChange: @escaping (Bool) -> Void) {
+    public func updateSwitch(
+        _ toggleSwitch: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    ) {
+        let toggleSwitch = toggleSwitch as! ToggleSwitch
         internalState.switchClickActions[ObjectIdentifier(toggleSwitch)] = onChange
-
-        // TODO: Add environment to updateSwitch API
-        // switch environment.colorScheme {
-        //     case .light:
-        //         toggleSwitch.requestedTheme = .light
-        //     case .dark:
-        //         toggleSwitch.requestedTheme = .dark
-        // }
+        environment.apply(to: toggleSwitch)
     }
 
     public func setState(ofSwitch switchWidget: Widget, to state: Bool) {
@@ -1267,13 +1260,14 @@ public final class WinUIBackend: AppBackend {
     public func updateTapGestureTarget(
         _ tapGestureTarget: Widget,
         gesture: TapGesture,
+        environment: EnvironmentValues,
         action: @escaping () -> Void
     ) {
         if gesture != .primary {
             fatalError("Unsupported gesture type \(gesture)")
         }
         let tapGestureTarget = tapGestureTarget as! TapGestureTarget
-        tapGestureTarget.clickHandler = action
+        tapGestureTarget.clickHandler = environment.isEnabled ? action : {}
         tapGestureTarget.width = tapGestureTarget.child!.width
         tapGestureTarget.height = tapGestureTarget.child!.height
     }
@@ -1312,7 +1306,12 @@ public final class WinUIBackend: AppBackend {
         GeometryGroupHolder()
     }
 
-    public func updatePath(_ path: Path, _ source: SwiftCrossUI.Path, pointsChanged: Bool) {
+    public func updatePath(
+        _ path: Path,
+        _ source: SwiftCrossUI.Path,
+        pointsChanged: Bool,
+        environment: EnvironmentValues
+    ) {
         path.strokeStyle = source.strokeStyle
 
         if pointsChanged {
@@ -1668,6 +1667,13 @@ extension EnvironmentValues {
         control.fontSize = winUIFontSize
         control.fontWeight.weight = winUIFontWeight
         control.foreground = winUIForegroundBrush
+        control.isEnabled = isEnabled
+        switch colorScheme {
+            case .light:
+                control.requestedTheme = .light
+            case .dark:
+                control.requestedTheme = .dark
+        }
     }
 
     func apply(to textBlock: WinUI.TextBlock) {

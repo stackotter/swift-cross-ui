@@ -98,6 +98,8 @@ open class Widget: GObject {
 
     @GObjectProperty(named: "name") public var name: String?
 
+    @GObjectProperty(named: "sensitive") public var sensitive: Bool
+
     @GObjectProperty(named: "opacity") public var opacity: Double
 
     @GObjectProperty(named: "margin-top") public var marginTop: Int

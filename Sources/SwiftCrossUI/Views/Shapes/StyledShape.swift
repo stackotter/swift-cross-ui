@@ -69,7 +69,12 @@ extension StyledShape {
         storage.oldPath = path
 
         let backendPath = storage.backendPath as! Backend.Path
-        backend.updatePath(backendPath, path, pointsChanged: pointsChanged)
+        backend.updatePath(
+            backendPath,
+            path,
+            pointsChanged: pointsChanged,
+            environment: environment
+        )
 
         if !dryRun {
             backend.setSize(of: widget, to: size.size)

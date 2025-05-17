@@ -128,7 +128,8 @@ public struct Image: TypeSafeView, View {
                     height: image.height,
                     targetWidth: size.size.x,
                     targetHeight: size.size.y,
-                    dataHasChanged: children.imageChanged
+                    dataHasChanged: children.imageChanged,
+                    environment: environment
                 )
                 if children.isContainerEmpty {
                     backend.addChild(children.imageWidget.into(), to: children.container.into())

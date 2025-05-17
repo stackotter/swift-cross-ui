@@ -628,7 +628,8 @@ public final class GtkBackend: AppBackend {
         height: Int,
         targetWidth: Int,
         targetHeight: Int,
-        dataHasChanged: Bool
+        dataHasChanged: Bool,
+        environment: EnvironmentValues
     ) {
         guard dataHasChanged else {
             return
@@ -734,11 +735,12 @@ public final class GtkBackend: AppBackend {
     public func updateButton(
         _ button: Widget,
         label: String,
-        action: @escaping () -> Void,
-        environment: EnvironmentValues
+        environment: EnvironmentValues,
+        action: @escaping () -> Void
     ) {
         // TODO: Update button label color using environment
         let button = button as! Gtk.Button
+        button.sensitive = environment.isEnabled
         button.label = label
         button.clicked = { _ in action() }
         button.css.clear()
@@ -749,9 +751,16 @@ public final class GtkBackend: AppBackend {
         return ToggleButton()
     }
 
-    public func updateToggle(_ toggle: Widget, label: String, onChange: @escaping (Bool) -> Void) {
-        (toggle as! ToggleButton).label = label
-        (toggle as! Gtk.ToggleButton).toggled = { widget in
+    public func updateToggle(
+        _ toggle: Widget,
+        label: String,
+        environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    ) {
+        let toggle = toggle as! Gtk.ToggleButton
+        toggle.sensitive = environment.isEnabled
+        toggle.label = label
+        toggle.toggled = { widget in
             onChange(widget.active)
         }
     }
@@ -764,8 +773,14 @@ public final class GtkBackend: AppBackend {
         return Switch()
     }
 
-    public func updateSwitch(_ switchWidget: Widget, onChange: @escaping (Bool) -> Void) {
-        (switchWidget as! Gtk.Switch).notifyActive = { widget, _ in
+    public func updateSwitch(
+        _ switchWidget: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    ) {
+        let switchWidget = switchWidget as! Gtk.Switch
+        switchWidget.sensitive = environment.isEnabled
+        switchWidget.notifyActive = { widget,_ in
             onChange(widget.active)
         }
     }
@@ -785,9 +800,11 @@ public final class GtkBackend: AppBackend {
         minimum: Double,
         maximum: Double,
         decimalPlaces: Int,
+        environment: EnvironmentValues,
         onChange: @escaping (Double) -> Void
     ) {
         let slider = slider as! Scale
+        slider.sensitive = environment.isEnabled
         slider.minimum = minimum
         slider.maximum = maximum
         slider.digits = decimalPlaces
@@ -812,6 +829,7 @@ public final class GtkBackend: AppBackend {
         onSubmit: @escaping () -> Void
     ) {
         let textField = textField as! Entry
+        textField.sensitive = environment.isEnabled
         textField.placeholderText = placeholder
         textField.changed = { widget in
             onChange(widget.text)
@@ -843,6 +861,7 @@ public final class GtkBackend: AppBackend {
         onChange: @escaping (Int?) -> Void
     ) {
         let picker = picker as! DropDown
+        picker.sensitive = environment.isEnabled
 
         // Check whether the options need to be updated or not (avoiding unnecessary updates is
         // required to prevent an infinite loop caused by the onChange handler)
@@ -1157,6 +1176,7 @@ public final class GtkBackend: AppBackend {
     public func updateTapGestureTarget(
         _ tapGestureTarget: Widget,
         gesture: TapGesture,
+        environment: EnvironmentValues,
         action: @escaping () -> Void
     ) {
         switch gesture.kind {
@@ -1167,7 +1187,7 @@ public final class GtkBackend: AppBackend {
                             && gtk_gesture_single_get_button($0.opaquePointer) == GDK_BUTTON_PRIMARY
                     } as! GestureClick
                 gesture.pressed = { _, nPress, _, _ in
-                    guard nPress == 1 else {
+                    guard environment.isEnabled, nPress == 1 else {
                         return
                     }
                     action()
@@ -1180,7 +1200,7 @@ public final class GtkBackend: AppBackend {
                                 == GDK_BUTTON_SECONDARY
                     } as! GestureClick
                 gesture.pressed = { _, nPress, _, _ in
-                    guard nPress == 1 else {
+                    guard environment.isEnabled, nPress == 1 else {
                         return
                     }
                     action()
@@ -1190,6 +1210,9 @@ public final class GtkBackend: AppBackend {
                     tapGestureTarget.eventControllers.lazy.compactMap { $0 as? GestureLongPress }
                     .first!
                 gesture.pressed = { _, _, _ in
+                    guard environment.isEnabled else {
+                        return
+                    }
                     action()
                 }
         }

@@ -46,7 +46,12 @@ extension UIKitBackend {
         }
     }
 
-    public func updatePath(_ path: UIBezierPath, _ source: SwiftCrossUI.Path, pointsChanged: Bool) {
+    public func updatePath(
+        _ path: UIBezierPath,
+        _ source: SwiftCrossUI.Path,
+        pointsChanged: Bool,
+        environment: EnvironmentValues
+    ) {
         path.usesEvenOddFillRule = (source.fillRule == .evenOdd)
 
         applyStrokeStyle(source.strokeStyle, to: path)

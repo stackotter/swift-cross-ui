@@ -50,6 +50,7 @@ extension UIKitBackend {
     ) {
         if #available(iOS 14, macCatalyst 14, tvOS 17, *) {
             let buttonWidget = button as! ButtonWidget
+            buttonWidget.child.isEnabled = environment.isEnabled
             setButtonTitle(buttonWidget, label, environment: environment)
             buttonWidget.child.menu = menu.uiMenu
             buttonWidget.child.showsMenuAsPrimaryAction = true

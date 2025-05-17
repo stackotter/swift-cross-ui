@@ -20,7 +20,7 @@ struct ToggleSwitch: ElementaryView, View {
         dryRun: Bool
     ) -> ViewUpdateResult {
         if !dryRun {
-            backend.updateSwitch(widget) { newActiveState in
+            backend.updateSwitch(widget, environment: environment) { newActiveState in
                 active.wrappedValue = newActiveState
             }
             backend.setState(ofSwitch: widget, to: active.wrappedValue)

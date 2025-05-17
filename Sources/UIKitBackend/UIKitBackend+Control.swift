@@ -212,14 +212,15 @@ extension UIKitBackend {
     public func updateButton(
         _ button: Widget,
         label: String,
-        action: @escaping () -> Void,
-        environment: EnvironmentValues
+        environment: EnvironmentValues,
+        action: @escaping () -> Void
     ) {
         let buttonWidget = button as! ButtonWidget
 
         setButtonTitle(buttonWidget, label, environment: environment)
 
         buttonWidget.onTap = action
+        buttonWidget.child.isEnabled = environment.isEnabled
     }
 
     public func createTextField() -> Widget {
@@ -235,6 +236,7 @@ extension UIKitBackend {
     ) {
         let textFieldWidget = textField as! TextFieldWidget
 
+        textFieldWidget.child.isEnabled = environment.isEnabled
         textFieldWidget.child.placeholder = placeholder
         textFieldWidget.child.font = environment.font.uiFont
         textFieldWidget.child.textColor = UIColor(color: environment.suggestedForegroundColor)
@@ -300,9 +302,14 @@ extension UIKitBackend {
         SwitchWidget()
     }
 
-    public func updateSwitch(_ switchWidget: Widget, onChange: @escaping (Bool) -> Void) {
+    public func updateSwitch(
+        _ switchWidget: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    ) {
         let wrapper = switchWidget as! SwitchWidget
         wrapper.onChange = onChange
+        wrapper.child.isEnabled = environment.isEnabled
     }
 
     public func setState(ofSwitch switchWidget: Widget, to state: Bool) {
@@ -311,23 +318,23 @@ extension UIKitBackend {
     }
 
     public func createTapGestureTarget(wrapping child: Widget, gesture _: TapGesture) -> Widget {
-        if child is TappableWidget {
-            child
-        } else {
-            TappableWidget(child: child)
-        }
+        TappableWidget(child: child)
     }
 
     public func updateTapGestureTarget(
         _ tapGestureTarget: Widget,
         gesture: TapGesture,
+        environment: EnvironmentValues,
         action: @escaping () -> Void
     ) {
         let wrapper = tapGestureTarget as! TappableWidget
-        if gesture == .primary {
-            wrapper.onTap = action
-        } else {
-            wrapper.onLongPress = action
+        switch gesture.kind {
+            case .primary:
+                wrapper.onTap = environment.isEnabled ? action : {}
+                wrapper.onLongPress = nil
+            case .secondary, .longPress:
+                wrapper.onTap = nil
+                wrapper.onLongPress = environment.isEnabled ? action : {}
         }
     }
 
@@ -341,11 +348,13 @@ extension UIKitBackend {
             minimum: Double,
             maximum: Double,
             decimalPlaces: Int,
+            environment: EnvironmentValues,
             onChange: @escaping (Double) -> Void
         ) {
             let sliderWidget = slider as! SliderWidget
             sliderWidget.child.minimumValue = Float(minimum)
             sliderWidget.child.maximumValue = Float(maximum)
+            sliderWidget.child.isEnabled = environment.isEnabled
             sliderWidget.onChange = onChange
             sliderWidget.decimalPlaces = decimalPlaces
         }

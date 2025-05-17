@@ -12,11 +12,14 @@ struct ControlsApp: App {
     @State var exampleButtonState = false
     @State var exampleSwitchState = false
     @State var sliderValue = 5.0
+    @State var text = ""
+    @State var flavor: String? = nil
+    @State var enabled = true
 
     var body: some Scene {
         WindowGroup("ControlsApp") {
             #hotReloadable {
-                VStack {
+                VStack(spacing: 30) {
                     VStack {
                         Text("Button")
                         Button("Click me!") {
@@ -47,8 +50,26 @@ struct ControlsApp: App {
                             .frame(maxWidth: 200)
                         Text("Value: \(String(format: "%.02f", sliderValue))")
                     }
-                }
+
+                    VStack {
+                        Text("Text field")
+                        TextField("Text field", text: $text)
+                        Text("Value: \(text)")
+                    }
+
+                    VStack {
+                        Text("Drop down")
+                        HStack {
+                            Text("Flavor: ")
+                            Picker(of: ["Vanilla", "Chocolate", "Strawberry"], selection: $flavor)
+                        }
+                        Text("You chose: \(flavor ?? "Nothing yet!")")
+                    }
+                }.padding().disabled(!enabled)
+
+                Toggle(enabled ? "Disable all" : "Enable all", active: $enabled)
+                    .padding()
             }
-        }
+        }.defaultSize(width: 400, height: 600)
     }
 }

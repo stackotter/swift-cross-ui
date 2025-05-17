@@ -83,7 +83,8 @@ extension UIKitBackend {
         height: Int,
         targetWidth: Int,
         targetHeight: Int,
-        dataHasChanged: Bool
+        dataHasChanged: Bool,
+        environment: EnvironmentValues
     ) {
         guard dataHasChanged else { return }
         let wrapper = imageView as! WrapperWidget<UIImageView>

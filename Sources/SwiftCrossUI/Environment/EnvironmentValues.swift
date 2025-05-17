@@ -48,6 +48,9 @@ public struct EnvironmentValues {
     /// keyboards.
     public var textContentType: TextContentType
 
+    /// Whether user interaction is enabled. Set by ``View/disabled(_:)``.
+    public var isEnabled: Bool
+
     /// Called by view graph nodes when they resize due to an internal state
     /// change and end up changing size. Each view graph node sets its own
     /// handler when passing the environment on to its children, setting up
@@ -160,6 +163,7 @@ public struct EnvironmentValues {
         window = nil
         extraValues = [:]
         listStyle = .default
+        isEnabled = true
     }
 
     /// Returns a copy of the environment with the specified property set to the

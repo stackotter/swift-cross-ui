@@ -345,6 +345,7 @@ public protocol AppBackend {
     ///   - dataHasChanged: If `false`, then `rgbaData` hasn't changed since the last call,
     ///     so backends that don't have to manually resize the image data don't have to do
     ///     anything.
+    ///   - environment: The environment of the image view.
     func updateImageView(
         _ imageView: Widget,
         rgbaData: [UInt8],
@@ -352,7 +353,8 @@ public protocol AppBackend {
         height: Int,
         targetWidth: Int,
         targetHeight: Int,
-        dataHasChanged: Bool
+        dataHasChanged: Bool,
+        environment: EnvironmentValues
     )
 
     /// Creates an empty table.
@@ -378,8 +380,8 @@ public protocol AppBackend {
     func updateButton(
         _ button: Widget,
         label: String,
-        action: @escaping () -> Void,
-        environment: EnvironmentValues
+        environment: EnvironmentValues,
+        action: @escaping () -> Void
     )
     /// Sets a button's label and menu. Only used when ``menuImplementationStyle`` is
     /// ``MenuImplementationStyle/menuButton``.
@@ -395,7 +397,12 @@ public protocol AppBackend {
     func createToggle() -> Widget
     /// Sets the label and change handler of a toggle (replaces any existing change handlers).
     /// The change handler is called whenever the button is toggled on or off.
-    func updateToggle(_ toggle: Widget, label: String, onChange: @escaping (Bool) -> Void)
+    func updateToggle(
+        _ toggle: Widget,
+        label: String,
+        environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    )
     /// Sets the state of the button to active or not.
     func setState(ofToggle toggle: Widget, to state: Bool)
 
@@ -403,7 +410,11 @@ public protocol AppBackend {
     func createSwitch() -> Widget
     /// Sets the change handler of a switch (replaces any existing change handlers).
     /// The change handler is called whenever the button is toggled on or off.
-    func updateSwitch(_ switchWidget: Widget, onChange: @escaping (Bool) -> Void)
+    func updateSwitch(
+        _ switchWidget: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    )
     /// Sets the state of the switch to active or not.
     func setState(ofSwitch switchWidget: Widget, to state: Bool)
 
@@ -418,6 +429,7 @@ public protocol AppBackend {
         minimum: Double,
         maximum: Double,
         decimalPlaces: Int,
+        environment: EnvironmentValues,
         onChange: @escaping (Double) -> Void
     )
     /// Sets the selected value of a slider.
@@ -560,6 +572,7 @@ public protocol AppBackend {
     func updateTapGestureTarget(
         _ tapGestureTarget: Widget,
         gesture: TapGesture,
+        environment: EnvironmentValues,
         action: @escaping () -> Void
     )
 
@@ -574,7 +587,13 @@ public protocol AppBackend {
     ///   - path: The path to be updated.
     ///   - source: The source to copy the path from.
     ///   - pointsChanged: If `false`, the ``Path/actions`` of the source have not changed.
-    func updatePath(_ path: Path, _ source: SwiftCrossUI.Path, pointsChanged: Bool)
+    ///   - environment: The environment of the path.
+    func updatePath(
+        _ path: Path,
+        _ source: SwiftCrossUI.Path,
+        pointsChanged: Bool,
+        environment: EnvironmentValues
+    )
     /// Draw a path to the screen.
     /// - Parameters:
     ///   - path: The path to be rendered.
@@ -738,7 +757,8 @@ extension AppBackend {
         height: Int,
         targetWidth: Int,
         targetHeight: Int,
-        dataHasChanged: Bool
+        dataHasChanged: Bool,
+        environment: EnvironmentValues
     ) {
         todo()
     }
@@ -772,8 +792,8 @@ extension AppBackend {
     public func updateButton(
         _ button: Widget,
         label: String,
-        action: @escaping () -> Void,
-        environment: EnvironmentValues
+        environment: EnvironmentValues,
+        action: @escaping () -> Void
     ) {
         todo()
     }
@@ -789,7 +809,12 @@ extension AppBackend {
     public func createToggle() -> Widget {
         todo()
     }
-    public func updateToggle(_ toggle: Widget, label: String, onChange: @escaping (Bool) -> Void) {
+    public func updateToggle(
+        _ toggle: Widget,
+        label: String,
+        environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    ) {
         todo()
     }
     public func setState(ofToggle toggle: Widget, to state: Bool) {
@@ -800,7 +825,9 @@ extension AppBackend {
         todo()
     }
     public func updateSwitch(
-        _ switchWidget: Widget, onChange: @escaping (Bool) -> Void
+        _ switchWidget: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
     ) {
         todo()
     }
@@ -816,6 +843,7 @@ extension AppBackend {
         minimum: Double,
         maximum: Double,
         decimalPlaces: Int,
+        environment: EnvironmentValues,
         onChange: @escaping (Double) -> Void
     ) {
         todo()
@@ -937,6 +965,7 @@ extension AppBackend {
     public func updateTapGestureTarget(
         _ clickTarget: Widget,
         gesture: TapGesture,
+        environment: EnvironmentValues,
         action: @escaping () -> Void
     ) {
         todo()
@@ -949,7 +978,12 @@ extension AppBackend {
     public func createPath() -> Path {
         todo()
     }
-    public func updatePath(_ path: Path, _ source: SwiftCrossUI.Path, pointsChanged: Bool) {
+    public func updatePath(
+        _ path: Path,
+        _ source: SwiftCrossUI.Path,
+        pointsChanged: Bool,
+        environment: EnvironmentValues
+    ) {
         todo()
     }
     public func renderPath(

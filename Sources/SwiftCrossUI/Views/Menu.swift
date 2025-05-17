@@ -83,6 +83,7 @@ extension Menu: TypeSafeView {
                 backend.updateButton(
                     widget,
                     label: label,
+                    environment: environment,
                     action: {
                         let menu = backend.createPopoverMenu()
                         children.menu = menu
@@ -98,8 +99,7 @@ extension Menu: TypeSafeView {
                         ) {
                             children.menu = nil
                         }
-                    },
-                    environment: environment
+                    }
                 )
 
                 if !dryRun {
