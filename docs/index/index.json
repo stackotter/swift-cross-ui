@@ -2303,12 +2303,12 @@
                       {
                         "children" : [
                           {
-                            "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:proposedsize:environment:backend:dryrun:)-27j1y",
+                            "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:proposedsize:environment:backend:dryrun:)-5duo6",
                             "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                             "type" : "method"
                           },
                           {
-                            "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:proposedsize:environment:backend:dryrun:)-5duo6",
+                            "path" : "\/documentation\/swiftcrossui\/view\/update(_:children:proposedsize:environment:backend:dryrun:)-27j1y",
                             "title" : "func update<Backend>(Backend.Widget, children: any ViewGraphNodeChildren, proposedSize: SIMD2<Int>, environment: EnvironmentValues, backend: Backend, dryRun: Bool) -> ViewUpdateResult",
                             "type" : "method"
                           }
