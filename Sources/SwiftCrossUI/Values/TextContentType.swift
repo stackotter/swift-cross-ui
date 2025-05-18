@@ -1,6 +1,6 @@
 public enum TextContentType {
     /// Plain text.
-    /// 
+    ///
     /// This is the default value.
     case text
     /// Just digits.

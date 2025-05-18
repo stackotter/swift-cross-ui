@@ -20,7 +20,9 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
     public init<Data: RandomAccessCollection>(
         _ data: Data,
         selection: Binding<SelectionValue?>
-    ) where Data.Element: CustomStringConvertible & Identifiable,
+    )
+    where
+        Data.Element: CustomStringConvertible & Identifiable,
         Data.Element.ID == SelectionValue,
         Data.Index == Int,
         RowView == Text

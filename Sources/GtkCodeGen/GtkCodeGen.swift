@@ -64,6 +64,7 @@ struct GtkCodeGen {
     static let typeNameReplacements: [String: String] = [
         "Gdk.Event": "GdkEvent",
         "Gdk.EventSequence": "OpaquePointer",
+        "Gdk.GLContext": "OpaquePointer",
     ]
 
     static let interfaces: [String] = [
@@ -105,10 +106,10 @@ struct GtkCodeGen {
         let allowListedClasses = [
             "Button", "Entry", "Label", "TextView", "Range", "Scale", "Image", "Switch", "Spinner",
             "ProgressBar", "FileChooserNative", "NativeDialog", "GestureClick", "GestureSingle",
-            "Gesture", "EventController", "GestureLongPress", "ListBox",
+            "Gesture", "EventController", "GestureLongPress", "GLArea",
         ]
         let gtk3AllowListedClasses = ["MenuShell", "EventBox"]
-        let gtk4AllowListedClasses = ["Picture", "DropDown", "Popover"]
+        let gtk4AllowListedClasses = ["Picture", "DropDown", "Popover", "ListBox"]
         for class_ in gir.namespace.classes {
             guard
                 allowListedClasses.contains(class_.name)

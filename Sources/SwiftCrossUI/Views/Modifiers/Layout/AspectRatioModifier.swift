@@ -1,7 +1,7 @@
 extension View {
     // TODO: Figure out why SwiftUI's window gets significantly shorter than
     // SwiftCrossUI's with the following content;
-    // 
+    //
     // VStack {
     //     Text("Hello, World!")
     //     Divider()
@@ -45,7 +45,7 @@ struct AspectRatioView<Child: View>: TypeSafeView {
         self.aspectRatio = aspectRatio
         self.contentMode = contentMode
     }
-    
+
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,

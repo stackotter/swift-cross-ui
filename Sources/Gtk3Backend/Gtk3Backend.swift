@@ -363,7 +363,10 @@ public final class Gtk3Backend: AppBackend {
         )
     }
 
-    private static func runInMainThread(afterMilliseconds delay: Int, action: @escaping () -> Void) {
+    private static func runInMainThread(
+        afterMilliseconds delay: Int,
+        action: @escaping () -> Void
+    ) {
         let action = ThreadActionContext(action: action)
         g_timeout_add_full(
             0,
@@ -798,7 +801,7 @@ public final class Gtk3Backend: AppBackend {
     ) {
         let switchWidget = switchWidget as! Gtk3.Switch
         switchWidget.sensitive = environment.isEnabled
-        switchWidget.notifyActive = { widget,_ in
+        switchWidget.notifyActive = { widget, _ in
             onChange(widget.active)
         }
     }

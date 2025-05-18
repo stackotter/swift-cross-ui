@@ -242,7 +242,7 @@ extension UIKitBackend {
         textFieldWidget.child.textColor = UIColor(color: environment.suggestedForegroundColor)
         textFieldWidget.onChange = onChange
         textFieldWidget.onSubmit = onSubmit
-        
+
         switch environment.textContentType {
             case .text:
                 textFieldWidget.child.keyboardType = .default
