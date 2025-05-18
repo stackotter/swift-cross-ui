@@ -159,21 +159,19 @@ public final class WinUIBackend: AppBackend {
         // print(GetDpiForWindow(nil))
 
         if let size {
-            try! window.appWindow.resizeClient(
-                SizeInt32(
-                    width: Int32(size.x),
-                    height: Int32(size.y)
-                )
-            )
+            setSize(ofWindow: window, to: size)
         }
         return window
     }
 
     public func size(ofWindow window: Window) -> SIMD2<Int> {
         let size = window.appWindow.clientSize
+        let scaleFactor = window.scaleFactor
+        let width = Double(size.width) / scaleFactor
+        let height = Double(size.height) / scaleFactor
         let out = SIMD2(
-            Int(size.width),
-            Int(size.height) - CustomWindow.menuBarHeight
+            Int(width.rounded(.towardZero)),
+            Int(height.rounded(.towardZero)) - CustomWindow.menuBarHeight
         )
         return out
     }
