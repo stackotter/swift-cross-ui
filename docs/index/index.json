@@ -13,6 +13,16 @@
             "type" : "article"
           },
           {
+            "path" : "\/documentation\/swiftcrossui\/setting-up-a-development-environment",
+            "title" : "Setting up a development environment",
+            "type" : "article"
+          },
+          {
+            "path" : "\/documentation\/swiftcrossui\/setting-up-a-virtual-development-environment",
+            "title" : "Setting up a virtual development environment",
+            "type" : "article"
+          },
+          {
             "path" : "\/documentation\/swiftcrossui\/examples",
             "title" : "Examples",
             "type" : "article"

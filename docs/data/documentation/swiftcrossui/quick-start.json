@@ -55,6 +55,31 @@
           "type" : "paragraph"
         },
         {
+          "content" : [
+            {
+              "inlineContent" : [
+                {
+                  "text" : "If you’re new to Swift, we recommend starting with ",
+                  "type" : "text"
+                },
+                {
+                  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Setting-up-a-development-environment",
+                  "isActive" : true,
+                  "type" : "reference"
+                },
+                {
+                  "text" : ".",
+                  "type" : "text"
+                }
+              ],
+              "type" : "paragraph"
+            }
+          ],
+          "name" : "Note",
+          "style" : "note",
+          "type" : "aside"
+        },
+        {
           "anchor" : "Installing-Swift-Bundler",
           "level" : 2,
           "text" : "Installing Swift Bundler",
@@ -338,6 +363,8 @@
     {
       "generated" : true,
       "identifiers" : [
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Setting-up-a-development-environment",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Setting-up-a-virtual-development-environment",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Examples",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Hot-reloading"
       ],
@@ -438,6 +465,34 @@
   "title" : "Hot reloading",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/hot-reloading"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Setting-up-a-development-environment": {
+  "abstract" : [
+    {
+      "text" : "Detailed set up instructions for macOS, Linux, and Windows based development environments.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Setting-up-a-development-environment",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "Setting up a development environment",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/setting-up-a-development-environment"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Setting-up-a-virtual-development-environment": {
+  "abstract" : [
+    {
+      "text" : "Detailed set up instructions for virtual Linux and Windows development environments.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Setting-up-a-virtual-development-environment",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "Setting up a virtual development environment",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/setting-up-a-virtual-development-environment"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/UIKitBackend": {
   "abstract" : [

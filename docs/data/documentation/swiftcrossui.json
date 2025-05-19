@@ -72,6 +72,8 @@
     {
       "identifiers" : [
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Quick-start",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Setting-up-a-development-environment",
+        "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Setting-up-a-virtual-development-environment",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Examples",
         "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Hot-reloading"
       ],
@@ -410,6 +412,34 @@
   "title" : "Scenes",
   "type" : "topic",
   "url" : "\/documentation\/swiftcrossui\/scenes"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Setting-up-a-development-environment": {
+  "abstract" : [
+    {
+      "text" : "Detailed set up instructions for macOS, Linux, and Windows based development environments.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Setting-up-a-development-environment",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "Setting up a development environment",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/setting-up-a-development-environment"
+},
+"doc://SwiftCrossUI/documentation/SwiftCrossUI/Setting-up-a-virtual-development-environment": {
+  "abstract" : [
+    {
+      "text" : "Detailed set up instructions for virtual Linux and Windows development environments.",
+      "type" : "text"
+    }
+  ],
+  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Setting-up-a-virtual-development-environment",
+  "kind" : "article",
+  "role" : "article",
+  "title" : "Setting up a virtual development environment",
+  "type" : "topic",
+  "url" : "\/documentation\/swiftcrossui\/setting-up-a-virtual-development-environment"
 },
 "doc://SwiftCrossUI/documentation/SwiftCrossUI/Shapes": {
   "abstract" : [
