@@ -350,6 +350,7 @@ jobs:
 
     - name: Merge DocC archives
       run: |
+        rm -rf gh-pages/docs
         xcrun docc merge \
           SwiftCrossUI.doccarchive \
           AppKitBackend.doccarchive \
