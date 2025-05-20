@@ -184,6 +184,7 @@ jobs:
         swift build --target WinUIBackend -v \
           -Xswiftc -emit-symbol-graph \
           -Xswiftc -emit-symbol-graph-dir -Xswiftc symbol-graphs
+      shell: bash
 
     - name: Upload WinUIBackend symbol graph
       uses: actions/upload-artifact@v4
@@ -198,6 +199,9 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+    # The Ubuntu image comes with Swift, but it's installed as root and DocC
+    # doesn't like that, so we install our own copy as a user.
+    # Related issue: https://github.com/swiftlang/swift-docc/issues/1136
     - name: Install Swift
       uses: SwiftyLab/setup-swift@latest
       with:
