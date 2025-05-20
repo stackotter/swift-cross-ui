@@ -55,6 +55,10 @@ runs:
         echo "$DEVICE_TYPE"
         echo "Building documentation for destination '$destination'"
         xcodebuild -skipMacroValidation -scheme "$TARGET" -destination "$destination" -derivedDataPath /tmp/data docbuild | xcbeautify --renderer github-actions
+        ls /tmp/data
+        ls /tmp/data/Build
+        ls /tmp/data/Build/Products
+        ls /tmp/data/Build/Products/Debug
         cp -R "/tmp/data/Build/Products/Debug/$TARGET.doccarchive" "$TARGET.doccarchive"
       shell: bash
       env:

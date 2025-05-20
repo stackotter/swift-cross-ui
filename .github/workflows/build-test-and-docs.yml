@@ -224,6 +224,9 @@ jobs:
     - name: Test
       run: swift test --test-product swift-cross-uiPackageTests
 
+    - name: Probe
+      run: ls /usr/share/swift/usr/share/docc/render/
+
     - name: Compile GtkBackend docs
       if: ${{ matrix.os == 'ubuntu-24.04' }}
       uses: ./.github/actions/compile-docs
