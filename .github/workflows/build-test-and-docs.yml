@@ -109,7 +109,7 @@ jobs:
         fi
 
     - name: Compile UIKitBackend docs
-      if: ${{ matrix.devicetype == "iPhone" }}
+      if: ${{ matrix.devicetype == 'iPhone' }}
       uses: OWNER/compile-docs@SHA
       with:
         target: UIKitBackend
