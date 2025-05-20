@@ -38,6 +38,7 @@ runs:
       shell: bash
       env:
         TARGET: ${{ inputs.target }}
+
     - name: Compile documentation (with xcodebuild)
       if: ${{ inputs.xcodebuild == 'true' }} # Compare to constant to treat empty input as false
       run: |
@@ -56,8 +57,17 @@ runs:
       env:
         TARGET: ${{ inputs.target }}
         DEVICE_TYPE: ${{ inputs.xcodebuild-device-type }}
-    - uses: actions/upload-artifact@v4
+
+    - name: Compress DocC archive
+      uses: a7ul/tar-action@v1.1.0
+      with:
+        command: c
+        files: ./${{ inputs.target }}.doccarchive
+        outPath: ${{ inputs.target }}.doccarchive.tar.gz
+
+    - name: Upload DocC archive
+      uses: actions/upload-artifact@v4
       if: ${{ inputs.upload == 'true' }} # Compare to constant to treat empty input as false
       with:
-        name: ${{ inputs.target }}.doccarchive
-        path: ${{ inputs.target }}.doccarchive
+        name: ${{ inputs.target }}.doccarchive.tar.gz
+        path: ${{ inputs.target }}.doccarchive.tar.gz

@@ -16,6 +16,9 @@ jobs:
     - name: Force Xcode 15.4
       run: sudo xcode-select -switch /Applications/Xcode_15.4.app
 
+    - name: Swift version
+      run: swift --version
+
     - uses: actions/checkout@v3
 
     - name: Install Dependencies
@@ -62,6 +65,9 @@ jobs:
     steps:
     - name: Force Xcode 15.4
       run: sudo xcode-select -switch /Applications/Xcode_15.4.app
+
+    - name: Swift version
+      run: swift --version
 
     - name: Install xcbeautify
       run: brew install xcbeautify
@@ -133,6 +139,9 @@ jobs:
         branch: swift-6.1-release
         tag: 6.1-RELEASE
 
+    - name: Swift version
+      run: swift --version
+
     - name: Compute vcpkg Triplet
       id: triplet
       uses: ASzc/change-string-case-action@v5
@@ -182,6 +191,9 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+    - name: Swift version
+      run: swift --version
+
     - uses: actions/checkout@v3
 
     - name: Install Dependencies
@@ -248,22 +260,57 @@ jobs:
     - name: Download AppKitBackend.doccarchive
       uses: actions/download-artifact@v4
       with:
-        name: AppKitBackend.doccarchive
+        name: AppKitBackend.doccarchive.tar.gz
+
+    - name: Download UIKitBackend.doccarchive
+      uses: actions/download-artifact@v4
+      with:
+        name: UIKitBackend.doccarchive.tar.gz
 
     - name: Download GtkBackend.doccarchive
       uses: actions/download-artifact@v4
       with:
-        name: GtkBackend.doccarchive
+        name: GtkBackend.doccarchive.tar.gz
 
     - name: Download Gtk3Backend.doccarchive
       uses: actions/download-artifact@v4
       with:
-        name: Gtk3Backend.doccarchive
+        name: Gtk3Backend.doccarchive.tar.gz
 
     - name: Download WinUIBackend.doccarchive
       uses: actions/download-artifact@v4
       with:
-        name: WinUIBackend.doccarchive
+        name: WinUIBackend.doccarchive.tar.gz
+
+    - name: Extract AppKitBackend.doccarchive.tar.gz
+      uses: a7ul/tar-action@v1.1.0
+      with:
+        command: x
+        files: ./AppKitBackend.doccarchive.tar.gz
+
+    - name: Extract UIKitBackend.doccarchive.tar.gz
+      uses: a7ul/tar-action@v1.1.0
+      with:
+        command: x
+        files: ./UIKitBackend.doccarchive.tar.gz
+
+    - name: Extract GtkBackend.doccarchive.tar.gz
+      uses: a7ul/tar-action@v1.1.0
+      with:
+        command: x
+        files: ./GtkBackend.doccarchive.tar.gz
+
+    - name: Extract Gtk3Backend.doccarchive.tar.gz
+      uses: a7ul/tar-action@v1.1.0
+      with:
+        command: x
+        files: ./Gtk3Backend.doccarchive.tar.gz
+
+    - name: Extract WinUIBackend.doccarchive.tar.gz
+      uses: a7ul/tar-action@v1.1.0
+      with:
+        command: x
+        files: ./WinUIBackend.doccarchive.tar.gz
 
     - name: Merge DocC archives
       run: |
@@ -273,6 +320,7 @@ jobs:
           UIKitBackend.doccarchive \
           GtkBackend.doccarchive \
           Gtk3Backend.doccarchive \
+          WinUIBackend.doccarchive \
           --output-path gh-pages/docs
 
     - name: Update docs if changed
