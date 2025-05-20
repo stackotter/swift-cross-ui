@@ -24,9 +24,10 @@ runs:
         set -ex
         mkdir "$TARGET.doccarchive" && \
         swift package \
-          --allow-writing-to-directory "$TARGET.doccarchive" \
+          --allow-writing-to-directory . \
           generate-documentation \
           --target "$TARGET" \
+          --disable-indexing \
           --transform-for-static-hosting \
           --hosting-base-path swift-cross-ui \
           --output-path "$TARGET.doccarchive" \
@@ -38,7 +39,7 @@ runs:
       env:
         TARGET: ${{ inputs.target }}
     - name: Compile documentation (with xcodebuild)
-      if: ${{ inputs.xcodebuild == true }} # Compare to constant to treat empty input as false
+      if: ${{ inputs.xcodebuild == "true" }} # Compare to constant to treat empty input as false
       run: |
         set -ex
         destination=""
