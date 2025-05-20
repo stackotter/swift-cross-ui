@@ -12,6 +12,12 @@ public class Binding<Value> {
         }
     }
 
+    public var projectedValue: Binding<Value> {
+        // Just a handy helper so that you can use `@Binding` properties like
+        // you would `@State` properties.
+        self
+    }
+
     /// The stored getter.
     private let getValue: () -> Value
     /// The stored setter.
