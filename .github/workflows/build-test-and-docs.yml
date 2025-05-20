@@ -212,12 +212,14 @@ jobs:
       run: swift test --test-product swift-cross-uiPackageTests
 
     - name: Compile GtkBackend docs
+      if: ${{ matrix.os == 'ubuntu-24.04' }}
       uses: ./.github/actions/compile-docs
       with:
         target: GtkBackend
         upload: true
 
     - name: Compile Gtk3Backend docs
+      if: ${{ matrix.os == 'ubuntu-24.04' }}
       uses: ./.github/actions/compile-docs
       with:
         target: Gtk3Backend

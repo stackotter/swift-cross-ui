@@ -42,6 +42,7 @@ runs:
           destination="destination=$(xcrun simctl list devices $devicetype available | grep -v -- -- | tail -n 1 | grep -oE '[0-9A-F\-]{36}')"
         fi
         xcodebuild -scheme "$TARGET" -destination "$(destination)" docbuild | xcbeautify --renderer github-actions
+      shell: bash
       env:
         TARGET: ${{ inputs.target }}
         DEVICE_TYPE: ${{ inputs.xcodebuild-device-type }}
