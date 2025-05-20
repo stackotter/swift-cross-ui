@@ -8,7 +8,7 @@ Building a cross-platform app requires testing your app in a variety of environm
 
 In this article we'll focus on developing SwiftCrossUI apps with Swift Bundler, but much of the information should still apply if you choose to use a different build system.
 
-> Note: This article covers setting up development environments on pre-existing machines. To develop in a virtual machine, first follow <doc:Setting-up-virtual-development-environments> then return to complete the set up process.
+> Note: This article covers setting up development environments on pre-existing machines. To develop in a virtual machine, first follow <doc:Setting-up-a-virtual-development-environment> then return to complete the set up process.
 
 ## Apple platforms
 
