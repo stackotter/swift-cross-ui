@@ -1,23 +1,25 @@
-name: Generate docs
+name: Compile docs
 description: 'A reusable fragment that compiles Swift documentation for a target'
 inputs:
   target:
     description: 'Target to compile documentation for'
     required: true
   upload:
+    # Assumed false if omitted. We could supply the 'default' field, but it doesn't take
+    # effect when this composite action is called from a workflow, so it would just be
+    # misleading.
     description: 'Whether to upload the documentation as an artifact or not'
-    default: false
   xcodebuild:
+    # Assumed false if omitted
     description: 'Whether to use xcodebuild instead of SwiftPM or not'
-    default: false
   xcodebuild-device-type:
+    # Assumed 'Mac' if omitted
     description: 'The device type to compile docs for when using xcodebuild (e.g. iPhone, iPad or TV)'
-    default: "Mac"
 runs:
   using: "composite"
   steps:
     - name: Compile documentation (with SwiftPM)
-      if: ${{ !inputs.xcodebuild }}
+      if: ${{ inputs.xcodebuild != true }} # Compare to constant to treat empty input as false
       run: |
         swift package \
           --allow-writing-to-directory "$TARGET.doccarchive" \
@@ -34,9 +36,10 @@ runs:
       env:
         TARGET: ${{ inputs.target }}
     - name: Compile documentation (with xcodebuild)
-      if: ${{ inputs.xcodebuild }}
+      if: ${{ inputs.xcodebuild == true }} # Compare to constant to treat empty input as false
       run: |
-        if [ $DEVICE_TYPE -eq "Mac" ]; then
+        destination=""
+        if [[ $DEVICE_TYPE == "Mac" ]] || [[ $DEVICE_TYPE == "" ]]; then
           destination="platform=OS X"
         else
           destination="id=$(xcrun simctl list devices $devicetype available | grep -v -- -- | tail -n 1 | grep -oE '[0-9A-F\-]{36}')"
@@ -47,7 +50,7 @@ runs:
         TARGET: ${{ inputs.target }}
         DEVICE_TYPE: ${{ inputs.xcodebuild-device-type }}
     - uses: actions/upload-artifact@v4
-      if: ${{ inputs.upload }}
+      if: ${{ inputs.upload == true }} # Compare to constant to treat empty input as false
       with:
         name: ${{ inputs.target }}.doccarchive
         path: ${{ inputs.target }}.doccarchive
