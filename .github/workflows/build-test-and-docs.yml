@@ -76,12 +76,11 @@ jobs:
 
     - name: Build
       run: |
-        set -uo pipefail
+        set -uexo pipefail
         device_type=${{ matrix.device-type }}
         set +e
         deviceid=$(xcrun simctl list devices $device_type available | grep -v -- -- | tail -n 1 | grep -oE '[0-9A-F\-]{36}')
         if [ $? -eq 0 ]; then
-          set -ex
           (
             buildtarget () {
               # Use the same derived data path as DocC compilation so that we don't duplicate work.
@@ -340,6 +339,15 @@ jobs:
           --source-service-base-url https://github.com/stackotter/swift-cross-ui/blob/main \
           --checkout-path $(pwd)
 
+    - name: Clone gh-pages branch
+      run: |
+        set -eux
+        git config user.email "stackotter@stackotter.dev"
+        git config user.name "stackotter"
+
+        git fetch
+        git worktree add --checkout gh-pages origin/gh-pages
+
     - name: Merge DocC archives
       run: |
         xcrun docc merge \
@@ -354,12 +362,6 @@ jobs:
     - name: Update docs if changed
       run: |
         set -eux
-
-        git config user.email "stackotter@stackotter.dev"
-        git config user.name "stackotter"
-
-        git fetch
-        git worktree add --checkout gh-pages origin/gh-pages
 
         CURRENT_COMMIT_HASH=`git rev-parse --short HEAD`
 
