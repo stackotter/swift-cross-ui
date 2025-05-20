@@ -176,14 +176,20 @@ jobs:
         PKG_CONFIG_PATH: ${{ github.workspace }}/vcpkg_installed/${{ steps.triplet.outputs.lowercase }}/lib/pkgconfig
       run: swift build --target SwiftCrossUI -v
 
+    # DocC doesn't work on Windows yet, so we just emit the symbol graphs and construct
+    # the final WinUIBackend documentation archive in the update-docs job.
+    # Related issue: https://github.com/swiftlang/swift-docc/pull/668
     - name: Build WinUIBackend
-      run: swift build --target WinUIBackend
+      run: |
+        swift build --target WinUIBackend -v \
+          -Xswiftc -emit-symbol-graph \
+          -Xswiftc -emit-symbol-graph-dir -Xswiftc symbol-graphs
 
-    - name: Compile WinUIBackend docs
-      uses: ./.github/actions/compile-docs
+    - name: Upload WinUIBackend symbol graph
+      uses: actions/upload-artifact@v4
       with:
-        target: WinUIBackend
-        upload: true
+        name: WinUIBackend.symbols.json
+        path: symbol-graphs/WinUIBackend.symbols.json
 
   linux:
     strategy:
@@ -192,6 +198,11 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+    - name: Install Swift
+      uses: SwiftyLab/setup-swift@latest
+      with:
+        swift-version: "6.1.0"
+
     - name: Swift version
       run: swift --version
 
@@ -223,9 +234,6 @@ jobs:
 
     - name: Test
       run: swift test --test-product swift-cross-uiPackageTests
-
-    - name: Probe
-      run: ls /usr/share/swift/usr/share/docc/render/
 
     - name: Compile GtkBackend docs
       if: ${{ matrix.os == 'ubuntu-24.04' }}
@@ -281,11 +289,6 @@ jobs:
       with:
         name: Gtk3Backend.doccarchive.tar.gz
 
-    - name: Download WinUIBackend.doccarchive
-      uses: actions/download-artifact@v4
-      with:
-        name: WinUIBackend.doccarchive.tar.gz
-
     - name: Extract AppKitBackend.doccarchive.tar.gz
       uses: a7ul/tar-action@v1.1.0
       with:
@@ -310,11 +313,24 @@ jobs:
         command: x
         files: ./Gtk3Backend.doccarchive.tar.gz
 
-    - name: Extract WinUIBackend.doccarchive.tar.gz
-      uses: a7ul/tar-action@v1.1.0
+    - name: Download WinUIBackend.symbols.json
+      uses: actions/download-artifact@v4
       with:
-        command: x
-        files: ./WinUIBackend.doccarchive.tar.gz
+        name: WinUIBackend.symbols.json
+
+    - name: Compile WinUIBackend documentation
+      run: |
+        mkdir WinUIBackend.docc
+        mkdir winui-symbol-graphs
+        mv WinUIBackend.symbols.json winui-symbol-graphs/
+        xcrun docc convert WinUIBackend.docc \
+          --additional-symbol-graph-dir winui-symbol-graphs \
+          --transform-for-static-hosting \
+          --hosting-base-path swift-cross-ui \
+          --output-path "WinUIBackend.doccarchive" \
+          --source-service github \
+          --source-service-base-url https://github.com/stackotter/swift-cross-ui/blob/main \
+          --checkout-path $(pwd)
 
     - name: Merge DocC archives
       run: |

@@ -23,11 +23,8 @@ runs:
       run: |
         set -ex
         mkdir "$TARGET.doccarchive" && \
-        # We use --disable-sandbox instead of --allow-writing-to-directory because
-        # Linux and Windows throw tantrums about not being able to write to tmp (even
-        # though when I try locally I face no issues...)
         swift package \
-          --disable-sandbox \
+          --allow-writing-to-directory . \
           generate-documentation \
           --target "$TARGET" \
           --disable-indexing \
@@ -55,11 +52,7 @@ runs:
         echo "$DEVICE_TYPE"
         echo "Building documentation for destination '$destination'"
         xcodebuild -skipMacroValidation -scheme "$TARGET" -destination "$destination" -derivedDataPath /tmp/data docbuild | xcbeautify --renderer github-actions
-        ls /tmp/data
-        ls /tmp/data/Build
-        ls /tmp/data/Build/Products
-        ls /tmp/data/Build/Products/Debug
-        cp -R "/tmp/data/Build/Products/Debug/$TARGET.doccarchive" "$TARGET.doccarchive"
+        cp -R $(find /tmp/data -name "$TARGET.doccarchive") "$TARGET.doccarchive"
       shell: bash
       env:
         TARGET: ${{ inputs.target }}
