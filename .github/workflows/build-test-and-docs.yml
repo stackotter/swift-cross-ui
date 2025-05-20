@@ -254,13 +254,17 @@ jobs:
         upload: true
 
   update-docs:
-    runs-on: macos-14
+    runs-on: macos-15
     needs: [macos, uikit, windows, linux]
     if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
 
     steps:
-    - name: Force Xcode 15.4
-      run: sudo xcode-select -switch /Applications/Xcode_15.4.app
+    - name: Setup Xcode version
+      uses: maxim-lobanov/setup-xcode@v1.6.0
+      with:
+        # Contains Swift 6.1. We need a recent DocC to have access to '--output-path'
+        # in the 'docc merge' command
+        xcode-version: '16.3'
 
     - uses: actions/checkout@v3
 
