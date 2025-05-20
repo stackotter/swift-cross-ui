@@ -78,7 +78,7 @@ jobs:
           set -e
           (
             buildtarget () {
-              xcodebuild -scheme "$1" -destination "id=$deviceid" build | xcbeautify --renderer github-actions
+              xcodebuild -skipMacroValidation -scheme "$1" -destination "id=$deviceid" build | xcbeautify --renderer github-actions
             }
 
             buildtarget SwiftCrossUI

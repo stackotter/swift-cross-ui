@@ -37,11 +37,11 @@ runs:
       if: ${{ inputs.xcodebuild }}
       run: |
         if [ $DEVICE_TYPE -eq "Mac" ]; then
-          destination=""
+          destination="platform=OS X"
         else
-          destination="destination=$(xcrun simctl list devices $devicetype available | grep -v -- -- | tail -n 1 | grep -oE '[0-9A-F\-]{36}')"
+          destination="id=$(xcrun simctl list devices $devicetype available | grep -v -- -- | tail -n 1 | grep -oE '[0-9A-F\-]{36}')"
         fi
-        xcodebuild -scheme "$TARGET" -destination "$(destination)" docbuild | xcbeautify --renderer github-actions
+        xcodebuild -skipMacroValidation -scheme "$TARGET" -destination "$(destination)" docbuild | xcbeautify --renderer github-actions
       shell: bash
       env:
         TARGET: ${{ inputs.target }}
