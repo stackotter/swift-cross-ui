@@ -46,7 +46,7 @@ jobs:
       run: swift test --test-product swift-cross-uiPackageTests
 
     - name: Compile AppKitBackend docs
-      uses: OWNER/compile-docs@SHA
+      uses: ./.github/actions/compile-docs
       with:
         target: AppKitBackend
         upload: true
@@ -110,7 +110,7 @@ jobs:
 
     - name: Compile UIKitBackend docs
       if: ${{ matrix.devicetype == 'iPhone' }}
-      uses: OWNER/compile-docs@SHA
+      uses: ./.github/actions/compile-docs
       with:
         target: UIKitBackend
         upload: true
@@ -170,7 +170,7 @@ jobs:
       run: swift build --target WinUIBackend
 
     - name: Compile WinUIBackend docs
-      uses: OWNER/compile-docs@SHA
+      uses: ./.github/actions/compile-docs
       with:
         target: WinUIBackend
         upload: true
@@ -212,13 +212,13 @@ jobs:
       run: swift test --test-product swift-cross-uiPackageTests
 
     - name: Compile GtkBackend docs
-      uses: OWNER/compile-docs@SHA
+      uses: ./.github/actions/compile-docs
       with:
         target: GtkBackend
         upload: true
 
     - name: Compile Gtk3Backend docs
-      uses: OWNER/compile-docs@SHA
+      uses: ./.github/actions/compile-docs
       with:
         target: Gtk3Backend
         upload: true
@@ -238,7 +238,7 @@ jobs:
       run: swift --version
 
     - name: Compile SwiftCrossUI docs
-      uses: OWNER/compile-docs@SHA
+      uses: ./.github/actions/compile-docs
       with:
         target: SwiftCrossUI
         upload: false
