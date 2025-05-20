@@ -84,7 +84,8 @@ jobs:
           set -ex
           (
             buildtarget () {
-              xcodebuild -skipMacroValidation -scheme "$1" -destination "id=$deviceid" build | xcbeautify --renderer github-actions
+              # Use the same derived data path as DocC compilation so that we don't duplicate work.
+              xcodebuild -derivedDataPath /tmp/data -skipMacroValidation -scheme "$1" -destination "id=$deviceid" build | xcbeautify --renderer github-actions
             }
 
             buildtarget SwiftCrossUI
