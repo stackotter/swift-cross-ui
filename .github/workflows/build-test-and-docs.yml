@@ -55,7 +55,7 @@ jobs:
     runs-on: macos-14
     strategy:
       matrix:
-        devicetype:
+        device-type:
           - iPhone
           - iPad
           - TV
@@ -71,11 +71,11 @@ jobs:
     - name: Build
       run: |
         set -uo pipefail
-        devicetype=${{ matrix.devicetype }}
+        device_type=${{ matrix.device-type }}
         set +e
-        deviceid=$(xcrun simctl list devices $devicetype available | grep -v -- -- | tail -n 1 | grep -oE '[0-9A-F\-]{36}')
+        deviceid=$(xcrun simctl list devices $device_type available | grep -v -- -- | tail -n 1 | grep -oE '[0-9A-F\-]{36}')
         if [ $? -eq 0 ]; then
-          set -e
+          set -ex
           (
             buildtarget () {
               xcodebuild -skipMacroValidation -scheme "$1" -destination "id=$deviceid" build | xcbeautify --renderer github-actions
@@ -93,29 +93,29 @@ jobs:
             buildtarget NotesExample
             buildtarget PathsExample
 
-            if [ $devicetype != TV ]; then
+            if [ $device_type != TV ]; then
               # Slider is not implemented for tvOS
               buildtarget ControlsExample
               buildtarget RandomNumberGeneratorExample
             fi
 
-            if [ $devicetype = iPad ]; then
+            if [ $device_type = iPad ]; then
               # NavigationSplitView is only implemented for iPad
               buildtarget SplitExample
             fi
           )
         else
-          echo "No $devicetype simulators found" >&2
+          echo "No $device_type simulators found" >&2
         fi
 
     - name: Compile UIKitBackend docs
-      if: ${{ matrix.devicetype == 'iPhone' }}
+      if: ${{ matrix.device-type == 'iPhone' }}
       uses: ./.github/actions/compile-docs
       with:
         target: UIKitBackend
         upload: true
         xcodebuild: true
-        xcodebuild_destination: ${{ matrix.devicetype }}
+        xcodebuild-device-type: ${{ matrix.device-type }}
 
   windows:
     runs-on: windows-latest
