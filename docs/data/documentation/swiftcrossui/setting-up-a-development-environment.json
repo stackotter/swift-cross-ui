@@ -63,8 +63,9 @@
                   "type" : "text"
                 },
                 {
-                  "text" : "doc:Setting-up-virtual-development-environments",
-                  "type" : "text"
+                  "identifier" : "doc:\/\/SwiftCrossUI\/documentation\/SwiftCrossUI\/Setting-up-a-virtual-development-environment",
+                  "isActive" : true,
+                  "type" : "reference"
                 },
                 {
                   "text" : " then return to complete the set up process.",
