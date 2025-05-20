@@ -1,0 +1,52 @@
+name: Generate docs
+description: 'A reusable fragment that compiles Swift documentation for a target'
+inputs:
+  target:
+    description: 'Target to compile documentation for'
+    required: true
+  upload:
+    description: 'Whether to upload the documentation as an artifact or not'
+    default: false
+  xcodebuild:
+    description: 'Whether to use xcodebuild instead of SwiftPM or not'
+    default: false
+  xcodebuild-device-type:
+    description: 'The device type to compile docs for when using xcodebuild (e.g. iPhone, iPad or TV)'
+    default: "Mac"
+runs:
+  using: "composite"
+  steps:
+    - name: Compile documentation (with SwiftPM)
+      if: ${{ !inputs.xcodebuild }}
+      run: |
+        swift package \
+          --allow-writing-to-directory "$TARGET.doccarchive" \
+          generate-documentation \
+          --target "$TARGET" \
+          --transform-for-static-hosting \
+          --hosting-base-path swift-cross-ui \
+          --output-path "$TARGET.doccarchive" \
+          --source-service github \
+          --source-service-base-url https://github.com/stackotter/swift-cross-ui/blob/main \
+          --checkout-path $(pwd) \
+          --verbose
+      shell: bash
+      env:
+        TARGET: ${{ inputs.target }}
+    - name: Compile documentation (with xcodebuild)
+      if: ${{ inputs.xcodebuild }}
+      run: |
+        if [ $DEVICE_TYPE -eq "Mac" ]; then
+          destination=""
+        else
+          destination="destination=$(xcrun simctl list devices $devicetype available | grep -v -- -- | tail -n 1 | grep -oE '[0-9A-F\-]{36}')"
+        fi
+        xcodebuild -scheme "$TARGET" -destination "$(destination)" docbuild | xcbeautify --renderer github-actions
+      env:
+        TARGET: ${{ inputs.target }}
+        DEVICE_TYPE: ${{ inputs.xcodebuild-device-type }}
+    - uses: actions/upload-artifact@v4
+      if: ${{ inputs.upload }}
+      with:
+        name: ${{ inputs.target }}.doccarchive
+        path: ${{ inputs.target }}.doccarchive
