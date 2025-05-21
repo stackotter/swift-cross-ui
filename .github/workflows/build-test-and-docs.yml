@@ -24,14 +24,23 @@ jobs:
     - name: Install Dependencies
       run: brew install pkg-config gtk4 gtk+3 || echo "This step 'fails' every time but it's just a brew linking error - not important."
 
-    - name: Build
+    - name: Build SwiftCrossUI
+      run: swift build --target SwiftCrossUI
+      working-directory: Examples
+
+    - name: Build AppKitBackend and extract symbol graphs
+      uses: ./.github/actions/extract-symbol-graphs
+      with:
+        target: AppKitBackend
+        upload: true
+        working-directory: Examples
+
+    - name: Build other targets and examples
       run: |
         swift build --target GtkCodeGen && \
         cd Examples && \
-        swift build --target SwiftCrossUI && \
         swift build --target GtkBackend && \
         swift build --target Gtk3Backend && \
-        swift build --target AppKitBackend && \
         swift build --target CounterExample && \
         swift build --target ControlsExample && \
         swift build --target RandomNumberGeneratorExample && \
@@ -47,12 +56,6 @@ jobs:
 
     - name: Test
       run: swift test --test-product swift-cross-uiPackageTests
-
-    - name: Compile AppKitBackend docs
-      uses: ./.github/actions/compile-docs
-      with:
-        target: AppKitBackend
-        upload: true
 
   uikit:
     runs-on: macos-14
@@ -114,9 +117,9 @@ jobs:
           echo "No $device_type simulators found" >&2
         fi
 
-    - name: Compile UIKitBackend docs
+    - name: Extract UIKitBackend symbol graphs
       if: ${{ matrix.device-type == 'iPhone' }}
-      uses: ./.github/actions/compile-docs
+      uses: ./.github/actions/extract-symbol-graphs
       with:
         target: UIKitBackend
         upload: true
@@ -175,21 +178,11 @@ jobs:
         PKG_CONFIG_PATH: ${{ github.workspace }}/vcpkg_installed/${{ steps.triplet.outputs.lowercase }}/lib/pkgconfig
       run: swift build --target SwiftCrossUI -v
 
-    # DocC doesn't work on Windows yet, so we just emit the symbol graphs and construct
-    # the final WinUIBackend documentation archive in the update-docs job.
-    # Related issue: https://github.com/swiftlang/swift-docc/pull/668
-    - name: Build WinUIBackend
-      run: |
-        swift build --target WinUIBackend -v \
-          -Xswiftc -emit-symbol-graph \
-          -Xswiftc -emit-symbol-graph-dir -Xswiftc symbol-graphs
-      shell: bash
-
-    - name: Upload WinUIBackend symbol graph
-      uses: actions/upload-artifact@v4
+    - name: Build WinUIBackend and extract symbol graphs
+      uses: ./.github/actions/extract-symbol-graphs
       with:
-        name: WinUIBackend.symbols.json
-        path: symbol-graphs/WinUIBackend.symbols.json
+        target: WinUIBackend
+        upload: true
 
   linux:
     strategy:
@@ -216,13 +209,40 @@ jobs:
         sudo apt update && \
         sudo apt install -y libgtk-4-dev libgtk-3-dev clang
 
-    - name: Build
+    - name: Build GtkCodeGen
+      run: swift build --target GtkCodeGen
+
+    - name: Build SwiftCrossUI
+      run: swift build --target SwiftCrossUI
+      working-directory: Examples
+
+    - name: Build GtkBackend and extract symbol graphs
+      if: ${{ matrix.os == 'ubuntu-24.04' }}
+      uses: ./.github/actions/extract-symbol-graphs
+      with:
+        target: GtkBackend
+        upload: true
+        working-directory: Examples
+    - name: Build GtkBackend
+      if: ${{ matrix.os != 'ubuntu-24.04' }}
+      run: swift build --target GtkBackend
+      working-directory: Examples
+
+    - name: Build Gtk3Backend and extract symbol graphs
+      if: ${{ matrix.os == 'ubuntu-24.04' }}
+      uses: ./.github/actions/extract-symbol-graphs
+      with:
+        target: Gtk3Backend
+        upload: true
+        working-directory: Examples
+    - name: Build Gtk3Backend
+      if: ${{ matrix.os != 'ubuntu-24.04' }}
+      run: swift build --target Gtk3Backend
+      working-directory: Examples
+
+    - name: Build examples
+      working-directory: Examples
       run: |
-        swift build --target GtkCodeGen && \
-        cd Examples && \
-        swift build --target SwiftCrossUI && \
-        swift build --target GtkBackend && \
-        swift build --target Gtk3Backend && \
         swift build --target CounterExample && \
         swift build --target ControlsExample && \
         swift build --target RandomNumberGeneratorExample && \
@@ -237,20 +257,6 @@ jobs:
 
     - name: Test
       run: swift test --test-product swift-cross-uiPackageTests
-
-    - name: Compile GtkBackend docs
-      if: ${{ matrix.os == 'ubuntu-24.04' }}
-      uses: ./.github/actions/compile-docs
-      with:
-        target: GtkBackend
-        upload: true
-
-    - name: Compile Gtk3Backend docs
-      if: ${{ matrix.os == 'ubuntu-24.04' }}
-      uses: ./.github/actions/compile-docs
-      with:
-        target: Gtk3Backend
-        upload: true
 
   update-docs:
     runs-on: macos-15
@@ -274,70 +280,37 @@ jobs:
       uses: ./.github/actions/compile-docs
       with:
         target: SwiftCrossUI
-        upload: false
+        use-swiftpm: true
 
-    - name: Download AppKitBackend.doccarchive
-      uses: actions/download-artifact@v4
+    - name: Compile AppKitBackend docs
+      uses: ./.github/actions/compile-docs
       with:
-        name: AppKitBackend.doccarchive.tar.gz
+        target: AppKitBackend
+        use-symbol-graph-artifact: true
 
-    - name: Download UIKitBackend.doccarchive
-      uses: actions/download-artifact@v4
+    - name: Compile UIKitBackend docs
+      uses: ./.github/actions/compile-docs
       with:
-        name: UIKitBackend.doccarchive.tar.gz
+        target: UIKitBackend
+        use-symbol-graph-artifact: true
 
-    - name: Download GtkBackend.doccarchive
-      uses: actions/download-artifact@v4
+    - name: Compile GtkBackend docs
+      uses: ./.github/actions/compile-docs
       with:
-        name: GtkBackend.doccarchive.tar.gz
+        target: GtkBackend
+        use-symbol-graph-artifact: true
 
-    - name: Download Gtk3Backend.doccarchive
-      uses: actions/download-artifact@v4
+    - name: Compile Gtk3Backend docs
+      uses: ./.github/actions/compile-docs
       with:
-        name: Gtk3Backend.doccarchive.tar.gz
+        target: Gtk3Backend
+        use-symbol-graph-artifact: true
 
-    - name: Extract AppKitBackend.doccarchive.tar.gz
-      uses: a7ul/tar-action@v1.1.0
+    - name: Compile WinUIBackend docs
+      uses: ./.github/actions/compile-docs
       with:
-        command: x
-        files: ./AppKitBackend.doccarchive.tar.gz
-
-    - name: Extract UIKitBackend.doccarchive.tar.gz
-      uses: a7ul/tar-action@v1.1.0
-      with:
-        command: x
-        files: ./UIKitBackend.doccarchive.tar.gz
-
-    - name: Extract GtkBackend.doccarchive.tar.gz
-      uses: a7ul/tar-action@v1.1.0
-      with:
-        command: x
-        files: ./GtkBackend.doccarchive.tar.gz
-
-    - name: Extract Gtk3Backend.doccarchive.tar.gz
-      uses: a7ul/tar-action@v1.1.0
-      with:
-        command: x
-        files: ./Gtk3Backend.doccarchive.tar.gz
-
-    - name: Download WinUIBackend.symbols.json
-      uses: actions/download-artifact@v4
-      with:
-        name: WinUIBackend.symbols.json
-
-    - name: Compile WinUIBackend documentation
-      run: |
-        mkdir WinUIBackend.docc
-        mkdir winui-symbol-graphs
-        mv WinUIBackend.symbols.json winui-symbol-graphs/
-        xcrun docc convert WinUIBackend.docc \
-          --additional-symbol-graph-dir winui-symbol-graphs \
-          --transform-for-static-hosting \
-          --hosting-base-path swift-cross-ui \
-          --output-path "WinUIBackend.doccarchive" \
-          --source-service github \
-          --source-service-base-url https://github.com/stackotter/swift-cross-ui/blob/main \
-          --checkout-path $(pwd)
+        target: WinUIBackend
+        use-symbol-graph-artifact: true
 
     - name: Clone gh-pages branch
       run: |

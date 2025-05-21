@@ -4,22 +4,40 @@ inputs:
   target:
     description: 'Target to compile documentation for'
     required: true
-  upload:
-    # Assumed false if omitted. We could supply the 'default' field, but it doesn't take
-    # effect when this composite action is called from a workflow, so it would just be
-    # misleading.
-    description: 'Whether to upload the documentation as an artifact or not'
-  xcodebuild:
-    # Assumed false if omitted
-    description: 'Whether to use xcodebuild instead of SwiftPM or not'
-  xcodebuild-device-type:
-    # Assumed 'Mac' if omitted
-    description: 'The device type to compile docs for when using xcodebuild (e.g. iPhone, iPad or TV)'
+  use-swiftpm:
+    description: 'If true, use SwiftPM to compile documentation'
+  symbol-graph-dir:
+    # If use-swiftpm is false, then you must provide this or use-symbol-graph-artifact
+    description: 'Directory containing extracted symbol graphs'
+  use-symbol-graph-artifact:
+    # If use-swiftpm is false, then you must provide this or symbol-graph-dir
+    description: 'If true, download symbol graphs from the [target]-symbol-graphs artifact'
+  docc-catalog:
+    # If not provided, a dummy catalog is created.
+    description: 'DocC catalog containing DocC articles etc'
+
 runs:
   using: "composite"
   steps:
+    - name: Reject invalid inputs
+      if: ${{ (inputs.use-swiftpm == 'true' && (inputs.symbol-graph-dir != '' || inputs.use-symbol-graph-artifact == 'true' || inputs.docc-catalog != '')) || ((inputs.symbol-graph-dir != '') == (inputs.use-symbol-graph-artifact == 'true')) }}
+      run: |
+        echo "target: $TARGET"
+        echo "use-swiftpm: $USE_SWIFTPM"
+        echo "symbol-graph-dir: $SYMBOL_GRAPH_DIR"
+        echo "use-symbol-graph-artifact: $USE_SYMBOL_GRAPH_ARTIFACT"
+        echo "docc-catalog: $DOCC_CATALOG"
+        exit 1
+      shell: bash
+      env:
+        TARGET: ${{ inputs.target }}
+        USE_SWIFTPM: ${{ inputs.use-swiftpm }}
+        SYMBOL_GRAPH_DIR: ${{ inputs.symbol-graph-dir }}
+        USE_SYMBOL_GRAPH_ARTIFACT: ${{ inputs.use-symbol-graph-artifact }}
+        DOCC_CATALOG: ${{ inputs.docc-catalog }}
+
     - name: Compile documentation (with SwiftPM)
-      if: ${{ inputs.xcodebuild != 'true' }} # Compare to constant to treat empty input as false
+      if: ${{ inputs.use-swiftpm == 'true' }} # Compare to constant to treat empty input as false
       run: |
         set -ex
         mkdir "$TARGET.doccarchive" && \
@@ -39,35 +57,42 @@ runs:
       env:
         TARGET: ${{ inputs.target }}
 
-    - name: Compile documentation (with xcodebuild)
-      if: ${{ inputs.xcodebuild == 'true' }} # Compare to constant to treat empty input as false
-      run: |
-        set -ex
-        destination=""
-        if [[ $DEVICE_TYPE == "Mac" ]] || [[ $DEVICE_TYPE == "" ]]; then
-          destination="platform=OS X"
-        else
-          destination="id=$(xcrun simctl list devices $devicetype available | grep -v -- -- | tail -n 1 | grep -oE '[0-9A-F\-]{36}')"
-        fi
-        echo "$DEVICE_TYPE"
-        echo "Building documentation for destination '$destination'"
-        xcodebuild -skipMacroValidation -scheme "$TARGET" -destination "$destination" -derivedDataPath /tmp/data docbuild | xcbeautify --renderer github-actions
-        cp -R $(find /tmp/data -name "$TARGET.doccarchive") "$TARGET.doccarchive"
-      shell: bash
-      env:
-        TARGET: ${{ inputs.target }}
-        DEVICE_TYPE: ${{ inputs.xcodebuild-device-type }}
+    - name: Download symbol graphs (from artifact)
+      if: ${{ inputs.use-symbol-graph-artifact == 'true' }}
+      uses: actions/download-artifact@v4
+      with:
+        name: ${{ inputs.target }}-symbol-graphs.tar.gz
 
-    - name: Compress DocC archive
+    - name: Extract symbol graphs artifact
+      if: ${{ inputs.use-symbol-graph-artifact == 'true' }}
       uses: a7ul/tar-action@v1.1.0
       with:
-        command: c
-        files: ./${{ inputs.target }}.doccarchive
-        outPath: ${{ inputs.target }}.doccarchive.tar.gz
+        command: x
+        files: ./${{ inputs.target }}-symbol-graphs.tar.gz
 
-    - name: Upload DocC archive
-      uses: actions/upload-artifact@v4
-      if: ${{ inputs.upload == 'true' }} # Compare to constant to treat empty input as false
-      with:
-        name: ${{ inputs.target }}.doccarchive.tar.gz
-        path: ${{ inputs.target }}.doccarchive.tar.gz
+    - name: Compile documentation (with DocC)
+      if: ${{ inputs.use-swiftpm != 'true' }}
+      shell: bash
+      run: |
+        set -eux
+        catalog="$DOCC_CATALOG"
+        if [[ catalog == "" ]]; then
+          catalog="$TARGET.docc"
+          mkdir "$catalog"
+        fi
+        symbol_graph_dir="$SYMBOL_GRAPH_DIR"
+        if [[ symbol_graphs_dir == "" ]]; then
+          symbol_graph_dir="$TARGET-symbol-graphs"
+        fi
+        xcrun docc convert "$catalog" \
+          --additional-symbol-graph-dir $symbol_graph_dir \
+          --transform-for-static-hosting \
+          --hosting-base-path swift-cross-ui \
+          --output-path "$TARGET.doccarchive" \
+          --source-service github \
+          --source-service-base-url https://github.com/stackotter/swift-cross-ui/blob/main \
+          --checkout-path .
+      env:
+        TARGET: ${{ inputs.target }}
+        DOCC_CATALOG: ${{ inputs.docc-catalog }}
+        SYMBOL_GRAPH_DIR: ${{ inputs.symbol-graph-dir }}

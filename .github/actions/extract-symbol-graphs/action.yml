@@ -1,0 +1,85 @@
+name: Extract symbol graphs
+description: 'A reusable fragment that extract Swift symbol graphs and optionally uploads them as artifacts'
+inputs:
+  target:
+    description: 'Target to compile documentation for'
+    required: true
+  upload:
+    # Assumed false if omitted. We could supply the 'default' field, but it doesn't take
+    # effect when this composite action is called from a workflow, so it would just be
+    # misleading.
+    description: 'Whether to upload the documentation as an artifact or not'
+  xcodebuild:
+    # Assumed false if omitted
+    description: 'Whether to use xcodebuild instead of SwiftPM or not'
+  xcodebuild-device-type:
+    # Assumed 'Mac' if omitted
+    description: 'The device type to compile docs for when using xcodebuild (e.g. iPhone, iPad or TV)'
+  working-directory:
+    description: 'Root directory of package to extract symbol graphs from'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Extract symbol graphs (with SwiftPM)
+      if: ${{ inputs.xcodebuild != 'true' }} # Compare to constant to treat empty input as false
+      run: |
+        set -eux
+        mkdir symbol-graphs
+        swift build --target "$TARGET" \
+          -Xswiftc -emit-symbol-graph \
+          -Xswiftc -emit-symbol-graph-dir -Xswiftc symbol-graphs
+
+        # Locate relevant symbol graphs and copy them to the target-specific
+        # output directory
+        mkdir "$TARGET-symbol-graphs"
+        find symbol-graphs -name "$TARGET*.symbols.json" -exec cp {} $TARGET-symbol-graphs ';'
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        TARGET: ${{ inputs.target }}
+
+    - name: Extract symbol graphs (with xcodebuild)
+      if: ${{ inputs.xcodebuild == 'true' }} # Compare to constant to treat empty input as false
+      run: |
+        set -ex
+        destination=""
+        if [[ $DEVICE_TYPE == "Mac" ]] || [[ $DEVICE_TYPE == "" ]]; then
+          destination="platform=OS X"
+        else
+          destination="id=$(xcrun simctl list devices $devicetype available | grep -v -- -- | tail -n 1 | grep -oE '[0-9A-F\-]{36}')"
+        fi
+
+        # I've found that the most reliable way to produce symbol graphs with
+        # xcodebuild is to just ask it to do a documentation build. This takes
+        # longer than just emitting symbol graphs while building cause it compiles
+        # the documentation as well, but I haven't figured out how to get it to do
+        # so.
+        xcodebuild -skipMacroValidation -scheme "$TARGET" -destination "$destination" \
+          -derivedDataPath /tmp/data docbuild \
+          "OTHER_DOCC_FLAGS=--transform-for-static-hosting --hosting-base-path swift-cross-ui --source-service github --source-service-base-url https://github.com/stackotter/swift-cross-ui/blob/main --checkout-path ." \
+          | xcbeautify --renderer github-actions
+
+        # Locate relevant symbol graphs and copy them to the target-specific
+        # output directory
+        mkdir "$TARGET-symbol-graphs"
+        find /tmp/data -name "$TARGET*.symbols.json" -exec cp {} $TARGET-symbol-graphs ';'
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        TARGET: ${{ inputs.target }}
+        DEVICE_TYPE: ${{ inputs.xcodebuild-device-type }}
+
+    - name: Compress symbol graphs
+      uses: a7ul/tar-action@v1.1.0
+      with:
+        command: c
+        files: ./${{ inputs.working-directory }}/${{ inputs.target }}-symbol-graphs
+        outPath: ${{ inputs.target }}-symbol-graphs.tar.gz
+
+    - name: Upload symbol graphs
+      uses: actions/upload-artifact@v4
+      if: ${{ inputs.upload == 'true' }} # Compare to constant to treat empty input as false
+      with:
+        name: ${{ inputs.target }}-symbol-graphs.tar.gz
+        path: ${{ inputs.target }}-symbol-graphs.tar.gz
