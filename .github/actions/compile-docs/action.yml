@@ -80,7 +80,7 @@ runs:
           mkdir "$catalog"
         fi
         symbol_graph_dir="$SYMBOL_GRAPH_DIR"
-        if [[ $symbol_graphs_dir == "" ]]; then
+        if [[ $symbol_graph_dir == "" ]]; then
           symbol_graph_dir="$TARGET-symbol-graphs"
         fi
         echo $symbol_graph_dir
