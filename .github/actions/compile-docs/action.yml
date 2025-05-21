@@ -40,7 +40,6 @@ runs:
       if: ${{ inputs.use-swiftpm == 'true' }} # Compare to constant to treat empty input as false
       run: |
         set -ex
-        mkdir "$TARGET.doccarchive" && \
         swift package \
           --allow-writing-to-directory . \
           generate-documentation \
