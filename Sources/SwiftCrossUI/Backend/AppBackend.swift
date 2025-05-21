@@ -987,6 +987,7 @@ extension AppBackend {
     public func updatePath(
         _ path: Path,
         _ source: SwiftCrossUI.Path,
+        bounds: SwiftCrossUI.Path.Rect,
         pointsChanged: Bool,
         environment: EnvironmentValues
     ) {
