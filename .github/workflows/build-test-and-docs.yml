@@ -26,14 +26,14 @@ jobs:
 
     - name: Build SwiftCrossUI
       run: swift build --target SwiftCrossUI
-      working-directory: Examples
+      working-directory: ./Examples
 
     - name: Build AppKitBackend and extract symbol graphs
       uses: ./.github/actions/extract-symbol-graphs
       with:
         target: AppKitBackend
         upload: true
-        working-directory: Examples
+        working-directory: ./Examples
 
     - name: Build other targets and examples
       run: |
@@ -214,7 +214,7 @@ jobs:
 
     - name: Build SwiftCrossUI
       run: swift build --target SwiftCrossUI
-      working-directory: Examples
+      working-directory: ./Examples
 
     - name: Build GtkBackend and extract symbol graphs
       if: ${{ matrix.os == 'ubuntu-24.04' }}
@@ -222,11 +222,11 @@ jobs:
       with:
         target: GtkBackend
         upload: true
-        working-directory: Examples
+        working-directory: ./Examples
     - name: Build GtkBackend
       if: ${{ matrix.os != 'ubuntu-24.04' }}
       run: swift build --target GtkBackend
-      working-directory: Examples
+      working-directory: ./Examples
 
     - name: Build Gtk3Backend and extract symbol graphs
       if: ${{ matrix.os == 'ubuntu-24.04' }}
@@ -234,14 +234,14 @@ jobs:
       with:
         target: Gtk3Backend
         upload: true
-        working-directory: Examples
+        working-directory: ./Examples
     - name: Build Gtk3Backend
       if: ${{ matrix.os != 'ubuntu-24.04' }}
       run: swift build --target Gtk3Backend
-      working-directory: Examples
+      working-directory: ./Examples
 
     - name: Build examples
-      working-directory: Examples
+      working-directory: ./Examples
       run: |
         swift build --target CounterExample && \
         swift build --target ControlsExample && \
