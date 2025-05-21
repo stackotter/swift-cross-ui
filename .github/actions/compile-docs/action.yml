@@ -20,7 +20,7 @@ runs:
   using: "composite"
   steps:
     - name: Reject invalid inputs
-      if: ${{ (inputs.use-swiftpm == 'true' && (inputs.symbol-graph-dir != '' || inputs.use-symbol-graph-artifact == 'true' || inputs.docc-catalog != '')) || ((inputs.symbol-graph-dir != '') == (inputs.use-symbol-graph-artifact == 'true')) }}
+      if: ${{ (inputs.use-swiftpm == 'true' && (inputs.symbol-graph-dir != '' || inputs.use-symbol-graph-artifact == 'true' || inputs.docc-catalog != '')) || (inputs.use-swiftpm != 'true' && (inputs.symbol-graph-dir != '') == (inputs.use-symbol-graph-artifact == 'true')) }}
       run: |
         echo "target: $TARGET"
         echo "use-swiftpm: $USE_SWIFTPM"
