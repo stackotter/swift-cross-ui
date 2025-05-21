@@ -75,14 +75,15 @@ runs:
       run: |
         set -eux
         catalog="$DOCC_CATALOG"
-        if [[ catalog == "" ]]; then
+        if [[ $catalog == "" ]]; then
           catalog="$TARGET.docc"
           mkdir "$catalog"
         fi
         symbol_graph_dir="$SYMBOL_GRAPH_DIR"
-        if [[ symbol_graphs_dir == "" ]]; then
+        if [[ $symbol_graphs_dir == "" ]]; then
           symbol_graph_dir="$TARGET-symbol-graphs"
         fi
+        echo $symbol_graph_dir
         xcrun docc convert "$catalog" \
           --additional-symbol-graph-dir $symbol_graph_dir \
           --transform-for-static-hosting \
