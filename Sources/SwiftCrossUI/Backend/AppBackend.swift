@@ -587,11 +587,16 @@ public protocol AppBackend {
     /// - Parameters:
     ///   - path: The path to be updated.
     ///   - source: The source to copy the path from.
+    ///   - bounds: The bounds that the path is getting rendered in. This gets
+    ///     passed to backends because AppKit uses a different coordinate system
+    ///     (with a flipped y axis) and therefore needs to perform coordinate
+    ///     conversions.
     ///   - pointsChanged: If `false`, the ``Path/actions`` of the source have not changed.
     ///   - environment: The environment of the path.
     func updatePath(
         _ path: Path,
         _ source: SwiftCrossUI.Path,
+        bounds: SwiftCrossUI.Path.Rect,
         pointsChanged: Bool,
         environment: EnvironmentValues
     )

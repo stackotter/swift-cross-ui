@@ -49,6 +49,7 @@ extension UIKitBackend {
     public func updatePath(
         _ path: UIBezierPath,
         _ source: SwiftCrossUI.Path,
+        bounds: SwiftCrossUI.Path.Rect,
         pointsChanged: Bool,
         environment: EnvironmentValues
     ) {

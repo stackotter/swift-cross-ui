@@ -1303,6 +1303,7 @@ public final class AppKitBackend: AppBackend {
     public func updatePath(
         _ path: Path,
         _ source: SwiftCrossUI.Path,
+        bounds: SwiftCrossUI.Path.Rect,
         pointsChanged: Bool,
         environment: EnvironmentValues
     ) {
@@ -1310,11 +1311,21 @@ public final class AppKitBackend: AppBackend {
 
         if pointsChanged {
             path.removeAllPoints()
-            applyActions(source.actions, to: path)
+            applyActions(
+                source.actions,
+                to: path,
+                bounds: bounds,
+                applyCoordinateSystemCorrection: true
+            )
         }
     }
 
-    func applyActions(_ actions: [SwiftCrossUI.Path.Action], to path: NSBezierPath) {
+    func applyActions(
+        _ actions: [SwiftCrossUI.Path.Action],
+        to path: NSBezierPath,
+        bounds: SwiftCrossUI.Path.Rect,
+        applyCoordinateSystemCorrection: Bool
+    ) {
         for action in actions {
             switch action {
                 case .moveTo(let point):
@@ -1392,24 +1403,42 @@ public final class AppKitBackend: AppBackend {
                         radius: CGFloat(radius),
                         startAngle: CGFloat(startAngle * 180.0 / .pi),
                         endAngle: CGFloat(endAngle * 180.0 / .pi),
-                        clockwise: clockwise
+                        // Due to being in a flipped coordinate system (before the
+                        // correction gets applied), we have to reverse all arcs.
+                        clockwise: !clockwise
                     )
                 case .transform(let transform):
-                    path.transform(
-                        using: Foundation.AffineTransform(
-                            m11: CGFloat(transform.linearTransform.x),
-                            m12: CGFloat(transform.linearTransform.z),
-                            m21: CGFloat(transform.linearTransform.y),
-                            m22: CGFloat(transform.linearTransform.w),
-                            tX: CGFloat(transform.translation.x),
-                            tY: CGFloat(transform.translation.y)
-                        )
+                    let affineTransform = Foundation.AffineTransform(
+                        m11: CGFloat(transform.linearTransform.x),
+                        m12: CGFloat(transform.linearTransform.z),
+                        m21: CGFloat(transform.linearTransform.y),
+                        m22: CGFloat(transform.linearTransform.w),
+                        tX: CGFloat(transform.translation.x),
+                        tY: CGFloat(transform.translation.y)
                     )
+                    path.transform(using: affineTransform)
                 case .subpath(let subpathActions):
                     let subpath = NSBezierPath()
-                    applyActions(subpathActions, to: subpath)
+                    // We don't apply the coordinate system correction to the subpath,
+                    // we only want to apply it to the whole path once we're done.
+                    applyActions(
+                        subpathActions,
+                        to: subpath,
+                        bounds: bounds,
+                        applyCoordinateSystemCorrection: false
+                    )
                     path.append(subpath)
             }
+        }
+
+        if applyCoordinateSystemCorrection {
+            // AppKit's coordinate system has a flipped Y axis so we have to correct for that
+            // once we've constructed the whole path.
+            var coordinateSystemCorrection = Foundation.AffineTransform(scaleByX: 1, byY: -1)
+            coordinateSystemCorrection.append(
+                Foundation.AffineTransform(translationByX: 0, byY: bounds.maxY + bounds.y)
+            )
+            path.transform(using: coordinateSystemCorrection)
         }
     }
 
@@ -1429,7 +1458,7 @@ public final class AppKitBackend: AppBackend {
         widget.strokeColor = strokeColor.nsColor
         widget.fillColor = fillColor.nsColor
 
-        widget.setNeedsDisplay(widget.bounds)
+        widget.needsDisplay = true
     }
 }
 

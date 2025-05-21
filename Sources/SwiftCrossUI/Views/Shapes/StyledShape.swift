@@ -61,9 +61,13 @@ extension StyledShape {
         let storage = children as! ShapeStorage
         let size = size(fitting: proposedSize)
 
-        let path = path(
-            in: Path.Rect(x: 0.0, y: 0.0, width: Double(size.size.x), height: Double(size.size.y))
+        let bounds = Path.Rect(
+            x: 0.0,
+            y: 0.0,
+            width: Double(size.size.x),
+            height: Double(size.size.y)
         )
+        let path = path(in: bounds)
 
         let pointsChanged = storage.oldPath?.actions != path.actions
         storage.oldPath = path
@@ -72,6 +76,7 @@ extension StyledShape {
         backend.updatePath(
             backendPath,
             path,
+            bounds: bounds,
             pointsChanged: pointsChanged,
             environment: environment
         )
