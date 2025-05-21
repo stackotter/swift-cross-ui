@@ -73,9 +73,10 @@ runs:
     - name: Compress symbol graphs
       uses: a7ul/tar-action@v1.1.0
       with:
+        cwd: ${{ inputs.working-directory }}
         command: c
-        files: ./${{ inputs.working-directory }}/${{ inputs.target }}-symbol-graphs
-        outPath: ${{ inputs.target }}-symbol-graphs.tar.gz
+        files: ./${{ inputs.target }}-symbol-graphs
+        outPath: ../${{ inputs.target }}-symbol-graphs.tar.gz
 
     - name: Upload symbol graphs
       uses: actions/upload-artifact@v4
