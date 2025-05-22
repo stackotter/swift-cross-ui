@@ -51,32 +51,6 @@ class _App<AppRoot: App> {
                 environment: self.environment
             )
 
-            let body = self.app.body
-            let rootNode = AppRoot.Body.Node(
-                from: body,
-                backend: self.backend,
-                environment: self.environment
-            )
-
-            self.backend.setRootEnvironmentChangeHandler {
-                self.environment = self.backend.computeRootEnvironment(
-                    defaultEnvironment: baseEnvironment
-                )
-                self.forceRefresh()
-            }
-
-            // Update application-wide menu
-            self.backend.setApplicationMenu(body.commands.resolve())
-
-            rootNode.update(
-                nil,
-                backend: self.backend,
-                environment: self.backend.computeRootEnvironment(
-                    defaultEnvironment: baseEnvironment
-                )
-            )
-            self.sceneGraphRoot = rootNode
-
             let mirror = Mirror(reflecting: self.app)
             for property in mirror.children {
                 if property.label == "state" && property.value is ObservableObject {
@@ -116,6 +90,32 @@ class _App<AppRoot: App> {
                 }
                 self.cancellables.append(cancellable)
             }
+
+            let body = self.app.body
+            let rootNode = AppRoot.Body.Node(
+                from: body,
+                backend: self.backend,
+                environment: self.environment
+            )
+
+            self.backend.setRootEnvironmentChangeHandler {
+                self.environment = self.backend.computeRootEnvironment(
+                    defaultEnvironment: baseEnvironment
+                )
+                self.forceRefresh()
+            }
+
+            // Update application-wide menu
+            self.backend.setApplicationMenu(body.commands.resolve())
+
+            rootNode.update(
+                nil,
+                backend: self.backend,
+                environment: self.backend.computeRootEnvironment(
+                    defaultEnvironment: baseEnvironment
+                )
+            )
+            self.sceneGraphRoot = rootNode
         }
     }
 }
