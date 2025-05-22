@@ -1,6 +1,9 @@
 import Dispatch
 import Foundation
 
+// TODO: Keep weak references to cancellables for downstream observations (instead
+// of the current strong references).
+
 /// A type that produces valueless observations.
 public class Publisher {
     /// The id for the next observation (ids are used to cancel observations).

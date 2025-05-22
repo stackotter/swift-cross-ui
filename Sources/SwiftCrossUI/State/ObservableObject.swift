@@ -60,5 +60,20 @@ extension ObservableObject {
     }
 }
 
+protocol OptionalObservableObject {
+    var didChange: Publisher? { get }
+}
+
+extension Optional: OptionalObservableObject where Wrapped: ObservableObject {
+    var didChange: SwiftCrossUI.Publisher? {
+        switch self {
+            case .some(let object):
+                object.didChange
+            case .none:
+                nil
+        }
+    }
+}
+
 @available(*, deprecated, message: "Replace Observable with ObservableObject")
 public typealias Observable = ObservableObject

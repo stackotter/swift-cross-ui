@@ -1,5 +1,9 @@
 import Foundation
 
+// TODO: Document State properly, this is an important type.
+// - It supports value types
+// - It supports ObservableObject
+// - It supports Optional<ObservableObject>
 @propertyWrapper
 public struct State<Value>: DynamicProperty, StateProperty {
     class Storage {
@@ -9,18 +13,46 @@ public struct State<Value>: DynamicProperty, StateProperty {
         // `update(with:previousValue:)` method. It's vital that the inner
         // box remains the same so that bindings can be stored across view
         // updates.
-        var box: Box<Value>
-        var didChange = Publisher()
+        var box: InnerBox
+
+        class InnerBox {
+            var value: Value
+            var didChange = Publisher()
+            var downstreamObservation: Cancellable?
+
+            init(value: Value) {
+                self.value = value
+            }
+
+            /// Call this to publish an observation to all observers after
+            /// setting a new value. This isn't in a didSet property accessor
+            /// because we want more granular control over when it does and
+            /// doesn't trigger.
+            func postSet() {
+                // If the wrapped value is an Optional<some ObservableObject>
+                // then we need to observe/unobserve whenever the optional
+                // toggles between `.some` and `.none`.
+                if let value = value as? OptionalObservableObject {
+                    if let innerDidChange = value.didChange, downstreamObservation == nil {
+                        downstreamObservation = didChange.link(toUpstream: innerDidChange)
+                    } else if value.didChange == nil, let observation = downstreamObservation {
+                        observation.cancel()
+                        downstreamObservation = nil
+                    }
+                }
+                didChange.send()
+            }
+        }
 
         init(_ value: Value) {
-            self.box = Box(value: value)
+            self.box = InnerBox(value: value)
         }
     }
 
     var storage: Storage
 
     var didChange: Publisher {
-        storage.didChange
+        storage.box.didChange
     }
 
     public var wrappedValue: Value {
@@ -29,7 +61,7 @@ public struct State<Value>: DynamicProperty, StateProperty {
         }
         nonmutating set {
             storage.box.value = newValue
-            didChange.send()
+            storage.box.postSet()
         }
     }
 
@@ -43,7 +75,7 @@ public struct State<Value>: DynamicProperty, StateProperty {
             },
             set: { newValue in
                 box.value = newValue
-                didChange.send()
+                box.postSet()
             }
         )
     }
@@ -51,15 +83,24 @@ public struct State<Value>: DynamicProperty, StateProperty {
     public init(wrappedValue initialValue: Value) {
         storage = Storage(initialValue)
 
-        if let initialValue = initialValue as? ObservableObject {
-            _ = didChange.link(toUpstream: initialValue.didChange)
+        // Before casting the value we check the type, because casting an optional
+        // to protocol Optional doesn't conform to can still succeed when the value
+        // is `.some` and the wrapped type conforms to the protocol.
+        if Value.self as? ObservableObject.Type != nil,
+            let initialValue = initialValue as? ObservableObject {
+            storage.box.downstreamObservation = didChange.link(toUpstream: initialValue.didChange)
+        } else if let initialValue = initialValue as? OptionalObservableObject,
+            let innerDidChange = initialValue.didChange
+        {
+            // If we have an Optional<some ObservableObject>.some, then observe its
+            // inner value's publisher.
+            storage.box.downstreamObservation = didChange.link(toUpstream: innerDidChange)
         }
     }
 
     public func update(with environment: EnvironmentValues, previousValue: State<Value>?) {
         if let previousValue {
             storage.box = previousValue.storage.box
-            storage.didChange = previousValue.storage.didChange
         }
     }
 
