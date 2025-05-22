@@ -58,6 +58,7 @@ extension StyledShape {
         backend: Backend,
         dryRun: Bool
     ) -> ViewUpdateResult {
+        // TODO: Don't duplicate this between Shape and StyledShape
         let storage = children as! ShapeStorage
         let size = size(fitting: proposedSize)
 
@@ -69,19 +70,21 @@ extension StyledShape {
         )
         let path = path(in: bounds)
 
-        let pointsChanged = storage.oldPath?.actions != path.actions
+        storage.pointsChanged =
+            storage.pointsChanged || storage.oldPath?.actions != path.actions
         storage.oldPath = path
 
         let backendPath = storage.backendPath as! Backend.Path
-        backend.updatePath(
-            backendPath,
-            path,
-            bounds: bounds,
-            pointsChanged: pointsChanged,
-            environment: environment
-        )
-
         if !dryRun {
+            backend.updatePath(
+                backendPath,
+                path,
+                bounds: bounds,
+                pointsChanged: storage.pointsChanged,
+                environment: environment
+            )
+            storage.pointsChanged = false
+
             backend.setSize(of: widget, to: size.size)
             backend.renderPath(
                 backendPath,

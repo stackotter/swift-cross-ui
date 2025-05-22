@@ -24,25 +24,46 @@ open class Widget: GObject {
     }
 
     func didMoveToParent() {
-        // let handler1:
-        //     @convention(c) (
-        //         UnsafeMutableRawPointer,
-        //         GdkEventButton,
-        //         UnsafeMutableRawPointer
-        //     ) -> Void = { _, value1, data in
-        //         SignalBox1<GdkEventButton>.run(data, value1)
-        //     }
+        let handler1:
+            @convention(c) (
+                UnsafeMutableRawPointer,
+                GdkEventButton,
+                UnsafeMutableRawPointer
+            ) -> Void = { _, value1, data in
+                SignalBox1<GdkEventButton>.run(data, value1)
+            }
 
-        // addSignal(
-        //     name: "button-press-event",
-        //     handler: gCallback(handler1)
-        // ) { [weak self] (buttonEvent: GdkEventButton) in
-        //     guard let self = self else { return }
-        //     self.onButtonPress?(self, buttonEvent)
-        // }
+        addSignal(
+            name: "button-press-event",
+            handler: gCallback(handler1)
+        ) { [weak self] (buttonEvent: GdkEventButton) in
+            guard let self = self else { return }
+            self.onButtonPress?(self, buttonEvent)
+        }
+
+        let handler2:
+            @convention(c) (
+                UnsafeMutableRawPointer,
+                OpaquePointer,
+                UnsafeMutableRawPointer
+            ) -> Void = { _, cairo, data in
+                SignalBox1<OpaquePointer>.run(data, cairo)
+            }
+
+        addSignal(
+            name: "draw",
+            handler: gCallback(handler2)
+        ) { [weak self] (cairo: OpaquePointer) in
+            guard let self = self else { return }
+            self.doDraw?(cairo)
+        }
     }
 
-    func didMoveFromParent() {}
+    open func didMoveFromParent() {}
+
+    public func queueDraw() {
+        gtk_widget_queue_draw(widgetPointer)
+    }
 
     /// The CSS rules applied directly to this widget.
     public lazy var css: CSSBlock = CSSBlock(forClass: customCSSClass) {
@@ -111,6 +132,8 @@ open class Widget: GObject {
     }
 
     public var onButtonPress: ((Widget, GdkEventButton) -> Void)?
+
+    public var doDraw: ((_ cairo: OpaquePointer) -> Void)?
 
     @GObjectProperty(named: "name") public var name: String?
 

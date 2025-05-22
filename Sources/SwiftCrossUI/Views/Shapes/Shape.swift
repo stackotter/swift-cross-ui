@@ -98,19 +98,21 @@ extension Shape {
         )
         let path = path(in: bounds)
 
-        let pointsChanged = storage.oldPath?.actions != path.actions
+        storage.pointsChanged =
+            storage.pointsChanged || storage.oldPath?.actions != path.actions
         storage.oldPath = path
 
         let backendPath = storage.backendPath as! Backend.Path
-        backend.updatePath(
-            backendPath,
-            path,
-            bounds: bounds,
-            pointsChanged: pointsChanged,
-            environment: environment
-        )
-
         if !dryRun {
+            backend.updatePath(
+                backendPath,
+                path,
+                bounds: bounds,
+                pointsChanged: storage.pointsChanged,
+                environment: environment
+            )
+            storage.pointsChanged = false
+
             backend.setSize(of: widget, to: size.size)
             backend.renderPath(
                 backendPath,
@@ -130,4 +132,5 @@ final class ShapeStorage: ViewGraphNodeChildren {
     let erasedNodes: [ErasedViewGraphNode] = []
     var backendPath: Any!
     var oldPath: Path?
+    var pointsChanged = false
 }
