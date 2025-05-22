@@ -1341,13 +1341,19 @@ public final class GtkBackend: AppBackend {
             }
         }
 
-        for action in actions {
+        for (index, action) in actions.enumerated() {
             switch action {
                 case .moveTo(let point):
                     cairo_move_to(cairo, point.x, point.y)
                 case .lineTo(let point):
+                    if index == 0 {
+                        cairo_move_to(cairo, 0, 0)
+                    }
                     cairo_line_to(cairo, point.x, point.y)
                 case .quadCurve(let control, let end):
+                    if index == 0 {
+                        cairo_move_to(cairo, 0, 0)
+                    }
                     var startX = 0.0
                     var startY = 0.0
                     cairo_get_current_point(cairo, &startX, &startY)
@@ -1361,6 +1367,9 @@ public final class GtkBackend: AppBackend {
                         end.x, end.y
                     )
                 case .cubicCurve(let control1, let control2, let end):
+                    if index == 0 {
+                        cairo_move_to(cairo, 0, 0)
+                    }
                     cairo_curve_to(
                         cairo,
                         control1.x, control1.y,

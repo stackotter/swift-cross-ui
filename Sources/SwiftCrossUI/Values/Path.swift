@@ -201,8 +201,11 @@ public struct Path {
     /// The types of actions that can be performed on a path.
     public enum Action: Equatable {
         case moveTo(SIMD2<Double>)
+        /// If this is the first action in a path then (0, 0) is inferred to be the start point.
         case lineTo(SIMD2<Double>)
+        /// If this is the first action in a path then (0, 0) is inferred to be the start point.
         case quadCurve(control: SIMD2<Double>, end: SIMD2<Double>)
+        /// If this is the first action in a path then (0, 0) is inferred to be the start point.
         case cubicCurve(control1: SIMD2<Double>, control2: SIMD2<Double>, end: SIMD2<Double>)
         case rectangle(Rect)
         case circle(center: SIMD2<Double>, radius: Double)
