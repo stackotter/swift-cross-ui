@@ -127,14 +127,12 @@ jobs:
         xcodebuild-device-type: ${{ matrix.device-type }}
 
   uikit-catalyst:
+    runs-on: macos-14
     strategy:
       matrix:
-        include:
-          - os_version: macos-14
-            arch: arm64
-          - os_version: macos-13
-            arch: x86_64
-    runs-on: ${{ matrix.os_version }}
+        arch:
+          - arm64
+          - x86_64
     steps:
     - name: Force Xcode 15.4
       run: sudo xcode-select -switch /Applications/Xcode_15.4.app
