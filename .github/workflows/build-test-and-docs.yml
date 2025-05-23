@@ -126,6 +126,51 @@ jobs:
         xcodebuild: true
         xcodebuild-device-type: ${{ matrix.device-type }}
 
+  uikit-catalyst:
+    strategy:
+      matrix:
+        include:
+          - os_version: macos-14
+            arch: arm64
+          - os_version: macos-13
+            arch: x86_64
+    runs-on: ${{ matrix.os_version }}
+    steps:
+    - name: Force Xcode 15.4
+      run: sudo xcode-select -switch /Applications/Xcode_15.4.app
+
+    - name: Swift version
+      run: swift --version
+
+    - name: Install xcbeautify
+      run: brew install xcbeautify
+
+    - uses: actions/checkout@v3
+
+    - name: Build
+      run: |
+        set -uxo pipefail
+        buildtarget () {
+          # Use the same derived data path as DocC compilation so that we don't duplicate work.
+          xcodebuild -derivedDataPath /tmp/data -skipMacroValidation -scheme "$1" -destination "variant=Mac Catalyst,arch=${{ matrix.arch }},platform=macOS" build | xcbeautify --renderer github-actions
+        }
+
+        buildtarget SwiftCrossUI
+        buildtarget UIKitBackend
+
+        cd Examples
+
+        buildtarget CounterExample
+        buildtarget GreetingGeneratorExample
+        buildtarget NavigationExample
+        buildtarget StressTestExample
+        buildtarget NotesExample
+        buildtarget PathsExample
+        buildtarget ControlsExample
+        buildtarget RandomNumberGeneratorExample
+        # TODO test whether this works on Catalyst
+        # buildtarget SplitExample
+
   windows:
     runs-on: windows-latest
     defaults:
