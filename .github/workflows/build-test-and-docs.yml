@@ -128,11 +128,6 @@ jobs:
 
   uikit-catalyst:
     runs-on: macos-14
-    strategy:
-      matrix:
-        arch:
-          - arm64
-          - x86_64
     steps:
     - name: Force Xcode 15.4
       run: sudo xcode-select -switch /Applications/Xcode_15.4.app
@@ -150,7 +145,7 @@ jobs:
         set -uxo pipefail
         buildtarget () {
           # Use the same derived data path as DocC compilation so that we don't duplicate work.
-          xcodebuild -derivedDataPath /tmp/data -skipMacroValidation -scheme "$1" -destination "variant=Mac Catalyst,arch=${{ matrix.arch }},platform=macOS" build | xcbeautify --renderer github-actions
+          xcodebuild -derivedDataPath /tmp/data -skipMacroValidation -scheme "$1" -destination "variant=Mac Catalyst,arch=arm64,platform=macOS" build | xcbeautify --renderer github-actions
         }
 
         buildtarget SwiftCrossUI
