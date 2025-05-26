@@ -676,6 +676,7 @@ public final class Gtk3Backend: AppBackend {
         )
 
         imageView.setCairoSurface(surface)
+        imageView.show()
     }
 
     // private class Tables {
