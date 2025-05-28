@@ -78,7 +78,7 @@ public final class WinUIBackend: AppBackend {
         }
     }
 
-    public func runMainLoop(_ callback: @escaping () -> Void) {
+    public func runMainLoop(_ callback: @escaping @MainActor () -> Void) {
         do {
             try Self.attachToParentConsole()
         } catch {
@@ -237,7 +237,7 @@ public final class WinUIBackend: AppBackend {
         _ = UWP.Launcher.launchUriAsync(WindowsFoundation.Uri(url.absoluteString))
     }
 
-    public func runInMainThread(action: @escaping () -> Void) {
+    public func runInMainThread(action: @escaping @MainActor () -> Void) {
         _ = try! internalState.dispatcherQueue!.tryEnqueue(.normal) {
             action()
         }
