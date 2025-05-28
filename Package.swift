@@ -138,6 +138,9 @@ let package = Package(
                 "Views/TupleViewChildren.swift.gyb",
                 "Views/TableRowContent.swift.gyb",
                 "Scenes/TupleScene.swift.gyb",
+            ],
+            swiftSettings: [
+                .enableUpcomingFeature("StrictConcurrency")
             ]
         ),
         .testTarget(

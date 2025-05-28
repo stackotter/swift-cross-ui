@@ -1,14 +1,14 @@
 /// A control that initiates an action.
-public struct Button {
+public struct Button: Sendable {
     /// The label to show on the button.
     package var label: String
     /// The action to be performed when the button is clicked.
-    package var action: @MainActor () -> Void
+    package var action: @MainActor @Sendable () -> Void
     /// The button's forced width if provided.
     var width: Int?
 
     /// Creates a button that displays a custom label.
-    public init(_ label: String, action: @escaping @MainActor () -> Void = {}) {
+    public init(_ label: String, action: @escaping @MainActor @Sendable () -> Void = {}) {
         self.label = label
         self.action = action
     }

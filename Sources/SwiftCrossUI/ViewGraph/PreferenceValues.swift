@@ -1,13 +1,13 @@
 import Foundation
 
-public struct PreferenceValues {
+public struct PreferenceValues: Sendable {
     public static let `default` = PreferenceValues(
         onOpenURL: nil
     )
 
-    public var onOpenURL: ((URL) -> Void)?
+    public var onOpenURL: (@Sendable @MainActor (URL) -> Void)?
 
-    public init(onOpenURL: ((URL) -> Void)?) {
+    public init(onOpenURL: (@Sendable @MainActor (URL) -> Void)?) {
         self.onOpenURL = onOpenURL
     }
 

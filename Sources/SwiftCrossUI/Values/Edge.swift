@@ -10,7 +10,7 @@ public enum Edge: Int8, CaseIterable, Hashable, Sendable {
     case trailing
 
     /// An efficient set of Edges.
-    public struct Set: OptionSet, Hashable {
+    public struct Set: OptionSet, Hashable, Sendable {
         public let rawValue: Int8
 
         public init(rawValue: Int8) {

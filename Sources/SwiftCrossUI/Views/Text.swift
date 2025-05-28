@@ -1,5 +1,5 @@
 /// A text view.
-public struct Text {
+public struct Text: Sendable {
     /// The string to be shown in the text view.
     var string: String
 
