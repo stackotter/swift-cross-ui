@@ -142,7 +142,7 @@ final class UITableViewPicker: WrapperWidget<UITableView>, Picker, UITableViewDe
 extension UIKitBackend {
     public func createPicker() -> Widget {
         #if targetEnvironment(macCatalyst)
-            if UIDevice.current.userInterfaceIdiom == .mac {
+            if #available(macCatalyst 14, *), UIDevice.current.userInterfaceIdiom == .mac {
                 return UITableViewPicker()
             } else {
                 return UIPickerViewPicker()
