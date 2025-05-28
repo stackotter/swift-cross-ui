@@ -52,6 +52,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
 
     /// Creates a node for a given view while also creating the nodes for its children, creating
     /// the view's widget, and starting to observe its state for changes.
+    @MainActor
     public init(
         for nodeView: NodeView,
         backend: Backend,
@@ -139,6 +140,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     /// Triggers the view to be updated as part of a bottom-up chain of updates (where either the
     /// current view gets updated due to a state change and has potential to trigger its parent to
     /// update as well, or the current view's child has propagated such an update upwards).
+    @MainActor
     private func bottomUpUpdate() {
         // First we compute what size the view will be after the update. If it will change size,
         // propagate the update to this node's parent instead of updating straight away.
@@ -185,6 +187,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     /// is provided (in the case that the parent's body got updated) then it simply replaces the
     /// old view while inheriting the old view's state.
     /// - Parameter dryRun: If `true`, only compute sizing and don't update the underlying widget.
+    @MainActor
     public func update(
         with newView: NodeView? = nil,
         proposedSize: SIMD2<Int>,

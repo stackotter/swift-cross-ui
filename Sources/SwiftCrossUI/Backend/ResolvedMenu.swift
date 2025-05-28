@@ -16,7 +16,7 @@ public struct ResolvedMenu {
     /// A menu item.
     public enum Item {
         /// A button. A `nil` action means that the button is disabled.
-        case button(_ label: String, _ action: (() -> Void)?)
+        case button(_ label: String, _ action: (@MainActor () -> Void)?)
         /// A named submenu.
         case submenu(Submenu)
     }

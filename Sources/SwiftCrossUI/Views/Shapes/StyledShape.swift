@@ -5,7 +5,7 @@ public protocol StyledShape: Shape {
     var strokeStyle: StrokeStyle? { get }
 }
 
-struct StyledShapeImpl<Base: Shape>: StyledShape {
+struct StyledShapeImpl<Base: Shape>: Sendable {
     var base: Base
     var strokeColor: Color?
     var fillColor: Color?
@@ -29,7 +29,9 @@ struct StyledShapeImpl<Base: Shape>: StyledShape {
             self.strokeStyle = strokeStyle
         }
     }
+}
 
+extension StyledShapeImpl: StyledShape {
     func path(in bounds: Path.Rect) -> Path {
         return base.path(in: bounds)
     }
@@ -50,6 +52,7 @@ extension Shape {
 }
 
 extension StyledShape {
+    @MainActor
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,

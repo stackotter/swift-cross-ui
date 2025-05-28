@@ -1,7 +1,7 @@
-public enum Font {
+public enum Font: Sendable {
     case system(size: Int, weight: Weight? = nil, design: Design? = nil)
 
-    public enum Weight {
+    public enum Weight: Sendable {
         case black
         case bold
         case heavy
@@ -13,7 +13,7 @@ public enum Font {
         case ultraLight
     }
 
-    public enum Design {
+    public enum Design: Sendable {
         case `default`
         case monospaced
     }

@@ -1,5 +1,5 @@
 /// Indicates a specific edge of a rectangle.
-public enum Edge: Int8, CaseIterable, Hashable {
+public enum Edge: Int8, CaseIterable, Hashable, Sendable {
     /// The top edge.
     case top
     /// The bottom edge.

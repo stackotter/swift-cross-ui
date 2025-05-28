@@ -33,7 +33,7 @@ public struct EnvironmentValues {
 
     /// Called when a text field gets submitted (usually due to the user
     /// pressing Enter/Return).
-    public var onSubmit: (() -> Void)?
+    public var onSubmit: (@MainActor () -> Void)?
 
     /// The scale factor of the current window.
     public var windowScaleFactor: Double
@@ -55,7 +55,7 @@ public struct EnvironmentValues {
     /// change and end up changing size. Each view graph node sets its own
     /// handler when passing the environment on to its children, setting up
     /// a bottom-up update chain up which resize events can propagate.
-    var onResize: (_ newSize: ViewSize) -> Void
+    var onResize: @MainActor (_ newSize: ViewSize) -> Void
 
     /// The style of list to use.
     package var listStyle: ListStyle
@@ -74,6 +74,7 @@ public struct EnvironmentValues {
 
     /// Brings the current window forward, not guaranteed to always bring
     /// the window to the top (due to focus stealing prevention).
+    @MainActor
     func bringWindowForward() {
         func activate<Backend: AppBackend>(with backend: Backend) {
             backend.activate(window: window as! Backend.Window)
@@ -140,6 +141,7 @@ public struct EnvironmentValues {
     ///
     /// `nil` on platforms that don't support revealing files, e.g.
     /// iOS.
+    @MainActor
     public var revealFile: RevealFileAction? {
         return RevealFileAction(
             backend: backend

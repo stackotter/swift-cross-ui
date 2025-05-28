@@ -40,6 +40,7 @@ import Foundation
 /// code between the `create` and `update` methods of the various widgets
 /// (since the `update` method is always called between calling `create`
 /// and actually displaying the widget anyway).
+@MainActor
 public protocol AppBackend {
     associatedtype Window
     associatedtype Widget
@@ -118,7 +119,7 @@ public protocol AppBackend {
     /// setup function is passed to `Gtk` as a callback to run once the main
     /// run loop starts.
     func runMainLoop(
-        _ callback: @escaping () -> Void
+        _ callback: @escaping @MainActor () -> Void
     )
     /// Creates a new window. For some backends it may make sense for this
     /// method to return the application's root window the first time its
@@ -172,7 +173,7 @@ public protocol AppBackend {
     /// Runs an action in the app's main thread if required to perform UI updates
     /// by the backend. Predominantly used by ``Publisher`` to publish changes to a thread
     /// compatible with dispatching UI updates. Can be synchronous or asynchronous (for now).
-    func runInMainThread(action: @escaping () -> Void)
+    nonisolated func runInMainThread(action: @escaping @MainActor () -> Void)
 
     /// Computes the root environment for an app (e.g. by checking the system's current
     /// theme). May fall back on the provided defaults where reasonable.

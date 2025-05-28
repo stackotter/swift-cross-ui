@@ -1,6 +1,7 @@
 import Foundation
 
 /// An application.
+@MainActor
 public protocol App {
     /// The backend used to render the app.
     associatedtype Backend: AppBackend

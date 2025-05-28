@@ -1,5 +1,5 @@
 /// An axis in a 2D coordinate system.
-public enum Axis {
+public enum Axis: Sendable {
     /// The horizontal axis.
     case horizontal
     /// The vertical axis.
