@@ -1,5 +1,5 @@
 /// Alignment of items layed out along the vertical axis.
-public enum VerticalAlignment {
+public enum VerticalAlignment: Sendable {
     case top
     case center
     case bottom

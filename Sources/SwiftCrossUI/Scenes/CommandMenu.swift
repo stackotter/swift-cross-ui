@@ -1,4 +1,4 @@
-public struct CommandMenu {
+public struct CommandMenu: Sendable {
     var name: String
     var content: [MenuItem]
 

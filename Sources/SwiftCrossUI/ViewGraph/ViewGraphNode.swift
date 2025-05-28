@@ -4,7 +4,8 @@ import Foundation
 ///
 /// This is where updates are initiated when a view's state updates, and where state is persisted
 /// even when a view gets recomputed by its parent.
-public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
+@MainActor
+public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
     /// The view's single widget for the entirety of its lifetime in the view graph.
     ///
     public var widget: Backend.Widget {
@@ -131,8 +132,10 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
 
     /// Stops observing the view's state.
     deinit {
-        for cancellable in cancellables {
-            cancellable.cancel()
+        Task { @MainActor [cancellables] in
+            for cancellable in cancellables {
+                cancellable.cancel()
+            }
         }
     }
 

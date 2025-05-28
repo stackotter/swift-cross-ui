@@ -44,7 +44,7 @@ public final class AppKitBackend: AppBackend {
         NSApplication.shared.delegate = appDelegate
     }
 
-    public func runMainLoop(_ callback: @escaping () -> Void) {
+    public func runMainLoop(_ callback: @escaping @MainActor () -> Void) {
         callback()
         NSApplication.shared.activate(ignoringOtherApps: true)
         NSApplication.shared.run()
@@ -316,7 +316,7 @@ public final class AppKitBackend: AppBackend {
         NSApplication.shared.helpMenu = helpMenu
     }
 
-    public func runInMainThread(action: @escaping () -> Void) {
+    public func runInMainThread(action: @escaping @MainActor () -> Void) {
         DispatchQueue.main.async {
             action()
         }

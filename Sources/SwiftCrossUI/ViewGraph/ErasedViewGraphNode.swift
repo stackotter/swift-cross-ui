@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 public struct ErasedViewGraphNode {
     public var node: Any
 
@@ -89,6 +90,7 @@ public struct ErasedViewGraphNode {
     }
 }
 
+@MainActor
 public protocol ErasedViewGraphNodeTransformer<Return> {
     associatedtype Return
 

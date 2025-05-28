@@ -1,5 +1,5 @@
 /// How a view fills the available space.
-public enum ContentMode {
+public enum ContentMode: Sendable {
     /// Resize the content so that it takes up all available space while
     /// maintaining aspect ratio.
     case fill

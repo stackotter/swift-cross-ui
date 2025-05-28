@@ -1,7 +1,7 @@
 public struct Ellipse: Shape {
-    public init() {}
+    public nonisolated init() {}
 
-    public func path(in bounds: Path.Rect) -> Path {
+    public nonisolated func path(in bounds: Path.Rect) -> Path {
         Path()
             .addCircle(center: .zero, radius: bounds.width / 2.0)
             .applyTransform(

@@ -53,7 +53,7 @@ public final class UIKitBackend: AppBackend {
     }
 
     public func runMainLoop(
-        _ callback: @escaping () -> Void
+        _ callback: @escaping @MainActor () -> Void
     ) {
         Self.onReceiveURL = { url in
             Self.queuedURLs.append(url)
@@ -117,7 +117,7 @@ public final class UIKitBackend: AppBackend {
         // TODO: Notify when window scale factor changes
     }
 
-    public func runInMainThread(action: @escaping () -> Void) {
+    public func runInMainThread(action: @escaping @MainActor () -> Void) {
         DispatchQueue.main.async(execute: action)
     }
 

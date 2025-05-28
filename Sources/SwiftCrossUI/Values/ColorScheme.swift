@@ -1,4 +1,4 @@
-public enum ColorScheme {
+public enum ColorScheme: Sendable {
     case light
     case dark
 

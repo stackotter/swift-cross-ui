@@ -1,18 +1,30 @@
 /// A control that initiates an action.
-public struct Button: ElementaryView, View {
+public struct Button: Sendable {
     /// The label to show on the button.
     package var label: String
     /// The action to be performed when the button is clicked.
-    package var action: () -> Void
+    package var action: @MainActor @Sendable () -> Void
     /// The button's forced width if provided.
     var width: Int?
 
     /// Creates a button that displays a custom label.
-    public init(_ label: String, action: @escaping () -> Void = {}) {
+    public init(_ label: String, action: @escaping @MainActor @Sendable () -> Void = {}) {
         self.label = label
         self.action = action
     }
 
+    /// A temporary button width solution until arbitrary labels are supported.
+    public func _buttonWidth(_ width: Int?) -> Button {
+        var button = self
+        button.width = width
+        return button
+    }
+}
+
+extension Button: View {
+}
+
+extension Button: ElementaryView {
     public func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
         return backend.createButton()
     }
@@ -51,12 +63,5 @@ public struct Button: ElementaryView, View {
         }
 
         return ViewUpdateResult.leafView(size: ViewSize(fixedSize: size))
-    }
-
-    /// A temporary button width solution until arbitrary labels are supported.
-    public func _buttonWidth(_ width: Int?) -> Button {
-        var button = self
-        button.width = width
-        return button
     }
 }

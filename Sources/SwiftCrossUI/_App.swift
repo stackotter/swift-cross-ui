@@ -3,6 +3,7 @@
 /// A top-level wrapper providing an entry point for the app. Exists to be able to persist
 /// the view graph alongside the app (we can't do that on a user's `App` implementation because
 /// we can only add computed properties).
+@MainActor
 class _App<AppRoot: App> {
     /// The app being run.
     let app: AppRoot

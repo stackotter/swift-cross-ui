@@ -1,5 +1,5 @@
-public struct Commands {
-    public static var empty = Commands(menus: [])
+public struct Commands: Sendable {
+    public static let empty = Commands(menus: [])
 
     var menus: [CommandMenu]
 

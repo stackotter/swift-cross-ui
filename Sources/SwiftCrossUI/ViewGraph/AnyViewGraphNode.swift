@@ -2,6 +2,7 @@
 /// to avoid leaking the selected backend into ``View`` implementations (which would be
 /// an annoying complexity for users of the library and it worth the slight sacrifice
 /// in performance and strong-typing). The user never sees such type-erased wrappers.
+@MainActor
 public class AnyViewGraphNode<NodeView: View> {
     /// The node getting wrapped.
     public var node: Any

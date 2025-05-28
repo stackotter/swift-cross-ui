@@ -4,14 +4,15 @@ extension View {
     /// `onDisappear` actions on outermost views are called first and propagate
     /// down to the leaf views due to essentially relying on the `deinit` of the
     /// modifier view's ``ViewGraphNode``.
-    public func onDisappear(perform action: @escaping () -> Void) -> some View {
+    public func onDisappear(perform action: @escaping @Sendable @MainActor () -> Void) -> some View
+    {
         OnDisappearModifier(body: TupleView1(self), action: action)
     }
 }
 
 struct OnDisappearModifier<Content: View>: View {
     var body: TupleView1<Content>
-    var action: () -> Void
+    var action: @Sendable @MainActor () -> Void
 
     func children<Backend: AppBackend>(
         backend: Backend,
@@ -66,7 +67,7 @@ struct OnDisappearModifier<Content: View>: View {
 
 class OnDisappearModifierChildren: ViewGraphNodeChildren {
     var wrappedChildren: any ViewGraphNodeChildren
-    var action: () -> Void
+    var action: @Sendable @MainActor () -> Void
 
     var widgets: [AnyWidget] {
         wrappedChildren.widgets
@@ -78,13 +79,15 @@ class OnDisappearModifierChildren: ViewGraphNodeChildren {
 
     init(
         wrappedChildren: any ViewGraphNodeChildren,
-        action: @escaping () -> Void
+        action: @escaping @Sendable @MainActor () -> Void
     ) {
         self.wrappedChildren = wrappedChildren
         self.action = action
     }
 
     deinit {
-        action()
+        Task { @MainActor [action] in
+            action()
+        }
     }
 }

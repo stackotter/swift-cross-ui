@@ -1,4 +1,5 @@
 /// A view that can be rendered by any backend.
+@MainActor
 public protocol View {
     /// The view's content (composed of other views).
     associatedtype Content: View
