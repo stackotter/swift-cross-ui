@@ -11,6 +11,24 @@ extension View {
             actions: actions()
         )
     }
+
+    public func alert(
+        _ title: Binding<String?>,
+        @AlertActionsBuilder actions: () -> [AlertAction]
+    ) -> some View {
+        AlertModifierView(
+            child: self,
+            title: title.wrappedValue ?? "",
+            isPresented: Binding {
+                title.wrappedValue != nil
+            } set: { newValue in
+                if !newValue {
+                    title.wrappedValue = nil
+                }
+            },
+            actions: actions()
+        )
+    }
 }
 
 struct AlertModifierView<Child: View>: TypeSafeView {

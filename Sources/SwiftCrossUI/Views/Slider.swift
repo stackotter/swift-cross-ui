@@ -104,11 +104,10 @@ public struct Slider: ElementaryView, View {
                 maximum: maximum,
                 decimalPlaces: decimalPlaces,
                 environment: environment
-            ) { [weak value] newValue in
-                guard let value = value else {
-                    return
+            ) { newValue in
+                if let value {
+                    value.wrappedValue = newValue
                 }
-                value.wrappedValue = newValue
             }
 
             if let value = value?.wrappedValue {

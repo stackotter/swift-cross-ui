@@ -2,12 +2,12 @@
 /// as a writable reference to the value.
 @dynamicMemberLookup
 @propertyWrapper
-public class Binding<Value> {
+public struct Binding<Value> {
     public var wrappedValue: Value {
         get {
             getValue()
         }
-        set {
+        nonmutating set {
             setValue(newValue)
         }
     }
@@ -30,6 +30,21 @@ public class Binding<Value> {
     public init(get: @escaping () -> Value, set: @escaping (Value) -> Void) {
         self.getValue = get
         self.setValue = set
+    }
+
+    public init?(_ other: Binding<Value?>) {
+        if let initialValue = other.wrappedValue {
+            self.init(
+                get: {
+                    other.wrappedValue ?? initialValue
+                },
+                set: { newValue in
+                    other.wrappedValue = newValue
+                }
+            )
+        } else {
+            return nil
+        }
     }
 
     /// Projects a property of a binding.
