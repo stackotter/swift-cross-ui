@@ -19,14 +19,13 @@ extension Text: ElementaryView {
         return backend.createTextView()
     }
 
-    public func update<Backend: AppBackend>(
+    public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        // TODO: Avoid this
+        backend: Backend
+    ) -> ViewLayoutResult {
+        // TODO: Avoid this. Move it to commit
         // Even in dry runs we must update the underlying text view widget
         // because GtkBackend currently relies on querying the widget for text
         // properties and such (via Pango).
@@ -38,9 +37,6 @@ extension Text: ElementaryView {
             proposedFrame: proposedSize,
             environment: environment
         )
-        if !dryRun {
-            backend.setSize(of: widget, to: size)
-        }
 
         let idealSize = backend.size(
             of: string,
@@ -62,7 +58,7 @@ extension Text: ElementaryView {
             environment: environment
         ).y
 
-        return ViewUpdateResult.leafView(
+        return ViewLayoutResult.leafView(
             size: ViewSize(
                 size: size,
                 idealSize: idealSize,
@@ -74,5 +70,14 @@ extension Text: ElementaryView {
                 maximumHeight: Double(size.y)
             )
         )
+    }
+
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        backend.setSize(of: widget, to: layout.size.size)
     }
 }

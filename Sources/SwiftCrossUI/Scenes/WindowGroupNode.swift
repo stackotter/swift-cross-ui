@@ -102,7 +102,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         backend: Backend,
         environment: EnvironmentValues,
         windowSizeIsFinal: Bool = false
-    ) -> ViewUpdateResult {
+    ) -> ViewLayoutResult {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
@@ -136,7 +136,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             }
             .with(\.window, window)
 
-        let dryRunResult: ViewUpdateResult?
+        let dryRunResult: ViewLayoutResult?
         if !windowSizeIsFinal {
             // Perform a dry-run update of the root view to check if the window
             // needs to change size.
@@ -168,6 +168,16 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                 )
             }
         } else {
+            // We don't use this result, but we do need to do a dry run to
+            // respect the assumptions of ViewGraph (each non dry run must
+            // follow a dry run).
+            _ = viewGraph.update(
+                with: newScene?.body,
+                proposedSize: proposedWindowSize,
+                environment: environment,
+                dryRun: true
+            )
+
             dryRunResult = nil
         }
 

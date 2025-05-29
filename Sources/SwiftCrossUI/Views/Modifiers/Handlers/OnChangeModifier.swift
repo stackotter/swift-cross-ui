@@ -24,14 +24,14 @@ struct OnChangeModifier<Value: Equatable, Content: View>: View {
     var action: () -> Void
     var initial: Bool
 
-    func update<Backend: AppBackend>(
+    // TODO: Should this go in computeLayout or commit?
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         if let previousValue = previousValue, value != previousValue {
             action()
         } else if initial && previousValue == nil {
@@ -42,13 +42,12 @@ struct OnChangeModifier<Value: Equatable, Content: View>: View {
             previousValue = value
         }
 
-        return defaultUpdate(
+        return defaultComputeLayout(
             widget,
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend,
-            dryRun: dryRun
+            backend: backend
         )
     }
 }

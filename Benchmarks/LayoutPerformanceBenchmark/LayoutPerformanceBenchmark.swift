@@ -35,8 +35,8 @@ struct Benchmarks {
 
         @MainActor
         func updateNode<V: View>(_ node: ViewGraphNode<V, DummyBackend>, _ size: SIMD2<Int>) {
-            _ = node.update(proposedSize: size, environment: environment, dryRun: true)
-            _ = node.update(proposedSize: size, environment: environment, dryRun: false)
+            _ = node.computeLayout(proposedSize: size, environment: environment)
+            _ = node.commit()
         }
 
         #if BENCHMARK_VIZ

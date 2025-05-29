@@ -115,7 +115,7 @@ where Self: UIViewControllerRepresentable {
         environment: EnvironmentValues,
         backend _: Backend,
         dryRun: Bool
-    ) -> ViewUpdateResult {
+    ) -> ViewLayoutResult {
         let representingWidget = widget as! ControllerRepresentingWidget<Self>
         representingWidget.update(with: environment)
 
@@ -131,7 +131,7 @@ where Self: UIViewControllerRepresentable {
             representingWidget.height = size.size.y
         }
 
-        return ViewUpdateResult.leafView(size: size)
+        return ViewLayoutResult.leafView(size: size)
     }
 }
 

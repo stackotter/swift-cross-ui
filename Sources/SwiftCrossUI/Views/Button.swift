@@ -29,15 +29,14 @@ extension Button: ElementaryView {
         return backend.createButton()
     }
 
-    public func update<Backend: AppBackend>(
+    public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        // TODO: Implement button sizing within SwiftCrossUI so that we can properly implement
-        //   `dryRun`. Relying on the backend for button sizing also makes the Gtk 3 backend
+        backend: Backend
+    ) -> ViewLayoutResult {
+        // TODO: Implement button sizing within SwiftCrossUI so that we can move this to
+        //   commit. Relying on the backend for button sizing also makes the Gtk 3 backend
         //   basically impossible to implement correctly, hence the
         //   `finalContentSize != contentSize` check in WindowGroupNode to catch any weird
         //   behaviour. Without that extra safety net logic, buttons all end up label-less
@@ -58,10 +57,15 @@ extension Button: ElementaryView {
             naturalSize.y
         )
 
-        if !dryRun {
-            backend.setSize(of: widget, to: size)
-        }
+        return ViewLayoutResult.leafView(size: ViewSize(fixedSize: size))
+    }
 
-        return ViewUpdateResult.leafView(size: ViewSize(fixedSize: size))
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        backend.setSize(of: widget, to: layout.size.size)
     }
 }

@@ -135,14 +135,13 @@ where Self: UIViewRepresentable {
         }
     }
 
-    public func update<Backend: AppBackend>(
+    public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children _: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend _: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend _: Backend
+    ) -> ViewLayoutResult {
         let representingWidget = widget as! ViewRepresentingWidget<Self>
         representingWidget.update(with: environment)
 
@@ -153,12 +152,19 @@ where Self: UIViewRepresentable {
                 context: representingWidget.context!
             )
 
-        if !dryRun {
-            representingWidget.width = size.size.x
-            representingWidget.height = size.size.y
-        }
+        return ViewLayoutResult.leafView(size: size)
+    }
 
-        return ViewUpdateResult.leafView(size: size)
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let representingWidget = widget as! ViewRepresentingWidget<Self>
+        representingWidget.width = layout.size.size.x
+        representingWidget.height = layout.size.size.y
     }
 }
 

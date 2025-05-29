@@ -63,23 +63,21 @@ struct AspectRatioView<Child: View>: TypeSafeView {
         return container
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleViewChildren1<Child>,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         let evaluatedAspectRatio: Double
         if let aspectRatio {
             evaluatedAspectRatio = aspectRatio == 0 ? 1 : aspectRatio
         } else {
-            let childResult = children.child0.update(
+            let childResult = children.child0.computeLayout(
                 with: body.view0,
                 proposedSize: proposedSize,
-                environment: environment,
-                dryRun: true
+                environment: environment
             )
             evaluatedAspectRatio = childResult.size.idealAspectRatio
         }
@@ -90,11 +88,10 @@ struct AspectRatioView<Child: View>: TypeSafeView {
             contentMode: contentMode
         )
 
-        let childResult = children.child0.update(
+        let childResult = children.child0.computeLayout(
             with: nil,
             proposedSize: proposedFrameSize,
-            environment: environment,
-            dryRun: dryRun
+            environment: environment
         )
 
         let frameSize = LayoutSystem.frameSize(
@@ -103,19 +100,7 @@ struct AspectRatioView<Child: View>: TypeSafeView {
             contentMode: contentMode.opposite
         )
 
-        if !dryRun {
-            // Center child in frame for cases where it's smaller or bigger than
-            // aspect ratio locked frame (not all views can achieve every aspect
-            // ratio).
-            let childPosition = Alignment.center.position(
-                ofChild: childResult.size.size,
-                in: frameSize
-            )
-            backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
-            backend.setSize(of: widget, to: frameSize)
-        }
-
-        return ViewUpdateResult(
+        return ViewLayoutResult(
             size: ViewSize(
                 size: frameSize,
                 idealSize: LayoutSystem.frameSize(
@@ -144,5 +129,25 @@ struct AspectRatioView<Child: View>: TypeSafeView {
             ),
             childResults: [childResult]
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: TupleViewChildren1<Child>,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        // Center child in frame for cases where it's smaller or bigger than
+        // aspect ratio locked frame (not all views can achieve every aspect
+        // ratio).
+        let childResult = children.child0.commit()
+        print(childResult.size.size)
+        let childPosition = Alignment.center.position(
+            ofChild: childResult.size.size,
+            in: layout.size.size
+        )
+        backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
+        backend.setSize(of: widget, to: layout.size.size)
     }
 }

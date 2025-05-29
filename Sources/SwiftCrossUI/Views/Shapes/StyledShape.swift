@@ -53,51 +53,53 @@ extension Shape {
 
 extension StyledShape {
     @MainActor
-    public func update<Backend: AppBackend>(
+    public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        // TODO: Don't duplicate this between Shape and StyledShape
-        let storage = children as! ShapeStorage
+        backend: Backend
+    ) -> ViewLayoutResult {
         let size = size(fitting: proposedSize)
+        return ViewLayoutResult.leafView(size: size)
+    }
 
+    @MainActor
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
         let bounds = Path.Rect(
             x: 0.0,
             y: 0.0,
-            width: Double(size.size.x),
-            height: Double(size.size.y)
+            width: Double(layout.size.size.x),
+            height: Double(layout.size.size.y)
         )
         let path = path(in: bounds)
 
-        storage.pointsChanged =
-            storage.pointsChanged || storage.oldPath?.actions != path.actions
+        let storage = children as! ShapeStorage
+        let pointsChanged = storage.oldPath?.actions != path.actions
         storage.oldPath = path
 
         let backendPath = storage.backendPath as! Backend.Path
-        if !dryRun {
-            backend.updatePath(
-                backendPath,
-                path,
-                bounds: bounds,
-                pointsChanged: storage.pointsChanged,
-                environment: environment
-            )
-            storage.pointsChanged = false
+        backend.updatePath(
+            backendPath,
+            path,
+            bounds: bounds,
+            pointsChanged: pointsChanged,
+            environment: environment
+        )
 
-            backend.setSize(of: widget, to: size.size)
-            backend.renderPath(
-                backendPath,
-                container: widget,
-                strokeColor: strokeColor ?? .clear,
-                fillColor: fillColor ?? .clear,
-                overrideStrokeStyle: strokeStyle
-            )
-        }
-
-        return ViewUpdateResult.leafView(size: size)
+        backend.setSize(of: widget, to: layout.size.size)
+        backend.renderPath(
+            backendPath,
+            container: widget,
+            strokeColor: strokeColor ?? .clear,
+            fillColor: fillColor ?? .clear,
+            overrideStrokeStyle: strokeStyle
+        )
     }
 }

@@ -64,19 +64,28 @@ extension Menu: TypeSafeView {
         []
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: MenuStorage,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         // TODO: Store popped menu in view graph node children so that we can
         //   continue updating it even once it's open.
         var size = backend.naturalSize(of: widget)
         size.x = buttonWidth ?? size.x
+        return ViewLayoutResult.leafView(size: ViewSize(fixedSize: size))
+    }
 
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: MenuStorage,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let size = layout.size.size
         let content = resolve().content
         switch backend.menuImplementationStyle {
             case .dynamicPopover:
@@ -102,14 +111,12 @@ extension Menu: TypeSafeView {
                     }
                 )
 
-                if !dryRun {
-                    backend.setSize(of: widget, to: size)
-                    children.updateMenuIfShown(
-                        content: content,
-                        environment: environment,
-                        backend: backend
-                    )
-                }
+                backend.setSize(of: widget, to: size)
+                children.updateMenuIfShown(
+                    content: content,
+                    environment: environment,
+                    backend: backend
+                )
             case .menuButton:
                 let menu = children.menu as? Backend.Menu ?? backend.createPopoverMenu()
                 children.menu = menu
@@ -120,12 +127,8 @@ extension Menu: TypeSafeView {
                 )
                 backend.updateButton(widget, label: label, menu: menu, environment: environment)
 
-                if !dryRun {
-                    backend.setSize(of: widget, to: size)
-                }
+                backend.setSize(of: widget, to: size)
         }
-
-        return ViewUpdateResult.leafView(size: ViewSize(fixedSize: size))
     }
 
     /// A temporary button width solution until arbitrary labels are supported.

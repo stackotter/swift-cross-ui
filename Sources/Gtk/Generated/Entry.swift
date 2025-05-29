@@ -336,10 +336,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::menu-entry-icon-primary-text", handler: gCallback(handler21)) {
+        addSignal(name: "notify::overwrite-mode", handler: gCallback(handler21)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyMenuEntryIconPrimaryText?(self, param0)
+            self.notifyOverwriteMode?(self, param0)
         }
 
         let handler22:
@@ -348,10 +348,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::menu-entry-icon-secondary-text", handler: gCallback(handler22)) {
+        addSignal(name: "notify::placeholder-text", handler: gCallback(handler22)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyMenuEntryIconSecondaryText?(self, param0)
+            self.notifyPlaceholderText?(self, param0)
         }
 
         let handler23:
@@ -360,10 +360,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::overwrite-mode", handler: gCallback(handler23)) {
+        addSignal(name: "notify::primary-icon-activatable", handler: gCallback(handler23)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyOverwriteMode?(self, param0)
+            self.notifyPrimaryIconActivatable?(self, param0)
         }
 
         let handler24:
@@ -372,10 +372,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::placeholder-text", handler: gCallback(handler24)) {
+        addSignal(name: "notify::primary-icon-gicon", handler: gCallback(handler24)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPlaceholderText?(self, param0)
+            self.notifyPrimaryIconGicon?(self, param0)
         }
 
         let handler25:
@@ -384,10 +384,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::primary-icon-activatable", handler: gCallback(handler25)) {
+        addSignal(name: "notify::primary-icon-name", handler: gCallback(handler25)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPrimaryIconActivatable?(self, param0)
+            self.notifyPrimaryIconName?(self, param0)
         }
 
         let handler26:
@@ -396,10 +396,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::primary-icon-gicon", handler: gCallback(handler26)) {
+        addSignal(name: "notify::primary-icon-paintable", handler: gCallback(handler26)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPrimaryIconGicon?(self, param0)
+            self.notifyPrimaryIconPaintable?(self, param0)
         }
 
         let handler27:
@@ -408,10 +408,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::primary-icon-name", handler: gCallback(handler27)) {
+        addSignal(name: "notify::primary-icon-sensitive", handler: gCallback(handler27)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPrimaryIconName?(self, param0)
+            self.notifyPrimaryIconSensitive?(self, param0)
         }
 
         let handler28:
@@ -420,10 +420,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::primary-icon-paintable", handler: gCallback(handler28)) {
+        addSignal(name: "notify::primary-icon-storage-type", handler: gCallback(handler28)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPrimaryIconPaintable?(self, param0)
+            self.notifyPrimaryIconStorageType?(self, param0)
         }
 
         let handler29:
@@ -432,10 +432,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::primary-icon-sensitive", handler: gCallback(handler29)) {
+        addSignal(name: "notify::primary-icon-tooltip-markup", handler: gCallback(handler29)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPrimaryIconSensitive?(self, param0)
+            self.notifyPrimaryIconTooltipMarkup?(self, param0)
         }
 
         let handler30:
@@ -444,10 +444,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::primary-icon-storage-type", handler: gCallback(handler30)) {
+        addSignal(name: "notify::primary-icon-tooltip-text", handler: gCallback(handler30)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPrimaryIconStorageType?(self, param0)
+            self.notifyPrimaryIconTooltipText?(self, param0)
         }
 
         let handler31:
@@ -456,10 +456,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::primary-icon-tooltip-markup", handler: gCallback(handler31)) {
+        addSignal(name: "notify::progress-fraction", handler: gCallback(handler31)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPrimaryIconTooltipMarkup?(self, param0)
+            self.notifyProgressFraction?(self, param0)
         }
 
         let handler32:
@@ -468,10 +468,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::primary-icon-tooltip-text", handler: gCallback(handler32)) {
+        addSignal(name: "notify::progress-pulse-step", handler: gCallback(handler32)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyPrimaryIconTooltipText?(self, param0)
+            self.notifyProgressPulseStep?(self, param0)
         }
 
         let handler33:
@@ -480,10 +480,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::progress-fraction", handler: gCallback(handler33)) {
+        addSignal(name: "notify::scroll-offset", handler: gCallback(handler33)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyProgressFraction?(self, param0)
+            self.notifyScrollOffset?(self, param0)
         }
 
         let handler34:
@@ -492,10 +492,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::progress-pulse-step", handler: gCallback(handler34)) {
+        addSignal(name: "notify::secondary-icon-activatable", handler: gCallback(handler34)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyProgressPulseStep?(self, param0)
+            self.notifySecondaryIconActivatable?(self, param0)
         }
 
         let handler35:
@@ -504,10 +504,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::scroll-offset", handler: gCallback(handler35)) {
+        addSignal(name: "notify::secondary-icon-gicon", handler: gCallback(handler35)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyScrollOffset?(self, param0)
+            self.notifySecondaryIconGicon?(self, param0)
         }
 
         let handler36:
@@ -516,10 +516,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::secondary-icon-activatable", handler: gCallback(handler36)) {
+        addSignal(name: "notify::secondary-icon-name", handler: gCallback(handler36)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySecondaryIconActivatable?(self, param0)
+            self.notifySecondaryIconName?(self, param0)
         }
 
         let handler37:
@@ -528,10 +528,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::secondary-icon-gicon", handler: gCallback(handler37)) {
+        addSignal(name: "notify::secondary-icon-paintable", handler: gCallback(handler37)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySecondaryIconGicon?(self, param0)
+            self.notifySecondaryIconPaintable?(self, param0)
         }
 
         let handler38:
@@ -540,10 +540,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::secondary-icon-name", handler: gCallback(handler38)) {
+        addSignal(name: "notify::secondary-icon-sensitive", handler: gCallback(handler38)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySecondaryIconName?(self, param0)
+            self.notifySecondaryIconSensitive?(self, param0)
         }
 
         let handler39:
@@ -552,10 +552,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::secondary-icon-paintable", handler: gCallback(handler39)) {
+        addSignal(name: "notify::secondary-icon-storage-type", handler: gCallback(handler39)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySecondaryIconPaintable?(self, param0)
+            self.notifySecondaryIconStorageType?(self, param0)
         }
 
         let handler40:
@@ -564,10 +564,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::secondary-icon-sensitive", handler: gCallback(handler40)) {
+        addSignal(name: "notify::secondary-icon-tooltip-markup", handler: gCallback(handler40)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySecondaryIconSensitive?(self, param0)
+            self.notifySecondaryIconTooltipMarkup?(self, param0)
         }
 
         let handler41:
@@ -576,10 +576,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::secondary-icon-storage-type", handler: gCallback(handler41)) {
+        addSignal(name: "notify::secondary-icon-tooltip-text", handler: gCallback(handler41)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySecondaryIconStorageType?(self, param0)
+            self.notifySecondaryIconTooltipText?(self, param0)
         }
 
         let handler42:
@@ -588,10 +588,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::secondary-icon-tooltip-markup", handler: gCallback(handler42)) {
+        addSignal(name: "notify::show-emoji-icon", handler: gCallback(handler42)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySecondaryIconTooltipMarkup?(self, param0)
+            self.notifyShowEmojiIcon?(self, param0)
         }
 
         let handler43:
@@ -600,10 +600,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::secondary-icon-tooltip-text", handler: gCallback(handler43)) {
+        addSignal(name: "notify::tabs", handler: gCallback(handler43)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySecondaryIconTooltipText?(self, param0)
+            self.notifyTabs?(self, param0)
         }
 
         let handler44:
@@ -612,10 +612,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::show-emoji-icon", handler: gCallback(handler44)) {
+        addSignal(name: "notify::text-length", handler: gCallback(handler44)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyShowEmojiIcon?(self, param0)
+            self.notifyTextLength?(self, param0)
         }
 
         let handler45:
@@ -624,10 +624,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::tabs", handler: gCallback(handler45)) {
+        addSignal(name: "notify::truncate-multiline", handler: gCallback(handler45)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyTabs?(self, param0)
+            self.notifyTruncateMultiline?(self, param0)
         }
 
         let handler46:
@@ -636,10 +636,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::text-length", handler: gCallback(handler46)) {
+        addSignal(name: "notify::visibility", handler: gCallback(handler46)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyTextLength?(self, param0)
+            self.notifyVisibility?(self, param0)
         }
 
         let handler47:
@@ -648,10 +648,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::truncate-multiline", handler: gCallback(handler47)) {
+        addSignal(name: "notify::editing-canceled", handler: gCallback(handler47)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyTruncateMultiline?(self, param0)
+            self.notifyEditingCanceled?(self, param0)
         }
 
         let handler48:
@@ -660,10 +660,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::visibility", handler: gCallback(handler48)) {
+        addSignal(name: "notify::cursor-position", handler: gCallback(handler48)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyVisibility?(self, param0)
+            self.notifyCursorPosition?(self, param0)
         }
 
         let handler49:
@@ -672,10 +672,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::editing-canceled", handler: gCallback(handler49)) {
+        addSignal(name: "notify::editable", handler: gCallback(handler49)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyEditingCanceled?(self, param0)
+            self.notifyEditable?(self, param0)
         }
 
         let handler50:
@@ -684,10 +684,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::cursor-position", handler: gCallback(handler50)) {
+        addSignal(name: "notify::enable-undo", handler: gCallback(handler50)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyCursorPosition?(self, param0)
+            self.notifyEnableUndo?(self, param0)
         }
 
         let handler51:
@@ -696,10 +696,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::editable", handler: gCallback(handler51)) {
+        addSignal(name: "notify::max-width-chars", handler: gCallback(handler51)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyEditable?(self, param0)
+            self.notifyMaxWidthChars?(self, param0)
         }
 
         let handler52:
@@ -708,10 +708,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::enable-undo", handler: gCallback(handler52)) {
+        addSignal(name: "notify::selection-bound", handler: gCallback(handler52)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyEnableUndo?(self, param0)
+            self.notifySelectionBound?(self, param0)
         }
 
         let handler53:
@@ -720,10 +720,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::max-width-chars", handler: gCallback(handler53)) {
+        addSignal(name: "notify::text", handler: gCallback(handler53)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifyMaxWidthChars?(self, param0)
+            self.notifyText?(self, param0)
         }
 
         let handler54:
@@ -732,10 +732,10 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::selection-bound", handler: gCallback(handler54)) {
+        addSignal(name: "notify::width-chars", handler: gCallback(handler54)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
-            self.notifySelectionBound?(self, param0)
+            self.notifyWidthChars?(self, param0)
         }
 
         let handler55:
@@ -744,31 +744,7 @@ open class Entry: Widget, CellEditable, Editable {
                     SignalBox1<OpaquePointer>.run(data, value1)
                 }
 
-        addSignal(name: "notify::text", handler: gCallback(handler55)) {
-            [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
-            self.notifyText?(self, param0)
-        }
-
-        let handler56:
-            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
-                { _, value1, data in
-                    SignalBox1<OpaquePointer>.run(data, value1)
-                }
-
-        addSignal(name: "notify::width-chars", handler: gCallback(handler56)) {
-            [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
-            self.notifyWidthChars?(self, param0)
-        }
-
-        let handler57:
-            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
-                { _, value1, data in
-                    SignalBox1<OpaquePointer>.run(data, value1)
-                }
-
-        addSignal(name: "notify::xalign", handler: gCallback(handler57)) {
+        addSignal(name: "notify::xalign", handler: gCallback(handler55)) {
             [weak self] (param0: OpaquePointer) in
             guard let self = self else { return }
             self.notifyXalign?(self, param0)
@@ -936,10 +912,6 @@ open class Entry: Widget, CellEditable, Editable {
     public var notifyInvisibleCharacterSet: ((Entry, OpaquePointer) -> Void)?
 
     public var notifyMaxLength: ((Entry, OpaquePointer) -> Void)?
-
-    public var notifyMenuEntryIconPrimaryText: ((Entry, OpaquePointer) -> Void)?
-
-    public var notifyMenuEntryIconSecondaryText: ((Entry, OpaquePointer) -> Void)?
 
     public var notifyOverwriteMode: ((Entry, OpaquePointer) -> Void)?
 

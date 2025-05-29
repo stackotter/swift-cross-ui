@@ -38,26 +38,23 @@ struct OverlayModifier<Content: View, Overlay: View>: TypeSafeView {
         body.asWidget(children, backend: backend)
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleView2<Content, Overlay>.Children,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        let contentResult = children.child0.update(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        let contentResult = children.child0.computeLayout(
             with: body.view0,
             proposedSize: proposedSize,
-            environment: environment,
-            dryRun: dryRun
+            environment: environment
         )
         let contentSize = contentResult.size
-        let overlayResult = children.child1.update(
+        let overlayResult = children.child1.computeLayout(
             with: body.view1,
             proposedSize: contentSize.size,
-            environment: environment,
-            dryRun: dryRun
+            environment: environment
         )
         let overlaySize = overlayResult.size
 
@@ -66,17 +63,7 @@ struct OverlayModifier<Content: View, Overlay: View>: TypeSafeView {
             max(contentSize.size.y, overlaySize.size.y)
         )
 
-        if !dryRun {
-            let contentPosition = (frameSize &- contentSize.size) / 2
-            let overlayPosition = (frameSize &- overlaySize.size) / 2
-
-            backend.setPosition(ofChildAt: 0, in: widget, to: contentPosition)
-            backend.setPosition(ofChildAt: 1, in: widget, to: overlayPosition)
-
-            backend.setSize(of: widget, to: frameSize)
-        }
-
-        return ViewUpdateResult(
+        return ViewLayoutResult(
             size: ViewSize(
                 size: frameSize,
                 idealSize: contentSize.idealSize,
@@ -87,5 +74,25 @@ struct OverlayModifier<Content: View, Overlay: View>: TypeSafeView {
             ),
             childResults: [contentResult, overlayResult]
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: TupleView2<Content, Overlay>.Children,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let frameSize = layout.size.size
+        let contentSize = children.child0.commit().size
+        let overlaySize = children.child1.commit().size
+
+        let contentPosition = (frameSize &- contentSize.size) / 2
+        let overlayPosition = (frameSize &- overlaySize.size) / 2
+
+        backend.setPosition(ofChildAt: 0, in: widget, to: contentPosition)
+        backend.setPosition(ofChildAt: 1, in: widget, to: overlayPosition)
+
+        backend.setSize(of: widget, to: frameSize)
     }
 }

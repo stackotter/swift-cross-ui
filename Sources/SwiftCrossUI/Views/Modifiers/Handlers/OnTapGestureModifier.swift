@@ -61,29 +61,34 @@ struct OnTapGestureModifier<Content: View>: TypeSafeView {
         backend.createTapGestureTarget(wrapping: children.child0.widget.into(), gesture: gesture)
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        let childResult = children.child0.update(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        children.child0.computeLayout(
             with: body.view0,
             proposedSize: proposedSize,
-            environment: environment,
-            dryRun: dryRun
+            environment: environment
         )
-        if !dryRun {
-            backend.setSize(of: widget, to: childResult.size.size)
-            backend.updateTapGestureTarget(
-                widget,
-                gesture: gesture,
-                environment: environment,
-                action: action
-            )
-        }
-        return childResult
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: TupleView1<Content>.Children,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let size = children.child0.commit().size.size
+        backend.setSize(of: widget, to: size)
+        backend.updateTapGestureTarget(
+            widget,
+            gesture: gesture,
+            environment: environment,
+            action: action
+        )
     }
 }

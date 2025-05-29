@@ -18,17 +18,18 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
         self.value = value
     }
 
-    public func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
         return backend.createPicker()
     }
 
-    public func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
+        // TODO: Implement picker sizing within SwiftCrossUI so that we can
+        //   properly separate committing logic out into `commit`.
         backend.updatePicker(
             widget,
             options: options.map { "\($0)" },
@@ -48,11 +49,7 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
         // but it can and should be as large as reasonable
         let size = backend.naturalSize(of: widget)
         if size == SIMD2(-1, -1) {
-            if !dryRun {
-                backend.setSize(of: widget, to: proposedSize)
-            }
-
-            return ViewUpdateResult.leafView(
+            return ViewLayoutResult.leafView(
                 size: ViewSize(
                     size: proposedSize,
                     idealSize: SIMD2(10, 10),
@@ -63,10 +60,18 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
                 )
             )
         } else {
-            // TODO: Implement picker sizing within SwiftCrossUI so that we can properly implement `dryRun`.
-            return ViewUpdateResult.leafView(
+            return ViewLayoutResult.leafView(
                 size: ViewSize(fixedSize: size)
             )
         }
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        backend.setSize(of: widget, to: layout.size.size)
     }
 }

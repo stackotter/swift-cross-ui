@@ -34,26 +34,23 @@ struct BackgroundModifier<Background: View, Foreground: View>: TypeSafeView {
         body.asWidget(children, backend: backend)
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleView2<Background, Foreground>.Children,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        let foregroundResult = children.child1.update(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        let foregroundResult = children.child1.computeLayout(
             with: body.view1,
             proposedSize: proposedSize,
-            environment: environment,
-            dryRun: dryRun
+            environment: environment
         )
         let foregroundSize = foregroundResult.size
-        let backgroundResult = children.child0.update(
+        let backgroundResult = children.child0.computeLayout(
             with: body.view0,
             proposedSize: foregroundSize.size,
-            environment: environment,
-            dryRun: dryRun
+            environment: environment
         )
         let backgroundSize = backgroundResult.size
 
@@ -62,17 +59,7 @@ struct BackgroundModifier<Background: View, Foreground: View>: TypeSafeView {
             max(backgroundSize.size.y, foregroundSize.size.y)
         )
 
-        if !dryRun {
-            let backgroundPosition = (frameSize &- backgroundSize.size) / 2
-            let foregroundPosition = (frameSize &- foregroundSize.size) / 2
-
-            backend.setPosition(ofChildAt: 0, in: widget, to: backgroundPosition)
-            backend.setPosition(ofChildAt: 1, in: widget, to: foregroundPosition)
-
-            backend.setSize(of: widget, to: frameSize)
-        }
-
-        return ViewUpdateResult(
+        return ViewLayoutResult(
             size: ViewSize(
                 size: frameSize,
                 idealSize: SIMD2(
@@ -94,5 +81,25 @@ struct BackgroundModifier<Background: View, Foreground: View>: TypeSafeView {
             ),
             childResults: [backgroundResult, foregroundResult]
         )
+    }
+
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: TupleView2<Background, Foreground>.Children,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let frameSize = layout.size.size
+        let backgroundSize = children.child0.commit().size
+        let foregroundSize = children.child1.commit().size
+
+        let backgroundPosition = (frameSize &- backgroundSize.size) / 2
+        let foregroundPosition = (frameSize &- foregroundSize.size) / 2
+
+        backend.setPosition(ofChildAt: 0, in: widget, to: backgroundPosition)
+        backend.setPosition(ofChildAt: 1, in: widget, to: foregroundPosition)
+
+        backend.setSize(of: widget, to: frameSize)
     }
 }

@@ -11,19 +11,16 @@ public struct Spacer: ElementaryView, View {
         self.minLength = minLength
     }
 
-    public func asWidget<Backend: AppBackend>(
-        backend: Backend
-    ) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
         return backend.createContainer()
     }
 
-    public func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         let minLength = minLength ?? 0
 
         let size: SIMD2<Int>
@@ -46,10 +43,7 @@ public struct Spacer: ElementaryView, View {
                 maximumHeight = nil
         }
 
-        if !dryRun {
-            backend.setSize(of: widget, to: size)
-        }
-        return ViewUpdateResult.leafView(
+        return ViewLayoutResult.leafView(
             size: ViewSize(
                 size: size,
                 idealSize: SIMD2(minimumWidth, minimumHeight),
@@ -59,5 +53,14 @@ public struct Spacer: ElementaryView, View {
                 maximumHeight: maximumHeight
             )
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        // Spacers are invisible so we don't have to update anything.
     }
 }
