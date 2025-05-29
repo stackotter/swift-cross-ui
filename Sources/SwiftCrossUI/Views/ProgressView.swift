@@ -107,17 +107,23 @@ struct ProgressSpinnerView: ElementaryView {
         backend.createProgressSpinner()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        ViewUpdateResult.leafView(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        ViewLayoutResult.leafView(
             size: ViewSize(fixedSize: backend.naturalSize(of: widget))
         )
     }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {}
 }
 
 struct ProgressBarView: ElementaryView {
@@ -131,25 +137,19 @@ struct ProgressBarView: ElementaryView {
         backend.createProgressBar()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         let height = backend.naturalSize(of: widget).y
         let size = SIMD2(
             proposedSize.x,
             height
         )
 
-        if !dryRun {
-            backend.updateProgressBar(widget, progressFraction: value, environment: environment)
-            backend.setSize(of: widget, to: size)
-        }
-
-        return ViewUpdateResult.leafView(
+        return ViewLayoutResult.leafView(
             size: ViewSize(
                 size: size,
                 idealSize: SIMD2(100, height),
@@ -159,5 +159,15 @@ struct ProgressBarView: ElementaryView {
                 maximumHeight: Double(height)
             )
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        backend.updateProgressBar(widget, progressFraction: value, environment: environment)
+        backend.setSize(of: widget, to: layout.size.size)
     }
 }

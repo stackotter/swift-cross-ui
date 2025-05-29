@@ -15,9 +15,9 @@ import CGtk
 /// If the file isn’t loaded successfully, the image will contain a
 /// “broken image” icon similar to that used in many web browsers.
 ///
-/// If you want to handle errors in loading the file yourself, for example
-/// by displaying an error message, then load the image with an image
-/// loading framework such as libglycin, then create the `GtkImage` with
+/// If you want to handle errors in loading the file yourself,
+/// for example by displaying an error message, then load the image with
+/// [ctor@Gdk.Texture.new_from_file], then create the `GtkImage` with
 /// [ctor@Gtk.Image.new_from_paintable].
 ///
 /// Sometimes an application will want to avoid depending on external data
@@ -53,9 +53,9 @@ open class Image: Widget {
     /// will display a “broken image” icon. This function never returns %NULL,
     /// it always returns a valid `GtkImage` widget.
     ///
-    /// If you need to detect failures to load the file, use an
-    /// image loading framework such as libglycin to load the file
-    /// yourself, then create the `GtkImage` from the texture.
+    /// If you need to detect failures to load the file, use
+    /// [ctor@Gdk.Texture.new_from_file] to load the file yourself,
+    /// then create the `GtkImage` from the texture.
     ///
     /// The storage type (see [method@Gtk.Image.get_storage_type])
     /// of the returned image is not defined, it will be whatever
@@ -96,13 +96,6 @@ open class Image: Widget {
     ///
     /// The `GtkImage` will track changes to the @paintable and update
     /// its size and contents in response to it.
-    ///
-    /// Note that paintables are still subject to the icon size that is
-    /// set on the image. If you want to display a paintable at its intrinsic
-    /// size, use [class@Gtk.Picture] instead.
-    ///
-    /// If @paintable is a [iface@Gtk.SymbolicPaintable], then it will be
-    /// recolored with the symbolic palette from the theme.
     public convenience init(paintable: OpaquePointer) {
         self.init(
             gtk_image_new_from_paintable(paintable)
@@ -115,9 +108,9 @@ open class Image: Widget {
     /// display a “broken image” icon. This function never returns %NULL,
     /// it always returns a valid `GtkImage` widget.
     ///
-    /// If you need to detect failures to load the file, use an
-    /// image loading framework such as libglycin to load the file
-    /// yourself, then create the `GtkImage` from the texture.
+    /// If you need to detect failures to load the file, use
+    /// [ctor@GdkPixbuf.Pixbuf.new_from_file] to load the file yourself,
+    /// then create the `GtkImage` from the pixbuf.
     ///
     /// The storage type (see [method@Gtk.Image.get_storage_type]) of
     /// the returned image is not defined, it will be whatever is

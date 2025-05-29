@@ -45,29 +45,36 @@ public enum LayoutSystem {
     }
 
     public struct LayoutableChild {
-        private var update:
+        private var computeLayout:
             @MainActor (
                 _ proposedSize: SIMD2<Int>,
-                _ environment: EnvironmentValues,
-                _ dryRun: Bool
-            ) -> ViewUpdateResult
+                _ environment: EnvironmentValues
+            ) -> ViewLayoutResult
+        private var _commit: @MainActor () -> ViewLayoutResult
         var tag: String?
 
         public init(
-            update: @escaping @MainActor (SIMD2<Int>, EnvironmentValues, Bool) -> ViewUpdateResult,
+            computeLayout: @escaping @MainActor (SIMD2<Int>, EnvironmentValues) -> ViewLayoutResult,
+            commit: @escaping @MainActor () -> ViewLayoutResult,
             tag: String? = nil
         ) {
-            self.update = update
+            self.computeLayout = computeLayout
+            self._commit = commit
             self.tag = tag
         }
 
         @MainActor
-        public func update(
+        public func computeLayout(
             proposedSize: SIMD2<Int>,
             environment: EnvironmentValues,
             dryRun: Bool = false
-        ) -> ViewUpdateResult {
-            update(proposedSize, environment, dryRun)
+        ) -> ViewLayoutResult {
+            computeLayout(proposedSize, environment)
+        }
+
+        @MainActor
+        public func commit() -> ViewLayoutResult {
+            _commit()
         }
     }
 
@@ -77,61 +84,43 @@ public enum LayoutSystem {
     ///   ``Group`` to avoid changing stack layout participation (since ``Group``
     ///   is meant to appear completely invisible to the layout system).
     @MainActor
-    public static func updateStackLayout<Backend: AppBackend>(
+    public static func computeStackLayout<Backend: AppBackend>(
         container: Backend.Widget,
         children: [LayoutableChild],
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
         backend: Backend,
-        dryRun: Bool,
         inheritStackLayoutParticipation: Bool = false
-    ) -> ViewUpdateResult {
+    ) -> ViewLayoutResult {
         let spacing = environment.layoutSpacing
-        let alignment = environment.layoutAlignment
         let orientation = environment.layoutOrientation
 
-        var renderedChildren: [ViewUpdateResult] = Array(
-            repeating: ViewUpdateResult.leafView(size: .empty),
+        var renderedChildren: [ViewLayoutResult] = Array(
+            repeating: ViewLayoutResult.leafView(size: .empty),
             count: children.count
         )
-
-        // Figure out which views to treat as hidden. This could be the cause
-        // of issues if a view has some threshold at which it suddenly becomes
-        // invisible.
-        var isHidden = [Bool](repeating: false, count: children.count)
-        for (i, child) in children.enumerated() {
-            let result = child.update(
-                proposedSize: proposedSize,
-                environment: environment,
-                dryRun: true
-            )
-            isHidden[i] = !result.participatesInStackLayouts
-        }
 
         // My thanks go to this great article for investigating and explaining
         // how SwiftUI determines child view 'flexibility':
         // https://www.objc.io/blog/2020/11/10/hstacks-child-ordering/
+        var isHidden = [Bool](repeating: false, count: children.count)
+        let flexibilities = children.enumerated().map { i, child in
+            let result = child.computeLayout(
+                proposedSize: proposedSize,
+                environment: environment
+            )
+            isHidden[i] = !result.participatesInStackLayouts
+            return switch orientation {
+                case .horizontal:
+                    result.size.maximumWidth - Double(result.size.minimumWidth)
+                case .vertical:
+                    result.size.maximumHeight - Double(result.size.minimumHeight)
+            }
+        }
         let visibleChildrenCount = isHidden.filter { hidden in
             !hidden
         }.count
         let totalSpacing = max(visibleChildrenCount - 1, 0) * spacing
-        let proposedSizeWithoutSpacing = SIMD2(
-            proposedSize.x - (orientation == .horizontal ? totalSpacing : 0),
-            proposedSize.y - (orientation == .vertical ? totalSpacing : 0)
-        )
-        let flexibilities = children.map { child in
-            let size = child.update(
-                proposedSize: proposedSizeWithoutSpacing,
-                environment: environment,
-                dryRun: true
-            ).size
-            return switch orientation {
-                case .horizontal:
-                    size.maximumWidth - Double(size.minimumWidth)
-                case .vertical:
-                    size.maximumHeight - Double(size.minimumHeight)
-            }
-        }
         let sortedChildren = zip(children.enumerated(), flexibilities)
             .sorted { first, second in
                 first.1 <= second.1
@@ -146,10 +135,9 @@ public enum LayoutSystem {
                 // Update child in case it has just changed from visible to hidden,
                 // and to make sure that the view is still hidden (if it's not then
                 // it's a bug with either the view or the layout system).
-                let result = child.update(
+                let result = child.computeLayout(
                     proposedSize: .zero,
-                    environment: environment,
-                    dryRun: dryRun
+                    environment: environment
                 )
                 if result.participatesInStackLayouts {
                     print(
@@ -179,13 +167,12 @@ public enum LayoutSystem {
                     proposedWidth = Double(proposedSize.x)
             }
 
-            let childResult = child.update(
+            let childResult = child.computeLayout(
                 proposedSize: SIMD2<Int>(
                     Int(proposedWidth.rounded(.towardZero)),
                     Int(proposedHeight.rounded(.towardZero))
                 ),
-                environment: environment,
-                dryRun: dryRun
+                environment: environment
             )
 
             renderedChildren[index] = childResult
@@ -249,53 +236,13 @@ public enum LayoutSystem {
                     + totalSpacing
         }
 
-        if !dryRun {
-            backend.setSize(of: container, to: size)
-
-            var x = 0
-            var y = 0
-            for (index, childSize) in renderedChildren.enumerated() {
-                // Avoid the whole iteration if the child is hidden. If there
-                // are weird positioning issues for views that do strange things
-                // then this could be the cause.
-                if isHidden[index] {
-                    continue
-                }
-
-                // Compute alignment
-                switch (orientation, alignment) {
-                    case (.vertical, .leading):
-                        x = 0
-                    case (.horizontal, .leading):
-                        y = 0
-                    case (.vertical, .center):
-                        x = (size.x - childSize.size.size.x) / 2
-                    case (.horizontal, .center):
-                        y = (size.y - childSize.size.size.y) / 2
-                    case (.vertical, .trailing):
-                        x = (size.x - childSize.size.size.x)
-                    case (.horizontal, .trailing):
-                        y = (size.y - childSize.size.size.y)
-                }
-
-                backend.setPosition(ofChildAt: index, in: container, to: SIMD2<Int>(x, y))
-
-                switch orientation {
-                    case .horizontal:
-                        x += childSize.size.size.x + spacing
-                    case .vertical:
-                        y += childSize.size.size.y + spacing
-                }
-            }
-        }
-
         // If the stack has been told to inherit its stack layout participation
         // and all of its children are hidden, then the stack itself also
         // shouldn't participate in stack layouts.
         let shouldGetIgnoredInStackLayouts =
             inheritStackLayoutParticipation && isHidden.allSatisfy { $0 }
 
-        return ViewUpdateResult(
+        return ViewLayoutResult(
             size: ViewSize(
                 size: size,
                 idealSize: idealSize,
@@ -309,5 +256,59 @@ public enum LayoutSystem {
             ),
             childResults: renderedChildren
         )
+    }
+
+    @MainActor
+    public static func commitStackLayout<Backend: AppBackend>(
+        container: Backend.Widget,
+        children: [LayoutableChild],
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let size = layout.size.size
+        backend.setSize(of: container, to: size)
+
+        let renderedChildren = children.map { $0.commit() }
+
+        let alignment = environment.layoutAlignment
+        let spacing = environment.layoutSpacing
+        let orientation = environment.layoutOrientation
+
+        var x = 0
+        var y = 0
+        for (index, child) in renderedChildren.enumerated() {
+            // Avoid the whole iteration if the child is hidden. If there
+            // are weird positioning issues for views that do strange things
+            // then this could be the cause.
+            if !child.participatesInStackLayouts {
+                continue
+            }
+
+            // Compute alignment
+            switch (orientation, alignment) {
+                case (.vertical, .leading):
+                    x = 0
+                case (.horizontal, .leading):
+                    y = 0
+                case (.vertical, .center):
+                    x = (size.x - child.size.size.x) / 2
+                case (.horizontal, .center):
+                    y = (size.y - child.size.size.y) / 2
+                case (.vertical, .trailing):
+                    x = (size.x - child.size.size.x)
+                case (.horizontal, .trailing):
+                    y = (size.y - child.size.size.y)
+            }
+
+            backend.setPosition(ofChildAt: index, in: container, to: SIMD2<Int>(x, y))
+
+            switch orientation {
+                case .horizontal:
+                    x += child.size.size.x + spacing
+                case .vertical:
+                    y += child.size.size.y + spacing
+            }
+        }
     }
 }

@@ -30,14 +30,29 @@ struct CornerRadiusModifier<Content: View>: View {
         body.layoutableChildren(backend: backend, children: children)
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
+        body.computeLayout(
+            widget,
+            children: children,
+            proposedSize: proposedSize,
+            environment: environment,
+            backend: backend
+        )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
         // We used to wrap the child content in a container and then set the corner
         // radius on that, since it was the simplest approach. But Gtk3Backend has
         // extremely poor corner radius support and only applies the corner radius
@@ -46,17 +61,13 @@ struct CornerRadiusModifier<Content: View>: View {
         // implement the modifier this way then you can at the very least set the
         // cornerRadius of a coloured rectangle, which is quite a common thing to
         // want to do.
-        let contentResult = body.update(
+        body.commit(
             widget,
             children: children,
-            proposedSize: proposedSize,
+            layout: layout,
             environment: environment,
-            backend: backend,
-            dryRun: dryRun
+            backend: backend
         )
-        if !dryRun {
-            backend.setCornerRadius(of: widget, to: cornerRadius)
-        }
-        return contentResult
+        backend.setCornerRadius(of: widget, to: cornerRadius)
     }
 }

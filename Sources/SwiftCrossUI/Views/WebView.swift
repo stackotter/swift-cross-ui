@@ -13,26 +13,13 @@ public struct WebView: ElementaryView {
         backend.createWebView()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        if !dryRun {
-            if url != currentURL {
-                backend.navigateWebView(widget, to: url)
-                currentURL = url
-            }
-            backend.updateWebView(widget, environment: environment) { destination in
-                currentURL = destination
-                url = destination
-            }
-            backend.setSize(of: widget, to: proposedSize)
-        }
-
-        return ViewUpdateResult(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        return ViewLayoutResult(
             size: ViewSize(
                 size: proposedSize,
                 idealSize: SIMD2(10, 10),
@@ -43,5 +30,22 @@ public struct WebView: ElementaryView {
             ),
             childResults: []
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        if url != currentURL {
+            backend.navigateWebView(widget, to: url)
+            currentURL = url
+        }
+        backend.updateWebView(widget, environment: environment) { destination in
+            currentURL = destination
+            url = destination
+        }
+        backend.setSize(of: widget, to: layout.size.size)
     }
 }

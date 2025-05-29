@@ -8,25 +8,30 @@ struct ToggleSwitch: ElementaryView, View {
         self.active = active
     }
 
-    public func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
         return backend.createSwitch()
     }
 
-    public func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        if !dryRun {
-            backend.updateSwitch(widget, environment: environment) { newActiveState in
-                active.wrappedValue = newActiveState
-            }
-            backend.setState(ofSwitch: widget, to: active.wrappedValue)
-        }
-        return ViewUpdateResult.leafView(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        return ViewLayoutResult.leafView(
             size: ViewSize(fixedSize: backend.naturalSize(of: widget))
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        backend.updateSwitch(widget, environment: environment) { newActiveState in
+            active.wrappedValue = newActiveState
+        }
+        backend.setState(ofSwitch: widget, to: active.wrappedValue)
     }
 }

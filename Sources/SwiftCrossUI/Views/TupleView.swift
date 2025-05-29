@@ -7,13 +7,15 @@ private func layoutableChild<V: View>(
     view: V
 ) -> LayoutSystem.LayoutableChild {
     LayoutSystem.LayoutableChild(
-        update: { proposedSize, environment, dryRun in
-            node.update(
+        computeLayout: { proposedSize, environment in
+            node.computeLayout(
                 with: view,
                 proposedSize: proposedSize,
-                environment: environment,
-                dryRun: dryRun
+                environment: environment
             )
+        },
+        commit: {
+            node.commit()
         },
         tag: "\(type(of: view))"
     )
@@ -34,22 +36,38 @@ extension TupleView {
     }
 
     @MainActor
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         let group = Group(content: self)
-        return group.update(
+        return group.computeLayout(
             widget,
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend,
-            dryRun: dryRun
+            backend: backend
+        )
+    }
+
+    @MainActor
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: Children,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let group = Group(content: self)
+        group.commit(
+            widget,
+            children: children,
+            layout: layout,
+            environment: environment,
+            backend: backend
         )
     }
 }

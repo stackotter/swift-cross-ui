@@ -52,19 +52,17 @@ public struct AnyView: TypeSafeView {
     /// Attempts to update the child. If the initial update fails then it means that the child's
     /// concrete type has changed and we must recreate the child node and swap out our current
     /// child widget with the new view's widget.
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: AnyViewChildren,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        var (viewTypesMatched, result) = children.node.updateWithNewView(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        var (viewTypesMatched, result) = children.node.computeLayoutWithNewView(
             child,
             proposedSize,
-            environment,
-            dryRun
+            environment
         )
 
         // If the new view's type doesn't match the old view's type then we need to create a new
@@ -79,29 +77,34 @@ public struct AnyView: TypeSafeView {
 
             // We can just assume that the update succeeded because we just created the node
             // a few lines earlier (so it's guaranteed that the view types match).
-            let (_, newResult) = children.node.updateWithNewView(
+            let (_, newResult) = children.node.computeLayoutWithNewView(
                 child,
                 proposedSize,
-                environment,
-                dryRun
+                environment
             )
             result = newResult
         }
 
-        // If the child view has changed types and this isn't a dry-run then switch to displaying
-        // the new child widget.
-        if !dryRun, let widgetToReplace = children.widgetToReplace {
+        return result
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: AnyViewChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        if let widgetToReplace = children.widgetToReplace {
             backend.removeChild(widgetToReplace.into(), from: widget)
             backend.addChild(children.node.getWidget().into(), to: widget)
             backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
             children.widgetToReplace = nil
         }
 
-        if !dryRun {
-            backend.setSize(of: widget, to: result.size.size)
-        }
+        _ = children.node.commit()
 
-        return result
+        backend.setSize(of: widget, to: layout.size.size)
     }
 }
 

@@ -11,24 +11,31 @@ struct ToggleButton: ElementaryView, View {
         self.active = active
     }
 
-    public func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
         return backend.createToggle()
     }
 
-    public func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        // TODO: Implement toggle button sizing within SwiftCrossUI so that we can properly implement `dryRun`.
+        backend: Backend
+    ) -> ViewLayoutResult {
+        // TODO: Implement toggle button sizing within SwiftCrossUI so that we
+        //   can delay updating the underlying widget until `commit`.
         backend.setState(ofToggle: widget, to: active.wrappedValue)
         backend.updateToggle(widget, label: label, environment: environment) { newActiveState in
             active.wrappedValue = newActiveState
         }
-        return ViewUpdateResult.leafView(
+        return ViewLayoutResult.leafView(
             size: ViewSize(fixedSize: backend.naturalSize(of: widget))
         )
     }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {}
 }

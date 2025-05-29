@@ -52,14 +52,13 @@ public struct GeometryReader<Content: View>: TypeSafeView, View {
         return backend.createContainer()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: GeometryReaderChildren<Content>,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         let view = content(GeometryProxy(size: proposedSize))
 
         let environment = environment.with(\.layoutAlignment, .leading)
@@ -85,19 +84,13 @@ public struct GeometryReader<Content: View>: TypeSafeView, View {
         //   to do so we'd have to give up on preferences being allowed to affect
         //   layout (which is probably something we don't want to support anyway
         //   because it sounds like feedback loop central).
-        let contentResult = contentNode.update(
+        let contentResult = contentNode.computeLayout(
             with: view,
             proposedSize: proposedSize,
-            environment: environment,
-            dryRun: dryRun
+            environment: environment
         )
 
-        if !dryRun {
-            backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
-            backend.setSize(of: widget, to: proposedSize)
-        }
-
-        return ViewUpdateResult(
+        return ViewLayoutResult(
             size: ViewSize(
                 size: proposedSize,
                 idealSize: SIMD2(10, 10),
@@ -108,6 +101,18 @@ public struct GeometryReader<Content: View>: TypeSafeView, View {
             ),
             childResults: [contentResult]
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: GeometryReaderChildren<Content>,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        _ = children.node?.commit()
+        backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
+        backend.setSize(of: widget, to: layout.size.size)
     }
 }
 

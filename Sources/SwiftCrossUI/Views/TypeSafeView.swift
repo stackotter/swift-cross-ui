@@ -22,14 +22,21 @@ protocol TypeSafeView: View {
         backend: Backend
     ) -> Backend.Widget
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult
+        backend: Backend
+    ) -> ViewLayoutResult
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: Children,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    )
 }
 
 extension TypeSafeView {
@@ -69,21 +76,35 @@ extension TypeSafeView {
         return asWidget(children as! Children, backend: backend)
     }
 
-    public func update<Backend: AppBackend>(
+    public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        update(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        computeLayout(
             widget,
             children: children as! Children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend,
-            dryRun: dryRun
+            backend: backend
+        )
+    }
+
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        commit(
+            widget,
+            children: children as! Children,
+            layout: layout,
+            environment: environment,
+            backend: backend
         )
     }
 }

@@ -23,22 +23,36 @@ public struct Group<Content: View>: View {
         return container
     }
 
-    public func update<Backend: AppBackend>(
+    public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        LayoutSystem.updateStackLayout(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        LayoutSystem.computeStackLayout(
             container: widget,
             children: layoutableChildren(backend: backend, children: children),
             proposedSize: proposedSize,
             environment: environment,
             backend: backend,
-            dryRun: dryRun,
             inheritStackLayoutParticipation: true
+        )
+    }
+
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        LayoutSystem.commitStackLayout(
+            container: widget,
+            children: layoutableChildren(backend: backend, children: children),
+            layout: layout,
+            environment: environment,
+            backend: backend
         )
     }
 }
