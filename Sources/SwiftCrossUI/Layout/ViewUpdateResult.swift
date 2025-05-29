@@ -1,4 +1,4 @@
-public struct ViewUpdateResult {
+public struct ViewLayoutResult {
     public var size: ViewSize
     public var preferences: PreferenceValues
 
@@ -12,7 +12,7 @@ public struct ViewUpdateResult {
 
     public init(
         size: ViewSize,
-        childResults: [ViewUpdateResult],
+        childResults: [ViewLayoutResult],
         preferencesOverlay: PreferenceValues? = nil
     ) {
         self.size = size
@@ -24,7 +24,7 @@ public struct ViewUpdateResult {
     }
 
     public static func leafView(size: ViewSize) -> Self {
-        ViewUpdateResult(size: size, preferences: .default)
+        ViewLayoutResult(size: size, preferences: .default)
     }
 
     public var participatesInStackLayouts: Bool {

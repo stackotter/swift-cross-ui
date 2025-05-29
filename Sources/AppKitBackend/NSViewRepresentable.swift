@@ -139,15 +139,14 @@ extension View where Self: NSViewRepresentable {
         }
     }
 
-    public func update<Backend: AppBackend>(
+    public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        guard let backend = backend as? AppKitBackend else {
+        backend: Backend
+    ) -> ViewLayoutResult {
+        guard backend is AppKitBackend else {
             fatalError("NSViewRepresentable updated by \(Backend.self)")
         }
 
@@ -160,11 +159,17 @@ extension View where Self: NSViewRepresentable {
             context: representingWidget.context!
         )
 
-        if !dryRun {
-            backend.setSize(of: representingWidget, to: size.size)
-        }
+        return ViewLayoutResult.leafView(size: size)
+    }
 
-        return ViewUpdateResult.leafView(size: size)
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        backend.setSize(of: widget, to: layout.size.size)
     }
 }
 

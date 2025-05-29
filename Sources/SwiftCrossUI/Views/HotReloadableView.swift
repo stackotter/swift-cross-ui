@@ -51,19 +51,17 @@ public struct HotReloadableView: TypeSafeView {
     /// view graph sub tree's state onto the new view graph sub tree. This is not possible to do
     /// perfectly by definition, so if we can't successfully transfer the state of the sub tree
     /// we just fall back on the failing view's default state.
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: HotReloadableViewChildren,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        var (viewTypeMatched, result) = children.node.updateWithNewView(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        var (viewTypeMatched, result) = children.node.computeLayoutWithNewView(
             child,
             proposedSize,
-            environment,
-            dryRun
+            environment
         )
 
         if !viewTypeMatched {
@@ -78,28 +76,35 @@ public struct HotReloadableView: TypeSafeView {
 
             // We can assume that the view types match since we just recreated the view
             // on the line above.
-            let (_, newResult) = children.node.updateWithNewView(
+            let (_, newResult) = children.node.computeLayoutWithNewView(
                 child,
                 proposedSize,
-                environment,
-                dryRun
+                environment
             )
             result = newResult
             children.hasChangedChild = true
         }
 
-        if !dryRun {
-            if children.hasChangedChild {
-                backend.removeAllChildren(of: widget)
-                backend.addChild(children.node.getWidget().into(), to: widget)
-                backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
-                children.hasChangedChild = false
-            }
+        return result
+    }
 
-            backend.setSize(of: widget, to: result.size.size)
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: HotReloadableViewChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        if children.hasChangedChild {
+            backend.removeAllChildren(of: widget)
+            backend.addChild(children.node.getWidget().into(), to: widget)
+            backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
+            children.hasChangedChild = false
         }
 
-        return result
+        _ = children.node.commit()
+
+        backend.setSize(of: widget, to: layout.size.size)
     }
 }
 

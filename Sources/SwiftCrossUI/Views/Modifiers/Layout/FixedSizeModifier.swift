@@ -37,19 +37,17 @@ struct FixedSizeModifier<Child: View>: TypeSafeView {
         return container
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleViewChildren1<Child>,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        let probingChildResult = children.child0.update(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        let probingChildResult = children.child0.computeLayout(
             with: body.view0,
             proposedSize: proposedSize,
-            environment: environment,
-            dryRun: true
+            environment: environment
         )
 
         var frameSize = probingChildResult.size.size
@@ -61,23 +59,13 @@ struct FixedSizeModifier<Child: View>: TypeSafeView {
             frameSize.y = probingChildResult.size.idealHeightForProposedWidth
         }
 
-        let childResult = children.child0.update(
+        let childResult = children.child0.computeLayout(
             with: body.view0,
             proposedSize: frameSize,
-            environment: environment,
-            dryRun: dryRun
+            environment: environment
         )
 
-        if !dryRun {
-            let childPosition = Alignment.center.position(
-                ofChild: childResult.size.size,
-                in: frameSize
-            )
-            backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
-            backend.setSize(of: widget, to: frameSize)
-        }
-
-        return ViewUpdateResult(
+        return ViewLayoutResult(
             size: ViewSize(
                 size: frameSize,
                 idealSize: childResult.size.idealSize,
@@ -90,5 +78,21 @@ struct FixedSizeModifier<Child: View>: TypeSafeView {
             ),
             childResults: [childResult]
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: TupleViewChildren1<Child>,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let childResult = children.child0.commit()
+        let childPosition = Alignment.center.position(
+            ofChild: childResult.size.size,
+            in: layout.size.size
+        )
+        backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
+        backend.setSize(of: widget, to: layout.size.size)
     }
 }

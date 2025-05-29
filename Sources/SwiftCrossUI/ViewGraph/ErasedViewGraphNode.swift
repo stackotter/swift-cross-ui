@@ -8,13 +8,14 @@ public struct ErasedViewGraphNode {
     /// value will have `viewTypeMatched` set to `false`, allowing views such as `AnyView`
     /// to choose how to react to a mismatch. In `AnyView`'s case this means throwing away
     /// the current view graph node and creating a new one for the new view type.
-    public var updateWithNewView:
+    public var computeLayoutWithNewView:
         (
             _ newView: Any?,
             _ proposedSize: SIMD2<Int>,
-            _ environment: EnvironmentValues,
-            _ dryRun: Bool
-        ) -> (viewTypeMatched: Bool, size: ViewUpdateResult)
+            _ environment: EnvironmentValues
+        ) -> (viewTypeMatched: Bool, size: ViewLayoutResult)
+    /// The underlying view graph node's commit method.
+    public var commit: () -> ViewLayoutResult
 
     public var getWidget: () -> AnyWidget
     public var viewType: any View.Type
@@ -42,28 +43,27 @@ public struct ErasedViewGraphNode {
         self.node = node
         backendType = Backend.self
         viewType = V.self
-        updateWithNewView = { view, proposedSize, environment, dryRun in
+        computeLayoutWithNewView = { view, proposedSize, environment in
             if let view {
                 guard let view = view as? V else {
-                    return (false, ViewUpdateResult.leafView(size: .empty))
+                    return (false, ViewLayoutResult.leafView(size: .empty))
                 }
-                let size = node.update(
+                let size = node.computeLayout(
                     with: view,
                     proposedSize: proposedSize,
-                    environment: environment,
-                    dryRun: dryRun
+                    environment: environment
                 )
                 return (true, size)
             } else {
-                let size = node.update(
+                let size = node.computeLayout(
                     with: nil,
                     proposedSize: proposedSize,
-                    environment: environment,
-                    dryRun: dryRun
+                    environment: environment
                 )
                 return (true, size)
             }
         }
+        commit = node.commit
         getWidget = {
             return AnyWidget(node.widget)
         }

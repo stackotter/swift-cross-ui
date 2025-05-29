@@ -98,14 +98,13 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
         backend.createSelectableListView()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         // Padding that the backend could not remove (some frameworks have a small
         // constant amount of required padding within each row).
         let baseRowPadding = backend.baseItemPadding(ofSelectableListView: widget)
@@ -138,18 +137,17 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
             children.nodes.removeLast(children.nodes.count - rowCount)
         }
 
-        var childResults: [ViewUpdateResult] = []
+        var childResults: [ViewLayoutResult] = []
         for (rowView, node) in zip(rowViews, children.nodes) {
-            let preferredSize = node.update(
+            let preferredSize = node.computeLayout(
                 with: rowView,
                 proposedSize: SIMD2(
                     max(proposedSize.x, minimumRowSize.x) - baseRowPadding.axisTotals.x,
                     max(proposedSize.y, minimumRowSize.y) - baseRowPadding.axisTotals.y
                 ),
-                environment: environment,
-                dryRun: true
+                environment: environment
             ).size
-            let childResult = node.update(
+            let childResult = node.computeLayout(
                 with: nil,
                 proposedSize: SIMD2(
                     max(proposedSize.x, minimumRowSize.x) - horizontalBasePadding,
@@ -158,8 +156,7 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
                         minimumRowSize.y - baseRowPadding.axisTotals.y
                     )
                 ),
-                environment: environment,
-                dryRun: dryRun
+                environment: environment
             )
             childResults.append(childResult)
         }
@@ -177,28 +174,7 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
             }.reduce(0, +)
         )
 
-        if !dryRun {
-            backend.setItems(
-                ofSelectableListView: widget,
-                to: children.widgets.map { $0.into() },
-                withRowHeights: childResults.map(\.size.size.y).map { height in
-                    height + verticalBasePadding
-                }
-            )
-            backend.setSize(of: widget, to: size)
-            backend.setSelectionHandler(forSelectableListView: widget) { selectedIndex in
-                selection.wrappedValue = associatedSelectionValue(selectedIndex)
-            }
-            let selectedIndex: Int?
-            if let selectedItem = selection.wrappedValue {
-                selectedIndex = find(selectedItem)
-            } else {
-                selectedIndex = nil
-            }
-            backend.setSelectedItem(ofSelectableListView: widget, toItemAt: selectedIndex)
-        }
-
-        return ViewUpdateResult(
+        return ViewLayoutResult(
             size: ViewSize(
                 size: size,
                 idealSize: SIMD2(
@@ -214,6 +190,40 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
             ),
             childResults: childResults
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: Children,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let baseRowPadding = backend.baseItemPadding(ofSelectableListView: widget)
+        let verticalBasePadding = baseRowPadding.axisTotals.y
+
+        let childResults = children.nodes.map { $0.commit() }
+        backend.setItems(
+            ofSelectableListView: widget,
+            to: children.widgets.map { $0.into() },
+            withRowHeights: childResults.map(\.size.size.y).map { height in
+                height + verticalBasePadding
+            }
+        )
+
+        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSelectionHandler(forSelectableListView: widget) { selectedIndex in
+            selection.wrappedValue = associatedSelectionValue(selectedIndex)
+        }
+
+        let selectedIndex: Int?
+        if let selectedItem = selection.wrappedValue {
+            selectedIndex = find(selectedItem)
+        } else {
+            selectedIndex = nil
+        }
+
+        backend.setSelectedItem(ofSelectableListView: widget, toItemAt: selectedIndex)
     }
 }
 

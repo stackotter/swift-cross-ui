@@ -16,8 +16,8 @@ import CGtk
 /// “broken image” icon similar to that used in many web browsers.
 /// If you want to handle errors in loading the file yourself,
 /// for example by displaying an error message, then load the image with
-/// and image loading framework such as libglycin, then create the `GtkPicture`
-/// with [ctor@Gtk.Picture.new_for_paintable].
+/// [ctor@Gdk.Texture.new_from_file], then create the `GtkPicture` with
+/// [ctor@Gtk.Picture.new_for_paintable].
 ///
 /// Sometimes an application will want to avoid depending on external data
 /// files, such as image files. See the documentation of `GResource` for details.

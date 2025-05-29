@@ -32,37 +32,26 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
         return backend.createTable()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         let size = proposedSize
-        var cellResults: [ViewUpdateResult] = []
-        let rowContent = rows.map(columns.content(for:)).map(RowView.init(_:))
-
-        for (node, content) in zip(children.rowNodes, rowContent) {
-            // Updating a RowView simply updates the view stored within its node, so the proposedSize
-            // is irrelevant. We can just set it to `.zero`.
-            _ = node.update(
-                with: content,
-                proposedSize: .zero,
-                environment: environment,
-                dryRun: dryRun
-            )
-        }
-
+        var cellResults: [ViewLayoutResult] = []
+        children.rowContent = rows.map(columns.content(for:)).map(RowView.init(_:))
         let columnLabels = columns.labels
         let columnCount = columnLabels.count
-        let remainder = rowContent.count - children.rowNodes.count
+
+        // Create and destroy row nodes
+        let remainder = children.rowContent.count - children.rowNodes.count
         if remainder < 0 {
             children.rowNodes.removeLast(-remainder)
             children.cellContainerWidgets.removeLast(-remainder * columnCount)
         } else if remainder > 0 {
-            for row in rowContent[children.rowNodes.count...] {
+            for row in children.rowContent[children.rowNodes.count...] {
                 let rowNode = AnyViewGraphNode(
                     for: row,
                     backend: backend,
@@ -77,62 +66,52 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
             }
         }
 
-        if !dryRun {
-            backend.setRowCount(ofTable: widget, to: rows.count)
-            backend.setColumnLabels(ofTable: widget, to: columnLabels, environment: environment)
+        // Update row nodes
+        let columnWidth = proposedSize.x / columnCount
+        for (node, content) in zip(children.rowNodes, children.rowContent) {
+            // TODO: Figure out if this is required
+            // This doesn't update the row's cells. It just updates the view
+            // instance stored in the row's ViewGraphNode
+            _ = node.computeLayout(
+                with: content,
+                proposedSize: .zero,
+                environment: environment
+            )
         }
 
-        let columnWidth = proposedSize.x / columnCount
+        // Compute cell layouts. Really only done during this initial layout
+        // step to propagate cell preference values. Otherwise we'd do it
+        // during commit.
         var rowHeights: [Int] = []
-        for (rowIndex, (rowNode, content)) in zip(children.rowNodes, rowContent).enumerated() {
+        let rows = zip(children.rowNodes, children.rowContent)
+        for (rowNode, content) in rows {
             let rowCells = content.layoutableChildren(
                 backend: backend,
                 children: rowNode.getChildren()
             )
 
-            var cellHeights: [Int] = []
+            var rowCellHeights: [Int] = []
             for rowCell in rowCells {
-                let cellResult = rowCell.update(
+                let cellResult = rowCell.computeLayout(
                     proposedSize: SIMD2(columnWidth, backend.defaultTableRowContentHeight),
-                    environment: environment,
-                    dryRun: dryRun
+                    environment: environment
                 )
                 cellResults.append(cellResult)
-                cellHeights.append(cellResult.size.size.y)
+                rowCellHeights.append(cellResult.size.size.y)
             }
 
             let rowHeight =
-                max(cellHeights.max() ?? 0, backend.defaultTableRowContentHeight)
-                + backend.defaultTableCellVerticalPadding * 2
+                max(
+                    rowCellHeights.max() ?? 0,
+                    backend.defaultTableRowContentHeight
+                ) + backend.defaultTableCellVerticalPadding * 2
+
             rowHeights.append(rowHeight)
-
-            for (columnIndex, cellHeight) in zip(0..<columnCount, cellHeights) {
-                let index = rowIndex * columnCount + columnIndex
-                backend.setPosition(
-                    ofChildAt: 0,
-                    in: children.cellContainerWidgets[index].into(),
-                    to: SIMD2(
-                        0,
-                        (rowHeight - cellHeight) / 2
-                    )
-                )
-            }
         }
-
-        if !dryRun {
-            // TODO: Avoid overhead of converting `cellContainerWidgets` to `[AnyWidget]` and back again
-            //   all the time.
-            backend.setCells(
-                ofTable: widget,
-                to: children.cellContainerWidgets.map { $0.into() },
-                withRowHeights: rowHeights
-            )
-        }
-
-        backend.setSize(of: widget, to: size)
+        children.rowHeights = rowHeights
 
         // TODO: Compute a proper ideal size for tables
-        return ViewUpdateResult(
+        return ViewLayoutResult(
             size: ViewSize(
                 size: size,
                 idealSize: .zero,
@@ -144,11 +123,56 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
             childResults: cellResults
         )
     }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: TableViewChildren<RowContent.RowContent>,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let columnLabels = columns.labels
+        backend.setRowCount(ofTable: widget, to: rows.count)
+        backend.setColumnLabels(ofTable: widget, to: columnLabels, environment: environment)
+
+        // TODO: Avoid overhead of converting `cellContainerWidgets` to
+        //   `[AnyWidget]` and back again all the time.
+        backend.setCells(
+            ofTable: widget,
+            to: children.cellContainerWidgets.map { $0.into() },
+            withRowHeights: children.rowHeights
+        )
+
+        let columnCount = columnLabels.count
+        for (rowIndex, rowHeight) in children.rowHeights.enumerated() {
+            let rowCells = children.rowContent[rowIndex].layoutableChildren(
+                backend: backend,
+                children: children.rowNodes[rowIndex].getChildren()
+            )
+
+            for (columnIndex, cell) in rowCells.enumerated() {
+                let index = rowIndex * columnCount + columnIndex
+                let cellSize = cell.commit()
+                backend.setPosition(
+                    ofChildAt: 0,
+                    in: children.cellContainerWidgets[index].into(),
+                    to: SIMD2(
+                        0,
+                        (rowHeight - cellSize.size.size.y) / 2
+                    )
+                )
+            }
+        }
+
+        backend.setSize(of: widget, to: layout.size.size)
+    }
 }
 
 class TableViewChildren<RowContent: View>: ViewGraphNodeChildren {
     var rowNodes: [AnyViewGraphNode<RowView<RowContent>>] = []
     var cellContainerWidgets: [AnyWidget] = []
+    var rowHeights: [Int] = []
+    var rowContent: [RowView<RowContent>] = []
 
     /// Not used, just a protocol requirement.
     var widgets: [AnyWidget] {
@@ -195,13 +219,21 @@ struct RowView<Content: View>: View {
         return backend.createContainer()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
         backend: Backend
-    ) -> ViewUpdateResult {
-        return ViewUpdateResult.leafView(size: .empty)
+    ) -> ViewLayoutResult {
+        return ViewLayoutResult.leafView(size: .empty)
     }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {}
 }
