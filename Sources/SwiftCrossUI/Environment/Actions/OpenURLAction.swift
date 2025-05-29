@@ -2,8 +2,9 @@ import Foundation
 
 /// Opens a URL with the default application. May present an application picker
 /// if multiple applications are registered for the given URL protocol.
+@MainActor
 public struct OpenURLAction {
-    let action: @MainActor (URL) -> Void
+    let action: (URL) -> Void
 
     init<Backend: AppBackend>(backend: Backend) {
         action = { url in
@@ -15,7 +16,6 @@ public struct OpenURLAction {
         }
     }
 
-    @MainActor
     public func callAsFunction(_ url: URL) {
         action(url)
     }

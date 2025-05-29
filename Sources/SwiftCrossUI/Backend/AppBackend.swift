@@ -41,7 +41,7 @@ import Foundation
 /// (since the `update` method is always called between calling `create`
 /// and actually displaying the widget anyway).
 @MainActor
-public protocol AppBackend {
+public protocol AppBackend: Sendable {
     associatedtype Window
     associatedtype Widget
     associatedtype Menu

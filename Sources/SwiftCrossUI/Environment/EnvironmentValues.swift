@@ -130,6 +130,7 @@ public struct EnvironmentValues {
     /// Opens a URL with the default application. May present an application
     /// picker if multiple applications are registered for the given URL
     /// protocol.
+    @MainActor
     public var openURL: OpenURLAction {
         return OpenURLAction(
             backend: backend
