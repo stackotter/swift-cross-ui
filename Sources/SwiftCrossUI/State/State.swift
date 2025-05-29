@@ -28,6 +28,10 @@ public struct State<Value>: DynamicProperty, StateProperty {
             /// setting a new value. This isn't in a didSet property accessor
             /// because we want more granular control over when it does and
             /// doesn't trigger.
+            ///
+            /// Additionally updates the downstream observation if the
+            /// wrapped value is an Optional<some ObservableObject> and the
+            /// current case has toggled.
             func postSet() {
                 // If the wrapped value is an Optional<some ObservableObject>
                 // then we need to observe/unobserve whenever the optional

@@ -33,7 +33,7 @@ Running your new app with Swift Bundler is as simple as it gets!
 swift bundler run
 ```
 
-On macOS you can provide the `--device <device_name_or_id>` option to run the app on a connacted iOS or tvOS device, or the `--simulator <simulator_name_or_id>` option to run the app in a simulator.
+On macOS you can provide the `--device <device_name_or_id>` option to run the app on a connected iOS or tvOS device, or the `--simulator <simulator_name_or_id>` option to run the app in a simulator.
 
 ```sh
 # You can use any substring of the target device name. For example,
