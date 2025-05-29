@@ -38,39 +38,31 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
         )
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         let leadingWidth = backend.sidebarWidth(ofSplitView: widget)
-        if !dryRun {
-            backend.setResizeHandler(ofSplitView: widget) {
-                environment.onResize(.empty)
-            }
-        }
 
         // Update pane children
-        let leadingResult = children.leadingChild.update(
+        let leadingResult = children.leadingChild.computeLayout(
             with: body.view0,
             proposedSize: SIMD2(
                 leadingWidth,
                 proposedSize.y
             ),
-            environment: environment,
-            dryRun: dryRun
+            environment: environment
         )
-        let trailingResult = children.trailingChild.update(
+        let trailingResult = children.trailingChild.computeLayout(
             with: body.view1,
             proposedSize: SIMD2(
                 proposedSize.x - max(leadingWidth, leadingResult.size.minimumWidth),
                 proposedSize.y
             ),
-            environment: environment,
-            dryRun: dryRun
+            environment: environment
         )
 
         // Update split view size and sidebar width bounds
@@ -80,37 +72,8 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
             max(proposedSize.x, leadingContentSize.size.x + trailingContentSize.size.x),
             max(proposedSize.y, max(leadingContentSize.size.y, trailingContentSize.size.y))
         )
-        if !dryRun {
-            backend.setSize(of: widget, to: size)
-            backend.setSidebarWidthBounds(
-                ofSplitView: widget,
-                minimum: leadingContentSize.minimumWidth,
-                maximum: max(
-                    leadingContentSize.minimumWidth,
-                    proposedSize.x - trailingContentSize.minimumWidth
-                )
-            )
 
-            // Center pane children
-            backend.setPosition(
-                ofChildAt: 0,
-                in: children.leadingPaneContainer.into(),
-                to: SIMD2(
-                    leadingWidth - leadingContentSize.size.x,
-                    proposedSize.y - leadingContentSize.size.y
-                ) / 2
-            )
-            backend.setPosition(
-                ofChildAt: 0,
-                in: children.trailingPaneContainer.into(),
-                to: SIMD2(
-                    proposedSize.x - leadingWidth - trailingContentSize.size.x,
-                    proposedSize.y - trailingContentSize.size.y
-                ) / 2
-            )
-        }
-
-        return ViewUpdateResult(
+        return ViewLayoutResult(
             size: ViewSize(
                 size: size,
                 idealSize: leadingContentSize.idealSize &+ trailingContentSize.idealSize,
@@ -121,6 +84,50 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
                 maximumHeight: nil
             ),
             childResults: [leadingResult, trailingResult]
+        )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: Children,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        backend.setResizeHandler(ofSplitView: widget) {
+            environment.onResize(.empty)
+        }
+
+        let leadingWidth = backend.sidebarWidth(ofSplitView: widget)
+        let leadingResult = children.leadingChild.commit()
+        let trailingResult = children.trailingChild.commit()
+
+        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSidebarWidthBounds(
+            ofSplitView: widget,
+            minimum: leadingResult.size.minimumWidth,
+            maximum: max(
+                leadingResult.size.minimumWidth,
+                layout.size.size.x - trailingResult.size.minimumWidth
+            )
+        )
+
+        // Center pane children
+        backend.setPosition(
+            ofChildAt: 0,
+            in: children.leadingPaneContainer.into(),
+            to: SIMD2(
+                leadingWidth - leadingResult.size.size.x,
+                layout.size.size.y - leadingResult.size.size.y
+            ) / 2
+        )
+        backend.setPosition(
+            ofChildAt: 0,
+            in: children.trailingPaneContainer.into(),
+            to: SIMD2(
+                layout.size.size.x - leadingWidth - trailingResult.size.size.x,
+                layout.size.size.y - trailingResult.size.size.y
+            ) / 2
         )
     }
 }

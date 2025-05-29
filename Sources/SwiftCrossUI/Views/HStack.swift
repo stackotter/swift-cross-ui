@@ -29,15 +29,14 @@ public struct HStack<Content: View>: View {
         return vStack
     }
 
-    public func update<Backend: AppBackend>(
+    public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        return LayoutSystem.updateStackLayout(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        return LayoutSystem.computeStackLayout(
             container: widget,
             children: layoutableChildren(backend: backend, children: children),
             proposedSize: proposedSize,
@@ -46,8 +45,27 @@ public struct HStack<Content: View>: View {
                 .with(\.layoutOrientation, .horizontal)
                 .with(\.layoutAlignment, alignment.asStackAlignment)
                 .with(\.layoutSpacing, spacing),
-            backend: backend,
-            dryRun: dryRun
+            backend: backend
+        )
+    }
+
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        LayoutSystem.commitStackLayout(
+            container: widget,
+            children: layoutableChildren(backend: backend, children: children),
+            layout: layout,
+            environment:
+                environment
+                .with(\.layoutOrientation, .horizontal)
+                .with(\.layoutAlignment, alignment.asStackAlignment)
+                .with(\.layoutSpacing, spacing),
+            backend: backend
         )
     }
 }

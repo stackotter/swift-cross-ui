@@ -91,6 +91,11 @@ struct SwiftCrossUITests {
             )
             backend.setChild(ofWindow: window, to: viewGraph.rootNode.widget.into())
 
+            _ = viewGraph.update(
+                proposedSize: SIMD2(200, 200),
+                environment: environment,
+                dryRun: true
+            )
             let result = viewGraph.update(
                 proposedSize: SIMD2(200, 200),
                 environment: environment,

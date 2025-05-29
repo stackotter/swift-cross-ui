@@ -31,12 +31,14 @@ public final class AppKitBackend: AppBackend {
         // We assume that all scrollers have their controlSize set to `.regular` by default.
         // The internet seems to indicate that this is true regardless of any system wide
         // preferences etc.
-        Int(
+        let result = Int(
             NSScroller.scrollerWidth(
                 for: .regular,
                 scrollerStyle: NSScroller.preferredScrollerStyle
             ).rounded(.awayFromZero)
         )
+        print(result)
+        return result
     }
 
     private let appDelegate = NSCustomApplicationDelegate()

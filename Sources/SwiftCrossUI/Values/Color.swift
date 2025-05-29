@@ -69,18 +69,13 @@ extension Color: ElementaryView {
         backend.createColorableRectangle()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        if !dryRun {
-            backend.setSize(of: widget, to: proposedSize)
-            backend.setColor(ofColorableRectangle: widget, to: self)
-        }
-        return ViewUpdateResult.leafView(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        ViewLayoutResult.leafView(
             size: ViewSize(
                 size: proposedSize,
                 idealSize: SIMD2(10, 10),
@@ -90,5 +85,15 @@ extension Color: ElementaryView {
                 maximumHeight: nil
             )
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        backend.setSize(of: widget, to: layout.size.size)
+        backend.setColor(ofColorableRectangle: widget, to: self)
     }
 }

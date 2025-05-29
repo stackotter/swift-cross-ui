@@ -10,24 +10,14 @@ public struct TextEditor: ElementaryView {
         backend.createTextEditor()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         // Avoid evaluating the binding multiple times
         let content = text
-
-        if !dryRun {
-            backend.updateTextEditor(widget, environment: environment) { newValue in
-                self.text = newValue
-            }
-            if content != backend.getContent(ofTextEditor: widget) {
-                backend.setContent(ofTextEditor: widget, to: content)
-            }
-        }
 
         let idealHeight = backend.size(
             of: content,
@@ -40,11 +30,7 @@ public struct TextEditor: ElementaryView {
             max(proposedSize.y, idealHeight)
         )
 
-        if !dryRun {
-            backend.setSize(of: widget, to: size)
-        }
-
-        return ViewUpdateResult.leafView(
+        return ViewLayoutResult.leafView(
             size: ViewSize(
                 size: size,
                 idealSize: SIMD2(10, 10),
@@ -56,5 +42,24 @@ public struct TextEditor: ElementaryView {
                 maximumHeight: nil
             )
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        // Avoid evaluating the binding multiple times
+        let content = self.text
+
+        backend.updateTextEditor(widget, environment: environment) { newValue in
+            self.text = newValue
+        }
+        if text != backend.getContent(ofTextEditor: widget) {
+            backend.setContent(ofTextEditor: widget, to: content)
+        }
+
+        backend.setSize(of: widget, to: layout.size.size)
     }
 }
