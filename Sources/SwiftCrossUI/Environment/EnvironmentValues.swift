@@ -97,10 +97,11 @@ public struct EnvironmentValues {
     /// accessed outside of a scene's view graph (in which case the backend
     /// can decide whether to make it an app modal, a standalone window, or a
     /// window of its choosing).
+    @MainActor
     public var chooseFile: PresentSingleFileOpenDialogAction {
         return PresentSingleFileOpenDialogAction(
             backend: backend,
-            window: window
+            window: .init(value: window)
         )
     }
 
@@ -110,10 +111,11 @@ public struct EnvironmentValues {
     /// scene's view graph (in which case the backend can decide whether to
     /// make it an app modal, a standalone window, or a modal for a window of
     /// its chooosing).
+    @MainActor
     public var chooseFileSaveDestination: PresentFileSaveDialogAction {
         return PresentFileSaveDialogAction(
             backend: backend,
-            window: window
+            window: .init(value: window)
         )
     }
 
@@ -121,6 +123,7 @@ public struct EnvironmentValues {
     /// outside of a scene's view graph (in which case the backend can decide
     /// whether to make it an app modal, a standalone window, or a modal for a
     /// window of its choosing).
+    @MainActor
     public var presentAlert: PresentAlertAction {
         return PresentAlertAction(
             environment: self

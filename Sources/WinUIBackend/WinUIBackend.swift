@@ -55,11 +55,11 @@ public final class WinUIBackend: AppBackend {
         var sliderChangeActions: [ObjectIdentifier: (Double) -> Void] = [:]
         var textFieldChangeActions: [ObjectIdentifier: (String) -> Void] = [:]
         var textFieldSubmitActions: [ObjectIdentifier: () -> Void] = [:]
-        var dispatcherQueue: WinAppSDK.DispatcherQueue?
         var themeChangeAction: (() -> Void)?
     }
 
     private var internalState: InternalState
+    nonisolated(unsafe) private var dispatcherQueue: WinAppSDK.DispatcherQueue?
     /// WinUI only allows one dialog at a time (subsequent dialogs throw
     /// exceptions), so we limit ourselves.
     private var dialogSemaphore = DispatchSemaphore(value: 1)
@@ -128,8 +128,8 @@ public final class WinUIBackend: AppBackend {
             }
         }
 
-        if internalState.dispatcherQueue == nil {
-            internalState.dispatcherQueue = window.dispatcherQueue
+        if self.dispatcherQueue == nil {
+            self.dispatcherQueue = window.dispatcherQueue
         }
 
         // import WinSDK
@@ -238,7 +238,7 @@ public final class WinUIBackend: AppBackend {
     }
 
     public func runInMainThread(action: @escaping @MainActor () -> Void) {
-        _ = try! internalState.dispatcherQueue!.tryEnqueue(.normal) {
+        _ = try! dispatcherQueue!.tryEnqueue(.normal) {
             action()
         }
     }
