@@ -69,7 +69,7 @@ extension Image: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: _ImageChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -105,7 +105,9 @@ extension Image: TypeSafeView {
         let size: ViewSize
         if isResizable {
             size = ViewSize(
-                size: image == nil ? .zero : proposedSize,
+                size: image == nil
+                    ? .zero
+                    : proposedSize.evaluated(withIdealSize: idealSize),
                 idealSize: idealSize,
                 minimumWidth: 0,
                 minimumHeight: 0,

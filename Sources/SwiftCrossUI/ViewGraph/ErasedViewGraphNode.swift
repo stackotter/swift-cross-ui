@@ -11,7 +11,7 @@ public struct ErasedViewGraphNode {
     public var computeLayoutWithNewView:
         (
             _ newView: Any?,
-            _ proposedSize: SIMD2<Int>,
+            _ proposedSize: SizeProposal,
             _ environment: EnvironmentValues
         ) -> (viewTypeMatched: Bool, size: ViewLayoutResult)
     /// The underlying view graph node's commit method.

@@ -109,7 +109,7 @@ struct ProgressSpinnerView: ElementaryView {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -139,20 +139,22 @@ struct ProgressBarView: ElementaryView {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
+        // TODO: Allow backends to specify their own ideal progress bar widths.
+        let idealWidth = 100
         let height = backend.naturalSize(of: widget).y
         let size = SIMD2(
-            proposedSize.x,
+            proposedSize.width ?? idealWidth,
             height
         )
 
         return ViewLayoutResult.leafView(
             size: ViewSize(
                 size: size,
-                idealSize: SIMD2(100, height),
+                idealSize: SIMD2(idealWidth, height),
                 minimumWidth: 0,
                 minimumHeight: height,
                 maximumWidth: nil,

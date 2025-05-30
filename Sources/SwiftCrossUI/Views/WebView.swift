@@ -15,14 +15,16 @@ public struct WebView: ElementaryView {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
+        let idealSize = SIMD2(10, 10)
+        let size = proposedSize.evaluated(withIdealSize: idealSize)
         return ViewLayoutResult(
             size: ViewSize(
-                size: proposedSize,
-                idealSize: SIMD2(10, 10),
+                size: size,
+                idealSize: idealSize,
                 minimumWidth: 0,
                 minimumHeight: 0,
                 maximumWidth: nil,

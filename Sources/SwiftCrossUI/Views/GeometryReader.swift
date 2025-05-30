@@ -55,11 +55,13 @@ public struct GeometryReader<Content: View>: TypeSafeView, View {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: GeometryReaderChildren<Content>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        let view = content(GeometryProxy(size: proposedSize))
+        let idealSize = SIMD2<Int>(10, 10)
+        let size = proposedSize.evaluated(withIdealSize: idealSize)
+        let view = content(GeometryProxy(size: size))
 
         let environment = environment.with(\.layoutAlignment, .leading)
 
@@ -92,8 +94,8 @@ public struct GeometryReader<Content: View>: TypeSafeView, View {
 
         return ViewLayoutResult(
             size: ViewSize(
-                size: proposedSize,
-                idealSize: SIMD2(10, 10),
+                size: size,
+                idealSize: idealSize,
                 minimumWidth: 0,
                 minimumHeight: 0,
                 maximumWidth: nil,

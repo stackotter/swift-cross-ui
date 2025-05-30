@@ -31,7 +31,7 @@ public struct ZStack<Content: View>: View {
     public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -53,6 +53,10 @@ public struct ZStack<Content: View>: View {
                 childSizes.map(\.idealSize.x).max() ?? 0,
                 childSizes.map(\.idealSize.y).max() ?? 0
             ),
+            idealWidthForProposedHeight:
+                childSizes.map(\.idealWidthForProposedHeight).max() ?? 0,
+            idealHeightForProposedWidth:
+                childSizes.map(\.idealHeightForProposedWidth).max() ?? 0,
             minimumWidth: childSizes.map(\.minimumWidth).max() ?? 0,
             minimumHeight: childSizes.map(\.minimumHeight).max() ?? 0,
             maximumWidth: childSizes.map(\.maximumWidth).max() ?? 0,

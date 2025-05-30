@@ -142,22 +142,27 @@ extension View where Self: NSViewRepresentable {
     public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
-        backend: Backend
+        backend _: Backend
     ) -> ViewLayoutResult {
-        guard backend is AppKitBackend else {
-            fatalError("NSViewRepresentable updated by \(Backend.self)")
-        }
-
+        // We update the underlying view in computeLayout because we don't expect
+        // UIViews to have their layout computations decoupled from their content.
         let representingWidget = widget as! RepresentingWidget<Self>
         representingWidget.update(with: environment)
 
-        let size = representingWidget.representable.determineViewSize(
-            for: proposedSize,
+        // TODO: Pass size proposal through to XRepresentable views
+        var size = representingWidget.representable.determineViewSize(
+            for: proposedSize.evaluated(withIdealSize: SIMD2(10, 10)),
             nsView: representingWidget.subview,
             context: representingWidget.context!
         )
+        if proposedSize.width == nil {
+            size.size.x = size.idealWidthForProposedHeight
+        }
+        if proposedSize.height == nil {
+            size.size.y = size.idealHeightForProposedWidth
+        }
 
         return ViewLayoutResult.leafView(size: size)
     }

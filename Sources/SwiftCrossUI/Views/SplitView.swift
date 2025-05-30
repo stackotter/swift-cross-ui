@@ -41,7 +41,7 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -50,17 +50,17 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
         // Update pane children
         let leadingResult = children.leadingChild.computeLayout(
             with: body.view0,
-            proposedSize: SIMD2(
-                leadingWidth,
-                proposedSize.y
+            proposedSize: SizeProposal(
+                proposedSize.width == nil ? nil : leadingWidth,
+                proposedSize.height
             ),
             environment: environment
         )
         let trailingResult = children.trailingChild.computeLayout(
             with: body.view1,
-            proposedSize: SIMD2(
-                proposedSize.x - max(leadingWidth, leadingResult.size.minimumWidth),
-                proposedSize.y
+            proposedSize: SizeProposal(
+                proposedSize.width.map { $0 - max(leadingWidth, leadingResult.size.minimumWidth) },
+                proposedSize.height
             ),
             environment: environment
         )
@@ -69,8 +69,14 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
         let leadingContentSize = leadingResult.size
         let trailingContentSize = trailingResult.size
         let size = SIMD2(
-            max(proposedSize.x, leadingContentSize.size.x + trailingContentSize.size.x),
-            max(proposedSize.y, max(leadingContentSize.size.y, trailingContentSize.size.y))
+            max(
+                proposedSize.width ?? 0,
+                leadingContentSize.size.x + trailingContentSize.size.x
+            ),
+            max(
+                proposedSize.height ?? 0,
+                max(leadingContentSize.size.y, trailingContentSize.size.y)
+            )
         )
 
         return ViewLayoutResult(

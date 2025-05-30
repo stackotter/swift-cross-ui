@@ -36,7 +36,6 @@ public final class AppKitBackend: AppBackend {
                 scrollerStyle: NSScroller.preferredScrollerStyle
             ).rounded(.awayFromZero)
         )
-        print(result)
         return result
     }
 

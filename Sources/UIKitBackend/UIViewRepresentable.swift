@@ -6,8 +6,7 @@ public struct UIViewRepresentableContext<Coordinator> {
     public internal(set) var environment: EnvironmentValues
 }
 
-public protocol UIViewRepresentable: View
-where Content == Never {
+public protocol UIViewRepresentable: View where Content == Never {
     associatedtype UIViewType: UIView
     associatedtype Coordinator = Void
 
@@ -103,8 +102,7 @@ extension UIViewRepresentable {
     }
 }
 
-extension View
-where Self: UIViewRepresentable {
+extension View where Self: UIViewRepresentable {
     public var body: Never {
         preconditionFailure("This should never be called")
     }
@@ -138,19 +136,27 @@ where Self: UIViewRepresentable {
     public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children _: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend _: Backend
     ) -> ViewUpdateResult {
+        // We update the underlying view in computeLayout because we don't expect
+        // UIViews to have their layout computations decoupled from their content.
         let representingWidget = widget as! ViewRepresentingWidget<Self>
         representingWidget.update(with: environment)
 
-        let size =
-            representingWidget.representable.determineViewSize(
-                for: proposedSize,
-                uiView: representingWidget.subview,
-                context: representingWidget.context!
-            )
+        // TODO: Pass size proposal through to XRepresentable views
+        var size = representingWidget.representable.determineViewSize(
+            for: proposedSize.evaluated(withIdealSize: SIMD2(10, 10)),
+            uiView: representingWidget.subview,
+            context: representingWidget.context!
+        )
+        if proposedSize.width == nil {
+            size.size.x = size.idealWidthForProposedHeight
+        }
+        if proposedSize.height == nil {
+            size.size.y = size.idealHeightForProposedWidth
+        }
 
         return ViewUpdateResult.leafView(size: size)
     }
@@ -167,8 +173,7 @@ where Self: UIViewRepresentable {
     }
 }
 
-extension UIViewRepresentable
-where Coordinator == Void {
+extension UIViewRepresentable where Coordinator == Void {
     public func makeCoordinator() {
         return ()
     }

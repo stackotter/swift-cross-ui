@@ -29,21 +29,22 @@ public struct TextField: ElementaryView, View {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
+        // TODO: Allow backends to set their own ideal text field width
+        let idealWidth = 100
         let naturalHeight = backend.naturalSize(of: widget).y
         let size = SIMD2(
-            proposedSize.x,
+            proposedSize.width ?? idealWidth,
             naturalHeight
         )
 
-        // TODO: Allow backends to set their own ideal text field width
         return ViewLayoutResult.leafView(
             size: ViewSize(
                 size: size,
-                idealSize: SIMD2(100, naturalHeight),
+                idealSize: SIMD2(idealWidth, naturalHeight),
                 minimumWidth: 0,
                 minimumHeight: naturalHeight,
                 maximumWidth: nil,

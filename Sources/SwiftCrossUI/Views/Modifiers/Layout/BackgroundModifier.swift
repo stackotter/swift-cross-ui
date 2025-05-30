@@ -37,7 +37,7 @@ struct BackgroundModifier<Background: View, Foreground: View>: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleView2<Background, Foreground>.Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -49,7 +49,7 @@ struct BackgroundModifier<Background: View, Foreground: View>: TypeSafeView {
         let foregroundSize = foregroundResult.size
         let backgroundResult = children.child0.computeLayout(
             with: body.view0,
-            proposedSize: foregroundSize.size,
+            proposedSize: SizeProposal(foregroundSize.size),
             environment: environment
         )
         let backgroundSize = backgroundResult.size

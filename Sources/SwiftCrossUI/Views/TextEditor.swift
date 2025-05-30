@@ -12,32 +12,45 @@ public struct TextEditor: ElementaryView {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
         // Avoid evaluating the binding multiple times
         let content = text
 
-        let idealHeight = backend.size(
+        let idealWidth = 10
+        let proposal = proposedSize.evaluated(withIdealSize: SIMD2(idealWidth, 10))
+        let idealHeightForWidth = backend.size(
             of: content,
             whenDisplayedIn: widget,
-            proposedFrame: SIMD2(proposedSize.x, 1),
+            proposedFrame: SIMD2(proposal.x, 1),
             environment: environment
         ).y
+        let idealHeightForIdealWidth: Int
+        if proposal.x == idealWidth {
+            idealHeightForIdealWidth = idealHeightForWidth
+        } else {
+            idealHeightForIdealWidth = backend.size(
+                of: content,
+                whenDisplayedIn: widget,
+                proposedFrame: SIMD2(10, 1),
+                environment: environment
+            ).y
+        }
         let size = SIMD2(
-            proposedSize.x,
-            max(proposedSize.y, idealHeight)
+            proposal.x,
+            max(proposal.y, idealHeightForWidth)
         )
 
         return ViewLayoutResult.leafView(
             size: ViewSize(
                 size: size,
-                idealSize: SIMD2(10, 10),
+                idealSize: SIMD2(idealWidth, idealHeightForIdealWidth),
                 idealWidthForProposedHeight: 10,
-                idealHeightForProposedWidth: idealHeight,
+                idealHeightForProposedWidth: idealHeightForWidth,
                 minimumWidth: 0,
-                minimumHeight: idealHeight,
+                minimumHeight: idealHeightForWidth,
                 maximumWidth: nil,
                 maximumHeight: nil
             )
