@@ -92,20 +92,19 @@ public struct Slider: ElementaryView, View {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        // TODO: Don't rely on naturalSize for minimum size so that we can get
-        //   Slider sizes without relying on the widget.
-        let naturalSize = backend.naturalSize(of: widget)
-        let size = SIMD2(proposedSize.x, naturalSize.y)
-
         // TODO: Allow backends to specify their own ideal slider widths.
+        let idealWidth = 100
+        let naturalSize = backend.naturalSize(of: widget)
+        let size = SIMD2(proposedSize.width ?? idealWidth, naturalSize.y)
+
         return ViewLayoutResult.leafView(
             size: ViewSize(
                 size: size,
-                idealSize: SIMD2(100, naturalSize.y),
+                idealSize: SIMD2(idealWidth, naturalSize.y),
                 minimumWidth: naturalSize.x,
                 minimumHeight: naturalSize.y,
                 maximumWidth: nil,

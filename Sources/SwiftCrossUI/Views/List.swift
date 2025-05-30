@@ -101,7 +101,7 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -139,32 +139,34 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
 
         var childResults: [ViewLayoutResult] = []
         for (rowView, node) in zip(rowViews, children.nodes) {
-            let preferredSize = node.computeLayout(
-                with: rowView,
-                proposedSize: SIMD2(
-                    max(proposedSize.x, minimumRowSize.x) - baseRowPadding.axisTotals.x,
-                    max(proposedSize.y, minimumRowSize.y) - baseRowPadding.axisTotals.y
-                ),
-                environment: environment
-            ).size
+            let childSizeProposal: SizeProposal
+            if let proposedWidth = proposedSize.width {
+                childSizeProposal = SizeProposal(
+                    max(proposedWidth, minimumRowSize.x) - horizontalBasePadding,
+                    nil
+                )
+            } else {
+                childSizeProposal = .ideal
+            }
             let childResult = node.computeLayout(
-                with: nil,
-                proposedSize: SIMD2(
-                    max(proposedSize.x, minimumRowSize.x) - horizontalBasePadding,
-                    max(
-                        preferredSize.idealHeightForProposedWidth,
-                        minimumRowSize.y - baseRowPadding.axisTotals.y
-                    )
-                ),
+                with: rowView,
+                proposedSize: childSizeProposal,
                 environment: environment
             )
             childResults.append(childResult)
         }
 
+        let inferredWidth =
+            (childResults.map(\.size.size.x).max() ?? 0)
+            + horizontalBasePadding
+        let idealWidth =
+            (childResults.map(\.size.idealSize.x).max() ?? 0)
+            + horizontalBasePadding
+
         let size = SIMD2(
             max(
-                (childResults.map(\.size.size.x).max() ?? 0) + horizontalBasePadding,
-                max(minimumRowSize.x, proposedSize.x)
+                inferredWidth,
+                max(minimumRowSize.x, proposedSize.width ?? idealWidth)
             ),
             childResults.map(\.size.size.y).map { rowHeight in
                 max(
@@ -178,8 +180,7 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
             size: ViewSize(
                 size: size,
                 idealSize: SIMD2(
-                    (childResults.map(\.size.idealSize.x).max() ?? 0)
-                        + horizontalBasePadding,
+                    idealWidth,
                     size.y
                 ),
                 minimumWidth: (childResults.map(\.size.minimumWidth).max() ?? 0)

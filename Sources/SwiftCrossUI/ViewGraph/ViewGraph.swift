@@ -62,7 +62,7 @@ public class ViewGraph<Root: View> {
         if dryRun {
             result = rootNode.computeLayout(
                 with: newView ?? view,
-                proposedSize: proposedSize,
+                proposedSize: SizeProposal(proposedSize),
                 environment: parentEnvironment
             )
         } else {

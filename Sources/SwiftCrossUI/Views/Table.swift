@@ -35,12 +35,10 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        let size = proposedSize
-        var cellResults: [ViewLayoutResult] = []
         children.rowContent = rows.map(columns.content(for:)).map(RowView.init(_:))
         let columnLabels = columns.labels
         let columnCount = columnLabels.count
@@ -67,7 +65,6 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
         }
 
         // Update row nodes
-        let columnWidth = proposedSize.x / columnCount
         for (node, content) in zip(children.rowNodes, children.rowContent) {
             // TODO: Figure out if this is required
             // This doesn't update the row's cells. It just updates the view
@@ -84,6 +81,8 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
         // during commit.
         var rowHeights: [Int] = []
         let rows = zip(children.rowNodes, children.rowContent)
+        let columnWidth = proposedSize.width.map { $0 / columnCount }
+        var cellResults: [[ViewLayoutResult]] = []
         for (rowNode, content) in rows {
             let rowCells = content.layoutableChildren(
                 backend: backend,
@@ -91,35 +90,54 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
             )
 
             var rowCellHeights: [Int] = []
+            var rowCellResults: [ViewLayoutResult] = []
             for rowCell in rowCells {
                 let cellResult = rowCell.computeLayout(
-                    proposedSize: SIMD2(columnWidth, backend.defaultTableRowContentHeight),
+                    proposedSize: SizeProposal(
+                        columnWidth,
+                        proposedSize.height == nil ? nil : backend.defaultTableRowContentHeight
+                    ),
                     environment: environment
                 )
-                cellResults.append(cellResult)
+                rowCellResults.append(cellResult)
                 rowCellHeights.append(cellResult.size.size.y)
             }
+            cellResults.append(rowCellResults)
 
-            let rowHeight = max(
-                rowCellHeights.max() ?? 0,
-                backend.defaultTableRowContentHeight
-            ) + backend.defaultTableCellVerticalPadding * 2
+            let rowHeight =
+                max(
+                    rowCellHeights.max() ?? 0,
+                    backend.defaultTableRowContentHeight
+                ) + backend.defaultTableCellVerticalPadding * 2
 
             rowHeights.append(rowHeight)
         }
         children.rowHeights = rowHeights
 
-        // TODO: Compute a proper ideal size for tables
+        // The sizing of each axis is independent for Tables, so we don't have to
+        // worry about idealHeightForProposedWidth or idealWidthForProposedHeight.
+        // They can simply be inferred from idealSize.
+        let idealSize = SIMD2(
+            cellResults.map { cells in
+                cells.map(\.size.idealSize.x).reduce(0, +)
+            }.max() ?? 0,
+            rowHeights.reduce(0, +)
+        )
+        let size = SIMD2(
+            proposedSize.width ?? idealSize.x,
+            proposedSize.height ?? idealSize.y
+        )
+
         return ViewLayoutResult(
             size: ViewSize(
                 size: size,
-                idealSize: .zero,
+                idealSize: idealSize,
                 minimumWidth: 0,
                 minimumHeight: 0,
                 maximumWidth: nil,
                 maximumHeight: nil
             ),
-            childResults: cellResults
+            childResults: cellResults.flatMap { $0 }
         )
     }
 
@@ -221,7 +239,7 @@ struct RowView<Content: View>: View {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {

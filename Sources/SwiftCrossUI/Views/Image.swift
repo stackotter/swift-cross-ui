@@ -65,7 +65,7 @@ public struct Image: TypeSafeView, View {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: _ImageChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -101,7 +101,9 @@ public struct Image: TypeSafeView, View {
         let size: ViewSize
         if isResizable {
             size = ViewSize(
-                size: image == nil ? .zero : proposedSize,
+                size: image == nil
+                    ? .zero
+                    : proposedSize.evaluated(withIdealSize: idealSize),
                 idealSize: idealSize,
                 minimumWidth: 0,
                 minimumHeight: 0,
@@ -125,11 +127,10 @@ public struct Image: TypeSafeView, View {
         let size = layout.size.size
         let hasResized = children.cachedImageDisplaySize != size
         children.cachedImageDisplaySize = layout.size.size
-        if
-            (children.imageChanged
-                || hasResized
-                || (backend.requiresImageUpdateOnScaleFactorChange
-                    && children.lastScaleFactor != environment.windowScaleFactor))
+        if children.imageChanged
+            || hasResized
+            || (backend.requiresImageUpdateOnScaleFactorChange
+                && children.lastScaleFactor != environment.windowScaleFactor)
         {
             if let image = children.cachedImage {
                 backend.updateImageView(

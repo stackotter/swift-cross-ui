@@ -100,7 +100,7 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ container: Backend.Widget,
         children: TupleViewChildren1<Child>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -110,9 +110,9 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
 
         let childResult = children.child0.computeLayout(
             with: body.view0,
-            proposedSize: SIMD2(
-                max(proposedSize.x - insets.leading - insets.trailing, 0),
-                max(proposedSize.y - insets.top - insets.bottom, 0)
+            proposedSize: SizeProposal(
+                proposedSize.width.map { max($0 - insets.leading - insets.trailing, 0) },
+                proposedSize.height.map { max($0 - insets.top - insets.bottom, 0) }
             ),
             environment: environment
         )

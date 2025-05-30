@@ -82,11 +82,19 @@ extension Shape {
     public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        let size = size(fitting: proposedSize)
+        var size = size(
+            fitting: SIMD2(proposedSize.width ?? 10, proposedSize.height ?? 10)
+        )
+        if proposedSize.width == nil {
+            size.size.x = size.idealWidthForProposedHeight
+        }
+        if proposedSize.height == nil {
+            size.size.y = size.idealHeightForProposedWidth
+        }
         return ViewLayoutResult.leafView(size: size)
     }
 

@@ -1,3 +1,5 @@
+import Foundation
+
 public enum LayoutSystem {
     static func width(forHeight height: Int, aspectRatio: Double) -> Int {
         roundSize(Double(height) * aspectRatio)
@@ -9,6 +11,18 @@ public enum LayoutSystem {
 
     static func roundSize(_ size: Double) -> Int {
         Int(size.rounded(.towardZero))
+    }
+
+    /// Clamps a value to a range given optional lower and upper bounds.
+    static func clamp<T: Comparable>(_ value: T, minimum: T? = nil, maximum: T? = nil) -> T {
+        var value = value
+        if let minimum {
+            value = max(value, minimum)
+        }
+        if let maximum {
+            value = min(value, maximum)
+        }
+        return value
     }
 
     static func aspectRatio(of frame: SIMD2<Double>) -> Double {
@@ -47,14 +61,14 @@ public enum LayoutSystem {
     public struct LayoutableChild {
         private var computeLayout:
             (
-                _ proposedSize: SIMD2<Int>,
+                _ proposedSize: SizeProposal,
                 _ environment: EnvironmentValues
             ) -> ViewLayoutResult
         private var _commit: () -> ViewLayoutResult
         var tag: String?
 
         public init(
-            computeLayout: @escaping (SIMD2<Int>, EnvironmentValues) -> ViewLayoutResult,
+            computeLayout: @escaping (SizeProposal, EnvironmentValues) -> ViewLayoutResult,
             commit: @escaping () -> ViewLayoutResult,
             tag: String? = nil
         ) {
@@ -64,7 +78,7 @@ public enum LayoutSystem {
         }
 
         public func computeLayout(
-            proposedSize: SIMD2<Int>,
+            proposedSize: SizeProposal,
             environment: EnvironmentValues,
             dryRun: Bool = false
         ) -> ViewLayoutResult {
@@ -84,7 +98,7 @@ public enum LayoutSystem {
     public static func computeStackLayout<Backend: AppBackend>(
         container: Backend.Widget,
         children: [LayoutableChild],
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend,
         inheritStackLayoutParticipation: Bool = false
@@ -103,7 +117,7 @@ public enum LayoutSystem {
         var isHidden = [Bool](repeating: false, count: children.count)
         let flexibilities = children.enumerated().map { i, child in
             let result = child.computeLayout(
-                proposedSize: proposedSize,
+                proposedSize: .ideal,
                 environment: environment
             )
             isHidden[i] = !result.participatesInStackLayouts
@@ -118,11 +132,19 @@ public enum LayoutSystem {
             !hidden
         }.count
         let totalSpacing = max(visibleChildrenCount - 1, 0) * spacing
-        let sortedChildren = zip(children.enumerated(), flexibilities)
-            .sorted { first, second in
-                first.1 <= second.1
-            }
-            .map(\.0)
+
+        let sortedChildren: [(offset: Int, element: LayoutSystem.LayoutableChild)]
+        if orientation == .vertical && proposedSize.height == nil
+            || orientation == .horizontal && proposedSize.width == nil
+        {
+            sortedChildren = Array(children.enumerated())
+        } else {
+            sortedChildren = zip(children.enumerated(), flexibilities)
+                .sorted { first, second in
+                    first.1 <= second.1
+                }
+                .map(\.0)
+        }
 
         var spaceUsedAlongStackAxis = 0
         var childrenRemaining = visibleChildrenCount
@@ -149,25 +171,35 @@ public enum LayoutSystem {
                 continue
             }
 
-            let proposedWidth: Double
-            let proposedHeight: Double
+            let proposedWidth: Double?
+            let proposedHeight: Double?
             switch orientation {
                 case .horizontal:
-                    proposedWidth =
-                        Double(max(proposedSize.x - spaceUsedAlongStackAxis - totalSpacing, 0))
-                        / Double(childrenRemaining)
-                    proposedHeight = Double(proposedSize.y)
+                    if let parentProposedWidth = proposedSize.width {
+                        proposedWidth = Double(max(
+                            parentProposedWidth - spaceUsedAlongStackAxis - totalSpacing,
+                            0
+                        )) / Double(childrenRemaining)
+                    } else {
+                        proposedWidth = nil
+                    }
+                    proposedHeight = proposedSize.height.map(Double.init)
                 case .vertical:
-                    proposedHeight =
-                        Double(max(proposedSize.y - spaceUsedAlongStackAxis - totalSpacing, 0))
-                        / Double(childrenRemaining)
-                    proposedWidth = Double(proposedSize.x)
+                    if let parentProposedHeight = proposedSize.height {
+                        proposedHeight = Double(max(
+                            parentProposedHeight - spaceUsedAlongStackAxis - totalSpacing,
+                            0
+                        )) / Double(childrenRemaining)
+                    } else {
+                        proposedHeight = nil
+                    }
+                    proposedWidth = proposedSize.width.map(Double.init)
             }
 
             let childResult = child.computeLayout(
-                proposedSize: SIMD2<Int>(
-                    Int(proposedWidth.rounded(.towardZero)),
-                    Int(proposedHeight.rounded(.towardZero))
+                proposedSize: SizeProposal(
+                    proposedWidth.map { Int($0.rounded(.towardZero)) },
+                    proposedHeight.map { Int($0.rounded(.towardZero)) }
                 ),
                 environment: environment
             )

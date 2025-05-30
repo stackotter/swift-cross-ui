@@ -1,3 +1,5 @@
+import Foundation
+
 /// A text view.
 public struct Text: ElementaryView, View {
     /// The string to be shown in the text view.
@@ -16,7 +18,7 @@ public struct Text: ElementaryView, View {
 
     public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -26,13 +28,6 @@ public struct Text: ElementaryView, View {
         // properties and such (via Pango).
         backend.updateTextView(widget, content: string, environment: environment)
 
-        let size = backend.size(
-            of: string,
-            whenDisplayedIn: widget,
-            proposedFrame: proposedSize,
-            environment: environment
-        )
-
         let idealSize = backend.size(
             of: string,
             whenDisplayedIn: widget,
@@ -40,18 +35,53 @@ public struct Text: ElementaryView, View {
             environment: environment
         )
 
-        let minimumWidth = backend.size(
-            of: string,
-            whenDisplayedIn: widget,
-            proposedFrame: SIMD2(1, proposedSize.y),
-            environment: environment
-        ).x
-        let minimumHeight = backend.size(
-            of: string,
-            whenDisplayedIn: widget,
-            proposedFrame: SIMD2(proposedSize.x, 1),
-            environment: environment
-        ).y
+        let size: SIMD2<Int>
+        let minimumWidth: Int
+        let minimumHeight: Int
+        if let proposedSize = proposedSize.concrete {
+            size = backend.size(
+                of: string,
+                whenDisplayedIn: widget,
+                proposedFrame: proposedSize,
+                environment: environment
+            )
+            minimumWidth =
+                backend.size(
+                    of: string,
+                    whenDisplayedIn: widget,
+                    proposedFrame: SIMD2(1, proposedSize.y),
+                    environment: environment
+                ).x
+            minimumHeight =
+                backend.size(
+                    of: string,
+                    whenDisplayedIn: widget,
+                    proposedFrame: SIMD2(proposedSize.x, 1),
+                    environment: environment
+                ).y
+        } else if let proposedWidth = proposedSize.width {
+            size = backend.size(
+                of: string,
+                whenDisplayedIn: widget,
+                proposedFrame: SIMD2(proposedWidth, 1),
+                environment: environment
+            )
+            minimumWidth =
+                backend.size(
+                    of: string,
+                    whenDisplayedIn: widget,
+                    // This proposed height could really be anything. We work under
+                    // the assumption that backends generally ignore height proposals
+                    // during text layout.
+                    proposedFrame: SIMD2(1, size.y),
+                    environment: environment
+                ).x
+            minimumHeight = size.y
+        } else {
+            size = idealSize
+            minimumWidth = size.x
+            minimumHeight = size.y
+        }
 
         return ViewLayoutResult.leafView(
             size: ViewSize(

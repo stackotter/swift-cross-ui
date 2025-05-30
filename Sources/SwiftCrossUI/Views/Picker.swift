@@ -24,7 +24,7 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -49,10 +49,11 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
         // but it can and should be as large as reasonable
         let size = backend.naturalSize(of: widget)
         if size == SIMD2(-1, -1) {
+            let idealSize = SIMD2(10, 10)
             return ViewLayoutResult.leafView(
                 size: ViewSize(
-                    size: proposedSize,
-                    idealSize: SIMD2(10, 10),
+                    size: proposedSize.evaluated(withIdealSize: idealSize),
+                    idealSize: idealSize,
                     minimumWidth: 0,
                     minimumHeight: 0,
                     maximumWidth: nil,

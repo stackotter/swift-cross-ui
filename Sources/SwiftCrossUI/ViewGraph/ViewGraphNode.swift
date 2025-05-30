@@ -39,10 +39,10 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     public var currentLayout: ViewLayoutResult?
     /// A cache of update results keyed by the proposed size they were for. Gets cleared before the
     /// results' sizes become invalid.
-    var resultCache: [SIMD2<Int>: ViewLayoutResult]
+    var resultCache: [SizeProposal: ViewLayoutResult]
     /// The most recent size proposed by the parent view. Used when updating the wrapped
     /// view as a result of a state change rather than the parent view updating.
-    private var lastProposedSize: SIMD2<Int>
+    private var lastProposedSize: SizeProposal
 
     /// A cancellable handle to the view's state property observations.
     private var cancellables: [Cancellable]
@@ -170,7 +170,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
     /// state.
     public func computeLayout(
         with newView: NodeView? = nil,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues
     ) -> ViewLayoutResult {
         // Defensively ensure that all future scene implementations obey this
@@ -195,15 +195,31 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend> {
         // current view state.
         if let currentLayout, !resultCache.isEmpty {
             // If both the previous and current proposed sizes are larger than
-            // the view's previously computed maximum size, reuse the previous
-            // result (currentResult).
-            if ((Double(lastProposedSize.x) >= currentLayout.size.maximumWidth
-                && Double(proposedSize.x) >= currentLayout.size.maximumWidth)
-                || proposedSize.x == lastProposedSize.x)
-                && ((Double(lastProposedSize.y) >= currentLayout.size.maximumHeight
-                    && Double(proposedSize.y) >= currentLayout.size.maximumHeight)
-                    || proposedSize.y == lastProposedSize.y)
+            // the view's previously computed maximum size or equal to each other,
+            // reuse the previous result (currentResult).
+            var isHorizontalCacheHit = lastProposedSize.width == proposedSize.width
+            if !isHorizontalCacheHit,
+                let lastProposedWidth = lastProposedSize.width,
+                let proposedWidth = proposedSize.width
             {
+                isHorizontalCacheHit = (
+                     Double(lastProposedWidth) >= currentLayout.size.maximumWidth
+                     && Double(proposedWidth) >= currentLayout.size.maximumWidth   
+                )
+            }
+
+            var isVerticalCacheHit = lastProposedSize.height == proposedSize.height
+            if !isVerticalCacheHit,
+                let lastProposedHeight = lastProposedSize.height,
+                let proposedHeight = proposedSize.height
+            {
+                isVerticalCacheHit = (
+                     Double(lastProposedHeight) >= currentLayout.size.maximumHeight
+                     && Double(proposedHeight) >= currentLayout.size.maximumHeight   
+                )
+            }
+
+            if isHorizontalCacheHit && isVerticalCacheHit {
                 return currentLayout
             }
 

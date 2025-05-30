@@ -66,13 +66,28 @@ struct AspectRatioView<Child: View>: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleViewChildren1<Child>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
+        // TODO: Is there a clever way that we can avoid more of these duplicate
+        //   child layout computations?
+        let concreteProposedSize: SIMD2<Int>
         let evaluatedAspectRatio: Double
         if let aspectRatio {
             evaluatedAspectRatio = aspectRatio == 0 ? 1 : aspectRatio
+            if let proposedSize = proposedSize.concrete {
+                concreteProposedSize = proposedSize
+            } else {
+                let childResult = children.child0.computeLayout(
+                    with: body.view0,
+                    proposedSize: proposedSize,
+                    environment: environment
+                )
+                concreteProposedSize = proposedSize.evaluated(
+                    withIdealSize: childResult.size.idealSize
+                )
+            }
         } else {
             let childResult = children.child0.computeLayout(
                 with: body.view0,
@@ -80,17 +95,20 @@ struct AspectRatioView<Child: View>: TypeSafeView {
                 environment: environment
             )
             evaluatedAspectRatio = childResult.size.idealAspectRatio
+            concreteProposedSize = proposedSize.evaluated(
+                withIdealSize: childResult.size.idealSize
+            )
         }
 
         let proposedFrameSize = LayoutSystem.frameSize(
-            forProposedSize: proposedSize,
+            forProposedSize: concreteProposedSize,
             aspectRatio: evaluatedAspectRatio,
             contentMode: contentMode
         )
 
         let childResult = children.child0.computeLayout(
             with: nil,
-            proposedSize: proposedFrameSize,
+            proposedSize: SizeProposal(proposedFrameSize),
             environment: environment
         )
 
@@ -142,7 +160,6 @@ struct AspectRatioView<Child: View>: TypeSafeView {
         // aspect ratio locked frame (not all views can achieve every aspect
         // ratio).
         let childResult = children.child0.commit()
-        print(childResult.size.size)
         let childPosition = Alignment.center.position(
             ofChild: childResult.size.size,
             in: layout.size.size

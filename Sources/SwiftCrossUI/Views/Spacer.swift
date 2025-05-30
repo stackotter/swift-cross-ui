@@ -17,7 +17,7 @@ public struct Spacer: ElementaryView, View {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -30,17 +30,17 @@ public struct Spacer: ElementaryView, View {
         let maximumHeight: Double?
         switch environment.layoutOrientation {
             case .horizontal:
-                size = SIMD2(max(minLength, proposedSize.x), 0)
                 minimumWidth = minLength
                 minimumHeight = 0
                 maximumWidth = nil
                 maximumHeight = 0
+                size = SIMD2(max(minLength, proposedSize.width ?? minimumWidth), 0)
             case .vertical:
-                size = SIMD2(0, max(minLength, proposedSize.y))
                 minimumWidth = 0
                 minimumHeight = minLength
                 maximumWidth = 0
                 maximumHeight = nil
+                size = SIMD2(0, max(minLength, proposedSize.height ?? minimumHeight))
         }
 
         return ViewLayoutResult.leafView(

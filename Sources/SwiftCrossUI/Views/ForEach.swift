@@ -59,17 +59,10 @@ extension ForEach: TypeSafeView, View where Child: View {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: ForEachViewChildren<Items, Child>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        print("Computing ForEach layout")
-        let start = ProcessInfo.processInfo.systemUptime
-        defer {
-            let elapsed = ProcessInfo.processInfo.systemUptime - start
-            print("Took \(elapsed) seconds")
-        }
-
         func addChild(_ child: Backend.Widget) {
             children.queuedChanges.append(.addChild(AnyWidget(child)))
         }

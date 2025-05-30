@@ -75,13 +75,13 @@ struct StrictFrameView<Child: View>: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleViewChildren1<Child>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        let proposedSize = SIMD2(
-            width ?? proposedSize.x,
-            height ?? proposedSize.y
+        let proposedSize = SizeProposal(
+            width ?? proposedSize.width,
+            height ?? proposedSize.height
         )
 
         let childResult = children.child0.computeLayout(
@@ -213,27 +213,33 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleViewChildren1<Child>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
+        let childSizeProposal: SIMD2<Int>
+        if let proposedSize = proposedSize.concrete {
+            childSizeProposal = proposedSize
+        } else {
+            let childResult = children.child0.computeLayout(
+                with: body.view0,
+                proposedSize: proposedSize,
+                environment: environment
+            )
+            childSizeProposal = childResult.size.size
+        }
+
         var proposedFrameSize = proposedSize
-        if let minWidth {
-            proposedFrameSize.x = max(proposedFrameSize.x, minWidth)
-        }
-        if let maxWidth {
-            proposedFrameSize.x = LayoutSystem.roundSize(
-                min(Double(proposedFrameSize.x), maxWidth)
-            )
-        }
-        if let minHeight {
-            proposedFrameSize.y = max(proposedFrameSize.y, minHeight)
-        }
-        if let maxHeight {
-            proposedFrameSize.y = LayoutSystem.roundSize(
-                min(Double(proposedFrameSize.y), maxHeight)
-            )
-        }
+        proposedFrameSize.width = LayoutSystem.clamp(
+            childSizeProposal.x,
+            minimum: minWidth,
+            maximum: maxWidth == .infinity ? nil : maxWidth.map(LayoutSystem.roundSize(_:))
+        )
+        proposedFrameSize.height = LayoutSystem.clamp(
+            childSizeProposal.y,
+            minimum: minHeight,
+            maximum: maxHeight == .infinity ? nil : maxHeight.map(LayoutSystem.roundSize(_:))
+        )
 
         let childResult = children.child0.computeLayout(
             with: body.view0,
@@ -259,7 +265,7 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         }
         if let maxWidth {
             if maxWidth == .infinity {
-                frameSize.size.x = proposedSize.x
+                frameSize.size.x = proposedSize.width ?? frameSize.idealWidthForProposedHeight
             } else {
                 frameSize.size.x = min(frameSize.size.x, LayoutSystem.roundSize(maxWidth))
             }
@@ -283,7 +289,7 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         }
         if let maxHeight {
             if maxHeight == .infinity {
-                frameSize.size.y = proposedSize.y
+                frameSize.size.y = proposedSize.height ?? frameSize.idealHeightForProposedWidth
             } else {
                 frameSize.size.y = min(frameSize.size.y, LayoutSystem.roundSize(maxHeight))
             }

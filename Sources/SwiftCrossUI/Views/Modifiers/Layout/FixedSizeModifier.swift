@@ -40,41 +40,30 @@ struct FixedSizeModifier<Child: View>: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleViewChildren1<Child>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        let probingChildResult = children.child0.computeLayout(
-            with: body.view0,
-            proposedSize: proposedSize,
-            environment: environment
-        )
-
-        var frameSize = probingChildResult.size.size
-        if horizontal && vertical {
-            frameSize = probingChildResult.size.idealSize
-        } else if horizontal {
-            frameSize.x = probingChildResult.size.idealWidthForProposedHeight
-        } else if vertical {
-            frameSize.y = probingChildResult.size.idealHeightForProposedWidth
-        }
-
         let childResult = children.child0.computeLayout(
             with: body.view0,
-            proposedSize: frameSize,
+            proposedSize: SizeProposal(
+                horizontal ? nil : proposedSize.width,
+                vertical ? nil : proposedSize.height
+            ),
             environment: environment
         )
+        let childSize = childResult.size
 
         return ViewLayoutResult(
             size: ViewSize(
-                size: frameSize,
-                idealSize: childResult.size.idealSize,
-                idealWidthForProposedHeight: childResult.size.idealWidthForProposedHeight,
-                idealHeightForProposedWidth: childResult.size.idealHeightForProposedWidth,
-                minimumWidth: horizontal ? frameSize.x : childResult.size.minimumWidth,
-                minimumHeight: vertical ? frameSize.y : childResult.size.minimumHeight,
-                maximumWidth: horizontal ? Double(frameSize.x) : childResult.size.maximumWidth,
-                maximumHeight: vertical ? Double(frameSize.y) : childResult.size.maximumHeight
+                size: childSize.size,
+                idealSize: childSize.idealSize,
+                idealWidthForProposedHeight: childSize.idealWidthForProposedHeight,
+                idealHeightForProposedWidth: childSize.idealHeightForProposedWidth,
+                minimumWidth: horizontal ? childSize.size.x : childSize.minimumWidth,
+                minimumHeight: vertical ? childSize.size.y : childSize.minimumHeight,
+                maximumWidth: horizontal ? Double(childSize.size.x) : childSize.maximumWidth,
+                maximumHeight: vertical ? Double(childSize.size.y) : childSize.maximumHeight
             ),
             childResults: [childResult]
         )

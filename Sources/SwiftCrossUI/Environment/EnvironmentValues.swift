@@ -79,13 +79,12 @@ public struct EnvironmentValues {
             backend.activate(window: window as! Backend.Window)
         }
         activate(with: backend)
-        print("Activated")
     }
 
     /// The backend's representation of the window that the current view is
     /// in, if any. This is a very internal detail that should never get
     /// exposed to users.
-    package var window: Any?
+    public var window: Any?
     /// The backend in use. Mustn't change throughout the app's lifecycle.
     let backend: any AppBackend
 
@@ -147,7 +146,7 @@ public struct EnvironmentValues {
     }
 
     /// Creates the default environment.
-    init<Backend: AppBackend>(backend: Backend) {
+    public init<Backend: AppBackend>(backend: Backend) {
         self.backend = backend
 
         onResize = { _ in }

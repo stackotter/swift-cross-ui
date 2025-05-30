@@ -71,14 +71,15 @@ extension Color: ElementaryView {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        ViewLayoutResult.leafView(
+        let idealSize = SIMD2(10, 10)
+        return ViewLayoutResult.leafView(
             size: ViewSize(
-                size: proposedSize,
-                idealSize: SIMD2(10, 10),
+                size: proposedSize.evaluated(withIdealSize: idealSize),
+                idealSize: idealSize,
                 minimumWidth: 0,
                 minimumHeight: 0,
                 maximumWidth: nil,

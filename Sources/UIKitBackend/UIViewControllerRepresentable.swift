@@ -6,8 +6,7 @@ public struct UIViewControllerRepresentableContext<Coordinator> {
     public internal(set) var environment: EnvironmentValues
 }
 
-public protocol UIViewControllerRepresentable: View
-where Content == Never {
+public protocol UIViewControllerRepresentable: View where Content == Never {
     associatedtype UIViewControllerType: UIViewController
     associatedtype Coordinator = Void
 
@@ -63,7 +62,8 @@ where Content == Never {
 
 extension UIViewControllerRepresentable {
     public static func dismantleUIViewController(
-        _: UIViewControllerType, coordinator _: Coordinator
+        _: UIViewControllerType,
+        coordinator _: Coordinator
     ) {
         // no-op
     }
@@ -76,8 +76,7 @@ extension UIViewControllerRepresentable {
     }
 }
 
-extension View
-where Self: UIViewControllerRepresentable {
+extension View where Self: UIViewControllerRepresentable {
     public var body: Never {
         preconditionFailure("This should never be called")
     }
@@ -108,43 +107,55 @@ where Self: UIViewControllerRepresentable {
         }
     }
 
-    public func update<Backend: AppBackend>(
+    public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children _: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
-        backend _: Backend,
-        dryRun: Bool
+        backend _: Backend
     ) -> ViewUpdateResult {
+        // We update the underlying view in computeLayout because we don't expect
+        // UIViews to have their layout computations decoupled from their content.
         let representingWidget = widget as! ControllerRepresentingWidget<Self>
         representingWidget.update(with: environment)
 
-        let size =
-            representingWidget.representable.determineViewSize(
-                for: proposedSize,
-                uiViewController: representingWidget.subcontroller,
-                context: representingWidget.context!
-            )
-
-        if !dryRun {
-            representingWidget.width = size.size.x
-            representingWidget.height = size.size.y
+        // TODO: Pass size proposal through to XRepresentable views
+        var size = representingWidget.representable.determineViewSize(
+            for: proposedSize.evaluated(withIdealSize: SIMD2(10, 10)),
+            uiViewController: representingWidget.subcontroller,
+            context: representingWidget.context!
+        )
+        if proposedSize.width == nil {
+            size.size.x = size.idealWidthForProposedHeight
+        }
+        if proposedSize.height == nil {
+            size.size.y = size.idealHeightForProposedWidth
         }
 
         return ViewUpdateResult.leafView(size: size)
     }
+
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        representingWidget.width = layout.size.size.x
+        representingWidget.height = layout.size.size.y
+    }
 }
 
-extension UIViewControllerRepresentable
-where Coordinator == Void {
+extension UIViewControllerRepresentable where Coordinator == Void {
     public func makeCoordinator() {
         return ()
     }
 }
 
-final class ControllerRepresentingWidget<Representable: UIViewControllerRepresentable>:
-    BaseControllerWidget
-{
+final class ControllerRepresentingWidget<
+    Representable: UIViewControllerRepresentable
+>: BaseControllerWidget {
     var representable: Representable
     var context: UIViewControllerRepresentableContext<Representable.Coordinator>?
 

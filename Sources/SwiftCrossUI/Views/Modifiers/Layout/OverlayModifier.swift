@@ -41,7 +41,7 @@ struct OverlayModifier<Content: View, Overlay: View>: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleView2<Content, Overlay>.Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: SizeProposal,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -53,7 +53,7 @@ struct OverlayModifier<Content: View, Overlay: View>: TypeSafeView {
         let contentSize = contentResult.size
         let overlayResult = children.child1.computeLayout(
             with: body.view1,
-            proposedSize: contentSize.size,
+            proposedSize: SizeProposal(contentSize.size),
             environment: environment
         )
         let overlaySize = overlayResult.size
