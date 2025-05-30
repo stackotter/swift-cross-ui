@@ -239,7 +239,7 @@ public final class WinUIBackend: AppBackend {
 
     public func runInMainThread(action: @escaping @MainActor () -> Void) {
         _ = try! dispatcherQueue!.tryEnqueue(.normal) {
-            action()
+            MainActor.assumeIsolated(action)
         }
     }
 
