@@ -12,18 +12,32 @@ struct CounterApp: App {
 
     var body: some Scene {
         WindowGroup("CounterExample: \(count)") {
-            #hotReloadable {
-                HStack(spacing: 20) {
-                    Button("-") {
-                        count -= 1
+            VStack {
+                // ScrollView {
+                    HStack {
+                        Color.orange.frame(width: 5)
+
+                        Text("Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.")
+                    //     .padding()
                     }
-                    Text("Count: \(count)")
-                    Button("+") {
-                        count += 1
-                    }
-                }
-                .padding()
+                    .background(Color.gray)
+                    .fixedSize(horizontal: false, vertical: true)
+                // }
             }
+            // #hotReloadable {
+            //     VStack {
+            //         HStack(spacing: 20) {
+            //             Button("-") {
+            //                 count -= 1
+            //             }
+            //             Text("Count: \(count)")
+            //             Button("+") {
+            //                 count += 1
+            //             }
+            //         }
+            //         .padding()
+            //     }
+            // }
         }
         .defaultSize(width: 400, height: 200)
     }

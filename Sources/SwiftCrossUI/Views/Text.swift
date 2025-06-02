@@ -65,6 +65,7 @@ extension Text: ElementaryView {
                     environment: environment
                 ).y
         } else if let proposedWidth = proposedSize.width {
+            print(proposedWidth)
             size = backend.size(
                 of: string,
                 whenDisplayedIn: widget,
