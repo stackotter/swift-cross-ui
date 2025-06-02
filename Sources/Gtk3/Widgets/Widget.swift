@@ -24,13 +24,21 @@ open class Widget: GObject {
     }
 
     func didMoveToParent() {
+        // The Gtk3 docs claim that this handler should take GdkEventButton as a
+        // value, but that leads to crashes on Rocky Linux. These crashes are
+        // fixed by instead taking the event as a pointer. I've confirmed that
+        // this also leads to correct functionality on Rocky Linux (with correct
+        // mouse coordinates etc). The weird part is that this code works
+        // perfectly on macOS and Ubuntu with and without indirection. Huh??
+        // 
+        // The docs: https://docs.gtk.org/gtk3/signal.Widget.button-press-event.html
         let handler1:
             @convention(c) (
                 UnsafeMutableRawPointer,
-                GdkEventButton,
+                UnsafePointer<GdkEventButton>,
                 UnsafeMutableRawPointer
             ) -> Void = { _, value1, data in
-                SignalBox1<GdkEventButton>.run(data, value1)
+                SignalBox1<GdkEventButton>.run(data, value1.pointee)
             }
 
         addSignal(
