@@ -278,6 +278,12 @@ public protocol AppBackend: Sendable {
     /// Removes the child at the given index from the given container.
     func remove(childAt index: Int, from container: Widget)
 
+    /// Gets the natural size of a given widget. E.g. the natural size of a button may be the size
+    /// of the label (without line wrapping) plus a bit of padding and a border.
+    func naturalSize(of widget: Widget) -> SIMD2<Int>
+    /// Sets the size of a widget.
+    func setSize(of widget: Widget, to size: SIMD2<Int>)
+
     /// Creates a rectangular widget with configurable color.
     func createColorableRectangle() -> Widget
     /// Sets the color of a colorable rectangle.
@@ -286,12 +292,6 @@ public protocol AppBackend: Sendable {
     /// Sets the corner radius of a widget (any widget). Should affect the view's border radius
     /// as well.
     func setCornerRadius(of widget: Widget, to radius: Int)
-
-    /// Gets the natural size of a given widget. E.g. the natural size of a button may be the size
-    /// of the label (without line wrapping) plus a bit of padding and a border.
-    func naturalSize(of widget: Widget) -> SIMD2<Int>
-    /// Sets the size of a widget.
-    func setSize(of widget: Widget, to size: SIMD2<Int>)
 
     /// Creates a scrollable single-child container wrapping the given widget.
     func createScrollContainer(for child: Widget) -> Widget
@@ -987,7 +987,7 @@ extension AppBackend {
         todo()
     }
 
-    public func createTextView(content: String, shouldWrap: Bool) -> Widget {
+    public func createTextView() -> Widget {
         todo()
     }
     public func updateTextView(

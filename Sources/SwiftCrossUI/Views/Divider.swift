@@ -5,16 +5,26 @@ public struct Divider: View, Sendable {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.layoutOrientation) var layoutOrientation
 
+    let requestedColor: Color?
+
     var color: Color {
-        switch colorScheme {
-            case .dark:
-                Color(1, 1, 1, 0.1)
-            case .light:
-                Color(0, 0, 0, 0.1)
+        if let requestedColor {
+            requestedColor
+        } else {
+            switch colorScheme {
+                case .dark:
+                    Color(1, 1, 1, 0.1)
+                case .light:
+                    Color(0, 0, 0, 0.1)
+            }
         }
     }
 
-    public init() {}
+    /// Creates a divider. Uses the provided color, or adapts to the current
+    /// color scheme if nil.
+    public init(_ color: Color? = nil) {
+        self.requestedColor = color
+    }
 
     public var body: some View {
         color.frame(

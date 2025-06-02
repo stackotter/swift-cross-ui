@@ -1,5 +1,5 @@
 {
-  "originHash" : "dd63f095d6a2b7b6ab3aff17c27568510af59a6b664b9279065e23edc63cc6ed",
+  "originHash" : "1372e795a2210f29ba7995796a8d4b42736c0fbb2ab951afe4ab4db702f7fda2",
   "pins" : [
     {
       "identity" : "aexml",
@@ -112,7 +112,7 @@
     {
       "identity" : "swift-argument-parser",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser.git",
+      "location" : "https://github.com/apple/swift-argument-parser",
       "state" : {
         "revision" : "c5d11a805e765f52ba34ec7284bd4fcd6ba68615",
         "version" : "1.7.0"
@@ -240,6 +240,15 @@
       "state" : {
         "revision" : "d319bcc2586f7dbc6a09c05792105078263f1ed3",
         "version" : "0.7.2"
+      }
+    },
+    {
+      "identity" : "swift-miniaudio",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stackotter/swift-miniaudio",
+      "state" : {
+        "revision" : "a5d31ce152ee6b120951e475c2dcb74b08827c87",
+        "version" : "0.1.0"
       }
     },
     {
