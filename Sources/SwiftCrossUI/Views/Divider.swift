@@ -3,6 +3,7 @@
 /// in light mode it's black with 10% opacity.
 public struct Divider: View {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.layoutOrientation) var layoutOrientation
 
     var color: Color {
         switch colorScheme {
@@ -16,6 +17,9 @@ public struct Divider: View {
     public init() {}
 
     public var body: some View {
-        color.frame(height: 1)
+        color.frame(
+            width: layoutOrientation == .horizontal ? 1 : nil,
+            height: layoutOrientation == .vertical ? 1 : nil
+        )
     }
 }
