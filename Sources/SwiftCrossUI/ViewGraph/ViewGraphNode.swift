@@ -218,16 +218,18 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
             // If the view has already been updated this update cycle and claims
             // to be fixed size (maximumSize == minimumSize) then reuse the current
             // result.
-            let maximumSize = SIMD2(
-                currentLayout.size.maximumWidth,
-                currentLayout.size.maximumHeight
-            )
-            let minimumSize = SIMD2(
-                Double(currentLayout.size.minimumWidth),
-                Double(currentLayout.size.minimumHeight)
-            )
-            if maximumSize == minimumSize {
-                return currentLayout
+            if lastProposedSize.concrete != nil && proposedSize.concrete != nil {
+                let maximumSize = SIMD2(
+                    currentLayout.size.maximumWidth,
+                    currentLayout.size.maximumHeight
+                )
+                let minimumSize = SIMD2(
+                    Double(currentLayout.size.minimumWidth),
+                    Double(currentLayout.size.minimumHeight)
+                )
+                if maximumSize == minimumSize {
+                    return currentLayout
+                }
             }
         }
 

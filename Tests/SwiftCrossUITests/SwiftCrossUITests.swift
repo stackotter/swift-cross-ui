@@ -91,6 +91,14 @@ struct SwiftCrossUITests {
             )
             backend.setChild(ofWindow: window, to: viewGraph.rootNode.widget.into())
 
+            // We have to run this twice due to the computeLayout/commit change
+            // to the View protocol. This should get neater once ViewGraph uses
+            // computeLayout/commit as well instead of updates with dryRun.
+            _ = viewGraph.update(
+                proposedSize: SIMD2(200, 200),
+                environment: environment,
+                dryRun: true
+            )
             let result = viewGraph.update(
                 proposedSize: SIMD2(200, 200),
                 environment: environment,
@@ -111,8 +119,82 @@ struct SwiftCrossUITests {
             )
         }
 
-        /// Snapshots an AppKit view to a TIFF image.
+        @Test("Ensures that basic AppKitBackend text layout works as expected")
         @MainActor
+        func testTextLayout() {
+            let backend = AppKitBackend()
+            let text = Text("Lorem ipsum dolor sit amet")
+            let widget = text.asWidget(backend: backend)
+            let environment = EnvironmentValues(backend: backend)
+            let children = text.children(backend: backend, snapshots: nil, environment: environment)
+            let idealLayout = text.computeLayout(
+                widget,
+                children: children,
+                proposedSize: .ideal,
+                environment: environment,
+                backend: backend
+            )
+            let fixedHeightLayout = text.computeLayout(
+                widget,
+                children: children,
+                proposedSize: SizeProposal(idealLayout.size.size.x / 2, nil),
+                environment: environment,
+                backend: backend
+            )
+            let layout = text.computeLayout(
+                widget,
+                proposedSize: SizeProposal(idealLayout.size.size.x / 2, 1000),
+                environment: environment,
+                backend: backend
+            )
+            #expect(
+                idealLayout.size.size.y != fixedHeightLayout.size.size.y,
+                "Halving text width didn't affect text height"
+            )
+            #expect(fixedHeightLayout.size == layout.size, "Excess height changed text size")
+        }
+
+        @Test("Ensures that the fixedSize layout works as expected")
+        @MainActor
+        func testFixedSizeLayout() {
+            let backend = AppKitBackend()
+            let text = Text("Lorem ipsum dolor sit amet")
+                .fixedSize(horizontal: false, vertical: true)
+            let window = backend.createWindow(withDefaultSize: SIMD2(200, 200))
+            let environment = EnvironmentValues(backend: backend)
+                .with(\.window, window)
+            let children = text.children(backend: backend, snapshots: nil, environment: environment)
+            let widget = text.asWidget(children, backend: backend)
+            let idealLayout = text.computeLayout(
+                widget,
+                children: children,
+                proposedSize: .ideal,
+                environment: environment,
+                backend: backend
+            )
+            let fixedHeightLayout = text.computeLayout(
+                widget,
+                children: children,
+                proposedSize: SizeProposal(idealLayout.size.size.x / 2, nil),
+                environment: environment,
+                backend: backend
+            )
+            let layout = text.computeLayout(
+                widget,
+                children: children,
+                proposedSize: SizeProposal(idealLayout.size.size.x / 2, 1000),
+                environment: environment,
+                backend: backend
+            )
+            #expect(
+                idealLayout.size.size.y != fixedHeightLayout.size.size.y,
+                "Halving text width didn't affect text height"
+            )
+            #expect(fixedHeightLayout.size == layout.size, "Excess height changed text size")
+        }
+
+        @MainActor
+        /// Snapshots an AppKit view to a TIFF image.
         static func snapshotView(_ view: NSView) throws -> Data {
             view.wantsLayer = true
             view.layer?.backgroundColor = CGColor.white
