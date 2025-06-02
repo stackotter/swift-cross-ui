@@ -39,7 +39,6 @@ public final class WinUIBackend: AppBackend {
     public let defaultTableCellVerticalPadding = 4
     public let defaultPaddingAmount = 10
     public let requiresToggleSwitchSpacer = false
-    public let defaultToggleStyle = ToggleStyle.button
     public let requiresImageUpdateOnScaleFactorChange = false
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = false

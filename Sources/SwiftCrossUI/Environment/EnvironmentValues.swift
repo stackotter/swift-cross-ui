@@ -60,6 +60,9 @@ public struct EnvironmentValues {
     /// The style of list to use.
     package var listStyle: ListStyle
 
+    /// The style of toggle to use.
+    public var toggleStyle: ToggleStyle
+
     // Backing storage for extensible subscript
     private var extraValues: [ObjectIdentifier: Any]
 
@@ -163,6 +166,7 @@ public struct EnvironmentValues {
         window = nil
         extraValues = [:]
         listStyle = .default
+        toggleStyle = .button
         isEnabled = true
     }
 

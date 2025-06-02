@@ -33,7 +33,6 @@ public final class Gtk3Backend: AppBackend {
     public let defaultPaddingAmount = 10
     public let requiresToggleSwitchSpacer = false
     public let scrollBarWidth = 0
-    public let defaultToggleStyle = ToggleStyle.button
     public let requiresImageUpdateOnScaleFactorChange = true
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = true

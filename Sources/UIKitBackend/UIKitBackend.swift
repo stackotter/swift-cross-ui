@@ -13,7 +13,6 @@ public final class UIKitBackend: AppBackend {
     public let scrollBarWidth = 0
     public let defaultPaddingAmount = 15
     public let requiresToggleSwitchSpacer = true
-    public let defaultToggleStyle = ToggleStyle.switch
     public let menuImplementationStyle = MenuImplementationStyle.menuButton
 
     // TODO: When tables are supported, update these
@@ -75,6 +74,8 @@ public final class UIKitBackend: AppBackend {
             weight: .regular,
             design: .default
         )
+
+        environment.toggleStyle = .switch
 
         switch UITraitCollection.current.userInterfaceStyle {
             case .light:

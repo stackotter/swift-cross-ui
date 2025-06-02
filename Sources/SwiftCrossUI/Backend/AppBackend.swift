@@ -75,8 +75,6 @@ public protocol AppBackend {
     var scrollBarWidth: Int { get }
     /// If `true`, a toggle in the ``ToggleStyle/switch`` style grows to fill its parent container.
     var requiresToggleSwitchSpacer: Bool { get }
-    /// The default style for toggles.
-    var defaultToggleStyle: ToggleStyle { get }
     /// If `true`, all images in a window will get updated when the window's
     /// scale factor changes (``EnvironmentValues/windowScaleFactor``).
     ///

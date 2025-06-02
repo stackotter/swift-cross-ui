@@ -1,8 +1,8 @@
+/// A control for toggling between two values (usually representing on and off).
 public struct Toggle: View {
     @Environment(\.backend) var backend
+    @Environment(\.toggleStyle) var toggleStyle
 
-    /// The style of toggle shown.
-    var selectedToggleStyle: ToggleStyle?
     /// The label to be shown on or beside the toggle.
     var label: String
     /// Whether the toggle is active or not.
@@ -15,7 +15,7 @@ public struct Toggle: View {
     }
 
     public var body: some View {
-        switch selectedToggleStyle ?? backend.defaultToggleStyle {
+        switch toggleStyle.style {
             case .switch:
                 HStack {
                     Text(label)
@@ -32,16 +32,18 @@ public struct Toggle: View {
     }
 }
 
-extension Toggle {
-    /// Sets the style of the toggle.
-    public func toggleStyle(_ selectedToggleStyle: ToggleStyle) -> Toggle {
-        var toggle = self
-        toggle.selectedToggleStyle = selectedToggleStyle
-        return toggle
-    }
-}
+/// A style of toggle.
+public struct ToggleStyle {
+    package var style: Style
 
-public enum ToggleStyle {
-    case `switch`
-    case button
+    /// A toggle switch.
+    public static let `switch` = Self(style: .switch)
+    /// A toggle button. Generally looks like a regular button when off and an
+    /// accented button when on.
+    public static let button = Self(style: .button)
+
+    package enum Style {
+        case `switch`
+        case button
+    }
 }
