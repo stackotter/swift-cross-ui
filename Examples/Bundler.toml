@@ -54,3 +54,8 @@ version = '0.1.0'
 identifier = 'dev.swiftcrossui.PathsExample'
 product = 'PathsExample'
 version = '0.1.0'
+
+[apps.SimpleGridExample]
+identifier = 'dev.swiftcrossui.SimpleGridExample'
+product = 'SimpleGridExample'
+version = '0.1.0'
