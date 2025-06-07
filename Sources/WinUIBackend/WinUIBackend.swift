@@ -430,6 +430,13 @@ public final class WinUIBackend: AppBackend {
                 40,
                 20
             )
+        } else if widget is CustomCheckBox {
+            // WinUI sets quite a strange default size for checkboxes (with a
+            // minimum width of 120), so we just hardcode the correct natural
+            // size. The value 20 was taken from the WinUI source code:
+            // https://github.com/microsoft/microsoft-ui-xaml/blob/d37afef65a0fc3219ba6b349301d685099fb129d/src/controls/dev/CommonStyles/CheckBox_themeresources.xaml#L270
+            let checkbox = widget as! CustomCheckBox
+            return SIMD2(20, 20)
         } else if let picker = widget as? CustomComboBox, picker.padding == noPadding {
             let label = TextBlock()
             label.text = picker.options[Int(max(picker.selectedIndex, 0))]
@@ -1082,6 +1089,55 @@ public final class WinUIBackend: AppBackend {
         let switchWidget = switchWidget as! ToggleSwitch
         if switchWidget.isOn != state {
             switchWidget.isOn = state
+        }
+    }
+
+    class CustomCheckBox: WinUI.CheckBox {
+        var onToggle: ((Bool) -> Void)?
+
+        func handleToggle() {
+            if isChecked == nil {
+                print("warning: Checkbox in limbo")
+            }
+            onToggle?(isChecked ?? false)
+        }
+    }
+
+    public func createCheckbox() -> Widget {
+        let checkbox = CustomCheckBox()
+
+        // This natural size is hardcoded, but it's the actual visible size of
+        // the checkbox. WinUI puts a bunch of extra space around checkboxes
+        // by default which messes things up.
+        let naturalSize = naturalSize(of: checkbox)
+        checkbox.minWidth = Double(naturalSize.x)
+        checkbox.minHeight = Double(naturalSize.y)
+
+        checkbox.padding = Thickness(left: 0, top: 0, right: 0, bottom: 0)
+        checkbox.checked.addHandler { [weak checkbox] _, _ in
+            checkbox?.handleToggle()
+        }
+        checkbox.unchecked.addHandler { [weak checkbox] _, _ in
+            checkbox?.handleToggle()
+        }
+        return checkbox
+    }
+
+    public func updateCheckbox(
+        _ checkbox: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    ) {
+        let checkbox = checkbox as! CustomCheckBox
+        checkbox.padding = Thickness(left: 0, top: 0, right: 0, bottom: 0)
+        checkbox.onToggle = onChange
+        environment.apply(to: checkbox)
+    }
+
+    public func setState(ofCheckbox checkboxWidget: Widget, to state: Bool) {
+        let checkboxWidget = checkboxWidget as! CustomCheckBox
+        if checkboxWidget.isChecked != state {
+            checkboxWidget.isChecked = state
         }
     }
 

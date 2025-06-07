@@ -1,6 +1,6 @@
 import CGtk3
 
-public class ToggleButton: Button {
+open class ToggleButton: Button {
     public convenience init() {
         self.init(gtk_toggle_button_new())
     }
@@ -20,9 +20,23 @@ public class ToggleButton: Button {
             guard let self = self else { return }
             self.toggled?(self)
         }
+
+        let handler:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::active", handler: gCallback(handler)) {
+            [weak self] (param0: OpaquePointer) in
+            guard let self = self else { return }
+            self.notifyActive?(self, param0)
+        }
     }
 
-    @GObjectProperty(named: "active") public var active: Bool
+    @GObjectProperty(named: "active") open var active: Bool
 
-    public var toggled: ((ToggleButton) -> Void)?
+    open var toggled: ((ToggleButton) -> Void)?
+
+    public var notifyActive: ((ToggleButton, OpaquePointer) -> Void)?
 }

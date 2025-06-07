@@ -11,6 +11,7 @@ struct ControlsApp: App {
     @State var count = 0
     @State var exampleButtonState = false
     @State var exampleSwitchState = false
+    @State var exampleCheckboxState = false
     @State var sliderValue = 5.0
     @State var text = ""
     @State var flavor: String? = nil
@@ -42,6 +43,13 @@ struct ControlsApp: App {
                         Toggle("Toggle me:", active: $exampleSwitchState)
                             .toggleStyle(.switch)
                         Text("Currently enabled: \(exampleSwitchState)")
+                    }
+
+                    VStack {
+                        Text("Checkbox")
+                        Toggle("Toggle me:", active: $exampleCheckboxState)
+                            .toggleStyle(.checkbox)
+                        Text("Currently enabled: \(exampleCheckboxState)")
                     }
 
                     VStack {

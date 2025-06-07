@@ -30,7 +30,7 @@ open class Widget: GObject {
         // this also leads to correct functionality on Rocky Linux (with correct
         // mouse coordinates etc). The weird part is that this code works
         // perfectly on macOS and Ubuntu with and without indirection. Huh??
-        // 
+        //
         // The docs: https://docs.gtk.org/gtk3/signal.Widget.button-press-event.html
         let handler1:
             @convention(c) (

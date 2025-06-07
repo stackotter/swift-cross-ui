@@ -391,8 +391,7 @@ public protocol AppBackend {
         environment: EnvironmentValues
     )
 
-    /// Creates a labelled toggle that is either on or off. Predominantly used by
-    /// ``Toggle``.
+    /// Creates a labelled toggle that is either on or off.
     func createToggle() -> Widget
     /// Sets the label and change handler of a toggle (replaces any existing change handlers).
     /// The change handler is called whenever the button is toggled on or off.
@@ -405,10 +404,10 @@ public protocol AppBackend {
     /// Sets the state of the button to active or not.
     func setState(ofToggle toggle: Widget, to state: Bool)
 
-    /// Creates a switch that is either on or off. Predominantly used by ``Switch``
+    /// Creates a switch that is either on or off.
     func createSwitch() -> Widget
     /// Sets the change handler of a switch (replaces any existing change handlers).
-    /// The change handler is called whenever the button is toggled on or off.
+    /// The change handler is called whenever the switch is toggled on or off.
     func updateSwitch(
         _ switchWidget: Widget,
         environment: EnvironmentValues,
@@ -416,6 +415,18 @@ public protocol AppBackend {
     )
     /// Sets the state of the switch to active or not.
     func setState(ofSwitch switchWidget: Widget, to state: Bool)
+
+    /// Creates a checkbox that is either on or off.
+    func createCheckbox() -> Widget
+    /// Sets the change handler of a checkbox (replaces any existing change handlers).
+    /// The change handler is called whenever the checkbox is toggled on or off.
+    func updateCheckbox(
+        _ checkboxWidget: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    )
+    /// Sets the state of the checkbox to active or not.
+    func setState(ofCheckbox checkboxWidget: Widget, to state: Bool)
 
     /// Creates a slider for choosing a numerical value from a range. Predominantly used
     /// by ``Slider``.
@@ -836,6 +847,20 @@ extension AppBackend {
         todo()
     }
     public func setState(ofSwitch switchWidget: Widget, to state: Bool) {
+        todo()
+    }
+
+    public func createCheckbox() -> Widget {
+        todo()
+    }
+    public func updateCheckbox(
+        _ checkboxWidget: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    ) {
+        todo()
+    }
+    public func setState(ofCheckbox checkboxWidget: Widget, to state: Bool) {
         todo()
     }
 

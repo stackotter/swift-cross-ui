@@ -91,7 +91,8 @@ public struct State<Value>: DynamicProperty, StateProperty {
         // to protocol Optional doesn't conform to can still succeed when the value
         // is `.some` and the wrapped type conforms to the protocol.
         if Value.self as? ObservableObject.Type != nil,
-            let initialValue = initialValue as? ObservableObject {
+            let initialValue = initialValue as? ObservableObject
+        {
             storage.box.downstreamObservation = didChange.link(toUpstream: initialValue.didChange)
         } else if let initialValue = initialValue as? OptionalObservableObject,
             let innerDidChange = initialValue.didChange

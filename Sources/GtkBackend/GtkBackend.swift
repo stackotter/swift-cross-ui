@@ -794,6 +794,26 @@ public final class GtkBackend: AppBackend {
         (switchWidget as! Gtk.Switch).active = state
     }
 
+    public func createCheckbox() -> Widget {
+        return Gtk.CheckButton()
+    }
+
+    public func updateCheckbox(
+        _ checkboxWidget: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    ) {
+        let checkboxWidget = checkboxWidget as! Gtk.CheckButton
+        checkboxWidget.sensitive = environment.isEnabled
+        checkboxWidget.notifyActive = { widget, _ in
+            onChange(widget.active)
+        }
+    }
+
+    public func setState(ofCheckbox checkboxWidget: Widget, to state: Bool) {
+        (checkboxWidget as! Gtk.CheckButton).active = state
+    }
+
     public func createSlider() -> Widget {
         let scale = Scale()
         scale.expandHorizontally = true

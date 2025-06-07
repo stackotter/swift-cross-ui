@@ -28,6 +28,8 @@ public struct Toggle: View {
                 }
             case .button:
                 ToggleButton(label, active: active)
+            case .checkbox:
+                Checkbox(active: active)
         }
     }
 }
@@ -41,9 +43,12 @@ public struct ToggleStyle {
     /// A toggle button. Generally looks like a regular button when off and an
     /// accented button when on.
     public static let button = Self(style: .button)
+    /// A checkbox.
+    public static let checkbox = Self(style: .checkbox)
 
     package enum Style {
         case `switch`
         case button
+        case checkbox
     }
 }
