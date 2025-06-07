@@ -1,5 +1,5 @@
 /// A view used by ``ViewBuilder`` to support if/else conditional statements.
-public struct EitherView<A: View, B: View>: TypeSafeView, View {
+public struct EitherView<A: View, B: View> {
     typealias NodeChildren = EitherViewChildren<A, B>
 
     public var body = EmptyView()
@@ -21,7 +21,12 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
     init(_ b: B) {
         storage = .b(b)
     }
+}
 
+extension EitherView: View {
+}
+
+extension EitherView: TypeSafeView {
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
@@ -124,6 +129,7 @@ public struct EitherView<A: View, B: View>: TypeSafeView, View {
 /// Uses an `enum` to store a view graph node for one of two possible child view types.
 class EitherViewChildren<A: View, B: View>: ViewGraphNodeChildren {
     /// A view graph node that wraps one of two possible child view types.
+    @MainActor
     enum EitherNode {
         case a(AnyViewGraphNode<A>)
         case b(AnyViewGraphNode<B>)

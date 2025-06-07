@@ -1,7 +1,5 @@
 /// A view used by ``ViewBuilder`` to support non-exhaustive if statements.
-public struct OptionalView<V: View>: TypeSafeView, View {
-    typealias Children = OptionalViewChildren<V>
-
+public struct OptionalView<V: View> {
     public var body = EmptyView()
 
     var view: V?
@@ -10,6 +8,13 @@ public struct OptionalView<V: View>: TypeSafeView, View {
     init(_ view: V?) {
         self.view = view
     }
+}
+
+extension OptionalView: View {
+}
+
+extension OptionalView: TypeSafeView {
+    typealias Children = OptionalViewChildren<V>
 
     func children<Backend: AppBackend>(
         backend: Backend,

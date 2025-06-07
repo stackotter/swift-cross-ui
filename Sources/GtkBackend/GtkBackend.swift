@@ -64,7 +64,7 @@ public final class GtkBackend: AppBackend {
 
     var globalCSSProvider: CSSProvider?
 
-    public func runMainLoop(_ callback: @escaping () -> Void) {
+    public func runMainLoop(_ callback: @escaping @MainActor () -> Void) {
         gtkApp.run { window in
             self.precreatedWindow = window
             callback()
@@ -314,14 +314,14 @@ public final class GtkBackend: AppBackend {
     }
 
     class ThreadActionContext {
-        var action: () -> Void
+        var action: @MainActor () -> Void
 
-        init(action: @escaping () -> Void) {
+        init(action: @escaping @MainActor () -> Void) {
             self.action = action
         }
     }
 
-    public func runInMainThread(action: @escaping () -> Void) {
+    public func runInMainThread(action: @escaping @MainActor () -> Void) {
         let action = ThreadActionContext(action: action)
         g_idle_add_full(
             0,
@@ -330,9 +330,11 @@ public final class GtkBackend: AppBackend {
                     fatalError("Gtk action callback called without context")
                 }
 
-                let action = Unmanaged<ThreadActionContext>.fromOpaque(context)
-                    .takeUnretainedValue()
-                action.action()
+                MainActor.assumeIsolated {
+                    let action = Unmanaged<ThreadActionContext>.fromOpaque(context)
+                        .takeUnretainedValue()
+                    action.action()
+                }
 
                 return 0
             },
@@ -354,9 +356,11 @@ public final class GtkBackend: AppBackend {
                     fatalError("Gtk action callback called without context")
                 }
 
-                let action = Unmanaged<ThreadActionContext>.fromOpaque(context)
-                    .takeUnretainedValue()
-                action.action()
+                MainActor.assumeIsolated {
+                    let action = Unmanaged<ThreadActionContext>.fromOpaque(context)
+                        .takeUnretainedValue()
+                    action.action()
+                }
 
                 // Cancel the recurring timeout after one iteration
                 return 0

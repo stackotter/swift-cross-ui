@@ -5,7 +5,7 @@
 /// stored separately to make it extra clear that they don't always form some
 /// sort of achievable minimum/maximum size. The provided minimum/maximum bounds
 /// may only be achievable along a single axis at a time.
-public struct ViewSize: Equatable {
+public struct ViewSize: Equatable, Sendable {
     /// The view update result for an empty view.
     public static let empty = ViewSize(
         size: .zero,
