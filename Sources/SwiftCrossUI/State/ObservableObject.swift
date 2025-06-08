@@ -31,6 +31,32 @@
 ///     var nested = NestedState()
 /// }
 /// ```
+///
+/// To use an observable object as part of a view's state, use the ``State`` property
+/// wrapper. It'll detect that it's been given an observable and will forward any
+/// observations published by the object's ``ObservableObject/didChange`` publisher.
+///
+/// ```swift
+/// class CounterState: ObservableObject {
+///     @Published var count = 0
+/// }
+///
+/// struct CounterView: View {
+///     @State var state = CounterState()
+/// 
+///     var body: some View {
+///         HStack {
+///             Button("-") {
+///                 state.count -= 1
+///             }
+///             Text("Count: \(state.count)")
+///             Button("+") {
+///                 state.count += 1
+///             }
+///         }
+///     }
+/// }
+/// ```
 public protocol ObservableObject: AnyObject {
     /// A publisher which publishes changes made to the object. Only publishes changes made to
     /// ``Published`` properties by default.
