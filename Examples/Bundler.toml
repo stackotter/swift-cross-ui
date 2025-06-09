@@ -54,3 +54,8 @@ version = '0.1.0'
 identifier = 'dev.swiftcrossui.PathsExample'
 product = 'PathsExample'
 version = '0.1.0'
+
+[apps.WebViewExample]
+identifier = 'dev.swiftcrossui.WebViewExample'
+product = 'WebViewExample'
+version = '0.1.0'

@@ -587,6 +587,7 @@ public protocol AppBackend {
     )
 
     // MARK: Paths
+
     /// Create a widget that can contain a path.
     func createPathWidget() -> Widget
     /// Create a path. It will not be shown until ``renderPath(_:container:)`` is called.
@@ -624,6 +625,20 @@ public protocol AppBackend {
         fillColor: Color,
         overrideStrokeStyle: StrokeStyle?
     )
+
+    // MARK: Web view
+
+    /// Create a web view.
+    func createWebView() -> Widget
+    /// Update a web view to reflect the given environment and use the given
+    /// navigation handler.
+    func updateWebView(
+        _ webView: Widget,
+        environment: EnvironmentValues,
+        onNavigate: @escaping (URL) -> Void
+    )
+    /// Navigates a web view to a given URL.
+    func navigateWebView(_ webView: Widget, to url: URL)
 }
 
 extension AppBackend {
@@ -1022,6 +1037,23 @@ extension AppBackend {
         strokeColor: Color,
         fillColor: Color,
         overrideStrokeStyle: StrokeStyle?
+    ) {
+        todo()
+    }
+
+    public func createWebView() -> Widget {
+        todo()
+    }
+    public func updateWebView(
+        _ webView: Widget,
+        environment: EnvironmentValues,
+        onNavigate: @escaping (URL) -> Void
+    ) {
+        todo()
+    }
+    public func navigateWebView(
+        _ webView: Widget,
+        to url: URL
     ) {
         todo()
     }

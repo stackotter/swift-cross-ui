@@ -68,6 +68,10 @@ let package = Package(
         .executableTarget(
             name: "PathsExample",
             dependencies: exampleDependencies
+        ),
+        .executableTarget(
+            name: "WebViewExample",
+            dependencies: exampleDependencies
         )
     ]
 )
