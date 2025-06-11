@@ -29,7 +29,11 @@ public struct Toggle: View {
             case .button:
                 ToggleButton(label, active: active)
             case .checkbox:
-                Checkbox(active: active)
+                HStack {
+                    Text(label)
+
+                    Checkbox(active: active)
+                }
         }
     }
 }
