@@ -1,5 +1,5 @@
 {
-  "originHash" : "487507851c568cc8a5257e304806d25a1121e8ee89f781c748bb778ce17a81ba",
+  "originHash" : "589b3dd67c6c4bf002ac0e661cdc5f048304c975897d3542f1623910c0b856d2",
   "pins" : [
     {
       "identity" : "jpeg",
@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-image-formats",
       "state" : {
-        "revision" : "697bd8aa62bef7d74a1383454e3534a527769e41",
-        "version" : "0.3.2"
+        "revision" : "2e5dc1ead747afab9fd517d81316d961969e3610",
+        "version" : "0.3.3"
       }
     },
     {
