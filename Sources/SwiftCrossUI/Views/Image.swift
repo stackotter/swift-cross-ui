@@ -1,5 +1,5 @@
 import Foundation
-@preconcurrency import ImageFormats
+import ImageFormats
 
 /// A view that displays an image.
 public struct Image: Sendable {
