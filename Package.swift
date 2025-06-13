@@ -96,7 +96,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/stackotter/swift-image-formats",
-            .upToNextMinor(from: "0.3.2")
+            .upToNextMinor(from: "0.3.3")
         ),
         .package(
             url: "https://github.com/stackotter/swift-windowsappsdk",
@@ -138,6 +138,9 @@ let package = Package(
                 "Views/TupleViewChildren.swift.gyb",
                 "Views/TableRowContent.swift.gyb",
                 "Scenes/TupleScene.swift.gyb",
+            ],
+            swiftSettings: [
+                .enableUpcomingFeature("StrictConcurrency")
             ]
         ),
         .testTarget(

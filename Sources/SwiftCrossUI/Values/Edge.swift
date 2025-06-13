@@ -1,5 +1,5 @@
 /// Indicates a specific edge of a rectangle.
-public enum Edge: Int8, CaseIterable, Hashable {
+public enum Edge: Int8, CaseIterable, Hashable, Sendable {
     /// The top edge.
     case top
     /// The bottom edge.
@@ -10,7 +10,7 @@ public enum Edge: Int8, CaseIterable, Hashable {
     case trailing
 
     /// An efficient set of Edges.
-    public struct Set: OptionSet, Hashable {
+    public struct Set: OptionSet, Hashable, Sendable {
         public let rawValue: Int8
 
         public init(rawValue: Int8) {

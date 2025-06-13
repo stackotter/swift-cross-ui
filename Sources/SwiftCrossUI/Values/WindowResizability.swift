@@ -1,5 +1,5 @@
 /// The level of resizability of a window.
-public enum WindowResizability {
+public enum WindowResizability: Sendable {
     /// SwiftCrossUI decides whether to use `contentSize` or `contentMinSize` depending
     /// on the type of scene. This currently means it'll just default to `contentMinSize`.
     case automatic

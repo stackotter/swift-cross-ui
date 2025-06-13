@@ -1,4 +1,4 @@
-public enum TextContentType {
+public enum TextContentType: Sendable {
     /// Plain text.
     ///
     /// This is the default value.
