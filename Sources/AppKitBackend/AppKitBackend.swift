@@ -676,6 +676,7 @@ public final class AppKitBackend: AppBackend {
         textField.isEnabled = environment.isEnabled
         textField.placeholderString = placeholder
         textField.appearance = environment.colorScheme.nsAppearance
+        textField.font = Self.font(for: environment)
         textField.onEdit = { textField in
             onChange(textField.stringValue)
         }
