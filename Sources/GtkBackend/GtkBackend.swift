@@ -35,6 +35,7 @@ public final class GtkBackend: AppBackend {
     public let requiresImageUpdateOnScaleFactorChange = false
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = true
+    public let deviceClass = DeviceClass.desktop
 
     var gtkApp: Application
 
@@ -1480,35 +1481,40 @@ public final class GtkBackend: AppBackend {
     ) -> [CSSProperty] {
         var properties: [CSSProperty] = []
         properties.append(.foregroundColor(environment.suggestedForegroundColor.gtkColor))
-        switch environment.font {
-            case .system(let size, let weight, let design):
-                properties.append(.fontSize(size))
+        let font = environment.resolvedFont
+        switch font.identifier.kind {
+            case .system:
+                properties.append(.fontSize(font.pointSize))
+                // For some reason I had to tweak these a bit to make them match
+                // up with AppKit's font weights. I didn't have to do that for
+                // Gtk3Backend (which matches SwiftUI's text layout and rendering
+                // remarkbly well).
                 let weightNumber =
-                    switch weight {
-                        case .thin:
-                            100
+                    switch font.weight {
                         case .ultraLight:
                             200
-                        case .light:
+                        case .thin:
                             300
-                        case .regular, .none:
+                        case .light:
                             400
-                        case .medium:
+                        case .regular:
                             500
-                        case .semibold:
+                        case .medium:
                             600
+                        case .semibold:
+                            700
                         case .bold:
                             700
-                        case .black:
-                            900
                         case .heavy:
+                            800
+                        case .black:
                             900
                     }
                 properties.append(.fontWeight(weightNumber))
-                switch design {
+                switch font.design {
                     case .monospaced:
                         properties.append(.fontFamily("monospace"))
-                    case .default, .none:
+                    case .default:
                         break
                 }
         }
