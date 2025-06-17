@@ -749,8 +749,9 @@ public final class AppKitBackend: AppBackend {
         textField.isEnabled = environment.isEnabled
         textField.placeholderString = placeholder
         textField.appearance = environment.colorScheme.nsAppearance
-        if textField.font != Self.font(for: environment) {
-            textField.font = Self.font(for: environment)
+        let resolvedFont = environment.resolvedFont
+        if textField.font != Self.font(for: resolvedFont) {
+            textField.font = Self.font(for: resolvedFont)
         }
         textField.onEdit = { textField in
             onChange(textField.stringValue)
@@ -803,8 +804,9 @@ public final class AppKitBackend: AppBackend {
         textEditor.onEdit = { textView in
             onChange(self.getContent(ofTextEditor: textView))
         }
-        if textEditor.font != Self.font(for: environment) {
-            textEditor.font = Self.font(for: environment)
+        let resolvedFont = environment.resolvedFont
+        if textEditor.font != Self.font(for: resolvedFont) {
+            textEditor.font = Self.font(for: resolvedFont)
         }
         textEditor.appearance = environment.colorScheme.nsAppearance
         textEditor.isEditable = environment.isEnabled

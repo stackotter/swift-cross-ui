@@ -13,18 +13,16 @@ struct CounterApp: App {
     var body: some Scene {
         WindowGroup("CounterExample: \(count)") {
             #hotReloadable {
-                VStack(alignment: .leading, spacing: 1) {
-                    ForEach(Font.TextStyle.allCases) { style in
-                        Text("This is \(style)")
-                            .font(.system(style))
+                HStack(spacing: 20) {
+                    Button("-") {
+                        count -= 1
+                    }
+                    Text("Count: \(count)")
+                    Button("+") {
+                        count += 1
                     }
                 }
-                // VStack(alignment: .leading, spacing: 1) {
-                //     ForEach(Font.Weight.allCases) { weight in
-                //         Text("This is \(weight) text")
-                //             .fontWeight(weight)
-                //     }
-                // }
+                .padding()
             }
         }
         .defaultSize(width: 400, height: 200)
