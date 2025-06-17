@@ -93,7 +93,7 @@ public struct Font: Hashable, Sendable {
     }
 
     /// Selects whether or not to use the font's monospaced variant.
-    public func monospaced(_ monospaced: Bool) -> Font {
+    public func monospaced(_ monospaced: Bool = true) -> Font {
         var font = self
         if monospaced {
             font.overlay.design = .monospaced
