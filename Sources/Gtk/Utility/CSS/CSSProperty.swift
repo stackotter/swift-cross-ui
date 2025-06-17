@@ -58,7 +58,7 @@ public struct CSSProperty: Equatable {
         CSSProperty(key: "min-height", value: "\(height)px")
     }
 
-    public static func fontSize(_ size: Int) -> CSSProperty {
+    public static func fontSize(_ size: Double) -> CSSProperty {
         CSSProperty(key: "font-size", value: "\(size)px")
     }
 

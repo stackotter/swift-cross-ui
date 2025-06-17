@@ -13,18 +13,16 @@ struct CounterApp: App {
     var body: some Scene {
         WindowGroup("CounterExample: \(count)") {
             #hotReloadable {
-                VStack {
-                    HStack(spacing: 20) {
-                        Button("-") {
-                            count -= 1
-                        }
-                        Text("Count: \(count)")
-                        Button("+") {
-                            count += 1
-                        }
+                HStack(spacing: 20) {
+                    Button("-") {
+                        count -= 1
                     }
-                    .padding()
+                    Text("Count: \(count)")
+                    Button("+") {
+                        count += 1
+                    }
                 }
+                .padding()
             }
         }
         .defaultSize(width: 400, height: 200)

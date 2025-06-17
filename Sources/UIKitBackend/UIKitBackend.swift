@@ -23,6 +23,23 @@ public final class UIKitBackend: AppBackend {
 
     public let canRevealFiles = false
 
+    public var deviceClass: DeviceClass {
+        switch UIDevice.current.userInterfaceIdiom {
+            case .phone:
+                .phone
+            case .pad:
+                .tablet
+            case .tv:
+                .tv
+            case .mac:
+                .desktop
+            case .unspecified, .carPlay, .vision:
+                // Seems like the safest fallback for now given that we don't
+                // explicitly support these devices.
+                .tablet
+        }
+    }
+
     var onTraitCollectionChange: (() -> Void)?
 
     private let appDelegateClass: ApplicationDelegate.Type
@@ -66,14 +83,6 @@ public final class UIKitBackend: AppBackend {
 
     public func computeRootEnvironment(defaultEnvironment: EnvironmentValues) -> EnvironmentValues {
         var environment = defaultEnvironment
-
-        environment.font = .system(
-            size: Int(
-                UIFont.preferredFont(forTextStyle: .body).pointSize.rounded(
-                    .toNearestOrAwayFromZero)),
-            weight: .regular,
-            design: .default
-        )
 
         environment.toggleStyle = .switch
 

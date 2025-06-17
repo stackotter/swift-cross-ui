@@ -94,7 +94,7 @@ final class SwiftCrossUITests: XCTestCase {
 
             XCTAssertEqual(
                 result.size,
-                ViewSize(fixedSize: SIMD2(88, 95)),
+                ViewSize(fixedSize: SIMD2(92, 96)),
                 "View update result mismatch"
             )
 
