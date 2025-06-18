@@ -101,7 +101,7 @@ public struct ViewGraphSnapshotter: ErasedViewGraphNodeTransformer {
         )
     }
 
-    public static func name<V: View>(of viewType: V.Type) -> String {
+    public static nonisolated func name<V: View>(of viewType: V.Type) -> String {
         String(String(describing: V.self).split(separator: "<")[0])
     }
 

@@ -2,9 +2,9 @@ import Foundation
 
 /// Presents a 'Save file' dialog fit for selecting a save destination. Returns
 /// `nil` if the user cancels the operation.
-public struct PresentFileSaveDialogAction {
+public struct PresentFileSaveDialogAction: Sendable {
     let backend: any AppBackend
-    let window: Any?
+    let window: MainActorBox<Any?>
 
     public func callAsFunction(
         title: String = "Save",
@@ -19,7 +19,7 @@ public struct PresentFileSaveDialogAction {
             return await withCheckedContinuation { continuation in
                 backend.runInMainThread {
                     let window: Backend.Window? =
-                        if let window = self.window {
+                        if let window = self.window.value {
                             .some(window as! Backend.Window)
                         } else {
                             nil

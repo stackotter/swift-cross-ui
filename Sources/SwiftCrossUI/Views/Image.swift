@@ -2,7 +2,7 @@ import Foundation
 import ImageFormats
 
 /// A view that displays an image.
-public struct Image: TypeSafeView, View {
+public struct Image: Sendable {
     private var isResizable = false
     private var source: Source
 
@@ -10,8 +10,6 @@ public struct Image: TypeSafeView, View {
         case url(URL, useFileExtension: Bool)
         case image(ImageFormats.Image<RGBA>)
     }
-
-    public var body = EmptyView()
 
     /// Displays an image file. `png`, `jpg`, and `webp` are supported.
     /// - Parameters:
@@ -39,7 +37,13 @@ public struct Image: TypeSafeView, View {
         self.source = source
         self.isResizable = resizable
     }
+}
 
+extension Image: View {
+    public var body: some View { return EmptyView() }
+}
+
+extension Image: TypeSafeView {
     func layoutableChildren<Backend: AppBackend>(
         backend: Backend,
         children: _ImageChildren

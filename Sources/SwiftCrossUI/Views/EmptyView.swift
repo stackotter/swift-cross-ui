@@ -1,13 +1,13 @@
 /// A placeholder view used by elementary ``View`` implementations which don't have bodies. Fatally
 /// crashes if rendered.
-public struct EmptyView: View {
+public struct EmptyView: View, Sendable {
     public var body: Never {
         return fatalError("Rendered EmptyView")
     }
 
     /// Creates a placeholder view (will crash if used in a ``View`` that doesn't override the default
     /// widget creation code, not intended for regular use).
-    public init() {}
+    public nonisolated init() {}
 
     public func children<Backend: AppBackend>(
         backend: Backend,

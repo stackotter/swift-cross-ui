@@ -2,6 +2,7 @@
 /// type-safe without leaking the `Children` associated type to users
 /// (otherwise they would need to provide a `Children` associated type for
 /// every view they made).
+@MainActor
 protocol TypeSafeView: View {
     associatedtype Children: ViewGraphNodeChildren
 
