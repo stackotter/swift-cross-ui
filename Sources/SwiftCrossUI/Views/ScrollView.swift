@@ -61,9 +61,10 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         let scrollBarWidth = backend.scrollBarWidth
 
         let hasHorizontalScrollBar =
-            axes.contains(.horizontal) && contentSize.idealSize.x > proposedSize.x
+            axes.contains(.horizontal) && contentSize.idealWidthForProposedHeight > proposedSize.x
         let hasVerticalScrollBar =
-            axes.contains(.vertical) && contentSize.idealSize.y > proposedSize.y
+            axes.contains(.vertical) && contentSize.idealHeightForProposedWidth > proposedSize.y
+        print(contentSize.idealHeightForProposedWidth)
 
         let verticalScrollBarWidth = hasVerticalScrollBar ? scrollBarWidth : 0
         let horizontalScrollBarHeight = hasHorizontalScrollBar ? scrollBarWidth : 0
@@ -94,12 +95,17 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
 
         let finalResult: ViewUpdateResult
         if !dryRun {
+            // TODO: scroll bar presence shouldn't affect whether we use current
+            //   or ideal size. Only the presence of the given axis in the user's
+            //   list of scroll axes should affect that.
             let proposedContentSize = SIMD2(
                 hasHorizontalScrollBar
-                    ? contentSize.idealSize.x
+                    ? (hasVerticalScrollBar
+                        ? contentSize.idealSize.x : contentSize.idealWidthForProposedHeight)
                     : min(contentSize.size.x, proposedSize.x - verticalScrollBarWidth),
                 hasVerticalScrollBar
-                    ? contentSize.idealSize.y
+                    ? (hasHorizontalScrollBar
+                        ? contentSize.idealSize.y : contentSize.idealHeightForProposedWidth)
                     : min(contentSize.size.y, proposedSize.y - horizontalScrollBarHeight)
             )
 
@@ -135,6 +141,8 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         } else {
             finalResult = childResult
         }
+
+        print(finalResult.size)
 
         return ViewUpdateResult(
             size: ViewSize(
