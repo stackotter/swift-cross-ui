@@ -26,6 +26,7 @@ struct GtkCodeGen {
         "GdkPaintable*": "OpaquePointer",
         "GtkSelectionModel*": "OpaquePointer?",
         "GtkListItemFactory*": "OpaquePointer?",
+        "GtkTextTagTable*": "OpaquePointer?",
     ]
 
     /// Problematic signals which are excluded from the generated Swift
@@ -65,6 +66,8 @@ struct GtkCodeGen {
         "Gdk.Event": "GdkEvent",
         "Gdk.EventSequence": "OpaquePointer",
         "Gdk.GLContext": "OpaquePointer",
+        "Gdk.Paintable": "OpaquePointer",
+        "Gdk.Clipboard": "OpaquePointer",
     ]
 
     static let interfaces: [String] = [
@@ -104,7 +107,7 @@ struct GtkCodeGen {
         cGtkImport: String
     ) throws {
         let allowListedClasses = [
-            "Button", "Entry", "Label", "TextView", "Range", "Scale", "Image", "Switch", "Spinner",
+            "Button", "Entry", "Label", "Range", "Scale", "Image", "Switch", "Spinner",
             "ProgressBar", "FileChooserNative", "NativeDialog", "GestureClick", "GestureSingle",
             "Gesture", "EventController", "GestureLongPress", "GLArea", "DrawingArea",
             "CheckButton",

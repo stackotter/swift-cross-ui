@@ -1,6 +1,6 @@
+import DefaultBackend
 import Foundation
 import SwiftCrossUI
-import DefaultBackend
 
 #if canImport(SwiftBundlerRuntime)
     import SwiftBundlerRuntime
@@ -21,7 +21,7 @@ struct WebViewApp: App {
                         TextField("URL", text: $urlInput)
                         Button("Go") {
                             guard let url = URL(string: urlInput) else {
-                                return // disabled
+                                return  // disabled
                             }
 
                             self.url = url

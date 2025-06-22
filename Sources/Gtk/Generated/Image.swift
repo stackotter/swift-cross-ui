@@ -241,6 +241,9 @@ open class Image: Widget {
     /// The symbolic size to display icons at.
     @GObjectProperty(named: "icon-size") public var iconSize: IconSize
 
+    /// The `GdkPaintable` to display.
+    @GObjectProperty(named: "paintable") public var paintable: OpaquePointer?
+
     /// The size in pixels to display icons at.
     ///
     /// If set to a value != -1, this property overrides the

@@ -75,7 +75,18 @@ struct BackgroundModifier<Background: View, Foreground: View>: TypeSafeView {
         return ViewUpdateResult(
             size: ViewSize(
                 size: frameSize,
-                idealSize: foregroundSize.idealSize,
+                idealSize: SIMD2(
+                    max(foregroundSize.idealSize.x, backgroundSize.minimumWidth),
+                    max(foregroundSize.idealSize.y, backgroundSize.minimumHeight)
+                ),
+                idealWidthForProposedHeight: max(
+                    foregroundSize.idealWidthForProposedHeight,
+                    backgroundSize.minimumWidth
+                ),
+                idealHeightForProposedWidth: max(
+                    foregroundSize.idealHeightForProposedWidth,
+                    backgroundSize.minimumHeight
+                ),
                 minimumWidth: max(backgroundSize.minimumWidth, foregroundSize.minimumWidth),
                 minimumHeight: max(backgroundSize.minimumHeight, foregroundSize.minimumHeight),
                 maximumWidth: min(backgroundSize.maximumWidth, foregroundSize.maximumWidth),

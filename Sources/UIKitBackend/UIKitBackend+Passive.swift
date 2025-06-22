@@ -50,7 +50,7 @@ extension UIKitBackend {
 
     public func size(
         of text: String,
-        whenDisplayedIn textView: Widget,
+        whenDisplayedIn widget: Widget,
         proposedFrame: SIMD2<Int>?,
         environment: EnvironmentValues
     ) -> SIMD2<Int> {
