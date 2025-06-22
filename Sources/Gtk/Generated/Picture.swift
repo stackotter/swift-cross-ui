@@ -170,6 +170,9 @@ open class Picture: Widget {
     /// ratio.
     @GObjectProperty(named: "keep-aspect-ratio") public var keepAspectRatio: Bool
 
+    /// The `GdkPaintable` to be displayed by this `GtkPicture`.
+    @GObjectProperty(named: "paintable") public var paintable: OpaquePointer?
+
     public var notifyAlternativeText: ((Picture, OpaquePointer) -> Void)?
 
     public var notifyCanShrink: ((Picture, OpaquePointer) -> Void)?

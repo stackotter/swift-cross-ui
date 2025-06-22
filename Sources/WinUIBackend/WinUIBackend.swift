@@ -435,7 +435,6 @@ public final class WinUIBackend: AppBackend {
             // minimum width of 120), so we just hardcode the correct natural
             // size. The value 20 was taken from the WinUI source code:
             // https://github.com/microsoft/microsoft-ui-xaml/blob/d37afef65a0fc3219ba6b349301d685099fb129d/src/controls/dev/CommonStyles/CheckBox_themeresources.xaml#L270
-            let checkbox = widget as! CustomCheckBox
             return SIMD2(20, 20)
         } else if let picker = widget as? CustomComboBox, picker.padding == noPadding {
             let label = TextBlock()
@@ -546,7 +545,7 @@ public final class WinUIBackend: AppBackend {
 
     public func size(
         of text: String,
-        whenDisplayedIn textView: Widget,
+        whenDisplayedIn widget: Widget,
         proposedFrame: SIMD2<Int>?,
         environment: EnvironmentValues
     ) -> SIMD2<Int> {
@@ -889,10 +888,71 @@ public final class WinUIBackend: AppBackend {
         internalState.textFieldSubmitActions[ObjectIdentifier(textField)] = onSubmit
         environment.apply(to: textField)
 
-        missing("text field font handling")
+        updateInputScope(of: textField, textContentType: environment.textContentType)
+    }
 
+    public func setContent(ofTextField textField: Widget, to content: String) {
+        (textField as! TextBox).text = content
+    }
+
+    public func getContent(ofTextField textField: Widget) -> String {
+        (textField as! TextBox).text
+    }
+
+    public func createTextEditor() -> Widget {
+        let textEditor = TextBox()
+        textEditor.textChanged.addHandler { [weak internalState] _, _ in
+            guard let internalState = internalState else {
+                return
+            }
+            // Reuse this storage because it's the same widget type as a text field
+            internalState.textFieldChangeActions[ObjectIdentifier(textEditor)]?(textEditor.text)
+        }
+        textEditor.acceptsReturn = true
+        textEditor.textWrapping = .wrap
+
+        // Remove padding
+        textEditor.padding = Thickness(left: 0, top: 0, right: 0, bottom: 0)
+
+        // Remove background color
+        let brush = SolidColorBrush()
+        brush.color = UWP.Color(a: 0, r: 0, g: 0, b: 0)
+        textEditor.background = brush
+
+        // Remove hover and focus effects
+        _ = textEditor.resources.insert("TextControlBackgroundPointerOver", brush)
+        _ = textEditor.resources.insert("TextControlBackgroundFocused", brush)
+        _ = textEditor.resources.insert("TextControlBorderBrushFocused", brush)
+
+        return textEditor
+    }
+
+    public func updateTextEditor(
+        _ textEditor: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (String) -> Void
+    ) {
+        let textEditor = (textEditor as! TextBox)
+        internalState.textFieldChangeActions[ObjectIdentifier(textEditor)] = onChange
+        environment.apply(to: textEditor)
+
+        updateInputScope(of: textEditor, textContentType: environment.textContentType)
+    }
+
+    public func setContent(ofTextEditor textEditor: Widget, to content: String) {
+        (textEditor as! TextBox).text = content
+    }
+
+    public func getContent(ofTextEditor textEditor: Widget) -> String {
+        (textEditor as! TextBox).text
+    }
+
+    private func updateInputScope(
+        of textField: TextBox,
+        textContentType: TextContentType
+    ) {
         let inputScope: InputScopeNameValue =
-            switch environment.textContentType {
+            switch textContentType {
                 case .decimal(_):
                     .number
                 case .digits(_):
@@ -909,27 +969,17 @@ public final class WinUIBackend: AppBackend {
                     .url
             }
 
-        setInputScope(for: textField, to: InputScopeName(inputScope))
-    }
+        let inputScopeName = InputScopeName(inputScope)
 
-    private func setInputScope(for textField: TextBox, to value: InputScopeName) {
         if let inputScope = textField.inputScope,
             inputScope.names.count == 1
         {
-            inputScope.names[0] = value
+            inputScope.names[0] = inputScopeName
         } else {
             let inputScope = InputScope()
-            inputScope.names.append(value)
+            inputScope.names.append(inputScopeName)
             textField.inputScope = inputScope
         }
-    }
-
-    public func setContent(ofTextField textField: Widget, to content: String) {
-        (textField as! TextBox).text = content
-    }
-
-    public func getContent(ofTextField textField: Widget) -> String {
-        (textField as! TextBox).text
     }
 
     public func createImageView() -> Widget {

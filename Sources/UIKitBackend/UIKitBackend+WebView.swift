@@ -1,5 +1,5 @@
-import WebKit
 import SwiftCrossUI
+import WebKit
 
 extension UIKitBackend {
     public func createWebView() -> Widget {

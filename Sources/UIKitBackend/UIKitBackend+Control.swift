@@ -57,6 +57,19 @@ final class TextFieldWidget: WrapperWidget<UITextField>, UITextFieldDelegate {
     }
 }
 
+final class TextEditorWidget: WrapperWidget<UITextView>, UITextViewDelegate {
+    var onChange: ((String) -> Void)?
+
+    init() {
+        super.init(child: UITextView())
+        child.delegate = self
+    }
+
+    func textViewDidChange(_: UITextView) {
+        onChange?(child.text ?? "")
+    }
+}
+
 #if os(tvOS)
     final class SwitchWidget: WrapperWidget<UISegmentedControl> {
         var onChange: ((Bool) -> Void)?
@@ -243,35 +256,9 @@ extension UIKitBackend {
         textFieldWidget.onChange = onChange
         textFieldWidget.onSubmit = onSubmit
 
-        switch environment.textContentType {
-            case .text:
-                textFieldWidget.child.keyboardType = .default
-                textFieldWidget.child.textContentType = nil
-            case .digits(ascii: false):
-                textFieldWidget.child.keyboardType = .numberPad
-                textFieldWidget.child.textContentType = nil
-            case .digits(ascii: true):
-                textFieldWidget.child.keyboardType = .asciiCapableNumberPad
-                textFieldWidget.child.textContentType = nil
-            case .url:
-                textFieldWidget.child.keyboardType = .URL
-                textFieldWidget.child.textContentType = .URL
-            case .phoneNumber:
-                textFieldWidget.child.keyboardType = .phonePad
-                textFieldWidget.child.textContentType = .telephoneNumber
-            case .name:
-                textFieldWidget.child.keyboardType = .namePhonePad
-                textFieldWidget.child.textContentType = .name
-            case .decimal(signed: false):
-                textFieldWidget.child.keyboardType = .decimalPad
-                textFieldWidget.child.textContentType = nil
-            case .decimal(signed: true):
-                textFieldWidget.child.keyboardType = .numbersAndPunctuation
-                textFieldWidget.child.textContentType = nil
-            case .emailAddress:
-                textFieldWidget.child.keyboardType = .emailAddress
-                textFieldWidget.child.textContentType = .emailAddress
-        }
+        let (keyboardType, contentType) = splitTextContentType(environment.textContentType)
+        textFieldWidget.child.keyboardType = keyboardType
+        textFieldWidget.child.textContentType = contentType
 
         #if os(iOS)
             if let updateToolbar = environment.updateToolbar {
@@ -288,14 +275,86 @@ extension UIKitBackend {
 
     public func setContent(ofTextField textField: Widget, to content: String) {
         let textFieldWidget = textField as! TextFieldWidget
-
         textFieldWidget.child.text = content
     }
 
     public func getContent(ofTextField textField: Widget) -> String {
         let textFieldWidget = textField as! TextFieldWidget
-
         return textFieldWidget.child.text ?? ""
+    }
+
+    public func createTextEditor() -> Widget {
+        let widget = TextEditorWidget()
+        widget.child.backgroundColor = .clear
+        widget.child.textContainer.lineFragmentPadding = 0
+        widget.child.textContainerInset = .zero
+        return widget
+    }
+
+    public func updateTextEditor(
+        _ textEditor: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (String) -> Void
+    ) {
+        let textEditorWidget = textEditor as! TextEditorWidget
+
+        textEditorWidget.child.isEditable = environment.isEnabled
+        textEditorWidget.child.font = environment.font.uiFont
+        textEditorWidget.child.textColor = UIColor(color: environment.suggestedForegroundColor)
+        textEditorWidget.onChange = onChange
+
+        let (keyboardType, contentType) = splitTextContentType(environment.textContentType)
+        textEditorWidget.child.keyboardType = keyboardType
+        textEditorWidget.child.textContentType = contentType
+
+        #if os(iOS)
+            if let updateToolbar = environment.updateToolbar {
+                let toolbar =
+                    (textEditorWidget.child.inputAccessoryView as? KeyboardToolbar)
+                    ?? KeyboardToolbar()
+                updateToolbar(toolbar)
+                textEditorWidget.child.inputAccessoryView = toolbar
+            } else {
+                textEditorWidget.child.inputAccessoryView = nil
+            }
+        #endif
+    }
+
+    public func setContent(ofTextEditor textEditor: Widget, to content: String) {
+        let textEditorWidget = textEditor as! TextEditorWidget
+        textEditorWidget.child.text = content
+    }
+
+    public func getContent(ofTextEditor textEditor: Widget) -> String {
+        let textEditorWidget = textEditor as! TextEditorWidget
+        return textEditorWidget.child.text ?? ""
+    }
+
+    // Splits a SwiftCrossUI TextContentType into a UIKit keyboard type and
+    // text content type.
+    private func splitTextContentType(
+        _ textContentType: TextContentType
+    ) -> (UIKeyboardType, UITextContentType?) {
+        switch textContentType {
+            case .text:
+                return (.default, nil)
+            case .digits(ascii: false):
+                return (.numberPad, nil)
+            case .digits(ascii: true):
+                return (.asciiCapableNumberPad, nil)
+            case .url:
+                return (.URL, .URL)
+            case .phoneNumber:
+                return (.phonePad, .telephoneNumber)
+            case .name:
+                return (.namePhonePad, .name)
+            case .decimal(signed: false):
+                return (.decimalPad, nil)
+            case .decimal(signed: true):
+                return (.numbersAndPunctuation, nil)
+            case .emailAddress:
+                return (.emailAddress, .emailAddress)
+        }
     }
 
     public func createSwitch() -> Widget {

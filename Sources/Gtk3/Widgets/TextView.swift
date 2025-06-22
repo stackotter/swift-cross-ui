@@ -28,27 +28,23 @@ import CGtk3
 /// If a context menu is opened, the window node will appear as a subnode
 /// of the main node.
 open class TextView: Container, Scrollable {
-    /// Creates a new #GtkTextView. If you don’t call gtk_text_view_set_buffer()
-    /// before using the text view, an empty default buffer will be created
-    /// for you. Get the buffer with gtk_text_view_get_buffer(). If you want
-    /// to specify your own buffer, consider gtk_text_view_new_with_buffer().
-    public convenience init() {
-        self.init(
-            gtk_text_view_new()
+    /// Create a text view with an empty text buffer.
+    public init() {
+        buffer = TextBuffer(table: nil)
+        super.init(
+            gtk_text_view_new_with_buffer(buffer.gobjectPointer.cast())
         )
     }
 
-    /// Creates a new #GtkTextView widget displaying the buffer
-    /// @buffer. One buffer can be shared among many widgets.
-    /// @buffer may be %NULL to create a default buffer, in which case
-    /// this function is equivalent to gtk_text_view_new(). The
-    /// text view adds its own reference count to the buffer; it does not
-    /// take over an existing reference.
-    public convenience init(buffer: UnsafeMutablePointer<GtkTextBuffer>!) {
-        self.init(
-            gtk_text_view_new_with_buffer(buffer)
+    /// Create a text view for the given text buffer.
+    public init(buffer: TextBuffer) {
+        self.buffer = buffer
+        super.init(
+            gtk_text_view_new_with_buffer(self.buffer.gobjectPointer.cast())
         )
     }
+
+    open var buffer: TextBuffer
 
     override func didMoveToParent() {
         super.didMoveToParent()

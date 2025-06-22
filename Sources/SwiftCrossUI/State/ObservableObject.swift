@@ -43,7 +43,7 @@
 ///
 /// struct CounterView: View {
 ///     @State var state = CounterState()
-/// 
+///
 ///     var body: some View {
 ///         HStack {
 ///             Button("-") {

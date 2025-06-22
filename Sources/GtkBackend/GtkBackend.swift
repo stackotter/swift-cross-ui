@@ -606,11 +606,11 @@ public final class GtkBackend: AppBackend {
 
     public func size(
         of text: String,
-        whenDisplayedIn textView: Widget,
+        whenDisplayedIn widget: Widget,
         proposedFrame: SIMD2<Int>?,
         environment: EnvironmentValues
     ) -> SIMD2<Int> {
-        let pango = Pango(for: textView)
+        let pango = Pango(for: widget)
         let (width, height) = pango.getTextSize(
             text,
             proposedWidth: (proposedFrame?.x).map(Double.init),
@@ -873,6 +873,37 @@ public final class GtkBackend: AppBackend {
 
     public func getContent(ofTextField textField: Widget) -> String {
         return (textField as! Entry).text
+    }
+
+    public func createTextEditor() -> Widget {
+        let textEditor = Gtk.TextView()
+        textEditor.wrapMode = .wordCharacter
+        return textEditor
+    }
+
+    public func updateTextEditor(
+        _ textEditor: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (String) -> Void
+    ) {
+        let textEditor = textEditor as! Gtk.TextView
+        textEditor.buffer.changed = { buffer in
+            onChange(buffer.text)
+        }
+
+        textEditor.css.clear()
+        textEditor.css.set(properties: Self.cssProperties(for: environment, isControl: false))
+        textEditor.css.set(property: CSSProperty(key: "background", value: "none"))
+    }
+
+    public func setContent(ofTextEditor textEditor: Widget, to content: String) {
+        let textEditor = textEditor as! Gtk.TextView
+        textEditor.buffer.text = content
+    }
+
+    public func getContent(ofTextEditor textEditor: Widget) -> String {
+        let textEditor = textEditor as! Gtk.TextView
+        return textEditor.buffer.text
     }
 
     public func createPicker() -> Widget {

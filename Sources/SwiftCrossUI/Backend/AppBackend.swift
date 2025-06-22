@@ -304,25 +304,31 @@ public protocol AppBackend {
 
     // MARK: Passive views
 
-    /// Creates a non-editable text view with optional text wrapping. Predominantly used
-    /// by ``Text``.`
-    func createTextView() -> Widget
-    /// Sets the content and wrapping mode of a non-editable text view.
-    func updateTextView(_ textView: Widget, content: String, environment: EnvironmentValues)
     /// Gets the size that the given text would have if it were layed out attempting to stay
     /// within the proposed frame (most backends only use the proposed width and ignore the
     /// proposed height). The size returned by this function will be upheld by the layout
     /// system; child views always get the final say on their own size, parents just choose how
     /// the children get layed out.
     ///
+    /// The target widget is supplied because some backends (such as Gtk) require a
+    /// reference to the target widget to get a text layout context.
+    ///
     /// If `proposedFrame` isn't supplied, the text should be layed out on a single line
     /// taking up as much width as it needs.
+    ///
+    /// Used by both ``SwiftCrossUI/Text`` and ``SwiftCrossUI/TextEditor``.
     func size(
         of text: String,
-        whenDisplayedIn textView: Widget,
+        whenDisplayedIn widget: Widget,
         proposedFrame: SIMD2<Int>?,
         environment: EnvironmentValues
     ) -> SIMD2<Int>
+
+    /// Creates a non-editable text view with optional text wrapping. Predominantly used
+    /// by ``Text``.`
+    func createTextView() -> Widget
+    /// Sets the content and wrapping mode of a non-editable text view.
+    func updateTextView(_ textView: Widget, content: String, environment: EnvironmentValues)
 
     /// Creates an image view from an image file (specified by path). Predominantly used
     /// by ``Image``.
@@ -467,6 +473,26 @@ public protocol AppBackend {
     func setContent(ofTextField textField: Widget, to content: String)
     /// Gets the value of an editable text field.
     func getContent(ofTextField textField: Widget) -> String
+
+    /// Creates a editable multi-line text editor with a placeholder label and change
+    /// handler. The change handler is called whenever the displayed value changes.
+    /// Predominantly used by ``TextEditor``.
+    func createTextEditor() -> Widget
+    /// Sets the placeholder label and change handler of a editable multi-line text editor.
+    /// The new change handler replaces any existing change handlers, and is called
+    /// whenever the displayed value changes.
+    ///
+    /// The backend shouldn't wait until the user finishes typing to call the change
+    /// handler; it should allow live access to the value.
+    func updateTextEditor(
+        _ textEditor: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (String) -> Void
+    )
+    /// Sets the value of an editable multi-line text editor.
+    func setContent(ofTextEditor textEditor: Widget, to content: String)
+    /// Gets the value of an editable multi-line text editor.
+    func getContent(ofTextEditor textEditor: Widget) -> String
 
     /// Creates a picker for selecting from a finite set of options (e.g. a radio button group,
     /// a drop-down, a picker wheel). Predominantly used by ``Picker``. The change handler is
@@ -757,6 +783,15 @@ extension AppBackend {
 
     // MARK: Passive views
 
+    public func size(
+        of text: String,
+        whenDisplayedIn widget: Widget,
+        proposedFrame: SIMD2<Int>?,
+        environment: EnvironmentValues
+    ) -> SIMD2<Int> {
+        todo()
+    }
+
     public func createTextView(content: String, shouldWrap: Bool) -> Widget {
         todo()
     }
@@ -765,14 +800,6 @@ extension AppBackend {
         content: String,
         environment: EnvironmentValues
     ) {
-        todo()
-    }
-    public func size(
-        of text: String,
-        whenDisplayedIn textView: Widget,
-        proposedFrame: SIMD2<Int>?,
-        environment: EnvironmentValues
-    ) -> SIMD2<Int> {
         todo()
     }
 
@@ -912,6 +939,23 @@ extension AppBackend {
         todo()
     }
     public func getContent(ofTextField textField: Widget) -> String {
+        todo()
+    }
+
+    public func createTextEditor() -> Widget {
+        todo()
+    }
+    public func updateTextEditor(
+        _ textEditor: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (String) -> Void
+    ) {
+        todo()
+    }
+    public func setContent(ofTextEditor textEditor: Widget, to content: String) {
+        todo()
+    }
+    public func getContent(ofTextEditor textEditor: Widget) -> String {
         todo()
     }
 

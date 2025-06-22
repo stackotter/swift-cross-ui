@@ -64,7 +64,7 @@ public final class AppKitBackend: AppBackend {
             backing: .buffered,
             defer: true
         )
-        window.delegate = window.resizeDelegate
+        window.delegate = window.customDelegate
 
         return window
     }
@@ -94,7 +94,7 @@ public final class AppKitBackend: AppBackend {
         ofWindow window: Window,
         to action: @escaping (SIMD2<Int>) -> Void
     ) {
-        window.resizeDelegate.setHandler(action)
+        window.customDelegate.setHandler(action)
     }
 
     public func setTitle(ofWindow window: Window, to title: String) {
@@ -176,6 +176,9 @@ public final class AppKitBackend: AppBackend {
         let about = NSMenuItem()
         about.submenu = createDefaultAboutMenu()
         menuBar.addItem(about)
+        let edit = NSMenuItem()
+        edit.submenu = createDefaultEditMenu()
+        menuBar.addItem(edit)
 
         var helpMenu: NSMenu?
         for submenu in submenus {
@@ -226,6 +229,55 @@ public final class AppKitBackend: AppBackend {
             keyEquivalent: "q"
         )
         quitMenu.keyEquivalentModifierMask = .command
+
+        return appMenu
+    }
+
+    public static func createDefaultEditMenu() -> NSMenu {
+        let appMenu = NSMenu(title: "Edit")
+        let undoItem = appMenu.addItem(
+            withTitle: "Undo",
+            action: "undo:",
+            keyEquivalent: "z"
+        )
+        undoItem.keyEquivalentModifierMask = .command
+
+        let redoItem = appMenu.addItem(
+            withTitle: "Redo",
+            action: "redo:",
+            keyEquivalent: "z"
+        )
+        redoItem.keyEquivalentModifierMask = [.command, .shift]
+
+        appMenu.addItem(NSMenuItem.separator())
+
+        let cutItem = appMenu.addItem(
+            withTitle: "Cut",
+            action: "cut:",
+            keyEquivalent: "x"
+        )
+        cutItem.keyEquivalentModifierMask = .command
+
+        let copyItem = appMenu.addItem(
+            withTitle: "Copy",
+            action: "copy:",
+            keyEquivalent: "c"
+        )
+        copyItem.keyEquivalentModifierMask = .command
+
+        let pasteItem = appMenu.addItem(
+            withTitle: "Paste",
+            action: "paste:",
+            keyEquivalent: "v"
+        )
+        pasteItem.keyEquivalentModifierMask = .command
+
+        let selectAllItem = appMenu.addItem(
+            withTitle: "Select all",
+            action: "selectAll:",
+            keyEquivalent: "a"
+        )
+        selectAllItem.keyEquivalentModifierMask = .command
 
         return appMenu
     }
@@ -448,7 +500,7 @@ public final class AppKitBackend: AppBackend {
 
     public func size(
         of text: String,
-        whenDisplayedIn textView: Widget,
+        whenDisplayedIn widget: Widget,
         proposedFrame: SIMD2<Int>?,
         environment: EnvironmentValues
     ) -> SIMD2<Int> {
@@ -458,7 +510,7 @@ public final class AppKitBackend: AppBackend {
             // reaches zero width.
             let size = size(
                 of: text,
-                whenDisplayedIn: textView,
+                whenDisplayedIn: widget,
                 proposedFrame: SIMD2(1, proposedFrame.y),
                 environment: environment
             )
@@ -676,7 +728,9 @@ public final class AppKitBackend: AppBackend {
         textField.isEnabled = environment.isEnabled
         textField.placeholderString = placeholder
         textField.appearance = environment.colorScheme.nsAppearance
-        textField.font = Self.font(for: environment)
+        if textField.font != Self.font(for: environment) {
+            textField.font = Self.font(for: environment)
+        }
         textField.onEdit = { textField in
             onChange(textField.stringValue)
         }
@@ -707,6 +761,58 @@ public final class AppKitBackend: AppBackend {
     public func setContent(ofTextField textField: Widget, to content: String) {
         let textField = textField as! NSTextField
         textField.stringValue = content
+    }
+
+    public func createTextEditor() -> Widget {
+        let textEditor = NSObservableTextView()
+        textEditor.drawsBackground = false
+        textEditor.delegate = textEditor
+        textEditor.allowsUndo = true
+        textEditor.textContainerInset = .zero
+        textEditor.textContainer?.lineFragmentPadding = 0
+        return textEditor
+    }
+
+    public func updateTextEditor(
+        _ textEditor: Widget,
+        environment: EnvironmentValues,
+        onChange: @escaping (String) -> Void
+    ) {
+        let textEditor = textEditor as! NSObservableTextView
+        textEditor.onEdit = { textView in
+            onChange(self.getContent(ofTextEditor: textView))
+        }
+        if textEditor.font != Self.font(for: environment) {
+            textEditor.font = Self.font(for: environment)
+        }
+        textEditor.appearance = environment.colorScheme.nsAppearance
+        textEditor.isEditable = environment.isEnabled
+
+        if #available(macOS 14, *) {
+            textEditor.contentType =
+                switch environment.textContentType {
+                    case .url:
+                        .URL
+                    case .phoneNumber:
+                        .telephoneNumber
+                    case .name:
+                        .name
+                    case .emailAddress:
+                        .emailAddress
+                    case .text, .digits(_), .decimal(_):
+                        nil
+                }
+        }
+    }
+
+    public func setContent(ofTextEditor textEditor: Widget, to content: String) {
+        let textEditor = textEditor as! NSObservableTextView
+        textEditor.string = content
+    }
+
+    public func getContent(ofTextEditor textEditor: Widget) -> String {
+        let textEditor = textEditor as! NSObservableTextView
+        return textEditor.string
     }
 
     public func createScrollContainer(for child: Widget) -> Widget {
@@ -1756,6 +1862,14 @@ class NSObservableTextField: NSTextField {
     }
 }
 
+class NSObservableTextView: NSTextView, NSTextViewDelegate {
+    func textDidChange(_ notification: Notification) {
+        onEdit?(self)
+    }
+
+    var onEdit: ((NSTextView) -> Void)?
+}
+
 // Source: https://gist.github.com/sindresorhus/3580ce9426fff8fafb1677341fca4815
 extension NSControl {
     typealias ActionClosure = ((NSControl) -> Void)
@@ -1870,7 +1984,8 @@ class NSSplitViewResizingDelegate: NSObject, NSSplitViewDelegate {
 }
 
 public class NSCustomWindow: NSWindow {
-    var resizeDelegate = ResizeDelegate()
+    var customDelegate = Delegate()
+    var persistentUndoManager = UndoManager()
 
     /// Allows the backing scale factor to be overridden. Useful for keeping
     /// UI tests consistent across devices.
@@ -1882,7 +1997,7 @@ public class NSCustomWindow: NSWindow {
         backingScaleFactorOverride ?? super.backingScaleFactor
     }
 
-    class ResizeDelegate: NSObject, NSWindowDelegate {
+    class Delegate: NSObject, NSWindowDelegate {
         var resizeHandler: ((SIMD2<Int>) -> Void)?
 
         func setHandler(_ resizeHandler: @escaping (SIMD2<Int>) -> Void) {
@@ -1906,6 +2021,10 @@ public class NSCustomWindow: NSWindow {
             )
 
             return frameSize
+        }
+
+        func windowWillReturnUndoManager(_ window: NSWindow) -> UndoManager? {
+            (window as! NSCustomWindow).persistentUndoManager
         }
     }
 }
