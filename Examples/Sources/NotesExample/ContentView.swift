@@ -128,6 +128,7 @@ struct ContentView: View {
                     self.error = "Failed to load notes"
                 }
             }
+            .frame(minWidth: 200)
         } detail: {
             ScrollView {
                 VStack(alignment: .center) {
