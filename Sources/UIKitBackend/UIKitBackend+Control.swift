@@ -299,7 +299,7 @@ extension UIKitBackend {
         let textEditorWidget = textEditor as! TextEditorWidget
 
         textEditorWidget.child.isEditable = environment.isEnabled
-        textEditorWidget.child.font = environment.font.uiFont
+        textEditorWidget.child.font = environment.resolvedFont.uiFont
         textEditorWidget.child.textColor = UIColor(color: environment.suggestedForegroundColor)
         textEditorWidget.onChange = onChange
 
