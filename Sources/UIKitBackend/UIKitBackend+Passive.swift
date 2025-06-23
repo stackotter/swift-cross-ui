@@ -19,10 +19,16 @@ extension UIKitBackend {
             }
         paragraphStyle.lineBreakMode = .byWordWrapping
 
+        // This is definitely what these properties were intended for
+        let resolvedFont = environment.resolvedFont
+        paragraphStyle.minimumLineHeight = CGFloat(resolvedFont.lineHeight)
+        paragraphStyle.maximumLineHeight = CGFloat(resolvedFont.lineHeight)
+        paragraphStyle.lineSpacing = 0
+
         return NSAttributedString(
             string: text,
             attributes: [
-                .font: environment.font.uiFont,
+                .font: resolvedFont.uiFont,
                 .foregroundColor: environment.foregroundColor?.uiColor ?? defaultForegroundColor,
                 .paragraphStyle: paragraphStyle,
             ]
@@ -59,7 +65,7 @@ extension UIKitBackend {
             if let proposedFrame {
                 CGSize(width: CGFloat(proposedFrame.x), height: .greatestFiniteMagnitude)
             } else {
-                CGSize(width: .greatestFiniteMagnitude, height: environment.font.uiFont.lineHeight)
+                CGSize(width: .greatestFiniteMagnitude, height: environment.resolvedFont.lineHeight)
             }
         let size = attributedString.boundingRect(
             with: boundingSize,

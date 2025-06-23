@@ -24,6 +24,7 @@ public final class AppKitBackend: AppBackend {
     public let requiresImageUpdateOnScaleFactorChange = false
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = true
+    public let deviceClass = DeviceClass.desktop
 
     public var scrollBarWidth: Int {
         // We assume that all scrollers have their controlSize set to `.regular` by default.
@@ -323,13 +324,9 @@ public final class AppKitBackend: AppBackend {
 
     public func computeRootEnvironment(defaultEnvironment: EnvironmentValues) -> EnvironmentValues {
         let isDark = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark"
-        let font = Font.system(
-            size: Int(NSFont.systemFont(ofSize: 0.0).pointSize.rounded(.awayFromZero))
-        )
         return
             defaultEnvironment
             .with(\.colorScheme, isDark ? .dark : .light)
-            .with(\.font, font)
     }
 
     public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
@@ -752,8 +749,9 @@ public final class AppKitBackend: AppBackend {
         textField.isEnabled = environment.isEnabled
         textField.placeholderString = placeholder
         textField.appearance = environment.colorScheme.nsAppearance
-        if textField.font != Self.font(for: environment) {
-            textField.font = Self.font(for: environment)
+        let resolvedFont = environment.resolvedFont
+        if textField.font != Self.font(for: resolvedFont) {
+            textField.font = Self.font(for: resolvedFont)
         }
         textField.onEdit = { textField in
             onChange(textField.stringValue)
@@ -806,8 +804,9 @@ public final class AppKitBackend: AppBackend {
         textEditor.onEdit = { textView in
             onChange(self.getContent(ofTextEditor: textView))
         }
-        if textEditor.font != Self.font(for: environment) {
-            textEditor.font = Self.font(for: environment)
+        let resolvedFont = environment.resolvedFont
+        if textEditor.font != Self.font(for: resolvedFont) {
+            textEditor.font = Self.font(for: resolvedFont)
         }
         textEditor.appearance = environment.colorScheme.nsAppearance
         textEditor.isEditable = environment.isEnabled
@@ -1112,50 +1111,55 @@ public final class AppKitBackend: AppBackend {
                 case .trailing:
                     .right
             }
+
+        let resolvedFont = environment.resolvedFont
+
+        // This is definitely what these properties were intended for
+        paragraphStyle.minimumLineHeight = CGFloat(resolvedFont.lineHeight)
+        paragraphStyle.maximumLineHeight = CGFloat(resolvedFont.lineHeight)
+        paragraphStyle.lineSpacing = 0
+
         return [
             .foregroundColor: environment.suggestedForegroundColor.nsColor,
-            .font: font(for: environment),
+            .font: font(for: resolvedFont),
             .paragraphStyle: paragraphStyle,
         ]
     }
 
-    private static func font(for environment: EnvironmentValues) -> NSFont {
-        switch environment.font {
-            case .system(let size, let weight, let design):
-                switch design {
-                    case .default, .none:
-                        NSFont.systemFont(
-                            ofSize: CGFloat(size), weight: weight.map(Self.weight(for:)) ?? .regular
-                        )
+    private static func font(for font: Font.Resolved) -> NSFont {
+        let size = CGFloat(font.pointSize)
+        let weight = weight(for: font.weight)
+        switch font.identifier.kind {
+            case .system:
+                switch font.design {
+                    case .default:
+                        return NSFont.systemFont(ofSize: size, weight: weight)
                     case .monospaced:
-                        NSFont.monospacedSystemFont(
-                            ofSize: CGFloat(size),
-                            weight: weight.map(Self.weight(for:)) ?? .regular
-                        )
+                        return NSFont.monospacedSystemFont(ofSize: size, weight: weight)
                 }
         }
     }
 
     private static func weight(for weight: Font.Weight) -> NSFont.Weight {
         switch weight {
-            case .black:
-                .black
-            case .bold:
-                .bold
-            case .heavy:
-                .heavy
-            case .light:
-                .light
-            case .medium:
-                .medium
-            case .regular:
-                .regular
-            case .semibold:
-                .semibold
             case .thin:
                 .thin
             case .ultraLight:
                 .ultraLight
+            case .light:
+                .light
+            case .regular:
+                .regular
+            case .medium:
+                .medium
+            case .semibold:
+                .semibold
+            case .bold:
+                .bold
+            case .black:
+                .black
+            case .heavy:
+                .heavy
         }
     }
 

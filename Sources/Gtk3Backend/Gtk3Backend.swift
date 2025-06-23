@@ -36,6 +36,7 @@ public final class Gtk3Backend: AppBackend {
     public let requiresImageUpdateOnScaleFactorChange = true
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = true
+    public let deviceClass = DeviceClass.desktop
 
     var gtkApp: Application
 
@@ -1433,18 +1434,19 @@ public final class Gtk3Backend: AppBackend {
     ) -> [CSSProperty] {
         var properties: [CSSProperty] = []
         properties.append(.foregroundColor(environment.suggestedForegroundColor.gtkColor))
-        switch environment.font {
-            case .system(let size, let weight, let design):
-                properties.append(.fontSize(size))
+        let font = environment.resolvedFont
+        switch font.identifier.kind {
+            case .system:
+                properties.append(.fontSize(font.pointSize))
                 let weightNumber =
-                    switch weight {
-                        case .thin:
-                            100
+                    switch font.weight {
                         case .ultraLight:
+                            100
+                        case .thin:
                             200
                         case .light:
                             300
-                        case .regular, .none:
+                        case .regular:
                             400
                         case .medium:
                             500
@@ -1452,16 +1454,16 @@ public final class Gtk3Backend: AppBackend {
                             600
                         case .bold:
                             700
-                        case .black:
-                            900
                         case .heavy:
+                            800
+                        case .black:
                             900
                     }
                 properties.append(.fontWeight(weightNumber))
-                switch design {
+                switch font.design {
                     case .monospaced:
                         properties.append(.fontFamily("monospace"))
-                    case .default, .none:
+                    case .default:
                         break
                 }
         }

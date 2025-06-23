@@ -42,6 +42,7 @@ public final class WinUIBackend: AppBackend {
     public let requiresImageUpdateOnScaleFactorChange = false
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = false
+    public let deviceClass = DeviceClass.desktop
 
     public var scrollBarWidth: Int {
         12
@@ -300,7 +301,6 @@ public final class WinUIBackend: AppBackend {
 
         return
             defaultEnvironment
-            .with(\.font, .system(size: 14))
             .with(\.colorScheme, isLight ? .light : .dark)
     }
 
@@ -1737,40 +1737,6 @@ extension SwiftCrossUI.Color {
 }
 
 extension EnvironmentValues {
-    var winUIFontSize: Double {
-        switch font {
-            case .system(let size, _, _):
-                Double(size)
-        }
-    }
-
-    var winUIFontWeight: UInt16 {
-        switch font {
-            case .system(_, let weight, _):
-                switch weight {
-                    case .thin:
-                        100
-                    case .ultraLight:
-                        200
-                    case .light:
-                        300
-                    case .regular, .none:
-                        400
-                    case .medium:
-                        500
-                    case .semibold:
-                        600
-                    case .bold:
-                        700
-                    case .black:
-                        900
-                    case .heavy:
-                        900
-                }
-        }
-
-    }
-
     var winUIForegroundBrush: WinUI.Brush {
         let brush = SolidColorBrush()
         brush.color = suggestedForegroundColor.uwpColor
@@ -1778,8 +1744,9 @@ extension EnvironmentValues {
     }
 
     func apply(to control: WinUI.Control) {
-        control.fontSize = winUIFontSize
-        control.fontWeight.weight = winUIFontWeight
+        let resolvedFont = resolvedFont
+        control.fontSize = resolvedFont.pointSize
+        control.fontWeight.weight = resolvedFont.winUIFontWeight
         control.foreground = winUIForegroundBrush
         control.isEnabled = isEnabled
         switch colorScheme {
@@ -1791,9 +1758,35 @@ extension EnvironmentValues {
     }
 
     func apply(to textBlock: WinUI.TextBlock) {
-        textBlock.fontSize = winUIFontSize
-        textBlock.fontWeight.weight = winUIFontWeight
+        let resolvedFont = resolvedFont
+        textBlock.fontSize = resolvedFont.pointSize
+        textBlock.fontWeight.weight = resolvedFont.winUIFontWeight
         textBlock.foreground = winUIForegroundBrush
+    }
+}
+
+extension Font.Resolved {
+    var winUIFontWeight: UInt16 {
+        switch weight {
+            case .ultraLight:
+                100
+            case .thin:
+                200
+            case .light:
+                300
+            case .regular:
+                400
+            case .medium:
+                500
+            case .semibold:
+                600
+            case .bold:
+                700
+            case .heavy:
+                800
+            case .black:
+                900
+        }
     }
 }
 

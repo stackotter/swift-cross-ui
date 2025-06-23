@@ -88,6 +88,10 @@ public protocol AppBackend {
     /// are called.
     var menuImplementationStyle: MenuImplementationStyle { get }
 
+    /// The class of device that the backend is currently running on. Used to
+    /// determine text sizing and other adaptive properties.
+    var deviceClass: DeviceClass { get }
+
     /// Whether the backend can reveal files in the system file manager or not.
     /// Mobile backends generally can't.
     var canRevealFiles: Bool { get }
@@ -179,6 +183,17 @@ public protocol AppBackend {
     /// recomputed. This is intended to only be called once. Calling it more than once
     /// may or may not override the previous handler.
     func setRootEnvironmentChangeHandler(to action: @escaping () -> Void)
+
+    /// Resolves the given text style to concrete font properties.
+    ///
+    /// This method doesn't take ``EnvironmentValues`` because its result
+    /// should be consistent when given the same text style twice. Font modifiers
+    /// take effect later in the font resolution process.
+    ///
+    /// A default implementation is provided. It uses the backend's reported
+    /// device class and looks up the text style in a lookup table derived
+    /// from Apple's typography guidelines. See ``TextStyle/resolve(for:)``.
+    @Sendable func resolveTextStyle(_ textStyle: Font.TextStyle) -> Font.TextStyle.Resolved
 
     /// Computes a window's environment based off the root environment. This may involve
     /// updating ``EnvironmentValues/windowScaleFactor`` etc.
@@ -668,6 +683,13 @@ public protocol AppBackend {
 }
 
 extension AppBackend {
+    @Sendable
+    public func resolveTextStyle(
+        _ textStyle: Font.TextStyle
+    ) -> Font.TextStyle.Resolved {
+        textStyle.resolve(for: deviceClass)
+    }
+
     public func tag(widget: Widget, as tag: String) {
         // This is only really to assist contributors when debugging backends,
         // so it's safe enough to have a no-op default implementation.

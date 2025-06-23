@@ -13,8 +13,35 @@ public struct EnvironmentValues {
     /// The current stack spacing. Inherited by ``ForEach`` and ``Group`` so
     /// that they can be used without affecting layout.
     public var layoutSpacing: Int
+
     /// The current font.
     public var font: Font
+    /// A font overlay storing font modifications. If these conflict with the
+    /// font's internal overlay, these win.
+    ///
+    /// We keep this separate overlay for modifiers because we want modifiers to
+    /// be persisted even if the developer sets a custom font further down the
+    /// view hierarchy.
+    var fontOverlay: Font.Overlay
+
+    /// A font resolution context derived from the current environment.
+    ///
+    /// Essentially just a subset of the environment.
+    public var fontResolutionContext: Font.Context {
+        Font.Context(
+            overlay: fontOverlay,
+            deviceClass: backend.deviceClass,
+            resolveTextStyle: backend.resolveTextStyle(_:)
+        )
+    }
+
+    /// The current font resolved to a form suitable for rendering. Just a
+    /// helper method for our own backends. We haven't made this public because
+    /// it would be weird to have two pretty equivalent ways of resolving fonts.
+    package var resolvedFont: Font.Resolved {
+        font.resolve(in: fontResolutionContext)
+    }
+
     /// How lines should be aligned relative to each other when line wrapped.
     public var multilineTextAlignment: HorizontalAlignment
 
@@ -158,7 +185,8 @@ public struct EnvironmentValues {
         layoutAlignment = .center
         layoutSpacing = 10
         foregroundColor = nil
-        font = .system(size: 12)
+        font = .body
+        fontOverlay = Font.Overlay()
         multilineTextAlignment = .leading
         colorScheme = .light
         windowScaleFactor = 1
