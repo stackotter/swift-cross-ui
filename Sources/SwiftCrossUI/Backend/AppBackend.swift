@@ -474,11 +474,11 @@ public protocol AppBackend {
     /// Gets the value of an editable text field.
     func getContent(ofTextField textField: Widget) -> String
 
-    /// Creates a editable multi-line text editor with a placeholder label and change
+    /// Creates an editable multi-line text editor with a placeholder label and change
     /// handler. The change handler is called whenever the displayed value changes.
     /// Predominantly used by ``TextEditor``.
     func createTextEditor() -> Widget
-    /// Sets the placeholder label and change handler of a editable multi-line text editor.
+    /// Sets the placeholder label and change handler of an editable multi-line text editor.
     /// The new change handler replaces any existing change handlers, and is called
     /// whenever the displayed value changes.
     ///

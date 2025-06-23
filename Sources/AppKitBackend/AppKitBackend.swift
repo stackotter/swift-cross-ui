@@ -233,53 +233,77 @@ public final class AppKitBackend: AppBackend {
         return appMenu
     }
 
+    /// A vessel for empty methods that we use to construct selectors. We only
+    /// do it this way, because Swift complains if we provide method selectors
+    /// such as `undo:` and `redo:` as strings (even though they don't come
+    /// from any particular class as far as I can tell).
+    ///
+    /// I've failed to find which class (if any) these methods are supposed to
+    /// come from, and the following Apple documentation article makes it sound
+    /// like undo and redo are just stringly-typed objc messages:
+    /// https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UndoArchitecture/Articles/AppKitUndo.html
+    class FirstResponder {
+        /// I'm not sure exactly what type this first argument is meant to have,
+        /// but I believe that it actually doesn't matter, because the number
+        /// of parameters (and their corresponding labels) are what actually matter.
+        @objc func undo(_ sender: NSObject) {}
+        @objc func redo(_ sender: NSObject) {}
+    }
+
     public static func createDefaultEditMenu() -> NSMenu {
-        let appMenu = NSMenu(title: "Edit")
-        let undoItem = appMenu.addItem(
+        // You may notice that multiple different base types are used in the
+        // action selectors of the various menu items. This is because the
+        // selectors get sent to the app's first responder at the time of
+        // the command getting sent. If the first responder doesn't have a
+        // method matching the selector, then AppKit automatically disables
+        // the corresponding menu item.
+
+        let editMenu = NSMenu(title: "Edit")
+        let undoItem = editMenu.addItem(
             withTitle: "Undo",
-            action: "undo:",
+            action: #selector(FirstResponder.undo(_:)),
             keyEquivalent: "z"
         )
         undoItem.keyEquivalentModifierMask = .command
 
-        let redoItem = appMenu.addItem(
+        let redoItem = editMenu.addItem(
             withTitle: "Redo",
-            action: "redo:",
+            action: #selector(FirstResponder.redo(_:)),
             keyEquivalent: "z"
         )
         redoItem.keyEquivalentModifierMask = [.command, .shift]
 
-        appMenu.addItem(NSMenuItem.separator())
+        editMenu.addItem(NSMenuItem.separator())
 
-        let cutItem = appMenu.addItem(
+        let cutItem = editMenu.addItem(
             withTitle: "Cut",
-            action: "cut:",
+            action: #selector(NSTextView.cut),
             keyEquivalent: "x"
         )
         cutItem.keyEquivalentModifierMask = .command
 
-        let copyItem = appMenu.addItem(
+        let copyItem = editMenu.addItem(
             withTitle: "Copy",
-            action: "copy:",
+            action: #selector(NSTextView.copy),
             keyEquivalent: "c"
         )
         copyItem.keyEquivalentModifierMask = .command
 
-        let pasteItem = appMenu.addItem(
+        let pasteItem = editMenu.addItem(
             withTitle: "Paste",
-            action: "paste:",
+            action: #selector(NSTextView.paste),
             keyEquivalent: "v"
         )
         pasteItem.keyEquivalentModifierMask = .command
 
-        let selectAllItem = appMenu.addItem(
+        let selectAllItem = editMenu.addItem(
             withTitle: "Select all",
-            action: "selectAll:",
+            action: #selector(NSTextView.selectAll),
             keyEquivalent: "a"
         )
         selectAllItem.keyEquivalentModifierMask = .command
 
-        return appMenu
+        return editMenu
     }
 
     public func setApplicationMenu(_ submenus: [ResolvedMenu.Submenu]) {
