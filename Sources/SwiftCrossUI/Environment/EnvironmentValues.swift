@@ -77,6 +77,8 @@ public struct EnvironmentValues {
 
     /// Whether user interaction is enabled. Set by ``View/disabled(_:)``.
     public var isEnabled: Bool
+    
+    public var scrollDismissesKeyboardMode: ScrollDismissesKeyboardMode
 
     /// Called by view graph nodes when they resize due to an internal state
     /// change and end up changing size. Each view graph node sets its own
@@ -196,6 +198,7 @@ public struct EnvironmentValues {
         listStyle = .default
         toggleStyle = .button
         isEnabled = true
+        scrollDismissesKeyboardMode = .never
     }
 
     /// Returns a copy of the environment with the specified property set to the
