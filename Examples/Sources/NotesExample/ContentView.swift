@@ -38,10 +38,10 @@ struct ContentView: View {
 
     var textEditorBackground: Color {
         switch colorScheme {
-        case .light:
-            Color(0.8, 0.8, 0.8)
-        case .dark:
-            Color(0.18, 0.18, 0.18)
+            case .light:
+                Color(0.8, 0.8, 0.8)
+            case .dark:
+                Color(0.18, 0.18, 0.18)
         }
     }
 

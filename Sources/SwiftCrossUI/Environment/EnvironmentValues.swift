@@ -198,7 +198,7 @@ public struct EnvironmentValues {
         listStyle = .default
         toggleStyle = .button
         isEnabled = true
-        scrollDismissesKeyboardMode = .never
+        scrollDismissesKeyboardMode = .interactively
     }
 
     /// Returns a copy of the environment with the specified property set to the

@@ -539,6 +539,10 @@ public final class Gtk3Backend: AppBackend {
         return scrollView
     }
 
+    public func updateScrollContainer(_ scrollView: Widget, environment: EnvironmentValues) {
+        let scrollView = scrollView as! ScrolledWindow
+    }
+
     public func setScrollBarPresence(
         ofScrollContainer scrollView: Widget,
         hasVerticalScrollBar: Bool,

@@ -320,11 +320,11 @@ extension UIKitBackend {
 
             textEditorWidget.child.alwaysBounceVertical = environment.scrollDismissesKeyboardMode != .never
             textEditorWidget.child.keyboardDismissMode = switch environment.scrollDismissesKeyboardMode {
-            case .immediately:
-                textEditorWidget.child.inputAccessoryView == nil ? .onDrag : .onDragWithAccessory
-            case .interactively:
-                textEditorWidget.child.inputAccessoryView == nil ? .interactive : .interactiveWithAccessory
-            case .never:
+                case .immediately:
+                    textEditorWidget.child.inputAccessoryView == nil ? .onDrag : .onDragWithAccessory
+                case .interactively:
+                    textEditorWidget.child.inputAccessoryView == nil ? .interactive : .interactiveWithAccessory
+                case .never:
                     .none
             }
         #endif

@@ -156,6 +156,8 @@ public final class LVGLBackend: AppBackend {
         }
     }
 
+    public func updateScrollContainer(_ scrollView: Widget, environment: EnvironmentValues) {}
+
     public func createTextView() -> Widget {
         return Widget { parent in
             let label = LVLabel(with: parent)

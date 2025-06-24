@@ -23,10 +23,10 @@ extension View {
     /// behavior for other kinds of scrollable views, like a ``List`` or a
     /// ``TextEditor``.
     ///
-    /// By default, scrollable content never automatically dismisses the keyboard.
+    /// By default, scrollable content dismisses the keyboard interactively as the user scrolls.
     /// Pass a different value of ``ScrollDismissesKeyboardMode`` to change this behavior.
-    /// For example, ``ScrollDismissesKeyboardMode/interactively`` allows the keyboard to dismiss
-    /// as the user scrolls. Note that ``TextEditor`` may still use a different
+    /// For example, use ``ScrollDismissesKeyboardMode/never`` to prevent the keyboard from
+    /// dismissing automatically. Note that ``TextEditor`` may still use a different
     /// default to preserve expected editing behavior.
     ///
     /// - Parameter mode: The keyboard dismissal mode that scrollable content

@@ -616,6 +616,10 @@ public final class WinUIBackend: AppBackend {
         return scrollViewer
     }
 
+    public func updateScrollContainer(_ scrollView: Widget, environment: EnvironmentValues) {
+        let scrollView = scrollView as! WinUI.ScrollViewer
+    }
+
     public func setScrollBarPresence(
         ofScrollContainer scrollView: Widget,
         hasVerticalScrollBar: Bool,
