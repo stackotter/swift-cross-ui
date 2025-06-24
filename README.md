@@ -18,6 +18,7 @@ To dive right in with SwiftCrossUI, check out [the SwiftCrossUI quick start guid
 
 ## Overview
 
+- [Overview](#overview)
 - [Community](#community)
 - [Supporting SwiftCrossUI](#supporting-swiftcrossui)
 - [Documentation](#documentation)
@@ -87,6 +88,16 @@ Clone the SwiftCrossUI repository to test out this example, and many more;
 git clone https://github.com/stackotter/swift-cross-ui
 cd swift-cross-ui/Examples
 swift run CounterExample
+```
+
+The examples are written as Swift packages, which means you can't run them on iOS directly without creating an Xcode project. By using tools like [`mint`](https://github.com/yonaskolb/Mint) and [`swift-bundler`](https://github.com/stackotter/swift-bundler), running these apps on the iOS Simulator becomes much easier.
+
+```sh
+brew install mint
+mint install stackotter/swift-bundler@main
+git clone https://github.com/stackotter/swift-cross-ui
+cd swift-cross-ui/Examples
+swift bundler run CounterExample --simulator "iPhone"
 ```
 
 The documentation contains [a detailed list of all examples](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/examples)
