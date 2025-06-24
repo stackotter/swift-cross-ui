@@ -2,7 +2,7 @@ import SwiftCrossUI
 import UIKit
 
 final class ScrollWidget: ContainerWidget {
-    private var scrollView = UIScrollView()
+    var scrollView = UIScrollView()
     private var childWidthConstraint: NSLayoutConstraint?
     private var childHeightConstraint: NSLayoutConstraint?
 
