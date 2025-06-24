@@ -18,7 +18,6 @@ To dive right in with SwiftCrossUI, check out [the SwiftCrossUI quick start guid
 
 ## Overview
 
-- [Overview](#overview)
 - [Community](#community)
 - [Supporting SwiftCrossUI](#supporting-swiftcrossui)
 - [Documentation](#documentation)
