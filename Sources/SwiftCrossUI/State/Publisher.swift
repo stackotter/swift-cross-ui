@@ -1,25 +1,31 @@
 import Dispatch
 import Foundation
 
-// TODO: Keep weak references to cancellables for downstream observations (instead
-// of the current strong references).
-
 /// A type that produces valueless observations.
 public class Publisher {
     /// The id for the next observation (ids are used to cancel observations).
     private var nextObservationId = 0
     /// All current observations keyed by their id (ids are used to cancel observations).
     private var observations: [Int: () -> Void] = [:]
-    /// Cancellable observations of downstream observers.
-    private var cancellables: [Cancellable] = []
     /// Human-readable tag for debugging purposes.
     private var tag: String?
 
-    /// The time at which the last update merging event occurred in
-    /// `observeOnMainThreadAvoidingStarvation`.
-    private var lastUpdateMergeTime: TimeInterval = 0
-    /// The amount of time taken per state update, exponentially averaged over time.
-    private var exponentiallySmoothedUpdateLength: Double = 0
+    /// We guard this against data races, with serialUpdateHandlingQueue, and
+    /// with our lives.
+    private class UpdateStatistics: @unchecked Sendable {
+        /// The time at which the last update merging event occurred in
+        /// `observeOnMainThreadAvoidingStarvation`.
+        var lastUpdateMergeTime: TimeInterval = 0
+        /// The amount of time taken per state update, exponentially averaged over time.
+        var exponentiallySmoothedUpdateLength: Double = 0
+    }
+
+    private let updateStatistics = UpdateStatistics()
+
+    private let serialUpdateHandlingQueue = DispatchQueue(
+        label: "serial update handling"
+    )
+    private let semaphore = DispatchSemaphore(value: 1)
 
     /// Creates a new independent publisher.
     public init() {}
@@ -51,7 +57,6 @@ public class Publisher {
             self.send()
         })
         cancellable.tag(with: "\(tag ?? "no tag") <-> \(cancellable.tag ?? "no tag")")
-        cancellables.append(cancellable)
         return cancellable
     }
 
@@ -91,12 +96,11 @@ public class Publisher {
     /// guaranteed that updates will always run serially.
     func observeAsUIUpdater<Backend: AppBackend>(
         backend: Backend,
-        action closure: @escaping () -> Void
+        action: @escaping @MainActor @Sendable () -> Void
     ) -> Cancellable {
-        let serialUpdateHandlingQueue = DispatchQueue(
-            label: "serial update handling"
-        )
-        let semaphore = DispatchSemaphore(value: 1)
+        let semaphore = self.semaphore
+        let serialUpdateHandlingQueue = self.serialUpdateHandlingQueue
+        let updateStatistics = self.updateStatistics
         return observe {
             // Only allow one update to wait at a time.
             guard semaphore.wait(timeout: .now()) == .success else {
@@ -105,7 +109,7 @@ public class Publisher {
                 // as long as it happens within the next update or two.
                 let mergeTime = ProcessInfo.processInfo.systemUptime
                 serialUpdateHandlingQueue.async {
-                    self.lastUpdateMergeTime = mergeTime
+                    updateStatistics.lastUpdateMergeTime = mergeTime
                 }
                 return
             }
@@ -125,22 +129,23 @@ public class Publisher {
                     // Run the closure and while we're at it measure how long it takes
                     // so that we can use it when throttling if updates start backing up.
                     let start = ProcessInfo.processInfo.systemUptime
-                    closure()
+                    action()
                     let elapsed = ProcessInfo.processInfo.systemUptime - start
 
                     // I chose exponential smoothing because it's simple to compute, doesn't
                     // require storing a window of previous values, and quickly converges to
-                    // a sensible value when the average moves while still somewhat ignoring
+                    // a sensible value when the average moves, while still somewhat ignoring
                     // outliers.
-                    self.exponentiallySmoothedUpdateLength =
-                        elapsed / 2 + self.exponentiallySmoothedUpdateLength / 2
+                    updateStatistics.exponentiallySmoothedUpdateLength =
+                        elapsed / 2 + updateStatistics.exponentiallySmoothedUpdateLength / 2
                 }
 
-                if ProcessInfo.processInfo.systemUptime - self.lastUpdateMergeTime < 1 {
+                if ProcessInfo.processInfo.systemUptime - updateStatistics.lastUpdateMergeTime < 1 {
                     // The factor of 1.5 was determined empirically. This algorithm is
                     // open for improvements since it's purely here to reduce the risk
-                    // of UI freezes.
-                    let throttlingDelay = self.exponentiallySmoothedUpdateLength * 1.5
+                    // of UI freezes. A factor of 1.5 equates to a gap between updates of
+                    // approximately 50% of the average update length.
+                    let throttlingDelay = updateStatistics.exponentiallySmoothedUpdateLength * 1.5
 
                     // Sleeping on a dispatch queue generally isn't a good idea because
                     // you prevent the queue from servicing any other work, but in this

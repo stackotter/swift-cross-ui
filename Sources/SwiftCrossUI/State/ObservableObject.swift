@@ -78,7 +78,8 @@ extension ObservableObject {
                     continue
                 }
 
-                _ = publisher.link(toUpstream: property.didChange)
+                let cancellable = publisher.link(toUpstream: property.didChange)
+                cancellable.defuse()
             }
             mirror = aClass.superclassMirror
         }

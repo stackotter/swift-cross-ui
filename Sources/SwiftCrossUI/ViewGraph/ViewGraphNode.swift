@@ -130,15 +130,6 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
         }
     }
 
-    /// Stops observing the view's state.
-    deinit {
-        Task { @MainActor [cancellables] in
-            for cancellable in cancellables {
-                cancellable.cancel()
-            }
-        }
-    }
-
     /// Triggers the view to be updated as part of a bottom-up chain of updates (where either the
     /// current view gets updated due to a state change and has potential to trigger its parent to
     /// update as well, or the current view's child has propagated such an update upwards).
