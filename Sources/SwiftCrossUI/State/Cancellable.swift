@@ -6,14 +6,25 @@ public class Cancellable {
     /// Human-readable tag for debugging purposes.
     var tag: String?
 
+    /// If defused, the cancellable won't cancel the ongoing action on deinit.
+    var defused = false
+
     /// Creates a new cancellable.
     public init(closure: @escaping () -> Void) {
         self.closure = closure
     }
 
+    /// Extends a cancellable's lifetime to match its corresponding ongoing
+    /// action. This doesn't actually extend the
+    func defuse() {
+        defused = true
+    }
+
     /// Runs the cancel action.
     deinit {
-        cancel()
+        if !defused {
+            cancel()
+        }
     }
 
     /// Runs the cancel action and ensures that it can't be called a second time.

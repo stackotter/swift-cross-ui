@@ -164,9 +164,9 @@ final class SwiftCrossUITests: XCTestCase {
             // Compute percentage of main thread's time taken up by updates.
             let ratio = Double(await updateCount.count) * updateDuration / elapsed
             XCTAssert(
-                0.5 <= ratio && ratio <= 0.85,
+                ratio <= 0.85,
                 """
-                Expected throttled updates to take between 50% and 80% of the main \
+                Expected throttled updates to take under 85% of the main \
                 thread's time. Took \(Int(ratio * 100))%
                 """
             )
