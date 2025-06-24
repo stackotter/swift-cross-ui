@@ -34,14 +34,16 @@ extension View {
     }
 }
 
-struct TaskModifier<Id: Equatable, Content: View>: View {
+struct TaskModifier<Id: Equatable, Content: View> {
     @State var task: Task<(), any Error>? = nil
 
     var id: Id
     var content: Content
     var priority: TaskPriority
     var action: () async -> Void
+}
 
+extension TaskModifier: View {
     var body: some View {
         // Explicitly return to disable result builder (we don't want an extra
         // layer of views).

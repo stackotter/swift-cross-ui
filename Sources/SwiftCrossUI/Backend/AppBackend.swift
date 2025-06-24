@@ -40,7 +40,8 @@ import Foundation
 /// code between the `create` and `update` methods of the various widgets
 /// (since the `update` method is always called between calling `create`
 /// and actually displaying the widget anyway).
-public protocol AppBackend {
+@MainActor
+public protocol AppBackend: Sendable {
     associatedtype Window
     associatedtype Widget
     associatedtype Menu
@@ -120,7 +121,7 @@ public protocol AppBackend {
     /// setup function is passed to `Gtk` as a callback to run once the main
     /// run loop starts.
     func runMainLoop(
-        _ callback: @escaping () -> Void
+        _ callback: @escaping @MainActor () -> Void
     )
     /// Creates a new window. For some backends it may make sense for this
     /// method to return the application's root window the first time its
@@ -174,7 +175,7 @@ public protocol AppBackend {
     /// Runs an action in the app's main thread if required to perform UI updates
     /// by the backend. Predominantly used by ``Publisher`` to publish changes to a thread
     /// compatible with dispatching UI updates. Can be synchronous or asynchronous (for now).
-    func runInMainThread(action: @escaping () -> Void)
+    nonisolated func runInMainThread(action: @escaping @MainActor () -> Void)
 
     /// Computes the root environment for an app (e.g. by checking the system's current
     /// theme). May fall back on the provided defaults where reasonable.
@@ -193,7 +194,7 @@ public protocol AppBackend {
     /// A default implementation is provided. It uses the backend's reported
     /// device class and looks up the text style in a lookup table derived
     /// from Apple's typography guidelines. See ``TextStyle/resolve(for:)``.
-    @Sendable func resolveTextStyle(_ textStyle: Font.TextStyle) -> Font.TextStyle.Resolved
+    func resolveTextStyle(_ textStyle: Font.TextStyle) -> Font.TextStyle.Resolved
 
     /// Computes a window's environment based off the root environment. This may involve
     /// updating ``EnvironmentValues/windowScaleFactor`` etc.
@@ -683,7 +684,6 @@ public protocol AppBackend {
 }
 
 extension AppBackend {
-    @Sendable
     public func resolveTextStyle(
         _ textStyle: Font.TextStyle
     ) -> Font.TextStyle.Resolved {

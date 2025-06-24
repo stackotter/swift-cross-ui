@@ -1,12 +1,12 @@
 /// An axis in a 2D coordinate system.
-public enum Axis {
+public enum Axis: Sendable {
     /// The horizontal axis.
     case horizontal
     /// The vertical axis.
     case vertical
 
     /// A set of axes represented as an efficient bit field.
-    public struct Set: OptionSet {
+    public struct Set: OptionSet, Sendable {
         /// The horizontal axis.
         public static let horizontal = Set(rawValue: 1)
         /// The vertical axis.

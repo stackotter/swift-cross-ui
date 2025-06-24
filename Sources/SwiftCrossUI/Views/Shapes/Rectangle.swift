@@ -1,7 +1,7 @@
 public struct Rectangle: Shape {
-    public init() {}
+    public nonisolated init() {}
 
-    public func path(in bounds: Path.Rect) -> Path {
+    public nonisolated func path(in bounds: Path.Rect) -> Path {
         Path().addRectangle(bounds)
     }
 }

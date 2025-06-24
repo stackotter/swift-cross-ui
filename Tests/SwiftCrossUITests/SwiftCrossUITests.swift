@@ -65,7 +65,8 @@ final class SwiftCrossUITests: XCTestCase {
     }
 
     #if canImport(AppKitBackend)
-        func testBasicLayout() throws {
+        @MainActor
+        func testBasicLayout() async throws {
             let backend = AppKitBackend()
             let window = backend.createWindow(withDefaultSize: SIMD2(200, 200))
 
@@ -104,6 +105,7 @@ final class SwiftCrossUITests: XCTestCase {
             )
         }
 
+        @MainActor
         static func snapshotView(_ view: NSView) throws -> Data {
             view.wantsLayer = true
             view.layer?.backgroundColor = CGColor.white

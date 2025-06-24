@@ -2,7 +2,7 @@
 ///
 /// This is not necessarily four line segments and four circular arcs. If possible, this shape
 /// uses smoother curves to make the transition between the edges and corners less abrupt.
-public struct RoundedRectangle: Shape {
+public struct RoundedRectangle {
     public var cornerRadius: Double
 
     public init(cornerRadius: Double) {
@@ -20,7 +20,7 @@ public struct RoundedRectangle: Shape {
     // Preconditions:
     //   - points.0 is the same as if a line segment and a circular arc were used
     //   - points.6.y == 0.0
-    private static let points = (
+    fileprivate static let points = (
         SIMD2(0.292893218813, 0.292893218813),
         SIMD2(0.517, 0.0687864376269),
         SIMD2(0.87, 0.0337),
@@ -33,8 +33,10 @@ public struct RoundedRectangle: Shape {
     // This corresponds to r_{min} in the above Desmos link. This is the minimum ratio of
     // cornerRadius to half the side length at which the superellipse is not applicable. Above this,
     // line segments and circular arcs are used.
-    private static let rMin = 0.441968022436
+    fileprivate static let rMin = 0.441968022436
+}
 
+extension RoundedRectangle: Shape {
     public func path(in bounds: Path.Rect) -> Path {
         // just to avoid `RoundedRectangle.` qualifiers
         let rMin = RoundedRectangle.rMin

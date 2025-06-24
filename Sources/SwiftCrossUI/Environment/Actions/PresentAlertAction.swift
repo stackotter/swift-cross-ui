@@ -3,6 +3,7 @@
 /// selected action. By default, the alert will have a single button labelled
 /// `OK`. All buttons will dismiss the alert even if you provide your own
 /// actions.
+@MainActor
 public struct PresentAlertAction {
     let environment: EnvironmentValues
 

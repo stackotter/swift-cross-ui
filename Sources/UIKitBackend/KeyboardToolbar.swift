@@ -14,9 +14,11 @@ public protocol ToolbarItem {
     associatedtype ItemType: UIBarButtonItem
 
     /// Convert the item to an instance of `ItemType`.
+    @MainActor
     func createBarButtonItem() -> ItemType
 
     /// Update the item with new information (e.g. updated bindings). May be a no-op.
+    @MainActor
     func updateBarButtonItem(_ item: inout ItemType)
 }
 
@@ -61,9 +63,9 @@ public enum ToolbarBuilder {
 @available(tvOS, unavailable)
 extension Button: ToolbarItem {
     public final class ItemType: UIBarButtonItem {
-        var callback: () -> Void
+        var callback: @MainActor @Sendable () -> Void
 
-        init(title: String, callback: @escaping () -> Void) {
+        init(title: String, callback: @escaping @MainActor @Sendable () -> Void) {
             self.callback = callback
             super.init()
 

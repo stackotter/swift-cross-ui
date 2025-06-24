@@ -1,5 +1,5 @@
 /// An RGBA representation of a color.
-public struct Color {
+public struct Color: Sendable {
     /// The red component (from 0 to 1).
     public var red: Float
     /// The green component (from 0 to 1).

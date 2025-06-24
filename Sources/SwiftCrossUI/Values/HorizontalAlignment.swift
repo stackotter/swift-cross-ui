@@ -1,5 +1,5 @@
 /// Alignment of items layed out along the horizontal axis.
-public enum HorizontalAlignment {
+public enum HorizontalAlignment: Sendable {
     case leading
     case center
     case trailing

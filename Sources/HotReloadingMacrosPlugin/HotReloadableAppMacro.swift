@@ -104,7 +104,7 @@ extension HotReloadableAppMacro: MemberMacro {
 
                     if !hotReloadingHasConnectedToServer {
                         hotReloadingHasConnectedToServer = true
-                        Task {
+                        Task { @MainActor
                             do {
                                 var client = try await HotReloadingClient()
                                 print("Hot reloading: received new dylib")

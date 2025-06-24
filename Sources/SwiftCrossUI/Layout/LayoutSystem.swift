@@ -75,6 +75,7 @@ public enum LayoutSystem {
     ///   if all of its children have it set to true. This allows views such as
     ///   ``Group`` to avoid changing stack layout participation (since ``Group``
     ///   is meant to appear completely invisible to the layout system).
+    @MainActor
     public static func updateStackLayout<Backend: AppBackend>(
         container: Backend.Widget,
         children: [LayoutableChild],

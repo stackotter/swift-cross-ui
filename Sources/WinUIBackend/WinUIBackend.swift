@@ -55,11 +55,11 @@ public final class WinUIBackend: AppBackend {
         var sliderChangeActions: [ObjectIdentifier: (Double) -> Void] = [:]
         var textFieldChangeActions: [ObjectIdentifier: (String) -> Void] = [:]
         var textFieldSubmitActions: [ObjectIdentifier: () -> Void] = [:]
-        var dispatcherQueue: WinAppSDK.DispatcherQueue?
         var themeChangeAction: (() -> Void)?
     }
 
     private var internalState: InternalState
+    nonisolated(unsafe) private var dispatcherQueue: WinAppSDK.DispatcherQueue?
     /// WinUI only allows one dialog at a time (subsequent dialogs throw
     /// exceptions), so we limit ourselves.
     private var dialogSemaphore = DispatchSemaphore(value: 1)
@@ -78,7 +78,7 @@ public final class WinUIBackend: AppBackend {
         }
     }
 
-    public func runMainLoop(_ callback: @escaping () -> Void) {
+    public func runMainLoop(_ callback: @escaping @MainActor () -> Void) {
         do {
             try Self.attachToParentConsole()
         } catch {
@@ -128,8 +128,8 @@ public final class WinUIBackend: AppBackend {
             }
         }
 
-        if internalState.dispatcherQueue == nil {
-            internalState.dispatcherQueue = window.dispatcherQueue
+        if self.dispatcherQueue == nil {
+            self.dispatcherQueue = window.dispatcherQueue
         }
 
         // import WinSDK
@@ -237,9 +237,9 @@ public final class WinUIBackend: AppBackend {
         _ = UWP.Launcher.launchUriAsync(WindowsFoundation.Uri(url.absoluteString))
     }
 
-    public func runInMainThread(action: @escaping () -> Void) {
-        _ = try! internalState.dispatcherQueue!.tryEnqueue(.normal) {
-            action()
+    public func runInMainThread(action: @escaping @MainActor () -> Void) {
+        _ = try! dispatcherQueue!.tryEnqueue(.normal) {
+            MainActor.assumeIsolated(action)
         }
     }
 
@@ -1743,6 +1743,7 @@ extension EnvironmentValues {
         return brush
     }
 
+    @MainActor
     func apply(to control: WinUI.Control) {
         let resolvedFont = resolvedFont
         control.fontSize = resolvedFont.pointSize
@@ -1757,6 +1758,7 @@ extension EnvironmentValues {
         }
     }
 
+    @MainActor
     func apply(to textBlock: WinUI.TextBlock) {
         let resolvedFont = resolvedFont
         textBlock.fontSize = resolvedFont.pointSize

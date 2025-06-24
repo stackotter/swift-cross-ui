@@ -1,6 +1,7 @@
 import Foundation
 
 /// An application.
+@MainActor
 public protocol App {
     /// The backend used to render the app.
     associatedtype Backend: AppBackend
@@ -24,14 +25,16 @@ public protocol App {
 
 /// Force refresh the entire scene graph. Used by hot reloading. If you need to do
 /// this in your own code then something has gone very wrong...
+@MainActor
 public var _forceRefresh: () -> Void = {}
 
 /// Metadata embedded by Swift Bundler if present. Loaded at app start up.
+@MainActor
 private var swiftBundlerAppMetadata: AppMetadata?
 
 /// An error encountered when parsing Swift Bundler metadata.
 private enum SwiftBundlerMetadataError: LocalizedError {
-    case jsonNotDictionary(Any)
+    case jsonNotDictionary(String)
     case missingAppIdentifier
     case missingAppVersion
 
@@ -94,7 +97,7 @@ extension App {
             // require a lot of boilerplate code to parse with Codable).
             let jsonValue = try JSONSerialization.jsonObject(with: jsonData)
             guard let json = jsonValue as? [String: Any] else {
-                throw SwiftBundlerMetadataError.jsonNotDictionary(jsonValue)
+                throw SwiftBundlerMetadataError.jsonNotDictionary(String(describing: jsonValue))
             }
             guard let identifier = json["appIdentifier"] as? String else {
                 throw SwiftBundlerMetadataError.missingAppIdentifier

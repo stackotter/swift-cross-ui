@@ -1,5 +1,5 @@
 /// A text view.
-public struct Text: ElementaryView, View {
+public struct Text: Sendable {
     /// The string to be shown in the text view.
     var string: String
 
@@ -7,7 +7,12 @@ public struct Text: ElementaryView, View {
     public init(_ string: String) {
         self.string = string
     }
+}
 
+extension Text: View {
+}
+
+extension Text: ElementaryView {
     public func asWidget<Backend: AppBackend>(
         backend: Backend
     ) -> Backend.Widget {

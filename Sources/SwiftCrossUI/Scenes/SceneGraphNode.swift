@@ -3,6 +3,7 @@
 ///
 /// Treat scenes as basic data structures that simply encode the structure of the app;
 /// the actual rendering and logic is handled by the node.
+@MainActor
 public protocol SceneGraphNode: AnyObject {
     /// The type of scene managed by this node.
     associatedtype NodeScene: Scene where NodeScene.Node == Self

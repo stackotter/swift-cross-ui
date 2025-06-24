@@ -27,17 +27,19 @@ public struct EnvironmentValues {
     /// A font resolution context derived from the current environment.
     ///
     /// Essentially just a subset of the environment.
+    @MainActor
     public var fontResolutionContext: Font.Context {
         Font.Context(
             overlay: fontOverlay,
             deviceClass: backend.deviceClass,
-            resolveTextStyle: backend.resolveTextStyle(_:)
+            resolveTextStyle: { backend.resolveTextStyle($0) }
         )
     }
 
     /// The current font resolved to a form suitable for rendering. Just a
     /// helper method for our own backends. We haven't made this public because
     /// it would be weird to have two pretty equivalent ways of resolving fonts.
+    @MainActor
     package var resolvedFont: Font.Resolved {
         font.resolve(in: fontResolutionContext)
     }
@@ -60,7 +62,7 @@ public struct EnvironmentValues {
 
     /// Called when a text field gets submitted (usually due to the user
     /// pressing Enter/Return).
-    public var onSubmit: (() -> Void)?
+    public var onSubmit: (@MainActor () -> Void)?
 
     /// The scale factor of the current window.
     public var windowScaleFactor: Double
@@ -82,7 +84,7 @@ public struct EnvironmentValues {
     /// change and end up changing size. Each view graph node sets its own
     /// handler when passing the environment on to its children, setting up
     /// a bottom-up update chain up which resize events can propagate.
-    var onResize: (_ newSize: ViewSize) -> Void
+    var onResize: @MainActor (_ newSize: ViewSize) -> Void
 
     /// The style of list to use.
     package var listStyle: ListStyle
@@ -104,6 +106,7 @@ public struct EnvironmentValues {
 
     /// Brings the current window forward, not guaranteed to always bring
     /// the window to the top (due to focus stealing prevention).
+    @MainActor
     func bringWindowForward() {
         func activate<Backend: AppBackend>(with backend: Backend) {
             backend.activate(window: window as! Backend.Window)
@@ -126,10 +129,11 @@ public struct EnvironmentValues {
     /// accessed outside of a scene's view graph (in which case the backend
     /// can decide whether to make it an app modal, a standalone window, or a
     /// window of its choosing).
+    @MainActor
     public var chooseFile: PresentSingleFileOpenDialogAction {
         return PresentSingleFileOpenDialogAction(
             backend: backend,
-            window: window
+            window: .init(value: window)
         )
     }
 
@@ -139,10 +143,11 @@ public struct EnvironmentValues {
     /// scene's view graph (in which case the backend can decide whether to
     /// make it an app modal, a standalone window, or a modal for a window of
     /// its chooosing).
+    @MainActor
     public var chooseFileSaveDestination: PresentFileSaveDialogAction {
         return PresentFileSaveDialogAction(
             backend: backend,
-            window: window
+            window: .init(value: window)
         )
     }
 
@@ -150,6 +155,7 @@ public struct EnvironmentValues {
     /// outside of a scene's view graph (in which case the backend can decide
     /// whether to make it an app modal, a standalone window, or a modal for a
     /// window of its choosing).
+    @MainActor
     public var presentAlert: PresentAlertAction {
         return PresentAlertAction(
             environment: self
@@ -159,6 +165,7 @@ public struct EnvironmentValues {
     /// Opens a URL with the default application. May present an application
     /// picker if multiple applications are registered for the given URL
     /// protocol.
+    @MainActor
     public var openURL: OpenURLAction {
         return OpenURLAction(
             backend: backend
@@ -170,6 +177,7 @@ public struct EnvironmentValues {
     ///
     /// `nil` on platforms that don't support revealing files, e.g.
     /// iOS.
+    @MainActor
     public var revealFile: RevealFileAction? {
         return RevealFileAction(
             backend: backend

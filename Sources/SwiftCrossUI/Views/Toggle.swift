@@ -39,7 +39,7 @@ public struct Toggle: View {
 }
 
 /// A style of toggle.
-public struct ToggleStyle {
+public struct ToggleStyle: Sendable {
     package var style: Style
 
     /// A toggle switch.
