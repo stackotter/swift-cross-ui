@@ -81,23 +81,47 @@ struct CounterApp: App {
 }
 ```
 
-Clone the SwiftCrossUI repository to test out this example, and many more;
+Clone the SwiftCrossUI repository to test out this example and others. Running the examples requires an installation of [Swift Bundler](https://github.com/stackotter/swift-bundler), which provides consistent behavior across platforms and enables running on iOS and tvOS simulators and devices.
 
-```sh
-git clone https://github.com/stackotter/swift-cross-ui
-cd swift-cross-ui/Examples
-swift run CounterExample
-```
+To install Swift Bundler, you can follow [its official installation instructions](https://github.com/stackotter/swift-bundler?tab=readme-ov-file#installation-). Swift Bundler is typically installed using [Mint](https://github.com/yonaskolb/Mint?tab=readme-ov-file#installing), a Swift package manager that lets you easily install and run CLI tools distributed as Swift packages.
 
-The examples are written as Swift packages, which means you can't run them on iOS directly without creating an Xcode project. By using tools like [`mint`](https://github.com/yonaskolb/Mint) and [`swift-bundler`](https://github.com/stackotter/swift-bundler), running these apps on the iOS Simulator becomes much easier.
+If you don't have Mint installed, you can install it with [Homebrew](https://brew.sh/):
 
 ```sh
 brew install mint
+```
+
+Then use Mint to install Swift Bundler:
+
+```sh
 mint install stackotter/swift-bundler@main
+```
+
+Once installed, clone the project and run the example:
+
+```sh
 git clone https://github.com/stackotter/swift-cross-ui
 cd swift-cross-ui/Examples
-swift bundler run CounterExample --simulator "iPhone"
+swift bundler run CounterExample
 ```
+
+You can also run on iOS and tvOS:
+
+```sh
+# On a connected device with "iPhone" in its name (macOS only)
+swift bundler run CounterExample device iPhone
+
+# On a simulator with "iPhone 16" in its name (macOS only)
+swift bundler run CounterExample simulator "iPhone 16"
+```
+
+These examples may also be run on your host machine without Swift Bundler by using SwiftPM:
+
+```sh
+swift run CounterExample
+```
+
+However, resources may not be loaded as expected, and features like deep linking may not work. This method also does not support running on iOS or tvOS.
 
 The documentation contains [a detailed list of all examples](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/examples)
 
