@@ -194,7 +194,7 @@ public protocol AppBackend: Sendable {
     /// A default implementation is provided. It uses the backend's reported
     /// device class and looks up the text style in a lookup table derived
     /// from Apple's typography guidelines. See ``TextStyle/resolve(for:)``.
-    @Sendable func resolveTextStyle(_ textStyle: Font.TextStyle) -> Font.TextStyle.Resolved
+    func resolveTextStyle(_ textStyle: Font.TextStyle) -> Font.TextStyle.Resolved
 
     /// Computes a window's environment based off the root environment. This may involve
     /// updating ``EnvironmentValues/windowScaleFactor`` etc.
@@ -684,7 +684,6 @@ public protocol AppBackend: Sendable {
 }
 
 extension AppBackend {
-    @Sendable
     public func resolveTextStyle(
         _ textStyle: Font.TextStyle
     ) -> Font.TextStyle.Resolved {

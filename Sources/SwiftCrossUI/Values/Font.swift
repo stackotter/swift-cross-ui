@@ -217,9 +217,10 @@ public struct Font: Hashable, Sendable {
     public struct Context: Sendable {
         var overlay: Font.Overlay
         var deviceClass: DeviceClass
-        var resolveTextStyle: @Sendable (TextStyle) -> TextStyle.Resolved
+        var resolveTextStyle: @MainActor @Sendable (TextStyle) -> TextStyle.Resolved
     }
 
+    @MainActor
     package func resolve(in context: Context) -> Resolved {
         let emphasizedWeight: Weight
         var resolved: Resolved

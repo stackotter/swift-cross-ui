@@ -28,7 +28,7 @@ extension Font {
 
 extension Font.TextStyle {
     /// A text style's resolved properties.
-    public struct Resolved {
+    public struct Resolved: Sendable {
         public var pointSize: Double
         public var weight: Font.Weight = .regular
         public var emphasizedWeight: Font.Weight

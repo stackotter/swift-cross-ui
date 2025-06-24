@@ -27,17 +27,19 @@ public struct EnvironmentValues {
     /// A font resolution context derived from the current environment.
     ///
     /// Essentially just a subset of the environment.
+    @MainActor
     public var fontResolutionContext: Font.Context {
         Font.Context(
             overlay: fontOverlay,
             deviceClass: backend.deviceClass,
-            resolveTextStyle: backend.resolveTextStyle(_:)
+            resolveTextStyle: { backend.resolveTextStyle($0) }
         )
     }
 
     /// The current font resolved to a form suitable for rendering. Just a
     /// helper method for our own backends. We haven't made this public because
     /// it would be weird to have two pretty equivalent ways of resolving fonts.
+    @MainActor
     package var resolvedFont: Font.Resolved {
         font.resolve(in: fontResolutionContext)
     }
