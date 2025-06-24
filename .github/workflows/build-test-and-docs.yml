@@ -41,6 +41,7 @@ jobs:
         cd Examples && \
         swift build --target GtkBackend && \
         swift build --target Gtk3Backend && \
+        swift build --target GtkExample && \
         swift build --target CounterExample && \
         swift build --target ControlsExample && \
         swift build --target RandomNumberGeneratorExample && \
@@ -51,8 +52,9 @@ jobs:
         swift build --target StressTestExample && \
         swift build --target SpreadsheetExample && \
         swift build --target NotesExample && \
-        swift build --target GtkExample && \
-        swift build --target PathsExample
+        swift build --target PathsExample && \
+        swift build --target WebViewExample && \
+        swift build --target AdvancedCustomizationExample
 
     - name: Test
       run: swift test --test-product swift-cross-uiPackageTests
@@ -104,6 +106,8 @@ jobs:
             buildtarget StressTestExample
             buildtarget NotesExample
             buildtarget PathsExample
+            buildtarget WebViewExample
+            buildtarget AdvancedCustomizationExample
 
             if [ $device_type != TV ]; then
               # Slider is not implemented for tvOS
@@ -165,6 +169,8 @@ jobs:
         buildtarget PathsExample
         buildtarget ControlsExample
         buildtarget RandomNumberGeneratorExample
+        buildtarget WebViewExample
+        buildtarget AdvancedCustomizationExample
         # TODO test whether this works on Catalyst
         # buildtarget SplitExample
 
@@ -295,6 +301,7 @@ jobs:
     - name: Build examples
       working-directory: ./Examples
       run: |
+        swift build --target GtkExample && \
         swift build --target CounterExample && \
         swift build --target ControlsExample && \
         swift build --target RandomNumberGeneratorExample && \
@@ -305,7 +312,8 @@ jobs:
         swift build --target StressTestExample && \
         swift build --target SpreadsheetExample && \
         swift build --target NotesExample && \
-        swift build --target GtkExample
+        swift build --target PathsExample && \
+        swift build --target AdvancedCustomizationExample
 
     - name: Test
       run: swift test --test-product swift-cross-uiPackageTests
