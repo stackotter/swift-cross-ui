@@ -1743,6 +1743,7 @@ extension EnvironmentValues {
         return brush
     }
 
+    @MainActor
     func apply(to control: WinUI.Control) {
         let resolvedFont = resolvedFont
         control.fontSize = resolvedFont.pointSize
@@ -1757,6 +1758,7 @@ extension EnvironmentValues {
         }
     }
 
+    @MainActor
     func apply(to textBlock: WinUI.TextBlock) {
         let resolvedFont = resolvedFont
         textBlock.fontSize = resolvedFont.pointSize
