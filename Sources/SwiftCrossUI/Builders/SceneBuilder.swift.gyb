@@ -1,3 +1,5 @@
+// This file was generated using gyb. Do not edit it directly. Edit
+// SceneBuilder.swift.gyb instead.
 %{
 maximum_scene_count = 20
 }%
@@ -11,16 +13,8 @@ public struct SceneBuilder {
     }
     %for i in range(2, maximum_scene_count + 1):
 
-    public static func buildBlock<
-        ${",\n        ".join("Scene%d: Scene" % j for j in range(i))}
-    >(
-        ${",\n        ".join("_ scene%d: Scene%d" % (j, j) for j in range(i))}
-    ) -> TupleScene${i}<
-        ${",\n        ".join("Scene%d" % j for j in range(i))}
-    > {
-        return TupleScene${i}(
-            ${",\n            ".join("scene%d" % j for j in range(i))}
-        )
+    public static func buildBlock<${", ".join("Scene%d: Scene" % j for j in range(i))}>(${", ".join("_ scene%d: Scene%d" % (j, j) for j in range(i))}) -> TupleScene${i}<${", ".join("Scene%d" % j for j in range(i))}> {
+        return TupleScene${i}(${", ".join("scene%d" % j for j in range(i))})
     }
     %end
 }

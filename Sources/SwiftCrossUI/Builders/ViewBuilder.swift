@@ -1,3 +1,6 @@
+// This file was generated using gyb. Do not edit it directly. Edit
+// ViewBuilder.swift.gyb instead.
+
 /// A result builder used to compose views together into composite views in
 /// a declarative manner.
 @resultBuilder

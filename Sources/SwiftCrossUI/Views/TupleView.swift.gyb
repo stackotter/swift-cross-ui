@@ -1,6 +1,61 @@
+// This file was generated using gyb. Do not edit it directly. Edit
+// TupleView.swift.gyb instead.
 %{
 maximum_view_count = 20
 }%
+
+@MainActor
+private func layoutableChild<V: View>(
+    node: AnyViewGraphNode<V>,
+    view: V
+) -> LayoutSystem.LayoutableChild {
+    LayoutSystem.LayoutableChild(
+        update: { proposedSize, environment, dryRun in
+            node.update(
+                with: view,
+                proposedSize: proposedSize,
+                environment: environment,
+                dryRun: dryRun
+            )
+        },
+        tag: "\(type(of: view))"
+    )
+}
+
+/// Just a vessel for some default implementations to compress this generated code.
+@MainActor
+protocol TupleView: TypeSafeView {}
+
+extension TupleView {
+    @MainActor
+    func asWidget<Backend: AppBackend>(
+        _ children: Children,
+        backend: Backend
+    ) -> Backend.Widget {
+        let group = Group(content: self)
+        return group.asWidget(children, backend: backend)
+    }
+
+    @MainActor
+    func update<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: Children,
+        proposedSize: SIMD2<Int>,
+        environment: EnvironmentValues,
+        backend: Backend,
+        dryRun: Bool
+    ) -> ViewUpdateResult {
+        let group = Group(content: self)
+        return group.update(
+            widget,
+            children: children,
+            proposedSize: proposedSize,
+            environment: environment,
+            backend: backend,
+            dryRun: dryRun
+        )
+    }
+}
 
 % for i in range(maximum_view_count):
 %{
@@ -31,7 +86,7 @@ extension ${view}: View {
     public typealias Content = EmptyView
 }
 
-extension ${view}: TypeSafeView {
+extension ${view}: TupleView {
     typealias Children = TupleViewChildren${i + 1}<${children_type_parameters}>
 
     func children<Backend: AppBackend>(
@@ -40,12 +95,8 @@ extension ${view}: TypeSafeView {
         environment: EnvironmentValues
     ) -> Children {
         return Children(
-            % for j in range(i + 1):
-            view${j},
-            % end
-            backend: backend,
-            snapshots: snapshots,
-            environment: environment
+            ${" ".join("view%d," % j for j in range(i + 1))}
+            backend: backend, snapshots: snapshots, environment: environment
         )
     }
 
@@ -53,49 +104,10 @@ extension ${view}: TypeSafeView {
         backend: Backend,
         children: Children
     ) -> [LayoutSystem.LayoutableChild] {
-        var layoutableChildren: [LayoutSystem.LayoutableChild] = []
-        % for j in range(i + 1):
-        layoutableChildren.append(
-            LayoutSystem.LayoutableChild(
-                update: { proposedSize, environment, dryRun in
-                    children.child${j}.update(
-                        with: view${j},
-                        proposedSize: proposedSize,
-                        environment: environment,
-                        dryRun: dryRun
-                    )
-                },
-                tag: "\(type(of: view${j}))"
-            )
-        )
-        % end
-        return layoutableChildren
+        [
+            % for j in range(i + 1):
+            layoutableChild(node: children.child${j}, view: view${j}),
+            % end
+        ]
     }
-
-    func asWidget<Backend: AppBackend>(
-        _ children: Children,
-        backend: Backend
-    ) -> Backend.Widget {
-        let group = Group(content: self)
-        return group.asWidget(children, backend: backend)
-    }
-
-    func update<Backend: AppBackend>(
-        _ widget: Backend.Widget,
-        children: Children,
-        proposedSize: SIMD2<Int>,
-        environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        let group = Group(content: self)
-        return group.update(
-            widget,
-            children: children,
-            proposedSize: proposedSize,
-            environment: environment,
-            backend: backend,
-            dryRun: dryRun
-        )
-    }    
 }
