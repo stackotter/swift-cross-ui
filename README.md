@@ -66,11 +66,11 @@ import SwiftCrossUI
 import DefaultBackend
 
 @main
-struct CounterApp: App {
+struct YourApp: App {
     @State var count = 0
 
     var body: some Scene {
-        WindowGroup("CounterApp") {
+        WindowGroup("YourApp") {
             HStack {
                 Button("-") { count -= 1 }
                 Text("Count: \(count)")
@@ -80,16 +80,34 @@ struct CounterApp: App {
     }
 }
 ```
+Figure 2: *Sources/YourApp/YourApp.swift*
 
-Clone the SwiftCrossUI repository to test out this example, and many more;
+## More examples
+
+The SwiftCrossUI repository contains the above example and many more. The documentation hosts [a detailed list of all examples](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/examples).
+
+Running the examples requires [Swift Bundler](https://github.com/stackotter/swift-bundler), which provides consistent behavior across platforms and enables running on iOS/tvOS devices and simulators.
+
+To install Swift Bundler, follow [its official installation instructions](https://github.com/stackotter/swift-bundler?tab=readme-ov-file#installation-).
 
 ```sh
 git clone https://github.com/stackotter/swift-cross-ui
 cd swift-cross-ui/Examples
-swift run CounterExample
+
+# Run on host machine
+swift-bundler run CounterExample
+# Run on a connected device with "iPhone" in its name (macOS only)
+swift-bundler run CounterExample --device iPhone
+# Run on a simulator with "iPhone 16" in its name (macOS only)
+swift-bundler run CounterExample --simulator "iPhone 16"
 ```
 
-The documentation contains [a detailed list of all examples](https://stackotter.github.io/swift-cross-ui/documentation/swiftcrossui/examples)
+These examples may also be run using SwiftPM. However, resources may not be loaded as expected, and features such as deep linking may not work. You also won't be able to run the examples on iOS or tvOS using this method.
+
+```sh
+# Non-recommended method
+swift run CounterExample
+```
 
 ## Backends
 
