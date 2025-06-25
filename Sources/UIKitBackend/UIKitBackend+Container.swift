@@ -60,6 +60,8 @@ final class ScrollWidget: ContainerWidget {
     public func updateScrollContainer(environment: EnvironmentValues) {
         #if os(iOS)
             scrollView.keyboardDismissMode = switch environment.scrollDismissesKeyboardMode {
+                case .automatic:
+                    .interactive
                 case .immediately:
                     .onDrag
                 case .interactively:

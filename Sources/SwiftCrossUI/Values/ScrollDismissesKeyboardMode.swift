@@ -3,6 +3,14 @@
 /// Use this type in a call to the ``View/scrollDismissesKeyboard(_:)``
 /// modifier to specify the dismissal behavior of scrollable views.
 public enum ScrollDismissesKeyboardMode: Sendable {
+    /// Determine the mode automatically based on the surrounding context.
+    ///
+    /// Currently, this behaves the same as ``ScrollDismissesKeyboardMode/interactively``.
+    /// In the future, it may adapt dynamically based on the context, similar to how
+    /// SwiftUI's `.automatic` works (e.g., using `.interactively` in some views and
+    /// `.immediately` in others). Using this value avoids source-breaking changes later on.
+    case automatic
+
     /// Dismiss the keyboard as soon as scrolling starts.
     case immediately
 

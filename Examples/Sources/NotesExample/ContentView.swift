@@ -142,7 +142,6 @@ struct ContentView: View {
                             .padding()
                             .background(textEditorBackground)
                             .cornerRadius(4)
-                            .scrollDismissesKeyboard(.interactively)
                     }
                 }
                 .padding()

@@ -268,8 +268,6 @@ public protocol AppBackend {
     ///
     /// This method is primarily used on iOS to apply environment changes
     /// that affect the scroll view’s behavior, such as keyboard dismissal mode.
-    /// It allows the backend to update UIKit-specific properties (e.g. `keyboardDismissMode`)
-    /// when the environment changes.
     ///
     /// - Parameters:
     ///   - scrollView: The scroll container widget previously created by `createScrollContainer(for:)`.
