@@ -1,5 +1,5 @@
 %{
-maximum_scene_count = 10
+maximum_scene_count = 20
 }%
 
 %for i in range(2, maximum_scene_count + 1):

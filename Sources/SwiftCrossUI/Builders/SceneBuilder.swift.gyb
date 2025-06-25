@@ -1,5 +1,5 @@
 %{
-maximum_scene_count = 10
+maximum_scene_count = 20
 }%
 
 /// Builds an app's root scene by composing other scenes together.

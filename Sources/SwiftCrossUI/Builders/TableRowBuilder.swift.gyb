@@ -1,5 +1,5 @@
 %{
-maximum_column_count = 10
+maximum_column_count = 20
 }%
 
 /// A result builder for constructing a collection of table columns.

@@ -1,5 +1,5 @@
 %{
-maximum_view_count = 10
+maximum_view_count = 20
 }%
 
 % for i in range(maximum_view_count):

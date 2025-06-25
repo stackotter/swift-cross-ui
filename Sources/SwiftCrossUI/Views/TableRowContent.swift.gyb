@@ -1,5 +1,5 @@
 %{
-maximum_column_count = 10
+maximum_column_count = 20
 }%
 
 public protocol TableRowContent<RowValue> {

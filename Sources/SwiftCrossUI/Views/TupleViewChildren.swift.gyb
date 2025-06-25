@@ -1,8 +1,8 @@
 %{
-maximum_child_count = 10
+maximum_child_count = 20
 }%
 
-% for i in range(10):
+% for i in range(maximum_child_count):
 %{
 children = []
 for j in range(i + 1):
