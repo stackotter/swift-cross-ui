@@ -30,13 +30,15 @@ struct ControlsApp: App {
                     }
                     .padding(.bottom, 20)
 
-                    VStack {
-                        Text("Toggle button")
-                        Toggle("Toggle me!", active: $exampleButtonState)
-                            .toggleStyle(.button)
-                        Text("Currently enabled: \(exampleButtonState)")
-                    }
-                    .padding(.bottom, 20)
+                    #if !canImport(UIKitBackend)
+                        VStack {
+                            Text("Toggle button")
+                            Toggle("Toggle me!", active: $exampleButtonState)
+                                .toggleStyle(.button)
+                            Text("Currently enabled: \(exampleButtonState)")
+                        }
+                        .padding(.bottom, 20)
+                    #endif
 
                     VStack {
                         Text("Toggle switch")
@@ -45,12 +47,14 @@ struct ControlsApp: App {
                         Text("Currently enabled: \(exampleSwitchState)")
                     }
 
-                    VStack {
-                        Text("Checkbox")
-                        Toggle("Toggle me:", active: $exampleCheckboxState)
-                            .toggleStyle(.checkbox)
-                        Text("Currently enabled: \(exampleCheckboxState)")
-                    }
+                    #if !canImport(UIKitBackend)
+                        VStack {
+                            Text("Checkbox")
+                            Toggle("Toggle me:", active: $exampleCheckboxState)
+                                .toggleStyle(.checkbox)
+                            Text("Currently enabled: \(exampleCheckboxState)")
+                        }
+                    #endif
 
                     VStack {
                         Text("Slider")

@@ -318,17 +318,22 @@ extension UIKitBackend {
                 textEditorWidget.child.inputAccessoryView = nil
             }
 
-            textEditorWidget.child.alwaysBounceVertical = environment.scrollDismissesKeyboardMode != .never
-            textEditorWidget.child.keyboardDismissMode = switch environment.scrollDismissesKeyboardMode {
-                case .automatic:
-                    textEditorWidget.child.inputAccessoryView == nil ? .interactive : .interactiveWithAccessory
-                case .immediately:
-                    textEditorWidget.child.inputAccessoryView == nil ? .onDrag : .onDragWithAccessory
-                case .interactively:
-                    textEditorWidget.child.inputAccessoryView == nil ? .interactive : .interactiveWithAccessory
-                case .never:
-                    .none
-            }
+            textEditorWidget.child.alwaysBounceVertical =
+                environment.scrollDismissesKeyboardMode != .never
+            textEditorWidget.child.keyboardDismissMode =
+                switch environment.scrollDismissesKeyboardMode {
+                    case .automatic:
+                        textEditorWidget.child.inputAccessoryView == nil
+                            ? .interactive : .interactiveWithAccessory
+                    case .immediately:
+                        textEditorWidget.child.inputAccessoryView == nil
+                            ? .onDrag : .onDragWithAccessory
+                    case .interactively:
+                        textEditorWidget.child.inputAccessoryView == nil
+                            ? .interactive : .interactiveWithAccessory
+                    case .never:
+                        .none
+                }
         #endif
     }
 
@@ -409,7 +414,7 @@ extension UIKitBackend {
         }
     }
 
-    #if os(iOS)
+    #if os(iOS) || os(visionOS)
         public func createSlider() -> Widget {
             SliderWidget()
         }
