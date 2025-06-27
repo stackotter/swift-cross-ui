@@ -143,6 +143,7 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
                 hasVerticalScrollBar: hasVerticalScrollBar,
                 hasHorizontalScrollBar: hasHorizontalScrollBar
             )
+            backend.updateScrollContainer(widget, environment: environment)
         } else {
             finalResult = childResult
         }

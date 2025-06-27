@@ -317,6 +317,18 @@ extension UIKitBackend {
             } else {
                 textEditorWidget.child.inputAccessoryView = nil
             }
+
+            textEditorWidget.child.alwaysBounceVertical = environment.scrollDismissesKeyboardMode != .never
+            textEditorWidget.child.keyboardDismissMode = switch environment.scrollDismissesKeyboardMode {
+                case .automatic:
+                    textEditorWidget.child.inputAccessoryView == nil ? .interactive : .interactiveWithAccessory
+                case .immediately:
+                    textEditorWidget.child.inputAccessoryView == nil ? .onDrag : .onDragWithAccessory
+                case .interactively:
+                    textEditorWidget.child.inputAccessoryView == nil ? .interactive : .interactiveWithAccessory
+                case .never:
+                    .none
+            }
         #endif
     }
 

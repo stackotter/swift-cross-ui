@@ -56,6 +56,21 @@ final class ScrollWidget: ContainerWidget {
         scrollView.showsVerticalScrollIndicator = hasVerticalScrollBar
         scrollView.showsHorizontalScrollIndicator = hasHorizontalScrollBar
     }
+
+    public func updateScrollContainer(environment: EnvironmentValues) {
+        #if os(iOS)
+            scrollView.keyboardDismissMode = switch environment.scrollDismissesKeyboardMode {
+                case .automatic:
+                    .interactive
+                case .immediately:
+                    .onDrag
+                case .interactively:
+                    .interactive
+                case .never:
+                    .none
+            }
+        #endif
+    }
 }
 
 extension UIKitBackend {
@@ -119,6 +134,11 @@ extension UIKitBackend {
 
     public func createScrollContainer(for child: Widget) -> Widget {
         ScrollWidget(child: child)
+    }
+
+    public func updateScrollContainer(_ scrollView: Widget, environment: EnvironmentValues) {
+        let scrollViewWidget = scrollView as! ScrollWidget
+        scrollViewWidget.updateScrollContainer(environment: environment)
     }
 
     public func setScrollBarPresence(

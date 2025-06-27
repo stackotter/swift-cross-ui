@@ -265,6 +265,18 @@ public protocol AppBackend: Sendable {
 
     /// Creates a scrollable single-child container wrapping the given widget.
     func createScrollContainer(for child: Widget) -> Widget
+    /// Updates a scroll container with environment-specific values.
+    ///
+    /// This method is primarily used on iOS to apply environment changes
+    /// that affect the scroll view’s behavior, such as keyboard dismissal mode.
+    ///
+    /// - Parameters:
+    ///   - scrollView: The scroll container widget previously created by `createScrollContainer(for:)`.
+    ///   - environment: The current `EnvironmentValues` to apply.
+    func updateScrollContainer(
+        _ scrollView: Widget,
+        environment: EnvironmentValues
+    )
     /// Sets the presence of scroll bars along each axis of a scroll container.
     func setScrollBarPresence(
         ofScrollContainer scrollView: Widget,
@@ -738,6 +750,10 @@ extension AppBackend {
     }
 
     public func createScrollContainer(for child: Widget) -> Widget {
+        todo()
+    }
+
+    public func updateScrollContainer(_ scrollView: Widget, environment: EnvironmentValues) {
         todo()
     }
 

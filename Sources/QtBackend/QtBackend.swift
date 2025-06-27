@@ -108,6 +108,8 @@ public struct QtBackend: AppBackend {
         }
     }
 
+    public func updateScrollContainer(_ scrollView: Widget, environment: EnvironmentValues) {}
+
     public func setSpacing(ofHStack widget: Widget, to spacing: Int) {
         (widget.layout as! QHBoxLayout).spacing = Int32(spacing)
     }

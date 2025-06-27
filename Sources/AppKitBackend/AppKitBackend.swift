@@ -861,6 +861,8 @@ public final class AppKitBackend: AppBackend {
         return scrollView
     }
 
+    public func updateScrollContainer(_ scrollView: Widget, environment: EnvironmentValues) {}
+
     public func setScrollBarPresence(
         ofScrollContainer scrollView: Widget,
         hasVerticalScrollBar: Bool,

@@ -80,6 +80,9 @@ public struct EnvironmentValues {
     /// Whether user interaction is enabled. Set by ``View/disabled(_:)``.
     public var isEnabled: Bool
 
+    /// The way that scrollable content interacts with the software keyboard.
+    public var scrollDismissesKeyboardMode: ScrollDismissesKeyboardMode
+
     /// Called by view graph nodes when they resize due to an internal state
     /// change and end up changing size. Each view graph node sets its own
     /// handler when passing the environment on to its children, setting up
@@ -204,6 +207,7 @@ public struct EnvironmentValues {
         listStyle = .default
         toggleStyle = .button
         isEnabled = true
+        scrollDismissesKeyboardMode = .automatic
     }
 
     /// Returns a copy of the environment with the specified property set to the

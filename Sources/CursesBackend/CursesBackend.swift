@@ -84,6 +84,8 @@ public final class CursesBackend: AppBackend {
 
     public func setSpacing(ofHStack container: Widget, to spacing: Int) {}
 
+    public func updateScrollContainer(_ scrollView: Widget, environment: EnvironmentValues) {}
+
     public func createTextView() -> Widget {
         let label = Label("")
         label.width = Dim.fill()
