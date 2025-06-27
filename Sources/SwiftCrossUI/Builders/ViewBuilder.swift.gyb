@@ -1,5 +1,7 @@
+// This file was generated using gyb. Do not edit it directly. Edit
+// ViewBuilder.swift.gyb instead.
 %{
-maximum_view_count = 10
+maximum_view_count = 20
 }%
 
 /// A result builder used to compose views together into composite views in
