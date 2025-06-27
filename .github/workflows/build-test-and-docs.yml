@@ -65,6 +65,7 @@ jobs:
           - iPhone
           - iPad
           - TV
+          - Vision
     steps:
     - name: Force Xcode 15.4
       run: sudo xcode-select -switch /Applications/Xcode_15.4.app

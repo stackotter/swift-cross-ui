@@ -5,10 +5,27 @@ final class RootViewController: UIViewController {
     var resizeHandler: ((CGSize) -> Void)?
     private var childWidget: (any WidgetProtocol)?
 
-    init(backend: UIKitBackend) {
-        self.backend = backend
-        super.init(nibName: nil, bundle: nil)
-    }
+    #if os(visionOS)
+        init(backend: UIKitBackend) {
+            self.backend = backend
+            super.init(nibName: nil, bundle: nil)
+
+            registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
+                (self: RootViewController, _: UITraitCollection) in
+                self.backend.onTraitCollectionChange?()
+            }
+        }
+    #else
+        init(backend: UIKitBackend) {
+            self.backend = backend
+            super.init(nibName: nil, bundle: nil)
+        }
+
+        override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+            super.traitCollectionDidChange(previousTraitCollection)
+            backend.onTraitCollectionChange?()
+        }
+    #endif
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
@@ -27,11 +44,6 @@ final class RootViewController: UIViewController {
     ) {
         super.viewWillTransition(to: size, with: coordinator)
         resizeHandler?(size)
-    }
-
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        backend.onTraitCollectionChange?()
     }
 
     func setChild(to child: some WidgetProtocol) {
@@ -110,9 +122,11 @@ extension UIKitBackend {
     }
 
     public func isWindowProgrammaticallyResizable(_ window: Window) -> Bool {
-        // On iPad, some windows are user-resizable, but UIKit windows are never
-        // programmatically resizable.
-        false
+        #if os(visionOS)
+            true
+        #else
+            false
+        #endif
     }
 
     public func setResizability(ofWindow window: Window, to resizable: Bool) {
@@ -120,9 +134,13 @@ extension UIKitBackend {
     }
 
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
-        print(
-            "UIKitBackend: ignoring \(#function) call. Current window size: \(window.bounds.width) x \(window.bounds.height); proposed size: \(newSize.x) x \(newSize.y)"
-        )
+        #if os(visionOS)
+            window.bounds.size = CGSize(width: CGFloat(newSize.x), height: CGFloat(newSize.y))
+        #else
+            print(
+                "UIKitBackend: ignoring \(#function) call. Current window size: \(window.bounds.width) x \(window.bounds.height); proposed size: \(newSize.x) x \(newSize.y)"
+            )
+        #endif
     }
 
     public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {

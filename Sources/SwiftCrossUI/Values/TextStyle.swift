@@ -73,7 +73,7 @@ extension Font.TextStyle {
         .desktop: desktopTextStyles,
         .phone: mobileTextStyles,
         .tablet: mobileTextStyles,
-        .tv: tvTextStyles
+        .tv: tvTextStyles,
     ]
 
     private static let desktopTextStyles: [Self: Resolved] = [

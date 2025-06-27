@@ -27,15 +27,17 @@ public final class UIKitBackend: AppBackend {
         switch UIDevice.current.userInterfaceIdiom {
             case .phone:
                 .phone
-            case .pad:
+            case .pad, .vision:
                 .tablet
             case .tv:
                 .tv
             case .mac:
                 .desktop
-            case .unspecified, .carPlay, .vision:
+            case .unspecified, .carPlay:
                 // Seems like the safest fallback for now given that we don't
                 // explicitly support these devices.
+                .tablet
+            @unknown default:
                 .tablet
         }
     }

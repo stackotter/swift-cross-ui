@@ -9,6 +9,7 @@ import UIKit
 /// containing the ``View/keyboardToolbar(animateChanges:body:)`` modifier is updated, so any
 /// state necessary for the toolbar should live in the view itself.
 @available(tvOS, unavailable)
+@available(visionOS, unavailable)
 public protocol ToolbarItem {
     /// The type of bar button item used to represent this item in UIKit.
     associatedtype ItemType: UIBarButtonItem
@@ -23,6 +24,7 @@ public protocol ToolbarItem {
 }
 
 @available(tvOS, unavailable)
+@available(visionOS, unavailable)
 @resultBuilder
 public enum ToolbarBuilder {
     public enum Component {
@@ -61,6 +63,7 @@ public enum ToolbarBuilder {
 }
 
 @available(tvOS, unavailable)
+@available(visionOS, unavailable)
 extension Button: ToolbarItem {
     public final class ItemType: UIBarButtonItem {
         var callback: @MainActor @Sendable () -> Void
@@ -100,6 +103,7 @@ extension Button: ToolbarItem {
 // See https://forums.swift.org/t/contradictory-available-s-are-required/78831
 @available(iOS 14, macCatalyst 14, *)
 @available(tvOS, unavailable, introduced: 14)
+@available(visionOS, unavailable)
 extension Spacer: ToolbarItem {
     public func createBarButtonItem() -> UIBarButtonItem {
         if let minLength, minLength > 0 {
@@ -120,6 +124,7 @@ extension Spacer: ToolbarItem {
 }
 
 @available(tvOS, unavailable)
+@available(visionOS, unavailable)
 struct FixedWidthToolbarItem<Base: ToolbarItem>: ToolbarItem {
     var base: Base
     var width: Int?
@@ -143,6 +148,7 @@ struct FixedWidthToolbarItem<Base: ToolbarItem>: ToolbarItem {
 // Setting width on a flexible space is ignored, you must use a fixed space from the outset
 @available(iOS 14, macCatalyst 14, *)
 @available(tvOS, unavailable, introduced: 14)
+@available(visionOS, unavailable)
 struct FixedWidthSpacerItem: ToolbarItem {
     var width: Int?
 
@@ -160,6 +166,7 @@ struct FixedWidthSpacerItem: ToolbarItem {
 }
 
 @available(tvOS, unavailable)
+@available(visionOS, unavailable)
 struct ColoredToolbarItem<Base: ToolbarItem>: ToolbarItem {
     var base: Base
     var color: Color
@@ -177,6 +184,7 @@ struct ColoredToolbarItem<Base: ToolbarItem>: ToolbarItem {
 }
 
 @available(tvOS, unavailable)
+@available(visionOS, unavailable)
 extension ToolbarItem {
     /// A toolbar item with the specified width.
     ///
@@ -199,6 +207,7 @@ extension ToolbarItem {
 }
 
 @available(tvOS, unavailable)
+@available(visionOS, unavailable)
 indirect enum ToolbarItemLocation: Hashable {
     case expression(inside: ToolbarItemLocation?)
     case block(index: Int, inside: ToolbarItemLocation?)
@@ -209,6 +218,7 @@ indirect enum ToolbarItemLocation: Hashable {
 }
 
 @available(tvOS, unavailable)
+@available(visionOS, unavailable)
 final class KeyboardToolbar: UIToolbar {
     var locations: [ToolbarItemLocation: UIBarButtonItem] = [:]
 
@@ -286,11 +296,13 @@ final class KeyboardToolbar: UIToolbar {
 }
 
 @available(tvOS, unavailable)
+@available(visionOS, unavailable)
 enum ToolbarKey: EnvironmentKey {
     static let defaultValue: ((KeyboardToolbar) -> Void)? = nil
 }
 
 @available(tvOS, unavailable)
+@available(visionOS, unavailable)
 extension EnvironmentValues {
     var updateToolbar: ((KeyboardToolbar) -> Void)? {
         get { self[ToolbarKey.self] }
@@ -305,6 +317,7 @@ extension View {
     ///     updated
     ///   - body: The toolbar's contents
     @available(tvOS, unavailable)
+    @available(visionOS, unavailable)
     public func keyboardToolbar(
         animateChanges: Bool = true,
         @ToolbarBuilder body: @escaping () -> ToolbarBuilder.FinalResult
