@@ -20,6 +20,7 @@ A few examples are included with SwiftCrossUI to demonstrate some of its basic f
 - `NotesExample`, an app showcasing multi-line text editing and a more realistic usage of SwiftCrossUI.
 - `PathsExample`, an app showcasing the use of ``Path`` to draw various shapes.
 - `WebViewExample`, an app showcasing the use of ``WebView`` to display websites. Only works on Apple platforms so far.
+- `AdvancedCustomizationExample`, an app showcasing SwiftCrossUI's more advanced APIs for customizing the underlying native views of your app.
 
 ## Running examples
 
