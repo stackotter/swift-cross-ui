@@ -22,6 +22,10 @@ let package = Package(
             url: "https://github.com/stackotter/swift-bundler",
             revision: "d42d7ffda684cfed9edcfd3581b8127f1dc55c2e"
         ),
+        .package(
+            url: "https://github.com/MacPaw/OpenAI",
+            from: "0.4.4"
+        ),
     ],
     targets: [
         .executableTarget(
@@ -72,6 +76,12 @@ let package = Package(
         .executableTarget(
             name: "WebViewExample",
             dependencies: exampleDependencies
+        ),
+        .executableTarget(
+            name: "ChatbotExample",
+            dependencies: exampleDependencies + [
+                .product(name: "OpenAI", package: "OpenAI")
+            ]
         )
     ]
 )
