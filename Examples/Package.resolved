@@ -73,6 +73,15 @@
       }
     },
     {
+      "identity" : "openai",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MacPaw/OpenAI",
+      "state" : {
+        "revision" : "cedec2fc80aedafa332f7395b7004f79f547c794",
+        "version" : "0.4.4"
+      }
+    },
+    {
       "identity" : "pathkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kylef/PathKit.git",
@@ -198,6 +207,15 @@
       }
     },
     {
+      "identity" : "swift-http-types",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-http-types",
+      "state" : {
+        "revision" : "a0a57e949a8903563aba4615869310c0ebf14c03",
+        "version" : "1.4.0"
+      }
+    },
+    {
       "identity" : "swift-image-formats",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-image-formats",
@@ -240,6 +258,15 @@
       "state" : {
         "revision" : "f6230d37089fbb52612caf338dc6671e027817b0",
         "version" : "2.76.0"
+      }
+    },
+    {
+      "identity" : "swift-openapi-runtime",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-openapi-runtime",
+      "state" : {
+        "revision" : "8f33cc5dfe81169fb167da73584b9c72c3e8bc23",
+        "version" : "1.8.2"
       }
     },
     {
