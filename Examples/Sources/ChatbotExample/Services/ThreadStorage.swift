@@ -3,7 +3,7 @@ import SwiftCrossUI
 
 // MARK: - Thread Storage Service
 
-class ThreadStorage: SwiftCrossUI.ObservableObject {
+class ThreadStorage {
     private let threadsKey = "chatThreads"
     private let messagesKey = "threadMessages"
     

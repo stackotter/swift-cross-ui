@@ -6,7 +6,6 @@ import Foundation
 struct ThreadSidebarView: View {
     @Binding var threads: [ChatThread]
     @Binding var selectedThread: ChatThread?
-    @Binding var showSidebar: Bool
     
     let onNewThread: () -> Void
     let onSelectThread: (ChatThread) -> Void
@@ -23,11 +22,6 @@ struct ThreadSidebarView: View {
                     .fixedSize(horizontal: true, vertical: false)
                 
                 Spacer()
-                
-                Button("×") {
-                    showSidebar = false
-                }
-                .iconButtonLargeStyle()
             }
             .padding(.horizontal, AppSpacing.xl)
             .padding(.vertical, AppSpacing.sm)
@@ -71,7 +65,6 @@ struct ThreadSidebarView: View {
         }
         .frame(maxHeight: .infinity)
         .background(AppColors.surface)
-        .frame(width: 300)
     }
 }
 

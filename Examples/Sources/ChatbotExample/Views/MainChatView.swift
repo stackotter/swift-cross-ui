@@ -30,14 +30,8 @@ struct MainChatView: View {
             // Input area
             if viewModel.isThreadSelected {
                 ChatInputView(
-                    currentMessage: Binding(
-                        get: { viewModel.currentMessage },
-                        set: { viewModel.currentMessage = $0 }
-                    ),
-                    errorMessage: Binding(
-                        get: { viewModel.errorMessage },
-                        set: { viewModel.errorMessage = $0 }
-                    ),
+                    currentMessage: viewModel.currentMessageBinding,
+                    errorMessage: viewModel.errorMessageBinding,
                     isLoading: viewModel.isLoading,
                     messageCount: viewModel.currentThreadMessages.count,
                     onSend: viewModel.sendMessage
@@ -54,14 +48,6 @@ struct ChatHeaderView: View {
     
     var body: some View {
         HStack {
-            // Sidebar toggle button (when hidden)
-            if !viewModel.showSidebar {
-                Button("☰") {
-                    viewModel.toggleSidebar()
-                }
-                .iconButtonLargeStyle()
-            }
-            
             // Thread title or placeholder
             VStack(alignment: .leading, spacing: AppSpacing.xs) {
                 if let thread = viewModel.selectedThread {

@@ -19,7 +19,7 @@ struct ModelInfo: Identifiable, Equatable {
 struct ChatSettingsDialog: View {
     @Binding var isPresented: Bool
     @Binding var selectedModel: LLM
-    @State private var model: ChatSettingsViewModel
+    @SwiftCrossUI.State private var model: ChatSettingsViewModel
     
     let onSave: () -> Void
     

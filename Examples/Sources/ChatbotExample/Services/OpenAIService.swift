@@ -4,7 +4,7 @@ import OpenAI
 
 // MARK: - OpenAI Service
 
-class OpenAIService: SwiftCrossUI.ObservableObject {
+class OpenAIService {
     private var openAI: OpenAI?
     
     func configure(apiKey: String) {

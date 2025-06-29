@@ -9,7 +9,6 @@ class ChatbotViewModel: SwiftCrossUI.ObservableObject {
     // MARK: - Published Properties
     @SwiftCrossUI.Published var selectedThread: ChatThread?
     @SwiftCrossUI.Published var threads: [ChatThread] = []
-    @SwiftCrossUI.Published var showSidebar = true
     @SwiftCrossUI.Published var currentMessage = ""
     @SwiftCrossUI.Published var selectedLLM: LLM = .gpt3_5Turbo
     @SwiftCrossUI.Published var isLoading = false
@@ -156,10 +155,6 @@ class ChatbotViewModel: SwiftCrossUI.ObservableObject {
     
     // MARK: - UI State Management
     
-    func toggleSidebar() {
-        showSidebar.toggle()
-    }
-    
     func toggleSettings() {
         showSettings.toggle()
     }
@@ -192,5 +187,51 @@ class ChatbotViewModel: SwiftCrossUI.ObservableObject {
             selectedThread = updatedThread
             loadThreads()
         }
+    }
+}
+
+// MARK: - Binding Extensions
+
+extension ChatbotViewModel {
+    var threadsBinding: Binding<[ChatThread]> {
+        Binding(
+            get: { self.threads },
+            set: { self.threads = $0 }
+        )
+    }
+    
+    var selectedThreadBinding: Binding<ChatThread?> {
+        Binding(
+            get: { self.selectedThread },
+            set: { self.selectedThread = $0 }
+        )
+    }
+    
+    var currentMessageBinding: Binding<String> {
+        Binding(
+            get: { self.currentMessage },
+            set: { self.currentMessage = $0 }
+        )
+    }
+    
+    var errorMessageBinding: Binding<String?> {
+        Binding(
+            get: { self.errorMessage },
+            set: { self.errorMessage = $0 }
+        )
+    }
+    
+    var showSettingsBinding: Binding<Bool> {
+        Binding(
+            get: { self.showSettings },
+            set: { self.showSettings = $0 }
+        )
+    }
+    
+    var selectedLLMBinding: Binding<LLM> {
+        Binding(
+            get: { self.selectedLLM },
+            set: { self.selectedLLM = $0 }
+        )
     }
 }

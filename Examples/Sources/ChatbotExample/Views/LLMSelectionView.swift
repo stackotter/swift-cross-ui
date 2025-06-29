@@ -15,9 +15,9 @@ extension Array {
 
 struct LLMSelectionView: View {
     @Binding var selectedModel: LLM
-    @State private var availableModels: [LLM] = [.gpt4_o, .gpt4_o_mini, .gpt4_turbo, .gpt4, .gpt3_5Turbo]
-    @State private var isLoading = false
-    @State private var errorMessage: String?
+    @SwiftCrossUI.State private var availableModels: [LLM] = [.gpt4_o, .gpt4_o_mini, .gpt4_turbo, .gpt4, .gpt3_5Turbo]
+    @SwiftCrossUI.State private var isLoading = false
+    @SwiftCrossUI.State private var errorMessage: String?
     
     let openAIService: OpenAIService
     
