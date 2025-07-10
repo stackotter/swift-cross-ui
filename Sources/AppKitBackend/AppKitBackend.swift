@@ -510,30 +510,44 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func setSize(of widget: Widget, to size: SIMD2<Int>) {
+        setSize(of: widget, to: ProposedViewSize(ViewSize(Double(size.x), Double(size.y))))
+    }
+
+    func setSize(of widget: Widget, to proposedSize: ProposedViewSize) {
         var foundConstraint = false
         for constraint in widget.constraints {
             if constraint.firstAnchor === widget.widthAnchor {
-                constraint.constant = CGFloat(size.x)
+                if let proposedWidth = proposedSize.width {
+                    constraint.constant = CGFloat(proposedWidth)
+                    constraint.isActive = true
+                } else {
+                    constraint.isActive = false
+                }
                 foundConstraint = true
                 break
             }
         }
 
-        if !foundConstraint {
-            widget.widthAnchor.constraint(equalToConstant: CGFloat(size.x)).isActive = true
+        if !foundConstraint, let proposedWidth = proposedSize.width {
+            widget.widthAnchor.constraint(equalToConstant: proposedWidth).isActive = true
         }
 
         foundConstraint = false
         for constraint in widget.constraints {
             if constraint.firstAnchor === widget.heightAnchor {
-                constraint.constant = CGFloat(size.y)
+                if let proposedHeight = proposedSize.height {
+                    constraint.constant = CGFloat(proposedHeight)
+                    constraint.isActive = true
+                } else {
+                    constraint.isActive = false
+                }
                 foundConstraint = true
                 break
             }
         }
 
-        if !foundConstraint {
-            widget.heightAnchor.constraint(equalToConstant: CGFloat(size.y)).isActive = true
+        if !foundConstraint, let proposedHeight = proposedSize.height {
+            widget.heightAnchor.constraint(equalToConstant: proposedHeight).isActive = true
         }
     }
 

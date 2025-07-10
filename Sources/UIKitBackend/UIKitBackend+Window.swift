@@ -24,7 +24,11 @@ final class RootViewController: UIViewController {
 
         override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
             super.traitCollectionDidChange(previousTraitCollection)
-            backend.onTraitCollectionChange?()
+
+            let previous = previousTraitCollection?.userInterfaceStyle
+            if UITraitCollection.current.userInterfaceStyle != previous {
+                backend.onTraitCollectionChange?()
+            }
         }
     #endif
 
@@ -43,8 +47,8 @@ final class RootViewController: UIViewController {
     override func viewWillTransition(
         to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator
     ) {
-        super.viewWillTransition(to: size, with: coordinator)
         resizeHandler?(size)
+        super.viewWillTransition(to: size, with: coordinator)
     }
 
     func setChild(to child: some WidgetProtocol) {
