@@ -190,11 +190,14 @@ final class ViewRepresentingWidget<Representable: UIViewRepresentable>: BaseView
     }()
 
     func update(with environment: EnvironmentValues) {
-        if context == nil {
-            context = .init(coordinator: representable.makeCoordinator(), environment: environment)
+        if var context {
+            context.environment = environment
+            representable.updateUIView(subview, context: context)
+            self.context = context
         } else {
-            context!.environment = environment
-            representable.updateUIView(subview, context: context!)
+            let context = UIViewRepresentableContext(coordinator: representable.makeCoordinator(), environment: environment)
+            self.context = context
+            representable.updateUIView(subview, context: context)
         }
     }
 
