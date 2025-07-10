@@ -11,10 +11,10 @@ on:
 
 jobs:
   macos:
-    runs-on: macos-14
-    steps: # For swift-testing (everything else works with 5.10)
-    - name: Force Xcode 16.2
-      run: sudo xcode-select -switch /Applications/Xcode_16.2.app
+    runs-on: macos-15
+    steps:
+    - name: Force Xcode 16.3 (Swift 6.1)
+      run: sudo xcode-select -switch /Applications/Xcode_16.3.app
 
     - name: Swift version
       run: swift --version
@@ -60,7 +60,7 @@ jobs:
       run: swift test --test-product swift-cross-uiPackageTests
 
   uikit:
-    runs-on: macos-14
+    runs-on: macos-15
     strategy:
       matrix:
         device-type:
@@ -69,8 +69,8 @@ jobs:
           - TV
           - Vision
     steps:
-    - name: Force Xcode 15.4
-      run: sudo xcode-select -switch /Applications/Xcode_15.4.app
+    - name: Force Xcode 16.3 (Swift 6.1)
+      run: sudo xcode-select -switch /Applications/Xcode_16.3.app
 
     - name: Swift version
       run: swift --version
@@ -135,10 +135,10 @@ jobs:
         xcodebuild-device-type: ${{ matrix.device-type }}
 
   uikit-catalyst:
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
-    - name: Force Xcode 15.4
-      run: sudo xcode-select -switch /Applications/Xcode_15.4.app
+    - name: Force Xcode 16.3 (Swift 6.1)
+      run: sudo xcode-select -switch /Applications/Xcode_16.3.app
 
     - name: Swift version
       run: swift --version
