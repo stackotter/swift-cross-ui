@@ -62,12 +62,12 @@ open class Widget: GObject {
     }
 
     open func setSizeRequest(width: Int, height: Int) {
-        gtk_widget_set_size_request(widgetPointer, Int32(width), Int32(height))
+        gtk_widget_set_size_request(widgetPointer, gint(width), gint(height))
     }
 
     public func getSizeRequest() -> Size {
-        var width: Int32 = 0
-        var height: Int32 = 0
+        var width: gint = 0
+        var height: gint = 0
         gtk_widget_get_size_request(widgetPointer, &width, &height)
         return Size(width: Int(width), height: Int(height))
     }
@@ -79,6 +79,38 @@ open class Widget: GObject {
         return (
             width: Int(naturalSize.width),
             height: Int(naturalSize.height)
+        )
+    }
+
+    public struct MeasureResult {
+        public var minimum: Int
+        public var natural: Int
+        public var minimumBaseline: Int
+        public var naturalBaseline: Int
+    }
+
+    public func measure(
+        orientation: Orientation,
+        forPerpendicularSize perpendicularSize: Int
+    ) -> MeasureResult {
+        var minimum: gint = 0
+        var natural: gint = 0
+        var minimumBaseline: gint = 0
+        var naturalBaseline: gint = 0
+        gtk_widget_measure(
+            widgetPointer,
+            orientation.toGtk(),
+            gint(perpendicularSize),
+            &minimum,
+            &natural,
+            &minimumBaseline,
+            &naturalBaseline
+        )
+        return MeasureResult(
+            minimum: Int(minimum),
+            natural: Int(natural),
+            minimumBaseline: Int(minimumBaseline),
+            naturalBaseline: Int(naturalBaseline)
         )
     }
 

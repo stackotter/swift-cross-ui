@@ -1,8 +1,9 @@
 import AppKit
 import SwiftCrossUI
 
-public struct NSViewRepresentableContext<Coordinator> {
-    public let coordinator: Coordinator
+/// The context associated with an instance of ``Representable``.
+public struct NSViewRepresentableContext<Representable: NSViewRepresentable> {
+    public let coordinator: Representable.Coordinator
     public internal(set) var environment: EnvironmentValues
 }
 
@@ -16,7 +17,7 @@ public protocol NSViewRepresentable: View where Content == Never {
 
     /// Create the initial NSView instance.
     @MainActor
-    func makeNSView(context: NSViewRepresentableContext<Coordinator>) -> NSViewType
+    func makeNSView(context: Context) -> NSViewType
 
     /// Update the view with new values.
     /// - Parameters:
@@ -27,7 +28,7 @@ public protocol NSViewRepresentable: View where Content == Never {
     @MainActor
     func updateNSView(
         _ nsView: NSViewType,
-        context: NSViewRepresentableContext<Coordinator>
+        context: Context
     )
 
     /// Make the coordinator for this view.
@@ -38,26 +39,20 @@ public protocol NSViewRepresentable: View where Content == Never {
     @MainActor
     func makeCoordinator() -> Coordinator
 
-    /// Compute the view's size.
+    /// Compute the view's preferred size for the given proposal.
     ///
     /// The default implementation uses `nsView.intrinsicContentSize` and
-    /// `nsView.sizeThatFits(_:)` to determine the return value.
+    /// `nsView.contentHuggingPriority(for:)` to determine the view's
+    /// preferred size.
     /// - Parameters:
-    ///   - proposal: The proposed frame for the view to render in.
-    ///   - nsVIew: The view being queried for its preferred size.
+    ///   - proposal: The proposed size for the view.
+    ///   - nsView: The view being queried for its preferred size.
     ///   - context: The context, including the coordinator and environment values.
-    /// - Returns: Information about the view's size. The ``SwiftCrossUI/ViewSize/size``
-    ///   property is what frame the view will actually be rendered with if the
-    ///   current layout pass is not a dry run, while the other properties are
-    ///   used to inform the layout engine how big or small the view can be. The
-    ///   ``SwiftCrossUI/ViewSize/idealSize`` property should not vary with the
-    ///   `proposal`, and should only depend on the view's contents. Pass `nil`
-    ///   for the maximum width/height if the view has no maximum size (and
-    ///   therefore may occupy the entire screen).
-    func determineViewSize(
-        for proposal: ProposedViewSize,
+    /// - Returns: The view's preferred size.
+    func sizeThatFits(
+        _ proposal: ProposedViewSize,
         nsView: NSViewType,
-        context: NSViewRepresentableContext<Coordinator>
+        context: Context
     ) -> ViewSize
 
     /// Called to clean up the view when it's removed.
@@ -65,27 +60,48 @@ public protocol NSViewRepresentable: View where Content == Never {
     /// This method is called after all AppKit lifecycle methods, such as
     /// `nsView.didMoveToSuperview()`. The default implementation does nothing.
     /// - Parameters:
-    ///   - nsVIew: The view being dismantled.
+    ///   - nsView: The view being dismantled.
     ///   - coordinator: The coordinator.
     static func dismantleNSView(_ nsView: NSViewType, coordinator: Coordinator)
 }
 
 extension NSViewRepresentable {
+    /// Context associated with the representable view.
+    public typealias Context = NSViewRepresentableContext<Self>
+}
+
+/// Default implementations.
+extension NSViewRepresentable {
     public static func dismantleNSView(_: NSViewType, coordinator _: Coordinator) {
         // no-op
     }
 
-    public func determineViewSize(
-        for proposal: ProposedViewSize,
+    public func sizeThatFits(
+        _ proposal: ProposedViewSize,
         nsView: NSViewType,
-        context _: NSViewRepresentableContext<Coordinator>
+        context _: Context
     ) -> ViewSize {
         let intrinsicSize = nsView.intrinsicContentSize
-        let sizeThatFits = nsView.fittingSize
 
+        let growsHorizontally = nsView.contentHuggingPriority(for: .horizontal) < .defaultHigh
+        let growsVertically = nsView.contentHuggingPriority(for: .vertical) < .defaultHigh
+
+        let idealWidth = intrinsicSize.width == NSView.noIntrinsicMetric
+            ? 10 : intrinsicSize.width
+        let idealHeight = intrinsicSize.height == NSView.noIntrinsicMetric
+            ? 10 : intrinsicSize.height
+
+        // When the view doesn't grow along a dimension, we use its fittingSize
+        // (rather than its intrinsicContentSize), because the intrinsicContentSize
+        // of some views (such as NSButton) are too small. In NSButton's case, the
+        // intrinsicContentSize doesn't include padding.
         return ViewSize(
-            intrinsicSize.width < 0 ? (proposal.width ?? 10) : sizeThatFits.width,
-            intrinsicSize.height < 0 ? (proposal.height ?? 10) : sizeThatFits.height
+            growsHorizontally
+                ? (proposal.width ?? idealWidth)
+                : nsView.fittingSize.width,
+            growsVertically
+                ? (proposal.height ?? idealHeight)
+                : nsView.fittingSize.height
         )
     }
 }
@@ -128,15 +144,11 @@ extension View where Self: NSViewRepresentable {
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        guard backend is AppKitBackend else {
-            fatalError("NSViewRepresentable updated by \(Backend.self)")
-        }
-
         let representingWidget = widget as! RepresentingWidget<Self>
         representingWidget.update(with: environment)
 
-        let size = representingWidget.representable.determineViewSize(
-            for: proposedSize,
+        let size = representingWidget.representable.sizeThatFits(
+            proposedSize,
             nsView: representingWidget.subview,
             context: representingWidget.context!
         )
@@ -165,7 +177,7 @@ extension NSViewRepresentable where Coordinator == Void {
 /// it's a convenient location.
 final class RepresentingWidget<Representable: NSViewRepresentable>: NSView {
     var representable: Representable
-    var context: NSViewRepresentableContext<Representable.Coordinator>?
+    var context: Representable.Context?
 
     init(representable: Representable) {
         self.representable = representable
@@ -196,14 +208,17 @@ final class RepresentingWidget<Representable: NSViewRepresentable>: NSView {
     }()
 
     func update(with environment: EnvironmentValues) {
-        if context == nil {
-            context = .init(
+        if var context {
+            context.environment = environment
+            representable.updateNSView(subview, context: context)
+            self.context = context
+        } else {
+            let context = Representable.Context(
                 coordinator: representable.makeCoordinator(),
                 environment: environment
             )
-        } else {
-            context!.environment = environment
-            representable.updateNSView(subview, context: context!)
+            self.context = context
+            representable.updateNSView(subview, context: context)
         }
     }
 

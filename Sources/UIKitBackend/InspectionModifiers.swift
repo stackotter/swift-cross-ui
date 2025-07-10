@@ -33,7 +33,7 @@ extension Button {
 extension Text {
     public func inspect(
         _ inspectionPoints: InspectionPoints = .onCreate,
-        _ action: @escaping @MainActor @Sendable (UILabel) -> Void
+        _ action: @escaping @MainActor @Sendable (UIKitBackend.TextView) -> Void
     ) -> some View {
         inspectAsWrapperWidget(inspectionPoints) { wrapper in
             action(wrapper.child)
