@@ -8,6 +8,7 @@ xcuserdata/
 DerivedData/
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 /.vscode
+/.fleet
 *.pyc
 .swiftpm
 vcpkg_installed/
