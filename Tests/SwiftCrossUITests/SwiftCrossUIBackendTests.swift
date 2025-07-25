@@ -5,7 +5,7 @@ import Testing
 #if canImport(AppKitBackend)
     @testable import AppKitBackend
 #elseif canImport(DefaultBackend)
-    /// Is this close enough to a "Mock Backend"?
+    // Is this close enough to a "Mock Backend"?
     @testable import DefaultBackend
 #endif
 
@@ -121,7 +121,7 @@ struct BackendTests {
             backend.setSize(of: view, to: result.size.size)
             backend.setSize(ofWindow: window, to: result.size.size)
 
-            // MARK: This Might be a logic error as `result` was proposed a Size of `SIMD2(200, 200)`, the maximum alloted to it's parent window
+            // MARK: This Might be a logic error as `result` was proposed a Size of `SIMD2(200, 200)`, the maximum allotted to it's parent window
             #expect(
                 result.size == ViewSize(fixedSize: SIMD2(92, 96)),
                 """
