@@ -31,16 +31,27 @@ struct InternalTests {
         .tags(.NavPath)
     )
     func CodableNavigationPath() throws {
+        let Values: [any Codable] = [
+            "a",
+            1,
+            [1,2,3],
+            5.0
+        ]
+
         /// All types are required to be a type of `Codable` to permit encoding it and `Equatable` to satisfy ``compareComponents(ofType:,_:,_:)``
         let Types: [any Codable.Type] = [
             String.self, Int.self, [Int].self, Double.self,
         ] as! [any Codable.Type]
         
+        try #require(
+            Values.count == Types.count,
+            "Test `CodableNavigationPath` is Malformed"
+        )
+
         var path = NavigationPath()
-        path.append("a")
-        path.append(1)
-        path.append([1, 2, 3])
-        path.append(5.0)
+        for value in Values {
+            path.append(value)
+        }
 
         let components = path.path(destinationTypes: Types)
 
@@ -49,8 +60,15 @@ struct InternalTests {
 
         let decodedComponents = decodedPath.path(destinationTypes: Types)
 
+        try #require(
+            decodedComponents.count == components.count,
+            "`decodedComponents` and `components` are inconsitently sized. \(decodedComponents.count) != \(components.count)"
+        )
+
         /// This Flag being on indicates that functions can have their specializations dynamically inferred.
-        /// This needs a change to Swift's Type System to work. Unrolling this loop gives the contents of the `#else` block
+        /// This needs a change to Swift's Type System to work. This Loop does not compile and is present for clarity.
+        /// Unrolling this loop gives the contents of the `#else` block,
+        /// Make sure to add a new expect clause for each new item you add
         #if ProcedurallyInferredTypes
             for (i,Type) in Types.enumerated() {
                 guard Type is any Equatable else { #expect(false, "The type in slot \(i) was not Equatable") }
