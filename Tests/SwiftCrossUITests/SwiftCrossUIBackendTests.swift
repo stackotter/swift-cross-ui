@@ -22,8 +22,8 @@ struct BackendTests {
 
         var errorDescription: String? {
             switch self {
-            case .FailedBitmapBack: "Failed to create bitmap backing"
-            case .FailedTiffRep: "Failed to create tiff representation"
+                case .FailedBitmapBack: "Failed to create bitmap backing"
+                case .FailedTiffRep: "Failed to create tiff representation"
             }
         }
     }
@@ -66,7 +66,7 @@ struct BackendTests {
                 // Simulate an update of duration `updateDuration` seconds
                 Thread.sleep(forTimeInterval: updateDuration)
             }
-            _ = cancellable // Silence warning about cancellable being unused
+            _ = cancellable  // Silence warning about cancellable being unused
 
             let start = ProcessInfo.processInfo.systemUptime
             for _ in 0..<mutationCount {

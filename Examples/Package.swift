@@ -72,6 +72,6 @@ let package = Package(
         .executableTarget(
             name: "WebViewExample",
             dependencies: exampleDependencies
-        )
+        ),
     ]
 )

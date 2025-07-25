@@ -1,9 +1,8 @@
+/// Required Imports
+import Foundation
 import Testing
 
 @testable import SwiftCrossUI
-
-/// Required Imports
-import Foundation
 
 @Suite(
     "SwiftCrossUI's Internal Types",
@@ -34,15 +33,16 @@ struct InternalTests {
         let Values: [any Codable] = [
             "a",
             1,
-            [1,2,3],
-            5.0
+            [1, 2, 3],
+            5.0,
         ]
 
         /// All types are required to be a type of `Codable` to permit encoding it and `Equatable` to satisfy ``compareComponents(ofType:,_:,_:)``
-        let Types: [any Codable.Type] = [
-            String.self, Int.self, [Int].self, Double.self,
-        ] as! [any Codable.Type]
-        
+        let Types: [any Codable.Type] =
+            [
+                String.self, Int.self, [Int].self, Double.self,
+            ] as! [any Codable.Type]
+
         try #require(
             Values.count == Types.count,
             "Test `CodableNavigationPath` is Malformed"
@@ -70,8 +70,10 @@ struct InternalTests {
         /// Unrolling this loop gives the contents of the `#else` block,
         /// Make sure to add a new expect clause for each new item you add
         #if ProcedurallyInferredTypes
-            for (i,Type) in Types.enumerated() {
-                guard Type is any Equatable else { #expect(false, "The type in slot \(i) was not Equatable") }
+            for (i, Type) in Types.enumerated() {
+                guard Type is any Equatable else {
+                    #expect(false, "The type in slot \(i) was not Equatable")
+                }
                 #expect(
                     Self.compareComponents(ofType: Type.self, components[i], decodedComponents[i]),
                     "An Issue with Navigation path data retainment occured \(components[i]) != \(decodedComponents[i])"
@@ -94,7 +96,7 @@ struct InternalTests {
                 Self.compareComponents(ofType: Double.self, components[3], decodedComponents[3]),
                 "An Issue with Navigation path data retainment occured \(components[3]) != \(decodedComponents[3])"
             )
-            // */
+        // */
         #endif
     }
 
@@ -144,22 +146,30 @@ struct InternalTests {
         // Ensure that published nested ObservableObject triggers observation
         observedChange = false
         state.publishedNestedState.count += 1
-        #expect(observedChange, "Expected nested published observable object mutation to trigger observation")
+        #expect(
+            observedChange,
+            "Expected nested published observable object mutation to trigger observation")
 
         // Ensure that replacing published nested ObservableObject triggers observation
         observedChange = false
         state.publishedNestedState = NestedState()
-        #expect(observedChange, "Expected replacing nested published observable object to trigger observation")
+        #expect(
+            observedChange,
+            "Expected replacing nested published observable object to trigger observation")
 
         // Ensure that replaced published nested ObservableObject triggers observation
         observedChange = false
         state.publishedNestedState.count += 1
-        #expect(observedChange, "Expected replaced nested published observable object mutation to trigger observation")
+        #expect(
+            observedChange,
+            "Expected replaced nested published observable object mutation to trigger observation")
 
         // Ensure that non-published nested ObservableObject doesn't trigger observation
         observedChange = false
         state.unpublishedNestedState.count += 1
-        #expect(!observedChange, "Expected nested unpublished observable object mutation to not trigger observation")
+        #expect(
+            !observedChange,
+            "Expected nested unpublished observable object mutation to not trigger observation")
 
         // Ensure that cancelling the observation prevents future observations
         cancellable.cancel()
