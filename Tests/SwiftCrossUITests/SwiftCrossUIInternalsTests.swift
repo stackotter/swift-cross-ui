@@ -2,47 +2,79 @@ import Testing
 
 @testable import SwiftCrossUI
 
-struct CounterView: View {
-    @State var count = 0
+/// Required Imports
+import Foundation
 
-    var body: some View {
-        VStack {
-            Button("Decrease") { count -= 1 }
-            Text("Count: 1")
-            Button("Increase") { count += 1 }
-        }.padding()
-    }
-}
-
-@Suite
+@Suite(
+    "SwiftCrossUI's Internal Types",
+    .tags(.Internal)
+)
 struct InternalTests {
-    /// Makes sure that ``NavigationPath`` can retain data validating them with `compareComponents`
+
+    struct CounterView: View {
+        @State var count = 0
+
+        var body: some View {
+            VStack {
+                Button("Decrease") { count -= 1 }
+                Text("Count: 1")
+                Button("Increase") { count += 1 }
+            }.padding()
+        }
+    }
+
+    // NOTE: The Test ``CodableNavigationPath`` cannot be condensed into a parameterized test
+    // or a for loop without specifiying allowed Types individually. A Macro might be useful here
+    /// Makes sure that ``NavigationPath`` can retain data validating them with `compareComponents`.
     /// ``T`` is required to be a type of `Codable` to permit encoding it and `Equatable` to satisfy ``compareComponents(ofType:,_:,_:)``
     @Test(
         "The Codable NavigationPath can accurately store Codable data",
-        arguments: zip(
-            ["a", 1, [1,2,3],5.0],
-            [String.self, Int.self, [Int].self, Double.self]
-        )
+        .tags(.NavPath)
     )
-    func CodableNavigationPath<T>(component: T, ofType _:T.Type) throws where T:Codable & Equatable {
+    func CodableNavigationPath() throws {
         var path = NavigationPath()
-        path.append(component)
+        path.append("a")
+        path.append(1)
+        path.append([1, 2, 3])
+        path.append(5.0)
 
-        let components = path.path(destinationTypes: [
-            T.self
-        ])
+        let Types:[any Codable.Type] = [
+            String.self, Int.self, [Int].self, Double.self,
+        ] as! [any Codable.Type]
+
+        let components = path.path(destinationTypes: Types)
 
         let encoded = try JSONEncoder().encode(path)
         let decodedPath = try JSONDecoder().decode(NavigationPath.self, from: encoded)
 
-        let decodedComponents = decodedPath.path(destinationTypes: [
-            T.self
-        ])
-        #expect(
-            Self.compareComponents(ofType: T.self, components[0], decodedComponents[0]),
-            "Expected `\(components[0])` and `\(decodedComponents[0])` to both be \((components[0] is T && decodedComponents[0] is T) ? "equal" : "of type \(T)")."
-        )
+        let decodedComponents = decodedPath.path(destinationTypes: Types)
+        #if ProcedurallyInferredTypes
+            for (i,Type) in Types.enumerated() {
+                guard Type is any Equatable else { #expect(false, "The type in slot \(i) was not Equatable") }
+                #expect(
+                    Self.compareComponents(ofType: Type.self, components[i], decodedComponents[i]),
+                    "An Issue with Navigation path data retainment occured \(components[i]) != \(decodedComponents[i])"
+                )
+            }
+        #else
+            #expect(
+                Self.compareComponents(ofType: String.self, components[0], decodedComponents[0]),
+                "An Issue with Navigation path data retainment occured \(components[0]) != \(decodedComponents[0])"
+            )
+            #expect(
+                Self.compareComponents(ofType: Int.self, components[1], decodedComponents[1]),
+                "An Issue with Navigation path data retainment occured \(components[1]) != \(decodedComponents[1])"
+            )
+            #expect(
+                Self.compareComponents(ofType: [Int].self, components[2], decodedComponents[2]),
+                "An Issue with Navigation path data retainment occured \(components[2]) != \(decodedComponents[2])"
+            )
+            #expect(
+                Self.compareComponents(ofType: Double.self, components[3], decodedComponents[3]),
+                "An Issue with Navigation path data retainment occured \(components[3]) != \(decodedComponents[3])"
+            )
+            // */
+        #endif
     }
 
     static func compareComponents<T>(
@@ -58,8 +90,10 @@ struct InternalTests {
         return original == decoded
     }
 
-    // TODO: Move to seperate Suite so that the setup items can be stable
-    @Test("Observation Sanity Checks")
+    @Test(
+        "Observation Sanity Checks",
+        .tags(.Observation)
+    )
     func StateObservationSanity() {
         class NestedState: SwiftCrossUI.ObservableObject {
             @SwiftCrossUI.Published

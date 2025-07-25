@@ -6,30 +6,34 @@ import Testing
     @testable import AppKitBackend
 #elseif canImport(DefaultBackend)
     /// Is this close enough to a "Mock Backend"?
-    @testable import AppKitBackend
+    @testable import DefaultBackend
 #endif
 
-enum BackendTestError: Error, LocalizedError {
-    case FailedBitmapBack
-    case FailedTiffRep
+// TODO: Create mock backend so that this can be tested on all platforms. There's
+//       nothing AppKit-specific about it.
+@Suite(
+    "Testing for Graphical Backends",
+    .tags(.Backend)
+)
+struct BackendTests {
+    enum BackendTestError: Error {
+        case FailedBitmapBack
+        case FailedTiffRep
 
-    var errorDescription: String? {
-        switch self {
-        case .FailedBitmapBack: "Failed to create bitmap backing"
-        case .FailedTiffRep: "Failed to create tiff representation"
+        var errorDescription: String? {
+            switch self {
+            case .FailedBitmapBack: "Failed to create bitmap backing"
+            case .FailedTiffRep: "Failed to create tiff representation"
+            }
         }
     }
-}
 
-@Suite("Validate that the Backend can be interacted with")
-struct BackendTests {
     #if canImport(AppKitBackend)
-        // TODO: Create mock backend so that this can be tested on all platforms. There's
-        //       nothing AppKit-specific about it.
-
-        @Test("Validates Observation will not give up the thread entirely when sleeping the thread")
+        @Test(
+            "Validates Observation will not give up the thread entirely when sleeping the thread",
+            .tags(.Observation)
+        )
         func ThrottledStateObservation() async {
-            /// This already exists in another test
             class MyState: SwiftCrossUI.ObservableObject {
                 @SwiftCrossUI.Published
                 var count = 0
@@ -85,7 +89,10 @@ struct BackendTests {
             )
         }
 
-        @Test("A Basic Layout Works properly")
+        @Test(
+            "A Basic Layout Works properly",
+            tags(.Layout)
+        )
         @MainActor
         func BasicLayout() async throws {
             let backend = AppKitBackend()
