@@ -31,8 +31,7 @@ struct BackendTests {
     #if canImport(AppKitBackend)
         @Test(
             "Validates Observation will not give up the thread entirely when sleeping the thread",
-            .tags(.Observation),
-            .bug("https://github.com/stackotter/swift-cross-ui/issues/167", id: 167)
+            .tags(.Observation)
         )
         func ThrottledStateObservation() async {
             class MyState: SwiftCrossUI.ObservableObject {
