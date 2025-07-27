@@ -56,6 +56,13 @@ public struct Font: Hashable, Sendable {
         return font
     }
 
+    /// Selects whether or not to italicize the font.
+    public func italic(_ italic: Bool = true) -> Font {
+        var font = self
+        font.overlay.italicize = italic
+        return font
+    }
+
     /// Overrides the font's weight. Takes an optional for convenience. Does
     /// nothing if given `nil`.
     public func weight(_ weight: Weight?) -> Font {
@@ -167,6 +174,10 @@ public struct Font: Hashable, Sendable {
         /// overlay has been applied if one is present.
         var emphasize: Bool = false
 
+        /// If `true`, overrides the font to be italicized. If `false`, does
+        /// nothing.
+        var italicize: Bool = false
+
         /// Overrides the font's design.
         var design: Design?
 
@@ -184,6 +195,9 @@ public struct Font: Hashable, Sendable {
             }
             if emphasize {
                 resolvedFont.weight = emphasizedWeight
+            }
+            if italicize {
+                resolvedFont.isItalic = true
             }
             if let pointSize {
                 resolvedFont.pointSize = pointSize
@@ -212,6 +226,7 @@ public struct Font: Hashable, Sendable {
         public var lineHeight: Double
         public var weight: Weight
         public var design: Design
+        public var isItalic: Bool
     }
 
     public struct Context: Sendable {
@@ -237,7 +252,8 @@ public struct Font: Hashable, Sendable {
                             //   constant ratio).
                             lineHeight: (size * 1.25).rounded(.awayFromZero),
                             weight: weight ?? .regular,
-                            design: design ?? .default
+                            design: design ?? .default,
+                            isItalic: false
                         )
                 }
             case .dynamic(let textStyle):
@@ -248,7 +264,8 @@ public struct Font: Hashable, Sendable {
                     pointSize: resolvedTextStyle.pointSize,
                     lineHeight: resolvedTextStyle.lineHeight,
                     weight: resolvedTextStyle.weight,
-                    design: .default
+                    design: .default,
+                    isItalic: false
                 )
         }
 

@@ -633,8 +633,11 @@ public final class AppKitBackend: AppBackend {
         onChange: @escaping (Bool) -> Void
     ) {
         let toggle = toggle as! NSButton
+        toggle.attributedTitle = Self.attributedString(
+            for: label,
+            in: environment.with(\.multilineTextAlignment, .center)
+        )
         toggle.isEnabled = environment.isEnabled
-        toggle.title = label
         toggle.onAction = { toggle in
             let toggle = toggle as! NSButton
             onChange(toggle.state == .on)
@@ -1131,14 +1134,22 @@ public final class AppKitBackend: AppBackend {
     private static func font(for font: Font.Resolved) -> NSFont {
         let size = CGFloat(font.pointSize)
         let weight = weight(for: font.weight)
+
+        let nsFont: NSFont
         switch font.identifier.kind {
             case .system:
                 switch font.design {
                     case .default:
-                        return NSFont.systemFont(ofSize: size, weight: weight)
+                        nsFont = NSFont.systemFont(ofSize: size, weight: weight)
                     case .monospaced:
-                        return NSFont.monospacedSystemFont(ofSize: size, weight: weight)
+                        nsFont = NSFont.monospacedSystemFont(ofSize: size, weight: weight)
                 }
+        }
+
+        if font.isItalic {
+            return NSFontManager.shared.convert(nsFont, toHaveTrait: .italicFontMask)
+        } else {
+            return nsFont
         }
     }
 
