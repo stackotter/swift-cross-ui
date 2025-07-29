@@ -70,6 +70,10 @@ public struct CSSProperty: Equatable {
         CSSProperty(key: "font-family", value: family)
     }
 
+    public static func fontStyle(_ style: String) -> CSSProperty {
+        CSSProperty(key: "font-style", value: style)
+    }
+
     public static func rgba(_ color: Color) -> String {
         let red = color.red * 255
         let green = color.green * 255

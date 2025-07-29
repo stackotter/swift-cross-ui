@@ -3,6 +3,7 @@ import UIKit
 
 extension Font.Resolved {
     var uiFont: UIFont {
+        let uiFont: UIFont
         switch identifier.kind {
             case .system:
                 let weight: UIFont.Weight =
@@ -29,10 +30,20 @@ extension Font.Resolved {
 
                 switch design {
                     case .monospaced:
-                        return .monospacedSystemFont(ofSize: CGFloat(pointSize), weight: weight)
+                        uiFont = .monospacedSystemFont(ofSize: CGFloat(pointSize), weight: weight)
                     case .default:
-                        return .systemFont(ofSize: CGFloat(pointSize), weight: weight)
+                        uiFont = .systemFont(ofSize: CGFloat(pointSize), weight: weight)
                 }
+        }
+
+        if isItalic {
+            let descriptor = uiFont.fontDescriptor.withSymbolicTraits(.traitItalic)
+            return UIFont(
+                descriptor: descriptor ?? uiFont.fontDescriptor,
+                size: CGFloat(pointSize)
+            )
+        } else {
+            return uiFont
         }
     }
 }
