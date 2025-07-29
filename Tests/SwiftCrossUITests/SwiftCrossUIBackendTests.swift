@@ -14,7 +14,7 @@ import Testing
 //       nothing AppKit-specific about it.
 @Suite(
     "Testing for Graphical Backends",
-    .tags(.backend)
+    .tags(.interface, .backend)
 )
 struct BackendTests {
     public struct BackendTestError: Error {
