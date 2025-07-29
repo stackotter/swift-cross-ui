@@ -5,31 +5,18 @@ import Testing
 @testable import SwiftCrossUI
 
 @Suite(
-    "SwiftCrossUI's Internal Types",
-    .tags(.Internal)
+    "Navigation Path Tests",
+    .tags(.interface, .navPath)
 )
-struct InternalTests {
-
-    struct CounterView: View {
-        @State var count = 0
-
-        var body: some View {
-            VStack {
-                Button("Decrease") { count -= 1 }
-                Text("Count: 1")
-                Button("Increase") { count += 1 }
-            }.padding()
-        }
-    }
-
+struct NavPathTests {
     // NOTE: The Test ``CodableNavigationPath`` cannot be condensed into a parameterized test
     // or a for loop without specifiying allowed Types individually. A Macro might be useful here
     /// Makes sure that ``NavigationPath`` can retain data validating them with `compareComponents`.
     @Test(
-        "The Codable NavigationPath can accurately store Codable data",
-        .tags(.NavPath)
+        "Ensures that `NavigationPath` instances can be round tripped to JSON and back"
     )
-    func CodableNavigationPath() throws {
+    func codableNavigationPath() throws {
+        /// Specifies the values that are saved into the `NavigationPath`
         let Values: [any Codable] = [
             "a",
             1,
@@ -37,7 +24,9 @@ struct InternalTests {
             5.0,
         ]
 
-        /// All types are required to be a type of `Codable` to permit encoding it and `Equatable` to satisfy ``compareComponents(ofType:,_:,_:)``
+        // All types are required to be a type of `Codable` to permit encoding it and `Equatable` to satisfy ``compareComponents(ofType:,_:,_:)``
+        /// Specifies the types used for indicating the `destinationTypes` paramater of `NavigationPath.path(destinationTypes:)`
+        /// Be aware that you still need to add a new expect block for each unique value
         let Types: [any Codable.Type] =
             [
                 String.self, Int.self, [Int].self, Double.self,
@@ -45,7 +34,10 @@ struct InternalTests {
 
         try #require(
             Values.count == Types.count,
-            "Test `CodableNavigationPath` is Malformed"
+            """
+            Test `CodableNavigationPath` is Malformed.
+            `Values` and `Types` must have a 1 to 1 match-up
+            """
         )
 
         var path = NavigationPath()
@@ -62,45 +54,28 @@ struct InternalTests {
 
         try #require(
             decodedComponents.count == components.count,
-            "`decodedComponents` and `components` are inconsitently sized. \(decodedComponents.count) != \(components.count)"
+            "`decodedComponents` and `components` are inconsitently sized"
         )
 
-        /// This Flag being on indicates that functions can have their specializations dynamically inferred.
-        /// This needs a change to Swift's Type System to work. This Loop does not compile and is present for clarity.
-        /// Unrolling this loop gives the contents of the `#else` block,
-        /// Make sure to add a new expect clause for each new item you add
-        #if ProcedurallyInferredTypes
-            for (i, Type) in Types.enumerated() {
-                guard Type is any Equatable else {
-                    #expect(false, "The type in slot \(i) was not Equatable")
-                }
-                #expect(
-                    Self.compareComponents(ofType: Type.self, components[i], decodedComponents[i]),
-                    "An Issue with Navigation path data retainment occured \(components[i]) != \(decodedComponents[i])"
-                )
-            }
-        #else
-            #expect(
-                Self.compareComponents(ofType: String.self, components[0], decodedComponents[0]),
-                "An Issue with Navigation path data retainment occured \(components[0]) != \(decodedComponents[0])"
-            )
-            #expect(
-                Self.compareComponents(ofType: Int.self, components[1], decodedComponents[1]),
-                "An Issue with Navigation path data retainment occured \(components[1]) != \(decodedComponents[1])"
-            )
-            #expect(
-                Self.compareComponents(ofType: [Int].self, components[2], decodedComponents[2]),
-                "An Issue with Navigation path data retainment occured \(components[2]) != \(decodedComponents[2])"
-            )
-            #expect(
-                Self.compareComponents(ofType: Double.self, components[3], decodedComponents[3]),
-                "An Issue with Navigation path data retainment occured \(components[3]) != \(decodedComponents[3])"
-            )
-        // */
-        #endif
+        #expect(
+            Self.compareComponents(ofType: String.self, components[0], decodedComponents[0]),
+            "An Issue with Navigation path data retainment occured"
+        )
+        #expect(
+            Self.compareComponents(ofType: Int.self, components[1], decodedComponents[1]),
+            "An Issue with Navigation path data retainment occured"
+        )
+        #expect(
+            Self.compareComponents(ofType: [Int].self, components[2], decodedComponents[2]),
+            "An Issue with Navigation path data retainment occured"
+        )
+        #expect(
+            Self.compareComponents(ofType: Double.self, components[3], decodedComponents[3]),
+            "An Issue with Navigation path data retainment occured"
+        )
     }
 
-    // Note: consider
+    // Note: consider making compareComponents not require a type input
     static func compareComponents<T>(
         ofType type: T.Type, _ original: Any, _ decoded: Any
     ) -> Bool where T: Equatable {
@@ -113,12 +88,18 @@ struct InternalTests {
 
         return original == decoded
     }
+}
 
+@Suite(
+    "State Tests",
+    .tags(.state)
+)
+struct StateTests {
     @Test(
-        "Observation Sanity Checks",
-        .tags(.Observation)
+        "Validates ObservableObject observation behaviour",
+        .tags(.observation)
     )
-    func StateObservationSanity() {
+    func observableObjectObservation() {
         class NestedState: SwiftCrossUI.ObservableObject {
             @SwiftCrossUI.Published
             var count = 0
@@ -162,7 +143,8 @@ struct InternalTests {
         state.publishedNestedState.count += 1
         #expect(
             observedChange,
-            "Expected replaced nested published observable object mutation to trigger observation")
+            "Expected replaced nested published observable object mutation to trigger observation"
+        )
 
         // Ensure that non-published nested ObservableObject doesn't trigger observation
         observedChange = false

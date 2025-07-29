@@ -1,11 +1,12 @@
+import Foundation
 import Testing
 
 @testable import SwiftCrossUI
 
 #if canImport(AppKitBackend)
     @testable import AppKitBackend
-#elseif canImport(DefaultBackend)
-    // Is this close enough to a "Mock Backend"?
+#else
+    // Consider this the mock backend for code that is not currently specialized to one backend explicitly
     @testable import DefaultBackend
 #endif
 
@@ -13,88 +14,116 @@ import Testing
 //       nothing AppKit-specific about it.
 @Suite(
     "Testing for Graphical Backends",
-    .tags(.Backend)
+    .tags(.backend)
 )
 struct BackendTests {
-    enum BackendTestError: Error {
-        case FailedBitmapBack
-        case FailedTiffRep
+    public struct BackendTestError: Error {
+        var message: String? = nil
+
+        // These are preconfigured instances for functions with `throws(BackendTests.BackendTestError)` in the signature
+        static let failedBitmapBack: Self = new("Failed to create bitmap backing")
+        static let failedTiffRep: Self = new("Failed to create tiff representation")
+        static let unknownIssue: Self = new()
 
         var errorDescription: String? {
-            switch self {
-                case .FailedBitmapBack: "Failed to create bitmap backing"
-                case .FailedTiffRep: "Failed to create tiff representation"
-            }
+            message ?? "Something when wrong during Backend Testing"
+        }
+
+        // Condensed Error Generator for abridging the initalizer
+        static func new(_ info: String? = nil) -> Self {
+            Self(message: info)
         }
     }
 
-    #if canImport(AppKitBackend)
-        @Test(
-            "Validates Observation will not give up the thread entirely when sleeping the thread",
-            .tags(.Observation)
-        )
-        func ThrottledStateObservation() async {
-            class MyState: SwiftCrossUI.ObservableObject {
-                @SwiftCrossUI.Published
-                var count = 0
-            }
+    struct CounterView: View {
+        @State var count = 0
 
-            /// A thread-safe count.
-            actor Count {
-                var count = 0
-
-                func update(_ action: (Int) -> Int) {
-                    count = action(count)
-                }
-            }
-
-            // Number of mutations to perform
-            let mutationCount = 20
-            // Length of each fake state update
-            let updateDuration = 0.02
-            // Delay between observation-causing state mutations
-            let mutationGap = 0.01
-
-            let state = MyState()
-            let updateCount = Count()
-
-            let backend = await AppKitBackend()
-            let cancellable = state.didChange.observeAsUIUpdater(backend: backend) {
-                Task {
-                    await updateCount.update { $0 + 1 }
-                }
-                // Simulate an update of duration `updateDuration` seconds
-                Thread.sleep(forTimeInterval: updateDuration)
-            }
-            _ = cancellable  // Silence warning about cancellable being unused
-
-            let start = ProcessInfo.processInfo.systemUptime
-            for _ in 0..<mutationCount {
-                state.count += 1
-                try? await Task.sleep(for: .seconds(mutationGap))
-            }
-            let elapsed = ProcessInfo.processInfo.systemUptime - start
-
-            // Compute percentage of main thread's time taken up by updates.
-            let ratio = Double(await updateCount.count) * updateDuration / elapsed
-            #expect(
-                ratio <= 0.85,
-                """
-                Expected throttled updates to take under 85% of the main \
-                thread's time. Took \(Int(ratio * 100))%
-
-                Duration: \(elapsed), \(start) <=> \(end)
-                Updates: \(updateCount.count)/\(mutationCount)
-                """
-            )
+        var body: some View {
+            VStack {
+                Button("Decrease") { count -= 1 }
+                Text("Count: 1")
+                Button("Increase") { count += 1 }
+            }.padding()
         }
+    }
+
+    @Test(
+        "Ensures that `Publisher.observeAsUIUpdater(backend:)` throttles state update observations",
+        .tags(.observation, .state)
+    )
+    func throttledStateObservation() async {
+        class MyState: SwiftCrossUI.ObservableObject {
+            @SwiftCrossUI.Published
+            var count = 0
+        }
+
+        /// A thread-safe count.
+        actor Count {
+            var count: Int = 0
+
+            /// Allow for the contents of Count to be manipulated with an async function
+            func update(_ action: (Int) -> Int) async {
+                count = action(count)
+            }
+
+            /// Allow for the contents of Count to be aquired with an async function
+            func get() async -> Int {
+                count
+            }
+        }
+
+        // Number of mutations to perform
+        let mutationCount = 20
+        // Length of each fake state update
+        let updateDuration = 0.02
+        // Delay between observation-causing state mutations
+        let mutationGap = 0.01
+
+        let state = MyState()
+        let updateCount = Count()
+
+        let backend = await DefaultBackend()
+        let cancellable = state.didChange.observeAsUIUpdater(backend: backend) {
+            Task {
+                await updateCount.update { $0 + 1 }
+            }
+            // Simulate an update of duration `updateDuration` seconds
+            Thread.sleep(forTimeInterval: updateDuration)
+        }
+        _ = cancellable  // Silence warning about cancellable being unused
+
+        let start = ProcessInfo.processInfo.systemUptime
+        for _ in 0..<mutationCount {
+            state.count += 1
+            try? await Task.sleep(for: .seconds(mutationGap))
+        }
+        let end = ProcessInfo.processInfo.systemUptime
+        let elapsed = end - start
+
+        let count = await updateCount.get()
+
+        // Compute percentage of main thread's time taken up by updates.
+        let ratio = Double(count) * updateDuration / elapsed
+        #expect(
+            ratio <= 0.85,
+            """
+            Expected throttled updates to take under 85% of the main \
+            thread's time. Took \(Int(ratio * 100))%
+
+            Duration: \(elapsed) seconds
+            Updates: \(count)/\(mutationCount)
+            """
+        )
+    }
+
+    #if canImport(AppKitBackend)
 
         @Test(
             "A Basic Layout Works properly",
-            tags(.Layout)
+            tags(.layout)
         )
         @MainActor
-        func BasicLayout() async throws {
+        func basicLayout() async throws {
             let backend = AppKitBackend()
             let window = backend.createWindow(withDefaultSize: SIMD2(200, 200))
 
@@ -121,35 +150,31 @@ struct BackendTests {
             backend.setSize(of: view, to: result.size.size)
             backend.setSize(ofWindow: window, to: result.size.size)
 
-            // MARK: This Might be a logic error as `result` was proposed a Size of `SIMD2(200, 200)`, the maximum allotted to it's parent window
             #expect(
                 result.size == ViewSize(fixedSize: SIMD2(92, 96)),
-                """
-                View update result mismatch
-                \(result.size) != \(SIMD2(92, 96))
-                """
+                "View update result mismatch"
             )
 
             #expect(
                 result.preferences.onOpenURL == nil,
-                "`onOpenURL` not `nil` it was not set yet"
+                "`onOpenURL` should be `nil` as it was not set"
             )
         }
 
-        /// Unused Test Function
+        /// Helper function to be used in future tests
         @MainActor
-        static func snapshotView(_ view: NSView) throws(TestError) -> Data {
+        static func snapshotView(_ view: NSView) throws(BackendTestError) -> Data {
             view.wantsLayer = true
             view.layer?.backgroundColor = CGColor.white
 
             guard let bitmap = view.bitmapImageRepForCachingDisplay(in: view.bounds) else {
-                throw .FailedBitmapBack
+                throw .failedBitmapBack
             }
 
             view.cacheDisplay(in: view.bounds, to: bitmap)
 
             guard let data = bitmap.tiffRepresentation else {
-                throw .FailedTiffRep
+                throw .failedTiffRep
             }
 
             return data
