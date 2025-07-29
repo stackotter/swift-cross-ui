@@ -799,6 +799,10 @@ public final class Gtk3Backend: AppBackend {
         toggle.toggled = { widget in
             onChange(widget.active)
         }
+        toggle.css.clear()
+        // This is a control, but we set isControl to false anyway because isControl overrides
+        // the button background and makes the on and off states of the toggle look identical.
+        toggle.css.set(properties: Self.cssProperties(for: environment, isControl: false))
     }
 
     public func setState(ofToggle toggle: Widget, to state: Bool) {
@@ -1472,6 +1476,10 @@ public final class Gtk3Backend: AppBackend {
                     case .default:
                         break
                 }
+        }
+
+        if font.isItalic {
+            properties.append(.fontStyle("italic"))
         }
 
         if isControl {

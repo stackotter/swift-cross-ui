@@ -1752,6 +1752,9 @@ extension EnvironmentValues {
         control.fontWeight.weight = resolvedFont.winUIFontWeight
         control.foreground = winUIForegroundBrush
         control.isEnabled = isEnabled
+        if resolvedFont.isItalic {
+            control.fontStyle = .italic
+        }
         switch colorScheme {
             case .light:
                 control.requestedTheme = .light
@@ -1766,6 +1769,9 @@ extension EnvironmentValues {
         textBlock.fontSize = resolvedFont.pointSize
         textBlock.fontWeight.weight = resolvedFont.winUIFontWeight
         textBlock.foreground = winUIForegroundBrush
+        if resolvedFont.isItalic {
+            textBlock.fontStyle = .italic
+        }
     }
 }
 

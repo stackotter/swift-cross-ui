@@ -52,4 +52,14 @@ extension View {
             )
         }
     }
+
+    /// Forces any contained text to become italic.
+    public func italic() -> some View {
+        EnvironmentModifier(self) { environment in
+            return environment.with(
+                \.fontOverlay.italicize,
+                true
+            )
+        }
+    }
 }
