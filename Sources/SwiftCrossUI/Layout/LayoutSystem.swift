@@ -46,7 +46,7 @@ public enum LayoutSystem {
 
     public struct LayoutableChild {
         private var update:
-            (
+            @MainActor (
                 _ proposedSize: SIMD2<Int>,
                 _ environment: EnvironmentValues,
                 _ dryRun: Bool
@@ -54,13 +54,14 @@ public enum LayoutSystem {
         var tag: String?
 
         public init(
-            update: @escaping (SIMD2<Int>, EnvironmentValues, Bool) -> ViewUpdateResult,
+            update: @escaping @MainActor (SIMD2<Int>, EnvironmentValues, Bool) -> ViewUpdateResult,
             tag: String? = nil
         ) {
             self.update = update
             self.tag = tag
         }
 
+        @MainActor
         public func update(
             proposedSize: SIMD2<Int>,
             environment: EnvironmentValues,
