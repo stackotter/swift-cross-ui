@@ -73,7 +73,7 @@ let package = Package(
         .library(name: "Gtk", type: libraryType, targets: ["Gtk"]),
         .library(name: "Gtk3", type: libraryType, targets: ["Gtk3"]),
         .executable(name: "GtkExample", targets: ["GtkExample"]),
-        // .library(name: "CursesBackend", type: libraryType, targets: ["CursesBackend"]),
+         .library(name: "TermKitBackend", type: libraryType, targets: ["TermKitBackend"]),
         // .library(name: "QtBackend", type: libraryType, targets: ["QtBackend"]),
         // .library(name: "LVGLBackend", type: libraryType, targets: ["LVGLBackend"]),
     ],
@@ -110,10 +110,10 @@ let package = Package(
             url: "https://github.com/stackotter/swift-winui",
             branch: "927e2c46430cfb1b6c195590b9e65a30a8fd98a2"
         ),
-        // .package(
-        //     url: "https://github.com/stackotter/TermKit",
-        //     revision: "163afa64f1257a0c026cc83ed8bc47a5f8fc9704"
-        // ),
+         .package(
+             url: "https://github.com/migueldeicaza/TermKit",
+             revision: "6b82436223a739af53b19045784b4bbc3f92505f"
+         ),
         // .package(
         //     url: "https://github.com/PADL/LVGLSwift",
         //     revision: "19c19a942153b50d61486faf1d0d45daf79e7be5"
@@ -252,10 +252,10 @@ let package = Package(
             name: "WinUIInterop",
             dependencies: []
         ),
-        // .target(
-        //     name: "CursesBackend",
-        //     dependencies: ["SwiftCrossUI", "TermKit"]
-        // ),
+         .target(
+             name: "TermKitBackend",
+             dependencies: ["SwiftCrossUI", .product(name: "TermKit", package: "TermKit")]
+         ),
         // .target(
         //     name: "QtBackend",
         //     dependencies: ["SwiftCrossUI", .product(name: "Qlift", package: "qlift")]
