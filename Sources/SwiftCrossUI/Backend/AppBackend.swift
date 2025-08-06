@@ -63,6 +63,9 @@ public protocol AppBackend: Sendable {
     /// The default amount of padding used when a user uses the ``View/padding(_:_:)``
     /// modifier.
     var defaultPaddingAmount: Int { get }
+    /// The default amount of spacing used when a user uses the ``HStack`` or ``VStack``
+    /// classes
+    var defaultStackSpacingAmount: Int { get }
     /// Gets the layout width of a backend's scroll bars. Assumes that the width
     /// is the same for both vertical and horizontal scroll bars (where the width
     /// of a horizontal scroll bar is what pedants may call its height). If the
@@ -693,6 +696,8 @@ public protocol AppBackend: Sendable {
     )
     /// Navigates a web view to a given URL.
     func navigateWebView(_ webView: Widget, to url: URL)
+
+    func limitScreenBounds(_ bounds: SIMD2<Int>) -> SIMD2<Int>
 }
 
 extension AppBackend {
@@ -709,6 +714,7 @@ extension AppBackend {
 }
 
 extension AppBackend {
+    public var defaultStackSpacingAmount: Int { 10 }
     /// Used by placeholder implementations of backend methods.
     private func todo(_ function: String = #function) -> Never {
         print("\(type(of: self)): \(function) not implemented")
@@ -1138,5 +1144,9 @@ extension AppBackend {
         to url: URL
     ) {
         todo()
+    }
+
+    public func limitScreenBounds(_ bounds: SIMD2<Int>) -> SIMD2<Int> {
+        return bounds
     }
 }

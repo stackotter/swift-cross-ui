@@ -88,8 +88,8 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         _ = update(
             newScene,
             proposedWindowSize: isFirstUpdate && isProgramaticallyResizable
-                ? (newScene ?? scene).defaultSize
-                : backend.size(ofWindow: window),
+            ? backend.limitScreenBounds((newScene ?? scene).defaultSize)
+            : backend.limitScreenBounds(backend.size(ofWindow: window)),
             backend: backend,
             environment: environment,
             windowSizeIsFinal: !isProgramaticallyResizable

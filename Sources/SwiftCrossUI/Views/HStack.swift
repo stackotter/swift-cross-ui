@@ -3,7 +3,7 @@ public struct HStack<Content: View>: View {
     public var body: Content
 
     /// The amount of spacing to apply between children.
-    private var spacing: Int
+    private var spacing: Int?
     /// The alignment of the stack's children in the vertical direction.
     private var alignment: VerticalAlignment
 
@@ -14,7 +14,7 @@ public struct HStack<Content: View>: View {
         @ViewBuilder _ content: () -> Content
     ) {
         body = content()
-        self.spacing = spacing ?? VStack<EmptyView>.defaultSpacing
+        self.spacing = spacing
         self.alignment = alignment
     }
 
@@ -45,7 +45,7 @@ public struct HStack<Content: View>: View {
                 environment
                 .with(\.layoutOrientation, .horizontal)
                 .with(\.layoutAlignment, alignment.asStackAlignment)
-                .with(\.layoutSpacing, spacing),
+                .with(\.layoutSpacing, spacing ?? backend.defaultStackSpacingAmount),
             backend: backend,
             dryRun: dryRun
         )

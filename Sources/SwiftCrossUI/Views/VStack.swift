@@ -1,11 +1,9 @@
 /// A view that arranges its subviews vertically.
 public struct VStack<Content: View>: View {
-    static var defaultSpacing: Int { 10 }
-
     public var body: Content
 
     /// The amount of spacing to apply between children.
-    private var spacing: Int
+    private var spacing: Int?
     /// The alignment of the stack's children in the horizontal direction.
     private var alignment: HorizontalAlignment
 
@@ -24,7 +22,7 @@ public struct VStack<Content: View>: View {
         content: Content
     ) {
         body = content
-        self.spacing = spacing ?? Self.defaultSpacing
+        self.spacing = spacing
         self.alignment = alignment
     }
 
@@ -55,7 +53,7 @@ public struct VStack<Content: View>: View {
                 environment
                 .with(\.layoutOrientation, .vertical)
                 .with(\.layoutAlignment, alignment.asStackAlignment)
-                .with(\.layoutSpacing, spacing),
+                .with(\.layoutSpacing, spacing ?? backend.defaultStackSpacingAmount),
             backend: backend,
             dryRun: dryRun
         )
