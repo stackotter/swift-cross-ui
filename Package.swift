@@ -148,6 +148,7 @@ let package = Package(
             dependencies: [
                 "SwiftCrossUI",
                 .target(name: "AppKitBackend", condition: .when(platforms: [.macOS])),
+                .target(name: "DefaultBackend"),
             ]
         ),
         .target(
