@@ -16,29 +16,18 @@ struct NavPathTests {
         "Ensures that `NavigationPath` instances can be round tripped to JSON and back"
     )
     func codableNavigationPath() throws {
-        /// Specifies the values that are saved into the `NavigationPath`
-        let Values: [any Codable] = [
-            "a",
-            1,
-            [1, 2, 3],
-            5.0,
-        ]
-
-        // All types are required to be a type of `Codable` to permit encoding it and `Equatable` to satisfy ``compareComponents(ofType:,_:,_:)``
-        /// Specifies the types used for indicating the `destinationTypes` paramater of `NavigationPath.path(destinationTypes:)`
-        /// Be aware that you still need to add a new expect block for each unique value
-        let Types: [any Codable.Type] =
+        /// Specifies the values and types input into the `NavigationPath`
+        let typeValuePairs: [(type: any Codable.Type, value: any Codable)] =
             [
-                String.self, Int.self, [Int].self, Double.self,
-            ] as! [any Codable.Type]
+                (String.self, "a"),
+                (Int.self, 1),
+                ([Int].self, [1, 2, 3]),
+                (Double.self, 5.0),
+            ] as! [(any Codable.Type, any Codable)]
 
-        try #require(
-            Values.count == Types.count,
-            """
-            Test `CodableNavigationPath` is Malformed.
-            `Values` and `Types` must have a 1 to 1 match-up
-            """
-        )
+        let Values: [any Codable] = typeValuePairs.map { $0.value }
+
+        let Types: [any Codable.Type] = typeValuePairs.map { $0.type }
 
         var path = NavigationPath()
         for value in Values {
