@@ -5,9 +5,11 @@ import Testing
 
 #if canImport(AppKitBackend)
     @testable import AppKitBackend
+    typealias ActiveBackend = AppKitBackend
 #else
     // Consider this the mock backend for code that is not currently specialized to one backend explicitly
     @testable import DefaultBackend
+    typealias ActiveBackend = DefaultBackend
 #endif
 
 // TODO: Create mock backend so that this can be tested on all platforms. There's
@@ -82,7 +84,7 @@ struct BackendTests {
         let state = MyState()
         let updateCount = Count()
 
-        let backend = await DefaultBackend()
+        let backend = await ActiveBackend()
         let cancellable = state.didChange.observeAsUIUpdater(backend: backend) {
             Task {
                 await updateCount.update { $0 + 1 }
@@ -124,7 +126,7 @@ struct BackendTests {
         )
         @MainActor
         func basicLayout() async throws {
-            let backend = AppKitBackend()
+            let backend = ActiveBackend()
             let window = backend.createWindow(withDefaultSize: SIMD2(200, 200))
 
             // Idea taken from https://github.com/pointfreeco/swift-snapshot-testing/pull/533
@@ -146,7 +148,7 @@ struct BackendTests {
                 environment: environment,
                 dryRun: false
             )
-            let view: AppKitBackend.Widget = viewGraph.rootNode.widget.into()
+            let view: ActiveBackend.Widget = viewGraph.rootNode.widget.into()
             backend.setSize(of: view, to: result.size.size)
             backend.setSize(ofWindow: window, to: result.size.size)
 
