@@ -639,6 +639,18 @@ public protocol AppBackend: Sendable {
         environment: EnvironmentValues,
         action: @escaping () -> Void
     )
+    
+    /// Wraps a view in a container that can receive mouse hover events. Some
+    /// backends may not have to wrap the child, in which case they may
+    /// just return the child as is.
+    func createHoverTarget(wrapping child: Widget) -> Widget
+    /// Update the hover target with a new action. Replaces the old
+    /// action.
+    func updateHoverTarget(
+        _ hoverTarget: Widget,
+        environment: EnvironmentValues,
+        action: @escaping (Bool) -> Void
+    )
 
     // MARK: Paths
 
@@ -714,49 +726,49 @@ extension AppBackend {
         print("\(type(of: self)): \(function) not implemented")
         Foundation.exit(1)
     }
-
+    
     // MARK: System
-
+    
     public func openExternalURL(_ url: URL) throws {
         todo()
     }
-
+    
     public func revealFile(_ url: URL) throws {
         todo()
     }
-
+    
     // MARK: Application
-
+    
     public func setApplicationMenu(_ submenus: [ResolvedMenu.Submenu]) {
         todo()
     }
-
+    
     public func setIncomingURLHandler(to action: @escaping (URL) -> Void) {
         todo()
     }
-
+    
     // MARK: Containers
-
+    
     public func createColorableRectangle() -> Widget {
         todo()
     }
-
+    
     public func setColor(ofColorableRectangle widget: Widget, to color: Color) {
         todo()
     }
-
+    
     public func setCornerRadius(of widget: Widget, to radius: Int) {
         todo()
     }
-
+    
     public func createScrollContainer(for child: Widget) -> Widget {
         todo()
     }
-
+    
     public func updateScrollContainer(_ scrollView: Widget, environment: EnvironmentValues) {
         todo()
     }
-
+    
     public func setScrollBarPresence(
         ofScrollContainer scrollView: Widget,
         hasVerticalScrollBar: Bool,
@@ -764,19 +776,19 @@ extension AppBackend {
     ) {
         todo()
     }
-
+    
     public func createSelectableListView() -> Widget {
         todo()
     }
-
+    
     public func baseItemPadding(ofSelectableListView listView: Widget) -> EdgeInsets {
         todo()
     }
-
+    
     public func minimumRowSize(ofSelectableListView listView: Widget) -> SIMD2<Int> {
         todo()
     }
-
+    
     public func setItems(
         ofSelectableListView listView: Widget,
         to items: [Widget],
@@ -784,33 +796,33 @@ extension AppBackend {
     ) {
         todo()
     }
-
+    
     public func setSelectionHandler(
         forSelectableListView listView: Widget,
         to action: @escaping (_ selectedIndex: Int) -> Void
     ) {
         todo()
     }
-
+    
     public func setSelectedItem(ofSelectableListView listView: Widget, toItemAt index: Int?) {
         todo()
     }
-
+    
     public func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget {
         todo()
     }
-
+    
     public func setResizeHandler(
         ofSplitView splitView: Widget,
         to action: @escaping () -> Void
     ) {
         todo()
     }
-
+    
     public func sidebarWidth(ofSplitView splitView: Widget) -> Int {
         todo()
     }
-
+    
     public func setSidebarWidthBounds(
         ofSplitView splitView: Widget,
         minimum minimumWidth: Int,
@@ -818,9 +830,9 @@ extension AppBackend {
     ) {
         todo()
     }
-
+    
     // MARK: Passive views
-
+    
     public func size(
         of text: String,
         whenDisplayedIn widget: Widget,
@@ -829,7 +841,7 @@ extension AppBackend {
     ) -> SIMD2<Int> {
         todo()
     }
-
+    
     public func createTextView(content: String, shouldWrap: Bool) -> Widget {
         todo()
     }
@@ -840,11 +852,11 @@ extension AppBackend {
     ) {
         todo()
     }
-
+    
     public func createImageView() -> Widget {
         todo()
     }
-
+    
     public func updateImageView(
         _ imageView: Widget,
         rgbaData: [UInt8],
@@ -857,7 +869,7 @@ extension AppBackend {
     ) {
         todo()
     }
-
+    
     public func createTable() -> Widget {
         todo()
     }
@@ -878,9 +890,9 @@ extension AppBackend {
     ) {
         todo()
     }
-
+    
     // MARK: Controls
-
+    
     public func createButton() -> Widget {
         todo()
     }
@@ -900,7 +912,7 @@ extension AppBackend {
     ) {
         todo()
     }
-
+    
     public func createToggle() -> Widget {
         todo()
     }
@@ -915,7 +927,7 @@ extension AppBackend {
     public func setState(ofToggle toggle: Widget, to state: Bool) {
         todo()
     }
-
+    
     public func createSwitch() -> Widget {
         todo()
     }
@@ -929,7 +941,7 @@ extension AppBackend {
     public func setState(ofSwitch switchWidget: Widget, to state: Bool) {
         todo()
     }
-
+    
     public func createCheckbox() -> Widget {
         todo()
     }
@@ -943,7 +955,7 @@ extension AppBackend {
     public func setState(ofCheckbox checkboxWidget: Widget, to state: Bool) {
         todo()
     }
-
+    
     public func createSlider() -> Widget {
         todo()
     }
@@ -960,7 +972,7 @@ extension AppBackend {
     public func setValue(ofSlider slider: Widget, to value: Double) {
         todo()
     }
-
+    
     public func createTextField() -> Widget {
         todo()
     }
@@ -979,7 +991,7 @@ extension AppBackend {
     public func getContent(ofTextField textField: Widget) -> String {
         todo()
     }
-
+    
     public func createTextEditor() -> Widget {
         todo()
     }
@@ -996,7 +1008,7 @@ extension AppBackend {
     public func getContent(ofTextEditor textEditor: Widget) -> String {
         todo()
     }
-
+    
     public func createPicker() -> Widget {
         todo()
     }
@@ -1011,11 +1023,11 @@ extension AppBackend {
     public func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?) {
         todo()
     }
-
+    
     public func createProgressSpinner() -> Widget {
         todo()
     }
-
+    
     public func createProgressBar() -> Widget {
         todo()
     }
@@ -1026,7 +1038,7 @@ extension AppBackend {
     ) {
         todo()
     }
-
+    
     public func createPopoverMenu() -> Menu {
         todo()
     }
@@ -1045,7 +1057,7 @@ extension AppBackend {
     ) {
         todo()
     }
-
+    
     public func createAlert() -> Alert {
         todo()
     }
@@ -1067,7 +1079,7 @@ extension AppBackend {
     public func dismissAlert(_ alert: Alert, window: Window?) {
         todo()
     }
-
+    
     public func showOpenDialog(
         fileDialogOptions: FileDialogOptions,
         openDialogOptions: OpenDialogOptions,
@@ -1084,7 +1096,7 @@ extension AppBackend {
     ) {
         todo()
     }
-
+    
     public func createTapGestureTarget(wrapping child: Widget, gesture: TapGesture) -> Widget {
         todo()
     }
@@ -1096,7 +1108,7 @@ extension AppBackend {
     ) {
         todo()
     }
-
+    
     // MARK: Paths
     public func createPathWidget() -> Widget {
         todo()
@@ -1122,7 +1134,7 @@ extension AppBackend {
     ) {
         todo()
     }
-
+    
     public func createWebView() -> Widget {
         todo()
     }
@@ -1136,6 +1148,18 @@ extension AppBackend {
     public func navigateWebView(
         _ webView: Widget,
         to url: URL
+    ) {
+        todo()
+    }
+    
+    
+    public func createHoverTarget(wrapping child: Widget) {
+        todo()
+    }
+    public func updateHoverTarget(
+        _ hoverTarget: Widget,
+        environment: EnvironmentValues,
+        action: @escaping () -> Void
     ) {
         todo()
     }

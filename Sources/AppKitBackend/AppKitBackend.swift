@@ -1424,6 +1424,40 @@ public final class AppKitBackend: AppBackend {
                 tapGestureTarget.longPressHandler = action
         }
     }
+    
+    public func createHoverTarget(wrapping child: Widget) -> Widget {
+        let container = NSView()
+
+        container.addSubview(child)
+        child.leadingAnchor.constraint(equalTo: container.leadingAnchor)
+            .isActive = true
+        child.topAnchor.constraint(equalTo: container.topAnchor)
+            .isActive = true
+        child.translatesAutoresizingMaskIntoConstraints = false
+
+        let tapGestureTarget = NSCustomHoverTarget()
+        container.addSubview(tapGestureTarget)
+        tapGestureTarget.leadingAnchor.constraint(equalTo: container.leadingAnchor)
+            .isActive = true
+        tapGestureTarget.topAnchor.constraint(equalTo: container.topAnchor)
+            .isActive = true
+        tapGestureTarget.trailingAnchor.constraint(equalTo: container.trailingAnchor)
+            .isActive = true
+        tapGestureTarget.bottomAnchor.constraint(equalTo: container.bottomAnchor)
+            .isActive = true
+        tapGestureTarget.translatesAutoresizingMaskIntoConstraints = false
+
+        return container
+    }
+    
+    public func updateHoverTarget(
+        _ container: Widget,
+        environment: EnvironmentValues,
+        action: @escaping (Bool) -> Void
+    ) {
+        let tapGestureTarget = container.subviews[1] as! NSCustomHoverTarget
+        tapGestureTarget.hoverChangesHandler = action
+    }
 
     final class NSBezierPathView: NSView {
         var path: NSBezierPath!
@@ -1663,7 +1697,7 @@ final class NSCustomTapGestureTarget: NSView {
                 leftClickRecognizer = gestureRecognizer
             } else if leftClickHandler == nil, let leftClickRecognizer {
                 removeGestureRecognizer(leftClickRecognizer)
-                self.leftClickHandler = nil
+                self.leftClickRecognizer = nil
             }
         }
     }
@@ -1678,7 +1712,7 @@ final class NSCustomTapGestureTarget: NSView {
                 rightClickRecognizer = gestureRecognizer
             } else if rightClickHandler == nil, let rightClickRecognizer {
                 removeGestureRecognizer(rightClickRecognizer)
-                self.rightClickHandler = nil
+                self.rightClickRecognizer = nil
             }
         }
     }
@@ -1721,6 +1755,56 @@ final class NSCustomTapGestureTarget: NSView {
         if sender.state != .ended {
             longPressHandler?()
         }
+    }
+}
+
+final class NSCustomHoverTarget: NSView {
+    var hoverChangesHandler: ((Bool) -> Void)? {
+        didSet {
+            if hoverChangesHandler != nil && trackingArea == nil {
+                let options: NSTrackingArea.Options = [
+                    .mouseEnteredAndExited,
+                    .activeInKeyWindow
+                ]
+                let area = NSTrackingArea(rect: self.bounds,
+                                              options: options,
+                                              owner: self,
+                                              userInfo: nil)
+                addTrackingArea(area)
+                trackingArea = area
+            } else if hoverChangesHandler == nil, let trackingArea {
+                removeTrackingArea(trackingArea)
+                self.trackingArea = nil
+            }
+        }
+    }
+
+    private var trackingArea: NSTrackingArea?
+
+    override func updateTrackingAreas() {
+        super.updateTrackingAreas()
+        if let trackingArea = trackingArea {
+            self.removeTrackingArea(trackingArea)
+        }
+        let options: NSTrackingArea.Options = [
+            .mouseEnteredAndExited,
+            .activeInKeyWindow
+        ]
+        
+        trackingArea = NSTrackingArea(rect: self.bounds,
+                                      options: options,
+                                      owner: self,
+                                      userInfo: nil)
+        self.addTrackingArea(trackingArea!)
+    }
+    
+    override func mouseEntered(with event: NSEvent) {
+        hoverChangesHandler?(true)
+    }
+    
+    override func mouseExited(with event: NSEvent) {
+        // Mouse exited the view's bounds
+        hoverChangesHandler?(false)
     }
 }
 

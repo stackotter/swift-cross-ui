@@ -72,6 +72,10 @@ let package = Package(
         .executableTarget(
             name: "WebViewExample",
             dependencies: exampleDependencies
+        ),
+        .executableTarget(
+            name: "HoverExample",
+            dependencies: exampleDependencies
         )
     ]
 )
