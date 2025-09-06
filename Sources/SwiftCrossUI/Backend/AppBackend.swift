@@ -1153,13 +1153,13 @@ extension AppBackend {
     }
     
     
-    public func createHoverTarget(wrapping child: Widget) {
+    public func createHoverTarget(wrapping child: Widget) -> Widget {
         todo()
     }
     public func updateHoverTarget(
-        _ hoverTarget: Widget,
+        _ container: Widget,
         environment: EnvironmentValues,
-        action: @escaping () -> Void
+        action: @escaping (Bool) -> Void
     ) {
         todo()
     }
