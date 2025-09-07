@@ -20,6 +20,9 @@ struct HoverExample: App {
                 }
             }
             .background(Color.black)
+            .onAppear {
+                print(type(of: backend))
+            }
         }
         .defaultSize(width: 900, height: 540)
     }

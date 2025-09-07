@@ -5,27 +5,27 @@ public enum SorterOrder: GValueRepresentableEnum {
     public typealias GtkEnum = GtkSorterOrder
 
     /// A partial order. Any `GtkOrdering` is possible.
-    case partial
-    /// No order, all elements are considered equal.
-    /// gtk_sorter_compare() will only return %GTK_ORDERING_EQUAL.
-    case none
-    /// A total order. gtk_sorter_compare() will only
-    /// return %GTK_ORDERING_EQUAL if an item is compared with itself. Two
-    /// different items will never cause this value to be returned.
-    case total
+case partial
+/// No order, all elements are considered equal.
+/// gtk_sorter_compare() will only return %GTK_ORDERING_EQUAL.
+case none
+/// A total order. gtk_sorter_compare() will only
+/// return %GTK_ORDERING_EQUAL if an item is compared with itself. Two
+/// different items will never cause this value to be returned.
+case total
 
     public static var type: GType {
-        gtk_sorter_order_get_type()
-    }
+    gtk_sorter_order_get_type()
+}
 
     public init(from gtkEnum: GtkSorterOrder) {
         switch gtkEnum {
             case GTK_SORTER_ORDER_PARTIAL:
-                self = .partial
-            case GTK_SORTER_ORDER_NONE:
-                self = .none
-            case GTK_SORTER_ORDER_TOTAL:
-                self = .total
+    self = .partial
+case GTK_SORTER_ORDER_NONE:
+    self = .none
+case GTK_SORTER_ORDER_TOTAL:
+    self = .total
             default:
                 fatalError("Unsupported GtkSorterOrder enum value: \(gtkEnum.rawValue)")
         }
@@ -34,11 +34,11 @@ public enum SorterOrder: GValueRepresentableEnum {
     public func toGtk() -> GtkSorterOrder {
         switch self {
             case .partial:
-                return GTK_SORTER_ORDER_PARTIAL
-            case .none:
-                return GTK_SORTER_ORDER_NONE
-            case .total:
-                return GTK_SORTER_ORDER_TOTAL
+    return GTK_SORTER_ORDER_PARTIAL
+case .none:
+    return GTK_SORTER_ORDER_NONE
+case .total:
+    return GTK_SORTER_ORDER_TOTAL
         }
     }
 }
