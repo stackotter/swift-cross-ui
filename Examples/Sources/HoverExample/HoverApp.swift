@@ -36,11 +36,13 @@ struct CellView: View {
             .onHover { hovering in
                 if !hovering {
                     timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
-                        if opacity >= 0.05 {
-                            opacity -= 0.05
-                        } else {
-                            opacity = 0.0
-                            timer.invalidate()
+                        DispatchQueue.main.async {
+                            if opacity >= 0.05 {
+                                opacity -= 0.05
+                            } else {
+                                opacity = 0.0
+                                timer.invalidate()
+                            }
                         }
                     }
                 } else {
