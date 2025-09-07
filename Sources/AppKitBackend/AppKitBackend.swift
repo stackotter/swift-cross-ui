@@ -1435,17 +1435,17 @@ public final class AppKitBackend: AppBackend {
             .isActive = true
         child.translatesAutoresizingMaskIntoConstraints = false
 
-        let tapGestureTarget = NSCustomHoverTarget()
-        container.addSubview(tapGestureTarget)
-        tapGestureTarget.leadingAnchor.constraint(equalTo: container.leadingAnchor)
+        let hoverGestureTarget = NSCustomHoverTarget()
+        container.addSubview(hoverGestureTarget)
+        hoverGestureTarget.leadingAnchor.constraint(equalTo: container.leadingAnchor)
             .isActive = true
-        tapGestureTarget.topAnchor.constraint(equalTo: container.topAnchor)
+        hoverGestureTarget.topAnchor.constraint(equalTo: container.topAnchor)
             .isActive = true
-        tapGestureTarget.trailingAnchor.constraint(equalTo: container.trailingAnchor)
+        hoverGestureTarget.trailingAnchor.constraint(equalTo: container.trailingAnchor)
             .isActive = true
-        tapGestureTarget.bottomAnchor.constraint(equalTo: container.bottomAnchor)
+        hoverGestureTarget.bottomAnchor.constraint(equalTo: container.bottomAnchor)
             .isActive = true
-        tapGestureTarget.translatesAutoresizingMaskIntoConstraints = false
+        hoverGestureTarget.translatesAutoresizingMaskIntoConstraints = false
 
         return container
     }
@@ -1455,8 +1455,8 @@ public final class AppKitBackend: AppBackend {
         environment: EnvironmentValues,
         action: @escaping (Bool) -> Void
     ) {
-        let tapGestureTarget = container.subviews[1] as! NSCustomHoverTarget
-        tapGestureTarget.hoverChangesHandler = action
+        let hoverGestureTarget = container.subviews[1] as! NSCustomHoverTarget
+        hoverGestureTarget.hoverChangesHandler = action
     }
 
     final class NSBezierPathView: NSView {
@@ -1773,6 +1773,8 @@ final class NSCustomHoverTarget: NSView {
                 addTrackingArea(area)
                 trackingArea = area
             } else if hoverChangesHandler == nil, let trackingArea {
+                // should be impossible at the moment of implementation
+                // keeping it to be save in case of later changes
                 removeTrackingArea(trackingArea)
                 self.trackingArea = nil
             }
