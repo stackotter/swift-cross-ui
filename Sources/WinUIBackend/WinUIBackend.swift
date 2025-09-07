@@ -1377,6 +1377,42 @@ public final class WinUIBackend: AppBackend {
         tapGestureTarget.height = tapGestureTarget.child!.height
     }
 
+    public func createHoverTarget(wrapping child: Widget) -> Widget {
+        let hoverTarget = HoverGestureTarget()
+        addChild(child, to: hoverTarget)
+        hoverTarget.child = child
+
+        // Ensure the hover target covers the full area of the child.
+        // Use a transparent background so the visual appearance doesn't change but
+        // the hit-testing covers the whole region.
+        let brush = SolidColorBrush()
+        brush.color = UWP.Color(a: 0, r: 0, g: 0, b: 0)
+        hoverTarget.background = brush
+
+        hoverTarget.pointerEntered.addHandler { [weak hoverTarget] _, _ in
+            guard let hoverTarget else { return }
+            hoverTarget.enterHandler?()
+        }
+        hoverTarget.pointerExited.addHandler { [weak hoverTarget] _, _ in
+            guard let hoverTarget else { return }
+            hoverTarget.exitHandler?()
+        }
+        return hoverTarget
+    }
+
+    public func updateHoverTarget(
+        _ hoverTarget: Widget,
+        environment: EnvironmentValues,
+        action: @escaping (Bool) -> Void
+    ) {
+        let hoverTarget = hoverTarget as! HoverGestureTarget
+        hoverTarget.enterHandler = environment.isEnabled ? { action(true) } : {}
+        hoverTarget.exitHandler = environment.isEnabled ? { action(false) } : {}
+        
+        hoverTarget.width = hoverTarget.child!.width
+        hoverTarget.height = hoverTarget.child!.height
+    }
+
     public func createProgressSpinner() -> Widget {
         let spinner = ProgressRing()
         spinner.isIndeterminate = true
@@ -1812,6 +1848,12 @@ final class CustomSplitView: SplitView {
 
 final class TapGestureTarget: WinUI.Canvas {
     var clickHandler: (() -> Void)?
+    var child: WinUI.FrameworkElement?
+}
+
+final class HoverGestureTarget: WinUI.Canvas {
+    var enterHandler: (() -> Void)?
+    var exitHandler: (() -> Void)?
     var child: WinUI.FrameworkElement?
 }
 
