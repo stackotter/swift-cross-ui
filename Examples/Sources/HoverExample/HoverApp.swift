@@ -1,6 +1,6 @@
 import DefaultBackend
-import SwiftCrossUI
 import Foundation
+import SwiftCrossUI
 
 #if canImport(SwiftBundlerRuntime)
     import SwiftBundlerRuntime
@@ -32,7 +32,7 @@ struct CellView: View {
     @State var timer: Timer?
     @Environment(\.colorScheme) var colorScheme
     @State var opacity: Float = 0.0
-    
+
     var body: some View {
         Rectangle()
             .foregroundColor(Color.blue.opacity(opacity))

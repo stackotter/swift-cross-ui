@@ -170,7 +170,6 @@ final class TappableWidget: ContainerWidget {
     }
 }
 
-
 @available(tvOS, unavailable)
 final class HoverableWidget: ContainerWidget {
     private var hoverGestureRecognizer: UIHoverGestureRecognizer?
@@ -178,8 +177,9 @@ final class HoverableWidget: ContainerWidget {
     var hoverChangesHandler: ((Bool) -> Void)? {
         didSet {
             if hoverChangesHandler != nil && hoverGestureRecognizer == nil {
-                let gestureRecognizer = UIHoverGestureRecognizer(target: self,
-                                                                 action: #selector(hoveringChanged(_:)))
+                let gestureRecognizer = UIHoverGestureRecognizer(
+                    target: self,
+                    action: #selector(hoveringChanged(_:)))
                 child.view.addGestureRecognizer(gestureRecognizer)
                 self.hoverGestureRecognizer = gestureRecognizer
             } else if hoverChangesHandler == nil, let hoverGestureRecognizer {
@@ -194,9 +194,9 @@ final class HoverableWidget: ContainerWidget {
     @objc
     func hoveringChanged(_ recognizer: UIHoverGestureRecognizer) {
         switch recognizer.state {
-        case .began: hoverChangesHandler?(true)
-        case .ended: hoverChangesHandler?(false)
-        default: break
+            case .began: hoverChangesHandler?(true)
+            case .ended: hoverChangesHandler?(false)
+            default: break
         }
     }
 }
@@ -449,14 +449,16 @@ extension UIKitBackend {
                 wrapper.onLongPress = environment.isEnabled ? action : {}
         }
     }
-    
+
     public func createHoverTarget(wrapping child: Widget) -> Widget {
         HoverableWidget(child: child)
     }
-    
-    public func updateHoverTarget(_ hoverTarget: any WidgetProtocol,
-                                  environment: EnvironmentValues,
-                                  action: @escaping (Bool) -> Void) {
+
+    public func updateHoverTarget(
+        _ hoverTarget: any WidgetProtocol,
+        environment: EnvironmentValues,
+        action: @escaping (Bool) -> Void
+    ) {
         let wrapper = hoverTarget as! HoverableWidget
         wrapper.hoverChangesHandler = action
     }

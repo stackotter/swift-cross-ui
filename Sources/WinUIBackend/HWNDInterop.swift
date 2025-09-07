@@ -35,12 +35,14 @@ extension WinUI.Window {
 }
 
 private struct HWNDInterop {
-    private typealias pfnGetWindowIdFromWindow = @convention(c) (
-        HWND?, UnsafeMutablePointer<__x_ABI_CMicrosoft_CUI_CWindowId>?
-    ) -> HRESULT
-    private typealias pfnGetWindowFromWindowId = @convention(c) (
-        __x_ABI_CMicrosoft_CUI_CWindowId, UnsafeMutablePointer<HWND?>?
-    ) -> HRESULT
+    private typealias pfnGetWindowIdFromWindow =
+        @convention(c) (
+            HWND?, UnsafeMutablePointer<__x_ABI_CMicrosoft_CUI_CWindowId>?
+        ) -> HRESULT
+    private typealias pfnGetWindowFromWindowId =
+        @convention(c) (
+            __x_ABI_CMicrosoft_CUI_CWindowId, UnsafeMutablePointer<HWND?>?
+        ) -> HRESULT
     private var hModule: HMODULE!
     private var getWindowIDFromWindow_impl: pfnGetWindowIdFromWindow!
     private var getWindowFromWindowID_impl: pfnGetWindowFromWindowId!

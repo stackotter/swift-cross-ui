@@ -1424,7 +1424,7 @@ public final class AppKitBackend: AppBackend {
                 tapGestureTarget.longPressHandler = action
         }
     }
-    
+
     public func createHoverTarget(wrapping child: Widget) -> Widget {
         let container = NSView()
 
@@ -1449,7 +1449,7 @@ public final class AppKitBackend: AppBackend {
 
         return container
     }
-    
+
     public func updateHoverTarget(
         _ container: Widget,
         environment: EnvironmentValues,
@@ -1764,12 +1764,13 @@ final class NSCustomHoverTarget: NSView {
             if hoverChangesHandler != nil && trackingArea == nil {
                 let options: NSTrackingArea.Options = [
                     .mouseEnteredAndExited,
-                    .activeInKeyWindow
+                    .activeInKeyWindow,
                 ]
-                let area = NSTrackingArea(rect: self.bounds,
-                                              options: options,
-                                              owner: self,
-                                              userInfo: nil)
+                let area = NSTrackingArea(
+                    rect: self.bounds,
+                    options: options,
+                    owner: self,
+                    userInfo: nil)
                 addTrackingArea(area)
                 trackingArea = area
             } else if hoverChangesHandler == nil, let trackingArea {
@@ -1790,20 +1791,21 @@ final class NSCustomHoverTarget: NSView {
         }
         let options: NSTrackingArea.Options = [
             .mouseEnteredAndExited,
-            .activeInKeyWindow
+            .activeInKeyWindow,
         ]
-        
-        trackingArea = NSTrackingArea(rect: self.bounds,
-                                      options: options,
-                                      owner: self,
-                                      userInfo: nil)
+
+        trackingArea = NSTrackingArea(
+            rect: self.bounds,
+            options: options,
+            owner: self,
+            userInfo: nil)
         self.addTrackingArea(trackingArea!)
     }
-    
+
     override func mouseEntered(with event: NSEvent) {
         hoverChangesHandler?(true)
     }
-    
+
     override func mouseExited(with event: NSEvent) {
         // Mouse exited the view's bounds
         hoverChangesHandler?(false)

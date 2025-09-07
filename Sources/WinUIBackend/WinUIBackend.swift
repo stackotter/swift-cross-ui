@@ -1408,7 +1408,7 @@ public final class WinUIBackend: AppBackend {
         let hoverTarget = hoverTarget as! HoverGestureTarget
         hoverTarget.enterHandler = environment.isEnabled ? { action(true) } : {}
         hoverTarget.exitHandler = environment.isEnabled ? { action(false) } : {}
-        
+
         hoverTarget.width = hoverTarget.child!.width
         hoverTarget.height = hoverTarget.child!.height
     }
