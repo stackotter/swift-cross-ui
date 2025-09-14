@@ -20,9 +20,6 @@ struct HoverExample: App {
                 }
             }
             .background(Color.black)
-            .onAppear {
-                print(type(of: backend))
-            }
         }
         .defaultSize(width: 900, height: 540)
     }
@@ -30,7 +27,6 @@ struct HoverExample: App {
 
 struct CellView: View {
     @State var timer: Timer?
-    @Environment(\.colorScheme) var colorScheme
     @State var opacity: Float = 0.0
 
     var body: some View {
@@ -50,6 +46,7 @@ struct CellView: View {
                     }
                 } else {
                     opacity = 1.0
+                    timer?.invalidate()
                     timer = nil
                 }
             }
