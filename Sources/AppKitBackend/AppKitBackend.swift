@@ -1762,20 +1762,8 @@ final class NSCustomHoverTarget: NSView {
     var hoverChangesHandler: ((Bool) -> Void)? {
         didSet {
             if hoverChangesHandler != nil && trackingArea == nil {
-                let options: NSTrackingArea.Options = [
-                    .mouseEnteredAndExited,
-                    .activeInKeyWindow,
-                ]
-                let area = NSTrackingArea(
-                    rect: self.bounds,
-                    options: options,
-                    owner: self,
-                    userInfo: nil)
-                addTrackingArea(area)
-                trackingArea = area
+                setNewTrackingArea()
             } else if hoverChangesHandler == nil, let trackingArea {
-                // should be impossible at the moment of implementation
-                // keeping it to be save in case of later changes
                 removeTrackingArea(trackingArea)
                 self.trackingArea = nil
             }
@@ -1786,20 +1774,10 @@ final class NSCustomHoverTarget: NSView {
 
     override func updateTrackingAreas() {
         super.updateTrackingAreas()
-        if let trackingArea = trackingArea {
+        if let trackingArea {
             self.removeTrackingArea(trackingArea)
         }
-        let options: NSTrackingArea.Options = [
-            .mouseEnteredAndExited,
-            .activeInKeyWindow,
-        ]
-
-        trackingArea = NSTrackingArea(
-            rect: self.bounds,
-            options: options,
-            owner: self,
-            userInfo: nil)
-        self.addTrackingArea(trackingArea!)
+        setNewTrackingArea()
     }
 
     override func mouseEntered(with event: NSEvent) {
@@ -1807,8 +1785,21 @@ final class NSCustomHoverTarget: NSView {
     }
 
     override func mouseExited(with event: NSEvent) {
-        // Mouse exited the view's bounds
         hoverChangesHandler?(false)
+    }
+    
+    private func setNewTrackingArea() {
+        let options: NSTrackingArea.Options = [
+            .mouseEnteredAndExited,
+            .activeInKeyWindow,
+        ]
+        let area = NSTrackingArea(
+            rect: self.bounds,
+            options: options,
+            owner: self,
+            userInfo: nil)
+        addTrackingArea(area)
+        trackingArea = area
     }
 }
 

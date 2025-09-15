@@ -225,6 +225,13 @@ struct GtkCodeGen {
             else {
                 return false
             }
+            
+            guard
+                member.cIdentifier != "GTK_PAD_ACTION_DIAL",
+                member.name != "GTK_PAD_ACTION_DIAL"
+            else {
+                return false
+            }
 
             if let doc = member.doc {
                 // Why they gotta be inconsistent like that 💀

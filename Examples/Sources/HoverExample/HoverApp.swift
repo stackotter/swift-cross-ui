@@ -7,19 +7,22 @@ import SwiftCrossUI
 #endif
 
 @main
+@HotReloadable
 struct HoverExample: App {
     var body: some Scene {
         WindowGroup("Hover Example") {
-            VStack(spacing: 0) {
-                ForEach([Bool](repeating: false, count: 18)) { _ in
-                    HStack(spacing: 0) {
-                        ForEach([Bool](repeating: false, count: 30)) { _ in
-                            CellView()
+            #hotReloadable {
+                VStack(spacing: 0) {
+                    ForEach([Bool](repeating: false, count: 18)) { _ in
+                        HStack(spacing: 0) {
+                            ForEach([Bool](repeating: false, count: 30)) { _ in
+                                CellView()
+                            }
                         }
                     }
+                    .background(Color.black)
                 }
             }
-            .background(Color.black)
         }
         .defaultSize(width: 900, height: 540)
     }

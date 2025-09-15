@@ -6,23 +6,23 @@ import CGtk3
 /// To set the value of a scale, you would normally use gtk_range_set_value().
 /// To detect changes to the value, you would normally use the
 /// #GtkRange::value-changed signal.
-///
+/// 
 /// Note that using the same upper and lower bounds for the #GtkScale (through
 /// the #GtkRange methods) will hide the slider itself. This is useful for
 /// applications that want to show an undeterminate value on the scale, without
 /// changing the layout of the application (such as movie or music players).
-///
+/// 
 /// # GtkScale as GtkBuildable
-///
+/// 
 /// GtkScale supports a custom `<marks>` element, which can contain multiple
 /// `<mark>` elements. The “value” and “position” attributes have the same
 /// meaning as gtk_scale_add_mark() parameters of the same name. If the
 /// element is not empty, its content is taken as the markup to show at
 /// the mark. It can be translated with the usual ”translatable” and
 /// “context” attributes.
-///
+/// 
 /// # CSS nodes
-///
+/// 
 /// |[<!-- language="plain" -->
 /// scale[.fine-tune][.marks-before][.marks-after]
 /// ├── marks.top
@@ -43,127 +43,123 @@ import CGtk3
 /// ┊    ╰── [label]
 /// ╰── mark
 /// ]|
-///
+/// 
 /// GtkScale has a main CSS node with name scale and a subnode for its contents,
 /// with subnodes named trough and slider.
-///
+/// 
 /// The main node gets the style class .fine-tune added when the scale is in
 /// 'fine-tuning' mode.
-///
+/// 
 /// If the scale has an origin (see gtk_scale_set_has_origin()), there is a
 /// subnode with name highlight below the trough node that is used for rendering
 /// the highlighted part of the trough.
-///
+/// 
 /// If the scale is showing a fill level (see gtk_range_set_show_fill_level()),
 /// there is a subnode with name fill below the trough node that is used for
 /// rendering the filled in part of the trough.
-///
+/// 
 /// If marks are present, there is a marks subnode before or after the contents
 /// node, below which each mark gets a node with name mark. The marks nodes get
 /// either the .top or .bottom style class.
-///
+/// 
 /// The mark node has a subnode named indicator. If the mark has text, it also
 /// has a subnode named label. When the mark is either above or left of the
 /// scale, the label subnode is the first when present. Otherwise, the indicator
 /// subnode is the first.
-///
+/// 
 /// The main CSS node gets the 'marks-before' and/or 'marks-after' style classes
 /// added depending on what marks are present.
-///
+/// 
 /// If the scale is displaying the value (see #GtkScale:draw-value), there is
 /// subnode with name value.
 open class Scale: Range {
     /// Creates a new #GtkScale.
-    public convenience init(
-        orientation: GtkOrientation, adjustment: UnsafeMutablePointer<GtkAdjustment>!
-    ) {
-        self.init(
-            gtk_scale_new(orientation, adjustment)
-        )
+public convenience init(orientation: GtkOrientation, adjustment: UnsafeMutablePointer<GtkAdjustment>!) {
+    self.init(
+        gtk_scale_new(orientation, adjustment)
+    )
+}
+
+/// Creates a new scale widget with the given orientation that lets the
+/// user input a number between @min and @max (including @min and @max)
+/// with the increment @step.  @step must be nonzero; it’s the distance
+/// the slider moves when using the arrow keys to adjust the scale
+/// value.
+/// 
+/// Note that the way in which the precision is derived works best if @step
+/// is a power of ten. If the resulting precision is not suitable for your
+/// needs, use gtk_scale_set_digits() to correct it.
+public convenience init(range orientation: GtkOrientation, min: Double, max: Double, step: Double) {
+    self.init(
+        gtk_scale_new_with_range(orientation, min, max, step)
+    )
+}
+
+     override func didMoveToParent() {
+    super.didMoveToParent()
+
+    let handler0: @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+    { _, value1, data in
+        SignalBox1<OpaquePointer>.run(data, value1)
     }
 
-    /// Creates a new scale widget with the given orientation that lets the
-    /// user input a number between @min and @max (including @min and @max)
-    /// with the increment @step.  @step must be nonzero; it’s the distance
-    /// the slider moves when using the arrow keys to adjust the scale
-    /// value.
-    ///
-    /// Note that the way in which the precision is derived works best if @step
-    /// is a power of ten. If the resulting precision is not suitable for your
-    /// needs, use gtk_scale_set_digits() to correct it.
-    public convenience init(
-        range orientation: GtkOrientation, min: Double, max: Double, step: Double
-    ) {
-        self.init(
-            gtk_scale_new_with_range(orientation, min, max, step)
-        )
+addSignal(name: "notify::digits", handler: gCallback(handler0)) { [weak self] (param0: OpaquePointer) in
+    guard let self = self else { return }
+    self.notifyDigits?(self, param0)
+}
+
+let handler1: @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+    { _, value1, data in
+        SignalBox1<OpaquePointer>.run(data, value1)
     }
 
-    override func didMoveToParent() {
-        super.didMoveToParent()
+addSignal(name: "notify::draw-value", handler: gCallback(handler1)) { [weak self] (param0: OpaquePointer) in
+    guard let self = self else { return }
+    self.notifyDrawValue?(self, param0)
+}
 
-        let handler0:
-            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
-                { _, value1, data in
-                    SignalBox1<OpaquePointer>.run(data, value1)
-                }
-
-        addSignal(name: "notify::digits", handler: gCallback(handler0)) {
-            [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
-            self.notifyDigits?(self, param0)
-        }
-
-        let handler1:
-            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
-                { _, value1, data in
-                    SignalBox1<OpaquePointer>.run(data, value1)
-                }
-
-        addSignal(name: "notify::draw-value", handler: gCallback(handler1)) {
-            [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
-            self.notifyDrawValue?(self, param0)
-        }
-
-        let handler2:
-            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
-                { _, value1, data in
-                    SignalBox1<OpaquePointer>.run(data, value1)
-                }
-
-        addSignal(name: "notify::has-origin", handler: gCallback(handler2)) {
-            [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
-            self.notifyHasOrigin?(self, param0)
-        }
-
-        let handler3:
-            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
-                { _, value1, data in
-                    SignalBox1<OpaquePointer>.run(data, value1)
-                }
-
-        addSignal(name: "notify::value-pos", handler: gCallback(handler3)) {
-            [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
-            self.notifyValuePos?(self, param0)
-        }
+let handler2: @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+    { _, value1, data in
+        SignalBox1<OpaquePointer>.run(data, value1)
     }
 
-    @GObjectProperty(named: "digits") public var digits: Int
+addSignal(name: "notify::has-origin", handler: gCallback(handler2)) { [weak self] (param0: OpaquePointer) in
+    guard let self = self else { return }
+    self.notifyHasOrigin?(self, param0)
+}
 
-    @GObjectProperty(named: "draw-value") public var drawValue: Bool
+let handler3: @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+    { _, value1, data in
+        SignalBox1<OpaquePointer>.run(data, value1)
+    }
 
-    @GObjectProperty(named: "has-origin") public var hasOrigin: Bool
+addSignal(name: "notify::value-pos", handler: gCallback(handler3)) { [weak self] (param0: OpaquePointer) in
+    guard let self = self else { return }
+    self.notifyValuePos?(self, param0)
+}
+}
 
-    @GObjectProperty(named: "value-pos") public var valuePos: PositionType
+    
+@GObjectProperty(named: "digits") public var digits: Int
 
-    public var notifyDigits: ((Scale, OpaquePointer) -> Void)?
 
-    public var notifyDrawValue: ((Scale, OpaquePointer) -> Void)?
+@GObjectProperty(named: "draw-value") public var drawValue: Bool
 
-    public var notifyHasOrigin: ((Scale, OpaquePointer) -> Void)?
 
-    public var notifyValuePos: ((Scale, OpaquePointer) -> Void)?
+@GObjectProperty(named: "has-origin") public var hasOrigin: Bool
+
+
+@GObjectProperty(named: "value-pos") public var valuePos: PositionType
+
+
+public var notifyDigits: ((Scale, OpaquePointer) -> Void)?
+
+
+public var notifyDrawValue: ((Scale, OpaquePointer) -> Void)?
+
+
+public var notifyHasOrigin: ((Scale, OpaquePointer) -> Void)?
+
+
+public var notifyValuePos: ((Scale, OpaquePointer) -> Void)?
 }

@@ -183,8 +183,6 @@ final class HoverableWidget: ContainerWidget {
                 child.view.addGestureRecognizer(gestureRecognizer)
                 self.hoverGestureRecognizer = gestureRecognizer
             } else if hoverChangesHandler == nil, let hoverGestureRecognizer {
-                // should be impossible at the moment of implementation
-                // keeping it to be save in case of later changes
                 child.view.removeGestureRecognizer(hoverGestureRecognizer)
                 self.hoverGestureRecognizer = nil
             }

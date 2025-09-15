@@ -1,5 +1,8 @@
 import CGtk3
 
-public protocol CellAccessibleParent: GObjectRepresentable {
 
+public protocol CellAccessibleParent: GObjectRepresentable {
+    
+
+    
 }

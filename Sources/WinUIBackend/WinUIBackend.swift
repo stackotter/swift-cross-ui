@@ -1373,8 +1373,6 @@ public final class WinUIBackend: AppBackend {
         }
         let tapGestureTarget = tapGestureTarget as! TapGestureTarget
         tapGestureTarget.clickHandler = environment.isEnabled ? action : {}
-        tapGestureTarget.width = tapGestureTarget.child!.width
-        tapGestureTarget.height = tapGestureTarget.child!.height
     }
 
     public func createHoverTarget(wrapping child: Widget) -> Widget {
@@ -1408,9 +1406,6 @@ public final class WinUIBackend: AppBackend {
         let hoverTarget = hoverTarget as! HoverGestureTarget
         hoverTarget.enterHandler = environment.isEnabled ? { action(true) } : {}
         hoverTarget.exitHandler = environment.isEnabled ? { action(false) } : {}
-
-        hoverTarget.width = hoverTarget.child!.width
-        hoverTarget.height = hoverTarget.child!.height
     }
 
     public func createProgressSpinner() -> Widget {

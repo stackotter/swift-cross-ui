@@ -4,36 +4,35 @@ import CGtk3
 /// controllers. Those react to a series of #GdkEvents, and possibly trigger
 /// actions as a consequence of those.
 open class EventController: GObject {
+    
 
     public override func registerSignals() {
-        super.registerSignals()
+    super.registerSignals()
 
-        let handler0:
-            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
-                { _, value1, data in
-                    SignalBox1<OpaquePointer>.run(data, value1)
-                }
-
-        addSignal(name: "notify::propagation-phase", handler: gCallback(handler0)) {
-            [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
-            self.notifyPropagationPhase?(self, param0)
-        }
-
-        let handler1:
-            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
-                { _, value1, data in
-                    SignalBox1<OpaquePointer>.run(data, value1)
-                }
-
-        addSignal(name: "notify::widget", handler: gCallback(handler1)) {
-            [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
-            self.notifyWidget?(self, param0)
-        }
+    let handler0: @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+    { _, value1, data in
+        SignalBox1<OpaquePointer>.run(data, value1)
     }
 
-    public var notifyPropagationPhase: ((EventController, OpaquePointer) -> Void)?
+addSignal(name: "notify::propagation-phase", handler: gCallback(handler0)) { [weak self] (param0: OpaquePointer) in
+    guard let self = self else { return }
+    self.notifyPropagationPhase?(self, param0)
+}
 
-    public var notifyWidget: ((EventController, OpaquePointer) -> Void)?
+let handler1: @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+    { _, value1, data in
+        SignalBox1<OpaquePointer>.run(data, value1)
+    }
+
+addSignal(name: "notify::widget", handler: gCallback(handler1)) { [weak self] (param0: OpaquePointer) in
+    guard let self = self else { return }
+    self.notifyWidget?(self, param0)
+}
+}
+
+    
+public var notifyPropagationPhase: ((EventController, OpaquePointer) -> Void)?
+
+
+public var notifyWidget: ((EventController, OpaquePointer) -> Void)?
 }

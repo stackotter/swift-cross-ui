@@ -17,20 +17,20 @@ public enum WindowType: GValueRepresentableEnum {
     public typealias GtkEnum = GtkWindowType
 
     /// A regular window, such as a dialog.
-    case toplevel
-    /// A special window such as a tooltip.
-    case popup
+case toplevel
+/// A special window such as a tooltip.
+case popup
 
     public static var type: GType {
-        gtk_window_type_get_type()
-    }
+    gtk_window_type_get_type()
+}
 
     public init(from gtkEnum: GtkWindowType) {
         switch gtkEnum {
             case GTK_WINDOW_TOPLEVEL:
-                self = .toplevel
-            case GTK_WINDOW_POPUP:
-                self = .popup
+    self = .toplevel
+case GTK_WINDOW_POPUP:
+    self = .popup
             default:
                 fatalError("Unsupported GtkWindowType enum value: \(gtkEnum.rawValue)")
         }
@@ -39,9 +39,9 @@ public enum WindowType: GValueRepresentableEnum {
     public func toGtk() -> GtkWindowType {
         switch self {
             case .toplevel:
-                return GTK_WINDOW_TOPLEVEL
-            case .popup:
-                return GTK_WINDOW_POPUP
+    return GTK_WINDOW_TOPLEVEL
+case .popup:
+    return GTK_WINDOW_POPUP
         }
     }
 }
