@@ -225,7 +225,7 @@ struct GtkCodeGen {
             else {
                 return false
             }
-            
+
             //can cause problems with gtk versions older than 4.20.0
             guard
                 member.cIdentifier != "GTK_PAD_ACTION_DIAL",

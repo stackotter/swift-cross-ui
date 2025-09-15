@@ -6,20 +6,20 @@ public enum ScrollablePolicy: GValueRepresentableEnum {
     public typealias GtkEnum = GtkScrollablePolicy
 
     /// Scrollable adjustments are based on the minimum size
-case minimum
-/// Scrollable adjustments are based on the natural size
-case natural
+    case minimum
+    /// Scrollable adjustments are based on the natural size
+    case natural
 
     public static var type: GType {
-    gtk_scrollable_policy_get_type()
-}
+        gtk_scrollable_policy_get_type()
+    }
 
     public init(from gtkEnum: GtkScrollablePolicy) {
         switch gtkEnum {
             case GTK_SCROLL_MINIMUM:
-    self = .minimum
-case GTK_SCROLL_NATURAL:
-    self = .natural
+                self = .minimum
+            case GTK_SCROLL_NATURAL:
+                self = .natural
             default:
                 fatalError("Unsupported GtkScrollablePolicy enum value: \(gtkEnum.rawValue)")
         }
@@ -28,9 +28,9 @@ case GTK_SCROLL_NATURAL:
     public func toGtk() -> GtkScrollablePolicy {
         switch self {
             case .minimum:
-    return GTK_SCROLL_MINIMUM
-case .natural:
-    return GTK_SCROLL_NATURAL
+                return GTK_SCROLL_MINIMUM
+            case .natural:
+                return GTK_SCROLL_NATURAL
         }
     }
 }

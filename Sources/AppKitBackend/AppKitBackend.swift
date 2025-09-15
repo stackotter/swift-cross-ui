@@ -1787,7 +1787,7 @@ final class NSCustomHoverTarget: NSView {
     override func mouseExited(with event: NSEvent) {
         hoverChangesHandler?(false)
     }
-    
+
     private func setNewTrackingArea() {
         let options: NSTrackingArea.Options = [
             .mouseEnteredAndExited,
