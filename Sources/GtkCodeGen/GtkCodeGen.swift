@@ -225,7 +225,7 @@ struct GtkCodeGen {
             else {
                 return false
             }
-
+            
             // Can cause problems with gtk versions older than 4.20.0
             guard
                 member.cIdentifier != "GTK_PAD_ACTION_DIAL",
@@ -233,6 +233,13 @@ struct GtkCodeGen {
                 member.name != "GtkPadActionDial"
             else {
                 return false
+            }
+            
+            if let doc = member.doc {
+                // Why they gotta be inconsistent like that 💀
+                return !doc.contains("Since: ") && !doc.contains("Since ")
+            } else {
+                return true
             }
         }
 
