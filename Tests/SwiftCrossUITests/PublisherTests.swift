@@ -7,10 +7,10 @@ import Foundation
     @testable import AppKitBackend
 #endif
 
-@Suite("State-related tests")
-struct StateTests {
-    @Test("Ensures that basic State operations can be observed")
-    func testStateObservation() {
+@Suite("Publisher-related tests")
+struct PublisherTests {
+    @Test("Ensures that basic Publisher operations can be observed")
+    func testPublisherObservation() {
         class NestedState: SwiftCrossUI.ObservableObject {
             @SwiftCrossUI.Published
             var count = 0
@@ -65,8 +65,8 @@ struct StateTests {
     #if canImport(AppKitBackend)
         // TODO: Create mock backend so that this can be tested on all platforms. There's
         //   nothing AppKit-specific about it.
-        @Test("Ensure that State.observeAsUIUpdater throttles observations")
-        func testThrottledStateObservation() async {
+        @Test("Ensure that Publisher.observeAsUIUpdater throttles observations")
+        func testThrottledPublisherObservation() async {
             class MyState: SwiftCrossUI.ObservableObject {
                 @SwiftCrossUI.Published
                 var count = 0
