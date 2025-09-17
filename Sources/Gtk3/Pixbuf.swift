@@ -34,10 +34,12 @@ public struct Pixbuf {
     }
 
     public func scaled(toWidth width: Int, andHeight height: Int) -> Pixbuf {
+        // This operation fails if the destination width or destination height
+        // is 0, so just make sure neither dimension hits zero.
         let newPointer = gdk_pixbuf_scale_simple(
             pointer,
-            gint(width),
-            gint(height),
+            gint(max(width, 1)),
+            gint(max(height, 1)),
             GDK_INTERP_BILINEAR
         )
         return Pixbuf(pointer: newPointer!)

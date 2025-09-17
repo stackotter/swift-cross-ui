@@ -65,7 +65,7 @@ public protocol NSViewRepresentable: View where Content == Never {
     /// This method is called after all AppKit lifecycle methods, such as
     /// `nsView.didMoveToSuperview()`. The default implementation does nothing.
     /// - Parameters:
-    ///   - nsVIew: The view being dismantled.
+    ///   - nsView: The view being dismantled.
     ///   - coordinator: The coordinator.
     static func dismantleNSView(_ nsView: NSViewType, coordinator: Coordinator)
 }
@@ -76,7 +76,8 @@ extension NSViewRepresentable {
     }
 
     public func determineViewSize(
-        for proposal: SIMD2<Int>, nsView: NSViewType,
+        for proposal: SIMD2<Int>,
+        nsView: NSViewType,
         context _: NSViewRepresentableContext<Coordinator>
     ) -> ViewSize {
         let intrinsicSize = nsView.intrinsicContentSize
@@ -84,15 +85,21 @@ extension NSViewRepresentable {
 
         let roundedSizeThatFits = SIMD2(
             Int(sizeThatFits.width.rounded(.up)),
-            Int(sizeThatFits.height.rounded(.up)))
+            Int(sizeThatFits.height.rounded(.up))
+        )
         let roundedIntrinsicSize = SIMD2(
             Int(intrinsicSize.width.rounded(.awayFromZero)),
-            Int(intrinsicSize.height.rounded(.awayFromZero)))
+            Int(intrinsicSize.height.rounded(.awayFromZero))
+        )
 
         return ViewSize(
             size: SIMD2(
-                intrinsicSize.width < 0.0 ? proposal.x : roundedSizeThatFits.x,
-                intrinsicSize.height < 0.0 ? proposal.y : roundedSizeThatFits.y
+                intrinsicSize.width < 0.0
+                    ? proposal.x
+                    : max(min(proposal.x, roundedSizeThatFits.x), roundedIntrinsicSize.x),
+                intrinsicSize.height < 0.0
+                    ? proposal.y
+                    : max(min(proposal.y, roundedSizeThatFits.y), roundedIntrinsicSize.y)
             ),
             // The 10 here is a somewhat arbitrary constant value so that it's always the same.
             // See also `Color` and `Picker`, which use the same constant.
@@ -100,8 +107,12 @@ extension NSViewRepresentable {
                 intrinsicSize.width < 0.0 ? 10 : roundedIntrinsicSize.x,
                 intrinsicSize.height < 0.0 ? 10 : roundedIntrinsicSize.y
             ),
+            // We don't have a nice way of measuring these, so just set them to the
+            // view's minimum sizes along each dimension to at least be correct.
+            idealWidthForProposedHeight: max(0, roundedSizeThatFits.x),
+            idealHeightForProposedWidth: max(0, roundedSizeThatFits.y),
             minimumWidth: max(0, roundedIntrinsicSize.x),
-            minimumHeight: max(0, roundedIntrinsicSize.x),
+            minimumHeight: max(0, roundedIntrinsicSize.y),
             maximumWidth: nil,
             maximumHeight: nil
         )
@@ -154,6 +165,9 @@ extension View where Self: NSViewRepresentable {
         let representingWidget = widget as! RepresentingWidget<Self>
         representingWidget.update(with: environment)
 
+        // We need to do this for `fittingSize` to work correctly (it takes all
+        // constraints into account).
+        backend.setSize(of: representingWidget, to: proposedSize)
         let size = representingWidget.representable.determineViewSize(
             for: proposedSize,
             nsView: representingWidget.subview,
@@ -209,14 +223,17 @@ final class RepresentingWidget<Representable: NSViewRepresentable>: NSView {
     }()
 
     func update(with environment: EnvironmentValues) {
-        if context == nil {
-            context = .init(
+        if var context {
+            context.environment = environment
+            representable.updateNSView(subview, context: context)
+            self.context = context
+        } else {
+            let context = NSViewRepresentableContext(
                 coordinator: representable.makeCoordinator(),
                 environment: environment
             )
-        } else {
-            context!.environment = environment
-            representable.updateNSView(subview, context: context!)
+            self.context = context
+            representable.updateNSView(subview, context: context)
         }
     }
 
