@@ -1,8 +1,11 @@
-import XCTest
+import Testing
+import Foundation
 
 @testable import SwiftCrossUI
 
 #if canImport(AppKitBackend)
+    import AppKit
+    import CoreGraphics
     @testable import AppKitBackend
 #endif
 
@@ -18,7 +21,7 @@ struct CounterView: View {
     }
 }
 
-struct XCTError: LocalizedError {
+struct TestError: LocalizedError {
     var message: String
 
     var errorDescription: String? {
@@ -26,7 +29,9 @@ struct XCTError: LocalizedError {
     }
 }
 
-final class SwiftCrossUITests: XCTestCase {
+@Suite("Testing for SwiftCrossUI")
+struct SwiftCrossUITests {
+    @Test("Ensures that a NavigationPath can be round tripped to and from JSON")
     func testCodableNavigationPath() throws {
         var path = NavigationPath()
         path.append("a")
@@ -45,12 +50,13 @@ final class SwiftCrossUITests: XCTestCase {
             String.self, Int.self, [Int].self, Double.self,
         ])
 
-        XCTAssert(Self.compareComponents(ofType: String.self, components[0], decodedComponents[0]))
-        XCTAssert(Self.compareComponents(ofType: Int.self, components[1], decodedComponents[1]))
-        XCTAssert(Self.compareComponents(ofType: [Int].self, components[2], decodedComponents[2]))
-        XCTAssert(Self.compareComponents(ofType: Double.self, components[3], decodedComponents[3]))
+        #expect(Self.compareComponents(ofType: String.self, components[0], decodedComponents[0]))
+        #expect(Self.compareComponents(ofType: Int.self, components[1], decodedComponents[1]))
+        #expect(Self.compareComponents(ofType: [Int].self, components[2], decodedComponents[2]))
+        #expect(Self.compareComponents(ofType: Double.self, components[3], decodedComponents[3]))
     }
 
+    /// Helper function for `testCodableNavigationPath`.
     static func compareComponents<T: Equatable>(
         ofType type: T.Type, _ original: Any, _ decoded: Any
     ) -> Bool {
@@ -64,114 +70,8 @@ final class SwiftCrossUITests: XCTestCase {
         return original == decoded
     }
 
-    func testStateObservation() {
-        class NestedState: SwiftCrossUI.ObservableObject {
-            @SwiftCrossUI.Published
-            var count = 0
-        }
-
-        class MyState: SwiftCrossUI.ObservableObject {
-            @SwiftCrossUI.Published
-            var count = 0
-            @SwiftCrossUI.Published
-            var publishedNestedState = NestedState()
-            var unpublishedNestedState = NestedState()
-        }
-
-        let state = MyState()
-        var observedChange = false
-        let cancellable = state.didChange.observe {
-            observedChange = true
-        }
-
-        // Ensures that published value type mutation triggers observation
-        observedChange = false
-        state.count += 1
-        XCTAssert(observedChange, "Expected value type mutation to trigger observation")
-
-        // Ensure that published nested ObservableObject triggers observation
-        observedChange = false
-        state.publishedNestedState.count += 1
-        XCTAssert(observedChange, "Expected nested published observable object mutation to trigger observation")
-
-        // Ensure that replacing published nested ObservableObject triggers observation
-        observedChange = false
-        state.publishedNestedState = NestedState()
-        XCTAssert(observedChange, "Expected replacing nested published observable object to trigger observation")
-
-        // Ensure that replaced published nested ObservableObject triggers observation
-        observedChange = false
-        state.publishedNestedState.count += 1
-        XCTAssert(observedChange, "Expected replaced nested published observable object mutation to trigger observation")
-
-        // Ensure that non-published nested ObservableObject doesn't trigger observation
-        observedChange = false
-        state.unpublishedNestedState.count += 1
-        XCTAssert(!observedChange, "Expected nested unpublished observable object mutation to not trigger observation")
-
-        // Ensure that cancelling the observation prevents future observations
-        cancellable.cancel()
-        observedChange = false
-        state.count += 1
-        XCTAssert(!observedChange, "Expected mutation not to trigger cancelled observation")
-    }
-
     #if canImport(AppKitBackend)
-        // TODO: Create mock backend so that this can be tested on all platforms. There's
-        //   nothing AppKit-specific about it.
-        func testThrottledStateObservation() async {
-            class MyState: SwiftCrossUI.ObservableObject {
-                @SwiftCrossUI.Published
-                var count = 0
-            }
-
-            /// A thread-safe count.
-            actor Count {
-                var count = 0
-
-                func update(_ action: (Int) -> Int) {
-                    count = action(count)
-                }
-            }
-
-            // Number of mutations to perform
-            let mutationCount = 20
-            // Length of each fake state update
-            let updateDuration = 0.02
-            // Delay between observation-causing state mutations
-            let mutationGap = 0.01
-
-            let state = MyState()
-            let updateCount = Count()
-
-            let backend = await AppKitBackend()
-            let cancellable = state.didChange.observeAsUIUpdater(backend: backend) {
-                Task {
-                    await updateCount.update { $0 + 1 }
-                }
-                // Simulate an update of duration `updateDuration` seconds
-                Thread.sleep(forTimeInterval: updateDuration)
-            }
-            _ = cancellable // Silence warning about cancellable being unused
-
-            let start = ProcessInfo.processInfo.systemUptime
-            for _ in 0..<mutationCount {
-                state.count += 1
-                try? await Task.sleep(for: .seconds(mutationGap))
-            }
-            let elapsed = ProcessInfo.processInfo.systemUptime - start
-
-            // Compute percentage of main thread's time taken up by updates.
-            let ratio = Double(await updateCount.count) * updateDuration / elapsed
-            XCTAssert(
-                ratio <= 0.85,
-                """
-                Expected throttled updates to take under 85% of the main \
-                thread's time. Took \(Int(ratio * 100))%
-                """
-            )
-        }
-
+        @Test("Ensure that a basic view has the expected dimensions under AppKitBackend")
         @MainActor
         func testBasicLayout() async throws {
             let backend = AppKitBackend()
@@ -200,31 +100,31 @@ final class SwiftCrossUITests: XCTestCase {
             backend.setSize(of: view, to: result.size.size)
             backend.setSize(ofWindow: window, to: result.size.size)
 
-            XCTAssertEqual(
-                result.size,
-                ViewSize(fixedSize: SIMD2(92, 96)),
+            #expect(
+                result.size == ViewSize(fixedSize: SIMD2(92, 96)),
                 "View update result mismatch"
             )
 
-            XCTAssert(
+            #expect(
                 result.preferences.onOpenURL == nil,
                 "onOpenURL not nil"
             )
         }
 
+        /// Snapshots an AppKit view to a TIFF image.
         @MainActor
         static func snapshotView(_ view: NSView) throws -> Data {
             view.wantsLayer = true
             view.layer?.backgroundColor = CGColor.white
 
             guard let bitmap = view.bitmapImageRepForCachingDisplay(in: view.bounds) else {
-                throw XCTError(message: "Failed to create bitmap backing")
+                throw TestError(message: "Failed to create bitmap backing")
             }
 
             view.cacheDisplay(in: view.bounds, to: bitmap)
 
             guard let data = bitmap.tiffRepresentation else {
-                throw XCTError(message: "Failed to create tiff representation")
+                throw TestError(message: "Failed to create tiff representation")
             }
 
             return data

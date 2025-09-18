@@ -12,9 +12,9 @@ on:
 jobs:
   macos:
     runs-on: macos-14
-    steps:
-    - name: Force Xcode 15.4
-      run: sudo xcode-select -switch /Applications/Xcode_15.4.app
+    steps: # For swift-testing (everything else works with 5.10)
+    - name: Force Xcode 16.2
+      run: sudo xcode-select -switch /Applications/Xcode_16.2.app
 
     - name: Swift version
       run: swift --version
