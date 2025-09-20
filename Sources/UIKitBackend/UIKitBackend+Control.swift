@@ -133,6 +133,9 @@ final class TappableWidget: ContainerWidget {
                     target: self, action: #selector(viewTouched))
                 child.view.addGestureRecognizer(gestureRecognizer)
                 self.tapGestureRecognizer = gestureRecognizer
+            } else if onTap == nil, let tapGestureRecognizer {
+                child.view.removeGestureRecognizer(tapGestureRecognizer)
+                self.tapGestureRecognizer = nil
             }
         }
     }
@@ -144,6 +147,9 @@ final class TappableWidget: ContainerWidget {
                     target: self, action: #selector(viewLongPressed(sender:)))
                 child.view.addGestureRecognizer(gestureRecognizer)
                 self.longPressGestureRecognizer = gestureRecognizer
+            } else if onLongPress == nil, let longPressGestureRecognizer {
+                child.view.removeGestureRecognizer(longPressGestureRecognizer)
+                self.onLongPress = nil
             }
         }
     }
@@ -164,6 +170,34 @@ final class TappableWidget: ContainerWidget {
     }
 }
 
+@available(tvOS, unavailable)
+final class HoverableWidget: ContainerWidget {
+    private var hoverGestureRecognizer: UIHoverGestureRecognizer?
+
+    var hoverChangesHandler: ((Bool) -> Void)? {
+        didSet {
+            if hoverChangesHandler != nil && hoverGestureRecognizer == nil {
+                let gestureRecognizer = UIHoverGestureRecognizer(
+                    target: self,
+                    action: #selector(hoveringChanged(_:)))
+                child.view.addGestureRecognizer(gestureRecognizer)
+                self.hoverGestureRecognizer = gestureRecognizer
+            } else if hoverChangesHandler == nil, let hoverGestureRecognizer {
+                child.view.removeGestureRecognizer(hoverGestureRecognizer)
+                self.hoverGestureRecognizer = nil
+            }
+        }
+    }
+
+    @objc
+    func hoveringChanged(_ recognizer: UIHoverGestureRecognizer) {
+        switch recognizer.state {
+            case .began: hoverChangesHandler?(true)
+            case .ended: hoverChangesHandler?(false)
+            default: break
+        }
+    }
+}
 @available(tvOS, unavailable)
 final class SliderWidget: WrapperWidget<UISlider> {
     var onChange: ((Double) -> Void)?
@@ -414,7 +448,20 @@ extension UIKitBackend {
         }
     }
 
-    #if os(iOS) || os(visionOS)
+    public func createHoverTarget(wrapping child: Widget) -> Widget {
+        HoverableWidget(child: child)
+    }
+
+    public func updateHoverTarget(
+        _ hoverTarget: any WidgetProtocol,
+        environment: EnvironmentValues,
+        action: @escaping (Bool) -> Void
+    ) {
+        let wrapper = hoverTarget as! HoverableWidget
+        wrapper.hoverChangesHandler = action
+    }
+
+    #if os(iOS) || os(visionOS) || targetEnvironment(macCatalyst)
         public func createSlider() -> Widget {
             SliderWidget()
         }

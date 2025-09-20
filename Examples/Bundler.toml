@@ -59,3 +59,8 @@ version = '0.1.0'
 identifier = 'dev.swiftcrossui.WebViewExample'
 product = 'WebViewExample'
 version = '0.1.0'
+
+[apps.HoverExample]
+identifier = 'dev.swiftcrossui.HoverExample'
+product = 'HoverExample'
+version = '0.1.0'

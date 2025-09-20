@@ -18,13 +18,13 @@ extension UIKitBackend {
     ) -> UIMenu {
         let children = content.items.map { (item) -> UIMenuElement in
             switch item {
-                case let .button(label, action):
+                case .button(let label, let action):
                     if let action {
                         UIAction(title: label) { _ in action() }
                     } else {
                         UIAction(title: label, attributes: .disabled) { _ in }
                     }
-                case let .submenu(submenu):
+                case .submenu(let submenu):
                     buildMenu(content: submenu.content, label: submenu.label)
             }
         }
