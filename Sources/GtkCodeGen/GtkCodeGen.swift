@@ -228,9 +228,8 @@ struct GtkCodeGen {
             
             // Can cause problems with gtk versions older than 4.20.0
             guard
-                member.cIdentifier != "GTK_PAD_ACTION_DIAL",
-                member.name != "PadActionDial",
-                member.name != "GtkPadActionDial"
+                !(member.cIdentifier == "GTK_PAD_ACTION_DIAL",
+                member.name == "PadActionType")
             else {
                 return false
             }
