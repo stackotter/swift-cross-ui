@@ -640,6 +640,18 @@ public protocol AppBackend: Sendable {
         action: @escaping () -> Void
     )
 
+    /// Wraps a view in a container that can receive mouse hover events. Some
+    /// backends may not have to wrap the child, in which case they may
+    /// just return the child as is.
+    func createHoverTarget(wrapping child: Widget) -> Widget
+    /// Update the hover target with a new action. Replaces the old
+    /// action.
+    func updateHoverTarget(
+        _ hoverTarget: Widget,
+        environment: EnvironmentValues,
+        action: @escaping (Bool) -> Void
+    )
+
     // MARK: Paths
 
     /// Create a widget that can contain a path.
@@ -1136,6 +1148,17 @@ extension AppBackend {
     public func navigateWebView(
         _ webView: Widget,
         to url: URL
+    ) {
+        todo()
+    }
+
+    public func createHoverTarget(wrapping child: Widget) -> Widget {
+        todo()
+    }
+    public func updateHoverTarget(
+        _ container: Widget,
+        environment: EnvironmentValues,
+        action: @escaping (Bool) -> Void
     ) {
         todo()
     }

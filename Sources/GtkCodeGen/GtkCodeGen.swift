@@ -113,7 +113,9 @@ struct GtkCodeGen {
             "CheckButton",
         ]
         let gtk3AllowListedClasses = ["MenuShell", "EventBox"]
-        let gtk4AllowListedClasses = ["Picture", "DropDown", "Popover", "ListBox"]
+        let gtk4AllowListedClasses = [
+            "Picture", "DropDown", "Popover", "ListBox", "EventControllerMotion",
+        ]
         for class_ in gir.namespace.classes {
             guard
                 allowListedClasses.contains(class_.name)
@@ -220,6 +222,13 @@ struct GtkCodeGen {
             guard
                 member.version == nil,
                 member.docDeprecated == nil
+            else {
+                return false
+            }
+            // Can cause problems with gtk versions older than 4.20.0
+            guard
+                !(member.cIdentifier == "GTK_PAD_ACTION_DIAL"
+                    && enumeration.name == "PadActionType")
             else {
                 return false
             }

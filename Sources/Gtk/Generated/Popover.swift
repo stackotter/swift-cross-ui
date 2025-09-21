@@ -5,12 +5,17 @@ import CGtk
 /// <picture><source srcset="popover-dark.png" media="(prefers-color-scheme: dark)"><img alt="An example GtkPopover" src="popover.png"></picture>
 ///
 /// It is primarily meant to provide context-dependent information
-/// or options. Popovers are attached to a parent widget. By default,
-/// they point to the whole widget area, although this behavior can be
-/// changed with [method@Gtk.Popover.set_pointing_to].
+/// or options. Popovers are attached to a parent widget. The parent widget
+/// must support popover children, as [class@Gtk.MenuButton] and
+/// [class@Gtk.PopoverMenuBar] do. If you want to make a custom widget that
+/// has an attached popover, you need to call [method@Gtk.Popover.present]
+/// in your [vfunc@Gtk.Widget.size_allocate] vfunc, in order to update the
+/// positioning of the popover.
 ///
 /// The position of a popover relative to the widget it is attached to
-/// can also be changed with [method@Gtk.Popover.set_position]
+/// can also be changed with [method@Gtk.Popover.set_position]. By default,
+/// it points to the whole widget area, but it can be made to point to
+/// a specific area using [method@Gtk.Popover.set_pointing_to].
 ///
 /// By default, `GtkPopover` performs a grab, in order to ensure input
 /// events get redirected to it while it is shown, and also so the popover

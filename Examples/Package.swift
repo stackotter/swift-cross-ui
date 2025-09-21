@@ -1,4 +1,4 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 5.10
 
 import Foundation
 import PackageDescription
@@ -71,6 +71,10 @@ let package = Package(
         ),
         .executableTarget(
             name: "WebViewExample",
+            dependencies: exampleDependencies
+        ),
+        .executableTarget(
+            name: "HoverExample",
             dependencies: exampleDependencies
         )
     ]
