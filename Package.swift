@@ -65,7 +65,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/CoreOffice/XMLCoder", from: "0.17.1"),
         .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.0.0"),
-        .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "600.0.0"),
+        .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "500.0.0"),
         .package(url: "https://github.com/stackotter/swift-image-formats", .upToNextMinor(from: "0.3.3")),
     ],
     targets: [
