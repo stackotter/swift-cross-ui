@@ -16,8 +16,6 @@ if let backend = ProcessInfo.processInfo.environment["SCUI_DEFAULT_BACKEND"] {
 } else {
     #if os(macOS)
         defaultBackend = "AppKitBackend"
-    #elseif os(Windows)
-        defaultBackend = "WinUIBackend"
     #else
         defaultBackend = "GtkBackend"
     #endif
@@ -25,13 +23,9 @@ if let backend = ProcessInfo.processInfo.environment["SCUI_DEFAULT_BACKEND"] {
 
 // Hot reloading check
 let hotReloadingEnabled: Bool
-#if os(Windows)
-    hotReloadingEnabled = false
-#else
-    hotReloadingEnabled =
-        ProcessInfo.processInfo.environment["SWIFT_BUNDLER_HOT_RELOADING"] != nil
-        || ProcessInfo.processInfo.environment["SCUI_HOT_RELOADING"] != nil
-#endif
+hotReloadingEnabled =
+    ProcessInfo.processInfo.environment["SWIFT_BUNDLER_HOT_RELOADING"] != nil
+    || ProcessInfo.processInfo.environment["SCUI_HOT_RELOADING"] != nil
 
 // Library type
 var libraryType: Product.Library.LibraryType?
@@ -46,11 +40,7 @@ switch ProcessInfo.processInfo.environment["SCUI_LIBRARY_TYPE"] {
         print("Invalid SCUI_LIBRARY_TYPE, expected static, dynamic, or auto")
         libraryType = nil
     case nil:
-        if hotReloadingEnabled {
-            libraryType = .dynamic
-        } else {
-            libraryType = nil
-        }
+        libraryType = hotReloadingEnabled ? .dynamic : nil
 }
 
 let package = Package(
@@ -66,7 +56,6 @@ let package = Package(
         .library(name: "AppKitBackend", type: libraryType, targets: ["AppKitBackend"]),
         .library(name: "GtkBackend", type: libraryType, targets: ["GtkBackend"]),
         .library(name: "Gtk3Backend", type: libraryType, targets: ["Gtk3Backend"]),
-        .library(name: "WinUIBackend", type: libraryType, targets: ["WinUIBackend"]),
         .library(name: "DefaultBackend", type: libraryType, targets: ["DefaultBackend"]),
         .library(name: "UIKitBackend", type: libraryType, targets: ["UIKitBackend"]),
         .library(name: "Gtk", type: libraryType, targets: ["Gtk"]),
@@ -78,9 +67,6 @@ let package = Package(
         .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.0.0"),
         .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "600.0.0"),
         .package(url: "https://github.com/stackotter/swift-image-formats", .upToNextMinor(from: "0.3.3")),
-        .package(url: "https://github.com/stackotter/swift-windowsappsdk", branch: "ed938db0b9790b36391dc91b20cee81f2410309f"),
-        .package(url: "https://github.com/thebrowsercompany/swift-windowsfoundation", branch: "main"),
-        .package(url: "https://github.com/stackotter/swift-winui", branch: "927e2c46430cfb1b6c195590b9e65a30a8fd98a2"),
     ],
     targets: [
         .target(
@@ -108,7 +94,7 @@ let package = Package(
         .target(
             name: "DefaultBackend",
             dependencies: [
-                .target(name: defaultBackend, condition: .when(platforms: [.linux, .macOS, .windows])),
+                .target(name: defaultBackend, condition: .when(platforms: [.linux, .macOS])),
                 .target(name: "UIKitBackend", condition: .when(platforms: [.iOS, .tvOS, .macCatalyst])),
             ]
         ),
@@ -139,40 +125,12 @@ let package = Package(
         .executableTarget(name: "Gtk3Example", dependencies: ["Gtk3"], resources: [.copy("GTK.png")]),
         .target(name: "Gtk3CustomWidgets", dependencies: ["CGtk3"]),
         .target(name: "UIKitBackend", dependencies: ["SwiftCrossUI"]),
-        .target(
-            name: "WinUIBackend",
-            dependencies: [
-                "SwiftCrossUI",
-                "WinUIInterop",
-                .product(name: "WinUI", package: "swift-winui"),
-                .product(name: "WinAppSDK", package: "swift-windowsappsdk"),
-                .product(name: "WindowsFoundation", package: "swift-windowsfoundation"),
-            ]
-        ),
-        .target(name: "WinUIInterop", dependencies: []),
     ]
 )
 
 func getGtk4MinorVersion() -> Int? {
     #if os(Windows)
-        guard let pkgConfigPath = ProcessInfo.processInfo.environment["PKG_CONFIG_PATH"],
-              case let tripletRoot = URL(fileURLWithPath: pkgConfigPath, isDirectory: true)
-                .deletingLastPathComponent().deletingLastPathComponent(),
-              case let vcpkgInfoDirectory = tripletRoot.deletingLastPathComponent()
-                .appendingPathComponent("vcpkg").appendingPathComponent("info"),
-              let installedList = try? FileManager.default.contentsOfDirectory(
-                at: vcpkgInfoDirectory, includingPropertiesForKeys: nil
-              )
-              .map({ $0.deletingPathExtension().lastPathComponent }),
-              let packageName = installedList.first(where: {
-                  $0.hasPrefix("gtk_") && $0.hasSuffix("_\(tripletRoot.lastPathComponent)")
-              })
-        else {
-            print("We only support installing gtk through vcpkg on Windows.")
-            return nil
-        }
-
-        let version = packageName.split(separator: "_")[1].split(separator: ".")
+        return nil // Windows backend removed
     #else
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/bin/bash")
