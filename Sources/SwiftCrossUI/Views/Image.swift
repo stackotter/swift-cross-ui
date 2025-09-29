@@ -119,7 +119,7 @@ extension Image: TypeSafeView {
             if let imageData {
                 backend.updateImageView(
                     children.imageWidget.into(),
-                    rgbaData: imageData.data,
+                    rgbaData: [UInt8](imageData.data),
                     width: imageData.width,
                     height: imageData.height,
                     targetWidth: size.size.x,
