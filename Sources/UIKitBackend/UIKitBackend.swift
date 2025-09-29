@@ -27,7 +27,7 @@ public final class UIKitBackend: AppBackend {
         switch UIDevice.current.userInterfaceIdiom {
             case .phone:
                 .phone
-            case .pad, .vision:
+            case .pad:
                 .tablet
             case .tv:
                 .tv
