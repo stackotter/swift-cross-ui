@@ -70,9 +70,6 @@ let package = Package(
     targets: [
         .target(
             name: "SwiftCrossUI",
-            dependencies: [
-                .product(name: "ImageFormats", package: "swift-image-formats"),
-            ],
             exclude: [
                 "Builders/ViewBuilder.swift.gyb",
                 "Builders/SceneBuilder.swift.gyb",
