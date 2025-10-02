@@ -6,7 +6,7 @@ extension UIKitBackend {
     static func attributedString(
         text: String,
         environment: EnvironmentValues,
-        defaultForegroundColor: UIColor = .label
+        defaultForegroundColor: UIColor = .black //Changed for now
     ) -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment =
