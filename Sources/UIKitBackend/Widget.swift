@@ -166,7 +166,7 @@ class BaseViewWidget: UIView, WidgetProtocolHelpers {
         super.didMoveToSuperview()
 
         updateLeftConstraint()
-        //updateTopConstraint()
+        updateTopConstraint()
     }
 
     func add(childWidget: some WidgetProtocol) {
