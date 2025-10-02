@@ -1,5 +1,5 @@
 //MARK: Will add to a shim library later, just here for testing now.
-@available(iOS, introduced: 8.0, obsoleted: 13.0)
+@available(iOS, introduced: 6.0, obsoleted: 13.0)
 public protocol Identifiable {
     associatedtype ID: Hashable
     var id: ID { get }
