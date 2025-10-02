@@ -89,14 +89,20 @@ public final class UIKitBackend: AppBackend {
         var environment = defaultEnvironment
 
         environment.toggleStyle = .switch
-
-        switch UITraitCollection.current.userInterfaceStyle {
+        
+        
+        if #available(iOS 13.0, *) {
+            switch UITraitCollection.current.userInterfaceStyle {
             case .light:
                 environment.colorScheme = .light
             case .dark:
                 environment.colorScheme = .dark
             default:
                 break
+            }
+        } else {
+            //Default to light on all other platforms
+            environment.colorScheme = .light
         }
 
         return environment
@@ -127,7 +133,8 @@ public final class UIKitBackend: AppBackend {
 
     public func show(widget: Widget) {
     }
-
+    
+    @available(iOS 13, *)
     public func openExternalURL(_ url: URL) throws {
         UIApplication.shared.open(url)
     }

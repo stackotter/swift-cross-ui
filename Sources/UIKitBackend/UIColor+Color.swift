@@ -1,5 +1,6 @@
 import SwiftCrossUI
 import UIKit
+import UIKitCompatKit
 
 extension UIColor {
     convenience init(color: Color) {
@@ -29,11 +30,21 @@ extension Color {
     }
 
     var cgColor: CGColor {
-        CGColor(
-            red: CGFloat(red),
-            green: CGFloat(green),
-            blue: CGFloat(blue),
-            alpha: CGFloat(alpha)
-        )
+        if #available(iOS 13.0, *) {
+            CGColor(
+                red: CGFloat(red),
+                green: CGFloat(green),
+                blue: CGFloat(blue),
+                alpha: CGFloat(alpha)
+            )
+        } else {
+            //MARK: this won't work right now, get back to me on it.
+            CGColorShim(
+                red: CGFloat(red),
+                green: CGFloat(green),
+                blue: CGFloat(blue),
+                alpha: CGFloat(alpha)
+            ) as! CGColor
+        }
     }
 }

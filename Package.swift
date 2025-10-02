@@ -47,7 +47,7 @@ let package = Package(
     name: "swift-cross-ui",
     platforms: [
         .macOS(.v10_15),
-        .iOS(.v8),
+        .iOS("7.0"),
         .tvOS(.v13),
         .macCatalyst(.v13)
     ],
@@ -66,6 +66,7 @@ let package = Package(
         .package(url: "https://github.com/CoreOffice/XMLCoder", from: "0.0.0"),
         .package(url: "https://github.com/swiftlang/swift-docc-plugin", exact: "1.0.0"),
         .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "0.0.0"),
+        .package(url: "https://github.com/JWIMaster/UIKitCompatKit", branch: "master"),
     ],
     targets: [
         .target(
@@ -120,7 +121,10 @@ let package = Package(
         .target(name: "Gtk3", dependencies: ["CGtk3", "Gtk3CustomWidgets"], exclude: ["LICENSE.md"], swiftSettings: gtkSwiftSettings),
         .executableTarget(name: "Gtk3Example", dependencies: ["Gtk3"], resources: [.copy("GTK.png")]),
         .target(name: "Gtk3CustomWidgets", dependencies: ["CGtk3"]),
-        .target(name: "UIKitBackend", dependencies: ["SwiftCrossUI"]),
+        .target(name: "UIKitBackend", dependencies: [
+            "SwiftCrossUI",
+            .product(name: "UIKitCompatKit", package: "UIKitCompatKit"),
+        ]),
     ]
 )
 

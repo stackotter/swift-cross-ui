@@ -1,4 +1,5 @@
 import UIKit
+import UIKitCompatKit 
 
 final class RootViewController: UIViewController {
     unowned var backend: UIKitBackend

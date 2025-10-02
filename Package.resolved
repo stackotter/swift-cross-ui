@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "uikitcompatkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JWIMaster/UIKitCompatKit",
+      "state" : {
+        "branch" : "master",
+        "revision" : "1661baf96942b632f9e007b0c29e4453fe47d3f4"
+      }
+    },
+    {
       "identity" : "xmlcoder",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/CoreOffice/XMLCoder",
