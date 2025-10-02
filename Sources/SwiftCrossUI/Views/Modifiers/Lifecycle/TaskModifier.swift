@@ -1,6 +1,6 @@
 //MARK: Is this needed? This seems to be the worst offender in terms of compatibility. 
 
-
+@available(iOS 13, *)
 extension View {
     /// Starts a task before a view appears (but after ``View/body`` has been
     /// accessed), and cancels the task when the view disappears. Additionally,
