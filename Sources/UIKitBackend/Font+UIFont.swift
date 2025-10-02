@@ -29,8 +29,13 @@ extension Font.Resolved {
                     }
 
                 switch design {
+                    //MARK: Sketchy asf
                     case .monospaced:
+                    if #available(iOS 13.0, *) {
                         uiFont = .monospacedSystemFont(ofSize: CGFloat(pointSize), weight: weight)
+                    } else {
+                        uiFont = .systemFont(ofSize: CGFloat(pointSize), weight: weight)
+                    }
                     case .default:
                         uiFont = .systemFont(ofSize: CGFloat(pointSize), weight: weight)
                 }

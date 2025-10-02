@@ -146,7 +146,9 @@ extension UIKitBackend {
     public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
         // if windowScene is nil, either the window isn't shown or it must be fullscreen
         // if sizeRestrictions is nil, the device doesn't support setting a minimum window size
-        window.windowScene?.sizeRestrictions?.minimumSize = CGSize(
-            width: CGFloat(minimumSize.x), height: CGFloat(minimumSize.y))
+        if #available(iOS 13, *) {
+            window.windowScene?.sizeRestrictions?.minimumSize = CGSize(
+                width: CGFloat(minimumSize.x), height: CGFloat(minimumSize.y))
+        }
     }
 }

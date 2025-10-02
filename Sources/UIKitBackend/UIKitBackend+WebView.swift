@@ -1,6 +1,7 @@
 import SwiftCrossUI
 import WebKit
 
+@available(iOS 8, *)
 extension UIKitBackend {
     public func createWebView() -> Widget {
         WebViewWidget()
@@ -23,6 +24,7 @@ extension UIKitBackend {
 }
 
 /// A wrapper for WKWebView. Acts as the web view's delegate as well.
+@available(iOS 8, *)
 final class WebViewWidget: WrapperWidget<WKWebView>, WKNavigationDelegate {
     var onNavigate: ((URL) -> Void)?
 

@@ -1,6 +1,7 @@
 import SwiftCrossUI
 import UIKit
 
+@available(iOS 13, *)
 extension UIKitBackend {
     public final class Menu {
         var uiMenu: UIMenu?
