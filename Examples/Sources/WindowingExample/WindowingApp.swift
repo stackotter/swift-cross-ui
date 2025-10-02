@@ -64,6 +64,56 @@ struct AlertDemo: View {
     }
 }
 
+struct SheetDemo: View {
+    @State var isPresented = false
+    @State var isShortTermSheetPresented = false
+
+    var body: some View {
+        Button("Open Sheet") {
+            isPresented = true
+        }
+        Button("Show Sheet for 5s") {
+            isShortTermSheetPresented = true
+            Task {
+                try? await Task.sleep(nanoseconds: 1_000_000_000 * 5)
+                isShortTermSheetPresented = false
+            }
+        }
+        .sheet(isPresented: $isPresented) {
+            print("sheet dismissed")
+        } content: {
+            SheetBody()
+        }
+        .sheet(isPresented: $isShortTermSheetPresented) {
+            Text("I'm only here for 5s")
+                .padding(20)
+        }
+    }
+
+    struct SheetBody: View {
+        @State var isPresented = false
+
+        var body: some View {
+            ZStack {
+                Color.blue
+                VStack {
+                    Text("Nice sheet content")
+                        .padding(20)
+                    Button("I want more sheet") {
+                        isPresented = true
+                        print("should get presented")
+                    }
+                }
+            }
+            .sheet(isPresented: $isPresented) {
+                print("nested sheet dismissed")
+            } content: {
+                Text("I'm nested. Its claustrophobic in here.")
+            }
+        }
+    }
+}
+
 @main
 @HotReloadable
 struct WindowingApp: App {
@@ -92,6 +142,10 @@ struct WindowingApp: App {
                     Divider()
 
                     AlertDemo()
+
+                    Divider()
+
+                    SheetDemo()
                 }
                 .padding(20)
             }

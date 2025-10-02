@@ -16,6 +16,7 @@ public final class AppKitBackend: AppBackend {
     public typealias Menu = NSMenu
     public typealias Alert = NSAlert
     public typealias Path = NSBezierPath
+    public typealias Sheet = NSCustomSheet
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
@@ -1684,6 +1685,67 @@ public final class AppKitBackend: AppBackend {
         let webView = webView as! CustomWKWebView
         let request = URLRequest(url: url)
         webView.load(request)
+    }
+
+    public func createSheet() -> NSCustomSheet {
+        // Initialize with a default contentRect, similar to window creation (lines 58-68)
+        let sheet = NSCustomSheet(
+            contentRect: NSRect(
+                x: 0,
+                y: 0,
+                width: 400,  // Default width
+                height: 300  // Default height
+            ),
+            styleMask: [.titled, .closable],
+            backing: .buffered,
+            defer: true
+        )
+        return sheet
+    }
+
+    public func updateSheet(
+        _ sheet: NSCustomSheet, content: NSView, onDismiss: @escaping () -> Void
+    ) {
+        let contentSize = naturalSize(of: content)
+
+        let width = max(contentSize.x, 80)
+        let height = max(contentSize.y, 80)
+        sheet.setContentSize(NSSize(width: width, height: height))
+
+        sheet.contentView = content
+        sheet.onDismiss = onDismiss
+    }
+
+    public func showSheet(_ sheet: NSCustomSheet, window: NSCustomWindow?) {
+        guard let window else {
+            print("warning: Cannot show sheet without a parent window")
+            return
+        }
+        // critical sheets stack
+        // beginSheet only shows a nested
+        // sheet after its parent gets dismissed
+        window.beginCriticalSheet(sheet)
+    }
+
+    public func dismissSheet(_ sheet: NSCustomSheet, window: NSCustomWindow?) {
+        if let window {
+            window.endSheet(sheet)
+        } else {
+            NSApplication.shared.stopModal()
+        }
+    }
+}
+
+public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate {
+    public var onDismiss: (() -> Void)?
+
+    public func dismiss() {
+        onDismiss?()
+        self.contentViewController?.dismiss(self)
+    }
+
+    @objc override public func cancelOperation(_ sender: Any?) {
+        dismiss()
     }
 }
 
