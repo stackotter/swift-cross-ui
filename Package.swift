@@ -63,8 +63,8 @@ let package = Package(
         .executable(name: "GtkExample", targets: ["GtkExample"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/CoreOffice/XMLCoder", from: "0.10.1"),
-        .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.0.0"),
+        .package(url: "https://github.com/CoreOffice/XMLCoder", from: "0.0.0"),
+        .package(url: "https://github.com/swiftlang/swift-docc-plugin", exact: "1.0.0"),
         .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "0.0.0"),
     ],
     targets: [
