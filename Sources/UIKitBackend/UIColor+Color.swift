@@ -30,7 +30,7 @@ extension Color {
     }
 
     var cgColor: CGColor {
-        if #available(iOS 13.0, *) {
+        /*if #available(iOS 13.0, *) {
             CGColor(
                 red: CGFloat(red),
                 green: CGFloat(green),
@@ -39,12 +39,10 @@ extension Color {
             )
         } else {
             //MARK: this won't work right now, get back to me on it.
-            CGColorShim(
-                red: CGFloat(red),
-                green: CGFloat(green),
-                blue: CGFloat(blue),
-                alpha: CGFloat(alpha)
-            ) as! CGColor
-        }
+            
+        }*/
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let components: [CGFloat] = [CGFloat(red), CGFloat(green), CGFloat(blue), CGFloat(alpha)]
+        return CGColor(colorSpace: colorSpace, components: components)!
     }
 }
