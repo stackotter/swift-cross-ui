@@ -166,7 +166,7 @@ class BaseViewWidget: UIView, WidgetProtocolHelpers {
         super.didMoveToSuperview()
 
         updateLeftConstraint()
-        updateTopConstraint()
+        //updateTopConstraint()
     }
 
     func add(childWidget: some WidgetProtocol) {
@@ -289,20 +289,11 @@ class WrapperWidget<View: UIView>: BaseViewWidget {
         self.addSubview(child)
         child.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            {
-                let c = child.topAnchor.constraint(equalTo: self.topAnchor)
-                c.priority = .defaultHigh
-                return c
-            }(),
+            child.topAnchor.constraint(equalTo: self.topAnchor),
             child.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            {
-                let c = child.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-                c.priority = .defaultHigh
-                return c
-            }(),
+            child.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             child.trailingAnchor.constraint(equalTo: self.trailingAnchor),
         ])
-
     }
 
     override convenience init() {
