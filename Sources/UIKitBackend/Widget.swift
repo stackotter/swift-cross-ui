@@ -289,11 +289,20 @@ class WrapperWidget<View: UIView>: BaseViewWidget {
         self.addSubview(child)
         child.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            child.topAnchor.constraint(equalTo: self.topAnchor),
+            {
+                let c = child.topAnchor.constraint(equalTo: self.topAnchor)
+                c.priority = .defaultHigh
+                return c
+            }(),
             child.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            child.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            {
+                let c = child.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+                c.priority = .defaultHigh
+                return c
+            }(),
             child.trailingAnchor.constraint(equalTo: self.trailingAnchor),
         ])
+
     }
 
     override convenience init() {
