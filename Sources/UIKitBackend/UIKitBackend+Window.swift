@@ -1,5 +1,5 @@
 import UIKit
-import UIKitCompatKit 
+import UIKitCompatKit
 
 final class RootViewController: UIViewController {
     unowned var backend: UIKitBackend
@@ -21,7 +21,9 @@ final class RootViewController: UIViewController {
             self.backend = backend
             super.init(nibName: nil, bundle: nil)
         }
-
+        
+        
+        @available(iOS 8.0, *)
         override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
             super.traitCollectionDidChange(previousTraitCollection)
             backend.onTraitCollectionChange?()
@@ -35,11 +37,17 @@ final class RootViewController: UIViewController {
 
     override func loadView() {
         super.loadView()
-        if traitCollection.userInterfaceStyle != .dark {
+        if #available(iOS 12, *) {
+            if traitCollection.userInterfaceStyle != .dark {
+                view.backgroundColor = .white
+            }
+        } else {
             view.backgroundColor = .white
         }
     }
-
+    
+    
+    @available(iOS 8.0, *)
     override func viewWillTransition(
         to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator
     ) {

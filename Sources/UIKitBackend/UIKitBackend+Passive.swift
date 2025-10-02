@@ -1,5 +1,6 @@
 import SwiftCrossUI
 import UIKit
+import UIKitCompatKit
 
 extension UIKitBackend {
     static func attributedString(
@@ -15,7 +16,8 @@ extension UIKitBackend {
                 case .leading:
                     .natural
                 case .trailing:
-                    UITraitCollection.current.layoutDirection == .rightToLeft ? .left : .right
+                    //UITraitCollection.current.layoutDirection == .rightToLeft ? .left : .right
+                    .center //I don't know how to fix this right now
             }
         paragraphStyle.lineBreakMode = .byWordWrapping
 
@@ -47,7 +49,11 @@ extension UIKitBackend {
         environment: EnvironmentValues
     ) {
         let wrapper = textView as! WrapperWidget<UILabel>
-        wrapper.child.overrideUserInterfaceStyle = environment.colorScheme.userInterfaceStyle
+        
+        if #available(iOS 13.0, *) {
+            wrapper.child.overrideUserInterfaceStyle = environment.colorScheme.userInterfaceStyle
+        }
+        
         wrapper.child.attributedText = UIKitBackend.attributedString(
             text: content,
             environment: environment
@@ -99,7 +105,7 @@ extension UIKitBackend {
             bytesPerRow: width * 4,
             size: CGSize(width: CGFloat(width), height: CGFloat(height)),
             format: .RGBA8,
-            colorSpace: .init(name: CGColorSpace.sRGB)
+            colorSpace: .init(name: "sRGB" as CFString) //temporary modification lol
         )
         wrapper.child.image = .init(ciImage: ciImage)
     }
