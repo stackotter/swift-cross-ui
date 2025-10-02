@@ -633,6 +633,27 @@ public protocol AppBackend: Sendable {
     /// Gets used by the SCUI sheet implementation to close a sheet.
     func dismissSheet(_ sheet: Sheet, window: Window?)
 
+    /// Sets the corner radius for a sheet presentation.
+    ///
+    /// This method is called when the sheet content has a `presentationCornerRadius` modifier
+    /// applied at its top level. The corner radius affects the sheet's presentation container,
+    /// not the content itself.
+    ///
+    /// - Parameters:
+    ///   - sheet: The sheet to apply the corner radius to.
+    ///   - radius: The corner radius in pixels.
+    func setPresentationCornerRadius(of sheet: Sheet, to radius: Int)
+
+    /// Sets the available detents (heights) for a sheet presentation.
+    ///
+    /// This method is called when the sheet content has a `presentationDetents` modifier
+    /// applied at its top level. Detents allow users to resize the sheet to predefined heights.
+    ///
+    /// - Parameters:
+    ///   - sheet: The sheet to apply the detents to.
+    ///   - detents: An array of detents that the sheet can be resized to.
+    func setPresentationDetents(of sheet: Sheet, to detents: [PresentationDetent])
+
     /// Presents an 'Open file' dialog to the user for selecting files or
     /// folders.
     ///
@@ -1213,6 +1234,14 @@ extension AppBackend {
     }
 
     public func dismissSheet(_ sheet: Sheet, window: Window?) {
+        todo()
+    }
+
+    public func setPresentationCornerRadius(of sheet: Sheet, to radius: Int) {
+        todo()
+    }
+
+    public func setPresentationDetents(of sheet: Sheet, to detents: [PresentationDetent]) {
         todo()
     }
 }

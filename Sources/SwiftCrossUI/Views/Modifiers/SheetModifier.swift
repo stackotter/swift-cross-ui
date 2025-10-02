@@ -78,6 +78,9 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
                 dryRun: true
             )
 
+            // Extract preferences from the sheet content
+            let preferences = dryRunResult.preferences
+
             let sheetSize = dryRunResult.size.idealSize
 
             let _ = children.sheetContentNode.update(
@@ -94,6 +97,16 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
                 content: children.sheetContentNode.widget.into(),
                 onDismiss: handleDismiss
             )
+
+            // Apply presentation preferences to the sheet
+            if let cornerRadius = preferences.presentationCornerRadius {
+                backend.setPresentationCornerRadius(of: sheet, to: cornerRadius)
+            }
+
+            if let detents = preferences.presentationDetents {
+                backend.setPresentationDetents(of: sheet, to: detents)
+            }
+
             backend.showSheet(
                 sheet,
                 window: .some(environment.window! as! Backend.Window)

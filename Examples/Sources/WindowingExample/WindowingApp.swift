@@ -87,6 +87,7 @@ struct SheetDemo: View {
         .sheet(isPresented: $isShortTermSheetPresented) {
             Text("I'm only here for 5s")
                 .padding(20)
+                .presentationCornerRadius(2)
         }
     }
 
@@ -162,23 +163,24 @@ struct WindowingApp: App {
                 }
             }
         }
-
-        WindowGroup("Secondary window") {
-            #hotReloadable {
-                Text("This a secondary window!")
-                    .padding(10)
+        #if !os(iOS)
+            WindowGroup("Secondary window") {
+                #hotReloadable {
+                    Text("This a secondary window!")
+                        .padding(10)
+                }
             }
-        }
-        .defaultSize(width: 200, height: 200)
-        .windowResizability(.contentMinSize)
+            .defaultSize(width: 200, height: 200)
+            .windowResizability(.contentMinSize)
 
-        WindowGroup("Tertiary window") {
-            #hotReloadable {
-                Text("This a tertiary window!")
-                    .padding(10)
+            WindowGroup("Tertiary window") {
+                #hotReloadable {
+                    Text("This a tertiary window!")
+                        .padding(10)
+                }
             }
-        }
-        .defaultSize(width: 200, height: 200)
-        .windowResizability(.contentMinSize)
+            .defaultSize(width: 200, height: 200)
+            .windowResizability(.contentMinSize)
+        #endif
     }
 }
