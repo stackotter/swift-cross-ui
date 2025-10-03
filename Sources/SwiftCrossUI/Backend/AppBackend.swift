@@ -641,8 +641,8 @@ public protocol AppBackend: Sendable {
     ///
     /// - Parameters:
     ///   - sheet: The sheet to apply the corner radius to.
-    ///   - radius: The corner radius in pixels.
-    func setPresentationCornerRadius(of sheet: Sheet, to radius: Int)
+    ///   - radius: The corner radius
+    func setPresentationCornerRadius(of sheet: Sheet, to radius: Double)
 
     /// Sets the available detents (heights) for a sheet presentation.
     ///
@@ -776,6 +776,12 @@ extension AppBackend {
     private func todo(_ function: String = #function) -> Never {
         print("\(type(of: self)): \(function) not implemented")
         Foundation.exit(1)
+    }
+
+    private func ignored(_ function: String = #function) {
+        print(
+            "\(type(of: self)): \(function) is being ignored\nConsult at the documentation for further information."
+        )
     }
 
     // MARK: System
@@ -1237,11 +1243,11 @@ extension AppBackend {
         todo()
     }
 
-    public func setPresentationCornerRadius(of sheet: Sheet, to radius: Int) {
-        todo()
+    public func setPresentationCornerRadius(of sheet: Sheet, to radius: Double) {
+        ignored()
     }
 
     public func setPresentationDetents(of sheet: Sheet, to detents: [PresentationDetent]) {
-        todo()
+        ignored()
     }
 }

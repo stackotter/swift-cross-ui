@@ -87,7 +87,8 @@ struct SheetDemo: View {
         .sheet(isPresented: $isShortTermSheetPresented) {
             Text("I'm only here for 5s")
                 .padding(20)
-                .presentationCornerRadius(2)
+                .presentationDetents([.height(150), .medium, .large])
+                .presentationCornerRadius(10)
         }
     }
 
@@ -147,6 +148,7 @@ struct WindowingApp: App {
                     Divider()
 
                     SheetDemo()
+                        .padding(.bottom, 20)
                 }
                 .padding(20)
             }

@@ -13,12 +13,12 @@ public struct PreferenceValues: Sendable {
     public var presentationDetents: [PresentationDetent]?
 
     /// The corner radius for a sheet presentation. Only applies to the top-level view in a sheet.
-    public var presentationCornerRadius: Int?
+    public var presentationCornerRadius: Double?
 
     public init(
         onOpenURL: (@Sendable @MainActor (URL) -> Void)?,
         presentationDetents: [PresentationDetent]? = nil,
-        presentationCornerRadius: Int? = nil
+        presentationCornerRadius: Double? = nil
     ) {
         self.onOpenURL = onOpenURL
         self.presentationDetents = presentationDetents

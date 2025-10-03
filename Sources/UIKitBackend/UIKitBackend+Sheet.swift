@@ -7,7 +7,6 @@ extension UIKitBackend {
     public func createSheet() -> CustomSheet {
         let sheet = CustomSheet()
         sheet.modalPresentationStyle = .formSheet
-        //sheet.transitioningDelegate = CustomSheetTransitioningDelegate()
 
         return sheet
     }
@@ -28,6 +27,59 @@ extension UIKitBackend {
 
     public func dismissSheet(_ sheet: CustomSheet, window: UIWindow?) {
         sheet.dismiss(animated: true)
+    }
+
+    public func setPresentationDetents(of sheet: CustomSheet, to detents: [PresentationDetent]) {
+        if #available(iOS 15.0, *) {
+            if let sheetPresentation = sheet.sheetPresentationController {
+                sheetPresentation.detents = detents.map {
+                    switch $0 {
+                        case .medium: return .medium()
+                        case .large: return .large()
+                        case .fraction(let fraction):
+                            if #available(iOS 16.0, *) {
+                                return .custom(
+                                    identifier: .init("Fraction:\(fraction)"),
+                                    resolver: { context in
+                                        context.maximumDetentValue * fraction
+                                    })
+                            } else {
+                                return .medium()
+                            }
+                        case .height(let height):
+                            if #available(iOS 16.0, *) {
+                                return .custom(
+                                    identifier: .init("Height:\(height)"),
+                                    resolver: { context in
+                                        height
+                                    })
+                            } else {
+                                return .medium()
+                            }
+                    }
+                }
+            }
+        } else {
+            #if DEBUG
+                print(
+                    "your current OS Version doesn't support variable sheet heights.\n Setting presentationDetents is only available from iOS 15.0"
+                )
+            #endif
+        }
+    }
+
+    public func setPresentationCornerRadius(of sheet: CustomSheet, to radius: Double) {
+        if #available(iOS 15.0, *) {
+            if let sheetController = sheet.sheetPresentationController {
+                sheetController.preferredCornerRadius = radius
+            }
+        } else {
+            #if DEBUG
+                print(
+                    "your current OS Version doesn't support variable sheet corner radii.\n Setting them is only available from iOS 15.0"
+                )
+            #endif
+        }
     }
 }
 

@@ -1734,10 +1734,6 @@ public final class AppKitBackend: AppBackend {
             NSApplication.shared.stopModal()
         }
     }
-
-    public func setPresentationCornerRadius(of sheet: NSCustomSheet, to radius: Int) {
-        print("setting Sheet Corner Radius is unavailable on macOS and will be ignored")
-    }
 }
 
 public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate {
