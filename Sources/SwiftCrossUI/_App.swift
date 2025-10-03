@@ -87,9 +87,7 @@ class _App<AppRoot: App> {
                         environment: self.environment
                     )
 
-                    if #available(iOS 13.0, *) {
-                        self.backend.setApplicationMenu(body.commands.resolve())
-                    }
+                    //self.backend.setApplicationMenu(body.commands.resolve())
                 }
                 self.cancellables.append(cancellable)
             }
@@ -109,9 +107,7 @@ class _App<AppRoot: App> {
             }
 
             // Update application-wide menu
-            if #available(iOS 13.0, *) {
-                self.backend.setApplicationMenu(body.commands.resolve())
-            }
+            //self.backend.setApplicationMenu(body.commands.resolve())
 
             rootNode.update(
                 nil,
