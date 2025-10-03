@@ -71,26 +71,25 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
         )
 
         if isPresented.wrappedValue && children.sheet == nil {
+            //let sheetSize = dryRunResult.size.idealSize
+
+            let sheet = backend.createSheet()
+
             let dryRunResult = children.sheetContentNode.update(
                 with: sheetContent(),
-                proposedSize: proposedSize,
+                proposedSize: sheet.size,
                 environment: environment,
                 dryRun: true
             )
 
-            // Extract preferences from the sheet content
             let preferences = dryRunResult.preferences
-
-            let sheetSize = dryRunResult.size.idealSize
 
             let _ = children.sheetContentNode.update(
                 with: sheetContent(),
-                proposedSize: sheetSize,
+                proposedSize: sheet.size,
                 environment: environment,
                 dryRun: false
             )
-
-            let sheet = backend.createSheet()
 
             backend.updateSheet(
                 sheet,

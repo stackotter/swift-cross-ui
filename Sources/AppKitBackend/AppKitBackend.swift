@@ -1736,7 +1736,13 @@ public final class AppKitBackend: AppBackend {
     }
 }
 
-public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate {
+public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate, SheetImplementation {
+    public var size: SIMD2<Int> {
+        guard let size = self.contentView?.frame.size else {
+            return SIMD2(x: 0, y: 0)
+        }
+        return SIMD2(x: Int(size.width), y: Int(size.height))
+    }
     public var onDismiss: (() -> Void)?
 
     public func dismiss() {

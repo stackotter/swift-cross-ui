@@ -47,7 +47,7 @@ public protocol AppBackend: Sendable {
     associatedtype Menu
     associatedtype Alert
     associatedtype Path
-    associatedtype Sheet
+    associatedtype Sheet: SheetImplementation
 
     /// Creates an instance of the backend.
     init()
@@ -769,6 +769,10 @@ extension AppBackend {
         // This is only really to assist contributors when debugging backends,
         // so it's safe enough to have a no-op default implementation.
     }
+}
+
+public protocol SheetImplementation {
+    var size: SIMD2<Int> { get }
 }
 
 extension AppBackend {

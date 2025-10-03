@@ -83,6 +83,8 @@ struct SheetDemo: View {
             print("sheet dismissed")
         } content: {
             SheetBody()
+                .frame(maxWidth: 200, maxHeight: 100)
+                .presentationDetents([.height(150), .medium, .large])
         }
         .sheet(isPresented: $isShortTermSheetPresented) {
             Text("I'm only here for 5s")
@@ -105,6 +107,7 @@ struct SheetDemo: View {
                         isPresented = true
                         print("should get presented")
                     }
+                    Spacer()
                 }
             }
             .sheet(isPresented: $isPresented) {
