@@ -26,7 +26,15 @@ extension UIKitBackend {
     }
 
     public func dismissSheet(_ sheet: CustomSheet, window: UIWindow?) {
-        sheet.dismiss(animated: true)
+        // If this sheet has a presented view controller (nested sheet), dismiss it first
+        if let presentedVC = sheet.presentedViewController {
+            presentedVC.dismiss(animated: false) { [weak sheet] in
+                // After the nested sheet is dismissed, dismiss this sheet
+                sheet?.dismissProgrammatically()
+            }
+        } else {
+            sheet.dismissProgrammatically()
+        }
     }
 
     public func setPresentationDetents(of sheet: CustomSheet, to detents: [PresentationDetent]) {
@@ -110,12 +118,24 @@ public final class CustomSheet: UIViewController, SheetImplementation {
     }
 
     var onDismiss: (() -> Void)?
+    private var isDismissedProgrammatically = false
 
     public override func viewDidLoad() {
         super.viewDidLoad()
     }
 
+    func dismissProgrammatically() {
+        isDismissedProgrammatically = true
+        dismiss(animated: true)
+    }
+
     public override func viewDidDisappear(_ animated: Bool) {
-        onDismiss?()
+        super.viewDidDisappear(animated)
+
+        // Only call onDismiss if the sheet was dismissed by user interaction (swipe down, tap outside)
+        // not when dismissed programmatically via the dismiss action
+        if !isDismissedProgrammatically {
+            onDismiss?()
+        }
     }
 }

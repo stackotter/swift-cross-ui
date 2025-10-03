@@ -73,10 +73,15 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
         if isPresented.wrappedValue && children.sheet == nil {
             let sheet = backend.createSheet()
 
+            let dismissAction = DismissAction(action: { [isPresented] in
+                isPresented.wrappedValue = false
+            })
+            let sheetEnvironment = environment.with(\.dismiss, dismissAction)
+
             let dryRunResult = children.sheetContentNode.update(
                 with: sheetContent(),
                 proposedSize: sheet.size,
-                environment: environment,
+                environment: sheetEnvironment,
                 dryRun: true
             )
 
@@ -85,7 +90,7 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
             let _ = children.sheetContentNode.update(
                 with: sheetContent(),
                 proposedSize: sheet.size,
-                environment: environment,
+                environment: sheetEnvironment,
                 dryRun: false
             )
 
@@ -95,7 +100,7 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
                 onDismiss: handleDismiss
             )
 
-            // Apply presentation preferences to the sheet
+            // MARK: Sheet Presentation Preferences
             if let cornerRadius = preferences.presentationCornerRadius {
                 backend.setPresentationCornerRadius(of: sheet, to: cornerRadius)
             }

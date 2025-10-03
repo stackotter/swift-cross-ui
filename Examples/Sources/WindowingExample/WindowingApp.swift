@@ -64,6 +64,7 @@ struct AlertDemo: View {
     }
 }
 
+// kind of a stress test for the dismiss action
 struct SheetDemo: View {
     @State var isPresented = false
     @State var isShortTermSheetPresented = false
@@ -85,7 +86,7 @@ struct SheetDemo: View {
             SheetBody()
                 .presentationDetents([.height(150), .medium, .large])
                 .presentationDragIndicatorVisibility(.visible)
-                .presentationBackground(.blue)
+                .presentationBackground(.green)
         }
         .sheet(isPresented: $isShortTermSheetPresented) {
             Text("I'm only here for 5s")
@@ -98,6 +99,7 @@ struct SheetDemo: View {
 
     struct SheetBody: View {
         @State var isPresented = false
+        @Environment(\.dismiss) var dismiss
 
         var body: some View {
             VStack {
@@ -107,12 +109,51 @@ struct SheetDemo: View {
                     isPresented = true
                     print("should get presented")
                 }
+                Button("Dismiss") {
+                    dismiss()
+                }
                 Spacer()
             }
             .sheet(isPresented: $isPresented) {
                 print("nested sheet dismissed")
             } content: {
+                NestedSheetBody(dismissParent: { dismiss() })
+            }
+        }
+
+        struct NestedSheetBody: View {
+            @Environment(\.dismiss) var dismiss
+            var dismissParent: () -> Void
+            @State var showNextChild = false
+
+            var body: some View {
                 Text("I'm nested. Its claustrophobic in here.")
+                Button("New Child Sheet") {
+                    showNextChild = true
+                }
+                .sheet(isPresented: $showNextChild) {
+                    DoubleNestedSheetBody(dismissParent: { dismiss() })
+                }
+                Button("dismiss parent sheet") {
+                    dismissParent()
+                }
+                Button("dismiss") {
+                    dismiss()
+                }
+            }
+        }
+        struct DoubleNestedSheetBody: View {
+            @Environment(\.dismiss) var dismiss
+            var dismissParent: () -> Void
+
+            var body: some View {
+                Text("I'm nested. Its claustrophobic in here.")
+                Button("dismiss parent sheet") {
+                    dismissParent()
+                }
+                Button("dismiss") {
+                    dismiss()
+                }
             }
         }
     }
