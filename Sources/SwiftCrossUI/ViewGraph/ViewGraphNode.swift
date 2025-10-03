@@ -169,7 +169,8 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
 
     private func updateEnvironment(_ environment: EnvironmentValues) -> EnvironmentValues {
         var newEnvironment = environment
-        newEnvironment.with(\.onResize) { [weak self] _ in
+        // Directly assign the closure instead of using keypath
+        newEnvironment.onResize = { [weak self] newSize in
             guard let self = self else { return }
             self.bottomUpUpdate()
         }
