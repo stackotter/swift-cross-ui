@@ -85,12 +85,14 @@ struct SheetDemo: View {
             SheetBody()
                 .presentationDetents([.height(150), .medium, .large])
                 .presentationDragIndicatorVisibility(.visible)
+                .presentationBackground(.blue)
         }
         .sheet(isPresented: $isShortTermSheetPresented) {
             Text("I'm only here for 5s")
                 .padding(20)
                 .presentationDetents([.height(150), .medium, .large])
                 .presentationCornerRadius(10)
+                .presentationBackground(.red)
         }
     }
 
@@ -98,17 +100,14 @@ struct SheetDemo: View {
         @State var isPresented = false
 
         var body: some View {
-            ZStack {
-                Color.blue
-                VStack {
-                    Text("Nice sheet content")
-                        .padding(20)
-                    Button("I want more sheet") {
-                        isPresented = true
-                        print("should get presented")
-                    }
-                    Spacer()
+            VStack {
+                Text("Nice sheet content")
+                    .padding(20)
+                Button("I want more sheet") {
+                    isPresented = true
+                    print("should get presented")
                 }
+                Spacer()
             }
             .sheet(isPresented: $isPresented) {
                 print("nested sheet dismissed")

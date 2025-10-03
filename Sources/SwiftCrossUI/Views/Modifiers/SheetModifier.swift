@@ -111,6 +111,10 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
                     of: sheet, to: presentationDragIndicatorVisibility)
             }
 
+            if let presentationBackground = preferences.presentationBackground {
+                backend.setPresentationBackground(of: sheet, to: presentationBackground)
+            }
+
             backend.showSheet(
                 sheet,
                 window: .some(environment.window! as! Backend.Window)

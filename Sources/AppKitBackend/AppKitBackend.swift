@@ -1708,8 +1708,8 @@ public final class AppKitBackend: AppBackend {
     ) {
         let contentSize = naturalSize(of: content)
 
-        let width = max(contentSize.x, 80)
-        let height = max(contentSize.y, 80)
+        let width = max(contentSize.x, 10)
+        let height = max(contentSize.y, 10)
         sheet.setContentSize(NSSize(width: width, height: height))
 
         sheet.contentView = content
@@ -1732,6 +1732,38 @@ public final class AppKitBackend: AppBackend {
             window.endSheet(sheet)
         } else {
             NSApplication.shared.stopModal()
+        }
+    }
+
+    public func setPresentationBackground(of sheet: NSCustomSheet, to color: Color) {
+        let backgroundView = NSView()
+        backgroundView.wantsLayer = true
+        backgroundView.layer?.backgroundColor = color.nsColor.cgColor
+
+        if let existingContentView = sheet.contentView {
+            let container = NSView()
+            container.translatesAutoresizingMaskIntoConstraints = false
+
+            container.addSubview(backgroundView)
+            backgroundView.translatesAutoresizingMaskIntoConstraints = false
+            backgroundView.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive =
+                true
+            backgroundView.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+            backgroundView.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive =
+                true
+            backgroundView.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
+
+            container.addSubview(existingContentView)
+            existingContentView.translatesAutoresizingMaskIntoConstraints = false
+            existingContentView.leadingAnchor.constraint(equalTo: container.leadingAnchor)
+                .isActive = true
+            existingContentView.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+            existingContentView.trailingAnchor.constraint(equalTo: container.trailingAnchor)
+                .isActive = true
+            existingContentView.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive =
+                true
+
+            sheet.contentView = container
         }
     }
 }

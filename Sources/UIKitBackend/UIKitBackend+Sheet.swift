@@ -97,6 +97,10 @@ extension UIKitBackend {
             #endif
         }
     }
+
+    public func setPresentationBackground(of sheet: CustomSheet, to color: Color) {
+        sheet.view.backgroundColor = color.uiColor
+    }
 }
 
 public final class CustomSheet: UIViewController, SheetImplementation {

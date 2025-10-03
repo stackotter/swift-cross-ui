@@ -654,8 +654,28 @@ public protocol AppBackend: Sendable {
     ///   - detents: An array of detents that the sheet can be resized to.
     func setPresentationDetents(of sheet: Sheet, to detents: [PresentationDetent])
 
+    /// Sets the visibility for a sheet presentation.
+    ///
+    /// This method is called when the sheet content has a `presentationDragIndicatorVisibility`
+    /// modifier applied at its top level.
+    ///
+    /// - Parameters:
+    ///   - sheet: The sheet to apply the detents to.
+    ///   - visibility: visibility of the drag indicator (visible or hidden)
     func setPresentationDragIndicatorVisibility(
-        of sheet: Sheet, to visibility: PresentationDragIndicatorVisibility)
+        of sheet: Sheet,
+        to visibility: PresentationDragIndicatorVisibility
+    )
+
+    /// Sets the background color for a sheet presentation.
+    ///
+    /// This method is called when the sheet content has a `presentationBackground`
+    /// modifier applied at its top level.
+    ///
+    /// - Parameters:
+    ///   - sheet: The sheet to apply the detents to.
+    ///   - color: rgba background color
+    func setPresentationBackground(of sheet: Sheet, to color: Color)
 
     /// Presents an 'Open file' dialog to the user for selecting files or
     /// folders.
@@ -786,9 +806,11 @@ extension AppBackend {
     }
 
     private func ignored(_ function: String = #function) {
-        print(
-            "\(type(of: self)): \(function) is being ignored\nConsult at the documentation for further information."
-        )
+        #if DEBUG
+            print(
+                "\(type(of: self)): \(function) is being ignored\nConsult at the documentation for further information."
+            )
+        #endif
     }
 
     // MARK: System
@@ -1262,5 +1284,9 @@ extension AppBackend {
         of sheet: Sheet, to visibility: PresentationDragIndicatorVisibility
     ) {
         ignored()
+    }
+
+    func setPresentationBackground(of sheet: Sheet, to color: Color) {
+        todo()
     }
 }

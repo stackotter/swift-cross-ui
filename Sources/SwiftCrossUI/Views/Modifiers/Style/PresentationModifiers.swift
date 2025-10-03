@@ -34,4 +34,8 @@ extension View {
     ) -> some View {
         preference(key: \.presentationDragIndicatorVisibility, value: visibility)
     }
+
+    public func presentationBackground(_ color: Color) -> some View {
+        preference(key: \.presentationBackground, value: color)
+    }
 }
