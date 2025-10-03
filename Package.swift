@@ -47,7 +47,7 @@ let package = Package(
     name: "swift-cross-ui",
     platforms: [
         .macOS(.v10_15),
-        .iOS("12.0"),
+        .iOS("7.0"),
         .tvOS(.v13),
         .macCatalyst(.v13)
     ],
