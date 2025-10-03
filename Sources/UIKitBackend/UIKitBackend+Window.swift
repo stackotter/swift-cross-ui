@@ -37,7 +37,7 @@ final class RootViewController: UIViewController {
 
     override func loadView() {
         super.loadView()
-        if #available(iOS 12, *) {
+        if #available(iOS 13, *) {
             if traitCollection.userInterfaceStyle != .dark {
                 view.backgroundColor = .white
             }
@@ -158,6 +158,10 @@ extension UIKitBackend {
         if #available(iOS 13, *) {
             window.windowScene?.sizeRestrictions?.minimumSize = CGSize(
                 width: CGFloat(minimumSize.x), height: CGFloat(minimumSize.y))
+        } else {
+            // iOS 12: windowScene/sizeRestrictions not available
+            // Optional: enforce min size in your layout logic
+            print("UIKitBackend: setMinimumSize ignored on iOS < 13")
         }
     }
 }

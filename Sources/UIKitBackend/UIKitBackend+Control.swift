@@ -244,14 +244,17 @@ extension UIKitBackend {
         // ignore foreground color for buttons on tvOS until we have a better
         // solution.
         let foregroundColor: UIColor
-        if #available(iOS 13, *) {
+        foregroundColor = .blue
+        
+        //MARK: Test fix
+        /*if #available(iOS 13, *) {
             foregroundColor = .link
         } else if #available(iOS 7, *) {
             // fallback color for older iOS versions
             foregroundColor = UIColor.systemBlue
         } else {
             foregroundColor = UIColor.blue
-        }
+        }*/
         
         #if os(tvOS)
             buttonWidget.child.setTitle(label, for: .normal)
