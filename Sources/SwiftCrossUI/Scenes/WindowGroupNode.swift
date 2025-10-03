@@ -167,6 +167,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             dryRun: false
         )
 
+        
         if let dryRunResult, finalContentResult.size != dryRunResult.size {
             print(
                 """
