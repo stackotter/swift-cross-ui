@@ -89,9 +89,9 @@ class OnDisappearModifierChildren: ViewGraphNodeChildren {
 
     deinit {
         if #available(iOS 13, *) {
-            Task { @MainActor [action] in
+            /*Task { @MainActor [action] in
                 action()
-            }
+            }*/
         } else {
             DispatchQueue.main.async {
                 self.action()

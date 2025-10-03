@@ -8,7 +8,7 @@ public struct PresentAlertAction {
     let environment: EnvironmentValues
 
     // MARK: - iOS 13+ version with async/await
-    @available(iOS 13.0, *)
+    /*@available(iOS 13.0, *)
     @discardableResult
     public func callAsFunction(
         _ title: String,
@@ -43,7 +43,7 @@ public struct PresentAlertAction {
         }
 
         return await presentAlert(backend: environment.backend)
-    }
+    }*/
 
     // MARK: - iOS 12 and below version with completion handler
     @discardableResult

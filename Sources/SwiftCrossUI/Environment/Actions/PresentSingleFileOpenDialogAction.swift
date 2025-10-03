@@ -8,7 +8,7 @@ public struct PresentSingleFileOpenDialogAction {
     let window: MainActorBox<Any?>
 
     // MARK: - iOS 13+ async/await version
-    @available(iOS 13.0, *)
+    /*@available(iOS 13.0, *)
     public func callAsFunction(
         title: String = "Open",
         message: String = "",
@@ -56,7 +56,7 @@ public struct PresentSingleFileOpenDialogAction {
         }
 
         return await chooseFile(backend: backend)
-    }
+    }*/
 
     // MARK: - iOS 12 and below version with completion handler
     public func callAsFunction(

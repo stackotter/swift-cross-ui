@@ -6,7 +6,7 @@ public struct PresentFileSaveDialogAction: Sendable {
     let backend: any AppBackend
     let window: MainActorBox<Any?>
     
-    @available(iOS 13, *)
+    /*@available(iOS 13, *)
     public func callAsFunction(
         title: String = "Save",
         message: String = "",
@@ -53,7 +53,7 @@ public struct PresentFileSaveDialogAction: Sendable {
         }
 
         return await chooseFile(backend: backend)
-    }
+    }*/
     
     // MARK: - iOS 12 and below version with completion handler
     public func callAsFunction(
