@@ -15,10 +15,13 @@ public struct PreferenceValues: Sendable {
     /// The corner radius for a sheet presentation. Only applies to the top-level view in a sheet.
     public var presentationCornerRadius: Double?
 
+    public var presentationDragIndicatorVisibility: PresentationDragIndicatorVisibility?
+
     public init(
         onOpenURL: (@Sendable @MainActor (URL) -> Void)?,
         presentationDetents: [PresentationDetent]? = nil,
-        presentationCornerRadius: Double? = nil
+        presentationCornerRadius: Double? = nil,
+        presentationDragIndicatorVisibility: PresentationDragIndicatorVisibility? = nil
     ) {
         self.onOpenURL = onOpenURL
         self.presentationDetents = presentationDetents
@@ -40,5 +43,6 @@ public struct PreferenceValues: Sendable {
         // This ensures only the root view's presentation modifiers apply to the sheet
         presentationDetents = children.first?.presentationDetents
         presentationCornerRadius = children.first?.presentationCornerRadius
+        presentationDragIndicatorVisibility = children.first?.presentationDragIndicatorVisibility
     }
 }

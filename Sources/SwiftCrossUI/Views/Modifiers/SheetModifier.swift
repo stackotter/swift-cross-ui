@@ -71,8 +71,6 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
         )
 
         if isPresented.wrappedValue && children.sheet == nil {
-            //let sheetSize = dryRunResult.size.idealSize
-
             let sheet = backend.createSheet()
 
             let dryRunResult = children.sheetContentNode.update(
@@ -104,6 +102,13 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
 
             if let detents = preferences.presentationDetents {
                 backend.setPresentationDetents(of: sheet, to: detents)
+            }
+
+            if let presentationDragIndicatorVisibility = preferences
+                .presentationDragIndicatorVisibility
+            {
+                backend.setPresentationDragIndicatorVisibility(
+                    of: sheet, to: presentationDragIndicatorVisibility)
             }
 
             backend.showSheet(

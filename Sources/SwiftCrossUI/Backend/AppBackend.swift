@@ -654,6 +654,9 @@ public protocol AppBackend: Sendable {
     ///   - detents: An array of detents that the sheet can be resized to.
     func setPresentationDetents(of sheet: Sheet, to detents: [PresentationDetent])
 
+    func setPresentationDragIndicatorVisibility(
+        of sheet: Sheet, to visibility: PresentationDragIndicatorVisibility)
+
     /// Presents an 'Open file' dialog to the user for selecting files or
     /// folders.
     ///
@@ -1252,6 +1255,12 @@ extension AppBackend {
     }
 
     public func setPresentationDetents(of sheet: Sheet, to detents: [PresentationDetent]) {
+        ignored()
+    }
+
+    public func setPresentationDragIndicatorVisibility(
+        of sheet: Sheet, to visibility: PresentationDragIndicatorVisibility
+    ) {
         ignored()
     }
 }

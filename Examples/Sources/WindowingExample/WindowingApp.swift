@@ -83,8 +83,8 @@ struct SheetDemo: View {
             print("sheet dismissed")
         } content: {
             SheetBody()
-                .frame(maxWidth: 200, maxHeight: 100)
                 .presentationDetents([.height(150), .medium, .large])
+                .presentationDragIndicatorVisibility(.visible)
         }
         .sheet(isPresented: $isShortTermSheetPresented) {
             Text("I'm only here for 5s")

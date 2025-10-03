@@ -81,6 +81,22 @@ extension UIKitBackend {
             #endif
         }
     }
+
+    public func setPresentationDragIndicatorVisibility(
+        of sheet: Sheet, to visibility: PresentationDragIndicatorVisibility
+    ) {
+        if #available(iOS 15.0, *) {
+            if let sheetController = sheet.sheetPresentationController {
+                sheetController.prefersGrabberVisible = visibility == .visible ? true : false
+            }
+        } else {
+            #if DEBUG
+                print(
+                    "Your current OS Version doesn't support setting sheet drag indicator visibility.\n Setting this is only available from iOS 15.0"
+                )
+            #endif
+        }
+    }
 }
 
 public final class CustomSheet: UIViewController, SheetImplementation {
