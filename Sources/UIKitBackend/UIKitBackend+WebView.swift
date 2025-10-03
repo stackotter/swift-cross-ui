@@ -1,6 +1,7 @@
 import SwiftCrossUI
 import WebKit
 
+/*
 @available(iOS 8, *)
 extension UIKitBackend {
     public func createWebView() -> Widget {
@@ -42,4 +43,4 @@ final class WebViewWidget: WrapperWidget<WKWebView>, WKNavigationDelegate {
 
         onNavigate?(url)
     }
-}
+}*/
