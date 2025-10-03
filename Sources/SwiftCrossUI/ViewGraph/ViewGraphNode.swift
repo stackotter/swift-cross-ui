@@ -168,11 +168,14 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
     }
 
     private func updateEnvironment(_ environment: EnvironmentValues) -> EnvironmentValues {
-        environment.with(\.onResize) { [weak self] _ in
+        var newEnvironment = environment
+        newEnvironment.with(\.onResize) { [weak self] _ in
             guard let self = self else { return }
             self.bottomUpUpdate()
         }
+        return newEnvironment
     }
+
 
     /// Recomputes the view's body, and updates its widget accordingly. The view may or may not
     /// propagate the update to its children depending on the nature of the update. If `newView`
