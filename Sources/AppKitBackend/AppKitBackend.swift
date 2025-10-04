@@ -1766,6 +1766,10 @@ public final class AppKitBackend: AppBackend {
             sheet.contentView = container
         }
     }
+
+    public func setInteractiveDismissDisabled(for sheet: NSCustomSheet, to disabled: Bool) {
+        sheet.interactiveDismissDisabled = disabled
+    }
 }
 
 public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate, SheetImplementation {
@@ -1777,13 +1781,17 @@ public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate, SheetImpleme
     }
     public var onDismiss: (() -> Void)?
 
+    public var interactiveDismissDisabled: Bool = false
+
     public func dismiss() {
         onDismiss?()
         self.contentViewController?.dismiss(self)
     }
 
     @objc override public func cancelOperation(_ sender: Any?) {
-        dismiss()
+        if !interactiveDismissDisabled {
+            dismiss()
+        }
     }
 }
 

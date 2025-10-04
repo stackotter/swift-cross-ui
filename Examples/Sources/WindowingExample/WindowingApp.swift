@@ -133,6 +133,7 @@ struct SheetDemo: View {
                 }
                 .sheet(isPresented: $showNextChild) {
                     DoubleNestedSheetBody(dismissParent: { dismiss() })
+                        .interactiveDismissDisabled()
                 }
                 Button("dismiss parent sheet") {
                     dismissParent()

@@ -677,6 +677,18 @@ public protocol AppBackend: Sendable {
     ///   - color: rgba background color
     func setPresentationBackground(of sheet: Sheet, to color: Color)
 
+    /// Sets the interactive dismissablility of a sheet.
+    /// when disabled the sheet can only be closed programmatically,
+    /// not through users swiping, escape keys or similar.
+    ///
+    /// This method is called when the sheet content has a `interactiveDismissDisabled`
+    /// modifier applied at its top level.
+    ///
+    /// - Parameters:
+    ///   - sheet: The sheet to apply the detents to.
+    ///   - disabled: wether its disabled
+    func setInteractiveDismissDisabled(for sheet: Sheet, to disabled: Bool)
+
     /// Presents an 'Open file' dialog to the user for selecting files or
     /// folders.
     ///
@@ -1287,6 +1299,10 @@ extension AppBackend {
     }
 
     func setPresentationBackground(of sheet: Sheet, to color: Color) {
+        todo()
+    }
+
+    func setInteractiveDismissDisabled(for sheet: Sheet, to disabled: Bool) {
         todo()
     }
 }

@@ -38,4 +38,8 @@ extension View {
     public func presentationBackground(_ color: Color) -> some View {
         preference(key: \.presentationBackground, value: color)
     }
+
+    public func interactiveDismissDisabled(_ isDisabled: Bool = true) -> some View {
+        preference(key: \.interactiveDismissDisabled, value: isDisabled)
+    }
 }

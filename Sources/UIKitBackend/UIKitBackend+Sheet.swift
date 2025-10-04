@@ -109,6 +109,10 @@ extension UIKitBackend {
     public func setPresentationBackground(of sheet: CustomSheet, to color: Color) {
         sheet.view.backgroundColor = color.uiColor
     }
+
+    public func setInteractiveDismissDisabled(for sheet: Sheet, to disabled: Bool) {
+        sheet.isModalInPresentation = disabled
+    }
 }
 
 public final class CustomSheet: UIViewController, SheetImplementation {

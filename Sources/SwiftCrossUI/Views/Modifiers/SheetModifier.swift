@@ -120,6 +120,10 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
                 backend.setPresentationBackground(of: sheet, to: presentationBackground)
             }
 
+            if let interactiveDismissDisabled = preferences.interactiveDismissDisabled {
+                backend.setInteractiveDismissDisabled(for: sheet, to: interactiveDismissDisabled)
+            }
+
             backend.showSheet(
                 sheet,
                 window: .some(environment.window! as! Backend.Window)
