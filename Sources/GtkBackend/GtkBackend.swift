@@ -22,6 +22,7 @@ public final class GtkBackend: AppBackend {
     public typealias Widget = Gtk.Widget
     public typealias Menu = Gtk.PopoverMenu
     public typealias Alert = Gtk.MessageDialog
+    public typealias Sheet = Gtk.Window
 
     public final class Path {
         var path: SwiftCrossUI.Path?
@@ -47,6 +48,45 @@ public final class GtkBackend: AppBackend {
     /// All current windows associated with the application. Doesn't include the
     /// precreated window until it gets 'created' via `createWindow`.
     var windows: [Window] = []
+
+    // Sheet management (close-request, programmatic dismiss, interactive lock)
+    private final class SheetContext {
+        var onDismiss: () -> Void
+        var isProgrammaticDismiss: Bool = false
+        var interactiveDismissDisabled: Bool = false
+
+        init(onDismiss: @escaping () -> Void) {
+            self.onDismiss = onDismiss
+        }
+    }
+
+    private var sheetContexts: [OpaquePointer: SheetContext] = [:]
+    private var connectedCloseHandlers: Set<OpaquePointer> = []
+
+    // C thunk for GtkWindow::close-request
+    private static let closeRequestThunk:
+        @convention(c) (
+            UnsafeMutableRawPointer?, UnsafeMutableRawPointer?
+        ) -> Int32 = { instance, userData in
+            // TRUE (1) = consume event (prevent native close)
+            guard let instance, let userData else { return 1 }
+            let backend = Unmanaged<GtkBackend>.fromOpaque(userData).takeUnretainedValue()
+            let key = OpaquePointer(instance)
+            guard let ctx = backend.sheetContexts[key] else { return 1 }
+
+            if ctx.interactiveDismissDisabled { return 1 }
+
+            if ctx.isProgrammaticDismiss {
+                // Suppress onDismiss for programmatic closes
+                ctx.isProgrammaticDismiss = false
+                return 1
+            }
+
+            backend.runInMainThread {
+                ctx.onDismiss()
+            }
+            return 1
+        }
 
     // A separate initializer to satisfy ``AppBackend``'s requirements.
     public convenience init() {
@@ -1569,6 +1609,70 @@ public final class GtkBackend: AppBackend {
 
         return properties
     }
+    public func createSheet() -> Gtk.Window {
+        return Gtk.Window()
+    }
+
+    public func updateSheet(_ sheet: Gtk.Window, content: Widget, onDismiss: @escaping () -> Void) {
+        sheet.setChild(content)
+
+        // Track per-sheet context and hook close-request once
+        let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
+
+        if let ctx = sheetContexts[key] {
+            // Update onDismiss if sheet already tracked
+            ctx.onDismiss = onDismiss
+        } else {
+            // First-time setup: store context and connect signal
+            let ctx = SheetContext(onDismiss: onDismiss)
+            sheetContexts[key] = ctx
+
+            if connectedCloseHandlers.insert(key).inserted {
+                let handler: GCallback = unsafeBitCast(Self.closeRequestThunk, to: GCallback.self)
+                g_signal_connect_data(
+                    UnsafeMutableRawPointer(sheet.gobjectPointer),
+                    "close-request",
+                    handler,
+                    Unmanaged.passUnretained(self).toOpaque(),
+                    nil,
+                    GConnectFlags(0)
+                )
+            }
+        }
+    }
+
+    public func showSheet(_ sheet: Gtk.Window, window: ApplicationWindow?) {
+        sheet.isModal = true
+        sheet.isDecorated = false  // optional for a more sheet-like look
+        sheet.setTransient(for: window ?? windows[0])
+        sheet.present()
+    }
+
+    public func dismissSheet(_ sheet: Gtk.Window, window: ApplicationWindow?) {
+        let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
+        if let ctx = sheetContexts[key] {
+            // Suppress onDismiss when closing programmatically
+            ctx.isProgrammaticDismiss = true
+        }
+        sheet.destroy()
+        sheetContexts.removeValue(forKey: key)
+        connectedCloseHandlers.remove(key)
+    }
+
+    public func setPresentationBackground(of sheet: Gtk.Window, to color: SwiftCrossUI.Color) {
+        sheet.css.set(properties: [.backgroundColor(color.gtkColor)])
+    }
+
+    public func setInteractiveDismissDisabled(for sheet: Gtk.Window, to disabled: Bool) {
+        let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
+        if let ctx = sheetContexts[key] {
+            ctx.interactiveDismissDisabled = disabled
+        } else {
+            let ctx = SheetContext(onDismiss: {})
+            ctx.interactiveDismissDisabled = disabled
+            sheetContexts[key] = ctx
+        }
+    }
 }
 
 extension UnsafeMutablePointer {
@@ -1580,4 +1684,10 @@ extension UnsafeMutablePointer {
 
 class CustomListBox: ListBox {
     var cachedSelection: Int? = nil
+}
+
+extension Gtk.Window: SheetImplementation {
+    public var sheetSize: SIMD2<Int> {
+        return SIMD2(x: self.size.width, y: self.size.height)
+    }
 }
