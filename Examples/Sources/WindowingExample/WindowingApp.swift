@@ -118,6 +118,7 @@ struct SheetDemo: View {
                 print("nested sheet dismissed")
             } content: {
                 NestedSheetBody(dismissParent: { dismiss() })
+                    .presentationCornerRadius(35)
             }
         }
 

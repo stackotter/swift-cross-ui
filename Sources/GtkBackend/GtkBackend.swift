@@ -37,6 +37,7 @@ public final class GtkBackend: AppBackend {
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = true
     public let deviceClass = DeviceClass.desktop
+    public let defaultSheetCornerRadius = 10
 
     var gtkApp: Application
 
@@ -73,21 +74,35 @@ public final class GtkBackend: AppBackend {
             let backend = Unmanaged<GtkBackend>.fromOpaque(userData).takeUnretainedValue()
             let key = OpaquePointer(instance)
             guard let ctx = backend.sheetContexts[key] else { return 1 }
-
+            
             if ctx.interactiveDismissDisabled { return 1 }
-
+            
             if ctx.isProgrammaticDismiss {
                 // Suppress onDismiss for programmatic closes
                 ctx.isProgrammaticDismiss = false
                 return 1
             }
-
+            
             backend.runInMainThread {
                 ctx.onDismiss()
             }
             return 1
         }
-
+    
+    // C-convention thunk for key-pressed
+    private let escapeKeyPressedThunk: @convention(c) (
+        UnsafeMutableRawPointer?, guint, guint, GdkModifierType, gpointer?
+    ) -> gboolean = { controller, keyval, keycode, state, userData in
+        // TRUE (1) = consume event
+        if keyval == GDK_KEY_Escape {
+            guard let userData else { return 1 }
+            let box = Unmanaged<ValueBox<() -> Void>>.fromOpaque(userData).takeUnretainedValue()
+            box.value()
+            return 1 // consume
+        }
+        return 0 // let others handle
+    }
+    
     // A separate initializer to satisfy ``AppBackend``'s requirements.
     public convenience init() {
         self.init(appIdentifier: nil)
@@ -1616,34 +1631,53 @@ public final class GtkBackend: AppBackend {
     public func updateSheet(_ sheet: Gtk.Window, content: Widget, onDismiss: @escaping () -> Void) {
         sheet.setChild(content)
 
-        // Track per-sheet context and hook close-request once
         let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
 
-        if let ctx = sheetContexts[key] {
-            // Update onDismiss if sheet already tracked
-            ctx.onDismiss = onDismiss
-        } else {
-            // First-time setup: store context and connect signal
-            let ctx = SheetContext(onDismiss: onDismiss)
-            sheetContexts[key] = ctx
+        //add a slight border to not be just a flat corner
+        sheet.css.set(property: .border(color: SwiftCrossUI.Color.gray.gtkColor, width: 1))
 
-            if connectedCloseHandlers.insert(key).inserted {
-                let handler: GCallback = unsafeBitCast(Self.closeRequestThunk, to: GCallback.self)
-                g_signal_connect_data(
-                    UnsafeMutableRawPointer(sheet.gobjectPointer),
-                    "close-request",
-                    handler,
-                    Unmanaged.passUnretained(self).toOpaque(),
-                    nil,
-                    GConnectFlags(0)
-                )
-            }
+        let ctx = getOrCreateSheetContext(for: sheet)
+        ctx.onDismiss = onDismiss
+        
+        sheet.css.set(property: .cornerRadius(defaultSheetCornerRadius))
+
+        if connectedCloseHandlers.insert(key).inserted {
+            let handler: GCallback = unsafeBitCast(Self.closeRequestThunk, to: GCallback.self)
+            g_signal_connect_data(
+                UnsafeMutableRawPointer(sheet.gobjectPointer),
+                "close-request",
+                handler,
+                Unmanaged.passUnretained(self).toOpaque(),
+                nil,
+                GConnectFlags(0)
+            )
+            
+            let escapeHandler = gtk_event_controller_key_new()
+            gtk_event_controller_set_propagation_phase(escapeHandler, GTK_PHASE_BUBBLE)
+            g_signal_connect_data (
+                UnsafeMutableRawPointer(escapeHandler),
+                "key-pressed",
+                unsafeBitCast(escapeKeyPressedThunk, to: GCallback.self),
+                Unmanaged.passRetained(ValueBox(value: {
+                    if ctx.interactiveDismissDisabled  { return }
+                    self.runInMainThread {
+                        ctx.onDismiss()
+                    }
+                })).toOpaque(),
+                { data, _ in
+                    if let data {
+                        Unmanaged<ValueBox<() -> Void>>.fromOpaque(data).release()
+                    }
+                },
+                G_CONNECT_DEFAULT
+            )
+            gtk_widget_add_controller(sheet.widgetPointer, escapeHandler)
         }
     }
 
     public func showSheet(_ sheet: Gtk.Window, window: ApplicationWindow?) {
         sheet.isModal = true
-        sheet.isDecorated = false  // optional for a more sheet-like look
+        sheet.isDecorated = false
         sheet.setTransient(for: window ?? windows[0])
         sheet.present()
     }
@@ -1664,13 +1698,24 @@ public final class GtkBackend: AppBackend {
     }
 
     public func setInteractiveDismissDisabled(for sheet: Gtk.Window, to disabled: Bool) {
+        let ctx = getOrCreateSheetContext(for: sheet)
+        
+        ctx.interactiveDismissDisabled = disabled
+    }
+    
+    public func setPresentationCornerRadius(of sheet: Gtk.Window, to radius: Double) {
+        let radius = Int(radius)
+        sheet.css.set(property: .cornerRadius(radius))
+    }
+    
+    private func getOrCreateSheetContext(for sheet: Gtk.Window) -> SheetContext {
         let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
         if let ctx = sheetContexts[key] {
-            ctx.interactiveDismissDisabled = disabled
+            return ctx
         } else {
             let ctx = SheetContext(onDismiss: {})
-            ctx.interactiveDismissDisabled = disabled
             sheetContexts[key] = ctx
+            return ctx
         }
     }
 }
@@ -1689,5 +1734,12 @@ class CustomListBox: ListBox {
 extension Gtk.Window: SheetImplementation {
     public var sheetSize: SIMD2<Int> {
         return SIMD2(x: self.size.width, y: self.size.height)
+    }
+}
+
+final class ValueBox<T> {
+    let value: T
+    init(value: T) {
+        self.value = value
     }
 }
