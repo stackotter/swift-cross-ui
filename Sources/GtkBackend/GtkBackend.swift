@@ -78,7 +78,6 @@ public final class GtkBackend: AppBackend {
             if ctx.interactiveDismissDisabled { return 1 }
             
             if ctx.isProgrammaticDismiss {
-                // Suppress onDismiss for programmatic closes
                 ctx.isProgrammaticDismiss = false
                 return 1
             }
@@ -98,9 +97,9 @@ public final class GtkBackend: AppBackend {
             guard let userData else { return 1 }
             let box = Unmanaged<ValueBox<() -> Void>>.fromOpaque(userData).takeUnretainedValue()
             box.value()
-            return 1 // consume
+            return 1
         }
-        return 0 // let others handle
+        return 0
     }
     
     // A separate initializer to satisfy ``AppBackend``'s requirements.
@@ -1685,7 +1684,6 @@ public final class GtkBackend: AppBackend {
     public func dismissSheet(_ sheet: Gtk.Window, window: ApplicationWindow?) {
         let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
         if let ctx = sheetContexts[key] {
-            // Suppress onDismiss when closing programmatically
             ctx.isProgrammaticDismiss = true
         }
         sheet.destroy()

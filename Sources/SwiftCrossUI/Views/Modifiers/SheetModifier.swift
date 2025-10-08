@@ -1,5 +1,5 @@
 extension View {
-    /// presents a conditional modal overlay
+    /// Presents a conditional modal overlay
     /// onDismiss optional handler gets executed before
     /// dismissing the sheet
     public func sheet<SheetContent: View>(
