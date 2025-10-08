@@ -1773,7 +1773,7 @@ public final class AppKitBackend: AppBackend {
 }
 
 public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate, SheetImplementation {
-    public var size: SIMD2<Int> {
+    public var sheetSize: SIMD2<Int> {
         guard let size = self.contentView?.frame.size else {
             return SIMD2(x: 0, y: 0)
         }

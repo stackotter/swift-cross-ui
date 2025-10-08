@@ -116,7 +116,7 @@ extension UIKitBackend {
 }
 
 public final class CustomSheet: UIViewController, SheetImplementation {
-    public var size: SIMD2<Int> {
+    public var sheetSize: SIMD2<Int> {
         let size = view.frame.size
         return SIMD2(x: Int(size.width), y: Int(size.height))
     }

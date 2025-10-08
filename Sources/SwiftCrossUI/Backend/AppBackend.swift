@@ -807,7 +807,7 @@ extension AppBackend {
 }
 
 public protocol SheetImplementation {
-    var size: SIMD2<Int> { get }
+    var sheetSize: SIMD2<Int> { get }
 }
 
 extension AppBackend {
