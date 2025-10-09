@@ -1671,7 +1671,7 @@ public final class GtkBackend: AppBackend {
                         Unmanaged<ValueBox<() -> Void>>.fromOpaque(data).release()
                     }
                 },
-                G_CONNECT_DEFAULT
+                .init(0)
             )
             gtk_widget_add_controller(sheet.widgetPointer, escapeHandler)
         }
