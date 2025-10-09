@@ -22,6 +22,7 @@ public final class GtkBackend: AppBackend {
     public typealias Widget = Gtk.Widget
     public typealias Menu = Gtk.PopoverMenu
     public typealias Alert = Gtk.MessageDialog
+    public typealias Sheet = Gtk.Window
 
     public final class Path {
         var path: SwiftCrossUI.Path?
@@ -36,6 +37,7 @@ public final class GtkBackend: AppBackend {
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = true
     public let deviceClass = DeviceClass.desktop
+    public let defaultSheetCornerRadius = 10
 
     var gtkApp: Application
 
@@ -47,6 +49,59 @@ public final class GtkBackend: AppBackend {
     /// All current windows associated with the application. Doesn't include the
     /// precreated window until it gets 'created' via `createWindow`.
     var windows: [Window] = []
+
+    // Sheet management (close-request, programmatic dismiss, interactive lock)
+    private final class SheetContext {
+        var onDismiss: () -> Void
+        var isProgrammaticDismiss: Bool = false
+        var interactiveDismissDisabled: Bool = false
+
+        init(onDismiss: @escaping () -> Void) {
+            self.onDismiss = onDismiss
+        }
+    }
+
+    private var sheetContexts: [OpaquePointer: SheetContext] = [:]
+    private var connectedCloseHandlers: Set<OpaquePointer> = []
+
+    // C thunk for GtkWindow::close-request
+    private static let closeRequestThunk:
+        @convention(c) (
+            UnsafeMutableRawPointer?, UnsafeMutableRawPointer?
+        ) -> Int32 = { instance, userData in
+            // TRUE (1) = consume event (prevent native close)
+            guard let instance, let userData else { return 1 }
+            let backend = Unmanaged<GtkBackend>.fromOpaque(userData).takeUnretainedValue()
+            let key = OpaquePointer(instance)
+            guard let ctx = backend.sheetContexts[key] else { return 1 }
+
+            if ctx.interactiveDismissDisabled { return 1 }
+
+            if ctx.isProgrammaticDismiss {
+                ctx.isProgrammaticDismiss = false
+                return 1
+            }
+
+            backend.runInMainThread {
+                ctx.onDismiss()
+            }
+            return 1
+        }
+
+    // C-convention thunk for key-pressed
+    private let escapeKeyPressedThunk:
+        @convention(c) (
+            UnsafeMutableRawPointer?, guint, guint, GdkModifierType, gpointer?
+        ) -> gboolean = { controller, keyval, keycode, state, userData in
+            // TRUE (1) = consume event
+            if keyval == GDK_KEY_Escape {
+                guard let userData else { return 1 }
+                let box = Unmanaged<ValueBox<() -> Void>>.fromOpaque(userData).takeUnretainedValue()
+                box.value()
+                return 1
+            }
+            return 0
+        }
 
     // A separate initializer to satisfy ``AppBackend``'s requirements.
     public convenience init() {
@@ -1569,6 +1624,101 @@ public final class GtkBackend: AppBackend {
 
         return properties
     }
+    public func createSheet() -> Gtk.Window {
+        return Gtk.Window()
+    }
+
+    public func updateSheet(_ sheet: Gtk.Window, content: Widget, onDismiss: @escaping () -> Void) {
+        sheet.setChild(content)
+
+        let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
+
+        //add a slight border to not be just a flat corner
+        sheet.css.set(property: .border(color: SwiftCrossUI.Color.gray.gtkColor, width: 1))
+
+        let ctx = getOrCreateSheetContext(for: sheet)
+        ctx.onDismiss = onDismiss
+
+        sheet.css.set(property: .cornerRadius(defaultSheetCornerRadius))
+
+        if connectedCloseHandlers.insert(key).inserted {
+            let handler: GCallback = unsafeBitCast(Self.closeRequestThunk, to: GCallback.self)
+            g_signal_connect_data(
+                UnsafeMutableRawPointer(sheet.gobjectPointer),
+                "close-request",
+                handler,
+                Unmanaged.passUnretained(self).toOpaque(),
+                nil,
+                GConnectFlags(0)
+            )
+
+            let escapeHandler = gtk_event_controller_key_new()
+            gtk_event_controller_set_propagation_phase(escapeHandler, GTK_PHASE_BUBBLE)
+            g_signal_connect_data(
+                UnsafeMutableRawPointer(escapeHandler),
+                "key-pressed",
+                unsafeBitCast(escapeKeyPressedThunk, to: GCallback.self),
+                Unmanaged.passRetained(
+                    ValueBox(value: {
+                        if ctx.interactiveDismissDisabled { return }
+                        self.runInMainThread {
+                            ctx.onDismiss()
+                        }
+                    })
+                ).toOpaque(),
+                { data, _ in
+                    if let data {
+                        Unmanaged<ValueBox<() -> Void>>.fromOpaque(data).release()
+                    }
+                },
+                .init(0)
+            )
+            gtk_widget_add_controller(sheet.widgetPointer, escapeHandler)
+        }
+    }
+
+    public func showSheet(_ sheet: Gtk.Window, window: ApplicationWindow?) {
+        sheet.isModal = true
+        sheet.isDecorated = false
+        sheet.setTransient(for: window ?? windows[0])
+        sheet.present()
+    }
+
+    public func dismissSheet(_ sheet: Gtk.Window, window: ApplicationWindow?) {
+        let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
+        if let ctx = sheetContexts[key] {
+            ctx.isProgrammaticDismiss = true
+        }
+        sheet.destroy()
+        sheetContexts.removeValue(forKey: key)
+        connectedCloseHandlers.remove(key)
+    }
+
+    public func setPresentationBackground(of sheet: Gtk.Window, to color: SwiftCrossUI.Color) {
+        sheet.css.set(properties: [.backgroundColor(color.gtkColor)])
+    }
+
+    public func setInteractiveDismissDisabled(for sheet: Gtk.Window, to disabled: Bool) {
+        let ctx = getOrCreateSheetContext(for: sheet)
+
+        ctx.interactiveDismissDisabled = disabled
+    }
+
+    public func setPresentationCornerRadius(of sheet: Gtk.Window, to radius: Double) {
+        let radius = Int(radius)
+        sheet.css.set(property: .cornerRadius(radius))
+    }
+
+    private func getOrCreateSheetContext(for sheet: Gtk.Window) -> SheetContext {
+        let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
+        if let ctx = sheetContexts[key] {
+            return ctx
+        } else {
+            let ctx = SheetContext(onDismiss: {})
+            sheetContexts[key] = ctx
+            return ctx
+        }
+    }
 }
 
 extension UnsafeMutablePointer {
@@ -1580,4 +1730,17 @@ extension UnsafeMutablePointer {
 
 class CustomListBox: ListBox {
     var cachedSelection: Int? = nil
+}
+
+extension Gtk.Window: SheetImplementation {
+    public var sheetSize: SIMD2<Int> {
+        return SIMD2(x: self.size.width, y: self.size.height)
+    }
+}
+
+final class ValueBox<T> {
+    let value: T
+    init(value: T) {
+        self.value = value
+    }
 }

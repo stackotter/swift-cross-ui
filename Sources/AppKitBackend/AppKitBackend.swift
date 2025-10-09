@@ -16,6 +16,7 @@ public final class AppKitBackend: AppBackend {
     public typealias Menu = NSMenu
     public typealias Alert = NSAlert
     public typealias Path = NSBezierPath
+    public typealias Sheet = NSCustomSheet
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
@@ -1684,6 +1685,113 @@ public final class AppKitBackend: AppBackend {
         let webView = webView as! CustomWKWebView
         let request = URLRequest(url: url)
         webView.load(request)
+    }
+
+    public func createSheet() -> NSCustomSheet {
+        // Initialize with a default contentRect, similar to window creation (lines 58-68)
+        let sheet = NSCustomSheet(
+            contentRect: NSRect(
+                x: 0,
+                y: 0,
+                width: 400,  // Default width
+                height: 300  // Default height
+            ),
+            styleMask: [.titled, .closable],
+            backing: .buffered,
+            defer: true
+        )
+        return sheet
+    }
+
+    public func updateSheet(
+        _ sheet: NSCustomSheet, content: NSView, onDismiss: @escaping () -> Void
+    ) {
+        let contentSize = naturalSize(of: content)
+
+        let width = max(contentSize.x, 10)
+        let height = max(contentSize.y, 10)
+        sheet.setContentSize(NSSize(width: width, height: height))
+
+        sheet.contentView = content
+        sheet.onDismiss = onDismiss
+    }
+
+    public func showSheet(_ sheet: NSCustomSheet, window: NSCustomWindow?) {
+        guard let window else {
+            print("warning: Cannot show sheet without a parent window")
+            return
+        }
+        // critical sheets stack
+        // beginSheet only shows a nested
+        // sheet after its parent gets dismissed
+        window.beginCriticalSheet(sheet)
+    }
+
+    public func dismissSheet(_ sheet: NSCustomSheet, window: NSCustomWindow?) {
+        if let window {
+            window.endSheet(sheet)
+        } else {
+            NSApplication.shared.stopModal()
+        }
+    }
+
+    public func setPresentationBackground(of sheet: NSCustomSheet, to color: Color) {
+        let backgroundView = NSView()
+        backgroundView.wantsLayer = true
+        backgroundView.layer?.backgroundColor = color.nsColor.cgColor
+
+        if let existingContentView = sheet.contentView {
+            let container = NSView()
+            container.translatesAutoresizingMaskIntoConstraints = false
+
+            container.addSubview(backgroundView)
+            backgroundView.translatesAutoresizingMaskIntoConstraints = false
+            backgroundView.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive =
+                true
+            backgroundView.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+            backgroundView.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive =
+                true
+            backgroundView.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
+
+            container.addSubview(existingContentView)
+            existingContentView.translatesAutoresizingMaskIntoConstraints = false
+            existingContentView.leadingAnchor.constraint(equalTo: container.leadingAnchor)
+                .isActive = true
+            existingContentView.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+            existingContentView.trailingAnchor.constraint(equalTo: container.trailingAnchor)
+                .isActive = true
+            existingContentView.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive =
+                true
+
+            sheet.contentView = container
+        }
+    }
+
+    public func setInteractiveDismissDisabled(for sheet: NSCustomSheet, to disabled: Bool) {
+        sheet.interactiveDismissDisabled = disabled
+    }
+}
+
+public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate, SheetImplementation {
+    public var sheetSize: SIMD2<Int> {
+        guard let size = self.contentView?.frame.size else {
+            return SIMD2(x: 0, y: 0)
+        }
+        return SIMD2(x: Int(size.width), y: Int(size.height))
+    }
+    public var onDismiss: (() -> Void)?
+
+    public var interactiveDismissDisabled: Bool = false
+
+    public func dismiss() {
+        onDismiss?()
+        self.contentViewController?.dismiss(self)
+    }
+
+    @objc override public func cancelOperation(_ sender: Any?) {
+        if !interactiveDismissDisabled {
+            dismiss()
+        }
     }
 }
 
