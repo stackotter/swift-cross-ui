@@ -1881,9 +1881,9 @@ public class CustomWindow: WinUI.Window, SheetImplementation {
     var cachedAppWindow: WinAppSDK.AppWindow!
 
     //only for AppBackend conformance, no support yet
-    var sheetSize: SIMD2<Int> {
+    public var sheetSize: SIMD2<Int> {
         let size = self.cachedAppWindow.size
-        return SIMD2<Int>(x: size.width, y: size.height)
+        return SIMD2<Int>(x: Int(size.width), y: Int(size.height))
     }
 
     var scaleFactor: Double {
