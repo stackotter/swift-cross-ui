@@ -39,34 +39,36 @@ extension UIKitBackend {
 
     public func setPresentationDetents(of sheet: CustomSheet, to detents: [PresentationDetent]) {
         if #available(iOS 15.0, *) {
-            if let sheetPresentation = sheet.sheetPresentationController {
-                sheetPresentation.detents = detents.map {
-                    switch $0 {
-                        case .medium: return .medium()
-                        case .large: return .large()
-                        case .fraction(let fraction):
-                            if #available(iOS 16.0, *) {
-                                return .custom(
-                                    identifier: .init("Fraction:\(fraction)"),
-                                    resolver: { context in
-                                        context.maximumDetentValue * fraction
-                                    })
-                            } else {
-                                return .medium()
-                            }
-                        case .height(let height):
-                            if #available(iOS 16.0, *) {
-                                return .custom(
-                                    identifier: .init("Height:\(height)"),
-                                    resolver: { context in
-                                        height
-                                    })
-                            } else {
-                                return .medium()
-                            }
+            #if !os(visionOS)
+                if let sheetPresentation = sheet.sheetPresentationController {
+                    sheetPresentation.detents = detents.map {
+                        switch $0 {
+                            case .medium: return .medium()
+                            case .large: return .large()
+                            case .fraction(let fraction):
+                                if #available(iOS 16.0, *) {
+                                    return .custom(
+                                        identifier: .init("Fraction:\(fraction)"),
+                                        resolver: { context in
+                                            context.maximumDetentValue * fraction
+                                        })
+                                } else {
+                                    return .medium()
+                                }
+                            case .height(let height):
+                                if #available(iOS 16.0, *) {
+                                    return .custom(
+                                        identifier: .init("Height:\(height)"),
+                                        resolver: { context in
+                                            height
+                                        })
+                                } else {
+                                    return .medium()
+                                }
+                        }
                     }
                 }
-            }
+            #endif
         } else {
             #if DEBUG
                 print(
@@ -78,9 +80,11 @@ extension UIKitBackend {
 
     public func setPresentationCornerRadius(of sheet: CustomSheet, to radius: Double) {
         if #available(iOS 15.0, *) {
-            if let sheetController = sheet.sheetPresentationController {
-                sheetController.preferredCornerRadius = radius
-            }
+            #if !os(visionOS)
+                if let sheetController = sheet.sheetPresentationController {
+                    sheetController.preferredCornerRadius = radius
+                }
+            #endif
         } else {
             #if DEBUG
                 print(
@@ -94,9 +98,11 @@ extension UIKitBackend {
         of sheet: Sheet, to visibility: PresentationDragIndicatorVisibility
     ) {
         if #available(iOS 15.0, *) {
-            if let sheetController = sheet.sheetPresentationController {
-                sheetController.prefersGrabberVisible = visibility == .visible ? true : false
-            }
+            #if !os(visionOS)
+                if let sheetController = sheet.sheetPresentationController {
+                    sheetController.prefersGrabberVisible = visibility == .visible ? true : false
+                }
+            #endif
         } else {
             #if DEBUG
                 print(

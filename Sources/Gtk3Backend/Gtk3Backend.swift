@@ -22,6 +22,7 @@ public final class Gtk3Backend: AppBackend {
     public typealias Widget = Gtk3.Widget
     public typealias Menu = Gtk3.Menu
     public typealias Alert = Gtk3.MessageDialog
+    public typealias Sheet = Gtk3.Window
 
     public final class Path {
         var path: SwiftCrossUI.Path?
@@ -1514,5 +1515,11 @@ struct Gtk3Error: LocalizedError {
 
     var errorDescription: String? {
         "gerror: code=\(code), domain=\(domain), message=\(message)"
+    }
+}
+
+extension Gtk3.Window: SheetImplementation {
+    public var sheetSize: SIMD2<Int> {
+        SIMD2(x: size.width, y: size.height)
     }
 }

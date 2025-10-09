@@ -27,7 +27,7 @@ extension View {
     public func presentationCornerRadius(_ radius: Double) -> some View {
         preference(key: \.presentationCornerRadius, value: radius)
     }
-    
+
     /// Sets the visibility of a sheet's drag indicator.
     ///
     /// This modifier only affects the sheet presentation itself when applied to the
@@ -42,7 +42,7 @@ extension View {
     ) -> some View {
         preference(key: \.presentationDragIndicatorVisibility, value: visibility)
     }
-    
+
     /// Sets the background of a sheet.
     ///
     /// This modifier only affects the sheet presentation itself when applied to the
@@ -53,7 +53,7 @@ extension View {
     public func presentationBackground(_ color: Color) -> some View {
         preference(key: \.presentationBackground, value: color)
     }
-    
+
     /// Sets wether the user should be able to dismiss the sheet themself.
     ///
     /// This modifier only affects the sheet presentation itself when applied to the

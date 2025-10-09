@@ -1298,11 +1298,11 @@ extension AppBackend {
         ignored()
     }
 
-    func setPresentationBackground(of sheet: Sheet, to color: Color) {
+    public func setPresentationBackground(of sheet: Sheet, to color: Color) {
         todo()
     }
 
-    func setInteractiveDismissDisabled(for sheet: Sheet, to disabled: Bool) {
+    public func setInteractiveDismissDisabled(for sheet: Sheet, to disabled: Bool) {
         todo()
     }
 }

@@ -34,6 +34,7 @@ public final class WinUIBackend: AppBackend {
     public typealias Menu = Void
     public typealias Alert = WinUI.ContentDialog
     public typealias Path = GeometryGroupHolder
+    public typealias Sheet = CustomWindow  //only for be protocol conform. doesn't currently support it
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
@@ -1869,7 +1870,7 @@ class SwiftIInitializeWithWindow: WindowsFoundation.IUnknown {
     }
 }
 
-public class CustomWindow: WinUI.Window {
+public class CustomWindow: WinUI.Window, SheetImplementation {
     /// Hardcoded menu bar height from MenuBar_themeresources.xaml in the
     /// microsoft-ui-xaml repository.
     static let menuBarHeight = 0
@@ -1878,6 +1879,12 @@ public class CustomWindow: WinUI.Window {
     var child: WinUIBackend.Widget?
     var grid: WinUI.Grid
     var cachedAppWindow: WinAppSDK.AppWindow!
+
+    //only for AppBackend conformance, no support yet
+    var sheetSize: SIMD2<Int> {
+        let size = self.cachedAppWindow.size
+        return SIMD2<Int>(x: size.width, y: size.height)
+    }
 
     var scaleFactor: Double {
         // I'm leaving this code here for future travellers. Be warned that this always

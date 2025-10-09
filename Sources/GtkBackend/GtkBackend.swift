@@ -74,34 +74,35 @@ public final class GtkBackend: AppBackend {
             let backend = Unmanaged<GtkBackend>.fromOpaque(userData).takeUnretainedValue()
             let key = OpaquePointer(instance)
             guard let ctx = backend.sheetContexts[key] else { return 1 }
-            
+
             if ctx.interactiveDismissDisabled { return 1 }
-            
+
             if ctx.isProgrammaticDismiss {
                 ctx.isProgrammaticDismiss = false
                 return 1
             }
-            
+
             backend.runInMainThread {
                 ctx.onDismiss()
             }
             return 1
         }
-    
+
     // C-convention thunk for key-pressed
-    private let escapeKeyPressedThunk: @convention(c) (
-        UnsafeMutableRawPointer?, guint, guint, GdkModifierType, gpointer?
-    ) -> gboolean = { controller, keyval, keycode, state, userData in
-        // TRUE (1) = consume event
-        if keyval == GDK_KEY_Escape {
-            guard let userData else { return 1 }
-            let box = Unmanaged<ValueBox<() -> Void>>.fromOpaque(userData).takeUnretainedValue()
-            box.value()
-            return 1
+    private let escapeKeyPressedThunk:
+        @convention(c) (
+            UnsafeMutableRawPointer?, guint, guint, GdkModifierType, gpointer?
+        ) -> gboolean = { controller, keyval, keycode, state, userData in
+            // TRUE (1) = consume event
+            if keyval == GDK_KEY_Escape {
+                guard let userData else { return 1 }
+                let box = Unmanaged<ValueBox<() -> Void>>.fromOpaque(userData).takeUnretainedValue()
+                box.value()
+                return 1
+            }
+            return 0
         }
-        return 0
-    }
-    
+
     // A separate initializer to satisfy ``AppBackend``'s requirements.
     public convenience init() {
         self.init(appIdentifier: nil)
@@ -1637,7 +1638,7 @@ public final class GtkBackend: AppBackend {
 
         let ctx = getOrCreateSheetContext(for: sheet)
         ctx.onDismiss = onDismiss
-        
+
         sheet.css.set(property: .cornerRadius(defaultSheetCornerRadius))
 
         if connectedCloseHandlers.insert(key).inserted {
@@ -1650,19 +1651,21 @@ public final class GtkBackend: AppBackend {
                 nil,
                 GConnectFlags(0)
             )
-            
+
             let escapeHandler = gtk_event_controller_key_new()
             gtk_event_controller_set_propagation_phase(escapeHandler, GTK_PHASE_BUBBLE)
-            g_signal_connect_data (
+            g_signal_connect_data(
                 UnsafeMutableRawPointer(escapeHandler),
                 "key-pressed",
                 unsafeBitCast(escapeKeyPressedThunk, to: GCallback.self),
-                Unmanaged.passRetained(ValueBox(value: {
-                    if ctx.interactiveDismissDisabled  { return }
-                    self.runInMainThread {
-                        ctx.onDismiss()
-                    }
-                })).toOpaque(),
+                Unmanaged.passRetained(
+                    ValueBox(value: {
+                        if ctx.interactiveDismissDisabled { return }
+                        self.runInMainThread {
+                            ctx.onDismiss()
+                        }
+                    })
+                ).toOpaque(),
                 { data, _ in
                     if let data {
                         Unmanaged<ValueBox<() -> Void>>.fromOpaque(data).release()
@@ -1697,15 +1700,15 @@ public final class GtkBackend: AppBackend {
 
     public func setInteractiveDismissDisabled(for sheet: Gtk.Window, to disabled: Bool) {
         let ctx = getOrCreateSheetContext(for: sheet)
-        
+
         ctx.interactiveDismissDisabled = disabled
     }
-    
+
     public func setPresentationCornerRadius(of sheet: Gtk.Window, to radius: Double) {
         let radius = Int(radius)
         sheet.css.set(property: .cornerRadius(radius))
     }
-    
+
     private func getOrCreateSheetContext(for sheet: Gtk.Window) -> SheetContext {
         let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
         if let ctx = sheetContexts[key] {
