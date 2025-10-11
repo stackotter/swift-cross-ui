@@ -36,8 +36,7 @@ extension UIKitBackend {
     }
 
     public func createTextView() -> Widget {
-        let widget = WrapperWidget<UILabel>()
-        widget.child.numberOfLines = 0
+        let widget = WrapperWidget<OptionallySelectableLabel>()
         return widget
     }
 
@@ -46,12 +45,13 @@ extension UIKitBackend {
         content: String,
         environment: EnvironmentValues
     ) {
-        let wrapper = textView as! WrapperWidget<UILabel>
+        let wrapper = textView as! WrapperWidget<OptionallySelectableLabel>
         wrapper.child.overrideUserInterfaceStyle = environment.colorScheme.userInterfaceStyle
         wrapper.child.attributedText = UIKitBackend.attributedString(
             text: content,
             environment: environment
         )
+        wrapper.child.isSelectable = environment.isTextSelectionEnabled
     }
 
     public func size(
@@ -102,5 +102,67 @@ extension UIKitBackend {
             colorSpace: .init(name: CGColorSpace.sRGB)
         )
         wrapper.child.image = .init(ciImage: ciImage)
+    }
+}
+
+// Inspired by https://medium.com/kinandcartacreated/making-uilabel-accessible-5f3d5c342df4
+// Thank you to Sam Dods for the base idea
+final class OptionallySelectableLabel: UILabel {
+    var isSelectable: Bool = false
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupTextSelection()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupTextSelection()
+    }
+
+    override var canBecomeFirstResponder: Bool {
+        isSelectable
+    }
+
+    private func setupTextSelection() {
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress))
+        addGestureRecognizer(longPress)
+        isUserInteractionEnabled = true
+    }
+
+    @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
+        guard isSelectable, gesture.state == .began, let text = self.attributedText?.string,
+            !text.isEmpty
+        else {
+            return
+        }
+        window?.endEditing(true)
+        guard becomeFirstResponder() else { return }
+
+        let menu = UIMenuController.shared
+        if !menu.isMenuVisible {
+            menu.showMenu(from: self, rect: textRect())
+        }
+    }
+
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        return action == #selector(copy(_:))
+    }
+
+    private func textRect() -> CGRect {
+        let inset: CGFloat = -4
+        return textRect(forBounds: bounds, limitedToNumberOfLines: numberOfLines).insetBy(
+            dx: inset, dy: inset)
+    }
+
+    private func cancelSelection() {
+        let menu = UIMenuController.shared
+        menu.hideMenu(from: self)
+    }
+
+    @objc override func copy(_ sender: Any?) {
+        cancelSelection()
+        let board = UIPasteboard.general
+        board.string = text
     }
 }

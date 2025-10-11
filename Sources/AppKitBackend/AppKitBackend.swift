@@ -573,6 +573,7 @@ public final class AppKitBackend: AppBackend {
     ) {
         let field = textView as! NSTextField
         field.attributedStringValue = Self.attributedString(for: content, in: environment)
+        field.isSelectable = environment.isTextSelectionEnabled
     }
 
     public func createButton() -> Widget {

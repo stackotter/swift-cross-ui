@@ -95,6 +95,9 @@ public struct EnvironmentValues {
     /// The style of toggle to use.
     public var toggleStyle: ToggleStyle
 
+    /// Wether a Text should be selectable. Set by ``View/textSelectionEnabled(_:)``.
+    public var isTextSelectionEnabled: Bool = false
+
     // Backing storage for extensible subscript
     private var extraValues: [ObjectIdentifier: Any]
 
