@@ -37,6 +37,7 @@ extension UIKitBackend {
 
     public func createTextView() -> Widget {
         let widget = WrapperWidget<OptionallySelectableLabel>()
+        widget.child.numberOfLines = 0
         return widget
     }
 
