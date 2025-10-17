@@ -1,12 +1,10 @@
 extension View {
-    /// Set SwiftUI.Text selectability
+    /// Set selectability of contained text.
     public func textSelectionEnabled(_ isEnabled: Bool = true) -> some View {
         EnvironmentModifier(
             self,
             modification: { environment in
-                var newEnvironment = environment
-                newEnvironment.isTextSelectionEnabled = isEnabled
-                return newEnvironment
+                environment.with(\.isTextSelectionEnabled, isEnabled)
             })
     }
 }

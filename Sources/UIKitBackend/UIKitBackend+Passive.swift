@@ -132,7 +132,10 @@ final class OptionallySelectableLabel: UILabel {
     }
 
     @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
-        guard isSelectable, gesture.state == .began, let text = self.attributedText?.string,
+        guard
+            isSelectable,
+            gesture.state == .began,
+            let text = self.attributedText?.string,
             !text.isEmpty
         else {
             return
@@ -152,8 +155,8 @@ final class OptionallySelectableLabel: UILabel {
 
     private func textRect() -> CGRect {
         let inset: CGFloat = -4
-        return textRect(forBounds: bounds, limitedToNumberOfLines: numberOfLines).insetBy(
-            dx: inset, dy: inset)
+        return textRect(forBounds: bounds, limitedToNumberOfLines: numberOfLines)
+            .insetBy(dx: inset, dy: inset)
     }
 
     private func cancelSelection() {
