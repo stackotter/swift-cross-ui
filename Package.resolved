@@ -1,5 +1,5 @@
 {
-  "originHash" : "589b3dd67c6c4bf002ac0e661cdc5f048304c975897d3542f1623910c0b856d2",
+  "originHash" : "3b87bbc3d0f0110380f592dc86a1c8c65c20f5a326f484bdbe2f6ef5e357840d",
   "pins" : [
     {
       "identity" : "jpeg",
@@ -33,8 +33,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/thebrowsercompany/swift-cwinrt",
       "state" : {
-        "branch" : "main",
-        "revision" : "3e3d5a0270ebe8fb0bc738d24d4786a6cd0621eb"
+        "revision" : "eb46cdb66f770a1e006f9fcfebbf9e99a0fba811"
       }
     },
     {
@@ -42,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swiftlang/swift-docc-plugin",
       "state" : {
-        "revision" : "85e4bb4e1cd62cec64a4b8e769dcefdf0c5b9d64",
-        "version" : "1.4.3"
+        "revision" : "3e4f133a77e644a5812911a0513aeb7288b07d06",
+        "version" : "1.4.5"
       }
     },
     {
@@ -69,8 +68,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-macro-toolkit",
       "state" : {
-        "revision" : "e706aa98bc28f82677923f7b8f560bba6f90fac2",
-        "version" : "0.6.0"
+        "revision" : "569627091e1fbb8745d691aeeb008e7247dedb7c",
+        "version" : "0.6.1"
       }
     },
     {
@@ -87,7 +86,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-uwp",
       "state" : {
-        "revision" : "c9d3fc079aaaa5113cde9a0132278fb83e808599"
+        "revision" : "e3ff9c195775e16b404b82cf6886c5e81d73b6c1"
       }
     },
     {
@@ -95,7 +94,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-webview2core",
       "state" : {
-        "revision" : "9afd97424f844478914ca4512c8ca0a2d3a2bb67"
+        "revision" : "c9911ca23455b9fcdb2429e98baa6f4d003b381c"
       }
     },
     {
@@ -103,16 +102,15 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-windowsappsdk",
       "state" : {
-        "revision" : "ed938db0b9790b36391dc91b20cee81f2410309f"
+        "revision" : "ba6f0ec377b70d8be835d253102ff665a0e47d99"
       }
     },
     {
       "identity" : "swift-windowsfoundation",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/thebrowsercompany/swift-windowsfoundation",
+      "location" : "https://github.com/stackotter/swift-windowsfoundation",
       "state" : {
-        "branch" : "main",
-        "revision" : "dbe14563b6bb0eb9c761d8aff7f465afddf185f9"
+        "revision" : "4ad57d20553514bcb23724bdae9121569b19f172"
       }
     },
     {
@@ -120,7 +118,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-winui",
       "state" : {
-        "revision" : "927e2c46430cfb1b6c195590b9e65a30a8fd98a2"
+        "revision" : "1695ee3ea2b7a249f6504c7f1759e7ec7a38eb86"
       }
     },
     {

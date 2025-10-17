@@ -100,15 +100,15 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/stackotter/swift-windowsappsdk",
-            branch: "ed938db0b9790b36391dc91b20cee81f2410309f"
+            revision: "ba6f0ec377b70d8be835d253102ff665a0e47d99"
         ),
         .package(
-            url: "https://github.com/thebrowsercompany/swift-windowsfoundation",
-            branch: "main"
+            url: "https://github.com/stackotter/swift-windowsfoundation",
+            revision: "4ad57d20553514bcb23724bdae9121569b19f172"
         ),
         .package(
             url: "https://github.com/stackotter/swift-winui",
-            branch: "927e2c46430cfb1b6c195590b9e65a30a8fd98a2"
+            revision: "1695ee3ea2b7a249f6504c7f1759e7ec7a38eb86"
         ),
         // .package(
         //     url: "https://github.com/stackotter/TermKit",
