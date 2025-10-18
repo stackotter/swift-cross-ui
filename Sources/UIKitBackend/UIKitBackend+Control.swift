@@ -61,9 +61,13 @@ final class TextEditorWidget: WrapperWidget<UITextView>, UITextViewDelegate {
     var onChange: ((String) -> Void)?
     var isEditable: Bool = true {
         didSet {
-            if !isEditable {
-                child.resignFirstResponder()
-            }
+            #if os(tvOS)
+                if !isEditable {
+                    child.resignFirstResponder()
+                }
+            #else
+                child.isEditable = isEditable
+            #endif
         }
     }
 
