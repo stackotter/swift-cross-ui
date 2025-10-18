@@ -606,7 +606,7 @@ public final class GtkBackend: AppBackend {
                 case .trailing:
                     Justification.right
             }
-
+        textView.selectable = environment.isTextSelectionEnabled
         textView.css.clear()
         textView.css.set(properties: Self.cssProperties(for: environment))
     }
