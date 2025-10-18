@@ -1,5 +1,6 @@
 import Foundation
 
+@available(tvOS, unavailable)
 public struct WebView: ElementaryView {
     @State var currentURL: URL?
     @Binding var url: URL
