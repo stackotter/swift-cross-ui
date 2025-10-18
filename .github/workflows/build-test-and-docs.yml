@@ -80,7 +80,7 @@ jobs:
 
     - name: Build
       run: |
-        set -uexo pipefail
+        set -uxo pipefail
         device_type=${{ matrix.device-type }}
         set +e
         deviceid=$(xcrun simctl list devices $device_type available | grep -v -- -- | tail -n 1 | grep -oE '[0-9A-F\-]{36}')
@@ -118,6 +118,7 @@ jobs:
           )
         else
           echo "No $device_type simulators found" >&2
+          false
         fi
 
     - name: Extract UIKitBackend symbol graphs
