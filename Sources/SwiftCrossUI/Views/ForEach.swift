@@ -18,6 +18,28 @@ extension ForEach where Child == [MenuItem] {
     }
 }
 
+extension ForEach where Items == [Int] {
+    /// Creates a view that creates child views on demand based on a given ClosedRange
+    @_disfavoredOverload
+    public init(
+        _ range: ClosedRange<Int>,
+        child: @escaping (Int) -> Child
+    ) {
+        self.elements = Array(range)
+        self.child = child
+    }
+    
+    /// Creates a view that creates child views on demand based on a given Range
+    @_disfavoredOverload
+    public init(
+        _ range: Range<Int>,
+        child: @escaping (Int) -> Child
+    ) {
+        self.elements = Array(range)
+        self.child = child
+    }
+}
+
 extension ForEach: TypeSafeView, View where Child: View {
     typealias Children = ForEachViewChildren<Items, Child>
 

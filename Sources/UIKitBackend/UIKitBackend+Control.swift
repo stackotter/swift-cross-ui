@@ -59,6 +59,17 @@ final class TextFieldWidget: WrapperWidget<UITextField>, UITextFieldDelegate {
 
 final class TextEditorWidget: WrapperWidget<UITextView>, UITextViewDelegate {
     var onChange: ((String) -> Void)?
+    var isEditable: Bool = true {
+        didSet {
+            #if os(tvOS)
+                if !isEditable {
+                    child.resignFirstResponder()
+                }
+            #else
+                child.isEditable = isEditable
+            #endif
+        }
+    }
 
     init() {
         super.init(child: UITextView())
@@ -67,6 +78,10 @@ final class TextEditorWidget: WrapperWidget<UITextView>, UITextViewDelegate {
 
     func textViewDidChange(_: UITextView) {
         onChange?(child.text ?? "")
+    }
+
+    func textViewShouldBeginEditing(_: UITextView) -> Bool {
+        return isEditable
     }
 }
 
@@ -332,10 +347,8 @@ extension UIKitBackend {
         onChange: @escaping (String) -> Void
     ) {
         let textEditorWidget = textEditor as! TextEditorWidget
-        //remove on merge, replace with beberka's solution
-        #if !os(tvOS)
-            textEditorWidget.child.isEditable = environment.isEnabled
-        #endif
+
+        textEditorWidget.isEditable = environment.isEnabled
         textEditorWidget.child.font = environment.resolvedFont.uiFont
         textEditorWidget.child.textColor = UIColor(color: environment.suggestedForegroundColor)
         textEditorWidget.onChange = onChange
@@ -451,7 +464,7 @@ extension UIKitBackend {
         }
     }
 
-    #if !os(tvOS)
+    #if os(iOS) || os(visionOS) || targetEnvironment(macCatalyst)
         public func createHoverTarget(wrapping child: Widget) -> Widget {
             HoverableWidget(child: child)
         }
@@ -464,9 +477,7 @@ extension UIKitBackend {
             let wrapper = hoverTarget as! HoverableWidget
             wrapper.hoverChangesHandler = action
         }
-    #endif
 
-    #if os(iOS) || os(visionOS) || targetEnvironment(macCatalyst)
         public func createSlider() -> Widget {
             SliderWidget()
         }
