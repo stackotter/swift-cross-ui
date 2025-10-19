@@ -573,6 +573,9 @@ public final class AppKitBackend: AppBackend {
     ) {
         let field = textView as! NSTextField
         field.attributedStringValue = Self.attributedString(for: content, in: environment)
+        if field.isSelectable && !environment.isTextSelectionEnabled {
+            field.abortEditing()
+        }
         field.isSelectable = environment.isTextSelectionEnabled
     }
 
