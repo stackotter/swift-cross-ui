@@ -126,27 +126,32 @@ final class OptionallySelectableLabel: UILabel {
     }
 
     private func setupTextSelection() {
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress))
-        addGestureRecognizer(longPress)
-        isUserInteractionEnabled = true
+        #if !os(tvOS)
+            let longPress = UILongPressGestureRecognizer(
+                target: self, action: #selector(didLongPress))
+            addGestureRecognizer(longPress)
+            isUserInteractionEnabled = true
+        #endif
     }
 
     @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
-        guard
-            isSelectable,
-            gesture.state == .began,
-            let text = self.attributedText?.string,
-            !text.isEmpty
-        else {
-            return
-        }
-        window?.endEditing(true)
-        guard becomeFirstResponder() else { return }
+        #if !os(tvOS)
+            guard
+                isSelectable,
+                gesture.state == .began,
+                let text = self.attributedText?.string,
+                !text.isEmpty
+            else {
+                return
+            }
+            window?.endEditing(true)
+            guard becomeFirstResponder() else { return }
 
-        let menu = UIMenuController.shared
-        if !menu.isMenuVisible {
-            menu.showMenu(from: self, rect: textRect())
-        }
+            let menu = UIMenuController.shared
+            if !menu.isMenuVisible {
+                menu.showMenu(from: self, rect: textRect())
+            }
+        #endif
     }
 
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
@@ -160,13 +165,17 @@ final class OptionallySelectableLabel: UILabel {
     }
 
     private func cancelSelection() {
-        let menu = UIMenuController.shared
-        menu.hideMenu(from: self)
+        #if !os(tvOS)
+            let menu = UIMenuController.shared
+            menu.hideMenu(from: self)
+        #endif
     }
 
     @objc override func copy(_ sender: Any?) {
-        cancelSelection()
-        let board = UIPasteboard.general
-        board.string = text
+        #if !os(tvOS)
+            cancelSelection()
+            let board = UIPasteboard.general
+            board.string = text
+        #endif
     }
 }
