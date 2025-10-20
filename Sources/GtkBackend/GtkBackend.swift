@@ -64,31 +64,7 @@ public final class GtkBackend: AppBackend {
     private var sheetContexts: [OpaquePointer: SheetContext] = [:]
     private var connectedCloseHandlers: Set<OpaquePointer> = []
 
-    // C thunk for GtkWindow::close-request
-    private static let closeRequestThunk:
-        @convention(c) (
-            UnsafeMutableRawPointer?, UnsafeMutableRawPointer?
-        ) -> Int32 = { instance, userData in
-            // TRUE (1) = consume event (prevent native close)
-            guard let instance, let userData else { return 1 }
-            let backend = Unmanaged<GtkBackend>.fromOpaque(userData).takeUnretainedValue()
-            let key = OpaquePointer(instance)
-            guard let ctx = backend.sheetContexts[key] else { return 1 }
-
-            if ctx.interactiveDismissDisabled { return 1 }
-
-            if ctx.isProgrammaticDismiss {
-                ctx.isProgrammaticDismiss = false
-                return 1
-            }
-
-            backend.runInMainThread {
-                ctx.onDismiss()
-            }
-            return 1
-        }
-
-    // C-convention thunk for key-pressed
+   /* // C-convention thunk for key-pressed
     private let escapeKeyPressedThunk:
         @convention(c) (
             UnsafeMutableRawPointer?, guint, guint, GdkModifierType, gpointer?
@@ -102,7 +78,7 @@ public final class GtkBackend: AppBackend {
             }
             return 0
         }
-
+*/
     // A separate initializer to satisfy ``AppBackend``'s requirements.
     public convenience init() {
         self.init(appIdentifier: nil)
@@ -1643,17 +1619,21 @@ public final class GtkBackend: AppBackend {
         sheet.css.set(property: .cornerRadius(defaultSheetCornerRadius))
 
         if connectedCloseHandlers.insert(key).inserted {
-            let handler: GCallback = unsafeBitCast(Self.closeRequestThunk, to: GCallback.self)
-            g_signal_connect_data(
-                UnsafeMutableRawPointer(sheet.gobjectPointer),
-                "close-request",
-                handler,
-                Unmanaged.passUnretained(self).toOpaque(),
-                nil,
-                GConnectFlags(0)
-            )
+            sheet.onCloseRequest = {[weak self] _ in
+                if ctx.interactiveDismissDisabled { return 1 }
 
-            let escapeHandler = gtk_event_controller_key_new()
+                if ctx.isProgrammaticDismiss {
+                    ctx.isProgrammaticDismiss = false
+                    return 1
+                }
+
+                self?.runInMainThread {
+                    ctx.onDismiss()
+                }
+                return 1
+            }
+
+           /* let escapeHandler = gtk_event_controller_key_new()
             gtk_event_controller_set_propagation_phase(escapeHandler, GTK_PHASE_BUBBLE)
             g_signal_connect_data(
                 UnsafeMutableRawPointer(escapeHandler),
@@ -1673,8 +1653,15 @@ public final class GtkBackend: AppBackend {
                     }
                 },
                 .init(0)
-            )
-            gtk_widget_add_controller(sheet.widgetPointer, escapeHandler)
+            )*/
+            sheet.setEscapeKeyPressedHandler {
+                print("escapeKeyPressed")
+                if ctx.interactiveDismissDisabled { return }
+                self.runInMainThread {
+                    ctx.onDismiss()
+                }
+            }
+            
         }
     }
 
@@ -1735,11 +1722,4 @@ extension UnsafeMutablePointer {
 
 class CustomListBox: ListBox {
     var cachedSelection: Int? = nil
-}
-
-final class ValueBox<T> {
-    let value: T
-    init(value: T) {
-        self.value = value
-    }
 }
