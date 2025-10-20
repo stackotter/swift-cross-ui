@@ -135,12 +135,21 @@ struct SheetDemo: View {
                 .sheet(isPresented: $showNextChild) {
                     DoubleNestedSheetBody(dismissParent: { dismiss() })
                         .interactiveDismissDisabled()
+                        .onAppear {
+                            print("deepest nested sheet appeared")
+                        }
+                        .onDisappear {
+                            print("deepest nested sheet disappeared")
+                        }
                 }
                 Button("dismiss parent sheet") {
                     dismissParent()
                 }
                 Button("dismiss") {
                     dismiss()
+                }
+                .onDisappear {
+                    print("nested sheet disappeared")
                 }
             }
         }

@@ -35,16 +35,9 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
         )
         let bodyNode = AnyViewGraphNode(bodyViewGraphNode)
 
-        let sheetViewGraphNode = ViewGraphNode(
-            for: sheetContent(),
-            backend: backend,
-            environment: environment
-        )
-        let sheetContentNode = AnyViewGraphNode(sheetViewGraphNode)
-
         return SheetModifierViewChildren(
             childNode: bodyNode,
-            sheetContentNode: sheetContentNode,
+            sheetContentNode: nil,
             sheet: nil
         )
     }
@@ -72,8 +65,16 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
         )
 
         if isPresented.wrappedValue && children.sheet == nil {
+            let sheetViewGraphNode = ViewGraphNode(
+                for: sheetContent(),
+                backend: backend,
+                environment: environment
+            )
+            let sheetContentNode = AnyViewGraphNode(sheetViewGraphNode)
+            children.sheetContentNode = sheetContentNode
+
             let sheet = backend.createSheet(
-                content: children.sheetContentNode.widget.into()
+                content: children.sheetContentNode!.widget.into()
             )
 
             let dismissAction = DismissAction(action: { [isPresented] in
@@ -81,7 +82,7 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
             })
             let sheetEnvironment = environment.with(\.dismiss, dismissAction)
 
-            let dryRunResult = children.sheetContentNode.update(
+            let dryRunResult = children.sheetContentNode!.update(
                 with: sheetContent(),
                 proposedSize: backend.sizeOf(sheet),
                 environment: sheetEnvironment,
@@ -90,7 +91,7 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
 
             let preferences = dryRunResult.preferences
 
-            let _ = children.sheetContentNode.update(
+            let _ = children.sheetContentNode!.update(
                 with: sheetContent(),
                 proposedSize: backend.sizeOf(sheet),
                 environment: sheetEnvironment,
@@ -99,7 +100,7 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
 
             backend.updateSheet(
                 sheet,
-                onDismiss: handleDismiss
+                onDismiss: { handleDismiss(children: children) }
             )
 
             // MARK: Sheet Presentation Preferences
@@ -137,13 +138,16 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
                 window: environment.window! as! Backend.Window
             )
             children.sheet = nil
+            children.sheetContentNode = nil
         }
         return childResult
     }
 
-    func handleDismiss() {
+    func handleDismiss(children: Children) {
         onDismiss?()
         isPresented.wrappedValue = false
+        children.sheet = nil
+        children.sheetContentNode = nil
     }
 }
 
@@ -153,16 +157,20 @@ class SheetModifierViewChildren<Child: View, SheetContent: View>: ViewGraphNodeC
     }
 
     var erasedNodes: [ErasedViewGraphNode] {
-        [ErasedViewGraphNode(wrapping: childNode), ErasedViewGraphNode(wrapping: sheetContentNode)]
+        var nodes: [ErasedViewGraphNode] = [ErasedViewGraphNode(wrapping: childNode)]
+        if let sheetContentNode = sheetContentNode {
+            nodes.append(ErasedViewGraphNode(wrapping: sheetContentNode))
+        }
+        return nodes
     }
 
     var childNode: AnyViewGraphNode<Child>
-    var sheetContentNode: AnyViewGraphNode<SheetContent>
+    var sheetContentNode: AnyViewGraphNode<SheetContent>?
     var sheet: Any?
 
     init(
         childNode: AnyViewGraphNode<Child>,
-        sheetContentNode: AnyViewGraphNode<SheetContent>,
+        sheetContentNode: AnyViewGraphNode<SheetContent>?,
         sheet: Any?
     ) {
         self.childNode = childNode

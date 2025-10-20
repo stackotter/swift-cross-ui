@@ -1604,7 +1604,7 @@ public final class GtkBackend: AppBackend {
         sheet.css.set(property: .cornerRadius(defaultSheetCornerRadius))
 
         if connectedCloseHandlers.insert(key).inserted {
-            sheet.onCloseRequest = {[weak self] _ in
+            sheet.onCloseRequest = { [weak self] _ in
                 if ctx.interactiveDismissDisabled { return 1 }
 
                 if ctx.isProgrammaticDismiss {
@@ -1625,7 +1625,7 @@ public final class GtkBackend: AppBackend {
                     ctx.onDismiss()
                 }
             }
-            
+
         }
     }
 

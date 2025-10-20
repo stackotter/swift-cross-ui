@@ -23,7 +23,7 @@ public struct PreferenceValues: Sendable {
 
     /// The backgroundcolor of a sheet. Applies to enclosing sheets.
     public var presentationBackground: Color?
-    
+
     /// Controls whether the user can interactively dismiss enclosing sheets.  Applies to enclosing sheets.
     public var interactiveDismissDisabled: Bool?
 
@@ -57,9 +57,10 @@ public struct PreferenceValues: Sendable {
         // For presentation modifiers, take the outer-most value (using child ordering to break ties).
         presentationDetents = children.compactMap { $0.presentationDetents }.first
         presentationCornerRadius = children.compactMap { $0.presentationCornerRadius }.first
-        presentationDragIndicatorVisibility = children.compactMap {
-            $0.presentationDragIndicatorVisibility
-        }.first
+        presentationDragIndicatorVisibility =
+            children.compactMap {
+                $0.presentationDragIndicatorVisibility
+            }.first
         presentationBackground = children.compactMap { $0.presentationBackground }.first
         interactiveDismissDisabled = children.compactMap { $0.interactiveDismissDisabled }.first
     }
