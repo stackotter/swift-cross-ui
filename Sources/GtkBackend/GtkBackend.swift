@@ -1685,7 +1685,7 @@ public final class GtkBackend: AppBackend {
         sheet.present()
     }
 
-    public func dismissSheet(_ sheet: Gtk.Window, window: ApplicationWindow?) {
+    public func dismissSheet(_ sheet: Gtk.Window, window: ApplicationWindow) {
         let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
         if let ctx = sheetContexts[key] {
             ctx.isProgrammaticDismiss = true

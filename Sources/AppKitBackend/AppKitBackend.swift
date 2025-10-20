@@ -1724,18 +1724,13 @@ public final class AppKitBackend: AppBackend {
             print("warning: Cannot show sheet without a parent window")
             return
         }
-        // critical sheets stack
-        // beginSheet only shows a nested
-        // sheet after its parent gets dismissed
+        // Critical sheets stack. beginSheet only shows a nested sheet
+        // after its parent gets dismissed.
         window.beginCriticalSheet(sheet)
     }
 
-    public func dismissSheet(_ sheet: NSCustomSheet, window: NSCustomWindow?) {
-        if let window {
-            window.endSheet(sheet)
-        } else {
-            NSApplication.shared.stopModal()
-        }
+    public func dismissSheet(_ sheet: NSCustomSheet, window: NSCustomWindow) {
+        window.endSheet(sheet)
     }
 
     public func setPresentationBackground(of sheet: NSCustomSheet, to color: Color) {

@@ -23,7 +23,7 @@ extension UIKitBackend {
         topController?.present(sheet, animated: true)
     }
 
-    public func dismissSheet(_ sheet: CustomSheet, window: UIWindow?) {
+    public func dismissSheet(_ sheet: CustomSheet, window: UIWindow) {
         // If this sheet has a presented view controller (nested sheet), dismiss it first
         if let presentedVC = sheet.presentedViewController {
             presentedVC.dismiss(animated: false) { [weak sheet] in

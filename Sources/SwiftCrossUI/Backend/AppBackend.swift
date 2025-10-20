@@ -612,7 +612,6 @@ public protocol AppBackend: Sendable {
     /// Updates the content and appearance of a sheet.
     func updateSheet(
         _ sheet: Sheet,
-        proposedSize: SIMD2<Int>,
         onDismiss: @escaping () -> Void
     )
 
@@ -632,7 +631,7 @@ public protocol AppBackend: Sendable {
 
     /// Dismisses a sheet programmatically.
     /// Gets used by the ``View/sheet`` modifier to close a sheet.
-    func dismissSheet(_ sheet: Sheet, window: Window?)
+    func dismissSheet(_ sheet: Sheet, window: Window)
 
     /// Get the dimensions of a sheet
     func sizeOf(_ sheet: Sheet) -> SIMD2<Int>
@@ -1267,7 +1266,6 @@ extension AppBackend {
 
     public func updateSheet(
         _ sheet: Sheet,
-        proposedSize: SIMD2<Int>,
         onDismiss: @escaping () -> Void
     ) {
         todo()
@@ -1286,7 +1284,7 @@ extension AppBackend {
         todo()
     }
 
-    public func dismissSheet(_ sheet: Sheet, window: Window?) {
+    public func dismissSheet(_ sheet: Sheet, window: Window) {
         todo()
     }
 
