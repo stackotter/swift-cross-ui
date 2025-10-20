@@ -1,19 +1,49 @@
 import UIKit
 
-#if os(iOS)
+#if os(iOS) || targetEnvironment(macCatalyst)
     final class SplitWidget: WrapperControllerWidget<UISplitViewController>,
         UISplitViewControllerDelegate
     {
+        private final class ColumnView: UIView {
+            unowned var splitWidget: SplitWidget!
+
+            @available(*, unavailable)
+            required init?(coder: NSCoder) {
+                fatalError("init(coder:) is not used for this view")
+            }
+
+            init() {
+                super.init(frame: .zero)
+            }
+
+            override func layoutSubviews() {
+                super.layoutSubviews()
+                splitWidget.resizeHandler?()
+            }
+        }
+
+        private final class ColumnWidget: ContainerWidget {
+            override func loadView() {
+                view = ColumnView()
+            }
+        }
+
         var resizeHandler: (() -> Void)?
-        private let sidebarContainer: ContainerWidget
-        private let mainContainer: ContainerWidget
+        private let sidebarContainer: ColumnWidget
+        private let mainContainer: ColumnWidget
 
         init(sidebarWidget: some WidgetProtocol, mainWidget: some WidgetProtocol) {
             // UISplitViewController requires its children to be controllers, not views
-            sidebarContainer = ContainerWidget(child: sidebarWidget)
-            mainContainer = ContainerWidget(child: mainWidget)
+            sidebarContainer = ColumnWidget(child: sidebarWidget)
+            mainContainer = ColumnWidget(child: mainWidget)
 
             super.init(child: UISplitViewController())
+
+            sidebarContainer.parentWidget = self
+            mainContainer.parentWidget = self
+            childWidgets = [sidebarContainer, mainContainer]
+            (sidebarContainer.view as! ColumnView).splitWidget = self
+            (mainContainer.view as! ColumnView).splitWidget = self
 
             child.delegate = self
 
@@ -44,11 +74,6 @@ import UIKit
             ])
 
             super.viewDidLoad()
-        }
-
-        override func viewDidLayoutSubviews() {
-            super.viewDidLayoutSubviews()
-            resizeHandler?()
         }
     }
 
