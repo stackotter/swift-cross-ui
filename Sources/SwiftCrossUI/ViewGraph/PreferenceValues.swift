@@ -12,25 +12,26 @@ public struct PreferenceValues: Sendable {
 
     public var onOpenURL: (@Sendable @MainActor (URL) -> Void)?
 
-    /// The available detents for a sheet presentation. Only applies to the top-level view in a sheet.
+    /// The available detents for a sheet presentation. Applies to enclosing sheets.
     public var presentationDetents: [PresentationDetent]?
 
-    /// The corner radius for a sheet presentation. Only applies to the top-level view in a sheet.
+    /// The corner radius for a sheet presentation. Applies to enclosing sheets.
     public var presentationCornerRadius: Double?
 
-    /// The drag indicator visibility for a sheet presentation. Only applies to the top-level view in a sheet.
-    public var presentationDragIndicatorVisibility: PresentationDragIndicatorVisibility?
+    /// The drag indicator visibility for a sheet presentation. Applies to enclosing sheets.
+    public var presentationDragIndicatorVisibility: Visibility?
 
-    /// The backgroundcolor of a sheet. Only applies to the top-level view in a sheet
+    /// The backgroundcolor of a sheet. Applies to enclosing sheets.
     public var presentationBackground: Color?
-
+    
+    /// Controls whether the user can interactively dismiss enclosing sheets.  Applies to enclosing sheets.
     public var interactiveDismissDisabled: Bool?
 
     public init(
         onOpenURL: (@Sendable @MainActor (URL) -> Void)?,
         presentationDetents: [PresentationDetent]? = nil,
         presentationCornerRadius: Double? = nil,
-        presentationDragIndicatorVisibility: PresentationDragIndicatorVisibility? = nil,
+        presentationDragIndicatorVisibility: Visibility? = nil,
         presentationBackground: Color? = nil,
         interactiveDismissDisabled: Bool? = nil
     ) {
@@ -53,12 +54,13 @@ public struct PreferenceValues: Sendable {
             }
         }
 
-        // For presentation modifiers, take the first (top-level) value only
-        // This ensures only the root view's presentation modifiers apply to the sheet
-        presentationDetents = children.first?.presentationDetents
-        presentationCornerRadius = children.first?.presentationCornerRadius
-        presentationDragIndicatorVisibility = children.first?.presentationDragIndicatorVisibility
-        presentationBackground = children.first?.presentationBackground
-        interactiveDismissDisabled = children.first?.interactiveDismissDisabled
+        // For presentation modifiers, take the outer-most value (using child ordering to break ties).
+        presentationDetents = children.compactMap { $0.presentationDetents }.first
+        presentationCornerRadius = children.compactMap { $0.presentationCornerRadius }.first
+        presentationDragIndicatorVisibility = children.compactMap {
+            $0.presentationDragIndicatorVisibility
+        }.first
+        presentationBackground = children.compactMap { $0.presentationBackground }.first
+        interactiveDismissDisabled = children.compactMap { $0.interactiveDismissDisabled }.first
     }
 }

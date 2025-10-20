@@ -1,14 +1,15 @@
 extension View {
-    /// Presents a conditional modal overlay
-    /// onDismiss optional handler gets executed before
-    /// dismissing the sheet
+    /// Presents a conditional modal overlay. `onDismiss` gets invoked when the sheet is dismissed.
     public func sheet<SheetContent: View>(
         isPresented: Binding<Bool>, onDismiss: (() -> Void)? = nil,
         @ViewBuilder content: @escaping () -> SheetContent
     ) -> some View {
         SheetModifier(
-            isPresented: isPresented, body: TupleView1(self), onDismiss: onDismiss,
-            sheetContent: content)
+            isPresented: isPresented,
+            body: TupleView1(self),
+            onDismiss: onDismiss,
+            sheetContent: content
+        )
     }
 }
 

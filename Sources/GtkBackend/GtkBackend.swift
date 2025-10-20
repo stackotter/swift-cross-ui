@@ -1595,7 +1595,7 @@ public final class GtkBackend: AppBackend {
     public func updateSheet(_ sheet: Gtk.Window, onDismiss: @escaping () -> Void) {
         let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
 
-        //add a slight border to not be just a flat corner
+        // Add a slight border to not be just a flat corner
         sheet.css.set(property: .border(color: SwiftCrossUI.Color.gray.gtkColor, width: 1))
 
         let ctx = getOrCreateSheetContext(for: sheet)

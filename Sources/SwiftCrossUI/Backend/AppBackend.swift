@@ -667,7 +667,7 @@ public protocol AppBackend: Sendable {
     ///   - visibility: visibility of the drag indicator (visible or hidden)
     func setPresentationDragIndicatorVisibility(
         of sheet: Sheet,
-        to visibility: PresentationDragIndicatorVisibility
+        to visibility: Visibility
     )
 
     /// Sets the background color for a sheet presentation.
@@ -1297,7 +1297,7 @@ extension AppBackend {
     }
 
     public func setPresentationDragIndicatorVisibility(
-        of sheet: Sheet, to visibility: PresentationDragIndicatorVisibility
+        of sheet: Sheet, to visibility: Visibility
     ) {
         ignored()
     }

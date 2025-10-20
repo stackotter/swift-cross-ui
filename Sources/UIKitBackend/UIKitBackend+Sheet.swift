@@ -75,7 +75,7 @@ extension UIKitBackend {
         } else {
             #if DEBUG
                 print(
-                    "your current OS Version doesn't support variable sheet heights.\n Setting presentationDetents is only available from iOS 15.0"
+                    "your current OS Version doesn't support variable sheet heights. Setting presentationDetents is only available from iOS 15.0"
                 )
             #endif
         }
@@ -91,14 +91,14 @@ extension UIKitBackend {
         } else {
             #if DEBUG
                 print(
-                    "your current OS Version doesn't support variable sheet corner radii.\n Setting them is only available from iOS 15.0"
+                    "your current OS Version doesn't support variable sheet corner radii. Setting them is only available from iOS 15.0"
                 )
             #endif
         }
     }
 
     public func setPresentationDragIndicatorVisibility(
-        of sheet: Sheet, to visibility: PresentationDragIndicatorVisibility
+        of sheet: Sheet, to visibility: Visibility
     ) {
         if #available(iOS 15.0, *) {
             #if !os(visionOS)
@@ -109,7 +109,7 @@ extension UIKitBackend {
         } else {
             #if DEBUG
                 print(
-                    "Your current OS Version doesn't support setting sheet drag indicator visibility.\n Setting this is only available from iOS 15.0"
+                    "Your current OS Version doesn't support setting sheet drag indicator visibility. Setting this is only available from iOS 15.0"
                 )
             #endif
         }
