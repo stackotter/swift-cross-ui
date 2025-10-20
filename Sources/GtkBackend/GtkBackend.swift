@@ -1624,13 +1624,14 @@ public final class GtkBackend: AppBackend {
 
         return properties
     }
-    public func createSheet() -> Gtk.Window {
-        return Gtk.Window()
+    public func createSheet(content: Widget) -> Gtk.Window {
+        let sheet = Gtk.Window()
+        sheet.setChild(content)
+        
+        return sheet
     }
 
-    public func updateSheet(_ sheet: Gtk.Window, content: Widget, onDismiss: @escaping () -> Void) {
-        sheet.setChild(content)
-
+    public func updateSheet(_ sheet: Gtk.Window, onDismiss: @escaping () -> Void) {
         let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
 
         //add a slight border to not be just a flat corner
