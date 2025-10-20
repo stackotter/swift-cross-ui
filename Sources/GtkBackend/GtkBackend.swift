@@ -64,21 +64,6 @@ public final class GtkBackend: AppBackend {
     private var sheetContexts: [OpaquePointer: SheetContext] = [:]
     private var connectedCloseHandlers: Set<OpaquePointer> = []
 
-   /* // C-convention thunk for key-pressed
-    private let escapeKeyPressedThunk:
-        @convention(c) (
-            UnsafeMutableRawPointer?, guint, guint, GdkModifierType, gpointer?
-        ) -> gboolean = { controller, keyval, keycode, state, userData in
-            // TRUE (1) = consume event
-            if keyval == GDK_KEY_Escape {
-                guard let userData else { return 1 }
-                let box = Unmanaged<ValueBox<() -> Void>>.fromOpaque(userData).takeUnretainedValue()
-                box.value()
-                return 1
-            }
-            return 0
-        }
-*/
     // A separate initializer to satisfy ``AppBackend``'s requirements.
     public convenience init() {
         self.init(appIdentifier: nil)
@@ -1633,27 +1618,6 @@ public final class GtkBackend: AppBackend {
                 return 1
             }
 
-           /* let escapeHandler = gtk_event_controller_key_new()
-            gtk_event_controller_set_propagation_phase(escapeHandler, GTK_PHASE_BUBBLE)
-            g_signal_connect_data(
-                UnsafeMutableRawPointer(escapeHandler),
-                "key-pressed",
-                unsafeBitCast(escapeKeyPressedThunk, to: GCallback.self),
-                Unmanaged.passRetained(
-                    ValueBox(value: {
-                        if ctx.interactiveDismissDisabled { return }
-                        self.runInMainThread {
-                            ctx.onDismiss()
-                        }
-                    })
-                ).toOpaque(),
-                { data, _ in
-                    if let data {
-                        Unmanaged<ValueBox<() -> Void>>.fromOpaque(data).release()
-                    }
-                },
-                .init(0)
-            )*/
             sheet.setEscapeKeyPressedHandler {
                 print("escapeKeyPressed")
                 if ctx.interactiveDismissDisabled { return }
