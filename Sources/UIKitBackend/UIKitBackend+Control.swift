@@ -18,15 +18,12 @@ final class ButtonWidget: WrapperWidget<UIButton> {
     }
 
     init() {
-        let type: UIButton.ButtonType
         #if os(tvOS)
-            type = .system
             event = .primaryActionTriggered
         #else
-            type = .system
             event = .touchUpInside
         #endif
-        super.init(child: UIButton(type: type))
+        super.init(child: UIButton(type: .system))
     }
 }
 
