@@ -48,10 +48,6 @@ public final class UIKitBackend: AppBackend {
 
     public init() {
         self.appDelegateClass = ApplicationDelegate.self
-        print(UIDevice.current.userInterfaceIdiom == .pad)
-        if #available(macCatalyst 14.0, *) {
-            print(UIDevice.current.userInterfaceIdiom == .mac)
-        }
     }
 
     public init(appDelegateClass: ApplicationDelegate.Type) {
