@@ -1688,7 +1688,7 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func createSheet(content: NSView) -> NSCustomSheet {
-        // Initialize with a default contentRect, similar to window creation (lines 58-68)
+        // Initialize with a default contentRect, similar to `createWindow`
         let sheet = NSCustomSheet(
             contentRect: NSRect(
                 x: 0,

@@ -617,7 +617,8 @@ public protocol AppBackend: Sendable {
 
     /// Shows a sheet as a modal on top of or within the given window.
     /// Users should be unable to interact with the parent window until the
-    /// sheet gets dismissed. The sheet will be closed once onDismiss gets called
+    /// sheet gets dismissed.
+    /// `onDismiss` only gets called once the sheet has been closed.
     ///
     /// Must only get called once for any given sheet.
     ///
@@ -629,7 +630,7 @@ public protocol AppBackend: Sendable {
     )
 
     /// Dismisses a sheet programmatically.
-    /// Gets used by the SCUI sheet implementation to close a sheet.
+    /// Gets used by the ``View/sheet`` modifier to close a sheet.
     func dismissSheet(_ sheet: Sheet, window: Window?)
 
     /// Get the dimensions of a sheet
@@ -637,8 +638,8 @@ public protocol AppBackend: Sendable {
 
     /// Sets the corner radius for a sheet presentation.
     ///
-    /// This method is called when the sheet content has a `presentationCornerRadius` modifier
-    /// applied at its top level. The corner radius affects the sheet's presentation container,
+    /// This method is called when the sheet content has a `presentationCornerRadius`
+    /// preference key set. The corner radius affects the sheet's presentation container,
     /// not the content itself.
     ///
     /// - Parameters:
@@ -648,8 +649,8 @@ public protocol AppBackend: Sendable {
 
     /// Sets the available detents (heights) for a sheet presentation.
     ///
-    /// This method is called when the sheet content has a `presentationDetents` modifier
-    /// applied at its top level. Detents allow users to resize the sheet to predefined heights.
+    /// This method is called when the sheet content has a `presentationDetents`
+    /// preference key set. Detents allow users to resize the sheet to predefined heights.
     ///
     /// - Parameters:
     ///   - sheet: The sheet to apply the detents to.
@@ -659,10 +660,10 @@ public protocol AppBackend: Sendable {
     /// Sets the visibility for a sheet presentation.
     ///
     /// This method is called when the sheet content has a `presentationDragIndicatorVisibility`
-    /// modifier applied at its top level.
+    /// preference key set.
     ///
     /// - Parameters:
-    ///   - sheet: The sheet to apply the detents to.
+    ///   - sheet: The sheet to apply the drag indicator visibility to.
     ///   - visibility: visibility of the drag indicator (visible or hidden)
     func setPresentationDragIndicatorVisibility(
         of sheet: Sheet,
@@ -672,23 +673,23 @@ public protocol AppBackend: Sendable {
     /// Sets the background color for a sheet presentation.
     ///
     /// This method is called when the sheet content has a `presentationBackground`
-    /// modifier applied at its top level.
+    /// preference key set.
     ///
     /// - Parameters:
-    ///   - sheet: The sheet to apply the detents to.
-    ///   - color: rgba background color
+    ///   - sheet: The sheet to apply the background to.
+    ///   - color: Background color for the sheet
     func setPresentationBackground(of sheet: Sheet, to color: Color)
 
-    /// Sets the interactive dismissablility of a sheet.
+    /// Sets the interactive dismissibility of a sheet.
     /// when disabled the sheet can only be closed programmatically,
     /// not through users swiping, escape keys or similar.
     ///
     /// This method is called when the sheet content has a `interactiveDismissDisabled`
-    /// modifier applied at its top level.
+    /// preference key set.
     ///
     /// - Parameters:
-    ///   - sheet: The sheet to apply the detents to.
-    ///   - disabled: wether its disabled
+    ///   - sheet: The sheet to apply the interactive dismissability to.
+    ///   - disabled: Whether interactive dismissing is disabled.
     func setInteractiveDismissDisabled(for sheet: Sheet, to disabled: Bool)
 
     /// Presents an 'Open file' dialog to the user for selecting files or

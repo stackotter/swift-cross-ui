@@ -64,7 +64,7 @@ struct AlertDemo: View {
     }
 }
 
-// kind of a stress test for the dismiss action
+// A demo displaying SwiftCrossUI's `View.sheet` modifier.
 struct SheetDemo: View {
     @State var isPresented = false
     @State var isShortTermSheetPresented = false
