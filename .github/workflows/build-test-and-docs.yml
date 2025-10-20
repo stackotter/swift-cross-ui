@@ -173,8 +173,7 @@ jobs:
         buildtarget RandomNumberGeneratorExample
         buildtarget WebViewExample
         buildtarget AdvancedCustomizationExample
-        # TODO test whether this works on Catalyst
-        # buildtarget SplitExample
+        buildtarget SplitExample
 
   windows:
     runs-on: windows-latest
