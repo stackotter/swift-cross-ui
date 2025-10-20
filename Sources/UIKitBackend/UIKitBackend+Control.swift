@@ -214,6 +214,7 @@ final class TappableWidget: ContainerWidget {
         }
     }
 #endif
+
 @available(tvOS, unavailable)
 final class SliderWidget: WrapperWidget<UISlider> {
     var onChange: ((Double) -> Void)?
