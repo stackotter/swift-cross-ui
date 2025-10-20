@@ -146,8 +146,6 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
     func handleDismiss(children: Children) {
         onDismiss?()
         isPresented.wrappedValue = false
-        children.sheet = nil
-        children.sheetContentNode = nil
     }
 }
 
