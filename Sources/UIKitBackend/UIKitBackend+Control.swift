@@ -23,7 +23,7 @@ final class ButtonWidget: WrapperWidget<UIButton> {
             type = .system
             event = .primaryActionTriggered
         #else
-            type = .custom
+            type = .system
             event = .touchUpInside
         #endif
         super.init(child: UIButton(type: type))
@@ -268,7 +268,8 @@ extension UIKitBackend {
                 UIKitBackend.attributedString(
                     text: label,
                     environment: environment,
-                    defaultForegroundColor: .link
+                    // Handle Mac Catalyst
+                    defaultForegroundColor: deviceClass == .desktop ? .label : .link
                 ),
                 for: .normal
             )
