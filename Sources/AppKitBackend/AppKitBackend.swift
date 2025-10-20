@@ -1687,32 +1687,28 @@ public final class AppKitBackend: AppBackend {
         webView.load(request)
     }
 
-    public func createSheet() -> NSCustomSheet {
+    public func createSheet(content: NSView) -> NSCustomSheet {
         // Initialize with a default contentRect, similar to window creation (lines 58-68)
         let sheet = NSCustomSheet(
             contentRect: NSRect(
                 x: 0,
                 y: 0,
                 width: 400,  // Default width
-                height: 300  // Default height
+                height: 400  // Default height
             ),
             styleMask: [.titled, .closable],
             backing: .buffered,
             defer: true
         )
+        sheet.contentView = content
+
         return sheet
     }
 
     public func updateSheet(
-        _ sheet: NSCustomSheet, content: NSView, onDismiss: @escaping () -> Void
+        _ sheet: NSCustomSheet,
+        onDismiss: @escaping () -> Void
     ) {
-        let contentSize = naturalSize(of: content)
-
-        let width = max(contentSize.x, 10)
-        let height = max(contentSize.y, 10)
-        sheet.setContentSize(NSSize(width: width, height: height))
-
-        sheet.contentView = content
         sheet.onDismiss = onDismiss
     }
 

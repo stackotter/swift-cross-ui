@@ -607,12 +607,11 @@ public protocol AppBackend: Sendable {
     /// Creates a sheet object (without showing it yet). Sheets contain view content.
     /// They optionally execute provided code on dismiss and
     /// prevent users from interacting with the parent window until dimissed.
-    func createSheet() -> Sheet
+    func createSheet(content: Widget) -> Sheet
 
     /// Updates the content and appearance of a sheet.
     func updateSheet(
         _ sheet: Sheet,
-        content: Widget,
         onDismiss: @escaping () -> Void
     )
 
@@ -1260,13 +1259,12 @@ extension AppBackend {
         todo()
     }
 
-    public func createSheet() -> Sheet {
+    public func createSheet(content: Widget) -> Sheet {
         todo()
     }
 
     public func updateSheet(
         _ sheet: Sheet,
-        content: Widget,
         onDismiss: @escaping () -> Void
     ) {
         todo()

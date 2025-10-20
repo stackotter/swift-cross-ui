@@ -4,16 +4,14 @@ import UIKit
 extension UIKitBackend {
     public typealias Sheet = CustomSheet
 
-    public func createSheet() -> CustomSheet {
+    public func createSheet(content: Widget) -> CustomSheet {
         let sheet = CustomSheet()
         sheet.modalPresentationStyle = .formSheet
-
+        sheet.view = content.view
         return sheet
     }
 
-    public func updateSheet(_ sheet: CustomSheet, content: Widget, onDismiss: @escaping () -> Void)
-    {
-        sheet.view = content.view
+    public func updateSheet(_ sheet: CustomSheet, onDismiss: @escaping () -> Void) {
         sheet.onDismiss = onDismiss
     }
 

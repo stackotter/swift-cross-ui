@@ -71,7 +71,9 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
         )
 
         if isPresented.wrappedValue && children.sheet == nil {
-            let sheet = backend.createSheet()
+            let sheet = backend.createSheet(
+                content: children.sheetContentNode.widget.into()
+            )
 
             let dismissAction = DismissAction(action: { [isPresented] in
                 isPresented.wrappedValue = false
@@ -96,7 +98,6 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
 
             backend.updateSheet(
                 sheet,
-                content: children.sheetContentNode.widget.into(),
                 onDismiss: handleDismiss
             )
 
