@@ -1870,7 +1870,7 @@ class SwiftIInitializeWithWindow: WindowsFoundation.IUnknown {
     }
 }
 
-public class CustomWindow: WinUI.Window, SheetImplementation {
+public class CustomWindow: WinUI.Window {
     /// Hardcoded menu bar height from MenuBar_themeresources.xaml in the
     /// microsoft-ui-xaml repository.
     static let menuBarHeight = 0
@@ -1879,12 +1879,6 @@ public class CustomWindow: WinUI.Window, SheetImplementation {
     var child: WinUIBackend.Widget?
     var grid: WinUI.Grid
     var cachedAppWindow: WinAppSDK.AppWindow!
-
-    //only for AppBackend conformance, no support yet
-    public var sheetSize: SIMD2<Int> {
-        let size = self.cachedAppWindow.size
-        return SIMD2<Int>(x: Int(size.width), y: Int(size.height))
-    }
 
     var scaleFactor: Double {
         // I'm leaving this code here for future travellers. Be warned that this always

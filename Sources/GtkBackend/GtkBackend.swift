@@ -1694,6 +1694,10 @@ public final class GtkBackend: AppBackend {
         connectedCloseHandlers.remove(key)
     }
 
+    public func sizeOf(_ sheet: Gtk.Window) -> SIMD2<Int> {
+        return SIMD2(x: sheet.size.width, y: sheet.size.height)
+    }
+
     public func setPresentationBackground(of sheet: Gtk.Window, to color: SwiftCrossUI.Color) {
         sheet.css.set(properties: [.backgroundColor(color.gtkColor)])
     }
@@ -1730,12 +1734,6 @@ extension UnsafeMutablePointer {
 
 class CustomListBox: ListBox {
     var cachedSelection: Int? = nil
-}
-
-extension Gtk.Window: SheetImplementation {
-    public var sheetSize: SIMD2<Int> {
-        return SIMD2(x: self.size.width, y: self.size.height)
-    }
 }
 
 final class ValueBox<T> {

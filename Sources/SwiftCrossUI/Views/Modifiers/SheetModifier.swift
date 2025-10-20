@@ -80,7 +80,7 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
 
             let dryRunResult = children.sheetContentNode.update(
                 with: sheetContent(),
-                proposedSize: sheet.sheetSize,
+                proposedSize: backend.sizeOf(sheet),
                 environment: sheetEnvironment,
                 dryRun: true
             )
@@ -89,7 +89,7 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
 
             let _ = children.sheetContentNode.update(
                 with: sheetContent(),
-                proposedSize: sheet.sheetSize,
+                proposedSize: backend.sizeOf(sheet),
                 environment: sheetEnvironment,
                 dryRun: false
             )

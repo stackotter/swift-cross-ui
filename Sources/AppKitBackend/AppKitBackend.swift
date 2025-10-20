@@ -1716,6 +1716,13 @@ public final class AppKitBackend: AppBackend {
         sheet.onDismiss = onDismiss
     }
 
+    public func sizeOf(_ sheet: NSCustomSheet) -> SIMD2<Int> {
+        guard let size = sheet.contentView?.frame.size else {
+            return SIMD2(x: 0, y: 0)
+        }
+        return SIMD2(x: Int(size.width), y: Int(size.height))
+    }
+
     public func showSheet(_ sheet: NSCustomSheet, window: NSCustomWindow?) {
         guard let window else {
             print("warning: Cannot show sheet without a parent window")
@@ -1772,13 +1779,7 @@ public final class AppKitBackend: AppBackend {
     }
 }
 
-public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate, SheetImplementation {
-    public var sheetSize: SIMD2<Int> {
-        guard let size = self.contentView?.frame.size else {
-            return SIMD2(x: 0, y: 0)
-        }
-        return SIMD2(x: Int(size.width), y: Int(size.height))
-    }
+public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate {
     public var onDismiss: (() -> Void)?
 
     public var interactiveDismissDisabled: Bool = false

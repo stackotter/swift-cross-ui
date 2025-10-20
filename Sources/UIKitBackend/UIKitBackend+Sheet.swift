@@ -37,6 +37,11 @@ extension UIKitBackend {
         }
     }
 
+    public func sizeOf(_ sheet: CustomSheet) -> SIMD2<Int> {
+        let size = sheet.view.frame.size
+        return SIMD2(x: Int(size.width), y: Int(size.height))
+    }
+
     public func setPresentationDetents(of sheet: CustomSheet, to detents: [PresentationDetent]) {
         if #available(iOS 15.0, *) {
             #if !os(visionOS)
@@ -121,12 +126,7 @@ extension UIKitBackend {
     }
 }
 
-public final class CustomSheet: UIViewController, SheetImplementation {
-    public var sheetSize: SIMD2<Int> {
-        let size = view.frame.size
-        return SIMD2(x: Int(size.width), y: Int(size.height))
-    }
-
+public final class CustomSheet: UIViewController {
     var onDismiss: (() -> Void)?
     private var isDismissedProgrammatically = false
 

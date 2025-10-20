@@ -47,7 +47,7 @@ public protocol AppBackend: Sendable {
     associatedtype Menu
     associatedtype Alert
     associatedtype Path
-    associatedtype Sheet: SheetImplementation
+    associatedtype Sheet
 
     /// Creates an instance of the backend.
     init()
@@ -604,12 +604,12 @@ public protocol AppBackend: Sendable {
     /// ``showAlert(_:window:responseHandler:)``.
     func dismissAlert(_ alert: Alert, window: Window?)
 
-    /// Creates a sheet object (without showing it yet). Sheets contain View Content.
-    /// They optionally execute provied code on dismiss and
+    /// Creates a sheet object (without showing it yet). Sheets contain view content.
+    /// They optionally execute provided code on dismiss and
     /// prevent users from interacting with the parent window until dimissed.
     func createSheet() -> Sheet
 
-    /// Updates the content and appearance of a sheet
+    /// Updates the content and appearance of a sheet.
     func updateSheet(
         _ sheet: Sheet,
         content: Widget,
@@ -632,6 +632,9 @@ public protocol AppBackend: Sendable {
     /// Dismisses a sheet programmatically.
     /// Gets used by the SCUI sheet implementation to close a sheet.
     func dismissSheet(_ sheet: Sheet, window: Window?)
+
+    /// Get the dimensions of a sheet
+    func sizeOf(_ sheet: Sheet) -> SIMD2<Int>
 
     /// Sets the corner radius for a sheet presentation.
     ///
@@ -804,10 +807,6 @@ extension AppBackend {
         // This is only really to assist contributors when debugging backends,
         // so it's safe enough to have a no-op default implementation.
     }
-}
-
-public protocol SheetImplementation {
-    var sheetSize: SIMD2<Int> { get }
 }
 
 extension AppBackend {
@@ -1270,6 +1269,12 @@ extension AppBackend {
         content: Widget,
         onDismiss: @escaping () -> Void
     ) {
+        todo()
+    }
+
+    public func sizeOf(
+        sheet: Sheet
+    ) -> SIMD2<Int> {
         todo()
     }
 
