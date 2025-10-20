@@ -91,13 +91,14 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
 
             let _ = children.sheetContentNode.update(
                 with: sheetContent(),
-                proposedSize: backend.sizeOf(sheet),
+                proposedSize: dryRunResult.size.idealSize,
                 environment: sheetEnvironment,
                 dryRun: false
             )
 
             backend.updateSheet(
                 sheet,
+                proposedSize: dryRunResult.size.idealSize,
                 onDismiss: handleDismiss
             )
 

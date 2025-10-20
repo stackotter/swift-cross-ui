@@ -612,6 +612,7 @@ public protocol AppBackend: Sendable {
     /// Updates the content and appearance of a sheet.
     func updateSheet(
         _ sheet: Sheet,
+        proposedSize: SIMD2<Int>,
         onDismiss: @escaping () -> Void
     )
 
@@ -1266,6 +1267,7 @@ extension AppBackend {
 
     public func updateSheet(
         _ sheet: Sheet,
+        proposedSize: SIMD2<Int>,
         onDismiss: @escaping () -> Void
     ) {
         todo()
