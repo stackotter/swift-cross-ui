@@ -128,6 +128,11 @@ public struct EnvironmentValues {
     /// The backend in use. Mustn't change throughout the app's lifecycle.
     let backend: any AppBackend
 
+    /// The backend's representation of the class that owns the current sheet,
+    /// if any. This is a very internal detail that should never get
+    /// exposed to users.
+    package var sheetParent: Any?
+
     /// Presents an 'Open file' dialog fit for selecting a single file. Some
     /// backends only allow selecting either files or directories but not both
     /// in a single dialog. Returns `nil` if the user cancels the operation.

@@ -1725,13 +1725,23 @@ public final class AppKitBackend: AppBackend {
         return SIMD2(x: Int(size.width), y: Int(size.height))
     }
 
-    public func showSheet(_ sheet: NSCustomSheet, window: NSCustomWindow) {
+    public func showSheet(_ sheet: NSCustomSheet, sheetParent: Any) {
         // Critical sheets stack. beginSheet only shows a nested sheet
         // after its parent gets dismissed.
+        let window = sheetParent as! NSCustomWindow
         window.beginCriticalSheet(sheet)
+        window.managedAttachedSheet = sheet
     }
 
-    public func dismissSheet(_ sheet: NSCustomSheet, window: NSCustomWindow) {
+    public func dismissSheet(_ sheet: NSCustomSheet, sheetParent: Any) {
+        let window = sheetParent as! NSCustomWindow
+
+        if let nestedSheet = sheet.managedAttachedSheet {
+            dismissSheet(nestedSheet, sheetParent: sheet)
+        }
+
+        defer { window.managedAttachedSheet = nil }
+
         window.endSheet(sheet)
     }
 
@@ -2217,6 +2227,8 @@ class NSSplitViewResizingDelegate: NSObject, NSSplitViewDelegate {
 public class NSCustomWindow: NSWindow {
     var customDelegate = Delegate()
     var persistentUndoManager = UndoManager()
+
+    var managedAttachedSheet: NSCustomSheet?
 
     /// Allows the backing scale factor to be overridden. Useful for keeping
     /// UI tests consistent across devices.
