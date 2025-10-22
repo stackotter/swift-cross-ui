@@ -6,7 +6,15 @@ extension UIKitBackend {
 
     public func createSheet(content: Widget) -> CustomSheet {
         let sheet = CustomSheet()
-        sheet.modalPresentationStyle = .formSheet
+        #if !os(tvOS)
+            sheet.modalPresentationStyle = .formSheet
+        #else
+            if #available(tvOS 26.0, *) {
+                sheet.modalPresentationStyle = .formSheet
+            } else {
+                sheet.modalPresentationStyle = .overFullScreen
+            }
+        #endif
         sheet.view = content.view
         return sheet
     }
@@ -52,7 +60,7 @@ extension UIKitBackend {
 
     public func setPresentationDetents(of sheet: CustomSheet, to detents: [PresentationDetent]) {
         if #available(iOS 15.0, macCatalyst 15.0, *) {
-            #if !os(visionOS)
+            #if !os(tvOS) && !os(visionOS)
                 if let sheetPresentation = sheet.sheetPresentationController {
                     sheetPresentation.detents = detents.map {
                         switch $0 {
@@ -85,7 +93,7 @@ extension UIKitBackend {
         } else {
             #if DEBUG
                 print(
-                    "your current OS Version doesn't support variable sheet heights. Setting presentationDetents is only available from iOS 15.0"
+                    "Your current OS Version doesn't support variable sheet heights. Setting presentationDetents is only available from iOS 15.0. tvOS and visionOS are not supported."
                 )
             #endif
         }
@@ -93,7 +101,7 @@ extension UIKitBackend {
 
     public func setPresentationCornerRadius(of sheet: CustomSheet, to radius: Double) {
         if #available(iOS 15.0, *) {
-            #if !os(visionOS)
+            #if !os(tvOS) && !os(visionOS)
                 if let sheetController = sheet.sheetPresentationController {
                     sheetController.preferredCornerRadius = radius
                 }
@@ -101,7 +109,7 @@ extension UIKitBackend {
         } else {
             #if DEBUG
                 print(
-                    "your current OS Version doesn't support variable sheet corner radii. Setting them is only available from iOS 15.0"
+                    "Your current OS Version doesn't support variable sheet corner radii. Setting them is only available from iOS 15.0. tvOS and visionOS are not supported."
                 )
             #endif
         }
@@ -111,7 +119,7 @@ extension UIKitBackend {
         of sheet: Sheet, to visibility: Visibility
     ) {
         if #available(iOS 15.0, *) {
-            #if !os(visionOS)
+            #if !os(tvOS) && !os(visionOS)
                 if let sheetController = sheet.sheetPresentationController {
                     sheetController.prefersGrabberVisible = visibility == .visible ? true : false
                 }
@@ -119,7 +127,7 @@ extension UIKitBackend {
         } else {
             #if DEBUG
                 print(
-                    "Your current OS Version doesn't support setting sheet drag indicator visibility. Setting this is only available from iOS 15.0"
+                    "Your current OS Version doesn't support setting sheet drag indicator visibility. Setting this is only available from iOS 15.0. tvOS and visionOS are not supported."
                 )
             #endif
         }

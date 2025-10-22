@@ -4,7 +4,7 @@ extension View {
     /// This modifier only affects the sheet presentation itself.
     /// It allows users to resize the sheet to different predefined heights.
     ///
-    /// - Supported platforms: iOS 15+ (ignored on unsupported platforms)
+    /// - Supported platforms: iOS & Mac Catalyst 15+ (ignored on unsupported platforms)
     /// - `.fraction` and `.height` fall back to `.medium` on iOS 15 and earlier
     ///
     /// - Parameter detents: A set of detents that the sheet can be resized to.
@@ -18,7 +18,7 @@ extension View {
     /// This modifier only affects the sheet presentation itself.
     /// It does not affect the content's corner radius.
     ///
-    /// - Supported platforms: iOS 15+, Gtk4 (ignored on unsupported platforms)
+    /// - Supported platforms: iOS & Mac Catalyst 15+, Gtk4 (ignored on unsupported platforms)
     ///
     /// - Parameter radius: The corner radius in points.
     /// - Returns: A view with the presentationCornerRadius preference set.
@@ -30,7 +30,7 @@ extension View {
     ///
     /// This modifier only affects the sheet presentation itself.
     ///
-    /// - Supported platforms: iOS 15+ (ignored on unsupported platforms)
+    /// - Supported platforms: iOS & Mac Catalyst 15+ (ignored on unsupported platforms)
     ///
     /// - Parameter visibility: visible or hidden
     /// - Returns: A view with the presentationDragIndicatorVisibility preference set.

@@ -219,7 +219,7 @@ struct WindowingApp: App {
                 }
             }
         }
-        #if !os(iOS)
+        #if !os(iOS) && !os(tvOS)
             WindowGroup("Secondary window") {
                 #hotReloadable {
                     Text("This a secondary window!")
