@@ -90,66 +90,20 @@ open class Window: Widget {
     }
 
     public func setEscapeKeyPressedHandler(to handler: (() -> Void)?) {
-        let handler = EventControllerKey()
-        handler.keyPressed = { [weak self] _, keyval, _, _ in
+        escapeKeyPressed = handler
+        
+        guard escapeKeyEventController == nil else { return }
+        
+        let keyEventController = EventControllerKey()
+        keyEventController.keyPressed = { [weak self] _, keyval, _, _ in
             guard keyval == GDK_KEY_Escape else { return }
             self?.escapeKeyPressed?()
         }
-        /*if let data = escapeKeyHandlerData {
-            Unmanaged<ValueBox<() -> Void>>.fromOpaque(data).release()
-            escapeKeyHandlerData = nil
-        }
-        
-        if let oldController = escapeKeyEventController {
-            gtk_widget_remove_controller(widgetPointer, oldController)
-            escapeKeyEventController = nil
-        }
-        
-        escapeKeyPressed = handler
-        
-        guard handler != nil else { return }
-        
-        let keyEventController = gtk_event_controller_key_new()
-        gtk_event_controller_set_propagation_phase(keyEventController, GTK_PHASE_BUBBLE)
-        
-        let thunk:
-            @convention(c) (
-                UnsafeMutableRawPointer?, guint, guint, GdkModifierType, gpointer?
-            ) -> gboolean = { _, keyval, _, _, userData in
-                if keyval == GDK_KEY_Escape {
-                    guard let userData else { return 1 }
-                    let box = Unmanaged<ValueBox<() -> Void>>.fromOpaque(userData)
-                        .takeUnretainedValue()
-                    box.value()
-                    return 1
-                }
-                return 0
-            }
-        
-        let boxedHandler = Unmanaged.passRetained(
-            ValueBox(value: handler!)
-        ).toOpaque()
-        
-        g_signal_connect_data(
-            UnsafeMutableRawPointer(keyEventController),
-            "key-pressed",
-            unsafeBitCast(thunk, to: GCallback.self),
-            boxedHandler,
-            { data, _ in
-                if let data {
-                    Unmanaged<ValueBox<() -> Void>>.fromOpaque(data).release()
-                }
-            },
-            .init(0)
-        )
-        
-        gtk_widget_add_controller(widgetPointer, keyEventController)
         escapeKeyEventController = keyEventController
-        escapeKeyHandlerData = boxedHandler*/
+        addEventController(keyEventController)
     }
 
-    private var escapeKeyEventController: OpaquePointer?
-    private var escapeKeyHandlerData: UnsafeMutableRawPointer?
+    private var escapeKeyEventController: EventControllerKey?
 
     public var onCloseRequest: ((Window) -> Void)?
     public var escapeKeyPressed: (() -> Void)?

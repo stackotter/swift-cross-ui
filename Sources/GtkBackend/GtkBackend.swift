@@ -1611,21 +1611,20 @@ public final class GtkBackend: AppBackend {
 
         if connectedCloseHandlers.insert(key).inserted {
             sheet.onCloseRequest = { [weak self] _ in
-                if ctx.interactiveDismissDisabled { return 1 }
+                if ctx.interactiveDismissDisabled { return }
 
                 if ctx.isProgrammaticDismiss {
                     ctx.isProgrammaticDismiss = false
-                    return 1
+                    return
                 }
 
                 self?.runInMainThread {
                     ctx.onDismiss()
                 }
-                return 1
+                return
             }
 
             sheet.setEscapeKeyPressedHandler {
-                print("escapeKeyPressed")
                 if ctx.interactiveDismissDisabled { return }
                 self.runInMainThread {
                     ctx.onDismiss()
