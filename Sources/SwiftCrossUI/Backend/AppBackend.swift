@@ -627,12 +627,12 @@ public protocol AppBackend: Sendable {
     /// app modal, a standalone window, or a modal for a window of its choosing.
     func showSheet(
         _ sheet: Sheet,
-        window: Window
+        sheetParent: Any
     )
 
     /// Dismisses a sheet programmatically.
     /// Gets used by the ``View/sheet`` modifier to close a sheet.
-    func dismissSheet(_ sheet: Sheet, window: Window)
+    func dismissSheet(_ sheet: Sheet, sheetParent: Any)
 
     /// Get the dimensions of a sheet
     func size(ofSheet sheet: Sheet) -> SIMD2<Int>
@@ -1281,12 +1281,12 @@ extension AppBackend {
 
     public func showSheet(
         _ sheet: Sheet,
-        window: Window
+        sheetParent: Any
     ) {
         todo()
     }
 
-    public func dismissSheet(_ sheet: Sheet, window: Window) {
+    public func dismissSheet(_ sheet: Sheet, sheetParent: Any) {
         todo()
     }
 

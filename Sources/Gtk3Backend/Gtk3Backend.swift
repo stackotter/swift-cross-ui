@@ -1517,9 +1517,3 @@ struct Gtk3Error: LocalizedError {
         "gerror: code=\(code), domain=\(domain), message=\(message)"
     }
 }
-
-extension Gtk3.Window: SheetImplementation {
-    public var sheetSize: SIMD2<Int> {
-        SIMD2(x: size.width, y: size.height)
-    }
-}

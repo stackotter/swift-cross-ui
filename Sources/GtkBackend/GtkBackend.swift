@@ -1635,18 +1635,30 @@ public final class GtkBackend: AppBackend {
         }
     }
 
-    public func showSheet(_ sheet: Gtk.Window, window: ApplicationWindow) {
+    public func showSheet(_ sheet: Gtk.Window, sheetParent: Any) {
+        let window = sheetParent as! Gtk.Window
         sheet.isModal = true
         sheet.isDecorated = false
         sheet.setTransient(for: window)
         sheet.present()
+        window.managedAttachedSheet = sheet
     }
 
-    public func dismissSheet(_ sheet: Gtk.Window, window: ApplicationWindow) {
+    public func dismissSheet(_ sheet: Gtk.Window, sheetParent: Any) {
+        let window = sheetParent as! Gtk.Window
+
+        if let nestedSheet = window.managedAttachedSheet {
+            dismissSheet(nestedSheet, sheetParent: sheet)
+        }
+
+        defer { window.managedAttachedSheet = nil }
+
         let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
+
         if let ctx = sheetContexts[key] {
             ctx.isProgrammaticDismiss = true
         }
+
         sheet.destroy()
         sheetContexts.removeValue(forKey: key)
         connectedCloseHandlers.remove(key)

@@ -7,6 +7,8 @@ import CGtk
 open class Window: Widget {
     public var child: Widget?
 
+    public var managedAttachedSheet: Window?
+
     public convenience init() {
         self.init(gtk_window_new())
     }

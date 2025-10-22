@@ -1725,20 +1725,37 @@ public final class AppKitBackend: AppBackend {
         return SIMD2(x: Int(size.width), y: Int(size.height))
     }
 
-    public func showSheet(_ sheet: NSCustomSheet, window: NSCustomWindow) {
+    public func showSheet(_ sheet: NSCustomSheet, sheetParent: Any) {
         // Critical sheets stack. beginSheet only shows a nested sheet
         // after its parent gets dismissed.
+        let window = sheetParent as! NSCustomWindow
         window.beginCriticalSheet(sheet)
+        window.managedAttachedSheet = sheet
     }
 
-    public func dismissSheet(_ sheet: NSCustomSheet, window: NSCustomWindow) {
+    public func dismissSheet(_ sheet: NSCustomSheet, sheetParent: Any) {
+        let window = sheetParent as! NSCustomWindow
+
+        if let nestedSheet = sheet.managedAttachedSheet {
+            dismissSheet(nestedSheet, sheetParent: sheet)
+        }
+
+        defer { window.managedAttachedSheet = nil }
+
         window.endSheet(sheet)
     }
 
     public func setPresentationBackground(of sheet: NSCustomSheet, to color: Color) {
+        if let backgroundView = sheet.backgroundView {
+            backgroundView.layer?.backgroundColor = color.nsColor.cgColor
+            return
+        }
+
         let backgroundView = NSView()
         backgroundView.wantsLayer = true
         backgroundView.layer?.backgroundColor = color.nsColor.cgColor
+
+        sheet.backgroundView = backgroundView
 
         if let existingContentView = sheet.contentView {
             let container = NSView()
@@ -1776,6 +1793,8 @@ public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate {
     public var onDismiss: (() -> Void)?
 
     public var interactiveDismissDisabled: Bool = false
+
+    public var backgroundView: NSView?
 
     public func dismiss() {
         onDismiss?()
@@ -2208,6 +2227,8 @@ class NSSplitViewResizingDelegate: NSObject, NSSplitViewDelegate {
 public class NSCustomWindow: NSWindow {
     var customDelegate = Delegate()
     var persistentUndoManager = UndoManager()
+
+    var managedAttachedSheet: NSCustomSheet?
 
     /// Allows the backing scale factor to be overridden. Useful for keeping
     /// UI tests consistent across devices.
