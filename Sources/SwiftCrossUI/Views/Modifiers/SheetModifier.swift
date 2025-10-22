@@ -81,16 +81,17 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
                 isPresented.wrappedValue = false
             })
             let sheetEnvironment = environment.with(\.dismiss, dismissAction)
-
+            
             let result = children.sheetContentNode!.update(
                 with: sheetContent(),
-                proposedSize: backend.sizeOf(sheet),
+                proposedSize: SIMD2(x: 10_000, y: 0),
                 environment: sheetEnvironment,
                 dryRun: false
             )
 
             backend.updateSheet(
                 sheet,
+                size: result.size.size,
                 onDismiss: { handleDismiss(children: children) }
             )
 
@@ -122,7 +123,7 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
 
             backend.showSheet(
                 sheet,
-                window: .some(environment.window! as! Backend.Window)
+                window: environment.window! as! Backend.Window
             )
             children.sheet = sheet
         } else if !isPresented.wrappedValue && children.sheet != nil {

@@ -1592,9 +1592,15 @@ public final class GtkBackend: AppBackend {
         return sheet
     }
 
-    public func updateSheet(_ sheet: Gtk.Window, onDismiss: @escaping () -> Void) {
+    public func updateSheet(
+        _ sheet: Gtk.Window,
+        size: SIMD2<Int>,
+        onDismiss: @escaping () -> Void
+    ) {
         let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
 
+        sheet.size = Size(width: size.x, height: size.y)
+        
         // Add a slight border to not be just a flat corner
         sheet.css.set(property: .border(color: SwiftCrossUI.Color.gray.gtkColor, width: 1))
 
@@ -1629,10 +1635,10 @@ public final class GtkBackend: AppBackend {
         }
     }
 
-    public func showSheet(_ sheet: Gtk.Window, window: ApplicationWindow?) {
+    public func showSheet(_ sheet: Gtk.Window, window: ApplicationWindow) {
         sheet.isModal = true
         sheet.isDecorated = false
-        sheet.setTransient(for: window ?? windows[0])
+        sheet.setTransient(for: window)
         sheet.present()
     }
 
@@ -1646,7 +1652,7 @@ public final class GtkBackend: AppBackend {
         connectedCloseHandlers.remove(key)
     }
 
-    public func sizeOf(_ sheet: Gtk.Window) -> SIMD2<Int> {
+    public func size(ofSheet sheet: Gtk.Window) -> SIMD2<Int> {
         return SIMD2(x: sheet.size.width, y: sheet.size.height)
     }
 

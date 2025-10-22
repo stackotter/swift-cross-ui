@@ -1711,19 +1711,21 @@ public final class AppKitBackend: AppBackend {
 
     public func updateSheet(
         _ sheet: NSCustomSheet,
+        size: SIMD2<Int>,
         onDismiss: @escaping () -> Void
     ) {
+        sheet.contentView?.frame.size = .init(width: size.x, height: size.y)
         sheet.onDismiss = onDismiss
     }
 
-    public func sizeOf(_ sheet: NSCustomSheet) -> SIMD2<Int> {
+    public func size(ofSheet sheet: NSCustomSheet) -> SIMD2<Int> {
         guard let size = sheet.contentView?.frame.size else {
             return SIMD2(x: 0, y: 0)
         }
         return SIMD2(x: Int(size.width), y: Int(size.height))
     }
 
-    public func showSheet(_ sheet: NSCustomSheet, window: NSCustomWindow?) {
+    public func showSheet(_ sheet: NSCustomSheet, window: NSCustomWindow) {
         guard let window else {
             print("warning: Cannot show sheet without a parent window")
             return

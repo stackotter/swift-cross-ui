@@ -612,6 +612,7 @@ public protocol AppBackend: Sendable {
     /// Updates the content and appearance of a sheet.
     func updateSheet(
         _ sheet: Sheet,
+        size: SIMD2<Int>,
         onDismiss: @escaping () -> Void
     )
 
@@ -626,7 +627,7 @@ public protocol AppBackend: Sendable {
     /// app modal, a standalone window, or a modal for a window of its choosing.
     func showSheet(
         _ sheet: Sheet,
-        window: Window?
+        window: Window
     )
 
     /// Dismisses a sheet programmatically.
@@ -634,7 +635,7 @@ public protocol AppBackend: Sendable {
     func dismissSheet(_ sheet: Sheet, window: Window)
 
     /// Get the dimensions of a sheet
-    func sizeOf(_ sheet: Sheet) -> SIMD2<Int>
+    func size(ofSheet sheet: Sheet) -> SIMD2<Int>
 
     /// Sets the corner radius for a sheet presentation.
     ///
@@ -1266,20 +1267,21 @@ extension AppBackend {
 
     public func updateSheet(
         _ sheet: Sheet,
+        size: SIMD2<Int>,
         onDismiss: @escaping () -> Void
     ) {
         todo()
     }
 
-    public func sizeOf(
-        sheet: Sheet
+    public func size(
+        ofSheet sheet: Sheet
     ) -> SIMD2<Int> {
         todo()
     }
 
     public func showSheet(
         _ sheet: Sheet,
-        window: Window?
+        window: Window
     ) {
         todo()
     }
