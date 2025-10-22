@@ -10,6 +10,7 @@ import SwiftCrossUI
 struct GreetingGeneratorApp: App {
     @State var name = ""
     @State var greetings: [String] = []
+    @State var isGreetingSelectable = false
 
     var body: some Scene {
         WindowGroup("Greeting Generator") {
@@ -26,9 +27,11 @@ struct GreetingGeneratorApp: App {
                         }
                     }
 
+                    Toggle("Selectable Greeting", active: $isGreetingSelectable)
                     if let latest = greetings.last {
                         Text(latest)
                             .padding(.top, 5)
+                            .textSelectionEnabled(isGreetingSelectable)
 
                         if greetings.count > 1 {
                             Text("History:")

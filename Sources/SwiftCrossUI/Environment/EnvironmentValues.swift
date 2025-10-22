@@ -95,6 +95,9 @@ public struct EnvironmentValues {
     /// The style of toggle to use.
     public var toggleStyle: ToggleStyle
 
+    /// Whether the text should be selectable. Set by ``View/textSelectionEnabled(_:)``.
+    public var isTextSelectionEnabled: Bool
+
     // Backing storage for extensible subscript
     private var extraValues: [ObjectIdentifier: Any]
 
@@ -208,6 +211,7 @@ public struct EnvironmentValues {
         toggleStyle = .button
         isEnabled = true
         scrollDismissesKeyboardMode = .automatic
+        isTextSelectionEnabled = false
     }
 
     /// Returns a copy of the environment with the specified property set to the

@@ -1,4 +1,5 @@
 {
+  "originHash" : "6977ba851e440a7fbdfc7cb46441e32853dc2ba48ba34fe702e6784699d08682",
   "pins" : [
     {
       "identity" : "aexml",
@@ -184,8 +185,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/thebrowsercompany/swift-cwinrt",
       "state" : {
-        "branch" : "main",
-        "revision" : "ad451d31fc7c1c60041c146d177cdaf5aaf1cf47"
+        "revision" : "eb46cdb66f770a1e006f9fcfebbf9e99a0fba811"
       }
     },
     {
@@ -283,7 +283,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-uwp",
       "state" : {
-        "revision" : "c9d3fc079aaaa5113cde9a0132278fb83e808599"
+        "revision" : "e3ff9c195775e16b404b82cf6886c5e81d73b6c1"
       }
     },
     {
@@ -291,7 +291,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-webview2core",
       "state" : {
-        "revision" : "9afd97424f844478914ca4512c8ca0a2d3a2bb67"
+        "revision" : "c9911ca23455b9fcdb2429e98baa6f4d003b381c"
       }
     },
     {
@@ -299,16 +299,15 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-windowsappsdk",
       "state" : {
-        "revision" : "ed938db0b9790b36391dc91b20cee81f2410309f"
+        "revision" : "ba6f0ec377b70d8be835d253102ff665a0e47d99"
       }
     },
     {
       "identity" : "swift-windowsfoundation",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/thebrowsercompany/swift-windowsfoundation",
+      "location" : "https://github.com/stackotter/swift-windowsfoundation",
       "state" : {
-        "branch" : "main",
-        "revision" : "ba7a8b5000ed3f9f077000d1a31f2a0b19907657"
+        "revision" : "4ad57d20553514bcb23724bdae9121569b19f172"
       }
     },
     {
@@ -316,7 +315,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-winui",
       "state" : {
-        "revision" : "927e2c46430cfb1b6c195590b9e65a30a8fd98a2"
+        "revision" : "1695ee3ea2b7a249f6504c7f1759e7ec7a38eb86"
       }
     },
     {
@@ -401,5 +400,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

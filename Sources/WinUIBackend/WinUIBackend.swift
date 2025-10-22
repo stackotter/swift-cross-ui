@@ -579,6 +579,7 @@ public final class WinUIBackend: AppBackend {
     ) {
         let block = textView as! TextBlock
         block.text = content
+        block.isTextSelectionEnabled = environment.isTextSelectionEnabled
         missing("font design handling (monospace vs normal)")
         environment.apply(to: block)
     }

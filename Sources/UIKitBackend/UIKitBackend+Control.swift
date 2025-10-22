@@ -18,15 +18,12 @@ final class ButtonWidget: WrapperWidget<UIButton> {
     }
 
     init() {
-        let type: UIButton.ButtonType
         #if os(tvOS)
-            type = .system
             event = .primaryActionTriggered
         #else
-            type = .custom
             event = .touchUpInside
         #endif
-        super.init(child: UIButton(type: type))
+        super.init(child: UIButton(type: .system))
     }
 }
 
@@ -59,6 +56,17 @@ final class TextFieldWidget: WrapperWidget<UITextField>, UITextFieldDelegate {
 
 final class TextEditorWidget: WrapperWidget<UITextView>, UITextViewDelegate {
     var onChange: ((String) -> Void)?
+    var isEditable: Bool = true {
+        didSet {
+            #if os(tvOS)
+                if !isEditable {
+                    child.resignFirstResponder()
+                }
+            #else
+                child.isEditable = isEditable
+            #endif
+        }
+    }
 
     init() {
         super.init(child: UITextView())
@@ -67,6 +75,10 @@ final class TextEditorWidget: WrapperWidget<UITextView>, UITextViewDelegate {
 
     func textViewDidChange(_: UITextView) {
         onChange?(child.text ?? "")
+    }
+
+    func textViewShouldBeginEditing(_: UITextView) -> Bool {
+        return isEditable
     }
 }
 
@@ -170,34 +182,36 @@ final class TappableWidget: ContainerWidget {
     }
 }
 
-@available(tvOS, unavailable)
-final class HoverableWidget: ContainerWidget {
-    private var hoverGestureRecognizer: UIHoverGestureRecognizer?
+#if !os(tvOS)
+    final class HoverableWidget: ContainerWidget {
+        private var hoverGestureRecognizer: UIHoverGestureRecognizer?
 
-    var hoverChangesHandler: ((Bool) -> Void)? {
-        didSet {
-            if hoverChangesHandler != nil && hoverGestureRecognizer == nil {
-                let gestureRecognizer = UIHoverGestureRecognizer(
-                    target: self,
-                    action: #selector(hoveringChanged(_:)))
-                child.view.addGestureRecognizer(gestureRecognizer)
-                self.hoverGestureRecognizer = gestureRecognizer
-            } else if hoverChangesHandler == nil, let hoverGestureRecognizer {
-                child.view.removeGestureRecognizer(hoverGestureRecognizer)
-                self.hoverGestureRecognizer = nil
+        var hoverChangesHandler: ((Bool) -> Void)? {
+            didSet {
+                if hoverChangesHandler != nil && hoverGestureRecognizer == nil {
+                    let gestureRecognizer = UIHoverGestureRecognizer(
+                        target: self,
+                        action: #selector(hoveringChanged(_:)))
+                    child.view.addGestureRecognizer(gestureRecognizer)
+                    self.hoverGestureRecognizer = gestureRecognizer
+                } else if hoverChangesHandler == nil, let hoverGestureRecognizer {
+                    child.view.removeGestureRecognizer(hoverGestureRecognizer)
+                    self.hoverGestureRecognizer = nil
+                }
+            }
+        }
+
+        @objc
+        func hoveringChanged(_ recognizer: UIHoverGestureRecognizer) {
+            switch recognizer.state {
+                case .began: hoverChangesHandler?(true)
+                case .ended: hoverChangesHandler?(false)
+                default: break
             }
         }
     }
+#endif
 
-    @objc
-    func hoveringChanged(_ recognizer: UIHoverGestureRecognizer) {
-        switch recognizer.state {
-            case .began: hoverChangesHandler?(true)
-            case .ended: hoverChangesHandler?(false)
-            default: break
-        }
-    }
-}
 @available(tvOS, unavailable)
 final class SliderWidget: WrapperWidget<UISlider> {
     var onChange: ((Double) -> Void)?
@@ -249,7 +263,8 @@ extension UIKitBackend {
                 UIKitBackend.attributedString(
                     text: label,
                     environment: environment,
-                    defaultForegroundColor: .link
+                    // Handle Mac Catalyst
+                    defaultForegroundColor: deviceClass == .desktop ? .label : .link
                 ),
                 for: .normal
             )
@@ -332,7 +347,7 @@ extension UIKitBackend {
     ) {
         let textEditorWidget = textEditor as! TextEditorWidget
 
-        textEditorWidget.child.isEditable = environment.isEnabled
+        textEditorWidget.isEditable = environment.isEnabled
         textEditorWidget.child.font = environment.resolvedFont.uiFont
         textEditorWidget.child.textColor = UIColor(color: environment.suggestedForegroundColor)
         textEditorWidget.onChange = onChange
@@ -448,20 +463,20 @@ extension UIKitBackend {
         }
     }
 
-    public func createHoverTarget(wrapping child: Widget) -> Widget {
-        HoverableWidget(child: child)
-    }
-
-    public func updateHoverTarget(
-        _ hoverTarget: any WidgetProtocol,
-        environment: EnvironmentValues,
-        action: @escaping (Bool) -> Void
-    ) {
-        let wrapper = hoverTarget as! HoverableWidget
-        wrapper.hoverChangesHandler = action
-    }
-
     #if os(iOS) || os(visionOS) || targetEnvironment(macCatalyst)
+        public func createHoverTarget(wrapping child: Widget) -> Widget {
+            HoverableWidget(child: child)
+        }
+
+        public func updateHoverTarget(
+            _ hoverTarget: any WidgetProtocol,
+            environment: EnvironmentValues,
+            action: @escaping (Bool) -> Void
+        ) {
+            let wrapper = hoverTarget as! HoverableWidget
+            wrapper.hoverChangesHandler = action
+        }
+
         public func createSlider() -> Widget {
             SliderWidget()
         }

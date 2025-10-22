@@ -80,12 +80,14 @@ jobs:
 
     - name: Build
       run: |
-        set -uexo pipefail
+        set -uxo pipefail
         device_type=${{ matrix.device-type }}
         set +e
         deviceid=$(xcrun simctl list devices $device_type available | grep -v -- -- | tail -n 1 | grep -oE '[0-9A-F\-]{36}')
         if [ $? -eq 0 ]; then
           (
+            set -e
+
             buildtarget () {
               # Use the same derived data path as DocC compilation so that we don't duplicate work.
               xcodebuild -derivedDataPath /tmp/data -skipMacroValidation -scheme "$1" -destination "id=$deviceid" build | xcbeautify --renderer github-actions
@@ -116,6 +118,7 @@ jobs:
           )
         else
           echo "No $device_type simulators found" >&2
+          false
         fi
 
     - name: Extract UIKitBackend symbol graphs
