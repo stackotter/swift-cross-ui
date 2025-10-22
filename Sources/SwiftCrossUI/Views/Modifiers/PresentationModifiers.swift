@@ -8,7 +8,7 @@ extension View {
     /// - `.fraction` and `.height` fall back to `.medium` on iOS 15 and earlier
     ///
     /// - Parameter detents: A set of detents that the sheet can be resized to.
-    /// - Returns: A view with the presentation detents preference set.
+    /// - Returns: A view with the presentationDetents preference set.
     public func presentationDetents(_ detents: Set<PresentationDetent>) -> some View {
         preference(key: \.presentationDetents, value: Array(detents))
     }
@@ -21,7 +21,7 @@ extension View {
     /// - Supported platforms: iOS 15+, Gtk4 (ignored on unsupported platforms)
     ///
     /// - Parameter radius: The corner radius in points.
-    /// - Returns: A view with the presentation corner radius preference set.
+    /// - Returns: A view with the presentationCornerRadius preference set.
     public func presentationCornerRadius(_ radius: Double) -> some View {
         preference(key: \.presentationCornerRadius, value: radius)
     }

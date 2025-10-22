@@ -21,7 +21,7 @@ public struct PreferenceValues: Sendable {
     /// The drag indicator visibility for a sheet presentation. Applies to enclosing sheets.
     public var presentationDragIndicatorVisibility: Visibility?
 
-    /// The backgroundcolor of a sheet. Applies to enclosing sheets.
+    /// The backgroundcolor of a sheet.
     public var presentationBackground: Color?
 
     /// Controls whether the user can interactively dismiss enclosing sheets.  Applies to enclosing sheets.
