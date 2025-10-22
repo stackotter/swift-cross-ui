@@ -91,9 +91,9 @@ open class Window: Widget {
 
     public func setEscapeKeyPressedHandler(to handler: (() -> Void)?) {
         escapeKeyPressed = handler
-        
+
         guard escapeKeyEventController == nil else { return }
-        
+
         let keyEventController = EventControllerKey()
         keyEventController.keyPressed = { [weak self] _, keyval, _, _ in
             guard keyval == GDK_KEY_Escape else { return }
