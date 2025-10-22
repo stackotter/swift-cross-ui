@@ -1,7 +1,7 @@
 extension View {
     /// Presents a conditional modal overlay. `onDismiss` gets invoked when the sheet is dismissed.
     ///
-    /// Internal modalPresentationStyle falls back to .overFullScreen (non-opaque) on tvOS 18 and earlier.
+    /// Internal UIViewController.modalPresentationStyle falls back to .overFullScreen (non-opaque) on tvOS.
     public func sheet<SheetContent: View>(
         isPresented: Binding<Bool>, onDismiss: (() -> Void)? = nil,
         @ViewBuilder content: @escaping () -> SheetContent

@@ -9,11 +9,7 @@ extension UIKitBackend {
         #if !os(tvOS)
             sheet.modalPresentationStyle = .formSheet
         #else
-            if #available(tvOS 26.0, *) {
-                sheet.modalPresentationStyle = .formSheet
-            } else {
-                sheet.modalPresentationStyle = .overFullScreen
-            }
+            sheet.modalPresentationStyle = .overFullScreen
         #endif
         sheet.view = content.view
         return sheet
