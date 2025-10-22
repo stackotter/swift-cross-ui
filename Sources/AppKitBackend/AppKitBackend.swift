@@ -1736,9 +1736,16 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func setPresentationBackground(of sheet: NSCustomSheet, to color: Color) {
+        if let backgroundView = sheet.backgroundView {
+            backgroundView.layer?.backgroundColor = color.nsColor.cgColor
+            return
+        }
+
         let backgroundView = NSView()
         backgroundView.wantsLayer = true
         backgroundView.layer?.backgroundColor = color.nsColor.cgColor
+
+        sheet.backgroundView = backgroundView
 
         if let existingContentView = sheet.contentView {
             let container = NSView()
@@ -1776,6 +1783,8 @@ public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate {
     public var onDismiss: (() -> Void)?
 
     public var interactiveDismissDisabled: Bool = false
+
+    public var backgroundView: NSView?
 
     public func dismiss() {
         onDismiss?()
