@@ -1726,10 +1726,6 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func showSheet(_ sheet: NSCustomSheet, window: NSCustomWindow) {
-        guard let window else {
-            print("warning: Cannot show sheet without a parent window")
-            return
-        }
         // Critical sheets stack. beginSheet only shows a nested sheet
         // after its parent gets dismissed.
         window.beginCriticalSheet(sheet)

@@ -11,12 +11,20 @@ extension UIKitBackend {
         return sheet
     }
 
-    public func updateSheet(_ sheet: CustomSheet, onDismiss: @escaping () -> Void) {
+    public func updateSheet(
+        _ sheet: CustomSheet,
+        size: SIMD2<Int>,
+        onDismiss: @escaping () -> Void
+    ) {
+        sheet.view.frame.size = CGSize(width: size.x, height: size.y)
         sheet.onDismiss = onDismiss
     }
 
-    public func showSheet(_ sheet: CustomSheet, window: UIWindow?) {
-        var topController = window?.rootViewController
+    public func showSheet(
+        _ sheet: CustomSheet,
+        window: UIWindow
+    ) {
+        var topController = window.rootViewController
         while let presented = topController?.presentedViewController {
             topController = presented
         }
@@ -41,7 +49,7 @@ extension UIKitBackend {
     }
 
     public func setPresentationDetents(of sheet: CustomSheet, to detents: [PresentationDetent]) {
-        if #available(iOS 15.0, *) {
+        if #available(iOS 15.0, macCatalyst 15.0, *) {
             #if !os(visionOS)
                 if let sheetPresentation = sheet.sheetPresentationController {
                     sheetPresentation.detents = detents.map {
