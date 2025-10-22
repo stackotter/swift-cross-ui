@@ -182,10 +182,8 @@ final class TappableWidget: ContainerWidget {
     }
 }
 
-@available(tvOS, unavailable)
-final class HoverableWidget: ContainerWidget {
-    // So much as attempting to reference UIHoverGestureRecognizer here results in a linker error on tvOS.
-    #if !os(tvOS)
+#if !os(tvOS)
+    final class HoverableWidget: ContainerWidget {
         private var hoverGestureRecognizer: UIHoverGestureRecognizer?
 
         var hoverChangesHandler: ((Bool) -> Void)? {
@@ -211,8 +209,8 @@ final class HoverableWidget: ContainerWidget {
                 default: break
             }
         }
-    #endif
-}
+    }
+#endif
 
 @available(tvOS, unavailable)
 final class SliderWidget: WrapperWidget<UISlider> {

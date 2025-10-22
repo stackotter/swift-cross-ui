@@ -1,5 +1,6 @@
-#if !os(tvOS)
-    import SwiftCrossUI
+import SwiftCrossUI
+
+#if canImport(WebKit)
     import WebKit
 
     extension UIKitBackend {
