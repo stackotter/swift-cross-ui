@@ -68,7 +68,7 @@ struct GtkCodeGen {
         "Gdk.GLContext": "OpaquePointer",
         "Gdk.Paintable": "OpaquePointer",
         "Gdk.Clipboard": "OpaquePointer",
-        "Gdk.ModifierType": "UInt",
+        "Gdk.ModifierType": "GdkModifierType",
     ]
 
     static let interfaces: [String] = [
