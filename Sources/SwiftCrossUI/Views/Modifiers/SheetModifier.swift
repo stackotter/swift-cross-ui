@@ -81,7 +81,7 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
                 isPresented.wrappedValue = false
             })
             let sheetEnvironment = environment.with(\.dismiss, dismissAction)
-            
+
             let result = children.sheetContentNode!.update(
                 with: sheetContent(),
                 proposedSize: SIMD2(x: 10_000, y: 0),

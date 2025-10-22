@@ -1600,7 +1600,7 @@ public final class GtkBackend: AppBackend {
         let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
 
         sheet.size = Size(width: size.x, height: size.y)
-        
+
         // Add a slight border to not be just a flat corner
         sheet.css.set(property: .border(color: SwiftCrossUI.Color.gray.gtkColor, width: 1))
 

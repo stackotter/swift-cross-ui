@@ -639,7 +639,7 @@ public protocol AppBackend: Sendable {
 
     /// Sets the corner radius for a sheet presentation.
     ///
-    /// This method is called when the sheet content has a `presentationCornerRadius`
+    /// This method is called when the sheet content has the `presentationCornerRadius`
     /// preference key set. The corner radius affects the sheet's presentation container,
     /// not the content itself.
     ///

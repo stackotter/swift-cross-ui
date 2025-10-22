@@ -90,23 +90,28 @@ open class Window: Widget {
     }
 
     public func setEscapeKeyPressedHandler(to handler: (() -> Void)?) {
-        if let data = escapeKeyHandlerData {
+        let handler = EventControllerKey()
+        handler.keyPressed = { [weak self] _, keyval, _, _ in
+            guard keyval == GDK_KEY_Escape else { return }
+            self?.escapeKeyPressed?()
+        }
+        /*if let data = escapeKeyHandlerData {
             Unmanaged<ValueBox<() -> Void>>.fromOpaque(data).release()
             escapeKeyHandlerData = nil
         }
-
+        
         if let oldController = escapeKeyEventController {
             gtk_widget_remove_controller(widgetPointer, oldController)
             escapeKeyEventController = nil
         }
-
+        
         escapeKeyPressed = handler
-
+        
         guard handler != nil else { return }
-
+        
         let keyEventController = gtk_event_controller_key_new()
         gtk_event_controller_set_propagation_phase(keyEventController, GTK_PHASE_BUBBLE)
-
+        
         let thunk:
             @convention(c) (
                 UnsafeMutableRawPointer?, guint, guint, GdkModifierType, gpointer?
@@ -120,11 +125,11 @@ open class Window: Widget {
                 }
                 return 0
             }
-
+        
         let boxedHandler = Unmanaged.passRetained(
             ValueBox(value: handler!)
         ).toOpaque()
-
+        
         g_signal_connect_data(
             UnsafeMutableRawPointer(keyEventController),
             "key-pressed",
@@ -137,16 +142,16 @@ open class Window: Widget {
             },
             .init(0)
         )
-
+        
         gtk_widget_add_controller(widgetPointer, keyEventController)
         escapeKeyEventController = keyEventController
-        escapeKeyHandlerData = boxedHandler
+        escapeKeyHandlerData = boxedHandler*/
     }
 
     private var escapeKeyEventController: OpaquePointer?
     private var escapeKeyHandlerData: UnsafeMutableRawPointer?
 
-    public var onCloseRequest: ((Window) -> Int32)?
+    public var onCloseRequest: ((Window) -> Void)?
     public var escapeKeyPressed: (() -> Void)?
 }
 
