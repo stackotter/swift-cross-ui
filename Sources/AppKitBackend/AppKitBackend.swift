@@ -1729,7 +1729,7 @@ public final class AppKitBackend: AppBackend {
         // Critical sheets stack. beginSheet only shows a nested sheet
         // after its parent gets dismissed.
         let window = sheetParent as! NSCustomWindow
-        window.beginCriticalSheet(sheet)
+        window.beginSheet(sheet)
         window.managedAttachedSheet = sheet
     }
 

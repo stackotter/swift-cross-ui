@@ -1585,7 +1585,7 @@ public final class GtkBackend: AppBackend {
 
         return properties
     }
-    
+
     public func createSheet(content: Widget) -> Gtk.Window {
         let sheet = Gtk.Window()
         sheet.setChild(content)
