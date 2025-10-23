@@ -10,7 +10,7 @@ extension View {
     }
 }
 
-struct OnDisappearModifier<Content: View>: View {
+struct OnDisappearModifier<Content: View>: TypeSafeView {
     var body: TupleView1<Content>
     var action: @Sendable @MainActor () -> Void
 
