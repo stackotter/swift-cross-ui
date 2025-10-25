@@ -115,7 +115,7 @@ struct ProgressSpinnerView: ElementaryView {
         dryRun: Bool
     ) -> ViewUpdateResult {
         let naturalSize = backend.naturalSize(of: widget)
-        let min = min(proposedSize.x, proposedSize.y)
+        let min = max(min(proposedSize.x, proposedSize.y), 10)
         let size = SIMD2(
             min,
             min

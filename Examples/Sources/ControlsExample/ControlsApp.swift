@@ -72,7 +72,7 @@ struct ControlsApp: App {
 
                     Slider($progressViewSize, minimum: 0, maximum: 100)
                     ProgressView()
-                        .frame(width: progressViewSize)
+                        .frame(width: progressViewSize, height: progressViewSize)
 
                     VStack {
                         Text("Drop down")
