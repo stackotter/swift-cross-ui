@@ -130,8 +130,8 @@ struct ProgressSpinnerView: ElementaryView {
             size: ViewSize(
                 size: size,
                 idealSize: naturalSize,
-                minimumWidth: 0,
-                minimumHeight: 0,
+                minimumWidth: 10,
+                minimumHeight: 10,
                 maximumWidth: nil,
                 maximumHeight: nil
             )
