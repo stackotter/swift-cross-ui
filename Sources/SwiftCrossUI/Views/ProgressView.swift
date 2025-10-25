@@ -114,8 +114,27 @@ struct ProgressSpinnerView: ElementaryView {
         backend: Backend,
         dryRun: Bool
     ) -> ViewUpdateResult {
-        ViewUpdateResult.leafView(
-            size: ViewSize(fixedSize: backend.naturalSize(of: widget))
+        let naturalSize = backend.naturalSize(of: widget)
+        let min = min(proposedSize.x, proposedSize.y)
+        let size = SIMD2(
+            min,
+            min
+        )
+        if !dryRun {
+            // Doesn't change the rendered size of ProgressSpinner
+            // on UIKitBackend, but still sets container size to
+            // (width: n, height: n) n = min(proposedSize.x, proposedSize.y)
+            backend.setSize(of: widget, to: size)
+        }
+        return ViewUpdateResult.leafView(
+            size: ViewSize(
+                size: size,
+                idealSize: naturalSize,
+                minimumWidth: 0,
+                minimumHeight: 0,
+                maximumWidth: nil,
+                maximumHeight: nil
+            )
         )
     }
 }

@@ -16,6 +16,7 @@ struct ControlsApp: App {
     @State var text = ""
     @State var flavor: String? = nil
     @State var enabled = true
+    @State var progressViewSize: Int = 10
 
     var body: some Scene {
         WindowGroup("ControlsApp") {
@@ -68,6 +69,10 @@ struct ControlsApp: App {
                         TextField("Text field", text: $text)
                         Text("Value: \(text)")
                     }
+
+                    Slider($progressViewSize, minimum: 0, maximum: 100)
+                    ProgressView()
+                        .frame(width: progressViewSize)
 
                     VStack {
                         Text("Drop down")
