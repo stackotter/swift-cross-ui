@@ -4,6 +4,7 @@ public struct ProgressView<Label: View>: View {
     private var label: Label
     private var progress: Double?
     private var kind: Kind
+    private var isSpinnerResizable: Bool = false
 
     private enum Kind {
         case spinner
@@ -23,7 +24,7 @@ public struct ProgressView<Label: View>: View {
     private var progressIndicator: some View {
         switch kind {
             case .spinner:
-                ProgressSpinnerView()
+                ProgressSpinnerView(isResizable: isSpinnerResizable)
             case .bar:
                 ProgressBarView(value: progress)
         }
@@ -49,6 +50,25 @@ public struct ProgressView<Label: View>: View {
         self.label = label
         self.kind = .bar
         self.progress = value.map(Double.init)
+    }
+
+    /// Used to make a copy with applied changes.
+    private init(
+        label: Label,
+        _ progress: Double?,
+        kind: Kind,
+        isSpinnerResizable: Bool
+    ) {
+        self.label = label
+        self.progress = progress
+        self.kind = kind
+        self.isSpinnerResizable = isSpinnerResizable
+    }
+
+    /// Makes the ProgressView resizable.
+    /// Only affects `Kind.spinner`.
+    public func resizable(_ isResizable: Bool = true) -> Self {
+        Self(label: label, progress, kind: kind, isSpinnerResizable: isResizable)
     }
 }
 
@@ -101,7 +121,10 @@ extension ProgressView where Label == Text {
 }
 
 struct ProgressSpinnerView: ElementaryView {
-    init() {}
+    let isResizable: Bool
+    init(isResizable: Bool = false) {
+        self.isResizable = isResizable
+    }
 
     func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
         backend.createProgressSpinner()
@@ -115,6 +138,12 @@ struct ProgressSpinnerView: ElementaryView {
         dryRun: Bool
     ) -> ViewUpdateResult {
         let naturalSize = backend.naturalSize(of: widget)
+        guard isResizable else {
+            // Required to reset its size when resizability
+            // gets changed at runtime
+            backend.setSize(of: widget, to: naturalSize)
+            return ViewUpdateResult.leafView(size: ViewSize(fixedSize: naturalSize))
+        }
         let min = max(min(proposedSize.x, proposedSize.y), 10)
         let size = SIMD2(
             min,

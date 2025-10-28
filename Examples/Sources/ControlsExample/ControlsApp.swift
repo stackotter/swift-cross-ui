@@ -17,6 +17,7 @@ struct ControlsApp: App {
     @State var flavor: String? = nil
     @State var enabled = true
     @State var progressViewSize: Int = 10
+    @State var isProgressViewResizable = true
 
     var body: some Scene {
         WindowGroup("ControlsApp") {
@@ -70,8 +71,10 @@ struct ControlsApp: App {
                         Text("Value: \(text)")
                     }
 
-                    Slider($progressViewSize, minimum: 0, maximum: 100)
+                    Toggle("Enable ProgressView resizability", active: $isProgressViewResizable)
+                    Slider($progressViewSize, minimum: 10, maximum: 100)
                     ProgressView()
+                        .resizable(isProgressViewResizable)
                         .frame(width: progressViewSize, height: progressViewSize)
 
                     VStack {
@@ -87,6 +90,7 @@ struct ControlsApp: App {
                 Toggle(enabled ? "Disable all" : "Enable all", active: $enabled)
                     .padding()
             }
+
         }.defaultSize(width: 400, height: 600)
     }
 }
