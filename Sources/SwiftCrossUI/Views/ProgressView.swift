@@ -52,23 +52,12 @@ public struct ProgressView<Label: View>: View {
         self.progress = value.map(Double.init)
     }
 
-    /// Used to make a copy with applied changes.
-    private init(
-        label: Label,
-        _ progress: Double?,
-        kind: Kind,
-        isSpinnerResizable: Bool
-    ) {
-        self.label = label
-        self.progress = progress
-        self.kind = kind
-        self.isSpinnerResizable = isSpinnerResizable
-    }
-
-    /// Makes the ProgressView resizable.
+    /// Makes the ProgressView resize to fit the available space.
     /// Only affects `Kind.spinner`.
     public func resizable(_ isResizable: Bool = true) -> Self {
-        Self(label: label, progress, kind: kind, isSpinnerResizable: isResizable)
+        var progressView = self
+        progressView.isSpinnerResizable = isResizable
+        return progressView
     }
 }
 
