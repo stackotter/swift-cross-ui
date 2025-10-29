@@ -29,7 +29,8 @@ struct GreetingGeneratorApp: App {
 
                     Toggle("Selectable Greeting", active: $isGreetingSelectable)
                     if let latest = greetings.last {
-                        Text(latest)
+                        EnvironmentDisplay()
+                            .environment(key: TestKey.self, value: latest)
                             .padding(.top, 5)
                             .textSelectionEnabled(isGreetingSelectable)
 
@@ -50,4 +51,16 @@ struct GreetingGeneratorApp: App {
             }
         }
     }
+}
+
+struct EnvironmentDisplay: View {
+    @Environment(TestKey.self) var value: String?
+    var body: some View {
+        Text(value ?? "nil")
+    }
+}
+
+struct TestKey: EnvironmentKey {
+    typealias Value = String?
+    static let defaultValue: Value = nil
 }
