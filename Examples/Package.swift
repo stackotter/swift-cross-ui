@@ -80,6 +80,6 @@ let package = Package(
 		.executableTarget(
             name: "ForEachExample",
             dependencies: exampleDependencies
-		)
+        ),
     ]
 )

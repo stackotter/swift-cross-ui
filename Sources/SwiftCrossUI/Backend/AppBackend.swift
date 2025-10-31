@@ -98,6 +98,10 @@ public protocol AppBackend: Sendable {
     /// Mobile backends generally can't.
     var canRevealFiles: Bool { get }
 
+    /// The supported date picker styles. Must include ``DatePickerStyle/automatic`` if date pickers
+    /// are supported at all.
+    nonisolated var supportedDatePickerStyles: [DatePickerStyle] { get }
+
     /// Often in UI frameworks (such as Gtk), code is run in a callback
     /// after starting the app, and hence this generic root window creation
     /// API must reflect that. This is always the first method to be called
@@ -546,6 +550,17 @@ public protocol AppBackend: Sendable {
     )
     /// Sets the index of the selected option of a picker.
     func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?)
+
+    func createDatePicker() -> Widget
+
+    func updateDatePicker(
+        _ datePicker: Widget,
+        environment: EnvironmentValues,
+        date: Date,
+        range: ClosedRange<Date>,
+        components: DatePickerComponents,
+        onChange: @escaping (Date) -> Void
+    )
 
     /// Creates an indeterminate progress spinner.
     func createProgressSpinner() -> Widget
@@ -1298,4 +1313,15 @@ extension AppBackend {
     ) {
         todo()
     }
+
+    public func createDatePicker() -> Widget { todo() }
+
+    public func updateDatePicker(
+        _ datePicker: Widget,
+        environment: EnvironmentValues,
+        date: Date,
+        range: ClosedRange<Date>,
+        components: DatePickerComponents,
+        onChange: @escaping (Date) -> Void
+    ) { todo() }
 }

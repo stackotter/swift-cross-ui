@@ -44,6 +44,9 @@ public final class WinUIBackend: AppBackend {
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = false
     public let deviceClass = DeviceClass.desktop
+    public let supportedDatePickerStyles: [DatePickerStyle] = [
+        .automatic, .graphical, .compact, .wheel,
+    ]
 
     public var scrollBarWidth: Int {
         12
@@ -480,6 +483,16 @@ public final class WinUIBackend: AppBackend {
             // the defaults set in the following code from the WinUI repository:
             // https://github.com/marcelwgn/microsoft-ui-xaml/blob/ff21f9b212cea2191b959649e45e52486c8465aa/src/controls/dev/ProgressRing/ProgressRing.xaml#L12
             return SIMD2(32, 32)
+        } else if let datePicker = widget as? CustomDatePicker {
+            // CustomDatePicker is a StackPanel whose individual subviews need to be manually sized
+            // and then added together. Its naturalSize(in:) method dispatches back here once for
+            // each of its children.
+            return datePicker.naturalSize(in: self)
+        } else if widget is WinUI.DatePicker {
+            // Width is 296:
+            // https://github.com/marcelwgn/microsoft-ui-xaml/blob/ff21f9b212cea2191b959649e45e52486c8465aa/src/controls/dev/CommonStyles/DatePicker_themeresources.xaml#L261
+            // Height is experimentally 29 which I don't see anywhere in that file.
+            return SIMD2(296, 29)
         }
 
         let oldWidth = widget.width
@@ -543,6 +556,17 @@ public final class WinUIBackend: AppBackend {
                 64,
                 32
             )
+        } else if widget is CalendarView {
+            // I don't actually know why this is necessary, but without it the abbreviations for the
+            // weekdays wrap, making it taller than it says it is. Value was derived by trial and
+            // error.
+            adjustment = SIMD2(20, 0)
+        } else if computedSize.width == 0 && computedSize.width == 0 && widget is CalendarDatePicker
+        {
+            // I can't find any source on what the size of CalendarDatePicker is, but it reports 0x0
+            // in at least some cases before initial render. In these cases, use a size derived
+            // experimentally.
+            adjustment = SIMD2(116, 32)
         } else {
             adjustment = .zero
         }
@@ -1733,6 +1757,57 @@ public final class WinUIBackend: AppBackend {
         winUiPath.data = path.group
     }
 
+    public func createDatePicker() -> Widget {
+        return CustomDatePicker()
+    }
+
+    public func updateDatePicker(
+        _ datePicker: Widget,
+        environment: EnvironmentValues,
+        date: Date,
+        range: ClosedRange<Date>,
+        components: DatePickerComponents,
+        onChange: @escaping (Date) -> Void
+    ) {
+        let customDatePicker = datePicker as! CustomDatePicker
+
+        if components.contains(.hourMinuteAndSecond) {
+            print(
+                "DatePickerComponents.hourMinuteAndSecond is not supported in WinUIBackend. Falling back to .hourAndMinute."
+            )
+        }
+
+        customDatePicker.toggleTimeView(shown: components.contains(.hourAndMinute))
+
+        if environment.timeZone != .current {
+            print("environment.timeZone is has no effect in WinUIBackend.")
+        }
+
+        let dateViewType: CustomDatePicker.DateViewType.Discriminator? =
+            if components.contains(.date) {
+                switch environment.datePickerStyle {
+                    case .automatic, .wheel:
+                        .datePicker
+                    case .compact:
+                        .calendarDatePicker
+                    case .graphical:
+                        .calendarView
+                }
+            } else {
+                nil
+            }
+
+        customDatePicker.onChange = onChange
+        customDatePicker.changeDateView(to: dateViewType)
+        customDatePicker.updateIfNeeded(date: date, calendar: environment.calendar)
+        customDatePicker.setDateRange(to: range)
+        customDatePicker.setEnabled(to: environment.isEnabled)
+
+        // TODO(parity): foreground color ignored
+        // Setting foreground like for other views works for TimePicker and DatePicker but not for
+        // CalendarView or CalendarDatePicker.
+    }
+
     // public func createTable(rows: Int, columns: Int) -> Widget {
     //     let grid = Grid()
     //     grid.columnSpacing = 10
@@ -1968,4 +2043,279 @@ public class CustomWindow: WinUI.Window {
 public final class GeometryGroupHolder {
     var group = GeometryGroup()
     var strokeStyle: StrokeStyle?
+}
+
+@MainActor
+final class CustomDatePicker: StackPanel {
+    override init() {
+        super.init()
+        self.spacing = 10
+    }
+
+    deinit {
+        timeChangedEvent?.dispose()
+        dateChangedEvent?.dispose()
+    }
+
+    enum DateViewType {
+        case calendarView(CalendarView)
+        case calendarDatePicker(CalendarDatePicker)
+        case datePicker(WinUI.DatePicker)
+
+        var asControl: Control {
+            switch self {
+                case .calendarView(let calendarView): calendarView
+                case .calendarDatePicker(let calendarDatePicker): calendarDatePicker
+                case .datePicker(let datePicker): datePicker
+            }
+        }
+
+        enum Discriminator {
+            case calendarView, calendarDatePicker, datePicker
+        }
+
+        var discriminator: Discriminator {
+            switch self {
+                case .calendarView(_): .calendarView
+                case .calendarDatePicker(_): .calendarDatePicker
+                case .datePicker(_): .datePicker
+            }
+        }
+    }
+
+    private var dateView: DateViewType?
+    private var timeView: TimePicker?
+    private var date = Date()
+    private var calendar = Calendar.current
+    private var needsUpdate = false
+    var onChange: ((Date) -> Void)?
+    private var timeChangedEvent: EventCleanup?
+    private var dateChangedEvent: EventCleanup?
+
+    func toggleTimeView(shown: Bool) {
+        guard shown != (self.timeView != nil) else { return }
+
+        if shown {
+            let timeView = TimePicker()
+            children.append(timeView)
+            self.timeView = timeView
+            timeChangedEvent = timeView.timeChanged.addHandler { [unowned self] _, change in
+                guard let change else { return }
+                self.date =
+                    calendar.startOfDay(for: date)
+                    + Double(change.newTime.duration) / ticksPerSecond
+                self.onChange?(self.date)
+            }
+            needsUpdate = true
+        } else {
+            timeChangedEvent?.dispose()
+            timeChangedEvent = nil
+            children.removeAtEnd()
+            self.timeView = nil
+        }
+    }
+
+    func setEnabled(to isEnabled: Bool) {
+        dateView?.asControl.isEnabled = isEnabled
+        timeView?.isEnabled = isEnabled
+    }
+
+    func changeDateView(to newDiscriminator: DateViewType.Discriminator?) {
+        guard newDiscriminator != dateView?.discriminator else { return }
+
+        dateChangedEvent?.dispose()
+        if dateView != nil {
+            children.removeAt(0)
+        }
+
+        switch newDiscriminator {
+            case .calendarView:
+                let calendarView = CalendarView()
+                dateView = .calendarView(calendarView)
+                children.insertAt(0, calendarView)
+                orientation = .vertical
+                dateChangedEvent = calendarView.selectedDatesChanged.addHandler {
+                    [unowned self] _, _ in
+
+                    guard calendarView.selectedDates.size > 0 else { return }
+
+                    self.date = componentsToFoundationDate(
+                        dateTime: calendarView.selectedDates.getAt(0),
+                        timeSpan: timeView?.selectedTime
+                    )
+
+                    if calendarView.selectedDates.size > 1 {
+                        self.needsUpdate = true
+                    }
+
+                    self.onChange?(self.date)
+                }
+                needsUpdate = true
+            case .calendarDatePicker:
+                let calendarDatePicker = CalendarDatePicker()
+                dateView = .calendarDatePicker(calendarDatePicker)
+                children.insertAt(0, calendarDatePicker)
+                orientation = .horizontal
+                dateChangedEvent = calendarDatePicker.dateChanged.addHandler {
+                    [unowned self] _, change in
+
+                    guard let newDate = change?.newDate else { return }
+                    self.date = componentsToFoundationDate(
+                        dateTime: newDate, timeSpan: timeView?.selectedTime)
+                    self.onChange?(self.date)
+                }
+                needsUpdate = true
+            case .datePicker:
+                let datePicker = WinUI.DatePicker()
+                dateView = .datePicker(datePicker)
+                children.insertAt(0, datePicker)
+                orientation = .horizontal
+                dateChangedEvent = datePicker.selectedDateChanged.addHandler {
+                    [unowned self] _, _ in
+
+                    guard let selectedDate = datePicker.selectedDate else { return }
+                    self.date = componentsToFoundationDate(
+                        dateTime: selectedDate, timeSpan: timeView?.selectedTime)
+                    self.onChange?(self.date)
+                }
+                needsUpdate = true
+            case nil:
+                break
+        }
+    }
+
+    func setDateRange(to range: ClosedRange<Date>) {
+        guard let dateView else { return }
+
+        let (startDate, _) = foundationDateToComponents(range.lowerBound)
+        let (endDate, _) = foundationDateToComponents(range.upperBound)
+
+        switch dateView {
+            case .calendarView(let calendarView):
+                calendarView.minDate = startDate
+                calendarView.maxDate = endDate
+            case .calendarDatePicker(let calendarDatePicker):
+                calendarDatePicker.minDate = startDate
+                calendarDatePicker.maxDate = endDate
+            case .datePicker(let datePicker):
+                datePicker.minYear = startDate
+                datePicker.maxYear = endDate
+        }
+    }
+
+    func updateIfNeeded(date: Date, calendar: Calendar) {
+        if !needsUpdate && date == self.date && calendar == self.calendar { return }
+        defer { needsUpdate = false }
+
+        self.date = date
+        self.calendar = calendar
+
+        let (dateTime, timeSpan) = foundationDateToComponents(date)
+
+        switch dateView {
+            case .calendarView(let calendarView):
+                calendarView.calendarIdentifier = identifier(for: calendar)
+                switch calendarView.selectedDates.size {
+                    case 0:
+                        calendarView.selectedDates.append(dateTime)
+                    case 1:
+                        calendarView.selectedDates.setAt(0, dateTime)
+                    default:
+                        calendarView.selectedDates.clear()
+                        calendarView.selectedDates.setAt(0, dateTime)
+                }
+            case .calendarDatePicker(let calendarDatePicker):
+                calendarDatePicker.calendarIdentifier = identifier(for: calendar)
+                calendarDatePicker.date = dateTime
+            case .datePicker(let datePicker):
+                datePicker.selectedDate = dateTime
+            case nil:
+                break
+        }
+
+        if let timeView {
+            timeView.selectedTime = timeSpan
+        }
+    }
+
+    private func identifier(for calendar: Calendar) -> String {
+        switch calendar.identifier {
+            case .chinese: return "ChineseLunarCalendar"
+            case .gregorian, .iso8601: return "GregorianCalendar"
+            case .hebrew: return "HebrewCalendar"
+            case .islamicTabular: return "HijriCalendar"
+            case .islamicUmmAlQura: return "UmAlQuraCalendar"
+            case .japanese: return "JapaneseCalendar"
+            case .persian: return "PersianCalendar"
+            case .republicOfChina: return "TaiwanCalendar"
+            #if compiler(>=6.2)
+                case .vietnamese: return "VietnameseLunarCalendar"
+            #endif
+            case let id:
+                print("Unsupported calendar identifier '\(id)'. Falling back to Gregorian.")
+                return "GregorianCalendar"
+        }
+    }
+
+    // Magic numbers taken from https://stackoverflow.com/a/5471380/6253337
+    private let ticksPerSecond: Double = 10_000_000
+    private let unixEpochInUniversalTime: Int64 = 116_444_736_000_000_000
+
+    private func foundationDateToComponents(_ date: Date) -> (DateTime, TimeSpan) {
+        let timeInterval = date.timeIntervalSince(calendar.startOfDay(for: date))
+
+        return (
+            DateTime(
+                universalTime: Int64(
+                    date.timeIntervalSince1970 * ticksPerSecond + Double(unixEpochInUniversalTime)
+                )
+            ),
+            TimeSpan(duration: Int64(timeInterval * ticksPerSecond))
+        )
+    }
+
+    private func componentsToFoundationDate(dateTime: DateTime, timeSpan: TimeSpan?) -> Date {
+        let baseDate = Date(
+            timeIntervalSince1970: Double(dateTime.universalTime - unixEpochInUniversalTime)
+                / ticksPerSecond
+        )
+
+        if let timeSpan {
+            let time = Double(timeSpan.duration) / ticksPerSecond
+            return calendar.startOfDay(for: baseDate) + time
+        } else {
+            return baseDate
+        }
+    }
+
+    func naturalSize(in backend: WinUIBackend) -> SIMD2<Int> {
+        let timeViewSize =
+            if timeView != nil {
+                // Width is 242, as shown in the WinUI repository:
+                // https://github.com/marcelwgn/microsoft-ui-xaml/blob/ff21f9b212cea2191b959649e45e52486c8465aa/src/controls/dev/CommonStyles/TimePicker_themeresources.xaml#L116
+                // Height is experimentally 29 which I don't see anywhere in that file.
+                SIMD2(242, 29)
+            } else {
+                SIMD2<Int>.zero
+            }
+
+        let dateViewSize =
+            if let dateControl = dateView?.asControl {
+                backend.naturalSize(of: dateControl)
+            } else {
+                SIMD2<Int>.zero
+            }
+
+        if orientation == .horizontal {
+            return SIMD2(
+                x: timeViewSize.x + dateViewSize.x + Int(self.spacing),
+                y: max(timeViewSize.y, dateViewSize.y)
+            )
+        } else {
+            return SIMD2(
+                x: max(timeViewSize.x, dateViewSize.x),
+                y: timeViewSize.y + dateViewSize.y + Int(self.spacing)
+            )
+        }
+    }
 }
