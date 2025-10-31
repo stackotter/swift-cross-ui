@@ -705,6 +705,17 @@ public protocol AppBackend: Sendable {
     )
     /// Navigates a web view to a given URL.
     func navigateWebView(_ webView: Widget, to url: URL)
+
+    // MARK: Date picker
+    func createDatePicker() -> Widget
+    func updateDatePicker(
+        _ datePicker: Widget,
+        environment: EnvironmentValues,
+        date: Date,
+        range: ClosedRange<Date>,
+        components: DatePickerComponents,
+        onChange: @escaping (Date) -> Void
+    )
 }
 
 extension AppBackend {
@@ -1162,4 +1173,14 @@ extension AppBackend {
     ) {
         todo()
     }
+
+    public func createDatePicker() -> Widget { todo() }
+    public func updateDatePicker(
+        _ datePicker: Widget,
+        environment: EnvironmentValues,
+        date: Date,
+        range: ClosedRange<Date>,
+        components: DatePickerComponents,
+        onChange: @escaping (Date) -> Void
+    ) { todo() }
 }

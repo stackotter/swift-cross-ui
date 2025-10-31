@@ -190,6 +190,16 @@ public struct EnvironmentValues {
         )
     }
 
+    /// The current calendar that views should use when handling dates.
+    public var calendar: Calendar
+
+    /// The current time zone that views should use when handling dates.
+    public var timeZone: TimeZone
+
+    #if !os(tvOS)
+        public var datePickerStyle: DatePickerStyle
+    #endif
+
     /// Creates the default environment.
     init<Backend: AppBackend>(backend: Backend) {
         self.backend = backend
@@ -212,6 +222,11 @@ public struct EnvironmentValues {
         isEnabled = true
         scrollDismissesKeyboardMode = .automatic
         isTextSelectionEnabled = false
+        calendar = .autoupdatingCurrent
+        timeZone = .autoupdatingCurrent
+        #if !os(tvOS)
+            datePickerStyle = .automatic
+        #endif
     }
 
     /// Returns a copy of the environment with the specified property set to the
