@@ -71,6 +71,7 @@ public struct DatePicker<Label: View> {
     public typealias Components = DatePickerComponents
 }
 
+@available(tvOS, unavailable)
 extension DatePicker: View {
     public var body: some View {
         HStack {
@@ -81,6 +82,7 @@ extension DatePicker: View {
     }
 }
 
+@available(tvOS, unavailable)
 internal struct DatePickerImplementation: ElementaryView {
     @Binding private var selection: Date
     private var range: ClosedRange<Date>
