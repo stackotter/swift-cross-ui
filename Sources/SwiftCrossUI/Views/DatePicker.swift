@@ -107,22 +107,26 @@ internal struct DatePickerImplementation: ElementaryView {
         backend: Backend,
         dryRun: Bool
     ) -> ViewUpdateResult {
-        if !dryRun {
-            backend.updateDatePicker(
-                widget,
-                environment: environment,
-                date: selection,
-                range: range,
-                components: components,
-                onChange: { selection = $0 }
-            )
-        }
+        #if os(tvOS)
+            preconditionFailure()
+        #else
+            if !dryRun {
+                backend.updateDatePicker(
+                    widget,
+                    environment: environment,
+                    date: selection,
+                    range: range,
+                    components: components,
+                    onChange: { selection = $0 }
+                )
+            }
 
-        // I reject your proposedSize and substitute my own
-        let naturalSize = backend.naturalSize(of: widget)
-        if !dryRun {
-            backend.setSize(of: widget, to: naturalSize)
-        }
-        return ViewUpdateResult.leafView(size: ViewSize(fixedSize: naturalSize))
+            // I reject your proposedSize and substitute my own
+            let naturalSize = backend.naturalSize(of: widget)
+            if !dryRun {
+                backend.setSize(of: widget, to: naturalSize)
+            }
+            return ViewUpdateResult.leafView(size: ViewSize(fixedSize: naturalSize))
+        #endif
     }
 }
