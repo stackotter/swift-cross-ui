@@ -2,7 +2,8 @@ extension View {
     @available(tvOS, unavailable)
     public func datePickerStyle(_ style: DatePickerStyle) -> some View {
         #if os(tvOS)
-            preconditionFailure()
+            assertionFailure()
+            return EmptyView()
         #else
             EnvironmentModifier(self) { environment in
                 environment.with(\.datePickerStyle, style)
