@@ -28,7 +28,7 @@ extension ForEach where Items == [Int] {
         self.elements = Array(range)
         self.child = child
     }
-    
+
     /// Creates a view that creates child views on demand based on a given Range
     @_disfavoredOverload
     public init(

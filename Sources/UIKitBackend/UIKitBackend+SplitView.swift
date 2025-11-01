@@ -18,17 +18,38 @@ import UIKit
 
             override func layoutSubviews() {
                 super.layoutSubviews()
-                splitWidget.resizeHandler?()
+                if !splitWidget.hasCalledResizeHandler {
+                    splitWidget.resizeHandler?()
+                    splitWidget.hasCalledResizeHandler = true
+                }
             }
         }
 
         private final class ColumnWidget: ContainerWidget {
+            let columnView = ColumnView()
+
             override func loadView() {
-                view = ColumnView()
+                view = columnView
             }
         }
 
-        var resizeHandler: (() -> Void)?
+        var resizeHandler: (() -> Void)? {
+            didSet {
+                hasCalledResizeHandler = false
+            }
+        }
+
+        // This is just a flag so that we don't call resizeHandler twice in one pass through the run loop.
+        var hasCalledResizeHandler = false {
+            willSet {
+                if newValue {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.hasCalledResizeHandler = false
+                    }
+                }
+            }
+        }
+
         private let sidebarContainer: ColumnWidget
         private let mainContainer: ColumnWidget
 
@@ -42,8 +63,8 @@ import UIKit
             sidebarContainer.parentWidget = self
             mainContainer.parentWidget = self
             childWidgets = [sidebarContainer, mainContainer]
-            (sidebarContainer.view as! ColumnView).splitWidget = self
-            (mainContainer.view as! ColumnView).splitWidget = self
+            sidebarContainer.columnView.splitWidget = self
+            mainContainer.columnView.splitWidget = self
 
             child.delegate = self
 
