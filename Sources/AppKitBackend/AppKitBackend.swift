@@ -1696,6 +1696,15 @@ public final class AppKitBackend: AppBackend {
         return datePicker
     }
 
+    // Depending on the calendar, era is either necessary or must be omitted. Making the wrong
+    // choice for the current calendar means the cursor position is reset after every keystroke. I
+    // know of no simple way to tell whether NSDatePicker requires or forbids eras for a given
+    // calendar, so in lieu of that I have hardcoded the calendar identifiers. It's shorter to list
+    // the calendars that forbid eras than the calendars that require them.
+    private let calendarsWithoutEras: Set<Calendar.Identifier> = [
+        .chinese, .gregorian, .hebrew, .iso8601,
+    ]
+
     public func updateDatePicker(
         _ datePicker: NSView,
         environment: EnvironmentValues,
@@ -1713,12 +1722,34 @@ public final class AppKitBackend: AppBackend {
         // every keystroke. Thanks Apple
         datePicker.timeZone =
             environment.timeZone == .autoupdatingCurrent ? .current : environment.timeZone
-        // Changing the calendar also resets the cursor position, so avoid triggering the setter when possible
+
+        // A couple properties cause infinite update loops if we assign to them on every update, so
+        // check their values first.
         if datePicker.calendar != environment.calendar {
             datePicker.calendar = environment.calendar
         }
 
-        datePicker.dateValue = date
+        if datePicker.dateValue != date {
+            datePicker.dateValue = date
+        }
+
+        var elementFlags: NSDatePicker.ElementFlags = []
+        if components.contains(.date) {
+            elementFlags.insert(.yearMonthDay)
+            if !calendarsWithoutEras.contains(environment.calendar.identifier) {
+                elementFlags.insert(.era)
+            }
+        }
+        if components.contains(.hourMinuteAndSecond) {
+            elementFlags.insert(.hourMinuteSecond)
+        } else {
+            elementFlags.insert(.hourMinute)
+        }
+
+        if datePicker.datePickerElements != elementFlags {
+            datePicker.datePickerElements = elementFlags
+        }
+
         datePicker.strongDelegate.onChange = onChange
 
         datePicker.minDate = range.lowerBound
@@ -1731,21 +1762,6 @@ public final class AppKitBackend: AppBackend {
                 case .graphical:
                     .clockAndCalendar
             }
-
-        var elementFlags: NSDatePicker.ElementFlags = []
-        if components.contains(.date) {
-            elementFlags.insert(.yearMonthDay)
-
-            // Trying to add .era when the calendar doesn't support it prevents input from occurring at all.
-            // FIXME: This works fine for Japanese but locks up for Gregorian
-            // elementFlags.insert(.era)
-        }
-        if components.contains(.hourMinuteAndSecond) {
-            elementFlags.insert(.hourMinuteSecond)
-        } else {
-            elementFlags.insert(.hourMinute)
-        }
-        datePicker.datePickerElements = elementFlags
     }
 }
 
