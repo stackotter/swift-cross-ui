@@ -52,7 +52,8 @@ jobs:
         swift build --target SpreadsheetExample && \
         swift build --target NotesExample && \
         swift build --target GtkExample && \
-        swift build --target PathsExample
+        swift build --target PathsExample && \
+        swift build --target DatePickerExample
 
     - name: Test
       run: swift test --test-product swift-cross-uiPackageTests
