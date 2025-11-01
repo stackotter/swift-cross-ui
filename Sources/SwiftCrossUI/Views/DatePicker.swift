@@ -47,25 +47,25 @@ public struct DatePicker<Label: View> {
     public nonisolated init(
         selection: Binding<Date>,
         range: ClosedRange<Date> = Date.distantPast...Date.distantFuture,
-        components: DatePickerComponents = [.hourAndMinute, .date],
+        displayedComponents: DatePickerComponents = [.hourAndMinute, .date],
         @ViewBuilder label: () -> Label
     ) {
         self.label = label()
         self.selection = selection
         self.range = range
-        self.components = components
+        self.components = displayedComponents
     }
 
     public nonisolated init(
         _ label: String,
         selection: Binding<Date>,
         range: ClosedRange<Date> = Date.distantPast...Date.distantFuture,
-        components: DatePickerComponents = [.hourAndMinute, .date]
+        displayedComponents: DatePickerComponents = [.hourAndMinute, .date]
     ) where Label == Text {
         self.label = Text(label)
         self.selection = selection
         self.range = range
-        self.components = components
+        self.components = displayedComponents
     }
 
     public typealias Components = DatePickerComponents
