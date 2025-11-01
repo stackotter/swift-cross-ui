@@ -10,7 +10,7 @@ import SwiftCrossUI
 @HotReloadable
 struct DatePickerApp: App {
     @State var date = Date()
-    @State var style: DatePickerStyle? = DatePickerStyle.automatic
+    @State var style: DatePickerStyle? = .automatic
 
     var allStyles: [DatePickerStyle]
 

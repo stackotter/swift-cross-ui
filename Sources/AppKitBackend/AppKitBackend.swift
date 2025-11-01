@@ -1689,6 +1689,64 @@ public final class AppKitBackend: AppBackend {
         let request = URLRequest(url: url)
         webView.load(request)
     }
+
+    public func createDatePicker() -> NSView {
+        let datePicker = CustomDatePicker()
+        datePicker.delegate = datePicker.strongDelegate
+        return datePicker
+    }
+
+    public func updateDatePicker(
+        _ datePicker: NSView,
+        environment: EnvironmentValues,
+        date: Date,
+        range: ClosedRange<Date>,
+        components: DatePickerComponents,
+        onChange: @escaping (Date) -> Void
+    ) {
+        let datePicker = datePicker as! CustomDatePicker
+
+        datePicker.isEnabled = environment.isEnabled
+        datePicker.textColor = environment.suggestedForegroundColor.nsColor
+
+        // If the time zone is set to autoupdatingCurrent, then the cursor position is reset after
+        // every keystroke. Thanks Apple
+        datePicker.timeZone =
+            environment.timeZone == .autoupdatingCurrent ? .current : environment.timeZone
+        // Changing the calendar also resets the cursor position, so avoid triggering the setter when possible
+        if datePicker.calendar != environment.calendar {
+            datePicker.calendar = environment.calendar
+        }
+
+        datePicker.dateValue = date
+        datePicker.strongDelegate.onChange = onChange
+
+        datePicker.minDate = range.lowerBound
+        datePicker.maxDate = range.upperBound
+
+        datePicker.datePickerStyle =
+            switch environment.datePickerStyle {
+                case .automatic, .compact:
+                    .textFieldAndStepper
+                case .graphical:
+                    .clockAndCalendar
+            }
+
+        var elementFlags: NSDatePicker.ElementFlags = []
+        if components.contains(.date) {
+            elementFlags.insert(.yearMonthDay)
+
+            // Trying to add .era when the calendar doesn't support it prevents input from occurring at all.
+            // FIXME: This works fine for Japanese but locks up for Gregorian
+            // elementFlags.insert(.era)
+        }
+        if components.contains(.hourMinuteAndSecond) {
+            elementFlags.insert(.hourMinuteSecond)
+        } else {
+            elementFlags.insert(.hourMinute)
+        }
+        datePicker.datePickerElements = elementFlags
+    }
 }
 
 final class NSCustomTapGestureTarget: NSView {
@@ -2189,5 +2247,21 @@ final class CustomWKNavigationDelegate: NSObject, WKNavigationDelegate {
         }
 
         onNavigate?(url)
+    }
+}
+
+final class CustomDatePicker: NSDatePicker {
+    var strongDelegate = CustomDatePickerDelegate()
+}
+
+final class CustomDatePickerDelegate: NSObject, NSDatePickerCellDelegate {
+    var onChange: ((Date) -> Void)?
+
+    func datePickerCell(
+        _: NSDatePickerCell,
+        validateProposedDateValue proposedDateValue: AutoreleasingUnsafeMutablePointer<NSDate>,
+        timeInterval _: UnsafeMutablePointer<TimeInterval>?
+    ) {
+        onChange?(proposedDateValue.pointee as Date)
     }
 }

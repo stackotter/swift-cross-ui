@@ -539,6 +539,7 @@ extension UIKitBackend {
             datePickerWidget.child.date = date
             datePickerWidget.onChange = onChange
 
+            datePickerWidget.child.isEnabled = environment.isEnabled
             datePickerWidget.child.calendar = environment.calendar
             datePickerWidget.child.timeZone = environment.timeZone
             datePickerWidget.child.minimumDate = range.lowerBound
