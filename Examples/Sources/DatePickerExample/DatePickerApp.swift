@@ -23,7 +23,7 @@ struct DatePickerApp: App {
 
         if #available(iOS 13.4, macCatalyst 13.4, *) {
             allStyles.append(.compact)
-            #if os(iOS) || os(visionOS)
+            #if os(iOS) || os(visionOS) || canImport(WinUIBackend)
                 allStyles.append(.wheel)
             #endif
         }
