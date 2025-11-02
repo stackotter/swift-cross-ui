@@ -464,7 +464,15 @@ public final class WinUIBackend: AppBackend {
             // https://github.com/marcelwgn/microsoft-ui-xaml/blob/ff21f9b212cea2191b959649e45e52486c8465aa/src/controls/dev/ProgressRing/ProgressRing.xaml#L12
             return SIMD2(32, 32)
         } else if let datePicker = widget as? CustomDatePicker {
+            // CustomDatePicker is a StackPanel whose individual subviews need to be manually sized
+            // and then added together. Its naturalSize(in:) method dispatches back here once for
+            // each of its children.
             return datePicker.naturalSize(in: self)
+        } else if widget is WinUI.DatePicker {
+            // Width is 296:
+            // https://github.com/marcelwgn/microsoft-ui-xaml/blob/ff21f9b212cea2191b959649e45e52486c8465aa/src/controls/dev/CommonStyles/DatePicker_themeresources.xaml#L261
+            // Height is experimentally 29 which I don't see anywhere in that file.
+            return SIMD2(296, 29)
         }
 
         let oldWidth = widget.width
@@ -528,6 +536,9 @@ public final class WinUIBackend: AppBackend {
                 64,
                 32
             )
+        } else if widget is CalendarView {
+            // I don't actually know why this is necessary. Value was derived by trial and error.
+            adjustment = SIMD2(20, 0)
         } else {
             adjustment = .zero
         }
@@ -2228,12 +2239,14 @@ final class CustomDatePicker: StackPanel {
     }
 
     func naturalSize(in backend: WinUIBackend) -> SIMD2<Int> {
-        // FIXME: TimePicker and DatePicker both report their natural size as 0 x 0 before initial render
-        // FIXME: CalendarView reports its natural size incorrectly
+        // FIXME: CalendarView and CalendarDatePicker report their size incorrectly on first render
 
         let timeViewSize =
             if let timeView {
-                backend.naturalSize(of: timeView)
+                // Width is 242, as shown in the WinUI repository:
+                // https://github.com/marcelwgn/microsoft-ui-xaml/blob/ff21f9b212cea2191b959649e45e52486c8465aa/src/controls/dev/CommonStyles/TimePicker_themeresources.xaml#L116
+                // Height is experimentally 29 which I don't see anywhere in that file.
+                SIMD2(242, 29)
             } else {
                 SIMD2<Int>.zero
             }
