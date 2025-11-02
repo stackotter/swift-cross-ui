@@ -23,14 +23,18 @@ public struct DatePickerComponents: OptionSet, Sendable {
 
 @available(tvOS, unavailable)
 public enum DatePickerStyle: Sendable, Hashable {
+    /// A date input chosen by the backend.
     case automatic
 
+    /// A date input that shows a calendar grid.
     @available(iOS 14, macCatalyst 14, *)
     case graphical
 
+    /// A smaller date input. This may be a text field, or a button that opens a calendar pop-up.
     @available(iOS 13.4, macCatalyst 13.4, *)
     case compact
 
+    /// A set of scrollable inputs that can be used to select a date.
     @available(iOS 13.4, macCatalyst 13.4, *)
     @available(macOS, unavailable)
     case wheel
@@ -44,6 +48,15 @@ public struct DatePicker<Label: View> {
     private var components: DatePickerComponents
     private var style: DatePickerStyle = .automatic
 
+    /// Displays a date input.
+    /// - Parameters:
+    ///   - selection: The currently-selected date.
+    ///   - range: The range of dates to display. The backend takes this as a hint but it is not
+    ///     necessarily enforced; in particular, a backend may be able to limit the date but not the
+    ///     time, or only the year and not the month and day. As such this parameter should be
+    ///     treated as an aid to validation rather than a replacement for it.
+    ///   - displayedComponents: What parts of the date/time to display in the input.
+    ///   - label: The view to be shown next to the date input.
     public nonisolated init(
         selection: Binding<Date>,
         range: ClosedRange<Date> = Date.distantPast...Date.distantFuture,
@@ -56,6 +69,15 @@ public struct DatePicker<Label: View> {
         self.components = displayedComponents
     }
 
+    /// Displays a date input.
+    /// - Parameters:
+    ///   - label: The text to be shown next to the date input.
+    ///   - selection: The currently-selected date.
+    ///   - range: The range of dates to display. The backend takes this as a hint but it is not
+    ///     necessarily enforced; in particular, a backend may be able to limit the date but not the
+    ///     time, or only the year and not the month and day. As such this parameter should be
+    ///     treated as an aid to validation rather than a replacement for it.
+    ///   - displayedComponents: What parts of the date/time to display in the input.
     public nonisolated init(
         _ label: String,
         selection: Binding<Date>,

@@ -2142,10 +2142,8 @@ final class CustomDatePicker: StackPanel {
                 calendarDatePicker.minDate = startDate
                 calendarDatePicker.maxDate = endDate
             case .datePicker(let datePicker):
-                // FIXME: For some reason it says these properties don't exist?
-                // datePicker.displayDateStart = startDate
-                // datePicker.displayDateEnd = endDate
-                break
+                datePicker.minYear = startDate
+                datePicker.maxYear = endDate
         }
     }
 
@@ -2208,7 +2206,9 @@ final class CustomDatePicker: StackPanel {
         return (
             DateTime(
                 universalTime: Int64(
-                    date.timeIntervalSince1970 * ticksPerSecond + Double(unixEpochInUniversalTime))),
+                    date.timeIntervalSince1970 * ticksPerSecond + Double(unixEpochInUniversalTime)
+                )
+            ),
             TimeSpan(duration: Int64(timeInterval * ticksPerSecond))
         )
     }
