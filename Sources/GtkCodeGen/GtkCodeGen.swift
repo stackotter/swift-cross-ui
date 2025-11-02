@@ -68,6 +68,7 @@ struct GtkCodeGen {
         "Gdk.GLContext": "OpaquePointer",
         "Gdk.Paintable": "OpaquePointer",
         "Gdk.Clipboard": "OpaquePointer",
+        "Gdk.ModifierType": "GdkModifierType",
     ]
 
     static let interfaces: [String] = [
@@ -115,6 +116,7 @@ struct GtkCodeGen {
         let gtk3AllowListedClasses = ["MenuShell", "EventBox"]
         let gtk4AllowListedClasses = [
             "Picture", "DropDown", "Popover", "ListBox", "EventControllerMotion",
+            "EventControllerKey",
         ]
         for class_ in gir.namespace.classes {
             guard
