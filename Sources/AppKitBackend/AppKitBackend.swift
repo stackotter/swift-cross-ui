@@ -1204,6 +1204,7 @@ public final class AppKitBackend: AppBackend {
         _ widget: Widget,
         _ size: SIMD2<Int>
     ) {
+        guard Int(widget.frame.size.height) != size.y else { return }
         setSize(of: widget, to: size)
         let spinner = NSProgressIndicator()
         spinner.translatesAutoresizingMaskIntoConstraints = false
