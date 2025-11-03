@@ -53,7 +53,7 @@ public struct ProgressView<Label: View>: View {
     }
 
     /// Makes the ProgressView resize to fit the available space.
-    /// Only affects `Kind.spinner`.
+    /// Only affects ``Kind/spinner``.
     public func resizable(_ isResizable: Bool = true) -> Self {
         var progressView = self
         progressView.isSpinnerResizable = isResizable
@@ -111,6 +111,7 @@ extension ProgressView where Label == Text {
 
 struct ProgressSpinnerView: ElementaryView {
     let isResizable: Bool
+
     init(isResizable: Bool = false) {
         self.isResizable = isResizable
     }
@@ -133,10 +134,10 @@ struct ProgressSpinnerView: ElementaryView {
             backend.setSize(of: widget, to: naturalSize)
             return ViewUpdateResult.leafView(size: ViewSize(fixedSize: naturalSize))
         }
-        let min = max(min(proposedSize.x, proposedSize.y), 10)
+        let minimumDimension = max(min(proposedSize.x, proposedSize.y), 10)
         let size = SIMD2(
-            min,
-            min
+            minimumDimension,
+            minimumDimension
         )
         if !dryRun {
             // Doesn't change the rendered size of ProgressSpinner
@@ -148,8 +149,8 @@ struct ProgressSpinnerView: ElementaryView {
             size: ViewSize(
                 size: size,
                 idealSize: naturalSize,
-                minimumWidth: 10,
-                minimumHeight: 10,
+                minimumWidth: 0,
+                minimumHeight: 0,
                 maximumWidth: nil,
                 maximumHeight: nil
             )

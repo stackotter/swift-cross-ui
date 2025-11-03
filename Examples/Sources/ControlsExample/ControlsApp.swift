@@ -90,7 +90,6 @@ struct ControlsApp: App {
                 Toggle(enabled ? "Disable all" : "Enable all", active: $enabled)
                     .padding()
             }
-
         }.defaultSize(width: 400, height: 600)
     }
 }
