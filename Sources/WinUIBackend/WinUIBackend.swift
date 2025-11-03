@@ -537,8 +537,15 @@ public final class WinUIBackend: AppBackend {
                 32
             )
         } else if widget is CalendarView {
-            // I don't actually know why this is necessary. Value was derived by trial and error.
+            // I don't actually know why this is necessary, but without it the abbreviations for the
+            // weekdays wrap, making it taller than it says it is. Value was derived by trial and
+            // error.
             adjustment = SIMD2(20, 0)
+        } else if computedSize.width == 0 && computedSize.width == 0 && widget is CalendarDatePicker {
+            // I can't find any source on what the size of CalendarDatePicker is, but it reports 0x0
+            // in at least some cases before initial render. In these cases, use a size derived
+            // experimentally.
+            adjustment = SIMD2(116, 32)
         } else {
             adjustment = .zero
         }
@@ -2239,8 +2246,6 @@ final class CustomDatePicker: StackPanel {
     }
 
     func naturalSize(in backend: WinUIBackend) -> SIMD2<Int> {
-        // FIXME: CalendarView and CalendarDatePicker report their size incorrectly on first render
-
         let timeViewSize =
             if let timeView {
                 // Width is 242, as shown in the WinUI repository:
