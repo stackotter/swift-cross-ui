@@ -95,6 +95,7 @@ struct ControlsApp: App {
                     Toggle(enabled ? "Disable all" : "Enable all", active: $enabled)
                         .padding()
                 }
+                .frame(minHeight: 600)
             }
         }.defaultSize(width: 400, height: 600)
     }
