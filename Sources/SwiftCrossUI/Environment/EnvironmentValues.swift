@@ -136,6 +136,7 @@ public struct EnvironmentValues {
     /// can decide whether to make it an app modal, a standalone window, or a
     /// window of its choosing).
     @MainActor
+    @available(tvOS, unavailable, message: "tvOS does not provide file system access")
     public var chooseFile: PresentSingleFileOpenDialogAction {
         return PresentSingleFileOpenDialogAction(
             backend: backend,

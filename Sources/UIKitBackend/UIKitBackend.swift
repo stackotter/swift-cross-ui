@@ -46,6 +46,11 @@ public final class UIKitBackend: AppBackend {
 
     private let appDelegateClass: ApplicationDelegate.Type
 
+    #if !os(tvOS)
+        let filePickerDelegates = NSMapTable<UIDocumentPickerViewController, FilePickerDelegate>
+            .weakToStrongObjects()
+    #endif
+
     public init() {
         self.appDelegateClass = ApplicationDelegate.self
     }
