@@ -1769,6 +1769,10 @@ public final class WinUIBackend: AppBackend {
         customDatePicker.updateIfNeeded(date: date, calendar: environment.calendar)
         customDatePicker.setDateRange(to: range)
         customDatePicker.setEnabled(to: environment.isEnabled)
+
+        // TODO(parity): foreground color ignored
+        // Setting foreground like for other views works for TimePicker and DatePicker but not for
+        // CalendarView or CalendarDatePicker.
     }
 
     // public func createTable(rows: Int, columns: Int) -> Widget {
@@ -2104,7 +2108,8 @@ final class CustomDatePicker: StackPanel {
 
                     self.date = componentsToFoundationDate(
                         dateTime: calendarView.selectedDates.getAt(0),
-                        timeSpan: timeView?.selectedTime)
+                        timeSpan: timeView?.selectedTime
+                    )
 
                     if calendarView.selectedDates.size > 1 {
                         self.needsUpdate = true
@@ -2210,6 +2215,9 @@ final class CustomDatePicker: StackPanel {
             case .japanese: "JapaneseCalendar"
             case .persian: "PersianCalendar"
             case .republicOfChina: "TaiwanCalendar"
+            #if compiler(>=6.2)
+            case .vietnamese: "VietnameseLunarCalendar"
+            #endif
             case let id: fatalError("Unsupported calendar identifier \(id)")
         }
     }
@@ -2247,7 +2255,7 @@ final class CustomDatePicker: StackPanel {
 
     func naturalSize(in backend: WinUIBackend) -> SIMD2<Int> {
         let timeViewSize =
-            if let timeView {
+            if timeView != nil {
                 // Width is 242, as shown in the WinUI repository:
                 // https://github.com/marcelwgn/microsoft-ui-xaml/blob/ff21f9b212cea2191b959649e45e52486c8465aa/src/controls/dev/CommonStyles/TimePicker_themeresources.xaml#L116
                 // Height is experimentally 29 which I don't see anywhere in that file.

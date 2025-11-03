@@ -1699,10 +1699,10 @@ public final class AppKitBackend: AppBackend {
     // Depending on the calendar, era is either necessary or must be omitted. Making the wrong
     // choice for the current calendar means the cursor position is reset after every keystroke. I
     // know of no simple way to tell whether NSDatePicker requires or forbids eras for a given
-    // calendar, so in lieu of that I have hardcoded the calendar identifiers. It's shorter to list
-    // the calendars that forbid eras than the calendars that require them.
-    private let calendarsWithoutEras: Set<Calendar.Identifier> = [
-        .chinese, .gregorian, .hebrew, .iso8601,
+    // calendar, so in lieu of that I have hardcoded the calendar identifiers.
+    private let calendarsWithEras: Set<Calendar.Identifier> = [
+        .Buddhist, .coptic, .ethiopicAmeteAlem, .ethiopicAmeteMihret, .indian, .islamic,
+        .islamicCivil, .islamicTabular, .islamicUmmAlQura, .japanese, .persian, .republicOfChina,
     ]
 
     public func updateDatePicker(
@@ -1736,7 +1736,7 @@ public final class AppKitBackend: AppBackend {
         var elementFlags: NSDatePicker.ElementFlags = []
         if components.contains(.date) {
             elementFlags.insert(.yearMonthDay)
-            if !calendarsWithoutEras.contains(environment.calendar.identifier) {
+            if calendarsWithEras.contains(environment.calendar.identifier) {
                 elementFlags.insert(.era)
             }
         }
