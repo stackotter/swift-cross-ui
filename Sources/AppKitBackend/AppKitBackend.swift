@@ -1701,7 +1701,7 @@ public final class AppKitBackend: AppBackend {
     // know of no simple way to tell whether NSDatePicker requires or forbids eras for a given
     // calendar, so in lieu of that I have hardcoded the calendar identifiers.
     private let calendarsWithEras: Set<Calendar.Identifier> = [
-        .Buddhist, .coptic, .ethiopicAmeteAlem, .ethiopicAmeteMihret, .indian, .islamic,
+        .buddhist, .coptic, .ethiopicAmeteAlem, .ethiopicAmeteMihret, .indian, .islamic,
         .islamicCivil, .islamicTabular, .islamicUmmAlQura, .japanese, .persian, .republicOfChina,
     ]
 
