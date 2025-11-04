@@ -1581,3 +1581,93 @@ extension UnsafeMutablePointer {
 class CustomListBox: ListBox {
     var cachedSelection: Int? = nil
 }
+
+final class TimePicker: Box {
+    private var hourCycle: Locale.HourCycle
+    private let hourPicker: SpinButton
+    private let hourMinuteSeparator = Label(string: ":")
+    private let minutePicker = SpinButton(range: 0, max: 59, step: 1)
+    private var minuteSecondSeparator: Label?
+    private var secondPicker: SpinButton?
+    private var amPmPicker: DropDown?
+
+    init() {
+        let hourCycle = Locale.current.hourCycle
+
+        self.hourCycle = hourCycle
+        self.hourPicker = SpinButton(
+            range: TimePicker.minHour(for: hourCycle),
+            max: TimePicker.maxHour(for: hourCycle),
+            step: 1
+        )
+
+        super.init(orientation: .horizontal, spacing: 0)
+
+        self.hourPicker.wrap = true
+        self.hourPicker.orientation = .vertical
+        self.minutePicker.wrap = true
+        self.minutePicker.orientation = .vertical
+
+        self.orientation = .horizontal
+
+        self.add(self.hourPicker)
+        self.add(self.hourMinuteSeparator)
+        self.add(self.minutePicker)
+    }
+
+    func setEnabled(to isEnabled: Bool) {
+        hourPicker.sensitive = isEnabled
+    }
+
+    private static func minHour(for hourCycle: Locale.HourCycle) -> Double {
+        switch hourCycle {
+            case .zeroToEleven, .zeroToTwentyThree: 0
+            case .oneToTwelve, .oneToTwentyFour: 1
+        }
+    }
+
+    private static func maxHour(for hourCycle: Locale.HourCycle) -> Double {
+        switch hourCycle {
+            case .zeroToEleven: 11
+            case .oneToTwelve: 12
+            case .zeroToTwentyThree: 23
+            case .oneToTwentyFour: 24
+        }
+    }
+
+    func update(calendar: Calendar, date: Date, showSeconds: Bool) {
+        let components = calendar.dateComponents([.hour, .minute, .second], from: date)
+
+        if showSeconds {
+            if let secondsPicker {
+                // TODO update range
+            } else {
+                minuteSecondSeparator = Label(string: ":")
+                let secondsRange = calendar.range(of: .second, in: .minute, for: date) ?? 0..<60
+                secondsPicker = SpinButton(
+                    range: Double(secondsRange.lowerBound),
+                    max: Double(secondsRange.upperBound - 1),
+                    step: 1
+                )
+                secondsPicker.value = Double(components.second!)
+                insert(child: minuteSecondSeparator!, after: minutePicker)
+                insert(child: secondsPicker!, after: minuteSecondSeparator!)
+            }
+        } else {
+            if let minuteSecondSeparator {
+                remove(minuteSecondSeparator)
+                self.minuteSecondSeparator = nil
+            }
+            if let secondsPicker {
+                remove(secondsPicker)
+                self.secondsPicker = nil
+            }
+        }
+
+        minutePicker.value = Double(components.minute!)
+        // TODO update minutePicker's range and everything about the hour
+    }
+}
+
+final class DatePickerWidget: Box {
+}
