@@ -116,7 +116,7 @@ struct GtkCodeGen {
             "Button", "Entry", "Label", "Range", "Scale", "Image", "Switch", "Spinner",
             "ProgressBar", "FileChooserNative", "NativeDialog", "GestureClick", "GestureSingle",
             "Gesture", "EventController", "GestureLongPress", "GLArea", "DrawingArea",
-            "CheckButton", "Calendar", "SpinButton", "Box",
+            "CheckButton", "Calendar", "SpinButton",
         ]
         let gtk3AllowListedClasses = ["MenuShell", "EventBox"]
         let gtk4AllowListedClasses = [
