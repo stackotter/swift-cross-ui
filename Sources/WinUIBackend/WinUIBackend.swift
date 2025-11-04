@@ -541,7 +541,8 @@ public final class WinUIBackend: AppBackend {
             // weekdays wrap, making it taller than it says it is. Value was derived by trial and
             // error.
             adjustment = SIMD2(20, 0)
-        } else if computedSize.width == 0 && computedSize.width == 0 && widget is CalendarDatePicker {
+        } else if computedSize.width == 0 && computedSize.width == 0 && widget is CalendarDatePicker
+        {
             // I can't find any source on what the size of CalendarDatePicker is, but it reports 0x0
             // in at least some cases before initial render. In these cases, use a size derived
             // experimentally.
@@ -2216,7 +2217,7 @@ final class CustomDatePicker: StackPanel {
             case .persian: "PersianCalendar"
             case .republicOfChina: "TaiwanCalendar"
             #if compiler(>=6.2)
-            case .vietnamese: "VietnameseLunarCalendar"
+                case .vietnamese: "VietnameseLunarCalendar"
             #endif
             case let id: fatalError("Unsupported calendar identifier \(id)")
         }
