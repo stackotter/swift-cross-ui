@@ -1500,6 +1500,26 @@ public final class GtkBackend: AppBackend {
         }
     }
 
+    public func createDatePicker() -> Widget {
+        return TimePicker()
+    }
+
+    public func updateDatePicker(
+        _ datePicker: Widget,
+        environment: EnvironmentValues,
+        date: Date,
+        range: ClosedRange<Date>,
+        components: DatePickerComponents,
+        onChange: @escaping (Date) -> Void
+    ) {
+        let timePicker = datePicker as! TimePicker
+        timePicker.update(
+            calendar: environment.calendar,
+            date: date,
+            showSeconds: components.contains(.hourMinuteAndSecond)
+        )
+    }
+
     // MARK: Helpers
 
     private func wrapInCustomRootContainer(_ widget: Widget) -> Widget {
@@ -1635,37 +1655,80 @@ final class TimePicker: Box {
         }
     }
 
-    func update(calendar: Calendar, date: Date, showSeconds: Bool) {
+    func update(calendar: Foundation.Calendar, date: Date, showSeconds: Bool) {
         let components = calendar.dateComponents([.hour, .minute, .second], from: date)
 
         if showSeconds {
-            if let secondsPicker {
-                // TODO update range
+            let secondsRange = calendar.range(of: .second, in: .minute, for: date) ?? 0..<60
+            if let secondPicker {
+                secondPicker.setRange(
+                    min: Double(secondsRange.lowerBound),
+                    max: Double(secondsRange.upperBound - 1)
+                )
             } else {
                 minuteSecondSeparator = Label(string: ":")
-                let secondsRange = calendar.range(of: .second, in: .minute, for: date) ?? 0..<60
-                secondsPicker = SpinButton(
+                secondPicker = SpinButton(
                     range: Double(secondsRange.lowerBound),
                     max: Double(secondsRange.upperBound - 1),
                     step: 1
                 )
-                secondsPicker.value = Double(components.second!)
+                secondPicker!.value = Double(components.second!)
                 insert(child: minuteSecondSeparator!, after: minutePicker)
-                insert(child: secondsPicker!, after: minuteSecondSeparator!)
+                insert(child: secondPicker!, after: minuteSecondSeparator!)
             }
         } else {
             if let minuteSecondSeparator {
                 remove(minuteSecondSeparator)
                 self.minuteSecondSeparator = nil
             }
-            if let secondsPicker {
-                remove(secondsPicker)
-                self.secondsPicker = nil
+            if let secondPicker {
+                remove(secondPicker)
+                self.secondPicker = nil
             }
         }
 
+        let minutesRange = calendar.range(of: .minute, in: .hour, for: date) ?? 0..<60
         minutePicker.value = Double(components.minute!)
-        // TODO update minutePicker's range and everything about the hour
+        minutePicker.setRange(
+            min: Double(minutesRange.lowerBound),
+            max: Double(minutesRange.upperBound - 1)
+        )
+
+        let hoursRange = calendar.range(of: .hour, in: .day, for: date)
+        self.hourCycle = (calendar.locale ?? .current).hourCycle
+        let effectiveHours = hoursRange?.map {
+            TimePicker.transformToRange($0, hourCycle: self.hourCycle)
+        }
+
+        hourPicker.setRange(
+            min: effectiveHours?.min().map(Double.init(_:))
+                ?? TimePicker.minHour(for: self.hourCycle),
+            max: effectiveHours?.max().map(Double.init(_:))
+                ?? TimePicker.maxHour(for: self.hourCycle)
+        )
+
+        if self.hourCycle == .oneToTwelve || self.hourCycle == .zeroToEleven {
+            if let amPmPicker {
+                // update strings if necessary
+            } else {
+                amPmPicker = DropDown(strings: [calendar.amSymbol, calendar.pmSymbol])
+                add(amPmPicker!)
+            }
+        } else {
+            if let amPmPicker {
+                remove(amPmPicker)
+                self.amPmPicker = nil
+            }
+        }
+    }
+
+    private static func transformToRange(_ value: Int, hourCycle: Locale.HourCycle) -> Int {
+        switch hourCycle {
+            case .zeroToEleven: value % 12
+            case .oneToTwelve: (value + 11) % 12 + 1
+            case .zeroToTwentyThree: value % 24
+            case .oneToTwentyFour: (value + 23) % 24 + 1
+        }
     }
 }
 
