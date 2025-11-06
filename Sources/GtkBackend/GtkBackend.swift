@@ -1526,6 +1526,9 @@ public final class GtkBackend: AppBackend {
         calendarWidget.daySelected = { calendarWidget in
             onChange(calendarWidget.date)
         }
+        calendarWidget.sensitive = environment.isEnabled
+        calendarWidget.css.clear()
+        calendarWidget.css.set(properties: Self.cssProperties(for: environment, isControl: true))
     }
 
     // MARK: Helpers
