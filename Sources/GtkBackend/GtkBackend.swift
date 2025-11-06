@@ -1616,6 +1616,7 @@ class CustomListBox: ListBox {
 // This kinda sorta works. Beyond the fact that it never shows the AM/PM picker, the SpinButtons
 // don't behave correctly on change, and calendar.date(bySetting:value:of:) doesn't do what we need
 // it to do.
+@available(macOS 13, *)
 final class TimePicker: Box {
     private var hourCycle: Locale.HourCycle
     private let hourPicker: SpinButton
