@@ -24,24 +24,27 @@ struct ForEachApp: App {
             #hotReloadable {
                 ScrollView {
                     VStack {
-                        Text("Items")
-
                         Button("Append") {
                             biggestValue += 1
                             items.append(.init("\(biggestValue)"))
                         }
 
-                        Button("Insert in front of current item at position \(insertionPosition)") {
-                            biggestValue += 1
-                            items.insert(.init("\(biggestValue)"), at: insertionPosition)
-                        }
-                        Slider($insertionPosition, minimum: 0, maximum: items.count - 1)
-                            .onChange(of: items.count) {
-                                guard insertionPosition > items.count - 1 else {
-                                    return
-                                }
-                                insertionPosition = max(items.count - 1, 0)
+                        #if !os(tvOS)
+                            Button(
+                                "Insert in front of current item at position \(insertionPosition)"
+                            ) {
+                                biggestValue += 1
+                                items.insert(.init("\(biggestValue)"), at: insertionPosition)
                             }
+
+                            Slider($insertionPosition, minimum: 0, maximum: items.count - 1)
+                                .onChange(of: items.count) {
+                                    guard insertionPosition > items.count - 1 else {
+                                        return
+                                    }
+                                    insertionPosition = max(items.count - 1, 0)
+                                }
+                        #endif
 
                         ForEach(items) { item in
                             ItemRow(
@@ -66,6 +69,7 @@ struct ForEachApp: App {
                     }
                     .padding(10)
                 }
+                .focusable()
             }
         }
         .defaultSize(width: 400, height: 800)
