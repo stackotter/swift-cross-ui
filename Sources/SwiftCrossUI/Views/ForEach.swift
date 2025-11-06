@@ -1,13 +1,13 @@
 import OrderedCollections
 
 /// A view that displays a variable amount of children.
-public struct ForEach<Items: Collection, ID: Hashable, Child> where Items.Index == Int {
+public struct ForEach<Items: Collection, ID: Hashable, Child> {
     /// A variable-length collection of elements to display.
     var elements: Items
     /// A method to display the elements as views.
     var child: (Items.Element) -> Child
     /// The path to the property used as Identifier
-    var idKeyPath: KeyPath<Items.Element, ID>
+    var idKeyPath: KeyPath<Items.Element, ID>?
 }
 
 extension ForEach: TypeSafeView, View where Child: View {
@@ -81,6 +81,17 @@ extension ForEach: TypeSafeView, View where Child: View {
                 }
             }
             children.queuedChanges = []
+        }
+
+        guard let idKeyPath else {
+            return deprecatedUpdate(
+                widget,
+                children: children,
+                proposedSize: proposedSize,
+                environment: environment,
+                backend: backend,
+                dryRun: dryRun
+            )
         }
 
         var layoutableChildren: [LayoutSystem.LayoutableChild] = []
@@ -177,6 +188,104 @@ extension ForEach: TypeSafeView, View where Child: View {
             dryRun: dryRun
         )
     }
+
+    @MainActor
+    func deprecatedUpdate<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: Children,
+        proposedSize: SIMD2<Int>,
+        environment: EnvironmentValues,
+        backend: Backend,
+        dryRun: Bool
+    ) -> ViewUpdateResult {
+        func addChild(_ child: Backend.Widget) {
+            if dryRun {
+                children.queuedChanges.append(.addChild(AnyWidget(child)))
+            } else {
+                backend.addChild(child, to: widget)
+            }
+        }
+
+        func removeChild(_ child: Backend.Widget) {
+            if dryRun {
+                children.queuedChanges.append(.removeChild(AnyWidget(child)))
+            } else {
+                backend.removeChild(child, from: widget)
+            }
+        }
+
+        // TODO: The way we're reusing nodes for technically different elements means that if
+        //   Child has state of its own then it could get pretty confused thinking that its state
+        //   changed whereas it was actually just moved to a new slot in the array. Probably not
+        //   a huge issue, but definitely something to keep an eye on.
+        var layoutableChildren: [LayoutSystem.LayoutableChild] = []
+        for (i, node) in children.nodes.enumerated() {
+            guard i < elements.count else {
+                break
+            }
+            let index = elements.index(elements.startIndex, offsetBy: i)
+            let childContent = child(elements[index])
+            if children.isFirstUpdate {
+                addChild(node.widget.into())
+            }
+            layoutableChildren.append(
+                LayoutSystem.LayoutableChild(
+                    update: { proposedSize, environment, dryRun in
+                        node.update(
+                            with: childContent,
+                            proposedSize: proposedSize,
+                            environment: environment,
+                            dryRun: dryRun
+                        )
+                    }
+                )
+            )
+        }
+        children.isFirstUpdate = false
+
+        let nodeCount = children.nodes.count
+        let remainingElementCount = elements.count - nodeCount
+        if remainingElementCount > 0 {
+            let startIndex = elements.index(elements.startIndex, offsetBy: nodeCount)
+            for i in 0..<remainingElementCount {
+                let childContent = child(elements[elements.index(startIndex, offsetBy: i)])
+                let node = AnyViewGraphNode(
+                    for: childContent,
+                    backend: backend,
+                    environment: environment
+                )
+                children.nodes.append(node)
+                addChild(node.widget.into())
+                layoutableChildren.append(
+                    LayoutSystem.LayoutableChild(
+                        update: { proposedSize, environment, dryRun in
+                            node.update(
+                                with: childContent,
+                                proposedSize: proposedSize,
+                                environment: environment,
+                                dryRun: dryRun
+                            )
+                        }
+                    )
+                )
+            }
+        } else if remainingElementCount < 0 {
+            let unused = -remainingElementCount
+            for i in (nodeCount - unused)..<nodeCount {
+                removeChild(children.nodes[i].widget.into())
+            }
+            children.nodes.removeLast(unused)
+        }
+
+        return LayoutSystem.updateStackLayout(
+            container: widget,
+            children: layoutableChildren,
+            proposedSize: proposedSize,
+            environment: environment,
+            backend: backend,
+            dryRun: dryRun
+        )
+    }
 }
 
 /// Stores the child nodes of a ``ForEach`` view.
@@ -226,10 +335,28 @@ class ForEachViewChildren<
     init<Backend: AppBackend>(
         from view: ForEach<Items, ID, Child>,
         backend: Backend,
-        idKeyPath: KeyPath<Items.Element, ID>,
+        idKeyPath: KeyPath<Items.Element, ID>?,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
+        guard let idKeyPath else {
+            nodes = view.elements
+                .map(view.child)
+                .enumerated()
+                .map { (index, child) in
+                    let snapshot = index < snapshots?.count ?? 0 ? snapshots?[index] : nil
+                    return ViewGraphNode(
+                        for: child,
+                        backend: backend,
+                        snapshot: snapshot,
+                        environment: environment
+                    )
+                }
+                .map(AnyViewGraphNode.init(_:))
+            identifiers = []
+            nodeIdentifierMap = [:]
+            return
+        }
         var nodeIdentifierMap = [ID: AnyViewGraphNode<Child>]()
         var identifiers = OrderedSet<ID>()
         var viewNodes = [AnyViewGraphNode<Child>]()
@@ -260,6 +387,12 @@ class ForEachViewChildren<
 
 // MARK: - Alternative Initializers
 extension ForEach where Items.Element: Hashable, ID == Items.Element {
+    /// Creates a view that creates child views on demand based on a collection of data.
+    @available(
+        *,
+        deprecated,
+        message: "Use ForEach with id argument on non-Identifiable Elements instead."
+    )
     @_disfavoredOverload
     public init(
         items elements: Items,
@@ -267,20 +400,25 @@ extension ForEach where Items.Element: Hashable, ID == Items.Element {
     ) {
         self.elements = elements
         self.child = child
-        self.idKeyPath = \.self
+        self.idKeyPath = nil
     }
 }
 
 extension ForEach where Child == [MenuItem], Items.Element: Hashable, ID == Items.Element {
     /// Creates a view that creates child views on demand based on a collection of data.
+    @available(
+        *,
+        deprecated,
+        message: "Use ForEach with id argument on non-Identifiable Elements instead."
+    )
     @_disfavoredOverload
     public init(
-        items elements: Items,
+        _ elements: Items,
         @MenuItemsBuilder _ child: @escaping (Items.Element) -> [MenuItem]
     ) {
         self.elements = elements
         self.child = child
-        self.idKeyPath = \.self
+        self.idKeyPath = nil
     }
 }
 
