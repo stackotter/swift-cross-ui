@@ -1517,8 +1517,8 @@ public final class GtkBackend: AppBackend {
         if components.contains(.hourAndMinute) {
             print("Warning: time picker is unimplemented on GtkBackend")
         }
-        if environment.datePickerStyle == .wheel || environment.datePickerStyle == .compact {
-            print("Warning: only datePickerStyle.graphical is implemented in GtkBackend")
+        if environment.datePickerStyle != .automatic && environment.datePickerStyle != .graphical {
+            print("Warning: only DatePickerStyle.graphical is implemented in GtkBackend")
         }
 
         let calendarWidget = datePicker as! Gtk.Calendar
