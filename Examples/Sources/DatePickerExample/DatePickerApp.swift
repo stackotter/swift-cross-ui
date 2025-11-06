@@ -21,12 +21,14 @@ struct DatePickerApp: App {
             allStyles.append(.graphical)
         }
 
-        if #available(iOS 13.4, macCatalyst 13.4, *) {
-            allStyles.append(.compact)
-            #if os(iOS) || os(visionOS) || canImport(WinUIBackend)
-                allStyles.append(.wheel)
-            #endif
-        }
+        #if !canImport(GtkBackend)
+            if #available(iOS 13.4, macCatalyst 13.4, *) {
+                allStyles.append(.compact)
+                #if os(iOS) || os(visionOS) || canImport(WinUIBackend)
+                    allStyles.append(.wheel)
+                #endif
+            }
+        #endif
     }
 
     var body: some Scene {
@@ -41,6 +43,10 @@ struct DatePickerApp: App {
                     selection: $date
                 )
                 .datePickerStyle(style ?? .automatic)
+
+                Button("Reset date") {
+                    date = Date()
+                }
             }
         }
     }

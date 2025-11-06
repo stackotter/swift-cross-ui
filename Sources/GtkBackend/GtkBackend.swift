@@ -1501,7 +1501,9 @@ public final class GtkBackend: AppBackend {
     }
 
     public func createDatePicker() -> Widget {
-        return TimePicker()
+        let widget = Gtk.Calendar()
+        widget.date = Date()
+        return widget
     }
 
     public func updateDatePicker(
@@ -1512,12 +1514,18 @@ public final class GtkBackend: AppBackend {
         components: DatePickerComponents,
         onChange: @escaping (Date) -> Void
     ) {
-        let timePicker = datePicker as! TimePicker
-        timePicker.update(
-            calendar: environment.calendar,
-            date: date,
-            showSeconds: components.contains(.hourMinuteAndSecond)
-        )
+        if components.contains(.hourAndMinute) {
+            print("Warning: time picker is unimplemented on GtkBackend")
+        }
+        if environment.datePickerStyle == .wheel || environment.datePickerStyle == .compact {
+            print("Warning: only datePickerStyle.graphical is implemented in GtkBackend")
+        }
+
+        let calendarWidget = datePicker as! Gtk.Calendar
+        calendarWidget.date = date
+        calendarWidget.daySelected = { calendarWidget in
+            onChange(calendarWidget.date)
+        }
     }
 
     // MARK: Helpers
@@ -1602,6 +1610,9 @@ class CustomListBox: ListBox {
     var cachedSelection: Int? = nil
 }
 
+// This kinda sorta works. Beyond the fact that it never shows the AM/PM picker, the SpinButtons
+// don't behave correctly on change, and calendar.date(bySetting:value:of:) doesn't do what we need
+// it to do.
 final class TimePicker: Box {
     private var hourCycle: Locale.HourCycle
     private let hourPicker: SpinButton
@@ -1610,6 +1621,8 @@ final class TimePicker: Box {
     private var minuteSecondSeparator: Label?
     private var secondPicker: SpinButton?
     private var amPmPicker: DropDown?
+
+    var onChange: ((Date) -> Void)?
 
     init() {
         let hourCycle = Locale.current.hourCycle
@@ -1621,14 +1634,14 @@ final class TimePicker: Box {
             step: 1
         )
 
-        super.init(orientation: .horizontal, spacing: 0)
+        super.init(gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0))
 
         self.hourPicker.wrap = true
         self.hourPicker.orientation = .vertical
+        self.hourPicker.numeric = true
         self.minutePicker.wrap = true
         self.minutePicker.orientation = .vertical
-
-        self.orientation = .horizontal
+        self.minutePicker.numeric = true
 
         self.add(self.hourPicker)
         self.add(self.hourMinuteSeparator)
@@ -1643,6 +1656,9 @@ final class TimePicker: Box {
         switch hourCycle {
             case .zeroToEleven, .zeroToTwentyThree: 0
             case .oneToTwelve, .oneToTwentyFour: 1
+            #if os(macOS)
+                @unknown default: fatalError()
+            #endif
         }
     }
 
@@ -1652,6 +1668,9 @@ final class TimePicker: Box {
             case .oneToTwelve: 12
             case .zeroToTwentyThree: 23
             case .oneToTwentyFour: 24
+            #if os(macOS)
+                @unknown default: fatalError()
+            #endif
         }
     }
 
@@ -1672,7 +1691,9 @@ final class TimePicker: Box {
                     max: Double(secondsRange.upperBound - 1),
                     step: 1
                 )
-                secondPicker!.value = Double(components.second!)
+                secondPicker!.numeric = true
+                secondPicker!.wrap = true
+                secondPicker!.text = "\(components.second!)"
                 insert(child: minuteSecondSeparator!, after: minutePicker)
                 insert(child: secondPicker!, after: minuteSecondSeparator!)
             }
@@ -1688,11 +1709,19 @@ final class TimePicker: Box {
         }
 
         let minutesRange = calendar.range(of: .minute, in: .hour, for: date) ?? 0..<60
-        minutePicker.value = Double(components.minute!)
         minutePicker.setRange(
             min: Double(minutesRange.lowerBound),
             max: Double(minutesRange.upperBound - 1)
         )
+        minutePicker.text = "\(components.minute!)"
+        minutePicker.valueChanged = { [unowned self] minutePicker in
+            guard let value = Int(exactly: minutePicker.value),
+                let newDate = calendar.date(bySetting: .minute, value: value, of: date)
+            else {
+                return
+            }
+            self.onChange?(newDate)
+        }
 
         let hoursRange = calendar.range(of: .hour, in: .day, for: date)
         self.hourCycle = (calendar.locale ?? .current).hourCycle
@@ -1720,6 +1749,17 @@ final class TimePicker: Box {
                 self.amPmPicker = nil
             }
         }
+
+        hourPicker.text =
+            "\(TimePicker.transformToRange(components.hour!, hourCycle: self.hourCycle))"
+        hourPicker.valueChanged = { [unowned self] hourPicker in
+            guard let value = Int(exactly: hourPicker.value),
+                let newDate = calendar.date(bySetting: .hour, value: value, of: date)
+            else {
+                return
+            }
+            self.onChange?(newDate)
+        }
     }
 
     private static func transformToRange(_ value: Int, hourCycle: Locale.HourCycle) -> Int {
@@ -1728,9 +1768,9 @@ final class TimePicker: Box {
             case .oneToTwelve: (value + 11) % 12 + 1
             case .zeroToTwentyThree: value % 24
             case .oneToTwentyFour: (value + 23) % 24 + 1
+            #if os(macOS)
+                @unknown default: fatalError()
+            #endif
         }
     }
-}
-
-final class DatePickerWidget: Box {
 }
