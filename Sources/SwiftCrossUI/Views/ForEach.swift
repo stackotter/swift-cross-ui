@@ -1,78 +1,47 @@
 import OrderedCollections
 
 /// A view that displays a variable amount of children.
-public struct ForEach<Items: Collection, Child> where Items.Index == Int {
+public struct ForEach<Items: Collection, ID: Hashable, Child> where Items.Index == Int {
     /// A variable-length collection of elements to display.
     var elements: Items
     /// A method to display the elements as views.
     var child: (Items.Element) -> Child
+    /// The path to the property used as Identifier
+    var idKeyPath: KeyPath<Items.Element, ID>
 }
 
-extension ForEach where Child == [MenuItem] {
-    /// Creates a view that creates child views on demand based on a collection of data.
-    @_disfavoredOverload
+extension ForEach: TypeSafeView, View where Child: View {
+    typealias Children = ForEachViewChildren<Items, ID, Child>
     public init(
         _ elements: Items,
-        @MenuItemsBuilder _ child: @escaping (Items.Element) -> [MenuItem]
-    ) {
-        self.elements = elements
-        self.child = child
-    }
-}
-
-extension ForEach where Items == [Int] {
-    /// Creates a view that creates child views on demand based on a given ClosedRange
-    @_disfavoredOverload
-    public init(
-        _ range: ClosedRange<Int>,
-        child: @escaping (Int) -> Child
-    ) {
-        self.elements = Array(range)
-        self.child = child
-    }
-
-    /// Creates a view that creates child views on demand based on a given Range
-    @_disfavoredOverload
-    public init(
-        _ range: Range<Int>,
-        child: @escaping (Int) -> Child
-    ) {
-        self.elements = Array(range)
-        self.child = child
-    }
-}
-
-extension ForEach: TypeSafeView, View where Child: View, Items.Element: Identifiable {
-    typealias Children = ForEachViewChildren<Items, Child>
-
-    public var body: EmptyView {
-        return EmptyView()
-    }
-
-    /// Creates a view that creates child views on demand based on a collection of data.
-    public init(
-        _ elements: Items,
+        id keyPath: KeyPath<Items.Element, ID>,
         @ViewBuilder _ child: @escaping (Items.Element) -> Child
     ) {
         self.elements = elements
         self.child = child
+        self.idKeyPath = keyPath
+    }
+
+    public var body: EmptyView {
+        return EmptyView()
     }
 
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
-    ) -> ForEachViewChildren<Items, Child> {
-        return ForEachViewChildren(
+    ) -> Children {
+        return Children(
             from: self,
             backend: backend,
+            idKeyPath: idKeyPath,
             snapshots: snapshots,
             environment: environment
         )
     }
 
     func asWidget<Backend: AppBackend>(
-        _ children: ForEachViewChildren<Items, Child>,
+        _ children: Children,
         backend: Backend
     ) -> Backend.Widget {
         return backend.createContainer()
@@ -80,7 +49,7 @@ extension ForEach: TypeSafeView, View where Child: View, Items.Element: Identifi
 
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: ForEachViewChildren<Items, Child>,
+        children: Children,
         proposedSize: SIMD2<Int>,
         environment: EnvironmentValues,
         backend: Backend,
@@ -116,7 +85,6 @@ extension ForEach: TypeSafeView, View where Child: View, Items.Element: Identifi
 
         var layoutableChildren: [LayoutSystem.LayoutableChild] = []
 
-        let oldNodes = children.nodes
         let oldMap = children.nodeIdentifierMap
         let oldIdentifiers = children.identifiers
         let identifiersStart = oldIdentifiers.startIndex
@@ -130,11 +98,11 @@ extension ForEach: TypeSafeView, View where Child: View, Items.Element: Identifi
         // rendered in the correct order.
         var requiresOngoingReinsertion = false
 
-        for (i, element) in elements.enumerated() {
+        for element in elements {
             let childContent = child(element)
             let node: AnyViewGraphNode<Child>
 
-            if let oldNode = oldMap[element.id] {
+            if let oldNode = oldMap[element[keyPath: idKeyPath]] {
                 node = oldNode
 
                 // Checks if there is a preceding item that was not preceding in
@@ -145,7 +113,8 @@ extension ForEach: TypeSafeView, View where Child: View, Items.Element: Identifi
                     requiresOngoingReinsertion
                     || {
                         guard
-                            let ownOldIndex = oldIdentifiers.firstIndex(of: element.id)
+                            let ownOldIndex = oldIdentifiers.firstIndex(
+                                of: element[keyPath: idKeyPath])
                         else { return false }
 
                         let subset = oldIdentifiers[identifiersStart..<ownOldIndex]
@@ -158,7 +127,7 @@ extension ForEach: TypeSafeView, View where Child: View, Items.Element: Identifi
                 }
             } else {
                 // New Items need ongoing reinsertion to get
-                // displayed at the correct location.
+                // displayed at the correct locat ion.
                 requiresOngoingReinsertion = true
                 node = AnyViewGraphNode(
                     for: childContent,
@@ -168,8 +137,8 @@ extension ForEach: TypeSafeView, View where Child: View, Items.Element: Identifi
                 addChild(node.widget.into())
             }
 
-            children.nodeIdentifierMap[element.id] = node
-            children.identifiers.append(element.id)
+            children.nodeIdentifierMap[element[keyPath: idKeyPath]] = node
+            children.identifiers.append(element[keyPath: idKeyPath])
 
             children.nodes.append(node)
 
@@ -222,17 +191,18 @@ extension ForEach: TypeSafeView, View where Child: View, Items.Element: Identifi
 /// when elements are added/removed.
 class ForEachViewChildren<
     Items: Collection,
+    ID: Hashable,
     Child: View
->: ViewGraphNodeChildren where Items.Index == Int, Items.Element: Identifiable {
+>: ViewGraphNodeChildren {
     /// The nodes for all current children of the ``ForEach`` view.
     var nodes: [AnyViewGraphNode<Child>] = []
 
     /// The nodes for all current children of the ``ForEach`` view, queriable by their identifier.
-    var nodeIdentifierMap: [Items.Element.ID: AnyViewGraphNode<Child>]
+    var nodeIdentifierMap: [ID: AnyViewGraphNode<Child>]
 
     /// The identifiers of all current children ``ForEach`` view in the order they are displayed.
     /// Can be used for checking if an element was moved or an element was inserted in front of it.
-    var identifiers: OrderedSet<Items.Element.ID>
+    var identifiers: OrderedSet<ID>
 
     /// Changes queued during `dryRun` updates.
     var queuedChanges: [Change] = []
@@ -254,13 +224,14 @@ class ForEachViewChildren<
 
     /// Gets a variable length view's children as view graph node children.
     init<Backend: AppBackend>(
-        from view: ForEach<Items, Child>,
+        from view: ForEach<Items, ID, Child>,
         backend: Backend,
+        idKeyPath: KeyPath<Items.Element, ID>,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
-        var nodeIdentifierMap = [Items.Element.ID: AnyViewGraphNode<Child>]()
-        var identifiers = OrderedSet<Items.Element.ID>()
+        var nodeIdentifierMap = [ID: AnyViewGraphNode<Child>]()
+        var identifiers = OrderedSet<ID>()
         var viewNodes = [AnyViewGraphNode<Child>]()
 
         for (index, element) in view.elements.enumerated() {
@@ -278,11 +249,113 @@ class ForEachViewChildren<
             let anyViewGraphNode = AnyViewGraphNode(viewGraphNode)
             viewNodes.append(anyViewGraphNode)
 
-            identifiers.append(element.id)
-            nodeIdentifierMap[element.id] = anyViewGraphNode
+            identifiers.append(element[keyPath: idKeyPath])
+            nodeIdentifierMap[element[keyPath: idKeyPath]] = anyViewGraphNode
         }
         nodes = viewNodes
         self.identifiers = identifiers
         self.nodeIdentifierMap = nodeIdentifierMap
+    }
+}
+
+// MARK: - Alternative Initializers
+extension ForEach where Items.Element: Hashable, ID == Items.Element {
+    @_disfavoredOverload
+    public init(
+        items elements: Items,
+        _ child: @escaping (Items.Element) -> Child
+    ) {
+        self.elements = elements
+        self.child = child
+        self.idKeyPath = \.self
+    }
+}
+
+extension ForEach where Child == [MenuItem], Items.Element: Hashable, ID == Items.Element {
+    /// Creates a view that creates child views on demand based on a collection of data.
+    @_disfavoredOverload
+    public init(
+        items elements: Items,
+        @MenuItemsBuilder _ child: @escaping (Items.Element) -> [MenuItem]
+    ) {
+        self.elements = elements
+        self.child = child
+        self.idKeyPath = \.self
+    }
+}
+
+extension ForEach where Child == [MenuItem] {
+    /// Creates a view that creates child views on demand based on a collection of data.
+    @_disfavoredOverload
+    public init(
+        _ elements: Items,
+        id keyPath: KeyPath<Items.Element, ID>,
+        @MenuItemsBuilder _ child: @escaping (Items.Element) -> [MenuItem]
+    ) {
+        self.elements = elements
+        self.child = child
+        self.idKeyPath = keyPath
+    }
+}
+
+extension ForEach where Items == [Int], ID == Items.Element {
+    /// Creates a view that creates child views on demand based on a given ClosedRange
+    @_disfavoredOverload
+    public init(
+        _ range: ClosedRange<Int>,
+        child: @escaping (Int) -> Child
+    ) {
+        self.elements = Array(range)
+        self.child = child
+        self.idKeyPath = \.self
+    }
+
+    /// Creates a view that creates child views on demand based on a given Range
+    @_disfavoredOverload
+    public init(
+        _ range: Range<Int>,
+        child: @escaping (Int) -> Child
+    ) {
+        self.elements = Array(range)
+        self.child = child
+        self.idKeyPath = \.self
+    }
+}
+
+extension ForEach where Items == [Int] {
+    /// Creates a view that creates child views on demand based on a given ClosedRange
+    @_disfavoredOverload
+    public init(
+        _ range: ClosedRange<Int>,
+        id keyPath: KeyPath<Items.Element, ID>,
+        child: @escaping (Int) -> Child
+    ) {
+        self.elements = Array(range)
+        self.child = child
+        self.idKeyPath = keyPath
+    }
+
+    /// Creates a view that creates child views on demand based on a given Range
+    @_disfavoredOverload
+    public init(
+        _ range: Range<Int>,
+        id keyPath: KeyPath<Items.Element, ID>,
+        child: @escaping (Int) -> Child
+    ) {
+        self.elements = Array(range)
+        self.child = child
+        self.idKeyPath = keyPath
+    }
+}
+
+extension ForEach where Items.Element: Identifiable, ID == Items.Element.ID {
+    /// Creates a view that creates child views on demand based on a collection of identifiable data.
+    public init(
+        _ elements: Items,
+        child: @escaping (Items.Element) -> Child
+    ) {
+        self.elements = elements
+        self.child = child
+        self.idKeyPath = \.id
     }
 }
