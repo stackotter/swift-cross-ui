@@ -69,7 +69,6 @@ struct ForEachApp: App {
                     }
                     .padding(10)
                 }
-                .focusable()
             }
         }
         .defaultSize(width: 400, height: 800)
