@@ -96,6 +96,7 @@ extension ForEach: TypeSafeView, View where Child: View {
 
         var layoutableChildren: [LayoutSystem.LayoutableChild] = []
 
+        let oldNodes = children.nodes
         let oldMap = children.nodeIdentifierMap
         let oldIdentifiers = children.identifiers
         let identifiersStart = oldIdentifiers.startIndex
@@ -108,52 +109,63 @@ extension ForEach: TypeSafeView, View where Child: View {
         // still exists in the new one is reinserted to ensure that items are
         // rendered in the correct order.
         var requiresOngoingReinsertion = false
+        var ongoingNodeReusingDisabled = false
+        var inserted = false
 
         for element in elements {
             let childContent = child(element)
             let node: AnyViewGraphNode<Child>
 
-            if let oldNode = oldMap[element[keyPath: idKeyPath]] {
-                node = oldNode
+            (inserted, _) = children.identifiers.append(element[keyPath: idKeyPath])
+            ongoingNodeReusingDisabled = ongoingNodeReusingDisabled || !inserted
 
-                // Checks if there is a preceding item that was not preceding in
-                // the previous update. If such an item exists, it means that
-                // the order of the collection has changed or that an item was
-                // inserted somewhere in the middle, rather than simply appended.
-                requiresOngoingReinsertion =
-                    requiresOngoingReinsertion
-                    || {
-                        guard
-                            let ownOldIndex = oldIdentifiers.firstIndex(
-                                of: element[keyPath: idKeyPath])
-                        else { return false }
+            if !ongoingNodeReusingDisabled {
+                if let oldNode = oldMap[element[keyPath: idKeyPath]] {
+                    node = oldNode
 
-                        let subset = oldIdentifiers[identifiersStart..<ownOldIndex]
-                        return !children.identifiers.subtracting(subset).isEmpty
-                    }()
+                    // Checks if there is a preceding item that was not preceding in
+                    // the previous update. If such an item exists, it means that
+                    // the order of the collection has changed or that an item was
+                    // inserted somewhere in the middle, rather than simply appended.
+                    requiresOngoingReinsertion =
+                        requiresOngoingReinsertion
+                        || {
+                            guard
+                                let ownOldIndex = oldIdentifiers.firstIndex(
+                                    of: element[keyPath: idKeyPath])
+                            else { return false }
 
-                if requiresOngoingReinsertion {
-                    removeChild(oldNode.widget.into())
-                    addChild(oldNode.widget.into())
+                            let subset = oldIdentifiers[identifiersStart..<ownOldIndex]
+                            return !children.identifiers.subtracting(subset).isEmpty
+                        }()
+
+                    if requiresOngoingReinsertion {
+                        removeChild(oldNode.widget.into())
+                        addChild(oldNode.widget.into())
+                    }
+                } else {
+                    // New Items need ongoing reinsertion to get
+                    // displayed at the correct locat ion.
+                    requiresOngoingReinsertion = true
+                    node = AnyViewGraphNode(
+                        for: childContent,
+                        backend: backend,
+                        environment: environment
+                    )
+                    addChild(node.widget.into())
                 }
+                children.nodeIdentifierMap[element[keyPath: idKeyPath]] = node
             } else {
-                // New Items need ongoing reinsertion to get
-                // displayed at the correct locat ion.
-                requiresOngoingReinsertion = true
                 node = AnyViewGraphNode(
                     for: childContent,
                     backend: backend,
                     environment: environment
                 )
-                addChild(node.widget.into())
             }
-
-            children.nodeIdentifierMap[element[keyPath: idKeyPath]] = node
-            children.identifiers.append(element[keyPath: idKeyPath])
 
             children.nodes.append(node)
 
-            if children.isFirstUpdate {
+            if children.isFirstUpdate, !ongoingNodeReusingDisabled {
                 addChild(node.widget.into())
             }
 
@@ -173,10 +185,19 @@ extension ForEach: TypeSafeView, View where Child: View {
 
         children.isFirstUpdate = false
 
-        for removed in oldMap.filter({
-            !children.identifiers.contains($0.key)
-        }).values {
-            removeChild(removed.widget.into())
+        if !ongoingNodeReusingDisabled {
+            for removed in oldMap.filter({
+                !children.identifiers.contains($0.key)
+            }).values {
+                removeChild(removed.widget.into())
+            }
+        } else {
+            for nodeToRemove in oldNodes {
+                removeChild(nodeToRemove.widget.into())
+            }
+            for nodeToAdd in children.nodes {
+                addChild(nodeToAdd.widget.into())
+            }
         }
 
         return LayoutSystem.updateStackLayout(

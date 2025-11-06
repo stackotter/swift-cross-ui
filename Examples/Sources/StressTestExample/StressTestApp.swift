@@ -47,7 +47,7 @@ struct StressTestApp: App {
                         }
                         if let values = values[tab!] {
                             ScrollView {
-                                ForEach(items: values) { value in
+                                ForEach(values, id: \.self) { value in
                                     Text(value)
                                 }
                             }.frame(minWidth: 300)
