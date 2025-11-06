@@ -1,3 +1,5 @@
+import OrderedCollections
+
 /// A view that displays a variable amount of children.
 public struct ForEach<Items: Collection, Child> where Items.Index == Int {
     /// A variable-length collection of elements to display.
@@ -40,7 +42,7 @@ extension ForEach where Items == [Int] {
     }
 }
 
-extension ForEach: TypeSafeView, View where Child: View {
+extension ForEach: TypeSafeView, View where Child: View, Items.Element: Identifiable {
     typealias Children = ForEachViewChildren<Items, Child>
 
     public var body: EmptyView {
@@ -112,20 +114,69 @@ extension ForEach: TypeSafeView, View where Child: View {
             children.queuedChanges = []
         }
 
-        // TODO: The way we're reusing nodes for technically different elements means that if
-        //   Child has state of its own then it could get pretty confused thinking that its state
-        //   changed whereas it was actually just moved to a new slot in the array. Probably not
-        //   a huge issue, but definitely something to keep an eye on.
         var layoutableChildren: [LayoutSystem.LayoutableChild] = []
-        for (i, node) in children.nodes.enumerated() {
-            guard i < elements.count else {
-                break
+
+        let oldNodes = children.nodes
+        let oldMap = children.nodeIdentifierMap
+        let oldIdentifiers = children.identifiers
+        let identifiersStart = oldIdentifiers.startIndex
+
+        children.nodes = []
+        children.nodeIdentifierMap = [:]
+        children.identifiers = []
+
+        // Once this is true, every node that existed in the previous update and
+        // still exists in the new one is reinserted to ensure that items are
+        // rendered in the correct order.
+        var requiresOngoingReinsertion = false
+
+        for (i, element) in elements.enumerated() {
+            let childContent = child(element)
+            let node: AnyViewGraphNode<Child>
+
+            if let oldNode = oldMap[element.id] {
+                node = oldNode
+
+                // Checks if there is a preceding item that was not preceding in
+                // the previous update. If such an item exists, it means that
+                // the order of the collection has changed or that an item was
+                // inserted somewhere in the middle, rather than simply appended.
+                requiresOngoingReinsertion =
+                    requiresOngoingReinsertion
+                    || {
+                        guard
+                            let ownOldIndex = oldIdentifiers.firstIndex(of: element.id)
+                        else { return false }
+
+                        let subset = oldIdentifiers[identifiersStart..<ownOldIndex]
+                        return !children.identifiers.subtracting(subset).isEmpty
+                    }()
+
+                if requiresOngoingReinsertion {
+                    removeChild(oldNode.widget.into())
+                    addChild(oldNode.widget.into())
+                }
+            } else {
+                // New Items need ongoing reinsertion to get
+                // displayed at the correct location.
+                requiresOngoingReinsertion = true
+                node = AnyViewGraphNode(
+                    for: childContent,
+                    backend: backend,
+                    environment: environment
+                )
+                addChild(node.widget.into())
             }
-            let index = elements.startIndex.advanced(by: i)
-            let childContent = child(elements[index])
+
+            children.nodeIdentifierMap[element.id] = node
+            children.identifiers.append(element.id)
+
+            children.nodes.append(node)
+
             if children.isFirstUpdate {
                 addChild(node.widget.into())
             }
+
             layoutableChildren.append(
                 LayoutSystem.LayoutableChild(
                     update: { proposedSize, environment, dryRun in
@@ -139,40 +190,13 @@ extension ForEach: TypeSafeView, View where Child: View {
                 )
             )
         }
+
         children.isFirstUpdate = false
 
-        let nodeCount = children.nodes.count
-        let remainingElementCount = elements.count - nodeCount
-        if remainingElementCount > 0 {
-            let startIndex = elements.startIndex.advanced(by: nodeCount)
-            for i in 0..<remainingElementCount {
-                let childContent = child(elements[startIndex.advanced(by: i)])
-                let node = AnyViewGraphNode(
-                    for: childContent,
-                    backend: backend,
-                    environment: environment
-                )
-                children.nodes.append(node)
-                addChild(node.widget.into())
-                layoutableChildren.append(
-                    LayoutSystem.LayoutableChild(
-                        update: { proposedSize, environment, dryRun in
-                            node.update(
-                                with: childContent,
-                                proposedSize: proposedSize,
-                                environment: environment,
-                                dryRun: dryRun
-                            )
-                        }
-                    )
-                )
-            }
-        } else if remainingElementCount < 0 {
-            let unused = -remainingElementCount
-            for i in (nodeCount - unused)..<nodeCount {
-                removeChild(children.nodes[i].widget.into())
-            }
-            children.nodes.removeLast(unused)
+        for removed in oldMap.filter({
+            !children.identifiers.contains($0.key)
+        }).values {
+            removeChild(removed.widget.into())
         }
 
         return LayoutSystem.updateStackLayout(
@@ -199,9 +223,17 @@ extension ForEach: TypeSafeView, View where Child: View {
 class ForEachViewChildren<
     Items: Collection,
     Child: View
->: ViewGraphNodeChildren where Items.Index == Int {
+>: ViewGraphNodeChildren where Items.Index == Int, Items.Element: Identifiable {
     /// The nodes for all current children of the ``ForEach`` view.
     var nodes: [AnyViewGraphNode<Child>] = []
+
+    /// The nodes for all current children of the ``ForEach`` view, queriable by their identifier.
+    var nodeIdentifierMap: [Items.Element.ID: AnyViewGraphNode<Child>]
+
+    /// The identifiers of all current children ``ForEach`` view in the order they are displayed.
+    /// Can be used for checking if an element was moved or an element was inserted in front of it.
+    var identifiers: OrderedSet<Items.Element.ID>
+
     /// Changes queued during `dryRun` updates.
     var queuedChanges: [Change] = []
 
@@ -227,10 +259,13 @@ class ForEachViewChildren<
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
-        nodes = view.elements
-            .map(view.child)
-            .enumerated()
-            .map { (index, child) in
+        var nodeIdentifierMap = [Items.Element.ID: AnyViewGraphNode<Child>]()
+        var identifiers = OrderedSet<Items.Element.ID>()
+        var viewNodes = [AnyViewGraphNode<Child>]()
+
+        for (index, element) in view.elements.enumerated() {
+            let child = view.child(element)
+            let viewGraphNode = {
                 let snapshot = index < snapshots?.count ?? 0 ? snapshots?[index] : nil
                 return ViewGraphNode(
                     for: child,
@@ -238,7 +273,16 @@ class ForEachViewChildren<
                     snapshot: snapshot,
                     environment: environment
                 )
-            }
-            .map(AnyViewGraphNode.init(_:))
+            }()
+
+            let anyViewGraphNode = AnyViewGraphNode(viewGraphNode)
+            viewNodes.append(anyViewGraphNode)
+
+            identifiers.append(element.id)
+            nodeIdentifierMap[element.id] = anyViewGraphNode
+        }
+        nodes = viewNodes
+        self.identifiers = identifiers
+        self.nodeIdentifierMap = nodeIdentifierMap
     }
 }

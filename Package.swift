@@ -110,6 +110,10 @@ let package = Package(
             url: "https://github.com/stackotter/swift-winui",
             revision: "1695ee3ea2b7a249f6504c7f1759e7ec7a38eb86"
         ),
+        .package(
+            url: "https://github.com/apple/swift-collections.git",
+            .upToNextMajor(from: "1.3.0")
+        ),
         // .package(
         //     url: "https://github.com/stackotter/TermKit",
         //     revision: "163afa64f1257a0c026cc83ed8bc47a5f8fc9704"
@@ -129,6 +133,7 @@ let package = Package(
             dependencies: [
                 "HotReloadingMacrosPlugin",
                 .product(name: "ImageFormats", package: "swift-image-formats"),
+                .product(name: "OrderedCollections", package: "swift-collections")
             ],
             exclude: [
                 "Builders/ViewBuilder.swift.gyb",
