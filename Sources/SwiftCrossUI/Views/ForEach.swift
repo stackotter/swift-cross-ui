@@ -255,7 +255,6 @@ extension ForEach: TypeSafeView, View where Child: View {
         //   a huge issue, but definitely something to keep an eye on.
         var layoutableChildren: [LayoutSystem.LayoutableChild] = []
 
-        let oldNodes = children.nodes
         let oldMap = children.nodeIdentifierMap
         let oldIdentifiers = children.identifiers
         let identifiersStart = oldIdentifiers.startIndex
@@ -269,11 +268,11 @@ extension ForEach: TypeSafeView, View where Child: View {
         // rendered in the correct order.
         var requiresOngoingReinsertion = false
 
-        for (i, element) in elements.enumerated() {
+        for element in elements {
             let childContent = child(element)
             let node: AnyViewGraphNode<Child>
 
-            if let oldNode = oldMap[element.id] {
+            if let oldNode = oldMap[element[keyPath: idKeyPath]] {
                 node = oldNode
 
                 // Checks if there is a preceding item that was not preceding in
@@ -284,7 +283,8 @@ extension ForEach: TypeSafeView, View where Child: View {
                     requiresOngoingReinsertion
                     || {
                         guard
-                            let ownOldIndex = oldIdentifiers.firstIndex(of: element.id)
+                            let ownOldIndex = oldIdentifiers.firstIndex(
+                                of: element[keyPath: idKeyPath])
                         else { return false }
 
                         let subset = oldIdentifiers[identifiersStart..<ownOldIndex]
@@ -297,7 +297,7 @@ extension ForEach: TypeSafeView, View where Child: View {
                 }
             } else {
                 // New Items need ongoing reinsertion to get
-                // displayed at the correct location.
+                // displayed at the correct locat ion.
                 requiresOngoingReinsertion = true
                 node = AnyViewGraphNode(
                     for: childContent,

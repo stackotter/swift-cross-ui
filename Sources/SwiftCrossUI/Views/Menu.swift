@@ -26,11 +26,11 @@ public struct Menu: Sendable {
         ResolvedMenu(
             items: items.map { item in
                 switch item {
-                    case .button(let button):
+                    case .button(let button, _):
                         .button(button.label, button.action)
-                    case .text(let text):
+                    case .text(let text, _):
                         .button(text.string, nil)
-                    case .submenu(let submenu):
+                    case .submenu(let submenu, _):
                         .submenu(submenu.resolve())
                 }
             }

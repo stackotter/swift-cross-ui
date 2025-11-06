@@ -1,3 +1,5 @@
+import Foundation
+
 /// A control that initiates an action.
 public struct Button: Sendable {
     /// The label to show on the button.
