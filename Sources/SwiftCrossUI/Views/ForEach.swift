@@ -83,6 +83,8 @@ extension ForEach: TypeSafeView, View where Child: View {
             children.queuedChanges = []
         }
 
+        // Use the previous update Method when no keyPath is set on a
+        // [Hashable] Collection to optionally keep the old behaviour.
         guard let idKeyPath else {
             return deprecatedUpdate(
                 widget,
@@ -109,13 +111,22 @@ extension ForEach: TypeSafeView, View where Child: View {
         // still exists in the new one is reinserted to ensure that items are
         // rendered in the correct order.
         var requiresOngoingReinsertion = false
+
+        // Forces node recreation when enabled (expensive on large Collections).
+        // Use only when idKeyPath yields non-unique values. Prefer Identifiable
+        // or guaranteed unique, constant identifiers for optimal performance.
+        // Node caching and diffing require unique, stable IDs.
         var ongoingNodeReusingDisabled = false
+
+        // Avoid reallocation
         var inserted = false
 
         for element in elements {
             let childContent = child(element)
             let node: AnyViewGraphNode<Child>
 
+            // Track duplicates: inserted=false if ID exists.
+            // Disables node reuse if any duplicate gets found.
             (inserted, _) = children.identifiers.append(element[keyPath: idKeyPath])
             ongoingNodeReusingDisabled = ongoingNodeReusingDisabled || !inserted
 
@@ -123,10 +134,9 @@ extension ForEach: TypeSafeView, View where Child: View {
                 if let oldNode = oldMap[element[keyPath: idKeyPath]] {
                     node = oldNode
 
-                    // Checks if there is a preceding item that was not preceding in
-                    // the previous update. If such an item exists, it means that
-                    // the order of the collection has changed or that an item was
-                    // inserted somewhere in the middle, rather than simply appended.
+                    // Detects reordering or mid-collection insertion:
+                    // Checks if there is a preceding item that was not
+                    // preceding in the previous update.
                     requiresOngoingReinsertion =
                         requiresOngoingReinsertion
                         || {
@@ -139,20 +149,24 @@ extension ForEach: TypeSafeView, View where Child: View {
                             return !children.identifiers.subtracting(subset).isEmpty
                         }()
 
-                    if requiresOngoingReinsertion {
+                    // Removes node from its previous position and
+                    // re-adds it at the new correct one.
+                    if requiresOngoingReinsertion, !children.isFirstUpdate {
                         removeChild(oldNode.widget.into())
                         addChild(oldNode.widget.into())
                     }
                 } else {
                     // New Items need ongoing reinsertion to get
-                    // displayed at the correct locat ion.
+                    // displayed at the correct location.
                     requiresOngoingReinsertion = true
                     node = AnyViewGraphNode(
                         for: childContent,
                         backend: backend,
                         environment: environment
                     )
-                    addChild(node.widget.into())
+                    if !children.isFirstUpdate {
+                        addChild(node.widget.into())
+                    }
                 }
                 children.nodeIdentifierMap[element[keyPath: idKeyPath]] = node
             } else {
@@ -164,10 +178,6 @@ extension ForEach: TypeSafeView, View where Child: View {
             }
 
             children.nodes.append(node)
-
-            if children.isFirstUpdate, !ongoingNodeReusingDisabled {
-                addChild(node.widget.into())
-            }
 
             layoutableChildren.append(
                 LayoutSystem.LayoutableChild(
@@ -183,9 +193,11 @@ extension ForEach: TypeSafeView, View where Child: View {
             )
         }
 
-        children.isFirstUpdate = false
-
-        if !ongoingNodeReusingDisabled {
+        if children.isFirstUpdate {
+            for nodeToAdd in children.nodes {
+                addChild(nodeToAdd.widget.into())
+            }
+        } else if !ongoingNodeReusingDisabled {
             for removed in oldMap.filter({
                 !children.identifiers.contains($0.key)
             }).values {
@@ -199,6 +211,8 @@ extension ForEach: TypeSafeView, View where Child: View {
                 addChild(nodeToAdd.widget.into())
             }
         }
+
+        children.isFirstUpdate = false
 
         return LayoutSystem.updateStackLayout(
             container: widget,
@@ -434,7 +448,7 @@ extension ForEach where Child == [MenuItem], Items.Element: Hashable, ID == Item
     )
     @_disfavoredOverload
     public init(
-        _ elements: Items,
+        menuItems elements: Items,
         @MenuItemsBuilder _ child: @escaping (Items.Element) -> [MenuItem]
     ) {
         self.elements = elements
@@ -447,7 +461,7 @@ extension ForEach where Child == [MenuItem] {
     /// Creates a view that creates child views on demand based on a collection of data.
     @_disfavoredOverload
     public init(
-        _ elements: Items,
+        menuItems elements: Items,
         id keyPath: KeyPath<Items.Element, ID>,
         @MenuItemsBuilder _ child: @escaping (Items.Element) -> [MenuItem]
     ) {

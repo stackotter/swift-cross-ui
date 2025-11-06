@@ -17,8 +17,8 @@ public struct MenuItemsBuilder {
         first.items
     }
 
-    public static func buildPartialBlock<Items: Collection>(
-        first: ForEach<Items, MenuItem, [MenuItem]>
+    public static func buildPartialBlock<Items: Collection, ID: Hashable>(
+        first: ForEach<Items, ID, [MenuItem]>
     ) -> [MenuItem] {
         first.elements.map(first.child).flatMap { $0 }
     }
@@ -51,9 +51,9 @@ public struct MenuItemsBuilder {
         accumulated + buildPartialBlock(first: next)
     }
 
-    public static func buildPartialBlock<Items: Collection>(
+    public static func buildPartialBlock<Items: Collection, ID: Hashable>(
         accumulated: [MenuItem],
-        next: ForEach<Items, MenuItem, [MenuItem]>
+        next: ForEach<Items, ID, [MenuItem]>
     ) -> [MenuItem] {
         accumulated + buildPartialBlock(first: next)
     }
