@@ -349,6 +349,14 @@ public final class AppKitBackend: AppBackend {
             // Self.scrollBarWidth has changed
             action()
         }
+
+        NotificationCenter.default.addObserver(
+            forName: .NSSystemTimeZoneDidChange,
+            object: nil,
+            queue: .main
+        ) { _ in
+            action()
+        }
     }
 
     public func computeWindowEnvironment(
@@ -1689,6 +1697,80 @@ public final class AppKitBackend: AppBackend {
         let request = URLRequest(url: url)
         webView.load(request)
     }
+
+    public func createDatePicker() -> NSView {
+        let datePicker = CustomDatePicker()
+        datePicker.delegate = datePicker.strongDelegate
+        return datePicker
+    }
+
+    // Depending on the calendar, era is either necessary or must be omitted. Making the wrong
+    // choice for the current calendar means the cursor position is reset after every keystroke. I
+    // know of no simple way to tell whether NSDatePicker requires or forbids eras for a given
+    // calendar, so in lieu of that I have hardcoded the calendar identifiers.
+    private let calendarsWithEras: Set<Calendar.Identifier> = [
+        .buddhist, .coptic, .ethiopicAmeteAlem, .ethiopicAmeteMihret, .indian, .islamic,
+        .islamicCivil, .islamicTabular, .islamicUmmAlQura, .japanese, .persian, .republicOfChina,
+    ]
+
+    public func updateDatePicker(
+        _ datePicker: NSView,
+        environment: EnvironmentValues,
+        date: Date,
+        range: ClosedRange<Date>,
+        components: DatePickerComponents,
+        onChange: @escaping (Date) -> Void
+    ) {
+        let datePicker = datePicker as! CustomDatePicker
+
+        datePicker.isEnabled = environment.isEnabled
+        datePicker.textColor = environment.suggestedForegroundColor.nsColor
+
+        // If the time zone is set to autoupdatingCurrent, then the cursor position is reset after
+        // every keystroke. Thanks Apple
+        datePicker.timeZone =
+            environment.timeZone == .autoupdatingCurrent ? .current : environment.timeZone
+
+        // A couple properties cause infinite update loops if we assign to them on every update, so
+        // check their values first.
+        if datePicker.calendar != environment.calendar {
+            datePicker.calendar = environment.calendar
+        }
+
+        if datePicker.dateValue != date {
+            datePicker.dateValue = date
+        }
+
+        var elementFlags: NSDatePicker.ElementFlags = []
+        if components.contains(.date) {
+            elementFlags.insert(.yearMonthDay)
+            if calendarsWithEras.contains(environment.calendar.identifier) {
+                elementFlags.insert(.era)
+            }
+        }
+        if components.contains(.hourMinuteAndSecond) {
+            elementFlags.insert(.hourMinuteSecond)
+        } else {
+            elementFlags.insert(.hourMinute)
+        }
+
+        if datePicker.datePickerElements != elementFlags {
+            datePicker.datePickerElements = elementFlags
+        }
+
+        datePicker.strongDelegate.onChange = onChange
+
+        datePicker.minDate = range.lowerBound
+        datePicker.maxDate = range.upperBound
+
+        datePicker.datePickerStyle =
+            switch environment.datePickerStyle {
+                case .automatic, .compact:
+                    .textFieldAndStepper
+                case .graphical:
+                    .clockAndCalendar
+            }
+    }
 }
 
 final class NSCustomTapGestureTarget: NSView {
@@ -2189,5 +2271,21 @@ final class CustomWKNavigationDelegate: NSObject, WKNavigationDelegate {
         }
 
         onNavigate?(url)
+    }
+}
+
+final class CustomDatePicker: NSDatePicker {
+    var strongDelegate = CustomDatePickerDelegate()
+}
+
+final class CustomDatePickerDelegate: NSObject, NSDatePickerCellDelegate {
+    var onChange: ((Date) -> Void)?
+
+    func datePickerCell(
+        _: NSDatePickerCell,
+        validateProposedDateValue proposedDateValue: AutoreleasingUnsafeMutablePointer<NSDate>,
+        timeInterval _: UnsafeMutablePointer<TimeInterval>?
+    ) {
+        onChange?(proposedDateValue.pointee as Date)
     }
 }

@@ -39,6 +39,10 @@ open class Box: Widget, Orientable {
         children = []
     }
 
+    public func insert(child: Widget, after sibling: Widget) {
+        gtk_box_insert_child_after(castedPointer(), child.widgetPointer, sibling.widgetPointer)
+    }
+
     @GObjectProperty(named: "spacing") open var spacing: Int
 
     @GObjectProperty(named: "orientation") open var orientation: Orientation

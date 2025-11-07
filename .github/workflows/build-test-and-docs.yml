@@ -52,7 +52,8 @@ jobs:
         swift build --target SpreadsheetExample && \
         swift build --target NotesExample && \
         swift build --target GtkExample && \
-        swift build --target PathsExample
+        swift build --target PathsExample && \
+        swift build --target DatePickerExample
 
     - name: Test
       run: swift test --test-product swift-cross-uiPackageTests
@@ -106,9 +107,10 @@ jobs:
             buildtarget PathsExample
 
             if [ $device_type != TV ]; then
-              # Slider is not implemented for tvOS
+              # Slider and DatePicker are not implemented for tvOS
               buildtarget ControlsExample
               buildtarget RandomNumberGeneratorExample
+              buildtarget DatePickerExample
             fi
 
             if [ $device_type = iPad ]; then
@@ -165,6 +167,7 @@ jobs:
         buildtarget PathsExample
         buildtarget ControlsExample
         buildtarget RandomNumberGeneratorExample
+        buildtarget DatePickerExample
         # TODO test whether this works on Catalyst
         # buildtarget SplitExample
 
@@ -295,7 +298,8 @@ jobs:
         swift build --target StressTestExample && \
         swift build --target SpreadsheetExample && \
         swift build --target NotesExample && \
-        swift build --target GtkExample
+        swift build --target GtkExample && \
+        swift build --target DatePickerExample
 
     - name: Test
       run: swift test --test-product swift-cross-uiPackageTests

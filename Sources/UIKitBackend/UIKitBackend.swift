@@ -10,6 +10,8 @@ public final class UIKitBackend: AppBackend {
     static var mainWindow: UIWindow?
     static var hasReturnedAWindow = false
 
+    private var timeZoneObserver: NSObjectProtocol?
+
     public let scrollBarWidth = 0
     public let defaultPaddingAmount = 15
     public let requiresToggleSwitchSpacer = true
@@ -92,6 +94,7 @@ public final class UIKitBackend: AppBackend {
         var environment = defaultEnvironment
 
         environment.toggleStyle = .switch
+        environment.timeZone = .current
 
         switch UITraitCollection.current.userInterfaceStyle {
             case .light:
@@ -107,6 +110,17 @@ public final class UIKitBackend: AppBackend {
 
     public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
         onTraitCollectionChange = action
+        if timeZoneObserver == nil {
+            timeZoneObserver = NotificationCenter.default.addObserver(
+                forName: .NSSystemTimeZoneDidChange,
+                object: nil,
+                queue: .main
+            ) { [unowned self] _ in
+                MainActor.assumeIsolated {
+                    self.onTraitCollectionChange?()
+                }
+            }
+        }
     }
 
     public func computeWindowEnvironment(

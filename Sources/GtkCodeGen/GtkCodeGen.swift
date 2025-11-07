@@ -27,6 +27,12 @@ struct GtkCodeGen {
         "GtkSelectionModel*": "OpaquePointer?",
         "GtkListItemFactory*": "OpaquePointer?",
         "GtkTextTagTable*": "OpaquePointer?",
+        "int": "Int",
+    ]
+
+    static let cTypesManuallyConverted: [String: String] = [
+        "guint": "guint",
+        "int": "CInt",
     ]
 
     /// Problematic signals which are excluded from the generated Swift
@@ -110,7 +116,7 @@ struct GtkCodeGen {
             "Button", "Entry", "Label", "Range", "Scale", "Image", "Switch", "Spinner",
             "ProgressBar", "FileChooserNative", "NativeDialog", "GestureClick", "GestureSingle",
             "Gesture", "EventController", "GestureLongPress", "GLArea", "DrawingArea",
-            "CheckButton",
+            "CheckButton", "Calendar", "SpinButton",
         ]
         let gtk3AllowListedClasses = ["MenuShell", "EventBox"]
         let gtk4AllowListedClasses = [
@@ -805,6 +811,10 @@ struct GtkCodeGen {
                         .unsafeCopy()
                         .baseAddress!
                     """
+            } else if let type = parameter.type?.cType,
+                let destinationType = cTypesManuallyConverted[type]
+            {
+                return "\(destinationType)(\(argument))"
             }
 
             return argument
