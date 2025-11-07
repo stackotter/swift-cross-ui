@@ -349,6 +349,14 @@ public final class AppKitBackend: AppBackend {
             // Self.scrollBarWidth has changed
             action()
         }
+
+        NotificationCenter.default.addObserver(
+            forName: .NSSystemTimeZoneDidChange,
+            object: nil,
+            queue: .main
+        ) { _ in
+            action()
+        }
     }
 
     public func computeWindowEnvironment(
