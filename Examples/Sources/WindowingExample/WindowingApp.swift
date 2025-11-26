@@ -64,6 +64,112 @@ struct AlertDemo: View {
     }
 }
 
+// A demo displaying SwiftCrossUI's `View.sheet` modifier.
+struct SheetDemo: View {
+    @State var isPresented = false
+    @State var isShortTermSheetPresented = false
+
+    var body: some View {
+        Button("Open Sheet") {
+            isPresented = true
+        }
+        Button("Show Sheet for 5s") {
+            isShortTermSheetPresented = true
+            Task {
+                try? await Task.sleep(nanoseconds: 1_000_000_000 * 5)
+                isShortTermSheetPresented = false
+            }
+        }
+        .sheet(isPresented: $isPresented) {
+            print("sheet dismissed")
+        } content: {
+            SheetBody()
+                .presentationDetents([.height(150), .medium, .large])
+                .presentationDragIndicatorVisibility(.visible)
+                .presentationBackground(.green)
+        }
+        .sheet(isPresented: $isShortTermSheetPresented) {
+            Text("I'm only here for 5s")
+                .padding(20)
+                .presentationDetents([.height(150), .medium, .large])
+                .presentationCornerRadius(10)
+                .presentationBackground(.red)
+        }
+    }
+
+    struct SheetBody: View {
+        @State var isPresented = false
+        @Environment(\.dismiss) var dismiss
+
+        var body: some View {
+            VStack {
+                Text("Nice sheet content")
+                    .padding(20)
+                Button("I want more sheet") {
+                    isPresented = true
+                    print("should get presented")
+                }
+                Button("Dismiss") {
+                    dismiss()
+                }
+                Spacer()
+            }
+            .sheet(isPresented: $isPresented) {
+                print("nested sheet dismissed")
+            } content: {
+                NestedSheetBody(dismissParent: { dismiss() })
+                    .presentationCornerRadius(35)
+            }
+        }
+
+        struct NestedSheetBody: View {
+            @Environment(\.dismiss) var dismiss
+            var dismissParent: () -> Void
+            @State var showNextChild = false
+
+            var body: some View {
+                Text("I'm nested. Its claustrophobic in here.")
+                Button("New Child Sheet") {
+                    showNextChild = true
+                }
+                .sheet(isPresented: $showNextChild) {
+                    DoubleNestedSheetBody(dismissParent: { dismiss() })
+                        .interactiveDismissDisabled()
+                        .onAppear {
+                            print("deepest nested sheet appeared")
+                        }
+                        .onDisappear {
+                            print("deepest nested sheet disappeared")
+                        }
+                }
+                Button("dismiss parent sheet") {
+                    dismissParent()
+                }
+                Button("dismiss") {
+                    dismiss()
+                }
+                .onDisappear {
+                    print("nested sheet disappeared")
+                }
+            }
+        }
+        struct DoubleNestedSheetBody: View {
+            @Environment(\.dismiss) var dismiss
+            var dismissParent: () -> Void
+
+            var body: some View {
+                Text("I'm nested. Its claustrophobic in here.")
+                Button("dismiss parent sheet") {
+                    dismissParent()
+                }
+                Button("dismiss") {
+                    dismiss()
+                }
+            }
+        }
+    }
+}
+
 @main
 @HotReloadable
 struct WindowingApp: App {
@@ -92,6 +198,11 @@ struct WindowingApp: App {
                     Divider()
 
                     AlertDemo()
+
+                    Divider()
+
+                    SheetDemo()
+                        .padding(.bottom, 20)
                 }
                 .padding(20)
             }
@@ -108,23 +219,24 @@ struct WindowingApp: App {
                 }
             }
         }
-
-        WindowGroup("Secondary window") {
-            #hotReloadable {
-                Text("This a secondary window!")
-                    .padding(10)
+        #if !os(iOS) && !os(tvOS)
+            WindowGroup("Secondary window") {
+                #hotReloadable {
+                    Text("This a secondary window!")
+                        .padding(10)
+                }
             }
-        }
-        .defaultSize(width: 200, height: 200)
-        .windowResizability(.contentMinSize)
+            .defaultSize(width: 200, height: 200)
+            .windowResizability(.contentMinSize)
 
-        WindowGroup("Tertiary window") {
-            #hotReloadable {
-                Text("This a tertiary window!")
-                    .padding(10)
+            WindowGroup("Tertiary window") {
+                #hotReloadable {
+                    Text("This a tertiary window!")
+                        .padding(10)
+                }
             }
-        }
-        .defaultSize(width: 200, height: 200)
-        .windowResizability(.contentMinSize)
+            .defaultSize(width: 200, height: 200)
+            .windowResizability(.contentMinSize)
+        #endif
     }
 }

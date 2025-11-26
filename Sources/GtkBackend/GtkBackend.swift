@@ -22,6 +22,7 @@ public final class GtkBackend: AppBackend {
     public typealias Widget = Gtk.Widget
     public typealias Menu = Gtk.PopoverMenu
     public typealias Alert = Gtk.MessageDialog
+    public typealias Sheet = Gtk.Window
 
     public final class Path {
         var path: SwiftCrossUI.Path?
@@ -36,6 +37,7 @@ public final class GtkBackend: AppBackend {
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = true
     public let deviceClass = DeviceClass.desktop
+    public let defaultSheetCornerRadius = 10
 
     var gtkApp: Application
 
@@ -47,6 +49,20 @@ public final class GtkBackend: AppBackend {
     /// All current windows associated with the application. Doesn't include the
     /// precreated window until it gets 'created' via `createWindow`.
     var windows: [Window] = []
+
+    // Sheet management (close-request, programmatic dismiss, interactive lock)
+    private final class SheetContext {
+        var onDismiss: () -> Void
+        var isProgrammaticDismiss: Bool = false
+        var interactiveDismissDisabled: Bool = false
+
+        init(onDismiss: @escaping () -> Void) {
+            self.onDismiss = onDismiss
+        }
+    }
+
+    private var sheetContexts: [OpaquePointer: SheetContext] = [:]
+    private var connectedCloseHandlers: Set<OpaquePointer> = []
 
     // A separate initializer to satisfy ``AppBackend``'s requirements.
     public convenience init() {
@@ -1568,6 +1584,114 @@ public final class GtkBackend: AppBackend {
         }
 
         return properties
+    }
+
+    public func createSheet(content: Widget) -> Gtk.Window {
+        let sheet = Gtk.Window()
+        sheet.setChild(content)
+
+        return sheet
+    }
+
+    public func updateSheet(
+        _ sheet: Gtk.Window,
+        size: SIMD2<Int>,
+        onDismiss: @escaping () -> Void
+    ) {
+        let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
+
+        sheet.size = Size(width: size.x, height: size.y)
+
+        // Add a slight border to not be just a flat corner
+        sheet.css.set(property: .border(color: SwiftCrossUI.Color.gray.gtkColor, width: 1))
+
+        let ctx = getOrCreateSheetContext(for: sheet)
+        ctx.onDismiss = onDismiss
+
+        sheet.css.set(property: .cornerRadius(defaultSheetCornerRadius))
+
+        if connectedCloseHandlers.insert(key).inserted {
+            sheet.onCloseRequest = { [weak self] _ in
+                if ctx.interactiveDismissDisabled { return }
+
+                if ctx.isProgrammaticDismiss {
+                    ctx.isProgrammaticDismiss = false
+                    return
+                }
+
+                self?.runInMainThread {
+                    ctx.onDismiss()
+                }
+                return
+            }
+
+            sheet.setEscapeKeyPressedHandler {
+                if ctx.interactiveDismissDisabled { return }
+                self.runInMainThread {
+                    ctx.onDismiss()
+                }
+            }
+
+        }
+    }
+
+    public func showSheet(_ sheet: Gtk.Window, sheetParent: Any) {
+        let window = sheetParent as! Gtk.Window
+        sheet.isModal = true
+        sheet.isDecorated = false
+        sheet.setTransient(for: window)
+        sheet.present()
+        window.managedAttachedSheet = sheet
+    }
+
+    public func dismissSheet(_ sheet: Gtk.Window, sheetParent: Any) {
+        let window = sheetParent as! Gtk.Window
+
+        if let nestedSheet = window.managedAttachedSheet {
+            dismissSheet(nestedSheet, sheetParent: sheet)
+        }
+
+        defer { window.managedAttachedSheet = nil }
+
+        let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
+
+        if let ctx = sheetContexts[key] {
+            ctx.isProgrammaticDismiss = true
+        }
+
+        sheet.destroy()
+        sheetContexts.removeValue(forKey: key)
+        connectedCloseHandlers.remove(key)
+    }
+
+    public func size(ofSheet sheet: Gtk.Window) -> SIMD2<Int> {
+        return SIMD2(x: sheet.size.width, y: sheet.size.height)
+    }
+
+    public func setPresentationBackground(of sheet: Gtk.Window, to color: SwiftCrossUI.Color) {
+        sheet.css.set(properties: [.backgroundColor(color.gtkColor)])
+    }
+
+    public func setInteractiveDismissDisabled(for sheet: Gtk.Window, to disabled: Bool) {
+        let ctx = getOrCreateSheetContext(for: sheet)
+
+        ctx.interactiveDismissDisabled = disabled
+    }
+
+    public func setPresentationCornerRadius(of sheet: Gtk.Window, to radius: Double) {
+        let radius = Int(radius)
+        sheet.css.set(property: .cornerRadius(radius))
+    }
+
+    private func getOrCreateSheetContext(for sheet: Gtk.Window) -> SheetContext {
+        let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
+        if let ctx = sheetContexts[key] {
+            return ctx
+        } else {
+            let ctx = SheetContext(onDismiss: {})
+            sheetContexts[key] = ctx
+            return ctx
+        }
     }
 }
 

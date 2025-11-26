@@ -1,0 +1,77 @@
+import CGtk
+
+/// Provides access to key events.
+open class EventControllerKey: EventController {
+    /// Creates a new event controller that will handle key events.
+    public convenience init() {
+        self.init(
+            gtk_event_controller_key_new()
+        )
+    }
+
+    public override func registerSignals() {
+        super.registerSignals()
+
+        addSignal(name: "im-update") { [weak self] () in
+            guard let self = self else { return }
+            self.imUpdate?(self)
+        }
+
+        let handler1:
+            @convention(c) (
+                UnsafeMutableRawPointer, UInt, UInt, GdkModifierType, UnsafeMutableRawPointer
+            ) -> Void =
+                { _, value1, value2, value3, data in
+                    SignalBox3<UInt, UInt, GdkModifierType>.run(data, value1, value2, value3)
+                }
+
+        addSignal(name: "key-pressed", handler: gCallback(handler1)) {
+            [weak self] (param0: UInt, param1: UInt, param2: GdkModifierType) in
+            guard let self = self else { return }
+            self.keyPressed?(self, param0, param1, param2)
+        }
+
+        let handler2:
+            @convention(c) (
+                UnsafeMutableRawPointer, UInt, UInt, GdkModifierType, UnsafeMutableRawPointer
+            ) -> Void =
+                { _, value1, value2, value3, data in
+                    SignalBox3<UInt, UInt, GdkModifierType>.run(data, value1, value2, value3)
+                }
+
+        addSignal(name: "key-released", handler: gCallback(handler2)) {
+            [weak self] (param0: UInt, param1: UInt, param2: GdkModifierType) in
+            guard let self = self else { return }
+            self.keyReleased?(self, param0, param1, param2)
+        }
+
+        let handler3:
+            @convention(c) (UnsafeMutableRawPointer, GdkModifierType, UnsafeMutableRawPointer) ->
+                Void =
+                { _, value1, data in
+                    SignalBox1<GdkModifierType>.run(data, value1)
+                }
+
+        addSignal(name: "modifiers", handler: gCallback(handler3)) {
+            [weak self] (param0: GdkModifierType) in
+            guard let self = self else { return }
+            self.modifiers?(self, param0)
+        }
+    }
+
+    /// Emitted whenever the input method context filters away
+    /// a keypress and prevents the @controller receiving it.
+    ///
+    /// See [method@Gtk.EventControllerKey.set_im_context] and
+    /// [method@Gtk.IMContext.filter_keypress].
+    public var imUpdate: ((EventControllerKey) -> Void)?
+
+    /// Emitted whenever a key is pressed.
+    public var keyPressed: ((EventControllerKey, UInt, UInt, GdkModifierType) -> Void)?
+
+    /// Emitted whenever a key is released.
+    public var keyReleased: ((EventControllerKey, UInt, UInt, GdkModifierType) -> Void)?
+
+    /// Emitted whenever the state of modifier keys and pointer buttons change.
+    public var modifiers: ((EventControllerKey, GdkModifierType) -> Void)?
+}
