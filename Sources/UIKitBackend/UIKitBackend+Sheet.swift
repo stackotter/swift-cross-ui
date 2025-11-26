@@ -7,46 +7,80 @@ extension UIKitBackend {
     public func createSheet(content: Widget) -> CustomSheet {
         let sheet = CustomSheet()
         #if !os(tvOS)
-            sheet.modalPresentationStyle = .formSheet
+            sheet.modalPresentationStyle = .pageSheet
         #else
             sheet.modalPresentationStyle = .overFullScreen
         #endif
-        sheet.view = content.view
+
+        let contentView = UIView()
+        if let childController = content.controller {
+            sheet.addChild(childController)
+        }
+        contentView.addSubview(content.view)
+
+        sheet.topConstraint = contentView.topAnchor.constraint(
+            equalTo: content.view.topAnchor,
+            constant: 0
+        )
+        sheet.leadingConstraint = contentView.leadingAnchor.constraint(
+            equalTo: content.view.leadingAnchor,
+            constant: 0
+        )
+        sheet.topConstraint?.isActive = true
+        sheet.leadingConstraint?.isActive = true
+
+        sheet.view = contentView
+
         return sheet
     }
 
     public func updateSheet(
         _ sheet: CustomSheet,
         size: SIMD2<Int>,
-        onDismiss: @escaping () -> Void
+        onDismiss: @escaping () -> Void,
+        cornerRadius: Double?,
+        detents: [PresentationDetent],
+        dragIndicatorVisibility: Visibility,
+        backgroundColor: Color?,
+        interactiveDismissDisabled: Bool
     ) {
-        sheet.view.frame.size = CGSize(width: size.x, height: size.y)
+        // Center the sheet's content
+        let leadingPadding = (sheet.preferredContentSize.width - CGFloat(size.x)) / 2
+        sheet.leadingConstraint!.constant = leadingPadding
+
         sheet.onDismiss = onDismiss
+        setPresentationDetents(of: sheet, to: detents)
+        setPresentationCornerRadius(of: sheet, to: cornerRadius)
+        setPresentationDragIndicatorVisibility(of: sheet, to: dragIndicatorVisibility, detents: detents)
+
+        // TODO: Get the default background color from the environment (via colorScheme?)
+        sheet.view.backgroundColor = backgroundColor?.uiColor ?? UIColor.systemBackground
+
+        // From the UIKit docs for isModalInPresentation:
+        //   When you set it to true, UIKit ignores events outside the view controller’s
+        //   bounds and prevents the interactive dismissal of the view controller while
+        //   it is onscreen.
+        sheet.isModalInPresentation = interactiveDismissDisabled
     }
 
-    public func showSheet(
+    public func presentSheet(
         _ sheet: CustomSheet,
-        sheetParent: Any
+        window: Window,
+        parentSheet: Sheet?
     ) {
-        var topController: UIViewController? = nil
-        if let window = sheetParent as? UIWindow {
-            topController = window.rootViewController
-        } else {
-            topController = sheetParent as? UIViewController
-        }
-        topController?.present(sheet, animated: true)
+        // We use the controller of the parent sheet (if present) or the controller
+        // of the root window. This allows us to walk the chain of nested presentations
+        // easily by repeatedly accessing presentedViewController. If we just used the
+        // 'closest' controller to the view that caused the presentation, then the
+        // chain wouldn't be continuous (and we can't do that anyway with the way
+        // AppBackend's sheet API has been constructed).
+        let enclosingController = parentSheet ?? window.rootViewController
+        enclosingController!.present(sheet, animated: true)
     }
 
-    public func dismissSheet(_ sheet: CustomSheet, sheetParent: Any) {
-        // If this sheet has a presented view controller (nested sheet), dismiss it first
-        if let presentedVC = sheet.presentedViewController {
-            presentedVC.dismiss(animated: false) { [weak sheet] in
-                // After the nested sheet is dismissed, dismiss this sheet
-                sheet?.dismissProgrammatically()
-            }
-        } else {
-            sheet.dismissProgrammatically()
-        }
+    public func dismissSheet(_ sheet: CustomSheet, window: Window, parentSheet: Sheet?) {
+        // UIKit automatically dismisses nested presentations on our behalf.
+        sheet.dismissProgrammatically()
     }
 
     public func sizeOf(_ sheet: CustomSheet) -> SIMD2<Int> {
@@ -54,10 +88,18 @@ extension UIKitBackend {
         return SIMD2(x: Int(size.width), y: Int(size.height))
     }
 
-    public func setPresentationDetents(of sheet: CustomSheet, to detents: [PresentationDetent]) {
+    private func setPresentationDetents(of sheet: CustomSheet, to detents: [PresentationDetent]) {
         if #available(iOS 15.0, macCatalyst 15.0, *) {
             #if !os(tvOS) && !os(visionOS)
                 if let sheetPresentation = sheet.sheetPresentationController {
+                    // From the UIKit docs for `detents`:
+                    //   The default value is an array that contains the value
+                    //   large(). This array must contain at least one element.
+                    guard !detents.isEmpty else {
+                        sheetPresentation.detents = [.large()]
+                        return
+                    }
+
                     sheetPresentation.detents = detents.map {
                         switch $0 {
                             case .medium: return .medium()
@@ -68,7 +110,8 @@ extension UIKitBackend {
                                         identifier: .init("Fraction:\(fraction)"),
                                         resolver: { context in
                                             context.maximumDetentValue * fraction
-                                        })
+                                        }
+                                    )
                                 } else {
                                     return .medium()
                                 }
@@ -78,7 +121,8 @@ extension UIKitBackend {
                                         identifier: .init("Height:\(height)"),
                                         resolver: { context in
                                             height
-                                        })
+                                        }
+                                    )
                                 } else {
                                     return .medium()
                                 }
@@ -87,76 +131,94 @@ extension UIKitBackend {
                 }
             #endif
         } else {
-            #if DEBUG
-                print(
-                    "Your current OS Version doesn't support variable sheet heights. Setting presentationDetents is only available from iOS 15.0. tvOS and visionOS are not supported."
-                )
-            #endif
+            // TODO: Maybe we can backport the detent behaviour?
+            debugLogOnce(
+                """
+                Your current OS version doesn't support variable sheet heights. \
+                Setting presentationDetents only has an effect from iOS 15.0. \
+                tvOS and visionOS do not support it at all.
+                """
+            )
         }
     }
 
-    public func setPresentationCornerRadius(of sheet: CustomSheet, to radius: Double) {
+    private func setPresentationCornerRadius(of sheet: CustomSheet, to radius: Double?) {
         if #available(iOS 15.0, *) {
             #if !os(tvOS) && !os(visionOS)
                 if let sheetController = sheet.sheetPresentationController {
-                    sheetController.preferredCornerRadius = radius
+                    sheetController.preferredCornerRadius = radius.map { CGFloat($0) }
                 }
             #endif
         } else {
-            #if DEBUG
-                print(
-                    "Your current OS Version doesn't support variable sheet corner radii. Setting them is only available from iOS 15.0. tvOS and visionOS are not supported."
-                )
-            #endif
+            debugLogOnce(
+                """
+                Your current OS version doesn't support variable sheet corner \
+                radii. Setting them only has an effect from iOS 15.0. tvOS and \
+                visionOS do not support it at all.
+                """
+            )
         }
     }
 
-    public func setPresentationDragIndicatorVisibility(
-        of sheet: Sheet, to visibility: Visibility
+    private func setPresentationDragIndicatorVisibility(
+        of sheet: Sheet,
+        to visibility: Visibility,
+        detents: [PresentationDetent]
     ) {
         if #available(iOS 15.0, *) {
             #if !os(tvOS) && !os(visionOS)
                 if let sheetController = sheet.sheetPresentationController {
-                    sheetController.prefersGrabberVisible = visibility == .visible ? true : false
+                    switch visibility {
+                        case .visible:
+                            sheetController.prefersGrabberVisible = true
+                        case .hidden:
+                            sheetController.prefersGrabberVisible = false
+                        case .automatic:
+                            sheetController.prefersGrabberVisible = detents.count > 1
+                    }
                 }
             #endif
         } else {
-            #if DEBUG
-                print(
-                    "Your current OS Version doesn't support setting sheet drag indicator visibility. Setting this is only available from iOS 15.0. tvOS and visionOS are not supported."
-                )
-            #endif
+            debugLogOnce(
+                """
+                Your current OS version doesn't support setting sheet drag \
+                indicator visibility. Setting this only has an effect from iOS \
+                15.0. tvOS and visionOS do not support it at all.
+                """
+            )
         }
-    }
-
-    public func setPresentationBackground(of sheet: CustomSheet, to color: Color) {
-        sheet.view.backgroundColor = color.uiColor
-    }
-
-    public func setInteractiveDismissDisabled(for sheet: Sheet, to disabled: Bool) {
-        sheet.isModalInPresentation = disabled
     }
 }
 
 public final class CustomSheet: UIViewController {
     var onDismiss: (() -> Void)?
-    private var isDismissedProgrammatically = false
+    private var wasDismissedProgrammatically = false
 
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    var topConstraint: NSLayoutConstraint?
+    var leadingConstraint: NSLayoutConstraint?
 
     func dismissProgrammatically() {
-        isDismissedProgrammatically = true
+        let hasNestedPresentation = presentedViewController != nil
+        if hasNestedPresentation {
+            // This will dismiss all nested presentations
+            dismiss(animated: false)
+        }
+
+        // When the controller doesn't have a nested presentation, which
+        // we've guaranteed at this point, `dismiss` defers to the controller
+        // that presented the current controller to `dismiss` the current
+        // controller, which is what we want.
+        wasDismissedProgrammatically = true
         dismiss(animated: true)
     }
 
     public override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        // Only call onDismiss if the sheet was dismissed by user interaction (swipe down, tap outside)
-        // not when dismissed programmatically via the dismiss action
-        if !isDismissedProgrammatically {
+        // Only call onDismiss if the sheet was dismissed by user interaction
+        // (swipe down, tap outside) not when dismissed programmatically via
+        // the dismiss action.
+        if !wasDismissedProgrammatically {
             onDismiss?()
         }
     }

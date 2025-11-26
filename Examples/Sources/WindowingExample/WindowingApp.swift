@@ -67,104 +67,90 @@ struct AlertDemo: View {
 // A demo displaying SwiftCrossUI's `View.sheet` modifier.
 struct SheetDemo: View {
     @State var isPresented = false
-    @State var isShortTermSheetPresented = false
+    @State var isEphemeralSheetPresented = false
+    @State var ephemeralSheetDismissalTask: Task<Void, Never>?
 
     var body: some View {
         Button("Open Sheet") {
             isPresented = true
         }
         Button("Show Sheet for 5s") {
-            isShortTermSheetPresented = true
-            Task {
-                try? await Task.sleep(nanoseconds: 1_000_000_000 * 5)
-                isShortTermSheetPresented = false
+            isEphemeralSheetPresented = true
+            ephemeralSheetDismissalTask = Task {
+                do {
+                    try await Task.sleep(nanoseconds: 5 * 1_000_000_000)
+                    isEphemeralSheetPresented = false
+                } catch {}
             }
         }
         .sheet(isPresented: $isPresented) {
-            print("sheet dismissed")
+            print("Root sheet dismissed")
         } content: {
             SheetBody()
-                .presentationDetents([.height(150), .medium, .large])
-                .presentationDragIndicatorVisibility(.visible)
+                .presentationDetents([.height(250), .medium, .large])
                 .presentationBackground(.green)
         }
-        .sheet(isPresented: $isShortTermSheetPresented) {
+        .sheet(isPresented: $isEphemeralSheetPresented) {
+            ephemeralSheetDismissalTask?.cancel()
+        } content: {
             Text("I'm only here for 5s")
                 .padding(20)
-                .presentationDetents([.height(150), .medium, .large])
+                .presentationDetents([.medium])
                 .presentationCornerRadius(10)
                 .presentationBackground(.red)
         }
     }
 
     struct SheetBody: View {
-        @State var isPresented = false
+        @State var isNestedSheetPresented = false
         @Environment(\.dismiss) var dismiss
 
         var body: some View {
             VStack {
-                Text("Nice sheet content")
-                    .padding(20)
-                Button("I want more sheet") {
-                    isPresented = true
-                    print("should get presented")
+                Text("Root sheet")
+                Button("Present a nested sheet") {
+                    isNestedSheetPresented = true
                 }
                 Button("Dismiss") {
                     dismiss()
                 }
-                Spacer()
             }
-            .sheet(isPresented: $isPresented) {
-                print("nested sheet dismissed")
+            .padding()
+            .sheet(isPresented: $isNestedSheetPresented) {
+                print("Nested sheet dismissed")
             } content: {
-                NestedSheetBody(dismissParent: { dismiss() })
-                    .presentationCornerRadius(35)
+                NestedSheetBody(dismissRoot: { dismiss() })
+                    .presentationDetents([.height(250), .medium, .large])
             }
         }
+    }
 
-        struct NestedSheetBody: View {
-            @Environment(\.dismiss) var dismiss
-            var dismissParent: () -> Void
-            @State var showNextChild = false
+    struct NestedSheetBody: View {
+        var dismissRoot: () -> Void
 
-            var body: some View {
-                Text("I'm nested. Its claustrophobic in here.")
-                Button("New Child Sheet") {
+        @Environment(\.dismiss) var dismiss
+        @State var showNextChild = false
+
+        var body: some View {
+            VStack {
+                Text("Nested sheet")
+
+                Button("Present another sheet") {
                     showNextChild = true
                 }
-                .sheet(isPresented: $showNextChild) {
-                    DoubleNestedSheetBody(dismissParent: { dismiss() })
-                        .interactiveDismissDisabled()
-                        .onAppear {
-                            print("deepest nested sheet appeared")
-                        }
-                        .onDisappear {
-                            print("deepest nested sheet disappeared")
-                        }
+                Button("Dismiss root sheet") {
+                    dismissRoot()
                 }
-                Button("dismiss parent sheet") {
-                    dismissParent()
-                }
-                Button("dismiss") {
+                Button("Dismiss") {
                     dismiss()
-                }
-                .onDisappear {
-                    print("nested sheet disappeared")
                 }
             }
-        }
-        struct DoubleNestedSheetBody: View {
-            @Environment(\.dismiss) var dismiss
-            var dismissParent: () -> Void
-
-            var body: some View {
-                Text("I'm nested. Its claustrophobic in here.")
-                Button("dismiss parent sheet") {
-                    dismissParent()
-                }
-                Button("dismiss") {
-                    dismiss()
-                }
+            .padding()
+            .sheet(isPresented: $showNextChild) {
+                print("Nested sheet dismissed")
+            } content: {
+                NestedSheetBody(dismissRoot: dismissRoot)
+                    .presentationDetents([.height(250), .medium, .large])
             }
         }
     }

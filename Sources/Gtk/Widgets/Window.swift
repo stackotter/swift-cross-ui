@@ -7,8 +7,6 @@ import CGtk
 open class Window: Widget {
     public var child: Widget?
 
-    public var managedAttachedSheet: Window?
-
     public convenience init() {
         self.init(gtk_window_new())
     }
@@ -17,6 +15,7 @@ open class Window: Widget {
     @GObjectProperty(named: "resizable") public var resizable: Bool
     @GObjectProperty(named: "modal") public var isModal: Bool
     @GObjectProperty(named: "decorated") public var isDecorated: Bool
+    @GObjectProperty(named: "destroy-with-parent") public var destroyWithParent: Bool
 
     public func setTransient(for other: Window) {
         gtk_window_set_transient_for(castedPointer(), other.castedPointer())
@@ -89,6 +88,11 @@ open class Window: Widget {
             guard let self = self else { return }
             self.onCloseRequest?(self)
         }
+
+        addSignal(name: "destroy") { [weak self] () in
+            guard let self = self else { return }
+            self.onDestroy?(self)
+        }
     }
 
     public func setEscapeKeyPressedHandler(to handler: (() -> Void)?) {
@@ -108,6 +112,7 @@ open class Window: Widget {
     private var escapeKeyEventController: EventControllerKey?
 
     public var onCloseRequest: ((Window) -> Void)?
+    public var onDestroy: ((Window) -> Void)?
     public var escapeKeyPressed: (() -> Void)?
 }
 
