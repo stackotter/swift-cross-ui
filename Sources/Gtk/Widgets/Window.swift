@@ -7,6 +7,8 @@ import CGtk
 open class Window: Widget {
     public var child: Widget?
 
+    public var managedAttachedSheet: Window?
+
     public convenience init() {
         self.init(gtk_window_new())
     }
@@ -82,5 +84,36 @@ open class Window: Widget {
 
     public func present() {
         gtk_window_present(castedPointer())
+
+        addSignal(name: "close-request") { [weak self] () in
+            guard let self = self else { return }
+            self.onCloseRequest?(self)
+        }
+    }
+
+    public func setEscapeKeyPressedHandler(to handler: (() -> Void)?) {
+        escapeKeyPressed = handler
+
+        guard escapeKeyEventController == nil else { return }
+
+        let keyEventController = EventControllerKey()
+        keyEventController.keyPressed = { [weak self] _, keyval, _, _ in
+            guard keyval == GDK_KEY_Escape else { return }
+            self?.escapeKeyPressed?()
+        }
+        escapeKeyEventController = keyEventController
+        addEventController(keyEventController)
+    }
+
+    private var escapeKeyEventController: EventControllerKey?
+
+    public var onCloseRequest: ((Window) -> Void)?
+    public var escapeKeyPressed: (() -> Void)?
+}
+
+final class ValueBox<T> {
+    let value: T
+    init(value: T) {
+        self.value = value
     }
 }

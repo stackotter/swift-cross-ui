@@ -47,6 +47,7 @@ public protocol AppBackend: Sendable {
     associatedtype Menu
     associatedtype Alert
     associatedtype Path
+    associatedtype Sheet
 
     /// Creates an instance of the backend.
     init()
@@ -603,6 +604,95 @@ public protocol AppBackend: Sendable {
     /// ``showAlert(_:window:responseHandler:)``.
     func dismissAlert(_ alert: Alert, window: Window?)
 
+    /// Creates a sheet object (without showing it yet). Sheets contain view content.
+    /// They optionally execute provided code on dismiss and
+    /// prevent users from interacting with the parent window until dimissed.
+    func createSheet(content: Widget) -> Sheet
+
+    /// Updates the content and appearance of a sheet.
+    func updateSheet(
+        _ sheet: Sheet,
+        size: SIMD2<Int>,
+        onDismiss: @escaping () -> Void
+    )
+
+    /// Shows a sheet as a modal on top of or within the given window.
+    /// Users should be unable to interact with the parent window until the
+    /// sheet gets dismissed.
+    /// `onDismiss` only gets called once the sheet has been closed.
+    ///
+    /// Must only get called once for any given sheet.
+    ///
+    /// If `window` is `nil`, the backend can either make the sheet a whole
+    /// app modal, a standalone window, or a modal for a window of its choosing.
+    func showSheet(
+        _ sheet: Sheet,
+        sheetParent: Any
+    )
+
+    /// Dismisses a sheet programmatically.
+    /// Gets used by the ``View/sheet`` modifier to close a sheet.
+    func dismissSheet(_ sheet: Sheet, sheetParent: Any)
+
+    /// Get the dimensions of a sheet
+    func size(ofSheet sheet: Sheet) -> SIMD2<Int>
+
+    /// Sets the corner radius for a sheet presentation.
+    ///
+    /// This method is called when the sheet content has the `presentationCornerRadius`
+    /// preference key set. The corner radius affects the sheet's presentation container,
+    /// not the content itself.
+    ///
+    /// - Parameters:
+    ///   - sheet: The sheet to apply the corner radius to.
+    ///   - radius: The corner radius
+    func setPresentationCornerRadius(of sheet: Sheet, to radius: Double)
+
+    /// Sets the available detents (heights) for a sheet presentation.
+    ///
+    /// This method is called when the sheet content has a `presentationDetents`
+    /// preference key set. Detents allow users to resize the sheet to predefined heights.
+    ///
+    /// - Parameters:
+    ///   - sheet: The sheet to apply the detents to.
+    ///   - detents: An array of detents that the sheet can be resized to.
+    func setPresentationDetents(of sheet: Sheet, to detents: [PresentationDetent])
+
+    /// Sets the visibility for a sheet presentation.
+    ///
+    /// This method is called when the sheet content has a `presentationDragIndicatorVisibility`
+    /// preference key set.
+    ///
+    /// - Parameters:
+    ///   - sheet: The sheet to apply the drag indicator visibility to.
+    ///   - visibility: visibility of the drag indicator (visible or hidden)
+    func setPresentationDragIndicatorVisibility(
+        of sheet: Sheet,
+        to visibility: Visibility
+    )
+
+    /// Sets the background color for a sheet presentation.
+    ///
+    /// This method is called when the sheet content has a `presentationBackground`
+    /// preference key set.
+    ///
+    /// - Parameters:
+    ///   - sheet: The sheet to apply the background to.
+    ///   - color: Background color for the sheet
+    func setPresentationBackground(of sheet: Sheet, to color: Color)
+
+    /// Sets the interactive dismissibility of a sheet.
+    /// when disabled the sheet can only be closed programmatically,
+    /// not through users swiping, escape keys or similar.
+    ///
+    /// This method is called when the sheet content has a `interactiveDismissDisabled`
+    /// preference key set.
+    ///
+    /// - Parameters:
+    ///   - sheet: The sheet to apply the interactive dismissability to.
+    ///   - disabled: Whether interactive dismissing is disabled.
+    func setInteractiveDismissDisabled(for sheet: Sheet, to disabled: Bool)
+
     /// Presents an 'Open file' dialog to the user for selecting files or
     /// folders.
     ///
@@ -725,6 +815,14 @@ extension AppBackend {
     private func todo(_ function: String = #function) -> Never {
         print("\(type(of: self)): \(function) not implemented")
         Foundation.exit(1)
+    }
+
+    private func ignored(_ function: String = #function) {
+        #if DEBUG
+            print(
+                "\(type(of: self)): \(function) is being ignored\nConsult at the documentation for further information."
+            )
+        #endif
     }
 
     // MARK: System
@@ -1160,6 +1258,57 @@ extension AppBackend {
         environment: EnvironmentValues,
         action: @escaping (Bool) -> Void
     ) {
+        todo()
+    }
+
+    public func createSheet(content: Widget) -> Sheet {
+        todo()
+    }
+
+    public func updateSheet(
+        _ sheet: Sheet,
+        size: SIMD2<Int>,
+        onDismiss: @escaping () -> Void
+    ) {
+        todo()
+    }
+
+    public func size(
+        ofSheet sheet: Sheet
+    ) -> SIMD2<Int> {
+        todo()
+    }
+
+    public func showSheet(
+        _ sheet: Sheet,
+        sheetParent: Any
+    ) {
+        todo()
+    }
+
+    public func dismissSheet(_ sheet: Sheet, sheetParent: Any) {
+        todo()
+    }
+
+    public func setPresentationCornerRadius(of sheet: Sheet, to radius: Double) {
+        ignored()
+    }
+
+    public func setPresentationDetents(of sheet: Sheet, to detents: [PresentationDetent]) {
+        ignored()
+    }
+
+    public func setPresentationDragIndicatorVisibility(
+        of sheet: Sheet, to visibility: Visibility
+    ) {
+        ignored()
+    }
+
+    public func setPresentationBackground(of sheet: Sheet, to color: Color) {
+        todo()
+    }
+
+    public func setInteractiveDismissDisabled(for sheet: Sheet, to disabled: Bool) {
         todo()
     }
 }
