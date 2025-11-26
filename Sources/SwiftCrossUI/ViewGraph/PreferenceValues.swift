@@ -21,19 +21,19 @@ public struct PreferenceValues: Sendable {
     /// The drag indicator visibility for a sheet presentation. Applies to enclosing sheets.
     public var presentationDragIndicatorVisibility: Visibility?
 
-    /// The backgroundcolor of a sheet.
+    /// The background color for enclosing sheets.
     public var presentationBackground: Color?
 
-    /// Controls whether the user can interactively dismiss enclosing sheets.  Applies to enclosing sheets.
+    /// Controls whether the user can interactively dismiss enclosing sheets.
     public var interactiveDismissDisabled: Bool?
 
-    public init(
+    init(
         onOpenURL: (@Sendable @MainActor (URL) -> Void)?,
-        presentationDetents: [PresentationDetent]? = nil,
-        presentationCornerRadius: Double? = nil,
-        presentationDragIndicatorVisibility: Visibility? = nil,
-        presentationBackground: Color? = nil,
-        interactiveDismissDisabled: Bool? = nil
+        presentationDetents: [PresentationDetent]?,
+        presentationCornerRadius: Double?,
+        presentationDragIndicatorVisibility: Visibility?,
+        presentationBackground: Color?,
+        interactiveDismissDisabled: Bool?
     ) {
         self.onOpenURL = onOpenURL
         self.presentationDetents = presentationDetents
@@ -43,7 +43,7 @@ public struct PreferenceValues: Sendable {
         self.interactiveDismissDisabled = interactiveDismissDisabled
     }
 
-    public init(merging children: [PreferenceValues]) {
+    init(merging children: [PreferenceValues]) {
         let handlers = children.compactMap(\.onOpenURL)
 
         if !handlers.isEmpty {

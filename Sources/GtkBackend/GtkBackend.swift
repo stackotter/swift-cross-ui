@@ -22,7 +22,12 @@ public final class GtkBackend: AppBackend {
     public typealias Widget = Gtk.Widget
     public typealias Menu = Gtk.PopoverMenu
     public typealias Alert = Gtk.MessageDialog
-    public typealias Sheet = Gtk.Window
+
+    public class Sheet: Gtk.Window {
+        var onDismiss: (() -> Void)? = nil
+        var interactiveDismissDisabled = false
+        var nestedSheet: Sheet?
+    }
 
     public final class Path {
         var path: SwiftCrossUI.Path?
@@ -49,20 +54,6 @@ public final class GtkBackend: AppBackend {
     /// All current windows associated with the application. Doesn't include the
     /// precreated window until it gets 'created' via `createWindow`.
     var windows: [Window] = []
-
-    // Sheet management (close-request, programmatic dismiss, interactive lock)
-    private final class SheetContext {
-        var onDismiss: () -> Void
-        var isProgrammaticDismiss: Bool = false
-        var interactiveDismissDisabled: Bool = false
-
-        init(onDismiss: @escaping () -> Void) {
-            self.onDismiss = onDismiss
-        }
-    }
-
-    private var sheetContexts: [OpaquePointer: SheetContext] = [:]
-    private var connectedCloseHandlers: Set<OpaquePointer> = []
 
     // A separate initializer to satisfy ``AppBackend``'s requirements.
     public convenience init() {
@@ -1586,112 +1577,106 @@ public final class GtkBackend: AppBackend {
         return properties
     }
 
-    public func createSheet(content: Widget) -> Gtk.Window {
-        let sheet = Gtk.Window()
+    public func createSheet(content: Widget) -> Sheet {
+        // TODO: dismissing a sheet with nested sheets doesn't trigger the onDismiss handlers of the nested sheets
+        // TODO: dismissing a sheet with nested sheets causes the app to freeze/deadlock or something along those lines...
+
+        let sheet = Sheet()
         sheet.setChild(content)
+
+        // Listen for interactive dismissals
+        sheet.onCloseRequest = { [weak self, weak sheet] _ in
+            guard let self, let sheet else {
+                return
+            }
+
+            self.runInMainThread {
+                sheet.onDismiss?()
+            }
+        }
+
+        // Allow the escape key to be used to dismiss interactively dismissible
+        // sheets.
+        sheet.setEscapeKeyPressedHandler { [weak self, weak sheet] in
+            guard let self, let sheet, !sheet.interactiveDismissDisabled else {
+                return
+            }
+
+            self.runInMainThread {
+                self.dismissSheet(sheet)
+                sheet.onDismiss?()
+            }
+        }
 
         return sheet
     }
 
     public func updateSheet(
-        _ sheet: Gtk.Window,
+        _ sheet: Sheet,
         size: SIMD2<Int>,
-        onDismiss: @escaping () -> Void
+        onDismiss: @escaping () -> Void,
+        cornerRadius: Double?,
+        detents: [PresentationDetent],
+        dragIndicatorVisibility: Visibility,
+        backgroundColor: SwiftCrossUI.Color?,
+        interactiveDismissDisabled: Bool
     ) {
-        let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
-
         sheet.size = Size(width: size.x, height: size.y)
+        sheet.onDismiss = onDismiss
 
         // Add a slight border to not be just a flat corner
+        sheet.css.clear()
         sheet.css.set(property: .border(color: SwiftCrossUI.Color.gray.gtkColor, width: 1))
 
-        let ctx = getOrCreateSheetContext(for: sheet)
-        ctx.onDismiss = onDismiss
-
-        sheet.css.set(property: .cornerRadius(defaultSheetCornerRadius))
-
-        if connectedCloseHandlers.insert(key).inserted {
-            sheet.onCloseRequest = { [weak self] _ in
-                if ctx.interactiveDismissDisabled { return }
-
-                if ctx.isProgrammaticDismiss {
-                    ctx.isProgrammaticDismiss = false
-                    return
-                }
-
-                self?.runInMainThread {
-                    ctx.onDismiss()
-                }
-                return
-            }
-
-            sheet.setEscapeKeyPressedHandler {
-                if ctx.interactiveDismissDisabled { return }
-                self.runInMainThread {
-                    ctx.onDismiss()
-                }
-            }
-
+        // Respect corner radius and background Color
+        let radius = cornerRadius.map(Int.init) ?? defaultSheetCornerRadius
+        sheet.css.set(property: .cornerRadius(radius))
+        if let backgroundColor {
+            sheet.css.set(property: .backgroundColor(backgroundColor.gtkColor))
         }
+
+        sheet.interactiveDismissDisabled = interactiveDismissDisabled
+
+        // - detents are only supported on mobile so we ignore them.
+        // - dragIndicatorVisibility is only supported on mobile so we ignore it.
     }
 
-    public func showSheet(_ sheet: Gtk.Window, sheetParent: Any) {
-        let window = sheetParent as! Gtk.Window
+    public func presentSheet(_ sheet: Sheet, window: Window, parentSheet: Sheet?) {
+        let parent = parentSheet ?? window
         sheet.isModal = true
         sheet.isDecorated = false
-        sheet.setTransient(for: window)
+        sheet.destroyWithParent = true
+        if let parentSheet {
+            parentSheet.nestedSheet = sheet
+        }
+        sheet.setTransient(for: parent)
         sheet.present()
-        window.managedAttachedSheet = sheet
     }
 
-    public func dismissSheet(_ sheet: Gtk.Window, sheetParent: Any) {
-        let window = sheetParent as! Gtk.Window
+    public func dismissSheet(_ sheet: Sheet, window: Window, parentSheet: Sheet?) {
+        dismissSheet(sheet)
+    }
 
-        if let nestedSheet = window.managedAttachedSheet {
-            dismissSheet(nestedSheet, sheetParent: sheet)
+    private func dismissSheet(_ sheet: Sheet) {
+        // Dismiss the nested sheets from the topmost down. We could use
+        // recursion here, but then unbounded nested sheets would allow for
+        // users to cause programs to run out of stack relatively easily.
+        var nestedSheets: [Sheet] = []
+        var currentSheet = sheet
+        while let nestedSheet = currentSheet.nestedSheet {
+            nestedSheets.append(nestedSheet)
+            currentSheet = nestedSheet
         }
-
-        defer { window.managedAttachedSheet = nil }
-
-        let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
-
-        if let ctx = sheetContexts[key] {
-            ctx.isProgrammaticDismiss = true
+        for nestedSheet in nestedSheets.reversed() {
+            nestedSheet.destroy()
+            nestedSheet.onDismiss?()
         }
 
         sheet.destroy()
-        sheetContexts.removeValue(forKey: key)
-        connectedCloseHandlers.remove(key)
     }
 
-    public func size(ofSheet sheet: Gtk.Window) -> SIMD2<Int> {
+    public func size(ofSheet sheet: Sheet) -> SIMD2<Int> {
         return SIMD2(x: sheet.size.width, y: sheet.size.height)
-    }
-
-    public func setPresentationBackground(of sheet: Gtk.Window, to color: SwiftCrossUI.Color) {
-        sheet.css.set(properties: [.backgroundColor(color.gtkColor)])
-    }
-
-    public func setInteractiveDismissDisabled(for sheet: Gtk.Window, to disabled: Bool) {
-        let ctx = getOrCreateSheetContext(for: sheet)
-
-        ctx.interactiveDismissDisabled = disabled
-    }
-
-    public func setPresentationCornerRadius(of sheet: Gtk.Window, to radius: Double) {
-        let radius = Int(radius)
-        sheet.css.set(property: .cornerRadius(radius))
-    }
-
-    private func getOrCreateSheetContext(for sheet: Gtk.Window) -> SheetContext {
-        let key: OpaquePointer = OpaquePointer(sheet.widgetPointer)
-        if let ctx = sheetContexts[key] {
-            return ctx
-        } else {
-            let ctx = SheetContext(onDismiss: {})
-            sheetContexts[key] = ctx
-            return ctx
-        }
     }
 }
 

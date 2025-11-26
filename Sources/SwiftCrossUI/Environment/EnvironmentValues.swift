@@ -125,13 +125,12 @@ public struct EnvironmentValues {
     /// in, if any. This is a very internal detail that should never get
     /// exposed to users.
     package var window: Any?
+    /// The backend's representation of the sheet that the current view is
+    /// in, if any. This is a very internal detail that should never get
+    /// exposed to users.
+    package var sheet: Any?
     /// The backend in use. Mustn't change throughout the app's lifecycle.
     let backend: any AppBackend
-
-    /// The backend's representation of the class that owns the current sheet,
-    /// if any. This is a very internal detail that should never get
-    /// exposed to users.
-    package var sheetParent: Any?
 
     /// Presents an 'Open file' dialog fit for selecting a single file. Some
     /// backends only allow selecting either files or directories but not both

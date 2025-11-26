@@ -1697,14 +1697,35 @@ public final class AppKitBackend: AppBackend {
             contentRect: NSRect(
                 x: 0,
                 y: 0,
-                width: 400,  // Default width
-                height: 400  // Default height
+                width: 400,
+                height: 400
             ),
             styleMask: [.titled, .closable],
             backing: .buffered,
             defer: true
         )
-        sheet.contentView = content
+
+        let backgroundView = NSView()
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.wantsLayer = true
+
+        let contentView = NSView()
+        contentView.addSubview(backgroundView)
+        contentView.addSubview(content)
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: content.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: content.leadingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: content.bottomAnchor),
+            contentView.trailingAnchor.constraint(equalTo: content.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: backgroundView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
+            contentView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+        ])
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+
+        sheet.contentView = contentView
+        sheet.backgroundView = backgroundView
 
         return sheet
     }
@@ -1712,10 +1733,23 @@ public final class AppKitBackend: AppBackend {
     public func updateSheet(
         _ sheet: NSCustomSheet,
         size: SIMD2<Int>,
-        onDismiss: @escaping () -> Void
+        onDismiss: @escaping () -> Void,
+        cornerRadius: Double?,
+        detents: [PresentationDetent],
+        dragIndicatorVisibility: Visibility,
+        backgroundColor: Color?,
+        interactiveDismissDisabled: Bool
     ) {
-        sheet.contentView?.frame.size = .init(width: size.x, height: size.y)
+        sheet.setContentSize(NSSize(width: size.x, height: size.y))
         sheet.onDismiss = onDismiss
+
+        let background = sheet.backgroundView!
+        background.layer?.backgroundColor = backgroundColor?.nsColor.cgColor
+        sheet.interactiveDismissDisabled = interactiveDismissDisabled
+
+        // - dragIndicatorVisibility is only for mobile so we ignore it
+        // - detents are only for mobile so we ignore them
+        // - cornerRadius isn't supported by macOS so we ignore it
     }
 
     public func size(ofSheet sheet: NSCustomSheet) -> SIMD2<Int> {
@@ -1725,67 +1759,32 @@ public final class AppKitBackend: AppBackend {
         return SIMD2(x: Int(size.width), y: Int(size.height))
     }
 
-    public func showSheet(_ sheet: NSCustomSheet, sheetParent: Any) {
-        // Critical sheets stack. beginSheet only shows a nested sheet
-        // after its parent gets dismissed.
-        let window = sheetParent as! NSCustomWindow
-        window.beginSheet(sheet)
-        window.managedAttachedSheet = sheet
+    public func presentSheet(_ sheet: NSCustomSheet, window: Window, parentSheet: Sheet?) {
+        let parent = parentSheet ?? window
+        // beginSheet and beginCriticalSheet should be equivalent here, because we
+        // directly present the sheet on top of the top-most sheet. If we were to
+        // instead present sheets on top of the root window every time, then
+        // beginCriticalSheet would produce the desired behaviour and beginSheet
+        // would wait for the parent sheet to finish before presenting the nested sheet.
+        parent.beginSheet(sheet)
+        parent.nestedSheet = sheet
     }
 
-    public func dismissSheet(_ sheet: NSCustomSheet, sheetParent: Any) {
-        let window = sheetParent as! NSCustomWindow
+    public func dismissSheet(_ sheet: NSCustomSheet, window: Window, parentSheet: Sheet?) {
+        let parent = parentSheet ?? window
 
-        if let nestedSheet = sheet.managedAttachedSheet {
-            dismissSheet(nestedSheet, sheetParent: sheet)
+        // Dismiss nested sheets first
+        if let nestedSheet = sheet.nestedSheet {
+            dismissSheet(nestedSheet, window: window, parentSheet: sheet)
+            // Although the current sheet has been dismissed programmatically,
+            // the nested sheets kind of haven't (at least, they weren't
+            // directly dismissed by SwiftCrossUI, so we must called onDismiss
+            // to let SwiftUI react to the dismissals of nested sheets).
+            nestedSheet.onDismiss?()
         }
 
-        defer { window.managedAttachedSheet = nil }
-
-        window.endSheet(sheet)
-    }
-
-    public func setPresentationBackground(of sheet: NSCustomSheet, to color: Color) {
-        if let backgroundView = sheet.backgroundView {
-            backgroundView.layer?.backgroundColor = color.nsColor.cgColor
-            return
-        }
-
-        let backgroundView = NSView()
-        backgroundView.wantsLayer = true
-        backgroundView.layer?.backgroundColor = color.nsColor.cgColor
-
-        sheet.backgroundView = backgroundView
-
-        if let existingContentView = sheet.contentView {
-            let container = NSView()
-            container.translatesAutoresizingMaskIntoConstraints = false
-
-            container.addSubview(backgroundView)
-            backgroundView.translatesAutoresizingMaskIntoConstraints = false
-            backgroundView.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive =
-                true
-            backgroundView.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
-            backgroundView.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive =
-                true
-            backgroundView.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
-
-            container.addSubview(existingContentView)
-            existingContentView.translatesAutoresizingMaskIntoConstraints = false
-            existingContentView.leadingAnchor.constraint(equalTo: container.leadingAnchor)
-                .isActive = true
-            existingContentView.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
-            existingContentView.trailingAnchor.constraint(equalTo: container.trailingAnchor)
-                .isActive = true
-            existingContentView.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive =
-                true
-
-            sheet.contentView = container
-        }
-    }
-
-    public func setInteractiveDismissDisabled(for sheet: NSCustomSheet, to disabled: Bool) {
-        sheet.interactiveDismissDisabled = disabled
+        parent.endSheet(sheet)
+        parent.nestedSheet = nil
     }
 }
 
@@ -1796,14 +1795,10 @@ public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate {
 
     public var backgroundView: NSView?
 
-    public func dismiss() {
-        onDismiss?()
-        self.contentViewController?.dismiss(self)
-    }
-
     @objc override public func cancelOperation(_ sender: Any?) {
         if !interactiveDismissDisabled {
-            dismiss()
+            sheetParent?.endSheet(self)
+            onDismiss?()
         }
     }
 }
@@ -2228,7 +2223,10 @@ public class NSCustomWindow: NSWindow {
     var customDelegate = Delegate()
     var persistentUndoManager = UndoManager()
 
-    var managedAttachedSheet: NSCustomSheet?
+    /// A reference to the sheet currently presented on top of this window, if any.
+    /// If the sheet itself has another sheet presented on top of it, then that doubly
+    /// nested sheet gets stored as the sheet's nestedSheet, and so on.
+    var nestedSheet: NSCustomSheet?
 
     /// Allows the backing scale factor to be overridden. Useful for keeping
     /// UI tests consistent across devices.

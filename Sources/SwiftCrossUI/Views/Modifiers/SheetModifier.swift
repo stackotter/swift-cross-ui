@@ -1,9 +1,22 @@
 extension View {
     /// Presents a conditional modal overlay. `onDismiss` gets invoked when the sheet is dismissed.
     ///
-    /// Internal UIViewController.modalPresentationStyle falls back to .overFullScreen (non-opaque) on tvOS.
+    /// On most platforms sheets appear as form-style modals. On tvOS, sheets
+    /// appear as full screen overlays (non-opaque).
+    ///
+    /// `onDismiss` isn't called when the sheet gets dismissed programmatically
+    /// (i.e. by setting `isPresented` to `false`).
+    /// 
+    /// `onDismiss` gets called *after* the sheet has been dismissed by the
+    /// underlying UI framework, and *before* `isPresented` gets set to false.
+    ///
+    /// - Parameters:
+    ///   - isPresented: A binding controlling whether the sheet is presented.
+    ///   - onDismiss: An action to perform when the sheet is dismissed
+    ///     by the user. 
     public func sheet<SheetContent: View>(
-        isPresented: Binding<Bool>, onDismiss: (() -> Void)? = nil,
+        isPresented: Binding<Bool>,
+        onDismiss: (() -> Void)? = nil,
         @ViewBuilder content: @escaping () -> SheetContent
     ) -> some View {
         SheetModifier(
@@ -83,10 +96,10 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
                 isPresented.wrappedValue = false
             })
 
-            var sheetEnvironment =
+            let sheetEnvironment =
                 environment
                 .with(\.dismiss, dismissAction)
-                .with(\.sheetParent, sheet)
+                .with(\.sheet, sheet)
 
             let result = children.sheetContentNode!.update(
                 with: sheetContent(),
@@ -95,56 +108,57 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
                 dryRun: false
             )
 
+            let preferences = result.preferences
             backend.updateSheet(
                 sheet,
                 size: result.size.size,
-                onDismiss: { handleDismiss(children: children) }
+                onDismiss: { handleDismiss(children: children) },
+                cornerRadius: preferences.presentationCornerRadius,
+                detents: preferences.presentationDetents ?? [],
+                dragIndicatorVisibility:
+                    preferences.presentationDragIndicatorVisibility ?? .automatic,
+                backgroundColor: preferences.presentationBackground,
+                interactiveDismissDisabled: preferences.interactiveDismissDisabled ?? false
             )
 
-            let preferences = result.preferences
-
-            // MARK: Sheet Presentation Preferences
-            if let cornerRadius = preferences.presentationCornerRadius {
-                backend.setPresentationCornerRadius(of: sheet, to: cornerRadius)
-            }
-
-            if let detents = preferences.presentationDetents {
-                backend.setPresentationDetents(of: sheet, to: detents)
-            }
-
-            if let presentationDragIndicatorVisibility = preferences
-                .presentationDragIndicatorVisibility
-            {
-                backend.setPresentationDragIndicatorVisibility(
-                    of: sheet, to: presentationDragIndicatorVisibility)
-            }
-
-            if let presentationBackground = preferences.presentationBackground {
-                backend.setPresentationBackground(of: sheet, to: presentationBackground)
-            }
-
-            if let interactiveDismissDisabled = preferences.interactiveDismissDisabled {
-                backend.setInteractiveDismissDisabled(for: sheet, to: interactiveDismissDisabled)
-            }
-
-            backend.showSheet(
+            let window = environment.window! as! Backend.Window
+            let parentSheet = environment.sheet.map { $0 as! Backend.Sheet }
+            backend.presentSheet(
                 sheet,
-                sheetParent: (environment.sheetParent ?? environment.window)!
+                window: window,
+                parentSheet: parentSheet
             )
             children.sheet = sheet
+            children.window = window
+            children.parentSheet = parentSheet
         } else if !isPresented.wrappedValue && children.sheet != nil {
             backend.dismissSheet(
                 children.sheet as! Backend.Sheet,
-                sheetParent: (environment.sheetParent ?? environment.window)!
+                window: children.window! as! Backend.Window,
+                parentSheet: children.parentSheet.map { $0 as! Backend.Sheet }
             )
             children.sheet = nil
+            children.window = nil
+            children.parentSheet = nil
             children.sheetContentNode = nil
         }
-        return childResult
+
+        // Reset presentation preferences so that they don't leak to enclosing sheets.
+        var modifiedResult = childResult
+        modifiedResult.preferences.interactiveDismissDisabled = nil
+        modifiedResult.preferences.presentationBackground = nil
+        modifiedResult.preferences.presentationCornerRadius = nil
+        modifiedResult.preferences.presentationDetents = nil
+        modifiedResult.preferences.presentationDragIndicatorVisibility = nil
+        return modifiedResult
     }
 
     func handleDismiss(children: Children) {
         onDismiss?()
+        children.sheet = nil
+        children.window = nil
+        children.parentSheet = nil
+        children.sheetContentNode = nil
         isPresented.wrappedValue = false
     }
 }
@@ -165,6 +179,8 @@ class SheetModifierViewChildren<Child: View, SheetContent: View>: ViewGraphNodeC
     var childNode: AnyViewGraphNode<Child>
     var sheetContentNode: AnyViewGraphNode<SheetContent>?
     var sheet: Any?
+    var window: Any?
+    var parentSheet: Any?
 
     init(
         childNode: AnyViewGraphNode<Child>,

@@ -7,6 +7,9 @@ public protocol WidgetProtocol: UIResponder {
     var height: Int { get set }
 
     var view: UIView! { get }
+    /// The widget's enclosing controller. Could be the widget's own controller,
+    /// or that of a parent view. `WidgetProtocolHelpers` implements this on
+    /// your behalf by walking up the responder chain until it finds a controller.
     var controller: UIViewController? { get }
 
     var childWidgets: [any WidgetProtocol] { get set }
@@ -139,6 +142,8 @@ class BaseViewWidget: UIView, WidgetProtocolHelpers {
 
     var view: UIView! { self }
 
+    /// The widget's enclosing controller. Found by walking up the responder
+    /// chain until a controller is found.
     var controller: UIViewController? {
         var responder: UIResponder = self
         while let next = responder.next {

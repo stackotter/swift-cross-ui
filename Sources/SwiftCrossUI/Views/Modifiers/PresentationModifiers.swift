@@ -1,8 +1,12 @@
 extension View {
-    /// Sets the available detents (heights) for a sheet presentation.
+    /// Sets the detents (heights) for the enclosing sheet presentation to snap to
+    /// when the user resizes it interactively.
     ///
-    /// This modifier only affects the sheet presentation itself.
-    /// It allows users to resize the sheet to different predefined heights.
+    /// Detents are only respected on platforms that support sheet resizing,
+    /// and sheet resizing is generally only supported on mobile.
+    ///
+    /// If no detents are specified, then a single default detent is used. The
+    /// default is platform-specific. On iOS the default is `.large`.
     ///
     /// - Supported platforms: iOS & Mac Catalyst 15+ (ignored on unsupported platforms)
     /// - `.fraction` and `.height` fall back to `.medium` on iOS 15 and earlier
@@ -13,10 +17,7 @@ extension View {
         preference(key: \.presentationDetents, value: Array(detents))
     }
 
-    /// Sets the corner radius for a sheet presentation.
-    ///
-    /// This modifier only affects the sheet presentation itself.
-    /// It does not affect the content's corner radius.
+    /// Sets the corner radius for the enclosing sheet presentation.
     ///
     /// - Supported platforms: iOS & Mac Catalyst 15+, Gtk4 (ignored on unsupported platforms)
     ///
@@ -26,13 +27,14 @@ extension View {
         preference(key: \.presentationCornerRadius, value: radius)
     }
 
-    /// Sets the visibility of a sheet's drag indicator.
-    ///
-    /// This modifier only affects the sheet presentation itself.
-    ///
+    /// Sets the visibility of the enclosing sheet presentation's drag indicator.
+    /// Drag indicators are only supported on platforms that support sheet
+    /// resizing, and sheet resizing is generally only support on mobile.
+    /// 
     /// - Supported platforms: iOS & Mac Catalyst 15+ (ignored on unsupported platforms)
     ///
-    /// - Parameter visibility: visible or hidden
+    /// - Parameter visibility: The visibility to use for the drag indicator of
+    ///   the enclosing sheet.
     /// - Returns: A view with the presentationDragIndicatorVisibility preference set.
     public func presentationDragIndicatorVisibility(
         _ visibility: Visibility
@@ -40,21 +42,21 @@ extension View {
         preference(key: \.presentationDragIndicatorVisibility, value: visibility)
     }
 
-    /// Sets the background of a sheet.
+    /// Sets the background of the enclosing sheet presentation.
     ///
-    /// This modifier only affects the sheet presentation itself.
-    ///
-    /// - Parameter color: the background color
+    /// - Parameter color: The background color to use for the enclosing sheet presentation.
     /// - Returns: A view with the presentationBackground preference set.
     public func presentationBackground(_ color: Color) -> some View {
         preference(key: \.presentationBackground, value: color)
     }
 
-    /// Sets whether the user should be able to dismiss the sheet themself.
+    /// Prevents the user from dismissing the enclosing sheet presentation.
     ///
-    /// This modifier only affects the sheet presentation itself.
+    /// When interactive dismissal is disabled, users can only dismiss sheets by
+    /// performing actions that your code handles and turns into programmatic
+    /// dismissals.
     ///
-    /// - Parameter isDisabled: Whether interactive dismissal is disabled
+    /// - Parameter isDisabled: Whether interactive dismissal is disabled.
     /// - Returns: A view with the interactiveDismissDisabled preference set.
     public func interactiveDismissDisabled(_ isDisabled: Bool = true) -> some View {
         preference(key: \.interactiveDismissDisabled, value: isDisabled)
