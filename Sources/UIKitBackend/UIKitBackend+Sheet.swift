@@ -36,6 +36,8 @@ extension UIKitBackend {
 
     public func updateSheet(
         _ sheet: CustomSheet,
+        window: Window,
+        environment: EnvironmentValues,
         size: SIMD2<Int>,
         onDismiss: @escaping () -> Void,
         cornerRadius: Double?,
@@ -44,17 +46,45 @@ extension UIKitBackend {
         backgroundColor: Color?,
         interactiveDismissDisabled: Bool
     ) {
-        // Center the sheet's content
-        let leadingPadding = (sheet.preferredContentSize.width - CGFloat(size.x)) / 2
-        sheet.leadingConstraint!.constant = leadingPadding
+        // Center the sheet's content horizontally
+        #if os(tvOS)
+            let leadingPadding = (window.frame.size.width - CGFloat(size.x)) / 2
+            sheet.leadingConstraint!.constant = -leadingPadding
+        #else
+            let leadingPadding = (sheet.preferredContentSize.width - CGFloat(size.x)) / 2
+            sheet.leadingConstraint!.constant = leadingPadding
+        #endif
 
         sheet.onDismiss = onDismiss
         setPresentationDetents(of: sheet, to: detents)
         setPresentationCornerRadius(of: sheet, to: cornerRadius)
         setPresentationDragIndicatorVisibility(of: sheet, to: dragIndicatorVisibility, detents: detents)
 
-        // TODO: Get the default background color from the environment (via colorScheme?)
-        sheet.view.backgroundColor = backgroundColor?.uiColor ?? UIColor.systemBackground
+        let defaultColor: UIColor?
+        #if targetEnvironment(macCatalyst)
+            defaultColor = nil
+        #else
+            // These values were obtained by measuring the colors on my Mac, so they
+            // are likely not completely accurate (these are just how they appeared
+            // in my Mac's color space).
+            switch environment.colorScheme {
+                case .light:
+                    defaultColor = UIColor(
+                        red: 1, green: 1, blue: 1, alpha: 1
+                    )
+                case .dark:
+                    #if os(tvOS)
+                        defaultColor = UIColor(
+                            red: 15 / 255, green: 15 / 255, blue: 15 / 255, alpha: 1
+                        )
+                    #else
+                        defaultColor = UIColor(
+                            red: 28 / 255, green: 28 / 255, blue: 30 / 255, alpha: 1
+                        )
+                    #endif
+            }
+        #endif
+        sheet.view.backgroundColor = backgroundColor?.uiColor ?? defaultColor
 
         // From the UIKit docs for isModalInPresentation:
         //   When you set it to true, UIKit ignores events outside the view controller’s

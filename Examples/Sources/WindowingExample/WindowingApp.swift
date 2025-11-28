@@ -6,6 +6,7 @@ import SwiftCrossUI
     import SwiftBundlerRuntime
 #endif
 
+@available(tvOS, unavailable)
 struct FileDialogDemo: View {
     @State var selectedFile: URL? = nil
     @State var saveDestination: URL? = nil
@@ -179,9 +180,11 @@ struct WindowingApp: App {
 
                     Divider()
 
-                    FileDialogDemo()
+                    #if !os(tvOS)
+                        FileDialogDemo()
 
-                    Divider()
+                        Divider()
+                    #endif
 
                     AlertDemo()
 
