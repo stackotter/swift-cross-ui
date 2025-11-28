@@ -1732,6 +1732,8 @@ public final class AppKitBackend: AppBackend {
 
     public func updateSheet(
         _ sheet: NSCustomSheet,
+        window: NSCustomWindow,
+        environment: EnvironmentValues,
         size: SIMD2<Int>,
         onDismiss: @escaping () -> Void,
         cornerRadius: Double?,

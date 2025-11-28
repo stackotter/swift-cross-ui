@@ -612,6 +612,13 @@ public protocol AppBackend: Sendable {
     /// Updates the content, appearance and behaviour of a sheet.
     /// - Parameters:
     ///   - sheet: The sheet to update.
+    ///   - window: The root window that the sheet will be presented in. Used on
+    ///     platforms such as tvOS to compute layout constraints. The sheet
+    ///     shouldn't get attached to the window by updateSheet. That is handled
+    ///     by presentSheet which is guaranteed to be called exactly once (unlike
+    ///     updateSheet which gets called whenever preferences or sizing change).
+    ///   - environment: The environment that the sheet will be presented in. This
+    ///     differs from the environment passed to the sheet's content.
     ///   - onDismiss: An action to perform when the sheet gets dismissed by
     ///     the user. Not triggered by programmatic dismissals. But is triggered
     ///     by the implicit dismissals of nested sheets when their parent sheet
@@ -633,6 +640,8 @@ public protocol AppBackend: Sendable {
     ///     key and/or removes system-provided close/cancel buttons from the sheet.
     func updateSheet(
         _ sheet: Sheet,
+        window: Window,
+        environment: EnvironmentValues,
         size: SIMD2<Int>,
         onDismiss: @escaping () -> Void,
         cornerRadius: Double?,
@@ -1246,6 +1255,8 @@ extension AppBackend {
 
     public func updateSheet(
         _ sheet: Sheet,
+        window: Window,
+        environment: EnvironmentValues,
         size: SIMD2<Int>,
         onDismiss: @escaping () -> Void,
         cornerRadius: Double?,

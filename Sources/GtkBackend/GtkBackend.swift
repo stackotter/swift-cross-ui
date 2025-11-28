@@ -1613,6 +1613,8 @@ public final class GtkBackend: AppBackend {
 
     public func updateSheet(
         _ sheet: Sheet,
+        window: Window,
+        environment: EnvironmentValues,
         size: SIMD2<Int>,
         onDismiss: @escaping () -> Void,
         cornerRadius: Double?,

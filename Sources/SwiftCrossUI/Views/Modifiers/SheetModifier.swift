@@ -108,9 +108,15 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
                 dryRun: false
             )
 
+            let window = environment.window! as! Backend.Window
             let preferences = result.preferences
             backend.updateSheet(
                 sheet,
+                window: window,
+                // We intentionally use the outer environment rather than
+                // sheetEnvironment here, because this is meant to be the sheet's
+                // environment, not that of its content.
+                environment: environment,
                 size: result.size.size,
                 onDismiss: { handleDismiss(children: children) },
                 cornerRadius: preferences.presentationCornerRadius,
@@ -121,7 +127,6 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
                 interactiveDismissDisabled: preferences.interactiveDismissDisabled ?? false
             )
 
-            let window = environment.window! as! Backend.Window
             let parentSheet = environment.sheet.map { $0 as! Backend.Sheet }
             backend.presentSheet(
                 sheet,
