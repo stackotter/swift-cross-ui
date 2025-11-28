@@ -208,7 +208,7 @@ jobs:
         # This fix is from @Kwizatz: https://github.com/microsoft/vcpkg/issues/47984#issuecomment-3471327762
         mkdir C:\vcpkg\downloads
         curl -o C:\vcpkg\downloads\GNOME-pango-1.56.1.tar.gz "https://gitlab.gnome.org//GNOME/pango/-/archive/1.56.1/pango-1.56.1.tar.gz"
-        curl -o GNOME-gdk-pixbuf-2.42.12.tar.gz "https://gitlab.gnome.org//GNOME/gdk-pixbuf/-/archive/2.42.12/gdk-pixbuf-2.42.12.tar.gz"
+        curl -o C:\vcpkg\downloads\GNOME-gdk-pixbuf-2.42.12.tar.gz "https://gitlab.gnome.org//GNOME/gdk-pixbuf/-/archive/2.42.12/gdk-pixbuf-2.42.12.tar.gz"
 
     - name: Build and Install Dependencies
       if: steps.cache.outputs.cache-hit != 'true'
