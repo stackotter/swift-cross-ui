@@ -202,6 +202,13 @@ jobs:
         path: vcpkg_installed
         key: vcpkg-${{ steps.triplet.outputs.lowercase }}-${{ hashFiles('vcpkg.json') }}
 
+    - name: Apply GNOME-pango checksum fix (issue caused by Anubis)
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+        # This fix is from @Kwizatz: https://github.com/microsoft/vcpkg/issues/47984#issuecomment-3471327762
+        New-Item -ItemType Directory -Path C:\vcpkg\downloads -Force # aka; mkdir -p
+        Invoke-WebRequest -Uri https://gitlab.gnome.org//GNOME/pango/-/archive/1.56.1/pango-1.56.1.tar.gz -OutFile C:\vcpkg\downloads\GNOME-pango-1.56.1.tar.gz # aka; curl -o outfile url
+
     - name: Build and Install Dependencies
       if: steps.cache.outputs.cache-hit != 'true'
       env:
