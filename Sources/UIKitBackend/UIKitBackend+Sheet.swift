@@ -13,6 +13,10 @@ extension UIKitBackend {
         #endif
 
         let contentView = UIView()
+        // Fetch the child controller before adding the child to the view
+        // hierarchy. Otherwise, if the child doesn't have its own controller, we'd
+        // get back a reference to the sheet controller and attempt to add it as a
+        // child of itself. 
         if let childController = content.controller {
             sheet.addChild(childController)
         }
@@ -22,9 +26,8 @@ extension UIKitBackend {
             equalTo: content.view.topAnchor,
             constant: 0
         )
-        sheet.leadingConstraint = contentView.leadingAnchor.constraint(
-            equalTo: content.view.leadingAnchor,
-            constant: 0
+        sheet.leadingConstraint = contentView.centerXAnchor.constraint(
+            equalTo: content.view.centerXAnchor
         )
         sheet.topConstraint?.isActive = true
         sheet.leadingConstraint?.isActive = true
@@ -46,15 +49,6 @@ extension UIKitBackend {
         backgroundColor: Color?,
         interactiveDismissDisabled: Bool
     ) {
-        // Center the sheet's content horizontally
-        #if os(tvOS)
-            let leadingPadding = (window.frame.size.width - CGFloat(size.x)) / 2
-            sheet.leadingConstraint!.constant = -leadingPadding
-        #else
-            let leadingPadding = (sheet.preferredContentSize.width - CGFloat(size.x)) / 2
-            sheet.leadingConstraint!.constant = leadingPadding
-        #endif
-
         sheet.onDismiss = onDismiss
         setPresentationDetents(of: sheet, to: detents)
         setPresentationCornerRadius(of: sheet, to: cornerRadius)
@@ -240,6 +234,20 @@ public final class CustomSheet: UIViewController {
         // controller, which is what we want.
         wasDismissedProgrammatically = true
         dismiss(animated: true)
+    }
+
+    public override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        // Support escape-to-dismiss for iPadOS and Mac Catalyst
+        var unhandledPresses: Set<UIPress> = []
+        for press in presses {
+            if let key = press.key, key.keyCode == .keyboardEscape {
+                dismiss(animated: true)
+            } else {
+                unhandledPresses.insert(press)
+            }
+        }
+
+        super.pressesBegan(unhandledPresses, with: event)
     }
 
     public override func viewDidDisappear(_ animated: Bool) {
