@@ -210,6 +210,7 @@ jobs:
         curl -o C:\vcpkg\downloads\GNOME-pango-1.56.1.tar.gz "https://gitlab.gnome.org//GNOME/pango/-/archive/1.56.1/pango-1.56.1.tar.gz"
         curl -o C:\vcpkg\downloads\GNOME-gdk-pixbuf-2.42.12.tar.gz "https://gitlab.gnome.org//GNOME/gdk-pixbuf/-/archive/2.42.12/gdk-pixbuf-2.42.12.tar.gz"
         curl -o C:\vcpkg\downloads\GNOME-atk-2.38.0.tar.gz "https://gitlab.gnome.org/Archive/atk/-/archive/2.38.0/atk-2.38.0.tar.gz"
+        curl -o C:\vcpkg\downloads\GNOME-gtk-4.16.3.tar.gz "https://gitlab.gnome.org//GNOME/gtk/-/archive/4.16.3/gtk-4.16.3.tar.gz"
 
     - name: Build and Install Dependencies
       if: steps.cache.outputs.cache-hit != 'true'
