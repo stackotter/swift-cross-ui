@@ -13,7 +13,7 @@ public class GDateTime {
         self.pointer = pointer
     }
 
-    public convenience init?(unixEpoch: TimeInterval) {
+    public convenience init?(unixEpoch: Int) {
         // g_date_time_new_from_unix_utc_usec appears to be too new
         self.init(g_date_time_new_from_unix_utc(gint64(unixEpoch)))
     }
@@ -41,7 +41,7 @@ public class GDateTime {
     }
 
     public convenience init!(_ date: Date) {
-        self.init(unixEpoch: date.timeIntervalSince1970)
+        self.init(unixEpoch: Int(date.timeIntervalSince1970))
     }
 
     deinit {

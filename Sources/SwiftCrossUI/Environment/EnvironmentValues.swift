@@ -201,9 +201,11 @@ public struct EnvironmentValues {
     /// The current time zone that views should use when handling dates.
     public var timeZone: TimeZone
 
-    #if !os(tvOS)
-        public var datePickerStyle: DatePickerStyle
-    #endif
+    /// The display style used by ``DatePicker``.
+    public var datePickerStyle: DatePickerStyle
+
+    /// The display styles supported by ``DatePicker``. ``datePickerStyle`` must be one of these.
+    public let supportedDatePickerStyles: [DatePickerStyle]
 
     /// Creates the default environment.
     init<Backend: AppBackend>(backend: Backend) {
@@ -229,9 +231,8 @@ public struct EnvironmentValues {
         isTextSelectionEnabled = false
         calendar = .autoupdatingCurrent
         timeZone = .autoupdatingCurrent
-        #if !os(tvOS)
-            datePickerStyle = .automatic
-        #endif
+        datePickerStyle = .automatic
+        supportedDatePickerStyles = backend.supportedDatePickerStyles
     }
 
     /// Returns a copy of the environment with the specified property set to the

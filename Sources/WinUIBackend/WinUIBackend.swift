@@ -44,6 +44,9 @@ public final class WinUIBackend: AppBackend {
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = false
     public let deviceClass = DeviceClass.desktop
+    public let supportedDatePickerStyles: [DatePickerStyle] = [
+        .automatic, .graphical, .compact, .wheel,
+    ]
 
     public var scrollBarWidth: Int {
         12
@@ -2209,18 +2212,20 @@ final class CustomDatePicker: StackPanel {
 
     private func identifier(for calendar: Calendar) -> String {
         switch calendar.identifier {
-            case .chinese: "ChineseLunarCalendar"
-            case .gregorian, .iso8601: "GregorianCalendar"
-            case .hebrew: "HebrewCalendar"
-            case .islamicTabular: "HijriCalendar"
-            case .islamicUmmAlQura: "UmAlQuraCalendar"
-            case .japanese: "JapaneseCalendar"
-            case .persian: "PersianCalendar"
-            case .republicOfChina: "TaiwanCalendar"
+            case .chinese: return "ChineseLunarCalendar"
+            case .gregorian, .iso8601: return "GregorianCalendar"
+            case .hebrew: return "HebrewCalendar"
+            case .islamicTabular: return "HijriCalendar"
+            case .islamicUmmAlQura: return "UmAlQuraCalendar"
+            case .japanese: return "JapaneseCalendar"
+            case .persian: return "PersianCalendar"
+            case .republicOfChina: return "TaiwanCalendar"
             #if compiler(>=6.2)
-                case .vietnamese: "VietnameseLunarCalendar"
+                case .vietnamese: return "VietnameseLunarCalendar"
             #endif
-            case let id: fatalError("Unsupported calendar identifier \(id)")
+            case let id:
+                print("Unsupported calendar identifier '\(id)'. Falling back to Gregorian.")
+                return "GregorianCalendar"
         }
     }
 

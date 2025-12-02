@@ -98,6 +98,10 @@ public protocol AppBackend: Sendable {
     /// Mobile backends generally can't.
     var canRevealFiles: Bool { get }
 
+    /// The supported date picker styles. Must include ``DatePickerStyle/automatic`` if date pickers
+    /// are supported at all.
+    nonisolated var supportedDatePickerStyles: [DatePickerStyle] { get }
+
     /// Often in UI frameworks (such as Gtk), code is run in a callback
     /// after starting the app, and hence this generic root window creation
     /// API must reflect that. This is always the first method to be called
