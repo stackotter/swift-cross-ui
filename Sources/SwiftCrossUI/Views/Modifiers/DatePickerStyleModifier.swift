@@ -1,13 +1,12 @@
 extension View {
-    @available(tvOS, unavailable)
     public func datePickerStyle(_ style: DatePickerStyle) -> some View {
-        #if os(tvOS)
-            assertionFailure()
-            return EmptyView()
-        #else
-            EnvironmentModifier(self) { environment in
-                environment.with(\.datePickerStyle, style)
+        EnvironmentModifier(self) { environment in
+            var style = style
+            if !environment.supportedDatePickerStyles.contains(style) {
+                assertionFailure("Unsupported date picker style: \(style)")
+                style = .automatic
             }
-        #endif
+            return environment.with(\.datePickerStyle, style)
+        }
     }
 }

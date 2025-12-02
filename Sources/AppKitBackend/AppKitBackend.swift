@@ -26,6 +26,7 @@ public final class AppKitBackend: AppBackend {
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = true
     public let deviceClass = DeviceClass.desktop
+    public let supportedDatePickerStyles: [DatePickerStyle] = [.automatic, .graphical, .compact]
 
     public var scrollBarWidth: Int {
         // We assume that all scrollers have their controlSize set to `.regular` by default.
@@ -1796,22 +1797,7 @@ public final class AppKitBackend: AppBackend {
         parent.endSheet(sheet)
         parent.nestedSheet = nil
     }
-}
-
-public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate {
-    public var onDismiss: (() -> Void)?
-
-    public var interactiveDismissDisabled: Bool = false
-
-    public var backgroundView: NSView?
-
-    @objc override public func cancelOperation(_ sender: Any?) {
-        if !interactiveDismissDisabled {
-            sheetParent?.endSheet(self)
-            onDismiss?()
-        }
-    }
-
+    
     public func createDatePicker() -> NSView {
         let datePicker = CustomDatePicker()
         datePicker.delegate = datePicker.strongDelegate
@@ -1822,7 +1808,7 @@ public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate {
     // choice for the current calendar means the cursor position is reset after every keystroke. I
     // know of no simple way to tell whether NSDatePicker requires or forbids eras for a given
     // calendar, so in lieu of that I have hardcoded the calendar identifiers.
-    private let calendarsWithEras: Set<Calendar.Identifier> = [
+    private let calendarsRequiringEra: Set<Calendar.Identifier> = [
         .buddhist, .coptic, .ethiopicAmeteAlem, .ethiopicAmeteMihret, .indian, .islamic,
         .islamicCivil, .islamicTabular, .islamicUmmAlQura, .japanese, .persian, .republicOfChina,
     ]
@@ -1858,13 +1844,13 @@ public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate {
         var elementFlags: NSDatePicker.ElementFlags = []
         if components.contains(.date) {
             elementFlags.insert(.yearMonthDay)
-            if calendarsWithEras.contains(environment.calendar.identifier) {
+            if calendarsRequiringEra.contains(environment.calendar.identifier) {
                 elementFlags.insert(.era)
             }
         }
         if components.contains(.hourMinuteAndSecond) {
             elementFlags.insert(.hourMinuteSecond)
-        } else {
+        } else if components.contains(.hourAndMinute) {
             elementFlags.insert(.hourMinute)
         }
 
@@ -1884,6 +1870,21 @@ public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate {
                 case .graphical:
                     .clockAndCalendar
             }
+    }
+}
+
+public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate {
+    public var onDismiss: (() -> Void)?
+
+    public var interactiveDismissDisabled: Bool = false
+
+    public var backgroundView: NSView?
+
+    @objc override public func cancelOperation(_ sender: Any?) {
+        if !interactiveDismissDisabled {
+            sheetParent?.endSheet(self)
+            onDismiss?()
+        }
     }
 }
 

@@ -12,6 +12,18 @@ public struct DatePickerComponents: OptionSet, Sendable {
         self.rawValue = 0
     }
 
+    /*
+     * These magic numbers are the same as SwiftUI. It's actually a bitfield:
+     *
+     *                        smhdMy--
+     *                   date 00011100
+     *          hourAndMinute 01100000
+     *    hourMinuteAndSecond 11100000
+     *
+     * Like SwiftUI, not all combinations are valid (SwiftUI fatalErrors if you try to get creative
+     * with your choice of flags), and hourMinuteAndSecond intentionally includes hourAndMinute.
+     */
+
     public static let date = DatePickerComponents(rawValue: 0x1C)
     public static let hourAndMinute = DatePickerComponents(rawValue: 0x60)
 
@@ -21,9 +33,8 @@ public struct DatePickerComponents: OptionSet, Sendable {
     public static let hourMinuteAndSecond = DatePickerComponents(rawValue: 0xE0)
 }
 
-@available(tvOS, unavailable)
 public enum DatePickerStyle: Sendable, Hashable {
-    /// A date input chosen by the backend.
+    /// A date input that adapts to the current platform and context.
     case automatic
 
     /// A date input that shows a calendar grid.
@@ -54,11 +65,11 @@ public struct DatePicker<Label: View> {
     ///   - range: The range of dates to display. The backend takes this as a hint but it is not
     ///     necessarily enforced. As such this parameter should be treated as an aid to validation
     ///     rather than a replacement for it.
-    ///   - displayedComponents: What parts of the date/time to display in the input.
+    ///   - displayedComponents: Which parts of the date/time to display in the input.
     ///   - label: The view to be shown next to the date input.
     public nonisolated init(
         selection: Binding<Date>,
-        range: ClosedRange<Date> = Date.distantPast...Date.distantFuture,
+        in range: ClosedRange<Date> = Date.distantPast...Date.distantFuture,
         displayedComponents: DatePickerComponents = [.hourAndMinute, .date],
         @ViewBuilder label: () -> Label
     ) {
@@ -75,11 +86,11 @@ public struct DatePicker<Label: View> {
     ///   - range: The range of dates to display. The backend takes this as a hint but it is not
     ///     necessarily enforced. As such this parameter should be treated as an aid to validation
     ///     rather than a replacement for it.
-    ///   - displayedComponents: What parts of the date/time to display in the input.
+    ///   - displayedComponents: Which parts of the date/time to display in the input.
     public nonisolated init(
         _ label: String,
         selection: Binding<Date>,
-        range: ClosedRange<Date> = Date.distantPast...Date.distantFuture,
+        in range: ClosedRange<Date> = Date.distantPast...Date.distantFuture,
         displayedComponents: DatePickerComponents = [.hourAndMinute, .date]
     ) where Label == Text {
         self.label = Text(label)

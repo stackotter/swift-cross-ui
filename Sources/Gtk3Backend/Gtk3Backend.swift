@@ -38,6 +38,7 @@ public final class Gtk3Backend: AppBackend {
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = true
     public let deviceClass = DeviceClass.desktop
+    public let supportedDatePickerStyles: [DatePickerStyle] = []
 
     var gtkApp: Application
 
