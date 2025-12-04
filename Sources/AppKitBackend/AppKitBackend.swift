@@ -62,7 +62,7 @@ public final class AppKitBackend: AppBackend {
                 width: CGFloat(defaultSize?.x ?? 0),
                 height: CGFloat(defaultSize?.y ?? 0)
             ),
-            styleMask: [.titled, .closable],
+            styleMask: [.titled, .closable, .miniaturizable],
             backing: .buffered,
             defer: true
         )
