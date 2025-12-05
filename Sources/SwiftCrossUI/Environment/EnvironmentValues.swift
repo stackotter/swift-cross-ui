@@ -196,7 +196,7 @@ public struct EnvironmentValues {
     }
 
     /// Creates the default environment.
-    init<Backend: AppBackend>(backend: Backend) {
+    package init<Backend: AppBackend>(backend: Backend) {
         self.backend = backend
 
         onResize = { _ in }
