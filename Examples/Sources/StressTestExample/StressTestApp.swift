@@ -43,12 +43,11 @@ struct StressTestApp: App {
                             for _ in 0..<1000 {
                                 values.append(Self.options.randomElement()!)
                             }
-
                             self.values[tab!] = values
                         }
                         if let values = values[tab!] {
                             ScrollView {
-                                ForEach(values) { value in
+                                ForEach(values, id: \.self) { value in
                                     Text(value)
                                 }
                             }.frame(minWidth: 300)
