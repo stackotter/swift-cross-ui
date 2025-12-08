@@ -210,7 +210,7 @@ public protocol AppBackend: Sendable {
     /// Sets the handler to be notified when the root environment may have to get
     /// recomputed. This is intended to only be called once. Calling it more than once
     /// may or may not override the previous handler.
-    func setRootEnvironmentChangeHandler(to action: @escaping () -> Void)
+    func setRootEnvironmentChangeHandler(to action: @escaping @Sendable @MainActor () -> Void)
 
     /// Resolves the given text style to concrete font properties.
     ///

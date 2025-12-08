@@ -356,7 +356,7 @@ public final class WinUIBackend: AppBackend {
             .with(\.colorScheme, isLight ? .light : .dark)
     }
 
-    public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
+    public func setRootEnvironmentChangeHandler(to action: @escaping @Sendable @MainActor () -> Void) {
         internalState.themeChangeAction = action
     }
 

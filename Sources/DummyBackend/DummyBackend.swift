@@ -323,7 +323,7 @@ public final class DummyBackend: AppBackend {
         defaultEnvironment
     }
 
-    public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {}
+    public func setRootEnvironmentChangeHandler(to action: @escaping @Sendable @MainActor () -> Void) {}
 
     public func computeWindowEnvironment(window: Window, rootEnvironment: EnvironmentValues)
         -> EnvironmentValues
