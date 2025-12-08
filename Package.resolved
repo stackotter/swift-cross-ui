@@ -1,6 +1,14 @@
 {
-  "originHash" : "3b87bbc3d0f0110380f592dc86a1c8c65c20f5a326f484bdbe2f6ef5e357840d",
+  "originHash" : "30e82a11d7e53fc474acc70520ca515c9283f98aa39bc74ebeb2da6c6391dd1e",
   "pins" : [
+    {
+      "identity" : "android",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stackotter/Android",
+      "state" : {
+        "revision" : "c5716b96f7ffe4f4ccfc9a5b7864d15332ac9430"
+      }
+    },
     {
       "identity" : "jpeg",
       "kind" : "remoteSourceControl",
@@ -26,6 +34,15 @@
       "state" : {
         "revision" : "5f745a17b9a5c2a4283f17c2cde4517610ab5f99",
         "version" : "1.4.1"
+      }
+    },
+    {
+      "identity" : "swift-argument-parser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-argument-parser",
+      "state" : {
+        "revision" : "cdd0ef3755280949551dc26dee5de9ddeda89f54",
+        "version" : "1.6.2"
       }
     },
     {
@@ -64,6 +81,14 @@
       }
     },
     {
+      "identity" : "swift-java",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stackotter/swift-java",
+      "state" : {
+        "revision" : "400aa0a4d20f3d58041fc0c5df39c846abc6e0a9"
+      }
+    },
+    {
       "identity" : "swift-macro-toolkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-macro-toolkit",
@@ -79,6 +104,15 @@
       "state" : {
         "revision" : "0687f71944021d616d34d922343dcef086855920",
         "version" : "600.0.1"
+      }
+    },
+    {
+      "identity" : "swift-system",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-system",
+      "state" : {
+        "revision" : "395a77f0aa927f0ff73941d7ac35f2b46d47c9db",
+        "version" : "1.6.3"
       }
     },
     {

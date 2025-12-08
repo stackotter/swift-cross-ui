@@ -70,6 +70,7 @@ let package = Package(
         .library(name: "WinUIBackend", type: libraryType, targets: ["WinUIBackend"]),
         .library(name: "DefaultBackend", type: libraryType, targets: ["DefaultBackend"]),
         .library(name: "UIKitBackend", type: libraryType, targets: ["UIKitBackend"]),
+        .library(name: "AndroidBackend", type: libraryType, targets: ["AndroidBackend"]),
         .library(name: "Gtk", type: libraryType, targets: ["Gtk"]),
         .library(name: "Gtk3", type: libraryType, targets: ["Gtk3"]),
         .executable(name: "GtkExample", targets: ["GtkExample"]),
@@ -109,6 +110,10 @@ let package = Package(
         .package(
             url: "https://github.com/stackotter/swift-winui",
             revision: "1695ee3ea2b7a249f6504c7f1759e7ec7a38eb86"
+        ),
+        .package(
+            url: "https://github.com/stackotter/Android",
+            revision: "9e86388d4147637d2d1cb41bed0d99a1d915952a"
         ),
         // .package(
         //     url: "https://github.com/stackotter/TermKit",
@@ -163,6 +168,10 @@ let package = Package(
                 .target(
                     name: "UIKitBackend",
                     condition: .when(platforms: [.iOS, .tvOS, .macCatalyst, .visionOS])
+                ),
+                .target(
+                    name: "AndroidBackend",
+                    condition: .when(platforms: [.android])
                 ),
             ]
         ),
@@ -252,6 +261,15 @@ let package = Package(
             name: "WinUIInterop",
             dependencies: []
         ),
+        .target(
+            name: "AndroidBackend",
+            dependencies: [
+                "SwiftCrossUI",
+                "AndroidBackendShim",
+                .product(name: "AndroidKit", package: "Android"),
+            ]
+        ),
+        .target(name: "AndroidBackendShim"),
         // .target(
         //     name: "CursesBackend",
         //     dependencies: ["SwiftCrossUI", "TermKit"]

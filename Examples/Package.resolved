@@ -11,6 +11,14 @@
       }
     },
     {
+      "identity" : "android",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stackotter/Android",
+      "state" : {
+        "revision" : "9e86388d4147637d2d1cb41bed0d99a1d915952a"
+      }
+    },
+    {
       "identity" : "async-collections",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/adam-fowler/async-collections.git",
@@ -216,6 +224,14 @@
       }
     },
     {
+      "identity" : "swift-java",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stackotter/swift-java",
+      "state" : {
+        "revision" : "400aa0a4d20f3d58041fc0c5df39c846abc6e0a9"
+      }
+    },
+    {
       "identity" : "swift-log",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log",
@@ -274,8 +290,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-system.git",
       "state" : {
-        "revision" : "d2ba781702a1d8285419c15ee62fd734a9437ff5",
-        "version" : "1.3.2"
+        "revision" : "395a77f0aa927f0ff73941d7ac35f2b46d47c9db",
+        "version" : "1.6.3"
       }
     },
     {
