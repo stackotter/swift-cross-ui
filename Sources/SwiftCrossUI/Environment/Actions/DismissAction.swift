@@ -20,9 +20,9 @@
 /// ```
 @MainActor
 public struct DismissAction {
-    private let action: () -> Void
+    private nonisolated let action: @MainActor () -> Void
 
-    internal init(action: @escaping () -> Void) {
+    nonisolated init(action: @MainActor @escaping () -> Void) {
         self.action = action
     }
 
@@ -34,7 +34,6 @@ public struct DismissAction {
 
 /// Environment key for the dismiss action.
 private struct DismissActionKey: EnvironmentKey {
-    @MainActor
     static var defaultValue: DismissAction {
         DismissAction(action: {
             #if DEBUG
@@ -52,7 +51,7 @@ extension EnvironmentValues {
     ///
     /// Example:
     /// ```swift
-    /// struct ContentView: View {
+    /// struct SheetContentView: View {
     ///     @Environment(\.dismiss) var dismiss
     ///
     ///     var body: some View {
