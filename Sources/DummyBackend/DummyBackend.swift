@@ -386,7 +386,7 @@ public final class DummyBackend: AppBackend {
         let charactersPerLine = max(1, proposedFrame.x / characterWidth)
         let lineCount = (text.count + charactersPerLine - 1) / charactersPerLine
         return SIMD2(
-            characterWidth * charactersPerLine,
+            characterWidth * min(charactersPerLine, text.count),
             lineHeight * lineCount
         )
     }

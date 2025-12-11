@@ -109,13 +109,12 @@ struct ProgressSpinnerView: ElementaryView {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        ViewLayoutResult.leafView(
-            size: ViewSize(fixedSize: backend.naturalSize(of: widget))
-        )
+        let size = ViewSize(backend.naturalSize(of: widget))
+        return ViewLayoutResult.leafView(size: size)
     }
 
     func commit<Backend: AppBackend>(
@@ -127,6 +126,9 @@ struct ProgressSpinnerView: ElementaryView {
 }
 
 struct ProgressBarView: ElementaryView {
+    /// The ideal width of a ProgressBarView.
+    static let idealWidth: Double = 100
+
     var value: Double?
 
     init(value: Double?) {
@@ -139,26 +141,17 @@ struct ProgressBarView: ElementaryView {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
         let height = backend.naturalSize(of: widget).y
-        let size = SIMD2(
-            proposedSize.x,
-            height
+        let size = ViewSize(
+            proposedSize.width ?? Self.idealWidth,
+            Double(height)
         )
 
-        return ViewLayoutResult.leafView(
-            size: ViewSize(
-                size: size,
-                idealSize: SIMD2(100, height),
-                minimumWidth: 0,
-                minimumHeight: height,
-                maximumWidth: nil,
-                maximumHeight: Double(height)
-            )
-        )
+        return ViewLayoutResult.leafView(size: size)
     }
 
     func commit<Backend: AppBackend>(
@@ -168,6 +161,6 @@ struct ProgressBarView: ElementaryView {
         backend: Backend
     ) {
         backend.updateProgressBar(widget, progressFraction: value, environment: environment)
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }

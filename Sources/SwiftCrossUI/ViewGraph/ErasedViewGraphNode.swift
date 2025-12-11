@@ -11,7 +11,7 @@ public struct ErasedViewGraphNode {
     public var computeLayoutWithNewView:
         (
             _ newView: Any?,
-            _ proposedSize: SIMD2<Int>,
+            _ proposedSize: ProposedViewSize,
             _ environment: EnvironmentValues
         ) -> (viewTypeMatched: Bool, size: ViewLayoutResult)
     /// The underlying view graph node's commit method.
@@ -46,7 +46,7 @@ public struct ErasedViewGraphNode {
         computeLayoutWithNewView = { view, proposedSize, environment in
             if let view {
                 guard let view = view as? V else {
-                    return (false, ViewLayoutResult.leafView(size: .empty))
+                    return (false, ViewLayoutResult.leafView(size: .zero))
                 }
                 let size = node.computeLayout(
                     with: view,

@@ -14,12 +14,12 @@ struct Checkbox: ElementaryView, View {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
         return ViewLayoutResult.leafView(
-            size: ViewSize(fixedSize: backend.naturalSize(of: widget))
+            size: ViewSize(backend.naturalSize(of: widget))
         )
     }
 

@@ -1,14 +1,36 @@
 public enum LayoutSystem {
-    static func width(forHeight height: Int, aspectRatio: Double) -> Int {
-        roundSize(Double(height) * aspectRatio)
+    static func width(forHeight height: Double, aspectRatio: Double) -> Double {
+        Double(height) * aspectRatio
     }
 
-    static func height(forWidth width: Int, aspectRatio: Double) -> Int {
-        roundSize(Double(width) / aspectRatio)
+    static func height(forWidth width: Double, aspectRatio: Double) -> Double {
+        Double(width) / aspectRatio
     }
 
-    static func roundSize(_ size: Double) -> Int {
-        Int(size.rounded(.towardZero))
+    package static func roundSize(_ size: Double) -> Int {
+        let size = size.rounded(.towardZero)
+        return if size >= Double(Int.max) {
+            Int.max
+        } else if size <= Double(Int.min) {
+            Int.min
+        } else {
+            Int(size)
+        }
+    }
+
+    static func clamp(_ value: Double, minimum: Double?, maximum: Double?) -> Double {
+        var value = value
+        if let minimum {
+            value = max(minimum, value)
+        }
+        if let maximum {
+            value = min(maximum, value)
+        }
+        return value
+    }
+
+    static func aspectRatio(of frame: ViewSize) -> Double {
+        aspectRatio(of: SIMD2(frame.width, frame.height))
     }
 
     static func aspectRatio(of frame: SIMD2<Double>) -> Double {
@@ -23,38 +45,17 @@ public enum LayoutSystem {
         }
     }
 
-    static func frameSize(
-        forProposedSize proposedSize: SIMD2<Int>,
-        aspectRatio: Double,
-        contentMode: ContentMode
-    ) -> SIMD2<Int> {
-        let widthForHeight = width(forHeight: proposedSize.y, aspectRatio: aspectRatio)
-        let heightForWidth = height(forWidth: proposedSize.x, aspectRatio: aspectRatio)
-        switch contentMode {
-            case .fill:
-                return SIMD2(
-                    max(proposedSize.x, widthForHeight),
-                    max(proposedSize.y, heightForWidth)
-                )
-            case .fit:
-                return SIMD2(
-                    min(proposedSize.x, widthForHeight),
-                    min(proposedSize.y, heightForWidth)
-                )
-        }
-    }
-
     public struct LayoutableChild {
         private var computeLayout:
             @MainActor (
-                _ proposedSize: SIMD2<Int>,
+                _ proposedSize: ProposedViewSize,
                 _ environment: EnvironmentValues
             ) -> ViewLayoutResult
         private var _commit: @MainActor () -> ViewLayoutResult
         var tag: String?
 
         public init(
-            computeLayout: @escaping @MainActor (SIMD2<Int>, EnvironmentValues) -> ViewLayoutResult,
+            computeLayout: @escaping @MainActor (ProposedViewSize, EnvironmentValues) -> ViewLayoutResult,
             commit: @escaping @MainActor () -> ViewLayoutResult,
             tag: String? = nil
         ) {
@@ -65,7 +66,7 @@ public enum LayoutSystem {
 
         @MainActor
         public func computeLayout(
-            proposedSize: SIMD2<Int>,
+            proposedSize: ProposedViewSize,
             environment: EnvironmentValues,
             dryRun: Bool = false
         ) -> ViewLayoutResult {
@@ -84,50 +85,109 @@ public enum LayoutSystem {
     ///   ``Group`` to avoid changing stack layout participation (since ``Group``
     ///   is meant to appear completely invisible to the layout system).
     @MainActor
-    public static func computeStackLayout<Backend: AppBackend>(
+    static func computeStackLayout<Backend: AppBackend>(
         container: Backend.Widget,
         children: [LayoutableChild],
-        proposedSize: SIMD2<Int>,
+        cache: inout StackLayoutCache,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend,
         inheritStackLayoutParticipation: Bool = false
     ) -> ViewLayoutResult {
         let spacing = environment.layoutSpacing
         let orientation = environment.layoutOrientation
+        let perpendicularOrientation = orientation.perpendicular
 
         var renderedChildren: [ViewLayoutResult] = Array(
-            repeating: ViewLayoutResult.leafView(size: .empty),
+            repeating: ViewLayoutResult.leafView(size: .zero),
             count: children.count
         )
+
+        let interesting = children.count == 1000
+        if interesting {
+            print("interesting")
+            print("  proposedSize: \(proposedSize)")
+        }
+
+        let stackLength = proposedSize[component: orientation]
+        if stackLength == 0 || stackLength == .infinity || stackLength == nil {
+            var resultLength: Double = 0
+            var resultWidth: Double = 0
+            var results: [ViewLayoutResult] = []
+            for child in children {
+                let result = child.computeLayout(
+                    proposedSize: proposedSize,
+                    environment: environment
+                )
+                resultLength += result.size[component: orientation]
+                resultWidth = max(resultWidth, result.size[component: perpendicularOrientation])
+                results.append(result)
+            }
+
+            let visibleChildrenCount = results.count { result in
+                result.participatesInStackLayouts
+            }
+
+            let totalSpacing = Double(max(visibleChildrenCount - 1, 0) * spacing)
+            var size = ViewSize.zero
+            size[component: orientation] = resultLength + totalSpacing
+            size[component: perpendicularOrientation] = resultWidth
+
+            // In this case, flexibility doesn't matter. We set the ordering to
+            // nil to signal to commitStackLayout that it can ignore flexibility.
+            cache.lastFlexibilityOrdering = nil
+            cache.lastHiddenChildren = results.map(\.participatesInStackLayouts).map(!)
+            cache.redistributeSpaceOnCommit = false
+
+            return ViewLayoutResult(
+                size: size,
+                childResults: results,
+                participateInStackLayoutsWhenEmpty:
+                    results.contains(where: \.participateInStackLayoutsWhenEmpty),
+                preferencesOverlay: nil
+            )
+        }
+
+        guard let stackLength else {
+            fatalError("unreachable")
+        }
 
         // My thanks go to this great article for investigating and explaining
         // how SwiftUI determines child view 'flexibility':
         // https://www.objc.io/blog/2020/11/10/hstacks-child-ordering/
         var isHidden = [Bool](repeating: false, count: children.count)
+        var minimumProposedSize = proposedSize
+        minimumProposedSize[component: orientation] = 0
+        var maximumProposedSize = proposedSize
+        maximumProposedSize[component: orientation] = .infinity
         let flexibilities = children.enumerated().map { i, child in
-            let result = child.computeLayout(
-                proposedSize: proposedSize,
-                environment: environment
+            let minimumResult = child.computeLayout(
+                proposedSize: minimumProposedSize,
+                environment: environment.with(\.allowLayoutCaching, true)
             )
-            isHidden[i] = !result.participatesInStackLayouts
-            return switch orientation {
-                case .horizontal:
-                    result.size.maximumWidth - Double(result.size.minimumWidth)
-                case .vertical:
-                    result.size.maximumHeight - Double(result.size.minimumHeight)
-            }
+            let maximumResult = child.computeLayout(
+                proposedSize: maximumProposedSize,
+                environment: environment.with(\.allowLayoutCaching, true)
+            )
+            isHidden[i] = !minimumResult.participatesInStackLayouts
+            let maximum = maximumResult.size[component: orientation]
+            let minimum = minimumResult.size[component: orientation]
+            return maximum - minimum
+        }
+        if interesting {
+            print("  flexibilities: \(flexibilities)")
         }
         let visibleChildrenCount = isHidden.filter { hidden in
             !hidden
         }.count
-        let totalSpacing = max(visibleChildrenCount - 1, 0) * spacing
+        let totalSpacing = Double(max(visibleChildrenCount - 1, 0) * spacing)
         let sortedChildren = zip(children.enumerated(), flexibilities)
             .sorted { first, second in
                 first.1 <= second.1
             }
             .map(\.0)
 
-        var spaceUsedAlongStackAxis = 0
+        var spaceUsedAlongStackAxis: Double = 0
         var childrenRemaining = visibleChildrenCount
         for (index, child) in sortedChildren {
             // No need to render visible children.
@@ -148,135 +208,109 @@ public enum LayoutSystem {
                     )
                 }
                 renderedChildren[index] = result
-                renderedChildren[index].size = .hidden
+                renderedChildren[index].participateInStackLayoutsWhenEmpty = false
+                renderedChildren[index].size = .zero
                 continue
             }
 
-            let proposedWidth: Double
-            let proposedHeight: Double
-            switch orientation {
-                case .horizontal:
-                    proposedWidth =
-                        Double(max(proposedSize.x - spaceUsedAlongStackAxis - totalSpacing, 0))
-                        / Double(childrenRemaining)
-                    proposedHeight = Double(proposedSize.y)
-                case .vertical:
-                    proposedHeight =
-                        Double(max(proposedSize.y - spaceUsedAlongStackAxis - totalSpacing, 0))
-                        / Double(childrenRemaining)
-                    proposedWidth = Double(proposedSize.x)
+            var proposedChildSize = proposedSize
+            proposedChildSize[component: orientation] =
+                max(stackLength - spaceUsedAlongStackAxis - totalSpacing, 0) / Double(childrenRemaining)
+
+            if interesting {
+                print("  proposedChildSize: \(proposedChildSize)")
             }
 
             let childResult = child.computeLayout(
-                proposedSize: SIMD2<Int>(
-                    Int(proposedWidth.rounded(.towardZero)),
-                    Int(proposedHeight.rounded(.towardZero))
-                ),
+                proposedSize: proposedChildSize,
                 environment: environment
             )
 
             renderedChildren[index] = childResult
             childrenRemaining -= 1
 
-            switch orientation {
-                case .horizontal:
-                    spaceUsedAlongStackAxis += childResult.size.size.x
-                case .vertical:
-                    spaceUsedAlongStackAxis += childResult.size.size.y
-            }
+            spaceUsedAlongStackAxis += childResult.size[component: orientation]
         }
 
-        let size: SIMD2<Int>
-        let idealSize: SIMD2<Int>
-        let idealWidthForProposedHeight: Int
-        let idealHeightForProposedWidth: Int
-        let minimumWidth: Int
-        let minimumHeight: Int
-        let maximumWidth: Double?
-        let maximumHeight: Double?
-        switch orientation {
-            case .horizontal:
-                size = SIMD2<Int>(
-                    renderedChildren.map(\.size.size.x).reduce(0, +) + totalSpacing,
-                    renderedChildren.map(\.size.size.y).max() ?? 0
-                )
-                idealSize = SIMD2<Int>(
-                    renderedChildren.map(\.size.idealSize.x).reduce(0, +) + totalSpacing,
-                    renderedChildren.map(\.size.idealSize.y).max() ?? 0
-                )
-                minimumWidth = renderedChildren.map(\.size.minimumWidth).reduce(0, +) + totalSpacing
-                minimumHeight = renderedChildren.map(\.size.minimumHeight).max() ?? 0
-                maximumWidth =
-                    renderedChildren.map(\.size.maximumWidth).reduce(0, +) + Double(totalSpacing)
-                maximumHeight = renderedChildren.map(\.size.maximumHeight).max()
-                idealWidthForProposedHeight =
-                    renderedChildren.map(\.size.idealWidthForProposedHeight).reduce(0, +)
-                    + totalSpacing
-                idealHeightForProposedWidth =
-                    renderedChildren.map(\.size.idealHeightForProposedWidth).max() ?? 0
-            case .vertical:
-                size = SIMD2<Int>(
-                    renderedChildren.map(\.size.size.x).max() ?? 0,
-                    renderedChildren.map(\.size.size.y).reduce(0, +) + totalSpacing
-                )
-                idealSize = SIMD2<Int>(
-                    renderedChildren.map(\.size.idealSize.x).max() ?? 0,
-                    renderedChildren.map(\.size.idealSize.y).reduce(0, +) + totalSpacing
-                )
-                minimumWidth = renderedChildren.map(\.size.minimumWidth).max() ?? 0
-                minimumHeight =
-                    renderedChildren.map(\.size.minimumHeight).reduce(0, +) + totalSpacing
-                maximumWidth = renderedChildren.map(\.size.maximumWidth).max()
-                maximumHeight =
-                    renderedChildren.map(\.size.maximumHeight).reduce(0, +) + Double(totalSpacing)
-                idealWidthForProposedHeight =
-                    renderedChildren.map(\.size.idealWidthForProposedHeight).max() ?? 0
-                idealHeightForProposedWidth =
-                    renderedChildren.map(\.size.idealHeightForProposedWidth).reduce(0, +)
-                    + totalSpacing
-        }
+        var size = ViewSize.zero
+        size[component: orientation] =
+            renderedChildren.map(\.size[component: orientation]).reduce(0, +) + totalSpacing
+        size[component: perpendicularOrientation] =
+            renderedChildren.map(\.size[component: perpendicularOrientation]).max() ?? 0
 
-        // If the stack has been told to inherit its stack layout participation
-        // and all of its children are hidden, then the stack itself also
-        // shouldn't participate in stack layouts.
-        let shouldGetIgnoredInStackLayouts =
-            inheritStackLayoutParticipation && isHidden.allSatisfy { $0 }
+        cache.lastFlexibilityOrdering = sortedChildren.map(\.offset)
+        cache.lastHiddenChildren = isHidden
+
+        // When the length along the stacking axis is concrete (i.e. flexibility
+        // matters) and the perpendicular axis is unspecified (nil), then we need
+        // to re-run the space distribution algorithm with our final size during
+        // the commit phase. This opens the door to certain edge cases, but SwiftUI
+        // has them too, and there's not a good general solution to these edge
+        // cases, even if you assume that you have unlimited compute.
+        cache.redistributeSpaceOnCommit =
+            proposedSize[component: orientation] != nil
+            && proposedSize[component: perpendicularOrientation] == nil
 
         return ViewLayoutResult(
-            size: ViewSize(
-                size: size,
-                idealSize: idealSize,
-                idealWidthForProposedHeight: idealWidthForProposedHeight,
-                idealHeightForProposedWidth: idealHeightForProposedWidth,
-                minimumWidth: minimumWidth,
-                minimumHeight: minimumHeight,
-                maximumWidth: maximumWidth,
-                maximumHeight: maximumHeight,
-                participateInStackLayoutsWhenEmpty: !shouldGetIgnoredInStackLayouts
-            ),
-            childResults: renderedChildren
+            size: size,
+            childResults: renderedChildren,
+            participateInStackLayoutsWhenEmpty:
+                renderedChildren.contains(where: \.participateInStackLayoutsWhenEmpty),
         )
     }
 
     @MainActor
-    public static func commitStackLayout<Backend: AppBackend>(
+    static func commitStackLayout<Backend: AppBackend>(
         container: Backend.Widget,
         children: [LayoutableChild],
+        cache: inout StackLayoutCache,
         layout: ViewLayoutResult,
         environment: EnvironmentValues,
         backend: Backend
     ) {
-        let size = layout.size.size
-        backend.setSize(of: container, to: size)
-
-        let renderedChildren = children.map { $0.commit() }
+        let size = layout.size
+        backend.setSize(of: container, to: size.vector)
 
         let alignment = environment.layoutAlignment
         let spacing = environment.layoutSpacing
         let orientation = environment.layoutOrientation
+        let perpendicularOrientation = orientation.perpendicular
 
-        var x = 0
-        var y = 0
+        if cache.redistributeSpaceOnCommit {
+            guard let ordering = cache.lastFlexibilityOrdering else {
+                fatalError("Expected flexibility ordering in order to redistribute space during commit")
+            }
+
+            var spaceUsedAlongStackAxis: Double = 0
+            let visibleChildrenCount = cache.lastHiddenChildren.count { isHidden in
+                !isHidden
+            }
+            let totalSpacing = Double(max(visibleChildrenCount - 1, 0) * spacing)
+            var childrenRemaining = visibleChildrenCount
+
+            // TODO: Reuse the corresponding loop from computeStackLayout if
+            //   possible to avoid the possibility for a behaviour mismatch.
+            for index in ordering {
+                if cache.lastHiddenChildren[index] {
+                    continue
+                }
+
+                var proposedChildSize = layout.size
+                proposedChildSize[component: orientation] -= spaceUsedAlongStackAxis + totalSpacing
+                proposedChildSize[component: orientation] /= Double(childrenRemaining)
+                let result = children[index].computeLayout(
+                    proposedSize: ProposedViewSize(proposedChildSize),
+                    environment: environment
+                )
+
+                spaceUsedAlongStackAxis += result.size[component: orientation]
+                childrenRemaining -= 1
+            }
+        }
+
+        let renderedChildren = children.map { $0.commit() }
+
+        var position = Position.zero
         for (index, child) in renderedChildren.enumerated() {
             // Avoid the whole iteration if the child is hidden. If there
             // are weird positioning issues for views that do strange things
@@ -286,29 +320,22 @@ public enum LayoutSystem {
             }
 
             // Compute alignment
-            switch (orientation, alignment) {
-                case (.vertical, .leading):
-                    x = 0
-                case (.horizontal, .leading):
-                    y = 0
-                case (.vertical, .center):
-                    x = (size.x - child.size.size.x) / 2
-                case (.horizontal, .center):
-                    y = (size.y - child.size.size.y) / 2
-                case (.vertical, .trailing):
-                    x = (size.x - child.size.size.x)
-                case (.horizontal, .trailing):
-                    y = (size.y - child.size.size.y)
+            switch alignment {
+                case .leading:
+                    position[component: perpendicularOrientation] = 0
+                case .center:
+                    let outer = size[component: perpendicularOrientation]
+                    let inner = child.size[component: perpendicularOrientation]
+                    position[component: perpendicularOrientation] = (outer - inner) / 2
+                case .trailing:
+                    let outer = size[component: perpendicularOrientation]
+                    let inner = child.size[component: perpendicularOrientation]
+                    position[component: perpendicularOrientation] = outer - inner
             }
 
-            backend.setPosition(ofChildAt: index, in: container, to: SIMD2<Int>(x, y))
+            backend.setPosition(ofChildAt: index, in: container, to: position.vector)
 
-            switch orientation {
-                case .horizontal:
-                    x += child.size.size.x + spacing
-                case .vertical:
-                    y += child.size.size.y + spacing
-            }
+            position[component: orientation] += child.size[component: orientation] + Double(spacing)
         }
     }
 }

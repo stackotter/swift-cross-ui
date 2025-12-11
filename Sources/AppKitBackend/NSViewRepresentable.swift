@@ -55,7 +55,7 @@ public protocol NSViewRepresentable: View where Content == Never {
     ///   for the maximum width/height if the view has no maximum size (and
     ///   therefore may occupy the entire screen).
     func determineViewSize(
-        for proposal: SIMD2<Int>,
+        for proposal: ProposedViewSize,
         nsView: NSViewType,
         context: NSViewRepresentableContext<Coordinator>
     ) -> ViewSize
@@ -76,34 +76,16 @@ extension NSViewRepresentable {
     }
 
     public func determineViewSize(
-        for proposal: SIMD2<Int>, nsView: NSViewType,
+        for proposal: ProposedViewSize,
+        nsView: NSViewType,
         context _: NSViewRepresentableContext<Coordinator>
     ) -> ViewSize {
         let intrinsicSize = nsView.intrinsicContentSize
         let sizeThatFits = nsView.fittingSize
 
-        let roundedSizeThatFits = SIMD2(
-            Int(sizeThatFits.width.rounded(.up)),
-            Int(sizeThatFits.height.rounded(.up)))
-        let roundedIntrinsicSize = SIMD2(
-            Int(intrinsicSize.width.rounded(.awayFromZero)),
-            Int(intrinsicSize.height.rounded(.awayFromZero)))
-
         return ViewSize(
-            size: SIMD2(
-                intrinsicSize.width < 0.0 ? proposal.x : roundedSizeThatFits.x,
-                intrinsicSize.height < 0.0 ? proposal.y : roundedSizeThatFits.y
-            ),
-            // The 10 here is a somewhat arbitrary constant value so that it's always the same.
-            // See also `Color` and `Picker`, which use the same constant.
-            idealSize: SIMD2(
-                intrinsicSize.width < 0.0 ? 10 : roundedIntrinsicSize.x,
-                intrinsicSize.height < 0.0 ? 10 : roundedIntrinsicSize.y
-            ),
-            minimumWidth: max(0, roundedIntrinsicSize.x),
-            minimumHeight: max(0, roundedIntrinsicSize.x),
-            maximumWidth: nil,
-            maximumHeight: nil
+            intrinsicSize.width < 0 ? (proposal.width ?? 10) : sizeThatFits.width,
+            intrinsicSize.height < 0 ? (proposal.height ?? 10) : sizeThatFits.height
         )
     }
 }
@@ -142,7 +124,7 @@ extension View where Self: NSViewRepresentable {
     public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -169,7 +151,7 @@ extension View where Self: NSViewRepresentable {
         environment: EnvironmentValues,
         backend: Backend
     ) {
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }
 

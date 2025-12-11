@@ -35,7 +35,7 @@ struct OnHoverModifier<Content: View>: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -53,7 +53,7 @@ struct OnHoverModifier<Content: View>: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend
     ) {
-        let size = children.child0.commit().size.size
+        let size = children.child0.commit().size.vector
         backend.setSize(of: widget, to: size)
         backend.updateHoverTarget(
             widget,

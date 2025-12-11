@@ -41,26 +41,47 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        let leadingWidth = backend.sidebarWidth(ofSplitView: widget)
+        let leadingWidth = Double(backend.sidebarWidth(ofSplitView: widget))
 
+        // TODO: If computeLayout ever becomes a pure requirement of View, then we
+        //   can delay this until commit.
+        children.minimumLeadingWidth = children.leadingChild.computeLayout(
+            with: body.view0,
+            proposedSize: ProposedViewSize(
+                0,
+                proposedSize.height
+            ),
+            environment: environment
+        ).size.width
+
+        children.minimumTrailingWidth = children.trailingChild.computeLayout(
+            with: body.view1,
+            proposedSize: ProposedViewSize(
+                0,
+                proposedSize.height
+            ),
+            environment: environment
+        ).size.width
+
+        // TODO: Figure out proper fixedSize behaviour (when width is unspecified)
         // Update pane children
         let leadingResult = children.leadingChild.computeLayout(
             with: body.view0,
-            proposedSize: SIMD2(
-                leadingWidth,
-                proposedSize.y
+            proposedSize: ProposedViewSize(
+                proposedSize.width == nil ? nil : leadingWidth,
+                proposedSize.height
             ),
             environment: environment
         )
         let trailingResult = children.trailingChild.computeLayout(
             with: body.view1,
-            proposedSize: SIMD2(
-                proposedSize.x - max(leadingWidth, leadingResult.size.minimumWidth),
-                proposedSize.y
+            proposedSize: ProposedViewSize(
+                proposedSize.width.map { $0 - max(leadingWidth, leadingResult.size.width) },
+                proposedSize.height
             ),
             environment: environment
         )
@@ -68,21 +89,20 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
         // Update split view size and sidebar width bounds
         let leadingContentSize = leadingResult.size
         let trailingContentSize = trailingResult.size
-        let size = SIMD2(
-            max(proposedSize.x, leadingContentSize.size.x + trailingContentSize.size.x),
-            max(proposedSize.y, max(leadingContentSize.size.y, trailingContentSize.size.y))
+        var size = ViewSize(
+            leadingContentSize.width + trailingContentSize.width,
+            max(leadingContentSize.height, trailingContentSize.height)
         )
 
+        if let proposedWidth = proposedSize.width {
+            size.width = max(size.width, proposedWidth)
+        }
+        if let proposedHeight = proposedSize.height {
+            size.height = max(size.height, proposedHeight)
+        }
+
         return ViewLayoutResult(
-            size: ViewSize(
-                size: size,
-                idealSize: leadingContentSize.idealSize &+ trailingContentSize.idealSize,
-                minimumWidth: leadingContentSize.minimumWidth + trailingContentSize.minimumWidth,
-                minimumHeight: max(
-                    leadingContentSize.minimumHeight, trailingContentSize.minimumHeight),
-                maximumWidth: nil,
-                maximumHeight: nil
-            ),
+            size: size,
             childResults: [leadingResult, trailingResult]
         )
     }
@@ -95,21 +115,22 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
         backend: Backend
     ) {
         backend.setResizeHandler(ofSplitView: widget) {
-            environment.onResize(.empty)
+            // The parameter to onResize is currently unused
+            environment.onResize(.zero)
         }
 
         let leadingWidth = backend.sidebarWidth(ofSplitView: widget)
         let leadingResult = children.leadingChild.commit()
         let trailingResult = children.trailingChild.commit()
 
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
         backend.setSidebarWidthBounds(
             ofSplitView: widget,
-            minimum: leadingResult.size.minimumWidth,
-            maximum: max(
-                leadingResult.size.minimumWidth,
-                layout.size.size.x - trailingResult.size.minimumWidth
-            )
+            minimum: LayoutSystem.roundSize(children.minimumLeadingWidth),
+            maximum: LayoutSystem.roundSize(max(
+                children.minimumLeadingWidth,
+                layout.size.width - children.minimumTrailingWidth
+            ))
         )
 
         // Center pane children
@@ -117,16 +138,16 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
             ofChildAt: 0,
             in: children.leadingPaneContainer.into(),
             to: SIMD2(
-                leadingWidth - leadingResult.size.size.x,
-                layout.size.size.y - leadingResult.size.size.y
+                leadingWidth - leadingResult.size.vector.x,
+                layout.size.vector.y - leadingResult.size.vector.y
             ) / 2
         )
         backend.setPosition(
             ofChildAt: 0,
             in: children.trailingPaneContainer.into(),
             to: SIMD2(
-                layout.size.size.x - leadingWidth - trailingResult.size.size.x,
-                layout.size.size.y - trailingResult.size.size.y
+                layout.size.vector.x - leadingWidth - trailingResult.size.vector.x,
+                layout.size.vector.y - trailingResult.size.vector.y
             ) / 2
         )
     }
@@ -136,6 +157,8 @@ class SplitViewChildren<Sidebar: View, Detail: View>: ViewGraphNodeChildren {
     var paneChildren: TupleView2<Sidebar, Detail>.Children
     var leadingPaneContainer: AnyWidget
     var trailingPaneContainer: AnyWidget
+    var minimumLeadingWidth: Double
+    var minimumTrailingWidth: Double
 
     init<Backend: AppBackend>(
         wrapping children: TupleView2<Sidebar, Detail>.Children,
@@ -150,6 +173,8 @@ class SplitViewChildren<Sidebar: View, Detail: View>: ViewGraphNodeChildren {
 
         self.leadingPaneContainer = AnyWidget(leadingPaneContainer)
         self.trailingPaneContainer = AnyWidget(trailingPaneContainer)
+        self.minimumLeadingWidth = 0
+        self.minimumTrailingWidth = 0
     }
 
     var erasedNodes: [ErasedViewGraphNode] {

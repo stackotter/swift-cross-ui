@@ -43,6 +43,9 @@ struct IntegerValue<Value: BinaryInteger>: DoubleConvertible {
 
 /// A control for selecting a value from a bounded range of numerical values.
 public struct Slider: ElementaryView, View {
+    /// The ideal width of a Slider.
+    private static let idealWidth: Double = 100
+
     /// A binding to the current value.
     private var value: Binding<Double>?
     /// The slider's minimum value.
@@ -92,26 +95,21 @@ public struct Slider: ElementaryView, View {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
         // TODO: Don't rely on naturalSize for minimum size so that we can get
         //   Slider sizes without relying on the widget.
         let naturalSize = backend.naturalSize(of: widget)
-        let size = SIMD2(proposedSize.x, naturalSize.y)
+
+        let size = ViewSize(
+            max(Double(naturalSize.x), proposedSize.width ?? Self.idealWidth),
+            Double(naturalSize.y)
+        )
 
         // TODO: Allow backends to specify their own ideal slider widths.
-        return ViewLayoutResult.leafView(
-            size: ViewSize(
-                size: size,
-                idealSize: SIMD2(100, naturalSize.y),
-                minimumWidth: naturalSize.x,
-                minimumHeight: naturalSize.y,
-                maximumWidth: nil,
-                maximumHeight: Double(naturalSize.y)
-            )
-        )
+        return ViewLayoutResult.leafView(size: size)
     }
 
     func commit<Backend: AppBackend>(
@@ -136,6 +134,6 @@ public struct Slider: ElementaryView, View {
             backend.setValue(ofSlider: widget, to: value)
         }
 
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }

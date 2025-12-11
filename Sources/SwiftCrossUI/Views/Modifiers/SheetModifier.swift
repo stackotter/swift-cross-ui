@@ -67,7 +67,7 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -111,7 +111,7 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
 
             _ = children.sheetContentNode!.computeLayout(
                 with: sheetContent(),
-                proposedSize: SIMD2(10_000, 0),
+                proposedSize: .unspecified,
                 environment: sheetEnvironment
             )
             let result = children.sheetContentNode!.commit()
@@ -125,7 +125,7 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
                 // sheetEnvironment here, because this is meant to be the sheet's
                 // environment, not that of its content.
                 environment: environment,
-                size: result.size.size,
+                size: result.size.vector,
                 onDismiss: { handleDismiss(children: children) },
                 cornerRadius: preferences.presentationCornerRadius,
                 detents: preferences.presentationDetents ?? [],

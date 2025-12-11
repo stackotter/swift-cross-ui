@@ -47,7 +47,8 @@ where Content == Never {
     ///   contents. Pass `nil` for the maximum width/height if the view has no maximum size
     ///   (and therefore may occupy the entire screen).
     func determineViewSize(
-        for proposal: SIMD2<Int>, uiViewController: UIViewControllerType,
+        for proposal: ProposedViewSize,
+        uiViewController: UIViewControllerType,
         context: UIViewControllerRepresentableContext<Coordinator>
     ) -> ViewSize
 
@@ -69,7 +70,8 @@ extension UIViewControllerRepresentable {
     }
 
     public func determineViewSize(
-        for proposal: SIMD2<Int>, uiViewController: UIViewControllerType,
+        for proposal: ProposedViewSize,
+        uiViewController: UIViewControllerType,
         context: UIViewControllerRepresentableContext<Coordinator>
     ) -> ViewSize {
         defaultViewSize(proposal: proposal, view: uiViewController.view)
@@ -111,7 +113,7 @@ where Self: UIViewControllerRepresentable {
     public func update<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children _: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend _: Backend,
         dryRun: Bool
@@ -119,16 +121,15 @@ where Self: UIViewControllerRepresentable {
         let representingWidget = widget as! ControllerRepresentingWidget<Self>
         representingWidget.update(with: environment)
 
-        let size =
-            representingWidget.representable.determineViewSize(
-                for: proposedSize,
-                uiViewController: representingWidget.subcontroller,
-                context: representingWidget.context!
-            )
+        let size = representingWidget.representable.determineViewSize(
+            for: proposedSize,
+            uiViewController: representingWidget.subcontroller,
+            context: representingWidget.context!
+        )
 
         if !dryRun {
-            representingWidget.width = size.size.x
-            representingWidget.height = size.size.y
+            representingWidget.width = LayoutSystem.roundSize(size.width)
+            representingWidget.height = LayoutSystem.roundSize(size.height)
         }
 
         return ViewLayoutResult.leafView(size: size)

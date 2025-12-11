@@ -91,22 +91,13 @@ struct SwiftCrossUITests {
             )
             backend.setChild(ofWindow: window, to: viewGraph.rootNode.widget.into())
 
-            _ = viewGraph.update(
-                proposedSize: SIMD2(200, 200),
-                environment: environment,
-                dryRun: true
+            let result = viewGraph.computeLayout(
+                proposedSize: ProposedViewSize(200, 200),
+                environment: environment
             )
-            let result = viewGraph.update(
-                proposedSize: SIMD2(200, 200),
-                environment: environment,
-                dryRun: false
-            )
-            let view: AppKitBackend.Widget = viewGraph.rootNode.widget.into()
-            backend.setSize(of: view, to: result.size.size)
-            backend.setSize(ofWindow: window, to: result.size.size)
 
             #expect(
-                result.size == ViewSize(fixedSize: SIMD2(92, 96)),
+                result.size == ViewSize(92, 96),
                 "View update result mismatch"
             )
 

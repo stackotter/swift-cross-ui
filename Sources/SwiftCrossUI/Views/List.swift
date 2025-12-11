@@ -101,7 +101,7 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -139,55 +139,41 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
 
         var childResults: [ViewLayoutResult] = []
         for (rowView, node) in zip(rowViews, children.nodes) {
-            let preferredSize = node.computeLayout(
-                with: rowView,
-                proposedSize: SIMD2(
-                    max(proposedSize.x, minimumRowSize.x) - baseRowPadding.axisTotals.x,
-                    max(proposedSize.y, minimumRowSize.y) - baseRowPadding.axisTotals.y
-                ),
-                environment: environment
-            ).size
+            let proposedWidth: Double?
+            if let width = proposedSize.width {
+                proposedWidth = max(
+                    Double(minimumRowSize.x),
+                    width - Double(baseRowPadding.axisTotals.x)
+                )
+            } else {
+                proposedWidth = nil
+            }
+
             let childResult = node.computeLayout(
-                with: nil,
-                proposedSize: SIMD2(
-                    max(proposedSize.x, minimumRowSize.x) - horizontalBasePadding,
-                    max(
-                        preferredSize.idealHeightForProposedWidth,
-                        minimumRowSize.y - baseRowPadding.axisTotals.y
-                    )
+                with: rowView,
+                proposedSize: ProposedViewSize(
+                    proposedWidth,
+                    nil
                 ),
                 environment: environment
             )
             childResults.append(childResult)
         }
 
-        let size = SIMD2(
+        let height = childResults.map(\.size.height).map { rowHeight in
             max(
-                (childResults.map(\.size.size.x).max() ?? 0) + horizontalBasePadding,
-                max(minimumRowSize.x, proposedSize.x)
-            ),
-            childResults.map(\.size.size.y).map { rowHeight in
-                max(
-                    rowHeight + verticalBasePadding,
-                    minimumRowSize.y
-                )
-            }.reduce(0, +)
+                rowHeight + Double(verticalBasePadding),
+                Double(minimumRowSize.y)
+            )
+        }.reduce(0, +)
+        let minimumWidth = (childResults.map(\.size.width).max() ?? 0) + Double(horizontalBasePadding)
+        let size = ViewSize(
+            max(proposedSize.width ?? minimumWidth, minimumWidth),
+            height
         )
 
         return ViewLayoutResult(
-            size: ViewSize(
-                size: size,
-                idealSize: SIMD2(
-                    (childResults.map(\.size.idealSize.x).max() ?? 0)
-                        + horizontalBasePadding,
-                    size.y
-                ),
-                minimumWidth: (childResults.map(\.size.minimumWidth).max() ?? 0)
-                    + horizontalBasePadding,
-                minimumHeight: size.y,
-                maximumWidth: nil,
-                maximumHeight: Double(size.y)
-            ),
+            size: size,
             childResults: childResults
         )
     }
@@ -206,12 +192,12 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
         backend.setItems(
             ofSelectableListView: widget,
             to: children.widgets.map { $0.into() },
-            withRowHeights: childResults.map(\.size.size.y).map { height in
-                height + verticalBasePadding
+            withRowHeights: childResults.map(\.size.height).map { height in
+                LayoutSystem.roundSize(height) + verticalBasePadding
             }
         )
 
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
         backend.setSelectionHandler(forSelectableListView: widget) { selectedIndex in
             selection.wrappedValue = associatedSelectionValue(selectedIndex)
         }

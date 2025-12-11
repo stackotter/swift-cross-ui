@@ -67,7 +67,7 @@ extension Menu: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: MenuStorage,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -75,7 +75,7 @@ extension Menu: TypeSafeView {
         //   continue updating it even once it's open.
         var size = backend.naturalSize(of: widget)
         size.x = buttonWidth ?? size.x
-        return ViewLayoutResult.leafView(size: ViewSize(fixedSize: size))
+        return ViewLayoutResult.leafView(size: ViewSize(size))
     }
 
     func commit<Backend: AppBackend>(
@@ -85,7 +85,9 @@ extension Menu: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend
     ) {
-        let size = layout.size.size
+        let size = layout.size
+        backend.setSize(of: widget, to: size.vector)
+
         let content = resolve().content
         switch backend.menuImplementationStyle {
             case .dynamicPopover:
@@ -103,7 +105,7 @@ extension Menu: TypeSafeView {
                         )
                         backend.showPopoverMenu(
                             menu,
-                            at: SIMD2(0, size.y + 2),
+                            at: SIMD2(0, LayoutSystem.roundSize(size.width) + 2),
                             relativeTo: widget
                         ) {
                             children.menu = nil
@@ -111,7 +113,6 @@ extension Menu: TypeSafeView {
                     }
                 )
 
-                backend.setSize(of: widget, to: size)
                 children.updateMenuIfShown(
                     content: content,
                     environment: environment,
@@ -126,8 +127,6 @@ extension Menu: TypeSafeView {
                     environment: environment
                 )
                 backend.updateButton(widget, label: label, menu: menu, environment: environment)
-
-                backend.setSize(of: widget, to: size)
         }
     }
 

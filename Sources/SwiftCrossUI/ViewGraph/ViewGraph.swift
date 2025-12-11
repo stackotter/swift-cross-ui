@@ -18,9 +18,11 @@ public class ViewGraph<Root: View> {
     private var cancellable: Cancellable?
     /// The root view being managed by this view graph.
     private var view: Root
-    /// The most recent size of the window (used when updated the root view due to a state
-    /// change as opposed to a window resizing event).
-    private var windowSize: SIMD2<Int>
+    /// The latest size proposal.
+    private var latestProposal: ProposedViewSize
+    /// The latest proposal as of the last commit (used when updated the root
+    /// view due to a state change as opposed to a window resizing event).
+    private var committedProposal: ProposedViewSize
     /// The current size of the root view.
     private var currentRootViewResult: ViewLayoutResult
 
@@ -39,45 +41,47 @@ public class ViewGraph<Root: View> {
         rootNode = AnyViewGraphNode(for: view, backend: backend, environment: environment)
 
         self.view = view
-        windowSize = .zero
+        latestProposal = .zero
+        committedProposal = .zero
         parentEnvironment = environment
-        currentRootViewResult = ViewLayoutResult.leafView(size: .empty)
+        currentRootViewResult = ViewLayoutResult.leafView(size: .zero)
         setIncomingURLHandler = backend.setIncomingURLHandler(to:)
     }
 
     /// Recomputes the entire UI (e.g. due to the root view's state updating).
     /// If the update is due to the parent scene getting updated then the view
     /// is recomputed and passed as `newView`.
-    public func update(
+    public func computeLayout(
         with newView: Root? = nil,
-        proposedSize: SIMD2<Int>,
-        environment: EnvironmentValues,
-        dryRun: Bool
+        proposedSize: ProposedViewSize,
+        environment: EnvironmentValues
     ) -> ViewLayoutResult {
         parentEnvironment = environment
-        windowSize = proposedSize
+        latestProposal = proposedSize
 
-        // TODO: Refactor view graph node to be computeLayout+commit based
-        //   instead of update based.
-        let result: ViewLayoutResult
-        if dryRun {
-            result = rootNode.computeLayout(
-                with: newView ?? view,
-                proposedSize: proposedSize,
-                environment: parentEnvironment
-            )
-        } else {
-            result = rootNode.commit()
-        }
-
+        let result = rootNode.computeLayout(
+            with: newView ?? view,
+            proposedSize: proposedSize,
+            environment: parentEnvironment
+        )
         self.currentRootViewResult = result
-        if isFirstUpdate, !dryRun {
+        if let newView {
+            self.view = newView
+        }
+        return result
+    }
+
+    /// Commits the result of the last computeLayout call to the underlying
+    /// widget hierarchy.
+    public func commit() {
+        committedProposal = latestProposal
+        self.currentRootViewResult = rootNode.commit()
+        if isFirstUpdate {
             setIncomingURLHandler { url in
                 self.currentRootViewResult.preferences.onOpenURL?(url)
             }
             isFirstUpdate = false
         }
-        return result
     }
 
     public func snapshot() -> ViewGraphSnapshotter.NodeSnapshot {

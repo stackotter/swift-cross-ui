@@ -2,6 +2,9 @@ import Foundation
 
 @available(tvOS, unavailable)
 public struct WebView: ElementaryView {
+    /// The ideal size of a WebView.
+    private static let idealSize = ViewSize(10, 10)
+
     @State var currentURL: URL?
     @Binding var url: URL
 
@@ -15,21 +18,12 @@ public struct WebView: ElementaryView {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        return ViewLayoutResult(
-            size: ViewSize(
-                size: proposedSize,
-                idealSize: SIMD2(10, 10),
-                minimumWidth: 0,
-                minimumHeight: 0,
-                maximumWidth: nil,
-                maximumHeight: nil
-            ),
-            childResults: []
-        )
+        let size = proposedSize.replacingUnspecifiedDimensions(by: Self.idealSize)
+        return ViewLayoutResult.leafView(size: size)
     }
 
     func commit<Backend: AppBackend>(
@@ -46,6 +40,6 @@ public struct WebView: ElementaryView {
             currentURL = destination
             url = destination
         }
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }
