@@ -239,6 +239,26 @@ final class SliderWidget: WrapperWidget<UISlider> {
     }
 }
 
+@available(tvOS, unavailable)
+final class DatePickerWidget: WrapperWidget<UIDatePicker> {
+    var onChange: ((Date) -> Void)? {
+        didSet {
+            if oldValue == nil {
+                child.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
+            }
+        }
+    }
+
+    @objc
+    func dateChanged(sender: UIDatePicker) {
+        onChange?(sender.date)
+    }
+
+    override var intrinsicContentSize: CGSize {
+        return child.sizeThatFits(UIView.layoutFittingCompressedSize)
+    }
+}
+
 extension UIKitBackend {
     public func createButton() -> Widget {
         ButtonWidget()
@@ -500,6 +520,60 @@ extension UIKitBackend {
         public func setValue(ofSlider slider: Widget, to value: Double) {
             let sliderWidget = slider as! SliderWidget
             sliderWidget.child.setValue(Float(value), animated: true)
+        }
+
+        public func createDatePicker() -> Widget {
+            DatePickerWidget()
+        }
+
+        public func updateDatePicker(
+            _ datePicker: Widget,
+            environment: EnvironmentValues,
+            date: Date,
+            range: ClosedRange<Date>,
+            components: DatePickerComponents,
+            onChange: @escaping (Date) -> Void
+        ) {
+            let datePickerWidget = datePicker as! DatePickerWidget
+
+            datePickerWidget.child.date = date
+            datePickerWidget.onChange = onChange
+
+            datePickerWidget.child.isEnabled = environment.isEnabled
+            datePickerWidget.child.calendar = environment.calendar
+            datePickerWidget.child.timeZone = environment.timeZone
+            datePickerWidget.child.minimumDate = range.lowerBound
+            datePickerWidget.child.maximumDate = range.upperBound
+
+            datePickerWidget.child.datePickerMode =
+                switch components {
+                    case [.date, .hourAndMinute]:
+                        .dateAndTime
+                    case .date:
+                        .date
+                    case .hourAndMinute:
+                        .time
+                    default:
+                        // Crashing upon receiving [] is consistent with SwiftUI.
+                        fatalError("Unexpected Components: \(components)")
+                }
+
+            if #available(iOS 13.4, macCatalyst 13.4, *) {
+                switch environment.datePickerStyle {
+                    case .automatic:
+                        datePickerWidget.child.preferredDatePickerStyle = .automatic
+                    case .compact:
+                        datePickerWidget.child.preferredDatePickerStyle = .compact
+                    case .graphical:
+                        guard #available(iOS 14, macCatalyst 14, *) else {
+                            preconditionFailure(
+                                "DatePickerStyle.graphical is only available on iOS 14 or newer")
+                        }
+                        datePickerWidget.child.preferredDatePickerStyle = .inline
+                    case .wheel:
+                        datePickerWidget.child.preferredDatePickerStyle = .wheels
+                }
+            }
         }
     #endif
 }

@@ -112,7 +112,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/stackotter/swift-windowsappsdk",
-            revision: "ba6f0ec377b70d8be835d253102ff665a0e47d99"
+            revision: "f1c50892f10c0f7f635d3c7a3d728fd634ad001a"
         ),
         .package(
             url: "https://github.com/stackotter/swift-windowsfoundation",
@@ -120,7 +120,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/stackotter/swift-winui",
-            revision: "1695ee3ea2b7a249f6504c7f1759e7ec7a38eb86"
+            revision: "42c47f4e4129c8b5a5d9912f05e1168c924ac180"
         ),
         .package(
             url: "https://github.com/stackotter/swift-benchmark",

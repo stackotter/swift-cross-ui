@@ -10,6 +10,8 @@ public final class UIKitBackend: AppBackend {
     static var mainWindow: UIWindow?
     static var hasReturnedAWindow = false
 
+    private var timeZoneObserver: NSObjectProtocol?
+
     public let scrollBarWidth = 0
     public let defaultPaddingAmount = 15
     public let requiresToggleSwitchSpacer = true
@@ -40,6 +42,20 @@ public final class UIKitBackend: AppBackend {
             @unknown default:
                 .tablet
         }
+    }
+
+    public nonisolated var supportedDatePickerStyles: [DatePickerStyle] {
+        #if os(tvOS)
+            []
+        #else
+            if #available(iOS 14, macCatalyst 14, *) {
+                [.automatic, .graphical, .compact, .wheel]
+            } else if #available(iOS 13.4, macCatalyst 13.4, *) {
+                [.automatic, .compact, .wheel]
+            } else {
+                [.automatic]
+            }
+        #endif
     }
 
     var onTraitCollectionChange: (() -> Void)?
@@ -115,6 +131,7 @@ public final class UIKitBackend: AppBackend {
         var environment = defaultEnvironment
 
         environment.toggleStyle = .switch
+        environment.timeZone = .current
 
         switch UITraitCollection.current.userInterfaceStyle {
             case .light:
@@ -130,6 +147,17 @@ public final class UIKitBackend: AppBackend {
 
     public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
         onTraitCollectionChange = action
+        if timeZoneObserver == nil {
+            timeZoneObserver = NotificationCenter.default.addObserver(
+                forName: .NSSystemTimeZoneDidChange,
+                object: nil,
+                queue: .main
+            ) { [unowned self] _ in
+                MainActor.assumeIsolated {
+                    self.onTraitCollectionChange?()
+                }
+            }
+        }
     }
 
     public func computeWindowEnvironment(

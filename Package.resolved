@@ -1,5 +1,5 @@
 {
-  "originHash" : "77caf3e84e88f2ff183c89c647d8007a7ba7b50bfb1fb7216b22f7dfda4a2dc0",
+  "originHash" : "804c496a5b5ae9c797e640d6b4942ee27ff8156f7cac6d4ceb05ea6159d6deb3",
   "pins" : [
     {
       "identity" : "jpeg",
@@ -104,7 +104,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-uwp",
       "state" : {
-        "revision" : "e3ff9c195775e16b404b82cf6886c5e81d73b6c1"
+        "revision" : "8128f6615b7c5b46ada289ab6d49d871ca1e13a5"
       }
     },
     {
@@ -112,7 +112,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-webview2core",
       "state" : {
-        "revision" : "c9911ca23455b9fcdb2429e98baa6f4d003b381c"
+        "revision" : "4396f5d94d6dfd1f95ab25e79de98141b7f4f183"
       }
     },
     {
@@ -120,7 +120,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-windowsappsdk",
       "state" : {
-        "revision" : "ba6f0ec377b70d8be835d253102ff665a0e47d99"
+        "revision" : "f1c50892f10c0f7f635d3c7a3d728fd634ad001a"
       }
     },
     {
@@ -136,7 +136,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-winui",
       "state" : {
-        "revision" : "1695ee3ea2b7a249f6504c7f1759e7ec7a38eb86"
+        "revision" : "42c47f4e4129c8b5a5d9912f05e1168c924ac180"
       }
     },
     {
