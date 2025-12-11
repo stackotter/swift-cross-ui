@@ -36,21 +36,26 @@
 /// ```
 @propertyWrapper
 public struct Environment<Value>: DynamicProperty {
-    var keyPath: KeyPath<EnvironmentValues, Value>
+    var keyPath: KeyPath<EnvironmentValues, Value>?
+    var environmentKey: (any EnvironmentKey.Type)?
     var value: Box<Value?>
 
     public func update(
         with environment: EnvironmentValues,
         previousValue: Self?
     ) {
-        value.value = environment[keyPath: keyPath]
+        if let keyPath {
+            value.value = environment[keyPath: keyPath]
+        } else if let environmentKey {
+            value.value = (environment[environmentKey] as! Value)
+        }
     }
 
     public var wrappedValue: Value {
         guard let value = value.value else {
             fatalError(
                 """
-                Environment value \(keyPath) used before initialization. Don't \
+                Environment value \(keyPath.debugDescription) used before initialization. Don't \
                 use @Environment properties before SwiftCrossUI requests the \
                 view's body.
                 """
@@ -62,5 +67,10 @@ public struct Environment<Value>: DynamicProperty {
     public init(_ keyPath: KeyPath<EnvironmentValues, Value>) {
         self.keyPath = keyPath
         value = Box(value: nil)
+    }
+
+    public init<Key: EnvironmentKey>(_ type: Key.Type) where Value == Key.Value {
+        self.environmentKey = type
+        self.value = Box(value: nil)
     }
 }
