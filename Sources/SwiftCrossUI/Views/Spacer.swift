@@ -1,6 +1,9 @@
 /// A flexible space that expands along the major axis of its containing
 /// stack layout, or on both axes if not contained in a stack.
 public struct Spacer: ElementaryView, View {
+    /// The ideal length of a spacer.
+    static let idealLength: Double = 8
+
     /// The minimum length this spacer can be shrunk to, along the axis of
     /// expansion.
     package var minLength: Int?
@@ -11,53 +14,32 @@ public struct Spacer: ElementaryView, View {
         self.minLength = minLength
     }
 
-    public func asWidget<Backend: AppBackend>(
-        backend: Backend
-    ) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
         return backend.createContainer()
     }
 
-    public func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        let minLength = minLength ?? 0
-
-        let size: SIMD2<Int>
-        let minimumWidth: Int
-        let minimumHeight: Int
-        let maximumWidth: Double?
-        let maximumHeight: Double?
-        switch environment.layoutOrientation {
-            case .horizontal:
-                size = SIMD2(max(minLength, proposedSize.x), 0)
-                minimumWidth = minLength
-                minimumHeight = 0
-                maximumWidth = nil
-                maximumHeight = 0
-            case .vertical:
-                size = SIMD2(0, max(minLength, proposedSize.y))
-                minimumWidth = 0
-                minimumHeight = minLength
-                maximumWidth = 0
-                maximumHeight = nil
-        }
-
-        if !dryRun {
-            backend.setSize(of: widget, to: size)
-        }
-        return ViewUpdateResult.leafView(
-            size: ViewSize(
-                size: size,
-                idealSize: SIMD2(minimumWidth, minimumHeight),
-                minimumWidth: minimumWidth,
-                minimumHeight: minimumHeight,
-                maximumWidth: maximumWidth,
-                maximumHeight: maximumHeight
-            )
+        backend: Backend
+    ) -> ViewLayoutResult {
+        var size = ViewSize.zero
+        let proposedLength = proposedSize[component: environment.layoutOrientation]
+        size[component: environment.layoutOrientation] = max(
+            Double(minLength ?? 0),
+            proposedLength ?? Self.idealLength
         )
+
+        return ViewLayoutResult.leafView(size: size)
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        // Spacers are invisible so we don't have to update anything.
     }
 }

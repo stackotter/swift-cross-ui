@@ -7,13 +7,19 @@ protocol ElementaryView: View where Content == EmptyView {
         backend: Backend
     ) -> Backend.Widget
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult
+        backend: Backend
+    ) -> ViewLayoutResult
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    )
 }
 
 extension ElementaryView {
@@ -30,20 +36,33 @@ extension ElementaryView {
     }
 
     /// Do not implement yourself, implement ``ElementaryView/update(_:proposedSize:environment:backend:)`` instead.
-    public func update<Backend: AppBackend>(
+    public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        update(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        computeLayout(
             widget,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend,
-            dryRun: dryRun
+            backend: backend
+        )
+    }
+
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        commit(
+            widget,
+            layout: layout,
+            environment: environment,
+            backend: backend
         )
     }
 }

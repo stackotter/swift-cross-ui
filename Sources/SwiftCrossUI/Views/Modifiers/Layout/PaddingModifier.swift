@@ -97,50 +97,57 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
         return container
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ container: Backend.Widget,
         children: TupleViewChildren1<Child>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
+        // This first block of calculations is somewhat repeated in `commit`,
+        // make sure to update things in both places.
         let insets = EdgeInsets(insets, defaultAmount: backend.defaultPaddingAmount)
+        let horizontalPadding = Double(insets.leading + insets.trailing)
+        let verticalPadding = Double(insets.top + insets.bottom)
 
-        let childResult = children.child0.update(
-            with: body.view0,
-            proposedSize: SIMD2(
-                max(proposedSize.x - insets.leading - insets.trailing, 0),
-                max(proposedSize.y - insets.top - insets.bottom, 0)
-            ),
-            environment: environment,
-            dryRun: dryRun
-        )
-        let childSize = childResult.size
-
-        let paddingSize = SIMD2(insets.leading + insets.trailing, insets.top + insets.bottom)
-        let size =
-            SIMD2(
-                childSize.size.x,
-                childSize.size.y
-            ) &+ paddingSize
-        if !dryRun {
-            backend.setSize(of: container, to: size)
-            backend.setPosition(ofChildAt: 0, in: container, to: SIMD2(insets.leading, insets.top))
+        var childProposal = proposedSize
+        if let proposedWidth = proposedSize.width {
+            childProposal.width = max(proposedWidth - horizontalPadding, 0)
+        }
+        if let proposedHeight = proposedSize.height {
+            childProposal.height = max(proposedHeight - verticalPadding, 0)
         }
 
-        return ViewUpdateResult(
-            size: ViewSize(
-                size: size,
-                idealSize: childSize.idealSize &+ paddingSize,
-                idealWidthForProposedHeight: childSize.idealWidthForProposedHeight + paddingSize.x,
-                idealHeightForProposedWidth: childSize.idealHeightForProposedWidth + paddingSize.y,
-                minimumWidth: childSize.minimumWidth + paddingSize.x,
-                minimumHeight: childSize.minimumHeight + paddingSize.y,
-                maximumWidth: childSize.maximumWidth + Double(paddingSize.x),
-                maximumHeight: childSize.maximumHeight + Double(paddingSize.y)
-            ),
+        let childResult = children.child0.computeLayout(
+            with: body.view0,
+            proposedSize: childProposal,
+            environment: environment
+        )
+
+        var size = childResult.size
+        size.width += horizontalPadding
+        size.height += verticalPadding
+
+        return ViewLayoutResult(
+            size: size,
             childResults: [childResult]
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ container: Backend.Widget,
+        children: TupleViewChildren1<Child>,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        _ = children.child0.commit()
+
+        let size = layout.size
+        backend.setSize(of: container, to: size.vector)
+
+        let insets = EdgeInsets(insets, defaultAmount: backend.defaultPaddingAmount)
+        let childPosition = SIMD2(insets.leading, insets.top)
+        backend.setPosition(ofChildAt: 0, in: container, to: childPosition)
     }
 }

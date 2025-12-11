@@ -1,6 +1,17 @@
 // This file was generated using gyb. Do not edit it directly. Edit
 // TupleViewChildren.swift.gyb instead.
 
+struct StackLayoutCache {
+    var lastFlexibilityOrdering: [Int]?
+    var lastHiddenChildren: [Bool] = []
+    var redistributeSpaceOnCommit = false
+}
+
+protocol TupleViewChildren: ViewGraphNodeChildren {
+    @MainActor
+    var stackLayoutCache: StackLayoutCache { get nonmutating set }
+}
+
 /// A helper function to shorten node initialisations to a single line. This
 /// helps compress the generated code a bit and minimise the number of additions
 /// and deletions caused by updating the generator.
@@ -19,18 +30,21 @@ private func node<V: View, Backend: AppBackend>(
     )
 }
 
+
 /// A fixed-length strongly-typed collection of 1 child nodes. A counterpart to
 /// ``TupleView1``.
-public struct TupleViewChildren1<Child0: View>: ViewGraphNodeChildren {
+public class TupleViewChildren1<Child0: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [child0.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
         return [
-            ErasedViewGraphNode(wrapping: child0)
+            ErasedViewGraphNode(wrapping: child0),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -52,7 +66,7 @@ public struct TupleViewChildren1<Child0: View>: ViewGraphNodeChildren {
 
 /// A fixed-length strongly-typed collection of 2 child nodes. A counterpart to
 /// ``TupleView2``.
-public struct TupleViewChildren2<Child0: View, Child1: View>: ViewGraphNodeChildren {
+public class TupleViewChildren2<Child0: View, Child1: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [child0.widget, child1.widget]
     }
@@ -63,6 +77,8 @@ public struct TupleViewChildren2<Child0: View, Child1: View>: ViewGraphNodeChild
             ErasedViewGraphNode(wrapping: child1),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -77,7 +93,7 @@ public struct TupleViewChildren2<Child0: View, Child1: View>: ViewGraphNodeChild
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -87,7 +103,7 @@ public struct TupleViewChildren2<Child0: View, Child1: View>: ViewGraphNodeChild
 
 /// A fixed-length strongly-typed collection of 3 child nodes. A counterpart to
 /// ``TupleView3``.
-public struct TupleViewChildren3<Child0: View, Child1: View, Child2: View>: ViewGraphNodeChildren {
+public class TupleViewChildren3<Child0: View, Child1: View, Child2: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [child0.widget, child1.widget, child2.widget]
     }
@@ -99,6 +115,8 @@ public struct TupleViewChildren3<Child0: View, Child1: View, Child2: View>: View
             ErasedViewGraphNode(wrapping: child2),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -115,8 +133,7 @@ public struct TupleViewChildren3<Child0: View, Child1: View, Child2: View>: View
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -127,9 +144,7 @@ public struct TupleViewChildren3<Child0: View, Child1: View, Child2: View>: View
 
 /// A fixed-length strongly-typed collection of 4 child nodes. A counterpart to
 /// ``TupleView4``.
-public struct TupleViewChildren4<Child0: View, Child1: View, Child2: View, Child3: View>:
-    ViewGraphNodeChildren
-{
+public class TupleViewChildren4<Child0: View, Child1: View, Child2: View, Child3: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [child0.widget, child1.widget, child2.widget, child3.widget]
     }
@@ -142,6 +157,8 @@ public struct TupleViewChildren4<Child0: View, Child1: View, Child2: View, Child
             ErasedViewGraphNode(wrapping: child3),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -160,8 +177,7 @@ public struct TupleViewChildren4<Child0: View, Child1: View, Child2: View, Child
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -173,9 +189,7 @@ public struct TupleViewChildren4<Child0: View, Child1: View, Child2: View, Child
 
 /// A fixed-length strongly-typed collection of 5 child nodes. A counterpart to
 /// ``TupleView5``.
-public struct TupleViewChildren5<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren5<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget]
     }
@@ -189,6 +203,8 @@ public struct TupleViewChildren5<
             ErasedViewGraphNode(wrapping: child4),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -209,9 +225,7 @@ public struct TupleViewChildren5<
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -224,14 +238,9 @@ public struct TupleViewChildren5<
 
 /// A fixed-length strongly-typed collection of 6 child nodes. A counterpart to
 /// ``TupleView6``.
-public struct TupleViewChildren6<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren6<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
-        return [
-            child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
-            child5.widget,
-        ]
+        return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget, child5.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
@@ -244,6 +253,8 @@ public struct TupleViewChildren6<
             ErasedViewGraphNode(wrapping: child5),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -260,16 +271,13 @@ public struct TupleViewChildren6<
 
     /// Creates the nodes for 6 child views.
     public init<Backend: AppBackend>(
-        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4,
-        _ child5: Child5,
+        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4, _ child5: Child5,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -283,14 +291,9 @@ public struct TupleViewChildren6<
 
 /// A fixed-length strongly-typed collection of 7 child nodes. A counterpart to
 /// ``TupleView7``.
-public struct TupleViewChildren7<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren7<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
-        return [
-            child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
-            child5.widget, child6.widget,
-        ]
+        return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget, child5.widget, child6.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
@@ -304,6 +307,8 @@ public struct TupleViewChildren7<
             ErasedViewGraphNode(wrapping: child6),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -322,17 +327,13 @@ public struct TupleViewChildren7<
 
     /// Creates the nodes for 7 child views.
     public init<Backend: AppBackend>(
-        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4,
-        _ child5: Child5, _ child6: Child6,
+        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4, _ child5: Child5, _ child6: Child6,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self),
-            ViewGraphSnapshotter.name(of: Child6.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self), ViewGraphSnapshotter.name(of: Child6.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -347,15 +348,9 @@ public struct TupleViewChildren7<
 
 /// A fixed-length strongly-typed collection of 8 child nodes. A counterpart to
 /// ``TupleView8``.
-public struct TupleViewChildren8<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren8<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
-        return [
-            child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
-            child5.widget, child6.widget, child7.widget,
-        ]
+        return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget, child5.widget, child6.widget, child7.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
@@ -370,6 +365,8 @@ public struct TupleViewChildren8<
             ErasedViewGraphNode(wrapping: child7),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -390,17 +387,13 @@ public struct TupleViewChildren8<
 
     /// Creates the nodes for 8 child views.
     public init<Backend: AppBackend>(
-        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4,
-        _ child5: Child5, _ child6: Child6, _ child7: Child7,
+        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4, _ child5: Child5, _ child6: Child6, _ child7: Child7,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self),
-            ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self), ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -416,15 +409,9 @@ public struct TupleViewChildren8<
 
 /// A fixed-length strongly-typed collection of 9 child nodes. A counterpart to
 /// ``TupleView9``.
-public struct TupleViewChildren9<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View, Child8: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren9<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
-        return [
-            child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
-            child5.widget, child6.widget, child7.widget, child8.widget,
-        ]
+        return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget, child5.widget, child6.widget, child7.widget, child8.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
@@ -440,6 +427,8 @@ public struct TupleViewChildren9<
             ErasedViewGraphNode(wrapping: child8),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -462,18 +451,13 @@ public struct TupleViewChildren9<
 
     /// Creates the nodes for 9 child views.
     public init<Backend: AppBackend>(
-        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4,
-        _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8,
+        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4, _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self),
-            ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self),
-            ViewGraphSnapshotter.name(of: Child8.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self), ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self), ViewGraphSnapshotter.name(of: Child8.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -490,15 +474,9 @@ public struct TupleViewChildren9<
 
 /// A fixed-length strongly-typed collection of 10 child nodes. A counterpart to
 /// ``TupleView10``.
-public struct TupleViewChildren10<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View, Child8: View, Child9: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren10<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View, Child9: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
-        return [
-            child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
-            child5.widget, child6.widget, child7.widget, child8.widget, child9.widget,
-        ]
+        return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget, child5.widget, child6.widget, child7.widget, child8.widget, child9.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
@@ -515,6 +493,8 @@ public struct TupleViewChildren10<
             ErasedViewGraphNode(wrapping: child9),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -539,18 +519,13 @@ public struct TupleViewChildren10<
 
     /// Creates the nodes for 10 child views.
     public init<Backend: AppBackend>(
-        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4,
-        _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9,
+        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4, _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self),
-            ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self),
-            ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self), ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self), ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -568,16 +543,9 @@ public struct TupleViewChildren10<
 
 /// A fixed-length strongly-typed collection of 11 child nodes. A counterpart to
 /// ``TupleView11``.
-public struct TupleViewChildren11<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View, Child8: View, Child9: View, Child10: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren11<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View, Child9: View, Child10: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
-        return [
-            child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
-            child5.widget, child6.widget, child7.widget, child8.widget, child9.widget,
-            child10.widget,
-        ]
+        return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget, child5.widget, child6.widget, child7.widget, child8.widget, child9.widget, child10.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
@@ -595,6 +563,8 @@ public struct TupleViewChildren11<
             ErasedViewGraphNode(wrapping: child10),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -621,20 +591,13 @@ public struct TupleViewChildren11<
 
     /// Creates the nodes for 11 child views.
     public init<Backend: AppBackend>(
-        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4,
-        _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9,
-        _ child10: Child10,
+        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4, _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9, _ child10: Child10,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self),
-            ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self),
-            ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self),
-            ViewGraphSnapshotter.name(of: Child10.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self), ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self), ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self), ViewGraphSnapshotter.name(of: Child10.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -653,16 +616,9 @@ public struct TupleViewChildren11<
 
 /// A fixed-length strongly-typed collection of 12 child nodes. A counterpart to
 /// ``TupleView12``.
-public struct TupleViewChildren12<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren12<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
-        return [
-            child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
-            child5.widget, child6.widget, child7.widget, child8.widget, child9.widget,
-            child10.widget, child11.widget,
-        ]
+        return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget, child5.widget, child6.widget, child7.widget, child8.widget, child9.widget, child10.widget, child11.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
@@ -681,6 +637,8 @@ public struct TupleViewChildren12<
             ErasedViewGraphNode(wrapping: child11),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -709,21 +667,13 @@ public struct TupleViewChildren12<
 
     /// Creates the nodes for 12 child views.
     public init<Backend: AppBackend>(
-        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4,
-        _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9,
-        _ child10: Child10, _ child11: Child11,
+        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4, _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9, _ child10: Child10, _ child11: Child11,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self),
-            ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self),
-            ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self),
-            ViewGraphSnapshotter.name(of: Child10.self),
-            ViewGraphSnapshotter.name(of: Child11.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self), ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self), ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self), ViewGraphSnapshotter.name(of: Child10.self), ViewGraphSnapshotter.name(of: Child11.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -743,17 +693,9 @@ public struct TupleViewChildren12<
 
 /// A fixed-length strongly-typed collection of 13 child nodes. A counterpart to
 /// ``TupleView13``.
-public struct TupleViewChildren13<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
-    Child12: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren13<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View, Child12: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
-        return [
-            child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
-            child5.widget, child6.widget, child7.widget, child8.widget, child9.widget,
-            child10.widget, child11.widget, child12.widget,
-        ]
+        return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget, child5.widget, child6.widget, child7.widget, child8.widget, child9.widget, child10.widget, child11.widget, child12.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
@@ -773,6 +715,8 @@ public struct TupleViewChildren13<
             ErasedViewGraphNode(wrapping: child12),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -803,22 +747,13 @@ public struct TupleViewChildren13<
 
     /// Creates the nodes for 13 child views.
     public init<Backend: AppBackend>(
-        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4,
-        _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9,
-        _ child10: Child10, _ child11: Child11, _ child12: Child12,
+        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4, _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9, _ child10: Child10, _ child11: Child11, _ child12: Child12,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self),
-            ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self),
-            ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self),
-            ViewGraphSnapshotter.name(of: Child10.self),
-            ViewGraphSnapshotter.name(of: Child11.self),
-            ViewGraphSnapshotter.name(of: Child12.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self), ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self), ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self), ViewGraphSnapshotter.name(of: Child10.self), ViewGraphSnapshotter.name(of: Child11.self), ViewGraphSnapshotter.name(of: Child12.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -839,17 +774,9 @@ public struct TupleViewChildren13<
 
 /// A fixed-length strongly-typed collection of 14 child nodes. A counterpart to
 /// ``TupleView14``.
-public struct TupleViewChildren14<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
-    Child12: View, Child13: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren14<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View, Child12: View, Child13: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
-        return [
-            child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
-            child5.widget, child6.widget, child7.widget, child8.widget, child9.widget,
-            child10.widget, child11.widget, child12.widget, child13.widget,
-        ]
+        return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget, child5.widget, child6.widget, child7.widget, child8.widget, child9.widget, child10.widget, child11.widget, child12.widget, child13.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
@@ -870,6 +797,8 @@ public struct TupleViewChildren14<
             ErasedViewGraphNode(wrapping: child13),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -902,23 +831,13 @@ public struct TupleViewChildren14<
 
     /// Creates the nodes for 14 child views.
     public init<Backend: AppBackend>(
-        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4,
-        _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9,
-        _ child10: Child10, _ child11: Child11, _ child12: Child12, _ child13: Child13,
+        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4, _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9, _ child10: Child10, _ child11: Child11, _ child12: Child12, _ child13: Child13,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self),
-            ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self),
-            ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self),
-            ViewGraphSnapshotter.name(of: Child10.self),
-            ViewGraphSnapshotter.name(of: Child11.self),
-            ViewGraphSnapshotter.name(of: Child12.self),
-            ViewGraphSnapshotter.name(of: Child13.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self), ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self), ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self), ViewGraphSnapshotter.name(of: Child10.self), ViewGraphSnapshotter.name(of: Child11.self), ViewGraphSnapshotter.name(of: Child12.self), ViewGraphSnapshotter.name(of: Child13.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -940,17 +859,9 @@ public struct TupleViewChildren14<
 
 /// A fixed-length strongly-typed collection of 15 child nodes. A counterpart to
 /// ``TupleView15``.
-public struct TupleViewChildren15<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
-    Child12: View, Child13: View, Child14: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren15<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View, Child12: View, Child13: View, Child14: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
-        return [
-            child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
-            child5.widget, child6.widget, child7.widget, child8.widget, child9.widget,
-            child10.widget, child11.widget, child12.widget, child13.widget, child14.widget,
-        ]
+        return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget, child5.widget, child6.widget, child7.widget, child8.widget, child9.widget, child10.widget, child11.widget, child12.widget, child13.widget, child14.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
@@ -972,6 +883,8 @@ public struct TupleViewChildren15<
             ErasedViewGraphNode(wrapping: child14),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -1006,25 +919,13 @@ public struct TupleViewChildren15<
 
     /// Creates the nodes for 15 child views.
     public init<Backend: AppBackend>(
-        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4,
-        _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9,
-        _ child10: Child10, _ child11: Child11, _ child12: Child12, _ child13: Child13,
-        _ child14: Child14,
+        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4, _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9, _ child10: Child10, _ child11: Child11, _ child12: Child12, _ child13: Child13, _ child14: Child14,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self),
-            ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self),
-            ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self),
-            ViewGraphSnapshotter.name(of: Child10.self),
-            ViewGraphSnapshotter.name(of: Child11.self),
-            ViewGraphSnapshotter.name(of: Child12.self),
-            ViewGraphSnapshotter.name(of: Child13.self),
-            ViewGraphSnapshotter.name(of: Child14.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self), ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self), ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self), ViewGraphSnapshotter.name(of: Child10.self), ViewGraphSnapshotter.name(of: Child11.self), ViewGraphSnapshotter.name(of: Child12.self), ViewGraphSnapshotter.name(of: Child13.self), ViewGraphSnapshotter.name(of: Child14.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -1047,18 +948,9 @@ public struct TupleViewChildren15<
 
 /// A fixed-length strongly-typed collection of 16 child nodes. A counterpart to
 /// ``TupleView16``.
-public struct TupleViewChildren16<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
-    Child12: View, Child13: View, Child14: View, Child15: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren16<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View, Child12: View, Child13: View, Child14: View, Child15: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
-        return [
-            child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
-            child5.widget, child6.widget, child7.widget, child8.widget, child9.widget,
-            child10.widget, child11.widget, child12.widget, child13.widget, child14.widget,
-            child15.widget,
-        ]
+        return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget, child5.widget, child6.widget, child7.widget, child8.widget, child9.widget, child10.widget, child11.widget, child12.widget, child13.widget, child14.widget, child15.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
@@ -1081,6 +973,8 @@ public struct TupleViewChildren16<
             ErasedViewGraphNode(wrapping: child15),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -1117,26 +1011,13 @@ public struct TupleViewChildren16<
 
     /// Creates the nodes for 16 child views.
     public init<Backend: AppBackend>(
-        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4,
-        _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9,
-        _ child10: Child10, _ child11: Child11, _ child12: Child12, _ child13: Child13,
-        _ child14: Child14, _ child15: Child15,
+        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4, _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9, _ child10: Child10, _ child11: Child11, _ child12: Child12, _ child13: Child13, _ child14: Child14, _ child15: Child15,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self),
-            ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self),
-            ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self),
-            ViewGraphSnapshotter.name(of: Child10.self),
-            ViewGraphSnapshotter.name(of: Child11.self),
-            ViewGraphSnapshotter.name(of: Child12.self),
-            ViewGraphSnapshotter.name(of: Child13.self),
-            ViewGraphSnapshotter.name(of: Child14.self),
-            ViewGraphSnapshotter.name(of: Child15.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self), ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self), ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self), ViewGraphSnapshotter.name(of: Child10.self), ViewGraphSnapshotter.name(of: Child11.self), ViewGraphSnapshotter.name(of: Child12.self), ViewGraphSnapshotter.name(of: Child13.self), ViewGraphSnapshotter.name(of: Child14.self), ViewGraphSnapshotter.name(of: Child15.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -1160,18 +1041,9 @@ public struct TupleViewChildren16<
 
 /// A fixed-length strongly-typed collection of 17 child nodes. A counterpart to
 /// ``TupleView17``.
-public struct TupleViewChildren17<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
-    Child12: View, Child13: View, Child14: View, Child15: View, Child16: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren17<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View, Child12: View, Child13: View, Child14: View, Child15: View, Child16: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
-        return [
-            child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
-            child5.widget, child6.widget, child7.widget, child8.widget, child9.widget,
-            child10.widget, child11.widget, child12.widget, child13.widget, child14.widget,
-            child15.widget, child16.widget,
-        ]
+        return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget, child5.widget, child6.widget, child7.widget, child8.widget, child9.widget, child10.widget, child11.widget, child12.widget, child13.widget, child14.widget, child15.widget, child16.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
@@ -1195,6 +1067,8 @@ public struct TupleViewChildren17<
             ErasedViewGraphNode(wrapping: child16),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -1233,27 +1107,13 @@ public struct TupleViewChildren17<
 
     /// Creates the nodes for 17 child views.
     public init<Backend: AppBackend>(
-        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4,
-        _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9,
-        _ child10: Child10, _ child11: Child11, _ child12: Child12, _ child13: Child13,
-        _ child14: Child14, _ child15: Child15, _ child16: Child16,
+        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4, _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9, _ child10: Child10, _ child11: Child11, _ child12: Child12, _ child13: Child13, _ child14: Child14, _ child15: Child15, _ child16: Child16,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self),
-            ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self),
-            ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self),
-            ViewGraphSnapshotter.name(of: Child10.self),
-            ViewGraphSnapshotter.name(of: Child11.self),
-            ViewGraphSnapshotter.name(of: Child12.self),
-            ViewGraphSnapshotter.name(of: Child13.self),
-            ViewGraphSnapshotter.name(of: Child14.self),
-            ViewGraphSnapshotter.name(of: Child15.self),
-            ViewGraphSnapshotter.name(of: Child16.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self), ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self), ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self), ViewGraphSnapshotter.name(of: Child10.self), ViewGraphSnapshotter.name(of: Child11.self), ViewGraphSnapshotter.name(of: Child12.self), ViewGraphSnapshotter.name(of: Child13.self), ViewGraphSnapshotter.name(of: Child14.self), ViewGraphSnapshotter.name(of: Child15.self), ViewGraphSnapshotter.name(of: Child16.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -1278,18 +1138,9 @@ public struct TupleViewChildren17<
 
 /// A fixed-length strongly-typed collection of 18 child nodes. A counterpart to
 /// ``TupleView18``.
-public struct TupleViewChildren18<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
-    Child12: View, Child13: View, Child14: View, Child15: View, Child16: View, Child17: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren18<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View, Child12: View, Child13: View, Child14: View, Child15: View, Child16: View, Child17: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
-        return [
-            child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
-            child5.widget, child6.widget, child7.widget, child8.widget, child9.widget,
-            child10.widget, child11.widget, child12.widget, child13.widget, child14.widget,
-            child15.widget, child16.widget, child17.widget,
-        ]
+        return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget, child5.widget, child6.widget, child7.widget, child8.widget, child9.widget, child10.widget, child11.widget, child12.widget, child13.widget, child14.widget, child15.widget, child16.widget, child17.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
@@ -1314,6 +1165,8 @@ public struct TupleViewChildren18<
             ErasedViewGraphNode(wrapping: child17),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -1354,28 +1207,13 @@ public struct TupleViewChildren18<
 
     /// Creates the nodes for 18 child views.
     public init<Backend: AppBackend>(
-        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4,
-        _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9,
-        _ child10: Child10, _ child11: Child11, _ child12: Child12, _ child13: Child13,
-        _ child14: Child14, _ child15: Child15, _ child16: Child16, _ child17: Child17,
+        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4, _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9, _ child10: Child10, _ child11: Child11, _ child12: Child12, _ child13: Child13, _ child14: Child14, _ child15: Child15, _ child16: Child16, _ child17: Child17,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self),
-            ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self),
-            ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self),
-            ViewGraphSnapshotter.name(of: Child10.self),
-            ViewGraphSnapshotter.name(of: Child11.self),
-            ViewGraphSnapshotter.name(of: Child12.self),
-            ViewGraphSnapshotter.name(of: Child13.self),
-            ViewGraphSnapshotter.name(of: Child14.self),
-            ViewGraphSnapshotter.name(of: Child15.self),
-            ViewGraphSnapshotter.name(of: Child16.self),
-            ViewGraphSnapshotter.name(of: Child17.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self), ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self), ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self), ViewGraphSnapshotter.name(of: Child10.self), ViewGraphSnapshotter.name(of: Child11.self), ViewGraphSnapshotter.name(of: Child12.self), ViewGraphSnapshotter.name(of: Child13.self), ViewGraphSnapshotter.name(of: Child14.self), ViewGraphSnapshotter.name(of: Child15.self), ViewGraphSnapshotter.name(of: Child16.self), ViewGraphSnapshotter.name(of: Child17.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -1401,19 +1239,9 @@ public struct TupleViewChildren18<
 
 /// A fixed-length strongly-typed collection of 19 child nodes. A counterpart to
 /// ``TupleView19``.
-public struct TupleViewChildren19<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
-    Child12: View, Child13: View, Child14: View, Child15: View, Child16: View, Child17: View,
-    Child18: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren19<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View, Child12: View, Child13: View, Child14: View, Child15: View, Child16: View, Child17: View, Child18: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
-        return [
-            child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
-            child5.widget, child6.widget, child7.widget, child8.widget, child9.widget,
-            child10.widget, child11.widget, child12.widget, child13.widget, child14.widget,
-            child15.widget, child16.widget, child17.widget, child18.widget,
-        ]
+        return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget, child5.widget, child6.widget, child7.widget, child8.widget, child9.widget, child10.widget, child11.widget, child12.widget, child13.widget, child14.widget, child15.widget, child16.widget, child17.widget, child18.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
@@ -1439,6 +1267,8 @@ public struct TupleViewChildren19<
             ErasedViewGraphNode(wrapping: child18),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -1481,30 +1311,13 @@ public struct TupleViewChildren19<
 
     /// Creates the nodes for 19 child views.
     public init<Backend: AppBackend>(
-        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4,
-        _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9,
-        _ child10: Child10, _ child11: Child11, _ child12: Child12, _ child13: Child13,
-        _ child14: Child14, _ child15: Child15, _ child16: Child16, _ child17: Child17,
-        _ child18: Child18,
+        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4, _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9, _ child10: Child10, _ child11: Child11, _ child12: Child12, _ child13: Child13, _ child14: Child14, _ child15: Child15, _ child16: Child16, _ child17: Child17, _ child18: Child18,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self),
-            ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self),
-            ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self),
-            ViewGraphSnapshotter.name(of: Child10.self),
-            ViewGraphSnapshotter.name(of: Child11.self),
-            ViewGraphSnapshotter.name(of: Child12.self),
-            ViewGraphSnapshotter.name(of: Child13.self),
-            ViewGraphSnapshotter.name(of: Child14.self),
-            ViewGraphSnapshotter.name(of: Child15.self),
-            ViewGraphSnapshotter.name(of: Child16.self),
-            ViewGraphSnapshotter.name(of: Child17.self),
-            ViewGraphSnapshotter.name(of: Child18.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self), ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self), ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self), ViewGraphSnapshotter.name(of: Child10.self), ViewGraphSnapshotter.name(of: Child11.self), ViewGraphSnapshotter.name(of: Child12.self), ViewGraphSnapshotter.name(of: Child13.self), ViewGraphSnapshotter.name(of: Child14.self), ViewGraphSnapshotter.name(of: Child15.self), ViewGraphSnapshotter.name(of: Child16.self), ViewGraphSnapshotter.name(of: Child17.self), ViewGraphSnapshotter.name(of: Child18.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)
@@ -1531,19 +1344,9 @@ public struct TupleViewChildren19<
 
 /// A fixed-length strongly-typed collection of 20 child nodes. A counterpart to
 /// ``TupleView20``.
-public struct TupleViewChildren20<
-    Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
-    Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
-    Child12: View, Child13: View, Child14: View, Child15: View, Child16: View, Child17: View,
-    Child18: View, Child19: View
->: ViewGraphNodeChildren {
+public class TupleViewChildren20<Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View, Child12: View, Child13: View, Child14: View, Child15: View, Child16: View, Child17: View, Child18: View, Child19: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
-        return [
-            child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
-            child5.widget, child6.widget, child7.widget, child8.widget, child9.widget,
-            child10.widget, child11.widget, child12.widget, child13.widget, child14.widget,
-            child15.widget, child16.widget, child17.widget, child18.widget, child19.widget,
-        ]
+        return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget, child5.widget, child6.widget, child7.widget, child8.widget, child9.widget, child10.widget, child11.widget, child12.widget, child13.widget, child14.widget, child15.widget, child16.widget, child17.widget, child18.widget, child19.widget]
     }
 
     public var erasedNodes: [ErasedViewGraphNode] {
@@ -1570,6 +1373,8 @@ public struct TupleViewChildren20<
             ErasedViewGraphNode(wrapping: child19),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -1614,31 +1419,13 @@ public struct TupleViewChildren20<
 
     /// Creates the nodes for 20 child views.
     public init<Backend: AppBackend>(
-        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4,
-        _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9,
-        _ child10: Child10, _ child11: Child11, _ child12: Child12, _ child13: Child13,
-        _ child14: Child14, _ child15: Child15, _ child16: Child16, _ child17: Child17,
-        _ child18: Child18, _ child19: Child19,
+        _ child0: Child0, _ child1: Child1, _ child2: Child2, _ child3: Child3, _ child4: Child4, _ child5: Child5, _ child6: Child6, _ child7: Child7, _ child8: Child8, _ child9: Child9, _ child10: Child10, _ child11: Child11, _ child12: Child12, _ child13: Child13, _ child14: Child14, _ child15: Child15, _ child16: Child16, _ child17: Child17, _ child18: Child18, _ child19: Child19,
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
         let viewTypeNames = [
-            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self),
-            ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self),
-            ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self),
-            ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self),
-            ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self),
-            ViewGraphSnapshotter.name(of: Child10.self),
-            ViewGraphSnapshotter.name(of: Child11.self),
-            ViewGraphSnapshotter.name(of: Child12.self),
-            ViewGraphSnapshotter.name(of: Child13.self),
-            ViewGraphSnapshotter.name(of: Child14.self),
-            ViewGraphSnapshotter.name(of: Child15.self),
-            ViewGraphSnapshotter.name(of: Child16.self),
-            ViewGraphSnapshotter.name(of: Child17.self),
-            ViewGraphSnapshotter.name(of: Child18.self),
-            ViewGraphSnapshotter.name(of: Child19.self),
+            ViewGraphSnapshotter.name(of: Child0.self), ViewGraphSnapshotter.name(of: Child1.self), ViewGraphSnapshotter.name(of: Child2.self), ViewGraphSnapshotter.name(of: Child3.self), ViewGraphSnapshotter.name(of: Child4.self), ViewGraphSnapshotter.name(of: Child5.self), ViewGraphSnapshotter.name(of: Child6.self), ViewGraphSnapshotter.name(of: Child7.self), ViewGraphSnapshotter.name(of: Child8.self), ViewGraphSnapshotter.name(of: Child9.self), ViewGraphSnapshotter.name(of: Child10.self), ViewGraphSnapshotter.name(of: Child11.self), ViewGraphSnapshotter.name(of: Child12.self), ViewGraphSnapshotter.name(of: Child13.self), ViewGraphSnapshotter.name(of: Child14.self), ViewGraphSnapshotter.name(of: Child15.self), ViewGraphSnapshotter.name(of: Child16.self), ViewGraphSnapshotter.name(of: Child17.self), ViewGraphSnapshotter.name(of: Child18.self), ViewGraphSnapshotter.name(of: Child19.self)
         ]
         let snapshots = ViewGraphSnapshotter.match(snapshots ?? [], to: viewTypeNames)
         self.child0 = node(for: child0, backend, snapshots[0], environment)

@@ -29,25 +29,53 @@ public struct HStack<Content: View>: View {
         return vStack
     }
 
-    public func update<Backend: AppBackend>(
+    public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        return LayoutSystem.updateStackLayout(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        if !(children is TupleViewChildren) {
+            print("warning: VStack will not function correctly non-TupleView Content")
+        }
+        var cache = (children as? TupleViewChildren)?.stackLayoutCache ?? StackLayoutCache()
+        let result = LayoutSystem.computeStackLayout(
             container: widget,
             children: layoutableChildren(backend: backend, children: children),
+            cache: &cache,
             proposedSize: proposedSize,
             environment:
                 environment
                 .with(\.layoutOrientation, .horizontal)
                 .with(\.layoutAlignment, alignment.asStackAlignment)
                 .with(\.layoutSpacing, spacing),
-            backend: backend,
-            dryRun: dryRun
+            backend: backend
         )
+        (children as? TupleViewChildren)?.stackLayoutCache = cache
+        return result
+    }
+
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        var cache = (children as? TupleViewChildren)?.stackLayoutCache ?? StackLayoutCache()
+        LayoutSystem.commitStackLayout(
+            container: widget,
+            children: layoutableChildren(backend: backend, children: children),
+            cache: &cache,
+            layout: layout,
+            environment:
+                environment
+                .with(\.layoutOrientation, .horizontal)
+                .with(\.layoutAlignment, alignment.asStackAlignment)
+                .with(\.layoutSpacing, spacing),
+            backend: backend
+        )
+        (children as? TupleViewChildren)?.stackLayoutCache = cache
     }
 }
