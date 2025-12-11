@@ -22,7 +22,7 @@ package struct EnvironmentModifier<Child: View>: View {
     package func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {

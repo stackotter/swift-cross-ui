@@ -54,7 +54,7 @@ public struct HotReloadableView: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: HotReloadableViewChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -104,7 +104,7 @@ public struct HotReloadableView: TypeSafeView {
 
         _ = children.node.commit()
 
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }
 

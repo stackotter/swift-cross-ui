@@ -31,7 +31,7 @@ public struct ZStack<Content: View>: View {
     public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -43,20 +43,9 @@ public struct ZStack<Content: View>: View {
                 )
             }
 
-        let childSizes = childResults.map(\.size)
         let size = ViewSize(
-            size: SIMD2(
-                childSizes.map(\.size.x).max() ?? 0,
-                childSizes.map(\.size.y).max() ?? 0
-            ),
-            idealSize: SIMD2(
-                childSizes.map(\.idealSize.x).max() ?? 0,
-                childSizes.map(\.idealSize.y).max() ?? 0
-            ),
-            minimumWidth: childSizes.map(\.minimumWidth).max() ?? 0,
-            minimumHeight: childSizes.map(\.minimumHeight).max() ?? 0,
-            maximumWidth: childSizes.map(\.maximumWidth).max() ?? 0,
-            maximumHeight: childSizes.map(\.maximumHeight).max() ?? 0
+            childResults.map(\.size.width).max() ?? 0,
+            childResults.map(\.size.height).max() ?? 0
         )
 
         return ViewLayoutResult(size: size, childResults: childResults)
@@ -77,12 +66,12 @@ public struct ZStack<Content: View>: View {
 
         for (i, child) in children.enumerated() {
             let position = alignment.position(
-                ofChild: child.size.size,
-                in: size.size
+                ofChild: child.size.vector,
+                in: size.vector
             )
             backend.setPosition(ofChildAt: i, in: widget, to: position)
         }
 
-        backend.setSize(of: widget, to: size.size)
+        backend.setSize(of: widget, to: size.vector)
     }
 }

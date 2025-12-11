@@ -35,7 +35,7 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -67,7 +67,6 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
         }
 
         // Update row nodes
-        let columnWidth = proposedSize.x / columnCount
         for (node, content) in zip(children.rowNodes, children.rowContent) {
             // TODO: Figure out if this is required
             // This doesn't update the row's cells. It just updates the view
@@ -78,6 +77,9 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
                 environment: environment
             )
         }
+
+        // TODO: Compute a proper ideal size for tables. Look to SwiftUI to see what it does.
+        let columnWidth = (proposedSize.width ?? 0) / Double(columnCount)
 
         // Compute cell layouts. Really only done during this initial layout
         // step to propagate cell preference values. Otherwise we'd do it
@@ -93,11 +95,14 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
             var rowCellHeights: [Int] = []
             for rowCell in rowCells {
                 let cellResult = rowCell.computeLayout(
-                    proposedSize: SIMD2(columnWidth, backend.defaultTableRowContentHeight),
+                    proposedSize: ProposedViewSize(
+                        columnWidth,
+                        Double(backend.defaultTableRowContentHeight)
+                    ),
                     environment: environment
                 )
                 cellResults.append(cellResult)
-                rowCellHeights.append(cellResult.size.size.y)
+                rowCellHeights.append(cellResult.size.vector.y)
             }
 
             let rowHeight =
@@ -110,16 +115,8 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
         }
         children.rowHeights = rowHeights
 
-        // TODO: Compute a proper ideal size for tables
         return ViewLayoutResult(
-            size: ViewSize(
-                size: size,
-                idealSize: .zero,
-                minimumWidth: 0,
-                minimumHeight: 0,
-                maximumWidth: nil,
-                maximumHeight: nil
-            ),
+            size: size.replacingUnspecifiedDimensions(by: .zero),
             childResults: cellResults
         )
     }
@@ -158,13 +155,13 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
                     in: children.cellContainerWidgets[index].into(),
                     to: SIMD2(
                         0,
-                        (rowHeight - cellSize.size.size.y) / 2
+                        (rowHeight - cellSize.size.vector.y) / 2
                     )
                 )
             }
         }
 
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }
 
@@ -222,11 +219,11 @@ struct RowView<Content: View>: View {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        return ViewLayoutResult.leafView(size: .empty)
+        return ViewLayoutResult.leafView(size: .zero)
     }
 
     func commit<Backend: AppBackend>(

@@ -16,7 +16,7 @@ public class AnyViewGraphNode<NodeView: View> {
     private var _computeLayoutWithNewView:
         (
             _ newView: NodeView?,
-            _ proposedSize: SIMD2<Int>,
+            _ proposedSize: ProposedViewSize,
             _ environment: EnvironmentValues
         ) -> ViewLayoutResult
     /// The node's type-erased commit method.
@@ -70,7 +70,7 @@ public class AnyViewGraphNode<NodeView: View> {
     /// the given size proposal already has a cached result.
     public func computeLayout(
         with newView: NodeView?,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues
     ) -> ViewLayoutResult {
         _computeLayoutWithNewView(newView, proposedSize, environment)

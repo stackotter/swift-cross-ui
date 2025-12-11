@@ -41,7 +41,7 @@ struct OverlayModifier<Content: View, Overlay: View>: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleView2<Content, Overlay>.Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -53,25 +53,18 @@ struct OverlayModifier<Content: View, Overlay: View>: TypeSafeView {
         let contentSize = contentResult.size
         let overlayResult = children.child1.computeLayout(
             with: body.view1,
-            proposedSize: contentSize.size,
+            proposedSize: ProposedViewSize(contentSize),
             environment: environment
         )
         let overlaySize = overlayResult.size
 
-        let frameSize = SIMD2(
-            max(contentSize.size.x, overlaySize.size.x),
-            max(contentSize.size.y, overlaySize.size.y)
+        let size = ViewSize(
+            max(contentSize.width, overlaySize.width),
+            max(contentSize.height, overlaySize.height)
         )
 
         return ViewLayoutResult(
-            size: ViewSize(
-                size: frameSize,
-                idealSize: contentSize.idealSize,
-                minimumWidth: max(contentSize.minimumWidth, overlaySize.minimumWidth),
-                minimumHeight: max(contentSize.minimumHeight, overlaySize.minimumHeight),
-                maximumWidth: min(contentSize.maximumWidth, overlaySize.maximumWidth),
-                maximumHeight: min(contentSize.maximumHeight, overlaySize.maximumHeight)
-            ),
+            size: size,
             childResults: [contentResult, overlayResult]
         )
     }
@@ -83,12 +76,12 @@ struct OverlayModifier<Content: View, Overlay: View>: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend
     ) {
-        let frameSize = layout.size.size
-        let contentSize = children.child0.commit().size
-        let overlaySize = children.child1.commit().size
+        let frameSize = layout.size.vector
+        let contentSize = children.child0.commit().size.vector
+        let overlaySize = children.child1.commit().size.vector
 
-        let contentPosition = (frameSize &- contentSize.size) / 2
-        let overlayPosition = (frameSize &- overlaySize.size) / 2
+        let contentPosition = Alignment.center.position(ofChild: contentSize, in: frameSize)
+        let overlayPosition = Alignment.center.position(ofChild: overlaySize, in: frameSize)
 
         backend.setPosition(ofChildAt: 0, in: widget, to: contentPosition)
         backend.setPosition(ofChildAt: 1, in: widget, to: overlayPosition)

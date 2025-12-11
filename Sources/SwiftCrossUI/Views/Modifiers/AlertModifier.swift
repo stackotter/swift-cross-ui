@@ -68,7 +68,7 @@ struct AlertModifierView<Child: View>: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {

@@ -24,7 +24,7 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -47,23 +47,14 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
         // Special handling for UIKitBackend:
         // When backed by a UITableView, its natural size is -1 x -1,
         // but it can and should be as large as reasonable
-        let size = backend.naturalSize(of: widget)
-        if size == SIMD2(-1, -1) {
-            return ViewLayoutResult.leafView(
-                size: ViewSize(
-                    size: proposedSize,
-                    idealSize: SIMD2(10, 10),
-                    minimumWidth: 0,
-                    minimumHeight: 0,
-                    maximumWidth: nil,
-                    maximumHeight: nil
-                )
-            )
+        let naturalSize = backend.naturalSize(of: widget)
+        let size: ViewSize
+        if naturalSize == SIMD2(-1, -1) {
+            size = proposedSize.replacingUnspecifiedDimensions(by: ViewSize(10, 10))
         } else {
-            return ViewLayoutResult.leafView(
-                size: ViewSize(fixedSize: size)
-            )
+            size = ViewSize(naturalSize)
         }
+        return ViewLayoutResult.leafView(size: size)
     }
 
     func commit<Backend: AppBackend>(
@@ -72,6 +63,6 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
         environment: EnvironmentValues,
         backend: Backend
     ) {
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }

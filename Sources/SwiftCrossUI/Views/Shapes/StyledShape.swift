@@ -36,7 +36,7 @@ extension StyledShapeImpl: StyledShape {
         return base.path(in: bounds)
     }
 
-    func size(fitting proposal: SIMD2<Int>) -> ViewSize {
+    func size(fitting proposal: ProposedViewSize) -> ViewSize {
         return base.size(fitting: proposal)
     }
 }
@@ -56,7 +56,7 @@ extension StyledShape {
     public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -75,8 +75,8 @@ extension StyledShape {
         let bounds = Path.Rect(
             x: 0.0,
             y: 0.0,
-            width: Double(layout.size.size.x),
-            height: Double(layout.size.size.y)
+            width: layout.size.width,
+            height: layout.size.height
         )
         let path = path(in: bounds)
 
@@ -93,7 +93,7 @@ extension StyledShape {
             environment: environment
         )
 
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
         backend.renderPath(
             backendPath,
             container: widget,

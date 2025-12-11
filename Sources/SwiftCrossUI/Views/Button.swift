@@ -31,7 +31,7 @@ extension Button: ElementaryView {
 
     public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -57,7 +57,7 @@ extension Button: ElementaryView {
             naturalSize.y
         )
 
-        return ViewLayoutResult.leafView(size: ViewSize(fixedSize: size))
+        return ViewLayoutResult.leafView(size: ViewSize(size))
     }
 
     public func commit<Backend: AppBackend>(
@@ -66,6 +66,6 @@ extension Button: ElementaryView {
         environment: EnvironmentValues,
         backend: Backend
     ) {
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }

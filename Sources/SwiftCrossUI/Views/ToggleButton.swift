@@ -17,18 +17,17 @@ struct ToggleButton: ElementaryView, View {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
         // TODO: Implement toggle button sizing within SwiftCrossUI so that we
         //   can delay updating the underlying widget until `commit`.
-        backend.setState(ofToggle: widget, to: active.wrappedValue)
         backend.updateToggle(widget, label: label, environment: environment) { newActiveState in
             active.wrappedValue = newActiveState
         }
         return ViewLayoutResult.leafView(
-            size: ViewSize(fixedSize: backend.naturalSize(of: widget))
+            size: ViewSize(backend.naturalSize(of: widget))
         )
     }
 
@@ -37,5 +36,7 @@ struct ToggleButton: ElementaryView, View {
         layout: ViewLayoutResult,
         environment: EnvironmentValues,
         backend: Backend
-    ) {}
+    ) {
+        backend.setState(ofToggle: widget, to: active.wrappedValue)
+    }
 }

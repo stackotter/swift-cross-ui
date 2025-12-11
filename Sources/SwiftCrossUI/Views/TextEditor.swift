@@ -12,36 +12,32 @@ public struct TextEditor: ElementaryView {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
         // Avoid evaluating the binding multiple times
         let content = text
 
-        let idealHeight = backend.size(
-            of: content,
-            whenDisplayedIn: widget,
-            proposedFrame: SIMD2(proposedSize.x, 1),
-            environment: environment
-        ).y
-        let size = SIMD2(
-            proposedSize.x,
-            max(proposedSize.y, idealHeight)
-        )
-
-        return ViewLayoutResult.leafView(
-            size: ViewSize(
-                size: size,
-                idealSize: SIMD2(10, 10),
-                idealWidthForProposedHeight: 10,
-                idealHeightForProposedWidth: idealHeight,
-                minimumWidth: 0,
-                minimumHeight: idealHeight,
-                maximumWidth: nil,
-                maximumHeight: nil
+        let size: ViewSize
+        if proposedSize == .unspecified {
+            size = ViewSize(10, 10)
+        } else if let width = proposedSize.width, proposedSize.height == nil {
+            let idealHeight = backend.size(
+                of: content,
+                whenDisplayedIn: widget,
+                proposedFrame: SIMD2(LayoutSystem.roundSize(width), 1),
+                environment: environment
+            ).y
+            size = ViewSize(
+                width,
+                Double(idealHeight)
             )
-        )
+        } else {
+            size = proposedSize.replacingUnspecifiedDimensions(by: ViewSize(10, 10))
+        }
+
+        return ViewLayoutResult.leafView(size: size)
     }
 
     func commit<Backend: AppBackend>(
@@ -60,6 +56,6 @@ public struct TextEditor: ElementaryView {
             backend.setContent(ofTextEditor: widget, to: content)
         }
 
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }

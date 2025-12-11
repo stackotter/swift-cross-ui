@@ -40,42 +40,25 @@ struct FixedSizeModifier<Child: View>: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleViewChildren1<Child>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        let probingChildResult = children.child0.computeLayout(
+        var childProposal = proposedSize
+        if horizontal {
+            childProposal.width = nil
+        }
+        if vertical {
+            childProposal.height = nil
+        }
+        let childResult = children.child0.computeLayout(
             with: body.view0,
             proposedSize: proposedSize,
             environment: environment
         )
 
-        var frameSize = probingChildResult.size.size
-        if horizontal && vertical {
-            frameSize = probingChildResult.size.idealSize
-        } else if horizontal {
-            frameSize.x = probingChildResult.size.idealWidthForProposedHeight
-        } else if vertical {
-            frameSize.y = probingChildResult.size.idealHeightForProposedWidth
-        }
-
-        let childResult = children.child0.computeLayout(
-            with: body.view0,
-            proposedSize: frameSize,
-            environment: environment
-        )
-
         return ViewLayoutResult(
-            size: ViewSize(
-                size: frameSize,
-                idealSize: childResult.size.idealSize,
-                idealWidthForProposedHeight: childResult.size.idealWidthForProposedHeight,
-                idealHeightForProposedWidth: childResult.size.idealHeightForProposedWidth,
-                minimumWidth: horizontal ? frameSize.x : childResult.size.minimumWidth,
-                minimumHeight: vertical ? frameSize.y : childResult.size.minimumHeight,
-                maximumWidth: horizontal ? Double(frameSize.x) : childResult.size.maximumWidth,
-                maximumHeight: vertical ? Double(frameSize.y) : childResult.size.maximumHeight
-            ),
+            size: childResult.size,
             childResults: [childResult]
         )
     }
@@ -89,10 +72,10 @@ struct FixedSizeModifier<Child: View>: TypeSafeView {
     ) {
         let childResult = children.child0.commit()
         let childPosition = Alignment.center.position(
-            ofChild: childResult.size.size,
-            in: layout.size.size
+            ofChild: childResult.size.vector,
+            in: layout.size.vector
         )
         backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }

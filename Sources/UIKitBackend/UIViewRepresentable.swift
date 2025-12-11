@@ -64,29 +64,16 @@ where Content == Never {
 }
 
 // Used both here and by UIViewControllerRepresentable
-func defaultViewSize(proposal: SIMD2<Int>, view: UIView) -> ViewSize {
-    let intrinsicSize = view.intrinsicContentSize
-
-    let sizeThatFits = view.systemLayoutSizeFitting(
-        CGSize(width: CGFloat(proposal.x), height: CGFloat(proposal.y)))
+func defaultViewSize(proposal: ProposedViewSize, view: UIView) -> ViewSize {
+    let size = CGSize(width: proposal.width ?? 10, height: proposal.height ?? 10)
+    let sizeThatFits = view.systemLayoutSizeFitting(size)
 
     let minimumSize = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
     let maximumSize = view.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
 
     return ViewSize(
-        size: SIMD2(
-            Int(sizeThatFits.width.rounded(.up)),
-            Int(sizeThatFits.height.rounded(.up))),
-        // The 10 here is a somewhat arbitrary constant value so that it's always the same.
-        // See also `Color` and `Picker`, which use the same constant.
-        idealSize: SIMD2(
-            intrinsicSize.width < 0.0 ? 10 : Int(intrinsicSize.width.rounded(.awayFromZero)),
-            intrinsicSize.height < 0.0 ? 10 : Int(intrinsicSize.height.rounded(.awayFromZero))
-        ),
-        minimumWidth: Int(minimumSize.width.rounded(.towardZero)),
-        minimumHeight: Int(minimumSize.height.rounded(.towardZero)),
-        maximumWidth: maximumSize.width,
-        maximumHeight: maximumSize.height
+        sizeThatFits.width,
+        sizeThatFits.height
     )
 }
 
@@ -96,7 +83,8 @@ extension UIViewRepresentable {
     }
 
     public func determineViewSize(
-        for proposal: SIMD2<Int>, uiView: UIViewType,
+        for proposal: ProposedViewSize,
+        uiView: UIViewType,
         context _: UIViewRepresentableContext<Coordinator>
     ) -> ViewSize {
         defaultViewSize(proposal: proposal, view: uiView)
@@ -138,7 +126,7 @@ where Self: UIViewRepresentable {
     public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children _: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend _: Backend
     ) -> ViewLayoutResult {
@@ -163,8 +151,8 @@ where Self: UIViewRepresentable {
         backend: Backend
     ) {
         let representingWidget = widget as! ViewRepresentingWidget<Self>
-        representingWidget.width = layout.size.size.x
-        representingWidget.height = layout.size.size.y
+        representingWidget.width = layout.size.vector.x
+        representingWidget.height = layout.size.vector.y
     }
 }
 

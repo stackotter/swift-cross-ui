@@ -39,11 +39,11 @@ public struct EmptyView: View, Sendable {
     public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        ViewLayoutResult.leafView(size: .empty)
+        ViewLayoutResult.leafView(size: .zero)
     }
 
     public func commit<Backend: AppBackend>(

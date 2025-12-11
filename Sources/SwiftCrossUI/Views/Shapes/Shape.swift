@@ -36,29 +36,17 @@ public protocol Shape: View, Sendable where Content == EmptyView {
     func path(in bounds: Path.Rect) -> Path
     /// Determine the ideal size of this shape given the proposed bounds.
     ///
-    /// The default implementation accepts the proposal and imposes no practical limit on
-    /// the shape's size.
-    /// - Returns: Information about the shape's size. The ``ViewSize/size`` property is what
-    ///   frame the shape will actually be rendered with if the current layout pass is not
-    ///   a dry run, while the other properties are used to inform the layout engine how big
-    ///   or small the shape can be. The ``ViewSize/idealSize`` property should not vary with
-    ///   the `proposal`, and should only depend on the shape's contents. Pass `nil` for the
-    ///   maximum width/height if the shape has no maximum size.
-    func size(fitting proposal: SIMD2<Int>) -> ViewSize
+    /// The default implementation accepts the proposal, replacing unspecified
+    /// dimensions with `10`.
+    /// - Returns: The shape's size for the given proposal.
+    func size(fitting proposal: ProposedViewSize) -> ViewSize
 }
 
 extension Shape {
     public var body: EmptyView { return EmptyView() }
 
-    public func size(fitting proposal: SIMD2<Int>) -> ViewSize {
-        return ViewSize(
-            size: proposal,
-            idealSize: SIMD2(x: 10, y: 10),
-            minimumWidth: 0,
-            minimumHeight: 0,
-            maximumWidth: nil,
-            maximumHeight: nil
-        )
+    public func size(fitting proposal: ProposedViewSize) -> ViewSize {
+        proposal.replacingUnspecifiedDimensions(by: ViewSize(10, 10))
     }
 
     @MainActor
@@ -85,7 +73,7 @@ extension Shape {
     public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -104,8 +92,8 @@ extension Shape {
         let bounds = Path.Rect(
             x: 0.0,
             y: 0.0,
-            width: Double(layout.size.size.x),
-            height: Double(layout.size.size.y)
+            width: layout.size.width,
+            height: layout.size.height
         )
         let path = path(in: bounds)
 
@@ -122,7 +110,7 @@ extension Shape {
             environment: environment
         )
 
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
         backend.renderPath(
             backendPath,
             container: widget,

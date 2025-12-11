@@ -1,5 +1,8 @@
 /// A control that displays an editable text interface.
 public struct TextField: ElementaryView, View {
+    /// The ideal width of a TextField.
+    private static let idealWidth: Double = 100
+
     /// The label to show when the field is empty.
     private var placeholder: String
     /// The field's content.
@@ -29,27 +32,18 @@ public struct TextField: ElementaryView, View {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
         let naturalHeight = backend.naturalSize(of: widget).y
-        let size = SIMD2(
-            proposedSize.x,
-            naturalHeight
+        let size = ViewSize(
+            proposedSize.width ?? Self.idealWidth,
+            Double(naturalHeight)
         )
 
         // TODO: Allow backends to set their own ideal text field width
-        return ViewLayoutResult.leafView(
-            size: ViewSize(
-                size: size,
-                idealSize: SIMD2(100, naturalHeight),
-                minimumWidth: 0,
-                minimumHeight: naturalHeight,
-                maximumWidth: nil,
-                maximumHeight: Double(naturalHeight)
-            )
-        )
+        return ViewLayoutResult.leafView(size: size)
     }
 
     func commit<Backend: AppBackend>(
@@ -71,6 +65,6 @@ public struct TextField: ElementaryView, View {
             backend.setContent(ofTextField: widget, to: value)
         }
 
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }

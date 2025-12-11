@@ -69,7 +69,7 @@ extension Image: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: _ImageChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -101,19 +101,16 @@ extension Image: TypeSafeView {
             image = children.cachedImage
         }
 
-        let idealSize = SIMD2(image?.width ?? 0, image?.height ?? 0)
         let size: ViewSize
-        if isResizable {
-            size = ViewSize(
-                size: image == nil ? .zero : proposedSize,
-                idealSize: idealSize,
-                minimumWidth: 0,
-                minimumHeight: 0,
-                maximumWidth: image == nil ? 0 : nil,
-                maximumHeight: image == nil ? 0 : nil
-            )
+        if let image {
+            let idealSize = ViewSize(Double(image.width), Double(image.height))
+            if isResizable {
+                size = proposedSize.replacingUnspecifiedDimensions(by: idealSize)
+            } else {
+                size = idealSize
+            }
         } else {
-            size = ViewSize(fixedSize: idealSize)
+            size = .zero
         }
 
         return ViewLayoutResult.leafView(size: size)
@@ -126,9 +123,9 @@ extension Image: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend
     ) {
-        let size = layout.size.size
+        let size = layout.size.vector
         let hasResized = children.cachedImageDisplaySize != size
-        children.cachedImageDisplaySize = layout.size.size
+        children.cachedImageDisplaySize = size
         if children.imageChanged
             || hasResized
             || (backend.requiresImageUpdateOnScaleFactorChange

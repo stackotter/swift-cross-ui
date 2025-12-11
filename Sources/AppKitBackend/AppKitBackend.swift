@@ -31,14 +31,12 @@ public final class AppKitBackend: AppBackend {
         // We assume that all scrollers have their controlSize set to `.regular` by default.
         // The internet seems to indicate that this is true regardless of any system wide
         // preferences etc.
-        let result = Int(
+        return Int(
             NSScroller.scrollerWidth(
                 for: .regular,
                 scrollerStyle: NSScroller.preferredScrollerStyle
             ).rounded(.awayFromZero)
         )
-        print(result)
-        return result
     }
 
     private let appDelegate = NSCustomApplicationDelegate()
@@ -530,7 +528,7 @@ public final class AppKitBackend: AppBackend {
     ) -> SIMD2<Int> {
         if let proposedFrame, proposedFrame.x == 0 {
             // We want the text to have the same height as it would have if it were
-            // one pixel wide so that the layout doesn't suddely jump when the text
+            // one pixel wide so that the layout doesn't suddenly jump when the text
             // reaches zero width.
             let size = size(
                 of: text,
