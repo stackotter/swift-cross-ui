@@ -42,13 +42,21 @@ public struct VStack<Content: View>: View {
     public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        return LayoutSystem.computeStackLayout(
+        if !(children is TupleViewChildren) {
+            // TODO: Make layout caching a ViewGraphNode feature so that we can handle
+            //   these edge cases without a second thought. Would also make introducing
+            //   a port of SwiftUI's Layout protocol much easier.
+            print("warning: VStack will not function correctly non-TupleView Content")
+        }
+        var cache = (children as? TupleViewChildren)?.stackLayoutCache ?? StackLayoutCache()
+        let result = LayoutSystem.computeStackLayout(
             container: widget,
             children: layoutableChildren(backend: backend, children: children),
+            cache: &cache,
             proposedSize: proposedSize,
             environment:
                 environment
@@ -57,6 +65,8 @@ public struct VStack<Content: View>: View {
                 .with(\.layoutSpacing, spacing),
             backend: backend
         )
+        (children as? TupleViewChildren)?.stackLayoutCache = cache
+        return result
     }
 
     public func commit<Backend: AppBackend>(
@@ -66,9 +76,11 @@ public struct VStack<Content: View>: View {
         environment: EnvironmentValues,
         backend: Backend
     ) {
+        var cache = (children as? TupleViewChildren)?.stackLayoutCache ?? StackLayoutCache()
         LayoutSystem.commitStackLayout(
             container: widget,
             children: layoutableChildren(backend: backend, children: children),
+            cache: &cache,
             layout: layout,
             environment:
                 environment
@@ -77,5 +89,6 @@ public struct VStack<Content: View>: View {
                 .with(\.layoutSpacing, spacing),
             backend: backend
         )
+        (children as? TupleViewChildren)?.stackLayoutCache = cache
     }
 }

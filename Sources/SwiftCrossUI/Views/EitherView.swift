@@ -50,7 +50,7 @@ extension EitherView: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: EitherViewChildren<A, B>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -125,7 +125,7 @@ extension EitherView: TypeSafeView {
 
         _ = children.node.erasedNode.commit()
 
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }
 

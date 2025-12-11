@@ -1,17 +1,17 @@
 import Foundation
 
-@attached(
-    peer,
-    names: named(hotReloadingExportedEntryPoint),
-    named(hotReloadingImportedEntryPoint),
-    named(hotReloadingHasConnectedToServer))
-@attached(member, names: named(entryPoint), named(hotReloadingExprIds))
-public macro HotReloadable() =
-    #externalMacro(module: "HotReloadingMacrosPlugin", type: "HotReloadableAppMacro")
+// @attached(
+//     peer,
+//     names: named(hotReloadingExportedEntryPoint),
+//     named(hotReloadingImportedEntryPoint),
+//     named(hotReloadingHasConnectedToServer))
+// @attached(member, names: named(entryPoint), named(hotReloadingExprIds))
+// public macro HotReloadable() =
+//     #externalMacro(module: "HotReloadingMacrosPlugin", type: "HotReloadableAppMacro")
 
-@freestanding(expression)
-public macro hotReloadable<T: View>(@ViewBuilder _ expr: () -> T) -> HotReloadableView =
-    #externalMacro(module: "HotReloadingMacrosPlugin", type: "HotReloadableExprMacro")
+// @freestanding(expression)
+// public macro hotReloadable<T: View>(@ViewBuilder _ expr: () -> T) -> HotReloadableView =
+//     #externalMacro(module: "HotReloadingMacrosPlugin", type: "HotReloadableExprMacro")
 
 @_documentation(visibility: internal)
 public struct ExprLocation: Hashable {

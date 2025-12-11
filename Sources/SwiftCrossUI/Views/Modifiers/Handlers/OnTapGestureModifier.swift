@@ -64,7 +64,7 @@ struct OnTapGestureModifier<Content: View>: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -82,8 +82,8 @@ struct OnTapGestureModifier<Content: View>: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend
     ) {
-        let size = children.child0.commit().size.size
-        backend.setSize(of: widget, to: size)
+        let size = children.child0.commit().size
+        backend.setSize(of: widget, to: size.vector)
         backend.updateTapGestureTarget(
             widget,
             gesture: gesture,

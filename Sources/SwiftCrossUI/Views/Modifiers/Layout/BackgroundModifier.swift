@@ -37,7 +37,7 @@ struct BackgroundModifier<Background: View, Foreground: View>: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleView2<Background, Foreground>.Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -49,36 +49,20 @@ struct BackgroundModifier<Background: View, Foreground: View>: TypeSafeView {
         let foregroundSize = foregroundResult.size
         let backgroundResult = children.child0.computeLayout(
             with: body.view0,
-            proposedSize: foregroundSize.size,
+            proposedSize: ProposedViewSize(foregroundSize),
             environment: environment
         )
         let backgroundSize = backgroundResult.size
 
-        let frameSize = SIMD2(
-            max(backgroundSize.size.x, foregroundSize.size.x),
-            max(backgroundSize.size.y, foregroundSize.size.y)
+        let frameSize = ViewSize(
+            max(backgroundSize.width, foregroundSize.width),
+            max(backgroundSize.height, foregroundSize.height)
         )
 
+        // TODO: Investigate the ordering of SwiftUI's preference merging for
+        //   the background modifier.
         return ViewLayoutResult(
-            size: ViewSize(
-                size: frameSize,
-                idealSize: SIMD2(
-                    max(foregroundSize.idealSize.x, backgroundSize.minimumWidth),
-                    max(foregroundSize.idealSize.y, backgroundSize.minimumHeight)
-                ),
-                idealWidthForProposedHeight: max(
-                    foregroundSize.idealWidthForProposedHeight,
-                    backgroundSize.minimumWidth
-                ),
-                idealHeightForProposedWidth: max(
-                    foregroundSize.idealHeightForProposedWidth,
-                    backgroundSize.minimumHeight
-                ),
-                minimumWidth: max(backgroundSize.minimumWidth, foregroundSize.minimumWidth),
-                minimumHeight: max(backgroundSize.minimumHeight, foregroundSize.minimumHeight),
-                maximumWidth: min(backgroundSize.maximumWidth, foregroundSize.maximumWidth),
-                maximumHeight: min(backgroundSize.maximumHeight, foregroundSize.maximumHeight)
-            ),
+            size: frameSize,
             childResults: [backgroundResult, foregroundResult]
         )
     }
@@ -90,16 +74,22 @@ struct BackgroundModifier<Background: View, Foreground: View>: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend
     ) {
-        let frameSize = layout.size.size
+        let frameSize = layout.size
         let backgroundSize = children.child0.commit().size
         let foregroundSize = children.child1.commit().size
 
-        let backgroundPosition = (frameSize &- backgroundSize.size) / 2
-        let foregroundPosition = (frameSize &- foregroundSize.size) / 2
+        let backgroundPosition = Alignment.center.position(
+            ofChild: backgroundSize.vector,
+            in: frameSize.vector
+        )
+        let foregroundPosition = Alignment.center.position(
+            ofChild: foregroundSize.vector,
+            in: frameSize.vector
+        )
 
         backend.setPosition(ofChildAt: 0, in: widget, to: backgroundPosition)
         backend.setPosition(ofChildAt: 1, in: widget, to: foregroundPosition)
 
-        backend.setSize(of: widget, to: frameSize)
+        backend.setSize(of: widget, to: frameSize.vector)
     }
 }

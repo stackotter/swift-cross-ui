@@ -81,7 +81,7 @@ extension ForEach: TypeSafeView, View where Child: View {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: ForEachViewChildren<Items, Child>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -159,6 +159,7 @@ extension ForEach: TypeSafeView, View where Child: View {
         return LayoutSystem.computeStackLayout(
             container: widget,
             children: layoutableChildren,
+            cache: &children.stackLayoutCache,
             proposedSize: proposedSize,
             environment: environment,
             backend: backend
@@ -196,6 +197,7 @@ extension ForEach: TypeSafeView, View where Child: View {
                     commit: node.commit
                 )
             },
+            cache: &children.stackLayoutCache,
             layout: layout,
             environment: environment,
             backend: backend
@@ -236,6 +238,8 @@ class ForEachViewChildren<
     var erasedNodes: [ErasedViewGraphNode] {
         nodes.map(ErasedViewGraphNode.init(wrapping:))
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// Gets a variable length view's children as view graph node children.
     init<Backend: AppBackend>(

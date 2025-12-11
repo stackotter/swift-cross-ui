@@ -42,7 +42,7 @@ extension OptionalView: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: OptionalViewChildren<V>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
@@ -73,7 +73,7 @@ extension OptionalView: TypeSafeView {
         } else {
             hasToggled = children.node != nil
             children.node = nil
-            result = ViewLayoutResult.leafView(size: .hidden)
+            result = ViewLayoutResult.leafView(size: .zero)
         }
         children.hasToggled = children.hasToggled || hasToggled
 
@@ -98,7 +98,7 @@ extension OptionalView: TypeSafeView {
 
         _ = children.node?.commit()
 
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }
 

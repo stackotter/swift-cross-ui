@@ -100,44 +100,36 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
     func computeLayout<Backend: AppBackend>(
         _ container: Backend.Widget,
         children: TupleViewChildren1<Child>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
         // This first block of calculations is somewhat repeated in `commit`,
         // make sure to update things in both places.
         let insets = EdgeInsets(insets, defaultAmount: backend.defaultPaddingAmount)
+        let horizontalPadding = Double(insets.leading + insets.trailing)
+        let verticalPadding = Double(insets.top + insets.bottom)
+
+        var childProposal = proposedSize
+        if let proposedWidth = proposedSize.width {
+            childProposal.width = max(proposedWidth - horizontalPadding, 0)
+        }
+        if let proposedHeight = proposedSize.height {
+            childProposal.height = max(proposedHeight - verticalPadding, 0)
+        }
 
         let childResult = children.child0.computeLayout(
             with: body.view0,
-            proposedSize: SIMD2(
-                max(proposedSize.x - insets.leading - insets.trailing, 0),
-                max(proposedSize.y - insets.top - insets.bottom, 0)
-            ),
+            proposedSize: childProposal,
             environment: environment
         )
-        let childSize = childResult.size
 
-        let paddingSize = SIMD2(insets.leading + insets.trailing, insets.top + insets.bottom)
-        let size =
-            SIMD2(
-                childSize.size.x,
-                childSize.size.y
-            ) &+ paddingSize
+        var size = childResult.size
+        size.width += horizontalPadding
+        size.height += verticalPadding
 
-        let idealWidth = childSize.idealWidthForProposedHeight + paddingSize.x
-        let idealHeight = childSize.idealHeightForProposedWidth + paddingSize.y
         return ViewLayoutResult(
-            size: ViewSize(
-                size: size,
-                idealSize: childSize.idealSize &+ paddingSize,
-                idealWidthForProposedHeight: idealWidth,
-                idealHeightForProposedWidth: idealHeight,
-                minimumWidth: childSize.minimumWidth + paddingSize.x,
-                minimumHeight: childSize.minimumHeight + paddingSize.y,
-                maximumWidth: childSize.maximumWidth + Double(paddingSize.x),
-                maximumHeight: childSize.maximumHeight + Double(paddingSize.y)
-            ),
+            size: size,
             childResults: [childResult]
         )
     }
@@ -151,8 +143,8 @@ struct PaddingModifierView<Child: View>: TypeSafeView {
     ) {
         _ = children.child0.commit()
 
-        let size = layout.size.size
-        backend.setSize(of: container, to: size)
+        let size = layout.size
+        backend.setSize(of: container, to: size.vector)
 
         let insets = EdgeInsets(insets, defaultAmount: backend.defaultPaddingAmount)
         let childPosition = SIMD2(insets.leading, insets.top)

@@ -530,7 +530,7 @@ public final class AppKitBackend: AppBackend {
     ) -> SIMD2<Int> {
         if let proposedFrame, proposedFrame.x == 0 {
             // We want the text to have the same height as it would have if it were
-            // one pixel wide so that the layout doesn't suddely jump when the text
+            // one pixel wide so that the layout doesn't suddenly jump when the text
             // reaches zero width.
             let size = size(
                 of: text,

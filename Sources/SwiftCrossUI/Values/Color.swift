@@ -1,5 +1,8 @@
 /// An RGBA representation of a color.
 public struct Color: Sendable, Equatable, Hashable {
+    /// The ideal size of a color view.
+    private static let idealSize = ViewSize(10, 10)
+
     /// The red component (from 0 to 1).
     public var red: Float
     /// The green component (from 0 to 1).
@@ -71,19 +74,12 @@ extension Color: ElementaryView {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
         ViewLayoutResult.leafView(
-            size: ViewSize(
-                size: proposedSize,
-                idealSize: SIMD2(10, 10),
-                minimumWidth: 0,
-                minimumHeight: 0,
-                maximumWidth: nil,
-                maximumHeight: nil
-            )
+            size: proposedSize.replacingUnspecifiedDimensions(by: Self.idealSize)
         )
     }
 
@@ -93,7 +89,7 @@ extension Color: ElementaryView {
         environment: EnvironmentValues,
         backend: Backend
     ) {
-        backend.setSize(of: widget, to: layout.size.size)
+        backend.setSize(of: widget, to: layout.size.vector)
         backend.setColor(ofColorableRectangle: widget, to: self)
     }
 }

@@ -92,8 +92,8 @@ public struct EnvironmentValues {
     /// The style of list to use.
     package var listStyle: ListStyle
 
-    /// The style of toggle to use.
-    public var toggleStyle: ToggleStyle
+    // /// The style of toggle to use.
+    // public var toggleStyle: ToggleStyle
 
     /// Whether the text should be selectable. Set by ``View/textSelectionEnabled(_:)``.
     public var isTextSelectionEnabled: Bool
@@ -213,7 +213,7 @@ public struct EnvironmentValues {
         window = nil
         extraValues = [:]
         listStyle = .default
-        toggleStyle = .button
+        // toggleStyle = .button
         isEnabled = true
         scrollDismissesKeyboardMode = .automatic
         isTextSelectionEnabled = false
