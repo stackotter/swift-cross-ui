@@ -20,6 +20,7 @@ extension HotReloadableAppMacro: PeerMacro {
                 var hotReloadingImportedEntryPoint: (@convention(c) (UnsafeRawPointer, Int) -> Any)? = nil
                 """,
                 """
+                @MainActor
                 @_cdecl("body")
                 public func hotReloadingExportedEntryPoint(app: UnsafeRawPointer, viewId: Int) -> Any {
                     hotReloadingHasConnectedToServer = true
