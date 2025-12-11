@@ -20,7 +20,7 @@ let package = Package(
         .package(name: "swift-cross-ui", path: ".."),
         .package(
             url: "https://github.com/stackotter/swift-bundler",
-            revision: "d42d7ffda684cfed9edcfd3581b8127f1dc55c2e"
+            revision: "02cccab9050c0df9df032cd96756e890c570b653"
         ),
     ],
     targets: [

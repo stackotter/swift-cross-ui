@@ -100,11 +100,11 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/swiftlang/swift-syntax.git",
-            from: "600.0.0"
+            from: "601.0.0"
         ),
         .package(
             url: "https://github.com/stackotter/swift-macro-toolkit",
-            .upToNextMinor(from: "0.6.0")
+            .upToNextMinor(from: "0.7.0")
         ),
         .package(
             url: "https://github.com/stackotter/swift-image-formats",
