@@ -63,6 +63,7 @@ extension HotReloadableAppMacro: MemberMacro {
     public static func expansion(
         of node: AttributeSyntax,
         providingMembersOf declaration: some DeclSyntaxProtocol,
+        conformingTo protocols: [TypeSyntax],
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         guard let structDecl = Decl(declaration).asStruct else {
