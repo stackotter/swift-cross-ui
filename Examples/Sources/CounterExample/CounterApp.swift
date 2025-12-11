@@ -18,6 +18,7 @@ struct CounterApp: App {
                         count -= 1
                     }
                     Text("Count: \(count)")
+                        .foregroundColor(.red)
                     Button("+") {
                         count += 1
                     }
