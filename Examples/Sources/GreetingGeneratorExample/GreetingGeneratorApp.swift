@@ -56,7 +56,7 @@ struct GreetingGeneratorApp: App {
 /// This intermediate view exists to show the usage of custom environment keys. In reality it is not necessary.
 struct LatestGreetingDisplay: View {
     @Environment(LatestGreetingKey.self) var value: String?
-    
+
     var body: some View {
         Text(value ?? "nil")
     }
