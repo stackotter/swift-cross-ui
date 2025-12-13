@@ -40,9 +40,9 @@ package struct EnvironmentModifier<Child: View>: View {
 
 extension View {
     /// Modifies the environment of the View its applied to.
-    public func environment<T: EnvironmentKey>(key: T.Type, value: T.Value) -> some View {
+    public func environment<T: EnvironmentKey>(_ key: T.Type, _ newValue: T.Value) -> some View {
         EnvironmentModifier(self) { environment in
-            environment.with(key: key, value: value)
+            environment.with(key, newValue)
         }
     }
 

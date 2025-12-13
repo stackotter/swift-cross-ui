@@ -29,8 +29,8 @@ struct GreetingGeneratorApp: App {
 
                     Toggle("Selectable Greeting", active: $isGreetingSelectable)
                     if let latest = greetings.last {
-                        EnvironmentDisplay()
-                            .environment(key: TestKey.self, value: latest)
+                        LatestGreetingDisplay()
+                            .environment(LatestGreetingKey.self, latest)
                             .padding(.top, 5)
                             .textSelectionEnabled(isGreetingSelectable)
 
@@ -53,14 +53,16 @@ struct GreetingGeneratorApp: App {
     }
 }
 
-struct EnvironmentDisplay: View {
-    @Environment(TestKey.self) var value: String?
+/// This intermediate view exists to show the usage of custom environment keys. In reality it is not necessary.
+struct LatestGreetingDisplay: View {
+    @Environment(LatestGreetingKey.self) var value: String?
+    
     var body: some View {
         Text(value ?? "nil")
     }
 }
 
-struct TestKey: EnvironmentKey {
+struct LatestGreetingKey: EnvironmentKey {
     typealias Value = String?
     static let defaultValue: Value = nil
 }

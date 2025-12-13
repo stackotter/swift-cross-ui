@@ -36,18 +36,18 @@
 /// ```
 @propertyWrapper
 public struct Environment<Value>: DynamicProperty {
-    var keyPath: KeyPath<EnvironmentValues, Value>?
-    var environmentKey: (any EnvironmentKey.Type)?
+    var location: EnvironmentLocation<Value>
     var value: Box<Value?>
 
     public func update(
         with environment: EnvironmentValues,
         previousValue: Self?
     ) {
-        if let keyPath {
-            value.value = environment[keyPath: keyPath]
-        } else if let environmentKey {
-            value.value = (environment[environmentKey] as! Value)
+        switch location {
+            case .keyPath(let keyPath):
+                value.value = environment[keyPath: keyPath]
+            case .environmentKey(let environmentKey):
+                value.value = (environment[environmentKey])
         }
     }
 
@@ -55,7 +55,7 @@ public struct Environment<Value>: DynamicProperty {
         guard let value = value.value else {
             fatalError(
                 """
-                Environment value \(keyPath.debugDescription) used before initialization. Don't \
+                Environment value at \(location.debugDescription) used before initialization. Don't \
                 use @Environment properties before SwiftCrossUI requests the \
                 view's body.
                 """
@@ -65,12 +65,28 @@ public struct Environment<Value>: DynamicProperty {
     }
 
     public init(_ keyPath: KeyPath<EnvironmentValues, Value>) {
-        self.keyPath = keyPath
+        self.location = .keyPath(keyPath)
         value = Box(value: nil)
     }
 
     public init<Key: EnvironmentKey>(_ type: Key.Type) where Value == Key.Value {
-        self.environmentKey = type
+        self.location = .environmentKey(type)
         self.value = Box(value: nil)
+    }
+}
+
+enum EnvironmentLocation<Value> {
+    case keyPath(KeyPath<EnvironmentValues, Value>)
+    case environmentKey(any EnvironmentKey<Value>.Type)
+}
+
+extension EnvironmentLocation: CustomDebugStringConvertible {
+    var debugDescription: String {
+        switch self {
+            case .keyPath(let keyPath):
+                "EnvironmentLocation.keyPath(\(keyPath))"
+            case .environmentKey(let environmentKey):
+                "EnvironmentLocation.environmentKey(\(environmentKey))"
+        }
     }
 }

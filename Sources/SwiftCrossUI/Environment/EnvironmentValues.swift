@@ -225,15 +225,15 @@ public struct EnvironmentValues {
 
     /// Returns a copy of the environment with the specified key set to the
     /// provided new value.
-    public func with<T: EnvironmentKey>(key: T.Type, value: T.Value) -> Self {
+    public func with<T: EnvironmentKey>(_ key: T.Type, _ newValue: T.Value) -> Self {
         var environment = self
-        environment[key] = value
+        environment[key] = newValue
         return environment
     }
 }
 
 /// A key that can be used to extend the environment with new properties.
-public protocol EnvironmentKey {
+public protocol EnvironmentKey<Value> {
     /// The type of value the key can hold.
     associatedtype Value
     /// The default value for the key.
