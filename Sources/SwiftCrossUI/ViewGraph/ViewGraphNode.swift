@@ -52,6 +52,9 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
     /// The environment most recently provided by this node's parent.
     private var parentEnvironment: EnvironmentValues
 
+    /// The dynamic property updater for this view.
+    private var dynamicPropertyUpdater: DynamicPropertyUpdater<NodeView>
+
     /// Creates a node for a given view while also creating the nodes for its children, creating
     /// the view's widget, and starting to observe its state for changes.
     public init(
@@ -77,13 +80,12 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
         parentEnvironment = environment
         cancellables = []
 
+        let mirror = Mirror(reflecting: view)
+        dynamicPropertyUpdater = DynamicPropertyUpdater(for: view, mirror: mirror)
+
         let viewEnvironment = updateEnvironment(environment)
 
-        updateDynamicProperties(
-            of: view,
-            previousValue: nil,
-            environment: viewEnvironment
-        )
+        dynamicPropertyUpdater.update(view, with: viewEnvironment, previousValue: nil)
 
         let children = view.children(
             backend: backend,
@@ -103,7 +105,6 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
         backend.tag(widget: widget, as: tag)
 
         // Update the view and its children when state changes (children are always updated first).
-        let mirror = Mirror(reflecting: view)
         for property in mirror.children {
             if property.label == "state" && property.value is ObservableObject {
                 print(
@@ -206,11 +207,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
 
         let viewEnvironment = updateEnvironment(environment)
 
-        updateDynamicProperties(
-            of: view,
-            previousValue: previousView,
-            environment: viewEnvironment
-        )
+        dynamicPropertyUpdater.update(view, with: viewEnvironment, previousValue: previousView)
 
         let result = view.computeLayout(
             widget,
