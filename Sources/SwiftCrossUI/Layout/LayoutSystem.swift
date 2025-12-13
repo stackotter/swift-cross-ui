@@ -103,14 +103,8 @@ public enum LayoutSystem {
             count: children.count
         )
 
-        let interesting = children.count == 1000
-        if interesting {
-            print("interesting")
-            print("  proposedSize: \(proposedSize)")
-        }
-
         let stackLength = proposedSize[component: orientation]
-        if stackLength == 0 || stackLength == .infinity || stackLength == nil {
+        if stackLength == 0 || stackLength == .infinity || stackLength == nil || children.count == 1 {
             var resultLength: Double = 0
             var resultWidth: Double = 0
             var results: [ViewLayoutResult] = []
@@ -174,9 +168,6 @@ public enum LayoutSystem {
             let minimum = minimumResult.size[component: orientation]
             return maximum - minimum
         }
-        if interesting {
-            print("  flexibilities: \(flexibilities)")
-        }
         let visibleChildrenCount = isHidden.filter { hidden in
             !hidden
         }.count
@@ -217,10 +208,6 @@ public enum LayoutSystem {
             proposedChildSize[component: orientation] =
                 max(stackLength - spaceUsedAlongStackAxis - totalSpacing, 0) / Double(childrenRemaining)
 
-            if interesting {
-                print("  proposedChildSize: \(proposedChildSize)")
-            }
-
             let childResult = child.computeLayout(
                 proposedSize: proposedChildSize,
                 environment: environment
@@ -255,7 +242,7 @@ public enum LayoutSystem {
             size: size,
             childResults: renderedChildren,
             participateInStackLayoutsWhenEmpty:
-                renderedChildren.contains(where: \.participateInStackLayoutsWhenEmpty),
+                renderedChildren.contains(where: \.participateInStackLayoutsWhenEmpty)
         )
     }
 

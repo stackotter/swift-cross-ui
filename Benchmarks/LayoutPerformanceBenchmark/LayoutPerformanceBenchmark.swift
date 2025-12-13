@@ -54,8 +54,8 @@ struct Benchmarks {
                     }
                 ))
             #else
-                let node = makeNode(V())
                 benchmark(label) { @MainActor in
+                    let node = makeNode(V())
                     updateNode(node, size)
                 }
             #endif
