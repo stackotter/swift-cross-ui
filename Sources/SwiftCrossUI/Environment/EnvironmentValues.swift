@@ -222,14 +222,6 @@ public struct EnvironmentValues {
         environment[keyPath: keyPath] = newValue
         return environment
     }
-
-    /// Returns a copy of the environment with the specified key set to the
-    /// provided new value.
-    public func with<T: EnvironmentKey>(_ key: T.Type, _ newValue: T.Value) -> Self {
-        var environment = self
-        environment[key] = newValue
-        return environment
-    }
 }
 
 /// A key that can be used to extend the environment with new properties.
