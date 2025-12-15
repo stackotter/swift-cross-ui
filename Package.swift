@@ -112,7 +112,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/apple/swift-collections.git",
-            exact: "1.2.1"
+            .upToNextMajor(from: "1.2.1")
         ),
         // .package(
         //     url: "https://github.com/stackotter/TermKit",

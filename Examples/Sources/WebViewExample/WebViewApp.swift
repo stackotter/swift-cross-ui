@@ -34,6 +34,8 @@ struct WebViewApp: App {
                             .onChange(of: url) {
                                 urlInput = url.absoluteString
                             }
+                    #else
+                        Text("WebView isn't supported on tvOS")
                     #endif
                 }
             }

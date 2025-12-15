@@ -9,13 +9,7 @@ import SwiftCrossUI
 @main
 @HotReloadable
 struct ForEachApp: App {
-    @State var items = {
-        var items = [Item]()
-        for i in 0..<20 {
-            items.append(.init("\(i)"))
-        }
-        return items
-    }()
+    @State var items = (0..<20).map { Item("\($0)") }
     @State var biggestValue = 19
     @State var insertionPosition = 10
 
@@ -39,31 +33,24 @@ struct ForEachApp: App {
 
                             Slider($insertionPosition, minimum: 0, maximum: items.count - 1)
                                 .onChange(of: items.count) {
-                                    guard insertionPosition > items.count - 1 else {
-                                        return
-                                    }
-                                    insertionPosition = max(items.count - 1, 0)
+                                    let upperLimit = max(items.count - 1, 0)
+                                    insertionPosition = min(insertionPosition, upperLimit)
                                 }
                         #endif
 
-                        ForEach(items) { item in
+                        ForEach(Array(items.enumerated()), id: \.element.id) { (index, item) in
                             ItemRow(
-                                item: item, isFirst: Optional(item.id) == items.first?.id,
-                                isLast: Optional(item.id) == items.last?.id
+                                item: item,
+                                isFirst: index == 0,
+                                isLast: index == items.count - 1
                             ) {
-                                items.removeAll(where: { $0.id == item.id })
+                                items.remove(at: index)
                             } moveUp: {
-                                guard
-                                    let ownIndex = items.firstIndex(where: { $0.id == item.id }),
-                                    ownIndex != items.startIndex
-                                else { return }
-                                items.swapAt(ownIndex, ownIndex - 1)
+                                guard index != items.startIndex else { return }
+                                items.swapAt(index, index - 1)
                             } moveDown: {
-                                guard
-                                    let ownIndex = items.firstIndex(where: { $0.id == item.id }),
-                                    ownIndex != items.endIndex
-                                else { return }
-                                items.swapAt(ownIndex, ownIndex + 1)
+                                guard index != items.endIndex else { return }
+                                items.swapAt(index, index + 1)
                             }
                         }
                     }
@@ -76,7 +63,7 @@ struct ForEachApp: App {
 }
 
 struct ItemRow: View {
-    @State var item: Item
+    var item: Item
     let isFirst: Bool
     let isLast: Bool
     var remove: () -> Void
@@ -95,9 +82,9 @@ struct ItemRow: View {
     }
 }
 
-class Item: Identifiable, SwiftCrossUI.ObservableObject {
+struct Item: Identifiable {
     let id = UUID()
-    @SwiftCrossUI.Published var value: String
+    var value: String
 
     init(_ value: String) {
         self.value = value
