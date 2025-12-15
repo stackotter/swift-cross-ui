@@ -5,7 +5,7 @@ import Foundation
 // - It supports ObservableObject
 // - It supports Optional<ObservableObject>
 @propertyWrapper
-public struct State<Value>: DynamicProperty, ObservableProperty {
+public struct State<Value>: ObservableProperty {
     class Storage {
         // This inner box is what stays constant between view updates. The
         // outer box (Storage) is used so that we can assign this box to
@@ -127,13 +127,4 @@ public struct State<Value>: DynamicProperty, ObservableProperty {
             return nil
         }
     }
-}
-
-/// Declaring conformance to ObservableProperty is required for
-/// SwiftCrossUI to automatically register an observer on the
-/// conforming object's Publisher.
-public protocol ObservableProperty {
-    var didChange: Publisher { get }
-    func tryRestoreFromSnapshot(_ snapshot: Data)
-    func snapshot() throws -> Data?
 }
