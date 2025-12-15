@@ -131,7 +131,7 @@ struct ProgressSpinnerView: ElementaryView {
         guard isResizable else {
             // Required to reset its size when resizability
             // gets changed at runtime
-            backend.setProgressSpinnerSize(widget, naturalSize)
+            backend.setSize(ofProgressSpinner: widget, to: naturalSize)
             return ViewUpdateResult.leafView(size: ViewSize(fixedSize: naturalSize))
         }
         let minimumDimension = max(min(proposedSize.x, proposedSize.y), 0)
@@ -143,7 +143,7 @@ struct ProgressSpinnerView: ElementaryView {
             // Doesn't change the rendered size of ProgressSpinner
             // on UIKitBackend, but still sets container size to
             // (width: n, height: n) n = min(proposedSize.x, proposedSize.y)
-            backend.setProgressSpinnerSize(widget, size)
+            backend.setSize(ofProgressSpinner: widget, to: size)
         }
         return ViewUpdateResult.leafView(
             size: ViewSize(

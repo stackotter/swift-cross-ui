@@ -74,9 +74,6 @@ struct ControlsApp: App {
 
                         Toggle("Enable ProgressView resizability", active: $isProgressViewResizable)
                         Slider($progressViewSize, minimum: 10, maximum: 100)
-                        Button("Randomize progress view size") {
-                            progressViewSize = Int.random(in: 10...100)
-                        }
                         ProgressView()
                             .resizable(isProgressViewResizable)
                             .frame(width: progressViewSize, height: progressViewSize)

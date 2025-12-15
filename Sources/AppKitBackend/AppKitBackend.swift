@@ -1200,9 +1200,9 @@ public final class AppKitBackend: AppBackend {
         return container
     }
 
-    public func setProgressSpinnerSize(
-        _ widget: Widget,
-        _ size: SIMD2<Int>
+    public func setSize(
+        ofProgressSpinner widget: Widget,
+        to size: SIMD2<Int>
     ) {
         guard Int(widget.frame.size.height) != size.y else { return }
         setSize(of: widget, to: size)
