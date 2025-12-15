@@ -124,7 +124,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/apple/swift-collections.git",
-            .upToNextMajor(from: "1.2.1")
+            .upToNextMinor(from: "1.2.1")
         ),
         .package(
             url: "https://github.com/stackotter/swift-benchmark",
