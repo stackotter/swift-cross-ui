@@ -116,7 +116,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
                 )
             }
 
-            guard let value = property.value as? ObservableProperty else {
+            guard let value = property.value as? any ObservableProperty else {
                 continue
             }
 
