@@ -1,0 +1,90 @@
+import Benchmark
+import SwiftCrossUI
+import DummyBackend
+import Foundation
+
+protocol TestCaseView: View {
+    init()
+}
+
+#if BENCHMARK_VIZ
+    import DefaultBackend
+
+    struct VizApp<V: TestCaseView>: App {
+        var body: some Scene {
+            WindowGroup("Benchmark visualisation") {
+                V()
+            }
+        }
+    }
+#endif
+
+@main
+struct Benchmarks {
+    @MainActor
+    static func main() async {
+        let backend = DummyBackend()
+        let defaultEnvironment = EnvironmentValues(backend: backend)
+        let environment = backend.computeRootEnvironment(defaultEnvironment: defaultEnvironment)
+            .with(\.window, backend.createWindow(withDefaultSize: nil))
+
+        @MainActor
+        func makeNode<V: View>(_ view: V) -> ViewGraphNode<V, DummyBackend> {
+            ViewGraphNode(for: view, backend: backend, snapshot: nil, environment: environment)
+        }
+
+        @MainActor
+        func updateNode<V: View>(_ node: ViewGraphNode<V, DummyBackend>, _ size: SIMD2<Int>) {
+            _ = node.update(proposedSize: size, environment: environment, dryRun: true)
+            _ = node.update(proposedSize: size, environment: environment, dryRun: false)
+        }
+
+        #if BENCHMARK_VIZ
+            var benchmarkVisualizations: [(name: String, main: () -> Never)] = []
+        #endif
+
+        @MainActor
+        func benchmarkLayout<V: TestCaseView>(of viewType: V.Type, _ size: SIMD2<Int>, _ label: String) {
+            #if BENCHMARK_VIZ
+                benchmarkVisualizations.append((
+                    label,
+                    {
+                        VizApp<V>.main()
+                        exit(0)
+                    }
+                ))
+            #else
+                let node = makeNode(V())
+                benchmark(label) { @MainActor in
+                    updateNode(node, size)
+                }
+            #endif
+        }
+
+        // Register benchmarks
+        benchmarkLayout(of: GridView.self, SIMD2(800, 800), "grid")
+        benchmarkLayout(of: ScrollableMessageListView.self, SIMD2(800, 800), "message list")
+
+        #if BENCHMARK_VIZ
+            let names = benchmarkVisualizations.map(\.name).joined(separator: " | ")
+            print("Benchmark to viz (\(names)): ", terminator: "")
+            guard let benchmarkName = readLine() else {
+                print("Nothing entered")
+                exit(1)
+            }
+
+            guard
+                let benchmark = benchmarkVisualizations.first(
+                    where: { $0.name == benchmarkName }
+                )
+            else {
+                print("\(benchmarkName) doesn't match any benchmarks")
+                exit(1)
+            }
+
+            benchmark.main()
+        #else
+            await Benchmark.main()
+        #endif
+    }
+}
