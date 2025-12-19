@@ -1,6 +1,5 @@
 import Foundation
 
-@available(tvOS, unavailable)
 public struct DatePickerComponents: OptionSet, Sendable {
     public let rawValue: UInt
 
@@ -138,26 +137,22 @@ internal struct DatePickerImplementation: ElementaryView {
         backend: Backend,
         dryRun: Bool
     ) -> ViewUpdateResult {
-        #if os(tvOS)
-            preconditionFailure()
-        #else
-            if !dryRun {
-                backend.updateDatePicker(
-                    widget,
-                    environment: environment,
-                    date: selection,
-                    range: range,
-                    components: components,
-                    onChange: { selection = $0 }
-                )
-            }
+        if !dryRun {
+            backend.updateDatePicker(
+                widget,
+                environment: environment,
+                date: selection,
+                range: range,
+                components: components,
+                onChange: { selection = $0 }
+            )
+        }
 
-            // I reject your proposedSize and substitute my own
-            let naturalSize = backend.naturalSize(of: widget)
-            if !dryRun {
-                backend.setSize(of: widget, to: naturalSize)
-            }
-            return ViewUpdateResult.leafView(size: ViewSize(fixedSize: naturalSize))
-        #endif
+        // I reject your proposedSize and substitute my own
+        let naturalSize = backend.naturalSize(of: widget)
+        if !dryRun {
+            backend.setSize(of: widget, to: naturalSize)
+        }
+        return ViewUpdateResult.leafView(size: ViewSize(fixedSize: naturalSize))
     }
 }

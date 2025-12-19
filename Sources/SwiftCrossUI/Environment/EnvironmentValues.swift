@@ -232,7 +232,13 @@ public struct EnvironmentValues {
         calendar = .current
         timeZone = .current
         datePickerStyle = .automatic
-        supportedDatePickerStyles = backend.supportedDatePickerStyles
+
+        let supportedDatePickerStyles = backend.supportedDatePickerStyles
+        if supportedDatePickerStyles.isEmpty {
+            self.supportedDatePickerStyles = [.automatic]
+        } else {
+            self.supportedDatePickerStyles = supportedDatePickerStyles
+        }
     }
 
     /// Returns a copy of the environment with the specified property set to the

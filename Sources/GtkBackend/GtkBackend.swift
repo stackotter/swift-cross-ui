@@ -1722,9 +1722,12 @@ class CustomListBox: ListBox {
     var cachedSelection: Int? = nil
 }
 
-// This kinda sorta works. Beyond the fact that it never shows the AM/PM picker, the SpinButtons
-// don't behave correctly on change, and calendar.date(bySetting:value:of:) doesn't do what we need
-// it to do.
+// This class is incomplete and unused. It was meant to implement time components for DatePicker,
+// but I couldn't get the spin buttons to work. TODOs include:
+// - Fix the spin buttons
+// - Update the strings in the AM/PM picker when the locale changes
+// - Replace the calls to calendar.date(bySetting:value:of:) with something that actually does what we need
+// - Implement range when possible
 @available(macOS 13, *)
 final class TimePicker: Box {
     private var hourCycle: Locale.HourCycle

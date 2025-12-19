@@ -545,16 +545,14 @@ public protocol AppBackend: Sendable {
 
     func createDatePicker() -> Widget
 
-    #if !os(tvOS)
-        func updateDatePicker(
-            _ datePicker: Widget,
-            environment: EnvironmentValues,
-            date: Date,
-            range: ClosedRange<Date>,
-            components: DatePickerComponents,
-            onChange: @escaping (Date) -> Void
-        )
-    #endif
+    func updateDatePicker(
+        _ datePicker: Widget,
+        environment: EnvironmentValues,
+        date: Date,
+        range: ClosedRange<Date>,
+        components: DatePickerComponents,
+        onChange: @escaping (Date) -> Void
+    )
 
     /// Creates an indeterminate progress spinner.
     func createProgressSpinner() -> Widget
@@ -1309,14 +1307,12 @@ extension AppBackend {
 
     public func createDatePicker() -> Widget { todo() }
 
-    #if !os(tvOS)
-        public func updateDatePicker(
-            _ datePicker: Widget,
-            environment: EnvironmentValues,
-            date: Date,
-            range: ClosedRange<Date>,
-            components: DatePickerComponents,
-            onChange: @escaping (Date) -> Void
-        ) { todo() }
-    #endif
+    public func updateDatePicker(
+        _ datePicker: Widget,
+        environment: EnvironmentValues,
+        date: Date,
+        range: ClosedRange<Date>,
+        components: DatePickerComponents,
+        onChange: @escaping (Date) -> Void
+    ) { todo() }
 }
