@@ -2253,7 +2253,7 @@ public class NSCustomWindow: NSWindow {
             }
 
             let contentSize = sender.contentRect(
-                forFrameRect: NSRect(x: 0, y: 0, width: frameSize.width, height: frameSize.height)
+                forFrameRect: NSRect(x: sender.frame.origin.x, y: sender.frame.origin.y, width: frameSize.width, height: frameSize.height)
             )
 
             resizeHandler(
