@@ -123,6 +123,10 @@ public final class AppKitBackend: AppBackend {
         window.makeKeyAndOrderFront(nil)
     }
 
+    public func close(window: Window) {
+        window.close()
+    }
+
     public func openExternalURL(_ url: URL) throws {
         NSWorkspace.shared.open(url)
     }

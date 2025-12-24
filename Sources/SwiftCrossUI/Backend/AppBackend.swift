@@ -167,6 +167,8 @@ public protocol AppBackend: Sendable {
     /// receives an external URL or file to handle from the desktop environment.
     /// May be used in other circumstances eventually.
     func activate(window: Window)
+    /// Closes a window.
+    func close(window: Window)
 
     /// Sets the application's global menu. Some backends may make use of the host
     /// platform's global menu bar (such as macOS's menu bar), and others may render their
@@ -832,6 +834,10 @@ extension AppBackend {
     }
 
     // MARK: Application
+
+    public func close(window: Window) {
+        todo()
+    }
 
     public func setApplicationMenu(_ submenus: [ResolvedMenu.Submenu]) {
         todo()

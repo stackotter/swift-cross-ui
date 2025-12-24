@@ -29,7 +29,12 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         viewGraph = ViewGraph(
             for: scene.body,
             backend: backend,
-            environment: environment.with(\.window, window)
+            environment: environment
+                .with(\.window, window)
+                .with(\.dismiss, DismissAction(action: {
+                    print("Closing window \(window)")
+                    backend.close(window: window)
+                }))
         )
         let rootWidget = viewGraph.rootNode.concreteNode(for: Backend.self).widget
 
@@ -166,6 +171,10 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                 )
             }
             .with(\.window, window)
+            .with(\.dismiss, DismissAction(action: {
+                print("Closing window \(window)")
+                backend.close(window: window)
+            }))
 
         let finalContentResult: ViewLayoutResult
         if scene.resizability.isResizable {
