@@ -48,9 +48,11 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             guard let self else {
                 return
             }
+
             _ = self.update(
                 self.scene,
                 proposedWindowSize: newSize,
+                needsWindowSizeCommit: false,
                 backend: backend,
                 environment: self.parentEnvironment,
                 windowSizeIsFinal:
@@ -62,9 +64,11 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             guard let self else {
                 return
             }
+
             _ = self.update(
                 self.scene,
                 proposedWindowSize: backend.size(ofWindow: window),
+                needsWindowSizeCommit: false,
                 backend: backend,
                 environment: self.parentEnvironment,
                 windowSizeIsFinal:
@@ -85,20 +89,46 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         let isProgramaticallyResizable =
             backend.isWindowProgrammaticallyResizable(window)
 
+        let proposedWindowSize: SIMD2<Int>
+        let usedDefaultSize: Bool
+        if isFirstUpdate && isProgramaticallyResizable {
+            proposedWindowSize = (newScene ?? scene).defaultSize
+            usedDefaultSize = true
+        } else {
+            proposedWindowSize = backend.size(ofWindow: window)
+            usedDefaultSize = false
+        }
+
         _ = update(
             newScene,
-            proposedWindowSize: isFirstUpdate && isProgramaticallyResizable
-                ? (newScene ?? scene).defaultSize
-                : backend.size(ofWindow: window),
+            proposedWindowSize: proposedWindowSize,
+            needsWindowSizeCommit: usedDefaultSize,
             backend: backend,
             environment: environment,
             windowSizeIsFinal: !isProgramaticallyResizable
         )
     }
 
+    /// Updates the WindowGroupNode.
+    /// - Parameters:
+    ///   - newScene: The scene's body if recomputed.
+    ///   - proposedWindowSize: The proposed window size.
+    ///   - needsWindowSizeCommit: Whether the proposed window size matches the
+    ///     windows current size (or imminent size in the case of a window
+    ///     resize). We use this parameter instead of comparing to the window's
+    ///     current size to the proposed size, because some backends (such as
+    ///     AppKitBackend) trigger window resize handlers *before* the underlying
+    ///     window gets assigned its new size (allowing us to pre-emptively update the
+    ///     window's content to match the new size).
+    ///   - backend: The backend to use.
+    ///   - environment: The current environment.
+    ///   - windowSizeIsFinal: If true, no further resizes can/will be made. This
+    ///     is true on platforms that don't support programmatic window resizing,
+    ///     and when a window is full screen.
     public func update<Backend: AppBackend>(
         _ newScene: WindowGroup<Content>?,
         proposedWindowSize: SIMD2<Int>,
+        needsWindowSizeCommit: Bool,
         backend: Backend,
         environment: EnvironmentValues,
         windowSizeIsFinal: Bool = false
@@ -130,6 +160,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                 _ = self.update(
                     self.scene,
                     proposedWindowSize: backend.size(ofWindow: window),
+                    needsWindowSizeCommit: false,
                     backend: backend,
                     environment: environment
                 )
@@ -155,6 +186,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                 return update(
                     scene,
                     proposedWindowSize: clampedWindowSize.vector,
+                    needsWindowSizeCommit: true,
                     backend: backend,
                     environment: environment,
                     windowSizeIsFinal: true
@@ -179,6 +211,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                 return update(
                     scene,
                     proposedWindowSize: initialContentResult.size.vector,
+                    needsWindowSizeCommit: true,
                     backend: backend,
                     environment: environment,
                     windowSizeIsFinal: true
@@ -195,8 +228,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             to: (proposedWindowSize &- finalContentResult.size.vector) / 2
         )
 
-        let currentWindowSize = backend.size(ofWindow: window)
-        if currentWindowSize != proposedWindowSize {
+        if needsWindowSizeCommit {
             backend.setSize(ofWindow: window, to: proposedWindowSize)
         }
 
