@@ -1,6 +1,13 @@
 /// A builder for ``[MenuItem]``.
 @resultBuilder
 public struct MenuItemsBuilder {
+    // allow for empty menus (the `Never` type effectively forces the
+    // `components` array to be empty -- anything else will go to
+    // `buildPartialBlock` instead)
+    public static func buildBlock(_ components: Never...) -> [MenuItem] {
+        []
+    }
+    
     public static func buildPartialBlock(first: Button) -> [MenuItem] {
         [.button(first)]
     }
