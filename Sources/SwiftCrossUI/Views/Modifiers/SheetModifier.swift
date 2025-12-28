@@ -6,14 +6,14 @@ extension View {
     ///
     /// `onDismiss` isn't called when the sheet gets dismissed programmatically
     /// (i.e. by setting `isPresented` to `false`).
-    /// 
+    ///
     /// `onDismiss` gets called *after* the sheet has been dismissed by the
     /// underlying UI framework, and *before* `isPresented` gets set to false.
     ///
     /// - Parameters:
     ///   - isPresented: A binding controlling whether the sheet is presented.
     ///   - onDismiss: An action to perform when the sheet is dismissed
-    ///     by the user. 
+    ///     by the user.
     public func sheet<SheetContent: View>(
         isPresented: Binding<Bool>,
         onDismiss: (() -> Void)? = nil,

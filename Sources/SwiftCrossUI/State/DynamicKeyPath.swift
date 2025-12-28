@@ -35,15 +35,16 @@ struct DynamicKeyPath<Base, Value> {
         var index = 0
         var matches: [Int] = []
         while index + propertySize <= baseStructSize {
-            let isMatch = withUnsafeBytes(of: base) { viewPointer in
-                withUnsafeBytes(of: value) { valuePointer in
-                    memcmp(
-                        viewPointer.baseAddress!.advanced(by: index),
-                        valuePointer.baseAddress!,
-                        propertySize
-                    )
-                }
-            } == 0
+            let isMatch =
+                withUnsafeBytes(of: base) { viewPointer in
+                    withUnsafeBytes(of: value) { valuePointer in
+                        memcmp(
+                            viewPointer.baseAddress!.advanced(by: index),
+                            valuePointer.baseAddress!,
+                            propertySize
+                        )
+                    }
+                } == 0
             if isMatch {
                 matches.append(index)
             }

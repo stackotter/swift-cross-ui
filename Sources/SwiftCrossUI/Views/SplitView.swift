@@ -49,23 +49,25 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
 
         // TODO: If computeLayout ever becomes a pure requirement of View, then we
         //   can delay this until commit.
-        children.minimumLeadingWidth = children.leadingChild.computeLayout(
-            with: body.view0,
-            proposedSize: ProposedViewSize(
-                0,
-                proposedSize.height
-            ),
-            environment: environment
-        ).size.width
+        children.minimumLeadingWidth =
+            children.leadingChild.computeLayout(
+                with: body.view0,
+                proposedSize: ProposedViewSize(
+                    0,
+                    proposedSize.height
+                ),
+                environment: environment
+            ).size.width
 
-        children.minimumTrailingWidth = children.trailingChild.computeLayout(
-            with: body.view1,
-            proposedSize: ProposedViewSize(
-                0,
-                proposedSize.height
-            ),
-            environment: environment
-        ).size.width
+        children.minimumTrailingWidth =
+            children.trailingChild.computeLayout(
+                with: body.view1,
+                proposedSize: ProposedViewSize(
+                    0,
+                    proposedSize.height
+                ),
+                environment: environment
+            ).size.width
 
         // TODO: Figure out proper fixedSize behaviour (when width is unspecified)
         // Update pane children
@@ -127,10 +129,11 @@ struct SplitView<Sidebar: View, Detail: View>: TypeSafeView, View {
         backend.setSidebarWidthBounds(
             ofSplitView: widget,
             minimum: LayoutSystem.roundSize(children.minimumLeadingWidth),
-            maximum: LayoutSystem.roundSize(max(
-                children.minimumLeadingWidth,
-                layout.size.width - children.minimumTrailingWidth
-            ))
+            maximum: LayoutSystem.roundSize(
+                max(
+                    children.minimumLeadingWidth,
+                    layout.size.width - children.minimumTrailingWidth
+                ))
         )
 
         // Center pane children

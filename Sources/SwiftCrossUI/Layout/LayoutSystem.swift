@@ -55,7 +55,8 @@ public enum LayoutSystem {
         var tag: String?
 
         public init(
-            computeLayout: @escaping @MainActor (ProposedViewSize, EnvironmentValues) -> ViewLayoutResult,
+            computeLayout: @escaping @MainActor (ProposedViewSize, EnvironmentValues) ->
+                ViewLayoutResult,
             commit: @escaping @MainActor () -> ViewLayoutResult,
             tag: String? = nil
         ) {
@@ -104,7 +105,8 @@ public enum LayoutSystem {
         )
 
         let stackLength = proposedSize[component: orientation]
-        if stackLength == 0 || stackLength == .infinity || stackLength == nil || children.count == 1 {
+        if stackLength == 0 || stackLength == .infinity || stackLength == nil || children.count == 1
+        {
             var resultLength: Double = 0
             var resultWidth: Double = 0
             var results: [ViewLayoutResult] = []
@@ -206,7 +208,8 @@ public enum LayoutSystem {
 
             var proposedChildSize = proposedSize
             proposedChildSize[component: orientation] =
-                max(stackLength - spaceUsedAlongStackAxis - totalSpacing, 0) / Double(childrenRemaining)
+                max(stackLength - spaceUsedAlongStackAxis - totalSpacing, 0)
+                / Double(childrenRemaining)
 
             let childResult = child.computeLayout(
                 proposedSize: proposedChildSize,
@@ -265,7 +268,8 @@ public enum LayoutSystem {
 
         if cache.redistributeSpaceOnCommit {
             guard let ordering = cache.lastFlexibilityOrdering else {
-                fatalError("Expected flexibility ordering in order to redistribute space during commit")
+                fatalError(
+                    "Expected flexibility ordering in order to redistribute space during commit")
             }
 
             var spaceUsedAlongStackAxis: Double = 0

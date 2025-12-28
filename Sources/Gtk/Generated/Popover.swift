@@ -79,7 +79,7 @@ open class Popover: Widget, Native, ShortcutManager {
         )
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         addSignal(name: "activate-default") { [weak self] () in

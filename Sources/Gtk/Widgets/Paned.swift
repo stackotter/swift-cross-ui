@@ -21,7 +21,7 @@ open class Paned: Widget, Orientable {
         }
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         startChild?.didMoveToParent()
         endChild?.didMoveToParent()
 

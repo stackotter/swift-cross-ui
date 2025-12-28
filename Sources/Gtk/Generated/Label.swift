@@ -238,7 +238,7 @@ open class Label: Widget {
         )
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         addSignal(name: "activate-current-link") { [weak self] () in
@@ -506,6 +506,19 @@ open class Label: Widget {
             self.notifyYalign?(self, param0)
         }
     }
+
+    /// The preferred place to ellipsize the string, if the label does
+    /// not have enough room to display the entire string.
+    ///
+    /// Note that setting this property to a value other than
+    /// [enum.Pango.EllipsizeMode.none] has the side-effect that the label requests
+    /// only enough space to display the ellipsis "...". In particular, this
+    /// means that ellipsizing labels do not work well in notebook tabs, unless
+    /// the [property@Gtk.NotebookPage:tab-expand] child property is set to true.
+    ///
+    /// Other ways to set a label's width are [method@Gtk.Widget.set_size_request]
+    /// and [method@Gtk.Label.set_width_chars].
+    @GObjectProperty(named: "ellipsize") public var ellipsize: EllipsizeMode
 
     /// The alignment of the lines in the text of the label, relative to each other.
     ///

@@ -17,14 +17,18 @@ public class Pango {
     /// acts as a suggested width. The text will attempt to take up less than or equal to the proposed
     /// width but if the text wrapping strategy doesn't allow the text to become as small as required
     /// than it may take up more the proposed width.
+    ///
+    /// Uses the `PANGO_WRAP_WORD_CHAR` text wrapping mode.
     public func getTextSize(
         _ text: String,
+        ellipsize: EllipsizeMode,
         proposedWidth: Double? = nil,
         proposedHeight: Double? = nil
     ) -> (width: Int, height: Int) {
         let layout = pango_layout_new(pangoContext)!
         pango_layout_set_text(layout, text, Int32(text.count))
         pango_layout_set_wrap(layout, PANGO_WRAP_WORD_CHAR)
+        pango_layout_set_ellipsize(layout, ellipsize.toGtk())
 
         if let proposedWidth {
             pango_layout_set_width(
