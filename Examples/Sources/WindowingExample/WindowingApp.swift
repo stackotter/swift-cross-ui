@@ -157,6 +157,16 @@ struct SheetDemo: View {
     }
 }
 
+struct OpenWindowDemo: View {
+    @Environment(\.openWindow) private var openWindow
+
+    var body: some View {
+        Button("Open singleton window") {
+            openWindow(id: "singleton-window")
+        }
+    }
+}
+
 struct TertiaryWindowView: View {
     @Environment(\.dismiss) private var dismiss
 
@@ -208,6 +218,10 @@ struct WindowingApp: App {
                     Divider()
 
                     SheetDemo()
+
+                    Divider()
+
+                    OpenWindowDemo()
                         .padding(.bottom, 20)
                 }
                 .padding(20)
@@ -238,6 +252,15 @@ struct WindowingApp: App {
             WindowGroup("Tertiary window") {
                 #hotReloadable {
                     TertiaryWindowView()
+                }
+            }
+            .defaultSize(width: 200, height: 200)
+            .windowResizability(.contentMinSize)
+
+            Window("Singleton window", id: "singleton-window") {
+                #hotReloadable {
+                    Text("I'm a singleton window!")
+                        .padding(10)
                 }
             }
             .defaultSize(width: 200, height: 200)
