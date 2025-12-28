@@ -265,6 +265,16 @@ struct WindowingApp: App {
             }
             .defaultSize(width: 200, height: 200)
             .windowResizability(.contentMinSize)
+
+            Window("Singleton window (shown)", id: "singleton-window-shown") {
+                #hotReloadable {
+                    Text("I'm a singleton window, shown by default.")
+                        .padding(10)
+                }
+            }
+            .defaultSize(width: 200, height: 200)
+            .windowResizability(.contentMinSize)
+            .defaultLaunchBehavior(.presented)
         #endif
     }
 }

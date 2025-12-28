@@ -45,6 +45,18 @@ public struct WindowGroup<Content: View>: Scene {
         windowGroup.genericWindow.resizability = resizability
         return windowGroup
     }
+
+    /// Sets the default launch behavior of a window.
+    public func defaultLaunchBehavior(
+        _ launchBehavior: SceneLaunchBehavior
+    ) -> Self {
+        var window = self
+        window.genericWindow.openOnAppLaunch = switch launchBehavior {
+        case .automatic, .presented: true
+        case .suppressed: false
+        }
+        return window
+    }
 }
 
 /// The ``SceneGraphNode`` corresponding to a ``WindowGroup`` scene. Holds
