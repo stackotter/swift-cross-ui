@@ -10,48 +10,71 @@ public struct WindowGroup<Content: View>: Scene {
 
     public var commands: Commands = .empty
 
-    /// Storing the window group contents lazily allows us to recompute the view
-    /// when the window size changes without having to recompute the whole app.
-    /// This allows the window group contents to remain linked to the app state
-    /// instead of getting frozen in time when the app's body gets evaluated.
-    var content: () -> Content
+    var genericWindow: GenericWindow<Content>
 
-    var body: Content {
-        content()
-    }
-
-    /// The title of the window (shown in the title bar on most OSes).
-    var title: String
-    /// The default size of the window (only has effect at time of creation). Defaults to
-    /// 900x450.
-    var defaultSize: SIMD2<Int>
-    /// The window's resizing behaviour.
-    var resizability: WindowResizability
-
-    /// Creates a window group optionally specifying a title. Window title defaults
-    /// to `ProcessInfo.processInfo.processName`.
-    public init(_ title: String? = nil, @ViewBuilder _ content: @escaping () -> Content) {
-        self.content = content
+    /// Creates a window group optionally specifying a title. Window title
+    /// defaults to `ProcessInfo.processInfo.processName`.
+    public init(
+        _ title: String? = nil,
+        @ViewBuilder _ content: @escaping () -> Content
+    ) {
         #if os(WASI)
-            self.title = title ?? "Title"
+            let title = title ?? "Title"
         #else
-            self.title = title ?? ProcessInfo.processInfo.processName
+            let title = title ?? ProcessInfo.processInfo.processName
         #endif
-        resizability = .automatic
-        defaultSize = SIMD2(900, 450)
+        self.genericWindow = GenericWindow(
+            title,
+            id: nil,
+            openOnAppLaunch: true,
+            content
+        )
     }
 
-    /// Sets the default size of a window (used when creating new instances of the window).
+    /// Sets the default size of a window (used when creating new instances of
+    /// the window).
     public func defaultSize(width: Int, height: Int) -> Self {
         var windowGroup = self
-        windowGroup.defaultSize = SIMD2(width, height)
+        windowGroup.genericWindow.defaultSize = SIMD2(width, height)
         return windowGroup
     }
 
     /// Sets the resizability of a window.
     public func windowResizability(_ resizability: WindowResizability) -> Self {
         var windowGroup = self
-        windowGroup.resizability = resizability
+        windowGroup.genericWindow.resizability = resizability
         return windowGroup
+    }
+}
+
+/// The ``SceneGraphNode`` corresponding to a ``WindowGroup`` scene. Holds
+/// the scene's view graph and window handle.
+public final class WindowGroupNode<Content: View>: SceneGraphNode {
+    public typealias NodeScene = WindowGroup<Content>
+
+    private var genericWindowNode: GenericWindowNode<Content>
+
+    public init<Backend: AppBackend>(
+        from scene: WindowGroup<Content>,
+        backend: Backend,
+        environment: EnvironmentValues
+    ) {
+        self.genericWindowNode = GenericWindowNode(
+            from: scene.genericWindow,
+            backend: backend,
+            environment: environment
+        )
+    }
+
+    public func update<Backend: AppBackend>(
+        _ newScene: WindowGroup<Content>?,
+        backend: Backend,
+        environment: EnvironmentValues
+    ) {
+        genericWindowNode.update(
+            newScene?.genericWindow,
+            backend: backend,
+            environment: environment
+        )
     }
 }
