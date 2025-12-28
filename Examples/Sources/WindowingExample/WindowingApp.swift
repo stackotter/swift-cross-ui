@@ -158,7 +158,7 @@ struct SheetDemo: View {
 }
 
 struct TertiaryWindowView: View {
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.dismissWindow) private var dismissWindow
 
     var body: some View {
         VStack {
@@ -166,7 +166,7 @@ struct TertiaryWindowView: View {
                 .padding(10)
 
             Button("Close window") {
-                dismiss()
+                dismissWindow()
             }
         }
     }

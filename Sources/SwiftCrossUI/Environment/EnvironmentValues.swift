@@ -183,6 +183,15 @@ public struct EnvironmentValues {
         )
     }
 
+    /// Closes the current window.
+    @MainActor
+    public var dismissWindow: DismissWindowAction {
+        return DismissWindowAction(
+            backend: backend,
+            window: .init(value: window)
+        )
+    }
+
     /// Reveals a file in the system's file manager. This opens
     /// the file's enclosing directory and highlighting the file.
     ///
