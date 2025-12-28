@@ -207,6 +207,8 @@ struct WindowingApp: App {
                     Button("Item 2") {}
                 }
             }
+
+            CommandMenu("Help") {}
         }
         #if !os(iOS) && !os(tvOS)
             WindowGroup("Secondary window") {
