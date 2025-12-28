@@ -30,7 +30,7 @@ extension View {
     /// Sets the visibility of the enclosing sheet presentation's drag indicator.
     /// Drag indicators are only supported on platforms that support sheet
     /// resizing, and sheet resizing is generally only support on mobile.
-    /// 
+    ///
     /// - Supported platforms: iOS & Mac Catalyst 15+ (ignored on unsupported platforms)
     ///
     /// - Parameter visibility: The visibility to use for the drag indicator of

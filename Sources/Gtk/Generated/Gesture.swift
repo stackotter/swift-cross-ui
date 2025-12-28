@@ -91,7 +91,7 @@ import CGtk
 /// %GDK_TOUCHPAD_SWIPE and %GDK_TOUCHPAD_PINCH are handled by the `GtkGesture`
 open class Gesture: EventController {
 
-    public override func registerSignals() {
+    open override func registerSignals() {
         super.registerSignals()
 
         let handler0:

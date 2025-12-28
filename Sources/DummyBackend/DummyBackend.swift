@@ -1,5 +1,5 @@
-import SwiftCrossUI
 import Foundation
+import SwiftCrossUI
 
 public final class DummyBackend: AppBackend {
     public class Window {
@@ -64,7 +64,7 @@ public final class DummyBackend: AppBackend {
         public var maximumValue: Double = 100
         public var decimalPlaces = 1
         public var changeHandler: ((Double) -> Void)?
-        
+
         override public var naturalSize: SIMD2<Int> {
             SIMD2(20, 10)
         }
@@ -233,7 +233,8 @@ public final class DummyBackend: AppBackend {
         window.minimumSize = minimumSize
     }
 
-    public func setResizeHandler(ofWindow window: Window, to action: @escaping (SIMD2<Int>) -> Void) {
+    public func setResizeHandler(ofWindow window: Window, to action: @escaping (SIMD2<Int>) -> Void)
+    {
         window.resizeHandler = action
     }
 
@@ -253,11 +254,15 @@ public final class DummyBackend: AppBackend {
 
     public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {}
 
-    public func computeWindowEnvironment(window: Window, rootEnvironment: EnvironmentValues) -> EnvironmentValues {
+    public func computeWindowEnvironment(window: Window, rootEnvironment: EnvironmentValues)
+        -> EnvironmentValues
+    {
         rootEnvironment
     }
 
-    public func setWindowEnvironmentChangeHandler(of window: Window, to action: @escaping () -> Void) {}
+    public func setWindowEnvironmentChangeHandler(
+        of window: Window, to action: @escaping () -> Void
+    ) {}
 
     public func show(widget: Widget) {}
 
@@ -317,7 +322,10 @@ public final class DummyBackend: AppBackend {
 
     public func updateScrollContainer(_ scrollView: Widget, environment: EnvironmentValues) {}
 
-    public func setScrollBarPresence(ofScrollContainer scrollView: Widget, hasVerticalScrollBar: Bool, hasHorizontalScrollBar: Bool) {
+    public func setScrollBarPresence(
+        ofScrollContainer scrollView: Widget, hasVerticalScrollBar: Bool,
+        hasHorizontalScrollBar: Bool
+    ) {
         let scrollContainer = scrollView as! ScrollContainer
         scrollContainer.hasVerticalScrollBar = hasVerticalScrollBar
         scrollContainer.hasHorizontalScrollBar = hasHorizontalScrollBar
@@ -335,13 +343,17 @@ public final class DummyBackend: AppBackend {
         .zero
     }
 
-    public func setItems(ofSelectableListView listView: Widget, to items: [Widget], withRowHeights rowHeights: [Int]) {
+    public func setItems(
+        ofSelectableListView listView: Widget, to items: [Widget], withRowHeights rowHeights: [Int]
+    ) {
         let selectableListView = listView as! SelectableListView
         selectableListView.items = items
         selectableListView.rowHeights = rowHeights
     }
 
-    public func setSelectionHandler(forSelectableListView listView: Widget, to action: @escaping (Int) -> Void) {
+    public func setSelectionHandler(
+        forSelectableListView listView: Widget, to action: @escaping (Int) -> Void
+    ) {
         (listView as! SelectableListView).selectionHandler = action
     }
 
@@ -364,27 +376,39 @@ public final class DummyBackend: AppBackend {
         (splitView as! SplitView).sidebarWidth
     }
 
-    public func setSidebarWidthBounds(ofSplitView splitView: Widget, minimum minimumWidth: Int, maximum maximumWidth: Int) {
+    public func setSidebarWidthBounds(
+        ofSplitView splitView: Widget, minimum minimumWidth: Int, maximum maximumWidth: Int
+    ) {
         let splitView = splitView as! SplitView
         splitView.minimumSidebarWidth = minimumWidth
         splitView.maximumSidebarWidth = maximumWidth
     }
 
-    public func size(of text: String, whenDisplayedIn widget: Widget, proposedFrame: SIMD2<Int>?, environment: EnvironmentValues) -> SIMD2<Int> {
+    public func size(
+        of text: String,
+        whenDisplayedIn widget: Widget,
+        proposedWidth: Int?,
+        proposedHeight: Int?,
+        environment: EnvironmentValues
+    ) -> SIMD2<Int> {
         let resolvedFont = environment.resolvedFont
         let lineHeight = Int(resolvedFont.lineHeight)
         let characterHeight = Int(resolvedFont.pointSize)
         let characterWidth = characterHeight * 2 / 3
 
-        guard let proposedFrame else {
+        guard let proposedWidth else {
             return SIMD2(
                 characterWidth * text.count,
                 lineHeight
             )
         }
 
-        let charactersPerLine = max(1, proposedFrame.x / characterWidth)
-        let lineCount = (text.count + charactersPerLine - 1) / charactersPerLine
+        let charactersPerLine = max(1, proposedWidth / characterWidth)
+        var lineCount = (text.count + charactersPerLine - 1) / charactersPerLine
+        if let proposedHeight {
+            lineCount = min(max(1, proposedHeight / lineHeight), lineCount)
+        }
+
         return SIMD2(
             characterWidth * min(charactersPerLine, text.count),
             lineHeight * lineCount
@@ -395,7 +419,8 @@ public final class DummyBackend: AppBackend {
         TextView()
     }
 
-    public func updateTextView(_ textView: Widget, content: String, environment: EnvironmentValues) {
+    public func updateTextView(_ textView: Widget, content: String, environment: EnvironmentValues)
+    {
         let textView = textView as! TextView
         textView.content = content
         textView.color = environment.suggestedForegroundColor
@@ -406,7 +431,10 @@ public final class DummyBackend: AppBackend {
         ImageView()
     }
 
-    public func updateImageView(_ imageView: Widget, rgbaData: [UInt8], width: Int, height: Int, targetWidth: Int, targetHeight: Int, dataHasChanged: Bool, environment: EnvironmentValues) {
+    public func updateImageView(
+        _ imageView: Widget, rgbaData: [UInt8], width: Int, height: Int, targetWidth: Int,
+        targetHeight: Int, dataHasChanged: Bool, environment: EnvironmentValues
+    ) {
         let imageView = imageView as! ImageView
         imageView.rgbaData = rgbaData
         imageView.pixelWidth = width
@@ -421,11 +449,15 @@ public final class DummyBackend: AppBackend {
         (table as! Table).rowCount = rows
     }
 
-    public func setColumnLabels(ofTable table: Widget, to labels: [String], environment: EnvironmentValues) {
+    public func setColumnLabels(
+        ofTable table: Widget, to labels: [String], environment: EnvironmentValues
+    ) {
         (table as! Table).columnLabels = labels
     }
 
-    public func setCells(ofTable table: Widget, to cells: [Widget], withRowHeights rowHeights: [Int]) {
+    public func setCells(
+        ofTable table: Widget, to cells: [Widget], withRowHeights rowHeights: [Int]
+    ) {
         let table = table as! Table
         table.cells = cells
         table.rowHeights = rowHeights
@@ -435,13 +467,18 @@ public final class DummyBackend: AppBackend {
         Button()
     }
 
-    public func updateButton(_ button: Widget, label: String, environment: EnvironmentValues, action: @escaping () -> Void) {
+    public func updateButton(
+        _ button: Widget, label: String, environment: EnvironmentValues,
+        action: @escaping () -> Void
+    ) {
         let button = button as! Button
         button.label = label
         button.action = action
     }
 
-    public func updateButton(_ button: Widget, label: String, menu: Menu, environment: EnvironmentValues) {
+    public func updateButton(
+        _ button: Widget, label: String, menu: Menu, environment: EnvironmentValues
+    ) {
         let button = button as! Button
         button.label = label
         button.menu = menu
@@ -452,7 +489,10 @@ public final class DummyBackend: AppBackend {
         ToggleButton()
     }
 
-    public func updateToggle(_ toggle: Widget, label: String, environment: EnvironmentValues, onChange: @escaping (Bool) -> Void) {
+    public func updateToggle(
+        _ toggle: Widget, label: String, environment: EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    ) {
         let toggle = toggle as! ToggleButton
         toggle.label = label
         toggle.toggleHandler = onChange
@@ -467,7 +507,10 @@ public final class DummyBackend: AppBackend {
         ToggleSwitch()
     }
 
-    public func updateSwitch(_ switchWidget: Widget, environment: SwiftCrossUI.EnvironmentValues, onChange: @escaping (Bool) -> Void) {
+    public func updateSwitch(
+        _ switchWidget: Widget, environment: SwiftCrossUI.EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    ) {
         (switchWidget as! ToggleSwitch).toggleHandler = onChange
     }
 
@@ -479,7 +522,10 @@ public final class DummyBackend: AppBackend {
         Checkbox()
     }
 
-    public func updateCheckbox(_ checkboxWidget: Widget, environment: SwiftCrossUI.EnvironmentValues, onChange: @escaping (Bool) -> Void) {
+    public func updateCheckbox(
+        _ checkboxWidget: Widget, environment: SwiftCrossUI.EnvironmentValues,
+        onChange: @escaping (Bool) -> Void
+    ) {
         (checkboxWidget as! Checkbox).toggleHandler = onChange
     }
 
@@ -491,7 +537,10 @@ public final class DummyBackend: AppBackend {
         Slider()
     }
 
-    public func updateSlider(_ slider: Widget, minimum: Double, maximum: Double, decimalPlaces: Int, environment: SwiftCrossUI.EnvironmentValues, onChange: @escaping (Double) -> Void) {
+    public func updateSlider(
+        _ slider: Widget, minimum: Double, maximum: Double, decimalPlaces: Int,
+        environment: SwiftCrossUI.EnvironmentValues, onChange: @escaping (Double) -> Void
+    ) {
         let slider = slider as! Slider
         slider.minimumValue = minimum
         slider.maximumValue = maximum
@@ -507,7 +556,10 @@ public final class DummyBackend: AppBackend {
         TextField()
     }
 
-    public func updateTextField(_ textField: Widget, placeholder: String, environment: SwiftCrossUI.EnvironmentValues, onChange: @escaping (String) -> Void, onSubmit: @escaping () -> Void) {
+    public func updateTextField(
+        _ textField: Widget, placeholder: String, environment: SwiftCrossUI.EnvironmentValues,
+        onChange: @escaping (String) -> Void, onSubmit: @escaping () -> Void
+    ) {
         let textField = textField as! TextField
         textField.placeholder = placeholder
         textField.font = environment.resolvedFont
@@ -524,142 +576,142 @@ public final class DummyBackend: AppBackend {
     }
 
     // public func createTextEditor() -> Widget {
-        
+
     // }
 
     // public func updateTextEditor(_ textEditor: Widget, environment: SwiftCrossUI.EnvironmentValues, onChange: @escaping (String) -> Void) {
-        
+
     // }
 
     // public func setContent(ofTextEditor textEditor: Widget, to content: String) {
-        
+
     // }
 
     // public func getContent(ofTextEditor textEditor: Widget) -> String {
-        
+
     // }
 
     // public func createPicker() -> Widget {
-        
+
     // }
 
     // public func updatePicker(_ picker: Widget, options: [String], environment: SwiftCrossUI.EnvironmentValues, onChange: @escaping (Int?) -> Void) {
-        
+
     // }
 
     // public func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?) {
-        
+
     // }
 
     // public func createProgressSpinner() -> Widget {
-        
+
     // }
 
     // public func createProgressBar() -> Widget {
-        
+
     // }
 
     // public func updateProgressBar(_ widget: Widget, progressFraction: Double?, environment: SwiftCrossUI.EnvironmentValues) {
-        
+
     // }
 
     // public func createPopoverMenu() -> Menu {
-        
+
     // }
 
     // public func updatePopoverMenu(_ menu: Menu, content: SwiftCrossUI.ResolvedMenu, environment: SwiftCrossUI.EnvironmentValues) {
-        
+
     // }
 
     // public func showPopoverMenu(_ menu: Menu, at position: SIMD2<Int>, relativeTo widget: Widget, closeHandler handleClose: @escaping () -> Void) {
-        
+
     // }
 
     // public func createAlert() -> Alert {
-        
+
     // }
 
     // public func updateAlert(_ alert: Alert, title: String, actionLabels: [String], environment: SwiftCrossUI.EnvironmentValues) {
-        
+
     // }
 
     // public func showAlert(_ alert: Alert, window: Window?, responseHandler handleResponse: @escaping (Int) -> Void) {
-        
+
     // }
 
     // public func dismissAlert(_ alert: Alert, window: Window?) {
-        
+
     // }
 
     // public func createSheet(content: Widget) -> Sheet {
-        
+
     // }
 
     // public func updateSheet(_ sheet: Sheet, window: Window, environment: SwiftCrossUI.EnvironmentValues, size: SIMD2<Int>, onDismiss: @escaping () -> Void, cornerRadius: Double?, detents: [SwiftCrossUI.PresentationDetent], dragIndicatorVisibility: SwiftCrossUI.Visibility, backgroundColor: SwiftCrossUI.Color?, interactiveDismissDisabled: Bool) {
-        
+
     // }
 
     // public func presentSheet(_ sheet: Sheet, window: Window, parentSheet: Sheet?) {
-        
+
     // }
 
     // public func dismissSheet(_ sheet: Sheet, window: Window, parentSheet: Sheet?) {
-        
+
     // }
 
     // public func size(ofSheet sheet: Sheet) -> SIMD2<Int> {
-        
+
     // }
 
     // public func showOpenDialog(fileDialogOptions: SwiftCrossUI.FileDialogOptions, openDialogOptions: SwiftCrossUI.OpenDialogOptions, window: Window?, resultHandler handleResult: @escaping (SwiftCrossUI.DialogResult<[URL]>) -> Void) {
-        
+
     // }
 
     // public func showSaveDialog(fileDialogOptions: SwiftCrossUI.FileDialogOptions, saveDialogOptions: SwiftCrossUI.SaveDialogOptions, window: Window?, resultHandler handleResult: @escaping (SwiftCrossUI.DialogResult<URL>) -> Void) {
-        
+
     // }
 
     // public func createTapGestureTarget(wrapping child: Widget, gesture: SwiftCrossUI.TapGesture) -> Widget {
-        
+
     // }
 
     // public func updateTapGestureTarget(_ tapGestureTarget: Widget, gesture: SwiftCrossUI.TapGesture, environment: SwiftCrossUI.EnvironmentValues, action: @escaping () -> Void) {
-        
+
     // }
 
     // public func createHoverTarget(wrapping child: Widget) -> Widget {
-        
+
     // }
 
     // public func updateHoverTarget(_ hoverTarget: Widget, environment: SwiftCrossUI.EnvironmentValues, action: @escaping (Bool) -> Void) {
-        
+
     // }
 
     // public func createPathWidget() -> Widget {
-        
+
     // }
 
     // public func createPath() -> Path {
-        
+
     // }
 
     // public func updatePath(_ path: Path, _ source: SwiftCrossUI.Path, bounds: SwiftCrossUI.Path.Rect, pointsChanged: Bool, environment: SwiftCrossUI.EnvironmentValues) {
-        
+
     // }
 
     // public func renderPath(_ path: Path, container: Widget, strokeColor: SwiftCrossUI.Color, fillColor: SwiftCrossUI.Color, overrideStrokeStyle: SwiftCrossUI.StrokeStyle?) {
-        
+
     // }
 
     // public func createWebView() -> Widget {
-        
+
     // }
 
     // public func updateWebView(_ webView: Widget, environment: SwiftCrossUI.EnvironmentValues, onNavigate: @escaping (URL) -> Void) {
-        
+
     // }
 
     // public func navigateWebView(_ webView: Widget, to url: URL) {
-        
+
     // }
 }

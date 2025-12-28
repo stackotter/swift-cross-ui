@@ -157,7 +157,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
         )
     }
 
-    public override func registerSignals() {
+    open override func registerSignals() {
         super.registerSignals()
 
         let handler0:

@@ -28,9 +28,9 @@ struct DynamicPropertyUpdater<Base> {
         _ new: Base,
         _ environment: EnvironmentValues
     ) -> Void
-    
+
     /// The updaters for each of Base's dynamic properties. If `nil`, then we
-    /// failed to compute 
+    /// failed to compute
     let propertyUpdaters: [PropertyUpdater]?
 
     /// Creates a new dynamic property updater which can efficiently update
@@ -45,8 +45,7 @@ struct DynamicPropertyUpdater<Base> {
             return
         }
 
-        if
-            let cachedUpdater = updaterCache[ObjectIdentifier(Base.self)],
+        if let cachedUpdater = updaterCache[ObjectIdentifier(Base.self)],
             let cachedUpdater = cachedUpdater as? Self
         {
             self = cachedUpdater

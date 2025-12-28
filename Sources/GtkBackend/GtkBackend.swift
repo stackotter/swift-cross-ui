@@ -590,9 +590,12 @@ public final class GtkBackend: AppBackend {
     // MARK: Passive views
 
     public func createTextView() -> Widget {
-        let label = Label(string: "")
-        label.horizontalAlignment = .start
-        return label
+        let textView = CustomLabel(string: "")
+        textView.horizontalAlignment = .start
+        textView.wrap = true
+        textView.lineWrapMode = .wordCharacter
+        textView.ellipsize = .end
+        return textView
     }
 
     public func updateTextView(
@@ -600,10 +603,8 @@ public final class GtkBackend: AppBackend {
         content: String,
         environment: EnvironmentValues
     ) {
-        let textView = textView as! Label
+        let textView = textView as! CustomLabel
         textView.label = content
-        textView.wrap = true
-        textView.lineWrapMode = .wordCharacter
         textView.justify =
             switch environment.multilineTextAlignment {
                 case .leading:
@@ -621,14 +622,16 @@ public final class GtkBackend: AppBackend {
     public func size(
         of text: String,
         whenDisplayedIn widget: Widget,
-        proposedFrame: SIMD2<Int>?,
+        proposedWidth: Int?,
+        proposedHeight: Int?,
         environment: EnvironmentValues
     ) -> SIMD2<Int> {
         let pango = Pango(for: widget)
         let (width, height) = pango.getTextSize(
             text,
-            proposedWidth: (proposedFrame?.x).map(Double.init),
-            proposedHeight: nil
+            ellipsize: (widget as! CustomLabel).ellipsize,
+            proposedWidth: proposedWidth.map(Double.init),
+            proposedHeight: proposedHeight.map(Double.init)
         )
         return SIMD2(width, height)
     }
@@ -1691,4 +1694,32 @@ extension UnsafeMutablePointer {
 
 class CustomListBox: ListBox {
     var cachedSelection: Int? = nil
+}
+
+/// A custom label subclass that supports ellipsizing multi-line text. Regular
+/// `Label`s only display a single line of text when ellipsizing is enabled
+/// because they don't pass their size request to their underlying Pango layout.
+class CustomLabel: Label {
+    override func setSizeRequest(width: Int, height: Int) {
+        super.setSizeRequest(width: width, height: height)
+
+        // Override the label's layout height. We do this so that the label grows
+        // vertically to fill available space even though we have ellipsizing
+        // enabled (which generally causes labels to limit themselves to a single line).
+        //
+        // This code relies on the assumption that the layout won't get recreated
+        // until after the label gets rendered. The docs recommend against mutating
+        // the layout returned by gtk_label_get_layout.
+        //
+        // Ideally we'd use an Inscription instead, because it has this behavior
+        // by default, but that's only available from Gtk 4.8, and the predecessor
+        // CellRendererText isn't a widget.
+        let layout = gtk_label_get_layout(opaquePointer)
+        pango_layout_set_height(
+            layout,
+            Int32(
+                (Double(height) * Double(PANGO_SCALE))
+                    .rounded(.towardZero))
+        )
+    }
 }

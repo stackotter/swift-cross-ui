@@ -5,7 +5,7 @@ import CGtk3
 /// actions as a consequence of those.
 open class EventController: GObject {
 
-    public override func registerSignals() {
+    open override func registerSignals() {
         super.registerSignals()
 
         let handler0:

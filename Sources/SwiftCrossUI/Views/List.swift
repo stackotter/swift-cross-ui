@@ -166,7 +166,8 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
                 Double(minimumRowSize.y)
             )
         }.reduce(0, +)
-        let minimumWidth = (childResults.map(\.size.width).max() ?? 0) + Double(horizontalBasePadding)
+        let minimumWidth =
+            (childResults.map(\.size.width).max() ?? 0) + Double(horizontalBasePadding)
         let size = ViewSize(
             max(proposedSize.width ?? minimumWidth, minimumWidth),
             height

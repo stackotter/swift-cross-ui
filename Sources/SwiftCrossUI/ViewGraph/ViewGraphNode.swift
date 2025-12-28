@@ -178,7 +178,10 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
             "View graph updated without parent window present in environment"
         )
 
-        if proposedSize == lastProposedSize && !resultCache.isEmpty && (!parentEnvironment.allowLayoutCaching || environment.allowLayoutCaching), let currentLayout {
+        if proposedSize == lastProposedSize && !resultCache.isEmpty
+            && (!parentEnvironment.allowLayoutCaching || environment.allowLayoutCaching),
+            let currentLayout
+        {
             // If the previous proposal is the same as the current one, and our
             // cache hasn't been invalidated, then we can reuse the current layout.
             // But only if the previous layout was computed without caching, or the
@@ -240,10 +243,14 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
         }
 
         if parentEnvironment.allowLayoutCaching {
-            print("warning: Committing layout computed with caching enabled. Results may be invalid. NodeView = \(NodeView.self)")
+            print(
+                "warning: Committing layout computed with caching enabled. Results may be invalid. NodeView = \(NodeView.self)"
+            )
         }
         if currentLayout.size.height == .infinity || currentLayout.size.width == .infinity {
-            print("warning: \(NodeView.self) has infinite height or width on commit, currentLayout.size: \(currentLayout.size), lastProposedSize: \(lastProposedSize)")
+            print(
+                "warning: \(NodeView.self) has infinite height or width on commit, currentLayout.size: \(currentLayout.size), lastProposedSize: \(lastProposedSize)"
+            )
         }
 
         view.commit(
