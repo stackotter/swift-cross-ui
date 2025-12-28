@@ -1,4 +1,4 @@
-/// A builder for ``[MenuItem]``.
+/// A result builder for `[MenuItem]`.
 @resultBuilder
 public struct MenuItemsBuilder {
     public static func buildPartialBlock(first: Button) -> [MenuItem] {

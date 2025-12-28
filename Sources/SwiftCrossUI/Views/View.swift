@@ -7,8 +7,18 @@ public protocol View {
     /// The view's contents.
     @ViewBuilder var body: Content { get }
 
-    /// Gets the view's children as a type-erased collection of view graph nodes. Type-erased
-    /// to avoid leaking complex requirements to users implementing their own regular views.
+    /// Gets the view's children as a type-erased collection of view graph
+    /// nodes.
+    ///
+    /// Type-erased to avoid leaking complex requirements to users implementing
+    /// their own regular views.
+    ///
+    /// - Parameters:
+    ///   - backend: The app's backend.
+    ///   - snapshots: <#FIXME: document#>
+    ///   - environment: The current environment.
+    /// - Returns: The view's children as a type-erased collection of view graph
+    ///   nodes.
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
@@ -17,10 +27,18 @@ public protocol View {
 
     // TODO: Perhaps this can be split off into a separate protocol for the `TupleViewN`s
     //   if we can set up the generics right for VStack.
-    /// Gets the view's children in a format that can be consumed by the ``LayoutSystem``.
-    /// This really only needs to be its own method for views such as VStack which treat
-    /// their child's children as their own and skip over their direct child. Only needs to
-    /// be implemented by the `TupleViewN`s.
+    /// Gets the view's children in a format that can be consumed by the
+    /// ``LayoutSystem``.
+    ///
+    /// This really only needs to be its own method for views such as ``VStack``
+    /// which treat their child's children as their own and skip over their
+    /// direct child. Only needs to be implemented by the `TupleViewN`s.
+    ///
+    /// - Parameters:
+    ///   - backend: The app's backend.
+    ///   - children: The view's children.
+    /// - Returns: The view's children in a format that can be consumed by the
+    /// ``LayoutSystem``.
     func layoutableChildren<Backend: AppBackend>(
         backend: Backend,
         children: any ViewGraphNodeChildren
@@ -37,6 +55,11 @@ public protocol View {
     /// in you not being able to ever switch to displaying the other child). This
     /// constraint significantly simplifies view implementations without
     /// requiring widgets to be re-created after every single update.
+    ///
+    /// - Parameters:
+    ///   - children: The view's children.
+    ///   - backend: The app's backend.
+    /// - Returns: The view's underlying widget for `backend`.
     func asWidget<Backend: AppBackend>(
         _ children: any ViewGraphNodeChildren,
         backend: Backend
@@ -44,13 +67,22 @@ public protocol View {
 
     /// Updates the view's widget after a state change occurs (although the
     /// change isn't guaranteed to have affected this particular view).
+    ///
     /// `proposedSize` is the size suggested by the parent container, but child
     /// views always get the final call on their own size.
     ///
     /// Always called once immediately after creating the view's widget with.
-    /// This helps reduce code duplication between `asWidget` and `update`.
-    /// - Parameter dryRun: If `true`, avoids updating the UI and only computes
-    ///   sizing.
+    /// This helps reduce code duplication between ``asWidget(_:backend:)-88tbd``
+    /// and ``update(_:children:proposedSize:environment:backend:dryRun:)-3tixh``.
+    ///
+    /// - Parameters:
+    ///   - widget: The view's underlying widget.
+    ///   - children: The view's children.
+    ///   - proposedSize: The size suggested to the view by its parent
+    ///     container.
+    ///   - environment: The current environment.
+    ///   - backend: The app's backend.
+    ///   - dryRun: If `true`, avoids updating the UI and only computes sizing.
     /// - Returns: The view's new size.
     func update<Backend: AppBackend>(
         _ widget: Backend.Widget,

@@ -1,8 +1,9 @@
-/// Presents an alert to the user. Returns once an action has been selected and
-/// the corresponding action handler has been run. Returns the index of the
-/// selected action. By default, the alert will have a single button labelled
-/// `OK`. All buttons will dismiss the alert even if you provide your own
-/// actions.
+/// Presents an alert to the user.
+///
+/// Returns once an action has been selected and the corresponding action
+/// handler has been run. Returns the index of the selected action. By default,
+/// the alert will have a single button labelled "OK". All buttons will dismiss
+/// the alert even if you provide your own actions.
 @MainActor
 public struct PresentAlertAction {
     let environment: EnvironmentValues

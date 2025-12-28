@@ -1,5 +1,5 @@
-/// A property wrapper used to access environment values within a `View` or
-/// `App`. Must not be used before the view graph accesses the view or app's
+/// A property wrapper used to access environment values within a ``View`` or
+/// ``App``. Must not be used before the view graph accesses the view or app's
 /// `body` (i.e. don't access it from an initializer).
 ///
 /// ```

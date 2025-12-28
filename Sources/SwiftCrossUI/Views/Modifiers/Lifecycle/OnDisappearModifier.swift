@@ -4,6 +4,8 @@ extension View {
     /// `onDisappear` actions on outermost views are called first and propagate
     /// down to the leaf views due to essentially relying on the `deinit` of the
     /// modifier view's ``ViewGraphNode``.
+    ///
+    /// - Parameter action: The action to perform when this view disappears.
     public func onDisappear(perform action: @escaping @Sendable @MainActor () -> Void) -> some View
     {
         OnDisappearModifier(body: TupleView1(self), action: action)

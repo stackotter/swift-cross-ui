@@ -9,6 +9,10 @@ public struct Toggle: View {
     var active: Binding<Bool>
 
     /// Creates a toggle that displays a custom label.
+    ///
+    /// - Parameters:
+    ///   - label: The label to be shown on or beside the toggle.
+    ///   - active: Whether the toggle is active or not.
     public init(_ label: String, active: Binding<Bool>) {
         self.label = label
         self.active = active

@@ -12,7 +12,12 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
         }
     }
 
-    /// Creates a new picker with the given options and a binding for the selected value.
+    /// Creates a new picker with the given options and a binding for the
+    /// selected value.
+    ///
+    /// - Parameters:
+    ///   - options: The options to be offered by the picker.
+    ///   - selection: The picker's selected option.
     public init(of options: [Value], selection value: Binding<Value?>) {
         self.options = options
         self.value = value

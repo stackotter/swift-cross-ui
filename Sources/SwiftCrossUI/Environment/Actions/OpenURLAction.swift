@@ -1,7 +1,9 @@
 import Foundation
 
-/// Opens a URL with the default application. May present an application picker
-/// if multiple applications are registered for the given URL protocol.
+/// Opens a URL with the default application.
+///
+/// May present an application picker if multiple applications are registered
+/// for the given URL protocol.
 @MainActor
 public struct OpenURLAction {
     let action: (URL) -> Void

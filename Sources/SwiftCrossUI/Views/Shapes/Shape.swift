@@ -1,13 +1,14 @@
-/// A 2-D shape that can be drawn as a view.
+/// A 2D shape that can be drawn as a view.
 ///
-/// If no stroke color or fill color is specified, the default is no stroke and a fill of the
-/// current foreground color.
+/// If no stroke color or fill color is specified, the default is no stroke and
+/// a fill of the current foreground color.
 public protocol Shape: View, Sendable where Content == EmptyView {
     /// Draw the path for this shape.
     ///
-    /// The bounds passed to a shape that is immediately drawn as a view will always have an
-    /// origin of (0, 0). However, you may pass a different bounding box to subpaths. For example,
-    /// this code draws a rectangle in the left half of the bounds and an ellipse in the right half:
+    /// The bounds passed to a shape that is immediately drawn as a view will
+    /// always have an origin of (0, 0). However, you may pass a different
+    /// bounding box to subpaths. For example, this code draws a rectangle in
+    /// the left half of the bounds and an ellipse in the right half:
     /// ```swift
     /// func path(in bounds: Path.Rect) -> Path {
     ///     Path()
@@ -33,17 +34,23 @@ public protocol Shape: View, Sendable where Content == EmptyView {
     ///         )
     /// }
     /// ```
+    ///
+    /// - Parameter bounds: The bounds of this shape.
     func path(in bounds: Path.Rect) -> Path
+
     /// Determine the ideal size of this shape given the proposed bounds.
     ///
-    /// The default implementation accepts the proposal and imposes no practical limit on
-    /// the shape's size.
-    /// - Returns: Information about the shape's size. The ``ViewSize/size`` property is what
-    ///   frame the shape will actually be rendered with if the current layout pass is not
-    ///   a dry run, while the other properties are used to inform the layout engine how big
-    ///   or small the shape can be. The ``ViewSize/idealSize`` property should not vary with
-    ///   the `proposal`, and should only depend on the shape's contents. Pass `nil` for the
-    ///   maximum width/height if the shape has no maximum size.
+    /// The default implementation accepts the proposal and imposes no practical
+    /// limit on the shape's size.
+    ///
+    /// - Parameter proposal: The proposed bounds of this shape. Pass `nil` for
+    ///   the maximum width/height if the shape has no maximum size.
+    /// - Returns: Information about the shape's size. The ``ViewSize/size``
+    ///   property is what frame the shape will actually be rendered with if the
+    ///   current layout pass is not a dry run, while the other properties are
+    ///   used to inform the layout engine how big or small the shape can be.
+    ///   The ``ViewSize/idealSize`` property should not vary with the
+    ///   `proposal`, and should only depend on the shape's contents.
     func size(fitting proposal: SIMD2<Int>) -> ViewSize
 }
 

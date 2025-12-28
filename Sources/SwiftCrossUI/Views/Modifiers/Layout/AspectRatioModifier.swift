@@ -13,18 +13,22 @@ extension View {
     // }
 
     /// Constrains a view to maintain a specific aspect ratio.
-    /// - Parameter aspectRatio: The aspect ratio to maintain. Use `nil` to
-    ///   maintain the view's ideal aspect ratio.
-    /// - Parameter contentMode: How the view should fill available space.
+    ///
+    /// - Parameters:
+    ///   - aspectRatio: The aspect ratio to maintain. Use `nil` to maintain the
+    ///     view's ideal aspect ratio.
+    ///   - contentMode: How the view should fill available space.
     public func aspectRatio(_ aspectRatio: Double? = nil, contentMode: ContentMode) -> some View {
         AspectRatioView(self, aspectRatio: aspectRatio, contentMode: contentMode)
     }
 
     /// Constrains a view to maintain an aspect ratio matching that of the
     /// provided size.
-    /// - Parameter aspectRatio: The aspect ratio to maintain, specified as a
-    ///   size with the desired aspect ratio.
-    /// - Parameter contentMode: How the view should fill available space.
+    ///
+    /// - Parameters:
+    ///   - aspectRatio: The aspect ratio to maintain, specified as a size with
+    ///     the desired aspect ratio.
+    ///   - contentMode: How the view should fill available space.
     public func aspectRatio(_ aspectRatio: SIMD2<Double>, contentMode: ContentMode) -> some View {
         AspectRatioView(
             self,

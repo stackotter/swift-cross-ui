@@ -11,6 +11,11 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
     private var columns: RowContent
 
     /// Creates a table that computes its cell values based on a collection of rows.
+    ///
+    /// - Parameters:
+    ///   - rows: The row data to display.
+    ///   - columns: The columns to display (which each compute their cell
+    ///     values when given ``Table/Row`` instances).
     public init(_ rows: [RowValue], @TableRowBuilder<RowValue> _ columns: () -> RowContent) {
         self.rows = rows
         self.columns = columns()

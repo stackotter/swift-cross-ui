@@ -1,13 +1,13 @@
-/// A value convertible to and from a ``Double``.`
+/// A value convertible to and from a `Double`.
 public protocol DoubleConvertible {
-    /// Creates a value from a ``Double``.`
+    /// Creates a value from a `Double`.
     init(_ value: Double)
 
-    /// Converts the value to a ``Double``.`
+    /// Converts the value to a `Double`.
     var doubleRepresentation: Double { get }
 }
 
-/// A value represented by a ``BinaryFloatingPoint``.
+/// A value represented by a `BinaryFloatingPoint`.
 struct FloatingPointValue<Value: BinaryFloatingPoint>: DoubleConvertible {
     var value: Value
 
@@ -24,7 +24,7 @@ struct FloatingPointValue<Value: BinaryFloatingPoint>: DoubleConvertible {
     }
 }
 
-/// A value represented by a ``BinaryInteger``.
+/// A value represented by a `BinaryInteger`.
 struct IntegerValue<Value: BinaryInteger>: DoubleConvertible {
     var value: Value
 
@@ -53,6 +53,11 @@ public struct Slider: ElementaryView, View {
     private var decimalPlaces: Int
 
     /// Creates a slider to select a value between a minimum and maximum value.
+    ///
+    /// - Parameters:
+    ///   - value: A binding to the current value.
+    ///   - minimum: The slider's minumum value.
+    ///   - maximum: The slider's maximum value.
     public init<T: BinaryInteger>(_ value: Binding<T>? = nil, minimum: T, maximum: T) {
         if let value = value {
             self.value = Binding<Double>(
@@ -70,6 +75,11 @@ public struct Slider: ElementaryView, View {
     }
 
     /// Creates a slider to select a value between a minimum and maximum value.
+    ///
+    /// - Parameters:
+    ///   - value: A binding to the current value.
+    ///   - minimum: The slider's minumum value.
+    ///   - maximum: The slider's maximum value.   
     public init<T: BinaryFloatingPoint>(_ value: Binding<T>? = nil, minimum: T, maximum: T) {
         if let value = value {
             self.value = Binding<Double>(

@@ -16,9 +16,11 @@ public struct ViewSize: Equatable, Sendable {
         maximumHeight: 0
     )
 
-    /// The view update result for a hidden view. Differs from ``ViewSize/empty``
-    /// by stopping hidden views from participating in stack layouts (i.e.
-    /// getting spacing between the previous child and the hidden child).
+    /// The view update result for a hidden view.
+    ///
+    /// Differs from ``ViewSize/empty`` by stopping hidden views from
+    /// participating in stack layouts (i.e. getting spacing between the
+    /// previous child and the hidden child).
     public static let hidden = ViewSize(
         size: .zero,
         idealSize: .zero,
@@ -34,12 +36,12 @@ public struct ViewSize: Equatable, Sendable {
     /// The size that the view ideally wants to take up.
     public var idealSize: SIMD2<Int>
     /// The width that the view ideally wants to take up assuming that the
-    /// proposed height doesn't change. Only really differs from `idealSize` for
-    /// views that have a trade-off between width and height (such as `Text`).
+    /// proposed height doesn't change. Only really differs from ``idealSize`` for
+    /// views that have a trade-off between width and height (such as ``Text``).
     public var idealWidthForProposedHeight: Int
     /// The height that the view ideally wants to take up assuming that the
-    /// proposed width doesn't change. Only really differs from `idealSize` for
-    /// views that have a trade-off between width and height (such as `Text`).
+    /// proposed width doesn't change. Only really differs from ``idealSize`` for
+    /// views that have a trade-off between width and height (such as ``Text``).
     public var idealHeightForProposedWidth: Int
     /// The minimum width that the view can take (if its height remains the same).
     public var minimumWidth: Int
@@ -56,7 +58,7 @@ public struct ViewSize: Equatable, Sendable {
     /// underlying view is `nil` to avoid having spacing between views that are
     /// semantically 'not present'.
     ///
-    /// Only takes effect when ``ViewSize/size`` is zero, to avoid any ambiguity
+    /// Only takes effect when ``size`` is zero, to avoid any ambiguity
     /// when the view has non-zero size as this option is really only intended
     /// to be used for visually hidden views (what would it mean for a non-empty
     /// view to not participate in the layout? would the spacing between the
@@ -64,7 +66,7 @@ public struct ViewSize: Equatable, Sendable {
     /// get forced to zero size?).
     public var participateInStackLayoutsWhenEmpty: Bool
 
-    /// The view's ideal aspect ratio, computed from ``ViewSize/idealSize``. If
+    /// The view's ideal aspect ratio, computed from ``idealSize``. If
     /// either of the view's ideal dimensions are 0, then the aspect ratio
     /// defaults to 1.
     public var idealAspectRatio: Double {

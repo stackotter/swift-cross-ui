@@ -46,13 +46,17 @@ public struct NavigationPath {
     public init() {}
 
     /// Appends a new value to the end of the path.
-    public mutating func append<C: Codable>(_ component: C) {
+    ///
+    /// - Parameter component: The component to append.
+    public mutating func append(_ component: some Codable) {
         storage.path.append(component)
     }
 
     /// Removes values from the end of this path.
     ///
-    /// - Parameter k: The number of elements to remove from the path. ``k`` must be greater than or equal to zero.
+    /// - Precondition: `k >= 0`.
+    ///
+    /// - Parameter k: The number of elements to remove from the path.
     public mutating func removeLast(_ k: Int = 1) {
         precondition(k >= 0, "`k` must be greater than or equal to zero")
         if k < storage.path.count {

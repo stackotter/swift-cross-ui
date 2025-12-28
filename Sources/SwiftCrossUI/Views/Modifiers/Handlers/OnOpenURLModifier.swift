@@ -1,7 +1,13 @@
 import Foundation
 
 extension View {
-    public func onOpenURL(perform action: @escaping (URL) -> Void) -> some View {
+    /// Performs an action whenever a URL is opened.
+    ///
+    /// - Parameter action: The action to perform when a URL is opened. Recieves
+    ///   the URL in question.
+    public func onOpenURL(
+        perform action: @escaping (URL) -> Void
+    ) -> some View {
         PreferenceModifier(self) { preferences, environment in
             var newPreferences = preferences
             newPreferences.onOpenURL = { url in

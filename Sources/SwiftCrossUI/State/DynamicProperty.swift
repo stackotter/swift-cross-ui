@@ -6,6 +6,10 @@
 public protocol DynamicProperty {
     /// Updates the property. Called by SwiftCrossUI before every access it
     /// makes to an ``App/body`` or ``View/body``.
+    ///
+    /// - Parameters:
+    ///   - environment: The current environment.
+    ///   - previousValue: The previous value of the property.
     func update(
         with environment: EnvironmentValues,
         previousValue: Self?

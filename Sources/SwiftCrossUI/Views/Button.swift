@@ -8,6 +8,10 @@ public struct Button: Sendable {
     var width: Int?
 
     /// Creates a button that displays a custom label.
+    ///
+    /// - Parameters:
+    ///   - label: The label to show on the button.
+    ///   - action: The action to be performed when the button is clicked.
     public init(_ label: String, action: @escaping @MainActor @Sendable () -> Void = {}) {
         self.label = label
         self.action = action

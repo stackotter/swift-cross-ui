@@ -8,7 +8,9 @@ public struct ResolvedMenu {
     /// The menu's items.
     public var items: [Item]
 
-    /// Memberwise initializer.
+    /// Creates a ``ResolvedMenu`` instance.
+    ///
+    /// - Parameter items: The menu's items.
     public init(items: [ResolvedMenu.Item]) {
         self.items = items
     }
@@ -28,7 +30,11 @@ public struct ResolvedMenu {
         /// The menu displayed when the submenu gets activated.
         public var content: ResolvedMenu
 
-        /// Memberwise initializer.
+        /// Creates a ``Submenu`` instance.
+        ///
+        /// - Parameters:
+        ///   - label: The label of the submenu's entry in its parent menu.
+        ///   - content: The menu displayed when the submenu gets activated.
         public init(label: String, content: ResolvedMenu) {
             self.label = label
             self.content = content

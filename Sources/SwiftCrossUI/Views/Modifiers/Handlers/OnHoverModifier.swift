@@ -1,8 +1,13 @@
 extension View {
-    /// Adds an action to perform when the user's pointer enters/leaves this view.
-    public func onHover(perform action: @escaping (_ hovering: Bool) -> Void)
-        -> some View
-    {
+    /// Adds an action to perform when the user's pointer enters/leaves this
+    /// view.
+    ///
+    /// - Parameter action: The action to perform when the hover state changes.
+    ///   Recieves a `Bool` parameter indicated whether the pointer entered or
+    ///   left the view.
+    public func onHover(
+        perform action: @escaping (_ hovering: Bool) -> Void
+    ) -> some View {
         OnHoverModifier(body: TupleView1(self), action: action)
     }
 }

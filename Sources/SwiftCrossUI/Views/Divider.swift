@@ -14,6 +14,7 @@ public struct Divider: View {
         }
     }
 
+    /// Creates a divider.
     public init() {}
 
     public var body: some View {

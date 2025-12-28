@@ -1,10 +1,14 @@
 import Foundation
 
+/// A web view.
 @available(tvOS, unavailable)
 public struct WebView: ElementaryView {
     @State var currentURL: URL?
     @Binding var url: URL
 
+    /// Creates a web view.
+    ///
+    /// - Parameter url: A binding to the web view's URL.
     public init(_ url: Binding<URL>) {
         _url = url
     }

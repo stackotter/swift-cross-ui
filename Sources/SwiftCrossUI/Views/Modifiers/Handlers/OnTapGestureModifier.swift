@@ -19,11 +19,16 @@ public struct TapGesture: Sendable, Hashable {
 extension View {
     /// Adds an action to perform when the user taps or clicks this view.
     ///
-    /// Any tappable elements within the view will no longer be tappable with the same gesture
-    /// type.
-    public func onTapGesture(gesture: TapGesture = .primary, perform action: @escaping () -> Void)
-        -> some View
-    {
+    /// Any tappable elements within the view will no longer be tappable with
+    /// the same gesture type.
+    ///
+    /// - Parameters:
+    ///   - gesture: The type of gesture to listen for.
+    ///   - action: The action to perform.
+    public func onTapGesture(
+        gesture: TapGesture = .primary,
+        perform action: @escaping () -> Void
+    ) -> some View {
         OnTapGestureModifier(body: TupleView1(self), gesture: gesture, action: action)
     }
 

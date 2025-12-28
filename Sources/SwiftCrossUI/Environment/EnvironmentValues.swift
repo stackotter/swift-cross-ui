@@ -196,6 +196,8 @@ public struct EnvironmentValues {
     }
 
     /// Creates the default environment.
+    ///
+    /// - Parameter backend: The app's backend.
     package init<Backend: AppBackend>(backend: Backend) {
         self.backend = backend
 
@@ -221,6 +223,12 @@ public struct EnvironmentValues {
 
     /// Returns a copy of the environment with the specified property set to the
     /// provided new value.
+    ///
+    /// - Parameters:
+    ///   - keyPath: A key path to the property to set.
+    ///   - newValue: The new value of the property.
+    /// - Returns: A copy of the environment with the specified property set to
+    ///   `newValue`.
     public func with<T>(_ keyPath: WritableKeyPath<Self, T>, _ newValue: T) -> Self {
         var environment = self
         environment[keyPath: keyPath] = newValue

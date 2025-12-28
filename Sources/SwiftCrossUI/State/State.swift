@@ -84,6 +84,9 @@ public struct State<Value>: DynamicProperty, StateProperty {
         )
     }
 
+    /// Creates a `State` given an initial value.
+    ///
+    /// - Parameter initialValue: The state's initial value.
     public init(wrappedValue initialValue: Value) {
         storage = Storage(initialValue)
 

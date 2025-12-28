@@ -1,7 +1,10 @@
 import Foundation
 
+/// A progress indicator, either a bar or a spinner.
 public struct ProgressView<Label: View>: View {
+    /// The label for this progress view.
     private var label: Label
+    /// The current progress, if this is a progress bar.
     private var progress: Double?
     private var kind: Kind
 
@@ -29,11 +32,19 @@ public struct ProgressView<Label: View>: View {
         }
     }
 
+    /// Creates an indeterminate progress view (a spinner).
+    ///
+    /// - Parameter label: The label for this progress view.
     public init(_ label: Label) {
         self.label = label
         self.kind = .spinner
     }
 
+    /// Creates a progress bar.
+    ///
+    /// - Parameters:
+    ///   - label: The label for this progress view.
+    ///   - progress: The current progress.
     public init(_ label: Label, _ progress: Progress) {
         self.label = label
         self.kind = .bar
@@ -43,8 +54,12 @@ public struct ProgressView<Label: View>: View {
         }
     }
 
-    /// Creates a progress bar view. If `value` is `nil`, an indeterminate progress
-    /// bar will be shown.
+    /// Creates a progress bar.
+    ///
+    /// - Parameters:
+    ///   - label: The label for this progress view.
+    ///   - value: The current progress. If `nil`, an indeterminate progress bar
+    ///     will be shown.
     public init<Value: BinaryFloatingPoint>(_ label: Label, value: Value?) {
         self.label = label
         self.kind = .bar
@@ -53,11 +68,16 @@ public struct ProgressView<Label: View>: View {
 }
 
 extension ProgressView where Label == EmptyView {
+    /// Creates an indeterminate progress view (a spinner).
     public init() {
         self.label = EmptyView()
         self.kind = .spinner
     }
 
+    /// Creates a progress bar.
+    ///
+    /// - Parameters:
+    ///   - progress: The current progress.
     public init(_ progress: Progress) {
         self.label = EmptyView()
         self.kind = .bar
@@ -67,8 +87,11 @@ extension ProgressView where Label == EmptyView {
         }
     }
 
-    /// Creates a progress bar view. If `value` is `nil`, an indeterminate progress
-    /// bar will be shown.
+    /// Creates a progress bar.
+    ///
+    /// - Parameters:
+    ///   - value: The current progress. If `nil`, an indeterminate progress bar
+    ///     will be shown.
     public init<Value: BinaryFloatingPoint>(value: Value?) {
         self.label = EmptyView()
         self.kind = .bar
@@ -77,11 +100,19 @@ extension ProgressView where Label == EmptyView {
 }
 
 extension ProgressView where Label == Text {
+    /// Creates an indeterminate progress view (a spinner).
+    ///
+    /// - Parameter label: The label for this progress view.
     public init(_ label: String) {
         self.label = Text(label)
         self.kind = .spinner
     }
 
+    /// Creates a progress bar.
+    ///
+    /// - Parameters:
+    ///   - label: The label for this progress view.
+    ///   - progress: The current progress.
     public init(_ label: String, _ progress: Progress) {
         self.label = Text(label)
         self.kind = .bar
@@ -91,8 +122,12 @@ extension ProgressView where Label == Text {
         }
     }
 
-    /// Creates a progress bar view. If `value` is `nil`, an indeterminate progress
-    /// bar will be shown.
+    /// Creates a progress bar.
+    ///
+    /// - Parameters:
+    ///   - label: The label for this progress view.
+    ///   - value: The current progress. If `nil`, an indeterminate progress bar
+    ///     will be shown.
     public init<Value: BinaryFloatingPoint>(_ label: String, value: Value?) {
         self.label = Text(label)
         self.kind = .bar
