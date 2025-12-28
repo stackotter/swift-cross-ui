@@ -8,7 +8,7 @@ WinUIBackend supports both ARM64 and x64 Windows 10/11 computers. It is the reco
 
 ## System dependencies
 
-Before you can use WinUIBackend you must install two dependencies; the former is only required at compile time while the later is only required at runtime.
+Before you can use WinUIBackend you must install two dependencies; the former is only required at compile time while the later is only required at runtime. If you're developing an app, you need both.
 
 1. Install Windows SDK 10.0.17736;
    ```sh
