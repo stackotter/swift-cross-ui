@@ -3,7 +3,6 @@ import Foundation
 public struct PreferenceValues: Sendable {
     public static let `default` = PreferenceValues(
         onOpenURL: nil,
-        windowOpenFunctionsByID: [:],
         presentationDetents: nil,
         presentationCornerRadius: nil,
         presentationDragIndicatorVisibility: nil,
@@ -12,8 +11,6 @@ public struct PreferenceValues: Sendable {
     )
 
     public var onOpenURL: (@Sendable @MainActor (URL) -> Void)?
-
-    public var windowOpenFunctionsByID: [String: @Sendable @MainActor () -> Void]
 
     /// The available detents for a sheet presentation. Applies to enclosing sheets.
     public var presentationDetents: [PresentationDetent]?
@@ -32,7 +29,6 @@ public struct PreferenceValues: Sendable {
 
     init(
         onOpenURL: (@Sendable @MainActor (URL) -> Void)?,
-        windowOpenFunctionsByID: [String: @Sendable () -> Void],
         presentationDetents: [PresentationDetent]?,
         presentationCornerRadius: Double?,
         presentationDragIndicatorVisibility: Visibility?,
@@ -40,7 +36,6 @@ public struct PreferenceValues: Sendable {
         interactiveDismissDisabled: Bool?
     ) {
         self.onOpenURL = onOpenURL
-        self.windowOpenFunctionsByID = windowOpenFunctionsByID
         self.presentationDetents = presentationDetents
         self.presentationCornerRadius = presentationCornerRadius
         self.presentationDragIndicatorVisibility = presentationDragIndicatorVisibility
@@ -57,13 +52,6 @@ public struct PreferenceValues: Sendable {
                     handler(url)
                 }
             }
-        }
-
-        windowOpenFunctionsByID = children.reduce(into: [:]) {
-            $0.merge(
-                $1.windowOpenFunctionsByID,
-                uniquingKeysWith: { _, second in second }
-            )
         }
 
         // For presentation modifiers, take the outer-most value (using child ordering to break ties).

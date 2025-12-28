@@ -192,6 +192,12 @@ public struct EnvironmentValues {
         )
     }
 
+    /// Opens a window with the specified ID.
+    @MainActor
+    public var openWindow: OpenWindowAction {
+        return OpenWindowAction()
+    }
+
     /// Reveals a file in the system's file manager. This opens
     /// the file's enclosing directory and highlighting the file.
     ///

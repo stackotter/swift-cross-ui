@@ -1,3 +1,6 @@
+// FIXME: we should make this a preference instead
+var windowOpenFunctionsByID: [String: @Sendable @MainActor () -> Void] = [:]
+
 /// The ``SceneGraphNode`` corresponding to a ``Window`` scene. Holds the
 /// scene's view graph and window handle.
 public final class WindowNode<Content: View>: SceneGraphNode {
@@ -83,7 +86,10 @@ public final class WindowNode<Content: View>: SceneGraphNode {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
-        
+
+        // add this window to `windowOpenFunctionsByID`
+        windowOpenFunctionsByID[scene.id] = { backend.show(window: window) }
+
         let isProgramaticallyResizable =
         backend.isWindowProgrammaticallyResizable(window)
         
@@ -180,11 +186,6 @@ public final class WindowNode<Content: View>: SceneGraphNode {
             environment: environment,
             dryRun: false
         )
-
-        // add this window to the `windowOpenFunctionsByID` preference
-        finalContentResult.preferences.windowOpenFunctionsByID[scene.id] = {
-            backend.show(window: window)
-        }
 
         // The Gtk 3 backend has some broken sizing code that can't really be
         // fixed due to the design of Gtk 3. Our layout system underestimates
