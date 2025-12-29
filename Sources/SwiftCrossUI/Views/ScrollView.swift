@@ -77,7 +77,7 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
 
         let contentSize = childResult.size
 
-        // An axis is present when its a scroll axis AND the corresponding
+        // An axis is present when it's a scroll axis AND the corresponding
         // child content size is bigger then the proposed size. If the proposed
         // size along the axis is nil then we don't have a scroll bar.
         let hasHorizontalScrollBar: Bool
@@ -119,19 +119,15 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         // Compute the outer size.
         var outerSize = finalChildResult.size
         if axes.contains(.horizontal) {
-            outerSize.width = min(
-                finalChildResult.size.width + verticalScrollBarWidth,
-                proposedSize.width ?? 0
-            )
+            outerSize.width = proposedSize.width
+                ?? (finalChildResult.size.width + verticalScrollBarWidth)
         } else {
             outerSize.width += verticalScrollBarWidth
         }
 
         if axes.contains(.vertical) {
-            outerSize.height = min(
-                finalChildResult.size.height + horizontalScrollBarHeight,
-                proposedSize.height ?? 0
-            )
+            outerSize.height = proposedSize.height
+                ?? (finalChildResult.size.height + horizontalScrollBarHeight)
         } else {
             outerSize.height += horizontalScrollBarHeight
         }
