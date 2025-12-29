@@ -3,8 +3,7 @@ import Logging
 
 /// The storage behind ``logger``.
 ///
-/// `nil` if the logger hasn't been set yet (which is only the case during
-/// ``App/init()``).
+/// `nil` if the logger hasn't been set yet.
 ///
 /// > Safety: This is only accessible from within this file, which does not use
 /// > any concurrency features.
@@ -55,8 +54,21 @@ public protocol App {
     /// Creates an instance of the app.
     ///
     /// This initializer is run before anything else, so you can perform early
-    /// setup tasks in here, such as [setting the logging backend](doc:Logging).
+    /// setup tasks in here, such as opening a database or preparing a
+    /// dependency injection library.
     init()
+
+    /// Returns the log handler to use for SwiftCrossUI's log messages.
+    ///
+    /// By default, SwiftCrossUI outputs log messages to standard error, but you
+    /// can use any log handler you want by implementing this requirement.
+    ///
+    /// # See Also
+    /// - <doc:Logging>
+    static func logHandler(
+        label: String,
+        metadataProvider: Logger.MetadataProvider?
+    ) -> any LogHandler
 }
 
 /// Force refresh the entire scene graph. Used by hot reloading. If you need to do
@@ -92,26 +104,42 @@ private enum SwiftBundlerMetadataError: LocalizedError {
 extension App {
     /// Metadata loaded at app start up.
     ///
-    /// This is accessible from within ``init()``.
+    /// This will contain the app's metadata, if present, by the time
+    /// ``App/init()`` gets called.
     public static var metadata: AppMetadata? {
         swiftBundlerAppMetadata
     }
 
+    /// The default log handler for apps which don't specify a custom one.
+    ///
+    /// This simply outputs logs to standard error.
+    ///
+    /// # See Also
+    /// - <doc:Logging>
+    public static func logHandler(
+        label: String,
+        metadataProvider: Logger.MetadataProvider?
+    ) -> any LogHandler {
+        StreamLogHandler.standardError(label: label)
+    }
+
     /// Runs the application.
     public static func main() {
+        // before anything else, extract the app metadata -- the user might want
+        // to use this in a custom log handler
         swiftBundlerAppMetadata = extractSwiftBundlerMetadata()
 
-        let app = Self()
-
-        // set up the logger _after_ calling App's initializer; that way users
-        // can call LoggingSystem.bootstrap in the init
-        _logger = Logger(label: "SwiftCrossUI")
+        _logger = Logger(
+            label: "SwiftCrossUI",
+            factory: logHandler(label:metadataProvider:)
+        )
 
         // dump the logs from `extractSwiftBundlerMetadata()`
         for (message, metadata) in extractSwiftBundlerMetadataLogs {
             logger.warning(message, metadata: metadata)
         }
 
+        let app = Self()
         let _app = _App(app)
         _forceRefresh = {
             app.backend.runInMainThread {
