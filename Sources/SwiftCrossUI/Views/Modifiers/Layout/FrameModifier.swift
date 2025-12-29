@@ -173,6 +173,29 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         return container
     }
 
+    func clampSize(_ size: ViewSize) -> ViewSize {
+        var size = size
+        size.width = clampWidth(size.width)
+        size.height = clampHeight(size.height)
+        return size
+    }
+
+    func clampHeight(_ height: Double) -> Double {
+        LayoutSystem.clamp(
+            height,
+            minimum: minHeight.map(Double.init),
+            maximum: maxHeight
+        )
+    }
+
+    func clampWidth(_ width: Double) -> Double {
+        LayoutSystem.clamp(
+            width,
+            minimum: minWidth.map(Double.init),
+            maximum: maxWidth
+        )
+    }
+
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleViewChildren1<Child>,
@@ -183,50 +206,48 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         var proposedFrameSize = proposedSize
 
         if let proposedWidth = proposedSize.width {
-            proposedFrameSize.width = LayoutSystem.clamp(
-                proposedWidth,
-                minimum: minWidth.map(Double.init),
-                maximum: maxWidth
-            )
+            proposedFrameSize.width = clampWidth(proposedWidth)
         }
 
         if let proposedHeight = proposedSize.height {
-            proposedFrameSize.height = LayoutSystem.clamp(
-                proposedHeight,
-                minimum: minHeight.map(Double.init),
-                maximum: maxHeight
-            )
+            proposedFrameSize.height = clampHeight(proposedHeight)
         }
 
-        let childResult = children.child0.computeLayout(
+        var childResult = children.child0.computeLayout(
             with: body.view0,
             proposedSize: proposedFrameSize,
             environment: environment
         )
         let childSize = childResult.size
 
-        // TODO: Fix idealSize propagation. When idealSize isn't possible, we
-        //   have to use idealWidthForProposedHeight and
-        //   idealHeightForProposedWidth, and sometimes we may also have to
-        //   perform an additional dryRun update to probe the child view.
-
-        var frameSize = childSize
-        frameSize.width = LayoutSystem.clamp(
-            frameSize.width,
-            minimum: minWidth.map(Double.init),
-            maximum: maxWidth
-        )
-        frameSize.height = LayoutSystem.clamp(
-            frameSize.height,
-            minimum: minHeight.map(Double.init),
-            maximum: maxHeight
-        )
+        // If the child view has at least one unspecified axis, compute its
+        // layout again with the clamped frame size. This allows the view to
+        // fill the space that the frame is going to take up anyway. E.g.
+        //
+        // ScrollView {
+        //     Color.blue
+        //         .frame(minHeight: 100)
+        // }
+        //
+        // Without this second layout computation, the blue rectangle would
+        // take on its ideal size of 10 within a frame of height 100, instead
+        // of using up the min height as developers may expect.
+        var frameSize = clampSize(childSize)
+        if proposedFrameSize.width == nil || proposedFrameSize.height == nil {
+            childResult = children.child0.computeLayout(
+                with: nil,
+                proposedSize: ProposedViewSize(frameSize),
+                environment: environment
+            )
+            frameSize = childResult.size
+        }
 
         if maxWidth == .infinity, let proposedWidth = proposedSize.width {
-            frameSize.width = proposedWidth
+            frameSize.width = max(frameSize.width, proposedWidth)
         }
+
         if maxHeight == .infinity, let proposedHeight = proposedSize.height {
-            frameSize.height = proposedHeight
+            frameSize.height = max(frameSize.height, proposedHeight)
         }
 
         return ViewLayoutResult(

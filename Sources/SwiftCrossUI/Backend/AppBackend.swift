@@ -930,7 +930,8 @@ extension AppBackend {
     public func size(
         of text: String,
         whenDisplayedIn widget: Widget,
-        proposedFrame: SIMD2<Int>?,
+        proposedWidth: Int?,
+        proposedHeight: Int?,
         environment: EnvironmentValues
     ) -> SIMD2<Int> {
         todo()

@@ -23,15 +23,21 @@ public struct TextEditor: ElementaryView {
         if proposedSize == .unspecified {
             size = ViewSize(10, 10)
         } else if let width = proposedSize.width, proposedSize.height == nil {
-            let idealHeight = backend.size(
+            // See ``Text``'s computeLayout for a more details on why we clamp
+            // the width to be positive.
+            let idealSize = backend.size(
                 of: content,
                 whenDisplayedIn: widget,
-                proposedFrame: SIMD2(LayoutSystem.roundSize(width), 1),
+                // For text, an infinite proposal is the same as an unspecified
+                // proposal, and this works nicer with most backends than converting
+                // .infinity to a large integer (which is the alternative).
+                proposedWidth: width == .infinity ? nil : max(1, LayoutSystem.roundSize(width)),
+                proposedHeight: nil,
                 environment: environment
-            ).y
+            )
             size = ViewSize(
-                width,
-                Double(idealHeight)
+                max(width, Double(idealSize.x)),
+                Double(idealSize.y)
             )
         } else {
             size = proposedSize.replacingUnspecifiedDimensions(by: ViewSize(10, 10))
