@@ -23,17 +23,8 @@ struct ArcShape: StyledShape {
     }
 
     func size(fitting proposal: SIMD2<Int>) -> ViewSize {
-        let diameter = max(11, min(proposal.x, proposal.y))
-        return ViewSize(
-            size: SIMD2(x: diameter, y: diameter),
-            idealSize: SIMD2(x: 100, y: 100),
-            idealWidthForProposedHeight: proposal.y,
-            idealHeightForProposedWidth: proposal.x,
-            minimumWidth: 11,
-            minimumHeight: 11,
-            maximumWidth: nil,
-            maximumHeight: nil
-        )
+        let diameter = Double(max(11, min(proposal.x, proposal.y)))
+        return ViewSize(diameter, diameter)
     }
 }
 
