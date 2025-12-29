@@ -1,7 +1,7 @@
-/// An action that closes the current window.
+/// An action that closes the enclosing window.
 ///
 /// Use the `dismissWindow` environment value to get an instance of this action,
-/// then call it to close the current window .
+/// then call it to close the enclosing window.
 ///
 /// Example usage:
 /// ```swift
@@ -23,11 +23,11 @@ public struct DismissWindowAction {
     let backend: any AppBackend
     let window: MainActorBox<Any?>
 
-    /// Dismisses the current presentation context.
+    /// Closes the enclosing window.
     public func callAsFunction() {
         func closeWindow<Backend: AppBackend>(backend: Backend) {
             guard let window = window.value else {
-                print("warning: dismissWindow() called outside of a window")
+                print("warning: dismissWindow() accessed outside of a window's scope")
                 return
             }
             backend.close(window: window as! Backend.Window)

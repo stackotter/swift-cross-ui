@@ -183,7 +183,7 @@ public struct EnvironmentValues {
         )
     }
 
-    /// Closes the current window.
+    /// Closes the enclosing window.
     @MainActor
     public var dismissWindow: DismissWindowAction {
         return DismissWindowAction(
