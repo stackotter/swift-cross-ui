@@ -3,7 +3,6 @@
 ## Topics
 
 - ``SceneGraphNode``
-- ``CommandsModifierNode``
 - ``WindowGroupNode``
 - ``TupleScene2``
 - ``TupleScene3``

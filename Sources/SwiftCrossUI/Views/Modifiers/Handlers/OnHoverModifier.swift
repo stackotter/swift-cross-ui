@@ -3,7 +3,7 @@ extension View {
     /// view.
     ///
     /// - Parameter action: The action to perform when the hover state changes.
-    ///   Recieves a `Bool` parameter indicated whether the pointer entered or
+    ///   Receives a `Bool` parameter indicated whether the pointer entered or
     ///   left the view.
     public func onHover(
         perform action: @escaping (_ hovering: Bool) -> Void

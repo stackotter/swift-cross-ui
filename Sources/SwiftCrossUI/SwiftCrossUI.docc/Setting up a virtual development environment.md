@@ -6,7 +6,7 @@ Detailed set up instructions for virtual Linux and Windows development environme
 
 Most developers only have access to one or two of the major operating systems for development. Setting up virtual machines is an important part of developing and testing cross-platform apps, especially for smaller less-specialized teams.
 
-This article covers VM creation, leaving set up to the more general <doc:Setting-up-development-environments> article which applies to both physical and virtual machines.
+This article covers VM creation, leaving set up to the more general <doc:Setting-up-a-development-environment> article which applies to both physical and virtual machines.
 
 So far this article only covers macOS hosts but will be expanded to cover other host OSes in future.
 
@@ -52,7 +52,7 @@ The next few steps are optional, and walk through setting up a shared directory 
 
 You should now find the shared directory mounted as a drive inside your Windows VM.
 
-You're now ready to begin setting up a SwiftCrossUI development environment inside your Windows VM. Head over to <doc:Setting-up-development-environments> to continue.
+You're now ready to begin setting up a SwiftCrossUI development environment inside your Windows VM. Head over to <doc:Setting-up-a-development-environment> to continue.
 
 ### Linux guests
 

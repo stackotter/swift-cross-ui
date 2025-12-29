@@ -64,9 +64,17 @@ public class AnyViewGraphNode<NodeView: View> {
         )
     }
 
-    /// Updates the view after it got recomputed (e.g. due to the parent's state changing)
-    /// or after its own state changed (depending on the presence of `newView`).
-    /// - Parameter dryRun: If `true`, only compute sizing and don't update the underlying widget.
+    /// Updates the view after it got recomputed (e.g. due to the parent's state
+    /// changing) or after its own state changed (depending on the presence of
+    /// `newView`).
+    ///
+    /// - Parameters:
+    ///   - newView: The recomputed view.
+    ///   - proposedSize: The view's proposed size.
+    ///   - environment: The current environment.
+    ///   - dryRun: If `true`, only compute sizing and don't update the
+    ///     underlying widget.
+    /// - Returns: The result of updating the view.
     public func update(
         with newView: NodeView?,
         proposedSize: SIMD2<Int>,
@@ -77,14 +85,22 @@ public class AnyViewGraphNode<NodeView: View> {
     }
 
     /// Gets the node's wrapped view.
+    ///
+    /// - Returns: The node's wrapped view.
     public func getView() -> NodeView {
         _getNodeView()
     }
 
+    /// Gets the node's children.
+    ///
+    /// - Returns: The node's children.
     public func getChildren() -> any ViewGraphNodeChildren {
         _getNodeChildren()
     }
 
+    /// Gets the node's backend.
+    ///
+    /// - Returns: The node's backend.
     public func getBackend() -> any AppBackend {
         _getBackend()
     }

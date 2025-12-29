@@ -1,14 +1,17 @@
+/// A type of tap gesture.
 public struct TapGesture: Sendable, Hashable {
     package var kind: TapGestureKind
 
-    /// The idiomatic "primary" interaction for the device, such as a left-click with the mouse
-    /// or normal tap on a touch screen.
+    /// The idiomatic "primary" interaction for the device, such as a left-click
+    /// with the mouse or normal tap on a touch screen.
     public static let primary = TapGesture(kind: .primary)
-    /// The idiomatic "secondary" interaction for the device, such as a right-click with the
-    /// mouse or long press on a touch screen.
+    /// The idiomatic "secondary" interaction for the device, such as a
+    /// right-click with the mouse or long press on a touch screen.
     public static let secondary = TapGesture(kind: .secondary)
-    /// A long press of the same interaction type as ``primary``. May be equivalent to
-    /// ``secondary`` on some backends, particularly on mobile devices.
+    /// A long press of the same interaction type as ``primary``.
+    ///
+    /// May be equivalent to ``secondary`` on some backends, particularly on
+    /// mobile devices.
     public static let longPress = TapGesture(kind: .longPress)
 
     package enum TapGestureKind {

@@ -72,8 +72,8 @@ public protocol View {
     /// views always get the final call on their own size.
     ///
     /// Always called once immediately after creating the view's widget with.
-    /// This helps reduce code duplication between ``asWidget(_:backend:)-88tbd``
-    /// and ``update(_:children:proposedSize:environment:backend:dryRun:)-3tixh``.
+    /// This helps reduce code duplication between ``View/asWidget(_:backend:)``
+    /// and ``View/update(_:children:proposedSize:environment:backend:dryRun:)``
     ///
     /// - Parameters:
     ///   - widget: The view's underlying widget.

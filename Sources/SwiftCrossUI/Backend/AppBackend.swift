@@ -8,10 +8,10 @@ import Foundation
 /// and are simply intended to allow incremental implementation of backends,
 /// not a production-ready fallback for views that cannot be represented by a
 /// given backend. The methods you need to implemented up-front (which don't
-/// have default implementations) are: ``AppBackend/createRootWindow(withDefaultSize:_:)``,
+/// have default implementations) are: ``AppBackend/createWindow(withDefaultSize:)``,
 /// ``AppBackend/setTitle(ofWindow:to:)``, ``AppBackend/setResizability(ofWindow:to:)``,
 /// ``AppBackend/setChild(ofWindow:to:)``, ``AppBackend/show(window:)``,
-/// ``AppBackend/runMainLoop()``, ``AppBackend/runInMainThread(action:)``,
+/// ``AppBackend/runMainLoop(_:)``, ``AppBackend/runInMainThread(action:)``,
 /// ``AppBackend/isWindowProgrammaticallyResizable(_:)``,
 /// ``AppBackend/show(widget:)``.
 /// Many of these can simply be given dummy implementations until you're ready
@@ -495,7 +495,7 @@ public protocol AppBackend: Sendable {
     ///
     /// - Parameters:
     ///   - listView: The list view.
-    ///   - action: The selection handler. Recieves the selected item's index.
+    ///   - action: The selection handler. Receives the selected item's index.
     func setSelectionHandler(
         forSelectableListView listView: Widget,
         to action: @escaping (_ selectedIndex: Int) -> Void
@@ -745,7 +745,7 @@ public protocol AppBackend: Sendable {
     /// Sets the change handler of a switch.
     ///
     /// - Parameters:
-    ///   - toggle: The switch to update.
+    ///   - switchWidget: The switch to update.
     ///   - environment: The current environment.
     ///   - onChange: The action to perform when the switch is toggled on or
     ///     off. This replaces any existing change handlers.
@@ -757,7 +757,7 @@ public protocol AppBackend: Sendable {
     /// Sets the state of a switch.
     ///
     /// - Parameters:
-    ///   - toggle: The switch to set the state of.
+    ///   - switchWidget: The switch to set the state of.
     ///   - state: The new state.
     func setState(ofSwitch switchWidget: Widget, to state: Bool)
 
@@ -768,7 +768,7 @@ public protocol AppBackend: Sendable {
     /// Sets the change handler of a checkbox.
     ///
     /// - Parameters:
-    ///   - toggle: The checkbox to update.
+    ///   - checkboxWidget: The checkbox to update.
     ///   - environment: The current environment.
     ///   - onChange: The action to perform when the checkbox is toggled on or
     ///     off. This replaces any existing change handlers.
@@ -780,7 +780,7 @@ public protocol AppBackend: Sendable {
     /// Sets the state of a checkbox.
     ///
     /// - Parameters:
-    ///   - toggle: The checkbox to set the state of.
+    ///   - checkboxWidget: The checkbox to set the state of.
     ///   - state: The new state.
     func setState(ofCheckbox checkboxWidget: Widget, to state: Bool)
 
@@ -1013,7 +1013,7 @@ public protocol AppBackend: Sendable {
     ///   - window: The window to attach the alert to. If `nil`, the backend can
     ///     either make the alert a whole app modal, a standalone window, or a
     ///     modal for a window of its choosing.
-    ///   - handleResponse: The code to run when an action is selected. Recieves
+    ///   - handleResponse: The code to run when an action is selected. Receives
     ///     the index of the chosen action (as per the `actionLabels` array).
     ///     The alert will have already been hidden by the time this gets
     ///     called.
@@ -1055,6 +1055,7 @@ public protocol AppBackend: Sendable {
     ///     gets called whenever preferences or sizing change).
     ///   - environment: The environment that the sheet will be presented in.
     ///     This differs from the environment passed to the sheet's content.
+    ///   - size: The size of the sheet.
     ///   - onDismiss: An action to perform when the sheet gets dismissed by
     ///     the user. Not triggered by programmatic dismissals, but _is_
     ///     triggered by the implicit dismissals of nested sheets when their
@@ -1110,7 +1111,8 @@ public protocol AppBackend: Sendable {
 
     /// Dismisses a sheet programmatically.
     ///
-    /// Used by the ``View/sheet`` modifier to close sheets.
+    /// Used by the ``View/sheet(isPresented:onDismiss:content:)`` modifier to
+    /// close sheets.
     ///
     /// - Parameters:
     ///   - sheet: The sheet to dismiss.
@@ -1134,7 +1136,7 @@ public protocol AppBackend: Sendable {
     ///     can either make the dialog a whole app modal, a standalone window,
     ///     or a modal for a window of its choosing.
     ///   - handleResult: The action to perform when the user chooses an item
-    ///     (or multiple items) or cancels the dialog. Recieves a
+    ///     (or multiple items) or cancels the dialog. Receives a
     ///     `DialogResult<[URL]>`.
     func showOpenDialog(
         fileDialogOptions: FileDialogOptions,
@@ -1153,7 +1155,7 @@ public protocol AppBackend: Sendable {
     ///     can either make the dialog a whole app modal, a standalone window,
     ///     or a modal for a window of its choosing.
     ///   - handleResult: The action to perform when the user chooses a
-    ///     destination or cancels the dialog. Recieves a `DialogResult<URL>`.
+    ///     destination or cancels the dialog. Receives a `DialogResult<URL>`.
     func showSaveDialog(
         fileDialogOptions: FileDialogOptions,
         saveDialogOptions: SaveDialogOptions,
@@ -1169,7 +1171,7 @@ public protocol AppBackend: Sendable {
     /// - Parameters:
     ///   - child: The child to wrap.
     ///   - gesture: The gesture to listen for.
-    /// - Returns: A widget that can recieve tap gesture events.
+    /// - Returns: A widget that can receive tap gesture events.
     func createTapGestureTarget(wrapping child: Widget, gesture: TapGesture) -> Widget
     /// Update the tap gesture target with a new action.
     ///
@@ -1193,7 +1195,7 @@ public protocol AppBackend: Sendable {
     /// just return the child as-is.
     ///
     /// - Parameter child: The child to wrap.
-    /// - Returns: A widget that can recieve mouse hover events.
+    /// - Returns: A widget that can receive mouse hover events.
     func createHoverTarget(wrapping child: Widget) -> Widget
     /// Update the hover target with a new action.
     ///
@@ -1202,7 +1204,7 @@ public protocol AppBackend: Sendable {
     /// - Parameters:
     ///   - hoverTarget: The hover target to update.
     ///   - environment: The current environment.
-    ///   - action: The action to perform when the hover state changes. Recieves
+    ///   - action: The action to perform when the hover state changes. Receives
     ///     a `Bool` indicating whether the hover has started or stopped.
     func updateHoverTarget(
         _ hoverTarget: Widget,

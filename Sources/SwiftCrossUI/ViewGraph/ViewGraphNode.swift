@@ -174,11 +174,20 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
         }
     }
 
-    /// Recomputes the view's body, and updates its widget accordingly. The view may or may not
-    /// propagate the update to its children depending on the nature of the update. If `newView`
-    /// is provided (in the case that the parent's body got updated) then it simply replaces the
-    /// old view while inheriting the old view's state.
-    /// - Parameter dryRun: If `true`, only compute sizing and don't update the underlying widget.
+    /// Recomputes the view's body, and updates its widget accordingly.
+    ///
+    /// The view may or may not propagate the update to its children depending
+    /// on the nature of the update. If `newView` is provided (in the case that
+    /// the parent's body got updated) then it simply replaces the old view
+    /// while inheriting the old view's state.
+    ///
+    /// - Parameters:
+    ///   - newView: The recomputed view.
+    ///   - proposedSize: The view's proposed size.
+    ///   - environment: The current environment.
+    ///   - dryRun: If `true`, only compute sizing and don't update the
+    ///     underlying widget.
+    /// - Returns: The result of updating the view.
     public func update(
         with newView: NodeView? = nil,
         proposedSize: SIMD2<Int>,

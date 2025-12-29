@@ -3,7 +3,7 @@ import Foundation
 extension View {
     /// Performs an action whenever a URL is opened.
     ///
-    /// - Parameter action: The action to perform when a URL is opened. Recieves
+    /// - Parameter action: The action to perform when a URL is opened. Receives
     ///   the URL in question.
     public func onOpenURL(
         perform action: @escaping (URL) -> Void

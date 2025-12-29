@@ -1,5 +1,6 @@
 /// A content type corresponding to a specific file/data format.
 public struct ContentType: Sendable {
+    /// The HTML content type.
     public static let html = ContentType(
         name: "HTML",
         mimeTypes: ["text/html"],

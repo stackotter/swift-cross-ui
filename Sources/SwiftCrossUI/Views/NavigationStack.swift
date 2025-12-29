@@ -5,8 +5,8 @@ struct NavigationStackRootPath: Codable {}
 /// A view that displays a root view and enables you to present additional views
 /// over the root view.
 ///
-/// Use ``navigationDestination(for:destination:)->SwiftUICore.View`` on this
-/// view instead of its children unlike Apple's SwiftUI API.
+/// Use ``navigationDestination(for:destination:)`` on this view instead of its
+/// children unlike, Apple's SwiftUI API.
 public struct NavigationStack<Detail: View>: View {
     public var body: some View {
         if let element = elements.last {
