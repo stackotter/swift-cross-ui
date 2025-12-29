@@ -143,7 +143,10 @@ extension UIKitBackend {
             case .bevel:
                 shapeLayer.lineJoin = .bevel
             @unknown default:
-                print("Warning: unrecognized lineJoinStyle \(path.lineJoinStyle)")
+                logger.warning(
+                    "unrecognized lineJoinStyle",
+                    metadata: ["lineJoinStyle": "\(path.lineJoinStyle)"]
+                )
                 shapeLayer.lineJoin = .miter
         }
 
@@ -155,7 +158,10 @@ extension UIKitBackend {
             case .square:
                 shapeLayer.lineCap = .square
             @unknown default:
-                print("Warning: unrecognized lineCapStyle \(path.lineCapStyle)")
+                logger.warning(
+                    "unrecognized lineCapStyle",
+                    metadata: ["lineCapStyle": "\(path.lineCapStyle)"]
+                )
                 shapeLayer.lineCap = .butt
         }
 

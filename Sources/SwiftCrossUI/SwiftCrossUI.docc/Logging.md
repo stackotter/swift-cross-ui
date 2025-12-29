@@ -12,4 +12,5 @@ in your ``App`` conformance.
   use in your application, you can simply call `LoggingSystem.bootstrap(_:)` in
   ``App/init()`` and pass it that handler. SwiftCrossUI provides the handler
   returned by ``App/logHandler(label:metadataProvider:)-9yiqb`` directly to
-  its global `Logger` instance, and does not call `bootstrap(_:)` at any point.
+  its global `Logger` instance and those of its backends, and does not call
+  `bootstrap(_:)` at any point.

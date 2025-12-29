@@ -1,5 +1,19 @@
+import Logging
 import SwiftCrossUI
 import UIKit
+
+/// The storage behind `logger`.
+///
+/// `nil` if the logger hasn't been set yet.
+///
+/// > Safety: This is only set once, before it is ever read.
+nonisolated(unsafe) private var _logger: Logger?
+
+/// The global logger for this backend.
+var logger: Logger {
+    guard let _logger else { fatalError("logger not yet initialized") }
+    return _logger
+}
 
 public final class UIKitBackend: AppBackend {
     static var onBecomeActive: (() -> Void)?
@@ -69,7 +83,7 @@ public final class UIKitBackend: AppBackend {
         #if DEBUG
             let location = LogLocation(file: file, line: line, column: column)
             if logsPerformed.insert(location).inserted {
-                print(message)
+                logger.notice("\(message)")
             }
         #endif
     }
@@ -163,6 +177,10 @@ extension App {
     public typealias Backend = UIKitBackend
 
     public var backend: UIKitBackend {
+        _logger = Logger(
+            label: "UIKitBackend",
+            factory: Self.logHandler(label:metadataProvider:)
+        )
         UIKitBackend()
     }
 }

@@ -158,9 +158,9 @@ extension UIKitBackend {
             // TODO: Maybe we can backport the detent behaviour?
             debugLogOnce(
                 """
-                Your current OS version doesn't support variable sheet heights. \
-                Setting presentationDetents only has an effect from iOS 15.0. \
-                tvOS and visionOS do not support it at all.
+                your current OS version doesn't support variable sheet heights; \
+                setting presentationDetents only has an effect from iOS 15.0, \
+                tvOS and visionOS do not support it at all
                 """
             )
         }
@@ -176,9 +176,9 @@ extension UIKitBackend {
         } else {
             debugLogOnce(
                 """
-                Your current OS version doesn't support variable sheet corner \
-                radii. Setting them only has an effect from iOS 15.0. tvOS and \
-                visionOS do not support it at all.
+                your current OS version doesn't support variable sheet corner \
+                radii; setting them only has an effect from iOS 15.0, tvOS and \
+                visionOS do not support it at all,
                 """
             )
         }
@@ -205,9 +205,9 @@ extension UIKitBackend {
         } else {
             debugLogOnce(
                 """
-                Your current OS version doesn't support setting sheet drag \
-                indicator visibility. Setting this only has an effect from iOS \
-                15.0. tvOS and visionOS do not support it at all.
+                your current OS version doesn't support setting sheet drag \
+                indicator visibility; setting this only has an effect from iOS \
+                15.0, tvOS and visionOS do not support it at all
                 """
             )
         }

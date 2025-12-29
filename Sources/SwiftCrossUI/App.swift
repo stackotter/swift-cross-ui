@@ -1,12 +1,11 @@
 import Foundation
 import Logging
 
-/// The storage behind ``logger``.
+/// The storage behind `logger`.
 ///
 /// `nil` if the logger hasn't been set yet.
 ///
-/// > Safety: This is only accessible from within this file, which does not use
-/// > any concurrency features.
+/// > Safety: This is only set once, before it is ever read.
 nonisolated(unsafe) private var _logger: Logger?
 
 /// The global logger.
@@ -58,7 +57,8 @@ public protocol App {
     /// dependency injection library.
     init()
 
-    /// Returns the log handler to use for SwiftCrossUI's log messages.
+    /// Returns the log handler to use for log messages emitted by SwiftCrossUI
+    /// and its backends.
     ///
     /// By default, SwiftCrossUI outputs log messages to standard error, but you
     /// can use any log handler you want by implementing this requirement.
