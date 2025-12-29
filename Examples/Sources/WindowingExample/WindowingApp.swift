@@ -163,8 +163,6 @@ struct WindowingApp: App {
     @State var title = "My window"
     @State var resizable = false
 
-    @Environment(\.dismiss) var dismiss
-
     var body: some Scene {
         WindowGroup(title) {
             #hotReloadable {
@@ -224,8 +222,6 @@ struct WindowingApp: App {
                 #hotReloadable {
                     Text("This a tertiary window!")
                         .padding(10)
-
-                    Button("dismiss") { dismiss() }
                 }
             }
             .defaultSize(width: 200, height: 200)
