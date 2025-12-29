@@ -193,7 +193,6 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
             // If this layout pass is a probing pass (not a final pass), then we
             // can reuse any layouts that we've computed since the cache was last
             // cleared. The cache gets cleared on commit.
-            currentLayout = cachedResult
             return cachedResult
         }
 
