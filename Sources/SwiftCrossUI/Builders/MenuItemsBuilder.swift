@@ -1,7 +1,6 @@
 /// A builder for ``[MenuItem]``.
 @resultBuilder
 public struct MenuItemsBuilder {
-    // allow for empty menus
     public static func buildBlock() -> [MenuItem] {
         []
     }
