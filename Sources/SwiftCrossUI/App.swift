@@ -1,4 +1,23 @@
 import Foundation
+import Logging
+
+/// The global logger.
+///
+/// `nil` if the logger hasn't been set yet (which is only the case during
+/// ``App/init()``).
+///
+/// > Safety: This is only ever set in one place, namely in ``App/main()``.
+private nonisolated(unsafe) var _logger: Logger?
+
+/// The global logger.
+///
+/// This is safe to use from anywhere in the library (except in
+/// `extractSwiftBundlerMetadata()`, since that's called before the logger is
+/// initialized -- this property will fatal-error in that case).
+var logger: Logger {
+    guard let _logger else { fatalError("logger not yet initialized") }
+    return _logger
+}
 
 /// An application.
 @MainActor
@@ -8,9 +27,11 @@ public protocol App {
     /// The type of scene representing the content of the app.
     associatedtype Body: Scene
 
-    /// Metadata loaded at app start up. By default SwiftCrossUI attempts
-    /// to load metadata inserted by Swift Bundler if present. Used by backends'
-    /// default ``App/backend`` implementations if not `nil`.
+    /// Metadata loaded at app start up.
+    ///
+    /// By default SwiftCrossUI attempts to load metadata inserted by Swift
+    /// Bundler if present. Used by backends' default ``App/backend``
+    /// implementations if not `nil`.
     static var metadata: AppMetadata? { get }
 
     /// The application's backend.
@@ -20,6 +41,9 @@ public protocol App {
     @SceneBuilder var body: Body { get }
 
     /// Creates an instance of the app.
+    ///
+    /// This initializer is run before anything else, so you can perform early
+    /// setup tasks in here, such as [setting the logging backend](doc:Logging).
     init()
 }
 
@@ -28,7 +52,9 @@ public protocol App {
 @MainActor
 public var _forceRefresh: () -> Void = {}
 
-/// Metadata embedded by Swift Bundler if present. Loaded at app start up.
+/// Metadata embedded by Swift Bundler, if present. Loaded at app start up.
+///
+/// This is accessible from within ``App/init()``.
 @MainActor
 private var swiftBundlerAppMetadata: AppMetadata?
 
@@ -52,6 +78,8 @@ private enum SwiftBundlerMetadataError: LocalizedError {
 
 extension App {
     /// Metadata loaded at app start up.
+    ///
+    /// This is accessible from within ``init()``.
     public static var metadata: AppMetadata? {
         swiftBundlerAppMetadata
     }
@@ -61,6 +89,11 @@ extension App {
         swiftBundlerAppMetadata = extractSwiftBundlerMetadata()
 
         let app = Self()
+
+        // set up the logger _after_ calling App's initializer; that way users
+        // can call LoggingSystem.bootstrap in the init
+        _logger = Logger(label: "SwiftCrossUI")
+
         let _app = _App(app)
         _forceRefresh = {
             app.backend.runInMainThread {
@@ -71,13 +104,16 @@ extension App {
     }
 
     private static func extractSwiftBundlerMetadata() -> AppMetadata? {
+        // NB: the logger hasn't been set up yet when this is called, so we're
+        // forced to rely on good ol' `print`
+
         guard let executable = Bundle.main.executableURL else {
-            print("warning: No executable url")
+            print("warning: no executable url")
             return nil
         }
 
         guard let data = try? Data(contentsOf: executable) else {
-            print("warning: Executable failed to read self (to extract metadata)")
+            print("warning: executable failed to read itself (to extract metadata)")
             return nil
         }
 
@@ -115,7 +151,7 @@ extension App {
                 additionalMetadata: additionalMetadata
             )
         } catch {
-            print("warning: Swift Bundler metadata present but couldn't be parsed")
+            print("warning: swift-bundler metadata present but couldn't be parsed")
             print("  -> \(error)")
             return nil
         }

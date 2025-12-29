@@ -105,13 +105,11 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
         let mirror = Mirror(reflecting: view)
         for property in mirror.children {
             if property.label == "state" && property.value is ObservableObject {
-                print(
+                logger.warning(
                     """
-
-                    warning: The View.state protocol requirement has been removed in favour of
-                             SwiftUI-style @State annotations. Decorate \(NodeView.self).state
-                             with the @State property wrapper to restore previous behaviour.
-
+                    the View.state protocol requirement has been removed in favour of \
+                    SwiftUI-style @State annotations; decorate \(NodeView.self).state \
+                    with the @State property wrapper to restore previous behaviour
                     """
                 )
             }
@@ -154,13 +152,12 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
                 dryRun: false
             )
             if finalResult.size != newResult.size {
-                print(
-                    """
-                    warning: State-triggered view update had mismatch \
-                    between dry-run size and final size.
-                          -> dry-run size: \(newResult.size)
-                          -> final size:   \(finalResult.size)
-                    """
+                logger.warning(
+                    "state-triggered view update had mismatch between dry-run size and final size",
+                    metadata: [
+                        "dry-run size": "\(newResult.size)",
+                        "final size": "\(finalResult.size)",
+                    ]
                 )
             }
             self.currentResult = finalResult

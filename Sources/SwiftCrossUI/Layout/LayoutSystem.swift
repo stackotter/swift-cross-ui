@@ -152,11 +152,11 @@ public enum LayoutSystem {
                     dryRun: dryRun
                 )
                 if result.participatesInStackLayouts {
-                    print(
-                        """
-                        warning: Hidden view became visible on second update. \
-                        Layout may break. View: \(child.tag ?? "<unknown type>")
-                        """
+                    logger.warning(
+                        "hidden view became visible on second update; layout may break",
+                        metadata: [
+                            "view": "\(child.tag ?? "<unknown type>")"
+                        ]
                     )
                 }
                 renderedChildren[index] = result

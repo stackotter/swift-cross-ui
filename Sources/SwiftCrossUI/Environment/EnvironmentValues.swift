@@ -118,7 +118,7 @@ public struct EnvironmentValues {
             backend.activate(window: window as! Backend.Window)
         }
         activate(with: backend)
-        print("Activated")
+        logger.info("window activated")
     }
 
     /// The backend's representation of the window that the current view is
