@@ -8,6 +8,10 @@ public enum LayoutSystem {
     }
 
     package static func roundSize(_ size: Double) -> Int {
+        if size.isInfinite {
+            print("warning: LayoutSystem.roundSize called with infinite size")
+        }
+
         let size = size.rounded(.towardZero)
         return if size >= Double(Int.max) {
             Int.max
