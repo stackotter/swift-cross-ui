@@ -201,11 +201,11 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         // only use Gtk3Backend if they can't use GtkBackend).
         if let dryRunResult, finalContentResult.size != dryRunResult.size {
             logger.warning(
-                 """
-                 final window content size didn't match dry-run size; this is a sign that \
-                 either view size caching is broken or that backend.naturalSize(of:) is \
-                 broken (or both)
-                 """,
+                """
+                final window content size didn't match dry-run size; this is a \
+                sign that either view size caching is broken or that \
+                backend.naturalSize(of:) is broken (or both)
+                """,
                 metadata: [
                     "dryRunResult.size": "\(dryRunResult.size)",
                     "finalContentResult.size": "\(finalContentResult.size)",

@@ -807,9 +807,9 @@ extension AppBackend {
 
     private func ignored(_ function: String = #function) {
         #if DEBUG
-        logger.warning(
-            "\(type(of: self)): \(function) is being ignored; consult the documentation for further information"
-        )
+            logger.warning(
+                "\(type(of: self)): \(function) is being ignored; consult the documentation for further information"
+            )
         #endif
     }
 

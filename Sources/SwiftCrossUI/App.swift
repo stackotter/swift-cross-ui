@@ -1,7 +1,7 @@
 import Foundation
 import Logging
 
-/// The global logger.
+/// The storage behind ``logger``.
 ///
 /// `nil` if the logger hasn't been set yet (which is only the case during
 /// ``App/init()``).
@@ -11,9 +11,9 @@ private nonisolated(unsafe) var _logger: Logger?
 
 /// The global logger.
 ///
-/// This is safe to use from anywhere in the library (except in
+/// This is safe to use from anywhere in the library, except in
 /// `extractSwiftBundlerMetadata()`, since that's called before the logger is
-/// initialized -- this property will fatal-error in that case).
+/// initialized. If used from there, this property will crash the app.
 var logger: Logger {
     guard let _logger else { fatalError("logger not yet initialized") }
     return _logger
@@ -54,7 +54,8 @@ public var _forceRefresh: () -> Void = {}
 
 /// Metadata embedded by Swift Bundler, if present. Loaded at app start up.
 ///
-/// This is accessible from within ``App/init()``.
+/// This will contain the app's metadata, if present, by the time ``App/init()``
+/// gets called.
 @MainActor
 private var swiftBundlerAppMetadata: AppMetadata?
 
