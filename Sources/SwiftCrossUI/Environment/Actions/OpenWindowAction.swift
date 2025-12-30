@@ -3,6 +3,16 @@
 public struct OpenWindowAction {
     /// Opens the window with the specified ID.
     public func callAsFunction(id: String) {
-        windowOpenFunctionsByID[id]?()
+        guard let openWindow = windowOpenFunctionsByID[id] else {
+            // FIXME: replace with logger.warning once that PR's merged
+            print(
+                """
+                warning: openWindow(id:) called with an ID that does not have \
+                an associated window: '\(id)'
+                """
+            )
+            return
+        }
+        openWindow()
     }
 }
