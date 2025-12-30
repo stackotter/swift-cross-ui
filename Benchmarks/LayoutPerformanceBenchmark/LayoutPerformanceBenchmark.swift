@@ -10,10 +10,13 @@ protocol TestCaseView: View {
 #if BENCHMARK_VIZ
     import DefaultBackend
 
+    @MainActor
+    var visualizationSize: (width: Int?, height: Int?) = (nil, nil)
+
     struct VizApp<V: TestCaseView>: App {
         var body: some Scene {
-            WindowGroup("Benchmark visualisation") {
-                V()
+            WindowGroup("Benchmark visualization") {
+                V().frame(width: visualizationSize.width, height: visualizationSize.height)
             }
         }
     }
@@ -40,7 +43,9 @@ struct Benchmarks {
         }
 
         #if BENCHMARK_VIZ
-            var benchmarkVisualizations: [(name: String, main: () -> Never)] = []
+            var benchmarkVisualizations: [
+                (name: String, size: ProposedViewSize, main: () -> Never)
+            ] = []
         #endif
 
         @MainActor
@@ -48,6 +53,7 @@ struct Benchmarks {
             #if BENCHMARK_VIZ
                 benchmarkVisualizations.append((
                     label,
+                    size,
                     {
                         VizApp<V>.main()
                         exit(0)
@@ -81,6 +87,11 @@ struct Benchmarks {
                 print("\(benchmarkName) doesn't match any benchmarks")
                 exit(1)
             }
+
+            visualizationSize = (
+                benchmark.size.width.map(Int.init),
+                benchmark.size.height.map(Int.init)
+            )
 
             benchmark.main()
         #else
