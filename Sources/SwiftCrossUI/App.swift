@@ -1,5 +1,4 @@
 import Foundation
-import InMemoryLogging
 import Logging
 
 /// Backing storage for `logger`.
@@ -67,18 +66,24 @@ private var swiftBundlerAppMetadata: AppMetadata?
 
 /// An error encountered when parsing Swift Bundler metadata.
 private enum SwiftBundlerMetadataError: LocalizedError {
+    case noExecutableURL
+    case failedToReadExecutable
     case jsonNotDictionary(String)
     case missingAppIdentifier
     case missingAppVersion
 
     var errorDescription: String? {
         switch self {
+            case .noExecutableURL:
+                "no executable URL"
+            case .failedToReadExecutable:
+                "executable failed to read itself (to extract metadata)"
             case .jsonNotDictionary:
-                "Root metadata JSON value wasn't an object"
+                "root metadata JSON value wasn't an object"
             case .missingAppIdentifier:
-                "Missing 'appIdentifier' (of type String)"
+                "missing 'appIdentifier' (of type String)"
             case .missingAppVersion:
-                "Missing 'appVersion' (of type String)"
+                "missing 'appVersion' (of type String)"
         }
     }
 }
@@ -119,48 +124,33 @@ extension App {
     }
 
     private static func extractMetadataAndInitializeLogging() {
-        // set up a temporary logger for `extractSwiftBundlerMetadata()` -- we
-        // won't initialize the actual logger until after that returns, so that
-        // users can use the app metadata in a custom logger
-        let temporaryLogHandler = InMemoryLogHandler()
-        _logger = Logger(
-            label: "SwiftCrossUI",
-            factory: { _ in temporaryLogHandler }
-        )
+        // extract metadata _before_ initializing the logger, so users can use
+        // said metadata when declaring a custom logger
+        let result = Result {
+            swiftBundlerAppMetadata = try extractSwiftBundlerMetadata()
+        }
 
-        swiftBundlerAppMetadata = extractSwiftBundlerMetadata()
-
-        // now initialize the real thing...
         _logger = Logger(
             label: "SwiftCrossUI",
             factory: logHandler(label:metadataProvider:)
         )
 
-        // ...and print out any log entries
-        for entry in temporaryLogHandler.entries {
-            logger.log(
-                level: entry.level,
-                entry.message,
-                metadata: entry.metadata
+        // check for an error once the logger is ready
+        if case .failure(let error) = result {
+            logger.error(
+                "failed to extract swift-bundler metadata",
+                metadata: ["error": "\(error)"]
             )
         }
     }
 
-    private static func extractSwiftBundlerMetadata() -> AppMetadata? {
-        // NB: The logger isn't yet set up when this is called (it's initialized
-        // after this so that custom log handlers can refer to the app
-        // metadata). Since errors in this function are important to be able to
-        // debug, we store logged messages in `extractSwiftBundlerMetadataLogs`
-        // and dump them all as soon as the logger is ready.
-
+    private static func extractSwiftBundlerMetadata() throws -> AppMetadata? {
         guard let executable = Bundle.main.executableURL else {
-            logger.warning("no executable url")
-            return nil
+            throw SwiftBundlerMetadataError.noExecutableURL
         }
 
         guard let data = try? Data(contentsOf: executable) else {
-            logger.warning("executable failed to read itself (to extract metadata)")
-            return nil
+            throw SwiftBundlerMetadataError.failedToReadExecutable
         }
 
         // Check if executable has Swift Bundler metadata magic bytes.
@@ -174,35 +164,28 @@ extension App {
         let jsonStart = lengthStart - Int(jsonLength)
         let jsonData = Data(bytes[jsonStart..<lengthStart])
 
-        do {
-            // Manually parsed due to the `additionalMetadata` field (which would
-            // require a lot of boilerplate code to parse with Codable).
-            let jsonValue = try JSONSerialization.jsonObject(with: jsonData)
-            guard let json = jsonValue as? [String: Any] else {
-                throw SwiftBundlerMetadataError.jsonNotDictionary(String(describing: jsonValue))
-            }
-            guard let identifier = json["appIdentifier"] as? String else {
-                throw SwiftBundlerMetadataError.missingAppIdentifier
-            }
-            guard let version = json["appVersion"] as? String else {
-                throw SwiftBundlerMetadataError.missingAppVersion
-            }
-            let additionalMetadata =
-                json["additionalMetadata"].map { value in
-                    value as? [String: Any] ?? [:]
-                } ?? [:]
-            return AppMetadata(
-                identifier: identifier,
-                version: version,
-                additionalMetadata: additionalMetadata
-            )
-        } catch {
-            logger.warning(
-                "swift-bundler metadata present but couldn't be parsed",
-                metadata: ["error": "\(error)"]
-            )
-            return nil
+        // Manually parsed due to the `additionalMetadata` field (which would
+        // require a lot of boilerplate code to parse with Codable).
+        let jsonValue = try JSONSerialization.jsonObject(with: jsonData)
+        guard let json = jsonValue as? [String: Any] else {
+            throw SwiftBundlerMetadataError.jsonNotDictionary(String(describing: jsonValue))
         }
+        guard let identifier = json["appIdentifier"] as? String else {
+            throw SwiftBundlerMetadataError.missingAppIdentifier
+        }
+        guard let version = json["appVersion"] as? String else {
+            throw SwiftBundlerMetadataError.missingAppVersion
+        }
+        let additionalMetadata =
+            json["additionalMetadata"].map { value in
+                value as? [String: Any] ?? [:]
+            } ?? [:]
+
+        return AppMetadata(
+            identifier: identifier,
+            version: version,
+            additionalMetadata: additionalMetadata
+        )
     }
 
     private static func parseBigEndianUInt64(
