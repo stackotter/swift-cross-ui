@@ -72,6 +72,7 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         )
 
         if willEarlyExit {
+            print("early exit: childResult.size=\(childResult.size)")
             return childResult
         }
 
@@ -86,6 +87,7 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         } else {
             hasHorizontalScrollBar = false
         }
+        children.hasHorizontalScrollBar = hasHorizontalScrollBar
 
         let hasVerticalScrollBar: Bool
         if axes.contains(.vertical), let proposedHeight = proposedSize.height {
@@ -93,6 +95,7 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         } else {
             hasVerticalScrollBar = false
         }
+        children.hasVerticalScrollBar = hasVerticalScrollBar
 
         let scrollBarWidth = Double(backend.scrollBarWidth)
         let verticalScrollBarWidth = hasVerticalScrollBar ? scrollBarWidth : 0

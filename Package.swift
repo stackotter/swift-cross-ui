@@ -163,6 +163,7 @@ let package = Package(
             name: "SwiftCrossUITests",
             dependencies: [
                 "SwiftCrossUI",
+                "DummyBackend",
                 .target(name: "AppKitBackend", condition: .when(platforms: [.macOS])),
             ]
         ),

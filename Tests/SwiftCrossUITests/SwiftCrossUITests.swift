@@ -1,6 +1,7 @@
 import Testing
 import Foundation
 
+import DummyBackend
 @testable import SwiftCrossUI
 
 #if canImport(AppKitBackend)
@@ -68,6 +69,47 @@ struct SwiftCrossUITests {
         }
 
         return original == decoded
+    }
+
+    @Test("Ensure that ScrollView satisfies basic invariants")
+    @MainActor
+    func testBasicScrollView() async throws {
+        let backend = DummyBackend()
+        let window = backend.createWindow(withDefaultSize: nil)
+        let environment = EnvironmentValues(backend: backend)
+            .with(\.window, window)
+
+        let blueRectangleHeight = Double(100)
+        let view = ScrollView {
+            Color.blue.frame(height: Int(blueRectangleHeight))
+        }
+
+        let viewGraph = ViewGraph(
+            for: view,
+            backend: backend,
+            environment: environment
+        )
+        let proposedSize = ViewSize(80, 80)
+        let result = viewGraph.computeLayout(
+            proposedSize: ProposedViewSize(proposedSize),
+            environment: environment
+        )
+        viewGraph.commit()
+
+        #expect(result.size == ViewSize(80, 80))
+
+        let rootWidget: DummyBackend.Widget = viewGraph.rootNode.widget.into()
+        let scrollView = try #require(rootWidget.firstWidget(ofType: DummyBackend.ScrollContainer.self))
+
+        #expect(scrollView.hasVerticalScrollBar)
+        #expect(!scrollView.hasHorizontalScrollBar)
+
+        #expect(scrollView.size == proposedSize.vector)
+        let expectedSize = ViewSize(
+            proposedSize.width - Double(backend.scrollBarWidth),
+            blueRectangleHeight
+        )
+        #expect(scrollView.child.size == expectedSize.vector)
     }
 
     #if canImport(AppKitBackend)
