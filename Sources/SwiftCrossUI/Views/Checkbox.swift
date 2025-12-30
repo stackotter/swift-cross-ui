@@ -1,4 +1,6 @@
 /// A checkbox control that is either on or off.
+///
+/// This corresponds to the ``ToggleStyle/checkbox`` toggle style.
 struct Checkbox: ElementaryView, View {
     /// Whether the checkbox is active or not.
     private var active: Binding<Bool>

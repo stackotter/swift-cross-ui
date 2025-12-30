@@ -4,6 +4,8 @@ import Foundation
 // - It supports value types
 // - It supports ObservableObject
 // - It supports Optional<ObservableObject>
+
+/// A property wrapper that acts as a source of truth for view state.
 @propertyWrapper
 public struct State<Value>: DynamicProperty, StateProperty {
     class Storage {
@@ -69,6 +71,7 @@ public struct State<Value>: DynamicProperty, StateProperty {
         }
     }
 
+    /// Returns a ``Binding`` to this state.
     public var projectedValue: Binding<Value> {
         // Specifically link the binding to the inner box instead of the outer
         // storage which changes with each view update.

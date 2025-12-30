@@ -1,4 +1,7 @@
 /// A control for toggling between two values (usually representing on and off).
+///
+/// Depending on the value of ``EnvironmentValues/toggleStyle``, this control
+/// can appear as a switch, a button, or a checkbox.
 public struct Toggle: View {
     @Environment(\.backend) var backend
     @Environment(\.toggleStyle) var toggleStyle

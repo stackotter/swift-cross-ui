@@ -1,15 +1,20 @@
 /// A property wrapper updated by the view graph before each access to
-/// ``View/body``. Conforming types should use internal mutability (see ``Box``)
-/// to implement this protocol's non-mutable methods if required. This
-/// protocol avoids mutation to allow state properties and such to be
-/// captured even though views are structs.
+/// ``View/body``.
+///
+/// Conforming types should use internal mutability (see ``Box``) to implement
+/// this protocol's non-mutable methods if required. This protocol avoids
+/// mutation to allow state properties and such to be captured even though views
+/// are structs.
 public protocol DynamicProperty {
-    /// Updates the property. Called by SwiftCrossUI before every access it
-    /// makes to an ``App/body`` or ``View/body``.
+    /// Updates the property.
+    ///
+    /// Called by SwiftCrossUI before every access it makes to an ``App/body``
+    /// or ``View/body``.
     ///
     /// - Parameters:
     ///   - environment: The current environment.
-    ///   - previousValue: The previous value of the property.
+    ///   - previousValue: The previous value of the property. `nil` if this is
+    ///     the first time an update has been made.
     func update(
         with environment: EnvironmentValues,
         previousValue: Self?
@@ -18,6 +23,12 @@ public protocol DynamicProperty {
 
 /// Updates the dynamic properties of a value given a previous instance of the
 /// type (if one exists) and the current environment.
+///
+/// - Parameters:
+///   - value: The value to update the dynamic properties of.
+///   - previousValue: The previous value of `value`.  `nil` if this is the
+///     first time an update has been made.
+///   - environment: The current environment.
 func updateDynamicProperties<T>(
     of value: T,
     previousValue: T?,
@@ -60,11 +71,21 @@ func updateDynamicProperties<T>(
     }
 }
 
-/// Updates a dynamic property. Required to unmask the concrete type of the
-/// property. Since the two properties can technically be two different
-/// types, Swift correctly wouldn't allow us to assume they're both the
-/// same. So we unwrap one and then dynamically check whether the other
-/// matches using a type cast.
+/// Updates a dynamic property.
+///
+/// Required to unmask the concrete type of the property. Since the two
+/// properties can technically be two different types, Swift correctly wouldn't
+/// allow us to assume they're both the same. So we unwrap one and then
+/// dynamically check whether the other matches using a type cast.
+///
+/// - Parameters:
+///   - newProperty: The new property.
+///   - previousProperty: The previous property. `nil` if this is the first time
+///     an update has been made.
+///   - environment: The current environment.
+///   - enclosingTypeName: The name of the type that contains the property. Used
+///     for debugging.
+///   - propertyName: The name of the property. Used for debugging.
 private func updateDynamicProperty<Property: DynamicProperty>(
     newProperty: Property,
     previousProperty: (any DynamicProperty)?,

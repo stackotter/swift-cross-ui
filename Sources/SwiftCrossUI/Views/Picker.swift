@@ -2,7 +2,7 @@
 public struct Picker<Value: Equatable>: ElementaryView, View {
     /// The options to be offered by the picker.
     private var options: [Value]
-    /// The picker's selected option.
+    /// A binding to the picker's selected option.
     private var value: Binding<Value?>
 
     /// The index of the selected option (if any).
@@ -17,7 +17,7 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
     ///
     /// - Parameters:
     ///   - options: The options to be offered by the picker.
-    ///   - value: The picker's selected option.
+    ///   - value: A binding to the picker's selected option.
     public init(of options: [Value], selection value: Binding<Value?>) {
         self.options = options
         self.value = value

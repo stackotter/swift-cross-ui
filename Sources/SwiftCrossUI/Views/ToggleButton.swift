@@ -1,4 +1,6 @@
 /// A button style control that is either on or off.
+///
+/// This corresponds to the ``ToggleStyle/button`` toggle style.
 struct ToggleButton: ElementaryView, View {
     /// The label to show on the toggle button.
     private var label: String

@@ -1,4 +1,6 @@
 /// A light switch style control that is either on or off.
+///
+/// This corresponds to the ``ToggleStyle/switch`` toggle style.
 struct ToggleSwitch: ElementaryView, View {
     /// Whether the switch is active or not.
     private var active: Binding<Bool>

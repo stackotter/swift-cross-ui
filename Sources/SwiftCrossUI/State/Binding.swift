@@ -1,5 +1,6 @@
-/// A value that can read and write a value owned by a source of truth. Can be thought of
-/// as a writable reference to the value.
+/// A value that can read and write a value owned by a source of truth.
+///
+/// Can be thought of as a writable reference to the value.
 @dynamicMemberLookup
 @propertyWrapper
 public struct Binding<Value> {
@@ -25,10 +26,12 @@ public struct Binding<Value> {
     /// The stored setter.
     private let setValue: (Value) -> Void
 
-    /// Creates a binding with a custom getter and setter. To create a binding from
-    /// an `@State` property use its projected value instead: e.g. `$myStateProperty`
-    /// will give you a binding for reading and writing `myStateProperty` (assuming that
-    /// `myStateProperty` is marked with `@State` at its declaration site).
+    /// Creates a binding with a custom getter and setter.
+    ///
+    /// To create a binding from a ``State`` property use its projected value
+    /// instead: e.g. `$myStateProperty` will give you a binding for reading and
+    /// writing `myStateProperty` (assuming that `myStateProperty` is marked
+    /// with `@State` at its declaration site).
     ///
     /// - Parameters:
     ///   - get: The binding's getter.
