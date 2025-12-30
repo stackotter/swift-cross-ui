@@ -20,7 +20,7 @@
 /// ```
 @MainActor
 public struct DismissAction {
-    private nonisolated let action: @Sendable @MainActor () -> Void
+    private let action: @Sendable @MainActor () -> Void
 
     nonisolated internal init(action: @escaping @Sendable @MainActor () -> Void) {
         self.action = action
