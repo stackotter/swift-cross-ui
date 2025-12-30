@@ -139,7 +139,7 @@ extension App {
         if case .failure(let error) = result {
             logger.error(
                 "failed to extract swift-bundler metadata",
-                metadata: ["error": "\(error)"]
+                metadata: ["error": "\(error.localizedDescription)"]
             )
         }
     }
