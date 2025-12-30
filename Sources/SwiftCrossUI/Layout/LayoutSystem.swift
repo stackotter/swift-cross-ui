@@ -277,6 +277,7 @@ public enum LayoutSystem {
             }
 
             var spaceUsedAlongStackAxis: Double = 0
+            // Avoid a trailing closure here because Swift 5.10 gets confused
             let visibleChildrenCount = cache.lastHiddenChildren.count { isHidden in
                 !isHidden
             }
