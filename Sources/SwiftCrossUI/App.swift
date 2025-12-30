@@ -1,33 +1,15 @@
 import Foundation
+import InMemoryLogging
 import Logging
 
-/// The storage behind `logger`.
-///
-/// `nil` if the logger hasn't been set yet.
-///
-/// > Safety: This is only set once, before it is ever read.
+/// Backing storage for `logger`.
 nonisolated(unsafe) private var _logger: Logger?
 
 /// The global logger.
-///
-/// This is safe to use from anywhere in the library, except in
-/// `extractSwiftBundlerMetadata()`, since that's called before the logger is
-/// initialized. If used from there, this property will crash the app.
 var logger: Logger {
     guard let _logger else { fatalError("logger not yet initialized") }
     return _logger
 }
-
-/// The logs that were output by `extractSwiftBundlerMetadata()`.
-///
-/// This is necessary because `extractSwiftBundlerMetadata()` is called before
-/// ``logger`` is initialized. The function stores log messages here, and they
-/// are all output as soon as the logger is set up.
-///
-/// > Safety: This is only accessible from within this file, which does not use
-/// > any concurrency features.
-nonisolated(unsafe) private var extractSwiftBundlerMetadataLogs:
-    [(Logger.Message, Logger.Metadata?)] = []
 
 /// An application.
 @MainActor
@@ -125,20 +107,7 @@ extension App {
 
     /// Runs the application.
     public static func main() {
-        // before anything else, extract the app metadata -- the user might want
-        // to use this in a custom log handler
-        swiftBundlerAppMetadata = extractSwiftBundlerMetadata()
-
-        _logger = Logger(
-            label: "SwiftCrossUI",
-            factory: logHandler(label:metadataProvider:)
-        )
-
-        // dump the logs from `extractSwiftBundlerMetadata()`
-        for (message, metadata) in extractSwiftBundlerMetadataLogs {
-            logger.warning(message, metadata: metadata)
-        }
-
+        extractMetadataAndInitializeLogging()
         let app = Self()
         let _app = _App(app)
         _forceRefresh = {
@@ -149,24 +118,48 @@ extension App {
         _app.run()
     }
 
+    private static func extractMetadataAndInitializeLogging() {
+        // set up a temporary logger for `extractSwiftBundlerMetadata()` -- we
+        // won't initialize the actual logger until after that returns, so that
+        // users can use the app metadata in a custom logger
+        let temporaryLogHandler = InMemoryLogHandler()
+        _logger = Logger(
+            label: "SwiftCrossUI",
+            factory: { _ in temporaryLogHandler }
+        )
+
+        swiftBundlerAppMetadata = extractSwiftBundlerMetadata()
+
+        // now initialize the real thing...
+        _logger = Logger(
+            label: "SwiftCrossUI",
+            factory: logHandler(label:metadataProvider:)
+        )
+
+        // ...and print out any log entries
+        for entry in temporaryLogHandler.entries {
+            logger.log(
+                level: entry.level,
+                entry.message,
+                metadata: entry.metadata
+            )
+        }
+    }
+
     private static func extractSwiftBundlerMetadata() -> AppMetadata? {
         // NB: The logger isn't yet set up when this is called (it's initialized
-        // after `App.init()` to allow the user to customize the backend). Since
-        // errors in this function are important to be able to debug, we store
-        // logged messages in `extractSwiftBundlerMetadataLogs` and dump them
-        // all as soon as the logger is ready.
+        // after this so that custom log handlers can refer to the app
+        // metadata). Since errors in this function are important to be able to
+        // debug, we store logged messages in `extractSwiftBundlerMetadataLogs`
+        // and dump them all as soon as the logger is ready.
 
         guard let executable = Bundle.main.executableURL else {
-            extractSwiftBundlerMetadataLogs.append((
-                "no executable url", nil
-            ))
+            logger.warning("no executable url")
             return nil
         }
 
         guard let data = try? Data(contentsOf: executable) else {
-            extractSwiftBundlerMetadataLogs.append((
-                "executable failed to read itself (to extract metadata)", nil
-            ))
+            logger.warning("executable failed to read itself (to extract metadata)")
             return nil
         }
 
@@ -204,10 +197,10 @@ extension App {
                 additionalMetadata: additionalMetadata
             )
         } catch {
-            extractSwiftBundlerMetadataLogs.append((
+            logger.warning(
                 "swift-bundler metadata present but couldn't be parsed",
-                ["error": "\(error)"]
-            ))
+                metadata: ["error": "\(error)"]
+            )
             return nil
         }
     }

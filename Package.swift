@@ -150,6 +150,7 @@ let package = Package(
                 "HotReloadingMacrosPlugin",
                 .product(name: "ImageFormats", package: "swift-image-formats"),
                 .product(name: "Logging", package: "swift-log"),
+                .product(name: "InMemoryLogging", package: "swift-log")
             ],
             exclude: [
                 "Builders/ViewBuilder.swift.gyb",
