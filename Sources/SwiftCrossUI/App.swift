@@ -124,8 +124,8 @@ extension App {
     }
 
     private static func extractMetadataAndInitializeLogging() {
-        // extract metadata _before_ initializing the logger, so users can use
-        // said metadata when declaring a custom logger
+        // Extract metadata _before_ initializing the logger, so users can use
+        // said metadata when declaring a custom logger.
         let result = Result {
             swiftBundlerAppMetadata = try extractSwiftBundlerMetadata()
         }
@@ -135,7 +135,7 @@ extension App {
             factory: logHandler(label:metadataProvider:)
         )
 
-        // check for an error once the logger is ready
+        // Check for an error once the logger is ready.
         if case .failure(let error) = result {
             logger.error(
                 "failed to extract swift-bundler metadata",
