@@ -8,6 +8,11 @@
 public struct PresentAlertAction {
     let environment: EnvironmentValues
 
+    /// Presents an alert to the user.
+    ///
+    /// - Parameters:
+    ///   - title: The title of the alert.
+    ///   - actions: A list of actions the user can perform.
     @discardableResult
     public func callAsFunction(
         _ title: String,

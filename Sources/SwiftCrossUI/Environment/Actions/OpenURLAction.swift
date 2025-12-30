@@ -18,6 +18,9 @@ public struct OpenURLAction {
         }
     }
 
+    /// Opens a URL with the default application.
+    ///
+    /// - Parameter url: The URL to open.
     public func callAsFunction(_ url: URL) {
         action(url)
     }

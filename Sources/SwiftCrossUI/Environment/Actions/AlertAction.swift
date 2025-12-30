@@ -10,6 +10,8 @@
 public struct AlertAction: Sendable {
     public static let ok = AlertAction(label: "Ok", action: {})
 
+    /// The button's label.
     public var label: String
+    /// The button's action.
     public var action: @MainActor @Sendable () -> Void
 }
