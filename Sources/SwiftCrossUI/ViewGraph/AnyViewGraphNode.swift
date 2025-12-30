@@ -12,6 +12,11 @@ public class AnyViewGraphNode<NodeView: View> {
         _getWidget()
     }
 
+    /// The node's last proposed size.
+    public var lastProposedSize: ProposedViewSize {
+        _getLastProposedSize()
+    }
+
     /// The node's type-erased layout computing method.
     private var _computeLayoutWithNewView:
         (
@@ -27,8 +32,10 @@ public class AnyViewGraphNode<NodeView: View> {
     private var _getNodeView: () -> NodeView
     /// The type-erased getter for the node's children.
     private var _getNodeChildren: () -> any ViewGraphNodeChildren
-    /// The underlying erased backend.
+    /// The type-erased getter for the node's underlying erased backend.
     private var _getBackend: () -> any AppBackend
+    /// The type-erased getter for the node's last proposed size.
+    private var _getLastProposedSize: () -> ProposedViewSize
 
     /// Type-erases a view graph node.
     public init<Backend: AppBackend>(_ node: ViewGraphNode<NodeView, Backend>) {
@@ -46,6 +53,9 @@ public class AnyViewGraphNode<NodeView: View> {
         }
         _getBackend = {
             node.backend
+        }
+        _getLastProposedSize = {
+            node.lastProposedSize
         }
     }
 

@@ -37,14 +37,17 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
     /// The backend used to create the view's widget.
     public var backend: Backend
 
-    /// The most recent update result for the wrapped view.
+    /// The view's most recently computed layout. Doesn't include cached layouts,
+    /// as this is the layout that is currently 'ready to commit'.
     public var currentLayout: ViewLayoutResult?
-    /// A cache of update results keyed by the proposed size they were for. Gets cleared before the
-    /// results' sizes become invalid.
+    /// A cache of update results keyed by the proposed size they were for. Gets
+    /// cleared before the results' sizes become invalid.
     var resultCache: [ProposedViewSize: ViewLayoutResult]
     /// The most recent size proposed by the parent view. Used when updating the wrapped
-    /// view as a result of a state change rather than the parent view updating.
-    private var lastProposedSize: ProposedViewSize
+    /// view as a result of a state change rather than the parent view updating. Proposals
+    /// that get cached responses don't update this size, as this size should stay in sync
+    /// with currentLayout.
+    private(set) var lastProposedSize: ProposedViewSize
 
     /// A cancellable handle to the view's state property observations.
     private var cancellables: [Cancellable]
