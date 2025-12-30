@@ -213,35 +213,22 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
             proposedFrameSize.height = clampHeight(proposedHeight)
         }
 
-        var childResult = children.child0.computeLayout(
+        if let idealWidth, proposedSize.width == nil {
+            proposedFrameSize.width = Double(idealWidth)
+        }
+
+        if let idealHeight, proposedSize.height == nil {
+            proposedFrameSize.height = Double(idealHeight)
+        }
+
+        let childResult = children.child0.computeLayout(
             with: body.view0,
             proposedSize: proposedFrameSize,
             environment: environment
         )
         let childSize = childResult.size
 
-        // If the child view has at least one unspecified axis, compute its
-        // layout again with the clamped frame size. This allows the view to
-        // fill the space that the frame is going to take up anyway. E.g.
-        //
-        // ScrollView {
-        //     Color.blue
-        //         .frame(minHeight: 100)
-        // }
-        //
-        // Without this second layout computation, the blue rectangle would
-        // take on its ideal size of 10 within a frame of height 100, instead
-        // of using up the min height as developers may expect.
         var frameSize = clampSize(childSize)
-        if proposedFrameSize.width == nil || proposedFrameSize.height == nil {
-            childResult = children.child0.computeLayout(
-                with: nil,
-                proposedSize: ProposedViewSize(frameSize),
-                environment: environment
-            )
-            frameSize = childResult.size
-        }
-
         if maxWidth == .infinity, let proposedWidth = proposedSize.width {
             frameSize.width = max(frameSize.width, proposedWidth)
         }
@@ -264,6 +251,36 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         backend: Backend
     ) {
         let frameSize = layout.size
+
+        // If the child view has at least one unspecified axis which this frame
+        // is constraining with a minimum or maximum, then compute its
+        // layout again with the clamped frame size. This allows the view to
+        // fill the space that the frame is going to take up anyway. E.g. consider,
+        //
+        // ScrollView {
+        //     Color.blue
+        //         .frame(minHeight: 100)
+        // }
+        //
+        // Without this second layout computation, the blue rectangle would
+        // take on its ideal size of 10 within a frame of height 100, instead
+        // of using up the min height of the frame as developers may expect.
+        //
+        // This doesn't apply to unconstrained axes which we have a corresponding
+        // ideal length for.
+        let widthConstrained = minWidth != nil || maxWidth != nil
+        let heightConstrained = minHeight != nil || maxHeight != nil
+        let proposedFrameSize = children.child0.lastProposedSize
+        if (proposedFrameSize.width == nil && widthConstrained)
+            || (proposedFrameSize.height == nil && heightConstrained)
+        {
+            _ = children.child0.computeLayout(
+                with: nil,
+                proposedSize: ProposedViewSize(frameSize),
+                environment: environment
+            )
+        }
+
         let childSize = children.child0.commit().size
 
         let childPosition = alignment.position(
