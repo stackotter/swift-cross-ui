@@ -17,6 +17,11 @@ public enum Axis: Sendable, CaseIterable {
 
     /// A set of axes represented as an efficient bit field.
     public struct Set: OptionSet, Sendable {
+        // Required to satisfy older compilers (5.10) due to our custom
+        // `contains(_:)` overload below which confuses the inference
+        // of SetAlgebra's Element associated type.
+        public typealias Element = Self
+
         /// The horizontal axis.
         public static let horizontal = Set(rawValue: 1)
         /// The vertical axis.
