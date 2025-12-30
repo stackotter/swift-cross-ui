@@ -159,7 +159,7 @@ extension UIKitBackend {
             debugLogOnce(
                 """
                 your current OS version doesn't support variable sheet heights; \
-                setting presentationDetents only has an effect from iOS 15.0, \
+                setting presentationDetents only has an effect from iOS 15.0; \
                 tvOS and visionOS do not support it at all
                 """
             )
@@ -177,8 +177,8 @@ extension UIKitBackend {
             debugLogOnce(
                 """
                 your current OS version doesn't support variable sheet corner \
-                radii; setting them only has an effect from iOS 15.0, tvOS and \
-                visionOS do not support it at all,
+                radii; setting them only has an effect from iOS 15.0; tvOS and \
+                visionOS do not support it at all
                 """
             )
         }
@@ -207,7 +207,7 @@ extension UIKitBackend {
                 """
                 your current OS version doesn't support setting sheet drag \
                 indicator visibility; setting this only has an effect from iOS \
-                15.0, tvOS and visionOS do not support it at all
+                15.0; tvOS and visionOS do not support it at all
                 """
             )
         }
