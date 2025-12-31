@@ -1,6 +1,7 @@
 import Foundation
 
-/// A view graph node storing a view, its widget, and its children (likely a collection of more nodes).
+/// A view graph node storing a view, its widget, and its children (likely a
+/// collection of more nodes).
 ///
 /// This is where updates are initiated when a view's state updates, and where state is persisted
 /// even when a view gets recomputed by its parent.
@@ -17,9 +18,9 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
     /// The view's children (usually just contains more view graph nodes, but can handle extra logic
     /// such as figuring out how to update variable length array of children efficiently).
     ///
-    /// It's type-erased because otherwise complex implementation details would be forced to the user
-    /// or other compromises would have to be made. I believe that this is the best option with Swift's
-    /// current generics landscape.
+    /// It's type-erased because otherwise complex implementation details would
+    /// be forced to the user or other compromises would have to be made. I
+    /// believe that this is the best option with Swift's current generics landscape.
     public var children: any ViewGraphNodeChildren {
         get {
             _children!
@@ -36,20 +37,26 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
     /// The backend used to create the view's widget.
     public var backend: Backend
 
-    /// The most recent update result for the wrapped view.
-    var currentResult: ViewUpdateResult?
-    /// A cache of update results keyed by the proposed size they were for. Gets cleared before the
-    /// results' sizes become invalid.
-    var resultCache: [SIMD2<Int>: ViewUpdateResult]
+    /// The view's most recently computed layout. Doesn't include cached layouts,
+    /// as this is the layout that is currently 'ready to commit'.
+    public var currentLayout: ViewLayoutResult?
+    /// A cache of update results keyed by the proposed size they were for. Gets
+    /// cleared before the results' sizes become invalid.
+    var resultCache: [ProposedViewSize: ViewLayoutResult]
     /// The most recent size proposed by the parent view. Used when updating the wrapped
-    /// view as a result of a state change rather than the parent view updating.
-    private var lastProposedSize: SIMD2<Int>
+    /// view as a result of a state change rather than the parent view updating. Proposals
+    /// that get cached responses don't update this size, as this size should stay in sync
+    /// with currentLayout.
+    private(set) var lastProposedSize: ProposedViewSize
 
     /// A cancellable handle to the view's state property observations.
     private var cancellables: [Cancellable]
 
     /// The environment most recently provided by this node's parent.
     private var parentEnvironment: EnvironmentValues
+
+    /// The dynamic property updater for this view.
+    private var dynamicPropertyUpdater: DynamicPropertyUpdater<NodeView>
 
     /// Creates a node for a given view while also creating the nodes for its children, creating
     /// the view's widget, and starting to observe its state for changes.
@@ -70,19 +77,18 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
             snapshot?.isValid(for: NodeView.self) == true
             ? snapshot?.children : snapshot.map { [$0] }
 
-        currentResult = nil
+        currentLayout = nil
         resultCache = [:]
         lastProposedSize = .zero
         parentEnvironment = environment
         cancellables = []
 
+        let mirror = Mirror(reflecting: view)
+        dynamicPropertyUpdater = DynamicPropertyUpdater(for: view, mirror: mirror)
+
         let viewEnvironment = updateEnvironment(environment)
 
-        updateDynamicProperties(
-            of: view,
-            previousValue: nil,
-            environment: viewEnvironment
-        )
+        dynamicPropertyUpdater.update(view, with: viewEnvironment, previousValue: nil)
 
         let children = view.children(
             backend: backend,
@@ -102,7 +108,6 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
         backend.tag(widget: widget, as: tag)
 
         // Update the view and its children when state changes (children are always updated first).
-        let mirror = Mirror(reflecting: view)
         for property in mirror.children {
             if property.label == "state" && property.value is ObservableObject {
                 logger.warning(
@@ -134,33 +139,18 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
     private func bottomUpUpdate() {
         // First we compute what size the view will be after the update. If it will change size,
         // propagate the update to this node's parent instead of updating straight away.
-        let currentSize = currentResult?.size
-        let newResult = self.update(
+        let currentSize = currentLayout?.size
+        let newLayout = self.computeLayout(
             proposedSize: lastProposedSize,
-            environment: parentEnvironment,
-            dryRun: true
+            environment: parentEnvironment
         )
 
-        if newResult.size != currentSize {
-            self.currentResult = newResult
-            resultCache[lastProposedSize] = newResult
-            parentEnvironment.onResize(newResult.size)
+        self.currentLayout = newLayout
+        if newLayout.size != currentSize {
+            resultCache[lastProposedSize] = newLayout
+            parentEnvironment.onResize(newLayout.size)
         } else {
-            let finalResult = self.update(
-                proposedSize: lastProposedSize,
-                environment: parentEnvironment,
-                dryRun: false
-            )
-            if finalResult.size != newResult.size {
-                logger.warning(
-                    "state-triggered view update had mismatch between dry-run size and final size",
-                    metadata: [
-                        "dry-run size": "\(newResult.size)",
-                        "final size": "\(finalResult.size)",
-                    ]
-                )
-            }
-            self.currentResult = finalResult
+            _ = self.commit()
         }
     }
 
@@ -171,17 +161,15 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
         }
     }
 
-    /// Recomputes the view's body, and updates its widget accordingly. The view may or may not
-    /// propagate the update to its children depending on the nature of the update. If `newView`
-    /// is provided (in the case that the parent's body got updated) then it simply replaces the
-    /// old view while inheriting the old view's state.
-    /// - Parameter dryRun: If `true`, only compute sizing and don't update the underlying widget.
-    public func update(
+    /// Recomputes the view's body and computes the layout of it and all its children
+    /// if necessary. If `newView` is provided (in the case that the parent's body got
+    /// updated) then it simply replaces the old view while inheriting the old view's
+    /// state.
+    public func computeLayout(
         with newView: NodeView? = nil,
-        proposedSize: SIMD2<Int>,
-        environment: EnvironmentValues,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        proposedSize: ProposedViewSize,
+        environment: EnvironmentValues
+    ) -> ViewLayoutResult {
         // Defensively ensure that all future scene implementations obey this
         // precondition. By putting the check here instead of only in views
         // that require `environment.window` (such as the alert modifier view),
@@ -191,44 +179,22 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
             "View graph updated without parent window present in environment"
         )
 
-        if dryRun, let cachedResult = resultCache[proposedSize] {
+        if proposedSize == lastProposedSize && !resultCache.isEmpty
+            && (!parentEnvironment.allowLayoutCaching || environment.allowLayoutCaching),
+            let currentLayout
+        {
+            // If the previous proposal is the same as the current one, and our
+            // cache hasn't been invalidated, then we can reuse the current layout.
+            // But only if the previous layout was computed without caching, or the
+            // current layout is being computed with caching, cause otherwise we could
+            // end up using a layout computed with caching while computing a layout
+            // without caching.
+            return currentLayout
+        } else if environment.allowLayoutCaching, let cachedResult = resultCache[proposedSize] {
+            // If this layout pass is a probing pass (not a final pass), then we
+            // can reuse any layouts that we've computed since the cache was last
+            // cleared. The cache gets cleared on commit.
             return cachedResult
-        }
-
-        // Attempt to cleverly reuse the current size if we can know that it
-        // won't change. We must of course be in a dry run, have a known
-        // current size, and must've run at least one proper dry run update
-        // since the last update cycle (checked via`!sizeCache.isEmpty`) to
-        // ensure that the view has been updated at least once with the
-        // current view state.
-        if dryRun, let currentResult, !resultCache.isEmpty {
-            // If both the previous and current proposed sizes are larger than
-            // the view's previously computed maximum size, reuse the previous
-            // result (currentResult).
-            if ((Double(lastProposedSize.x) >= currentResult.size.maximumWidth
-                && Double(proposedSize.x) >= currentResult.size.maximumWidth)
-                || proposedSize.x == lastProposedSize.x)
-                && ((Double(lastProposedSize.y) >= currentResult.size.maximumHeight
-                    && Double(proposedSize.y) >= currentResult.size.maximumHeight)
-                    || proposedSize.y == lastProposedSize.y)
-            {
-                return currentResult
-            }
-
-            // If the view has already been updated this update cycle and claims
-            // to be fixed size (maximumSize == minimumSize) then reuse the current
-            // result.
-            let maximumSize = SIMD2(
-                currentResult.size.maximumWidth,
-                currentResult.size.maximumHeight
-            )
-            let minimumSize = SIMD2(
-                Double(currentResult.size.minimumWidth),
-                Double(currentResult.size.minimumHeight)
-            )
-            if maximumSize == minimumSize {
-                return currentResult
-            }
         }
 
         parentEnvironment = environment
@@ -244,36 +210,58 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
 
         let viewEnvironment = updateEnvironment(environment)
 
-        updateDynamicProperties(
-            of: view,
-            previousValue: previousView,
-            environment: viewEnvironment
-        )
+        dynamicPropertyUpdater.update(view, with: viewEnvironment, previousValue: previousView)
 
-        if !dryRun {
-            backend.show(widget: widget)
-        }
-        let result = view.update(
+        let result = view.computeLayout(
             widget,
             children: children,
             proposedSize: proposedSize,
             environment: viewEnvironment,
-            backend: backend,
-            dryRun: dryRun
+            backend: backend
         )
 
-        // We assume that the view's sizing behaviour won't change between consecutive dry run updates
-        // and the following real update because groups of updates following that pattern are assumed to
-        // be occurring within a single overarching view update. It may seem weird that we set it
-        // to false after real updates, but that's because it may get invalidated between a real
-        // update and the next dry-run update.
-        if !dryRun {
-            resultCache = [:]
-        } else {
-            resultCache[proposedSize] = result
+        // We assume that the view's sizing behaviour won't change between consecutive
+        // layout computations and the following commit, because groups of updates
+        // following that pattern are assumed to be occurring within a single overarching
+        // view update. Under that assumption, we can cache view layout results.
+        resultCache[proposedSize] = result
+
+        currentLayout = result
+        return result
+    }
+
+    /// Commits the view's most recently computed layout and any view state changes
+    /// that have occurred since the last update (e.g. text content changes or font
+    /// size changes). Returns the most recently computed layout for convenience,
+    /// although it's guaranteed to match the result of the last call to computeLayout.
+    public func commit() -> ViewLayoutResult {
+        backend.show(widget: widget)
+
+        guard let currentLayout else {
+            print("warning: layout committed before being computed, ignoring")
+            return .leafView(size: .zero)
         }
 
-        currentResult = result
-        return result
+        if parentEnvironment.allowLayoutCaching {
+            print(
+                "warning: Committing layout computed with caching enabled. Results may be invalid. NodeView = \(NodeView.self)"
+            )
+        }
+        if currentLayout.size.height == .infinity || currentLayout.size.width == .infinity {
+            print(
+                "warning: \(NodeView.self) has infinite height or width on commit, currentLayout.size: \(currentLayout.size), lastProposedSize: \(lastProposedSize)"
+            )
+        }
+
+        view.commit(
+            widget,
+            children: children,
+            layout: currentLayout,
+            environment: parentEnvironment,
+            backend: backend
+        )
+        resultCache = [:]
+
+        return currentLayout
     }
 }

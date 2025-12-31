@@ -49,7 +49,7 @@ public final class AppKitBackend: AppBackend {
         // We assume that all scrollers have their controlSize set to `.regular` by default.
         // The internet seems to indicate that this is true regardless of any system wide
         // preferences etc.
-        Int(
+        return Int(
             NSScroller.scrollerWidth(
                 for: .regular,
                 scrollerStyle: NSScroller.preferredScrollerStyle
@@ -540,32 +540,17 @@ public final class AppKitBackend: AppBackend {
     public func size(
         of text: String,
         whenDisplayedIn widget: Widget,
-        proposedFrame: SIMD2<Int>?,
+        proposedWidth: Int?,
+        proposedHeight: Int?,
         environment: EnvironmentValues
     ) -> SIMD2<Int> {
-        if let proposedFrame, proposedFrame.x == 0 {
-            // We want the text to have the same height as it would have if it were
-            // one pixel wide so that the layout doesn't suddely jump when the text
-            // reaches zero width.
-            let size = size(
-                of: text,
-                whenDisplayedIn: widget,
-                proposedFrame: SIMD2(1, proposedFrame.y),
-                environment: environment
-            )
-            return SIMD2(
-                0,
-                size.y
-            )
-        }
-
         let proposedSize = NSSize(
-            width: (proposedFrame?.x).map(CGFloat.init) ?? 0,
-            height: .greatestFiniteMagnitude
+            width: proposedWidth.map(Double.init) ?? .greatestFiniteMagnitude,
+            height: proposedHeight.map(Double.init) ?? .greatestFiniteMagnitude
         )
         let rect = NSString(string: text).boundingRect(
             with: proposedSize,
-            options: [.usesLineFragmentOrigin],
+            options: [.usesLineFragmentOrigin, .truncatesLastVisibleLine],
             attributes: Self.attributes(forTextIn: environment)
         )
         return SIMD2(
@@ -581,6 +566,7 @@ public final class AppKitBackend: AppBackend {
         // styles when clicked (yeah that happens...)
         field.allowsEditingTextAttributes = true
         field.isSelectable = false
+        field.cell?.truncatesLastVisibleLine = true
         return field
     }
 
@@ -2273,7 +2259,9 @@ public class NSCustomWindow: NSWindow {
             }
 
             let contentSize = sender.contentRect(
-                forFrameRect: NSRect(x: 0, y: 0, width: frameSize.width, height: frameSize.height)
+                forFrameRect: NSRect(
+                    x: sender.frame.origin.x, y: sender.frame.origin.y, width: frameSize.width,
+                    height: frameSize.height)
             )
 
             resizeHandler(

@@ -15,6 +15,8 @@ class _App<AppRoot: App> {
     var cancellables: [Cancellable]
     /// The root level environment.
     var environment: EnvironmentValues
+    /// The dynamic property updater for ``app``.
+    var dynamicPropertyUpdater: DynamicPropertyUpdater<AppRoot>
 
     /// Wraps a user's app implementation.
     init(_ app: AppRoot) {
@@ -22,16 +24,14 @@ class _App<AppRoot: App> {
         self.app = app
         self.environment = EnvironmentValues(backend: backend)
         self.cancellables = []
+
+        dynamicPropertyUpdater = DynamicPropertyUpdater(for: app)
     }
 
     func forceRefresh() {
-        updateDynamicProperties(
-            of: self.app,
-            previousValue: nil,
-            environment: self.environment
-        )
+        dynamicPropertyUpdater.update(app, with: environment, previousValue: nil)
 
-        self.sceneGraphRoot?.update(
+        sceneGraphRoot?.update(
             self.app.body,
             backend: self.backend,
             environment: environment
@@ -46,10 +46,10 @@ class _App<AppRoot: App> {
                 defaultEnvironment: baseEnvironment
             )
 
-            updateDynamicProperties(
-                of: self.app,
-                previousValue: nil,
-                environment: self.environment
+            self.dynamicPropertyUpdater.update(
+                self.app,
+                with: self.environment,
+                previousValue: nil
             )
 
             let mirror = Mirror(reflecting: self.app)
@@ -72,10 +72,12 @@ class _App<AppRoot: App> {
                     [weak self] in
                     guard let self = self else { return }
 
-                    updateDynamicProperties(
-                        of: self.app,
-                        previousValue: nil,
-                        environment: self.environment
+                    // TODO: Do we have to do this on state changes? Can probably get
+                    //   away with only doing it when the root environment changes.
+                    self.dynamicPropertyUpdater.update(
+                        self.app,
+                        with: self.environment,
+                        previousValue: nil
                     )
 
                     let body = self.app.body

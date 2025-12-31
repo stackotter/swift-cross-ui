@@ -13,18 +13,26 @@ struct WebViewApp: App {
 
     @State var url = URL(string: "https://stackotter.dev")!
 
+    func go(_ url: String) {
+        guard let url = URL(string: urlInput) else {
+            return
+        }
+
+        self.url = url
+    }
+
     var body: some Scene {
         WindowGroup("WebViewExample") {
             #hotReloadable {
                 VStack {
                     HStack {
                         TextField("URL", text: $urlInput)
-                        Button("Go") {
-                            guard let url = URL(string: urlInput) else {
-                                return  // disabled
+                            .onSubmit {
+                                go(urlInput)
                             }
 
-                            self.url = url
+                        Button("Go") {
+                            go(urlInput)
                         }.disabled(URL(string: urlInput) == nil)
                     }
                     .padding()
@@ -36,5 +44,6 @@ struct WebViewApp: App {
                 }
             }
         }
+        .defaultSize(width: 800, height: 800)
     }
 }

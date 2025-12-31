@@ -36,29 +36,17 @@ public protocol Shape: View, Sendable where Content == EmptyView {
     func path(in bounds: Path.Rect) -> Path
     /// Determine the ideal size of this shape given the proposed bounds.
     ///
-    /// The default implementation accepts the proposal and imposes no practical limit on
-    /// the shape's size.
-    /// - Returns: Information about the shape's size. The ``ViewSize/size`` property is what
-    ///   frame the shape will actually be rendered with if the current layout pass is not
-    ///   a dry run, while the other properties are used to inform the layout engine how big
-    ///   or small the shape can be. The ``ViewSize/idealSize`` property should not vary with
-    ///   the `proposal`, and should only depend on the shape's contents. Pass `nil` for the
-    ///   maximum width/height if the shape has no maximum size.
-    func size(fitting proposal: SIMD2<Int>) -> ViewSize
+    /// The default implementation accepts the proposal, replacing unspecified
+    /// dimensions with `10`.
+    /// - Returns: The shape's size for the given proposal.
+    func size(fitting proposal: ProposedViewSize) -> ViewSize
 }
 
 extension Shape {
     public var body: EmptyView { return EmptyView() }
 
-    public func size(fitting proposal: SIMD2<Int>) -> ViewSize {
-        return ViewSize(
-            size: proposal,
-            idealSize: SIMD2(x: 10, y: 10),
-            minimumWidth: 0,
-            minimumHeight: 0,
-            maximumWidth: nil,
-            maximumHeight: nil
-        )
+    public func size(fitting proposal: ProposedViewSize) -> ViewSize {
+        proposal.replacingUnspecifiedDimensions(by: ViewSize(10, 10))
     }
 
     @MainActor
@@ -82,51 +70,54 @@ extension Shape {
     }
 
     @MainActor
-    public func update<Backend: AppBackend>(
+    public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        let storage = children as! ShapeStorage
+        backend: Backend
+    ) -> ViewLayoutResult {
         let size = size(fitting: proposedSize)
+        return ViewLayoutResult.leafView(size: size)
+    }
 
+    @MainActor
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
         let bounds = Path.Rect(
             x: 0.0,
             y: 0.0,
-            width: Double(size.size.x),
-            height: Double(size.size.y)
+            width: layout.size.width,
+            height: layout.size.height
         )
         let path = path(in: bounds)
 
-        storage.pointsChanged =
-            storage.pointsChanged || storage.oldPath?.actions != path.actions
+        let storage = children as! ShapeStorage
+        let pointsChanged = storage.oldPath?.actions != path.actions
         storage.oldPath = path
 
         let backendPath = storage.backendPath as! Backend.Path
-        if !dryRun {
-            backend.updatePath(
-                backendPath,
-                path,
-                bounds: bounds,
-                pointsChanged: storage.pointsChanged,
-                environment: environment
-            )
-            storage.pointsChanged = false
+        backend.updatePath(
+            backendPath,
+            path,
+            bounds: bounds,
+            pointsChanged: pointsChanged,
+            environment: environment
+        )
 
-            backend.setSize(of: widget, to: size.size)
-            backend.renderPath(
-                backendPath,
-                container: widget,
-                strokeColor: .clear,
-                fillColor: environment.suggestedForegroundColor,
-                overrideStrokeStyle: nil
-            )
-        }
-
-        return ViewUpdateResult.leafView(size: size)
+        backend.setSize(of: widget, to: layout.size.vector)
+        backend.renderPath(
+            backendPath,
+            container: widget,
+            strokeColor: .clear,
+            fillColor: environment.suggestedForegroundColor,
+            overrideStrokeStyle: nil
+        )
     }
 }
 
@@ -135,5 +126,4 @@ final class ShapeStorage: ViewGraphNodeChildren {
     let erasedNodes: [ErasedViewGraphNode] = []
     var backendPath: Any!
     var oldPath: Path?
-    var pointsChanged = false
 }

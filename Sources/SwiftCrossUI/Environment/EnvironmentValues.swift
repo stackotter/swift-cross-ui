@@ -98,8 +98,17 @@ public struct EnvironmentValues {
     /// Whether the text should be selectable. Set by ``View/textSelectionEnabled(_:)``.
     public var isTextSelectionEnabled: Bool
 
-    // Backing storage for extensible subscript
+    /// Backing storage for extensible subscript
     private var extraValues: [ObjectIdentifier: Any]
+
+    /// An internal environment value used to control whether layout caching is
+    /// enabled or not. This is set to true when computing non-final layouts. E.g.
+    /// when a stack computes the minimum and maximum sizes of its children, it
+    /// should enable layout caching because those updates are guaranteed to be
+    /// non-final. The reason that we can't cache on non-final updates is that
+    /// the last layout proposal received by each view must be its intended final
+    /// proposal.
+    var allowLayoutCaching: Bool
 
     public subscript<T: EnvironmentKey>(_ key: T.Type) -> T.Value {
         get {
@@ -217,6 +226,7 @@ public struct EnvironmentValues {
         isEnabled = true
         scrollDismissesKeyboardMode = .automatic
         isTextSelectionEnabled = false
+        allowLayoutCaching = false
     }
 
     /// Returns a copy of the environment with the specified property set to the

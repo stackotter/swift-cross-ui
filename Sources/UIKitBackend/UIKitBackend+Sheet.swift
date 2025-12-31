@@ -16,7 +16,7 @@ extension UIKitBackend {
         // Fetch the child controller before adding the child to the view
         // hierarchy. Otherwise, if the child doesn't have its own controller, we'd
         // get back a reference to the sheet controller and attempt to add it as a
-        // child of itself. 
+        // child of itself.
         if let childController = content.controller {
             sheet.addChild(childController)
         }
@@ -52,7 +52,8 @@ extension UIKitBackend {
         sheet.onDismiss = onDismiss
         setPresentationDetents(of: sheet, to: detents)
         setPresentationCornerRadius(of: sheet, to: cornerRadius)
-        setPresentationDragIndicatorVisibility(of: sheet, to: dragIndicatorVisibility, detents: detents)
+        setPresentationDragIndicatorVisibility(
+            of: sheet, to: dragIndicatorVisibility, detents: detents)
 
         let defaultColor: UIColor?
         #if targetEnvironment(macCatalyst)

@@ -20,9 +20,9 @@
 /// ```
 @MainActor
 public struct DismissAction {
-    private let action: () -> Void
+    private let action: @Sendable @MainActor () -> Void
 
-    internal init(action: @escaping () -> Void) {
+    nonisolated internal init(action: @escaping @Sendable @MainActor () -> Void) {
         self.action = action
     }
 
@@ -34,7 +34,6 @@ public struct DismissAction {
 
 /// Environment key for the dismiss action.
 private struct DismissActionKey: EnvironmentKey {
-    @MainActor
     static var defaultValue: DismissAction {
         DismissAction(action: {
             #if DEBUG

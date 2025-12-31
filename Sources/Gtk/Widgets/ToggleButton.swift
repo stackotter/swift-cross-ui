@@ -19,7 +19,7 @@ public class ToggleButton: Button {
         )
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         addSignal(name: "toggled") { [weak self] in

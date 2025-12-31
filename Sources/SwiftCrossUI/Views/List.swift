@@ -98,14 +98,13 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
         backend.createSelectableListView()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         // Padding that the backend could not remove (some frameworks have a small
         // constant amount of required padding within each row).
         let baseRowPadding = backend.baseItemPadding(ofSelectableListView: widget)
@@ -138,82 +137,80 @@ public struct List<SelectionValue: Hashable, RowView: View>: TypeSafeView, View 
             children.nodes.removeLast(children.nodes.count - rowCount)
         }
 
-        var childResults: [ViewUpdateResult] = []
+        var childResults: [ViewLayoutResult] = []
         for (rowView, node) in zip(rowViews, children.nodes) {
-            let preferredSize = node.update(
+            let proposedWidth: Double?
+            if let width = proposedSize.width {
+                proposedWidth = max(
+                    Double(minimumRowSize.x),
+                    width - Double(baseRowPadding.axisTotals.x)
+                )
+            } else {
+                proposedWidth = nil
+            }
+
+            let childResult = node.computeLayout(
                 with: rowView,
-                proposedSize: SIMD2(
-                    max(proposedSize.x, minimumRowSize.x) - baseRowPadding.axisTotals.x,
-                    max(proposedSize.y, minimumRowSize.y) - baseRowPadding.axisTotals.y
+                proposedSize: ProposedViewSize(
+                    proposedWidth,
+                    nil
                 ),
-                environment: environment,
-                dryRun: true
-            ).size
-            let childResult = node.update(
-                with: nil,
-                proposedSize: SIMD2(
-                    max(proposedSize.x, minimumRowSize.x) - horizontalBasePadding,
-                    max(
-                        preferredSize.idealHeightForProposedWidth,
-                        minimumRowSize.y - baseRowPadding.axisTotals.y
-                    )
-                ),
-                environment: environment,
-                dryRun: dryRun
+                environment: environment
             )
             childResults.append(childResult)
         }
 
-        let size = SIMD2(
+        let height = childResults.map(\.size.height).map { rowHeight in
             max(
-                (childResults.map(\.size.size.x).max() ?? 0) + horizontalBasePadding,
-                max(minimumRowSize.x, proposedSize.x)
-            ),
-            childResults.map(\.size.size.y).map { rowHeight in
-                max(
-                    rowHeight + verticalBasePadding,
-                    minimumRowSize.y
-                )
-            }.reduce(0, +)
+                rowHeight + Double(verticalBasePadding),
+                Double(minimumRowSize.y)
+            )
+        }.reduce(0, +)
+        let minimumWidth =
+            (childResults.map(\.size.width).max() ?? 0) + Double(horizontalBasePadding)
+        let size = ViewSize(
+            max(proposedSize.width ?? minimumWidth, minimumWidth),
+            height
         )
 
-        if !dryRun {
-            backend.setItems(
-                ofSelectableListView: widget,
-                to: children.widgets.map { $0.into() },
-                withRowHeights: childResults.map(\.size.size.y).map { height in
-                    height + verticalBasePadding
-                }
-            )
-            backend.setSize(of: widget, to: size)
-            backend.setSelectionHandler(forSelectableListView: widget) { selectedIndex in
-                selection.wrappedValue = associatedSelectionValue(selectedIndex)
-            }
-            let selectedIndex: Int?
-            if let selectedItem = selection.wrappedValue {
-                selectedIndex = find(selectedItem)
-            } else {
-                selectedIndex = nil
-            }
-            backend.setSelectedItem(ofSelectableListView: widget, toItemAt: selectedIndex)
-        }
-
-        return ViewUpdateResult(
-            size: ViewSize(
-                size: size,
-                idealSize: SIMD2(
-                    (childResults.map(\.size.idealSize.x).max() ?? 0)
-                        + horizontalBasePadding,
-                    size.y
-                ),
-                minimumWidth: (childResults.map(\.size.minimumWidth).max() ?? 0)
-                    + horizontalBasePadding,
-                minimumHeight: size.y,
-                maximumWidth: nil,
-                maximumHeight: Double(size.y)
-            ),
+        return ViewLayoutResult(
+            size: size,
             childResults: childResults
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: Children,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let baseRowPadding = backend.baseItemPadding(ofSelectableListView: widget)
+        let verticalBasePadding = baseRowPadding.axisTotals.y
+
+        let childResults = children.nodes.map { $0.commit() }
+        backend.setItems(
+            ofSelectableListView: widget,
+            to: children.widgets.map { $0.into() },
+            withRowHeights: childResults.map(\.size.height).map { height in
+                LayoutSystem.roundSize(height) + verticalBasePadding
+            }
+        )
+
+        backend.setSize(of: widget, to: layout.size.vector)
+        backend.setSelectionHandler(forSelectableListView: widget) { selectedIndex in
+            selection.wrappedValue = associatedSelectionValue(selectedIndex)
+        }
+
+        let selectedIndex: Int?
+        if let selectedItem = selection.wrappedValue {
+            selectedIndex = find(selectedItem)
+        } else {
+            selectedIndex = nil
+        }
+
+        backend.setSelectedItem(ofSelectableListView: widget, toItemAt: selectedIndex)
     }
 }
 

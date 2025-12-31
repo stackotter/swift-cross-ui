@@ -48,9 +48,11 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             guard let self else {
                 return
             }
+
             _ = self.update(
                 self.scene,
                 proposedWindowSize: newSize,
+                needsWindowSizeCommit: false,
                 backend: backend,
                 environment: self.parentEnvironment,
                 windowSizeIsFinal:
@@ -62,9 +64,11 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             guard let self else {
                 return
             }
+
             _ = self.update(
                 self.scene,
                 proposedWindowSize: backend.size(ofWindow: window),
+                needsWindowSizeCommit: false,
                 backend: backend,
                 environment: self.parentEnvironment,
                 windowSizeIsFinal:
@@ -85,24 +89,50 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         let isProgramaticallyResizable =
             backend.isWindowProgrammaticallyResizable(window)
 
+        let proposedWindowSize: SIMD2<Int>
+        let usedDefaultSize: Bool
+        if isFirstUpdate && isProgramaticallyResizable {
+            proposedWindowSize = (newScene ?? scene).defaultSize
+            usedDefaultSize = true
+        } else {
+            proposedWindowSize = backend.size(ofWindow: window)
+            usedDefaultSize = false
+        }
+
         _ = update(
             newScene,
-            proposedWindowSize: isFirstUpdate && isProgramaticallyResizable
-                ? (newScene ?? scene).defaultSize
-                : backend.size(ofWindow: window),
+            proposedWindowSize: proposedWindowSize,
+            needsWindowSizeCommit: usedDefaultSize,
             backend: backend,
             environment: environment,
             windowSizeIsFinal: !isProgramaticallyResizable
         )
     }
 
+    /// Updates the WindowGroupNode.
+    /// - Parameters:
+    ///   - newScene: The scene's body if recomputed.
+    ///   - proposedWindowSize: The proposed window size.
+    ///   - needsWindowSizeCommit: Whether the proposed window size matches the
+    ///     windows current size (or imminent size in the case of a window
+    ///     resize). We use this parameter instead of comparing to the window's
+    ///     current size to the proposed size, because some backends (such as
+    ///     AppKitBackend) trigger window resize handlers *before* the underlying
+    ///     window gets assigned its new size (allowing us to pre-emptively update the
+    ///     window's content to match the new size).
+    ///   - backend: The backend to use.
+    ///   - environment: The current environment.
+    ///   - windowSizeIsFinal: If true, no further resizes can/will be made. This
+    ///     is true on platforms that don't support programmatic window resizing,
+    ///     and when a window is full screen.
     public func update<Backend: AppBackend>(
         _ newScene: WindowGroup<Content>?,
         proposedWindowSize: SIMD2<Int>,
+        needsWindowSizeCommit: Bool,
         backend: Backend,
         environment: EnvironmentValues,
         windowSizeIsFinal: Bool = false
-    ) -> ViewUpdateResult {
+    ) -> ViewLayoutResult {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
@@ -130,131 +160,75 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                 _ = self.update(
                     self.scene,
                     proposedWindowSize: backend.size(ofWindow: window),
+                    needsWindowSizeCommit: false,
                     backend: backend,
                     environment: environment
                 )
             }
             .with(\.window, window)
 
-        let dryRunResult: ViewUpdateResult?
-        if !windowSizeIsFinal {
-            // Perform a dry-run update of the root view to check if the window
-            // needs to change size.
-            let contentResult = viewGraph.update(
+        let finalContentResult: ViewLayoutResult
+        if scene.resizability.isResizable {
+            let minimumWindowSize = viewGraph.computeLayout(
                 with: newScene?.body,
-                proposedSize: proposedWindowSize,
-                environment: environment,
-                dryRun: true
-            )
-            dryRunResult = contentResult
+                proposedSize: .zero,
+                environment: environment.with(\.allowLayoutCaching, true)
+            ).size
 
-            let newWindowSize = computeNewWindowSize(
-                currentProposedSize: proposedWindowSize,
-                backend: backend,
-                contentSize: contentResult.size,
-                environment: environment
+            let clampedWindowSize = ViewSize(
+                max(minimumWindowSize.width, Double(proposedWindowSize.x)),
+                max(minimumWindowSize.height, Double(proposedWindowSize.y))
             )
 
-            // Restart the window update if the content has caused the window to
-            // change size. To avoid infinite recursion, we take the view's word
-            // and assume that it will take on the minimum/maximum size it claimed.
-            if let newWindowSize {
+            if clampedWindowSize.vector != proposedWindowSize && !windowSizeIsFinal {
+                // Restart the window update if the content has caused the window to
+                // change size.
                 return update(
                     scene,
-                    proposedWindowSize: newWindowSize,
-                    backend: backend,
-                    environment: environment,
-                    windowSizeIsFinal: false
-                )
-            }
-        } else {
-            dryRunResult = nil
-        }
-
-        let finalContentResult = viewGraph.update(
-            with: newScene?.body,
-            proposedSize: proposedWindowSize,
-            environment: environment,
-            dryRun: false
-        )
-
-        // The Gtk 3 backend has some broken sizing code that can't really be
-        // fixed due to the design of Gtk 3. Our layout system underestimates
-        // the size of the new view due to the button not being in the Gtk 3
-        // widget hierarchy yet (which prevents Gtk 3 from computing the
-        // natural sizes of the new buttons). One fix seems to be removing
-        // view size reuse (currently the second check in ViewGraphNode.update)
-        // and I'm not exactly sure why, but that makes things awfully slow.
-        // The other fix is to add an alternative path to
-        // Gtk3Backend.naturalSize(of:) for buttons that moves non-realized
-        // buttons to a secondary window before measuring their natural size,
-        // but that's super janky, easy to break if the button in the real
-        // window is inheriting styles from its ancestors, and I'm not sure
-        // how to hide the window (it's probably terrible for performance too).
-        //
-        // I still have no clue why this size underestimation (and subsequent
-        // mis-sizing of the window) had the symptom of all buttons losing
-        // their labels temporarily; Gtk 3 is a temperamental beast.
-        //
-        // Anyway, Gtk3Backend isn't really intended to be a recommended
-        // backend so I think this is a fine solution for now (people should
-        // only use Gtk3Backend if they can't use GtkBackend).
-        if let dryRunResult, finalContentResult.size != dryRunResult.size {
-            logger.warning(
-                """
-                final window content size didn't match dry-run size; this is a \
-                sign that either view size caching is broken or that \
-                backend.naturalSize(of:) is broken (or both)
-                """,
-                metadata: [
-                    "dryRunResult.size": "\(dryRunResult.size)",
-                    "finalContentResult.size": "\(finalContentResult.size)",
-                ]
-            )
-
-            // Give the view graph one more chance to sort itself out to fail
-            // as gracefully as possible.
-            let newWindowSize = computeNewWindowSize(
-                currentProposedSize: proposedWindowSize,
-                backend: backend,
-                contentSize: finalContentResult.size,
-                environment: environment
-            )
-
-            if let newWindowSize {
-                return update(
-                    scene,
-                    proposedWindowSize: newWindowSize,
+                    proposedWindowSize: clampedWindowSize.vector,
+                    needsWindowSizeCommit: true,
                     backend: backend,
                     environment: environment,
                     windowSizeIsFinal: true
                 )
             }
+
+            // Set this even if the window isn't programmatically resizable
+            // because the window may still be user resizable.
+            backend.setMinimumSize(ofWindow: window, to: minimumWindowSize.vector)
+
+            finalContentResult = viewGraph.computeLayout(
+                proposedSize: ProposedViewSize(proposedWindowSize),
+                environment: environment
+            )
+        } else {
+            let initialContentResult = viewGraph.computeLayout(
+                with: newScene?.body,
+                proposedSize: ProposedViewSize(proposedWindowSize),
+                environment: environment
+            )
+            if initialContentResult.size.vector != proposedWindowSize && !windowSizeIsFinal {
+                return update(
+                    scene,
+                    proposedWindowSize: initialContentResult.size.vector,
+                    needsWindowSizeCommit: true,
+                    backend: backend,
+                    environment: environment,
+                    windowSizeIsFinal: true
+                )
+            }
+            finalContentResult = initialContentResult
         }
 
-        // Set this even if the window isn't programmatically resizable
-        // because the window may still be user resizable.
-        if scene.resizability.isResizable {
-            backend.setMinimumSize(
-                ofWindow: window,
-                to: SIMD2(
-                    finalContentResult.size.minimumWidth,
-                    finalContentResult.size.minimumHeight
-                )
-            )
-        }
+        viewGraph.commit()
 
         backend.setPosition(
             ofChildAt: 0,
             in: containerWidget.into(),
-            to: SIMD2(
-                (proposedWindowSize.x - finalContentResult.size.size.x) / 2,
-                (proposedWindowSize.y - finalContentResult.size.size.y) / 2
-            )
+            to: (proposedWindowSize &- finalContentResult.size.vector) / 2
         )
 
-        let currentWindowSize = backend.size(ofWindow: window)
-        if currentWindowSize != proposedWindowSize {
+        if needsWindowSizeCommit {
             backend.setSize(ofWindow: window, to: proposedWindowSize)
         }
 
@@ -264,30 +238,5 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         }
 
         return finalContentResult
-    }
-
-    public func computeNewWindowSize<Backend: AppBackend>(
-        currentProposedSize: SIMD2<Int>,
-        backend: Backend,
-        contentSize: ViewSize,
-        environment: EnvironmentValues
-    ) -> SIMD2<Int>? {
-        if scene.resizability.isResizable {
-            if currentProposedSize.x < contentSize.minimumWidth
-                || currentProposedSize.y < contentSize.minimumHeight
-            {
-                let newSize = SIMD2(
-                    max(currentProposedSize.x, contentSize.minimumWidth),
-                    max(currentProposedSize.y, contentSize.minimumHeight)
-                )
-                return newSize
-            } else {
-                return nil
-            }
-        } else if contentSize.idealSize != currentProposedSize {
-            return contentSize.idealSize
-        } else {
-            return nil
-        }
     }
 }

@@ -52,15 +52,15 @@ public struct GeometryReader<Content: View>: TypeSafeView, View {
         return backend.createContainer()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: GeometryReaderChildren<Content>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        let view = content(GeometryProxy(size: proposedSize))
+        backend: Backend
+    ) -> ViewLayoutResult {
+        let size = proposedSize.replacingUnspecifiedDimensions(by: ViewSize(10, 10))
+        let view = content(GeometryProxy(size: size))
 
         let environment = environment.with(\.layoutAlignment, .leading)
 
@@ -75,39 +75,31 @@ public struct GeometryReader<Content: View>: TypeSafeView, View {
             )
             children.node = contentNode
 
-            // It's ok to add the child here even though it's not a dry run
-            // because this is guaranteed to only happen once. Dry runs are
-            // more about 'commit' actions that happen every single update.
             backend.addChild(contentNode.widget.into(), to: widget)
         }
 
-        // TODO: Look into moving this to the final non-dry run update. In order
-        //   to do so we'd have to give up on preferences being allowed to affect
-        //   layout (which is probably something we don't want to support anyway
-        //   because it sounds like feedback loop central).
-        let contentResult = contentNode.update(
+        let contentResult = contentNode.computeLayout(
             with: view,
-            proposedSize: proposedSize,
-            environment: environment,
-            dryRun: dryRun
+            proposedSize: ProposedViewSize(size),
+            environment: environment
         )
 
-        if !dryRun {
-            backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
-            backend.setSize(of: widget, to: proposedSize)
-        }
-
-        return ViewUpdateResult(
-            size: ViewSize(
-                size: proposedSize,
-                idealSize: SIMD2(10, 10),
-                minimumWidth: 0,
-                minimumHeight: 0,
-                maximumWidth: nil,
-                maximumHeight: nil
-            ),
+        return ViewLayoutResult(
+            size: size,
             childResults: [contentResult]
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: GeometryReaderChildren<Content>,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        _ = children.node?.commit()
+        backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }
 

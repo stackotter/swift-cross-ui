@@ -29,7 +29,7 @@ import CGtk3
 /// grab and receive all key presses.
 open class MenuShell: Container {
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         let handler0:
