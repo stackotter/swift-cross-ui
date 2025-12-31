@@ -32,28 +32,33 @@ struct OnHoverModifier<Content: View>: TypeSafeView {
         backend.createHoverTarget(wrapping: children.child0.widget.into())
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        let childResult = children.child0.update(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        children.child0.computeLayout(
             with: body.view0,
             proposedSize: proposedSize,
-            environment: environment,
-            dryRun: dryRun
+            environment: environment
         )
-        if !dryRun {
-            backend.setSize(of: widget, to: childResult.size.size)
-            backend.updateHoverTarget(
-                widget,
-                environment: environment,
-                action: action
-            )
-        }
-        return childResult
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: Children,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let size = children.child0.commit().size.vector
+        backend.setSize(of: widget, to: size)
+        backend.updateHoverTarget(
+            widget,
+            environment: environment,
+            action: action
+        )
     }
 }

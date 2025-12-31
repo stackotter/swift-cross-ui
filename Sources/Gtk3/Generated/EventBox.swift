@@ -11,7 +11,7 @@ open class EventBox: Bin {
         )
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         let handler0:

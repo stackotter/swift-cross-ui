@@ -41,13 +41,6 @@ import CGtk
 /// glClearColor (0, 0, 0, 0);
 /// glClear (GL_COLOR_BUFFER_BIT);
 ///
-/// // record the active framebuffer ID, so we can return to it
-/// // with `glBindFramebuffer (GL_FRAMEBUFFER, screen_fb)` should
-/// // we, for instance, intend on utilizing the results of an
-/// // intermediate render texture pass
-/// GLuint screen_fb = 0;
-/// glGetIntegerv (GL_FRAMEBUFFER_BINDING, &screen_fb);
-///
 /// // draw your object
 /// // draw_an_object ();
 ///
@@ -121,7 +114,7 @@ open class GLArea: Widget {
         )
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         addSignal(name: "create-context") { [weak self] () in

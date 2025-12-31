@@ -184,7 +184,7 @@ public class PopoverMenu: Popover {
         }
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         removeSignals()
 
         super.didMoveToParent()

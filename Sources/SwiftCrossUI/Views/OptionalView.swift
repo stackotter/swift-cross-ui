@@ -39,23 +39,21 @@ extension OptionalView: TypeSafeView {
         return backend.createContainer()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: OptionalViewChildren<V>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         let hasToggled: Bool
-        let result: ViewUpdateResult
+        let result: ViewLayoutResult
         if let view = view {
             if let node = children.node {
-                result = node.update(
+                result = node.computeLayout(
                     with: view,
                     proposedSize: proposedSize,
-                    environment: environment,
-                    dryRun: dryRun
+                    environment: environment
                 )
                 hasToggled = false
             } else {
@@ -65,35 +63,42 @@ extension OptionalView: TypeSafeView {
                     environment: environment
                 )
                 children.node = node
-                result = node.update(
+                result = node.computeLayout(
                     with: view,
                     proposedSize: proposedSize,
-                    environment: environment,
-                    dryRun: dryRun
+                    environment: environment
                 )
                 hasToggled = true
             }
         } else {
             hasToggled = children.node != nil
             children.node = nil
-            result = ViewUpdateResult.leafView(size: .hidden)
+            result = ViewLayoutResult.leafView(size: .zero)
         }
         children.hasToggled = children.hasToggled || hasToggled
 
-        if !dryRun {
-            if children.hasToggled {
-                backend.removeAllChildren(of: widget)
-                if let node = children.node {
-                    backend.addChild(node.widget.into(), to: widget)
-                    backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
-                }
-                children.hasToggled = false
-            }
+        return result
+    }
 
-            backend.setSize(of: widget, to: result.size.size)
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: OptionalViewChildren<V>,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        if children.hasToggled {
+            backend.removeAllChildren(of: widget)
+            if let node = children.node {
+                backend.addChild(node.widget.into(), to: widget)
+                backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
+            }
+            children.hasToggled = false
         }
 
-        return result
+        _ = children.node?.commit()
+
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }
 

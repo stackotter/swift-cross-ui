@@ -18,17 +18,18 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
         self.value = value
     }
 
-    public func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
         return backend.createPicker()
     }
 
-    public func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
+        // TODO: Implement picker sizing within SwiftCrossUI so that we can
+        //   properly separate committing logic out into `commit`.
         backend.updatePicker(
             widget,
             options: options.map { "\($0)" },
@@ -46,27 +47,22 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
         // Special handling for UIKitBackend:
         // When backed by a UITableView, its natural size is -1 x -1,
         // but it can and should be as large as reasonable
-        let size = backend.naturalSize(of: widget)
-        if size == SIMD2(-1, -1) {
-            if !dryRun {
-                backend.setSize(of: widget, to: proposedSize)
-            }
-
-            return ViewUpdateResult.leafView(
-                size: ViewSize(
-                    size: proposedSize,
-                    idealSize: SIMD2(10, 10),
-                    minimumWidth: 0,
-                    minimumHeight: 0,
-                    maximumWidth: nil,
-                    maximumHeight: nil
-                )
-            )
+        let naturalSize = backend.naturalSize(of: widget)
+        let size: ViewSize
+        if naturalSize == SIMD2(-1, -1) {
+            size = proposedSize.replacingUnspecifiedDimensions(by: ViewSize(10, 10))
         } else {
-            // TODO: Implement picker sizing within SwiftCrossUI so that we can properly implement `dryRun`.
-            return ViewUpdateResult.leafView(
-                size: ViewSize(fixedSize: size)
-            )
+            size = ViewSize(naturalSize)
         }
+        return ViewLayoutResult.leafView(size: size)
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }
