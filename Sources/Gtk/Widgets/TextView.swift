@@ -90,7 +90,7 @@ open class TextView: Widget, Scrollable {
 
     open var buffer: TextBuffer
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         addSignal(name: "backspace") { [weak self] () in

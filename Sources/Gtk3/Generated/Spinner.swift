@@ -19,7 +19,7 @@ open class Spinner: Widget {
         )
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         let handler0:

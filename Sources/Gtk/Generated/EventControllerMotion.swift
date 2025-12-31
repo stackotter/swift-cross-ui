@@ -16,7 +16,7 @@ open class EventControllerMotion: EventController {
         )
     }
 
-    public override func registerSignals() {
+    open override func registerSignals() {
         super.registerSignals()
 
         let handler0:

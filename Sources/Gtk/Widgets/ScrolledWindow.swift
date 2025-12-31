@@ -7,7 +7,7 @@ public class ScrolledWindow: Widget {
         self.init(gtk_scrolled_window_new())
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
     }
 

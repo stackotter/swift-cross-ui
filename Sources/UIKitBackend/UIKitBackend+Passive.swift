@@ -36,9 +36,7 @@ extension UIKitBackend {
     }
 
     public func createTextView() -> Widget {
-        let widget = WrapperWidget<OptionallySelectableLabel>()
-        widget.child.numberOfLines = 0
-        return widget
+        WrapperWidget<CustomTextView>()
     }
 
     public func updateTextView(
@@ -46,7 +44,7 @@ extension UIKitBackend {
         content: String,
         environment: EnvironmentValues
     ) {
-        let wrapper = textView as! WrapperWidget<OptionallySelectableLabel>
+        let wrapper = textView as! WrapperWidget<CustomTextView>
         wrapper.child.overrideUserInterfaceStyle = environment.colorScheme.userInterfaceStyle
         wrapper.child.attributedText = UIKitBackend.attributedString(
             text: content,
@@ -58,19 +56,17 @@ extension UIKitBackend {
     public func size(
         of text: String,
         whenDisplayedIn widget: Widget,
-        proposedFrame: SIMD2<Int>?,
+        proposedWidth: Int?,
+        proposedHeight: Int?,
         environment: EnvironmentValues
     ) -> SIMD2<Int> {
         let attributedString = UIKitBackend.attributedString(text: text, environment: environment)
-        let boundingSize =
-            if let proposedFrame {
-                CGSize(width: CGFloat(proposedFrame.x), height: .greatestFiniteMagnitude)
-            } else {
-                CGSize(width: .greatestFiniteMagnitude, height: environment.resolvedFont.lineHeight)
-            }
         let size = attributedString.boundingRect(
-            with: boundingSize,
-            options: proposedFrame == nil ? [] : [.usesLineFragmentOrigin],
+            with: CGSize(
+                width: proposedWidth.map(Double.init) ?? .greatestFiniteMagnitude,
+                height: proposedHeight.map(Double.init) ?? .greatestFiniteMagnitude
+            ),
+            options: [.usesLineFragmentOrigin, .truncatesLastVisibleLine],
             context: nil
         )
         return SIMD2(
@@ -106,26 +102,43 @@ extension UIKitBackend {
     }
 }
 
-// Inspired by https://medium.com/kinandcartacreated/making-uilabel-accessible-5f3d5c342df4
-// Thank you to Sam Dods for the base idea
-final class OptionallySelectableLabel: UILabel {
+final class CustomTextView: UIView {
     var isSelectable: Bool = false
 
+    var attributedText: NSAttributedString {
+        get {
+            textStorage
+        }
+        set {
+            textStorage.setAttributedString(newValue)
+            setNeedsDisplay()
+        }
+    }
+
+    var text: String {
+        attributedText.string
+    }
+
+    var layoutManager: NSLayoutManager
+    var textStorage: NSTextStorage
+    var textContainer: NSTextContainer
+
     override init(frame: CGRect) {
+        layoutManager = NSLayoutManager()
+
+        textStorage = NSTextStorage(attributedString: NSAttributedString(string: ""))
+        textStorage.addLayoutManager(layoutManager)
+
+        textContainer = NSTextContainer(size: frame.size)
+        textContainer.lineBreakMode = .byTruncatingTail
+        layoutManager.addTextContainer(textContainer)
+
         super.init(frame: frame)
-        setupTextSelection()
-    }
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupTextSelection()
-    }
+        isOpaque = false
 
-    override var canBecomeFirstResponder: Bool {
-        isSelectable
-    }
-
-    private func setupTextSelection() {
+        // Inspired by https://medium.com/kinandcartacreated/making-uilabel-accessible-5f3d5c342df4
+        // Thank you to Sam Dods for the base idea
         #if !os(tvOS)
             let longPress = UILongPressGestureRecognizer(
                 target: self, action: #selector(didLongPress))
@@ -134,12 +147,33 @@ final class OptionallySelectableLabel: UILabel {
         #endif
     }
 
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init?(coder:) not implemented")
+    }
+
+    override var canBecomeFirstResponder: Bool {
+        isSelectable
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if textContainer.size != bounds.size {
+            textContainer.size = bounds.size
+            setNeedsDisplay()
+        }
+    }
+
+    override func draw(_ rect: CGRect) {
+        let range = layoutManager.glyphRange(for: textContainer)
+        layoutManager.drawBackground(forGlyphRange: range, at: bounds.origin)
+        layoutManager.drawGlyphs(forGlyphRange: range, at: bounds.origin)
+    }
+
     @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
         #if !os(tvOS)
             guard
                 isSelectable,
                 gesture.state == .began,
-                let text = self.attributedText?.string,
                 !text.isEmpty
             else {
                 return
@@ -149,19 +183,13 @@ final class OptionallySelectableLabel: UILabel {
 
             let menu = UIMenuController.shared
             if !menu.isMenuVisible {
-                menu.showMenu(from: self, rect: textRect())
+                menu.showMenu(from: self, rect: bounds)
             }
         #endif
     }
 
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         return action == #selector(copy(_:))
-    }
-
-    private func textRect() -> CGRect {
-        let inset: CGFloat = -4
-        return textRect(forBounds: bounds, limitedToNumberOfLines: numberOfLines)
-            .insetBy(dx: inset, dy: inset)
     }
 
     private func cancelSelection() {

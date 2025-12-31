@@ -200,7 +200,7 @@ open class Label: Misc {
         )
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         addSignal(name: "activate-current-link") { [weak self] () in
@@ -493,6 +493,25 @@ open class Label: Misc {
         }
     }
 
+    /// The angle that the baseline of the label makes with the horizontal,
+    /// in degrees, measured counterclockwise. An angle of 90 reads from
+    /// from bottom to top, an angle of 270, from top to bottom. Ignored
+    /// if the label is selectable.
+    @GObjectProperty(named: "angle") public var angle: Double
+
+    /// The preferred place to ellipsize the string, if the label does
+    /// not have enough room to display the entire string, specified as a
+    /// #PangoEllipsizeMode.
+    ///
+    /// Note that setting this property to a value other than
+    /// %PANGO_ELLIPSIZE_NONE has the side-effect that the label requests
+    /// only enough space to display the ellipsis "...". In particular, this
+    /// means that ellipsizing labels do not work well in notebook tabs, unless
+    /// the #GtkNotebook tab-expand child property is set to %TRUE. Other ways
+    /// to set a label's width are gtk_widget_set_size_request() and
+    /// gtk_label_set_width_chars().
+    @GObjectProperty(named: "ellipsize") public var ellipsize: EllipsizeMode
+
     @GObjectProperty(named: "justify") public var justify: Justification
 
     /// The contents of the label.
@@ -508,13 +527,36 @@ open class Label: Misc {
     /// to display them.
     @GObjectProperty(named: "label") public var label: String
 
+    /// The desired maximum width of the label, in characters. If this property
+    /// is set to -1, the width will be calculated automatically.
+    ///
+    /// See the section on [text layout][label-text-layout]
+    /// for details of how #GtkLabel:width-chars and #GtkLabel:max-width-chars
+    /// determine the width of ellipsized and wrapped labels.
+    @GObjectProperty(named: "max-width-chars") public var maxWidthChars: Int
+
     @GObjectProperty(named: "mnemonic-keyval") public var mnemonicKeyval: UInt
 
     @GObjectProperty(named: "selectable") public var selectable: Bool
 
+    /// Whether the label is in single line mode. In single line mode,
+    /// the height of the label does not depend on the actual text, it
+    /// is always set to ascent + descent of the font. This can be an
+    /// advantage in situations where resizing the label because of text
+    /// changes would be distracting, e.g. in a statusbar.
+    @GObjectProperty(named: "single-line-mode") public var singleLineMode: Bool
+
     @GObjectProperty(named: "use-markup") public var useMarkup: Bool
 
     @GObjectProperty(named: "use-underline") public var useUnderline: Bool
+
+    /// The desired width of the label, in characters. If this property is set to
+    /// -1, the width will be calculated automatically.
+    ///
+    /// See the section on [text layout][label-text-layout]
+    /// for details of how #GtkLabel:width-chars and #GtkLabel:max-width-chars
+    /// determine the width of ellipsized and wrapped labels.
+    @GObjectProperty(named: "width-chars") public var widthChars: Int
 
     /// A [keybinding signal][GtkBindingSignal]
     /// which gets emitted when the user activates a link in the label.

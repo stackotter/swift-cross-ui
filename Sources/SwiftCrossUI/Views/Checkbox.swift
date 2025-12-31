@@ -12,22 +12,26 @@ struct Checkbox: ElementaryView, View {
         return backend.createCheckbox()
     }
 
-    public func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        if !dryRun {
-            backend.updateCheckbox(widget, environment: environment) { newActiveState in
-                active.wrappedValue = newActiveState
-            }
-            backend.setState(ofCheckbox: widget, to: active.wrappedValue)
-        }
-
-        return ViewUpdateResult.leafView(
-            size: ViewSize(fixedSize: backend.naturalSize(of: widget))
+        backend: Backend
+    ) -> ViewLayoutResult {
+        return ViewLayoutResult.leafView(
+            size: ViewSize(backend.naturalSize(of: widget))
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        backend.updateCheckbox(widget, environment: environment) { newActiveState in
+            active.wrappedValue = newActiveState
+        }
+        backend.setState(ofCheckbox: widget, to: active.wrappedValue)
     }
 }
