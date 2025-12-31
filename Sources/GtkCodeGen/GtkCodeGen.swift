@@ -69,6 +69,7 @@ struct GtkCodeGen {
         "Gdk.Paintable": "OpaquePointer",
         "Gdk.Clipboard": "OpaquePointer",
         "Gdk.ModifierType": "GdkModifierType",
+        "Pango.EllipsizeMode": "EllipsizeMode",
     ]
 
     static let interfaces: [String] = [
@@ -109,15 +110,16 @@ struct GtkCodeGen {
     ) throws {
         let allowListedClasses = [
             "Button", "Entry", "Label", "Range", "Scale", "Image", "Switch", "Spinner",
-            "ProgressBar", "FileChooserNative", "NativeDialog", "GestureClick", "GestureSingle",
-            "Gesture", "EventController", "GestureLongPress", "GLArea", "DrawingArea",
-            "CheckButton",
+            "ProgressBar", "FileChooserNative", "NativeDialog", "GestureClick",
+            "GestureSingle", "Gesture", "EventController", "GestureLongPress", "GLArea",
+            "DrawingArea", "CheckButton",
         ]
         let gtk3AllowListedClasses = ["MenuShell", "EventBox"]
         let gtk4AllowListedClasses = [
             "Picture", "DropDown", "Popover", "ListBox", "EventControllerMotion",
             "EventControllerKey",
         ]
+
         for class_ in gir.namespace.classes {
             guard
                 allowListedClasses.contains(class_.name)
@@ -373,7 +375,7 @@ struct GtkCodeGen {
         var properties: [DeclSyntax] = []
         for (classLike, property) in class_.getAllImplemented(\.properties, namespace: namespace) {
             guard
-                property.version == nil || property.version == "3.2",
+                property.version == nil || property.version == "3.2" || property.version == "2.6",
                 property.name != "child",
                 let decl = generateProperty(
                     property, namespace: namespace, classLike: classLike, forProtocol: false
@@ -583,7 +585,7 @@ struct GtkCodeGen {
 
         return DeclSyntax(
             """
-            \(raw: isWidget ? "" : "public") override func \(raw: methodName)() {
+            open override func \(raw: methodName)() {
                 super.\(raw: methodName)()
 
                 \(raw: exprs.joined(separator: "\n\n"))
@@ -666,6 +668,7 @@ struct GtkCodeGen {
         }
 
         if !cTypeReplacements.values.contains(type)
+            && !typeNameReplacements.values.contains(type)
             && !namespace.enumerations.contains(where: { $0.name == type })
             && type != "OpaquePointer"
         {

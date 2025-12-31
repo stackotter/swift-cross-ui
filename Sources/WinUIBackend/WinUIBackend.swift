@@ -67,6 +67,8 @@ public final class WinUIBackend: AppBackend {
 
     private var windows: [Window] = []
 
+    private var measurementTextBlock: TextBlock!
+
     public init() {
         internalState = InternalState()
     }
@@ -114,6 +116,8 @@ public final class WinUIBackend: AppBackend {
             //       as! WindowsFoundation.IInspectable
             //   let pv: __ABI_Windows_Foundation.IPropertyValue = try! iinspectable.QueryInterface()
             //   let value = try! pv.GetDoubleImpl()
+
+            self.measurementTextBlock = self.createTextView() as! TextBlock
 
             callback()
         }
@@ -547,19 +551,44 @@ public final class WinUIBackend: AppBackend {
     public func size(
         of text: String,
         whenDisplayedIn widget: Widget,
-        proposedFrame: SIMD2<Int>?,
+        proposedWidth: Int?,
+        proposedHeight: Int?,
         environment: EnvironmentValues
     ) -> SIMD2<Int> {
-        let block = createTextView()
-        updateTextView(block, content: text, environment: environment)
+        // Update the text view's environment and measure its desired line height
+        updateTextView(measurementTextBlock, content: "a", environment: environment)
+        let lineHeight = Self.measure(
+            measurementTextBlock,
+            proposedWidth: nil,
+            proposedHeight: nil
+        ).y
 
-        let allocation = WindowsFoundation.Size(
-            width: (proposedFrame?.x).map(Float.init(_:)) ?? .infinity,
-            height: .infinity
+        // Measure the text's size
+        measurementTextBlock.text = text
+        var size = Self.measure(
+            measurementTextBlock,
+            proposedWidth: proposedWidth,
+            proposedHeight: proposedHeight
         )
-        try! block.measure(allocation)
 
-        let computedSize = block.desiredSize
+        // Make sure the text doesn't get shorter than a single line of text even if
+        // it's empty.
+        size.y = max(size.y, lineHeight)
+        return size
+    }
+
+    private static func measure(
+        _ textBlock: TextBlock,
+        proposedWidth: Int?,
+        proposedHeight: Int?
+    ) -> SIMD2<Int> {
+        let allocation = WindowsFoundation.Size(
+            width: proposedWidth.map(Float.init) ?? .infinity,
+            height: proposedHeight.map(Float.init) ?? .infinity
+        )
+        try! textBlock.measure(allocation)
+
+        let computedSize = textBlock.desiredSize
         return SIMD2(
             Int(computedSize.width),
             Int(computedSize.height)
@@ -569,6 +598,7 @@ public final class WinUIBackend: AppBackend {
     public func createTextView() -> Widget {
         let textBlock = TextBlock()
         textBlock.textWrapping = .wrap
+        textBlock.textTrimming = .characterEllipsis
         return textBlock
     }
 

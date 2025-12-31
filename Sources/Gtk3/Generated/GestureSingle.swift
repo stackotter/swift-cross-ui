@@ -14,7 +14,7 @@ import CGtk3
 /// currently pressed can be known through gtk_gesture_single_get_current_button().
 open class GestureSingle: Gesture {
 
-    public override func registerSignals() {
+    open override func registerSignals() {
         super.registerSignals()
 
         let handler0:
