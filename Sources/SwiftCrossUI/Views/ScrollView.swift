@@ -72,7 +72,10 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         )
 
         if willEarlyExit {
-            print("early exit: childResult.size=\(childResult.size)")
+            logger.notice(
+                "early exit from \(#function)",
+                metadata: ["childResult.size": "\(childResult.size)"]
+            )
             return childResult
         }
 
