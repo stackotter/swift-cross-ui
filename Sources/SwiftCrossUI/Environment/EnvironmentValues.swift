@@ -98,8 +98,17 @@ public struct EnvironmentValues {
     /// Whether the text should be selectable. Set by ``View/textSelectionEnabled(_:)``.
     public var isTextSelectionEnabled: Bool
 
-    // Backing storage for extensible subscript
+    /// Backing storage for extensible subscript
     private var extraValues: [ObjectIdentifier: Any]
+
+    /// An internal environment value used to control whether layout caching is
+    /// enabled or not. This is set to true when computing non-final layouts. E.g.
+    /// when a stack computes the minimum and maximum sizes of its children, it
+    /// should enable layout caching because those updates are guaranteed to be
+    /// non-final. The reason that we can't cache on non-final updates is that
+    /// the last layout proposal received by each view must be its intended final
+    /// proposal.
+    var allowLayoutCaching: Bool
 
     public subscript<T: EnvironmentKey>(_ key: T.Type) -> T.Value {
         get {
@@ -125,6 +134,10 @@ public struct EnvironmentValues {
     /// in, if any. This is a very internal detail that should never get
     /// exposed to users.
     package var window: Any?
+    /// The backend's representation of the sheet that the current view is
+    /// in, if any. This is a very internal detail that should never get
+    /// exposed to users.
+    package var sheet: Any?
     /// The backend in use. Mustn't change throughout the app's lifecycle.
     let backend: any AppBackend
 
@@ -136,6 +149,7 @@ public struct EnvironmentValues {
     /// can decide whether to make it an app modal, a standalone window, or a
     /// window of its choosing).
     @MainActor
+    @available(tvOS, unavailable, message: "tvOS does not provide file system access")
     public var chooseFile: PresentSingleFileOpenDialogAction {
         return PresentSingleFileOpenDialogAction(
             backend: backend,
@@ -191,7 +205,7 @@ public struct EnvironmentValues {
     }
 
     /// Creates the default environment.
-    init<Backend: AppBackend>(backend: Backend) {
+    package init<Backend: AppBackend>(backend: Backend) {
         self.backend = backend
 
         onResize = { _ in }
@@ -212,6 +226,7 @@ public struct EnvironmentValues {
         isEnabled = true
         scrollDismissesKeyboardMode = .automatic
         isTextSelectionEnabled = false
+        allowLayoutCaching = false
     }
 
     /// Returns a copy of the environment with the specified property set to the

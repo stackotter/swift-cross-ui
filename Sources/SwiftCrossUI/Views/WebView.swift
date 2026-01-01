@@ -2,6 +2,9 @@ import Foundation
 
 @available(tvOS, unavailable)
 public struct WebView: ElementaryView {
+    /// The ideal size of a WebView.
+    private static let idealSize = ViewSize(10, 10)
+
     @State var currentURL: URL?
     @Binding var url: URL
 
@@ -13,35 +16,30 @@ public struct WebView: ElementaryView {
         backend.createWebView()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        if !dryRun {
-            if url != currentURL {
-                backend.navigateWebView(widget, to: url)
-                currentURL = url
-            }
-            backend.updateWebView(widget, environment: environment) { destination in
-                currentURL = destination
-                url = destination
-            }
-            backend.setSize(of: widget, to: proposedSize)
-        }
+        backend: Backend
+    ) -> ViewLayoutResult {
+        let size = proposedSize.replacingUnspecifiedDimensions(by: Self.idealSize)
+        return ViewLayoutResult.leafView(size: size)
+    }
 
-        return ViewUpdateResult(
-            size: ViewSize(
-                size: proposedSize,
-                idealSize: SIMD2(10, 10),
-                minimumWidth: 0,
-                minimumHeight: 0,
-                maximumWidth: nil,
-                maximumHeight: nil
-            ),
-            childResults: []
-        )
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        if url != currentURL {
+            backend.navigateWebView(widget, to: url)
+            currentURL = url
+        }
+        backend.updateWebView(widget, environment: environment) { destination in
+            currentURL = destination
+            url = destination
+        }
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }

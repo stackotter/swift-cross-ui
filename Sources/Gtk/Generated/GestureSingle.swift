@@ -15,7 +15,7 @@ import CGtk
 /// [method@Gtk.GestureSingle.get_current_button].
 open class GestureSingle: Gesture {
 
-    public override func registerSignals() {
+    open override func registerSignals() {
         super.registerSignals()
 
         let handler0:

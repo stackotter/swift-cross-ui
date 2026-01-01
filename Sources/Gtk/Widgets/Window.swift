@@ -15,6 +15,7 @@ open class Window: Widget {
     @GObjectProperty(named: "resizable") public var resizable: Bool
     @GObjectProperty(named: "modal") public var isModal: Bool
     @GObjectProperty(named: "decorated") public var isDecorated: Bool
+    @GObjectProperty(named: "destroy-with-parent") public var destroyWithParent: Bool
 
     public func setTransient(for other: Window) {
         gtk_window_set_transient_for(castedPointer(), other.castedPointer())
@@ -82,5 +83,42 @@ open class Window: Widget {
 
     public func present() {
         gtk_window_present(castedPointer())
+
+        addSignal(name: "close-request") { [weak self] () in
+            guard let self = self else { return }
+            self.onCloseRequest?(self)
+        }
+
+        addSignal(name: "destroy") { [weak self] () in
+            guard let self = self else { return }
+            self.onDestroy?(self)
+        }
+    }
+
+    public func setEscapeKeyPressedHandler(to handler: (() -> Void)?) {
+        escapeKeyPressed = handler
+
+        guard escapeKeyEventController == nil else { return }
+
+        let keyEventController = EventControllerKey()
+        keyEventController.keyPressed = { [weak self] _, keyval, _, _ in
+            guard keyval == GDK_KEY_Escape else { return }
+            self?.escapeKeyPressed?()
+        }
+        escapeKeyEventController = keyEventController
+        addEventController(keyEventController)
+    }
+
+    private var escapeKeyEventController: EventControllerKey?
+
+    public var onCloseRequest: ((Window) -> Void)?
+    public var onDestroy: ((Window) -> Void)?
+    public var escapeKeyPressed: (() -> Void)?
+}
+
+final class ValueBox<T> {
+    let value: T
+    init(value: T) {
+        self.value = value
     }
 }
