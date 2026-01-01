@@ -5,7 +5,7 @@ public class ScrolledWindow: Bin {
         self.init(gtk_scrolled_window_new(nil, nil))
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
     }
 

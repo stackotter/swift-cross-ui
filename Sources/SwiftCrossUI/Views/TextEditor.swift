@@ -14,51 +14,58 @@ public struct TextEditor: ElementaryView {
         backend.createTextEditor()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         // Avoid evaluating the binding multiple times
         let content = text
 
-        if !dryRun {
-            backend.updateTextEditor(widget, environment: environment) { newValue in
-                self.text = newValue
-            }
-            if content != backend.getContent(ofTextEditor: widget) {
-                backend.setContent(ofTextEditor: widget, to: content)
-            }
-        }
-
-        let idealHeight = backend.size(
-            of: content,
-            whenDisplayedIn: widget,
-            proposedFrame: SIMD2(proposedSize.x, 1),
-            environment: environment
-        ).y
-        let size = SIMD2(
-            proposedSize.x,
-            max(proposedSize.y, idealHeight)
-        )
-
-        if !dryRun {
-            backend.setSize(of: widget, to: size)
-        }
-
-        return ViewUpdateResult.leafView(
-            size: ViewSize(
-                size: size,
-                idealSize: SIMD2(10, 10),
-                idealWidthForProposedHeight: 10,
-                idealHeightForProposedWidth: idealHeight,
-                minimumWidth: 0,
-                minimumHeight: idealHeight,
-                maximumWidth: nil,
-                maximumHeight: nil
+        let size: ViewSize
+        if proposedSize == .unspecified {
+            size = ViewSize(10, 10)
+        } else if let width = proposedSize.width, proposedSize.height == nil {
+            // See ``Text``'s computeLayout for a more details on why we clamp
+            // the width to be positive.
+            let idealSize = backend.size(
+                of: content,
+                whenDisplayedIn: widget,
+                // For text, an infinite proposal is the same as an unspecified
+                // proposal, and this works nicer with most backends than converting
+                // .infinity to a large integer (which is the alternative).
+                proposedWidth: width == .infinity ? nil : max(1, LayoutSystem.roundSize(width)),
+                proposedHeight: nil,
+                environment: environment
             )
-        )
+            size = ViewSize(
+                max(width, Double(idealSize.x)),
+                Double(idealSize.y)
+            )
+        } else {
+            size = proposedSize.replacingUnspecifiedDimensions(by: ViewSize(10, 10))
+        }
+
+        return ViewLayoutResult.leafView(size: size)
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        // Avoid evaluating the binding multiple times
+        let content = self.text
+
+        backend.updateTextEditor(widget, environment: environment) { newValue in
+            self.text = newValue
+        }
+        if text != backend.getContent(ofTextEditor: widget) {
+            backend.setContent(ofTextEditor: widget, to: content)
+        }
+
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }

@@ -552,11 +552,15 @@ public protocol AppBackend: Sendable {
     /// Gets the size that the given text would have if it were laid out while
     /// attempting to stay within the proposed frame.
     ///
-    /// Most backends only use the proposed width and ignore the proposed height.
-    ///
     /// The size returned by this function will be upheld by the layout system;
     /// child views always get the final say on their own size, parents just
-    /// choose how the children get laid out.
+    /// choose how the children get laid out. The given text should be
+    /// truncated/ellipsized to fit within the proposal if possible.
+    ///
+    /// SwiftCrossUI will never supply zero as the proposed width or height,
+    /// because some UI frameworks handle that in special ways.
+    ///
+    /// Most backends only use the proposed width and ignore the proposed height.
     ///
     /// Used by both ``Text`` and ``TextEditor``.
     ///
@@ -564,22 +568,28 @@ public protocol AppBackend: Sendable {
     ///   - text: The text to get the size of.
     ///   - widget: The target widget. Some backends (such as GTK) require a
     ///     reference to the target widget to get a text layout context.
-    ///   - proposedFrame: The proposed size of the text. If `nil`, the text
+    ///   - proposedWidth: The proposed width of the text. If `nil`, the text
     ///     should be laid out on a single line taking up as much width as it
     ///     needs.
+    ///   - proposedHeight: The proposed height of the text.
     ///   - environment: The current environment.
     /// - Returns: The size of `text` if it were laid out while attempting to
     ///   stay within `proposedFrame`.
     func size(
         of text: String,
         whenDisplayedIn widget: Widget,
-        proposedFrame: SIMD2<Int>?,
+        proposedWidth: Int?,
+        proposedHeight: Int?,
         environment: EnvironmentValues
     ) -> SIMD2<Int>
 
     /// Creates a non-editable text view with optional text wrapping.
     ///
     /// Predominantly used by ``Text``.
+    ///
+    /// The returned widget should truncate and ellipsize its content when
+    /// given a size which isn't big enough to fit the full content, as per
+    /// ``size(of:whenDisplayedIn:proposedWidth:proposedHeight:environment)``.
     ///
     /// - Returns: A text view.
     func createTextView() -> Widget
@@ -1428,7 +1438,8 @@ extension AppBackend {
     public func size(
         of text: String,
         whenDisplayedIn widget: Widget,
-        proposedFrame: SIMD2<Int>?,
+        proposedWidth: Int?,
+        proposedHeight: Int?,
         environment: EnvironmentValues
     ) -> SIMD2<Int> {
         todo()

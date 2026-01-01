@@ -56,16 +56,13 @@ extension TaskModifier: View {
     var body: some View {
         // Explicitly return to disable result builder (we don't want an extra
         // layer of views).
-        return
-            content
-            .onChange(of: id, initial: true) {
-                task?.cancel()
-                task = Task(priority: priority) {
-                    await action()
-                }
+        return content.onChange(of: id, initial: true) {
+            task?.cancel()
+            task = Task(priority: priority) {
+                await action()
             }
-            .onDisappear {
-                task?.cancel()
-            }
+        }.onDisappear {
+            task?.cancel()
+        }
     }
 }

@@ -43,6 +43,9 @@ struct IntegerValue<Value: BinaryInteger>: DoubleConvertible {
 
 /// A control for selecting a value from a bounded range of numerical values.
 public struct Slider: ElementaryView, View {
+    /// The ideal width of a Slider.
+    private static let idealWidth: Double = 100
+
     /// A binding to the current value.
     private var value: Binding<Double>?
     /// The slider's minimum value.
@@ -96,54 +99,51 @@ public struct Slider: ElementaryView, View {
         decimalPlaces = 2
     }
 
-    public func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
         return backend.createSlider()
     }
 
-    public func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        if !dryRun {
-            backend.updateSlider(
-                widget,
-                minimum: minimum,
-                maximum: maximum,
-                decimalPlaces: decimalPlaces,
-                environment: environment
-            ) { newValue in
-                if let value {
-                    value.wrappedValue = newValue
-                }
-            }
-
-            if let value = value?.wrappedValue {
-                backend.setValue(ofSlider: widget, to: value)
-            }
-        }
-
-        // TODO: Don't rely on naturalSize for minimum size so that we can get Slider sizes without
-        //   relying on the widget.
+        backend: Backend
+    ) -> ViewLayoutResult {
+        // TODO: Don't rely on naturalSize for minimum size so that we can get
+        //   Slider sizes without relying on the widget.
         let naturalSize = backend.naturalSize(of: widget)
-        let size = SIMD2(proposedSize.x, naturalSize.y)
 
-        if !dryRun {
-            backend.setSize(of: widget, to: size)
-        }
+        let size = ViewSize(
+            max(Double(naturalSize.x), proposedSize.width ?? Self.idealWidth),
+            Double(naturalSize.y)
+        )
 
         // TODO: Allow backends to specify their own ideal slider widths.
-        return ViewUpdateResult.leafView(
-            size: ViewSize(
-                size: size,
-                idealSize: SIMD2(100, naturalSize.y),
-                minimumWidth: naturalSize.x,
-                minimumHeight: naturalSize.y,
-                maximumWidth: nil,
-                maximumHeight: Double(naturalSize.y)
-            )
-        )
+        return ViewLayoutResult.leafView(size: size)
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        backend.updateSlider(
+            widget,
+            minimum: minimum,
+            maximum: maximum,
+            decimalPlaces: decimalPlaces,
+            environment: environment
+        ) { newValue in
+            if let value {
+                value.wrappedValue = newValue
+            }
+        }
+
+        if let value = value?.wrappedValue {
+            backend.setValue(ofSlider: widget, to: value)
+        }
+
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }

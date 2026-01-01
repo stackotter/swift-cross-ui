@@ -45,7 +45,7 @@ open class Switch: Widget, Actionable {
         )
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         addSignal(name: "activate") { [weak self] () in

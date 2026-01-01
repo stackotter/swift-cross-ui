@@ -96,82 +96,53 @@ struct StrictFrameView<Child: View>: TypeSafeView {
         return container
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleViewChildren1<Child>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        let proposedSize = SIMD2(
-            width ?? proposedSize.x,
-            height ?? proposedSize.y
-        )
+        backend: Backend
+    ) -> ViewLayoutResult {
+        let width = width.map(Double.init)
+        let height = height.map(Double.init)
 
-        let childResult = children.child0.update(
+        let childResult = children.child0.computeLayout(
             with: body.view0,
-            proposedSize: proposedSize,
-            environment: environment,
-            dryRun: dryRun
+            proposedSize: ProposedViewSize(
+                width ?? proposedSize.width,
+                height ?? proposedSize.height
+            ),
+            environment: environment
         )
         let childSize = childResult.size
 
-        let frameSize = SIMD2(
-            width ?? childSize.size.x,
-            height ?? childSize.size.y
+        let frameSize = ViewSize(
+            width ?? childSize.width,
+            height ?? childSize.height
         )
-        if !dryRun {
-            let childPosition = alignment.position(
-                ofChild: childSize.size,
-                in: frameSize
-            )
-            backend.setSize(of: widget, to: frameSize)
-            backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
-        }
 
-        let idealWidth: Int
-        let idealHeight: Int
-        if let width, let height {
-            idealWidth = width
-            idealHeight = height
-        } else if let width, height == nil {
-            idealWidth = width
-            idealHeight = childSize.idealHeightForProposedWidth
-        } else if let height, width == nil {
-            idealHeight = height
-            idealWidth = childSize.idealWidthForProposedHeight
-        } else {
-            idealWidth = childSize.idealSize.x
-            idealHeight = childSize.idealSize.y
-        }
-
-        let idealWidthForProposedHeight: Int
-        let idealHeightForProposedWidth: Int
-        if width == nil && height == nil {
-            idealWidthForProposedHeight = childSize.idealWidthForProposedHeight
-            idealHeightForProposedWidth = childSize.idealHeightForProposedWidth
-        } else {
-            idealWidthForProposedHeight = idealWidth
-            idealHeightForProposedWidth = idealHeight
-        }
-
-        return ViewUpdateResult(
-            size: ViewSize(
-                size: frameSize,
-                idealSize: SIMD2(
-                    idealWidth,
-                    idealHeight
-                ),
-                idealWidthForProposedHeight: idealWidthForProposedHeight,
-                idealHeightForProposedWidth: idealHeightForProposedWidth,
-                minimumWidth: width ?? childSize.minimumWidth,
-                minimumHeight: height ?? childSize.minimumHeight,
-                maximumWidth: width.map(Double.init) ?? childSize.maximumWidth,
-                maximumHeight: height.map(Double.init) ?? childSize.maximumHeight
-            ),
+        return ViewLayoutResult(
+            size: frameSize,
             childResults: [childResult]
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: TupleViewChildren1<Child>,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let frameSize = layout.size
+        let childSize = children.child0.commit().size
+
+        let childPosition = alignment.position(
+            ofChild: childSize.vector,
+            in: frameSize.vector
+        )
+        backend.setSize(of: widget, to: frameSize.vector)
+        backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
     }
 }
 
@@ -226,113 +197,121 @@ struct FlexibleFrameView<Child: View>: TypeSafeView {
         return container
     }
 
-    func update<Backend: AppBackend>(
+    func clampSize(_ size: ViewSize) -> ViewSize {
+        var size = size
+        size.width = clampWidth(size.width)
+        size.height = clampHeight(size.height)
+        return size
+    }
+
+    func clampHeight(_ height: Double) -> Double {
+        LayoutSystem.clamp(
+            height,
+            minimum: minHeight.map(Double.init),
+            maximum: maxHeight
+        )
+    }
+
+    func clampWidth(_ width: Double) -> Double {
+        LayoutSystem.clamp(
+            width,
+            minimum: minWidth.map(Double.init),
+            maximum: maxWidth
+        )
+    }
+
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: TupleViewChildren1<Child>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         var proposedFrameSize = proposedSize
-        if let minWidth {
-            proposedFrameSize.x = max(proposedFrameSize.x, minWidth)
-        }
-        if let maxWidth {
-            proposedFrameSize.x = LayoutSystem.roundSize(
-                min(Double(proposedFrameSize.x), maxWidth)
-            )
-        }
-        if let minHeight {
-            proposedFrameSize.y = max(proposedFrameSize.y, minHeight)
-        }
-        if let maxHeight {
-            proposedFrameSize.y = LayoutSystem.roundSize(
-                min(Double(proposedFrameSize.y), maxHeight)
-            )
+
+        if let proposedWidth = proposedSize.width {
+            proposedFrameSize.width = clampWidth(proposedWidth)
         }
 
-        let childResult = children.child0.update(
+        if let proposedHeight = proposedSize.height {
+            proposedFrameSize.height = clampHeight(proposedHeight)
+        }
+
+        if let idealWidth, proposedSize.width == nil {
+            proposedFrameSize.width = Double(idealWidth)
+        }
+
+        if let idealHeight, proposedSize.height == nil {
+            proposedFrameSize.height = Double(idealHeight)
+        }
+
+        let childResult = children.child0.computeLayout(
             with: body.view0,
             proposedSize: proposedFrameSize,
-            environment: environment,
-            dryRun: dryRun
+            environment: environment
         )
         let childSize = childResult.size
 
-        // TODO: Fix idealSize propagation. When idealSize isn't possible, we
-        //   have to use idealWidthForProposedHeight and
-        //   idealHeightForProposedWidth, and sometimes we may also have to
-        //   perform an additional dryRun update to probe the child view.
-
-        var frameSize = childSize
-        if let minWidth {
-            frameSize.size.x = max(frameSize.size.x, minWidth)
-            frameSize.minimumWidth = minWidth
-            frameSize.idealSize.x = max(frameSize.idealSize.x, minWidth)
-            frameSize.idealWidthForProposedHeight = max(
-                frameSize.idealWidthForProposedHeight,
-                minWidth
-            )
-        }
-        if let maxWidth {
-            if maxWidth == .infinity {
-                frameSize.size.x = proposedSize.x
-            } else {
-                frameSize.size.x = min(frameSize.size.x, LayoutSystem.roundSize(maxWidth))
-            }
-            frameSize.idealSize.x = LayoutSystem.roundSize(
-                min(Double(frameSize.idealSize.x), maxWidth)
-            )
-            frameSize.maximumWidth = min(childSize.maximumWidth, Double(maxWidth))
-            frameSize.idealWidthForProposedHeight = LayoutSystem.roundSize(
-                min(Double(frameSize.idealWidthForProposedHeight), maxWidth)
-            )
+        var frameSize = clampSize(childSize)
+        if maxWidth == .infinity, let proposedWidth = proposedSize.width {
+            frameSize.width = max(frameSize.width, proposedWidth)
         }
 
-        if let minHeight {
-            frameSize.size.y = max(frameSize.size.y, minHeight)
-            frameSize.minimumHeight = minHeight
-            frameSize.idealSize.y = max(frameSize.idealSize.y, minHeight)
-            frameSize.idealHeightForProposedWidth = max(
-                frameSize.idealHeightForProposedWidth,
-                minHeight
-            )
-        }
-        if let maxHeight {
-            if maxHeight == .infinity {
-                frameSize.size.y = proposedSize.y
-            } else {
-                frameSize.size.y = min(frameSize.size.y, LayoutSystem.roundSize(maxHeight))
-            }
-            frameSize.idealSize.y = LayoutSystem.roundSize(
-                min(Double(frameSize.idealSize.y), maxHeight)
-            )
-            frameSize.maximumHeight = min(childSize.maximumHeight, Double(maxHeight))
-            frameSize.idealHeightForProposedWidth = LayoutSystem.roundSize(
-                min(Double(frameSize.idealHeightForProposedWidth), maxHeight)
-            )
+        if maxHeight == .infinity, let proposedHeight = proposedSize.height {
+            frameSize.height = max(frameSize.height, proposedHeight)
         }
 
-        if let idealWidth {
-            frameSize.idealSize.x = idealWidth
-        }
-        if let idealHeight {
-            frameSize.idealSize.y = idealHeight
-        }
-
-        if !dryRun {
-            let childPosition = alignment.position(
-                ofChild: childSize.size,
-                in: frameSize.size
-            )
-            backend.setSize(of: widget, to: frameSize.size)
-            backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
-        }
-
-        return ViewUpdateResult(
+        return ViewLayoutResult(
             size: frameSize,
             childResults: [childResult]
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: TupleViewChildren1<Child>,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let frameSize = layout.size
+
+        // If the child view has at least one unspecified axis which this frame
+        // is constraining with a minimum or maximum, then compute its
+        // layout again with the clamped frame size. This allows the view to
+        // fill the space that the frame is going to take up anyway. E.g. consider,
+        //
+        // ScrollView {
+        //     Color.blue
+        //         .frame(minHeight: 100)
+        // }
+        //
+        // Without this second layout computation, the blue rectangle would
+        // take on its ideal size of 10 within a frame of height 100, instead
+        // of using up the min height of the frame as developers may expect.
+        //
+        // This doesn't apply to unconstrained axes which we have a corresponding
+        // ideal length for.
+        let widthConstrained = minWidth != nil || maxWidth != nil
+        let heightConstrained = minHeight != nil || maxHeight != nil
+        let proposedFrameSize = children.child0.lastProposedSize
+        if (proposedFrameSize.width == nil && widthConstrained)
+            || (proposedFrameSize.height == nil && heightConstrained)
+        {
+            _ = children.child0.computeLayout(
+                with: nil,
+                proposedSize: ProposedViewSize(frameSize),
+                environment: environment
+            )
+        }
+
+        let childSize = children.child0.commit().size
+
+        let childPosition = alignment.position(
+            ofChild: childSize.vector,
+            in: frameSize.vector
+        )
+        backend.setSize(of: widget, to: frameSize.vector)
+        backend.setPosition(ofChildAt: 0, in: widget, to: childPosition)
     }
 }

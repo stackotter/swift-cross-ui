@@ -9,7 +9,7 @@ open class EventControllerKey: EventController {
         )
     }
 
-    public override func registerSignals() {
+    open override func registerSignals() {
         super.registerSignals()
 
         addSignal(name: "im-update") { [weak self] () in

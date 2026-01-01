@@ -142,20 +142,28 @@ struct ProgressSpinnerView: ElementaryView {
         backend.createProgressSpinner()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        ViewUpdateResult.leafView(
-            size: ViewSize(fixedSize: backend.naturalSize(of: widget))
-        )
+        backend: Backend
+    ) -> ViewLayoutResult {
+        let size = ViewSize(backend.naturalSize(of: widget))
+        return ViewLayoutResult.leafView(size: size)
     }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {}
 }
 
 struct ProgressBarView: ElementaryView {
+    /// The ideal width of a ProgressBarView.
+    static let idealWidth: Double = 100
+
     var value: Double?
 
     init(value: Double?) {
@@ -166,33 +174,28 @@ struct ProgressBarView: ElementaryView {
         backend.createProgressBar()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         let height = backend.naturalSize(of: widget).y
-        let size = SIMD2(
-            proposedSize.x,
-            height
+        let size = ViewSize(
+            proposedSize.width ?? Self.idealWidth,
+            Double(height)
         )
 
-        if !dryRun {
-            backend.updateProgressBar(widget, progressFraction: value, environment: environment)
-            backend.setSize(of: widget, to: size)
-        }
+        return ViewLayoutResult.leafView(size: size)
+    }
 
-        return ViewUpdateResult.leafView(
-            size: ViewSize(
-                size: size,
-                idealSize: SIMD2(100, height),
-                minimumWidth: 0,
-                minimumHeight: height,
-                maximumWidth: nil,
-                maximumHeight: Double(height)
-            )
-        )
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        backend.updateProgressBar(widget, progressFraction: value, environment: environment)
+        backend.setSize(of: widget, to: layout.size.vector)
     }
 }

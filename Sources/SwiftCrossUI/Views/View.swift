@@ -65,15 +65,14 @@ public protocol View {
         backend: Backend
     ) -> Backend.Widget
 
-    /// Updates the view's widget after a state change occurs (although the
-    /// change isn't guaranteed to have affected this particular view).
+    /// Computes this view's layout after a state change or a change in
+    /// available space.
+    ///
+    /// This method should _not_ apply the layout to `widget`; that should be
+    /// done in ``commit(_:children:layout:environemnt:backend:)`` instead.
     ///
     /// `proposedSize` is the size suggested by the parent container, but child
     /// views always get the final call on their own size.
-    ///
-    /// Always called once immediately after creating the view's widget with.
-    /// This helps reduce code duplication between ``View/asWidget(_:backend:)``
-    /// and ``View/update(_:children:proposedSize:environment:backend:dryRun:)``
     ///
     /// - Parameters:
     ///   - widget: The view's underlying widget.
@@ -82,16 +81,32 @@ public protocol View {
     ///     container.
     ///   - environment: The current environment.
     ///   - backend: The app's backend.
-    ///   - dryRun: If `true`, avoids updating the UI and only computes sizing.
-    /// - Returns: The view's new size.
-    func update<Backend: AppBackend>(
+    /// - Returns: The view's computed size, along with any propagated preferences.
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult
+        backend: Backend
+    ) -> ViewLayoutResult
+
+    /// Commits the last computed layout to the underlying widget hierarchy.
+    ///
+    /// - Parameters:
+    ///   - widget: The view's underlying widget.
+    ///   - children: The view's children.
+    ///   - layout: The layout to use for the view. Guaranteed to be the
+    ///     last value returned by
+    ///     ``computeLayout(_:children:proposedSize:environment:backend:)``.
+    ///   - environment: The current environment.
+    ///   - backend: The app's backend.
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    )
 }
 
 extension View {
@@ -151,42 +166,71 @@ extension View {
         return vStack.asWidget(children, backend: backend)
     }
 
-    public func update<Backend: AppBackend>(
+    public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        defaultUpdate(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        defaultComputeLayout(
             widget,
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend,
-            dryRun: dryRun
+            backend: backend
         )
     }
 
-    /// The default `View.update` implementation. Haters may see this as a
+    /// The default `View.computeLayout` implementation. Haters may see this as a
     /// composition lover re-implementing inheritance; I see it as innovation.
-    public func defaultUpdate<Backend: AppBackend>(
+    public func defaultComputeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         let vStack = VStack(content: body)
-        return vStack.update(
+        return vStack.computeLayout(
             widget,
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend,
-            dryRun: dryRun
+            backend: backend
+        )
+    }
+
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        defaultCommit(
+            widget,
+            children: children,
+            layout: layout,
+            environment: environment,
+            backend: backend
+        )
+    }
+
+    public func defaultCommit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let vStack = VStack(content: body)
+        return vStack.commit(
+            widget,
+            children: children,
+            layout: layout,
+            environment: environment,
+            backend: backend
         )
     }
 }

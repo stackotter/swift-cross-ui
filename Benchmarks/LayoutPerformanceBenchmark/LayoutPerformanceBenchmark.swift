@@ -10,10 +10,13 @@ protocol TestCaseView: View {
 #if BENCHMARK_VIZ
     import DefaultBackend
 
+    @MainActor
+    var visualizationSize: (width: Int?, height: Int?) = (nil, nil)
+
     struct VizApp<V: TestCaseView>: App {
         var body: some Scene {
-            WindowGroup("Benchmark visualisation") {
-                V()
+            WindowGroup("Benchmark visualization") {
+                V().frame(width: visualizationSize.width, height: visualizationSize.height)
             }
         }
     }
@@ -34,36 +37,39 @@ struct Benchmarks {
         }
 
         @MainActor
-        func updateNode<V: View>(_ node: ViewGraphNode<V, DummyBackend>, _ size: SIMD2<Int>) {
-            _ = node.update(proposedSize: size, environment: environment, dryRun: true)
-            _ = node.update(proposedSize: size, environment: environment, dryRun: false)
+        func updateNode<V: View>(_ node: ViewGraphNode<V, DummyBackend>, _ size: ProposedViewSize) {
+            _ = node.computeLayout(proposedSize: size, environment: environment)
+            _ = node.commit()
         }
 
         #if BENCHMARK_VIZ
-            var benchmarkVisualizations: [(name: String, main: () -> Never)] = []
+            var benchmarkVisualizations: [
+                (name: String, size: ProposedViewSize, main: () -> Never)
+            ] = []
         #endif
 
         @MainActor
-        func benchmarkLayout<V: TestCaseView>(of viewType: V.Type, _ size: SIMD2<Int>, _ label: String) {
+        func benchmarkLayout<V: TestCaseView>(of viewType: V.Type, _ size: ProposedViewSize, _ label: String) {
             #if BENCHMARK_VIZ
                 benchmarkVisualizations.append((
                     label,
+                    size,
                     {
                         VizApp<V>.main()
                         exit(0)
                     }
                 ))
             #else
-                let node = makeNode(V())
                 benchmark(label) { @MainActor in
+                    let node = makeNode(V())
                     updateNode(node, size)
                 }
             #endif
         }
 
         // Register benchmarks
-        benchmarkLayout(of: GridView.self, SIMD2(800, 800), "grid")
-        benchmarkLayout(of: ScrollableMessageListView.self, SIMD2(800, 800), "message list")
+        benchmarkLayout(of: GridView.self, ProposedViewSize(800, 800), "grid")
+        benchmarkLayout(of: ScrollableMessageListView.self, ProposedViewSize(800, 800), "message list")
 
         #if BENCHMARK_VIZ
             let names = benchmarkVisualizations.map(\.name).joined(separator: " | ")
@@ -81,6 +87,11 @@ struct Benchmarks {
                 print("\(benchmarkName) doesn't match any benchmarks")
                 exit(1)
             }
+
+            visualizationSize = (
+                benchmark.size.width.map(Int.init),
+                benchmark.size.height.map(Int.init)
+            )
 
             benchmark.main()
         #else

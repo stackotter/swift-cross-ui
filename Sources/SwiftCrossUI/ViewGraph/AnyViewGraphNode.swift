@@ -12,27 +12,36 @@ public class AnyViewGraphNode<NodeView: View> {
         _getWidget()
     }
 
-    /// The node's type-erased update method for update the view.
-    private var _updateWithNewView:
+    /// The node's last proposed size.
+    public var lastProposedSize: ProposedViewSize {
+        _getLastProposedSize()
+    }
+
+    /// The node's type-erased layout computing method.
+    private var _computeLayoutWithNewView:
         (
             _ newView: NodeView?,
-            _ proposedSize: SIMD2<Int>,
-            _ environment: EnvironmentValues,
-            _ dryRun: Bool
-        ) -> ViewUpdateResult
+            _ proposedSize: ProposedViewSize,
+            _ environment: EnvironmentValues
+        ) -> ViewLayoutResult
+    /// The node's type-erased commit method.
+    private var _commit: () -> ViewLayoutResult
     /// The type-erased getter for the node's widget.
     private var _getWidget: () -> AnyWidget
     /// The type-erased getter for the node's view.
     private var _getNodeView: () -> NodeView
     /// The type-erased getter for the node's children.
     private var _getNodeChildren: () -> any ViewGraphNodeChildren
-    /// The underlying erased backend.
+    /// The type-erased getter for the node's underlying erased backend.
     private var _getBackend: () -> any AppBackend
+    /// The type-erased getter for the node's last proposed size.
+    private var _getLastProposedSize: () -> ProposedViewSize
 
     /// Type-erases a view graph node.
     public init<Backend: AppBackend>(_ node: ViewGraphNode<NodeView, Backend>) {
         self.node = node
-        _updateWithNewView = node.update(with:proposedSize:environment:dryRun:)
+        _computeLayoutWithNewView = node.computeLayout(with:proposedSize:environment:)
+        _commit = node.commit
         _getWidget = {
             AnyWidget(node.widget)
         }
@@ -44,6 +53,9 @@ public class AnyViewGraphNode<NodeView: View> {
         }
         _getBackend = {
             node.backend
+        }
+        _getLastProposedSize = {
+            node.lastProposedSize
         }
     }
 
@@ -64,24 +76,26 @@ public class AnyViewGraphNode<NodeView: View> {
         )
     }
 
-    /// Updates the view after it got recomputed (e.g. due to the parent's state
-    /// changing) or after its own state changed (depending on the presence of
-    /// `newView`).
+    /// Computes a view's layout. Propagates to the view's children unless
+    /// the given size proposal already has a cached result.
     ///
     /// - Parameters:
     ///   - newView: The recomputed view.
     ///   - proposedSize: The view's proposed size.
     ///   - environment: The current environment.
-    ///   - dryRun: If `true`, only compute sizing and don't update the
-    ///     underlying widget.
-    /// - Returns: The result of updating the view.
-    public func update(
+    /// - Returns: The result of computing the view's layout.
+    public func computeLayout(
         with newView: NodeView?,
-        proposedSize: SIMD2<Int>,
-        environment: EnvironmentValues,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        _updateWithNewView(newView, proposedSize, environment, dryRun)
+        proposedSize: ProposedViewSize,
+        environment: EnvironmentValues
+    ) -> ViewLayoutResult {
+        _computeLayoutWithNewView(newView, proposedSize, environment)
+    }
+
+    /// Commits the view's most recently computed layout. Propagates to the
+    /// view's children. Also commits any view state changes.
+    public func commit() -> ViewLayoutResult {
+        _commit()
     }
 
     /// Gets the node's wrapped view.

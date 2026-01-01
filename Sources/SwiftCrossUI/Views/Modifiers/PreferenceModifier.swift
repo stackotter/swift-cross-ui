@@ -23,21 +23,19 @@ struct PreferenceModifier<Child: View>: View {
         self.modification = modification
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        var result = defaultUpdate(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        var result = defaultComputeLayout(
             widget,
             children: children,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend,
-            dryRun: dryRun
+            backend: backend
         )
         result.preferences = modification(result.preferences, environment)
         return result

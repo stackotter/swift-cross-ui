@@ -11,7 +11,7 @@ open class Box: Widget, Orientable {
         self.init(gtk_box_new(orientation.toGtk(), gint(spacing)))
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         for widget in children {
             widget.didMoveToParent()
         }

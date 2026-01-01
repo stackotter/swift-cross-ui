@@ -36,51 +36,50 @@ public struct ZStack<Content: View>: View {
         return zStack
     }
 
-    public func update<Backend: AppBackend>(
+    public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        var childResults: [ViewUpdateResult] = []
-        for child in layoutableChildren(backend: backend, children: children) {
-            let childResult = child.update(
-                proposedSize: proposedSize,
-                environment: environment,
-                dryRun: dryRun
-            )
-            childResults.append(childResult)
-        }
+        backend: Backend
+    ) -> ViewLayoutResult {
+        let childResults = layoutableChildren(backend: backend, children: children)
+            .map { child in
+                child.computeLayout(
+                    proposedSize: proposedSize,
+                    environment: environment
+                )
+            }
 
-        let childSizes = childResults.map(\.size)
         let size = ViewSize(
-            size: SIMD2(
-                childSizes.map(\.size.x).max() ?? 0,
-                childSizes.map(\.size.y).max() ?? 0
-            ),
-            idealSize: SIMD2(
-                childSizes.map(\.idealSize.x).max() ?? 0,
-                childSizes.map(\.idealSize.y).max() ?? 0
-            ),
-            minimumWidth: childSizes.map(\.minimumWidth).max() ?? 0,
-            minimumHeight: childSizes.map(\.minimumHeight).max() ?? 0,
-            maximumWidth: childSizes.map(\.maximumWidth).max() ?? 0,
-            maximumHeight: childSizes.map(\.maximumHeight).max() ?? 0
+            childResults.map(\.size.width).max() ?? 0,
+            childResults.map(\.size.height).max() ?? 0
         )
 
-        if !dryRun {
-            for (i, childSize) in childSizes.enumerated() {
-                let position = alignment.position(
-                    ofChild: childSize.size,
-                    in: size.size
-                )
-                backend.setPosition(ofChildAt: i, in: widget, to: position)
+        return ViewLayoutResult(size: size, childResults: childResults)
+    }
+
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let size = layout.size
+        let children = layoutableChildren(backend: backend, children: children)
+            .map { child in
+                child.commit()
             }
-            backend.setSize(of: widget, to: size.size)
+
+        for (i, child) in children.enumerated() {
+            let position = alignment.position(
+                ofChild: child.size.vector,
+                in: size.vector
+            )
+            backend.setPosition(ofChildAt: i, in: widget, to: position)
         }
 
-        return ViewUpdateResult(size: size, childResults: childResults)
+        backend.setSize(of: widget, to: size.vector)
     }
 }
