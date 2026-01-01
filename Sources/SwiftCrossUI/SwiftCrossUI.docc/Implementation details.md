@@ -73,8 +73,8 @@ view graph node's lifecycle is also what ``View/onAppear(perform:)`` and
 
 ``ViewGraphNode``s store their children using types conforming to the
 ``ViewGraphNodeChildren`` protocol.Tthe exact type is determined by the
-associated view. For example, ``TupleView3`` stores its three child nodes --
-`child0`, `child1`, and `child2` -- using ``TupleViewChildren3``, while
+associated view. For example, ``TupleView3`` stores its three child nodes ---
+`child0`, `child1`, and `child2` --- using ``TupleViewChildren3``, while
 ``ForEach`` stores its children in the `ForEachViewChildren` class which is
 designed for storing a homogenous array of child nodes. It's the responsibility
 of ``View/computeLayout(_:children:proposedSize:environment:backend:)-2gzmc``
@@ -173,7 +173,7 @@ instance.
 ## Dynamic properties
 
 Dynamic properties are properties of ``View``- or ``App``-conforming structs
-that conform to the ``DynamicProperty`` protocol -- for example, ``State`` or
+that conform to the ``DynamicProperty`` protocol --- for example, ``State`` or
 ``Environment``.
 
 There are two methods used to update these properties when view or app bodies

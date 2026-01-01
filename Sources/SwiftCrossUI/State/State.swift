@@ -9,12 +9,14 @@ import Foundation
 @propertyWrapper
 public struct State<Value>: DynamicProperty, StateProperty {
     class Storage {
-        // This inner box is what stays constant between view updates. The
-        // outer box (Storage) is used so that we can assign this box to
-        // future state instances from the non-mutating
-        // `update(with:previousValue:)` method. It's vital that the inner
-        // box remains the same so that bindings can be stored across view
-        // updates.
+        /// The inner storage of ``State``.
+        ///
+        /// This inner box is what stays constant between view updates. The
+        /// outer box (`Storage`) is used so that we can assign this box to
+        /// future ``State`` instances from the non-`mutating`
+        /// ``State/update(with:previousValue:)``. It's vital that the inner
+        /// box remains the same so that bindings can be stored across view
+        /// updates.
         var box: InnerBox
 
         class InnerBox {
@@ -27,12 +29,12 @@ public struct State<Value>: DynamicProperty, StateProperty {
             }
 
             /// Call this to publish an observation to all observers after
-            /// setting a new value. This isn't in a didSet property accessor
+            /// setting a new value. This isn't in a `didSet` property accessor
             /// because we want more granular control over when it does and
             /// doesn't trigger.
             ///
             /// Additionally updates the downstream observation if the
-            /// wrapped value is an Optional<some ObservableObject> and the
+            /// wrapped value is an `Optional<some ObservableObject>` and the
             /// current case has toggled.
             func postSet() {
                 // If the wrapped value is an Optional<some ObservableObject>
@@ -61,6 +63,7 @@ public struct State<Value>: DynamicProperty, StateProperty {
         storage.box.didChange
     }
 
+    /// Accesses the underlying value of this `State`.
     public var wrappedValue: Value {
         get {
             storage.box.value
