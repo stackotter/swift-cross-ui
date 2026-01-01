@@ -17,12 +17,45 @@ public final class DummyBackend: AppBackend {
         }
     }
 
+    public class BreadthFirstWidgetIterator: IteratorProtocol {
+        var queue: [Widget]
+
+        init(for widget: Widget) {
+            queue = [widget]
+        }
+
+        public func next() -> Widget? {
+            guard let next = queue.first else {
+                return nil
+            }
+            queue.removeFirst()
+            queue.append(contentsOf: next.getChildren())
+            return next
+        }
+    }
+
     public class Widget {
         public var tag: String?
         public var cornerRadius = 0
         public var size = SIMD2<Int>.zero
         public var naturalSize: SIMD2<Int> {
             SIMD2<Int>.zero
+        }
+
+        public func getChildren() -> [Widget] {
+            []
+        }
+
+        /// Finds the first widget of type `T` in the hierarchy defined by this
+        /// widget (including the widget itself).
+        public func firstWidget<T: Widget>(ofType type: T.Type) -> T? {
+            let iterator = BreadthFirstWidgetIterator(for: self)
+            while let child = iterator.next() {
+                if let child = child as? T {
+                    return child
+                }
+            }
+            return nil
         }
     }
 
@@ -95,10 +128,18 @@ public final class DummyBackend: AppBackend {
         public var columnLabels: [String] = []
         public var cells: [Widget] = []
         public var rowHeights: [Int] = []
+
+        public override func getChildren() -> [Widget] {
+            cells
+        }
     }
 
     public class Container: Widget {
         public var children: [(widget: Widget, position: SIMD2<Int>)] = []
+
+        public override func getChildren() -> [Widget] {
+            children.map(\.widget)
+        }
     }
 
     public class ScrollContainer: Widget {
@@ -109,6 +150,10 @@ public final class DummyBackend: AppBackend {
         public init(child: Widget) {
             self.child = child
         }
+
+        public override func getChildren() -> [Widget] {
+            [child]
+        }
     }
 
     public class SelectableListView: Widget {
@@ -116,6 +161,10 @@ public final class DummyBackend: AppBackend {
         public var rowHeights: [Int] = []
         public var selectionHandler: ((Int) -> Void)?
         public var selectedIndex: Int?
+
+        public override func getChildren() -> [Widget] {
+            items
+        }
     }
 
     public class Rectangle: Widget {
@@ -175,6 +224,10 @@ public final class DummyBackend: AppBackend {
             self.leadingChild = leadingChild
             self.trailingChild = trailingChild
         }
+
+        public override func getChildren() -> [Widget] {
+            [leadingChild, trailingChild]
+        }
     }
 
     public class Menu {}
@@ -194,6 +247,8 @@ public final class DummyBackend: AppBackend {
     public var menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public var deviceClass = DeviceClass.desktop
     public var canRevealFiles = false
+
+    public var incomingURLHandler: ((URL) -> Void)?
 
     public init() {}
 
@@ -263,6 +318,10 @@ public final class DummyBackend: AppBackend {
     public func setWindowEnvironmentChangeHandler(
         of window: Window, to action: @escaping () -> Void
     ) {}
+
+    public func setIncomingURLHandler(to action: @escaping (URL) -> Void) {
+        incomingURLHandler = action
+    }
 
     public func show(widget: Widget) {}
 
@@ -385,7 +444,10 @@ public final class DummyBackend: AppBackend {
     }
 
     public func size(
-        of text: String, whenDisplayedIn widget: Widget, proposedFrame: SIMD2<Int>?,
+        of text: String,
+        whenDisplayedIn widget: Widget,
+        proposedWidth: Int?,
+        proposedHeight: Int?,
         environment: EnvironmentValues
     ) -> SIMD2<Int> {
         let resolvedFont = environment.resolvedFont
@@ -393,17 +455,21 @@ public final class DummyBackend: AppBackend {
         let characterHeight = Int(resolvedFont.pointSize)
         let characterWidth = characterHeight * 2 / 3
 
-        guard let proposedFrame else {
+        guard let proposedWidth else {
             return SIMD2(
                 characterWidth * text.count,
                 lineHeight
             )
         }
 
-        let charactersPerLine = max(1, proposedFrame.x / characterWidth)
-        let lineCount = (text.count + charactersPerLine - 1) / charactersPerLine
+        let charactersPerLine = max(1, proposedWidth / characterWidth)
+        var lineCount = (text.count + charactersPerLine - 1) / charactersPerLine
+        if let proposedHeight {
+            lineCount = min(max(1, proposedHeight / lineHeight), lineCount)
+        }
+
         return SIMD2(
-            characterWidth * charactersPerLine,
+            characterWidth * min(charactersPerLine, text.count),
             lineHeight * lineCount
         )
     }

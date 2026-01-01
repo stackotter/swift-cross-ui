@@ -15,7 +15,7 @@ open class GestureLongPress: GestureSingle {
         )
     }
 
-    public override func registerSignals() {
+    open override func registerSignals() {
         super.registerSignals()
 
         addSignal(name: "cancelled") { [weak self] () in

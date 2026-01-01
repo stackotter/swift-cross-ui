@@ -72,7 +72,7 @@ open class ListBox: Widget {
         )
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         addSignal(name: "activate-cursor-row") { [weak self] () in

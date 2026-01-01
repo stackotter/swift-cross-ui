@@ -66,14 +66,13 @@ extension Image: TypeSafeView {
         children.container.into()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: _ImageChildren,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         let image: ImageFormats.Image<RGBA>?
         if source != children.cachedImageSource {
             switch source {
@@ -102,36 +101,44 @@ extension Image: TypeSafeView {
             image = children.cachedImage
         }
 
-        let idealSize = SIMD2(image?.width ?? 0, image?.height ?? 0)
         let size: ViewSize
-        if isResizable {
-            size = ViewSize(
-                size: image == nil ? .zero : proposedSize,
-                idealSize: idealSize,
-                minimumWidth: 0,
-                minimumHeight: 0,
-                maximumWidth: image == nil ? 0 : nil,
-                maximumHeight: image == nil ? 0 : nil
-            )
+        if let image {
+            let idealSize = ViewSize(Double(image.width), Double(image.height))
+            if isResizable {
+                size = proposedSize.replacingUnspecifiedDimensions(by: idealSize)
+            } else {
+                size = idealSize
+            }
         } else {
-            size = ViewSize(fixedSize: idealSize)
+            size = .zero
         }
 
-        let hasResized = children.cachedImageDisplaySize != size.size
-        if !dryRun
-            && (children.imageChanged
-                || hasResized
-                || (backend.requiresImageUpdateOnScaleFactorChange
-                    && children.lastScaleFactor != environment.windowScaleFactor))
+        return ViewLayoutResult.leafView(size: size)
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: _ImageChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let size = layout.size.vector
+        let hasResized = children.cachedImageDisplaySize != size
+        children.cachedImageDisplaySize = size
+        if children.imageChanged
+            || hasResized
+            || (backend.requiresImageUpdateOnScaleFactorChange
+                && children.lastScaleFactor != environment.windowScaleFactor)
         {
-            if let image {
+            if let image = children.cachedImage {
                 backend.updateImageView(
                     children.imageWidget.into(),
                     rgbaData: image.bytes,
                     width: image.width,
                     height: image.height,
-                    targetWidth: size.size.x,
-                    targetHeight: size.size.y,
+                    targetWidth: size.x,
+                    targetHeight: size.y,
                     dataHasChanged: children.imageChanged,
                     environment: environment
                 )
@@ -147,15 +154,8 @@ extension Image: TypeSafeView {
             children.imageChanged = false
             children.lastScaleFactor = environment.windowScaleFactor
         }
-
-        children.cachedImageDisplaySize = size.size
-
-        if !dryRun {
-            backend.setSize(of: children.container.into(), to: size.size)
-            backend.setSize(of: children.imageWidget.into(), to: size.size)
-        }
-
-        return ViewUpdateResult.leafView(size: size)
+        backend.setSize(of: children.container.into(), to: size)
+        backend.setSize(of: children.imageWidget.into(), to: size)
     }
 }
 

@@ -156,7 +156,7 @@ open class Image: Misc {
         )
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         let handler0:
@@ -315,6 +315,15 @@ open class Image: Misc {
             self.notifyUseFallback?(self, param0)
         }
     }
+
+    /// The name of the icon in the icon theme. If the icon theme is
+    /// changed, the image will be updated automatically.
+    @GObjectProperty(named: "icon-name") public var iconName: String
+
+    /// The "pixel-size" property can be used to specify a fixed size
+    /// overriding the #GtkImage:icon-size property for images of type
+    /// %GTK_IMAGE_ICON_NAME.
+    @GObjectProperty(named: "pixel-size") public var pixelSize: Int
 
     @GObjectProperty(named: "stock") public var stock: String
 

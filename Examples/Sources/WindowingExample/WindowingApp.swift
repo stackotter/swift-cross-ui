@@ -177,6 +177,8 @@ struct WindowingApp: App {
                     }
 
                     Image(Bundle.module.bundleURL.appendingPathComponent("Banner.png"))
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
 
                     Divider()
 

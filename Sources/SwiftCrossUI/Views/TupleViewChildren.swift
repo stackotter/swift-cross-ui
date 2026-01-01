@@ -1,6 +1,17 @@
 // This file was generated using gyb. Do not edit it directly. Edit
 // TupleViewChildren.swift.gyb instead.
 
+struct StackLayoutCache {
+    var lastFlexibilityOrdering: [Int]?
+    var lastHiddenChildren: [Bool] = []
+    var redistributeSpaceOnCommit = false
+}
+
+protocol TupleViewChildren: ViewGraphNodeChildren {
+    @MainActor
+    var stackLayoutCache: StackLayoutCache { get nonmutating set }
+}
+
 /// A helper function to shorten node initialisations to a single line. This
 /// helps compress the generated code a bit and minimise the number of additions
 /// and deletions caused by updating the generator.
@@ -21,7 +32,7 @@ private func node<V: View, Backend: AppBackend>(
 
 /// A fixed-length strongly-typed collection of 1 child nodes. A counterpart to
 /// ``TupleView1``.
-public struct TupleViewChildren1<Child0: View>: ViewGraphNodeChildren {
+public class TupleViewChildren1<Child0: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [child0.widget]
     }
@@ -31,6 +42,8 @@ public struct TupleViewChildren1<Child0: View>: ViewGraphNodeChildren {
             ErasedViewGraphNode(wrapping: child0)
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -52,7 +65,7 @@ public struct TupleViewChildren1<Child0: View>: ViewGraphNodeChildren {
 
 /// A fixed-length strongly-typed collection of 2 child nodes. A counterpart to
 /// ``TupleView2``.
-public struct TupleViewChildren2<Child0: View, Child1: View>: ViewGraphNodeChildren {
+public class TupleViewChildren2<Child0: View, Child1: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [child0.widget, child1.widget]
     }
@@ -63,6 +76,8 @@ public struct TupleViewChildren2<Child0: View, Child1: View>: ViewGraphNodeChild
             ErasedViewGraphNode(wrapping: child1),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -87,7 +102,7 @@ public struct TupleViewChildren2<Child0: View, Child1: View>: ViewGraphNodeChild
 
 /// A fixed-length strongly-typed collection of 3 child nodes. A counterpart to
 /// ``TupleView3``.
-public struct TupleViewChildren3<Child0: View, Child1: View, Child2: View>: ViewGraphNodeChildren {
+public class TupleViewChildren3<Child0: View, Child1: View, Child2: View>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [child0.widget, child1.widget, child2.widget]
     }
@@ -99,6 +114,8 @@ public struct TupleViewChildren3<Child0: View, Child1: View, Child2: View>: View
             ErasedViewGraphNode(wrapping: child2),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -127,8 +144,8 @@ public struct TupleViewChildren3<Child0: View, Child1: View, Child2: View>: View
 
 /// A fixed-length strongly-typed collection of 4 child nodes. A counterpart to
 /// ``TupleView4``.
-public struct TupleViewChildren4<Child0: View, Child1: View, Child2: View, Child3: View>:
-    ViewGraphNodeChildren
+public class TupleViewChildren4<Child0: View, Child1: View, Child2: View, Child3: View>:
+    TupleViewChildren
 {
     public var widgets: [AnyWidget] {
         return [child0.widget, child1.widget, child2.widget, child3.widget]
@@ -142,6 +159,8 @@ public struct TupleViewChildren4<Child0: View, Child1: View, Child2: View, Child
             ErasedViewGraphNode(wrapping: child3),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -173,9 +192,9 @@ public struct TupleViewChildren4<Child0: View, Child1: View, Child2: View, Child
 
 /// A fixed-length strongly-typed collection of 5 child nodes. A counterpart to
 /// ``TupleView5``.
-public struct TupleViewChildren5<
+public class TupleViewChildren5<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [child0.widget, child1.widget, child2.widget, child3.widget, child4.widget]
     }
@@ -189,6 +208,8 @@ public struct TupleViewChildren5<
             ErasedViewGraphNode(wrapping: child4),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -224,9 +245,9 @@ public struct TupleViewChildren5<
 
 /// A fixed-length strongly-typed collection of 6 child nodes. A counterpart to
 /// ``TupleView6``.
-public struct TupleViewChildren6<
+public class TupleViewChildren6<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
@@ -244,6 +265,8 @@ public struct TupleViewChildren6<
             ErasedViewGraphNode(wrapping: child5),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -283,9 +306,9 @@ public struct TupleViewChildren6<
 
 /// A fixed-length strongly-typed collection of 7 child nodes. A counterpart to
 /// ``TupleView7``.
-public struct TupleViewChildren7<
+public class TupleViewChildren7<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View, Child6: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
@@ -304,6 +327,8 @@ public struct TupleViewChildren7<
             ErasedViewGraphNode(wrapping: child6),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -347,10 +372,10 @@ public struct TupleViewChildren7<
 
 /// A fixed-length strongly-typed collection of 8 child nodes. A counterpart to
 /// ``TupleView8``.
-public struct TupleViewChildren8<
+public class TupleViewChildren8<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
     Child6: View, Child7: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
@@ -370,6 +395,8 @@ public struct TupleViewChildren8<
             ErasedViewGraphNode(wrapping: child7),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -416,10 +443,10 @@ public struct TupleViewChildren8<
 
 /// A fixed-length strongly-typed collection of 9 child nodes. A counterpart to
 /// ``TupleView9``.
-public struct TupleViewChildren9<
+public class TupleViewChildren9<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
     Child6: View, Child7: View, Child8: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
@@ -440,6 +467,8 @@ public struct TupleViewChildren9<
             ErasedViewGraphNode(wrapping: child8),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -490,10 +519,10 @@ public struct TupleViewChildren9<
 
 /// A fixed-length strongly-typed collection of 10 child nodes. A counterpart to
 /// ``TupleView10``.
-public struct TupleViewChildren10<
+public class TupleViewChildren10<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
     Child6: View, Child7: View, Child8: View, Child9: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
@@ -515,6 +544,8 @@ public struct TupleViewChildren10<
             ErasedViewGraphNode(wrapping: child9),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -568,10 +599,10 @@ public struct TupleViewChildren10<
 
 /// A fixed-length strongly-typed collection of 11 child nodes. A counterpart to
 /// ``TupleView11``.
-public struct TupleViewChildren11<
+public class TupleViewChildren11<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
     Child6: View, Child7: View, Child8: View, Child9: View, Child10: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
@@ -595,6 +626,8 @@ public struct TupleViewChildren11<
             ErasedViewGraphNode(wrapping: child10),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -653,10 +686,10 @@ public struct TupleViewChildren11<
 
 /// A fixed-length strongly-typed collection of 12 child nodes. A counterpart to
 /// ``TupleView12``.
-public struct TupleViewChildren12<
+public class TupleViewChildren12<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
     Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
@@ -681,6 +714,8 @@ public struct TupleViewChildren12<
             ErasedViewGraphNode(wrapping: child11),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -743,11 +778,11 @@ public struct TupleViewChildren12<
 
 /// A fixed-length strongly-typed collection of 13 child nodes. A counterpart to
 /// ``TupleView13``.
-public struct TupleViewChildren13<
+public class TupleViewChildren13<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
     Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
     Child12: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
@@ -773,6 +808,8 @@ public struct TupleViewChildren13<
             ErasedViewGraphNode(wrapping: child12),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -839,11 +876,11 @@ public struct TupleViewChildren13<
 
 /// A fixed-length strongly-typed collection of 14 child nodes. A counterpart to
 /// ``TupleView14``.
-public struct TupleViewChildren14<
+public class TupleViewChildren14<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
     Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
     Child12: View, Child13: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
@@ -870,6 +907,8 @@ public struct TupleViewChildren14<
             ErasedViewGraphNode(wrapping: child13),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -940,11 +979,11 @@ public struct TupleViewChildren14<
 
 /// A fixed-length strongly-typed collection of 15 child nodes. A counterpart to
 /// ``TupleView15``.
-public struct TupleViewChildren15<
+public class TupleViewChildren15<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
     Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
     Child12: View, Child13: View, Child14: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
@@ -972,6 +1011,8 @@ public struct TupleViewChildren15<
             ErasedViewGraphNode(wrapping: child14),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -1047,11 +1088,11 @@ public struct TupleViewChildren15<
 
 /// A fixed-length strongly-typed collection of 16 child nodes. A counterpart to
 /// ``TupleView16``.
-public struct TupleViewChildren16<
+public class TupleViewChildren16<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
     Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
     Child12: View, Child13: View, Child14: View, Child15: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
@@ -1081,6 +1122,8 @@ public struct TupleViewChildren16<
             ErasedViewGraphNode(wrapping: child15),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -1160,11 +1203,11 @@ public struct TupleViewChildren16<
 
 /// A fixed-length strongly-typed collection of 17 child nodes. A counterpart to
 /// ``TupleView17``.
-public struct TupleViewChildren17<
+public class TupleViewChildren17<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
     Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
     Child12: View, Child13: View, Child14: View, Child15: View, Child16: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
@@ -1195,6 +1238,8 @@ public struct TupleViewChildren17<
             ErasedViewGraphNode(wrapping: child16),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -1278,11 +1323,11 @@ public struct TupleViewChildren17<
 
 /// A fixed-length strongly-typed collection of 18 child nodes. A counterpart to
 /// ``TupleView18``.
-public struct TupleViewChildren18<
+public class TupleViewChildren18<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
     Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
     Child12: View, Child13: View, Child14: View, Child15: View, Child16: View, Child17: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
@@ -1314,6 +1359,8 @@ public struct TupleViewChildren18<
             ErasedViewGraphNode(wrapping: child17),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -1401,12 +1448,12 @@ public struct TupleViewChildren18<
 
 /// A fixed-length strongly-typed collection of 19 child nodes. A counterpart to
 /// ``TupleView19``.
-public struct TupleViewChildren19<
+public class TupleViewChildren19<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
     Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
     Child12: View, Child13: View, Child14: View, Child15: View, Child16: View, Child17: View,
     Child18: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
@@ -1439,6 +1486,8 @@ public struct TupleViewChildren19<
             ErasedViewGraphNode(wrapping: child18),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>
@@ -1531,12 +1580,12 @@ public struct TupleViewChildren19<
 
 /// A fixed-length strongly-typed collection of 20 child nodes. A counterpart to
 /// ``TupleView20``.
-public struct TupleViewChildren20<
+public class TupleViewChildren20<
     Child0: View, Child1: View, Child2: View, Child3: View, Child4: View, Child5: View,
     Child6: View, Child7: View, Child8: View, Child9: View, Child10: View, Child11: View,
     Child12: View, Child13: View, Child14: View, Child15: View, Child16: View, Child17: View,
     Child18: View, Child19: View
->: ViewGraphNodeChildren {
+>: TupleViewChildren {
     public var widgets: [AnyWidget] {
         return [
             child0.widget, child1.widget, child2.widget, child3.widget, child4.widget,
@@ -1570,6 +1619,8 @@ public struct TupleViewChildren20<
             ErasedViewGraphNode(wrapping: child19),
         ]
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// ``AnyViewGraphNode`` is used instead of ``ViewGraphNode`` because otherwise the backend leaks into views.
     public var child0: AnyViewGraphNode<Child0>

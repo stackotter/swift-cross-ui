@@ -9,7 +9,7 @@ import CGtk3
 /// “fill level” on range widgets. See gtk_range_set_fill_level().
 open class Range: Widget, Orientable {
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         let handler0:

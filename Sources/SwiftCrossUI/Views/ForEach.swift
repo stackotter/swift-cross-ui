@@ -1,3 +1,4 @@
+import Foundation
 import OrderedCollections
 
 /// A view that displays a variable amount of children.
@@ -47,40 +48,19 @@ extension ForEach: TypeSafeView, View where Child: View {
         return backend.createContainer()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
         func addChild(_ child: Backend.Widget) {
-            if dryRun {
-                children.queuedChanges.append(.addChild(AnyWidget(child)))
-            } else {
-                backend.addChild(child, to: widget)
-            }
+            children.queuedChanges.append(.addChild(AnyWidget(child)))
         }
 
         func removeChild(_ child: Backend.Widget) {
-            if dryRun {
-                children.queuedChanges.append(.removeChild(AnyWidget(child)))
-            } else {
-                backend.removeChild(child, from: widget)
-            }
-        }
-
-        if !dryRun {
-            for change in children.queuedChanges {
-                switch change {
-                    case .addChild(let child):
-                        backend.addChild(child.into(), to: widget)
-                    case .removeChild(let child):
-                        backend.removeChild(child.into(), from: widget)
-                }
-            }
-            children.queuedChanges = []
+            children.queuedChanges.append(.removeChild(AnyWidget(child)))
         }
 
         // Use the previous update Method when no keyPath is set on a
@@ -91,8 +71,7 @@ extension ForEach: TypeSafeView, View where Child: View {
                 children: children,
                 proposedSize: proposedSize,
                 environment: environment,
-                backend: backend,
-                dryRun: dryRun
+                backend: backend
             )
         }
 
@@ -181,13 +160,15 @@ extension ForEach: TypeSafeView, View where Child: View {
 
             layoutableChildren.append(
                 LayoutSystem.LayoutableChild(
-                    update: { proposedSize, environment, dryRun in
-                        node.update(
+                    computeLayout: { proposedSize, environment in
+                        node.computeLayout(
                             with: childContent,
                             proposedSize: proposedSize,
-                            environment: environment,
-                            dryRun: dryRun
+                            environment: environment
                         )
+                    },
+                    commit: {
+                        node.commit()
                     }
                 )
             )
@@ -214,13 +195,15 @@ extension ForEach: TypeSafeView, View where Child: View {
 
         children.isFirstUpdate = false
 
-        return LayoutSystem.updateStackLayout(
+        var cache = children.stackLayoutCache
+
+        return LayoutSystem.computeStackLayout(
             container: widget,
             children: layoutableChildren,
+            cache: &cache,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend,
-            dryRun: dryRun
+            backend: backend
         )
     }
 
@@ -228,25 +211,18 @@ extension ForEach: TypeSafeView, View where Child: View {
     func deprecatedUpdate<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
+        @inline(__always)
         func addChild(_ child: Backend.Widget) {
-            if dryRun {
-                children.queuedChanges.append(.addChild(AnyWidget(child)))
-            } else {
-                backend.addChild(child, to: widget)
-            }
+            children.queuedChanges.append(.addChild(AnyWidget(child)))
         }
 
+        @inline(__always)
         func removeChild(_ child: Backend.Widget) {
-            if dryRun {
-                children.queuedChanges.append(.removeChild(AnyWidget(child)))
-            } else {
-                backend.removeChild(child, from: widget)
-            }
+            children.queuedChanges.append(.removeChild(AnyWidget(child)))
         }
 
         let elementsStartIndex = elements.startIndex
@@ -267,14 +243,14 @@ extension ForEach: TypeSafeView, View where Child: View {
             }
             layoutableChildren.append(
                 LayoutSystem.LayoutableChild(
-                    update: { proposedSize, environment, dryRun in
-                        node.update(
+                    computeLayout: { proposedSize, environment in
+                        node.computeLayout(
                             with: childContent,
                             proposedSize: proposedSize,
-                            environment: environment,
-                            dryRun: dryRun
+                            environment: environment
                         )
-                    }
+                    },
+                    commit: node.commit
                 )
             )
         }
@@ -295,14 +271,14 @@ extension ForEach: TypeSafeView, View where Child: View {
                 addChild(node.widget.into())
                 layoutableChildren.append(
                     LayoutSystem.LayoutableChild(
-                        update: { proposedSize, environment, dryRun in
-                            node.update(
+                        computeLayout: { proposedSize, environment in
+                            node.computeLayout(
                                 with: childContent,
                                 proposedSize: proposedSize,
-                                environment: environment,
-                                dryRun: dryRun
+                                environment: environment
                             )
-                        }
+                        },
+                        commit: node.commit
                     )
                 )
             }
@@ -314,13 +290,51 @@ extension ForEach: TypeSafeView, View where Child: View {
             children.nodes.removeLast(unused)
         }
 
-        return LayoutSystem.updateStackLayout(
+        return LayoutSystem.computeStackLayout(
             container: widget,
             children: layoutableChildren,
+            cache: &children.stackLayoutCache,
             proposedSize: proposedSize,
             environment: environment,
-            backend: backend,
-            dryRun: dryRun
+            backend: backend
+        )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: Children,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        for change in children.queuedChanges {
+            switch change {
+                case .addChild(let child):
+                    backend.addChild(child.into(), to: widget)
+                case .removeChild(let child):
+                    backend.removeChild(child.into(), from: widget)
+            }
+        }
+        children.queuedChanges = []
+
+        LayoutSystem.commitStackLayout(
+            container: widget,
+            children: children.nodes.map { node in
+                LayoutSystem.LayoutableChild(
+                    computeLayout: { proposedSize, environment in
+                        node.computeLayout(
+                            with: nil,
+                            proposedSize: proposedSize,
+                            environment: environment
+                        )
+                    },
+                    commit: node.commit
+                )
+            },
+            cache: &children.stackLayoutCache,
+            layout: layout,
+            environment: environment,
+            backend: backend
         )
     }
 }
@@ -367,6 +381,8 @@ class ForEachViewChildren<
     var erasedNodes: [ErasedViewGraphNode] {
         nodes.map(ErasedViewGraphNode.init(wrapping:))
     }
+
+    var stackLayoutCache = StackLayoutCache()
 
     /// Gets a variable length view's children as view graph node children.
     init<Backend: AppBackend>(

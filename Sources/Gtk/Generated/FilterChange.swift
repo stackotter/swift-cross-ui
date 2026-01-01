@@ -6,8 +6,6 @@ import CGtk
 /// If you are writing an implementation and are not sure which
 /// value to pass, `GTK_FILTER_CHANGE_DIFFERENT` is always a correct
 /// choice.
-///
-/// New values may be added in the future.
 public enum FilterChange: GValueRepresentableEnum {
     public typealias GtkEnum = GtkFilterChange
 

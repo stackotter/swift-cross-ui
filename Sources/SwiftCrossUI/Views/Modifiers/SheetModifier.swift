@@ -64,20 +64,28 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
         children.childNode.widget.into()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        let childResult = children.childNode.update(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        children.childNode.computeLayout(
             with: body.view0,
             proposedSize: proposedSize,
-            environment: environment,
-            dryRun: dryRun
+            environment: environment
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: Children,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        _ = children.childNode.commit()
 
         if isPresented.wrappedValue && children.sheet == nil {
             let sheetViewGraphNode = ViewGraphNode(
@@ -101,12 +109,12 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
                 .with(\.dismiss, dismissAction)
                 .with(\.sheet, sheet)
 
-            let result = children.sheetContentNode!.update(
+            _ = children.sheetContentNode!.computeLayout(
                 with: sheetContent(),
-                proposedSize: SIMD2(x: 10_000, y: 0),
-                environment: sheetEnvironment,
-                dryRun: false
+                proposedSize: .unspecified,
+                environment: sheetEnvironment
             )
+            let result = children.sheetContentNode!.commit()
 
             let window = environment.window! as! Backend.Window
             let preferences = result.preferences
@@ -117,7 +125,7 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
                 // sheetEnvironment here, because this is meant to be the sheet's
                 // environment, not that of its content.
                 environment: environment,
-                size: result.size.size,
+                size: result.size.vector,
                 onDismiss: { handleDismiss(children: children) },
                 cornerRadius: preferences.presentationCornerRadius,
                 detents: preferences.presentationDetents ?? [],
@@ -147,15 +155,6 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
             children.parentSheet = nil
             children.sheetContentNode = nil
         }
-
-        // Reset presentation preferences so that they don't leak to enclosing sheets.
-        var modifiedResult = childResult
-        modifiedResult.preferences.interactiveDismissDisabled = nil
-        modifiedResult.preferences.presentationBackground = nil
-        modifiedResult.preferences.presentationCornerRadius = nil
-        modifiedResult.preferences.presentationDetents = nil
-        modifiedResult.preferences.presentationDragIndicatorVisibility = nil
-        return modifiedResult
     }
 
     func handleDismiss(children: Children) {

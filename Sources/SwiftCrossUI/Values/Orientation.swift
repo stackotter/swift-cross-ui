@@ -2,4 +2,14 @@
 public enum Orientation: Sendable {
     case horizontal
     case vertical
+
+    /// The orientation perpendicular to this one.
+    var perpendicular: Orientation {
+        switch self {
+            case .horizontal:
+                .vertical
+            case .vertical:
+                .horizontal
+        }
+    }
 }
