@@ -16,6 +16,7 @@ public final class AppKitBackend: AppBackend {
     public typealias Menu = NSMenu
     public typealias Alert = NSAlert
     public typealias Path = NSBezierPath
+    public typealias Sheet = NSCustomSheet
 
     public let defaultTableRowContentHeight = 20
     public let defaultTableCellVerticalPadding = 4
@@ -30,7 +31,7 @@ public final class AppKitBackend: AppBackend {
         // We assume that all scrollers have their controlSize set to `.regular` by default.
         // The internet seems to indicate that this is true regardless of any system wide
         // preferences etc.
-        Int(
+        return Int(
             NSScroller.scrollerWidth(
                 for: .regular,
                 scrollerStyle: NSScroller.preferredScrollerStyle
@@ -61,7 +62,7 @@ public final class AppKitBackend: AppBackend {
                 width: CGFloat(defaultSize?.x ?? 0),
                 height: CGFloat(defaultSize?.y ?? 0)
             ),
-            styleMask: [.titled, .closable],
+            styleMask: [.titled, .closable, .miniaturizable],
             backing: .buffered,
             defer: true
         )
@@ -531,32 +532,17 @@ public final class AppKitBackend: AppBackend {
     public func size(
         of text: String,
         whenDisplayedIn widget: Widget,
-        proposedFrame: SIMD2<Int>?,
+        proposedWidth: Int?,
+        proposedHeight: Int?,
         environment: EnvironmentValues
     ) -> SIMD2<Int> {
-        if let proposedFrame, proposedFrame.x == 0 {
-            // We want the text to have the same height as it would have if it were
-            // one pixel wide so that the layout doesn't suddely jump when the text
-            // reaches zero width.
-            let size = size(
-                of: text,
-                whenDisplayedIn: widget,
-                proposedFrame: SIMD2(1, proposedFrame.y),
-                environment: environment
-            )
-            return SIMD2(
-                0,
-                size.y
-            )
-        }
-
         let proposedSize = NSSize(
-            width: (proposedFrame?.x).map(CGFloat.init) ?? 0,
-            height: .greatestFiniteMagnitude
+            width: proposedWidth.map(Double.init) ?? .greatestFiniteMagnitude,
+            height: proposedHeight.map(Double.init) ?? .greatestFiniteMagnitude
         )
         let rect = NSString(string: text).boundingRect(
             with: proposedSize,
-            options: [.usesLineFragmentOrigin],
+            options: [.usesLineFragmentOrigin, .truncatesLastVisibleLine],
             attributes: Self.attributes(forTextIn: environment)
         )
         return SIMD2(
@@ -572,6 +558,7 @@ public final class AppKitBackend: AppBackend {
         // styles when clicked (yeah that happens...)
         field.allowsEditingTextAttributes = true
         field.isSelectable = false
+        field.cell?.truncatesLastVisibleLine = true
         return field
     }
 
@@ -1719,6 +1706,119 @@ public final class AppKitBackend: AppBackend {
         let request = URLRequest(url: url)
         webView.load(request)
     }
+
+    public func createSheet(content: NSView) -> NSCustomSheet {
+        // Initialize with a default contentRect, similar to `createWindow`
+        let sheet = NSCustomSheet(
+            contentRect: NSRect(
+                x: 0,
+                y: 0,
+                width: 400,
+                height: 400
+            ),
+            styleMask: [.titled, .closable],
+            backing: .buffered,
+            defer: true
+        )
+
+        let backgroundView = NSView()
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.wantsLayer = true
+
+        let contentView = NSView()
+        contentView.addSubview(backgroundView)
+        contentView.addSubview(content)
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: content.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: content.leadingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: content.bottomAnchor),
+            contentView.trailingAnchor.constraint(equalTo: content.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: backgroundView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
+            contentView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+        ])
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+
+        sheet.contentView = contentView
+        sheet.backgroundView = backgroundView
+
+        return sheet
+    }
+
+    public func updateSheet(
+        _ sheet: NSCustomSheet,
+        window: NSCustomWindow,
+        environment: EnvironmentValues,
+        size: SIMD2<Int>,
+        onDismiss: @escaping () -> Void,
+        cornerRadius: Double?,
+        detents: [PresentationDetent],
+        dragIndicatorVisibility: Visibility,
+        backgroundColor: Color?,
+        interactiveDismissDisabled: Bool
+    ) {
+        sheet.setContentSize(NSSize(width: size.x, height: size.y))
+        sheet.onDismiss = onDismiss
+
+        let background = sheet.backgroundView!
+        background.layer?.backgroundColor = backgroundColor?.nsColor.cgColor
+        sheet.interactiveDismissDisabled = interactiveDismissDisabled
+
+        // - dragIndicatorVisibility is only for mobile so we ignore it
+        // - detents are only for mobile so we ignore them
+        // - cornerRadius isn't supported by macOS so we ignore it
+    }
+
+    public func size(ofSheet sheet: NSCustomSheet) -> SIMD2<Int> {
+        guard let size = sheet.contentView?.frame.size else {
+            return SIMD2(x: 0, y: 0)
+        }
+        return SIMD2(x: Int(size.width), y: Int(size.height))
+    }
+
+    public func presentSheet(_ sheet: NSCustomSheet, window: Window, parentSheet: Sheet?) {
+        let parent = parentSheet ?? window
+        // beginSheet and beginCriticalSheet should be equivalent here, because we
+        // directly present the sheet on top of the top-most sheet. If we were to
+        // instead present sheets on top of the root window every time, then
+        // beginCriticalSheet would produce the desired behaviour and beginSheet
+        // would wait for the parent sheet to finish before presenting the nested sheet.
+        parent.beginSheet(sheet)
+        parent.nestedSheet = sheet
+    }
+
+    public func dismissSheet(_ sheet: NSCustomSheet, window: Window, parentSheet: Sheet?) {
+        let parent = parentSheet ?? window
+
+        // Dismiss nested sheets first
+        if let nestedSheet = sheet.nestedSheet {
+            dismissSheet(nestedSheet, window: window, parentSheet: sheet)
+            // Although the current sheet has been dismissed programmatically,
+            // the nested sheets kind of haven't (at least, they weren't
+            // directly dismissed by SwiftCrossUI, so we must called onDismiss
+            // to let SwiftUI react to the dismissals of nested sheets).
+            nestedSheet.onDismiss?()
+        }
+
+        parent.endSheet(sheet)
+        parent.nestedSheet = nil
+    }
+}
+
+public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate {
+    public var onDismiss: (() -> Void)?
+
+    public var interactiveDismissDisabled: Bool = false
+
+    public var backgroundView: NSView?
+
+    @objc override public func cancelOperation(_ sender: Any?) {
+        if !interactiveDismissDisabled {
+            sheetParent?.endSheet(self)
+            onDismiss?()
+        }
+    }
 }
 
 final class NSCustomTapGestureTarget: NSView {
@@ -2141,6 +2241,11 @@ public class NSCustomWindow: NSWindow {
     var customDelegate = Delegate()
     var persistentUndoManager = UndoManager()
 
+    /// A reference to the sheet currently presented on top of this window, if any.
+    /// If the sheet itself has another sheet presented on top of it, then that doubly
+    /// nested sheet gets stored as the sheet's nestedSheet, and so on.
+    var nestedSheet: NSCustomSheet?
+
     /// Allows the backing scale factor to be overridden. Useful for keeping
     /// UI tests consistent across devices.
     ///
@@ -2164,7 +2269,9 @@ public class NSCustomWindow: NSWindow {
             }
 
             let contentSize = sender.contentRect(
-                forFrameRect: NSRect(x: 0, y: 0, width: frameSize.width, height: frameSize.height)
+                forFrameRect: NSRect(
+                    x: sender.frame.origin.x, y: sender.frame.origin.y, width: frameSize.width,
+                    height: frameSize.height)
             )
 
             resizeHandler(

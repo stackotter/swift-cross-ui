@@ -13,7 +13,7 @@ open class ToggleButton: Button {
         self.init(gtk_toggle_button_new_with_mnemonic(label))
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         addSignal(name: "toggled") { [weak self] in

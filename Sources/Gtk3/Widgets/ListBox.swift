@@ -46,7 +46,7 @@ open class ListBox: Container {
         )
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         addSignal(name: "activate-cursor-row") { [weak self] () in

@@ -167,7 +167,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
         )
     }
 
-    public override func registerSignals() {
+    open override func registerSignals() {
         super.registerSignals()
 
         addSignal(name: "confirm-overwrite") { [weak self] () in

@@ -58,24 +58,35 @@ struct AlertModifierView<Child: View>: TypeSafeView {
         )
     }
 
-    func asWidget<Backend: AppBackend>(_ children: Children, backend: Backend) -> Backend.Widget {
+    func asWidget<Backend: AppBackend>(
+        _ children: Children,
+        backend: Backend
+    ) -> Backend.Widget {
         children.childNode.widget.into()
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: Children,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
-        let childResult = children.childNode.update(
+        backend: Backend
+    ) -> ViewLayoutResult {
+        children.childNode.computeLayout(
             with: child,
             proposedSize: proposedSize,
-            environment: environment,
-            dryRun: dryRun
+            environment: environment
         )
+    }
+
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: AlertModifierViewChildren<Child>,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        _ = children.childNode.commit()
 
         if isPresented.wrappedValue && children.alert == nil {
             let alert = backend.createAlert()
@@ -101,8 +112,6 @@ struct AlertModifierView<Child: View>: TypeSafeView {
             )
             children.alert = nil
         }
-
-        return childResult
     }
 }
 

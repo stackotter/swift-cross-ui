@@ -1,3 +1,5 @@
+import Foundation
+
 /// A view that is scrollable when it would otherwise overflow available space. Use the
 /// ``View/frame`` modifier to constrain height if necessary.
 public struct ScrollView<Content: View>: TypeSafeView, View {
@@ -41,130 +43,134 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         return backend.createScrollContainer(for: children.innerContainer.into())
     }
 
-    func update<Backend: AppBackend>(
+    func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: ScrollViewChildren<Content>,
-        proposedSize: SIMD2<Int>,
+        proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend: Backend,
-        dryRun: Bool
-    ) -> ViewUpdateResult {
+        backend: Backend
+    ) -> ViewLayoutResult {
+        // If all scroll axes are unspecified, then our size is exactly that of
+        // the child view. This includes when we have no scroll axes.
+        let willEarlyExit = Axis.allCases.allSatisfy({ axis in
+            !axes.contains(axis) || proposedSize[component: axis] == nil
+        })
+
         // Probe how big the child would like to be
-        let childResult = children.child.update(
+        var childProposal = proposedSize
+        for axis in Axis.allCases where axes.contains(axis) {
+            childProposal[component: axis] = nil
+        }
+
+        let childResult = children.child.computeLayout(
             with: body,
-            proposedSize: proposedSize,
-            environment: environment,
-            dryRun: true
+            proposedSize: childProposal,
+            environment: environment.with(
+                \.allowLayoutCaching,
+                !willEarlyExit || environment.allowLayoutCaching
+            )
         )
+
+        if willEarlyExit {
+            print("early exit: childResult.size=\(childResult.size)")
+            return childResult
+        }
+
         let contentSize = childResult.size
 
-        let scrollBarWidth = backend.scrollBarWidth
+        // An axis is present when it's a scroll axis AND the corresponding
+        // child content size is bigger then the proposed size. If the proposed
+        // size along the axis is nil then we don't have a scroll bar.
+        let hasHorizontalScrollBar: Bool
+        if axes.contains(.horizontal), let proposedWidth = proposedSize.width {
+            hasHorizontalScrollBar = contentSize.width > proposedWidth
+        } else {
+            hasHorizontalScrollBar = false
+        }
+        children.hasHorizontalScrollBar = hasHorizontalScrollBar
 
-        let hasHorizontalScrollBar =
-            axes.contains(.horizontal) && contentSize.idealWidthForProposedHeight > proposedSize.x
-        let hasVerticalScrollBar =
-            axes.contains(.vertical) && contentSize.idealHeightForProposedWidth > proposedSize.y
+        let hasVerticalScrollBar: Bool
+        if axes.contains(.vertical), let proposedHeight = proposedSize.height {
+            hasVerticalScrollBar = contentSize.height > proposedHeight
+        } else {
+            hasVerticalScrollBar = false
+        }
+        children.hasVerticalScrollBar = hasVerticalScrollBar
 
+        let scrollBarWidth = Double(backend.scrollBarWidth)
         let verticalScrollBarWidth = hasVerticalScrollBar ? scrollBarWidth : 0
         let horizontalScrollBarHeight = hasHorizontalScrollBar ? scrollBarWidth : 0
 
-        let scrollViewWidth: Int
-        let scrollViewHeight: Int
-        let minimumWidth: Int
-        let minimumHeight: Int
+        // Compute the final size to propose to the child view. Subtract off
+        // scroll bar sizes from non-scrolling axes.
+        var finalContentSizeProposal = childProposal
+        if !axes.contains(.horizontal), let proposedWidth = childProposal.width {
+            finalContentSizeProposal.width = proposedWidth - verticalScrollBarWidth
+        }
+
+        if !axes.contains(.vertical), let proposedHeight = childProposal.height {
+            finalContentSizeProposal.height = proposedHeight - horizontalScrollBarHeight
+        }
+
+        // Propose a final size to the child view.
+        let finalChildResult = children.child.computeLayout(
+            with: nil,
+            proposedSize: finalContentSizeProposal,
+            environment: environment
+        )
+
+        // Compute the outer size.
+        var outerSize = finalChildResult.size
         if axes.contains(.horizontal) {
-            scrollViewWidth = max(proposedSize.x, verticalScrollBarWidth)
-            minimumWidth = verticalScrollBarWidth
+            outerSize.width =
+                proposedSize.width
+                ?? (finalChildResult.size.width + verticalScrollBarWidth)
         } else {
-            scrollViewWidth = min(
-                contentSize.size.x + verticalScrollBarWidth,
-                max(proposedSize.x, contentSize.minimumWidth + verticalScrollBarWidth)
-            )
-            minimumWidth = contentSize.minimumWidth + verticalScrollBarWidth
+            outerSize.width += verticalScrollBarWidth
         }
+
         if axes.contains(.vertical) {
-            scrollViewHeight = max(proposedSize.y, horizontalScrollBarHeight)
-            minimumHeight = horizontalScrollBarHeight
+            outerSize.height =
+                proposedSize.height
+                ?? (finalChildResult.size.height + horizontalScrollBarHeight)
         } else {
-            scrollViewHeight = min(
-                contentSize.size.y + horizontalScrollBarHeight,
-                max(proposedSize.y, contentSize.minimumHeight + horizontalScrollBarHeight)
-            )
-            minimumHeight = contentSize.minimumHeight + horizontalScrollBarHeight
+            outerSize.height += horizontalScrollBarHeight
         }
 
-        let scrollViewSize = SIMD2(
-            scrollViewWidth,
-            scrollViewHeight
+        return ViewLayoutResult(
+            size: outerSize,
+            childResults: [finalChildResult]
         )
+    }
 
-        let finalResult: ViewUpdateResult
-        if !dryRun {
-            // TODO: scroll bar presence shouldn't affect whether we use current
-            //   or ideal size. Only the presence of the given axis in the user's
-            //   list of scroll axes should affect that.
-            let proposedContentSize = SIMD2(
-                hasHorizontalScrollBar
-                    ? (hasVerticalScrollBar
-                        ? contentSize.idealSize.x : contentSize.idealWidthForProposedHeight)
-                    : min(contentSize.size.x, proposedSize.x - verticalScrollBarWidth),
-                hasVerticalScrollBar
-                    ? (hasHorizontalScrollBar
-                        ? contentSize.idealSize.y : contentSize.idealHeightForProposedWidth)
-                    : min(contentSize.size.y, proposedSize.y - horizontalScrollBarHeight)
-            )
+    func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: ScrollViewChildren<Content>,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let scrollViewSize = layout.size
+        let finalContentSize = children.child.commit().size
 
-            finalResult = children.child.update(
-                with: body,
-                proposedSize: proposedContentSize,
-                environment: environment,
-                dryRun: false
-            )
-            let finalContentSize = finalResult.size
-
-            let clipViewWidth = scrollViewSize.x - verticalScrollBarWidth
-            let clipViewHeight = scrollViewSize.y - horizontalScrollBarHeight
-            var childPosition: SIMD2<Int> = .zero
-            var innerContainerSize: SIMD2<Int> = finalContentSize.size
-            if axes.contains(.vertical) && finalContentSize.size.x < clipViewWidth {
-                childPosition.x = (clipViewWidth - finalContentSize.size.x) / 2
-                innerContainerSize.x = clipViewWidth
-            }
-            if axes.contains(.horizontal) && finalContentSize.size.y < clipViewHeight {
-                childPosition.y = (clipViewHeight - finalContentSize.size.y) / 2
-                innerContainerSize.y = clipViewHeight
-            }
-
-            backend.setSize(of: widget, to: scrollViewSize)
-            backend.setSize(of: children.innerContainer.into(), to: innerContainerSize)
-            backend.setPosition(ofChildAt: 0, in: children.innerContainer.into(), to: childPosition)
-            backend.setScrollBarPresence(
-                ofScrollContainer: widget,
-                hasVerticalScrollBar: hasVerticalScrollBar,
-                hasHorizontalScrollBar: hasHorizontalScrollBar
-            )
-            backend.updateScrollContainer(widget, environment: environment)
-        } else {
-            finalResult = childResult
-        }
-
-        return ViewUpdateResult(
-            size: ViewSize(
-                size: scrollViewSize,
-                idealSize: contentSize.idealSize,
-                minimumWidth: minimumWidth,
-                minimumHeight: minimumHeight,
-                maximumWidth: nil,
-                maximumHeight: nil
-            ),
-            childResults: [finalResult]
+        backend.setSize(of: widget, to: scrollViewSize.vector)
+        backend.setSize(of: children.innerContainer.into(), to: finalContentSize.vector)
+        backend.setPosition(ofChildAt: 0, in: children.innerContainer.into(), to: .zero)
+        backend.setScrollBarPresence(
+            ofScrollContainer: widget,
+            hasVerticalScrollBar: children.hasVerticalScrollBar,
+            hasHorizontalScrollBar: children.hasHorizontalScrollBar
         )
+        backend.updateScrollContainer(widget, environment: environment)
     }
 }
 
 class ScrollViewChildren<Content: View>: ViewGraphNodeChildren {
     var children: TupleView1<VStack<Content>>.Children
     var innerContainer: AnyWidget
+
+    var hasVerticalScrollBar = false
+    var hasHorizontalScrollBar = false
 
     var child: AnyViewGraphNode<VStack<Content>> {
         children.child0

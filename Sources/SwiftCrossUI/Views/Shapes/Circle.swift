@@ -1,4 +1,7 @@
 public struct Circle: Shape {
+    /// The ideal diameter of a Circle.
+    static let idealDiameter = 10.0
+
     public nonisolated init() {}
 
     public nonisolated func path(in bounds: Path.Rect) -> Path {
@@ -6,18 +9,14 @@ public struct Circle: Shape {
             .addCircle(center: bounds.center, radius: min(bounds.width, bounds.height) / 2.0)
     }
 
-    public nonisolated func size(fitting proposal: SIMD2<Int>) -> ViewSize {
-        let diameter = min(proposal.x, proposal.y)
+    public nonisolated func size(fitting proposal: ProposedViewSize) -> ViewSize {
+        let diameter: Double
+        if let proposal = proposal.concrete {
+            diameter = min(proposal.width, proposal.height)
+        } else {
+            diameter = proposal.width ?? proposal.height ?? 10
+        }
 
-        return ViewSize(
-            size: SIMD2(x: diameter, y: diameter),
-            idealSize: SIMD2(x: 10, y: 10),
-            idealWidthForProposedHeight: proposal.y,
-            idealHeightForProposedWidth: proposal.x,
-            minimumWidth: 0,
-            minimumHeight: 0,
-            maximumWidth: nil,
-            maximumHeight: nil
-        )
+        return ViewSize(diameter, diameter)
     }
 }

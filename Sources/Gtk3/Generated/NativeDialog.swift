@@ -17,7 +17,7 @@ import CGtk3
 /// similar to gtk_dialog_run().
 open class NativeDialog: GObject {
 
-    public override func registerSignals() {
+    open override func registerSignals() {
         super.registerSignals()
 
         let handler0:

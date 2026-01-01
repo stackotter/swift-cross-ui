@@ -6,6 +6,7 @@ import SwiftCrossUI
     import SwiftBundlerRuntime
 #endif
 
+@available(tvOS, unavailable)
 struct FileDialogDemo: View {
     @State var selectedFile: URL? = nil
     @State var saveDestination: URL? = nil
@@ -64,6 +65,98 @@ struct AlertDemo: View {
     }
 }
 
+// A demo displaying SwiftCrossUI's `View.sheet` modifier.
+struct SheetDemo: View {
+    @State var isPresented = false
+    @State var isEphemeralSheetPresented = false
+    @State var ephemeralSheetDismissalTask: Task<Void, Never>?
+
+    var body: some View {
+        Button("Open Sheet") {
+            isPresented = true
+        }
+        Button("Show Sheet for 5s") {
+            isEphemeralSheetPresented = true
+            ephemeralSheetDismissalTask = Task {
+                do {
+                    try await Task.sleep(nanoseconds: 5 * 1_000_000_000)
+                    isEphemeralSheetPresented = false
+                } catch {}
+            }
+        }
+        .sheet(isPresented: $isPresented) {
+            print("Root sheet dismissed")
+        } content: {
+            SheetBody()
+                .presentationDetents([.height(250), .medium, .large])
+                .presentationBackground(.green)
+        }
+        .sheet(isPresented: $isEphemeralSheetPresented) {
+            ephemeralSheetDismissalTask?.cancel()
+        } content: {
+            Text("I'm only here for 5s")
+                .padding(20)
+                .presentationDetents([.medium])
+                .presentationCornerRadius(10)
+                .presentationBackground(.red)
+        }
+    }
+
+    struct SheetBody: View {
+        @State var isNestedSheetPresented = false
+        @Environment(\.dismiss) var dismiss
+
+        var body: some View {
+            VStack {
+                Text("Root sheet")
+                Button("Present a nested sheet") {
+                    isNestedSheetPresented = true
+                }
+                Button("Dismiss") {
+                    dismiss()
+                }
+            }
+            .padding()
+            .sheet(isPresented: $isNestedSheetPresented) {
+                print("Nested sheet dismissed")
+            } content: {
+                NestedSheetBody(dismissRoot: { dismiss() })
+                    .presentationDetents([.height(250), .medium, .large])
+            }
+        }
+    }
+
+    struct NestedSheetBody: View {
+        var dismissRoot: () -> Void
+
+        @Environment(\.dismiss) var dismiss
+        @State var showNextChild = false
+
+        var body: some View {
+            VStack {
+                Text("Nested sheet")
+
+                Button("Present another sheet") {
+                    showNextChild = true
+                }
+                Button("Dismiss root sheet") {
+                    dismissRoot()
+                }
+                Button("Dismiss") {
+                    dismiss()
+                }
+            }
+            .padding()
+            .sheet(isPresented: $showNextChild) {
+                print("Nested sheet dismissed")
+            } content: {
+                NestedSheetBody(dismissRoot: dismissRoot)
+                    .presentationDetents([.height(250), .medium, .large])
+            }
+        }
+    }
+}
+
 @main
 @HotReloadable
 struct WindowingApp: App {
@@ -84,14 +177,23 @@ struct WindowingApp: App {
                     }
 
                     Image(Bundle.module.bundleURL.appendingPathComponent("Banner.png"))
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
 
                     Divider()
 
-                    FileDialogDemo()
+                    #if !os(tvOS)
+                        FileDialogDemo()
 
-                    Divider()
+                        Divider()
+                    #endif
 
                     AlertDemo()
+
+                    Divider()
+
+                    SheetDemo()
+                        .padding(.bottom, 20)
                 }
                 .padding(20)
             }
@@ -108,23 +210,24 @@ struct WindowingApp: App {
                 }
             }
         }
-
-        WindowGroup("Secondary window") {
-            #hotReloadable {
-                Text("This a secondary window!")
-                    .padding(10)
+        #if !os(iOS) && !os(tvOS)
+            WindowGroup("Secondary window") {
+                #hotReloadable {
+                    Text("This a secondary window!")
+                        .padding(10)
+                }
             }
-        }
-        .defaultSize(width: 200, height: 200)
-        .windowResizability(.contentMinSize)
+            .defaultSize(width: 200, height: 200)
+            .windowResizability(.contentMinSize)
 
-        WindowGroup("Tertiary window") {
-            #hotReloadable {
-                Text("This a tertiary window!")
-                    .padding(10)
+            WindowGroup("Tertiary window") {
+                #hotReloadable {
+                    Text("This a tertiary window!")
+                        .padding(10)
+                }
             }
-        }
-        .defaultSize(width: 200, height: 200)
-        .windowResizability(.contentMinSize)
+            .defaultSize(width: 200, height: 200)
+            .windowResizability(.contentMinSize)
+        #endif
     }
 }

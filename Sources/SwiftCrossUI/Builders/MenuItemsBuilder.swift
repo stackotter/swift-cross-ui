@@ -1,6 +1,10 @@
 /// A builder for ``[MenuItem]``.
 @resultBuilder
 public struct MenuItemsBuilder {
+    public static func buildBlock() -> [MenuItem] {
+        []
+    }
+
     public static func buildPartialBlock(first: Button) -> [MenuItem] {
         [.button(first)]
     }
