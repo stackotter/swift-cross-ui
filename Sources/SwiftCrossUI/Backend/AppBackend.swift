@@ -589,7 +589,7 @@ public protocol AppBackend: Sendable {
     ///
     /// The returned widget should truncate and ellipsize its content when
     /// given a size which isn't big enough to fit the full content, as per
-    /// ``size(of:whenDisplayedIn:proposedWidth:proposedHeight:environment)``.
+    /// ``size(of:whenDisplayedIn:proposedWidth:proposedHeight:environment:)-757xh``.
     ///
     /// - Returns: A text view.
     func createTextView() -> Widget

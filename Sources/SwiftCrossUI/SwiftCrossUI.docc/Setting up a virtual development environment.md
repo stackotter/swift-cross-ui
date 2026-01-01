@@ -116,7 +116,7 @@ sudo reboot -h now
 
 3. You'll find your directory mounted at `~/utm`. If you run into file ownership related issues, check your macOS user id (with the `id -u` command). If it isn't `501`, update the `bindfs` fstab rule accordingly and reboot again.
 
-You're now ready to begin setting up a SwiftCrossUI development environment inside your Linux VM. Head over to <doc:Setting-up-development-environments> to continue.
+You're now ready to begin setting up a SwiftCrossUI development environment inside your Linux VM. Head over to <doc:Setting-up-a-development-environment> to continue.
 
 <!-- ## Creating VMs on Linux hosts (Gnome Boxes) -->
 

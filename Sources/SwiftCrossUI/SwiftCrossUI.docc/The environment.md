@@ -2,7 +2,7 @@
 
 ## Topics
 
-- ``SwiftCrossUI/Environment-struct``
+- ``Environment``
 - ``EnvironmentValues``
 - ``EnvironmentKey``
 

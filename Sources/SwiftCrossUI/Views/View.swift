@@ -51,10 +51,10 @@ public protocol View {
     /// while deciding the structure of the widget. For example, a view
     /// displaying one of two children should use ``AppBackend/createContainer()``
     /// to create a container for the displayed child instead of just directly
-    /// returning the widget of the currently displayed child (which would result
-    /// in you not being able to ever switch to displaying the other child). This
-    /// constraint significantly simplifies view implementations without
-    /// requiring widgets to be re-created after every single update.
+    /// returning the widget of the currently displayed child (which would
+    /// result in you not being able to ever switch to displaying the other
+    /// child). This constraint significantly simplifies view implementations
+    /// without requiring widgets to be re-created after every single update.
     ///
     /// - Parameters:
     ///   - children: The view's children.
@@ -69,7 +69,8 @@ public protocol View {
     /// available space.
     ///
     /// This method should _not_ apply the layout to `widget`; that should be
-    /// done in ``commit(_:children:layout:environemnt:backend:)`` instead.
+    /// done in <doc:/documentation/SwiftCrossUI/View/commit(_:children:layout:environment:backend:)-6kzjk>
+    /// instead.
     ///
     /// `proposedSize` is the size suggested by the parent container, but child
     /// views always get the final call on their own size.
@@ -81,7 +82,8 @@ public protocol View {
     ///     container.
     ///   - environment: The current environment.
     ///   - backend: The app's backend.
-    /// - Returns: The view's computed size, along with any propagated preferences.
+    /// - Returns: The view's computed size, along with any propagated
+    ///   preferences.
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
@@ -97,7 +99,7 @@ public protocol View {
     ///   - children: The view's children.
     ///   - layout: The layout to use for the view. Guaranteed to be the
     ///     last value returned by
-    ///     ``computeLayout(_:children:proposedSize:environment:backend:)``.
+    ///     <doc:/documentation/SwiftCrossUI/View/computeLayout(_:children:proposedSize:environment:backend:)-2gzmc>.
     ///   - environment: The current environment.
     ///   - backend: The app's backend.
     func commit<Backend: AppBackend>(

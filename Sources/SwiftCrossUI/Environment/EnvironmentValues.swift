@@ -54,7 +54,7 @@ public struct EnvironmentValues {
     public var foregroundColor: Color?
 
     /// The suggested foreground color for backends to use. Backends don't
-    /// neccessarily have to obey this when ``Environment/foregroundColor``
+    /// neccessarily have to obey this when ``EnvironmentValues/foregroundColor``
     /// is `nil`.
     public var suggestedForegroundColor: Color {
         foregroundColor ?? colorScheme.defaultForegroundColor
