@@ -4,6 +4,7 @@
 
 - ``SwiftCrossUI/Environment-struct``
 - ``EnvironmentValues``
+- ``EnvironmentKey``
 
 ### Layout
 

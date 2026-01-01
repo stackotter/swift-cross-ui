@@ -8,6 +8,19 @@ advanced users don't have to reimplement helpers that we've already implemented,
 and others are exposed to enable unique use-cases such as embedding SwiftCrossUI
 view graphs inside existing non-SwiftCrossUI apps.
 
+### Contents
+- <doc:#High-level-overview>
+  - <doc:#Entry-point>
+  - <doc:#Scenes>
+  - <doc:#The-view-graph>
+  - <doc:#View-updates>
+  - <doc:#The-View-protocol>
+  - <doc:#Environment>
+  - <doc:#Preferences>
+- <doc:#Dynamic-properties>
+  - <doc:#Primary-method>
+  - <doc:#Fallback-method>
+
 <!-- TODO: Write technical deep dives into some of these implementation details -->
 
 ## High-level overview
@@ -64,7 +77,7 @@ associated view. For example, ``TupleView3`` stores its three child nodes --
 `child0`, `child1`, and `child2` -- using ``TupleViewChildren3``, while
 ``ForEach`` stores its children in the `ForEachViewChildren` class which is
 designed for storing a homogenous array of child nodes. It's the responsibility
-of ``View/update(_:children:proposedSize:environment:backend:dryRun:)-3tixh``
+of ``View/computeLayout(_:children:proposedSize:environment:backend:)-2gzmc``
 implementations to propagate updates on to any relevant child nodes.
 
 ### View updates
@@ -87,7 +100,7 @@ changed size due to that update. Bottom-up updates continue propagating upwards
 until a view doesn't change size (meaning that we can avoid notifying its
 parent).
 
-### The ``View`` protocol
+### The View protocol
 
 The most famous requirement of ``View`` is ``View/body``; this is the property
 you know and love from SwiftUI. It's sufficient to just implement this property
@@ -116,25 +129,31 @@ The following requirements are used to implement internal views such as
   widget to satisfy this requirement.
 
   This method shouldn't configure the widget at all, that's handled by
-  ``View/update(_:children:proposedSize:environment:backend:dryRun:)-3tixh``
-  (which is guaranteed to be called between ``View/asWidget(_:backend:)-88tbd``
+  ``View/computeLayout(_:children:proposedSize:environment:backend:)-2gzmc`` and
+  ``View/commit(_:children:layout:environment:backend:)-6kzjk``
+  (which are guaranteed to be called between ``View/asWidget(_:backend:)-88tbd``
   and the first time the view appears on screen).
 
-- term ``View/update(_:children:proposedSize:environment:backend:dryRun:)-27j1y``:
-  This method is the meat of most view implementations. Its main two roles are
-  computing view layouts and updating widgets to be displayed on screen (when
-  `dryRun` is `false`).
+- term ``View/computeLayout(_:children:proposedSize:environment:backend:)-2gzmc``:
+  This method is the meat of most view implementations; its role is to compute
+  view layouts. It may be called multiple times before the layout system settles
+  on a result.
+
+- term ``View/commit(_:children:layout:environment:backend:)-6kzjk``: This
+  method updates the widgets to be displayed on-screen. It recieves the most
+  recent result of ``View/computeLayout(_:children:proposedSize:environment:backend:)-2gzmc``
+  as the `layout` parameter.
 
 Internally, we have the `ElementaryView` and `TypeSafeView` protocols (which
-implement ``View``) and are just nicer versions of the ``View`` protocol useful
-for certain purposes. `ElementaryView` is for views with no children, and
-`TypeSafeView` is identical to `View` but with a `Children` associated type.
+extend ``View``) and are just nicer versions of the ``View`` protocol useful for
+certain purposes. `ElementaryView` is for views with no children, and
+`TypeSafeView` is identical to ``View`` but with a `Children` associated type.
 
 ### Environment
 
 If a view or modifier wants to change the environment for all child views, it
 does this in
-``View/update(_:children:proposedSize:environment:backend:dryRun:)-3tixh`` by
+``View/computeLayout(_:children:proposedSize:environment:backend:)-2gzmc`` by
 passing a modified copy of the environment to child nodes when calling their
 update methods.
 
@@ -145,10 +164,43 @@ view graph instead of _down_. For instance, the ``PreferenceValues/onOpenURL``
 preference is used to propagate external URL handlers to the top level to be
 registered with the backend.
 
-Preferences are propagated as part of the ``ViewUpdateResult`` type. Container
-views can pass multiple ``ViewUpdateResult`` instances to
-``ViewUpdateResult/init(size:childResults:preferencesOverlay:)`` to have their
-preferences merged automatically into a single ``PreferenceValues`` instance.
+Preferences are propagated as part of the ``ViewLayoutResult`` type. Container
+views can pass multiple ``ViewLayoutResult`` instances to
+``ViewLayoutResult/init(size:childResults:participateInStackLayoutsWhenEmpty:preferencesOverlay:)``
+to have their preferences merged automatically into a single ``PreferenceValues``
+instance.
+
+## Dynamic properties
+
+Dynamic properties are properties of ``View``- or ``App``-conforming structs
+that conform to the ``DynamicProperty`` protocol -- for example, ``State`` or
+``Environment``.
+
+There are two methods used to update these properties when view or app bodies
+are recomputed: the primary one calculates the offsets to the properties at
+runtime, while the fallback method uses `Mirror` to set the properties. Choosing
+which method to use, as well as actually performing the update, is handled by
+`DynamicPropertyUpdater`.
+
+### Primary method
+
+This method uses the `DynamicKeyPath` type, which can construct a "key path" at
+runtime given an instance of the type and the current value of the property in
+question. `DynamicKeyPath` performs some `withUnsafeBytes(of:_:)` magic to find
+the property's offset within the type.
+
+### Fallback method
+
+The fallback method (which was the _only_ method before the
+<doc:Layout-performance> PR was merged) simply uses `Mirror` to query the type's
+properties, check them for conformance to ``DynamicProperty``, and update the
+values. It's only used when computing offsets for the primary method fails
+(usually because multiple properties of the type have the same bit-level
+representation of their current values).
+
+It can be up to 1500 times slower than the primary method (with the difference
+decreasing as more stateful properties are added); this is why the primary
+method is preferred wherever possible.
 
 ## Topics
 
@@ -160,7 +212,7 @@ preferences merged automatically into a single ``PreferenceValues`` instance.
 - ``HotReloadableView``
 
 - ``ViewSize``
-- ``ViewUpdateResult``
+- ``ViewLayoutResult``
 
 - ``AnyWidget``
 
