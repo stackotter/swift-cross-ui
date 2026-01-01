@@ -61,7 +61,7 @@ open class Widget: GObject {
         gtk_widget_set_visible(widgetPointer, false.toGBoolean())
     }
 
-    public func setSizeRequest(width: Int, height: Int) {
+    open func setSizeRequest(width: Int, height: Int) {
         gtk_widget_set_size_request(widgetPointer, Int32(width), Int32(height))
     }
 
@@ -97,6 +97,8 @@ open class Widget: GObject {
     }
 
     @GObjectProperty(named: "name") public var name: String?
+
+    @GObjectProperty(named: "overflow") public var overflow: Overflow
 
     @GObjectProperty(named: "sensitive") public var sensitive: Bool
 

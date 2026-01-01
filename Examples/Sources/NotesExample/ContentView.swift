@@ -130,21 +130,25 @@ struct ContentView: View {
             }
             .frame(minWidth: 200)
         } detail: {
-            ScrollView {
-                VStack(alignment: .center) {
-                    if let selectedNote = selectedNote {
-                        HStack(spacing: 4) {
-                            Text("Title")
-                            TextField("Title", text: selectedNote.title)
-                        }
+            GeometryReader { proxy in
+                ScrollView {
+                    VStack(alignment: .center) {
+                        if let selectedNote = selectedNote {
+                            HStack(spacing: 4) {
+                                Text("Title")
+                                TextField("Title", text: selectedNote.title)
+                            }
 
-                        TextEditor(text: selectedNote.content)
-                            .padding()
-                            .background(textEditorBackground)
-                            .cornerRadius(4)
+                            TextEditor(text: selectedNote.content)
+                                .padding()
+                                .background(textEditorBackground)
+                                .cornerRadius(4)
+                                .frame(maxHeight: .infinity)
+                        }
                     }
+                    .padding()
+                    .frame(minHeight: Int(proxy.size.height))
                 }
-                .padding()
             }
         }
     }

@@ -23,7 +23,7 @@ open class Widget: GObject {
         }
     }
 
-    func didMoveToParent() {
+    open func didMoveToParent() {
         // The Gtk3 docs claim that this handler should take GdkEventButton as a
         // value, but that leads to crashes on Rocky Linux. These crashes are
         // fixed by instead taking the event as a pointer. I've confirmed that
@@ -54,8 +54,10 @@ open class Widget: GObject {
                 UnsafeMutableRawPointer,
                 OpaquePointer,
                 UnsafeMutableRawPointer
-            ) -> Void = { _, cairo, data in
+            ) -> Bool = { _, cairo, data in
                 SignalBox1<OpaquePointer>.run(data, cairo)
+                // Propagate event to next handler
+                return false
             }
 
         addSignal(
@@ -64,6 +66,39 @@ open class Widget: GObject {
         ) { [weak self] (cairo: OpaquePointer) in
             guard let self = self else { return }
             self.doDraw?(cairo)
+        }
+
+        let handler3:
+            @convention(c) (
+                UnsafeMutableRawPointer,
+                OpaquePointer,
+                UnsafeMutableRawPointer
+            ) -> Void = { _, screen, data in
+                SignalBox1<OpaquePointer>.run(data, screen)
+            }
+
+        addSignal(
+            name: "screen-changed",
+            handler: gCallback(handler3)
+        ) { [weak self] (previousScreen: OpaquePointer) in
+            guard let self = self else { return }
+            self.screenChanged?()
+        }
+
+        let handler4:
+            @convention(c) (
+                UnsafeMutableRawPointer,
+                UnsafeMutableRawPointer
+            ) -> Void = { _, data in
+                SignalBox1<Void>.run(data, ())
+            }
+
+        addSignal(
+            name: "style-updated",
+            handler: gCallback(handler4)
+        ) { [weak self] (_: Void) in
+            guard let self = self else { return }
+            self.styleUpdated?()
         }
     }
 
@@ -110,7 +145,7 @@ open class Widget: GObject {
         gtk_widget_show(widgetPointer)
     }
 
-    public func setSizeRequest(width: Int, height: Int) {
+    open func setSizeRequest(width: Int, height: Int) {
         gtk_widget_set_size_request(widgetPointer, Int32(width), Int32(height))
     }
 
@@ -142,6 +177,10 @@ open class Widget: GObject {
     public var onButtonPress: ((Widget, GdkEventButton) -> Void)?
 
     public var doDraw: ((_ cairo: OpaquePointer) -> Void)?
+
+    public var screenChanged: (() -> Void)?
+
+    public var styleUpdated: (() -> Void)?
 
     @GObjectProperty(named: "name") public var name: String?
 

@@ -47,7 +47,7 @@ open class ProgressBar: Widget, Orientable {
         )
     }
 
-    override func didMoveToParent() {
+    open override func didMoveToParent() {
         super.didMoveToParent()
 
         let handler0:
@@ -134,6 +134,16 @@ open class ProgressBar: Widget, Orientable {
             self.notifyOrientation?(self, param0)
         }
     }
+
+    /// The preferred place to ellipsize the string, if the progress bar does
+    /// not have enough room to display the entire string, specified as a
+    /// #PangoEllipsizeMode.
+    ///
+    /// Note that setting this property to a value other than
+    /// %PANGO_ELLIPSIZE_NONE has the side-effect that the progress bar requests
+    /// only enough space to display the ellipsis ("..."). Another means to set a
+    /// progress bar's width is gtk_widget_set_size_request().
+    @GObjectProperty(named: "ellipsize") public var ellipsize: EllipsizeMode
 
     @GObjectProperty(named: "fraction") public var fraction: Double
 

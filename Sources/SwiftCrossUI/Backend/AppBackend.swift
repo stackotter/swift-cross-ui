@@ -47,6 +47,7 @@ public protocol AppBackend: Sendable {
     associatedtype Menu
     associatedtype Alert
     associatedtype Path
+    associatedtype Sheet
 
     /// Creates an instance of the backend.
     init()
@@ -333,27 +334,35 @@ public protocol AppBackend: Sendable {
     // MARK: Passive views
 
     /// Gets the size that the given text would have if it were layed out attempting to stay
-    /// within the proposed frame (most backends only use the proposed width and ignore the
-    /// proposed height). The size returned by this function will be upheld by the layout
+    /// within the proposed frame. The given text should be truncated/ellipsized to fit within
+    /// the proposal if possible.
+    ///
+    /// The size returned by this function will be upheld by the layout
     /// system; child views always get the final say on their own size, parents just choose how
-    /// the children get layed out.
+    /// the children get layed out. The text should get truncated to fit within the proposal if
+    /// possible.
+    ///
+    /// SwiftCrossUI will never supply zero as the proposed width or height, because some UI
+    /// frameworks handle that in special ways.
     ///
     /// The target widget is supplied because some backends (such as Gtk) require a
     /// reference to the target widget to get a text layout context.
-    ///
-    /// If `proposedFrame` isn't supplied, the text should be layed out on a single line
-    /// taking up as much width as it needs.
     ///
     /// Used by both ``SwiftCrossUI/Text`` and ``SwiftCrossUI/TextEditor``.
     func size(
         of text: String,
         whenDisplayedIn widget: Widget,
-        proposedFrame: SIMD2<Int>?,
+        proposedWidth: Int?,
+        proposedHeight: Int?,
         environment: EnvironmentValues
     ) -> SIMD2<Int>
 
     /// Creates a non-editable text view with optional text wrapping. Predominantly used
-    /// by ``Text``.`
+    /// by ``Text``.
+    ///
+    /// The returned widget should truncate and ellipsize its content when given a size
+    /// which isn't big enough to fit the full content, as per
+    /// ``size(of:whenDisplayedIn:proposedWidth:proposedHeight:environment)``.
     func createTextView() -> Widget
     /// Sets the content and wrapping mode of a non-editable text view.
     func updateTextView(_ textView: Widget, content: String, environment: EnvironmentValues)
@@ -603,6 +612,83 @@ public protocol AppBackend: Sendable {
     /// ``showAlert(_:window:responseHandler:)``.
     func dismissAlert(_ alert: Alert, window: Window?)
 
+    /// Creates a sheet object (without showing it yet). Sheets contain view content.
+    /// They optionally execute provided code on dismiss and
+    /// prevent users from interacting with the parent window until dimissed.
+    func createSheet(content: Widget) -> Sheet
+
+    /// Updates the content, appearance and behaviour of a sheet.
+    /// - Parameters:
+    ///   - sheet: The sheet to update.
+    ///   - window: The root window that the sheet will be presented in. Used on
+    ///     platforms such as tvOS to compute layout constraints. The sheet
+    ///     shouldn't get attached to the window by updateSheet. That is handled
+    ///     by presentSheet which is guaranteed to be called exactly once (unlike
+    ///     updateSheet which gets called whenever preferences or sizing change).
+    ///   - environment: The environment that the sheet will be presented in. This
+    ///     differs from the environment passed to the sheet's content.
+    ///   - onDismiss: An action to perform when the sheet gets dismissed by
+    ///     the user. Not triggered by programmatic dismissals. But is triggered
+    ///     by the implicit dismissals of nested sheets when their parent sheet
+    ///     is programmatically dismissed.
+    ///   - cornerRadius: The radius of the sheet. If `nil`, the platform
+    ///     default should be used. Not all backends can support this (e.g. macOS
+    ///     doesn't support custom window corner radii).
+    ///   - detents: An array of sizes that the sheet should snap to. This is
+    ///     generally only a thing on mobile where sheets can be dragged up
+    ///     and down.
+    ///   - dragIndicatorVisibility: Whether the drag indicator should be shown.
+    ///     Sheet drag indicators are generally only a thing on mobile, and
+    ///     usually appear as a small horizontal bar at the top of the sheet.
+    ///   - backgroundColor: The background color to use for the sheet. If `nil`,
+    ///     the platform's default sheet background style should be used.
+    ///   - interactiveDismissDisabled: Whether to dismiss user-driven sheet
+    ///     dismissal. On mobile this disables swiping to dismiss a sheet, and on
+    ///     desktop this usually disabled dismissal shortcuts such as the escape
+    ///     key and/or removes system-provided close/cancel buttons from the sheet.
+    func updateSheet(
+        _ sheet: Sheet,
+        window: Window,
+        environment: EnvironmentValues,
+        size: SIMD2<Int>,
+        onDismiss: @escaping () -> Void,
+        cornerRadius: Double?,
+        detents: [PresentationDetent],
+        dragIndicatorVisibility: Visibility,
+        backgroundColor: Color?,
+        interactiveDismissDisabled: Bool
+    )
+
+    /// Presents a sheet as a modal on top of or within the given window. Sheets
+    /// should disable interaction with all content below them until they get
+    /// dismissed.
+    ///
+    /// `onDismiss` only gets called once the sheet has been closed.
+    ///
+    /// This method must only be called once for any given sheet.
+    ///
+    /// - Parameters:
+    ///   - sheet: The sheet to present.
+    ///   - window: The window to present the sheet on top of.
+    ///   - parentSheet: The sheet that the current sheet was presented from, if any.
+    func presentSheet(
+        _ sheet: Sheet,
+        window: Window,
+        parentSheet: Sheet?
+    )
+
+    /// Dismisses a sheet programmatically. Used by the ``View/sheet`` modifier
+    /// to close sheets.
+    ///
+    /// - Parameters:
+    ///   - sheet: The sheet to dismiss.
+    ///   - window: The window that the sheet was presented in.
+    ///   - parentSheet: The sheet that presented the current sheet, if any.
+    func dismissSheet(_ sheet: Sheet, window: Window, parentSheet: Sheet?)
+
+    /// Get the dimensions of a sheet
+    func size(ofSheet sheet: Sheet) -> SIMD2<Int>
+
     /// Presents an 'Open file' dialog to the user for selecting files or
     /// folders.
     ///
@@ -727,6 +813,14 @@ extension AppBackend {
         Foundation.exit(1)
     }
 
+    private func ignored(_ function: String = #function) {
+        #if DEBUG
+            print(
+                "\(type(of: self)): \(function) is being ignored\nConsult at the documentation for further information."
+            )
+        #endif
+    }
+
     // MARK: System
 
     public func openExternalURL(_ url: URL) throws {
@@ -836,7 +930,8 @@ extension AppBackend {
     public func size(
         of text: String,
         whenDisplayedIn widget: Widget,
-        proposedFrame: SIMD2<Int>?,
+        proposedWidth: Int?,
+        proposedHeight: Int?,
         environment: EnvironmentValues
     ) -> SIMD2<Int> {
         todo()
@@ -1159,6 +1254,47 @@ extension AppBackend {
         _ container: Widget,
         environment: EnvironmentValues,
         action: @escaping (Bool) -> Void
+    ) {
+        todo()
+    }
+
+    public func createSheet(content: Widget) -> Sheet {
+        todo()
+    }
+
+    public func updateSheet(
+        _ sheet: Sheet,
+        window: Window,
+        environment: EnvironmentValues,
+        size: SIMD2<Int>,
+        onDismiss: @escaping () -> Void,
+        cornerRadius: Double?,
+        detents: [PresentationDetent],
+        dragIndicatorVisibility: Visibility,
+        backgroundColor: Color?,
+        interactiveDismissDisabled: Bool
+    ) {
+        todo()
+    }
+
+    public func size(
+        ofSheet sheet: Sheet
+    ) -> SIMD2<Int> {
+        todo()
+    }
+
+    public func presentSheet(
+        _ sheet: Sheet,
+        window: Window,
+        parentSheet: Sheet?
+    ) {
+        todo()
+    }
+
+    public func dismissSheet(
+        _ sheet: Sheet,
+        window: Window,
+        parentSheet: Sheet?
     ) {
         todo()
     }

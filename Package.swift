@@ -59,6 +59,18 @@ switch ProcessInfo.processInfo.environment["SCUI_LIBRARY_TYPE"] {
         }
 }
 
+// When SCUI_BENCHMARK_VIZ is present, we include the DefaultBackend to allow
+// viewing of each benchmark test case with an actual backend.
+let additionalLayoutPerformanceBenchmarkDependencies: [Target.Dependency]
+let layoutPerformanceSwiftSettings: [SwiftSetting]
+if ProcessInfo.processInfo.environment["SCUI_BENCHMARK_VIZ"] == "1" {
+    additionalLayoutPerformanceBenchmarkDependencies = ["DefaultBackend"]
+    layoutPerformanceSwiftSettings = [.define("BENCHMARK_VIZ")]
+} else {
+    additionalLayoutPerformanceBenchmarkDependencies = []
+    layoutPerformanceSwiftSettings = []
+}
+
 let package = Package(
     name: "swift-cross-ui",
     platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .macCatalyst(.v13), .visionOS(.v1)],
@@ -110,6 +122,10 @@ let package = Package(
             url: "https://github.com/stackotter/swift-winui",
             revision: "1695ee3ea2b7a249f6504c7f1759e7ec7a38eb86"
         ),
+        .package(
+            url: "https://github.com/stackotter/swift-benchmark",
+            .upToNextMinor(from: "0.2.0")
+        ),
         // .package(
         //     url: "https://github.com/stackotter/TermKit",
         //     revision: "163afa64f1257a0c026cc83ed8bc47a5f8fc9704"
@@ -147,6 +163,7 @@ let package = Package(
             name: "SwiftCrossUITests",
             dependencies: [
                 "SwiftCrossUI",
+                "DummyBackend",
                 .target(name: "AppKitBackend", condition: .when(platforms: [.macOS])),
             ]
         ),
@@ -252,6 +269,19 @@ let package = Package(
             name: "WinUIInterop",
             dependencies: []
         ),
+        .target(name: "DummyBackend", dependencies: ["SwiftCrossUI"]),
+
+        .executableTarget(
+            name: "LayoutPerformanceBenchmark",
+            dependencies: [
+                .product(name: "Benchmark", package: "swift-benchmark"),
+                "SwiftCrossUI",
+                "DummyBackend",
+            ] + additionalLayoutPerformanceBenchmarkDependencies,
+            path: "Benchmarks/LayoutPerformanceBenchmark",
+            swiftSettings: layoutPerformanceSwiftSettings
+        ),
+
         // .target(
         //     name: "CursesBackend",
         //     dependencies: ["SwiftCrossUI", "TermKit"]

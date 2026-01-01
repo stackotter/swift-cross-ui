@@ -19,7 +19,7 @@ import CGtk
 /// object.
 open class NativeDialog: GObject {
 
-    public override func registerSignals() {
+    open override func registerSignals() {
         super.registerSignals()
 
         let handler0:
