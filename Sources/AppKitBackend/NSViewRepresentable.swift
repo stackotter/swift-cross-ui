@@ -42,18 +42,13 @@ public protocol NSViewRepresentable: View where Content == Never {
     ///
     /// The default implementation uses `nsView.intrinsicContentSize` and
     /// `nsView.sizeThatFits(_:)` to determine the return value.
+    ///
     /// - Parameters:
     ///   - proposal: The proposed frame for the view to render in.
-    ///   - nsVIew: The view being queried for its preferred size.
-    ///   - context: The context, including the coordinator and environment values.
-    /// - Returns: Information about the view's size. The ``SwiftCrossUI/ViewSize/size``
-    ///   property is what frame the view will actually be rendered with if the
-    ///   current layout pass is not a dry run, while the other properties are
-    ///   used to inform the layout engine how big or small the view can be. The
-    ///   ``SwiftCrossUI/ViewSize/idealSize`` property should not vary with the
-    ///   `proposal`, and should only depend on the view's contents. Pass `nil`
-    ///   for the maximum width/height if the view has no maximum size (and
-    ///   therefore may occupy the entire screen).
+    ///   - nsView: The view being queried for its preferred size.
+    ///   - context: The context, including the coordinator and environment
+    ///     values.
+    /// - Returns: The view's size.
     func determineViewSize(
         for proposal: ProposedViewSize,
         nsView: NSViewType,
@@ -64,8 +59,9 @@ public protocol NSViewRepresentable: View where Content == Never {
     ///
     /// This method is called after all AppKit lifecycle methods, such as
     /// `nsView.didMoveToSuperview()`. The default implementation does nothing.
+    ///
     /// - Parameters:
-    ///   - nsVIew: The view being dismantled.
+    ///   - nsView: The view being dismantled.
     ///   - coordinator: The coordinator.
     static func dismantleNSView(_ nsView: NSViewType, coordinator: Coordinator)
 }

@@ -175,9 +175,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
     ///   - newView: The recomputed view.
     ///   - proposedSize: The view's proposed size.
     ///   - environment: The current environment.
-    ///   - dryRun: If `true`, only compute sizing and don't update the
-    ///     underlying widget.
-    /// - Returns: The result of updating the view.
+    /// - Returns: The result of laying out the view.
     public func computeLayout(
         with newView: NodeView? = nil,
         proposedSize: ProposedViewSize,
@@ -245,8 +243,10 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
 
     /// Commits the view's most recently computed layout and any view state changes
     /// that have occurred since the last update (e.g. text content changes or font
-    /// size changes). Returns the most recently computed layout for convenience,
-    /// although it's guaranteed to match the result of the last call to computeLayout.
+    /// size changes).
+    ///
+    /// - Returns: The most recently computed layout. Guaranteed to match the
+    ///   result of the last call to ``computeLayout(with:proposedSize:environment:)``.
     public func commit() -> ViewLayoutResult {
         backend.show(widget: widget)
 

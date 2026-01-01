@@ -2,6 +2,10 @@
 
 ## Topics
 
+### Performance
+
+- <doc:Layout-performance>
+
 ### Padding
 
 - ``View/padding(_:)-(Int?)``
