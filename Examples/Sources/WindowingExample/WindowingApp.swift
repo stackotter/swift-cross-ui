@@ -168,17 +168,17 @@ struct OpenWindowDemo: View {
 }
 
 struct TertiaryWindowView: View {
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.dismissWindow) private var dismissWindow
 
     var body: some View {
         VStack {
             Text("This a tertiary window!")
-                .padding(10)
 
             Button("Close window") {
-                dismiss()
+                dismissWindow()
             }
         }
+        .padding()
     }
 }
 
@@ -243,7 +243,7 @@ struct WindowingApp: App {
             WindowGroup("Secondary window") {
                 #hotReloadable {
                     Text("This a secondary window!")
-                        .padding(10)
+                        .padding()
                 }
             }
             .defaultSize(width: 200, height: 200)
