@@ -66,7 +66,7 @@ class _App<AppRoot: App> {
                     )
                 }
 
-                guard let value = property.value as? StateProperty else {
+                guard let value = property.value as? any ObservableProperty else {
                     continue
                 }
 

@@ -7,7 +7,7 @@ import Foundation
 
 /// A property wrapper that acts as a source of truth for view state.
 @propertyWrapper
-public struct State<Value>: DynamicProperty, StateProperty {
+public struct State<Value>: ObservableProperty {
     class Storage {
         /// The inner storage of ``State``.
         ///
@@ -59,7 +59,7 @@ public struct State<Value>: DynamicProperty, StateProperty {
 
     var storage: Storage
 
-    var didChange: Publisher {
+    public var didChange: Publisher {
         storage.box.didChange
     }
 
@@ -118,7 +118,7 @@ public struct State<Value>: DynamicProperty, StateProperty {
         }
     }
 
-    func tryRestoreFromSnapshot(_ snapshot: Data) {
+    public func tryRestoreFromSnapshot(_ snapshot: Data) {
         guard
             let decodable = Value.self as? Codable.Type,
             let state = try? JSONDecoder().decode(decodable, from: snapshot)
@@ -129,17 +129,11 @@ public struct State<Value>: DynamicProperty, StateProperty {
         storage.box.value = state as! Value
     }
 
-    func snapshot() throws -> Data? {
+    public func snapshot() throws -> Data? {
         if let value = storage.box as? Codable {
             return try JSONEncoder().encode(value)
         } else {
             return nil
         }
     }
-}
-
-protocol StateProperty {
-    var didChange: Publisher { get }
-    func tryRestoreFromSnapshot(_ snapshot: Data)
-    func snapshot() throws -> Data?
 }
