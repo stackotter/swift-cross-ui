@@ -169,7 +169,8 @@ public protocol AppBackend: Sendable {
     func activate(window: Window)
     /// Closes a window.
     func close(window: Window)
-    /// Sets the handler for the window's close events.
+    /// Sets the handler for the window's close events (for example, when the
+    /// user clicks the close button in the title bar).
     ///
     /// Setting the close handler overrides any previous handler.
     func setCloseHandler(
