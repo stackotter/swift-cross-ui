@@ -74,7 +74,7 @@ void gtk_custom_root_widget_size_allocate(
     root_widget->has_been_allocated = TRUE;
 
     if (root_widget->resize_callback != NULL) {
-        Size size = { .width = allocation->width, .height = allocation->height };
+        CustomWidgetSize size = { .width = allocation->width, .height = allocation->height };
         root_widget->resize_callback(root_widget->resize_callback_data, size);
     }
 }
@@ -144,7 +144,7 @@ void gtk_custom_root_widget_preempt_allocated_size(
 
 void gtk_custom_root_widget_set_resize_callback(
     GtkCustomRootWidget *self,
-    void (*callback)(void*, Size),
+    void (*callback)(void*, CustomWidgetSize),
     void *data
 ) {
     self->resize_callback = callback;
