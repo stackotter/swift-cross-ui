@@ -110,7 +110,29 @@ final class WindowReference<Content: View> {
             self.update(nil, backend: backend, environment: environment)
         }
     }
-    
+
+    #if compiler(>=6.2)
+    isolated deinit {
+        onDeinit()
+    }
+    #else
+    deinit {
+        // `isolated deinit` is a Swift 6.2 feature, so we can't use that here.
+        // But we can't return from `deinit` until `onDeinit` returns (otherwise
+        // things get wonky), meaning we can't just plop it in a task and call
+        // it a day.
+        //
+        // `MainActor.assumeIsolated` at least seems to work reliably here, but
+        // I'm not a fan of blindly trusting that we happen to be on the correct
+        // executor when the runtime decides to call `deinit`.
+
+        // FIXME: Find a way to mimic `isolated deinit` without `isolated deinit`
+        MainActor.assumeIsolated {
+            onDeinit()
+        }
+    }
+    #endif
+
     func update<Backend: AppBackend>(
         _ newInfo: WindowInfo<Content>?,
         backend: Backend,
@@ -287,21 +309,4 @@ final class WindowReference<Content: View> {
         
         backend.activate(window: window)
     }
-
-    #if compiler(>=6.2)
-    /// Closes the window.
-    isolated deinit {
-        onDeinit()
-    }
-    #else
-    /// Closes the window.
-    ///
-    /// Unfortunately, `isolated deinit` is a Swift 6.2 feature, so we have
-    /// to jump to the main actor ourselves.
-    deinit {
-        Task { @MainActor [onDeinit] in
-            onDeinit()
-        }
-    }
-    #endif
 }
