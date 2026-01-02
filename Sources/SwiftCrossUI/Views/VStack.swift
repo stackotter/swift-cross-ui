@@ -63,7 +63,10 @@ public struct VStack<Content: View>: View {
             // TODO: Make layout caching a ViewGraphNode feature so that we can handle
             //   these edge cases without a second thought. Would also make introducing
             //   a port of SwiftUI's Layout protocol much easier.
-            print("warning: VStack will not function correctly non-TupleView Content")
+            logger.warning(
+                "HStack will not function correctly with non-TupleView content",
+                metadata: ["childrenType": "\(type(of: children))"]
+            )
         }
         var cache = (children as? TupleViewChildren)?.stackLayoutCache ?? StackLayoutCache()
         let result = LayoutSystem.computeStackLayout(

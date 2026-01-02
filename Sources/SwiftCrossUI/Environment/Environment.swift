@@ -57,7 +57,7 @@ public struct Environment<Value>: DynamicProperty {
         guard let value = value.value else {
             fatalError(
                 """
-                Environment value \(keyPath) used before initialization. Don't \
+                Environment value at \(keyPath) used before initialization. Don't \
                 use @Environment properties before SwiftCrossUI requests the \
                 view's body.
                 """

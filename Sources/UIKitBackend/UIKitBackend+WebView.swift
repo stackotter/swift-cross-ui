@@ -36,7 +36,7 @@ import SwiftCrossUI
 
         func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
             guard let url = webView.url else {
-                print("warning: Web view has no URL")
+                logger.warning("web view has no URL")
                 return
             }
 

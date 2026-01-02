@@ -43,7 +43,10 @@ public struct HStack<Content: View>: View {
         backend: Backend
     ) -> ViewLayoutResult {
         if !(children is TupleViewChildren) {
-            print("warning: VStack will not function correctly non-TupleView Content")
+            logger.warning(
+                "HStack will not function correctly with non-TupleView content",
+                metadata: ["childrenType": "\(type(of: children))"]
+            )
         }
         var cache = (children as? TupleViewChildren)?.stackLayoutCache ?? StackLayoutCache()
         let result = LayoutSystem.computeStackLayout(

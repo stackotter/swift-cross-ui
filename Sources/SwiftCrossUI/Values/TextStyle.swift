@@ -61,17 +61,12 @@ extension Font.TextStyle {
     /// [typography]: https://developer.apple.com/design/human-interface-guidelines/typography
     public func resolve(for deviceClass: DeviceClass) -> Resolved {
         guard let textStyles = Self.resolvedTextStyles[deviceClass] else {
-            print("warning: Missing text styles for device class \(deviceClass)")
+            logger.warning("missing text styles for device class \(deviceClass)")
             return .fallback
         }
 
         guard let textStyle = textStyles[self] else {
-            print(
-                """
-                warning: Missing \(self) text style for device class \
-                \(deviceClass)
-                """
-            )
+            logger.warning("missing \(self) text style for device class \(deviceClass)")
             return .fallback
         }
 
