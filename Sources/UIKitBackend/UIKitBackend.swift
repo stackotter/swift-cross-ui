@@ -181,7 +181,7 @@ extension App {
             label: "UIKitBackend",
             factory: Self.logHandler(label:metadataProvider:)
         )
-        UIKitBackend()
+        return UIKitBackend()
     }
 }
 
