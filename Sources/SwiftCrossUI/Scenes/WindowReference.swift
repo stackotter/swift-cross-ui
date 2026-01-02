@@ -23,7 +23,7 @@ final class WindowReference<Content: View> {
     /// runtime.
     ///
     /// This asks the backend to close the window.
-    private var onDeinit: () -> Void
+    private var onDeinit: @Sendable @MainActor () -> Void
 
     /// - Parameters:
     ///   - dismissWindowAction: The action to assign to
@@ -286,7 +286,12 @@ final class WindowReference<Content: View> {
     }
 
     /// Closes the window.
-    isolated deinit {
-        onDeinit()
+    ///
+    /// Unfortunately, `isolated deinit` is a Swift 6.2 feature, so we have
+    /// to jump to the main actor ourselves.
+    deinit {
+        Task { @MainActor [onDeinit] in
+            onDeinit()
+        }
     }
 }
