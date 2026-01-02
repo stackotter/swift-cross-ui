@@ -9,7 +9,7 @@ public enum LayoutSystem {
 
     package static func roundSize(_ size: Double) -> Int {
         if size.isInfinite {
-            print("warning: LayoutSystem.roundSize called with infinite size")
+            logger.warning("LayoutSystem.roundSize(_:) called with infinite size")
         }
 
         let size = size.rounded(.towardZero)
@@ -197,11 +197,11 @@ public enum LayoutSystem {
                     environment: environment
                 )
                 if result.participatesInStackLayouts {
-                    print(
-                        """
-                        warning: Hidden view became visible on second update. \
-                        Layout may break. View: \(child.tag ?? "<unknown type>")
-                        """
+                    logger.warning(
+                        "hidden view became visible on second update; layout may break",
+                        metadata: [
+                            "view": "\(child.tag ?? "<unknown type>")"
+                        ]
                     )
                 }
                 renderedChildren[index] = result

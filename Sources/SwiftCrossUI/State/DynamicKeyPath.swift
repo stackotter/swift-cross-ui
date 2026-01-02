@@ -52,12 +52,18 @@ struct DynamicKeyPath<Base, Value> {
         }
 
         guard let offset = matches.first else {
-            print("Warning: No offset found for dynamic property '\(label ?? "<unknown>")'")
+            logger.warning(
+                "no offset found for dynamic property",
+                metadata: ["property": "\(label ?? "<unknown>")"]
+            )
             return nil
         }
 
         guard matches.count == 1 else {
-            print("Warning: Multiple offsets found for dynamic property '\(label ?? "<unknown>")'")
+            logger.warning(
+                "multiple offsets found for dynamic property",
+                metadata: ["property": "\(label ?? "<unknown>")"]
+            )
             return nil
         }
 

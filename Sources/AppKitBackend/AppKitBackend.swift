@@ -1,12 +1,30 @@
 import AppKit
+import Logging
 import SwiftCrossUI
 import WebKit
+
+/// The storage behind `logger`.
+///
+/// `nil` if the logger hasn't been set yet.
+///
+/// > Safety: This is only set once, before it is ever read.
+nonisolated(unsafe) private var _logger: Logger?
+
+/// The global logger for this backend.
+var logger: Logger {
+    guard let _logger else { fatalError("logger not yet initialized") }
+    return _logger
+}
 
 extension App {
     public typealias Backend = AppKitBackend
 
     public var backend: AppKitBackend {
-        AppKitBackend()
+        _logger = Logger(
+            label: "AppKitBackend",
+            factory: Self.logHandler(label:metadataProvider:)
+        )
+        return AppKitBackend()
     }
 }
 
@@ -435,8 +453,7 @@ public final class AppKitBackend: AppBackend {
     public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
         let container = container as! NSContainerView
         guard container.children.indices.contains(index) else {
-            // TODO: Create proper logging system.
-            print("warning: Attempted to set position of non-existent container child")
+            logger.warning("attempted to set position of non-existent container child")
             return
         }
 
@@ -1275,7 +1292,7 @@ public final class AppKitBackend: AppBackend {
             }
 
             guard response != .abort, response != .cancel else {
-                print("warning: Got abort or cancel modal response, unexpected and unhandled")
+                logger.warning("got abort or cancel modal response, unexpected and unhandled")
                 return
             }
 
@@ -1972,11 +1989,11 @@ class NSCustomTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataS
         row: Int
     ) -> NSView? {
         guard let tableColumn else {
-            print("warning: No column provided")
+            logger.warning("no column provided")
             return nil
         }
         guard let columnIndex = columnIndices[ObjectIdentifier(tableColumn)] else {
-            print("warning: NSTableView asked for value of non-existent column")
+            logger.warning("NSTableView asked for value of non-existent column")
             return nil
         }
         return widgets[row * columnCount + columnIndex]
@@ -2016,7 +2033,10 @@ extension ColorScheme {
 extension Color {
     init(_ nsColor: NSColor) {
         guard let resolvedNSColor = nsColor.usingColorSpace(.deviceRGB) else {
-            print("error: Failed to convert NSColor to RGB")
+            logger.error(
+                "failed to convert NSColor to RGB",
+                metadata: ["NSColor": "\(nsColor)"]
+            )
             self = .black
             return
         }
@@ -2316,7 +2336,7 @@ final class CustomWKNavigationDelegate: NSObject, WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         guard let url = webView.url else {
-            print("warning: Web view has no URL")
+            logger.warning("web view has no URL")
             return
         }
 

@@ -72,7 +72,6 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
         )
 
         if willEarlyExit {
-            print("early exit: childResult.size=\(childResult.size)")
             return childResult
         }
 
