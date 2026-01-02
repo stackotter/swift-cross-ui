@@ -171,9 +171,17 @@ public protocol AppBackend: Sendable {
     /// May be used in other circumstances eventually.
     func activate(window: Window)
     /// Closes a window.
+    ///
+    /// At some point during or after execution of this function, the handler
+    /// set by ``setCloseHandler(ofWindow:to:)-8ogpa`` should be called.
+    /// Oftentimes this will be done automatically by the backend's underlying
+    /// UI framework.
     func close(window: Window)
     /// Sets the handler for the window's close events (for example, when the
     /// user clicks the close button in the title bar).
+    ///
+    /// The close handler should also be called whenever ``close(window:)-9xucx``
+    /// is called (some UI frameworks do this automatically).
     ///
     /// Setting the close handler overrides any previous handler.
     func setCloseHandler(

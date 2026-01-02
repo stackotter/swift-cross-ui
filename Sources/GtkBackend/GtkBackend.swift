@@ -217,6 +217,18 @@ public final class GtkBackend: AppBackend {
         window.present()
     }
 
+    public func close(window: Window) {
+        window.close()
+        window.destroy()
+    }
+
+    public func setCloseHandler(
+        ofWindow window: Window,
+        to action: @escaping () -> Void
+    ) {
+        window.onCloseRequest = { _ in action() }
+    }
+
     public func openExternalURL(_ url: URL) throws {
         // Used instead of gtk_uri_launcher_launch to maintain <4.10 compatibility
         gtk_show_uri(nil, url.absoluteString, guint(GDK_CURRENT_TIME))

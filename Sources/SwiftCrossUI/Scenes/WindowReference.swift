@@ -18,6 +18,9 @@ final class WindowReference<Content: View> {
     ///
     /// This also gets called when the backend closes the window of its own
     /// accord, e.g. when the close button in the title bar is clicked.
+    ///
+    /// This action should dispose of the wrapping scene's reference to this
+    /// `WindowReference` such that `deinit` is called by the runtime.
     private var dismissWindowAction: @Sendable @MainActor () -> Void
     /// The function to call when this object's `deinit` is called by the
     /// runtime.
@@ -285,6 +288,12 @@ final class WindowReference<Content: View> {
         backend.activate(window: window)
     }
 
+    #if compiler(>=6.2)
+    /// Closes the window.
+    isolated deinit {
+        onDeinit()
+    }
+    #else
     /// Closes the window.
     ///
     /// Unfortunately, `isolated deinit` is a Swift 6.2 feature, so we have
@@ -294,4 +303,5 @@ final class WindowReference<Content: View> {
             onDeinit()
         }
     }
+    #endif
 }

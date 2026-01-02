@@ -76,13 +76,15 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         }
 
         if openOnAppLaunch {
-            let id = UUID()
+            let windowID = UUID()
             self.windowReferences = [
-                id: WindowReference(
+                windowID: WindowReference(
                     info: scene.windowInfo,
                     backend: backend,
                     environment: environment,
-                    dismissWindowAction: { self.windowReferences[id] = nil }
+                    dismissWindowAction: {
+                        self.windowReferences[windowID] = nil
+                    }
                 )
             ]
         }
@@ -103,7 +105,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         backend: Backend,
         environment: EnvironmentValues
     ) {
-        for (id, windowReference) in windowReferences {
+        for windowReference in windowReferences.values {
             windowReference.update(
                 newScene?.windowInfo,
                 backend: backend,
@@ -117,12 +119,14 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         backend: Backend,
         environment: EnvironmentValues
     ) {
-        let id = UUID()
-        windowReferences[id] = WindowReference(
+        let windowID = UUID()
+        windowReferences[windowID] = WindowReference(
             info: scene.windowInfo,
             backend: backend,
             environment: environment,
-            dismissWindowAction: { self.windowReferences[id] = nil },
+            dismissWindowAction: {
+                self.windowReferences[windowID] = nil
+            },
             updateImmediately: true
         )
     }
