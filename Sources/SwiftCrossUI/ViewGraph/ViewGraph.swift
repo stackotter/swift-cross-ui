@@ -33,6 +33,11 @@ public class ViewGraph<Root: View> {
     private var setIncomingURLHandler: (@escaping (URL) -> Void) -> Void
 
     /// Creates a view graph for a root view with a specific backend.
+    ///
+    /// - Parameters:
+    ///   - view: The view to create a graph for.
+    ///   - backend: The app's backend.
+    ///   - environment: The current environment.
     public init<Backend: AppBackend>(
         for view: Root,
         backend: Backend,
@@ -49,6 +54,7 @@ public class ViewGraph<Root: View> {
     }
 
     /// Recomputes the entire UI (e.g. due to the root view's state updating).
+    ///
     /// If the update is due to the parent scene getting updated then the view
     /// is recomputed and passed as `newView`.
     public func computeLayout(

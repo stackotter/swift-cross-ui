@@ -1,13 +1,16 @@
 extension View {
-    /// Modifies size proposals to match the specified aspect ratio, or the view's
-    /// ideal aspect ratio if unspecified.
+    /// Modifies size proposals to match the specified aspect ratio, or the
+    /// view's ideal aspect ratio if unspecified.
     ///
     /// This modifier doesn't guarantee that the view's size will maintain a
     /// constant aspect ratio, as it only changes the size proposed to the
     /// wrapped content.
-    /// - Parameter aspectRatio: The aspect ratio to maintain. Use `nil` to
-    ///   maintain the view's ideal aspect ratio.
-    /// - Parameter contentMode: How the view should fill available space.
+    ///
+    /// - Parameters:
+    ///   - aspectRatio: The aspect ratio to maintain. Use `nil` to
+    ///     maintain the view's ideal aspect ratio.
+    ///   - contentMode: How the view should fill available space.
+    /// - Returns: A view with its aspect ratio configured.
     public func aspectRatio(_ aspectRatio: Double? = nil, contentMode: ContentMode) -> some View {
         AspectRatioView(self, aspectRatio: aspectRatio, contentMode: contentMode)
     }
@@ -17,9 +20,12 @@ extension View {
     /// This modifier doesn't guarantee that the view's size will maintain a
     /// constant aspect ratio, as it only changes the size proposed to the
     /// wrapped content.
-    /// - Parameter aspectRatio: The aspect ratio to maintain, specified as a
-    ///   size with the desired aspect ratio.
-    /// - Parameter contentMode: How the view should fill available space.
+    ///
+    /// - Parameters:
+    ///   - aspectRatio: The aspect ratio to maintain, specified as a
+    ///     size with the desired aspect ratio.
+    ///   - contentMode: How the view should fill available space.
+    /// - Returns: A view with its aspect ratio configured.
     public func aspectRatio(_ aspectRatio: SIMD2<Double>, contentMode: ContentMode) -> some View {
         AspectRatioView(
             self,

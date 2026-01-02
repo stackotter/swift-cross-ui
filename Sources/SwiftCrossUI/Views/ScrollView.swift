@@ -1,12 +1,19 @@
 import Foundation
 
-/// A view that is scrollable when it would otherwise overflow available space. Use the
-/// ``View/frame`` modifier to constrain height if necessary.
+/// A view that is scrollable when it would otherwise overflow available space.
+///
+/// Use the ``View/frame(width:height:alignment:)`` modifier to constrain height
+/// if necessary.
 public struct ScrollView<Content: View>: TypeSafeView, View {
     public var body: VStack<Content>
     public var axes: Axis.Set
 
     /// Wraps a view in a scrollable container.
+    ///
+    /// - Parameters:
+    ///   - axes: The axes to enable scrolling on. Defaults to
+    ///   ``Axis/Set/vertical``.
+    ///   - content: The content of this scroll view.
     public init(_ axes: Axis.Set = .vertical, @ViewBuilder _ content: () -> Content) {
         self.axes = axes
         body = VStack(content: content())

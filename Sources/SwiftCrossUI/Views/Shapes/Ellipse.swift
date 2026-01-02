@@ -1,4 +1,6 @@
+/// An ellipse.
 public struct Ellipse: Shape {
+    /// Creates an ``Ellipse`` instance.
     public nonisolated init() {}
 
     public nonisolated func path(in bounds: Path.Rect) -> Path {

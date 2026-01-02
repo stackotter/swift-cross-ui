@@ -1,7 +1,7 @@
 import Foundation
 
 /// Reveals a file in the system's file manager. This opens
-/// the file's enclosing directory and highlighting the file.
+/// the file's enclosing directory and highlights the file.
 @MainActor
 public struct RevealFileAction {
     let action: (URL) -> Void

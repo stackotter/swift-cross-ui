@@ -1,4 +1,7 @@
 extension View {
+    /// Overlays another view on top of this view.
+    ///
+    /// - Parameter content: The view to overlay this view with.
     public func overlay(@ViewBuilder content: () -> some View) -> some View {
         OverlayModifier(content: self, overlay: content())
     }

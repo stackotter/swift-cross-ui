@@ -1,5 +1,6 @@
 extension View {
-    /// Presents a conditional modal overlay. `onDismiss` gets invoked when the sheet is dismissed.
+    /// Presents a conditional modal overlay. `onDismiss` gets invoked when the
+    /// sheet is dismissed.
     ///
     /// On most platforms sheets appear as form-style modals. On tvOS, sheets
     /// appear as full screen overlays (non-opaque).
@@ -14,6 +15,7 @@ extension View {
     ///   - isPresented: A binding controlling whether the sheet is presented.
     ///   - onDismiss: An action to perform when the sheet is dismissed
     ///     by the user.
+    ///   - content: The content of the sheet
     public func sheet<SheetContent: View>(
         isPresented: Binding<Bool>,
         onDismiss: (() -> Void)? = nil,

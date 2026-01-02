@@ -1,7 +1,7 @@
 // TODO: This could possibly be renamed to ``SceneGraph`` now that that's basically the role
 //   it has taken on since introducing scenes.
 /// A top-level wrapper providing an entry point for the app. Exists to be able to persist
-/// the view graph alongside the app (we can't do that on a user's `App` implementation because
+/// the view graph alongside the app (we can't do that on a user's ``App`` implementation because
 /// we can only add computed properties).
 @MainActor
 class _App<AppRoot: App> {

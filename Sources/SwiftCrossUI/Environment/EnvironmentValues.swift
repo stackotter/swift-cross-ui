@@ -54,7 +54,7 @@ public struct EnvironmentValues {
     public var foregroundColor: Color?
 
     /// The suggested foreground color for backends to use. Backends don't
-    /// neccessarily have to obey this when ``Environment/foregroundColor``
+    /// neccessarily have to obey this when ``EnvironmentValues/foregroundColor``
     /// is `nil`.
     public var suggestedForegroundColor: Color {
         foregroundColor ?? colorScheme.defaultForegroundColor
@@ -205,6 +205,8 @@ public struct EnvironmentValues {
     }
 
     /// Creates the default environment.
+    ///
+    /// - Parameter backend: The app's backend.
     package init<Backend: AppBackend>(backend: Backend) {
         self.backend = backend
 
@@ -231,6 +233,12 @@ public struct EnvironmentValues {
 
     /// Returns a copy of the environment with the specified property set to the
     /// provided new value.
+    ///
+    /// - Parameters:
+    ///   - keyPath: A key path to the property to set.
+    ///   - newValue: The new value of the property.
+    /// - Returns: A copy of the environment with the specified property set to
+    ///   `newValue`.
     public func with<T>(_ keyPath: WritableKeyPath<Self, T>, _ newValue: T) -> Self {
         var environment = self
         environment[keyPath: keyPath] = newValue

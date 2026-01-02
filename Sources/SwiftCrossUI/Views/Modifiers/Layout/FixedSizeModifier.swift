@@ -1,8 +1,14 @@
 extension View {
+    /// Locks this view's size on both the horizontal and vertical axes.
     public func fixedSize() -> some View {
         FixedSizeModifier(self, horizontal: true, vertical: true)
     }
 
+    /// Locks this view's size.
+    ///
+    /// - Parameters:
+    ///   - horizontal: Whether to lock this view's size on the horizontal axis.
+    ///   - vertical: Whether to lock this view's size on the vertical axis.
     public func fixedSize(horizontal: Bool, vertical: Bool) -> some View {
         FixedSizeModifier(self, horizontal: horizontal, vertical: vertical)
     }

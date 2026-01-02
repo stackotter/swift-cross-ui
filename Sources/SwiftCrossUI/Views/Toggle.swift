@@ -1,4 +1,7 @@
 /// A control for toggling between two values (usually representing on and off).
+///
+/// Depending on the value of ``EnvironmentValues/toggleStyle``, this control
+/// can appear as a switch, a button, or a checkbox.
 public struct Toggle: View {
     @Environment(\.backend) var backend
     @Environment(\.toggleStyle) var toggleStyle
@@ -9,6 +12,10 @@ public struct Toggle: View {
     var active: Binding<Bool>
 
     /// Creates a toggle that displays a custom label.
+    ///
+    /// - Parameters:
+    ///   - label: The label to be shown on or beside the toggle.
+    ///   - active: Whether the toggle is active or not.
     public init(_ label: String, active: Binding<Bool>) {
         self.label = label
         self.active = active

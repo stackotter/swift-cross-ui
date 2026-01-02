@@ -42,7 +42,7 @@ SwiftCrossUI takes inspiration from SwiftUI, allowing you to use the basic conce
 ### State
 
 - <doc:State-basics>
-- <doc:Environment>
+- <doc:The-environment>
 - <doc:Preferences>
 
 ### User input

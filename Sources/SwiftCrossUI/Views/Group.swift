@@ -3,7 +3,9 @@
 public struct Group<Content: View>: View {
     public var body: Content
 
-    /// Creates a horizontal stack with the given spacing.
+    /// Creates a group.
+    ///
+    /// - Parameter content: The content of this group.
     public init(@ViewBuilder content: () -> Content) {
         self.init(content: content())
     }

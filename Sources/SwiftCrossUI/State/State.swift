@@ -4,15 +4,19 @@ import Foundation
 // - It supports value types
 // - It supports ObservableObject
 // - It supports Optional<ObservableObject>
+
+/// A property wrapper that acts as a source of truth for view state.
 @propertyWrapper
 public struct State<Value>: ObservableProperty {
     class Storage {
-        // This inner box is what stays constant between view updates. The
-        // outer box (Storage) is used so that we can assign this box to
-        // future state instances from the non-mutating
-        // `update(with:previousValue:)` method. It's vital that the inner
-        // box remains the same so that bindings can be stored across view
-        // updates.
+        /// The inner storage of ``State``.
+        ///
+        /// This inner box is what stays constant between view updates. The
+        /// outer box (`Storage`) is used so that we can assign this box to
+        /// future ``State`` instances from the non-`mutating`
+        /// ``State/update(with:previousValue:)``. It's vital that the inner
+        /// box remains the same so that bindings can be stored across view
+        /// updates.
         var box: InnerBox
 
         class InnerBox {
@@ -25,12 +29,12 @@ public struct State<Value>: ObservableProperty {
             }
 
             /// Call this to publish an observation to all observers after
-            /// setting a new value. This isn't in a didSet property accessor
+            /// setting a new value. This isn't in a `didSet` property accessor
             /// because we want more granular control over when it does and
             /// doesn't trigger.
             ///
             /// Additionally updates the downstream observation if the
-            /// wrapped value is an Optional<some ObservableObject> and the
+            /// wrapped value is an `Optional<some ObservableObject>` and the
             /// current case has toggled.
             func postSet() {
                 // If the wrapped value is an Optional<some ObservableObject>
@@ -59,6 +63,7 @@ public struct State<Value>: ObservableProperty {
         storage.box.didChange
     }
 
+    /// Accesses the underlying value of this `State`.
     public var wrappedValue: Value {
         get {
             storage.box.value
@@ -69,6 +74,7 @@ public struct State<Value>: ObservableProperty {
         }
     }
 
+    /// Returns a ``Binding`` to this state.
     public var projectedValue: Binding<Value> {
         // Specifically link the binding to the inner box instead of the outer
         // storage which changes with each view update.
@@ -84,6 +90,9 @@ public struct State<Value>: ObservableProperty {
         )
     }
 
+    /// Creates a `State` given an initial value.
+    ///
+    /// - Parameter initialValue: The state's initial value.
     public init(wrappedValue initialValue: Value) {
         storage = Storage(initialValue)
 

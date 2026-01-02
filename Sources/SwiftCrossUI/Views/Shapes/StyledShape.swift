@@ -1,7 +1,11 @@
-/// A shape that has style information attached to it, including color and stroke style.
+/// A shape that has style information attached to it, including color and
+/// stroke style.
 public protocol StyledShape: Shape {
+    /// The shape's stroke color.
     var strokeColor: Color? { get }
+    /// The shape's fill color.
     var fillColor: Color? { get }
+    /// The shape's stroke style.
     var strokeStyle: StrokeStyle? { get }
 }
 

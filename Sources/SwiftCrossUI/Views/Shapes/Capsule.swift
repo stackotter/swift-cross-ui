@@ -1,5 +1,7 @@
-/// A rounded rectangle whose corner radius is equal to half the length of its shortest side.
+/// A rounded rectangle whose corner radius is equal to half the length of its
+/// shortest side.
 public struct Capsule: Shape {
+    /// Creates a ``Capsule`` instance.
     public nonisolated init() {}
 
     public nonisolated func path(in bounds: Path.Rect) -> Path {

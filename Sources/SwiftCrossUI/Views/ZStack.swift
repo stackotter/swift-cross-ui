@@ -1,7 +1,15 @@
+/// A container that lays its views on top of each other.
 public struct ZStack<Content: View>: View {
+    /// The stack's alignment.
     public var alignment: Alignment
+    /// The stack's content.
     public var body: Content
 
+    /// Creates a ``ZStack``.
+    ///
+    /// - Parameters:
+    ///   - alignment: The stack's alignment.
+    ///   - content: The stack's content.
     public init(
         alignment: Alignment = .center,
         @ViewBuilder content: () -> Content

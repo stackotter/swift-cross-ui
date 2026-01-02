@@ -9,7 +9,13 @@ public struct ForEach<Items: Collection, Child> where Items.Index == Int {
 }
 
 extension ForEach where Child == [MenuItem] {
-    /// Creates a view that creates child views on demand based on a collection of data.
+    /// Creates a view that creates child views on demand based on a collection
+    /// of data.
+    ///
+    /// - Parameters:
+    ///   - elements: The collection to build an array of views from.
+    ///   - child: A menu items builder that takes an element of `elements` and
+    ///     returns an appropriate list of menu items.
     @_disfavoredOverload
     public init(
         _ elements: Items,
@@ -21,7 +27,13 @@ extension ForEach where Child == [MenuItem] {
 }
 
 extension ForEach where Items == [Int] {
-    /// Creates a view that creates child views on demand based on a given ClosedRange
+    /// Creates a view that creates child views on demand based on a given
+    /// `ClosedRange`.
+    ///
+    /// - Parameters:
+    ///   - range: The range to build an array of views from.
+    ///   - child: A view builder that takes an element of `range` and returns
+    ///     an appropriate view.
     @_disfavoredOverload
     public init(
         _ range: ClosedRange<Int>,
@@ -31,7 +43,13 @@ extension ForEach where Items == [Int] {
         self.child = child
     }
 
-    /// Creates a view that creates child views on demand based on a given Range
+    /// Creates a view that creates child views on demand based on a given
+    /// `Range`.
+    ///
+    /// - Parameters:
+    ///   - range: The range to build an array of views from.
+    ///   - child: A view builder that takes an element of `range` and returns
+    ///     an appropriate view.
     @_disfavoredOverload
     public init(
         _ range: Range<Int>,
@@ -49,7 +67,16 @@ extension ForEach: TypeSafeView, View where Child: View {
         return EmptyView()
     }
 
-    /// Creates a view that creates child views on demand based on a collection of data.
+    /// Creates a view that creates child views on demand based on a collection
+    /// of data.
+    ///
+    /// One instance of `child` will be rendered for every element in
+    /// `elements`.
+    ///
+    /// - Parameters:
+    ///   - elements: The collection to build an array of views from.
+    ///   - child: A view builder that takes an element of `elements` and
+    ///     returns an appropriate view.
     public init(
         _ elements: Items,
         @ViewBuilder _ child: @escaping (Items.Element) -> Child

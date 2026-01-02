@@ -10,6 +10,8 @@ public struct Spacer: ElementaryView, View {
 
     /// Creates a spacer with a given minimum length along its axis or axes
     /// of expansion.
+    ///
+    /// - Parameter minLength: The spacer's minimum length.
     public init(minLength: Int? = nil) {
         self.minLength = minLength
     }

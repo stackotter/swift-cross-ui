@@ -1,13 +1,20 @@
 /// A button that shows a popover menu when clicked.
 ///
-/// Due to technical limitations, the minimum supported OS's for menu buttons in UIKitBackend
-/// are iOS 14 and tvOS 17.
+/// Due to technical limitations, the minimum supported OS's for menu buttons in
+/// UIKitBackend are iOS 14 and tvOS 17.
 public struct Menu: Sendable {
+    /// The menu's label.
     public var label: String
+    /// The menu's items.
     public var items: [MenuItem]
 
     var buttonWidth: Int?
 
+    /// Creates a menu.
+    ///
+    /// - Parameters:
+    ///   - label: The menu's label.
+    ///   - items: The menu's items.
     public init(_ label: String, @MenuItemsBuilder items: () -> [MenuItem]) {
         self.label = label
         self.items = items()

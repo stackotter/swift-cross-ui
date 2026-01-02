@@ -7,8 +7,18 @@ public protocol View {
     /// The view's contents.
     @ViewBuilder var body: Content { get }
 
-    /// Gets the view's children as a type-erased collection of view graph nodes. Type-erased
-    /// to avoid leaking complex requirements to users implementing their own regular views.
+    /// Gets the view's children as a type-erased collection of view graph
+    /// nodes.
+    ///
+    /// Type-erased to avoid leaking complex requirements to users implementing
+    /// their own regular views.
+    ///
+    /// - Parameters:
+    ///   - backend: The app's backend.
+    ///   - snapshots: <#FIXME: document#>
+    ///   - environment: The current environment.
+    /// - Returns: The view's children as a type-erased collection of view graph
+    ///   nodes.
     func children<Backend: AppBackend>(
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
@@ -17,10 +27,18 @@ public protocol View {
 
     // TODO: Perhaps this can be split off into a separate protocol for the `TupleViewN`s
     //   if we can set up the generics right for VStack.
-    /// Gets the view's children in a format that can be consumed by the ``LayoutSystem``.
-    /// This really only needs to be its own method for views such as VStack which treat
-    /// their child's children as their own and skip over their direct child. Only needs to
-    /// be implemented by the `TupleViewN`s.
+    /// Gets the view's children in a format that can be consumed by the
+    /// ``LayoutSystem``.
+    ///
+    /// This really only needs to be its own method for views such as ``VStack``
+    /// which treat their child's children as their own and skip over their
+    /// direct child. Only needs to be implemented by the `TupleViewN`s.
+    ///
+    /// - Parameters:
+    ///   - backend: The app's backend.
+    ///   - children: The view's children.
+    /// - Returns: The view's children in a format that can be consumed by the
+    /// ``LayoutSystem``.
     func layoutableChildren<Backend: AppBackend>(
         backend: Backend,
         children: any ViewGraphNodeChildren
@@ -33,19 +51,39 @@ public protocol View {
     /// while deciding the structure of the widget. For example, a view
     /// displaying one of two children should use ``AppBackend/createContainer()``
     /// to create a container for the displayed child instead of just directly
-    /// returning the widget of the currently displayed child (which would result
-    /// in you not being able to ever switch to displaying the other child). This
-    /// constraint significantly simplifies view implementations without
-    /// requiring widgets to be re-created after every single update.
+    /// returning the widget of the currently displayed child (which would
+    /// result in you not being able to ever switch to displaying the other
+    /// child). This constraint significantly simplifies view implementations
+    /// without requiring widgets to be re-created after every single update.
+    ///
+    /// - Parameters:
+    ///   - children: The view's children.
+    ///   - backend: The app's backend.
+    /// - Returns: The view's underlying widget for `backend`.
     func asWidget<Backend: AppBackend>(
         _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget
 
     /// Computes this view's layout after a state change or a change in
-    /// available space. `proposedSize` is the size suggested by the parent
-    /// container, but child views always get the final call on their own size.
-    /// - Returns: The view's layout size.
+    /// available space.
+    ///
+    /// This method should _not_ apply the layout to `widget`; that should be
+    /// done in <doc:/documentation/SwiftCrossUI/View/commit(_:children:layout:environment:backend:)-6kzjk>
+    /// instead.
+    ///
+    /// `proposedSize` is the size suggested by the parent container, but child
+    /// views always get the final call on their own size.
+    ///
+    /// - Parameters:
+    ///   - widget: The view's underlying widget.
+    ///   - children: The view's children.
+    ///   - proposedSize: The size suggested to the view by its parent
+    ///     container.
+    ///   - environment: The current environment.
+    ///   - backend: The app's backend.
+    /// - Returns: The view's computed size, along with any propagated
+    ///   preferences.
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,
@@ -55,7 +93,15 @@ public protocol View {
     ) -> ViewLayoutResult
 
     /// Commits the last computed layout to the underlying widget hierarchy.
-    /// `layout` is guaranteed to be the last value returned by ``computeLayout``.
+    ///
+    /// - Parameters:
+    ///   - widget: The view's underlying widget.
+    ///   - children: The view's children.
+    ///   - layout: The layout to use for the view. Guaranteed to be the
+    ///     last value returned by
+    ///     <doc:/documentation/SwiftCrossUI/View/computeLayout(_:children:proposedSize:environment:backend:)-2gzmc>.
+    ///   - environment: The current environment.
+    ///   - backend: The app's backend.
     func commit<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children: any ViewGraphNodeChildren,

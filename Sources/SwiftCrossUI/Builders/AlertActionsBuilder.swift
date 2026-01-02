@@ -1,4 +1,4 @@
-/// A builder for `[AlertAction]`.
+/// A result builder for `[AlertAction]`.
 @resultBuilder
 public struct AlertActionsBuilder {
     public static func buildPartialBlock(first: Button) -> [AlertAction] {
