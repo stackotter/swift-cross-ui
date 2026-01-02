@@ -41,6 +41,7 @@ public final class GtkBackend: AppBackend {
     public let requiresImageUpdateOnScaleFactorChange = false
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = true
+    public let supportsMultipleWindows = true
     public let deviceClass = DeviceClass.desktop
     public let defaultSheetCornerRadius = 10
 

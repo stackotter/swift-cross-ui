@@ -159,8 +159,11 @@ struct SheetDemo: View {
 
 struct OpenWindowDemo: View {
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.supportsMultipleWindows) private var supportsMultipleWindows
 
     var body: some View {
+        Text("Backend supports multi-window: \(supportsMultipleWindows)")
+
         Button("Open singleton window") {
             openWindow(id: "singleton-window")
         }

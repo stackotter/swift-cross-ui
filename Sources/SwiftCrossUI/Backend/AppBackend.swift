@@ -97,6 +97,9 @@ public protocol AppBackend: Sendable {
     /// Whether the backend can reveal files in the system file manager or not.
     /// Mobile backends generally can't.
     var canRevealFiles: Bool { get }
+    /// Whether the backend can have multiple windows open at once. Mobile
+    /// backends generally can't.
+    var supportsMultipleWindows: Bool { get }
 
     /// Often in UI frameworks (such as Gtk), code is run in a callback
     /// after starting the app, and hence this generic root window creation

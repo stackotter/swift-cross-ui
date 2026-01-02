@@ -43,6 +43,7 @@ public final class WinUIBackend: AppBackend {
     public let requiresImageUpdateOnScaleFactorChange = false
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = false
+    public let supportsMultipleWindows = true
     public let deviceClass = DeviceClass.desktop
 
     public var scrollBarWidth: Int {

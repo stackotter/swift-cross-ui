@@ -37,6 +37,7 @@ public final class Gtk3Backend: AppBackend {
     public let requiresImageUpdateOnScaleFactorChange = true
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = true
+    public let supportsMultipleWindows = true
     public let deviceClass = DeviceClass.desktop
 
     var gtkApp: Application

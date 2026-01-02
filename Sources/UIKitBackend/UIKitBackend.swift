@@ -22,6 +22,7 @@ public final class UIKitBackend: AppBackend {
     public let requiresImageUpdateOnScaleFactorChange = false
 
     public let canRevealFiles = false
+    public let supportsMultipleWindows = false
 
     public var deviceClass: DeviceClass {
         switch UIDevice.current.userInterfaceIdiom {

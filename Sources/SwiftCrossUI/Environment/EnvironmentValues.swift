@@ -195,7 +195,9 @@ public struct EnvironmentValues {
     /// Opens a window with the specified ID.
     @MainActor
     public var openWindow: OpenWindowAction {
-        return OpenWindowAction()
+        return OpenWindowAction(
+            backend: backend
+        )
     }
 
     /// Reveals a file in the system's file manager. This opens
@@ -208,6 +210,13 @@ public struct EnvironmentValues {
         return RevealFileAction(
             backend: backend
         )
+    }
+
+    /// Whether the backend can have multiple windows open at once. Mobile
+    /// backends generally can't.
+    @MainActor
+    public var supportsMultipleWindows: Bool {
+        backend.supportsMultipleWindows
     }
 
     /// Creates the default environment.

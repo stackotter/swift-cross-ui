@@ -247,6 +247,7 @@ public final class DummyBackend: AppBackend {
     public var menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public var deviceClass = DeviceClass.desktop
     public var canRevealFiles = false
+    public let supportsMultipleWindows = true
 
     public var incomingURLHandler: ((URL) -> Void)?
 
