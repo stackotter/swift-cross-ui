@@ -51,3 +51,14 @@ package struct EnvironmentModifier<Child: View>: View {
         )
     }
 }
+
+extension View {
+    /// Modifies the environment of the View its applied to
+    public func environment<T>(_ keyPath: WritableKeyPath<EnvironmentValues, T>, _ newValue: T)
+        -> some View
+    {
+        EnvironmentModifier(self) { environment in
+            environment.with(keyPath, newValue)
+        }
+    }
+}
