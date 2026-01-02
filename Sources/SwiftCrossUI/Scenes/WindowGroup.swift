@@ -10,12 +10,15 @@ public struct WindowGroup<Content: View>: Scene {
 
     public var commands: Commands = .empty
 
-    var genericWindow: GenericWindow<Content>
+    var windowInfo: WindowInfo<Content>
+    var id: String?
+    var launchBehavior: SceneLaunchBehavior = .automatic
 
-    /// Creates a window group optionally specifying a title. Window title
+    /// Creates a window group optionally specifying a title and an ID. Window title
     /// defaults to `ProcessInfo.processInfo.processName`.
     public init(
         _ title: String? = nil,
+        id: String? = nil,
         @ViewBuilder _ content: @escaping () -> Content
     ) {
         #if os(WASI)
@@ -23,26 +26,22 @@ public struct WindowGroup<Content: View>: Scene {
         #else
             let title = title ?? ProcessInfo.processInfo.processName
         #endif
-        self.genericWindow = GenericWindow(
-            title,
-            id: nil,
-            openOnAppLaunch: true,
-            content
-        )
+        self.id = id
+        self.windowInfo = WindowInfo(title: title, content: content)
     }
 
     /// Sets the default size of a window (used when creating new instances of
     /// the window).
     public func defaultSize(width: Int, height: Int) -> Self {
         var windowGroup = self
-        windowGroup.genericWindow.defaultSize = SIMD2(width, height)
+        windowGroup.windowInfo.defaultSize = SIMD2(width, height)
         return windowGroup
     }
 
     /// Sets the resizability of a window.
     public func windowResizability(_ resizability: WindowResizability) -> Self {
         var windowGroup = self
-        windowGroup.genericWindow.resizability = resizability
+        windowGroup.windowInfo.resizability = resizability
         return windowGroup
     }
 
@@ -50,32 +49,53 @@ public struct WindowGroup<Content: View>: Scene {
     public func defaultLaunchBehavior(
         _ launchBehavior: SceneLaunchBehavior
     ) -> Self {
-        var window = self
-        window.genericWindow.openOnAppLaunch = switch launchBehavior {
-        case .automatic, .presented: true
-        case .suppressed: false
-        }
-        return window
+        var windowGroup = self
+        windowGroup.launchBehavior = launchBehavior
+        return windowGroup
     }
 }
 
-/// The ``SceneGraphNode`` corresponding to a ``WindowGroup`` scene. Holds
-/// the scene's view graph and window handle.
+/// The ``SceneGraphNode`` corresponding to a ``WindowGroup`` scene.
 public final class WindowGroupNode<Content: View>: SceneGraphNode {
     public typealias NodeScene = WindowGroup<Content>
 
-    private var genericWindowNode: GenericWindowNode<Content>
+    /// The references to the underlying window objects, which also manages
+    /// each window's view graph.
+    ///
+    /// Empty if there are currently no instances of the window.
+    private var windowReferences: [UUID: WindowReference<Content>] = [:]
 
     public init<Backend: AppBackend>(
         from scene: WindowGroup<Content>,
         backend: Backend,
         environment: EnvironmentValues
     ) {
-        self.genericWindowNode = GenericWindowNode(
-            from: scene.genericWindow,
-            backend: backend,
-            environment: environment
-        )
+        let openOnAppLaunch = switch scene.launchBehavior {
+            case .automatic, .presented: true
+            case .suppressed: false
+        }
+
+        if openOnAppLaunch {
+            let id = UUID()
+            self.windowReferences = [
+                id: WindowReference(
+                    info: scene.windowInfo,
+                    backend: backend,
+                    environment: environment,
+                    dismissWindowAction: { self.windowReferences[id] = nil }
+                )
+            ]
+        }
+
+        if let id = scene.id {
+            windowOpenFunctionsByID[id] = {
+                self.open(
+                    scene,
+                    backend: backend,
+                    environment: environment
+                )
+            }
+        }
     }
 
     public func update<Backend: AppBackend>(
@@ -83,10 +103,27 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         backend: Backend,
         environment: EnvironmentValues
     ) {
-        genericWindowNode.update(
-            newScene?.genericWindow,
+        for (id, windowReference) in windowReferences {
+            windowReference.update(
+                newScene?.windowInfo,
+                backend: backend,
+                environment: environment
+            )
+        }
+    }
+
+    private func open<Backend: AppBackend>(
+        _ scene: WindowGroup<Content>,
+        backend: Backend,
+        environment: EnvironmentValues
+    ) {
+        let id = UUID()
+        windowReferences[id] = WindowReference(
+            info: scene.windowInfo,
             backend: backend,
-            environment: environment
+            environment: environment,
+            dismissWindowAction: { self.windowReferences[id] = nil },
+            updateImmediately: true
         )
     }
 }

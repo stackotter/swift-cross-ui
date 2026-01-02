@@ -169,6 +169,13 @@ public protocol AppBackend: Sendable {
     func activate(window: Window)
     /// Closes a window.
     func close(window: Window)
+    /// Sets the handler for the window's close events.
+    ///
+    /// Setting the close handler overrides any previous handler.
+    func setCloseHandler(
+        ofWindow window: Window,
+        to action: @escaping () -> Void
+    )
 
     /// Sets the application's global menu. Some backends may make use of the host
     /// platform's global menu bar (such as macOS's menu bar), and others may render their
@@ -833,11 +840,20 @@ extension AppBackend {
         todo()
     }
 
-    // MARK: Application
+    // MARK: Windows
+
+    public func setCloseHandler(
+        ofWindow window: Window,
+        to action: @escaping () -> Void
+    ) {
+        todo()
+    }
 
     public func close(window: Window) {
         todo()
     }
+
+    // MARK: Application
 
     public func setApplicationMenu(_ submenus: [ResolvedMenu.Submenu]) {
         todo()

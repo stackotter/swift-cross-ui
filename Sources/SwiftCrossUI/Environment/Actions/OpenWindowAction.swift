@@ -16,3 +16,7 @@ public struct OpenWindowAction {
         openWindow()
     }
 }
+
+// FIXME: we should make this a preference instead, if we can get those to
+//   propagate beyond the scene level
+var windowOpenFunctionsByID: [String: @Sendable @MainActor () -> Void] = [:]

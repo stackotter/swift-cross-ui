@@ -164,6 +164,9 @@ struct OpenWindowDemo: View {
         Button("Open singleton window") {
             openWindow(id: "singleton-window")
         }
+        Button("Open new tertiary window instance") {
+            openWindow(id: "tertiary-window")
+        }
     }
 }
 
@@ -173,6 +176,21 @@ struct TertiaryWindowView: View {
     var body: some View {
         VStack {
             Text("This a tertiary window!")
+
+            Button("Close window") {
+                dismissWindow()
+            }
+        }
+        .padding()
+    }
+}
+
+struct SingletonWindowView: View {
+    @Environment(\.dismissWindow) private var dismissWindow
+
+    var body: some View {
+        VStack {
+            Text("This a singleton window!")
 
             Button("Close window") {
                 dismissWindow()
@@ -240,7 +258,7 @@ struct WindowingApp: App {
             }
         }
         #if !os(iOS) && !os(tvOS)
-            WindowGroup("Secondary window") {
+            WindowGroup("Secondary window", id: "secondary-window") {
                 #hotReloadable {
                     Text("This a secondary window!")
                         .padding()
@@ -249,32 +267,22 @@ struct WindowingApp: App {
             .defaultSize(width: 200, height: 200)
             .windowResizability(.contentMinSize)
 
-            WindowGroup("Tertiary window") {
+            WindowGroup("Tertiary window (hidden)", id: "tertiary-window") {
                 #hotReloadable {
                     TertiaryWindowView()
                 }
             }
             .defaultSize(width: 200, height: 200)
             .windowResizability(.contentMinSize)
+            .defaultLaunchBehavior(.suppressed)
 
             Window("Singleton window", id: "singleton-window") {
                 #hotReloadable {
-                    Text("I'm a singleton window!")
-                        .padding(10)
+                    SingletonWindowView()
                 }
             }
             .defaultSize(width: 200, height: 200)
             .windowResizability(.contentMinSize)
-
-            Window("Singleton window (shown)", id: "singleton-window-shown") {
-                #hotReloadable {
-                    Text("I'm a singleton window, shown by default.")
-                        .padding(10)
-                }
-            }
-            .defaultSize(width: 200, height: 200)
-            .windowResizability(.contentMinSize)
-            .defaultLaunchBehavior(.presented)
         #endif
     }
 }
