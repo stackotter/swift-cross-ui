@@ -128,7 +128,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/apple/swift-log.git",
-            from: "1.6.4"
+            exact: "1.6.4"
         ),
         // .package(
         //     url: "https://github.com/stackotter/TermKit",
