@@ -5,7 +5,7 @@ import Foundation
 // - It supports ObservableObject
 // - It supports Optional<ObservableObject>
 @propertyWrapper
-public struct State<Value>: DynamicProperty, StateProperty {
+public struct State<Value>: ObservableProperty {
     class Storage {
         // This inner box is what stays constant between view updates. The
         // outer box (Storage) is used so that we can assign this box to
@@ -55,7 +55,7 @@ public struct State<Value>: DynamicProperty, StateProperty {
 
     var storage: Storage
 
-    var didChange: Publisher {
+    public var didChange: Publisher {
         storage.box.didChange
     }
 
@@ -109,7 +109,7 @@ public struct State<Value>: DynamicProperty, StateProperty {
         }
     }
 
-    func tryRestoreFromSnapshot(_ snapshot: Data) {
+    public func tryRestoreFromSnapshot(_ snapshot: Data) {
         guard
             let decodable = Value.self as? Codable.Type,
             let state = try? JSONDecoder().decode(decodable, from: snapshot)
@@ -120,17 +120,11 @@ public struct State<Value>: DynamicProperty, StateProperty {
         storage.box.value = state as! Value
     }
 
-    func snapshot() throws -> Data? {
+    public func snapshot() throws -> Data? {
         if let value = storage.box as? Codable {
             return try JSONEncoder().encode(value)
         } else {
             return nil
         }
     }
-}
-
-protocol StateProperty {
-    var didChange: Publisher { get }
-    func tryRestoreFromSnapshot(_ snapshot: Data)
-    func snapshot() throws -> Data?
 }
