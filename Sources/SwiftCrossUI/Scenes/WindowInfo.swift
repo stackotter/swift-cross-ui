@@ -1,5 +1,5 @@
 /// Holds information describing a window.
-class WindowInfo<Content: View> {
+struct WindowInfo<Content: View> {
     /// The title of the window (shown in the title bar on most OSes).
     var title: String
     /// The default size of the window (only has effect at time of creation).
