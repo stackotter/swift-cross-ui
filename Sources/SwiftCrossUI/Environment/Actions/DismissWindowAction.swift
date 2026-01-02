@@ -37,7 +37,7 @@ private struct DismissWindowActionKey: EnvironmentKey {
     static var defaultValue: DismissWindowAction {
         DismissWindowAction(action: {
             #if DEBUG
-                print("warning: dismissWindow() accessed outside of a window's scope")
+                logger.warning("dismissWindow() accessed outside of a window's scope")
             #endif
         })
     }

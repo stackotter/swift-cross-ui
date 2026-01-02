@@ -6,22 +6,22 @@ public struct OpenWindowAction {
     /// Opens the window with the specified ID.
     public func callAsFunction(id: String) {
         guard backend.supportsMultipleWindows else {
-            print(
+            logger.warning(
                 """
-                warning: openWindow(id:) called but the backend doesn't \
-                support multi-window, ignoring
+                openWindow(id:) called but the backend doesn't support \
+                multi-window, ignoring
                 """
             )
             return
         }
 
         guard let openWindow = windowOpenFunctionsByID[id] else {
-            // FIXME: replace with logger.warning once that PR's merged
-            print(
+            logger.warning(
                 """
-                warning: openWindow(id:) called with an ID that does not have \
-                an associated window: '\(id)'
-                """
+                openWindow(id:) called with an ID that does not have an \
+                associated window
+                """,
+                metadata: ["id": "\(id)"]
             )
             return
         }
