@@ -130,15 +130,19 @@ extension UIKitBackend {
     }
 
     public func setResizability(ofWindow window: Window, to resizable: Bool) {
-        print("UIKitBackend: ignoring \(#function) call")
+        logger.notice("ignoring \(#function) call")
     }
 
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
         #if os(visionOS)
             window.bounds.size = CGSize(width: CGFloat(newSize.x), height: CGFloat(newSize.y))
         #else
-            print(
-                "UIKitBackend: ignoring \(#function) call. Current window size: \(window.bounds.width) x \(window.bounds.height); proposed size: \(newSize.x) x \(newSize.y)"
+            logger.notice(
+                "ignoring \(#function) call",
+                metadata: [
+                    "currentWindowSize": "\(window.bounds.width) x \(window.bounds.height)",
+                    "proposedWindowSize": "\(newSize.x) x \(newSize.y)",
+                ]
             )
         #endif
     }

@@ -37,7 +37,7 @@ private struct DismissActionKey: EnvironmentKey {
     static var defaultValue: DismissAction {
         DismissAction(action: {
             #if DEBUG
-                print("warning: dismiss() called but no presentation context is available")
+                logger.warning("dismiss() called but no presentation context is available")
             #endif
         })
     }

@@ -66,11 +66,12 @@ struct DynamicPropertyUpdater<Base> {
             guard let updater = Self.getUpdater(for: value, base: base, label: label) else {
                 // We have failed to create the required property updaters. Fallback
                 // to using Mirrors to update all properties.
-                print(
+                logger.warning(
                     """
-                    warning: Failed to produce DynamicPropertyUpdater for \(Base.self), \
-                    falling back to slower Mirror-based property updating approach.
-                    """
+                    failed to produce DynamicPropertyUpdater; falling back to \
+                    slower Mirror-based property updating approach
+                    """,
+                    metadata: ["type": "\(Base.self)"]
                 )
                 self.propertyUpdaters = nil
 

@@ -66,7 +66,7 @@ extension UIKitBackend {
         #else
             // Once keyboard shortcuts are implemented, it might be possible to do them on more
             // platforms than just Mac Catalyst. For now, this is a no-op.
-            print("UIKitBackend: ignoring \(#function) call")
+            logger.notice("ignoring \(#function) call")
         #endif
     }
 }
