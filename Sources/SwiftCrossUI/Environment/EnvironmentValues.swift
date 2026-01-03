@@ -133,7 +133,7 @@ public struct EnvironmentValues {
     /// The backend's representation of the window that the current view is
     /// in, if any. This is a very internal detail that should never get
     /// exposed to users.
-    package var window: Any?
+    package var window: AnyObject?
     /// The backend's representation of the sheet that the current view is
     /// in, if any. This is a very internal detail that should never get
     /// exposed to users.
@@ -192,6 +192,23 @@ public struct EnvironmentValues {
         )
     }
 
+    /// Opens a window with the specified ID.
+    @MainActor
+    public var openWindow: OpenWindowAction {
+        return OpenWindowAction(
+            backend: backend
+        )
+    }
+
+    /// Closes the enclosing window.
+    @MainActor
+    public var dismissWindow: DismissWindowAction {
+        return DismissWindowAction(
+            backend: backend,
+            window: .init(value: window)
+        )
+    }
+
     /// Reveals a file in the system's file manager. This opens
     /// the file's enclosing directory and highlighting the file.
     ///
@@ -202,6 +219,13 @@ public struct EnvironmentValues {
         return RevealFileAction(
             backend: backend
         )
+    }
+
+    /// Whether the backend can have multiple windows open at once. Mobile
+    /// backends generally can't.
+    @MainActor
+    public var supportsMultipleWindows: Bool {
+        backend.supportsMultipleWindows
     }
 
     /// Creates the default environment.

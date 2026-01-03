@@ -157,6 +157,56 @@ struct SheetDemo: View {
     }
 }
 
+struct OpenWindowDemo: View {
+    @Environment(\.openWindow) private var openWindow
+    @Environment(\.supportsMultipleWindows) private var supportsMultipleWindows
+
+    var body: some View {
+        Text("Backend supports multi-window: \(supportsMultipleWindows)")
+
+        Button("Open singleton window") {
+            openWindow(id: "singleton-window")
+        }
+        Button("Open new tertiary window instance") {
+            openWindow(id: "tertiary-window")
+        }
+    }
+}
+
+struct TertiaryWindowView: View {
+    @Environment(\.dismissWindow) private var dismissWindow
+    @Environment(\.openWindow) private var openWindow
+
+    var body: some View {
+        VStack {
+            Text("This a tertiary window!")
+
+            Button("Close window") {
+                dismissWindow()
+            }
+            Button("Open new instance") {
+                openWindow(id: "tertiary-window")
+            }
+        }
+        .padding()
+    }
+}
+
+struct SingletonWindowView: View {
+    @Environment(\.dismissWindow) private var dismissWindow
+
+    var body: some View {
+        VStack {
+            Text("This a singleton window!")
+
+            Button("Close window") {
+                dismissWindow()
+            }
+        }
+        .padding()
+    }
+}
+
 @main
 @HotReloadable
 struct WindowingApp: App {
@@ -193,6 +243,10 @@ struct WindowingApp: App {
                     Divider()
 
                     SheetDemo()
+
+                    Divider()
+
+                    OpenWindowDemo()
                         .padding(.bottom, 20)
                 }
                 .padding(20)
@@ -210,20 +264,29 @@ struct WindowingApp: App {
                 }
             }
         }
+        
         #if !os(iOS) && !os(tvOS)
-            WindowGroup("Secondary window") {
+            WindowGroup("Secondary window", id: "secondary-window") {
                 #hotReloadable {
                     Text("This a secondary window!")
-                        .padding(10)
+                        .padding()
                 }
             }
             .defaultSize(width: 200, height: 200)
             .windowResizability(.contentMinSize)
 
-            WindowGroup("Tertiary window") {
+            WindowGroup("Tertiary window (hidden)", id: "tertiary-window") {
                 #hotReloadable {
-                    Text("This a tertiary window!")
-                        .padding(10)
+                    TertiaryWindowView()
+                }
+            }
+            .defaultSize(width: 200, height: 200)
+            .windowResizability(.contentMinSize)
+            .defaultLaunchBehavior(.suppressed)
+
+            Window("Singleton window", id: "singleton-window") {
+                #hotReloadable {
+                    SingletonWindowView()
                 }
             }
             .defaultSize(width: 200, height: 200)

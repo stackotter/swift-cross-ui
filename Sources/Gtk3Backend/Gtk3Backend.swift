@@ -37,6 +37,7 @@ public final class Gtk3Backend: AppBackend {
     public let requiresImageUpdateOnScaleFactorChange = true
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = true
+    public let supportsMultipleWindows = true
     public let deviceClass = DeviceClass.desktop
 
     var gtkApp: Application
@@ -292,6 +293,25 @@ public final class Gtk3Backend: AppBackend {
 
     public func activate(window: Window) {
         window.present()
+    }
+
+    public func close(window: Window) {
+        window.close()
+        window.destroy()
+
+        // NB: It seems GTK3 won't automatically signal `::delete-event` if
+        // the window is closed programmatically.
+        window.onCloseRequest?(window)
+    }
+
+    public func setCloseHandler(
+        ofWindow window: Window,
+        to action: @escaping () -> Void
+    ) {
+        window.onCloseRequest = { _ in
+            action()
+            window.destroy()
+        }
     }
 
     public func openExternalURL(_ url: URL) throws {

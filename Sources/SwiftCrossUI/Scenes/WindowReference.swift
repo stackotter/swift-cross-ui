@@ -1,16 +1,12 @@
-/// The ``SceneGraphNode`` corresponding to a ``WindowGroup`` scene. Holds
-/// the scene's view graph and window handle.
-public final class WindowGroupNode<Content: View>: SceneGraphNode {
-    public typealias NodeScene = WindowGroup<Content>
-
-    /// The node's scene.
-    private var scene: WindowGroup<Content>
-    /// The view graph of the window group's root view. Will need to be multiple
-    /// view graphs once having multiple copies of a window is supported.
+/// Holds the view graph and window handle for a single window.
+@MainActor
+final class WindowReference<Content: View> {
+    /// The window info.
+    var info: WindowInfo<Content>
+    /// The view graph of the window's root view.
     private var viewGraph: ViewGraph<Content>
-    /// The window that the group is getting rendered in. Will need to be multiple
-    /// windows once having multiple copies of a window is supported.
-    private var window: Any
+    /// The window being rendered in.
+    private unowned var window: AnyObject
     /// `false` after the first scene update.
     private var isFirstUpdate = true
     /// The environment most recently provided by this node's parent scene.
@@ -18,31 +14,41 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
     /// The container used to center the root view in the window.
     private var containerWidget: AnyWidget
 
-    public init<Backend: AppBackend>(
-        from scene: WindowGroup<Content>,
+    /// - Parameters:
+    ///   - onClose: The action to perform when the window is closed. Should
+    ///     dispose of the scene's reference to this `WindowReference`.
+    ///   - updateImmediately: Whether to call `update(_:backend:environment:)`
+    ///     after performing setup. Set this to `true` if opening as a result of
+    ///     ``EnvironmentValues/openWindow``.
+    init<Backend: AppBackend>(
+        info: WindowInfo<Content>,
         backend: Backend,
-        environment: EnvironmentValues
+        environment: EnvironmentValues,
+        onClose: @escaping @Sendable @MainActor () -> Void,
+        updateImmediately: Bool = false
     ) {
-        self.scene = scene
-        let window = backend.createWindow(withDefaultSize: scene.defaultSize)
+        self.info = info
+        let window = backend.createWindow(withDefaultSize: info.defaultSize)
 
         viewGraph = ViewGraph(
-            for: scene.body,
+            for: info.body,
             backend: backend,
             environment: environment.with(\.window, window)
         )
         let rootWidget = viewGraph.rootNode.concreteNode(for: Backend.self).widget
-
+        
         let container = backend.createContainer()
         backend.addChild(rootWidget, to: container)
         self.containerWidget = AnyWidget(container)
-
+        
         backend.setChild(ofWindow: window, to: container)
-        backend.setTitle(ofWindow: window, to: scene.title)
-        backend.setResizability(ofWindow: window, to: scene.resizability.isResizable)
+        backend.setTitle(ofWindow: window, to: info.title)
+        backend.setResizability(ofWindow: window, to: info.resizability.isResizable)
 
         self.window = window
         parentEnvironment = environment
+
+        backend.setCloseHandler(ofWindow: window, to: onClose)
 
         backend.setResizeHandler(ofWindow: window) { [weak self] newSize in
             guard let self else {
@@ -50,7 +56,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             }
 
             _ = self.update(
-                self.scene,
+                self.info,
                 proposedWindowSize: newSize,
                 needsWindowSizeCommit: false,
                 backend: backend,
@@ -59,14 +65,14 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                     !backend.isWindowProgrammaticallyResizable(window)
             )
         }
-
+        
         backend.setWindowEnvironmentChangeHandler(of: window) { [weak self] in
             guard let self else {
                 return
             }
 
             _ = self.update(
-                self.scene,
+                self.info,
                 proposedWindowSize: backend.size(ofWindow: window),
                 needsWindowSizeCommit: false,
                 backend: backend,
@@ -75,10 +81,14 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                     !backend.isWindowProgrammaticallyResizable(window)
             )
         }
+
+        if updateImmediately {
+            self.update(nil, backend: backend, environment: environment)
+        }
     }
 
-    public func update<Backend: AppBackend>(
-        _ newScene: WindowGroup<Content>?,
+    func update<Backend: AppBackend>(
+        _ newInfo: WindowInfo<Content>?,
         backend: Backend,
         environment: EnvironmentValues
     ) {
@@ -92,7 +102,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         let proposedWindowSize: SIMD2<Int>
         let usedDefaultSize: Bool
         if isFirstUpdate && isProgramaticallyResizable {
-            proposedWindowSize = (newScene ?? scene).defaultSize
+            proposedWindowSize = (newInfo ?? info).defaultSize
             usedDefaultSize = true
         } else {
             proposedWindowSize = backend.size(ofWindow: window)
@@ -100,7 +110,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         }
 
         _ = update(
-            newScene,
+            newInfo,
             proposedWindowSize: proposedWindowSize,
             needsWindowSizeCommit: usedDefaultSize,
             backend: backend,
@@ -125,8 +135,8 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
     ///   - windowSizeIsFinal: If true, no further resizes can/will be made. This
     ///     is true on platforms that don't support programmatic window resizing,
     ///     and when a window is full screen.
-    public func update<Backend: AppBackend>(
-        _ newScene: WindowGroup<Content>?,
+    func update<Backend: AppBackend>(
+        _ newInfo: WindowInfo<Content>?,
         proposedWindowSize: SIMD2<Int>,
         needsWindowSizeCommit: Bool,
         backend: Backend,
@@ -136,29 +146,32 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
-
+        
         parentEnvironment = environment
-
-        if let newScene = newScene {
+        
+        if let newInfo {
             // Don't set default size even if it has changed. We only set that once
             // at window creation since some backends don't have a concept of
             // 'default' size which would mean that setting the default size every time
             // the default size changed would resize the window (which is incorrect
             // behaviour).
-            backend.setTitle(ofWindow: window, to: newScene.title)
-            backend.setResizability(ofWindow: window, to: newScene.resizability.isResizable)
-            scene = newScene
+            backend.setTitle(ofWindow: window, to: newInfo.title)
+            backend.setResizability(ofWindow: window, to: newInfo.resizability.isResizable)
+            info = newInfo
         }
-
+        
         let environment =
-            backend.computeWindowEnvironment(window: window, rootEnvironment: environment)
+        backend.computeWindowEnvironment(window: window, rootEnvironment: environment)
             .with(\.onResize) { [weak self] _ in
-                guard let self = self else { return }
+                guard let self else {
+                    return
+                }
+
                 // TODO: Figure out whether this would still work if we didn't recompute the
                 //   scene's body. I have a vague feeling that it wouldn't work in all cases?
                 //   But I don't have the time to come up with a counterexample right now.
                 _ = self.update(
-                    self.scene,
+                    self.info,
                     proposedWindowSize: backend.size(ofWindow: window),
                     needsWindowSizeCommit: false,
                     backend: backend,
@@ -168,9 +181,9 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             .with(\.window, window)
 
         let finalContentResult: ViewLayoutResult
-        if scene.resizability.isResizable {
+        if info.resizability.isResizable {
             let minimumWindowSize = viewGraph.computeLayout(
-                with: newScene?.body,
+                with: newInfo?.body,
                 proposedSize: .zero,
                 environment: environment.with(\.allowLayoutCaching, true)
             ).size
@@ -184,7 +197,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                 // Restart the window update if the content has caused the window to
                 // change size.
                 return update(
-                    scene,
+                    info,
                     proposedWindowSize: clampedWindowSize.vector,
                     needsWindowSizeCommit: true,
                     backend: backend,
@@ -203,13 +216,13 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             )
         } else {
             let initialContentResult = viewGraph.computeLayout(
-                with: newScene?.body,
+                with: newInfo?.body,
                 proposedSize: ProposedViewSize(proposedWindowSize),
                 environment: environment
             )
             if initialContentResult.size.vector != proposedWindowSize && !windowSizeIsFinal {
                 return update(
-                    scene,
+                    info,
                     proposedWindowSize: initialContentResult.size.vector,
                     needsWindowSizeCommit: true,
                     backend: backend,
@@ -231,12 +244,20 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         if needsWindowSizeCommit {
             backend.setSize(ofWindow: window, to: proposedWindowSize)
         }
-
+        
         if isFirstUpdate {
             backend.show(window: window)
             isFirstUpdate = false
         }
-
+        
         return finalContentResult
+    }
+
+    func activate<Backend: AppBackend>(backend: Backend) {
+        guard let window = window as? Backend.Window else {
+            fatalError("Scene updated with a backend incompatible with the window it was given")
+        }
+        
+        backend.activate(window: window)
     }
 }

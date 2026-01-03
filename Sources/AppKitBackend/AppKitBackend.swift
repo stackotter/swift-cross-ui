@@ -43,6 +43,7 @@ public final class AppKitBackend: AppBackend {
     public let requiresImageUpdateOnScaleFactorChange = false
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = true
+    public let supportsMultipleWindows = true
     public let deviceClass = DeviceClass.desktop
 
     public var scrollBarWidth: Int {
@@ -86,6 +87,11 @@ public final class AppKitBackend: AppBackend {
         )
         window.delegate = window.customDelegate
 
+        // NB: If this isn't set, AppKit will crash within -[NSApplication run]
+        // the *second* time `openWindow` is called. I have absolutely no idea
+        // why.
+        window.isReleasedWhenClosed = false
+
         return window
     }
 
@@ -114,7 +120,7 @@ public final class AppKitBackend: AppBackend {
         ofWindow window: Window,
         to action: @escaping (SIMD2<Int>) -> Void
     ) {
-        window.customDelegate.setHandler(action)
+        window.customDelegate.setResizeHandler(action)
     }
 
     public func setTitle(ofWindow window: Window, to title: String) {
@@ -139,6 +145,17 @@ public final class AppKitBackend: AppBackend {
 
     public func activate(window: Window) {
         window.makeKeyAndOrderFront(nil)
+    }
+
+    public func close(window: Window) {
+        window.close()
+    }
+
+    public func setCloseHandler(
+        ofWindow window: Window,
+        to action: @escaping () -> Void
+    ) {
+        window.customDelegate.setCloseHandler(action)
     }
 
     public func openExternalURL(_ url: URL) throws {
@@ -2248,9 +2265,14 @@ public class NSCustomWindow: NSWindow {
 
     class Delegate: NSObject, NSWindowDelegate {
         var resizeHandler: ((SIMD2<Int>) -> Void)?
+        var closeHandler: (() -> Void)?
 
-        func setHandler(_ resizeHandler: @escaping (SIMD2<Int>) -> Void) {
+        func setResizeHandler(_ resizeHandler: @escaping (SIMD2<Int>) -> Void) {
             self.resizeHandler = resizeHandler
+        }
+
+        func setCloseHandler(_ closeHandler: @escaping () -> Void) {
+            self.closeHandler = closeHandler
         }
 
         func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
@@ -2272,6 +2294,10 @@ public class NSCustomWindow: NSWindow {
             )
 
             return frameSize
+        }
+
+        func windowWillClose(_ notification: Notification) {
+            closeHandler?()
         }
 
         func windowWillReturnUndoManager(_ window: NSWindow) -> UndoManager? {

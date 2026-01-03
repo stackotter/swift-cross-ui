@@ -107,7 +107,13 @@ extension App {
         label: String,
         metadataProvider: Logger.MetadataProvider?
     ) -> any LogHandler {
-        StreamLogHandler.standardError(label: label)
+        var logHandler = StreamLogHandler.standardError(label: label)
+        #if DEBUG
+            logHandler.logLevel = .debug
+        #else
+            logHandler.logLevel = .info
+        #endif
+        return logHandler
     }
 
     /// Runs the application.
