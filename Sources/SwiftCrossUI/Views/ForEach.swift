@@ -97,10 +97,10 @@ extension ForEach: TypeSafeView, View where Child: View {
         // Node caching and diffing require unique, stable IDs.
         var ongoingNodeReusingDisabled = false
 
-        // Avoid reallocation
-        var inserted = false
-
         for element in elements {
+            // Avoid reallocation
+            var inserted = false
+
             let childContent = child(element)
             let node: AnyViewGraphNode<Child>
 
@@ -195,12 +195,10 @@ extension ForEach: TypeSafeView, View where Child: View {
 
         children.isFirstUpdate = false
 
-        var cache = children.stackLayoutCache
-
         return LayoutSystem.computeStackLayout(
             container: widget,
             children: layoutableChildren,
-            cache: &cache,
+            cache: &children.stackLayoutCache,
             proposedSize: proposedSize,
             environment: environment,
             backend: backend
