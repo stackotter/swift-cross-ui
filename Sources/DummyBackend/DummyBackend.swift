@@ -11,6 +11,7 @@ public final class DummyBackend: AppBackend {
         public var resizable = true
         public var content: Widget?
         public var resizeHandler: ((SIMD2<Int>) -> Void)?
+        public var closeHandler: (() -> Void)?
 
         public init(defaultSize: SIMD2<Int>?) {
             size = defaultSize ?? Self.defaultSize
@@ -297,6 +298,14 @@ public final class DummyBackend: AppBackend {
     public func show(window: Window) {}
 
     public func activate(window: Window) {}
+
+    public func close(window: Window) {
+        window.closeHandler?()
+    }
+
+    public func setResizeHandler(ofWindow window: Window, to action: @escaping () -> Void) {
+        window.closeHandler = action
+    }
 
     public func runInMainThread(action: @escaping @MainActor () -> Void) {
         DispatchQueue.main.async {
