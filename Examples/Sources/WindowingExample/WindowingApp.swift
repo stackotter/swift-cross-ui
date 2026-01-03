@@ -162,7 +162,6 @@ struct SheetDemo: View {
 struct WindowingApp: App {
     @State var title = "My window"
     @State var resizable = false
-    @State var toggle = true
 
     var body: some Scene {
         WindowGroup(title) {
@@ -204,8 +203,6 @@ struct WindowingApp: App {
         .commands {
             CommandMenu("Demo menu") {
                 Button("Menu item") {}
-
-                Toggle("Toggle", active: $toggle)
 
                 Menu("Submenu") {
                     Button("Item 1") {}
