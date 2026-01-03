@@ -226,7 +226,10 @@ public final class GtkBackend: AppBackend {
         ofWindow window: Window,
         to action: @escaping () -> Void
     ) {
-        window.onCloseRequest = { _ in action() }
+        window.onCloseRequest = { _ in
+            action()
+            window.destroy()
+        }
     }
 
     public func openExternalURL(_ url: URL) throws {

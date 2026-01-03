@@ -20,34 +20,19 @@
 /// ```
 @MainActor
 public struct DismissWindowAction {
-    private let action: @Sendable @MainActor () -> Void
-
-    nonisolated internal init(action: @escaping @Sendable @MainActor () -> Void) {
-        self.action = action
-    }
+    let backend: any AppBackend
+    let window: MainActorBox<AnyObject?>
 
     /// Closes the enclosing window.
     public func callAsFunction() {
-        action()
-    }
-}
-
-/// Environment key for the ``EnvironmentValues/dismissWindow-7td46`` action.
-private struct DismissWindowActionKey: EnvironmentKey {
-    static var defaultValue: DismissWindowAction {
-        DismissWindowAction(action: {
-            #if DEBUG
+        func closeWindow<Backend: AppBackend>(backend: Backend) {
+            guard let window = window.value else {
                 logger.warning("dismissWindow() accessed outside of a window's scope")
-            #endif
-        })
-    }
-}
+                return
+            }
+            backend.close(window: window as! Backend.Window)
+        }
 
-extension EnvironmentValues {
-    /// Closes the enclosing window.
-    @MainActor
-    public var dismissWindow: DismissWindowAction {
-        get { self[DismissWindowActionKey.self] }
-        set { self[DismissWindowActionKey.self] = newValue }
+        closeWindow(backend: backend)
     }
 }

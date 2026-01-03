@@ -14,19 +14,6 @@ final class WindowReference<Content: View> {
     /// The container used to center the root view in the window.
     private var containerWidget: AnyWidget
 
-    /// The action to assign to ``EnvironmentValues/dismissWindow``.
-    ///
-    /// This also gets called when the backend closes the window of its own
-    /// accord, e.g. when the close button in the title bar is clicked.
-    ///
-    /// This action should dispose of the wrapping scene's reference to this
-    /// `WindowReference` such that `deinit` is called by the runtime.
-    private var dismissWindowAction: @Sendable @MainActor () -> Void
-    /// Closes the window.
-    ///
-    /// This is called during `deinit`.
-    private var closeWindow: @Sendable @MainActor () -> Void
-
     /// - Parameters:
     ///   - dismissWindowAction: The action to assign to
     ///     ``EnvironmentValues/dismissWindow``. Should dispose of the caller's
@@ -38,22 +25,16 @@ final class WindowReference<Content: View> {
         info: WindowInfo<Content>,
         backend: Backend,
         environment: EnvironmentValues,
-        dismissWindowAction: @escaping @Sendable @MainActor () -> Void,
+        onClose: @escaping @Sendable @MainActor () -> Void,
         updateImmediately: Bool = false
     ) {
         self.info = info
-        self.dismissWindowAction = dismissWindowAction
         let window = backend.createWindow(withDefaultSize: info.defaultSize)
 
         viewGraph = ViewGraph(
             for: info.body,
             backend: backend,
-            environment: environment
-                .with(\.window, window)
-                .with(
-                    \.dismissWindow,
-                     DismissWindowAction(action: dismissWindowAction)
-                )
+            environment: environment.with(\.window, window)
         )
         let rootWidget = viewGraph.rootNode.concreteNode(for: Backend.self).widget
         
@@ -68,9 +49,8 @@ final class WindowReference<Content: View> {
         self.window = window
         parentEnvironment = environment
 
-        self.closeWindow = { backend.close(window: window) }
-        backend.setCloseHandler(ofWindow: window) { [weak self] in
-            self?.dismissWindowAction()
+        backend.setCloseHandler(ofWindow: window) {
+            onClose()
         }
 
         backend.setResizeHandler(ofWindow: window) { [weak self] newSize in
@@ -109,28 +89,6 @@ final class WindowReference<Content: View> {
             self.update(nil, backend: backend, environment: environment)
         }
     }
-
-    #if compiler(>=6.2)
-    isolated deinit {
-        closeWindow()
-    }
-    #else
-    deinit {
-        // `isolated deinit` is a Swift 6.2 feature, so we can't use that here.
-        // But we can't return from `deinit` until `onDeinit` returns (otherwise
-        // things get wonky), meaning we can't just plop it in a task and call
-        // it a day.
-        //
-        // `MainActor.assumeIsolated` at least seems to work reliably here, but
-        // I'm not a fan of blindly trusting that we happen to be on the correct
-        // executor when the runtime decides to call `deinit`.
-
-        // FIXME: Find a way to mimic `isolated deinit` without `isolated deinit`
-        MainActor.assumeIsolated {
-            closeWindow()
-        }
-    }
-    #endif
 
     func update<Backend: AppBackend>(
         _ newInfo: WindowInfo<Content>?,
@@ -224,10 +182,6 @@ final class WindowReference<Content: View> {
                 )
             }
             .with(\.window, window)
-            .with(
-                \.dismissWindow,
-                 DismissWindowAction(action: dismissWindowAction)
-            )
 
         let finalContentResult: ViewLayoutResult
         if info.resizability.isResizable {

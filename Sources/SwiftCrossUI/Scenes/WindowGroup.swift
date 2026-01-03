@@ -86,9 +86,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                     info: scene.windowInfo,
                     backend: backend,
                     environment: environment,
-                    dismissWindowAction: {
-                        self.windowReferences[windowID] = nil
-                    }
+                    onClose: { self.windowReferences[windowID] = nil }
                 )
             ]
         }
@@ -130,9 +128,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                     info: scene.windowInfo,
                     backend: backend,
                     environment: environment,
-                    dismissWindowAction: {
-                        self.windowReferences[windowID] = nil
-                    },
+                    onClose: { self.windowReferences[windowID] = nil },
                     updateImmediately: true
                 )
             }
