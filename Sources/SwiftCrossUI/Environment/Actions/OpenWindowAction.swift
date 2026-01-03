@@ -15,7 +15,7 @@ public struct OpenWindowAction {
             return
         }
 
-        guard let openWindow = windowOpenFunctionsByID[id] else {
+        guard let openWindow = Self.openFunctionsByID[id] else {
             logger.warning(
                 """
                 openWindow(id:) called with an ID that does not have an \
@@ -27,8 +27,8 @@ public struct OpenWindowAction {
         }
         openWindow()
     }
-}
 
-// FIXME: we should make this a preference instead, if we can get those to
-//   propagate beyond the scene level
-var windowOpenFunctionsByID: [String: @Sendable @MainActor () -> Void] = [:]
+    // FIXME: we should make this a preference instead, if we can get those to
+    //   propagate beyond the scene level
+    static var openFunctionsByID: [String: @Sendable @MainActor () -> Void] = [:]
+}

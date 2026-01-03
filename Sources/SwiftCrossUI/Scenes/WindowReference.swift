@@ -300,9 +300,7 @@ final class WindowReference<Content: View> {
         return finalContentResult
     }
 
-    func activate<Backend: AppBackend>(
-        backend: Backend
-    ) {
+    func activate<Backend: AppBackend>(backend: Backend) {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }

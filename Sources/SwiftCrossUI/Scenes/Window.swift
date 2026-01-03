@@ -24,26 +24,25 @@ public struct Window<Content: View>: Scene {
 
     /// Sets the default size of a window (used when creating new instances of
     /// the window).
-    public func defaultSize(width: Int, height: Int) -> Self {
-        var window = self
-        window.windowInfo.defaultSize = SIMD2(width, height)
-        return window
+    public consuming func defaultSize(width: Int, height: Int) -> Self {
+        self.windowInfo.defaultSize = SIMD2(width, height)
+        return self
     }
 
     /// Sets the resizability of a window.
-    public func windowResizability(_ resizability: WindowResizability) -> Self {
-        var window = self
-        window.windowInfo.resizability = resizability
-        return window
+    public consuming func windowResizability(
+        _ resizability: WindowResizability
+    ) -> Self {
+        self.windowInfo.resizability = resizability
+        return self
     }
 
     /// Sets the default launch behavior of a window.
-    public func defaultLaunchBehavior(
+    public consuming func defaultLaunchBehavior(
         _ launchBehavior: SceneLaunchBehavior
     ) -> Self {
-        var window = self
-        window.launchBehavior = launchBehavior
-        return window
+        self.launchBehavior = launchBehavior
+        return self
     }
 }
 
@@ -57,11 +56,16 @@ public final class WindowNode<Content: View>: SceneGraphNode {
     /// `nil` if the window is closed.
     private var windowReference: WindowReference<Content>? = nil
 
+    /// The underlying scene.
+    private var scene: Window<Content>
+
     public init<Backend: AppBackend>(
         from scene: Window<Content>,
         backend: Backend,
         environment: EnvironmentValues
     ) {
+        self.scene = scene
+
         let openOnAppLaunch = switch scene.launchBehavior {
             case .presented: true
             case .automatic, .suppressed: false
@@ -76,13 +80,7 @@ public final class WindowNode<Content: View>: SceneGraphNode {
             )
         }
 
-        windowOpenFunctionsByID[scene.id] = {
-            self.open(
-                scene,
-                backend: backend,
-                environment: environment
-            )
-        }
+        setOpenFunction(for: scene, backend: backend, environment: environment)
     }
 
     public func update<Backend: AppBackend>(
@@ -90,30 +88,40 @@ public final class WindowNode<Content: View>: SceneGraphNode {
         backend: Backend,
         environment: EnvironmentValues
     ) {
+        if let newScene {
+            self.scene = newScene
+        }
+
         windowReference?.update(
             newScene?.windowInfo,
             backend: backend,
             environment: environment
         )
+
+        setOpenFunction(for: scene, backend: backend, environment: environment)
     }
 
-    private func open<Backend: AppBackend>(
-        _ scene: Window<Content>,
+    private func setOpenFunction<Backend: AppBackend>(
+        for scene: Window<Content>,
         backend: Backend,
         environment: EnvironmentValues
     ) {
-        if let windowReference {
-            // the window is already open: activate it
-            windowReference.activate(backend: backend)
-        } else {
-            // the window is not open: create a new instance
-            windowReference = WindowReference(
-                info: scene.windowInfo,
-                backend: backend,
-                environment: environment,
-                dismissWindowAction: { self.windowReference = nil },
-                updateImmediately: true
-            )
+        OpenWindowAction.openFunctionsByID[scene.id] = { [weak self] in
+            guard let self else { return }
+
+            if let windowReference {
+                // the window is already open: activate it
+                windowReference.activate(backend: backend)
+            } else {
+                // the window is not open: create a new instance
+                windowReference = WindowReference(
+                    info: scene.windowInfo,
+                    backend: backend,
+                    environment: environment,
+                    dismissWindowAction: { self.windowReference = nil },
+                    updateImmediately: true
+                )
+            }
         }
     }
 }
