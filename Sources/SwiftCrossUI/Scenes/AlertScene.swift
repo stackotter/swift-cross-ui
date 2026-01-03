@@ -1,4 +1,7 @@
 /// A scene that shows a standalone alert.
+///
+/// The exact behavior of the alert is backend-dependent, but it typically
+/// shows up as an application modal or standalone window.
 public struct AlertScene: Scene {
     public typealias Node = AlertSceneNode
 
@@ -8,6 +11,16 @@ public struct AlertScene: Scene {
 
     public let commands = Commands.empty
 
+    /// Creates an alert scene.
+    ///
+    /// The exact behavior of the alert is backend-dependent, but it typically
+    /// shows up as an application modal or standalone window.
+    ///
+    /// - Parameters:
+    ///   - title: The alert's title.
+    ///   - isPresented: A binding to a `Bool` that controls whether the alert
+    ///     is presented.
+    ///   - actions: The alert's actions.
     public init(
         _ title: String,
         isPresented: Binding<Bool>,
@@ -19,6 +32,7 @@ public struct AlertScene: Scene {
     }
 }
 
+/// The scene graph node for ``AlertScene``.
 public final class AlertSceneNode: SceneGraphNode {
     public typealias NodeScene = AlertScene
 
