@@ -1,0 +1,65 @@
+/// A scene that shows a standalone alert.
+public struct AlertScene: Scene {
+    public typealias Node = AlertSceneNode
+
+    var title: String
+    var isPresented: Binding<Bool>
+    var actions: [AlertAction]
+
+    public let commands = Commands.empty
+
+    public init(
+        _ title: String,
+        isPresented: Binding<Bool>,
+        @AlertActionsBuilder actions: () -> [AlertAction] = { [.ok] }
+    ) {
+        self.title = title
+        self.isPresented = isPresented
+        self.actions = actions()
+    }
+}
+
+public final class AlertSceneNode: SceneGraphNode {
+    public typealias NodeScene = AlertScene
+
+    private var scene: AlertScene
+    private var alert: Any?
+
+    public init<Backend: AppBackend>(
+        from scene: AlertScene,
+        backend: Backend,
+        environment: EnvironmentValues
+    ) {
+        self.scene = scene
+    }
+
+    public func update<Backend: AppBackend>(
+        _ newScene: AlertScene?,
+        backend: Backend,
+        environment: EnvironmentValues
+    ) {
+        if let newScene {
+            self.scene = newScene
+        }
+
+        if scene.isPresented.wrappedValue, alert == nil {
+            let alert = backend.createAlert()
+            backend.updateAlert(
+                alert,
+                title: scene.title,
+                actionLabels: scene.actions.map(\.label),
+                environment: environment
+            )
+            backend.showAlert(alert, window: nil) { responseId in
+                self.alert = nil
+                self.scene.isPresented.wrappedValue = false
+                self.scene.actions[responseId].action()
+            }
+
+            self.alert = alert
+        } else if !scene.isPresented.wrappedValue, let alert  {
+            backend.dismissAlert(alert as! Backend.Alert, window: nil)
+            self.alert = nil
+        }
+    }
+}
