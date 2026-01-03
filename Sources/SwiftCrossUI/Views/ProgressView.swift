@@ -129,8 +129,6 @@ struct ProgressSpinnerView: ElementaryView {
         let naturalSize = backend.naturalSize(of: widget)
 
         guard isResizable else {
-            // Required to reset its size when resizability
-            // gets changed at runtime
             return ViewLayoutResult.leafView(size: ViewSize(naturalSize))
         }
 
@@ -141,11 +139,14 @@ struct ProgressSpinnerView: ElementaryView {
         {
             minimumDimension = max(min(proposedWidth, proposedHeight), 0)
         } else {
-            minimumDimension = Double(min(naturalSize.x, naturalSize.y))
+            minimumDimension = max(
+                proposedSize.width ?? proposedSize.height ?? 0,
+                Double(min(naturalSize.x, naturalSize.y))
+            )
         }
 
         return ViewLayoutResult.leafView(
-            size: .init(minimumDimension, minimumDimension)
+            size: ViewSize(minimumDimension, minimumDimension)
         )
     }
 
