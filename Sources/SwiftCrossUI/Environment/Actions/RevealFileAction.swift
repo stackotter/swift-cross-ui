@@ -15,7 +15,12 @@ public struct RevealFileAction {
             do {
                 try backend.revealFile(file)
             } catch {
-                print("warning: Failed to reveal file: \(error)")
+                logger.warning(
+                    "failed to reveal file",
+                    metadata: [
+                        "url": "\(file)",
+                        "error": "\(error)",
+                    ])
             }
         }
     }

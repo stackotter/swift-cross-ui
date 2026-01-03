@@ -55,18 +55,16 @@ class _App<AppRoot: App> {
             let mirror = Mirror(reflecting: self.app)
             for property in mirror.children {
                 if property.label == "state" && property.value is ObservableObject {
-                    print(
+                    logger.warning(
                         """
-
-                        warning: The App.state protocol requirement has been removed in favour of
-                                 SwiftUI-style @State annotations. Decorate \(AppRoot.self).state
-                                 with the @State property wrapper to restore previous behaviour.
-
+                        the App.state protocol requirement has been removed in favour of \
+                        SwiftUI-style @State annotations; decorate \(AppRoot.self).state \
+                        with the @State property wrapper to restore previous behaviour
                         """
                     )
                 }
 
-                guard let value = property.value as? StateProperty else {
+                guard let value = property.value as? any ObservableProperty else {
                     continue
                 }
 

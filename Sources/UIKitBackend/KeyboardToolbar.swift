@@ -107,11 +107,11 @@ extension Button: ToolbarItem {
 extension Spacer: ToolbarItem {
     public func createBarButtonItem() -> UIBarButtonItem {
         if let minLength, minLength > 0 {
-            print(
+            logger.warning(
                 """
-                Warning: Spacer's minLength property is ignored within keyboard toolbars \
-                due to UIKit limitations. Use `Spacer()` for unconstrained spacers and \
-                `Spacer().frame(width: _)` for fixed-length spacers.
+                Spacer's minLength property is ignored within keyboard toolbars \
+                due to UIKit limitations; use `Spacer()` for unconstrained spacers and \
+                `Spacer().frame(width: _)` for fixed-length spacers
                 """
             )
         }

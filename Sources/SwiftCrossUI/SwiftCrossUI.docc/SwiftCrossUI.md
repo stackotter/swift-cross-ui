@@ -51,5 +51,6 @@ SwiftCrossUI takes inspiration from SwiftUI, allowing you to use the basic conce
 
 ### Other
 
+- <doc:Logging>
 - <doc:Implementation-details>
 - <doc:Deprecated>

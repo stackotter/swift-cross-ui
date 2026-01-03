@@ -110,18 +110,16 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
         // Update the view and its children when state changes (children are always updated first).
         for property in mirror.children {
             if property.label == "state" && property.value is ObservableObject {
-                print(
+                logger.warning(
                     """
-
-                    warning: The View.state protocol requirement has been removed in favour of
-                             SwiftUI-style @State annotations. Decorate \(NodeView.self).state
-                             with the @State property wrapper to restore previous behaviour.
-
+                    the View.state protocol requirement has been removed in favour of \
+                    SwiftUI-style @State annotations; decorate \(NodeView.self).state \
+                    with the @State property wrapper to restore previous behaviour
                     """
                 )
             }
 
-            guard let value = property.value as? StateProperty else {
+            guard let value = property.value as? any ObservableProperty else {
                 continue
             }
 
@@ -240,18 +238,24 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
         backend.show(widget: widget)
 
         guard let currentLayout else {
-            print("warning: layout committed before being computed, ignoring")
+            logger.warning("layout committed before being computed, ignoring")
             return .leafView(size: .zero)
         }
 
         if parentEnvironment.allowLayoutCaching {
-            print(
-                "warning: Committing layout computed with caching enabled. Results may be invalid. NodeView = \(NodeView.self)"
+            logger.warning(
+                "committing layout computed with caching enabled; results may be invalid",
+                metadata: ["NodeView": "\(NodeView.self)"]
             )
         }
         if currentLayout.size.height == .infinity || currentLayout.size.width == .infinity {
-            print(
-                "warning: \(NodeView.self) has infinite height or width on commit, currentLayout.size: \(currentLayout.size), lastProposedSize: \(lastProposedSize)"
+            logger.warning(
+                "infinite height or width on commit",
+                metadata: [
+                    "NodeView": "\(NodeView.self)",
+                    "currentLayout.size": "\(currentLayout.size)",
+                    "lastProposedSize": "\(lastProposedSize)",
+                ]
             )
         }
 

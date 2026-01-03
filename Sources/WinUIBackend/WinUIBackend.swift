@@ -1,5 +1,6 @@
 import CWinRT
 import Foundation
+import Logging
 import SwiftCrossUI
 import UWP
 import WinAppSDK
@@ -7,6 +8,19 @@ import WinSDK
 import WinUI
 import WinUIInterop
 import WindowsFoundation
+
+/// The storage behind `logger`.
+///
+/// `nil` if the logger hasn't been set yet.
+///
+/// > Safety: This is only set once, before it is ever read.
+nonisolated(unsafe) private var _logger: Logger?
+
+/// The global logger for this backend.
+var logger: Logger {
+    guard let _logger else { fatalError("logger not yet initialized") }
+    return _logger
+}
 
 // Many force tries are required for the WinUI backend but we don't really want them
 // anywhere else so just disable them for this file.
@@ -16,7 +30,11 @@ extension App {
     public typealias Backend = WinUIBackend
 
     public var backend: WinUIBackend {
-        WinUIBackend()
+        _logger = Logger(
+            label: "WinUIBackend",
+            factory: Self.logHandler(label:metadataProvider:)
+        )
+        return WinUIBackend()
     }
 }
 
@@ -90,7 +108,10 @@ public final class WinUIBackend: AppBackend {
             // won't get seen anyway. But I don't trust my Windows knowledge enough
             // to assert that it's impossible to view logs on failure, so let's
             // print a warning anyway.
-            print("Warning: Failed to attach to parent console: \(error.localizedDescription)")
+            logger.warning(
+                "failed to attach to parent console",
+                metadata: ["error": "\(error)"]
+            )
         }
 
         // Ensure that the app's windows adapt to DPI changes at runtime
@@ -351,7 +372,7 @@ public final class WinUIBackend: AppBackend {
     public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
         let container = container as! Canvas
         guard let child = container.children.getAt(UInt32(index)) else {
-            print("warning: child to set position of not found")
+            logger.warning("child to set position of not found")
             return
         }
 
@@ -369,7 +390,7 @@ public final class WinUIBackend: AppBackend {
             }
         }
 
-        print("warning: child to remove not found")
+        logger.warning("child to remove not found")
     }
 
     public func createColorableRectangle() -> Widget {
@@ -1181,7 +1202,7 @@ public final class WinUIBackend: AppBackend {
 
         func handleToggle() {
             if isChecked == nil {
-                print("warning: Checkbox in limbo")
+                logger.warning("checkbox in limbo")
             }
             onToggle?(isChecked ?? false)
         }
@@ -1262,7 +1283,7 @@ public final class WinUIBackend: AppBackend {
         // WinUI only allows one dialog at a time so we limit ourselves using
         // a semaphore.
         guard let window = window ?? windows.first else {
-            print("warning: WinUI can't show alert without window")
+            logger.warning("WinUI can't show alert without window")
             return
         }
 
@@ -1931,7 +1952,7 @@ public class CustomWindow: WinUI.Window {
         if result == S_OK {
             windowScaleFactor = Double(x) / Double(USER_DEFAULT_SCREEN_DPI)
         } else {
-            print("Warning: Failed to get window scale factor, defaulting to 1.0")
+            logger.warning("failed to get window scale factor, defaulting to 1.0")
             windowScaleFactor = 1
         }
 

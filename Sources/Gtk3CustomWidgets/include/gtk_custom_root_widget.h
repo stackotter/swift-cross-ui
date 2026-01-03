@@ -12,7 +12,7 @@ extern "C" {
 typedef struct {
     gint width;
     gint height;
-} Size;
+} CustomWidgetSize;
 
 typedef struct _GtkCustomRootWidget {
     GtkBin parent_instance;
@@ -26,7 +26,7 @@ typedef struct _GtkCustomRootWidget {
     gboolean has_been_allocated;
 
     void *resize_callback_data;
-    void (*resize_callback)(void*, Size);
+    void (*resize_callback)(void*, CustomWidgetSize);
 
     GtkWidget *child;
 } GtkCustomRootWidget;
@@ -82,7 +82,7 @@ void gtk_custom_root_widget_preempt_allocated_size(
 
 void gtk_custom_root_widget_set_resize_callback(
     GtkCustomRootWidget *self,
-    void (*callback)(void*, Size),
+    void (*callback)(void*, CustomWidgetSize),
     void *data
 );
 

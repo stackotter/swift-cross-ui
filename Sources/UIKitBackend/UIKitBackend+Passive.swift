@@ -131,6 +131,7 @@ final class CustomTextView: UIView {
 
         textContainer = NSTextContainer(size: frame.size)
         textContainer.lineBreakMode = .byTruncatingTail
+        textContainer.lineFragmentPadding = 0
         layoutManager.addTextContainer(textContainer)
 
         super.init(frame: frame)
