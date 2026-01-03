@@ -12,3 +12,4 @@ DerivedData/
 .swiftpm
 vcpkg_installed/
 *.trace
+notes.json
