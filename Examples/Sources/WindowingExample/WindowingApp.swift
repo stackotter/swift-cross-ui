@@ -59,7 +59,7 @@ struct AlertDemo: View {
 
         Button("Present error") {
             Task {
-                await presentAlert("Failed to succeed")
+                await presentAlert("Failed to succeed") {}
             }
         }
     }
@@ -215,7 +215,7 @@ struct WindowingApp: App {
             }
         }
 
-        AlertScene("Standalone alert", isPresented: $isStandaloneAlertShown)
+        AlertScene("Standalone alert", isPresented: $isStandaloneAlertShown) {}
 
         #if !os(iOS) && !os(tvOS)
             WindowGroup("Secondary window") {

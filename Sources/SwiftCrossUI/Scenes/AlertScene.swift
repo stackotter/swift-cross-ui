@@ -24,7 +24,7 @@ public struct AlertScene: Scene {
     public init(
         _ title: String,
         isPresented: Binding<Bool>,
-        @AlertActionsBuilder actions: () -> [AlertAction] = { [.ok] }
+        @AlertActionsBuilder actions: () -> [AlertAction]
     ) {
         self.title = title
         self.isPresented = isPresented
