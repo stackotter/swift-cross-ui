@@ -61,6 +61,10 @@ open class Window: Bin {
         gtk_window_present(castedPointer())
     }
 
+    public func close() {
+        gtk_window_close(castedPointer())
+    }
+
     public func setMinimumSize(to minimumSize: Size) {
         gtk_widget_set_size_request(
             castedPointer(),
@@ -71,5 +75,21 @@ open class Window: Bin {
 
     public func setPosition(to position: WindowPosition) {
         gtk_window_set_position(castedPointer(), position.toGtk())
+    }
+
+    public var onCloseRequest: ((Window) -> Void)? {
+        didSet {
+            let handler:
+                @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+            addSignal(name: "delete-event", handler: gCallback(handler)) {
+                [weak self] (_: OpaquePointer) in
+                guard let self else { return }
+                self.onCloseRequest?(self)
+            }
+        }
     }
 }

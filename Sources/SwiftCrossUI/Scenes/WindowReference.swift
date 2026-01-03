@@ -15,9 +15,8 @@ final class WindowReference<Content: View> {
     private var containerWidget: AnyWidget
 
     /// - Parameters:
-    ///   - dismissWindowAction: The action to assign to
-    ///     ``EnvironmentValues/dismissWindow``. Should dispose of the caller's
-    ///     reference to this `WindowReference` such that `deinit` is called.
+    ///   - onClose: The action to perform when the window is closed. Should
+    ///     dispose of the scene's reference to this `WindowReference`.
     ///   - updateImmediately: Whether to call `update(_:backend:environment:)`
     ///     after performing setup. Set this to `true` if opening as a result of
     ///     ``EnvironmentValues/openWindow``.
@@ -49,9 +48,7 @@ final class WindowReference<Content: View> {
         self.window = window
         parentEnvironment = environment
 
-        backend.setCloseHandler(ofWindow: window) {
-            onClose()
-        }
+        backend.setCloseHandler(ofWindow: window, to: onClose)
 
         backend.setResizeHandler(ofWindow: window) { [weak self] newSize in
             guard let self else {

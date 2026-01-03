@@ -176,12 +176,17 @@ public protocol AppBackend: Sendable {
     /// set by ``setCloseHandler(ofWindow:to:)-8ogpa`` should be called.
     /// Oftentimes this will be done automatically by the backend's underlying
     /// UI framework.
+    ///
+    /// This is primarily used by ``DismissWindowAction``.
     func close(window: Window)
     /// Sets the handler for the window's close events (for example, when the
     /// user clicks the close button in the title bar).
     ///
     /// The close handler should also be called whenever ``close(window:)-9xucx``
     /// is called (some UI frameworks do this automatically).
+    ///
+    /// This is used by SwiftCrossUI to release scene nodes' references to
+    /// `window` when the window is closed.
     ///
     /// Setting the close handler overrides any previous handler.
     func setCloseHandler(

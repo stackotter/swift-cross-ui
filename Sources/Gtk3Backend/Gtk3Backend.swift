@@ -295,6 +295,25 @@ public final class Gtk3Backend: AppBackend {
         window.present()
     }
 
+    public func close(window: Window) {
+        window.close()
+        window.destroy()
+
+        // NB: It seems GTK3 won't automatically signal `::delete-event` if
+        // the window is closed programmatically.
+        window.onCloseRequest?(window)
+    }
+
+    public func setCloseHandler(
+        ofWindow window: Window,
+        to action: @escaping () -> Void
+    ) {
+        window.onCloseRequest = { _ in
+            action()
+            window.destroy()
+        }
+    }
+
     public func openExternalURL(_ url: URL) throws {
         // Used instead of gtk_uri_launcher_launch to maintain <4.10 compatibility
         var error: UnsafeMutablePointer<GError>? = nil
