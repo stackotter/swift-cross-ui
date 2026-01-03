@@ -117,7 +117,7 @@ struct AlertModifierView<Child: View>: TypeSafeView {
 
 class AlertModifierViewChildren<Child: View>: ViewGraphNodeChildren {
     var childNode: AnyViewGraphNode<Child>
-    var alert: Any?
+    var alert: AnyObject?
 
     var widgets: [AnyWidget] {
         [childNode.widget]
@@ -129,7 +129,7 @@ class AlertModifierViewChildren<Child: View>: ViewGraphNodeChildren {
 
     init(
         childNode: AnyViewGraphNode<Child>,
-        alert: Any?
+        alert: AnyObject?
     ) {
         self.childNode = childNode
         self.alert = alert

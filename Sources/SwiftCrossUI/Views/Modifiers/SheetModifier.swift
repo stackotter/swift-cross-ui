@@ -36,7 +36,7 @@ struct SheetModifier<Content: View, SheetContent: View>: TypeSafeView {
     var onDismiss: (() -> Void)?
     var sheetContent: () -> SheetContent
 
-    var sheet: Any?
+    var sheet: AnyObject?
 
     func children<Backend: AppBackend>(
         backend: Backend,
@@ -182,14 +182,14 @@ class SheetModifierViewChildren<Child: View, SheetContent: View>: ViewGraphNodeC
 
     var childNode: AnyViewGraphNode<Child>
     var sheetContentNode: AnyViewGraphNode<SheetContent>?
-    var sheet: Any?
-    var window: Any?
-    var parentSheet: Any?
+    var sheet: AnyObject?
+    var window: AnyObject?
+    var parentSheet: AnyObject?
 
     init(
         childNode: AnyViewGraphNode<Child>,
         sheetContentNode: AnyViewGraphNode<SheetContent>?,
-        sheet: Any?
+        sheet: AnyObject?
     ) {
         self.childNode = childNode
         self.sheetContentNode = sheetContentNode

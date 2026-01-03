@@ -42,12 +42,12 @@ import Foundation
 /// and actually displaying the widget anyway).
 @MainActor
 public protocol AppBackend: Sendable {
-    associatedtype Window
-    associatedtype Widget
+    associatedtype Window: AnyObject
+    associatedtype Widget: AnyObject
     associatedtype Menu
-    associatedtype Alert
+    associatedtype Alert: AnyObject
     associatedtype Path
-    associatedtype Sheet
+    associatedtype Sheet: AnyObject
 
     /// Creates an instance of the backend.
     init()
