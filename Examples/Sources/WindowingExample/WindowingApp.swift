@@ -162,6 +162,7 @@ struct SheetDemo: View {
 struct WindowingApp: App {
     @State var title = "My window"
     @State var resizable = false
+    @State var isStandaloneAlertShown = false
 
     var body: some Scene {
         WindowGroup(title) {
@@ -189,6 +190,9 @@ struct WindowingApp: App {
                     #endif
 
                     AlertDemo()
+                    Button("Show standalone alert") {
+                        isStandaloneAlertShown = true
+                    }
 
                     Divider()
 
@@ -210,6 +214,9 @@ struct WindowingApp: App {
                 }
             }
         }
+
+        AlertScene("Standalone alert", isPresented: $isStandaloneAlertShown)
+
         #if !os(iOS) && !os(tvOS)
             WindowGroup("Secondary window") {
                 #hotReloadable {
