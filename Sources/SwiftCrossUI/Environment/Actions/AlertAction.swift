@@ -5,8 +5,6 @@
 /// breaking ``Button``'s API would have much more wide-reaching impacts than
 /// breaking this single-purpose API.
 public struct AlertAction: Sendable {
-    public static let ok = AlertAction(label: "Ok", action: {})
-
     public var label: String
     public var action: @MainActor @Sendable () -> Void
 }
