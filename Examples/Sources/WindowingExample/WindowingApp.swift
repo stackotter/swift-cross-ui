@@ -212,7 +212,6 @@ struct SingletonWindowView: View {
 struct WindowingApp: App {
     @State var title = "My window"
     @State var resizable = false
-    @State var showStandaloneAlert = false
 
     var body: some Scene {
         WindowGroup(title) {
@@ -240,9 +239,6 @@ struct WindowingApp: App {
                     #endif
 
                     AlertDemo()
-                    Button("Show standalone alert") {
-                        showStandaloneAlert = true
-                    }
 
                     Divider()
 
@@ -268,11 +264,7 @@ struct WindowingApp: App {
                 }
             }
         }
-
-        AlertScene("Standalone alert", isPresented: $showStandaloneAlert) {
-            Button("Close") {}
-        }
-
+        
         #if !os(iOS) && !os(tvOS)
             WindowGroup("Secondary window", id: "secondary-window") {
                 #hotReloadable {
