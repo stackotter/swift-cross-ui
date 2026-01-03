@@ -43,11 +43,11 @@ import Foundation
 @MainActor
 public protocol AppBackend: Sendable {
     associatedtype Window: AnyObject
-    associatedtype Widget: AnyObject
+    associatedtype Widget
     associatedtype Menu
-    associatedtype Alert: AnyObject
+    associatedtype Alert
     associatedtype Path
-    associatedtype Sheet: AnyObject
+    associatedtype Sheet
 
     /// Creates an instance of the backend.
     init()

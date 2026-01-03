@@ -9,11 +9,11 @@
 /// methods or anything like that).
 public class AnyWidget {
     /// The wrapped widget
-    var widget: AnyObject
+    var widget: Any
 
     /// Erases the specific type of a widget (to allow storage without propagating
     /// the selected backend type through the whole type system).
-    public init(_ widget: AnyObject) {
+    public init(_ widget: Any) {
         self.widget = widget
     }
 
