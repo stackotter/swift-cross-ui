@@ -175,6 +175,7 @@ struct OpenWindowDemo: View {
 
 struct TertiaryWindowView: View {
     @Environment(\.dismissWindow) private var dismissWindow
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         VStack {
@@ -182,6 +183,9 @@ struct TertiaryWindowView: View {
 
             Button("Close window") {
                 dismissWindow()
+            }
+            Button("Open new instance") {
+                openWindow(id: "tertiary-window")
             }
         }
         .padding()
@@ -260,6 +264,7 @@ struct WindowingApp: App {
                 }
             }
         }
+        
         #if !os(iOS) && !os(tvOS)
             WindowGroup("Secondary window", id: "secondary-window") {
                 #hotReloadable {

@@ -87,6 +87,11 @@ public final class AppKitBackend: AppBackend {
         )
         window.delegate = window.customDelegate
 
+        // NB: If this isn't set, AppKit will crash within -[NSApplication run]
+        // the *second* time `openWindow` is called. I have absolutely no idea
+        // why.
+        window.isReleasedWhenClosed = false
+
         return window
     }
 
@@ -143,10 +148,6 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func close(window: Window) {
-        // NB: If this isn't set, AppKitBackend will crash within
-        // -[NSApplication run] the *second* time `openWindow` is called. Why?
-        // I have absolutely no idea.
-        window.isReleasedWhenClosed = false
         window.close()
     }
 

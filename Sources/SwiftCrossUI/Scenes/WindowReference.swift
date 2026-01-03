@@ -6,7 +6,7 @@ final class WindowReference<Content: View> {
     /// The view graph of the window's root view.
     private var viewGraph: ViewGraph<Content>
     /// The window being rendered in.
-    private var window: AnyObject
+    private unowned var window: AnyObject
     /// `false` after the first scene update.
     private var isFirstUpdate = true
     /// The environment most recently provided by this node's parent scene.
@@ -22,11 +22,10 @@ final class WindowReference<Content: View> {
     /// This action should dispose of the wrapping scene's reference to this
     /// `WindowReference` such that `deinit` is called by the runtime.
     private var dismissWindowAction: @Sendable @MainActor () -> Void
-    /// The function to call when this object's `deinit` is called by the
-    /// runtime.
+    /// Closes the window.
     ///
-    /// This asks the backend to close the window.
-    private var onDeinit: @Sendable @MainActor () -> Void
+    /// This is called during `deinit`.
+    private var closeWindow: @Sendable @MainActor () -> Void
 
     /// - Parameters:
     ///   - dismissWindowAction: The action to assign to
@@ -69,7 +68,7 @@ final class WindowReference<Content: View> {
         self.window = window
         parentEnvironment = environment
 
-        self.onDeinit = { backend.close(window: window) }
+        self.closeWindow = { backend.close(window: window) }
         backend.setCloseHandler(ofWindow: window) { [weak self] in
             self?.dismissWindowAction()
         }
@@ -113,7 +112,7 @@ final class WindowReference<Content: View> {
 
     #if compiler(>=6.2)
     isolated deinit {
-        onDeinit()
+        closeWindow()
     }
     #else
     deinit {
@@ -128,7 +127,7 @@ final class WindowReference<Content: View> {
 
         // FIXME: Find a way to mimic `isolated deinit` without `isolated deinit`
         MainActor.assumeIsolated {
-            onDeinit()
+            closeWindow()
         }
     }
     #endif
@@ -209,7 +208,10 @@ final class WindowReference<Content: View> {
         let environment =
         backend.computeWindowEnvironment(window: window, rootEnvironment: environment)
             .with(\.onResize) { [weak self] _ in
-                guard let self = self else { return }
+                guard let self else {
+                    return
+                }
+
                 // TODO: Figure out whether this would still work if we didn't recompute the
                 //   scene's body. I have a vague feeling that it wouldn't work in all cases?
                 //   But I don't have the time to come up with a counterexample right now.
