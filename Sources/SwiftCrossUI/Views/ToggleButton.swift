@@ -6,7 +6,7 @@ struct ToggleButton: ElementaryView, View {
     private var active: Binding<Bool>
 
     /// Creates a toggle button that displays a custom label.
-    public init(_ label: String, active: Binding<Bool>) {
+    public init(_ label: String, isOn active: Binding<Bool>) {
         self.label = label
         self.active = active
     }

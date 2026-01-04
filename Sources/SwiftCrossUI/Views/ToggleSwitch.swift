@@ -4,7 +4,7 @@ struct ToggleSwitch: ElementaryView, View {
     private var active: Binding<Bool>
 
     /// Creates a switch.
-    public init(active: Binding<Bool>) {
+    public init(isOn active: Binding<Bool>) {
         self.active = active
     }
 

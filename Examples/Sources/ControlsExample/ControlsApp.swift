@@ -33,7 +33,7 @@ struct ControlsApp: App {
                     #if !canImport(UIKitBackend)
                         VStack {
                             Text("Toggle button")
-                            Toggle("Toggle me!", active: $exampleButtonState)
+                            Toggle("Toggle me!", isOn: $exampleButtonState)
                                 .toggleStyle(.button)
                             Text("Currently enabled: \(exampleButtonState)")
                         }
@@ -42,7 +42,7 @@ struct ControlsApp: App {
 
                     VStack {
                         Text("Toggle switch")
-                        Toggle("Toggle me:", active: $exampleSwitchState)
+                        Toggle("Toggle me:", isOn: $exampleSwitchState)
                             .toggleStyle(.switch)
                         Text("Currently enabled: \(exampleSwitchState)")
                     }
@@ -50,7 +50,7 @@ struct ControlsApp: App {
                     #if !canImport(UIKitBackend)
                         VStack {
                             Text("Checkbox")
-                            Toggle("Toggle me:", active: $exampleCheckboxState)
+                            Toggle("Toggle me:", isOn: $exampleCheckboxState)
                                 .toggleStyle(.checkbox)
                             Text("Currently enabled: \(exampleCheckboxState)")
                         }
@@ -79,7 +79,7 @@ struct ControlsApp: App {
                     }
                 }.padding().disabled(!enabled)
 
-                Toggle(enabled ? "Disable all" : "Enable all", active: $enabled)
+                Toggle(enabled ? "Disable all" : "Enable all", isOn: $enabled)
                     .padding()
             }
         }.defaultSize(width: 400, height: 600)
