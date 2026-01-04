@@ -303,7 +303,7 @@ public final class DummyBackend: AppBackend {
         window.closeHandler?()
     }
 
-    public func setResizeHandler(ofWindow window: Window, to action: @escaping () -> Void) {
+    public func setCloseHandler(ofWindow window: Window, to action: @escaping () -> Void) {
         window.closeHandler = action
     }
 
