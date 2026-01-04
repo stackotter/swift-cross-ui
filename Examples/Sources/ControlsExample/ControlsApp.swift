@@ -58,7 +58,7 @@ struct ControlsApp: App {
 
                     VStack {
                         Text("Slider")
-                        Slider($sliderValue, minimum: 0, maximum: 10)
+                        Slider(value: $sliderValue, in: 0...10)
                             .frame(maxWidth: 200)
                         Text("Value: \(String(format: "%.02f", sliderValue))")
                     }
