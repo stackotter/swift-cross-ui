@@ -183,7 +183,7 @@ class SheetModifierViewChildren<Child: View, SheetContent: View>: ViewGraphNodeC
     var childNode: AnyViewGraphNode<Child>
     var sheetContentNode: AnyViewGraphNode<SheetContent>?
     var sheet: Any?
-    var window: AnyObject?
+    var window: Any?
     var parentSheet: Any?
 
     init(

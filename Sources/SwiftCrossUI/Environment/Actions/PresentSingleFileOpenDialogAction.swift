@@ -6,7 +6,7 @@ import Foundation
 @available(tvOS, unavailable, message: "tvOS does not provide file system access")
 public struct PresentSingleFileOpenDialogAction: Sendable {
     let backend: any AppBackend
-    let window: MainActorBox<AnyObject?>
+    let window: MainActorBox<Any?>
 
     public func callAsFunction(
         title: String = "Open",

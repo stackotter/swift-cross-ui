@@ -133,7 +133,7 @@ public struct EnvironmentValues {
     /// The backend's representation of the window that the current view is
     /// in, if any. This is a very internal detail that should never get
     /// exposed to users.
-    package var window: AnyObject?
+    package var window: Any?
     /// The backend's representation of the sheet that the current view is
     /// in, if any. This is a very internal detail that should never get
     /// exposed to users.

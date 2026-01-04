@@ -4,7 +4,7 @@ import Foundation
 /// `nil` if the user cancels the operation.
 public struct PresentFileSaveDialogAction: Sendable {
     let backend: any AppBackend
-    let window: MainActorBox<AnyObject?>
+    let window: MainActorBox<Any?>
 
     public func callAsFunction(
         title: String = "Save",

@@ -21,7 +21,7 @@
 @MainActor
 public struct DismissWindowAction {
     let backend: any AppBackend
-    let window: MainActorBox<AnyObject?>
+    let window: MainActorBox<Any?>
 
     /// Closes the enclosing window.
     public func callAsFunction() {

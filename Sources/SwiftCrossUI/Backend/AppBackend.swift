@@ -42,7 +42,7 @@ import Foundation
 /// and actually displaying the widget anyway).
 @MainActor
 public protocol AppBackend: Sendable {
-    associatedtype Window: AnyObject
+    associatedtype Window
     associatedtype Widget
     associatedtype Menu
     associatedtype Alert
