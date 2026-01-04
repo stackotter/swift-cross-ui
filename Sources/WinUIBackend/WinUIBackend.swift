@@ -260,6 +260,19 @@ public final class WinUIBackend: AppBackend {
         try! window.activate()
     }
 
+    public func close(window: Window) {
+        try! window.close()
+    }
+
+    public func setCloseHandler(
+        ofWindow window: Window,
+        to action: @escaping () -> Void
+    ) {
+        window.closed.addHandler { _, _ in
+            action()
+        }
+    }
+
     public func openExternalURL(_ url: URL) throws {
         _ = UWP.Launcher.launchUriAsync(WindowsFoundation.Uri(url.absoluteString))
     }

@@ -188,7 +188,9 @@ public protocol AppBackend: Sendable {
     /// This is used by SwiftCrossUI to release scene nodes' references to
     /// `window` when the window is closed.
     ///
-    /// Setting the close handler overrides any previous handler.
+    /// This is only called once per window; as such, it doesn't matter if
+    /// setting the close handler again overrides the previous handler or adds a
+    /// new one.
     func setCloseHandler(
         ofWindow window: Window,
         to action: @escaping () -> Void
