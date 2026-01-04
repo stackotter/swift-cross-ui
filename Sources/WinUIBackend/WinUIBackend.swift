@@ -652,9 +652,7 @@ public final class WinUIBackend: AppBackend {
     public func createButton() -> Widget {
         let button = Button()
         button.click.addHandler { [weak internalState] _, _ in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.buttonClickActions[ObjectIdentifier(button)]?()
         }
         return button
@@ -813,11 +811,10 @@ public final class WinUIBackend: AppBackend {
     public func createSlider() -> Widget {
         let slider = Slider()
         slider.valueChanged.addHandler { [weak internalState] _, event in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.sliderChangeActions[ObjectIdentifier(slider)]?(
-                Double(event?.newValue ?? 0))
+                Double(event?.newValue ?? 0)
+            )
         }
         slider.stepFrequency = 0.01
         return slider
@@ -927,15 +924,11 @@ public final class WinUIBackend: AppBackend {
     public func createTextField() -> Widget {
         let textField = TextBox()
         textField.textChanged.addHandler { [weak internalState] _, _ in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.textFieldChangeActions[ObjectIdentifier(textField)]?(textField.text)
         }
         textField.keyUp.addHandler { [weak internalState] _, event in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
 
             if event?.key == .enter {
                 internalState.textFieldSubmitActions[ObjectIdentifier(textField)]?()
@@ -971,9 +964,7 @@ public final class WinUIBackend: AppBackend {
     public func createTextEditor() -> Widget {
         let textEditor = TextBox()
         textEditor.textChanged.addHandler { [weak internalState] _, _ in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             // Reuse this storage because it's the same widget type as a text field
             internalState.textFieldChangeActions[ObjectIdentifier(textEditor)]?(textEditor.text)
         }
@@ -1134,9 +1125,7 @@ public final class WinUIBackend: AppBackend {
     public func createToggle() -> Widget {
         let toggle = ToggleButton()
         toggle.click.addHandler { [weak internalState] _, _ in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.toggleClickActions[ObjectIdentifier(toggle)]?(toggle.isChecked ?? false)
         }
         return toggle
@@ -1186,9 +1175,7 @@ public final class WinUIBackend: AppBackend {
         toggleSwitch.onContent = ""
         toggleSwitch.padding = Thickness(left: 0, top: 0, right: 0, bottom: 0)
         toggleSwitch.toggled.addHandler { [weak internalState] _, _ in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.switchClickActions[ObjectIdentifier(toggleSwitch)]?(toggleSwitch.isOn)
         }
         return toggleSwitch
@@ -1421,9 +1408,7 @@ public final class WinUIBackend: AppBackend {
         tapGestureTarget.background = brush
 
         tapGestureTarget.pointerPressed.addHandler { [weak tapGestureTarget] _, _ in
-            guard let tapGestureTarget else {
-                return
-            }
+            guard let tapGestureTarget else { return }
             tapGestureTarget.clickHandler?()
         }
         return tapGestureTarget
@@ -1493,7 +1478,7 @@ public final class WinUIBackend: AppBackend {
         environment: EnvironmentValues
     ) {
         let progressBar = widget as! ProgressBar
-        if let progressFraction = progressFraction {
+        if let progressFraction {
             progressBar.isIndeterminate = false
             progressBar.value = progressBar.maximum * progressFraction
         } else {
