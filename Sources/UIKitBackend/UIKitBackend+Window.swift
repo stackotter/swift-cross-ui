@@ -133,6 +133,18 @@ extension UIKitBackend {
         logger.notice("ignoring \(#function) call")
     }
 
+    public func setClosability(ofWindow window: Window, to closable: Bool) {
+        if #available(iOS 16, tvOS 16, macCatalyst 16, *) {
+            window.windowScene?.windowingBehaviors?.isClosable = closable
+        }
+    }
+
+    public func setMinimizability(ofWindow window: Window, to minimizable: Bool) {
+        if #available(iOS 16, tvOS 16, macCatalyst 16, *) {
+            window.windowScene?.windowingBehaviors?.isMiniaturizable = minimizable
+        }
+    }
+
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
         #if os(visionOS)
             window.bounds.size = CGSize(width: CGFloat(newSize.x), height: CGFloat(newSize.y))

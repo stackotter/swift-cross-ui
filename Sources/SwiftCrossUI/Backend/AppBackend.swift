@@ -139,6 +139,13 @@ public protocol AppBackend: Sendable {
     /// Sets the resizability of a window. Even if resizable, the window
     /// shouldn't be allowed to become smaller than its content.
     func setResizability(ofWindow window: Window, to resizable: Bool)
+    /// Sets the closability of a window.
+    ///
+    /// This should only control whether the window can be closed with the close
+    /// button -- the window should _always_ be closable programmatically.
+    func setClosability(ofWindow window: Window, to closable: Bool)
+    /// Sets the minimizability of a window.
+    func setMinimizability(ofWindow window: Window, to minimizable: Bool)
     /// Sets the root child of a window (replaces the previous child if any).
     func setChild(ofWindow window: Window, to child: Widget)
     /// Gets the size of the given window in pixels.

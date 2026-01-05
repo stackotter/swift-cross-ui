@@ -162,6 +162,8 @@ struct SheetDemo: View {
 struct WindowingApp: App {
     @State var title = "My window"
     @State var resizable = false
+    @State var closable = true
+    @State var minimizable = true
 
     var body: some Scene {
         WindowGroup(title) {
@@ -173,8 +175,18 @@ struct WindowingApp: App {
                     }
 
                     Button(resizable ? "Disable resizing" : "Enable resizing") {
-                        resizable = !resizable
+                        resizable.toggle()
                     }
+
+                    Button(closable ? "Disable closing" : "Enable closing") {
+                        closable.toggle()
+                    }
+                    .windowDismissBehavior(closable ? .enabled : .disabled)
+
+                    Button(minimizable ? "Disable minimizing" : "Enable minimizing") {
+                        minimizable.toggle()
+                    }
+                    .windowMinimizeBehavior(minimizable ? .enabled : .disabled)
 
                     Image(Bundle.module.bundleURL.appendingPathComponent("Banner.png"))
                         .resizable()

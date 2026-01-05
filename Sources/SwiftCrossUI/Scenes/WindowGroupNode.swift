@@ -232,6 +232,15 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             backend.setSize(ofWindow: window, to: proposedWindowSize)
         }
 
+        backend.setClosability(
+            ofWindow: window,
+            to: finalContentResult.preferences.windowDismissBehavior != .disabled
+        )
+        backend.setMinimizability(
+            ofWindow: window,
+            to: finalContentResult.preferences.windowMinimizeBehavior != .disabled
+        )
+
         if isFirstUpdate {
             backend.show(window: window)
             isFirstUpdate = false

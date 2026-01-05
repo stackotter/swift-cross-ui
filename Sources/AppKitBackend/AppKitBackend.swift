@@ -129,6 +129,22 @@ public final class AppKitBackend: AppBackend {
         }
     }
 
+    public func setClosability(ofWindow window: Window, to closable: Bool) {
+        if closable {
+            window.styleMask.insert(.closable)
+        } else {
+            window.styleMask.remove(.closable)
+        }
+    }
+
+    public func setMinimizability(ofWindow window: Window, to minimizable: Bool) {
+        if minimizable {
+            window.styleMask.insert(.miniaturizable)
+        } else {
+            window.styleMask.remove(.miniaturizable)
+        }
+    }
+
     public func setChild(ofWindow window: Window, to child: Widget) {
         window.contentView = child
     }

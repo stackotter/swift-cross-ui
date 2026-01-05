@@ -9,6 +9,8 @@ public final class DummyBackend: AppBackend {
         public var minimumSize: SIMD2<Int> = .zero
         public var title = "Window"
         public var resizable = true
+        public var closable = true
+        public var minimizable = true
         public var content: Widget?
         public var resizeHandler: ((SIMD2<Int>) -> Void)?
 
@@ -266,6 +268,14 @@ public final class DummyBackend: AppBackend {
 
     public func setResizability(ofWindow window: Window, to resizable: Bool) {
         window.resizable = resizable
+    }
+
+    public func setClosability(ofWindow window: Window, to closable: Bool) {
+        window.closable = closable
+    }
+
+    public func setMinimizability(ofWindow window: Window, to minimizable: Bool) {
+        window.minimizable = minimizable
     }
 
     public func setChild(ofWindow window: Window, to child: Widget) {
