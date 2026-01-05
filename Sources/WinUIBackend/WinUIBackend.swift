@@ -289,10 +289,7 @@ public final class WinUIBackend: AppBackend {
                     let widget = ToggleMenuFlyoutItem()
                     widget.text = label
                     widget.isChecked = value
-                    widget.click.addHandler { widget, _ in
-                        guard let widget = widget as? ToggleMenuFlyoutItem else {
-                            return
-                        }
+                    widget.click.addHandler { _, _ in
                         widget.isChecked.toggle()
                         onChange(widget.isChecked)
                     }
