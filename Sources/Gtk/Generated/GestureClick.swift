@@ -28,7 +28,7 @@ open class GestureClick: GestureSingle {
 
         addSignal(name: "pressed", handler: gCallback(handler0)) {
             [weak self] (param0: Int, param1: Double, param2: Double) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.pressed?(self, param0, param1, param2)
         }
 
@@ -41,12 +41,12 @@ open class GestureClick: GestureSingle {
 
         addSignal(name: "released", handler: gCallback(handler1)) {
             [weak self] (param0: Int, param1: Double, param2: Double) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.released?(self, param0, param1, param2)
         }
 
         addSignal(name: "stopped") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.stopped?(self)
         }
 
@@ -62,7 +62,7 @@ open class GestureClick: GestureSingle {
 
         addSignal(name: "unpaired-release", handler: gCallback(handler3)) {
             [weak self] (param0: Double, param1: Double, param2: UInt, param3: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.unpairedRelease?(self, param0, param1, param2, param3)
         }
     }

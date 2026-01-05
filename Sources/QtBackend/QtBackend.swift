@@ -129,9 +129,7 @@ public struct QtBackend: AppBackend {
         // Internal state is required to avoid multiple subsequent calls to setAction adding
         // new handlers instead of replacing the existing handler
         button.connectClicked(receiver: nil) { [weak internalState] in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.buttonClickActions[ObjectIdentifier(button)]?()
         }
 
@@ -146,9 +144,7 @@ public struct QtBackend: AppBackend {
     public func createSlider() -> QWidget {
         let slider = QSlider(orientation: .Horizontal)
         slider.connectValueChanged(receiver: nil) { [weak internalState] val in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.sliderChangeActions[ObjectIdentifier(slider)]?(Double(val))
         }
 

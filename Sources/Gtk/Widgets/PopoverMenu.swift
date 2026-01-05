@@ -201,7 +201,7 @@ public class PopoverMenu: Popover {
 
         addSignal(name: "notify::flags", handler: gCallback(handler0)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyFlags?(self)
         }
 
@@ -213,7 +213,7 @@ public class PopoverMenu: Popover {
 
         addSignal(name: "notify::menu-model", handler: gCallback(handler1)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyMenuModel?(self)
         }
 
@@ -225,7 +225,7 @@ public class PopoverMenu: Popover {
 
         addSignal(name: "notify::visible-submenu", handler: gCallback(handler2)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyVisibleSubmenu?(self)
         }
     }

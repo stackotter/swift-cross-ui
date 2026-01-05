@@ -28,12 +28,12 @@ open class EventControllerMotion: EventController {
 
         addSignal(name: "enter", handler: gCallback(handler0)) {
             [weak self] (param0: Double, param1: Double) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.enter?(self, param0, param1)
         }
 
         addSignal(name: "leave") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.leave?(self)
         }
 
@@ -46,7 +46,7 @@ open class EventControllerMotion: EventController {
 
         addSignal(name: "motion", handler: gCallback(handler2)) {
             [weak self] (param0: Double, param1: Double) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.motion?(self, param0, param1)
         }
 
@@ -58,7 +58,7 @@ open class EventControllerMotion: EventController {
 
         addSignal(name: "notify::contains-pointer", handler: gCallback(handler3)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyContainsPointer?(self, param0)
         }
 
@@ -70,7 +70,7 @@ open class EventControllerMotion: EventController {
 
         addSignal(name: "notify::is-pointer", handler: gCallback(handler4)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyIsPointer?(self, param0)
         }
     }

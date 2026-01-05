@@ -70,7 +70,7 @@ class _App<AppRoot: App> {
 
                 let cancellable = value.didChange.observeAsUIUpdater(backend: self.backend) {
                     [weak self] in
-                    guard let self = self else { return }
+                    guard let self else { return }
 
                     // TODO: Do we have to do this on state changes? Can probably get
                     //   away with only doing it when the root environment changes.

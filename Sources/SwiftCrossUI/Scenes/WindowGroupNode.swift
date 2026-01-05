@@ -139,7 +139,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
 
         parentEnvironment = environment
 
-        if let newScene = newScene {
+        if let newScene {
             // Don't set default size even if it has changed. We only set that once
             // at window creation since some backends don't have a concept of
             // 'default' size which would mean that setting the default size every time
@@ -153,7 +153,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         let environment =
             backend.computeWindowEnvironment(window: window, rootEnvironment: environment)
             .with(\.onResize) { [weak self] _ in
-                guard let self = self else { return }
+                guard let self else { return }
                 // TODO: Figure out whether this would still work if we didn't recompute the
                 //   scene's body. I have a vague feeling that it wouldn't work in all cases?
                 //   But I don't have the time to come up with a counterexample right now.

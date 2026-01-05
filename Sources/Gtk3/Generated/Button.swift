@@ -69,32 +69,32 @@ open class Button: Bin, Activatable {
         super.didMoveToParent()
 
         addSignal(name: "activate") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.activate?(self)
         }
 
         addSignal(name: "clicked") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.clicked?(self)
         }
 
         addSignal(name: "enter") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.enter?(self)
         }
 
         addSignal(name: "leave") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.leave?(self)
         }
 
         addSignal(name: "pressed") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.pressed?(self)
         }
 
         addSignal(name: "released") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.released?(self)
         }
 
@@ -106,7 +106,7 @@ open class Button: Bin, Activatable {
 
         addSignal(name: "notify::always-show-image", handler: gCallback(handler6)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAlwaysShowImage?(self, param0)
         }
 
@@ -118,7 +118,7 @@ open class Button: Bin, Activatable {
 
         addSignal(name: "notify::image", handler: gCallback(handler7)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyImage?(self, param0)
         }
 
@@ -130,7 +130,7 @@ open class Button: Bin, Activatable {
 
         addSignal(name: "notify::image-position", handler: gCallback(handler8)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyImagePosition?(self, param0)
         }
 
@@ -142,7 +142,7 @@ open class Button: Bin, Activatable {
 
         addSignal(name: "notify::label", handler: gCallback(handler9)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyLabel?(self, param0)
         }
 
@@ -154,7 +154,7 @@ open class Button: Bin, Activatable {
 
         addSignal(name: "notify::relief", handler: gCallback(handler10)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyRelief?(self, param0)
         }
 
@@ -166,7 +166,7 @@ open class Button: Bin, Activatable {
 
         addSignal(name: "notify::use-stock", handler: gCallback(handler11)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyUseStock?(self, param0)
         }
 
@@ -178,7 +178,7 @@ open class Button: Bin, Activatable {
 
         addSignal(name: "notify::use-underline", handler: gCallback(handler12)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyUseUnderline?(self, param0)
         }
 
@@ -190,7 +190,7 @@ open class Button: Bin, Activatable {
 
         addSignal(name: "notify::xalign", handler: gCallback(handler13)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyXalign?(self, param0)
         }
 
@@ -202,7 +202,7 @@ open class Button: Bin, Activatable {
 
         addSignal(name: "notify::yalign", handler: gCallback(handler14)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyYalign?(self, param0)
         }
 
@@ -214,7 +214,7 @@ open class Button: Bin, Activatable {
 
         addSignal(name: "notify::related-action", handler: gCallback(handler15)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyRelatedAction?(self, param0)
         }
 
@@ -226,7 +226,7 @@ open class Button: Bin, Activatable {
 
         addSignal(name: "notify::use-action-appearance", handler: gCallback(handler16)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyUseActionAppearance?(self, param0)
         }
     }

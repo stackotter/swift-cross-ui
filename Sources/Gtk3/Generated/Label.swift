@@ -204,7 +204,7 @@ open class Label: Misc {
         super.didMoveToParent()
 
         addSignal(name: "activate-current-link") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.activateCurrentLink?(self)
         }
 
@@ -217,12 +217,12 @@ open class Label: Misc {
 
         addSignal(name: "activate-link", handler: gCallback(handler1)) {
             [weak self] (param0: UnsafePointer<CChar>) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.activateLink?(self, param0)
         }
 
         addSignal(name: "copy-clipboard") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.copyClipboard?(self)
         }
 
@@ -236,7 +236,7 @@ open class Label: Misc {
 
         addSignal(name: "move-cursor", handler: gCallback(handler3)) {
             [weak self] (param0: GtkMovementStep, param1: Int, param2: Bool) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.moveCursor?(self, param0, param1, param2)
         }
 
@@ -248,7 +248,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::angle", handler: gCallback(handler4)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAngle?(self, param0)
         }
 
@@ -260,7 +260,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::attributes", handler: gCallback(handler5)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAttributes?(self, param0)
         }
 
@@ -272,7 +272,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::cursor-position", handler: gCallback(handler6)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyCursorPosition?(self, param0)
         }
 
@@ -284,7 +284,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::ellipsize", handler: gCallback(handler7)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyEllipsize?(self, param0)
         }
 
@@ -296,7 +296,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::justify", handler: gCallback(handler8)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyJustify?(self, param0)
         }
 
@@ -308,7 +308,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::label", handler: gCallback(handler9)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyLabel?(self, param0)
         }
 
@@ -320,7 +320,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::lines", handler: gCallback(handler10)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyLines?(self, param0)
         }
 
@@ -332,7 +332,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::max-width-chars", handler: gCallback(handler11)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyMaxWidthChars?(self, param0)
         }
 
@@ -344,7 +344,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::mnemonic-keyval", handler: gCallback(handler12)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyMnemonicKeyval?(self, param0)
         }
 
@@ -356,7 +356,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::pattern", handler: gCallback(handler13)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPattern?(self, param0)
         }
 
@@ -368,7 +368,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::selectable", handler: gCallback(handler14)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySelectable?(self, param0)
         }
 
@@ -380,7 +380,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::selection-bound", handler: gCallback(handler15)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySelectionBound?(self, param0)
         }
 
@@ -392,7 +392,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::single-line-mode", handler: gCallback(handler16)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySingleLineMode?(self, param0)
         }
 
@@ -404,7 +404,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::track-visited-links", handler: gCallback(handler17)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyTrackVisitedLinks?(self, param0)
         }
 
@@ -416,7 +416,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::use-markup", handler: gCallback(handler18)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyUseMarkup?(self, param0)
         }
 
@@ -428,7 +428,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::use-underline", handler: gCallback(handler19)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyUseUnderline?(self, param0)
         }
 
@@ -440,7 +440,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::width-chars", handler: gCallback(handler20)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyWidthChars?(self, param0)
         }
 
@@ -452,7 +452,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::wrap", handler: gCallback(handler21)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyWrap?(self, param0)
         }
 
@@ -464,7 +464,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::wrap-mode", handler: gCallback(handler22)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyWrapMode?(self, param0)
         }
 
@@ -476,7 +476,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::xalign", handler: gCallback(handler23)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyXalign?(self, param0)
         }
 
@@ -488,7 +488,7 @@ open class Label: Misc {
 
         addSignal(name: "notify::yalign", handler: gCallback(handler24)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyYalign?(self, param0)
         }
     }

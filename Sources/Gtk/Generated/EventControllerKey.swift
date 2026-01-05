@@ -13,7 +13,7 @@ open class EventControllerKey: EventController {
         super.registerSignals()
 
         addSignal(name: "im-update") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.imUpdate?(self)
         }
 
@@ -27,7 +27,7 @@ open class EventControllerKey: EventController {
 
         addSignal(name: "key-pressed", handler: gCallback(handler1)) {
             [weak self] (param0: UInt, param1: UInt, param2: GdkModifierType) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.keyPressed?(self, param0, param1, param2)
         }
 
@@ -41,7 +41,7 @@ open class EventControllerKey: EventController {
 
         addSignal(name: "key-released", handler: gCallback(handler2)) {
             [weak self] (param0: UInt, param1: UInt, param2: GdkModifierType) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.keyReleased?(self, param0, param1, param2)
         }
 
@@ -54,7 +54,7 @@ open class EventControllerKey: EventController {
 
         addSignal(name: "modifiers", handler: gCallback(handler3)) {
             [weak self] (param0: GdkModifierType) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.modifiers?(self, param0)
         }
     }

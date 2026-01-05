@@ -91,22 +91,22 @@ open class Entry: Widget, CellEditable, Editable {
         super.didMoveToParent()
 
         addSignal(name: "activate") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.activate?(self)
         }
 
         addSignal(name: "backspace") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.backspace?(self)
         }
 
         addSignal(name: "copy-clipboard") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.copyClipboard?(self)
         }
 
         addSignal(name: "cut-clipboard") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.cutClipboard?(self)
         }
 
@@ -119,7 +119,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "delete-from-cursor", handler: gCallback(handler4)) {
             [weak self] (param0: GtkDeleteType, param1: Int) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.deleteFromCursor?(self, param0, param1)
         }
 
@@ -133,7 +133,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "icon-press", handler: gCallback(handler5)) {
             [weak self] (param0: GtkEntryIconPosition, param1: GdkEvent) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.iconPress?(self, param0, param1)
         }
 
@@ -147,7 +147,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "icon-release", handler: gCallback(handler6)) {
             [weak self] (param0: GtkEntryIconPosition, param1: GdkEvent) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.iconRelease?(self, param0, param1)
         }
 
@@ -160,12 +160,12 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "insert-at-cursor", handler: gCallback(handler7)) {
             [weak self] (param0: UnsafePointer<CChar>) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.insertAtCursor?(self, param0)
         }
 
         addSignal(name: "insert-emoji") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.insertEmoji?(self)
         }
 
@@ -179,12 +179,12 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "move-cursor", handler: gCallback(handler9)) {
             [weak self] (param0: GtkMovementStep, param1: Int, param2: Bool) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.moveCursor?(self, param0, param1, param2)
         }
 
         addSignal(name: "paste-clipboard") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.pasteClipboard?(self)
         }
 
@@ -197,27 +197,27 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "preedit-changed", handler: gCallback(handler11)) {
             [weak self] (param0: UnsafePointer<CChar>) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.preeditChanged?(self, param0)
         }
 
         addSignal(name: "toggle-overwrite") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.toggleOverwrite?(self)
         }
 
         addSignal(name: "editing-done") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.editingDone?(self)
         }
 
         addSignal(name: "remove-widget") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.removeWidget?(self)
         }
 
         addSignal(name: "changed") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.changed?(self)
         }
 
@@ -229,7 +229,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "delete-text", handler: gCallback(handler16)) {
             [weak self] (param0: Int, param1: Int) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.deleteText?(self, param0, param1)
         }
 
@@ -245,7 +245,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "insert-text", handler: gCallback(handler17)) {
             [weak self] (param0: UnsafePointer<CChar>, param1: Int, param2: gpointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.insertText?(self, param0, param1, param2)
         }
 
@@ -257,7 +257,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::activates-default", handler: gCallback(handler18)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyActivatesDefault?(self, param0)
         }
 
@@ -269,7 +269,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::attributes", handler: gCallback(handler19)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAttributes?(self, param0)
         }
 
@@ -281,7 +281,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::buffer", handler: gCallback(handler20)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyBuffer?(self, param0)
         }
 
@@ -293,7 +293,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::caps-lock-warning", handler: gCallback(handler21)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyCapsLockWarning?(self, param0)
         }
 
@@ -305,7 +305,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::completion", handler: gCallback(handler22)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyCompletion?(self, param0)
         }
 
@@ -317,7 +317,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::cursor-position", handler: gCallback(handler23)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyCursorPosition?(self, param0)
         }
 
@@ -329,7 +329,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::editable", handler: gCallback(handler24)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyEditable?(self, param0)
         }
 
@@ -341,7 +341,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::enable-emoji-completion", handler: gCallback(handler25)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyEnableEmojiCompletion?(self, param0)
         }
 
@@ -353,7 +353,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::has-frame", handler: gCallback(handler26)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyHasFrame?(self, param0)
         }
 
@@ -365,7 +365,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::im-module", handler: gCallback(handler27)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyImModule?(self, param0)
         }
 
@@ -377,7 +377,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::inner-border", handler: gCallback(handler28)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyInnerBorder?(self, param0)
         }
 
@@ -389,7 +389,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::input-hints", handler: gCallback(handler29)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyInputHints?(self, param0)
         }
 
@@ -401,7 +401,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::input-purpose", handler: gCallback(handler30)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyInputPurpose?(self, param0)
         }
 
@@ -413,7 +413,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::invisible-char", handler: gCallback(handler31)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyInvisibleCharacter?(self, param0)
         }
 
@@ -425,7 +425,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::invisible-char-set", handler: gCallback(handler32)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyInvisibleCharacterSet?(self, param0)
         }
 
@@ -437,7 +437,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::max-length", handler: gCallback(handler33)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyMaxLength?(self, param0)
         }
 
@@ -449,7 +449,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::max-width-chars", handler: gCallback(handler34)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyMaxWidthChars?(self, param0)
         }
 
@@ -461,7 +461,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::overwrite-mode", handler: gCallback(handler35)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyOverwriteMode?(self, param0)
         }
 
@@ -473,7 +473,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::placeholder-text", handler: gCallback(handler36)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPlaceholderText?(self, param0)
         }
 
@@ -485,7 +485,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::populate-all", handler: gCallback(handler37)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPopulateAll?(self, param0)
         }
 
@@ -497,7 +497,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::primary-icon-activatable", handler: gCallback(handler38)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPrimaryIconActivatable?(self, param0)
         }
 
@@ -509,7 +509,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::primary-icon-gicon", handler: gCallback(handler39)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPrimaryIconGicon?(self, param0)
         }
 
@@ -521,7 +521,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::primary-icon-name", handler: gCallback(handler40)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPrimaryIconName?(self, param0)
         }
 
@@ -533,7 +533,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::primary-icon-pixbuf", handler: gCallback(handler41)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPrimaryIconPixbuf?(self, param0)
         }
 
@@ -545,7 +545,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::primary-icon-sensitive", handler: gCallback(handler42)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPrimaryIconSensitive?(self, param0)
         }
 
@@ -557,7 +557,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::primary-icon-stock", handler: gCallback(handler43)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPrimaryIconStock?(self, param0)
         }
 
@@ -569,7 +569,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::primary-icon-storage-type", handler: gCallback(handler44)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPrimaryIconStorageType?(self, param0)
         }
 
@@ -581,7 +581,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::primary-icon-tooltip-markup", handler: gCallback(handler45)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPrimaryIconTooltipMarkup?(self, param0)
         }
 
@@ -593,7 +593,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::primary-icon-tooltip-text", handler: gCallback(handler46)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPrimaryIconTooltipText?(self, param0)
         }
 
@@ -605,7 +605,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::progress-fraction", handler: gCallback(handler47)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyProgressFraction?(self, param0)
         }
 
@@ -617,7 +617,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::progress-pulse-step", handler: gCallback(handler48)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyProgressPulseStep?(self, param0)
         }
 
@@ -629,7 +629,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::scroll-offset", handler: gCallback(handler49)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyScrollOffset?(self, param0)
         }
 
@@ -641,7 +641,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::secondary-icon-activatable", handler: gCallback(handler50)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySecondaryIconActivatable?(self, param0)
         }
 
@@ -653,7 +653,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::secondary-icon-gicon", handler: gCallback(handler51)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySecondaryIconGicon?(self, param0)
         }
 
@@ -665,7 +665,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::secondary-icon-name", handler: gCallback(handler52)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySecondaryIconName?(self, param0)
         }
 
@@ -677,7 +677,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::secondary-icon-pixbuf", handler: gCallback(handler53)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySecondaryIconPixbuf?(self, param0)
         }
 
@@ -689,7 +689,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::secondary-icon-sensitive", handler: gCallback(handler54)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySecondaryIconSensitive?(self, param0)
         }
 
@@ -701,7 +701,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::secondary-icon-stock", handler: gCallback(handler55)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySecondaryIconStock?(self, param0)
         }
 
@@ -713,7 +713,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::secondary-icon-storage-type", handler: gCallback(handler56)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySecondaryIconStorageType?(self, param0)
         }
 
@@ -725,7 +725,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::secondary-icon-tooltip-markup", handler: gCallback(handler57)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySecondaryIconTooltipMarkup?(self, param0)
         }
 
@@ -737,7 +737,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::secondary-icon-tooltip-text", handler: gCallback(handler58)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySecondaryIconTooltipText?(self, param0)
         }
 
@@ -749,7 +749,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::selection-bound", handler: gCallback(handler59)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySelectionBound?(self, param0)
         }
 
@@ -761,7 +761,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::shadow-type", handler: gCallback(handler60)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyShadowType?(self, param0)
         }
 
@@ -773,7 +773,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::show-emoji-icon", handler: gCallback(handler61)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyShowEmojiIcon?(self, param0)
         }
 
@@ -785,7 +785,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::tabs", handler: gCallback(handler62)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyTabs?(self, param0)
         }
 
@@ -797,7 +797,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::text", handler: gCallback(handler63)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyText?(self, param0)
         }
 
@@ -809,7 +809,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::text-length", handler: gCallback(handler64)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyTextLength?(self, param0)
         }
 
@@ -821,7 +821,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::truncate-multiline", handler: gCallback(handler65)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyTruncateMultiline?(self, param0)
         }
 
@@ -833,7 +833,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::visibility", handler: gCallback(handler66)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyVisibility?(self, param0)
         }
 
@@ -845,7 +845,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::width-chars", handler: gCallback(handler67)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyWidthChars?(self, param0)
         }
 
@@ -857,7 +857,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::xalign", handler: gCallback(handler68)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyXalign?(self, param0)
         }
 
@@ -869,7 +869,7 @@ open class Entry: Widget, CellEditable, Editable {
 
         addSignal(name: "notify::editing-canceled", handler: gCallback(handler69)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyEditingCanceled?(self, param0)
         }
     }
