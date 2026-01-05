@@ -59,7 +59,8 @@ public enum LayoutSystem {
         var tag: String?
 
         public init(
-            computeLayout: @escaping @MainActor (ProposedViewSize, EnvironmentValues) ->
+            computeLayout:
+                @escaping @MainActor (ProposedViewSize, EnvironmentValues) ->
                 ViewLayoutResult,
             commit: @escaping @MainActor () -> ViewLayoutResult,
             tag: String? = nil

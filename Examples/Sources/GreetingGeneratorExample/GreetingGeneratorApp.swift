@@ -27,7 +27,7 @@ struct GreetingGeneratorApp: App {
                         }
                     }
 
-                    Toggle("Selectable Greeting", active: $isGreetingSelectable)
+                    Toggle("Selectable Greeting", isOn: $isGreetingSelectable)
                     if let latest = greetings.last {
                         LatestGreetingDisplay()
                             .environment(\.latestGreeting, latest)
@@ -39,7 +39,7 @@ struct GreetingGeneratorApp: App {
                                 .padding(.top, 20)
 
                             ScrollView {
-                                ForEach(greetings.reversed()[1...]) { greeting in
+                                ForEach(greetings.reversed()[1...], id: \.self) { greeting in
                                     Text(greeting)
                                 }
                             }

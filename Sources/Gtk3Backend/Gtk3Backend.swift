@@ -137,7 +137,7 @@ public final class Gtk3Backend: AppBackend {
 
     public func createWindow(withDefaultSize defaultSize: SIMD2<Int>?) -> Window {
         let window: Gtk3.ApplicationWindow
-        if let precreatedWindow = precreatedWindow {
+        if let precreatedWindow {
             self.precreatedWindow = nil
             window = precreatedWindow
             window.setPosition(to: .center)
@@ -147,7 +147,7 @@ public final class Gtk3Backend: AppBackend {
 
         windows.append(window)
 
-        if let defaultSize = defaultSize {
+        if let defaultSize {
             window.defaultSize = Size(
                 width: defaultSize.x,
                 height: defaultSize.y
@@ -377,7 +377,7 @@ public final class Gtk3Backend: AppBackend {
         g_idle_add_full(
             0,
             { context in
-                guard let context = context else {
+                guard let context else {
                     fatalError("Gtk action callback called without context")
                 }
 
@@ -403,7 +403,7 @@ public final class Gtk3Backend: AppBackend {
             0,
             guint(max(0, delay)),
             { context in
-                guard let context = context else {
+                guard let context else {
                     fatalError("Gtk action callback called without context")
                 }
 
@@ -696,6 +696,12 @@ public final class Gtk3Backend: AppBackend {
         environment: EnvironmentValues
     ) {
         let imageView = imageView as! Gtk3.Image
+
+        // Check if the resulting image would be empty
+        guard targetWidth > 0, targetHeight > 0 else {
+            imageView.clear()
+            return
+        }
 
         let pixbuf = Pixbuf(
             rgbaData: rgbaData,
@@ -1301,7 +1307,7 @@ public final class Gtk3Backend: AppBackend {
         // a weak reference anyway.
         drawingArea.doDraw = { [weak self] cairo in
             let scaleFactor = path.scaleFactor
-            guard let self = self, let path = path.path else {
+            guard let self, let path = path.path else {
                 return
             }
 

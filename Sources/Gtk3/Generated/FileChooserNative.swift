@@ -171,27 +171,27 @@ open class FileChooserNative: NativeDialog, FileChooser {
         super.registerSignals()
 
         addSignal(name: "confirm-overwrite") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.confirmOverwrite?(self)
         }
 
         addSignal(name: "current-folder-changed") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.currentFolderChanged?(self)
         }
 
         addSignal(name: "file-activated") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.fileActivated?(self)
         }
 
         addSignal(name: "selection-changed") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.selectionChanged?(self)
         }
 
         addSignal(name: "update-preview") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.updatePreview?(self)
         }
 
@@ -203,7 +203,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::accept-label", handler: gCallback(handler5)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAcceptLabel?(self, param0)
         }
 
@@ -215,7 +215,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::cancel-label", handler: gCallback(handler6)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyCancelLabel?(self, param0)
         }
 
@@ -227,7 +227,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::action", handler: gCallback(handler7)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAction?(self, param0)
         }
 
@@ -239,7 +239,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::create-folders", handler: gCallback(handler8)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyCreateFolders?(self, param0)
         }
 
@@ -251,7 +251,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::do-overwrite-confirmation", handler: gCallback(handler9)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyDoOverwriteConfirmation?(self, param0)
         }
 
@@ -263,7 +263,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::extra-widget", handler: gCallback(handler10)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyExtraWidget?(self, param0)
         }
 
@@ -275,7 +275,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::filter", handler: gCallback(handler11)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyFilter?(self, param0)
         }
 
@@ -287,7 +287,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::local-only", handler: gCallback(handler12)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyLocalOnly?(self, param0)
         }
 
@@ -299,7 +299,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::preview-widget", handler: gCallback(handler13)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPreviewWidget?(self, param0)
         }
 
@@ -311,7 +311,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::preview-widget-active", handler: gCallback(handler14)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPreviewWidgetActive?(self, param0)
         }
 
@@ -323,7 +323,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::select-multiple", handler: gCallback(handler15)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySelectMultiple?(self, param0)
         }
 
@@ -335,7 +335,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::show-hidden", handler: gCallback(handler16)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyShowHidden?(self, param0)
         }
 
@@ -347,7 +347,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::use-preview-label", handler: gCallback(handler17)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyUsePreviewLabel?(self, param0)
         }
     }

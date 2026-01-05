@@ -58,7 +58,7 @@ public class Application: GObject, GActionMap {
 
         addSignal(name: "open", handler: gCallback(handler1)) {
             [weak self] (files: UnsafeMutablePointer<OpaquePointer>, nFiles: Int) in
-            guard let self = self else { return }
+            guard let self else { return }
             var uris: [URL] = []
             for i in 0..<nFiles {
                 uris.append(
