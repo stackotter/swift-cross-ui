@@ -290,7 +290,8 @@ public final class WinUIBackend: AppBackend {
                     widget.text = label
                     widget.isChecked = value
                     widget.click.addHandler { _, _ in
-                        widget.isChecked.toggle()
+                        logger.debug("toggle clicked, isChecked: \(widget.isChecked), label: \(widget.text)")
+//                        widget.isChecked.toggle()
                         onChange(widget.isChecked)
                     }
                     return widget
