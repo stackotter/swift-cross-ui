@@ -76,6 +76,10 @@ let package = Package(
         .executableTarget(
             name: "HoverExample",
             dependencies: exampleDependencies
-        )
+		),
+		.executableTarget(
+            name: "ForEachExample",
+            dependencies: exampleDependencies
+		)
     ]
 )
