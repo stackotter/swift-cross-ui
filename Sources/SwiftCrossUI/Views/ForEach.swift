@@ -13,6 +13,7 @@ public struct ForEach<Items: Collection, ID: Hashable, Child> {
 
 extension ForEach: TypeSafeView, View where Child: View {
     typealias Children = ForEachViewChildren<Items, ID, Child>
+
     public init(
         _ elements: Items,
         id keyPath: KeyPath<Items.Element, ID>,
@@ -436,18 +437,14 @@ class ForEachViewChildren<
     }
 }
 
-// MARK: - Alternative Initializers
-extension ForEach where Items.Element: Hashable, ID == Items.Element {
+
+extension ForEach where ID == Int {
     /// Creates a view that creates child views on demand based on a collection of data.
-    @available(
-        *,
-        deprecated,
-        message: "Use ForEach with id argument on non-Identifiable Elements instead."
-    )
+    @available(*, deprecated, renamed: "init(_:id:_:)", message: "ForEach requires an explicit 'id' parameter for non-Identifiable elements to correctly persist state across view updates")
     @_disfavoredOverload
     public init(
-        items elements: Items,
-        _ child: @escaping (Items.Element) -> Child
+        _ elements: Items,
+        @ViewBuilder _ child: @escaping (Items.Element) -> Child
     ) {
         self.elements = elements
         self.child = child
@@ -455,12 +452,12 @@ extension ForEach where Items.Element: Hashable, ID == Items.Element {
     }
 }
 
-extension ForEach where Child == [MenuItem], Items.Element: Hashable, ID == Items.Element {
+extension ForEach where Child == [MenuItem], ID == Int {
     /// Creates a view that creates child views on demand based on a collection of data.
     @available(
         *,
         deprecated,
-        message: "Use ForEach with id argument on non-Identifiable Elements instead."
+        message: "ForEach requires an explicit 'id' parameter for non-Identifiable elements to correctly persist state across view updates"
     )
     @_disfavoredOverload
     public init(
@@ -475,7 +472,6 @@ extension ForEach where Child == [MenuItem], Items.Element: Hashable, ID == Item
 
 extension ForEach where Child == [MenuItem] {
     /// Creates a view that creates child views on demand based on a collection of data.
-    @_disfavoredOverload
     public init(
         menuItems elements: Items,
         id keyPath: KeyPath<Items.Element, ID>,
@@ -484,6 +480,18 @@ extension ForEach where Child == [MenuItem] {
         self.elements = elements
         self.child = child
         self.idKeyPath = keyPath
+    }
+}
+
+extension ForEach where Items.Element: Identifiable, Child == [MenuItem], ID == Items.Element.ID {
+    /// Creates a view that creates child views on demand based on a collection of data.
+    public init(
+        menuItems elements: Items,
+        @MenuItemsBuilder _ child: @escaping (Items.Element) -> [MenuItem]
+    ) {
+        self.elements = elements
+        self.child = child
+        self.idKeyPath = \.id
     }
 }
 

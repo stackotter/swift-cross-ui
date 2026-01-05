@@ -16,7 +16,7 @@ struct ForEachApp: App {
     var body: some Scene {
         WindowGroup("ForEach") {
             #hotReloadable {
-                ScrollView {
+                VStack {
                     VStack {
                         Button("Append") {
                             biggestValue += 1
@@ -25,19 +25,23 @@ struct ForEachApp: App {
 
                         #if !os(tvOS)
                             Button(
-                                "Insert in front of current item at position \(insertionPosition)"
+                                "Insert before item at position \(insertionPosition)"
                             ) {
                                 biggestValue += 1
                                 items.insert(.init("\(biggestValue)"), at: insertionPosition)
                             }
 
-                            Slider($insertionPosition, minimum: 0, maximum: items.count - 1)
+                            Slider(value: $insertionPosition, in: 0...(items.count - 1))
                                 .onChange(of: items.count) {
                                     let upperLimit = max(items.count - 1, 0)
                                     insertionPosition = min(insertionPosition, upperLimit)
                                 }
+                                .frame(maxWidth: 200)
                         #endif
+                    }
+                    .padding(10)
 
+                    ScrollView {
                         ForEach(Array(items.enumerated()), id: \.element.id) { (index, item) in
                             ItemRow(
                                 item: item,
@@ -53,8 +57,8 @@ struct ForEachApp: App {
                                 items.swapAt(index, index + 1)
                             }
                         }
+                        .frame(maxWidth: .infinity)
                     }
-                    .padding(10)
                 }
             }
         }

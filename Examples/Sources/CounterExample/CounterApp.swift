@@ -18,11 +18,6 @@ struct CounterApp: App {
                         count -= 1
                     }
                     Text("Count: \(count)")
-                        .overlay {
-                            GeometryReader { proxy in
-                                Color.blue.opacity(0.5)
-                            }
-                        }
                     Button("+") {
                         count += 1
                     }
