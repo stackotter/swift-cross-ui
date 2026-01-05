@@ -37,10 +37,14 @@ struct WebViewApp: App {
                     }
                     .padding()
 
-                    WebView($url)
-                        .onChange(of: url) {
-                            urlInput = url.absoluteString
-                        }
+                    #if !os(tvOS)
+                        WebView($url)
+                            .onChange(of: url) {
+                                urlInput = url.absoluteString
+                            }
+                    #else
+                        Text("WebView isn't supported on tvOS")
+                    #endif
                 }
             }
         }

@@ -59,7 +59,7 @@ extension EitherView: TypeSafeView {
         switch storage {
             case .a(let a):
                 switch children.node {
-                    case let .a(nodeA):
+                    case .a(let nodeA):
                         result = nodeA.computeLayout(
                             with: a,
                             proposedSize: proposedSize,
@@ -82,7 +82,7 @@ extension EitherView: TypeSafeView {
                 }
             case .b(let b):
                 switch children.node {
-                    case let .b(nodeB):
+                    case .b(let nodeB):
                         result = nodeB.computeLayout(
                             with: b,
                             proposedSize: proposedSize,
