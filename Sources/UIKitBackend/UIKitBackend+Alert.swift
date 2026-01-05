@@ -40,6 +40,7 @@ extension UIKitBackend {
     ) {
         guard let window = window ?? Self.mainWindow else {
             assertionFailure("Could not find window in which to display alert")
+            return
         }
 
         alert.handler = handleResponse
