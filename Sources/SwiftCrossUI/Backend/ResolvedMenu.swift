@@ -20,10 +20,9 @@ public struct ResolvedMenu {
         /// A toggle that manages boolean state.
         ///
         /// Usually appears as a checkbox.
-        ///
         /// - Parameters:
         ///   - label: The toggle's label.
-        ///   - value: The toggle's current enabled state.
+        ///   - value: The toggle's current state.
         ///   - onChange: Called whenever the user changes the toggle's state.
         case toggle(_ label: String, _ value: Bool, onChange: @MainActor (Bool) -> Void)
         /// A named submenu.
