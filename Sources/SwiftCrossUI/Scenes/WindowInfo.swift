@@ -10,8 +10,14 @@ struct WindowInfo<Content: View> {
     /// The window's content.
     var content: () -> Content
 
-    var body: Content {
-        content()
+    /// Whether the value of `resizability` implies that the window is resizable.
+    var isResizable: Bool {
+        switch resizability {
+            case .automatic, .contentMinSize:
+                return true
+            case .contentSize:
+                return false
+        }
     }
 
     init(

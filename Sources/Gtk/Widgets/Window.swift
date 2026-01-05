@@ -108,7 +108,7 @@ open class Window: Widget {
     public var onCloseRequest: ((Window) -> Void)? {
         didSet {
             addSignal(name: "close-request") { [weak self] () in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.onCloseRequest?(self)
             }
         }
@@ -117,7 +117,7 @@ open class Window: Widget {
     public var onDestroy: ((Window) -> Void)? {
         didSet {
             addSignal(name: "destroy") { [weak self] () in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.onDestroy?(self)
             }
         }
