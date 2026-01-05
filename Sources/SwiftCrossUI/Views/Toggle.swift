@@ -8,6 +8,11 @@ public struct Toggle: View {
     /// Whether the toggle is active or not.
     var active: Binding<Bool>
 
+    @available(*, deprecated, renamed: "init(_:isOn:)")
+    public init(_ label: String, active: Binding<Bool>) {
+        self.init(label, isOn: active)
+    }
+
     /// Creates a toggle that displays a custom label.
     public init(_ label: String, isOn active: Binding<Bool>) {
         self.label = label
