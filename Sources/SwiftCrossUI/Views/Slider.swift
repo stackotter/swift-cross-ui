@@ -10,6 +10,16 @@ public struct Slider: ElementaryView, View {
     /// The number of decimal places used when displaying the value.
     private var decimalPlaces: Int
 
+    @available(*, deprecated, renamed: "init(value:in:)")
+    public init<T: BinaryInteger>(_ value: Binding<T>? = nil, minimum: T, maximum: T) {
+        self.init(value: value, in: minimum...maximum)
+    }
+
+    @available(*, deprecated, renamed: "init(value:in:)")
+    public init<T: BinaryFloatingPoint>(_ value: Binding<T>? = nil, minimum: T, maximum: T) {
+        self.init(value: value, in: minimum...maximum)
+    }
+
     /// Creates a slider to select a value between a minimum and maximum value.
     public init<T: BinaryInteger>(value: Binding<T>? = nil, in range: ClosedRange<T>) {
         if let value = value {
