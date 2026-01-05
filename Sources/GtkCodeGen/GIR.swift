@@ -217,7 +217,7 @@ struct Class: Decodable, ClassLike {
         namespace: Namespace
     ) -> [(any ClassLike, T)] {
         guard
-            let parent = parent,
+            let parent,
             let parentClass = namespace.classes.first(where: { $0.name == parent })
         else {
             return []
@@ -262,7 +262,7 @@ struct Class: Decodable, ClassLike {
     /// namespace.
     func getParentClass(namespace: Namespace) -> Class? {
         guard
-            let parent = parent,
+            let parent,
             let parentClass = namespace.classes.first(where: { $0.name == parent })
         else {
             return nil

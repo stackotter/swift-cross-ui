@@ -26,7 +26,7 @@ public func withGtkError<R>(
     var errorPointer: UnsafeMutablePointer<GError>? = nil
     let result = action(&errorPointer)
 
-    if let errorPointer = errorPointer {
+    if let errorPointer {
         throw GtkError(from: errorPointer.pointee)
     } else {
         return result

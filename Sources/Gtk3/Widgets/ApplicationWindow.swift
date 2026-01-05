@@ -23,7 +23,7 @@ public class ApplicationWindow: Window {
             name: "notify::scale-factor",
             handler: gCallback(handler2)
         ) { [weak self] (scaleFactor: gint) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyScaleFactor?(Int(scaleFactor))
         }
     }

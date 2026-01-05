@@ -58,7 +58,7 @@ open class ProgressBar: Widget, Orientable {
 
         addSignal(name: "notify::ellipsize", handler: gCallback(handler0)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyEllipsize?(self, param0)
         }
 
@@ -70,7 +70,7 @@ open class ProgressBar: Widget, Orientable {
 
         addSignal(name: "notify::fraction", handler: gCallback(handler1)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyFraction?(self, param0)
         }
 
@@ -82,7 +82,7 @@ open class ProgressBar: Widget, Orientable {
 
         addSignal(name: "notify::inverted", handler: gCallback(handler2)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyInverted?(self, param0)
         }
 
@@ -94,7 +94,7 @@ open class ProgressBar: Widget, Orientable {
 
         addSignal(name: "notify::pulse-step", handler: gCallback(handler3)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPulseStep?(self, param0)
         }
 
@@ -106,7 +106,7 @@ open class ProgressBar: Widget, Orientable {
 
         addSignal(name: "notify::show-text", handler: gCallback(handler4)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyShowText?(self, param0)
         }
 
@@ -118,7 +118,7 @@ open class ProgressBar: Widget, Orientable {
 
         addSignal(name: "notify::text", handler: gCallback(handler5)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyText?(self, param0)
         }
 
@@ -130,7 +130,7 @@ open class ProgressBar: Widget, Orientable {
 
         addSignal(name: "notify::orientation", handler: gCallback(handler6)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyOrientation?(self, param0)
         }
     }
