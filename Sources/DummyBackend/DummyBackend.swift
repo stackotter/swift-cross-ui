@@ -270,11 +270,8 @@ public final class DummyBackend: AppBackend {
         window.resizable = resizable
     }
 
-    public func setClosability(ofWindow window: Window, to closable: Bool) {
+    public func setBehaviors(ofWindow window: Window, closable: Bool, minimizable: Bool) {
         window.closable = closable
-    }
-
-    public func setMinimizability(ofWindow window: Window, to minimizable: Bool) {
         window.minimizable = minimizable
     }
 

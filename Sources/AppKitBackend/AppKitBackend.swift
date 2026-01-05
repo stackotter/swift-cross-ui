@@ -129,15 +129,13 @@ public final class AppKitBackend: AppBackend {
         }
     }
 
-    public func setClosability(ofWindow window: Window, to closable: Bool) {
+    public func setBehaviors(ofWindow window: Window, closable: Bool, minimizable: Bool) {
         if closable {
             window.styleMask.insert(.closable)
         } else {
             window.styleMask.remove(.closable)
         }
-    }
 
-    public func setMinimizability(ofWindow window: Window, to minimizable: Bool) {
         if minimizable {
             window.styleMask.insert(.miniaturizable)
         } else {

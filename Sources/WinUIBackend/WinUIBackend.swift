@@ -243,11 +243,8 @@ public final class WinUIBackend: AppBackend {
         (window.appWindow.presenter as! OverlappedPresenter).isResizable = value
     }
 
-    public func setClosability(ofWindow window: Window, to closable: Bool) {
-        // TODO: Implement (need to reach down to Win32 for this)
-    }
-
-    public func setMinimizability(ofWindow window: Window, to minimizable: Bool) {
+    public func setBehaviors(ofWindow window: Window, closable: Bool, minimizable: Bool) {
+        // TODO: Set window closability (need to reach down to Win32 for this)
         (window.appWindow.presenter as! OverlappedPresenter).isMinimizable = minimizable
     }
 
