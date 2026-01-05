@@ -1,12 +1,13 @@
 /// A scene that shows a standalone alert.
 ///
 /// The exact behavior of the alert is backend-dependent, but it typically
-/// shows up as an application modal or standalone window.
+/// shows up as an application modal, or attaches itself to the app's main
+/// window.
 public struct AlertScene: Scene {
     public typealias Node = AlertSceneNode
 
     var title: String
-    var isPresented: Binding<Bool>
+    @Binding var isPresented: Bool
     var actions: [AlertAction]
 
     public let commands = Commands.empty
@@ -14,7 +15,8 @@ public struct AlertScene: Scene {
     /// Creates an alert scene.
     ///
     /// The exact behavior of the alert is backend-dependent, but it typically
-    /// shows up as an application modal or standalone window.
+    /// shows up as an application modal, or attaches itself to the app's main
+    /// window.
     ///
     /// - Parameters:
     ///   - title: The alert's title.
@@ -27,7 +29,7 @@ public struct AlertScene: Scene {
         @AlertActionsBuilder actions: () -> [AlertAction]
     ) {
         self.title = title
-        self.isPresented = isPresented
+        self._isPresented = isPresented
         self.actions = actions()
     }
 }
@@ -56,7 +58,7 @@ public final class AlertSceneNode: SceneGraphNode {
             self.scene = newScene
         }
 
-        if scene.isPresented.wrappedValue, alert == nil {
+        if scene.isPresented, alert == nil {
             let alert = backend.createAlert()
             backend.updateAlert(
                 alert,
@@ -66,12 +68,12 @@ public final class AlertSceneNode: SceneGraphNode {
             )
             backend.showAlert(alert, window: nil) { responseId in
                 self.alert = nil
-                self.scene.isPresented.wrappedValue = false
+                self.scene.isPresented = false
                 self.scene.actions[responseId].action()
             }
 
             self.alert = alert
-        } else if !scene.isPresented.wrappedValue, let alert  {
+        } else if !scene.isPresented, let alert  {
             backend.dismissAlert(alert as! Backend.Alert, window: nil)
             self.alert = nil
         }

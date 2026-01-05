@@ -162,7 +162,7 @@ struct SheetDemo: View {
 struct WindowingApp: App {
     @State var title = "My window"
     @State var resizable = false
-    @State var isStandaloneAlertShown = false
+    @State var isAlertSceneShown = false
 
     var body: some Scene {
         WindowGroup(title) {
@@ -190,8 +190,8 @@ struct WindowingApp: App {
                     #endif
 
                     AlertDemo()
-                    Button("Show standalone alert") {
-                        isStandaloneAlertShown = true
+                    Button("Show alert scene") {
+                        isAlertSceneShown = true
                     }
 
                     Divider()
@@ -215,7 +215,7 @@ struct WindowingApp: App {
             }
         }
 
-        AlertScene("Standalone alert", isPresented: $isStandaloneAlertShown) {}
+        AlertScene("Alert scene", isPresented: $isAlertSceneShown) {}
 
         #if !os(iOS) && !os(tvOS)
             WindowGroup("Secondary window") {

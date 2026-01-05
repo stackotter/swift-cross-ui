@@ -10,7 +10,7 @@ public struct PresentAlertAction {
     @discardableResult
     public func callAsFunction(
         _ title: String,
-        @AlertActionsBuilder actions: () -> [AlertAction]
+        @AlertActionsBuilder actions: () -> [AlertAction] = { [.default] }
     ) async -> Int {
         let actions = actions()
 

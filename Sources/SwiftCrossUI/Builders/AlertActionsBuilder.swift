@@ -3,7 +3,7 @@
 public struct AlertActionsBuilder {
     /// If no actions are provided, return a default "OK" action.
     public static func buildBlock() -> [AlertAction] {
-        [AlertAction(label: "OK", action: {})]
+        [.default]
     }
 
     public static func buildPartialBlock(first: Button) -> [AlertAction] {
