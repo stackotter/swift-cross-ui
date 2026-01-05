@@ -677,7 +677,7 @@ public final class Gtk3Backend: AppBackend {
     ) {
         let imageView = imageView as! Gtk3.Image
 
-        // check if the resulting image would be empty
+        // Check if the resulting image would be empty
         guard targetWidth > 0, targetHeight > 0 else {
             imageView.clear()
             return
