@@ -178,8 +178,7 @@ public final class AppKitBackend: AppBackend {
                     renderedItem.isOn = value
                     
                     let wrappedAction = Action {
-                        renderedItem.isOn.toggle()
-                        onChange(renderedItem.isOn)
+                        onChange(!renderedItem.isOn)
                     }
                     renderedItem.actionWrapper = wrappedAction
                     renderedItem.action = #selector(wrappedAction.run)

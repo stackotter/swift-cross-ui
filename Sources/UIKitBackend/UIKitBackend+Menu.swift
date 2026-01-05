@@ -26,8 +26,7 @@ extension UIKitBackend {
                     }
                 case .toggle(let label, let value, let onChange):
                     UIAction(title: label, state: value ? .on : .off) { action in
-                        action.state.isOn.toggle()
-                        onChange(action.state.isOn)
+                        onChange(!action.state.isOn)
                     }
                 case .submenu(let submenu):
                     buildMenu(content: submenu.content, label: submenu.label)
