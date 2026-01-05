@@ -131,6 +131,9 @@ extension App {
         }
 
         _logger = Logger(label: "SwiftCrossUI", factory: logHandler(label:metadataProvider:))
+        #if DEBUG
+            _logger!.logLevel = .debug
+        #endif
 
         // Check for an error once the logger is ready.
         if case .failure(let error) = result {
