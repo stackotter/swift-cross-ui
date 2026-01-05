@@ -39,17 +39,17 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "apply-tag", handler: gCallback(handler0)) {
         //     [weak self] (param0: GtkTextTag, param1: GtkTextIter, param2: GtkTextIter) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.applyTag?(self, param0, param1, param2)
         // }
 
         // addSignal(name: "begin-user-action") { [weak self] () in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.beginUserAction?(self)
         // }
 
         addSignal(name: "changed") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.changed?(self)
         }
 
@@ -63,12 +63,12 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "delete-range", handler: gCallback(handler3)) {
         //     [weak self] (param0: GtkTextIter, param1: GtkTextIter) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.deleteRange?(self, param0, param1)
         // }
 
         // addSignal(name: "end-user-action") { [weak self] () in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.endUserAction?(self)
         // }
 
@@ -82,7 +82,7 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "insert-child-anchor", handler: gCallback(handler5)) {
         //     [weak self] (param0: GtkTextIter, param1: GtkTextChildAnchor) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.insertChildAnchor?(self, param0, param1)
         // }
 
@@ -96,7 +96,7 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "insert-paintable", handler: gCallback(handler6)) {
         //     [weak self] (param0: GtkTextIter, param1: OpaquePointer) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.insertPaintable?(self, param0, param1)
         // }
 
@@ -112,7 +112,7 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "insert-text", handler: gCallback(handler7)) {
         //     [weak self] (param0: GtkTextIter, param1: UnsafePointer<CChar>, param2: Int) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.insertText?(self, param0, param1, param2)
         // }
 
@@ -124,7 +124,7 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "mark-deleted", handler: gCallback(handler8)) {
         //     [weak self] (param0: GtkTextMark) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.markDeleted?(self, param0)
         // }
 
@@ -138,12 +138,12 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "mark-set", handler: gCallback(handler9)) {
         //     [weak self] (param0: UnsafeMutablePointer<GtkTextIter>, param1: UnsafeMutablePointer<GtkTextMark>) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.markSet?(self, param0, param1)
         // }
 
         // addSignal(name: "modified-changed") { [weak self] () in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.modifiedChanged?(self)
         // }
 
@@ -155,12 +155,12 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "paste-done", handler: gCallback(handler11)) {
         //     [weak self] (param0: OpaquePointer) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.pasteDone?(self, param0)
         // }
 
         // addSignal(name: "redo") { [weak self] () in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.redo?(self)
         // }
 
@@ -176,12 +176,12 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "remove-tag", handler: gCallback(handler13)) {
         //     [weak self] (param0: GtkTextTag, param1: GtkTextIter, param2: GtkTextIter) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.removeTag?(self, param0, param1, param2)
         // }
 
         // addSignal(name: "undo") { [weak self] () in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.undo?(self)
         // }
 
@@ -193,7 +193,7 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "notify::can-redo", handler: gCallback(handler15)) {
         //     [weak self] (param0: OpaquePointer) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.notifyCanRedo?(self, param0)
         // }
 
@@ -205,7 +205,7 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "notify::can-undo", handler: gCallback(handler16)) {
         //     [weak self] (param0: OpaquePointer) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.notifyCanUndo?(self, param0)
         // }
 
@@ -217,7 +217,7 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "notify::cursor-position", handler: gCallback(handler17)) {
         //     [weak self] (param0: OpaquePointer) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.notifyCursorPosition?(self, param0)
         // }
 
@@ -229,7 +229,7 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "notify::enable-undo", handler: gCallback(handler18)) {
         //     [weak self] (param0: OpaquePointer) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.notifyEnableUndo?(self, param0)
         // }
 
@@ -241,7 +241,7 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "notify::has-selection", handler: gCallback(handler19)) {
         //     [weak self] (param0: OpaquePointer) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.notifyHasSelection?(self, param0)
         // }
 
@@ -253,7 +253,7 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "notify::tag-table", handler: gCallback(handler20)) {
         //     [weak self] (param0: OpaquePointer) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.notifyTagTable?(self, param0)
         // }
 
@@ -265,7 +265,7 @@ open class TextBuffer: GObject {
 
         // addSignal(name: "notify::text", handler: gCallback(handler21)) {
         //     [weak self] (param0: OpaquePointer) in
-        //     guard let self = self else { return }
+        //     guard let self else { return }
         //     self.notifyText?(self, param0)
         // }
     }

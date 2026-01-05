@@ -126,7 +126,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
             cancellables.append(
                 value.didChange
                     .observeAsUIUpdater(backend: backend) { [weak self] in
-                        guard let self = self else { return }
+                        guard let self else { return }
                         self.bottomUpUpdate()
                     }
             )
@@ -156,7 +156,7 @@ public class ViewGraphNode<NodeView: View, Backend: AppBackend>: Sendable {
 
     private func updateEnvironment(_ environment: EnvironmentValues) -> EnvironmentValues {
         environment.with(\.onResize) { [weak self] _ in
-            guard let self = self else { return }
+            guard let self else { return }
             self.bottomUpUpdate()
         }
     }

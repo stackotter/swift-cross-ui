@@ -12,7 +12,7 @@ struct ToggleButton: ElementaryView, View {
     /// - Parameters:
     ///   - label: The label to show on the toggle button.
     ///   - active: Whether the button is active or not.
-    public init(_ label: String, active: Binding<Bool>) {
+    public init(_ label: String, isOn active: Binding<Bool>) {
         self.label = label
         self.active = active
     }

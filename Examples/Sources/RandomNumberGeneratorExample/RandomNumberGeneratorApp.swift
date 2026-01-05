@@ -41,24 +41,22 @@ struct RandomNumberGeneratorApp: App {
 
                     Text("Minimum: \(minNum)")
                     Slider(
-                        $minNum.onChange { newValue in
+                        value: $minNum.onChange { newValue in
                             if newValue > maxNum {
                                 minNum = maxNum
                             }
                         },
-                        minimum: 0,
-                        maximum: 100
+                        in: 0...100
                     )
 
                     Text("Maximum: \(maxNum)")
                     Slider(
-                        $maxNum.onChange { newValue in
+                        value: $maxNum.onChange { newValue in
                             if newValue < minNum {
                                 maxNum = minNum
                             }
                         },
-                        minimum: 0,
-                        maximum: 100
+                        in: 0...100
                     )
 
                     HStack {

@@ -128,7 +128,7 @@ public class Menu: MenuShell {
 
     private func registerSignalHandlers() {
         addSignal(name: "hide") { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.onHide?()
         }
 
@@ -140,7 +140,7 @@ public class Menu: MenuShell {
 
         addSignal(name: "move-scroll", handler: gCallback(handler0)) {
             [weak self] (_: GtkScrollType) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.moveScroll?(self)
         }
 
@@ -155,7 +155,7 @@ public class Menu: MenuShell {
 
         addSignal(name: "popped-up", handler: gCallback(handler1)) {
             [weak self] (_: gpointer, _: gpointer, _: Bool, _: Bool) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.poppedUp?(self)
         }
 
@@ -167,7 +167,7 @@ public class Menu: MenuShell {
 
         addSignal(name: "notify::accel-group", handler: gCallback(handler2)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAccelGroup?(self)
         }
 
@@ -179,7 +179,7 @@ public class Menu: MenuShell {
 
         addSignal(name: "notify::accel-path", handler: gCallback(handler3)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAccelPath?(self)
         }
 
@@ -191,7 +191,7 @@ public class Menu: MenuShell {
 
         addSignal(name: "notify::active", handler: gCallback(handler4)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyActive?(self)
         }
 
@@ -203,7 +203,7 @@ public class Menu: MenuShell {
 
         addSignal(name: "notify::anchor-hints", handler: gCallback(handler5)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAnchorHints?(self)
         }
 
@@ -215,7 +215,7 @@ public class Menu: MenuShell {
 
         addSignal(name: "notify::attach-widget", handler: gCallback(handler6)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAttachWidget?(self)
         }
 
@@ -227,7 +227,7 @@ public class Menu: MenuShell {
 
         addSignal(name: "notify::menu-type-hint", handler: gCallback(handler7)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyMenuTypeHint?(self)
         }
 
@@ -239,7 +239,7 @@ public class Menu: MenuShell {
 
         addSignal(name: "notify::monitor", handler: gCallback(handler8)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyMonitor?(self)
         }
 
@@ -251,7 +251,7 @@ public class Menu: MenuShell {
 
         addSignal(name: "notify::rect-anchor-dx", handler: gCallback(handler9)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyRectAnchorDx?(self)
         }
 
@@ -263,7 +263,7 @@ public class Menu: MenuShell {
 
         addSignal(name: "notify::rect-anchor-dy", handler: gCallback(handler10)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyRectAnchorDy?(self)
         }
 
@@ -275,7 +275,7 @@ public class Menu: MenuShell {
 
         addSignal(name: "notify::reserve-toggle-size", handler: gCallback(handler11)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyReserveToggleSize?(self)
         }
 
@@ -287,7 +287,7 @@ public class Menu: MenuShell {
 
         addSignal(name: "notify::tearoff-state", handler: gCallback(handler12)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyTearoffState?(self)
         }
 
@@ -299,7 +299,7 @@ public class Menu: MenuShell {
 
         addSignal(name: "notify::tearoff-title", handler: gCallback(handler13)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyTearoffTitle?(self)
         }
     }

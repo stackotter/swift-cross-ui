@@ -38,9 +38,9 @@ struct OnChangeModifier<Value: Equatable, Content: View>: View {
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        if let previousValue = previousValue, value != previousValue {
+        if let previousValue, value != previousValue {
             action()
-        } else if initial && previousValue == nil {
+        } else if initial, previousValue == nil {
             action()
         }
 

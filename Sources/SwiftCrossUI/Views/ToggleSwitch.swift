@@ -8,7 +8,7 @@ struct ToggleSwitch: ElementaryView, View {
     /// Creates a switch.
     ///
     /// - Parameter active: Whether the switch is active or not.
-    public init(active: Binding<Bool>) {
+    public init(isOn active: Binding<Bool>) {
         self.active = active
     }
 

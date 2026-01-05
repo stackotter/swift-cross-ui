@@ -44,7 +44,7 @@ public class Publisher {
         nextObservationId += 1
 
         return Cancellable { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.observations[id] = nil
         }
         .tag(with: tag)

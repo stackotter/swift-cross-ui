@@ -8,7 +8,7 @@ struct Checkbox: ElementaryView, View {
     /// Creates a checkbox.
     ///
     /// - Parameter active: Whether the checkbox is active or not.
-    public init(active: Binding<Bool>) {
+    public init(isOn active: Binding<Bool>) {
         self.active = active
     }
 
