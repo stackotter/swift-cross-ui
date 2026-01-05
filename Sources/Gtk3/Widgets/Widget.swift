@@ -45,7 +45,7 @@ open class Widget: GObject {
             name: "button-press-event",
             handler: gCallback(handler1)
         ) { [weak self] (buttonEvent: GdkEventButton) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.onButtonPress?(self, buttonEvent)
         }
 
@@ -64,7 +64,7 @@ open class Widget: GObject {
             name: "draw",
             handler: gCallback(handler2)
         ) { [weak self] (cairo: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.doDraw?(cairo)
         }
 
@@ -81,7 +81,7 @@ open class Widget: GObject {
             name: "screen-changed",
             handler: gCallback(handler3)
         ) { [weak self] (previousScreen: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.screenChanged?()
         }
 
@@ -97,7 +97,7 @@ open class Widget: GObject {
             name: "style-updated",
             handler: gCallback(handler4)
         ) { [weak self] (_: Void) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.styleUpdated?()
         }
     }

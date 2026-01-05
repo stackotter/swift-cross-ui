@@ -167,7 +167,7 @@ open class Image: Misc {
 
         addSignal(name: "notify::file", handler: gCallback(handler0)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyFile?(self, param0)
         }
 
@@ -179,7 +179,7 @@ open class Image: Misc {
 
         addSignal(name: "notify::gicon", handler: gCallback(handler1)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyGicon?(self, param0)
         }
 
@@ -191,7 +191,7 @@ open class Image: Misc {
 
         addSignal(name: "notify::icon-name", handler: gCallback(handler2)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyIconName?(self, param0)
         }
 
@@ -203,7 +203,7 @@ open class Image: Misc {
 
         addSignal(name: "notify::icon-set", handler: gCallback(handler3)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyIconSet?(self, param0)
         }
 
@@ -215,7 +215,7 @@ open class Image: Misc {
 
         addSignal(name: "notify::icon-size", handler: gCallback(handler4)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyIconSize?(self, param0)
         }
 
@@ -227,7 +227,7 @@ open class Image: Misc {
 
         addSignal(name: "notify::pixbuf", handler: gCallback(handler5)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPixbuf?(self, param0)
         }
 
@@ -239,7 +239,7 @@ open class Image: Misc {
 
         addSignal(name: "notify::pixbuf-animation", handler: gCallback(handler6)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPixbufAnimation?(self, param0)
         }
 
@@ -251,7 +251,7 @@ open class Image: Misc {
 
         addSignal(name: "notify::pixel-size", handler: gCallback(handler7)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPixelSize?(self, param0)
         }
 
@@ -263,7 +263,7 @@ open class Image: Misc {
 
         addSignal(name: "notify::resource", handler: gCallback(handler8)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyResource?(self, param0)
         }
 
@@ -275,7 +275,7 @@ open class Image: Misc {
 
         addSignal(name: "notify::stock", handler: gCallback(handler9)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyStock?(self, param0)
         }
 
@@ -287,7 +287,7 @@ open class Image: Misc {
 
         addSignal(name: "notify::storage-type", handler: gCallback(handler10)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyStorageType?(self, param0)
         }
 
@@ -299,7 +299,7 @@ open class Image: Misc {
 
         addSignal(name: "notify::surface", handler: gCallback(handler11)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySurface?(self, param0)
         }
 
@@ -311,7 +311,7 @@ open class Image: Misc {
 
         addSignal(name: "notify::use-fallback", handler: gCallback(handler12)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyUseFallback?(self, param0)
         }
     }

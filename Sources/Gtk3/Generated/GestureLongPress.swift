@@ -19,7 +19,7 @@ open class GestureLongPress: GestureSingle {
         super.registerSignals()
 
         addSignal(name: "cancelled") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.cancelled?(self)
         }
 
@@ -32,7 +32,7 @@ open class GestureLongPress: GestureSingle {
 
         addSignal(name: "pressed", handler: gCallback(handler1)) {
             [weak self] (param0: Double, param1: Double) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.pressed?(self, param0, param1)
         }
 
@@ -44,7 +44,7 @@ open class GestureLongPress: GestureSingle {
 
         addSignal(name: "notify::delay-factor", handler: gCallback(handler2)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyDelayFactor?(self, param0)
         }
     }

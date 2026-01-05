@@ -22,7 +22,7 @@ open class EventBox: Bin {
 
         addSignal(name: "notify::above-child", handler: gCallback(handler0)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAboveChild?(self, param0)
         }
 
@@ -34,7 +34,7 @@ open class EventBox: Bin {
 
         addSignal(name: "notify::visible-window", handler: gCallback(handler1)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyVisibleWindow?(self, param0)
         }
     }

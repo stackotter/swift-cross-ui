@@ -22,7 +22,7 @@ public struct Slider: ElementaryView, View {
 
     /// Creates a slider to select a value between a minimum and maximum value.
     public init<T: BinaryInteger>(value: Binding<T>? = nil, in range: ClosedRange<T>) {
-        if let value = value {
+        if let value {
             self.value = Binding<Double>(
                 get: {
                     return Double(value.wrappedValue)
@@ -38,7 +38,7 @@ public struct Slider: ElementaryView, View {
 
     /// Creates a slider to select a value between a minimum and maximum value.
     public init<T: BinaryFloatingPoint>(value: Binding<T>? = nil, in range: ClosedRange<T>) {
-        if let value = value {
+        if let value {
             self.value = Binding<Double>(
                 get: {
                     return Double(value.wrappedValue)

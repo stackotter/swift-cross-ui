@@ -95,7 +95,7 @@ open class Picture: Widget {
 
         addSignal(name: "notify::alternative-text", handler: gCallback(handler0)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAlternativeText?(self, param0)
         }
 
@@ -107,7 +107,7 @@ open class Picture: Widget {
 
         addSignal(name: "notify::can-shrink", handler: gCallback(handler1)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyCanShrink?(self, param0)
         }
 
@@ -119,7 +119,7 @@ open class Picture: Widget {
 
         addSignal(name: "notify::content-fit", handler: gCallback(handler2)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyContentFit?(self, param0)
         }
 
@@ -131,7 +131,7 @@ open class Picture: Widget {
 
         addSignal(name: "notify::file", handler: gCallback(handler3)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyFile?(self, param0)
         }
 
@@ -143,7 +143,7 @@ open class Picture: Widget {
 
         addSignal(name: "notify::keep-aspect-ratio", handler: gCallback(handler4)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyKeepAspectRatio?(self, param0)
         }
 
@@ -155,7 +155,7 @@ open class Picture: Widget {
 
         addSignal(name: "notify::paintable", handler: gCallback(handler5)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPaintable?(self, param0)
         }
     }

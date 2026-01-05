@@ -33,7 +33,7 @@ open class Paned: Widget, Orientable {
 
         addSignal(name: "notify::position", handler: gCallback(handler)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPosition?(self)
         }
     }

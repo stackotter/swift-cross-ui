@@ -80,12 +80,12 @@ open class Button: Widget, Actionable {
         super.didMoveToParent()
 
         addSignal(name: "activate") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.activate?(self)
         }
 
         addSignal(name: "clicked") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.clicked?(self)
         }
 
@@ -97,7 +97,7 @@ open class Button: Widget, Actionable {
 
         addSignal(name: "notify::can-shrink", handler: gCallback(handler2)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyCanShrink?(self, param0)
         }
 
@@ -109,7 +109,7 @@ open class Button: Widget, Actionable {
 
         addSignal(name: "notify::child", handler: gCallback(handler3)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyChild?(self, param0)
         }
 
@@ -121,7 +121,7 @@ open class Button: Widget, Actionable {
 
         addSignal(name: "notify::has-frame", handler: gCallback(handler4)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyHasFrame?(self, param0)
         }
 
@@ -133,7 +133,7 @@ open class Button: Widget, Actionable {
 
         addSignal(name: "notify::icon-name", handler: gCallback(handler5)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyIconName?(self, param0)
         }
 
@@ -145,7 +145,7 @@ open class Button: Widget, Actionable {
 
         addSignal(name: "notify::label", handler: gCallback(handler6)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyLabel?(self, param0)
         }
 
@@ -157,7 +157,7 @@ open class Button: Widget, Actionable {
 
         addSignal(name: "notify::use-underline", handler: gCallback(handler7)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyUseUnderline?(self, param0)
         }
 
@@ -169,7 +169,7 @@ open class Button: Widget, Actionable {
 
         addSignal(name: "notify::action-name", handler: gCallback(handler8)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyActionName?(self, param0)
         }
 
@@ -181,7 +181,7 @@ open class Button: Widget, Actionable {
 
         addSignal(name: "notify::action-target", handler: gCallback(handler9)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyActionTarget?(self, param0)
         }
     }

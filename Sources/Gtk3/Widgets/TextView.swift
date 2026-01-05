@@ -50,17 +50,17 @@ open class TextView: Container, Scrollable {
         super.didMoveToParent()
 
         addSignal(name: "backspace") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.backspace?(self)
         }
 
         addSignal(name: "copy-clipboard") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.copyClipboard?(self)
         }
 
         addSignal(name: "cut-clipboard") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.cutClipboard?(self)
         }
 
@@ -73,7 +73,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "delete-from-cursor", handler: gCallback(handler3)) {
             [weak self] (param0: GtkDeleteType, param1: Int) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.deleteFromCursor?(self, param0, param1)
         }
 
@@ -93,7 +93,7 @@ open class TextView: Container, Scrollable {
                 param0: GtkTextExtendSelection, param1: GtkTextIter, param2: GtkTextIter,
                 param3: GtkTextIter
             ) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.extendSelection?(self, param0, param1, param2, param3)
         }
 
@@ -106,12 +106,12 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "insert-at-cursor", handler: gCallback(handler5)) {
             [weak self] (param0: UnsafePointer<CChar>) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.insertAtCursor?(self, param0)
         }
 
         addSignal(name: "insert-emoji") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.insertEmoji?(self)
         }
 
@@ -125,7 +125,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "move-cursor", handler: gCallback(handler7)) {
             [weak self] (param0: GtkMovementStep, param1: Int, param2: Bool) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.moveCursor?(self, param0, param1, param2)
         }
 
@@ -138,12 +138,12 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "move-viewport", handler: gCallback(handler8)) {
             [weak self] (param0: GtkScrollStep, param1: Int) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.moveViewport?(self, param0, param1)
         }
 
         addSignal(name: "paste-clipboard") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.pasteClipboard?(self)
         }
 
@@ -156,22 +156,22 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "preedit-changed", handler: gCallback(handler10)) {
             [weak self] (param0: UnsafePointer<CChar>) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.preeditChanged?(self, param0)
         }
 
         addSignal(name: "set-anchor") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.setAnchor?(self)
         }
 
         addSignal(name: "toggle-cursor-visible") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.toggleCursorVisible?(self)
         }
 
         addSignal(name: "toggle-overwrite") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.toggleOverwrite?(self)
         }
 
@@ -183,7 +183,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::accepts-tab", handler: gCallback(handler14)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAcceptsTab?(self, param0)
         }
 
@@ -195,7 +195,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::bottom-margin", handler: gCallback(handler15)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyBottomMargin?(self, param0)
         }
 
@@ -207,7 +207,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::buffer", handler: gCallback(handler16)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyBuffer?(self, param0)
         }
 
@@ -219,7 +219,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::cursor-visible", handler: gCallback(handler17)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyCursorVisible?(self, param0)
         }
 
@@ -231,7 +231,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::editable", handler: gCallback(handler18)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyEditable?(self, param0)
         }
 
@@ -243,7 +243,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::im-module", handler: gCallback(handler19)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyImModule?(self, param0)
         }
 
@@ -255,7 +255,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::indent", handler: gCallback(handler20)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyIndent?(self, param0)
         }
 
@@ -267,7 +267,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::input-hints", handler: gCallback(handler21)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyInputHints?(self, param0)
         }
 
@@ -279,7 +279,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::input-purpose", handler: gCallback(handler22)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyInputPurpose?(self, param0)
         }
 
@@ -291,7 +291,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::justification", handler: gCallback(handler23)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyJustification?(self, param0)
         }
 
@@ -303,7 +303,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::left-margin", handler: gCallback(handler24)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyLeftMargin?(self, param0)
         }
 
@@ -315,7 +315,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::monospace", handler: gCallback(handler25)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyMonospace?(self, param0)
         }
 
@@ -327,7 +327,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::overwrite", handler: gCallback(handler26)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyOverwrite?(self, param0)
         }
 
@@ -339,7 +339,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::pixels-above-lines", handler: gCallback(handler27)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPixelsAboveLines?(self, param0)
         }
 
@@ -351,7 +351,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::pixels-below-lines", handler: gCallback(handler28)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPixelsBelowLines?(self, param0)
         }
 
@@ -363,7 +363,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::pixels-inside-wrap", handler: gCallback(handler29)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPixelsInsideWrap?(self, param0)
         }
 
@@ -375,7 +375,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::populate-all", handler: gCallback(handler30)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPopulateAll?(self, param0)
         }
 
@@ -387,7 +387,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::right-margin", handler: gCallback(handler31)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyRightMargin?(self, param0)
         }
 
@@ -399,7 +399,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::tabs", handler: gCallback(handler32)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyTabs?(self, param0)
         }
 
@@ -411,7 +411,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::top-margin", handler: gCallback(handler33)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyTopMargin?(self, param0)
         }
 
@@ -423,7 +423,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::wrap-mode", handler: gCallback(handler34)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyWrapMode?(self, param0)
         }
 
@@ -435,7 +435,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::hadjustment", handler: gCallback(handler35)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyHadjustment?(self, param0)
         }
 
@@ -447,7 +447,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::hscroll-policy", handler: gCallback(handler36)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyHscrollPolicy?(self, param0)
         }
 
@@ -459,7 +459,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::vadjustment", handler: gCallback(handler37)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyVadjustment?(self, param0)
         }
 
@@ -471,7 +471,7 @@ open class TextView: Container, Scrollable {
 
         addSignal(name: "notify::vscroll-policy", handler: gCallback(handler38)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyVscrollPolicy?(self, param0)
         }
     }
