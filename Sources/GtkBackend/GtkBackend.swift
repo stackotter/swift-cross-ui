@@ -1,7 +1,21 @@
 import CGtk
 import Foundation
 import Gtk
+import Logging
 import SwiftCrossUI
+
+/// The storage behind `logger`.
+///
+/// `nil` if the logger hasn't been set yet.
+///
+/// > Safety: This is only set once, before it is ever read.
+nonisolated(unsafe) private var _logger: Logger?
+
+/// The global logger for this backend.
+var logger: Logger {
+    guard let _logger else { fatalError("logger not yet initialized") }
+    return _logger
+}
 
 extension App {
     public typealias Backend = GtkBackend
@@ -63,6 +77,10 @@ public final class GtkBackend: AppBackend {
     /// Creates a backend instance. If `appIdentifier` is `nil`, the default
     /// identifier `com.example.SwiftCrossUIApp` is used.
     public init(appIdentifier: String?) {
+        if _logger == nil {
+            _logger = Logger.fromGlobalFactory(label: "GtkBackend")
+        }
+
         gtkApp = Application(
             applicationId: appIdentifier ?? "com.example.SwiftCrossUIApp",
             flags: G_APPLICATION_HANDLES_OPEN
