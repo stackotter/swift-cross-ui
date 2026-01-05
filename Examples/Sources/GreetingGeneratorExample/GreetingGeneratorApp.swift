@@ -27,7 +27,7 @@ struct GreetingGeneratorApp: App {
                         }
                     }
 
-                    Toggle("Selectable Greeting", active: $isGreetingSelectable)
+                    Toggle("Selectable Greeting", isOn: $isGreetingSelectable)
                     if let latest = greetings.last {
                         LatestGreetingDisplay()
                             .environment(\.latestGreeting, latest)
