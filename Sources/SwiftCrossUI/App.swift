@@ -1,6 +1,15 @@
 import Foundation
 import Logging
 
+/// Backing storage for `logger`.
+nonisolated(unsafe) private var _logger: Logger?
+
+/// The global logger.
+package var logger: Logger {
+    guard let _logger else { fatalError("logger not yet initialized") }
+    return _logger
+}
+
 /// An application.
 @MainActor
 public protocol App {
@@ -121,8 +130,7 @@ extension App {
             swiftBundlerAppMetadata = try extractSwiftBundlerMetadata()
         }
 
-        _logHandlerFactory = logHandler(label:metadataProvider:)
-        _logger = Logger.fromGlobalFactory(label: "SwiftCrossUI")
+        _logger = Logger(label: "SwiftCrossUI", factory: logHandler(label:metadataProvider:))
 
         // Check for an error once the logger is ready.
         if case .failure(let error) = result {
@@ -186,33 +194,5 @@ extension App {
                 .baseAddress!.pointee
             return UInt64(bigEndian: bigEndianValue)
         }
-    }
-}
-
-// MARK: Logging
-
-/// Backing storage for `logger`.
-nonisolated(unsafe) private var _logger: Logger?
-
-/// The global logger.
-var logger: Logger {
-    guard let _logger else { fatalError("logger not yet initialized") }
-    return _logger
-}
-
-// MARK: LogHandler factory
-
-nonisolated(unsafe) private var _logHandlerFactory: ((
-    _ label: String,
-    _ metadataProvider: Logger.MetadataProvider?
-) -> any LogHandler)?
-
-extension Logger {
-    /// Construct a `Logger` given a label. Intended for use by backends.
-    package static func fromGlobalFactory(label: String) -> Logger {
-        guard let _logHandlerFactory else {
-            fatalError("LogHandler factory not yet initialized")
-        }
-        return Logger(label: label, factory: _logHandlerFactory)
     }
 }
