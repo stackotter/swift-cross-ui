@@ -88,11 +88,15 @@ public final class UIKitBackend: AppBackend {
         #endif
     }
 
-    public init() {
-        self.appDelegateClass = ApplicationDelegate.self
+    public convenience init() {
+        self.init(appDelegateClass: ApplicationDelegate.self)
     }
 
     public init(appDelegateClass: ApplicationDelegate.Type) {
+        if _logger == nil {
+            _logger = Logger.fromGlobalFactory(label: "UIKitBackend")
+        }
+
         self.appDelegateClass = appDelegateClass
     }
 
@@ -177,11 +181,7 @@ extension App {
     public typealias Backend = UIKitBackend
 
     public var backend: UIKitBackend {
-        _logger = Logger(
-            label: "UIKitBackend",
-            factory: Self.logHandler(label:metadataProvider:)
-        )
-        return UIKitBackend()
+        UIKitBackend()
     }
 }
 

@@ -30,11 +30,7 @@ extension App {
     public typealias Backend = WinUIBackend
 
     public var backend: WinUIBackend {
-        _logger = Logger(
-            label: "WinUIBackend",
-            factory: Self.logHandler(label:metadataProvider:)
-        )
-        return WinUIBackend()
+        WinUIBackend()
     }
 }
 
@@ -88,6 +84,10 @@ public final class WinUIBackend: AppBackend {
     private var measurementTextBlock: TextBlock!
 
     public init() {
+        if _logger == nil {
+            _logger = Logger.fromGlobalFactory(label: "WinUIBackend")
+        }
+
         internalState = InternalState()
     }
 

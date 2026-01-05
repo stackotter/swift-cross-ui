@@ -20,11 +20,7 @@ extension App {
     public typealias Backend = AppKitBackend
 
     public var backend: AppKitBackend {
-        _logger = Logger(
-            label: "AppKitBackend",
-            factory: Self.logHandler(label:metadataProvider:)
-        )
-        return AppKitBackend()
+        AppKitBackend()
     }
 }
 
@@ -60,6 +56,10 @@ public final class AppKitBackend: AppBackend {
     private let appDelegate = NSCustomApplicationDelegate()
 
     public init() {
+        if _logger == nil {
+            _logger = Logger.fromGlobalFactory(label: "AppKitBackend")
+        }
+
         NSApplication.shared.delegate = appDelegate
     }
 
