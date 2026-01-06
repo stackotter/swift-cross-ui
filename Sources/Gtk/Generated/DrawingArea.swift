@@ -97,7 +97,7 @@ open class DrawingArea: Widget {
 
         addSignal(name: "resize", handler: gCallback(handler0)) {
             [weak self] (param0: Int, param1: Int) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.resize?(self, param0, param1)
         }
 
@@ -109,7 +109,7 @@ open class DrawingArea: Widget {
 
         addSignal(name: "notify::content-height", handler: gCallback(handler1)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyContentHeight?(self, param0)
         }
 
@@ -121,7 +121,7 @@ open class DrawingArea: Widget {
 
         addSignal(name: "notify::content-width", handler: gCallback(handler2)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyContentWidth?(self, param0)
         }
     }

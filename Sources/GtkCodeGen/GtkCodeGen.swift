@@ -546,7 +546,7 @@ struct GtkCodeGen {
             let closure = ExprSyntax(
                 """
                 { [weak self] (\(raw: parameters)) in
-                    guard let self = self else { return }
+                    guard let self else { return }
                     self.\(raw: name)?(\(raw: arguments))
                 }
                 """
@@ -773,7 +773,7 @@ struct GtkCodeGen {
         // avoid ambiguity between certain initializers). E.g. `gtk_button_new_with_label` and
         // `gtk_button_new_with_mnemonic` both call their first parameter `label` which would be
         // ambiguous in Swift.
-        if let constructorName = constructorName, constructorName.contains("_with_") {
+        if let constructorName, constructorName.contains("_with_") {
             let label = convertCIdentifier(
                 String(constructorName.components(separatedBy: "_with_")[1])
             )

@@ -17,7 +17,7 @@ open class ToggleButton: Button {
         super.didMoveToParent()
 
         addSignal(name: "toggled") { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.toggled?(self)
         }
 
@@ -29,7 +29,7 @@ open class ToggleButton: Button {
 
         addSignal(name: "notify::active", handler: gCallback(handler)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyActive?(self, param0)
         }
     }

@@ -26,7 +26,7 @@ open class GestureSingle: Gesture {
 
         addSignal(name: "notify::button", handler: gCallback(handler0)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyButton?(self, param0)
         }
 
@@ -38,7 +38,7 @@ open class GestureSingle: Gesture {
 
         addSignal(name: "notify::exclusive", handler: gCallback(handler1)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyExclusive?(self, param0)
         }
 
@@ -50,7 +50,7 @@ open class GestureSingle: Gesture {
 
         addSignal(name: "notify::touch-only", handler: gCallback(handler2)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyTouchOnly?(self, param0)
         }
     }

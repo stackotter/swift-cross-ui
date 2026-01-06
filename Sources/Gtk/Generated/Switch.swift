@@ -49,7 +49,7 @@ open class Switch: Widget, Actionable {
         super.didMoveToParent()
 
         addSignal(name: "activate") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.activate?(self)
         }
 
@@ -60,7 +60,7 @@ open class Switch: Widget, Actionable {
                 }
 
         addSignal(name: "state-set", handler: gCallback(handler1)) { [weak self] (param0: Bool) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.stateSet?(self, param0)
         }
 
@@ -72,7 +72,7 @@ open class Switch: Widget, Actionable {
 
         addSignal(name: "notify::active", handler: gCallback(handler2)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyActive?(self, param0)
         }
 
@@ -84,7 +84,7 @@ open class Switch: Widget, Actionable {
 
         addSignal(name: "notify::state", handler: gCallback(handler3)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyState?(self, param0)
         }
 
@@ -96,7 +96,7 @@ open class Switch: Widget, Actionable {
 
         addSignal(name: "notify::action-name", handler: gCallback(handler4)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyActionName?(self, param0)
         }
 
@@ -108,7 +108,7 @@ open class Switch: Widget, Actionable {
 
         addSignal(name: "notify::action-target", handler: gCallback(handler5)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyActionTarget?(self, param0)
         }
     }

@@ -127,7 +127,7 @@ open class Dialog: Window {
         super.didMoveToParent()
 
         addSignal(name: "close") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.close?(self)
         }
 
@@ -138,7 +138,7 @@ open class Dialog: Window {
                 }
 
         addSignal(name: "response", handler: gCallback(handler1)) { [weak self] (responseId: Int) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.response?(self, responseId)
         }
 
@@ -150,7 +150,7 @@ open class Dialog: Window {
 
         addSignal(name: "notify::use-header-bar", handler: gCallback(handler2)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyUseHeaderBar?(self)
         }
     }

@@ -36,7 +36,7 @@ public struct Picker<Value: Equatable>: ElementaryView, View {
             environment: environment
         ) {
             selectedIndex in
-            guard let selectedIndex = selectedIndex else {
+            guard let selectedIndex else {
                 value.wrappedValue = nil
                 return
             }

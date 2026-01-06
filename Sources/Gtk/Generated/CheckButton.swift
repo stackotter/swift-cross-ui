@@ -89,12 +89,12 @@ open class CheckButton: Widget, Actionable {
         super.didMoveToParent()
 
         addSignal(name: "activate") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.activate?(self)
         }
 
         addSignal(name: "toggled") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.toggled?(self)
         }
 
@@ -106,7 +106,7 @@ open class CheckButton: Widget, Actionable {
 
         addSignal(name: "notify::active", handler: gCallback(handler2)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyActive?(self, param0)
         }
 
@@ -118,7 +118,7 @@ open class CheckButton: Widget, Actionable {
 
         addSignal(name: "notify::child", handler: gCallback(handler3)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyChild?(self, param0)
         }
 
@@ -130,7 +130,7 @@ open class CheckButton: Widget, Actionable {
 
         addSignal(name: "notify::group", handler: gCallback(handler4)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyGroup?(self, param0)
         }
 
@@ -142,7 +142,7 @@ open class CheckButton: Widget, Actionable {
 
         addSignal(name: "notify::inconsistent", handler: gCallback(handler5)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyInconsistent?(self, param0)
         }
 
@@ -154,7 +154,7 @@ open class CheckButton: Widget, Actionable {
 
         addSignal(name: "notify::label", handler: gCallback(handler6)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyLabel?(self, param0)
         }
 
@@ -166,7 +166,7 @@ open class CheckButton: Widget, Actionable {
 
         addSignal(name: "notify::use-underline", handler: gCallback(handler7)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyUseUnderline?(self, param0)
         }
 
@@ -178,7 +178,7 @@ open class CheckButton: Widget, Actionable {
 
         addSignal(name: "notify::action-name", handler: gCallback(handler8)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyActionName?(self, param0)
         }
 
@@ -190,7 +190,7 @@ open class CheckButton: Widget, Actionable {
 
         addSignal(name: "notify::action-target", handler: gCallback(handler9)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyActionTarget?(self, param0)
         }
     }

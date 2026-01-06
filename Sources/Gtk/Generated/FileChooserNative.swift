@@ -168,7 +168,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::accept-label", handler: gCallback(handler0)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAcceptLabel?(self, param0)
         }
 
@@ -180,7 +180,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::cancel-label", handler: gCallback(handler1)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyCancelLabel?(self, param0)
         }
 
@@ -192,7 +192,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::action", handler: gCallback(handler2)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAction?(self, param0)
         }
 
@@ -204,7 +204,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::create-folders", handler: gCallback(handler3)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyCreateFolders?(self, param0)
         }
 
@@ -216,7 +216,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::filter", handler: gCallback(handler4)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyFilter?(self, param0)
         }
 
@@ -228,7 +228,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::filters", handler: gCallback(handler5)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyFilters?(self, param0)
         }
 
@@ -240,7 +240,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::select-multiple", handler: gCallback(handler6)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySelectMultiple?(self, param0)
         }
 
@@ -252,7 +252,7 @@ open class FileChooserNative: NativeDialog, FileChooser {
 
         addSignal(name: "notify::shortcut-folders", handler: gCallback(handler7)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyShortcutFolders?(self, param0)
         }
     }
