@@ -5,7 +5,7 @@ import Logging
 nonisolated(unsafe) private var _logger: Logger?
 
 /// The global logger.
-var logger: Logger {
+package var logger: Logger {
     guard let _logger else { fatalError("logger not yet initialized") }
     return _logger
 }
@@ -130,10 +130,10 @@ extension App {
             swiftBundlerAppMetadata = try extractSwiftBundlerMetadata()
         }
 
-        _logger = Logger(
-            label: "SwiftCrossUI",
-            factory: logHandler(label:metadataProvider:)
-        )
+        _logger = Logger(label: "SwiftCrossUI", factory: logHandler(label:metadataProvider:))
+        #if DEBUG
+            _logger!.logLevel = .debug
+        #endif
 
         // Check for an error once the logger is ready.
         if case .failure(let error) = result {
