@@ -244,6 +244,9 @@ public final class Gtk3Backend: AppBackend {
                     }
 
                     model.appendItem(label: label, actionName: "\(actionNamespace).\(actionName)")
+                case .toggle(let label, let value, let onChange):
+                    // FIXME: Implement
+                    logger.warning("menu toggles not implemented")
                 case .submenu(let submenu):
                     model.appendSubmenu(
                         label: submenu.label,
