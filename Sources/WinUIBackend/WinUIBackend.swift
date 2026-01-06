@@ -1,6 +1,5 @@
 import CWinRT
 import Foundation
-import Logging
 import SwiftCrossUI
 import UWP
 import WinAppSDK
@@ -8,19 +7,6 @@ import WinSDK
 import WinUI
 import WinUIInterop
 import WindowsFoundation
-
-/// The storage behind `logger`.
-///
-/// `nil` if the logger hasn't been set yet.
-///
-/// > Safety: This is only set once, before it is ever read.
-nonisolated(unsafe) private var _logger: Logger?
-
-/// The global logger for this backend.
-var logger: Logger {
-    guard let _logger else { fatalError("logger not yet initialized") }
-    return _logger
-}
 
 // Many force tries are required for the WinUI backend but we don't really want them
 // anywhere else so just disable them for this file.
@@ -30,11 +16,7 @@ extension App {
     public typealias Backend = WinUIBackend
 
     public var backend: WinUIBackend {
-        _logger = Logger(
-            label: "WinUIBackend",
-            factory: Self.logHandler(label:metadataProvider:)
-        )
-        return WinUIBackend()
+        WinUIBackend()
     }
 }
 

@@ -1,6 +1,10 @@
 import CGtk3
 
 extension Image {
+    public func clear() {
+        gtk_image_clear(castedPointer())
+    }
+
     public func setPath(_ path: String) {
         gtk_image_set_from_file(castedPointer(), path)
     }

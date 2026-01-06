@@ -39,7 +39,7 @@ struct GreetingGeneratorApp: App {
                                 .padding(.top, 20)
 
                             ScrollView {
-                                ForEach(greetings.reversed()[1...]) { greeting in
+                                ForEach(greetings.reversed()[1...], id: \.self) { greeting in
                                     Text(greeting)
                                 }
                             }

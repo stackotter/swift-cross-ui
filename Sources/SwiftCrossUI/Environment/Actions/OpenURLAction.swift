@@ -13,10 +13,12 @@ public struct OpenURLAction {
             do {
                 try backend.openExternalURL(url)
             } catch {
-                logger.warning("failed to open external url", metadata: [
-                    "url": "\(url)",
-                    "error": "\(error)",
-                ])
+                logger.warning(
+                    "failed to open external url",
+                    metadata: [
+                        "url": "\(url)",
+                        "error": "\(error)",
+                    ])
             }
         }
     }
