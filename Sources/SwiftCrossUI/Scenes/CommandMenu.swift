@@ -16,6 +16,7 @@ public struct CommandMenu: Sendable {
     }
 
     /// Resolves the menu to a representation used by backends.
+    @MainActor
     func resolve() -> ResolvedMenu.Submenu {
         ResolvedMenu.Submenu(
             label: name,

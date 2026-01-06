@@ -212,6 +212,7 @@ struct SingletonWindowView: View {
 struct WindowingApp: App {
     @State var title = "My window"
     @State var resizable = false
+    @State var toggle = false
 
     var body: some Scene {
         WindowGroup(title) {
@@ -258,6 +259,8 @@ struct WindowingApp: App {
             CommandMenu("Demo menu") {
                 Button("Menu item") {}
 
+                Toggle("Toggle", active: $toggle)
+
                 Menu("Submenu") {
                     Button("Item 1") {}
                     Button("Item 2") {}
@@ -265,7 +268,7 @@ struct WindowingApp: App {
             }
         }
         
-        #if !os(iOS) && !os(tvOS)
+        #if !(os(iOS) || os(tvOS) || os(Windows))
             WindowGroup("Secondary window", id: "secondary-window") {
                 #hotReloadable {
                     Text("This a secondary window!")
