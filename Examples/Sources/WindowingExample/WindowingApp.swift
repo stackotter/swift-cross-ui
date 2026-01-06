@@ -162,6 +162,7 @@ struct SheetDemo: View {
 struct WindowingApp: App {
     @State var title = "My window"
     @State var resizable = true
+    @State var toggle = false
     @State var enforceMaxSize = true
     @State var closable = true
     @State var minimizable = true
@@ -217,13 +218,15 @@ struct WindowingApp: App {
             CommandMenu("Demo menu") {
                 Button("Menu item") {}
 
+                Toggle("Toggle", active: $toggle)
+
                 Menu("Submenu") {
                     Button("Item 1") {}
                     Button("Item 2") {}
                 }
             }
         }
-        #if !os(iOS) && !os(tvOS)
+        #if !(os(iOS) || os(tvOS) || os(Windows))
             WindowGroup("Secondary window") {
                 #hotReloadable {
                     Text("This a secondary window!")

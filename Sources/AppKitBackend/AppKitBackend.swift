@@ -175,6 +175,24 @@ public final class AppKitBackend: AppBackend {
                         renderedItem.target = wrappedAction
                     }
                     return renderedItem
+                case .toggle(let label, let value, let onChange):
+                    // Custom subclass is used to keep strong reference to action
+                    // wrapper.
+                    let renderedItem = NSCustomMenuItem(
+                        title: label,
+                        action: nil,
+                        keyEquivalent: ""
+                    )
+                    renderedItem.isOn = value
+                    
+                    let wrappedAction = Action {
+                        onChange(!renderedItem.isOn)
+                    }
+                    renderedItem.actionWrapper = wrappedAction
+                    renderedItem.action = #selector(wrappedAction.run)
+                    renderedItem.target = wrappedAction
+
+                    return renderedItem
                 case .submenu(let submenu):
                     return renderSubmenu(submenu)
             }
@@ -1936,6 +1954,11 @@ final class NSCustomMenuItem: NSMenuItem {
     /// This property's only purpose is to keep a strong reference to the wrapped
     /// action so that it sticks around for long enough to be useful.
     var actionWrapper: Action?
+
+    var isOn: Bool {
+        get { state == .on }
+        set { state = newValue ? .on : .off }
+    }
 }
 
 // TODO: Update all controls to use this style of action passing, seems way nicer
