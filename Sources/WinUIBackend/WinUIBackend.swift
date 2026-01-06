@@ -271,7 +271,8 @@ public final class WinUIBackend: AppBackend {
                     let widget = ToggleMenuFlyoutItem()
                     widget.text = label
                     widget.isChecked = value
-                    widget.click.addHandler { _, _ in
+                    widget.click.addHandler { [weak widget] _, _ in
+                        guard let widget else { return }
                         onChange(widget.isChecked)
                     }
                     return widget

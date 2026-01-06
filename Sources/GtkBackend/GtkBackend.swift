@@ -1,7 +1,6 @@
 import CGtk
 import Foundation
 import Gtk
-import Logging
 import SwiftCrossUI
 
 extension App {
