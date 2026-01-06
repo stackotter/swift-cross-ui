@@ -9,7 +9,8 @@ public struct PreferenceValues: Sendable {
         presentationBackground: nil,
         interactiveDismissDisabled: nil,
         windowDismissBehavior: nil,
-        windowMinimizeBehavior: nil
+        windowMinimizeBehavior: nil,
+        windowResizeBehavior: nil
     )
 
     public var onOpenURL: (@Sendable @MainActor (URL) -> Void)?
@@ -35,6 +36,9 @@ public struct PreferenceValues: Sendable {
     /// Controls whether the user can minimize the enclosing window.
     public var windowMinimizeBehavior: WindowInteractionBehavior?
 
+    /// Controls whether the user can resize the enclosing window.
+    public var windowResizeBehavior: WindowInteractionBehavior?
+
     init(
         onOpenURL: (@Sendable @MainActor (URL) -> Void)?,
         presentationDetents: [PresentationDetent]?,
@@ -43,7 +47,8 @@ public struct PreferenceValues: Sendable {
         presentationBackground: Color?,
         interactiveDismissDisabled: Bool?,
         windowDismissBehavior: WindowInteractionBehavior?,
-        windowMinimizeBehavior: WindowInteractionBehavior?
+        windowMinimizeBehavior: WindowInteractionBehavior?,
+        windowResizeBehavior: WindowInteractionBehavior?
     ) {
         self.onOpenURL = onOpenURL
         self.presentationDetents = presentationDetents
@@ -53,6 +58,7 @@ public struct PreferenceValues: Sendable {
         self.interactiveDismissDisabled = interactiveDismissDisabled
         self.windowDismissBehavior = windowDismissBehavior
         self.windowMinimizeBehavior = windowMinimizeBehavior
+        self.windowResizeBehavior = windowResizeBehavior
     }
 
     init(merging children: [PreferenceValues]) {
@@ -77,5 +83,6 @@ public struct PreferenceValues: Sendable {
         interactiveDismissDisabled = children.compactMap { $0.interactiveDismissDisabled }.first
         windowDismissBehavior = children.compactMap { $0.windowDismissBehavior }.first
         windowMinimizeBehavior = children.compactMap { $0.windowMinimizeBehavior }.first
+        windowResizeBehavior = children.compactMap { $0.windowResizeBehavior }.first
     }
 }

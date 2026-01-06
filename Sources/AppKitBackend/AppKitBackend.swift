@@ -110,6 +110,14 @@ public final class AppKitBackend: AppBackend {
         window.contentMinSize.height = CGFloat(minimumSize.y)
     }
 
+    public func setMaximumSize(ofWindow window: Window, to maximumSize: SIMD2<Int>?) {
+        window.contentMaxSize = if let maximumSize {
+            CGSize(width: maximumSize.x, height: maximumSize.y)
+        } else {
+            CGSize(width: Double.infinity, height: .infinity)
+        }
+    }
+
     public func setResizeHandler(
         ofWindow window: Window,
         to action: @escaping (SIMD2<Int>) -> Void
@@ -121,15 +129,12 @@ public final class AppKitBackend: AppBackend {
         window.title = title
     }
 
-    public func setResizability(ofWindow window: Window, to resizable: Bool) {
-        if resizable {
-            window.styleMask.insert(.resizable)
-        } else {
-            window.styleMask.remove(.resizable)
-        }
-    }
-
-    public func setBehaviors(ofWindow window: Window, closable: Bool, minimizable: Bool) {
+    public func setBehaviors(
+        ofWindow window: Window,
+        closable: Bool,
+        minimizable: Bool,
+        resizable: Bool
+    ) {
         if closable {
             window.styleMask.insert(.closable)
         } else {
@@ -140,6 +145,12 @@ public final class AppKitBackend: AppBackend {
             window.styleMask.insert(.miniaturizable)
         } else {
             window.styleMask.remove(.miniaturizable)
+        }
+
+        if resizable {
+            window.styleMask.insert(.resizable)
+        } else {
+            window.styleMask.remove(.resizable)
         }
     }
 

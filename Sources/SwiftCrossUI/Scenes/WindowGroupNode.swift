@@ -39,7 +39,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
 
         backend.setChild(ofWindow: window, to: container)
         backend.setTitle(ofWindow: window, to: scene.title)
-        backend.setResizability(ofWindow: window, to: scene.resizability.isResizable)
+//        backend.setResizability(ofWindow: window, to: scene.resizability.isResizable)
 
         self.window = window
         parentEnvironment = environment
@@ -146,7 +146,6 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             // the default size changed would resize the window (which is incorrect
             // behaviour).
             backend.setTitle(ofWindow: window, to: newScene.title)
-            backend.setResizability(ofWindow: window, to: newScene.resizability.isResizable)
             scene = newScene
         }
 
@@ -167,58 +166,59 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             }
             .with(\.window, window)
 
-        let finalContentResult: ViewLayoutResult
-        if scene.resizability.isResizable {
-            let minimumWindowSize = viewGraph.computeLayout(
-                with: newScene?.body,
-                proposedSize: .zero,
-                environment: environment.with(\.allowLayoutCaching, true)
-            ).size
+        let minimumWindowSize = viewGraph.computeLayout(
+            with: newScene?.body,
+            proposedSize: .zero,
+            environment: environment.with(\.allowLayoutCaching, true)
+        ).size
 
-            let clampedWindowSize = ViewSize(
-                max(minimumWindowSize.width, Double(proposedWindowSize.x)),
+        // With `.contentSize`, the window's maximum size is the maximum size of its
+        // content. With `.contentMinSize` (and `.automatic`), there is no maximum
+        // size.
+        let maximumWindowSize: ViewSize? = switch scene.resizability {
+            case .contentSize:
+                viewGraph.computeLayout(
+                    with: newScene?.body,
+                    proposedSize: .init(.greatestFiniteMagnitude, .greatestFiniteMagnitude),
+                    environment: environment.with(\.allowLayoutCaching, true)
+                ).size
+            case .automatic, .contentMinSize:
+                nil
+        }
+
+        let clampedWindowSize = ViewSize(
+            min(
+                maximumWindowSize?.width ?? .infinity,
+                max(minimumWindowSize.width, Double(proposedWindowSize.x))
+            ),
+            min(
+                maximumWindowSize?.height ?? .infinity,
                 max(minimumWindowSize.height, Double(proposedWindowSize.y))
             )
+        )
 
-            if clampedWindowSize.vector != proposedWindowSize && !windowSizeIsFinal {
-                // Restart the window update if the content has caused the window to
-                // change size.
-                return update(
-                    scene,
-                    proposedWindowSize: clampedWindowSize.vector,
-                    needsWindowSizeCommit: true,
-                    backend: backend,
-                    environment: environment,
-                    windowSizeIsFinal: true
-                )
-            }
-
-            // Set this even if the window isn't programmatically resizable
-            // because the window may still be user resizable.
-            backend.setMinimumSize(ofWindow: window, to: minimumWindowSize.vector)
-
-            finalContentResult = viewGraph.computeLayout(
-                proposedSize: ProposedViewSize(proposedWindowSize),
-                environment: environment
+        if clampedWindowSize.vector != proposedWindowSize && !windowSizeIsFinal {
+            // Restart the window update if the content has caused the window to
+            // change size.
+            return update(
+                scene,
+                proposedWindowSize: clampedWindowSize.vector,
+                needsWindowSizeCommit: true,
+                backend: backend,
+                environment: environment,
+                windowSizeIsFinal: true
             )
-        } else {
-            let initialContentResult = viewGraph.computeLayout(
-                with: newScene?.body,
-                proposedSize: ProposedViewSize(proposedWindowSize),
-                environment: environment
-            )
-            if initialContentResult.size.vector != proposedWindowSize && !windowSizeIsFinal {
-                return update(
-                    scene,
-                    proposedWindowSize: initialContentResult.size.vector,
-                    needsWindowSizeCommit: true,
-                    backend: backend,
-                    environment: environment,
-                    windowSizeIsFinal: true
-                )
-            }
-            finalContentResult = initialContentResult
         }
+
+        // Set these even if the window isn't programmatically resizable
+        // because the window may still be user resizable.
+        backend.setMinimumSize(ofWindow: window, to: minimumWindowSize.vector)
+        backend.setMaximumSize(ofWindow: window, to: maximumWindowSize?.vector)
+
+        let finalContentResult = viewGraph.computeLayout(
+            proposedSize: ProposedViewSize(proposedWindowSize),
+            environment: environment
+        )
 
         viewGraph.commit()
 
@@ -235,7 +235,8 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         backend.setBehaviors(
             ofWindow: window,
             closable: finalContentResult.preferences.windowDismissBehavior != .disabled,
-            minimizable: finalContentResult.preferences.windowMinimizeBehavior != .disabled
+            minimizable: finalContentResult.preferences.windowMinimizeBehavior != .disabled,
+            resizable: finalContentResult.preferences.windowResizeBehavior != .disabled
         )
 
         if isFirstUpdate {

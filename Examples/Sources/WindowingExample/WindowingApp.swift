@@ -161,7 +161,8 @@ struct SheetDemo: View {
 @HotReloadable
 struct WindowingApp: App {
     @State var title = "My window"
-    @State var resizable = false
+    @State var resizable = true
+    @State var enforceMaxSize = true
     @State var closable = true
     @State var minimizable = true
 
@@ -177,6 +178,7 @@ struct WindowingApp: App {
                     Button(resizable ? "Disable resizing" : "Enable resizing") {
                         resizable.toggle()
                     }
+                    .windowResizeBehavior(resizable ? .enabled : .disabled)
 
                     Button(closable ? "Disable closing" : "Enable closing") {
                         closable.toggle()
@@ -211,7 +213,6 @@ struct WindowingApp: App {
             }
         }
         .defaultSize(width: 500, height: 500)
-        .windowResizability(resizable ? .contentMinSize : .contentSize)
         .commands {
             CommandMenu("Demo menu") {
                 Button("Menu item") {}
@@ -227,10 +228,12 @@ struct WindowingApp: App {
                 #hotReloadable {
                     Text("This a secondary window!")
                         .padding(10)
+
+                    Toggle("Enforce max size", isOn: $enforceMaxSize)
                 }
             }
             .defaultSize(width: 200, height: 200)
-            .windowResizability(.contentMinSize)
+            .windowResizability(enforceMaxSize ? .contentSize : .contentMinSize)
 
             WindowGroup("Tertiary window") {
                 #hotReloadable {
@@ -239,7 +242,6 @@ struct WindowingApp: App {
                 }
             }
             .defaultSize(width: 200, height: 200)
-            .windowResizability(.contentMinSize)
         #endif
     }
 }

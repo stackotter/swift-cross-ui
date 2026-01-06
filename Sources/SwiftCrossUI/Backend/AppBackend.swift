@@ -136,15 +136,20 @@ public protocol AppBackend: Sendable {
     func createWindow(withDefaultSize defaultSize: SIMD2<Int>?) -> Window
     /// Sets the title of a window.
     func setTitle(ofWindow window: Window, to title: String)
-    /// Sets the resizability of a window. Even if resizable, the window
-    /// shouldn't be allowed to become smaller than its content.
-    func setResizability(ofWindow window: Window, to resizable: Bool)
     /// Sets the behaviors of a window.
     /// - Parameters:
     ///   - window: The window to set the behaviors on.
-    ///   - closable: Whether the window can be closed.
-    ///   - minimizable: Whether the window can be minimized.
-    func setBehaviors(ofWindow window: Window, closable: Bool, minimizable: Bool)
+    ///   - closable: Whether the window can be closed by the user.
+    ///   - minimizable: Whether the window can be minimized by the user.
+    ///   - resizable: Whether the window can be resized by the user. Even if
+    ///     resizable, the window shouldn't be allowed to become smaller than
+    ///     its content.
+    func setBehaviors(
+        ofWindow window: Window,
+        closable: Bool,
+        minimizable: Bool,
+        resizable: Bool
+    )
     /// Sets the root child of a window (replaces the previous child if any).
     func setChild(ofWindow window: Window, to child: Widget)
     /// Gets the size of the given window in pixels.
@@ -157,6 +162,11 @@ public protocol AppBackend: Sendable {
     /// Sets the minimum width and height of the window. Prevents the user from making the
     /// window any smaller than the given size.
     func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>)
+    /// Sets the maximum width and height of the window. Prevents the user from making the
+    /// window any larget than the given size.
+    /// - Parameter maximumSize: The maximum window size. If `nil`, any existing maximum size
+    ///   constraints should be removed.
+    func setMaximumSize(ofWindow window: Window, to maximumSize: SIMD2<Int>?)
     /// Sets the handler for the window's resizing events. `action` takes the proposed size
     /// of the window and returns the final size for the window (which allows SwiftCrossUI
     /// to implement features such as dynamic minimum window sizes based off the content's

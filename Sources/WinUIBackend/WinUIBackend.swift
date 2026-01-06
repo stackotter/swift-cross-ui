@@ -222,6 +222,10 @@ public final class WinUIBackend: AppBackend {
         missing("window minimum size")
     }
 
+    public func setMaximumSize(ofWindow window: Window, to maximumSize: SIMD2<Int>?) {
+        missing("window maximum size")
+    }
+
     public func setResizeHandler(
         ofWindow window: Window,
         to action: @escaping (SIMD2<Int>) -> Void
@@ -239,13 +243,15 @@ public final class WinUIBackend: AppBackend {
         window.title = title
     }
 
-    public func setResizability(ofWindow window: Window, to value: Bool) {
-        (window.appWindow.presenter as! OverlappedPresenter).isResizable = value
-    }
-
-    public func setBehaviors(ofWindow window: Window, closable: Bool, minimizable: Bool) {
+    public func setBehaviors(
+        ofWindow window: Window,
+        closable: Bool,
+        minimizable: Bool,
+        resizable: Bool
+    ) {
         // TODO: Set window closability (need to reach down to Win32 for this)
         (window.appWindow.presenter as! OverlappedPresenter).isMinimizable = minimizable
+        (window.appWindow.presenter as! OverlappedPresenter).isResizable = resizable
     }
 
     public func setChild(ofWindow window: Window, to widget: Widget) {

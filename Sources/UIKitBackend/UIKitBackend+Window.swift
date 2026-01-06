@@ -129,15 +129,18 @@ extension UIKitBackend {
         #endif
     }
 
-    public func setResizability(ofWindow window: Window, to resizable: Bool) {
-        logger.notice("ignoring \(#function) call")
-    }
-
-    public func setBehaviors(ofWindow window: Window, closable: Bool, minimizable: Bool) {
+    public func setBehaviors(
+        ofWindow window: Window,
+        closable: Bool,
+        minimizable: Bool,
+        resizable: Bool
+    ) {
         if #available(iOS 16, tvOS 16, macCatalyst 16, *) {
             window.windowScene?.windowingBehaviors?.isClosable = closable
             window.windowScene?.windowingBehaviors?.isMiniaturizable = minimizable
         }
+
+        logger.notice("ignoring resizability change")
     }
 
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
@@ -158,6 +161,18 @@ extension UIKitBackend {
         // if windowScene is nil, either the window isn't shown or it must be fullscreen
         // if sizeRestrictions is nil, the device doesn't support setting a minimum window size
         window.windowScene?.sizeRestrictions?.minimumSize = CGSize(
-            width: CGFloat(minimumSize.x), height: CGFloat(minimumSize.y))
+            width: CGFloat(minimumSize.x),
+            height: CGFloat(minimumSize.y)
+        )
+    }
+
+    public func setMaximumSize(ofWindow window: Window, to maximumSize: SIMD2<Int>?) {
+        // if windowScene is nil, either the window isn't shown or it must be fullscreen
+        // if sizeRestrictions is nil, the device doesn't support setting a minimum window size
+        window.windowScene?.sizeRestrictions?.maximumSize = if let maximumSize {
+            CGSize(width: maximumSize.x, height: maximumSize.y)
+        } else {
+            CGSize(width: Double.infinity, height: .infinity)
+        }
     }
 }

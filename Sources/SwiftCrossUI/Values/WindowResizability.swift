@@ -8,13 +8,13 @@ public enum WindowResizability: Sendable {
     /// The window is resizable but must be at least as big as its content.
     case contentMinSize
 
-    /// Whether this level of resizability implies that the window is resizable.
-    var isResizable: Bool {
-        switch self {
-            case .automatic, .contentMinSize:
-                return true
-            case .contentSize:
-                return false
-        }
-    }
+//    /// Whether this level of resizability implies that the window is resizable.
+//    var isResizable: Bool {
+//        switch self {
+//            case .automatic, .contentMinSize:
+//                return true
+//            case .contentSize:
+//                return false
+//        }
+//    }
 }

@@ -160,16 +160,19 @@ public final class Gtk3Backend: AppBackend {
         window.title = title
     }
 
-    public func setResizability(ofWindow window: Window, to resizable: Bool) {
-        window.resizable = resizable
-    }
-
-    public func setBehaviors(ofWindow window: Window, closable: Bool, minimizable: Bool) {
+    public func setBehaviors(
+        ofWindow window: Window,
+        closable: Bool,
+        minimizable: Bool,
+        resizable: Bool
+    ) {
         // FIXME: This doesn't seem to work on macOS at least
         window.closable = closable
 
         // TODO: Figure out if there's some magic way to disable minimization
         //   in a framework where the minimize button usually doesn't even exist
+
+        window.resizable = resizable
     }
 
     public func setChild(ofWindow window: Window, to child: Widget) {
@@ -218,6 +221,10 @@ public final class Gtk3Backend: AppBackend {
     public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
         let child = window.child! as! CustomRootWidget
         child.setMinimumSize(minimumWidth: minimumSize.x, minimumHeight: minimumSize.y)
+    }
+
+    public func setMaximumSize(ofWindow window: Window, to maximumSize: SIMD2<Int>?) {
+        // TODO: Implement this
     }
 
     public func setResizeHandler(
