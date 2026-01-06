@@ -212,8 +212,11 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
 
         // Set these even if the window isn't programmatically resizable
         // because the window may still be user resizable.
-        backend.setMinimumSize(ofWindow: window, to: minimumWindowSize.vector)
-        backend.setMaximumSize(ofWindow: window, to: maximumWindowSize?.vector)
+        backend.setSizeLimits(
+            ofWindow: window,
+            minimum: minimumWindowSize.vector,
+            maximum: maximumWindowSize?.vector
+        )
 
         let finalContentResult = viewGraph.computeLayout(
             proposedSize: ProposedViewSize(proposedWindowSize),
