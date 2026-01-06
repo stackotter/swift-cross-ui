@@ -205,7 +205,7 @@ public final class WinUIBackend: AppBackend {
         minimum minimumSize: SIMD2<Int>,
         maximum maximumSize: SIMD2<Int>?
     ) {
-        missing("window minimum/maximum size")
+        logger.warning("\(#function) unimplemented")
     }
 
     public func setResizeHandler(
@@ -263,10 +263,6 @@ public final class WinUIBackend: AppBackend {
     }
 
     public func show(widget _: Widget) {}
-
-    private func missing(_ message: String) {
-        // print("missing: \(message)")
-    }
 
     private func renderItems(_ items: [ResolvedMenu.Item]) -> [MenuFlyoutItemBase] {
         items.map { item in
@@ -624,7 +620,7 @@ public final class WinUIBackend: AppBackend {
         let block = textView as! TextBlock
         block.text = content
         block.isTextSelectionEnabled = environment.isTextSelectionEnabled
-        missing("font design handling (monospace vs normal)")
+        // TODO: Font design handling (monospace vs normal)
         environment.apply(to: block)
     }
 
@@ -888,8 +884,8 @@ public final class WinUIBackend: AppBackend {
             }
         }
 
-        missing("proper picker updating logic")
-        missing("picker font handling")
+        // TODO: Proper picker updating logic
+        // TODO: Picker font handling
 
         picker.options = options
     }
