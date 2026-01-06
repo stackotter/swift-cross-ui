@@ -13,6 +13,10 @@ public struct MenuItemsBuilder {
         [.text(first)]
     }
 
+    public static func buildPartialBlock(first: Toggle) -> [MenuItem] {
+        [.toggle(first)]
+    }
+
     public static func buildPartialBlock(first: Menu) -> [MenuItem] {
         [.submenu(first)]
     }
@@ -37,6 +41,13 @@ public struct MenuItemsBuilder {
     public static func buildPartialBlock(
         accumulated: [MenuItem],
         next: Text
+    ) -> [MenuItem] {
+        accumulated + buildPartialBlock(first: next)
+    }
+
+    public static func buildPartialBlock(
+        accumulated: [MenuItem],
+        next: Toggle
     ) -> [MenuItem] {
         accumulated + buildPartialBlock(first: next)
     }

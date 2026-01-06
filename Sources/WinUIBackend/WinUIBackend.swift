@@ -267,6 +267,15 @@ public final class WinUIBackend: AppBackend {
                         action?()
                     }
                     return widget
+                case .toggle(let label, let value, let onChange):
+                    let widget = ToggleMenuFlyoutItem()
+                    widget.text = label
+                    widget.isChecked = value
+                    widget.click.addHandler { [weak widget] _, _ in
+                        guard let widget else { return }
+                        onChange(widget.isChecked)
+                    }
+                    return widget
                 case .submenu(let submenu):
                     let widget = MenuFlyoutSubItem()
                     widget.text = submenu.label
