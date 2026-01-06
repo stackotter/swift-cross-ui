@@ -218,12 +218,12 @@ public final class WinUIBackend: AppBackend {
         try! window.appWindow.resizeClient(size)
     }
 
-    public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
-        missing("window minimum size")
-    }
-
-    public func setMaximumSize(ofWindow window: Window, to maximumSize: SIMD2<Int>?) {
-        missing("window maximum size")
+    public func setSizeLimits(
+        ofWindow window: Window,
+        minimum minimumSize: SIMD2<Int>,
+        maximum maximumSize: SIMD2<Int>?
+    ) {
+        missing("window minimum/maximum size")
     }
 
     public func setResizeHandler(

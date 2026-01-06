@@ -105,17 +105,18 @@ public final class AppKitBackend: AppBackend {
         window.setContentSize(NSSize(width: newSize.x, height: newSize.y))
     }
 
-    public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
-        window.contentMinSize.width = CGFloat(minimumSize.x)
-        window.contentMinSize.height = CGFloat(minimumSize.y)
-    }
-
-    public func setMaximumSize(ofWindow window: Window, to maximumSize: SIMD2<Int>?) {
-        window.contentMaxSize = if let maximumSize {
-            CGSize(width: maximumSize.x, height: maximumSize.y)
-        } else {
-            CGSize(width: Double.infinity, height: .infinity)
-        }
+    public func setSizeLimits(
+        ofWindow window: Window,
+        minimum minimumSize: SIMD2<Int>,
+        maximum maximumSize: SIMD2<Int>?
+    ) {
+        window.contentMinSize = CGSize(width: minimumSize.x, height: minimumSize.y)
+        window.contentMaxSize =
+            if let maximumSize {
+                CGSize(width: maximumSize.x, height: maximumSize.y)
+            } else {
+                CGSize(width: Double.infinity, height: .infinity)
+            }
     }
 
     public func setResizeHandler(

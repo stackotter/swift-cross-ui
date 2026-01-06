@@ -218,13 +218,14 @@ public final class Gtk3Backend: AppBackend {
         )
     }
 
-    public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
+    public func setSizeLimits(
+        ofWindow window: Window,
+        minimum minimumSize: SIMD2<Int>,
+        maximum maximumSize: SIMD2<Int>?
+    ) {
         let child = window.child! as! CustomRootWidget
         child.setMinimumSize(minimumWidth: minimumSize.x, minimumHeight: minimumSize.y)
-    }
-
-    public func setMaximumSize(ofWindow window: Window, to maximumSize: SIMD2<Int>?) {
-        // TODO: Implement this
+        // TODO: Implement maximum size
     }
 
     public func setResizeHandler(

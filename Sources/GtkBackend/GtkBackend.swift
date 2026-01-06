@@ -203,12 +203,13 @@ public final class GtkBackend: AppBackend {
         child.preemptAllocatedSize(allocatedWidth: newSize.x, allocatedHeight: newSize.y)
     }
 
-    public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
+    public func setSizeLimits(
+        ofWindow window: Window,
+        minimum minimumSize: SIMD2<Int>,
+        maximum maximumSize: SIMD2<Int>?
+    ) {
         window.setMinimumSize(to: Size(width: minimumSize.x, height: minimumSize.y))
-    }
-
-    public func setMaximumSize(ofWindow window: Window, to maximumSize: SIMD2<Int>?) {
-        // TODO: Implement this
+        // TODO: Implement maximum size
     }
 
     public func setResizeHandler(

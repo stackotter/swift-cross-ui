@@ -157,22 +157,20 @@ extension UIKitBackend {
         #endif
     }
 
-    public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
+    public func setSizeLimits(
+        ofWindow window: Window,
+        minimum minimumSize: SIMD2<Int>,
+        maximum maximumSize: SIMD2<Int>?
+    ) {
         // if windowScene is nil, either the window isn't shown or it must be fullscreen
-        // if sizeRestrictions is nil, the device doesn't support setting a minimum window size
-        window.windowScene?.sizeRestrictions?.minimumSize = CGSize(
-            width: CGFloat(minimumSize.x),
-            height: CGFloat(minimumSize.y)
-        )
-    }
-
-    public func setMaximumSize(ofWindow window: Window, to maximumSize: SIMD2<Int>?) {
-        // if windowScene is nil, either the window isn't shown or it must be fullscreen
-        // if sizeRestrictions is nil, the device doesn't support setting a minimum window size
-        window.windowScene?.sizeRestrictions?.maximumSize = if let maximumSize {
-            CGSize(width: maximumSize.x, height: maximumSize.y)
-        } else {
-            CGSize(width: Double.infinity, height: .infinity)
-        }
+        // if sizeRestrictions is nil, the device doesn't support setting window size bounds
+        window.windowScene?.sizeRestrictions?.minimumSize =
+            CGSize(width: minimumSize.x, height: minimumSize.y)
+        window.windowScene?.sizeRestrictions?.maximumSize =
+            if let maximumSize {
+                CGSize(width: maximumSize.x, height: maximumSize.y)
+            } else {
+                CGSize(width: Double.infinity, height: .infinity)
+            }
     }
 }

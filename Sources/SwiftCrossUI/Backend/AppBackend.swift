@@ -159,14 +159,20 @@ public protocol AppBackend: Sendable {
     func isWindowProgrammaticallyResizable(_ window: Window) -> Bool
     /// Sets the size of the given window in pixels.
     func setSize(ofWindow window: Window, to newSize: SIMD2<Int>)
-    /// Sets the minimum width and height of the window. Prevents the user from making the
-    /// window any smaller than the given size.
-    func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>)
-    /// Sets the maximum width and height of the window. Prevents the user from making the
-    /// window any larget than the given size.
-    /// - Parameter maximumSize: The maximum window size. If `nil`, any existing maximum size
-    ///   constraints should be removed.
-    func setMaximumSize(ofWindow window: Window, to maximumSize: SIMD2<Int>?)
+    /// Sets the minimum and maximum width and height of a window.
+    ///
+    /// Prevents the user from making the window any smaller or larger than the given minimum and
+    /// maximum sizes, respectively.
+    /// - Parameters:
+    ///   - window: The window to set the size limits of.
+    ///   - minimumSize: The minimum window size.
+    ///   - maximumSize: maximumSize: The maximum window size. If `nil`, any existing maximum size
+    ///     constraints should be removed.
+    func setSizeLimits(
+        ofWindow window: Window,
+        minimum minimumSize: SIMD2<Int>,
+        maximum maximumSize: SIMD2<Int>?
+    )
     /// Sets the handler for the window's resizing events. `action` takes the proposed size
     /// of the window and returns the final size for the window (which allows SwiftCrossUI
     /// to implement features such as dynamic minimum window sizes based off the content's
