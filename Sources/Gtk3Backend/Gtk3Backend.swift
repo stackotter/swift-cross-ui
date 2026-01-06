@@ -4,28 +4,11 @@ import Gtk3
 import Logging
 import SwiftCrossUI
 
-/// The storage behind `logger`.
-///
-/// `nil` if the logger hasn't been set yet.
-///
-/// > Safety: This is only set once, before it is ever read.
-nonisolated(unsafe) private var _logger: Logger?
-
-/// The global logger for this backend.
-var logger: Logger {
-    guard let _logger else { fatalError("logger not yet initialized") }
-    return _logger
-}
-
 extension App {
     public typealias Backend = Gtk3Backend
 
     public var backend: Gtk3Backend {
-        _logger = Logger(
-            label: "Gtk3Backend",
-            factory: Self.logHandler(label:metadataProvider:)
-        )
-        return Gtk3Backend(appIdentifier: Self.metadata?.identifier)
+        Gtk3Backend(appIdentifier: Self.metadata?.identifier)
     }
 }
 
