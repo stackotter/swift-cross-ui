@@ -4,7 +4,7 @@ struct Checkbox: ElementaryView, View {
     private var active: Binding<Bool>
 
     /// Creates a checkbox.
-    public init(active: Binding<Bool>) {
+    public init(isOn active: Binding<Bool>) {
         self.active = active
     }
 

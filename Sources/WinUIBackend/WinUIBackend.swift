@@ -1,6 +1,5 @@
 import CWinRT
 import Foundation
-import Logging
 import SwiftCrossUI
 import UWP
 import WinAppSDK
@@ -8,19 +7,6 @@ import WinSDK
 import WinUI
 import WinUIInterop
 import WindowsFoundation
-
-/// The storage behind `logger`.
-///
-/// `nil` if the logger hasn't been set yet.
-///
-/// > Safety: This is only set once, before it is ever read.
-nonisolated(unsafe) private var _logger: Logger?
-
-/// The global logger for this backend.
-var logger: Logger {
-    guard let _logger else { fatalError("logger not yet initialized") }
-    return _logger
-}
 
 // Many force tries are required for the WinUI backend but we don't really want them
 // anywhere else so just disable them for this file.
@@ -30,11 +16,7 @@ extension App {
     public typealias Backend = WinUIBackend
 
     public var backend: WinUIBackend {
-        _logger = Logger(
-            label: "WinUIBackend",
-            factory: Self.logHandler(label:metadataProvider:)
-        )
-        return WinUIBackend()
+        WinUIBackend()
     }
 }
 
@@ -283,6 +265,15 @@ public final class WinUIBackend: AppBackend {
                     widget.text = label
                     widget.click.addHandler { _, _ in
                         action?()
+                    }
+                    return widget
+                case .toggle(let label, let value, let onChange):
+                    let widget = ToggleMenuFlyoutItem()
+                    widget.text = label
+                    widget.isChecked = value
+                    widget.click.addHandler { [weak widget] _, _ in
+                        guard let widget else { return }
+                        onChange(widget.isChecked)
                     }
                     return widget
                 case .submenu(let submenu):
@@ -638,9 +629,7 @@ public final class WinUIBackend: AppBackend {
     public func createButton() -> Widget {
         let button = Button()
         button.click.addHandler { [weak internalState] _, _ in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.buttonClickActions[ObjectIdentifier(button)]?()
         }
         return button
@@ -799,9 +788,7 @@ public final class WinUIBackend: AppBackend {
     public func createSlider() -> Widget {
         let slider = Slider()
         slider.valueChanged.addHandler { [weak internalState] _, event in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.sliderChangeActions[ObjectIdentifier(slider)]?(
                 Double(event?.newValue ?? 0))
         }
@@ -913,15 +900,11 @@ public final class WinUIBackend: AppBackend {
     public func createTextField() -> Widget {
         let textField = TextBox()
         textField.textChanged.addHandler { [weak internalState] _, _ in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.textFieldChangeActions[ObjectIdentifier(textField)]?(textField.text)
         }
         textField.keyUp.addHandler { [weak internalState] _, event in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
 
             if event?.key == .enter {
                 internalState.textFieldSubmitActions[ObjectIdentifier(textField)]?()
@@ -957,9 +940,7 @@ public final class WinUIBackend: AppBackend {
     public func createTextEditor() -> Widget {
         let textEditor = TextBox()
         textEditor.textChanged.addHandler { [weak internalState] _, _ in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             // Reuse this storage because it's the same widget type as a text field
             internalState.textFieldChangeActions[ObjectIdentifier(textEditor)]?(textEditor.text)
         }
@@ -1120,9 +1101,7 @@ public final class WinUIBackend: AppBackend {
     public func createToggle() -> Widget {
         let toggle = ToggleButton()
         toggle.click.addHandler { [weak internalState] _, _ in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.toggleClickActions[ObjectIdentifier(toggle)]?(toggle.isChecked ?? false)
         }
         return toggle
@@ -1172,9 +1151,7 @@ public final class WinUIBackend: AppBackend {
         toggleSwitch.onContent = ""
         toggleSwitch.padding = Thickness(left: 0, top: 0, right: 0, bottom: 0)
         toggleSwitch.toggled.addHandler { [weak internalState] _, _ in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.switchClickActions[ObjectIdentifier(toggleSwitch)]?(toggleSwitch.isOn)
         }
         return toggleSwitch
@@ -1479,7 +1456,7 @@ public final class WinUIBackend: AppBackend {
         environment: EnvironmentValues
     ) {
         let progressBar = widget as! ProgressBar
-        if let progressFraction = progressFraction {
+        if let progressFraction {
             progressBar.isIndeterminate = false
             progressBar.value = progressBar.maximum * progressFraction
         } else {

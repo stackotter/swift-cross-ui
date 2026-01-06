@@ -40,12 +40,12 @@ open class MenuShell: Container {
 
         addSignal(name: "activate-current", handler: gCallback(handler0)) {
             [weak self] (param0: Bool) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.activateCurrent?(self, param0)
         }
 
         addSignal(name: "cancel") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.cancel?(self)
         }
 
@@ -58,12 +58,12 @@ open class MenuShell: Container {
 
         addSignal(name: "cycle-focus", handler: gCallback(handler2)) {
             [weak self] (param0: GtkDirectionType) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.cycleFocus?(self, param0)
         }
 
         addSignal(name: "deactivate") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.deactivate?(self)
         }
 
@@ -76,7 +76,7 @@ open class MenuShell: Container {
 
         addSignal(name: "insert", handler: gCallback(handler4)) {
             [weak self] (param0: GtkWidget, param1: Int) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.insert?(self, param0, param1)
         }
 
@@ -89,7 +89,7 @@ open class MenuShell: Container {
 
         addSignal(name: "move-current", handler: gCallback(handler5)) {
             [weak self] (param0: GtkMenuDirectionType) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.moveCurrent?(self, param0)
         }
 
@@ -101,12 +101,12 @@ open class MenuShell: Container {
 
         addSignal(name: "move-selected", handler: gCallback(handler6)) {
             [weak self] (param0: Int) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.moveSelected?(self, param0)
         }
 
         addSignal(name: "selection-done") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.selectionDone?(self)
         }
 
@@ -118,7 +118,7 @@ open class MenuShell: Container {
 
         addSignal(name: "notify::take-focus", handler: gCallback(handler8)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyTakeFocus?(self, param0)
         }
     }

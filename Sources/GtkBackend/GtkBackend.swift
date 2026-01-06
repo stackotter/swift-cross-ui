@@ -124,7 +124,7 @@ public final class GtkBackend: AppBackend {
 
     public func createWindow(withDefaultSize defaultSize: SIMD2<Int>?) -> Window {
         let window: Gtk.ApplicationWindow
-        if let precreatedWindow = precreatedWindow {
+        if let precreatedWindow {
             self.precreatedWindow = nil
             window = precreatedWindow
         } else {
@@ -133,7 +133,7 @@ public final class GtkBackend: AppBackend {
 
         windows.append(window)
 
-        if let defaultSize = defaultSize {
+        if let defaultSize {
             window.defaultSize = Size(
                 width: defaultSize.x,
                 height: defaultSize.y
@@ -279,6 +279,9 @@ public final class GtkBackend: AppBackend {
                     }
 
                     model.appendItem(label: label, actionName: "\(actionNamespace).\(actionName)")
+                case .toggle(let label, let value, let onChange):
+                    // FIXME: Implement
+                    logger.warning("menu toggles not implemented")
                 case .submenu(let submenu):
                     model.appendSubmenu(
                         label: submenu.label,
@@ -334,7 +337,7 @@ public final class GtkBackend: AppBackend {
         g_idle_add_full(
             0,
             { context in
-                guard let context = context else {
+                guard let context else {
                     fatalError("Gtk action callback called without context")
                 }
 
@@ -360,7 +363,7 @@ public final class GtkBackend: AppBackend {
             0,
             guint(max(delay, 0)),
             { context in
-                guard let context = context else {
+                guard let context else {
                     fatalError("Gtk action callback called without context")
                 }
 
@@ -1352,7 +1355,7 @@ public final class GtkBackend: AppBackend {
         // We don't actually care about leaking backends, but might as well use
         // a weak reference anyway.
         drawingArea.setDrawFunc { [weak self] cairo, _, _ in
-            guard let self = self, let path = path.path else {
+            guard let self, let path = path.path else {
                 return
             }
 

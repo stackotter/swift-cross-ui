@@ -75,7 +75,7 @@ public class MessageDialog: Dialog {
 
         addSignal(name: "notify::buttons", handler: gCallback(handler0)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyButtons?(self)
         }
 
@@ -87,7 +87,7 @@ public class MessageDialog: Dialog {
 
         addSignal(name: "notify::message-area", handler: gCallback(handler1)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyMessageArea?(self)
         }
 
@@ -99,7 +99,7 @@ public class MessageDialog: Dialog {
 
         addSignal(name: "notify::message-type", handler: gCallback(handler2)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyMessageType?(self)
         }
 
@@ -111,7 +111,7 @@ public class MessageDialog: Dialog {
 
         addSignal(name: "notify::secondary-text", handler: gCallback(handler3)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySecondaryText?(self)
         }
 
@@ -123,7 +123,7 @@ public class MessageDialog: Dialog {
 
         addSignal(name: "notify::secondary-use-markup", handler: gCallback(handler4)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySecondaryUseMarkup?(self)
         }
 
@@ -135,7 +135,7 @@ public class MessageDialog: Dialog {
 
         addSignal(name: "notify::text", handler: gCallback(handler5)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyText?(self)
         }
 
@@ -147,7 +147,7 @@ public class MessageDialog: Dialog {
 
         addSignal(name: "notify::use-markup", handler: gCallback(handler6)) {
             [weak self] (_: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyUseMarkup?(self)
         }
     }

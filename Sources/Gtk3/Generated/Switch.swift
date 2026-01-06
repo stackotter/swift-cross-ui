@@ -28,7 +28,7 @@ open class Switch: Widget, Activatable {
         super.didMoveToParent()
 
         addSignal(name: "activate") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.activate?(self)
         }
 
@@ -39,7 +39,7 @@ open class Switch: Widget, Activatable {
                 }
 
         addSignal(name: "state-set", handler: gCallback(handler1)) { [weak self] (param0: Bool) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.stateSet?(self, param0)
         }
 
@@ -51,7 +51,7 @@ open class Switch: Widget, Activatable {
 
         addSignal(name: "notify::active", handler: gCallback(handler2)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyActive?(self, param0)
         }
 
@@ -63,7 +63,7 @@ open class Switch: Widget, Activatable {
 
         addSignal(name: "notify::state", handler: gCallback(handler3)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyState?(self, param0)
         }
 
@@ -75,7 +75,7 @@ open class Switch: Widget, Activatable {
 
         addSignal(name: "notify::related-action", handler: gCallback(handler4)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyRelatedAction?(self, param0)
         }
 
@@ -87,7 +87,7 @@ open class Switch: Widget, Activatable {
 
         addSignal(name: "notify::use-action-appearance", handler: gCallback(handler5)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyUseActionAppearance?(self, param0)
         }
     }

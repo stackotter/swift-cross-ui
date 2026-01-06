@@ -24,6 +24,10 @@ extension UIKitBackend {
                     } else {
                         UIAction(title: label, attributes: .disabled) { _ in }
                     }
+                case .toggle(let label, let value, let onChange):
+                    UIAction(title: label, state: value ? .on : .off) { action in
+                        onChange(!action.state.isOn)
+                    }
                 case .submenu(let submenu):
                     buildMenu(content: submenu.content, label: submenu.label)
             }
@@ -68,5 +72,12 @@ extension UIKitBackend {
             // platforms than just Mac Catalyst. For now, this is a no-op.
             logger.notice("ignoring \(#function) call")
         #endif
+    }
+}
+
+extension UIMenuElement.State {
+    var isOn: Bool {
+        get { self == .on }
+        set { self = newValue ? .on : .off }
     }
 }

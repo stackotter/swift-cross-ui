@@ -23,7 +23,7 @@ public class ToggleButton: Button {
         super.didMoveToParent()
 
         addSignal(name: "toggled") { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.toggled?(self)
         }
     }

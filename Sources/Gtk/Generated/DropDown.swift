@@ -62,7 +62,7 @@ open class DropDown: Widget {
         super.didMoveToParent()
 
         addSignal(name: "activate") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.activate?(self)
         }
 
@@ -74,7 +74,7 @@ open class DropDown: Widget {
 
         addSignal(name: "notify::enable-search", handler: gCallback(handler1)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyEnableSearch?(self, param0)
         }
 
@@ -86,7 +86,7 @@ open class DropDown: Widget {
 
         addSignal(name: "notify::expression", handler: gCallback(handler2)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyExpression?(self, param0)
         }
 
@@ -98,7 +98,7 @@ open class DropDown: Widget {
 
         addSignal(name: "notify::factory", handler: gCallback(handler3)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyFactory?(self, param0)
         }
 
@@ -110,7 +110,7 @@ open class DropDown: Widget {
 
         addSignal(name: "notify::header-factory", handler: gCallback(handler4)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyHeaderFactory?(self, param0)
         }
 
@@ -122,7 +122,7 @@ open class DropDown: Widget {
 
         addSignal(name: "notify::list-factory", handler: gCallback(handler5)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyListFactory?(self, param0)
         }
 
@@ -134,7 +134,7 @@ open class DropDown: Widget {
 
         addSignal(name: "notify::model", handler: gCallback(handler6)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyModel?(self, param0)
         }
 
@@ -146,7 +146,7 @@ open class DropDown: Widget {
 
         addSignal(name: "notify::search-match-mode", handler: gCallback(handler7)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySearchMatchMode?(self, param0)
         }
 
@@ -158,7 +158,7 @@ open class DropDown: Widget {
 
         addSignal(name: "notify::selected", handler: gCallback(handler8)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySelected?(self, param0)
         }
 
@@ -170,7 +170,7 @@ open class DropDown: Widget {
 
         addSignal(name: "notify::selected-item", handler: gCallback(handler9)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySelectedItem?(self, param0)
         }
 
@@ -182,7 +182,7 @@ open class DropDown: Widget {
 
         addSignal(name: "notify::show-arrow", handler: gCallback(handler10)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyShowArrow?(self, param0)
         }
     }

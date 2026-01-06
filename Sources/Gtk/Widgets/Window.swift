@@ -85,12 +85,12 @@ open class Window: Widget {
         gtk_window_present(castedPointer())
 
         addSignal(name: "close-request") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.onCloseRequest?(self)
         }
 
         addSignal(name: "destroy") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.onDestroy?(self)
         }
     }

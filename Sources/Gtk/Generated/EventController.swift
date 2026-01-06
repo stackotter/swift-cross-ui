@@ -25,7 +25,7 @@ open class EventController: GObject {
 
         addSignal(name: "notify::name", handler: gCallback(handler0)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyName?(self, param0)
         }
 
@@ -37,7 +37,7 @@ open class EventController: GObject {
 
         addSignal(name: "notify::propagation-limit", handler: gCallback(handler1)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPropagationLimit?(self, param0)
         }
 
@@ -49,7 +49,7 @@ open class EventController: GObject {
 
         addSignal(name: "notify::propagation-phase", handler: gCallback(handler2)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyPropagationPhase?(self, param0)
         }
 
@@ -61,7 +61,7 @@ open class EventController: GObject {
 
         addSignal(name: "notify::widget", handler: gCallback(handler3)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyWidget?(self, param0)
         }
     }

@@ -14,6 +14,7 @@ public struct Menu: Sendable {
     }
 
     /// Resolves the menu to a representation used by backends.
+    @MainActor
     func resolve() -> ResolvedMenu.Submenu {
         ResolvedMenu.Submenu(
             label: label,
@@ -22,6 +23,7 @@ public struct Menu: Sendable {
     }
 
     /// Resolves the menu's items to a representation used by backends.
+    @MainActor
     static func resolveItems(_ items: [MenuItem]) -> ResolvedMenu {
         ResolvedMenu(
             items: items.map { item in
@@ -30,6 +32,12 @@ public struct Menu: Sendable {
                         .button(button.label, button.action)
                     case .text(let text):
                         .button(text.string, nil)
+                    case .toggle(let toggle):
+                        .toggle(
+                            toggle.label,
+                            toggle.active.wrappedValue,
+                            onChange: { toggle.active.wrappedValue = $0 }
+                        )
                     case .submenu(let submenu):
                         .submenu(submenu.resolve())
                 }

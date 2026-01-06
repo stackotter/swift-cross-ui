@@ -76,7 +76,7 @@ open class ListBox: Widget {
         super.didMoveToParent()
 
         addSignal(name: "activate-cursor-row") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.activateCursorRow?(self)
         }
 
@@ -91,7 +91,7 @@ open class ListBox: Widget {
 
         addSignal(name: "move-cursor", handler: gCallback(handler1)) {
             [weak self] (param0: GtkMovementStep, param1: Int, param2: Bool, param3: Bool) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.moveCursor?(self, param0, param1, param2, param3)
         }
 
@@ -106,7 +106,7 @@ open class ListBox: Widget {
 
         addSignal(name: "row-activated", handler: gCallback(handler2)) {
             [weak self] (param0: UnsafeMutablePointer<GtkListBoxRow>) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.rowActivated?(self, param0)
         }
 
@@ -121,17 +121,17 @@ open class ListBox: Widget {
 
         addSignal(name: "row-selected", handler: gCallback(handler3)) {
             [weak self] (param0: UnsafeMutablePointer<GtkListBoxRow>?) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.rowSelected?(self, param0)
         }
 
         addSignal(name: "selected-rows-changed") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.selectedRowsChanged?(self)
         }
 
         addSignal(name: "toggle-cursor-row") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.toggleCursorRow?(self)
         }
 
@@ -143,7 +143,7 @@ open class ListBox: Widget {
 
         addSignal(name: "notify::accept-unpaired-release", handler: gCallback(handler6)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAcceptUnpairedRelease?(self, param0)
         }
 
@@ -155,7 +155,7 @@ open class ListBox: Widget {
 
         addSignal(name: "notify::activate-on-single-click", handler: gCallback(handler7)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyActivateOnSingleClick?(self, param0)
         }
 
@@ -167,7 +167,7 @@ open class ListBox: Widget {
 
         addSignal(name: "notify::selection-mode", handler: gCallback(handler8)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySelectionMode?(self, param0)
         }
 
@@ -179,7 +179,7 @@ open class ListBox: Widget {
 
         addSignal(name: "notify::show-separators", handler: gCallback(handler9)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyShowSeparators?(self, param0)
         }
 
@@ -191,7 +191,7 @@ open class ListBox: Widget {
 
         addSignal(name: "notify::tab-behavior", handler: gCallback(handler10)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyTabBehavior?(self, param0)
         }
     }

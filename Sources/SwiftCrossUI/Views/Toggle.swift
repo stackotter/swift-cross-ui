@@ -8,8 +8,13 @@ public struct Toggle: View {
     /// Whether the toggle is active or not.
     var active: Binding<Bool>
 
-    /// Creates a toggle that displays a custom label.
+    @available(*, deprecated, renamed: "init(_:isOn:)")
     public init(_ label: String, active: Binding<Bool>) {
+        self.init(label, isOn: active)
+    }
+
+    /// Creates a toggle that displays a custom label.
+    public init(_ label: String, isOn active: Binding<Bool>) {
         self.label = label
         self.active = active
     }
@@ -24,15 +29,15 @@ public struct Toggle: View {
                         Spacer()
                     }
 
-                    ToggleSwitch(active: active)
+                    ToggleSwitch(isOn: active)
                 }
             case .button:
-                ToggleButton(label, active: active)
+                ToggleButton(label, isOn: active)
             case .checkbox:
                 HStack {
                     Text(label)
 
-                    Checkbox(active: active)
+                    Checkbox(isOn: active)
                 }
         }
     }

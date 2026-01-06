@@ -27,7 +27,7 @@ open class NativeDialog: GObject {
                 }
 
         addSignal(name: "response", handler: gCallback(handler0)) { [weak self] (param0: Int) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.response?(self, param0)
         }
 
@@ -39,7 +39,7 @@ open class NativeDialog: GObject {
 
         addSignal(name: "notify::modal", handler: gCallback(handler1)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyModal?(self, param0)
         }
 
@@ -51,7 +51,7 @@ open class NativeDialog: GObject {
 
         addSignal(name: "notify::title", handler: gCallback(handler2)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyTitle?(self, param0)
         }
 
@@ -63,7 +63,7 @@ open class NativeDialog: GObject {
 
         addSignal(name: "notify::transient-for", handler: gCallback(handler3)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyTransientFor?(self, param0)
         }
 
@@ -75,7 +75,7 @@ open class NativeDialog: GObject {
 
         addSignal(name: "notify::visible", handler: gCallback(handler4)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyVisible?(self, param0)
         }
     }
