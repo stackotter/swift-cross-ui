@@ -179,7 +179,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             case .contentSize:
                 viewGraph.computeLayout(
                     with: newScene?.body,
-                    proposedSize: .init(.greatestFiniteMagnitude, .greatestFiniteMagnitude),
+                    proposedSize: .infinity,
                     environment: environment.with(\.allowLayoutCaching, true)
                 ).size
             case .automatic, .contentMinSize:
