@@ -225,7 +225,11 @@ public final class Gtk3Backend: AppBackend {
     ) {
         let child = window.child! as! CustomRootWidget
         child.setMinimumSize(minimumWidth: minimumSize.x, minimumHeight: minimumSize.y)
-        // TODO: Implement maximum size
+
+        // NB: GTK does not support setting maximum sizes for widgets. It just doesn't.
+        if maximumSize != nil {
+            logger.warning("GTK does not support setting maximum window sizes")
+        }
     }
 
     public func setResizeHandler(

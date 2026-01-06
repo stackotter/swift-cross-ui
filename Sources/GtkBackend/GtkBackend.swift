@@ -209,7 +209,11 @@ public final class GtkBackend: AppBackend {
         maximum maximumSize: SIMD2<Int>?
     ) {
         window.setMinimumSize(to: Size(width: minimumSize.x, height: minimumSize.y))
-        // TODO: Implement maximum size
+
+        // NB: GTK does not support setting maximum sizes for widgets. It just doesn't.
+        if maximumSize != nil {
+            logger.warning("GTK does not support setting maximum window sizes")
+        }
     }
 
     public func setResizeHandler(
