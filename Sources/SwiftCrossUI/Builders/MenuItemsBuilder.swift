@@ -32,7 +32,7 @@ public struct MenuItemsBuilder {
     public static func buildPartialBlock<Items: Collection, ID: Hashable>(
         first: ForEach<Items, ID, [MenuItem]>
     ) -> [MenuItem] {
-        first.elements.map(first.child).flatMap(\.self)
+        first.elements.map(first.child).flatMap { $0 }
     }
 
     public static func buildPartialBlock(
