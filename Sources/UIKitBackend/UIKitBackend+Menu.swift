@@ -57,6 +57,11 @@ extension UIKitBackend {
             buttonWidget.child.isEnabled = environment.isEnabled
             setButtonTitle(buttonWidget, label, environment: environment)
             buttonWidget.child.menu = menu.uiMenu
+            buttonWidget.child.preferredMenuElementOrder = switch environment.menuOrder {
+                case .automatic: .automatic
+                case .priority: .priority
+                case .fixed: .fixed
+            }
             buttonWidget.child.showsMenuAsPrimaryAction = true
         } else {
             preconditionFailure("Current OS is too old to support menu buttons.")
