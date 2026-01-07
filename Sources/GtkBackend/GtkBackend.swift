@@ -56,6 +56,28 @@ public final class GtkBackend: AppBackend {
     /// precreated window until it gets 'created' via `createWindow`.
     var windows: [Window] = []
 
+    private struct LogLocation: Hashable, Equatable {
+        let file: String
+        let line: Int
+        let column: Int
+    }
+
+    private var logsPerformed: Set<LogLocation> = []
+
+    func debugLogOnce(
+        _ message: String,
+        file: String = #file,
+        line: Int = #line,
+        column: Int = #column
+    ) {
+        #if DEBUG
+            let location = LogLocation(file: file, line: line, column: column)
+            if logsPerformed.insert(location).inserted {
+                logger.notice("\(message)")
+            }
+        #endif
+    }
+
     // A separate initializer to satisfy ``AppBackend``'s requirements.
     public convenience init() {
         self.init(appIdentifier: nil)
@@ -1529,7 +1551,7 @@ public final class GtkBackend: AppBackend {
         onChange: @escaping (Date) -> Void
     ) {
         if components.contains(.hourAndMinute) {
-            print("Warning: time picker is unimplemented on GtkBackend")
+            debugLogOnce("Warning: time picker is unimplemented on GtkBackend")
         }
 
         let calendarWidget = datePicker as! Gtk.Calendar
