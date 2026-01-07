@@ -98,6 +98,9 @@ public struct EnvironmentValues {
     /// Whether the text should be selectable. Set by ``View/textSelectionEnabled(_:)``.
     public var isTextSelectionEnabled: Bool
 
+    /// The resizing behaviour of the current window.
+    var windowResizability: WindowResizability
+
     /// Backing storage for extensible subscript
     private var extraValues: [ObjectIdentifier: Any]
 
@@ -226,6 +229,7 @@ public struct EnvironmentValues {
         isEnabled = true
         scrollDismissesKeyboardMode = .automatic
         isTextSelectionEnabled = false
+        windowResizability = .automatic
         allowLayoutCaching = false
     }
 

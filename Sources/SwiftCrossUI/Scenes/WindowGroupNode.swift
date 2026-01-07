@@ -174,7 +174,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         // With `.contentSize`, the window's maximum size is the maximum size of its
         // content. With `.contentMinSize` (and `.automatic`), there is no maximum
         // size.
-        let maximumWindowSize: ViewSize? = switch scene.resizability {
+        let maximumWindowSize: ViewSize? = switch environment.windowResizability {
             case .contentSize:
                 viewGraph.computeLayout(
                     with: newScene?.body,

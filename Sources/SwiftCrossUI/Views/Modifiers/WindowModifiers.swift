@@ -20,9 +20,9 @@ extension View {
     /// Sets the resizability of the enclosing window.
     ///
     /// This modifier controls whether the user can resize the enclosing window,
-    /// whereas ``WindowGroup/windowResizability(_:)`` controls how SwiftCrossUI
-    /// determines the bounds within which the window can resized. The only time
-    /// that ``WindowGroup/windowResizability(_:)`` can disable interactive resizing
+    /// whereas ``Scene/windowResizability(_:)`` controls how SwiftCrossUI
+    /// determines the bounds within which windows can be resized. The only time
+    /// that ``Scene/windowResizability(_:)`` can disable interactive resizing
     /// is when the window's content has a fixed size and the
     /// ``WindowResizability`` is ``WindowResizability/contentSize``.
     public func windowResizeBehavior(_ behavior: WindowInteractionBehavior) -> some View {
