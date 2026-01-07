@@ -16,9 +16,6 @@ extension UIKitBackend {
         label: String,
         identifier: UIMenu.Identifier? = nil
     ) -> UIMenu {
-        // NB: Menu children in UIKit need to be specified in reverse order.
-        // I have absolutely no idea why.
-
         var children: [UIMenuElement] = []
         for item in content.items {
             switch item {
@@ -36,15 +33,13 @@ extension UIKitBackend {
                         }
                     )
                 case .separator:
-                    children = [
-                        UIMenu(title: "", options: .displayInline, children: children.reversed())
-                    ]
+                    children = [UIMenu(title: "", options: .displayInline, children: children)]
                 case .submenu(let submenu):
                     children.append(buildMenu(content: submenu.content, label: submenu.label))
             }
         }
 
-        return UIMenu(title: label, identifier: identifier, children: children.reversed())
+        return UIMenu(title: label, identifier: identifier, children: children)
     }
 
     public func updatePopoverMenu(
