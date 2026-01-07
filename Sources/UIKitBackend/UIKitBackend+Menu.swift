@@ -16,28 +16,41 @@ extension UIKitBackend {
         label: String,
         identifier: UIMenu.Identifier? = nil
     ) -> UIMenu {
-        let children = content.items.map { (item) -> UIMenuElement in
+        // NB: Menu children in UIKit need to be specified in reverse order.
+        // I have absolutely no idea why.
+
+        var children: [UIMenuElement] = []
+        for item in content.items {
             switch item {
                 case .button(let label, let action):
-                    if let action {
+                    let uiAction = if let action {
                         UIAction(title: label) { _ in action() }
                     } else {
                         UIAction(title: label, attributes: .disabled) { _ in }
                     }
+                    children.append(uiAction)
                 case .toggle(let label, let value, let onChange):
-                    UIAction(title: label, state: value ? .on : .off) { action in
-                        onChange(!action.state.isOn)
-                    }
+                    children.append(
+                        UIAction(title: label, state: value ? .on : .off) { action in
+                            onChange(!action.state.isOn)
+                        }
+                    )
+                case .separator:
+                    children = [
+                        UIMenu(title: "", options: .displayInline, children: children.reversed())
+                    ]
                 case .submenu(let submenu):
-                    buildMenu(content: submenu.content, label: submenu.label)
+                    children.append(buildMenu(content: submenu.content, label: submenu.label))
             }
         }
 
-        return UIMenu(title: label, identifier: identifier, children: children)
+        return UIMenu(title: label, identifier: identifier, children: children.reversed())
     }
 
     public func updatePopoverMenu(
-        _ menu: Menu, content: ResolvedMenu, environment _: EnvironmentValues
+        _ menu: Menu,
+        content: ResolvedMenu,
+        environment _: EnvironmentValues
     ) {
         if #available(iOS 14, macCatalyst 14, tvOS 17, *) {
             menu.uiMenu = UIKitBackend.buildMenu(content: content, label: "")
