@@ -167,6 +167,8 @@ public final class AppKitBackend: AppBackend {
                     renderedItem.target = wrappedAction
 
                     return renderedItem
+                case .separator:
+                    return NSCustomMenuItem.separator()
                 case .submenu(let submenu):
                     return renderSubmenu(submenu)
             }

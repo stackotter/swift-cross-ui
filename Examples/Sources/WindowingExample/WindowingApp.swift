@@ -204,8 +204,9 @@ struct WindowingApp: App {
         .commands {
             CommandMenu("Demo menu") {
                 Button("Menu item") {}
-
                 Toggle("Toggle", active: $toggle)
+
+                Divider()
 
                 Menu("Submenu") {
                     Button("Item 1") {}
