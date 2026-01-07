@@ -1,1 +1,0 @@
-This repository houses the GIR files used to generate SwiftCrossUI's Gtk 3 and Gtk 4 bindings. The GIR files are housed in this separate repository because they're quite large, and updating them causes an immense number of additions and deletions, inflating contribution metrics.

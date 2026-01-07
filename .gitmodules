@@ -1,3 +1,6 @@
 [submodule "Sources/GtkCodeGen/gir-files"]
 	path = Sources/GtkCodeGen/GirFiles
 	url = https://github.com/moreSwift/gir-files
+[submodule "Sources/GtkCodeGen/GirFiles"]
+	path = Sources/GtkCodeGen/GirFiles
+	url = https://github.com/moreSwift/gir-files
