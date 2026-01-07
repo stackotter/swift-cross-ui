@@ -49,6 +49,12 @@ public struct WindowGroup<Content: View>: Scene {
     }
 
     /// Sets the resizability of a window.
+    ///
+    /// This modifier controls how SwiftCrossUI determines the bounds within which
+    /// the window can resized, whereas ``View/windowResizeBehavior(_:)`` controls
+    /// whether the user can resize the enclosing window. The only time this
+    /// modifier can disable interactive resizing is when the window's content has
+    /// a fixed size and `resizability` is ``WindowResizability/contentSize``.
     public func windowResizability(_ resizability: WindowResizability) -> Self {
         var windowGroup = self
         windowGroup.resizability = resizability

@@ -6,4 +6,11 @@ public enum WindowInteractionBehavior: Sendable {
     case disabled
     /// The enabled behavior.
     case enabled
+
+    var isEnabled: Bool {
+        switch self {
+            case .automatic, .enabled: true
+            case .disabled: false
+        }
+    }
 }

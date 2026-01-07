@@ -142,8 +142,8 @@ public protocol AppBackend: Sendable {
     ///   - closable: Whether the window can be closed by the user.
     ///   - minimizable: Whether the window can be minimized by the user.
     ///   - resizable: Whether the window can be resized by the user. Even if
-    ///     resizable, the window shouldn't be allowed to become smaller than
-    ///     its content.
+    ///     resizable, the window shouldn't be allowed to become smaller than its
+    ///     minimum size, or larger than its maximum size.
     func setBehaviors(
         ofWindow window: Window,
         closable: Bool,
@@ -166,7 +166,7 @@ public protocol AppBackend: Sendable {
     /// - Parameters:
     ///   - window: The window to set the size limits of.
     ///   - minimumSize: The minimum window size.
-    ///   - maximumSize: maximumSize: The maximum window size. If `nil`, any existing maximum size
+    ///   - maximumSize: The maximum window size. If `nil`, any existing maximum size
     ///     constraints should be removed.
     func setSizeLimits(
         ofWindow window: Window,

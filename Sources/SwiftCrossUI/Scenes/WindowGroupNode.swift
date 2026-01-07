@@ -39,7 +39,6 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
 
         backend.setChild(ofWindow: window, to: container)
         backend.setTitle(ofWindow: window, to: scene.title)
-//        backend.setResizability(ofWindow: window, to: scene.resizability.isResizable)
 
         self.window = window
         parentEnvironment = environment
@@ -237,9 +236,12 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
 
         backend.setBehaviors(
             ofWindow: window,
-            closable: finalContentResult.preferences.windowDismissBehavior != .disabled,
-            minimizable: finalContentResult.preferences.preferredWindowMinimizeBehavior != .disabled,
-            resizable: finalContentResult.preferences.windowResizeBehavior != .disabled
+            closable:
+                finalContentResult.preferences.windowDismissBehavior?.isEnabled ?? true,
+            minimizable:
+                finalContentResult.preferences.preferredWindowMinimizeBehavior?.isEnabled ?? true,
+            resizable:
+                finalContentResult.preferences.windowResizeBehavior?.isEnabled ?? true
         )
 
         if isFirstUpdate {

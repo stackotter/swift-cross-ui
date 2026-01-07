@@ -11,7 +11,7 @@ open class Window: Bin {
 
     @GObjectProperty(named: "title") public var title: String?
     @GObjectProperty(named: "resizable") public var resizable: Bool
-    @GObjectProperty(named: "deletable") public var closable: Bool
+    @GObjectProperty(named: "deletable") public var deletable: Bool
     @GObjectProperty(named: "modal") public var isModal: Bool
     @GObjectProperty(named: "decorated") public var isDecorated: Bool
 

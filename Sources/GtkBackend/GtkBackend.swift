@@ -55,6 +55,28 @@ public final class GtkBackend: AppBackend {
     /// precreated window until it gets 'created' via `createWindow`.
     var windows: [Window] = []
 
+    private struct LogLocation: Hashable, Equatable {
+        let file: String
+        let line: Int
+        let column: Int
+    }
+
+    private var logsPerformed: Set<LogLocation> = []
+
+    func debugLogOnce(
+        _ message: String,
+        file: String = #file,
+        line: Int = #line,
+        column: Int = #column
+    ) {
+        #if DEBUG
+            let location = LogLocation(file: file, line: line, column: column)
+            if logsPerformed.insert(location).inserted {
+                logger.notice("\(message)")
+            }
+        #endif
+    }
+
     // A separate initializer to satisfy ``AppBackend``'s requirements.
     public convenience init() {
         self.init(appIdentifier: nil)
@@ -156,7 +178,7 @@ public final class GtkBackend: AppBackend {
         resizable: Bool
     ) {
         // FIXME: This doesn't seem to work on macOS at least
-        window.closable = closable
+        window.deletable = closable
 
         // TODO: Figure out if there's some magic way to disable minimization
         //   in a framework where the minimize button usually doesn't even exist
@@ -211,8 +233,9 @@ public final class GtkBackend: AppBackend {
         window.setMinimumSize(to: Size(width: minimumSize.x, height: minimumSize.y))
 
         // NB: GTK does not support setting maximum sizes for widgets. It just doesn't.
+        // https://discourse.gnome.org/t/how-to-build-fixed-size-windows-in-gtk-4/22807/10
         if maximumSize != nil {
-            logger.warning("GTK does not support setting maximum window sizes")
+            debugLogOnce("GTK does not support setting maximum window sizes")
         }
     }
 

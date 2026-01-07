@@ -1,8 +1,9 @@
 extension View {
     /// Sets the closability of the enclosing window.
     ///
-    /// This only controls whether the title bar close button is enabled or
-    /// not -- windows can always be closed programmatically.
+    /// This only controls whether user can close the window via the title
+    /// bar close button, built-in keyboard shortcuts such as Cmd+W or Alt+F4,
+    /// etc. Windows can always be closed programmatically.
     public func windowDismissBehavior(_ behavior: WindowInteractionBehavior) -> some View {
         preference(key: \.windowDismissBehavior, value: behavior)
     }
@@ -17,6 +18,13 @@ extension View {
     }
 
     /// Sets the resizability of the enclosing window.
+    ///
+    /// This modifier controls whether the user can resize the enclosing window,
+    /// whereas ``WindowGroup/windowResizability(_:)`` controls how SwiftCrossUI
+    /// determines the bounds within which the window can resized. The only time
+    /// that ``WindowGroup/windowResizability(_:)`` can disable interactive resizing
+    /// is when the window's content has a fixed size and the
+    /// ``WindowResizability`` is ``WindowResizability/contentSize``.
     public func windowResizeBehavior(_ behavior: WindowInteractionBehavior) -> some View {
         preference(key: \.windowResizeBehavior, value: behavior)
     }
