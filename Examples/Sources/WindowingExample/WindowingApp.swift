@@ -176,20 +176,12 @@ struct WindowingApp: App {
                         TextField("My window", text: $title)
                     }
 
-                    Button(resizable ? "Disable resizing" : "Enable resizing") {
-                        resizable.toggle()
-                    }
-                    .windowResizeBehavior(resizable ? .enabled : .disabled)
-
-                    Button(closable ? "Disable closing" : "Enable closing") {
-                        closable.toggle()
-                    }
-                    .windowDismissBehavior(closable ? .enabled : .disabled)
-
-                    Button(minimizable ? "Disable minimizing" : "Enable minimizing") {
-                        minimizable.toggle()
-                    }
-                    .windowMinimizeBehavior(minimizable ? .enabled : .disabled)
+                    Toggle("Enable resizing", isOn: $resizable)
+                        .windowResizeBehavior(resizable ? .enabled : .disabled)
+                    Toggle("Enable closing", isOn: $closable)
+                        .windowDismissBehavior(closable ? .enabled : .disabled)
+                    Toggle("Enable minimizing", isOn: $minimizable)
+                        .preferredWindowMinimizeBehavior(minimizable ? .enabled : .disabled)
 
                     Image(Bundle.module.bundleURL.appendingPathComponent("Banner.png"))
                         .resizable()
@@ -233,6 +225,7 @@ struct WindowingApp: App {
                         .padding(10)
 
                     Toggle("Enforce max size", isOn: $enforceMaxSize)
+                        .toggleStyle(.checkbox)
                 }
             }
             .defaultSize(width: 200, height: 200)

@@ -9,7 +9,7 @@ public struct PreferenceValues: Sendable {
         presentationBackground: nil,
         interactiveDismissDisabled: nil,
         windowDismissBehavior: nil,
-        windowMinimizeBehavior: nil,
+        preferredWindowMinimizeBehavior: nil,
         windowResizeBehavior: nil
     )
 
@@ -34,7 +34,7 @@ public struct PreferenceValues: Sendable {
     public var windowDismissBehavior: WindowInteractionBehavior?
 
     /// Controls whether the user can minimize the enclosing window.
-    public var windowMinimizeBehavior: WindowInteractionBehavior?
+    public var preferredWindowMinimizeBehavior: WindowInteractionBehavior?
 
     /// Controls whether the user can resize the enclosing window.
     public var windowResizeBehavior: WindowInteractionBehavior?
@@ -47,7 +47,7 @@ public struct PreferenceValues: Sendable {
         presentationBackground: Color?,
         interactiveDismissDisabled: Bool?,
         windowDismissBehavior: WindowInteractionBehavior?,
-        windowMinimizeBehavior: WindowInteractionBehavior?,
+        preferredWindowMinimizeBehavior: WindowInteractionBehavior?,
         windowResizeBehavior: WindowInteractionBehavior?
     ) {
         self.onOpenURL = onOpenURL
@@ -57,7 +57,7 @@ public struct PreferenceValues: Sendable {
         self.presentationBackground = presentationBackground
         self.interactiveDismissDisabled = interactiveDismissDisabled
         self.windowDismissBehavior = windowDismissBehavior
-        self.windowMinimizeBehavior = windowMinimizeBehavior
+        self.preferredWindowMinimizeBehavior = preferredWindowMinimizeBehavior
         self.windowResizeBehavior = windowResizeBehavior
     }
 
@@ -81,8 +81,9 @@ public struct PreferenceValues: Sendable {
             }.first
         presentationBackground = children.compactMap { $0.presentationBackground }.first
         interactiveDismissDisabled = children.compactMap { $0.interactiveDismissDisabled }.first
+
         windowDismissBehavior = children.compactMap { $0.windowDismissBehavior }.first
-        windowMinimizeBehavior = children.compactMap { $0.windowMinimizeBehavior }.first
+        preferredWindowMinimizeBehavior = children.compactMap { $0.preferredWindowMinimizeBehavior }.first
         windowResizeBehavior = children.compactMap { $0.windowResizeBehavior }.first
     }
 }

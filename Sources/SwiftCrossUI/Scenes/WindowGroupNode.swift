@@ -238,7 +238,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         backend.setBehaviors(
             ofWindow: window,
             closable: finalContentResult.preferences.windowDismissBehavior != .disabled,
-            minimizable: finalContentResult.preferences.windowMinimizeBehavior != .disabled,
+            minimizable: finalContentResult.preferences.preferredWindowMinimizeBehavior != .disabled,
             resizable: finalContentResult.preferences.windowResizeBehavior != .disabled
         )
 

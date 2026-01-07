@@ -8,8 +8,12 @@ extension View {
     }
 
     /// Sets the minimizability of the enclosing window.
-    public func windowMinimizeBehavior(_ behavior: WindowInteractionBehavior) -> some View {
-        preference(key: \.windowMinimizeBehavior, value: behavior)
+    ///
+    /// - Important: This isn't supported on GtkBackend or Gtk3Backend.
+    public func preferredWindowMinimizeBehavior(
+        _ behavior: WindowInteractionBehavior
+    ) -> some View {
+        preference(key: \.preferredWindowMinimizeBehavior, value: behavior)
     }
 
     /// Sets the resizability of the enclosing window.
