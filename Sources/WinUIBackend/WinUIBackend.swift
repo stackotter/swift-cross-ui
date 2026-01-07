@@ -276,6 +276,8 @@ public final class WinUIBackend: AppBackend {
                         onChange(widget.isChecked)
                     }
                     return widget
+                case .separator:
+                    return MenuFlyoutSeparator()
                 case .submenu(let submenu):
                     let widget = MenuFlyoutSubItem()
                     widget.text = submenu.label
