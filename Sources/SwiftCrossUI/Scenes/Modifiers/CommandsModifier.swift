@@ -1,6 +1,6 @@
 extension Scene {
     public func commands(@CommandsBuilder _ commands: () -> Commands) -> some Scene {
-        CommandsModifier(content: self, newCommands: commands())
+        CommandsModifier(content: self, commands: commands())
     }
 }
 
@@ -10,15 +10,16 @@ struct CommandsModifier<Content: Scene>: Scene {
     var content: Content
     var commands: Commands
 
-    init(content: Content, newCommands: Commands) {
+    init(content: Content, commands: Commands) {
         self.content = content
-        self.commands = content.commands.overlayed(with: newCommands)
+        self.commands = commands
     }
 }
 
 final class CommandsModifierNode<Content: Scene>: SceneGraphNode {
     typealias NodeScene = CommandsModifier<Content>
 
+    var commands: Commands
     var contentNode: Content.Node
 
     init<Backend: AppBackend>(
@@ -26,7 +27,8 @@ final class CommandsModifierNode<Content: Scene>: SceneGraphNode {
         backend: Backend,
         environment: EnvironmentValues
     ) {
-        contentNode = Content.Node(
+        self.commands = scene.commands
+        self.contentNode = Content.Node(
             from: scene.content,
             backend: backend,
             environment: environment
@@ -37,11 +39,17 @@ final class CommandsModifierNode<Content: Scene>: SceneGraphNode {
         _ newScene: NodeScene?,
         backend: Backend,
         environment: EnvironmentValues
-    ) {
-        contentNode.update(
+    ) -> SceneUpdateResult {
+        if let newScene {
+            self.commands = newScene.commands
+        }
+
+        var result = contentNode.update(
             newScene?.content,
             backend: backend,
             environment: environment
         )
+        result.preferences.commands = result.preferences.commands.overlayed(with: commands)
+        return result
     }
 }

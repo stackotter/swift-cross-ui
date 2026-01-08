@@ -36,8 +36,6 @@ struct SceneEnvironmentModifier<Content: Scene>: Scene {
     var content: Content
     var modification: (EnvironmentValues) -> EnvironmentValues
 
-    var commands: Commands { content.commands }
-
     init(
         _ content: Content,
         modification: @escaping (EnvironmentValues) -> EnvironmentValues
@@ -59,7 +57,7 @@ final class SceneEnvironmentModifierNode<Content: Scene>: SceneGraphNode {
         environment: EnvironmentValues
     ) {
         self.modification = scene.modification
-        contentNode = Content.Node(
+        self.contentNode = Content.Node(
             from: scene.content,
             backend: backend,
             environment: modification(environment)
@@ -70,12 +68,12 @@ final class SceneEnvironmentModifierNode<Content: Scene>: SceneGraphNode {
         _ newScene: NodeScene?,
         backend: Backend,
         environment: EnvironmentValues
-    ) {
+    ) -> SceneUpdateResult {
         if let newScene {
             self.modification = newScene.modification
         }
 
-        contentNode.update(
+        return contentNode.update(
             newScene?.content,
             backend: backend,
             environment: modification(environment)
