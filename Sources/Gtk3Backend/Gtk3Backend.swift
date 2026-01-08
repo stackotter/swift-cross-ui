@@ -233,11 +233,11 @@ public final class Gtk3Backend: AppBackend {
 
         for (i, item) in menu.items.enumerated() {
             let actionName =
-            if let actionPrefix {
-                "\(actionPrefix)_\(i)"
-            } else {
-                "\(i)"
-            }
+                if let actionPrefix {
+                    "\(actionPrefix)_\(i)"
+                } else {
+                    "\(i)"
+                }
 
             switch item {
                 case .button(let label, let action):

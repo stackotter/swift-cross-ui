@@ -16,8 +16,10 @@ extension UIKitBackend {
         label: String,
         identifier: UIMenu.Identifier? = nil
     ) -> UIMenu {
-        var children: [UIMenuElement] = []
-        for item in content.items {
+        var currentSection: [UIMenuElement] = []
+        var previousSections: [[UIMenuElement]] = []
+
+        for (i, item) in content.items.enumerated() {
             switch item {
                 case .button(let label, let action):
                     let uiAction = if let action {
@@ -25,17 +27,32 @@ extension UIKitBackend {
                     } else {
                         UIAction(title: label, attributes: .disabled) { _ in }
                     }
-                    children.append(uiAction)
+                    currentSection.append(uiAction)
                 case .toggle(let label, let value, let onChange):
-                    children.append(
+                    currentSection.append(
                         UIAction(title: label, state: value ? .on : .off) { action in
                             onChange(!action.state.isOn)
                         }
                     )
                 case .separator:
-                    children = [UIMenu(title: "", options: .displayInline, children: children)]
+                    // UIKit doesn't have explicit separators per se, but instead deals with
+                    // sections (actually quite similar to what you can do in SwiftUI with the
+                    // Section view). It'll automatically draw separators between sections.
+                    previousSections.append(currentSection)
+                    currentSection = []
                 case .submenu(let submenu):
-                    children.append(buildMenu(content: submenu.content, label: submenu.label))
+                    currentSection.append(buildMenu(content: submenu.content, label: submenu.label))
+            }
+        }
+
+        let children = if previousSections.isEmpty {
+            // There are no dividers; just return the current section to keep the menu tree flat.
+            currentSection
+        } else {
+            // Create a list of submenus, each with the displayInline option set so that they
+            // display as sections with separators.
+            (previousSections + [currentSection]).map {
+                UIMenu(title: "", options: .displayInline, children: $0)
             }
         }
 
