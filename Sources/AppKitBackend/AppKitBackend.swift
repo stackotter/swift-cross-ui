@@ -159,7 +159,7 @@ public final class AppKitBackend: AppBackend {
                         keyEquivalent: ""
                     )
                     renderedItem.isOn = value
-                    
+
                     let wrappedAction = Action {
                         onChange(!renderedItem.isOn)
                     }

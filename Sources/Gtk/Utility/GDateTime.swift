@@ -14,8 +14,8 @@ public class GDateTime {
     }
 
     public convenience init?(unixEpoch: Int) {
-        // g_date_time_new_from_unix_utc_usec appears to be too new
-        self.init(g_date_time_new_from_unix_utc(gint64(unixEpoch)))
+        // g_date_time_new_from_unix_local_usec appears to be too new
+        self.init(g_date_time_new_from_unix_local(gint64(unixEpoch)))
     }
 
     public convenience init?(
@@ -40,7 +40,8 @@ public class GDateTime {
         )
     }
 
-    /// Create a UTC-based GDateTime from a Foundation Date, discarding fractional seconds.
+    /// Create a GDateTime in the user's current timezone from a Foundation Date, discarding
+    /// fractional seconds.
     public convenience init!(_ date: Date) {
         self.init(unixEpoch: Int(date.timeIntervalSince1970))
     }
