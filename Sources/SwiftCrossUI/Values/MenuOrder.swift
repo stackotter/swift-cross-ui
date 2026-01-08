@@ -3,6 +3,6 @@ public enum MenuOrder: Hashable, Sendable {
     case automatic
     /// Sorts items so the first item is closest to where the user opened the menu from.
     case priority
-    /// Sorts items in the order given.
+    /// Sorts items in the order given (top to bottom).
     case fixed
 }
