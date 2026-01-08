@@ -2,17 +2,17 @@
 @MainActor
 final class WindowReference<Content: View> {
     /// The window info.
-    var info: WindowInfo<Content>
+    private var info: WindowInfo<Content>
     /// The view graph of the window's root view.
-    private var viewGraph: ViewGraph<Content>
+    private let viewGraph: ViewGraph<Content>
     /// The window being rendered in.
-    private var window: Any
+    private let window: Any
     /// `false` after the first scene update.
     private var isFirstUpdate = true
     /// The environment most recently provided by this node's parent scene.
     private var parentEnvironment: EnvironmentValues
     /// The container used to center the root view in the window.
-    private var containerWidget: AnyWidget
+    private let containerWidget: AnyWidget
 
     /// - Parameters:
     ///   - onClose: The action to perform when the window is closed. Should
