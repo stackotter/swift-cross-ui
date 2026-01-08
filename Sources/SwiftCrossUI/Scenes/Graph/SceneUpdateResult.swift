@@ -18,6 +18,6 @@ public struct SceneUpdateResult: Sendable {
     /// Creates the layout result of a leaf scene (one with no children and no
     /// special preference behaviour). Uses ``ScenePreferenceValues/default``.
     public static func leafScene() -> Self {
-        SceneUpdateResult(preferences: .init())
+        SceneUpdateResult(preferences: .default)
     }
 }
