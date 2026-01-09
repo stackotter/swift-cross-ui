@@ -19,6 +19,7 @@ struct ControlsApp: App {
     @State var enabled = true
     @State var date = Date()
     @State var datePickerStyle: DatePickerStyle? = .automatic
+    @State var menuToggleState = false
 
     @Environment(\.supportedDatePickerStyles) var supportedDatePickerStyles: [DatePickerStyle]
 
@@ -34,7 +35,20 @@ struct ControlsApp: App {
                             }
                             Text("Count: \(count)")
                         }
-                        .padding(.bottom, 20)
+
+                        VStack {
+                            Text("Menu button")
+                            Menu("Menu") {
+                                Button("Button item") {
+                                    print("Button item clicked")
+                                }
+                                Toggle("Toggle item", isOn: $menuToggleState)
+                                Menu("Submenu") {
+                                    Text("Text item 1")
+                                    Text("Text item 2")
+                                }
+                            }
+                        }
 
                         #if !canImport(UIKitBackend)
                             VStack {
@@ -43,7 +57,6 @@ struct ControlsApp: App {
                                     .toggleStyle(.button)
                                 Text("Currently enabled: \(exampleButtonState)")
                             }
-                            .padding(.bottom, 20)
                         #endif
 
                         VStack {

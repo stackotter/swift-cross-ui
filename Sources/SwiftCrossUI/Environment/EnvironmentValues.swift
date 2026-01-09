@@ -98,6 +98,9 @@ public struct EnvironmentValues {
     /// Whether the text should be selectable. Set by ``View/textSelectionEnabled(_:)``.
     public var isTextSelectionEnabled: Bool
 
+    /// The menu ordering to use.
+    public var menuOrder: MenuOrder
+
     /// Backing storage for extensible subscript
     private var extraValues: [ObjectIdentifier: Any]
 
@@ -238,6 +241,7 @@ public struct EnvironmentValues {
         isEnabled = true
         scrollDismissesKeyboardMode = .automatic
         isTextSelectionEnabled = false
+        menuOrder = .automatic
         allowLayoutCaching = false
         calendar = .current
         timeZone = .current

@@ -437,10 +437,13 @@ class ForEachViewChildren<
     }
 }
 
-
 extension ForEach where ID == Int {
     /// Creates a view that creates child views on demand based on a collection of data.
-    @available(*, deprecated, renamed: "init(_:id:_:)", message: "ForEach requires an explicit 'id' parameter for non-Identifiable elements to correctly persist state across view updates")
+    @available(
+        *, deprecated, renamed: "init(_:id:_:)",
+        message:
+            "ForEach requires an explicit 'id' parameter for non-Identifiable elements to correctly persist state across view updates"
+    )
     @_disfavoredOverload
     public init(
         _ elements: Items,
@@ -457,7 +460,8 @@ extension ForEach where Child == [MenuItem], ID == Int {
     @available(
         *,
         deprecated,
-        message: "ForEach requires an explicit 'id' parameter for non-Identifiable elements to correctly persist state across view updates"
+        message:
+            "ForEach requires an explicit 'id' parameter for non-Identifiable elements to correctly persist state across view updates"
     )
     @_disfavoredOverload
     public init(

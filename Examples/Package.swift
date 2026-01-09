@@ -76,10 +76,15 @@ let package = Package(
         .executableTarget(
             name: "HoverExample",
             dependencies: exampleDependencies
-		),
-		.executableTarget(
+        ),
+        .executableTarget(
             name: "ForEachExample",
             dependencies: exampleDependencies
         ),
+        .executableTarget(
+            name: "AdvancedCustomizationExample",
+            dependencies: exampleDependencies,
+            resources: [.copy("Banner.png")]
+        )
     ]
 )
