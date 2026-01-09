@@ -74,11 +74,16 @@ extension UIKitBackend {
     public typealias Window = UIWindow
 
     public func createWindow(withDefaultSize _: SIMD2<Int>?) -> Window {
-        var window: UIWindow
+        let window: UIWindow
 
         if !Self.hasReturnedAWindow {
+            if let mainWindow = Self.mainWindow {
+                window = mainWindow
+            } else {
+                window = UIWindow()
+                Self.mainWindow = window
+            }
             Self.hasReturnedAWindow = true
-            window = Self.mainWindow ?? UIWindow()
         } else {
             window = UIWindow()
         }
