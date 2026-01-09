@@ -16,6 +16,7 @@ public protocol UIViewControllerRepresentable: View where Content == Never {
     associatedtype Coordinator = Void
 
     /// Create the initial UIViewController instance.
+    @MainActor
     func makeUIViewController(context: Context) -> UIViewControllerType
 
     /// Update the view with new values.
@@ -23,6 +24,7 @@ public protocol UIViewControllerRepresentable: View where Content == Never {
     /// - Parameters:
     ///   - uiViewController: The controller to update.
     ///   - context: The context, including the coordinator and environment values.
+    @MainActor
     func updateUIViewController(
         _ uiViewController: UIViewControllerType,
         context: Context
@@ -32,6 +34,7 @@ public protocol UIViewControllerRepresentable: View where Content == Never {
     ///
     /// The coordinator is used when the controller needs to communicate changes to the rest of
     /// the view hierarchy (i.e. through bindings).
+    @MainActor
     func makeCoordinator() -> Coordinator
 
     /// Compute the controller's view's preferred size for the given proposal.
@@ -44,6 +47,7 @@ public protocol UIViewControllerRepresentable: View where Content == Never {
     ///   - uiViewController: The controller being queried for its view's preferred size.
     ///   - context: The context, including the coordinator and environment values.
     /// - Returns: The view's preferred size.
+    @MainActor
     func sizeThatFits(
         _ proposal: ProposedViewSize,
         uiViewController: UIViewControllerType,

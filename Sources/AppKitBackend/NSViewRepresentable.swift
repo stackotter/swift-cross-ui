@@ -49,6 +49,7 @@ public protocol NSViewRepresentable: View where Content == Never {
     ///   - nsView: The view being queried for its preferred size.
     ///   - context: The context, including the coordinator and environment values.
     /// - Returns: The view's preferred size.
+    @MainActor
     func sizeThatFits(
         _ proposal: ProposedViewSize,
         nsView: NSViewType,

@@ -48,6 +48,7 @@ public protocol Gtk3WidgetRepresentable: View where Content == Never {
     ///   - gtkWidget: The widget being queried for its preferred size.
     ///   - context: The context, including the coordinator and environment values.
     /// - Returns: The widget's preferred size.
+    @MainActor
     func sizeThatFits(
         _ proposal: ProposedViewSize,
         gtkWidget: Gtk3WidgetType,

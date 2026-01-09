@@ -53,6 +53,7 @@ public protocol WinUIElementRepresentable: View where Content == Never {
     ///   - winUIElement: The element being queried for its preferred size.
     ///   - context: The context, including the coordinator and environment values.
     /// - Returns: The element's preferred size.
+    @MainActor
     func sizeThatFits(
         _ proposal: ProposedViewSize,
         winUIElement: WinUIElementType,
