@@ -159,25 +159,9 @@ extension Menu: TypeSafeView {
                 // We can assume that computeLayout has already run, so children.menu
                 // will already be correctly initialized.
                 let content = resolve().content
-                let menu = children.menu! as! Backend.Menu
                 backend.updatePopoverMenu(
-                    menu,
+                    children.menu! as! Backend.Menu,
                     content: content,
-                    environment: environment
-                )
-
-                // Even though we update the button in computeLayout (in order
-                // for naturalSize to work), we appear to have to update it again
-                // in commit; otherwise UIKitBackend users get menu buttons that
-                // aren't poppable until the second time that the view gets updated.
-                // They also get menu button menus with toggles that only toggle every
-                // second time. I'm not sure why any of that happens.
-                // TODO: Investigate why the following is needed. It may point us to
-                //   some layout system/state management issues.
-                backend.updateButton(
-                    widget,
-                    label: label,
-                    menu: menu,
                     environment: environment
                 )
         }
