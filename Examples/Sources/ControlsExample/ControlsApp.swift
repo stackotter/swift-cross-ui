@@ -88,7 +88,7 @@ struct ControlsApp: App {
                         VStack {
                             Toggle(
                                 "Enable ProgressView resizability", isOn: $isProgressViewResizable)
-                            Slider($progressViewSize, minimum: 10, maximum: 100)
+                            Slider(value: $progressViewSize, in: 10...100)
                             ProgressView()
                                 .resizable(isProgressViewResizable)
                                 .frame(width: progressViewSize, height: progressViewSize)
