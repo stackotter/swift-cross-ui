@@ -19,7 +19,7 @@ extension UIKitBackend {
         var currentSection: [UIMenuElement] = []
         var previousSections: [[UIMenuElement]] = []
 
-        for (i, item) in content.items.enumerated() {
+        for item in content.items {
             switch item {
                 case .button(let label, let action):
                     let uiAction = if let action {
