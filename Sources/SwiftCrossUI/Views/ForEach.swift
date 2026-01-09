@@ -499,56 +499,6 @@ extension ForEach where Items.Element: Identifiable, Child == [MenuItem], ID == 
     }
 }
 
-extension ForEach where Items == [Int], ID == Items.Element {
-    /// Creates a view that creates child views on demand based on a given ClosedRange
-    @_disfavoredOverload
-    public init(
-        _ range: ClosedRange<Int>,
-        child: @escaping (Int) -> Child
-    ) {
-        self.elements = Array(range)
-        self.child = child
-        self.idKeyPath = \.self
-    }
-
-    /// Creates a view that creates child views on demand based on a given Range
-    @_disfavoredOverload
-    public init(
-        _ range: Range<Int>,
-        child: @escaping (Int) -> Child
-    ) {
-        self.elements = Array(range)
-        self.child = child
-        self.idKeyPath = \.self
-    }
-}
-
-extension ForEach where Items == [Int] {
-    /// Creates a view that creates child views on demand based on a given ClosedRange
-    @_disfavoredOverload
-    public init(
-        _ range: ClosedRange<Int>,
-        id keyPath: KeyPath<Items.Element, ID>,
-        child: @escaping (Int) -> Child
-    ) {
-        self.elements = Array(range)
-        self.child = child
-        self.idKeyPath = keyPath
-    }
-
-    /// Creates a view that creates child views on demand based on a given Range
-    @_disfavoredOverload
-    public init(
-        _ range: Range<Int>,
-        id keyPath: KeyPath<Items.Element, ID>,
-        child: @escaping (Int) -> Child
-    ) {
-        self.elements = Array(range)
-        self.child = child
-        self.idKeyPath = keyPath
-    }
-}
-
 extension ForEach where Items.Element: Identifiable, ID == Items.Element.ID {
     /// Creates a view that creates child views on demand based on a collection of identifiable data.
     public init(
