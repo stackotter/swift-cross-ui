@@ -437,10 +437,13 @@ class ForEachViewChildren<
     }
 }
 
-
 extension ForEach where ID == Int {
     /// Creates a view that creates child views on demand based on a collection of data.
-    @available(*, deprecated, renamed: "init(_:id:_:)", message: "ForEach requires an explicit 'id' parameter for non-Identifiable elements to correctly persist state across view updates")
+    @available(
+        *, deprecated, renamed: "init(_:id:_:)",
+        message:
+            "ForEach requires an explicit 'id' parameter for non-Identifiable elements to correctly persist state across view updates"
+    )
     @_disfavoredOverload
     public init(
         _ elements: Items,
@@ -457,7 +460,8 @@ extension ForEach where Child == [MenuItem], ID == Int {
     @available(
         *,
         deprecated,
-        message: "ForEach requires an explicit 'id' parameter for non-Identifiable elements to correctly persist state across view updates"
+        message:
+            "ForEach requires an explicit 'id' parameter for non-Identifiable elements to correctly persist state across view updates"
     )
     @_disfavoredOverload
     public init(
@@ -492,56 +496,6 @@ extension ForEach where Items.Element: Identifiable, Child == [MenuItem], ID == 
         self.elements = elements
         self.child = child
         self.idKeyPath = \.id
-    }
-}
-
-extension ForEach where Items == [Int], ID == Items.Element {
-    /// Creates a view that creates child views on demand based on a given ClosedRange
-    @_disfavoredOverload
-    public init(
-        _ range: ClosedRange<Int>,
-        child: @escaping (Int) -> Child
-    ) {
-        self.elements = Array(range)
-        self.child = child
-        self.idKeyPath = \.self
-    }
-
-    /// Creates a view that creates child views on demand based on a given Range
-    @_disfavoredOverload
-    public init(
-        _ range: Range<Int>,
-        child: @escaping (Int) -> Child
-    ) {
-        self.elements = Array(range)
-        self.child = child
-        self.idKeyPath = \.self
-    }
-}
-
-extension ForEach where Items == [Int] {
-    /// Creates a view that creates child views on demand based on a given ClosedRange
-    @_disfavoredOverload
-    public init(
-        _ range: ClosedRange<Int>,
-        id keyPath: KeyPath<Items.Element, ID>,
-        child: @escaping (Int) -> Child
-    ) {
-        self.elements = Array(range)
-        self.child = child
-        self.idKeyPath = keyPath
-    }
-
-    /// Creates a view that creates child views on demand based on a given Range
-    @_disfavoredOverload
-    public init(
-        _ range: Range<Int>,
-        id keyPath: KeyPath<Items.Element, ID>,
-        child: @escaping (Int) -> Child
-    ) {
-        self.elements = Array(range)
-        self.child = child
-        self.idKeyPath = keyPath
     }
 }
 
