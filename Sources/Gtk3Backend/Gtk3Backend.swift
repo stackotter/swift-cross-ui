@@ -254,7 +254,10 @@ public final class Gtk3Backend: AppBackend {
                         GSimpleAction(name: actionName, state: value, action: onChange)
                     )
 
-                    model.appendItem(label: label, actionName: "\(actionNamespace).\(actionName)")
+                    currentSection.appendItem(
+                        label: label,
+                        actionName: "\(actionNamespace).\(actionName)"
+                    )
                 case .separator:
                     // GTK[3] doesn't have explicit separators per se, but instead deals with
                     // sections (actually quite similar to what you can do in SwiftUI with the
