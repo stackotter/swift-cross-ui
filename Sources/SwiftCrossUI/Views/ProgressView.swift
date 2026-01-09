@@ -132,21 +132,20 @@ struct ProgressSpinnerView: ElementaryView {
             return ViewLayoutResult.leafView(size: ViewSize(naturalSize))
         }
 
-        let minimumDimension: Double
+        let dimension: Double
 
-        if let proposedWidth = proposedSize.width,
-            let proposedHeight = proposedSize.height
-        {
-            minimumDimension = max(min(proposedWidth, proposedHeight), 0)
+        if let proposedWidth = proposedSize.width, let proposedHeight = proposedSize.height {
+            dimension = min(proposedWidth, proposedHeight)
+        } else if let proposedWidth = proposedSize.width {
+            dimension = proposedWidth
+        } else if let proposedHeight = proposedSize.height {
+            dimension = proposedHeight
         } else {
-            minimumDimension = max(
-                proposedSize.width ?? proposedSize.height ?? 0,
-                Double(min(naturalSize.x, naturalSize.y))
-            )
+            dimension = Double(min(naturalSize.x, naturalSize.y))
         }
 
         return ViewLayoutResult.leafView(
-            size: ViewSize(minimumDimension, minimumDimension)
+            size: ViewSize(dimension, dimension)
         )
     }
 
