@@ -9,7 +9,7 @@ import WinUIInterop
 import WindowsFoundation
 
 // Many force tries are required for the WinUI backend but we don't really want them
-// anywhere else so just disable them for this file.
+// anywhere else so just disable the lint rule at a file level.
 // swiftlint:disable force_try
 
 extension App {
@@ -344,8 +344,8 @@ public final class WinUIBackend: AppBackend {
     }
 
     public func setIncomingURLHandler(to action: @escaping (URL) -> Void) {
-        print("Implement set incoming url handler")
-        // TODO
+        // TODO: Implement WinUIBackend setIncomingURLHandler
+        logger.warning("\(#function) not implemented")
     }
 
     public func createContainer() -> Widget {
@@ -423,6 +423,12 @@ public final class WinUIBackend: AppBackend {
     }
 
     public func naturalSize(of widget: Widget) -> SIMD2<Int> {
+        Self.naturalSize(of: widget)
+    }
+
+    /// A static version of `naturalSize(of:)` for convenience. Used by
+    /// WinUIElementRepresentable.
+    public nonisolated static func naturalSize(of widget: Widget) -> SIMD2<Int> {
         let allocation = WindowsFoundation.Size(
             width: .infinity,
             height: .infinity
@@ -497,14 +503,25 @@ public final class WinUIBackend: AppBackend {
         try! widget.measure(allocation)
 
         let computedSize = widget.desiredSize
+        let adjustment = sizeCorrection(for: widget)
 
-        // Some elements don't get their default padding/border applied until
-        // they've been rendered. For such elements we have to compute out own
-        // adjustment factors based off values taken from WinUI's default theme.
-        // We can detect such elements because their padding property will be set
-        // to zero until first render (and atm WinUIBackend doesn't set this padding
-        // property itself so this is a safe detection method).
+        let out = SIMD2(
+            Int(computedSize.width) + adjustment.x,
+            Int(computedSize.height) + adjustment.y
+        )
+
+        return out
+    }
+
+    /// Some elements don't get their default padding/border applied until
+    /// they've been rendered. For such elements we have to compute our own
+    /// adjustment factors based off values taken from WinUI's default theme.
+    /// We can detect such elements because their padding property will be set
+    /// to zero until first render (and atm WinUIBackend doesn't set this padding
+    /// property itself so this is a safe detection method).
+    public nonisolated static func sizeCorrection(for widget: Widget) -> SIMD2<Int> {
         let adjustment: SIMD2<Int>
+        let noPadding = Thickness(left: 0, top: 0, right: 0, bottom: 0)
         if let button = widget as? WinUI.Button, button.padding == noPadding {
             // WinUI buttons have padding, but the `padding` property returns
             // zero until the button has been rendered at least once. And even
@@ -548,13 +565,7 @@ public final class WinUIBackend: AppBackend {
         } else {
             adjustment = .zero
         }
-
-        let out = SIMD2(
-            Int(computedSize.width) + adjustment.x,
-            Int(computedSize.height) + adjustment.y
-        )
-
-        return out
+        return adjustment
     }
 
     public func setSize(of widget: Widget, to size: SIMD2<Int>) {

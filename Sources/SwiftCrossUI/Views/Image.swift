@@ -46,7 +46,7 @@ extension Image: View {
 extension Image: TypeSafeView {
     func layoutableChildren<Backend: AppBackend>(
         backend: Backend,
-        children: _ImageChildren
+        children: ImageChildren
     ) -> [LayoutSystem.LayoutableChild] {
         []
     }
@@ -55,12 +55,12 @@ extension Image: TypeSafeView {
         backend: Backend,
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
-    ) -> _ImageChildren {
-        _ImageChildren(backend: backend)
+    ) -> ImageChildren {
+        ImageChildren(backend: backend)
     }
 
     func asWidget<Backend: AppBackend>(
-        _ children: _ImageChildren,
+        _ children: ImageChildren,
         backend: Backend
     ) -> Backend.Widget {
         children.container.into()
@@ -68,7 +68,7 @@ extension Image: TypeSafeView {
 
     func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: _ImageChildren,
+        children: ImageChildren,
         proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
         backend: Backend
@@ -118,7 +118,7 @@ extension Image: TypeSafeView {
 
     func commit<Backend: AppBackend>(
         _ widget: Backend.Widget,
-        children: _ImageChildren,
+        children: ImageChildren,
         layout: ViewLayoutResult,
         environment: EnvironmentValues,
         backend: Backend
@@ -159,12 +159,14 @@ extension Image: TypeSafeView {
     }
 }
 
-class _ImageChildren: ViewGraphNodeChildren {
+/// Image's persistent storage. Only exposed with the `package` access level
+/// in order for backends to implement the `Image.inspect(_:_:)` modifier.
+package class ImageChildren: ViewGraphNodeChildren {
     var cachedImageSource: Image.Source? = nil
     var cachedImage: ImageFormats.Image<RGBA>? = nil
     var cachedImageDisplaySize: SIMD2<Int> = .zero
     var container: AnyWidget
-    var imageWidget: AnyWidget
+    package var imageWidget: AnyWidget
     var imageChanged = false
     var isContainerEmpty = true
     var lastScaleFactor: Double = 1
@@ -174,6 +176,6 @@ class _ImageChildren: ViewGraphNodeChildren {
         imageWidget = AnyWidget(backend.createImageView())
     }
 
-    var widgets: [AnyWidget] = []
-    var erasedNodes: [ErasedViewGraphNode] = []
+    package var widgets: [AnyWidget] = []
+    package var erasedNodes: [ErasedViewGraphNode] = []
 }

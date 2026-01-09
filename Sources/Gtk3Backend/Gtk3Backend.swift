@@ -242,7 +242,7 @@ public final class Gtk3Backend: AppBackend {
             switch item {
                 case .button(let label, let action):
                     if let action {
-                        actionMap.addAction(named: actionName, action: action)
+                        actionMap.addAction(GSimpleAction(name: actionName, action: action))
                     }
 
                     currentSection.appendItem(
@@ -250,8 +250,11 @@ public final class Gtk3Backend: AppBackend {
                         actionName: "\(actionNamespace).\(actionName)"
                     )
                 case .toggle(let label, let value, let onChange):
-                    // FIXME: Implement
-                    logger.warning("menu toggles not implemented")
+                    actionMap.addAction(
+                        GSimpleAction(name: actionName, state: value, action: onChange)
+                    )
+
+                    model.appendItem(label: label, actionName: "\(actionNamespace).\(actionName)")
                 case .separator:
                     // GTK[3] doesn't have explicit separators per se, but instead deals with
                     // sections (actually quite similar to what you can do in SwiftUI with the

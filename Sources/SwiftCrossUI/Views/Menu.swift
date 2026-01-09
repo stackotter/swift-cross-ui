@@ -81,8 +81,35 @@ extension Menu: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        // TODO: Store popped menu in view graph node children so that we can
-        //   continue updating it even once it's open.
+        // TODO: Look into ways to predict a button's natural size without
+        //   updating its content so that computeLayout can be a bit more of
+        //   a pure function.
+
+        // Update the button before measuring its natural size
+        switch backend.menuImplementationStyle {
+            case .dynamicPopover:
+                // Our menu button action implementation needs to know the size
+                // of the button, but we don't have that yet, so just update it
+                // with an empty action and fix it in commit.
+                backend.updateButton(
+                    widget,
+                    label: label,
+                    environment: environment,
+                    action: {}
+                )
+            case .menuButton:
+                let menu =
+                    children.menu.flatMap { $0 as? Backend.Menu }
+                    ?? backend.createPopoverMenu()
+                children.menu = menu
+                backend.updateButton(
+                    widget,
+                    label: label,
+                    menu: menu,
+                    environment: environment
+                )
+        }
+
         var size = backend.naturalSize(of: widget)
         size.x = buttonWidth ?? size.x
         return ViewLayoutResult.leafView(size: ViewSize(size))
@@ -98,7 +125,6 @@ extension Menu: TypeSafeView {
         let size = layout.size
         backend.setSize(of: widget, to: size.vector)
 
-        let content = resolve().content
         switch backend.menuImplementationStyle {
             case .dynamicPopover:
                 backend.updateButton(
@@ -106,6 +132,7 @@ extension Menu: TypeSafeView {
                     label: label,
                     environment: environment,
                     action: {
+                        let content = resolve().content
                         let menu = backend.createPopoverMenu()
                         children.menu = menu
                         backend.updatePopoverMenu(
@@ -115,7 +142,7 @@ extension Menu: TypeSafeView {
                         )
                         backend.showPopoverMenu(
                             menu,
-                            at: SIMD2(0, LayoutSystem.roundSize(size.width) + 2),
+                            at: SIMD2(0, LayoutSystem.roundSize(size.height) + 2),
                             relativeTo: widget
                         ) {
                             children.menu = nil
@@ -123,20 +150,39 @@ extension Menu: TypeSafeView {
                     }
                 )
 
-                children.updateMenuIfShown(
-                    content: content,
-                    environment: environment,
-                    backend: backend
-                )
+                if let menu = children.menu {
+                    let content = resolve().content
+                    backend.updatePopoverMenu(
+                        menu as! Backend.Menu,
+                        content: content,
+                        environment: environment
+                    )
+                }
             case .menuButton:
-                let menu = children.menu as? Backend.Menu ?? backend.createPopoverMenu()
-                children.menu = menu
+                // We can assume that computeLayout has already run, so children.menu
+                // will already be correctly initialized.
+                let content = resolve().content
+                let menu = children.menu! as! Backend.Menu
                 backend.updatePopoverMenu(
                     menu,
                     content: content,
                     environment: environment
                 )
-                backend.updateButton(widget, label: label, menu: menu, environment: environment)
+
+                // Even though we update the button in computeLayout (in order
+                // for naturalSize to work), we appear to have to update it again
+                // in commit; otherwise UIKitBackend users get menu buttons that
+                // aren't poppable until the second time that the view gets updated.
+                // They also get menu button menus with toggles that only toggle every
+                // second time. I'm not sure why any of that happens.
+                // TODO: Investigate why the following is needed. It may point us to
+                //   some layout system/state management issues.
+                backend.updateButton(
+                    widget,
+                    label: label,
+                    menu: menu,
+                    environment: environment
+                )
         }
     }
 
@@ -155,19 +201,4 @@ class MenuStorage: ViewGraphNodeChildren {
     var erasedNodes: [ErasedViewGraphNode] = []
 
     init() {}
-
-    func updateMenuIfShown<Backend: AppBackend>(
-        content: ResolvedMenu,
-        environment: EnvironmentValues,
-        backend: Backend
-    ) {
-        guard let menu else {
-            return
-        }
-        backend.updatePopoverMenu(
-            menu as! Backend.Menu,
-            content: content,
-            environment: environment
-        )
-    }
 }

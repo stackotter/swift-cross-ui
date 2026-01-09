@@ -11,10 +11,10 @@ on:
 
 jobs:
   macos:
-    runs-on: macos-14
-    steps: # For swift-testing (everything else works with 5.10)
-    - name: Force Xcode 16.2
-      run: sudo xcode-select -switch /Applications/Xcode_16.2.app
+    runs-on: macos-15
+    steps:
+    - name: Force Xcode 16.3 (Swift 6.1)
+      run: sudo xcode-select -switch /Applications/Xcode_16.3.app
 
     - name: Swift version
       run: swift --version
@@ -41,6 +41,9 @@ jobs:
         cd Examples && \
         swift build --target GtkBackend && \
         swift build --target Gtk3Backend && \
+        swift build --target GtkExample && \
+        # Work around SwiftPM incremental build issue
+        swift package clean && \
         swift build --target CounterExample && \
         swift build --target ControlsExample && \
         swift build --target RandomNumberGeneratorExample && \
@@ -51,14 +54,15 @@ jobs:
         swift build --target StressTestExample && \
         swift build --target SpreadsheetExample && \
         swift build --target NotesExample && \
-        swift build --target GtkExample && \
-        swift build --target PathsExample
+        swift build --target PathsExample && \
+        swift build --target WebViewExample && \
+        swift build --target AdvancedCustomizationExample
 
     - name: Test
       run: swift test --test-product swift-cross-uiPackageTests
 
   uikit:
-    runs-on: macos-14
+    runs-on: macos-15
     strategy:
       matrix:
         device-type:
@@ -67,8 +71,8 @@ jobs:
           - TV
           - Vision
     steps:
-    - name: Force Xcode 15.4
-      run: sudo xcode-select -switch /Applications/Xcode_15.4.app
+    - name: Force Xcode 16.3 (Swift 6.1)
+      run: sudo xcode-select -switch /Applications/Xcode_16.3.app
 
     - name: Swift version
       run: swift --version
@@ -104,6 +108,8 @@ jobs:
             buildtarget StressTestExample
             buildtarget NotesExample
             buildtarget PathsExample
+            buildtarget WebViewExample
+            buildtarget AdvancedCustomizationExample
 
             if [ $device_type != TV ]; then
               # Slider is not implemented for tvOS
@@ -131,10 +137,10 @@ jobs:
         xcodebuild-device-type: ${{ matrix.device-type }}
 
   uikit-catalyst:
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
-    - name: Force Xcode 15.4
-      run: sudo xcode-select -switch /Applications/Xcode_15.4.app
+    - name: Force Xcode 16.3 (Swift 6.1)
+      run: sudo xcode-select -switch /Applications/Xcode_16.3.app
 
     - name: Swift version
       run: swift --version
@@ -165,6 +171,8 @@ jobs:
         buildtarget PathsExample
         buildtarget ControlsExample
         buildtarget RandomNumberGeneratorExample
+        buildtarget WebViewExample
+        buildtarget AdvancedCustomizationExample
         # TODO test whether this works on Catalyst
         # buildtarget SplitExample
 
@@ -295,6 +303,9 @@ jobs:
     - name: Build examples
       working-directory: ./Examples
       run: |
+        swift build --target GtkExample && \
+        # Work around SwiftPM incremental build issue
+        swift package clean && \
         swift build --target CounterExample && \
         swift build --target ControlsExample && \
         swift build --target RandomNumberGeneratorExample && \
@@ -305,7 +316,8 @@ jobs:
         swift build --target StressTestExample && \
         swift build --target SpreadsheetExample && \
         swift build --target NotesExample && \
-        swift build --target GtkExample
+        swift build --target PathsExample && \
+        swift build --target AdvancedCustomizationExample
 
     - name: Test
       run: swift test --test-product swift-cross-uiPackageTests

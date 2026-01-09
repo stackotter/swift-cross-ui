@@ -4,6 +4,7 @@ public struct ProgressView<Label: View>: View {
     private var label: Label
     private var progress: Double?
     private var kind: Kind
+    private var isSpinnerResizable: Bool = false
 
     private enum Kind {
         case spinner
@@ -23,7 +24,7 @@ public struct ProgressView<Label: View>: View {
     private var progressIndicator: some View {
         switch kind {
             case .spinner:
-                ProgressSpinnerView()
+                ProgressSpinnerView(isResizable: isSpinnerResizable)
             case .bar:
                 ProgressBarView(value: progress)
         }
@@ -49,6 +50,14 @@ public struct ProgressView<Label: View>: View {
         self.label = label
         self.kind = .bar
         self.progress = value.map(Double.init)
+    }
+
+    /// Makes the ProgressView resize to fit the available space.
+    /// Only affects ``Kind/spinner``.
+    public func resizable(_ isResizable: Bool = true) -> Self {
+        var progressView = self
+        progressView.isSpinnerResizable = isResizable
+        return progressView
     }
 }
 
@@ -101,7 +110,11 @@ extension ProgressView where Label == Text {
 }
 
 struct ProgressSpinnerView: ElementaryView {
-    init() {}
+    let isResizable: Bool
+
+    init(isResizable: Bool = false) {
+        self.isResizable = isResizable
+    }
 
     func asWidget<Backend: AppBackend>(backend: Backend) -> Backend.Widget {
         backend.createProgressSpinner()
@@ -113,8 +126,27 @@ struct ProgressSpinnerView: ElementaryView {
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        let size = ViewSize(backend.naturalSize(of: widget))
-        return ViewLayoutResult.leafView(size: size)
+        let naturalSize = backend.naturalSize(of: widget)
+
+        guard isResizable else {
+            return ViewLayoutResult.leafView(size: ViewSize(naturalSize))
+        }
+
+        let dimension: Double
+
+        if let proposedWidth = proposedSize.width, let proposedHeight = proposedSize.height {
+            dimension = min(proposedWidth, proposedHeight)
+        } else if let proposedWidth = proposedSize.width {
+            dimension = proposedWidth
+        } else if let proposedHeight = proposedSize.height {
+            dimension = proposedHeight
+        } else {
+            dimension = Double(min(naturalSize.x, naturalSize.y))
+        }
+
+        return ViewLayoutResult.leafView(
+            size: ViewSize(dimension, dimension)
+        )
     }
 
     func commit<Backend: AppBackend>(
@@ -122,7 +154,12 @@ struct ProgressSpinnerView: ElementaryView {
         layout: ViewLayoutResult,
         environment: EnvironmentValues,
         backend: Backend
-    ) {}
+    ) {
+        // Doesn't change the rendered size of ProgressSpinner
+        // on UIKitBackend, but still sets container size to
+        // (width: n, height: n) n = min(proposedSize.x, proposedSize.y)
+        backend.setSize(ofProgressSpinner: widget, to: layout.size.vector)
+    }
 }
 
 struct ProgressBarView: ElementaryView {

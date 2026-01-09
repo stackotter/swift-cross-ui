@@ -1,55 +1,57 @@
 import SwiftCrossUI
 import UIKit
 
-public struct UIViewControllerRepresentableContext<Coordinator> {
-    public let coordinator: Coordinator
+/// The context associated with an instance of ``Representable``.
+public struct UIViewControllerRepresentableContext<
+    Representable: UIViewControllerRepresentable
+> {
+    public let coordinator: Representable.Coordinator
     public internal(set) var environment: EnvironmentValues
 }
 
-public protocol UIViewControllerRepresentable: View
-where Content == Never {
+/// A wrapper that you use to integrate a UIKit view controller into your
+/// SwiftCrossUI view hierarchy.
+public protocol UIViewControllerRepresentable: View where Content == Never {
     associatedtype UIViewControllerType: UIViewController
     associatedtype Coordinator = Void
 
     /// Create the initial UIViewController instance.
-    func makeUIViewController(context: UIViewControllerRepresentableContext<Coordinator>)
-        -> UIViewControllerType
+    @MainActor
+    func makeUIViewController(context: Context) -> UIViewControllerType
 
     /// Update the view with new values.
     /// - Note: This may be called even when `context` has not changed.
     /// - Parameters:
     ///   - uiViewController: The controller to update.
-    ///   - context: The context, including the coordinator and potentially new environment
-    ///   values.
+    ///   - context: The context, including the coordinator and environment values.
+    @MainActor
     func updateUIViewController(
         _ uiViewController: UIViewControllerType,
-        context: UIViewControllerRepresentableContext<Coordinator>)
+        context: Context
+    )
 
     /// Make the coordinator for this controller.
     ///
     /// The coordinator is used when the controller needs to communicate changes to the rest of
     /// the view hierarchy (i.e. through bindings).
+    @MainActor
     func makeCoordinator() -> Coordinator
 
-    /// Compute the view's size.
+    /// Compute the controller's view's preferred size for the given proposal.
     ///
     /// The default implementation uses `uiViewController.view.intrinsicContentSize` and
-    /// `uiViewController.view.systemLayoutSizeFitting(_:)` to determine the return value.
+    /// `uiViewController.view.systemLayoutSizeFitting(_:)` to determine the view's
+    /// preferred size.
     /// - Parameters:
-    ///   - proposal: The proposed frame for the view to render in.
+    ///   - proposal: The proposed size for the view.
     ///   - uiViewController: The controller being queried for its view's preferred size.
     ///   - context: The context, including the coordinator and environment values.
-    /// - Returns: Information about the view's size. The ``SwiftCrossUI/ViewSize/size``
-    ///   property is what frame the view will actually be rendered with if the current layout
-    ///   pass is not a dry run, while the other properties are used to inform the layout
-    ///   engine how big or small the view can be. The ``SwiftCrossUI/ViewSize/idealSize``
-    ///   property should not vary with the `proposal`, and should only depend on the view's
-    ///   contents. Pass `nil` for the maximum width/height if the view has no maximum size
-    ///   (and therefore may occupy the entire screen).
-    func determineViewSize(
-        for proposal: ProposedViewSize,
+    /// - Returns: The view's preferred size.
+    @MainActor
+    func sizeThatFits(
+        _ proposal: ProposedViewSize,
         uiViewController: UIViewControllerType,
-        context: UIViewControllerRepresentableContext<Coordinator>
+        context: Context
     ) -> ViewSize
 
     /// Called to clean up the view when it's removed.
@@ -59,27 +61,34 @@ where Content == Never {
     ///   - uiViewController: The controller being dismantled.
     ///   - coordinator: The coordinator.
     static func dismantleUIViewController(
-        _ uiViewController: UIViewControllerType, coordinator: Coordinator)
+        _ uiViewController: UIViewControllerType,
+        coordinator: Coordinator
+    )
+}
+
+extension UIViewControllerRepresentable {
+    /// Context associated with the representable controller.
+    public typealias Context = UIViewControllerRepresentableContext<Self>
 }
 
 extension UIViewControllerRepresentable {
     public static func dismantleUIViewController(
-        _: UIViewControllerType, coordinator _: Coordinator
+        _: UIViewControllerType,
+        coordinator _: Coordinator
     ) {
         // no-op
     }
 
-    public func determineViewSize(
-        for proposal: ProposedViewSize,
+    public func sizeThatFits(
+        _ proposal: ProposedViewSize,
         uiViewController: UIViewControllerType,
-        context: UIViewControllerRepresentableContext<Coordinator>
+        context: Context
     ) -> ViewSize {
         defaultViewSize(proposal: proposal, view: uiViewController.view)
     }
 }
 
-extension View
-where Self: UIViewControllerRepresentable {
+extension View where Self: UIViewControllerRepresentable {
     public var body: Never {
         preconditionFailure("This should never be called")
     }
@@ -110,44 +119,49 @@ where Self: UIViewControllerRepresentable {
         }
     }
 
-    public func update<Backend: AppBackend>(
+    public func computeLayout<Backend: AppBackend>(
         _ widget: Backend.Widget,
         children _: any ViewGraphNodeChildren,
         proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
-        backend _: Backend,
-        dryRun: Bool
+        backend _: Backend
     ) -> ViewLayoutResult {
         let representingWidget = widget as! ControllerRepresentingWidget<Self>
         representingWidget.update(with: environment)
 
-        let size = representingWidget.representable.determineViewSize(
-            for: proposedSize,
+        let size = representingWidget.representable.sizeThatFits(
+            proposedSize,
             uiViewController: representingWidget.subcontroller,
             context: representingWidget.context!
         )
 
-        if !dryRun {
-            representingWidget.width = LayoutSystem.roundSize(size.width)
-            representingWidget.height = LayoutSystem.roundSize(size.height)
-        }
-
         return ViewLayoutResult.leafView(size: size)
+    }
+
+    public func commit<Backend: AppBackend>(
+        _ widget: Backend.Widget,
+        children: any ViewGraphNodeChildren,
+        layout: ViewLayoutResult,
+        environment: EnvironmentValues,
+        backend: Backend
+    ) {
+        let representingWidget = widget as! ControllerRepresentingWidget<Self>
+        representingWidget.width = layout.size.vector.x
+        representingWidget.height = layout.size.vector.y
     }
 }
 
-extension UIViewControllerRepresentable
-where Coordinator == Void {
+extension UIViewControllerRepresentable where Coordinator == Void {
     public func makeCoordinator() {
         return ()
     }
 }
 
-final class ControllerRepresentingWidget<Representable: UIViewControllerRepresentable>:
-    BaseControllerWidget
-{
+final class ControllerRepresentingWidget<
+    Representable: UIViewControllerRepresentable
+>: BaseControllerWidget {
     var representable: Representable
-    var context: UIViewControllerRepresentableContext<Representable.Coordinator>?
+    var context: Representable.Context?
 
     lazy var subcontroller: Representable.UIViewControllerType = {
         let subcontroller = representable.makeUIViewController(context: context!)
@@ -155,6 +169,7 @@ final class ControllerRepresentingWidget<Representable: UIViewControllerRepresen
         view.addSubview(subcontroller.view)
         addChild(subcontroller)
 
+        view.translatesAutoresizingMaskIntoConstraints = false
         subcontroller.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             subcontroller.view.topAnchor.constraint(equalTo: view.topAnchor),
@@ -170,7 +185,10 @@ final class ControllerRepresentingWidget<Representable: UIViewControllerRepresen
 
     func update(with environment: EnvironmentValues) {
         if context == nil {
-            context = .init(coordinator: representable.makeCoordinator(), environment: environment)
+            context = Representable.Context(
+                coordinator: representable.makeCoordinator(),
+                environment: environment
+            )
         } else {
             context!.environment = environment
             representable.updateUIViewController(subcontroller, context: context!)
@@ -184,7 +202,10 @@ final class ControllerRepresentingWidget<Representable: UIViewControllerRepresen
 
     deinit {
         if let context {
-            Representable.dismantleUIViewController(subcontroller, coordinator: context.coordinator)
+            Representable.dismantleUIViewController(
+                subcontroller,
+                coordinator: context.coordinator
+            )
         }
     }
 }

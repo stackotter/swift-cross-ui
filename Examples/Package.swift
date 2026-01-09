@@ -80,6 +80,11 @@ let package = Package(
 		.executableTarget(
             name: "ForEachExample",
             dependencies: exampleDependencies
-		)
+		),
+        .executableTarget(
+            name: "AdvancedCustomizationExample",
+            dependencies: exampleDependencies,
+            resources: [.copy("Banner.png")]
+        )
     ]
 )

@@ -158,7 +158,7 @@ public final class AppKitBackend: AppBackend {
                         keyEquivalent: ""
                     )
                     renderedItem.isOn = value
-                    
+
                     let wrappedAction = Action {
                         onChange(!renderedItem.isOn)
                     }
@@ -504,6 +504,15 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func naturalSize(of widget: Widget) -> SIMD2<Int> {
+        if let spinner = widget.subviews.first as? NSProgressIndicator,
+            spinner.style == .spinning
+        {
+            let size = spinner.intrinsicContentSize
+            return SIMD2(
+                Int(size.width),
+                Int(size.height)
+            )
+        }
         let size = widget.intrinsicContentSize
         return SIMD2(
             Int(size.width),
@@ -512,30 +521,44 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func setSize(of widget: Widget, to size: SIMD2<Int>) {
+        setSize(of: widget, to: ProposedViewSize(ViewSize(Double(size.x), Double(size.y))))
+    }
+
+    func setSize(of widget: Widget, to proposedSize: ProposedViewSize) {
         var foundConstraint = false
         for constraint in widget.constraints {
             if constraint.firstAnchor === widget.widthAnchor {
-                constraint.constant = CGFloat(size.x)
+                if let proposedWidth = proposedSize.width {
+                    constraint.constant = CGFloat(proposedWidth)
+                    constraint.isActive = true
+                } else {
+                    constraint.isActive = false
+                }
                 foundConstraint = true
                 break
             }
         }
 
-        if !foundConstraint {
-            widget.widthAnchor.constraint(equalToConstant: CGFloat(size.x)).isActive = true
+        if !foundConstraint, let proposedWidth = proposedSize.width {
+            widget.widthAnchor.constraint(equalToConstant: proposedWidth).isActive = true
         }
 
         foundConstraint = false
         for constraint in widget.constraints {
             if constraint.firstAnchor === widget.heightAnchor {
-                constraint.constant = CGFloat(size.y)
+                if let proposedHeight = proposedSize.height {
+                    constraint.constant = CGFloat(proposedHeight)
+                    constraint.isActive = true
+                } else {
+                    constraint.isActive = false
+                }
                 foundConstraint = true
                 break
             }
         }
 
-        if !foundConstraint {
-            widget.heightAnchor.constraint(equalToConstant: CGFloat(size.y)).isActive = true
+        if !foundConstraint, let proposedHeight = proposedSize.height {
+            widget.heightAnchor.constraint(equalToConstant: proposedHeight).isActive = true
         }
     }
 
@@ -1187,11 +1210,32 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func createProgressSpinner() -> Widget {
+        let container = NSView()
         let spinner = NSProgressIndicator()
+        spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.isIndeterminate = true
         spinner.style = .spinning
         spinner.startAnimation(nil)
-        return spinner
+        container.addSubview(spinner)
+        return container
+    }
+
+    public func setSize(
+        ofProgressSpinner widget: Widget,
+        to size: SIMD2<Int>
+    ) {
+        guard Int(widget.frame.size.height) != size.y else { return }
+        setSize(of: widget, to: size)
+        let spinner = NSProgressIndicator()
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.isIndeterminate = true
+        spinner.style = .spinning
+        spinner.startAnimation(nil)
+        spinner.widthAnchor.constraint(equalToConstant: CGFloat(size.x)).isActive = true
+        spinner.heightAnchor.constraint(equalToConstant: CGFloat(size.y)).isActive = true
+
+        widget.subviews = []
+        widget.addSubview(spinner)
     }
 
     public func createProgressBar() -> Widget {
