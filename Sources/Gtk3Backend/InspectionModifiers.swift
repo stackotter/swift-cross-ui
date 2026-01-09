@@ -80,7 +80,8 @@ extension SwiftCrossUI.Image {
         _ inspectionPoints: InspectionPoints = .onCreate,
         _ action: @escaping @MainActor @Sendable (Gtk3.Image) -> Void
     ) -> some View {
-        InspectView(child: self, inspectionPoints: inspectionPoints) { (_: Gtk3.Widget, children: ImageChildren) in
+        InspectView(child: self, inspectionPoints: inspectionPoints) {
+            (_: Gtk3.Widget, children: ImageChildren) in
             action(children.imageWidget.into())
         }
     }

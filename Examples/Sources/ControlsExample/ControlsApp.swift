@@ -17,6 +17,8 @@ struct ControlsApp: App {
     @State var flavor: String? = nil
     @State var enabled = true
     @State var menuToggleState = false
+    @State var progressViewSize: Int = 10
+    @State var isProgressViewResizable = true
 
     var body: some Scene {
         WindowGroup("ControlsApp") {
@@ -84,10 +86,20 @@ struct ControlsApp: App {
                         }
 
                         VStack {
+                            Toggle(
+                                "Enable ProgressView resizability", isOn: $isProgressViewResizable)
+                            Slider(value: $progressViewSize, in: 10...100)
+                            ProgressView()
+                                .resizable(isProgressViewResizable)
+                                .frame(width: progressViewSize, height: progressViewSize)
+                        }
+
+                        VStack {
                             Text("Drop down")
                             HStack {
                                 Text("Flavor: ")
-                                Picker(of: ["Vanilla", "Chocolate", "Strawberry"], selection: $flavor)
+                                Picker(
+                                    of: ["Vanilla", "Chocolate", "Strawberry"], selection: $flavor)
                             }
                             Text("You chose: \(flavor ?? "Nothing yet!")")
                         }

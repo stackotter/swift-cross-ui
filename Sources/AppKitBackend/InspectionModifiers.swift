@@ -91,7 +91,8 @@ extension Image {
         _ inspectionPoints: InspectionPoints = .onCreate,
         _ action: @escaping @MainActor @Sendable (NSImageView) -> Void
     ) -> some View {
-        InspectView(child: self, inspectionPoints: inspectionPoints) { (_: NSView, children: ImageChildren) in
+        InspectView(child: self, inspectionPoints: inspectionPoints) {
+            (_: NSView, children: ImageChildren) in
             action(children.imageWidget.into())
         }
     }

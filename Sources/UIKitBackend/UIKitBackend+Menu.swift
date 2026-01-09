@@ -59,11 +59,12 @@ extension UIKitBackend {
             buttonWidget.child.menu = menu.uiMenu
             buttonWidget.child.showsMenuAsPrimaryAction = true
             if #available(iOS 16, tvOS 17, macCatalyst 16, *) {
-                buttonWidget.child.preferredMenuElementOrder = switch environment.menuOrder {
-                    case .automatic: .automatic
-                    case .priority: .priority
-                    case .fixed: .fixed
-                }
+                buttonWidget.child.preferredMenuElementOrder =
+                    switch environment.menuOrder {
+                        case .automatic: .automatic
+                        case .priority: .priority
+                        case .fixed: .fixed
+                    }
             }
         } else {
             preconditionFailure("Current OS is too old to support menu buttons.")
