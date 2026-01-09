@@ -1,3 +1,4 @@
+import Logging
 import SwiftCrossUI
 import UIKit
 
@@ -69,13 +70,13 @@ public final class UIKitBackend: AppBackend {
         #if DEBUG
             let location = LogLocation(file: file, line: line, column: column)
             if logsPerformed.insert(location).inserted {
-                print(message)
+                logger.notice("\(message)")
             }
         #endif
     }
 
-    public init() {
-        self.appDelegateClass = ApplicationDelegate.self
+    public convenience init() {
+        self.init(appDelegateClass: ApplicationDelegate.self)
     }
 
     public init(appDelegateClass: ApplicationDelegate.Type) {

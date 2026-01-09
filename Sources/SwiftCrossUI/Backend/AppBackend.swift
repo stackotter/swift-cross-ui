@@ -819,14 +819,14 @@ extension AppBackend {
 extension AppBackend {
     /// Used by placeholder implementations of backend methods.
     private func todo(_ function: String = #function) -> Never {
-        print("\(type(of: self)): \(function) not implemented")
+        logger.critical("\(type(of: self)): \(function) not implemented")
         Foundation.exit(1)
     }
 
     private func ignored(_ function: String = #function) {
         #if DEBUG
-            print(
-                "\(type(of: self)): \(function) is being ignored\nConsult at the documentation for further information."
+            logger.warning(
+                "\(type(of: self)): \(function) is being ignored; consult the documentation for further information"
             )
         #endif
     }

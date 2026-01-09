@@ -98,6 +98,9 @@ public struct EnvironmentValues {
     /// Whether the text should be selectable. Set by ``View/textSelectionEnabled(_:)``.
     public var isTextSelectionEnabled: Bool
 
+    /// The menu ordering to use.
+    public var menuOrder: MenuOrder
+
     /// Backing storage for extensible subscript
     private var extraValues: [ObjectIdentifier: Any]
 
@@ -127,7 +130,7 @@ public struct EnvironmentValues {
             backend.activate(window: window as! Backend.Window)
         }
         activate(with: backend)
-        print("Activated")
+        logger.info("window activated")
     }
 
     /// The backend's representation of the window that the current view is
@@ -226,6 +229,7 @@ public struct EnvironmentValues {
         isEnabled = true
         scrollDismissesKeyboardMode = .automatic
         isTextSelectionEnabled = false
+        menuOrder = .automatic
         allowLayoutCaching = false
     }
 
@@ -239,7 +243,7 @@ public struct EnvironmentValues {
 }
 
 /// A key that can be used to extend the environment with new properties.
-public protocol EnvironmentKey {
+public protocol EnvironmentKey<Value> {
     /// The type of value the key can hold.
     associatedtype Value
     /// The default value for the key.

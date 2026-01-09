@@ -64,3 +64,13 @@ version = '0.1.0'
 identifier = 'dev.swiftcrossui.HoverExample'
 product = 'HoverExample'
 version = '0.1.0'
+
+[apps.ForEachExample]
+identifier = 'dev.swiftcrossui.ForEachExample'
+product = 'ForEachExample'
+version = '0.1.0'
+
+[apps.AdvancedCustomizationExample]
+identifier = 'dev.swiftcrossui.AdvancedCustomizationExample'
+product = 'AdvancedCustomizationExample'
+version = '0.1.0'

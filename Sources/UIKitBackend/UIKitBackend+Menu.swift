@@ -24,6 +24,10 @@ extension UIKitBackend {
                     } else {
                         UIAction(title: label, attributes: .disabled) { _ in }
                     }
+                case .toggle(let label, let value, let onChange):
+                    UIAction(title: label, state: value ? .on : .off) { action in
+                        onChange(!action.state.isOn)
+                    }
                 case .submenu(let submenu):
                     buildMenu(content: submenu.content, label: submenu.label)
             }
@@ -54,6 +58,14 @@ extension UIKitBackend {
             setButtonTitle(buttonWidget, label, environment: environment)
             buttonWidget.child.menu = menu.uiMenu
             buttonWidget.child.showsMenuAsPrimaryAction = true
+            if #available(iOS 16, tvOS 17, macCatalyst 16, *) {
+                buttonWidget.child.preferredMenuElementOrder =
+                    switch environment.menuOrder {
+                        case .automatic: .automatic
+                        case .priority: .priority
+                        case .fixed: .fixed
+                    }
+            }
         } else {
             preconditionFailure("Current OS is too old to support menu buttons.")
         }
@@ -66,7 +78,14 @@ extension UIKitBackend {
         #else
             // Once keyboard shortcuts are implemented, it might be possible to do them on more
             // platforms than just Mac Catalyst. For now, this is a no-op.
-            print("UIKitBackend: ignoring \(#function) call")
+            logger.notice("ignoring \(#function) call")
         #endif
+    }
+}
+
+extension UIMenuElement.State {
+    var isOn: Bool {
+        get { self == .on }
+        set { self = newValue ? .on : .off }
     }
 }

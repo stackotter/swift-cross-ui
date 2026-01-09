@@ -27,9 +27,10 @@ struct GreetingGeneratorApp: App {
                         }
                     }
 
-                    Toggle("Selectable Greeting", active: $isGreetingSelectable)
+                    Toggle("Selectable Greeting", isOn: $isGreetingSelectable)
                     if let latest = greetings.last {
-                        Text(latest)
+                        LatestGreetingDisplay()
+                            .environment(\.latestGreeting, latest)
                             .padding(.top, 5)
                             .textSelectionEnabled(isGreetingSelectable)
 
@@ -38,7 +39,7 @@ struct GreetingGeneratorApp: App {
                                 .padding(.top, 20)
 
                             ScrollView {
-                                ForEach(greetings.reversed()[1...]) { greeting in
+                                ForEach(greetings.reversed()[1...], id: \.self) { greeting in
                                     Text(greeting)
                                 }
                             }
@@ -49,5 +50,26 @@ struct GreetingGeneratorApp: App {
                 .padding(10)
             }
         }
+    }
+}
+
+/// This intermediate view exists to show the usage of custom environment keys. In reality it is not necessary.
+struct LatestGreetingDisplay: View {
+    @Environment(\.latestGreeting) var value: String?
+
+    var body: some View {
+        Text(value ?? "nil")
+    }
+}
+
+struct LatestGreetingKey: EnvironmentKey {
+    typealias Value = String?
+    static let defaultValue: Value = nil
+}
+
+extension EnvironmentValues {
+    var latestGreeting: String? {
+        get { self[LatestGreetingKey.self] }
+        set { self[LatestGreetingKey.self] = newValue }
     }
 }

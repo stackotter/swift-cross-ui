@@ -9,7 +9,7 @@ import WinUIInterop
 import WindowsFoundation
 
 // Many force tries are required for the WinUI backend but we don't really want them
-// anywhere else so just disable them for this file.
+// anywhere else so just disable the lint rule at a file level.
 // swiftlint:disable force_try
 
 extension App {
@@ -90,7 +90,10 @@ public final class WinUIBackend: AppBackend {
             // won't get seen anyway. But I don't trust my Windows knowledge enough
             // to assert that it's impossible to view logs on failure, so let's
             // print a warning anyway.
-            print("Warning: Failed to attach to parent console: \(error.localizedDescription)")
+            logger.warning(
+                "failed to attach to parent console",
+                metadata: ["error": "\(error)"]
+            )
         }
 
         // Ensure that the app's windows adapt to DPI changes at runtime
@@ -264,6 +267,15 @@ public final class WinUIBackend: AppBackend {
                         action?()
                     }
                     return widget
+                case .toggle(let label, let value, let onChange):
+                    let widget = ToggleMenuFlyoutItem()
+                    widget.text = label
+                    widget.isChecked = value
+                    widget.click.addHandler { [weak widget] _, _ in
+                        guard let widget else { return }
+                        onChange(widget.isChecked)
+                    }
+                    return widget
                 case .submenu(let submenu):
                     let widget = MenuFlyoutSubItem()
                     widget.text = submenu.label
@@ -330,8 +342,8 @@ public final class WinUIBackend: AppBackend {
     }
 
     public func setIncomingURLHandler(to action: @escaping (URL) -> Void) {
-        print("Implement set incoming url handler")
-        // TODO
+        // TODO: Implement WinUIBackend setIncomingURLHandler
+        logger.warning("\(#function) not implemented")
     }
 
     public func createContainer() -> Widget {
@@ -351,7 +363,7 @@ public final class WinUIBackend: AppBackend {
     public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
         let container = container as! Canvas
         guard let child = container.children.getAt(UInt32(index)) else {
-            print("warning: child to set position of not found")
+            logger.warning("child to set position of not found")
             return
         }
 
@@ -369,7 +381,7 @@ public final class WinUIBackend: AppBackend {
             }
         }
 
-        print("warning: child to remove not found")
+        logger.warning("child to remove not found")
     }
 
     public func createColorableRectangle() -> Widget {
@@ -409,6 +421,12 @@ public final class WinUIBackend: AppBackend {
     }
 
     public func naturalSize(of widget: Widget) -> SIMD2<Int> {
+        Self.naturalSize(of: widget)
+    }
+
+    /// A static version of `naturalSize(of:)` for convenience. Used by
+    /// WinUIElementRepresentable.
+    public nonisolated static func naturalSize(of widget: Widget) -> SIMD2<Int> {
         let allocation = WindowsFoundation.Size(
             width: .infinity,
             height: .infinity
@@ -483,14 +501,25 @@ public final class WinUIBackend: AppBackend {
         try! widget.measure(allocation)
 
         let computedSize = widget.desiredSize
+        let adjustment = sizeCorrection(for: widget)
 
-        // Some elements don't get their default padding/border applied until
-        // they've been rendered. For such elements we have to compute out own
-        // adjustment factors based off values taken from WinUI's default theme.
-        // We can detect such elements because their padding property will be set
-        // to zero until first render (and atm WinUIBackend doesn't set this padding
-        // property itself so this is a safe detection method).
+        let out = SIMD2(
+            Int(computedSize.width) + adjustment.x,
+            Int(computedSize.height) + adjustment.y
+        )
+
+        return out
+    }
+
+    /// Some elements don't get their default padding/border applied until
+    /// they've been rendered. For such elements we have to compute our own
+    /// adjustment factors based off values taken from WinUI's default theme.
+    /// We can detect such elements because their padding property will be set
+    /// to zero until first render (and atm WinUIBackend doesn't set this padding
+    /// property itself so this is a safe detection method).
+    public nonisolated static func sizeCorrection(for widget: Widget) -> SIMD2<Int> {
         let adjustment: SIMD2<Int>
+        let noPadding = Thickness(left: 0, top: 0, right: 0, bottom: 0)
         if let button = widget as? WinUI.Button, button.padding == noPadding {
             // WinUI buttons have padding, but the `padding` property returns
             // zero until the button has been rendered at least once. And even
@@ -534,13 +563,7 @@ public final class WinUIBackend: AppBackend {
         } else {
             adjustment = .zero
         }
-
-        let out = SIMD2(
-            Int(computedSize.width) + adjustment.x,
-            Int(computedSize.height) + adjustment.y
-        )
-
-        return out
+        return adjustment
     }
 
     public func setSize(of widget: Widget, to size: SIMD2<Int>) {
@@ -617,9 +640,7 @@ public final class WinUIBackend: AppBackend {
     public func createButton() -> Widget {
         let button = Button()
         button.click.addHandler { [weak internalState] _, _ in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.buttonClickActions[ObjectIdentifier(button)]?()
         }
         return button
@@ -778,9 +799,7 @@ public final class WinUIBackend: AppBackend {
     public func createSlider() -> Widget {
         let slider = Slider()
         slider.valueChanged.addHandler { [weak internalState] _, event in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.sliderChangeActions[ObjectIdentifier(slider)]?(
                 Double(event?.newValue ?? 0))
         }
@@ -892,15 +911,11 @@ public final class WinUIBackend: AppBackend {
     public func createTextField() -> Widget {
         let textField = TextBox()
         textField.textChanged.addHandler { [weak internalState] _, _ in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.textFieldChangeActions[ObjectIdentifier(textField)]?(textField.text)
         }
         textField.keyUp.addHandler { [weak internalState] _, event in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
 
             if event?.key == .enter {
                 internalState.textFieldSubmitActions[ObjectIdentifier(textField)]?()
@@ -936,9 +951,7 @@ public final class WinUIBackend: AppBackend {
     public func createTextEditor() -> Widget {
         let textEditor = TextBox()
         textEditor.textChanged.addHandler { [weak internalState] _, _ in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             // Reuse this storage because it's the same widget type as a text field
             internalState.textFieldChangeActions[ObjectIdentifier(textEditor)]?(textEditor.text)
         }
@@ -1099,9 +1112,7 @@ public final class WinUIBackend: AppBackend {
     public func createToggle() -> Widget {
         let toggle = ToggleButton()
         toggle.click.addHandler { [weak internalState] _, _ in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.toggleClickActions[ObjectIdentifier(toggle)]?(toggle.isChecked ?? false)
         }
         return toggle
@@ -1151,9 +1162,7 @@ public final class WinUIBackend: AppBackend {
         toggleSwitch.onContent = ""
         toggleSwitch.padding = Thickness(left: 0, top: 0, right: 0, bottom: 0)
         toggleSwitch.toggled.addHandler { [weak internalState] _, _ in
-            guard let internalState = internalState else {
-                return
-            }
+            guard let internalState else { return }
             internalState.switchClickActions[ObjectIdentifier(toggleSwitch)]?(toggleSwitch.isOn)
         }
         return toggleSwitch
@@ -1181,7 +1190,7 @@ public final class WinUIBackend: AppBackend {
 
         func handleToggle() {
             if isChecked == nil {
-                print("warning: Checkbox in limbo")
+                logger.warning("checkbox in limbo")
             }
             onToggle?(isChecked ?? false)
         }
@@ -1262,7 +1271,7 @@ public final class WinUIBackend: AppBackend {
         // WinUI only allows one dialog at a time so we limit ourselves using
         // a semaphore.
         guard let window = window ?? windows.first else {
-            print("warning: WinUI can't show alert without window")
+            logger.warning("WinUI can't show alert without window")
             return
         }
 
@@ -1458,7 +1467,7 @@ public final class WinUIBackend: AppBackend {
         environment: EnvironmentValues
     ) {
         let progressBar = widget as! ProgressBar
-        if let progressFraction = progressFraction {
+        if let progressFraction {
             progressBar.isIndeterminate = false
             progressBar.value = progressBar.maximum * progressFraction
         } else {
@@ -1931,7 +1940,7 @@ public class CustomWindow: WinUI.Window {
         if result == S_OK {
             windowScaleFactor = Double(x) / Double(USER_DEFAULT_SCREEN_DPI)
         } else {
-            print("Warning: Failed to get window scale factor, defaulting to 1.0")
+            logger.warning("failed to get window scale factor, defaulting to 1.0")
             windowScaleFactor = 1
         }
 

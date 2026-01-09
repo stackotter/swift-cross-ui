@@ -1,5 +1,5 @@
 {
-  "originHash" : "77caf3e84e88f2ff183c89c647d8007a7ba7b50bfb1fb7216b22f7dfda4a2dc0",
+  "originHash" : "ddeec630632b0145da44c9ac6a3914e4fe12d2fdc9527164d01281076d0c497e",
   "pins" : [
     {
       "identity" : "jpeg",
@@ -31,7 +31,7 @@
     {
       "identity" : "swift-argument-parser",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser.git",
+      "location" : "https://github.com/apple/swift-argument-parser",
       "state" : {
         "revision" : "cdd0ef3755280949551dc26dee5de9ddeda89f54",
         "version" : "1.6.2"
@@ -44,6 +44,15 @@
       "state" : {
         "revision" : "45a7b500c24e7243da7b02e19cf436d0107a0c1b",
         "version" : "0.2.0"
+      }
+    },
+    {
+      "identity" : "swift-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-collections.git",
+      "state" : {
+        "revision" : "8c0c0a8b49e080e54e5e328cc552821ff07cd341",
+        "version" : "1.2.1"
       }
     },
     {
@@ -79,6 +88,15 @@
       "state" : {
         "revision" : "2e5dc1ead747afab9fd517d81316d961969e3610",
         "version" : "0.3.3"
+      }
+    },
+    {
+      "identity" : "swift-log",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-log.git",
+      "state" : {
+        "revision" : "ce592ae52f982c847a4efc0dd881cc9eb32d29f2",
+        "version" : "1.6.4"
       }
     },
     {

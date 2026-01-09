@@ -123,8 +123,16 @@ let package = Package(
             revision: "1695ee3ea2b7a249f6504c7f1759e7ec7a38eb86"
         ),
         .package(
+            url: "https://github.com/apple/swift-collections.git",
+            .upToNextMinor(from: "1.2.1")
+        ),
+        .package(
             url: "https://github.com/stackotter/swift-benchmark",
             .upToNextMinor(from: "0.2.0")
+        ),
+        .package(
+            url: "https://github.com/apple/swift-log.git",
+            exact: "1.6.4"
         ),
         // .package(
         //     url: "https://github.com/stackotter/TermKit",
@@ -145,6 +153,8 @@ let package = Package(
             dependencies: [
                 "HotReloadingMacrosPlugin",
                 .product(name: "ImageFormats", package: "swift-image-formats"),
+                .product(name: "Logging", package: "swift-log"),
+                .product(name: "OrderedCollections", package: "swift-collections"),
             ],
             exclude: [
                 "Builders/ViewBuilder.swift.gyb",
@@ -219,7 +229,8 @@ let package = Package(
             name: "GtkCodeGen",
             dependencies: [
                 "XMLCoder", .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
-            ]
+            ],
+            exclude: ["GirFiles"]
         ),
         .systemLibrary(
             name: "CGtk3",

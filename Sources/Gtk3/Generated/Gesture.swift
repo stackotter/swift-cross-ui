@@ -102,7 +102,7 @@ open class Gesture: EventController {
 
         addSignal(name: "begin", handler: gCallback(handler0)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.begin?(self, param0)
         }
 
@@ -114,7 +114,7 @@ open class Gesture: EventController {
 
         addSignal(name: "cancel", handler: gCallback(handler1)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.cancel?(self, param0)
         }
 
@@ -126,7 +126,7 @@ open class Gesture: EventController {
 
         addSignal(name: "end", handler: gCallback(handler2)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.end?(self, param0)
         }
 
@@ -141,7 +141,7 @@ open class Gesture: EventController {
 
         addSignal(name: "sequence-state-changed", handler: gCallback(handler3)) {
             [weak self] (param0: OpaquePointer, param1: GtkEventSequenceState) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.sequenceStateChanged?(self, param0, param1)
         }
 
@@ -153,7 +153,7 @@ open class Gesture: EventController {
 
         addSignal(name: "update", handler: gCallback(handler4)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.update?(self, param0)
         }
 
@@ -165,7 +165,7 @@ open class Gesture: EventController {
 
         addSignal(name: "notify::n-points", handler: gCallback(handler5)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyNPoints?(self, param0)
         }
 
@@ -177,7 +177,7 @@ open class Gesture: EventController {
 
         addSignal(name: "notify::window", handler: gCallback(handler6)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyWindow?(self, param0)
         }
     }

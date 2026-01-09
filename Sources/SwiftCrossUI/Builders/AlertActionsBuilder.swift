@@ -1,6 +1,11 @@
 /// A builder for `[AlertAction]`.
 @resultBuilder
 public struct AlertActionsBuilder {
+    /// If no actions are provided, return a default "OK" action.
+    public static func buildBlock() -> [AlertAction] {
+        [.default]
+    }
+
     public static func buildPartialBlock(first: Button) -> [AlertAction] {
         [
             AlertAction(

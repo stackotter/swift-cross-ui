@@ -20,7 +20,7 @@ open class Range: Widget, Orientable {
 
         addSignal(name: "adjust-bounds", handler: gCallback(handler0)) {
             [weak self] (param0: Double) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.adjustBounds?(self, param0)
         }
 
@@ -33,7 +33,7 @@ open class Range: Widget, Orientable {
 
         addSignal(name: "change-value", handler: gCallback(handler1)) {
             [weak self] (param0: GtkScrollType, param1: Double) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.changeValue?(self, param0, param1)
         }
 
@@ -45,12 +45,12 @@ open class Range: Widget, Orientable {
 
         addSignal(name: "move-slider", handler: gCallback(handler2)) {
             [weak self] (param0: GtkScrollType) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.moveSlider?(self, param0)
         }
 
         addSignal(name: "value-changed") { [weak self] () in
-            guard let self = self else { return }
+            guard let self else { return }
             self.valueChanged?(self)
         }
 
@@ -62,7 +62,7 @@ open class Range: Widget, Orientable {
 
         addSignal(name: "notify::adjustment", handler: gCallback(handler4)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyAdjustment?(self, param0)
         }
 
@@ -74,7 +74,7 @@ open class Range: Widget, Orientable {
 
         addSignal(name: "notify::fill-level", handler: gCallback(handler5)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyFillLevel?(self, param0)
         }
 
@@ -86,7 +86,7 @@ open class Range: Widget, Orientable {
 
         addSignal(name: "notify::inverted", handler: gCallback(handler6)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyInverted?(self, param0)
         }
 
@@ -98,7 +98,7 @@ open class Range: Widget, Orientable {
 
         addSignal(name: "notify::lower-stepper-sensitivity", handler: gCallback(handler7)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyLowerStepperSensitivity?(self, param0)
         }
 
@@ -110,7 +110,7 @@ open class Range: Widget, Orientable {
 
         addSignal(name: "notify::restrict-to-fill-level", handler: gCallback(handler8)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyRestrictToFillLevel?(self, param0)
         }
 
@@ -122,7 +122,7 @@ open class Range: Widget, Orientable {
 
         addSignal(name: "notify::round-digits", handler: gCallback(handler9)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyRoundDigits?(self, param0)
         }
 
@@ -134,7 +134,7 @@ open class Range: Widget, Orientable {
 
         addSignal(name: "notify::show-fill-level", handler: gCallback(handler10)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyShowFillLevel?(self, param0)
         }
 
@@ -146,7 +146,7 @@ open class Range: Widget, Orientable {
 
         addSignal(name: "notify::upper-stepper-sensitivity", handler: gCallback(handler11)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyUpperStepperSensitivity?(self, param0)
         }
 
@@ -158,7 +158,7 @@ open class Range: Widget, Orientable {
 
         addSignal(name: "notify::orientation", handler: gCallback(handler12)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifyOrientation?(self, param0)
         }
     }

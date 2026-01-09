@@ -36,7 +36,7 @@ extension UIKitBackend {
     }
 
     public func createTextView() -> Widget {
-        WrapperWidget<CustomTextView>()
+        WrapperWidget<TextView>()
     }
 
     public func updateTextView(
@@ -44,7 +44,7 @@ extension UIKitBackend {
         content: String,
         environment: EnvironmentValues
     ) {
-        let wrapper = textView as! WrapperWidget<CustomTextView>
+        let wrapper = textView as! WrapperWidget<TextView>
         wrapper.child.overrideUserInterfaceStyle = environment.colorScheme.userInterfaceStyle
         wrapper.child.attributedText = UIKitBackend.attributedString(
             text: content,
@@ -102,108 +102,111 @@ extension UIKitBackend {
     }
 }
 
-final class CustomTextView: UIView {
-    var isSelectable: Bool = false
+extension UIKitBackend {
+    public final class TextView: UIView {
+        public var isSelectable: Bool = false
 
-    var attributedText: NSAttributedString {
-        get {
-            textStorage
-        }
-        set {
-            textStorage.setAttributedString(newValue)
-            setNeedsDisplay()
-        }
-    }
-
-    var text: String {
-        attributedText.string
-    }
-
-    var layoutManager: NSLayoutManager
-    var textStorage: NSTextStorage
-    var textContainer: NSTextContainer
-
-    override init(frame: CGRect) {
-        layoutManager = NSLayoutManager()
-
-        textStorage = NSTextStorage(attributedString: NSAttributedString(string: ""))
-        textStorage.addLayoutManager(layoutManager)
-
-        textContainer = NSTextContainer(size: frame.size)
-        textContainer.lineBreakMode = .byTruncatingTail
-        layoutManager.addTextContainer(textContainer)
-
-        super.init(frame: frame)
-
-        isOpaque = false
-
-        // Inspired by https://medium.com/kinandcartacreated/making-uilabel-accessible-5f3d5c342df4
-        // Thank you to Sam Dods for the base idea
-        #if !os(tvOS)
-            let longPress = UILongPressGestureRecognizer(
-                target: self, action: #selector(didLongPress))
-            addGestureRecognizer(longPress)
-            isUserInteractionEnabled = true
-        #endif
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init?(coder:) not implemented")
-    }
-
-    override var canBecomeFirstResponder: Bool {
-        isSelectable
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        if textContainer.size != bounds.size {
-            textContainer.size = bounds.size
-            setNeedsDisplay()
-        }
-    }
-
-    override func draw(_ rect: CGRect) {
-        let range = layoutManager.glyphRange(for: textContainer)
-        layoutManager.drawBackground(forGlyphRange: range, at: bounds.origin)
-        layoutManager.drawGlyphs(forGlyphRange: range, at: bounds.origin)
-    }
-
-    @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
-        #if !os(tvOS)
-            guard
-                isSelectable,
-                gesture.state == .began,
-                !text.isEmpty
-            else {
-                return
+        public var attributedText: NSAttributedString {
+            get {
+                textStorage
             }
-            window?.endEditing(true)
-            guard becomeFirstResponder() else { return }
-
-            let menu = UIMenuController.shared
-            if !menu.isMenuVisible {
-                menu.showMenu(from: self, rect: bounds)
+            set {
+                textStorage.setAttributedString(newValue)
+                setNeedsDisplay()
             }
-        #endif
-    }
+        }
 
-    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        return action == #selector(copy(_:))
-    }
+        public var text: String {
+            attributedText.string
+        }
 
-    private func cancelSelection() {
-        #if !os(tvOS)
-            let menu = UIMenuController.shared
-            menu.hideMenu(from: self)
-        #endif
-    }
+        public var layoutManager: NSLayoutManager
+        public var textStorage: NSTextStorage
+        public var textContainer: NSTextContainer
 
-    @objc override func copy(_ sender: Any?) {
-        #if !os(tvOS)
-            cancelSelection()
-            let board = UIPasteboard.general
-            board.string = text
-        #endif
+        public override init(frame: CGRect) {
+            layoutManager = NSLayoutManager()
+
+            textStorage = NSTextStorage(attributedString: NSAttributedString(string: ""))
+            textStorage.addLayoutManager(layoutManager)
+
+            textContainer = NSTextContainer(size: frame.size)
+            textContainer.lineBreakMode = .byTruncatingTail
+            textContainer.lineFragmentPadding = 0
+            layoutManager.addTextContainer(textContainer)
+
+            super.init(frame: frame)
+
+            isOpaque = false
+
+            // Inspired by https://medium.com/kinandcartacreated/making-uilabel-accessible-5f3d5c342df4
+            // Thank you to Sam Dods for the base idea
+            #if !os(tvOS)
+                let longPress = UILongPressGestureRecognizer(
+                    target: self, action: #selector(didLongPress))
+                addGestureRecognizer(longPress)
+                isUserInteractionEnabled = true
+            #endif
+        }
+
+        public required init?(coder aDecoder: NSCoder) {
+            fatalError("init?(coder:) not implemented")
+        }
+
+        public override var canBecomeFirstResponder: Bool {
+            isSelectable
+        }
+
+        public override func layoutSubviews() {
+            super.layoutSubviews()
+            if textContainer.size != bounds.size {
+                textContainer.size = bounds.size
+                setNeedsDisplay()
+            }
+        }
+
+        public override func draw(_ rect: CGRect) {
+            let range = layoutManager.glyphRange(for: textContainer)
+            layoutManager.drawBackground(forGlyphRange: range, at: bounds.origin)
+            layoutManager.drawGlyphs(forGlyphRange: range, at: bounds.origin)
+        }
+
+        @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
+            #if !os(tvOS)
+                guard
+                    isSelectable,
+                    gesture.state == .began,
+                    !text.isEmpty
+                else {
+                    return
+                }
+                window?.endEditing(true)
+                guard becomeFirstResponder() else { return }
+
+                let menu = UIMenuController.shared
+                if !menu.isMenuVisible {
+                    menu.showMenu(from: self, rect: bounds)
+                }
+            #endif
+        }
+
+        public override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+            return action == #selector(copy(_:))
+        }
+
+        private func cancelSelection() {
+            #if !os(tvOS)
+                let menu = UIMenuController.shared
+                menu.hideMenu(from: self)
+            #endif
+        }
+
+        @objc public override func copy(_ sender: Any?) {
+            #if !os(tvOS)
+                cancelSelection()
+                let board = UIPasteboard.general
+                board.string = text
+            #endif
+        }
     }
 }

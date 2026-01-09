@@ -327,6 +327,7 @@ class ContainerWidget: BaseControllerWidget {
         self.child = child
         super.init()
         add(childWidget: child)
+        child.view.translatesAutoresizingMaskIntoConstraints = false
     }
 }
 

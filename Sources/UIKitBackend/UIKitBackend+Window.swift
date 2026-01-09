@@ -1,3 +1,4 @@
+import SwiftCrossUI
 import UIKit
 
 final class RootViewController: UIViewController {
@@ -23,7 +24,11 @@ final class RootViewController: UIViewController {
 
         override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
             super.traitCollectionDidChange(previousTraitCollection)
-            backend.onTraitCollectionChange?()
+
+            let previous = previousTraitCollection?.userInterfaceStyle
+            if UITraitCollection.current.userInterfaceStyle != previous {
+                backend.onTraitCollectionChange?()
+            }
         }
     #endif
 
@@ -42,8 +47,8 @@ final class RootViewController: UIViewController {
     override func viewWillTransition(
         to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator
     ) {
-        super.viewWillTransition(to: size, with: coordinator)
         resizeHandler?(size)
+        super.viewWillTransition(to: size, with: coordinator)
     }
 
     func setChild(to child: some WidgetProtocol) {
@@ -69,11 +74,16 @@ extension UIKitBackend {
     public typealias Window = UIWindow
 
     public func createWindow(withDefaultSize _: SIMD2<Int>?) -> Window {
-        var window: UIWindow
+        let window: UIWindow
 
         if !Self.hasReturnedAWindow {
+            if let mainWindow = Self.mainWindow {
+                window = mainWindow
+            } else {
+                window = UIWindow()
+                Self.mainWindow = window
+            }
             Self.hasReturnedAWindow = true
-            window = Self.mainWindow ?? UIWindow()
         } else {
             window = UIWindow()
         }
@@ -130,15 +140,19 @@ extension UIKitBackend {
     }
 
     public func setResizability(ofWindow window: Window, to resizable: Bool) {
-        print("UIKitBackend: ignoring \(#function) call")
+        logger.notice("ignoring \(#function) call")
     }
 
     public func setSize(ofWindow window: Window, to newSize: SIMD2<Int>) {
         #if os(visionOS)
             window.bounds.size = CGSize(width: CGFloat(newSize.x), height: CGFloat(newSize.y))
         #else
-            print(
-                "UIKitBackend: ignoring \(#function) call. Current window size: \(window.bounds.width) x \(window.bounds.height); proposed size: \(newSize.x) x \(newSize.y)"
+            logger.notice(
+                "ignoring \(#function) call",
+                metadata: [
+                    "currentWindowSize": "\(window.bounds.width) x \(window.bounds.height)",
+                    "proposedWindowSize": "\(newSize.x) x \(newSize.y)",
+                ]
             )
         #endif
     }

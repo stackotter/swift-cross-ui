@@ -45,7 +45,7 @@ open class Widget: GObject {
             name: "button-press-event",
             handler: gCallback(handler1)
         ) { [weak self] (buttonEvent: GdkEventButton) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.onButtonPress?(self, buttonEvent)
         }
 
@@ -64,7 +64,7 @@ open class Widget: GObject {
             name: "draw",
             handler: gCallback(handler2)
         ) { [weak self] (cairo: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.doDraw?(cairo)
         }
 
@@ -81,7 +81,7 @@ open class Widget: GObject {
             name: "screen-changed",
             handler: gCallback(handler3)
         ) { [weak self] (previousScreen: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.screenChanged?()
         }
 
@@ -97,7 +97,7 @@ open class Widget: GObject {
             name: "style-updated",
             handler: gCallback(handler4)
         ) { [weak self] (_: Void) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.styleUpdated?()
         }
     }
@@ -163,6 +163,39 @@ open class Widget: GObject {
         return (
             width: Int(naturalSize.width),
             height: Int(naturalSize.height)
+        )
+    }
+
+    public struct MeasureResult {
+        public var minimum: Int
+        public var natural: Int
+    }
+
+    public func measure(
+        orientation: Orientation,
+        forPerpendicularSize perpendicularSize: Int
+    ) -> MeasureResult {
+        var minimum: gint = 0
+        var natural: gint = 0
+        switch orientation {
+            case .horizontal:
+                gtk_widget_get_preferred_width_for_height(
+                    widgetPointer,
+                    gint(perpendicularSize),
+                    &minimum,
+                    &natural
+                )
+            case .vertical:
+                gtk_widget_get_preferred_height_for_width(
+                    widgetPointer,
+                    gint(perpendicularSize),
+                    &minimum,
+                    &natural
+                )
+        }
+        return MeasureResult(
+            minimum: Int(minimum),
+            natural: Int(natural)
         )
     }
 

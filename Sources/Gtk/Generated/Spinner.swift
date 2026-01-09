@@ -34,7 +34,7 @@ open class Spinner: Widget {
 
         addSignal(name: "notify::spinning", handler: gCallback(handler0)) {
             [weak self] (param0: OpaquePointer) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.notifySpinning?(self, param0)
         }
     }

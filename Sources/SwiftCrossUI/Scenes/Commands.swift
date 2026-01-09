@@ -36,6 +36,7 @@ public struct Commands: Sendable {
     }
 
     /// Resolves the menus to a representation used by backends.
+    @MainActor
     func resolve() -> [ResolvedMenu.Submenu] {
         menus.map { menu in
             menu.resolve()

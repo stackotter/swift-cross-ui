@@ -149,6 +149,24 @@ public final class AppKitBackend: AppBackend {
                         renderedItem.target = wrappedAction
                     }
                     return renderedItem
+                case .toggle(let label, let value, let onChange):
+                    // Custom subclass is used to keep strong reference to action
+                    // wrapper.
+                    let renderedItem = NSCustomMenuItem(
+                        title: label,
+                        action: nil,
+                        keyEquivalent: ""
+                    )
+                    renderedItem.isOn = value
+
+                    let wrappedAction = Action {
+                        onChange(!renderedItem.isOn)
+                    }
+                    renderedItem.actionWrapper = wrappedAction
+                    renderedItem.action = #selector(wrappedAction.run)
+                    renderedItem.target = wrappedAction
+
+                    return renderedItem
                 case .submenu(let submenu):
                     return renderSubmenu(submenu)
             }
@@ -419,8 +437,7 @@ public final class AppKitBackend: AppBackend {
     public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
         let container = container as! NSContainerView
         guard container.children.indices.contains(index) else {
-            // TODO: Create proper logging system.
-            print("warning: Attempted to set position of non-existent container child")
+            logger.warning("attempted to set position of non-existent container child")
             return
         }
 
@@ -502,30 +519,44 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func setSize(of widget: Widget, to size: SIMD2<Int>) {
+        setSize(of: widget, to: ProposedViewSize(ViewSize(Double(size.x), Double(size.y))))
+    }
+
+    func setSize(of widget: Widget, to proposedSize: ProposedViewSize) {
         var foundConstraint = false
         for constraint in widget.constraints {
             if constraint.firstAnchor === widget.widthAnchor {
-                constraint.constant = CGFloat(size.x)
+                if let proposedWidth = proposedSize.width {
+                    constraint.constant = CGFloat(proposedWidth)
+                    constraint.isActive = true
+                } else {
+                    constraint.isActive = false
+                }
                 foundConstraint = true
                 break
             }
         }
 
-        if !foundConstraint {
-            widget.widthAnchor.constraint(equalToConstant: CGFloat(size.x)).isActive = true
+        if !foundConstraint, let proposedWidth = proposedSize.width {
+            widget.widthAnchor.constraint(equalToConstant: proposedWidth).isActive = true
         }
 
         foundConstraint = false
         for constraint in widget.constraints {
             if constraint.firstAnchor === widget.heightAnchor {
-                constraint.constant = CGFloat(size.y)
+                if let proposedHeight = proposedSize.height {
+                    constraint.constant = CGFloat(proposedHeight)
+                    constraint.isActive = true
+                } else {
+                    constraint.isActive = false
+                }
                 foundConstraint = true
                 break
             }
         }
 
-        if !foundConstraint {
-            widget.heightAnchor.constraint(equalToConstant: CGFloat(size.y)).isActive = true
+        if !foundConstraint, let proposedHeight = proposedSize.height {
+            widget.heightAnchor.constraint(equalToConstant: proposedHeight).isActive = true
         }
     }
 
@@ -1289,7 +1320,7 @@ public final class AppKitBackend: AppBackend {
             }
 
             guard response != .abort, response != .cancel else {
-                print("warning: Got abort or cancel modal response, unexpected and unhandled")
+                logger.warning("got abort or cancel modal response, unexpected and unhandled")
                 return
             }
 
@@ -1941,6 +1972,11 @@ final class NSCustomMenuItem: NSMenuItem {
     /// This property's only purpose is to keep a strong reference to the wrapped
     /// action so that it sticks around for long enough to be useful.
     var actionWrapper: Action?
+
+    var isOn: Bool {
+        get { state == .on }
+        set { state = newValue ? .on : .off }
+    }
 }
 
 // TODO: Update all controls to use this style of action passing, seems way nicer
@@ -1986,11 +2022,11 @@ class NSCustomTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataS
         row: Int
     ) -> NSView? {
         guard let tableColumn else {
-            print("warning: No column provided")
+            logger.warning("no column provided")
             return nil
         }
         guard let columnIndex = columnIndices[ObjectIdentifier(tableColumn)] else {
-            print("warning: NSTableView asked for value of non-existent column")
+            logger.warning("NSTableView asked for value of non-existent column")
             return nil
         }
         return widgets[row * columnCount + columnIndex]
@@ -2030,7 +2066,10 @@ extension ColorScheme {
 extension Color {
     init(_ nsColor: NSColor) {
         guard let resolvedNSColor = nsColor.usingColorSpace(.deviceRGB) else {
-            print("error: Failed to convert NSColor to RGB")
+            logger.error(
+                "failed to convert NSColor to RGB",
+                metadata: ["NSColor": "\(nsColor)"]
+            )
             self = .black
             return
         }
@@ -2321,7 +2360,7 @@ final class CustomWKNavigationDelegate: NSObject, WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         guard let url = webView.url else {
-            print("warning: Web view has no URL")
+            logger.warning("web view has no URL")
             return
         }
 
