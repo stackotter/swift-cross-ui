@@ -8,7 +8,7 @@
 /// # See Also
 /// - ``View/alert(_:isPresented:actions:)``
 public struct AlertAction: Sendable {
-    public static let ok = AlertAction(label: "Ok", action: {})
+    public static let `default` = AlertAction(label: "OK", action: {})
 
     /// The button's label.
     public var label: String

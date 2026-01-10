@@ -935,6 +935,16 @@ public protocol AppBackend: Sendable {
     /// - Returns: A progress spinner.
     func createProgressSpinner() -> Widget
 
+    /// Sets the size of a progress spinner.
+    ///
+    /// This method exists because AppKitBackend requires special handling to resize progress spinners.
+    ///
+    /// The default implementation forwards to ``AppBackend/setSize(of:to:)``.
+    func setSize(
+        ofProgressSpinner widget: Widget,
+        to size: SIMD2<Int>
+    )
+
     /// Creates a progress bar.
     ///
     /// - Returns: A progress bar.
@@ -1629,6 +1639,13 @@ extension AppBackend {
 
     public func createProgressSpinner() -> Widget {
         todo()
+    }
+
+    public func setSize(
+        ofProgressSpinner widget: Widget,
+        to size: SIMD2<Int>
+    ) {
+        setSize(of: widget, to: size)
     }
 
     public func createProgressBar() -> Widget {
