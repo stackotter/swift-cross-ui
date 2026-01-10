@@ -51,6 +51,12 @@ open class Fixed: Widget {
         child.parentWidget = self
     }
 
+    public func put(_ child: Widget, index: Int, x: Int, y: Int) {
+        gtk_fixed_put(castedPointer(), child.widgetPointer, gint(x), gint(y))
+        children.insert(child, at: index)
+        child.parentWidget = self
+    }
+
     public func move(_ child: Widget, x: Int, y: Int) {
         gtk_fixed_move(castedPointer(), child.widgetPointer, gint(x), gint(y))
     }

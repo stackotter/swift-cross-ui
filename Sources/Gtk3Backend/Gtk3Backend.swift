@@ -459,9 +459,9 @@ public final class Gtk3Backend: AppBackend {
         container.removeAllChildren()
     }
 
-    public func addChild(_ child: Widget, to container: Widget) {
+    public func insert(_ child: Widget, into container: Widget, at index: Int) {
         let container = container as! Fixed
-        container.put(child, x: 0, y: 0)
+        container.put(child, index: index, x: 0, y: 0)
     }
 
     public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
@@ -469,9 +469,20 @@ public final class Gtk3Backend: AppBackend {
         container.move(container.children[index], x: position.x, y: position.y)
     }
 
-    public func removeChild(_ child: Widget, from container: Widget) {
+    public func remove(childAt index: Int, from container: Widget) {
         let container = container as! Fixed
+        let child = container.children[index]
         container.remove(child)
+    }
+
+    public func swap(childAt firstIndex: Int, withChildAt secondIndex: Int, in container: Widget) {
+        // Gtk3.Fixed doesn't let us rearrange children, so we just swap them in
+        // our own list so that at least everything works on the SCUI side. The
+        // only side effect of this approach is that overlapping widgets may
+        // end up with unexpected z ordering. If that becomes an issue we may
+        // have to make a custom replacement for Gtk3.Fixed.
+        let container = container as! Fixed
+        container.children.swapAt(firstIndex, secondIndex)
     }
 
     public func createColorableRectangle() -> Widget {

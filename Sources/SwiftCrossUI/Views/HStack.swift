@@ -22,11 +22,11 @@ public struct HStack<Content: View>: View {
         _ children: any ViewGraphNodeChildren,
         backend: Backend
     ) -> Backend.Widget {
-        let vStack = backend.createContainer()
-        for child in children.widgets(for: backend) {
-            backend.addChild(child, to: vStack)
+        let hStack = backend.createContainer()
+        for (index, child) in children.widgets(for: backend).enumerated() {
+            backend.insert(child, into: hStack, at: index)
         }
-        return vStack
+        return hStack
     }
 
     public func computeLayout<Backend: AppBackend>(

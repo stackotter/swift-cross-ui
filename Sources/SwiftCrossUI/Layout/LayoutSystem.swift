@@ -70,6 +70,24 @@ public enum LayoutSystem {
             self.tag = tag
         }
 
+        init<Child: View>(
+            _ node: AnyViewGraphNode<Child>,
+            child: @escaping @Sendable @MainActor () -> Child?
+        ) {
+            self.init(
+                computeLayout: { proposedSize, environment in
+                    node.computeLayout(
+                        with: child(),
+                        proposedSize: proposedSize,
+                        environment: environment
+                    )
+                },
+                commit: {
+                    node.commit()
+                }
+            )
+        }
+
         @MainActor
         public func computeLayout(
             proposedSize: ProposedViewSize,
