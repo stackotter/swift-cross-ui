@@ -51,11 +51,11 @@ public class GSimpleAction: GAction, GObjectRepresentable {
     private func connectActionSignal(
         _ value: some AnyObject,
         handler:
-        @convention(c) (
-            UnsafeMutableRawPointer,
-            OpaquePointer,
-            UnsafeMutableRawPointer
-        ) -> Void
+            @convention(c) (
+                UnsafeMutableRawPointer,
+                OpaquePointer,
+                UnsafeMutableRawPointer
+            ) -> Void
     ) {
         g_signal_connect_data(
             UnsafeMutableRawPointer(actionPointer),

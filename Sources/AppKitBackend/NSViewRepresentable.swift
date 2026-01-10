@@ -49,6 +49,7 @@ public protocol NSViewRepresentable: View where Content == Never {
     ///   - nsView: The view being queried for its preferred size.
     ///   - context: The context, including the coordinator and environment values.
     /// - Returns: The view's preferred size.
+    @MainActor
     func sizeThatFits(
         _ proposal: ProposedViewSize,
         nsView: NSViewType,
@@ -86,9 +87,11 @@ extension NSViewRepresentable {
         let growsHorizontally = nsView.contentHuggingPriority(for: .horizontal) < .defaultHigh
         let growsVertically = nsView.contentHuggingPriority(for: .vertical) < .defaultHigh
 
-        let idealWidth = intrinsicSize.width == NSView.noIntrinsicMetric
+        let idealWidth =
+            intrinsicSize.width == NSView.noIntrinsicMetric
             ? 10 : intrinsicSize.width
-        let idealHeight = intrinsicSize.height == NSView.noIntrinsicMetric
+        let idealHeight =
+            intrinsicSize.height == NSView.noIntrinsicMetric
             ? 10 : intrinsicSize.height
 
         // When the view doesn't grow along a dimension, we use its fittingSize

@@ -1,6 +1,6 @@
+import SwiftCrossUI
 import WinUI
 import WindowsFoundation
-import SwiftCrossUI
 
 // Many force tries are required for the WinUI backend but we don't really want them
 // anywhere else so just disable the lint rule at a file level.

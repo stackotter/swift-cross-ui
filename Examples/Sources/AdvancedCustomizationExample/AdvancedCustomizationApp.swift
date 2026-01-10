@@ -119,7 +119,8 @@ struct CounterApp: App {
                             #elseif canImport(UIKitBackend)
                                 textField.borderStyle = .bezel
                             #elseif canImport(WinUIBackend)
-                                textField.selectionHighlightColor.color = .init(a: 255, r: 0, g: 255, b: 0)
+                                textField.selectionHighlightColor.color = .init(
+                                    a: 255, r: 0, g: 255, b: 0)
                                 let brush = WinUI.SolidColorBrush()
                                 brush.color = .init(a: 255, r: 0, g: 0, b: 255)
                                 textField.background = brush

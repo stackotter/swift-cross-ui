@@ -96,8 +96,9 @@ extension Menu: TypeSafeView {
                     action: {}
                 )
             case .menuButton:
-                let menu = children.menu.flatMap { $0 as? Backend.Menu }
-                    ?? backend.createPopoverMenu() 
+                let menu =
+                    children.menu.flatMap { $0 as? Backend.Menu }
+                    ?? backend.createPopoverMenu()
                 children.menu = menu
                 backend.updateButton(
                     widget,
