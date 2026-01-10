@@ -90,6 +90,15 @@ struct ControlsApp: App {
                             Text("Value: \(text)")
                         }
 
+                        VStack {
+                            Toggle(
+                                "Enable ProgressView resizability", isOn: $isProgressViewResizable)
+                            Slider(value: $progressViewSize, in: 10...100)
+                            ProgressView()
+                                .resizable(isProgressViewResizable)
+                                .frame(width: progressViewSize, height: progressViewSize)
+                        }
+
                         #if !canImport(Gtk3Backend)
                             VStack {
                                 Text("Drop down")
