@@ -237,6 +237,6 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             isFirstUpdate = false
         }
 
-        return SceneUpdateResult.leafScene()
+        return .leafScene()
     }
 }

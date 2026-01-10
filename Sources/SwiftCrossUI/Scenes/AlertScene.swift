@@ -53,7 +53,7 @@ public final class AlertSceneNode: SceneGraphNode {
         _ newScene: AlertScene?,
         backend: Backend,
         environment: EnvironmentValues
-    ) {
+    ) -> SceneUpdateResult {
         if let newScene {
             self.scene = newScene
         }
@@ -77,5 +77,7 @@ public final class AlertSceneNode: SceneGraphNode {
             backend.dismissAlert(alert as! Backend.Alert, window: nil)
             self.alert = nil
         }
+
+        return .leafScene()
     }
 }
