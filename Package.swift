@@ -229,7 +229,8 @@ let package = Package(
             name: "GtkCodeGen",
             dependencies: [
                 "XMLCoder", .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
-            ]
+            ],
+            exclude: ["GirFiles"]
         ),
         .systemLibrary(
             name: "CGtk3",
