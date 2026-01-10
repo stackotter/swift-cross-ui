@@ -113,11 +113,8 @@ struct ControlsApp: App {
                                         )
                                     }
 
-                                    DatePicker(
-                                        "Test Picker",
-                                        selection: $date
-                                    )
-                                    .datePickerStyle(datePickerStyle ?? .automatic)
+                                    DatePicker(selection: $date) {}
+                                        .datePickerStyle(datePickerStyle ?? .automatic)
 
                                     Button("Reset date to now") {
                                         date = Date()

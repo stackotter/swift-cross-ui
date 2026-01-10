@@ -429,7 +429,8 @@ public final class WinUIBackend: AppBackend {
 
     /// A static version of `naturalSize(of:)` for convenience. Used by
     /// WinUIElementRepresentable.
-    public nonisolated static func naturalSize(of widget: Widget) -> SIMD2<Int> {
+    @MainActor
+    public static func naturalSize(of widget: Widget) -> SIMD2<Int> {
         let allocation = WindowsFoundation.Size(
             width: .infinity,
             height: .infinity
@@ -493,7 +494,7 @@ public final class WinUIBackend: AppBackend {
             // CustomDatePicker is a StackPanel whose individual subviews need to be manually sized
             // and then added together. Its naturalSize(in:) method dispatches back here once for
             // each of its children.
-            return datePicker.naturalSize(in: self)
+            return datePicker.naturalSize()
         } else if widget is WinUI.DatePicker {
             // Width is 296:
             // https://github.com/marcelwgn/microsoft-ui-xaml/blob/ff21f9b212cea2191b959649e45e52486c8465aa/src/controls/dev/CommonStyles/DatePicker_themeresources.xaml#L261
@@ -530,9 +531,11 @@ public final class WinUIBackend: AppBackend {
     /// We can detect such elements because their padding property will be set
     /// to zero until first render (and atm WinUIBackend doesn't set this padding
     /// property itself so this is a safe detection method).
-    public nonisolated static func sizeCorrection(for widget: Widget) -> SIMD2<Int> {
+    @MainActor
+    public static func sizeCorrection(for widget: Widget) -> SIMD2<Int> {
         let adjustment: SIMD2<Int>
         let noPadding = Thickness(left: 0, top: 0, right: 0, bottom: 0)
+        let computedSize = widget.desiredSize
         if let button = widget as? WinUI.Button, button.padding == noPadding {
             // WinUI buttons have padding, but the `padding` property returns
             // zero until the button has been rendered at least once. And even
@@ -2148,7 +2151,11 @@ final class CustomDatePicker: StackPanel {
                 dateChangedEvent = calendarView.selectedDatesChanged.addHandler {
                     [unowned self] _, _ in
 
-                    guard calendarView.selectedDates.size > 0 else { return }
+                    guard calendarView.selectedDates.size > 0 else {
+                        let (dateTime, _) = foundationDateToComponents(self.date)
+                        calendarView.selectedDates.append(dateTime)
+                        return
+                    }
 
                     self.date = componentsToFoundationDate(
                         dateTime: calendarView.selectedDates.getAt(0),
@@ -2299,7 +2306,7 @@ final class CustomDatePicker: StackPanel {
         }
     }
 
-    func naturalSize(in backend: WinUIBackend) -> SIMD2<Int> {
+    func naturalSize() -> SIMD2<Int> {
         let timeViewSize =
             if timeView != nil {
                 // Width is 242, as shown in the WinUI repository:
@@ -2312,7 +2319,7 @@ final class CustomDatePicker: StackPanel {
 
         let dateViewSize =
             if let dateControl = dateView?.asControl {
-                backend.naturalSize(of: dateControl)
+                WinUIBackend.naturalSize(of: dateControl)
             } else {
                 SIMD2<Int>.zero
             }
