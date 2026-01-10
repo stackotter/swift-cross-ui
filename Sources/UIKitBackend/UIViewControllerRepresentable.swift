@@ -169,7 +169,6 @@ final class ControllerRepresentingWidget<
         view.addSubview(subcontroller.view)
         addChild(subcontroller)
 
-        view.translatesAutoresizingMaskIntoConstraints = false
         subcontroller.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             subcontroller.view.topAnchor.constraint(equalTo: view.topAnchor),

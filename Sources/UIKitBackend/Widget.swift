@@ -284,6 +284,11 @@ class BaseControllerWidget: UIViewController, WidgetProtocolHelpers {
         }
         view.removeFromSuperview()
     }
+
+    override func viewDidLoad() {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        super.viewDidLoad()
+    }
 }
 
 class WrapperWidget<View: UIView>: BaseViewWidget {
