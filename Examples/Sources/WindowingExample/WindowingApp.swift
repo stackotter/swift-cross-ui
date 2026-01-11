@@ -228,11 +228,13 @@ struct WindowingApp: App {
         #if !(os(iOS) || os(tvOS) || os(Windows))
             WindowGroup("Secondary window") {
                 #hotReloadable {
-                    Text("This a secondary window!")
-                        .padding(10)
+                    VStack {
+                        Text("This a secondary window!")
 
-                    Toggle("Enforce max size", isOn: $enforceMaxSize)
-                        .toggleStyle(.checkbox)
+                        Toggle("Enforce max size", isOn: $enforceMaxSize)
+                            .toggleStyle(.checkbox)
+                    }
+                    .padding(10)
                 }
             }
             .defaultSize(width: 200, height: 200)

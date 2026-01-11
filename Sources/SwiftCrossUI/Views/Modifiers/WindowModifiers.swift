@@ -10,7 +10,8 @@ extension View {
 
     /// Sets the minimizability of the enclosing window.
     ///
-    /// - Important: This isn't supported on GtkBackend or Gtk3Backend.
+    /// - Important: This isn't supported on GtkBackend or Gtk3Backend, both of
+    ///   which ignore the  corresponding preference value.
     public func preferredWindowMinimizeBehavior(
         _ behavior: WindowInteractionBehavior
     ) -> some View {

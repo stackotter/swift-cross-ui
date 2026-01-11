@@ -29,6 +29,29 @@ class WinUIApplication: SwiftApplication {
 }
 
 public final class WinUIBackend: AppBackend {
+    // Logging
+    private struct LogLocation: Hashable, Equatable {
+        let file: String
+        let line: Int
+        let column: Int
+    }
+
+    private var logsPerformed: Set<LogLocation> = []
+
+    func debugLogOnce(
+        _ message: String,
+        file: String = #file,
+        line: Int = #line,
+        column: Int = #column
+    ) {
+        #if DEBUG
+            let location = LogLocation(file: file, line: line, column: column)
+            if logsPerformed.insert(location).inserted {
+                logger.notice("\(message)")
+            }
+        #endif
+    }
+
     public typealias Window = CustomWindow
     public typealias Widget = WinUI.FrameworkElement
     public typealias Menu = Void
@@ -205,7 +228,7 @@ public final class WinUIBackend: AppBackend {
         minimum minimumSize: SIMD2<Int>,
         maximum maximumSize: SIMD2<Int>?
     ) {
-        logger.warning("\(#function) unimplemented")
+        debugLogOnce("\(#function) unimplemented")
     }
 
     public func setResizeHandler(
