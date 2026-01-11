@@ -3,7 +3,7 @@
 #endif
 
 #if canImport(UIKit)
-import UIKit
+    import UIKit
 #endif
 
 /// A scene that presents a group of identically structured windows. Currently
@@ -55,19 +55,17 @@ public struct WindowGroup<Content: View>: Scene {
     /// Sets the resizability of a window.
     public func windowResizability(_ resizability: WindowResizability) -> Self {
         var windowGroup = self
-        
+
         // ``WindowResizability/contentSize`` currently only works
-        // correctly on backends where the backend sets the size of the window
-        // as it doesn't have an effect on full-screen operating systems like
-        // iOS and tvOS they are excluded from changing the resizability
+        // correctly on backends where the backend sets the size of the window.
+        // As it doesn't have an effect on full-screen operating systems like
+        // iOS and tvOS they are excluded from changing the resizability.
         //
-        // This might be a temporary fix and be moved to the layout system later
-#if canImport(UIKit)
-        if [.phone, .tv].contains(UIDevice.current.userInterfaceIdiom) {
-            return windowGroup
-        }
-#endif
-        windowGroup.resizability = resizability
+        // TODO: This is a temporary targeted fix and should be done
+        // by the layout system instead in communication with backends.
+        #if !os(iOS) && !os(tvOS) && !targetEnvironment(macCatalyst)
+            windowGroup.resizability = resizability
+        #endif
         return windowGroup
     }
 }

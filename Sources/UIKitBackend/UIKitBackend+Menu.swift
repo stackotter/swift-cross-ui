@@ -22,11 +22,12 @@ extension UIKitBackend {
         for item in content.items {
             switch item {
                 case .button(let label, let action):
-                    let uiAction = if let action {
-                        UIAction(title: label) { _ in action() }
-                    } else {
-                        UIAction(title: label, attributes: .disabled) { _ in }
-                    }
+                    let uiAction =
+                        if let action {
+                            UIAction(title: label) { _ in action() }
+                        } else {
+                            UIAction(title: label, attributes: .disabled) { _ in }
+                        }
                     currentSection.append(uiAction)
                 case .toggle(let label, let value, let onChange):
                     currentSection.append(
@@ -45,16 +46,17 @@ extension UIKitBackend {
             }
         }
 
-        let children = if previousSections.isEmpty {
-            // There are no dividers; just return the current section to keep the menu tree flat.
-            currentSection
-        } else {
-            // Create a list of submenus, each with the displayInline option set so that they
-            // display as sections with separators.
-            (previousSections + [currentSection]).map {
-                UIMenu(title: "", options: .displayInline, children: $0)
+        let children =
+            if previousSections.isEmpty {
+                // There are no dividers; just return the current section to keep the menu tree flat.
+                currentSection
+            } else {
+                // Create a list of submenus, each with the displayInline option set so that they
+                // display as sections with separators.
+                (previousSections + [currentSection]).map {
+                    UIMenu(title: "", options: .displayInline, children: $0)
+                }
             }
-        }
 
         return UIMenu(title: label, identifier: identifier, children: children)
     }

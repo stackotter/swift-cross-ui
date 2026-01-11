@@ -424,7 +424,7 @@ public final class AppKitBackend: AppBackend {
     public func swap(childAt firstIndex: Int, withChildAt secondIndex: Int, in container: NSView) {
         assert(
             container.subviews.indices.contains(firstIndex)
-            && container.subviews.indices.contains(secondIndex),
+                && container.subviews.indices.contains(secondIndex),
             """
             attempted to swap container child out of bounds; container count \
             = \(container.subviews.count); firstIndex = \(firstIndex); \
