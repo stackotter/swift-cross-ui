@@ -54,9 +54,7 @@ struct TaskModifier<Id: Equatable, Content: View> {
 
 extension TaskModifier: View {
     var body: some View {
-        // Explicitly return to disable result builder (we don't want an extra
-        // layer of views).
-        return content.onChange(of: id, initial: true) {
+        content.onChange(of: id, initial: true) {
             task?.cancel()
             task = Task(priority: priority) {
                 await action()

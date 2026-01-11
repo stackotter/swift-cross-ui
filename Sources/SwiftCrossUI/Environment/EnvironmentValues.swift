@@ -237,6 +237,18 @@ public struct EnvironmentValues {
         )
     }
 
+    /// The current calendar that views should use when handling dates.
+    public var calendar: Calendar
+
+    /// The current time zone that views should use when handling dates.
+    public var timeZone: TimeZone
+
+    /// The display style used by ``DatePicker``.
+    public var datePickerStyle: DatePickerStyle
+
+    /// The display styles supported by ``DatePicker``. ``datePickerStyle`` must be one of these.
+    public let supportedDatePickerStyles: [DatePickerStyle]
+
     /// Creates the default environment.
     ///
     /// - Parameter backend: The app's backend.
@@ -263,6 +275,16 @@ public struct EnvironmentValues {
         isTextSelectionEnabled = false
         menuOrder = .automatic
         allowLayoutCaching = false
+        calendar = .current
+        timeZone = .current
+        datePickerStyle = .automatic
+
+        let supportedDatePickerStyles = backend.supportedDatePickerStyles
+        if supportedDatePickerStyles.isEmpty {
+            self.supportedDatePickerStyles = [.automatic]
+        } else {
+            self.supportedDatePickerStyles = supportedDatePickerStyles
+        }
     }
 
     /// Returns a copy of the environment with the specified property set to the

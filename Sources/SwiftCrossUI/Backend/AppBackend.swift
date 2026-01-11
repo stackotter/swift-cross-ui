@@ -110,6 +110,11 @@ public protocol AppBackend: Sendable {
     /// Mobile backends generally can't.
     var canRevealFiles: Bool { get }
 
+    /// The supported date picker styles.
+    /// 
+    /// Must include ``DatePickerStyle/automatic`` if date pickers are supported at all.
+    nonisolated var supportedDatePickerStyles: [DatePickerStyle] { get }
+
     /// Runs the backend's main run loop.
     ///
     /// The app will exit when this method returns. This wall always be the
@@ -933,6 +938,17 @@ public protocol AppBackend: Sendable {
     ///   - selectedOption: The index of the option to select. If `nil`, all
     ///     options should be deselected.
     func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?)
+
+    func createDatePicker() -> Widget
+
+    func updateDatePicker(
+        _ datePicker: Widget,
+        environment: EnvironmentValues,
+        date: Date,
+        range: ClosedRange<Date>,
+        components: DatePickerComponents,
+        onChange: @escaping (Date) -> Void
+    )
 
     /// Creates an indeterminate progress spinner.
     ///
@@ -1827,4 +1843,15 @@ extension AppBackend {
     ) {
         todo()
     }
+
+    public func createDatePicker() -> Widget { todo() }
+
+    public func updateDatePicker(
+        _ datePicker: Widget,
+        environment: EnvironmentValues,
+        date: Date,
+        range: ClosedRange<Date>,
+        components: DatePickerComponents,
+        onChange: @escaping (Date) -> Void
+    ) { todo() }
 }
