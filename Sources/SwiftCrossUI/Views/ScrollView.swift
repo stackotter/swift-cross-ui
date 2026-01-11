@@ -138,7 +138,8 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
 
         return ViewLayoutResult(
             size: outerSize,
-            childResults: [finalChildResult]
+            childResults: [finalChildResult],
+            participateInStackLayoutsWhenEmpty: true
         )
     }
 
