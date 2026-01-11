@@ -3,5 +3,6 @@ public enum MenuItem: Sendable {
     case button(Button)
     case text(Text)
     case toggle(Toggle)
+    case separator(Divider)
     case submenu(Menu)
 }

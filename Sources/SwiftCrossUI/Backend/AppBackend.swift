@@ -98,6 +98,10 @@ public protocol AppBackend: Sendable {
     /// Mobile backends generally can't.
     var canRevealFiles: Bool { get }
 
+    /// The supported date picker styles. Must include ``DatePickerStyle/automatic`` if date pickers
+    /// are supported at all.
+    nonisolated var supportedDatePickerStyles: [DatePickerStyle] { get }
+
     /// Often in UI frameworks (such as Gtk), code is run in a callback
     /// after starting the app, and hence this generic root window creation
     /// API must reflect that. This is always the first method to be called
@@ -242,12 +246,15 @@ public protocol AppBackend: Sendable {
     func createContainer() -> Widget
     /// Removes all children of the given container.
     func removeAllChildren(of container: Widget)
-    /// Adds a child to a given container at an exact position.
-    func addChild(_ child: Widget, to container: Widget)
+    /// Inserts a child into a given container at a given index.
+    func insert(_ child: Widget, into container: Widget, at index: Int)
+    /// Swaps the child at firstIndex with the child at secondIndex. May crash if either
+    /// index is out of bounds.
+    func swap(childAt firstIndex: Int, withChildAt secondIndex: Int, in container: Widget)
     /// Sets the position of the specified child in a container.
     func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>)
-    /// Removes a child widget from a container (if the child is a direct child of the container).
-    func removeChild(_ child: Widget, from container: Widget)
+    /// Removes the child at the given index from the given container.
+    func remove(childAt index: Int, from container: Widget)
 
     /// Creates a rectangular widget with configurable color.
     func createColorableRectangle() -> Widget
@@ -547,8 +554,29 @@ public protocol AppBackend: Sendable {
     /// Sets the index of the selected option of a picker.
     func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?)
 
+    func createDatePicker() -> Widget
+
+    func updateDatePicker(
+        _ datePicker: Widget,
+        environment: EnvironmentValues,
+        date: Date,
+        range: ClosedRange<Date>,
+        components: DatePickerComponents,
+        onChange: @escaping (Date) -> Void
+    )
+
     /// Creates an indeterminate progress spinner.
     func createProgressSpinner() -> Widget
+
+    /// Sets the size of a progress spinner.
+    ///
+    /// This method exists because AppKitBackend requires special handling to resize progress spinners.
+    ///
+    /// The default implementation forwards to ``AppBackend/setSize(of:to:)``.
+    func setSize(
+        ofProgressSpinner widget: Widget,
+        to size: SIMD2<Int>
+    )
 
     /// Creates a progress bar.
     func createProgressBar() -> Widget
@@ -1123,6 +1151,13 @@ extension AppBackend {
         todo()
     }
 
+    public func setSize(
+        ofProgressSpinner widget: Widget,
+        to size: SIMD2<Int>
+    ) {
+        setSize(of: widget, to: size)
+    }
+
     public func createProgressBar() -> Widget {
         todo()
     }
@@ -1298,4 +1333,15 @@ extension AppBackend {
     ) {
         todo()
     }
+
+    public func createDatePicker() -> Widget { todo() }
+
+    public func updateDatePicker(
+        _ datePicker: Widget,
+        environment: EnvironmentValues,
+        date: Date,
+        range: ClosedRange<Date>,
+        components: DatePickerComponents,
+        onChange: @escaping (Date) -> Void
+    ) { todo() }
 }

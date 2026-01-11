@@ -1,6 +1,6 @@
+import SwiftCrossUI
 import WinUI
 import WindowsFoundation
-import SwiftCrossUI
 
 // Many force tries are required for the WinUI backend but we don't really want them
 // anywhere else so just disable the lint rule at a file level.
@@ -53,6 +53,7 @@ public protocol WinUIElementRepresentable: View where Content == Never {
     ///   - winUIElement: The element being queried for its preferred size.
     ///   - context: The context, including the coordinator and environment values.
     /// - Returns: The element's preferred size.
+    @MainActor
     func sizeThatFits(
         _ proposal: ProposedViewSize,
         winUIElement: WinUIElementType,
@@ -78,19 +79,20 @@ extension WinUIElementRepresentable {
         // no-op
     }
 
+    @MainActor
     public func sizeThatFits(
         _ proposal: ProposedViewSize,
         winUIElement: WinUIElementType,
         context _: Context
     ) -> ViewSize {
-        let adjustment: SIMD2<Int> = WinUIBackend.sizeCorrection(for: winUIElement)
-
         let allocation = WindowsFoundation.Size(
             width: proposal.width.map(Float.init) ?? .infinity,
             height: proposal.height.map(Float.init) ?? .infinity
         )
         try! winUIElement.measure(allocation)
         let sizeThatFits = winUIElement.desiredSize
+
+        let adjustment: SIMD2<Int> = WinUIBackend.sizeCorrection(for: winUIElement)
 
         let idealWidth = Double(sizeThatFits.width) + Double(adjustment.x)
         let idealHeight = Double(sizeThatFits.height) + Double(adjustment.y)

@@ -60,7 +60,7 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
                 children.rowNodes.append(rowNode)
                 for cellWidget in rowNode.getChildren().widgets(for: backend) {
                     let cellContainer = backend.createContainer()
-                    backend.addChild(cellWidget, to: cellContainer)
+                    backend.insert(cellWidget, into: cellContainer, at: 0)
                     children.cellContainerWidgets.append(AnyWidget(cellContainer))
                 }
             }

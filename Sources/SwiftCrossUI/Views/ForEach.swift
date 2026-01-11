@@ -1,5 +1,4 @@
 import Foundation
-import OrderedCollections
 
 /// A view that displays a variable amount of children.
 public struct ForEach<Items: Collection, ID: Hashable, Child> {
@@ -46,7 +45,15 @@ extension ForEach: TypeSafeView, View where Child: View {
         _ children: Children,
         backend: Backend
     ) -> Backend.Widget {
-        return backend.createContainer()
+        let container = backend.createContainer()
+        if idKeyPath == nil {
+            // Deprecated code path. We've centralised the new implementation
+            // into computeLayout and commit.
+            for (index, node) in children.nodes.enumerated() {
+                backend.insert(node.widget.into(), into: container, at: index)
+            }
+        }
+        return container
     }
 
     func computeLayout<Backend: AppBackend>(
@@ -56,12 +63,16 @@ extension ForEach: TypeSafeView, View where Child: View {
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        func addChild(_ child: Backend.Widget) {
-            children.queuedChanges.append(.addChild(AnyWidget(child)))
+        func insertChild(_ child: Backend.Widget, atIndex index: Int) {
+            children.queuedChanges.append(.insertChild(AnyWidget(child), index))
         }
 
-        func removeChild(_ child: Backend.Widget) {
-            children.queuedChanges.append(.removeChild(AnyWidget(child)))
+        func removeChild(atIndex index: Int) {
+            children.queuedChanges.append(.removeChild(index))
+        }
+
+        func swap(childAt firstIndex: Int, withChildAt secondIndex: Int) {
+            children.queuedChanges.append(.swapChildren(firstIndex, secondIndex))
         }
 
         // Use the previous update Method when no keyPath is set on a
@@ -76,129 +87,106 @@ extension ForEach: TypeSafeView, View where Child: View {
             )
         }
 
-        var layoutableChildren: [LayoutSystem.LayoutableChild] = []
+        var oldIdentifiers = children.identifiers
+        let newIdentifiers = elements.map { $0[keyPath: idKeyPath] }
 
-        let oldNodes = children.nodes
-        let oldMap = children.nodeIdentifierMap
-        let oldIdentifiers = children.identifiers
-        let identifiersStart = oldIdentifiers.startIndex
+        // If the identifiers of our elements have changed, then we must rearrange
+        // our nodes and widgets so that child view states remain with their
+        // corresponding identifiers.
+        if oldIdentifiers != newIdentifiers {
+            var oldIdentifierMap = children.identifierMap
+            var oldNodes = children.nodes
+            var seenIdentifiers = Set<ID>()
+            children.nodes = []
+            children.identifierMap = [:]
+            children.identifiers = []
+            children.layoutableChildren = []
 
-        children.nodes = []
-        children.nodeIdentifierMap = [:]
-        children.identifiers = []
+            var offset = 0
+            var duplicateCount = 0
+            for (index, element) in elements.enumerated() {
+                let identifier = newIdentifiers[index]
+                let childContent = child(element)
+                let node: AnyViewGraphNode<Child>
 
-        // Once this is true, every node that existed in the previous update and
-        // still exists in the new one is reinserted to ensure that items are
-        // rendered in the correct order.
-        var requiresOngoingReinsertion = false
+                if !seenIdentifiers.insert(identifier).inserted {
+                    // We cannot keep view state attached to the correct ForEach element
+                    // when there are duplicate identifiers. Any elements with unique
+                    // identifiers are guaranteed to keep functioning correctly. Elements
+                    // with non-unique identifiers will get their corresponding view graph
+                    // nodes recreated each time the identifiers of our elements change,
+                    // unless they are the first element with the shared identifier, in which
+                    // case they will inherit the view graph node of the previous first element
+                    // with that same identifier.
+                    logger.warning(
+                        "duplicate identifier in ForEach; view state may not act as you would expect",
+                        metadata: ["identifier": "\(identifier)"]
+                    )
+                    duplicateCount += 1
+                }
 
-        // Forces node recreation when enabled (expensive on large Collections).
-        // Use only when idKeyPath yields non-unique values. Prefer Identifiable
-        // or guaranteed unique, constant identifiers for optimal performance.
-        // Node caching and diffing require unique, stable IDs.
-        var ongoingNodeReusingDisabled = false
+                if let oldIndex = oldIdentifierMap.removeValue(forKey: identifier) {
+                    // If the identifier already has a corresponding node, reuse it.
+                    node = oldNodes[oldIndex]
 
-        for element in elements {
-            // Avoid reallocation
-            var inserted = false
-
-            let childContent = child(element)
-            let node: AnyViewGraphNode<Child>
-
-            // Track duplicates: inserted=false if ID exists.
-            // Disables node reuse if any duplicate gets found.
-            (inserted, _) = children.identifiers.append(element[keyPath: idKeyPath])
-            ongoingNodeReusingDisabled = ongoingNodeReusingDisabled || !inserted
-
-            if !ongoingNodeReusingDisabled {
-                if let oldNode = oldMap[element[keyPath: idKeyPath]] {
-                    node = oldNode
-
-                    // Detects reordering or mid-collection insertion:
-                    // Checks if there is a preceding item that was not
-                    // preceding in the previous update.
-                    requiresOngoingReinsertion =
-                        requiresOngoingReinsertion
-                        || {
-                            guard
-                                let ownOldIndex = oldIdentifiers.firstIndex(
-                                    of: element[keyPath: idKeyPath])
-                            else { return false }
-
-                            let subset = oldIdentifiers[identifiersStart..<ownOldIndex]
-                            return !children.identifiers.subtracting(subset).isEmpty
-                        }()
-
-                    // Removes node from its previous position and
-                    // re-adds it at the new correct one.
-                    if requiresOngoingReinsertion, !children.isFirstUpdate {
-                        removeChild(oldNode.widget.into())
-                        addChild(oldNode.widget.into())
+                    // If the node's corresponding widget isn't already at the correct
+                    // position (accounting for insertions), then swap it with the widget
+                    // at the target position and update our accounting accordinly.
+                    if index != offset + oldIndex {
+                        // When talking about current widget indices, we add `offset` to oldIndex.
+                        // When talking about old element indices, we subtract `offset` from index.
+                        swap(childAt: offset + oldIndex, withChildAt: index)
+                        oldNodes.swapAt(oldIndex, index - offset)
+                        oldIdentifierMap[oldIdentifiers[index - offset]] = oldIndex
+                        oldIdentifiers.swapAt(oldIndex, index - offset)
                     }
                 } else {
-                    // New Items need ongoing reinsertion to get
-                    // displayed at the correct location.
-                    requiresOngoingReinsertion = true
+                    // If the identifier is new, create a node for it and insert its
+                    // widget at the correct position.
                     node = AnyViewGraphNode(
                         for: childContent,
                         backend: backend,
                         environment: environment
                     )
-                    if !children.isFirstUpdate {
-                        addChild(node.widget.into())
-                    }
+                    insertChild(node.widget.into(), atIndex: index)
+
+                    // `offset` tracks how many elements have been inserted, which we
+                    // use to adjust old indices. All nodes before the one we just
+                    // inserted are already at their final position, so we never have
+                    // to adjust old indices that point to before our latest insertion, otherwise
+                    // such a simple adjustment wouldn't be possible.
+                    offset += 1
                 }
-                children.nodeIdentifierMap[element[keyPath: idKeyPath]] = node
-            } else {
-                node = AnyViewGraphNode(
-                    for: childContent,
-                    backend: backend,
-                    environment: environment
+
+                children.nodes.append(node)
+                children.identifierMap[identifier] = index
+                children.identifiers.append(identifier)
+                children.layoutableChildren.append(
+                    LayoutSystem.LayoutableChild(node) { child(element) }
                 )
             }
 
-            children.nodes.append(node)
-
-            layoutableChildren.append(
-                LayoutSystem.LayoutableChild(
-                    computeLayout: { proposedSize, environment in
-                        node.computeLayout(
-                            with: childContent,
-                            proposedSize: proposedSize,
-                            environment: environment
-                        )
-                    },
-                    commit: {
-                        node.commit()
-                    }
-                )
-            )
-        }
-
-        if children.isFirstUpdate {
-            for nodeToAdd in children.nodes {
-                addChild(nodeToAdd.widget.into())
-            }
-        } else if !ongoingNodeReusingDisabled {
-            for removed in oldMap.filter({
-                !children.identifiers.contains($0.key)
-            }).values {
-                removeChild(removed.widget.into())
-            }
-        } else {
-            for nodeToRemove in oldNodes {
-                removeChild(nodeToRemove.widget.into())
-            }
-            for nodeToAdd in children.nodes {
-                addChild(nodeToAdd.widget.into())
+            // TODO: We should be able to reuse unused widgets in newly created nodes.
+            // Remove unused widgets, starting from the end of the container for
+            // cheaper removals.
+            let removalCount = oldIdentifierMap.count + duplicateCount
+            if removalCount > 0 {
+                for i in (0..<removalCount).reversed() {
+                    removeChild(atIndex: children.nodes.count + i)
+                }
             }
         }
 
-        children.isFirstUpdate = false
+        // Recompute layoutable children if the last commit cleared them
+        if children.layoutableChildren.isEmpty && !children.nodes.isEmpty {
+            children.layoutableChildren = zip(children.nodes, elements).map { (node, element) in
+                LayoutSystem.LayoutableChild(node) { child(element) }
+            }
+        }
 
         return LayoutSystem.computeStackLayout(
             container: widget,
-            children: layoutableChildren,
+            children: children.layoutableChildren,
             cache: &children.stackLayoutCache,
             proposedSize: proposedSize,
             environment: environment,
@@ -215,13 +203,13 @@ extension ForEach: TypeSafeView, View where Child: View {
         backend: Backend
     ) -> ViewLayoutResult {
         @inline(__always)
-        func addChild(_ child: Backend.Widget) {
-            children.queuedChanges.append(.addChild(AnyWidget(child)))
+        func insertChild(_ child: Backend.Widget, atIndex index: Int) {
+            children.queuedChanges.append(.insertChild(AnyWidget(child), index))
         }
 
         @inline(__always)
-        func removeChild(_ child: Backend.Widget) {
-            children.queuedChanges.append(.removeChild(AnyWidget(child)))
+        func removeChild(atIndex index: Int) {
+            children.queuedChanges.append(.removeChild(index))
         }
 
         let elementsStartIndex = elements.startIndex
@@ -236,22 +224,11 @@ extension ForEach: TypeSafeView, View where Child: View {
                 break
             }
             let index = elements.index(elementsStartIndex, offsetBy: i)
-            let childContent = child(elements[index])
             if children.isFirstUpdate {
-                addChild(node.widget.into())
+                insertChild(node.widget.into(), atIndex: i)
             }
-            layoutableChildren.append(
-                LayoutSystem.LayoutableChild(
-                    computeLayout: { proposedSize, environment in
-                        node.computeLayout(
-                            with: childContent,
-                            proposedSize: proposedSize,
-                            environment: environment
-                        )
-                    },
-                    commit: node.commit
-                )
-            )
+            let layoutableChild = LayoutSystem.LayoutableChild(node) { child(elements[index]) }
+            layoutableChildren.append(layoutableChild)
         }
         children.isFirstUpdate = false
 
@@ -260,33 +237,23 @@ extension ForEach: TypeSafeView, View where Child: View {
         if remainingElementCount > 0 {
             let startIndex = elements.index(elementsStartIndex, offsetBy: nodeCount)
             for i in 0..<remainingElementCount {
-                let childContent = child(elements[elements.index(startIndex, offsetBy: i)])
+                let element = elements[elements.index(startIndex, offsetBy: i)]
                 let node = AnyViewGraphNode(
-                    for: childContent,
+                    for: child(element),
                     backend: backend,
                     environment: environment
                 )
+                insertChild(node.widget.into(), atIndex: children.nodes.count)
                 children.nodes.append(node)
-                addChild(node.widget.into())
-                layoutableChildren.append(
-                    LayoutSystem.LayoutableChild(
-                        computeLayout: { proposedSize, environment in
-                            node.computeLayout(
-                                with: childContent,
-                                proposedSize: proposedSize,
-                                environment: environment
-                            )
-                        },
-                        commit: node.commit
-                    )
-                )
+                let layoutableChild = LayoutSystem.LayoutableChild(node) { child(element) }
+                layoutableChildren.append(layoutableChild)
             }
         } else if remainingElementCount < 0 {
-            let unused = -remainingElementCount
-            for i in (nodeCount - unused)..<nodeCount {
-                removeChild(children.nodes[i].widget.into())
+            let unusedCount = -remainingElementCount
+            for i in 0..<unusedCount {
+                removeChild(atIndex: nodeCount - i - 1)
             }
-            children.nodes.removeLast(unused)
+            children.nodes.removeLast(unusedCount)
         }
 
         return LayoutSystem.computeStackLayout(
@@ -308,33 +275,31 @@ extension ForEach: TypeSafeView, View where Child: View {
     ) {
         for change in children.queuedChanges {
             switch change {
-                case .addChild(let child):
-                    backend.addChild(child.into(), to: widget)
-                case .removeChild(let child):
-                    backend.removeChild(child.into(), from: widget)
+                case .insertChild(let child, let index):
+                    backend.insert(child.into(), into: widget, at: index)
+                case .removeChild(let index):
+                    backend.remove(childAt: index, from: widget)
+                case .swapChildren(let firstIndex, let secondIndex):
+                    backend.swap(childAt: firstIndex, withChildAt: secondIndex, in: widget)
             }
         }
         children.queuedChanges = []
 
         LayoutSystem.commitStackLayout(
             container: widget,
-            children: children.nodes.map { node in
-                LayoutSystem.LayoutableChild(
-                    computeLayout: { proposedSize, environment in
-                        node.computeLayout(
-                            with: nil,
-                            proposedSize: proposedSize,
-                            environment: environment
-                        )
-                    },
-                    commit: node.commit
-                )
-            },
+            children: children.layoutableChildren,
             cache: &children.stackLayoutCache,
             layout: layout,
             environment: environment,
             backend: backend
         )
+
+        // Reset layoutable children cache so that we recompute them during the
+        // next update cycle. This is important at the moment because the `child`
+        // closure and `elements` array may have changed. In future we'll separate
+        // view body recomputation from the computeLayout step, which should simplify
+        // things.
+        children.layoutableChildren = []
     }
 }
 
@@ -356,34 +321,52 @@ class ForEachViewChildren<
     /// The nodes for all current children of the ``ForEach`` view.
     var nodes: [AnyViewGraphNode<Child>] = []
 
-    /// The nodes for all current children of the ``ForEach`` view, queriable by their identifier.
-    var nodeIdentifierMap: [ID: AnyViewGraphNode<Child>]
+    /// A map from element identifier to node index.
+    var identifierMap: [ID: Int]
 
-    /// The identifiers of all current children ``ForEach`` view in the order they are displayed.
-    /// Can be used for checking if an element was moved or an element was inserted in front of it.
-    var identifiers: OrderedSet<ID>
+    /// The identifiers corresponding to ``nodes``.
+    var identifiers: [ID]
 
-    /// Changes queued during `dryRun` updates.
+    /// Changes queued during computeLayout.
     var queuedChanges: [Change] = []
 
-    enum Change {
-        case addChild(AnyWidget)
-        case removeChild(AnyWidget)
+    /// A queued widget operation to perform during `ForEach.commit`.
+    enum Change: CustomStringConvertible {
+        case insertChild(AnyWidget, Int)
+        case removeChild(Int)
+        case swapChildren(Int, Int)
+
+        var description: String {
+            switch self {
+                case .insertChild(let widget, let index):
+                    "Insert widget \(ObjectIdentifier(widget.widget as AnyObject)) at \(index)"
+                case .removeChild(let index):
+                    "Remove widget at \(index)"
+                case .swapChildren(let firstIndex, let secondIndex):
+                    "Swap widgets at \(firstIndex) and \(secondIndex)"
+            }
+        }
     }
 
+    /// Only used by ``ForEach/deprecatedUpdate(_:children:proposedSize:environment:backend:)``.
     var isFirstUpdate = true
+
+    /// A cache of the view's children, used when the ForEach's element
+    /// identifiers haven't changed since the previous layout computation.
+    var layoutableChildren: [LayoutSystem.LayoutableChild] = []
 
     var widgets: [AnyWidget] {
         nodes.map(\.widget)
     }
 
+    // TODO: This pattern of erasing by wrapping in a temporary class seems
+    //   inefficient. Could ErasedViewGraphNode maybe be a struct instead?
     var erasedNodes: [ErasedViewGraphNode] {
         nodes.map(ErasedViewGraphNode.init(wrapping:))
     }
 
     var stackLayoutCache = StackLayoutCache()
 
-    /// Gets a variable length view's children as view graph node children.
     init<Backend: AppBackend>(
         from view: ForEach<Items, ID, Child>,
         backend: Backend,
@@ -391,7 +374,12 @@ class ForEachViewChildren<
         snapshots: [ViewGraphSnapshotter.NodeSnapshot]?,
         environment: EnvironmentValues
     ) {
-        guard let idKeyPath else {
+        identifierMap = [:]
+        identifiers = []
+
+        if idKeyPath == nil {
+            // Deprecated code path. I'm not touching this anymore cause it's
+            // gonna get deleted before any proper release.
             nodes = view.elements
                 .map(view.child)
                 .enumerated()
@@ -405,35 +393,9 @@ class ForEachViewChildren<
                     )
                 }
                 .map(AnyViewGraphNode.init(_:))
-            identifiers = []
-            nodeIdentifierMap = [:]
-            return
+        } else {
+            nodes = []
         }
-        var nodeIdentifierMap = [ID: AnyViewGraphNode<Child>]()
-        var identifiers = OrderedSet<ID>()
-        var viewNodes = [AnyViewGraphNode<Child>]()
-
-        for (index, element) in view.elements.enumerated() {
-            let child = view.child(element)
-            let viewGraphNode = {
-                let snapshot = index < snapshots?.count ?? 0 ? snapshots?[index] : nil
-                return ViewGraphNode(
-                    for: child,
-                    backend: backend,
-                    snapshot: snapshot,
-                    environment: environment
-                )
-            }()
-
-            let anyViewGraphNode = AnyViewGraphNode(viewGraphNode)
-            viewNodes.append(anyViewGraphNode)
-
-            identifiers.append(element[keyPath: idKeyPath])
-            nodeIdentifierMap[element[keyPath: idKeyPath]] = anyViewGraphNode
-        }
-        nodes = viewNodes
-        self.identifiers = identifiers
-        self.nodeIdentifierMap = nodeIdentifierMap
     }
 }
 
@@ -496,56 +458,6 @@ extension ForEach where Items.Element: Identifiable, Child == [MenuItem], ID == 
         self.elements = elements
         self.child = child
         self.idKeyPath = \.id
-    }
-}
-
-extension ForEach where Items == [Int], ID == Items.Element {
-    /// Creates a view that creates child views on demand based on a given ClosedRange
-    @_disfavoredOverload
-    public init(
-        _ range: ClosedRange<Int>,
-        child: @escaping (Int) -> Child
-    ) {
-        self.elements = Array(range)
-        self.child = child
-        self.idKeyPath = \.self
-    }
-
-    /// Creates a view that creates child views on demand based on a given Range
-    @_disfavoredOverload
-    public init(
-        _ range: Range<Int>,
-        child: @escaping (Int) -> Child
-    ) {
-        self.elements = Array(range)
-        self.child = child
-        self.idKeyPath = \.self
-    }
-}
-
-extension ForEach where Items == [Int] {
-    /// Creates a view that creates child views on demand based on a given ClosedRange
-    @_disfavoredOverload
-    public init(
-        _ range: ClosedRange<Int>,
-        id keyPath: KeyPath<Items.Element, ID>,
-        child: @escaping (Int) -> Child
-    ) {
-        self.elements = Array(range)
-        self.child = child
-        self.idKeyPath = keyPath
-    }
-
-    /// Creates a view that creates child views on demand based on a given Range
-    @_disfavoredOverload
-    public init(
-        _ range: Range<Int>,
-        id keyPath: KeyPath<Items.Element, ID>,
-        child: @escaping (Int) -> Child
-    ) {
-        self.elements = Array(range)
-        self.child = child
-        self.idKeyPath = keyPath
     }
 }
 

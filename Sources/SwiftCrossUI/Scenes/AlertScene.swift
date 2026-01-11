@@ -73,7 +73,7 @@ public final class AlertSceneNode: SceneGraphNode {
             }
 
             self.alert = alert
-        } else if !scene.isPresented, let alert  {
+        } else if !scene.isPresented, let alert {
             backend.dismissAlert(alert as! Backend.Alert, window: nil)
             self.alert = nil
         }

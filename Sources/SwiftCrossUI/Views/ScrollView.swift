@@ -138,7 +138,8 @@ public struct ScrollView<Content: View>: TypeSafeView, View {
 
         return ViewLayoutResult(
             size: outerSize,
-            childResults: [finalChildResult]
+            childResults: [finalChildResult],
+            participateInStackLayoutsWhenEmpty: true
         )
     }
 
@@ -191,7 +192,7 @@ class ScrollViewChildren<Content: View>: ViewGraphNodeChildren {
     ) {
         self.children = children
         let innerContainer = backend.createContainer()
-        backend.addChild(children.child0.widget.into(), to: innerContainer)
+        backend.insert(children.child0.widget.into(), into: innerContainer, at: 0)
         self.innerContainer = AnyWidget(innerContainer)
     }
 }

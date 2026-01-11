@@ -1,4 +1,5 @@
 import DefaultBackend
+import Foundation
 import SwiftCrossUI
 
 #if canImport(SwiftBundlerRuntime)
@@ -16,7 +17,13 @@ struct ControlsApp: App {
     @State var text = ""
     @State var flavor: String? = nil
     @State var enabled = true
+    @State var date = Date()
+    @State var datePickerStyle: DatePickerStyle? = .automatic
     @State var menuToggleState = false
+    @State var progressViewSize: Int = 10
+    @State var isProgressViewResizable = true
+
+    @Environment(\.supportedDatePickerStyles) var supportedDatePickerStyles: [DatePickerStyle]
 
     var body: some Scene {
         WindowGroup("ControlsApp") {
@@ -84,13 +91,48 @@ struct ControlsApp: App {
                         }
 
                         VStack {
-                            Text("Drop down")
-                            HStack {
-                                Text("Flavor: ")
-                                Picker(of: ["Vanilla", "Chocolate", "Strawberry"], selection: $flavor)
-                            }
-                            Text("You chose: \(flavor ?? "Nothing yet!")")
+                            Toggle(
+                                "Enable ProgressView resizability", isOn: $isProgressViewResizable)
+                            Slider(value: $progressViewSize, in: 10...100)
+                            ProgressView()
+                                .resizable(isProgressViewResizable)
+                                .frame(width: progressViewSize, height: progressViewSize)
                         }
+
+                        #if !canImport(Gtk3Backend)
+                            VStack {
+                                Text("Drop down")
+                                HStack {
+                                    Text("Flavor: ")
+                                    Picker(
+                                        of: ["Vanilla", "Chocolate", "Strawberry"],
+                                        selection: $flavor
+                                    )
+                                }
+                                Text("You chose: \(flavor ?? "Nothing yet!")")
+                            }
+
+                            #if !os(tvOS)
+                                VStack {
+                                    Text("Selected date: \(date)")
+
+                                    HStack {
+                                        Text("Date picker style: ")
+                                        Picker(
+                                            of: supportedDatePickerStyles,
+                                            selection: $datePickerStyle
+                                        )
+                                    }
+
+                                    DatePicker(selection: $date) {}
+                                        .datePickerStyle(datePickerStyle ?? .automatic)
+
+                                    Button("Reset date to now") {
+                                        date = Date()
+                                    }
+                                }
+                            #endif
+                        #endif
                     }.padding().disabled(!enabled)
 
                     Toggle(enabled ? "Disable all" : "Enable all", isOn: $enabled)

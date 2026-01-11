@@ -18,4 +18,12 @@ public class GMenu {
             UnsafeMutablePointer(content.pointer)
         )
     }
+
+    public func appendSection(label: String?, content: GMenu) {
+        g_menu_append_section(
+            pointer,
+            label,
+            UnsafeMutablePointer(content.pointer)
+        )
+    }
 }

@@ -43,6 +43,7 @@ public protocol UIViewRepresentable: View where Content == Never {
     ///   - uiView: The view being queried for its preferred size.
     ///   - context: The context, including the coordinator and environment values.
     /// - Returns: The view's preferred size.
+    @MainActor
     func sizeThatFits(
         _ proposal: ProposedViewSize,
         uiView: UIViewType,
@@ -73,9 +74,11 @@ func defaultViewSize(proposal: ProposedViewSize, view: UIView) -> ViewSize {
     let growsHorizontally = view.contentHuggingPriority(for: .horizontal) < .defaultHigh
     let growsVertically = view.contentHuggingPriority(for: .vertical) < .defaultHigh
 
-    let idealWidth = intrinsicSize.width == UIView.noIntrinsicMetric
+    let idealWidth =
+        intrinsicSize.width == UIView.noIntrinsicMetric
         ? 10 : intrinsicSize.width
-    let idealHeight = intrinsicSize.height == UIView.noIntrinsicMetric
+    let idealHeight =
+        intrinsicSize.height == UIView.noIntrinsicMetric
         ? 10 : intrinsicSize.height
 
     // When the view doesn't grow along a dimension, we use its fittingSize

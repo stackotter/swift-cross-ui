@@ -38,6 +38,8 @@ public struct Menu: Sendable {
                             toggle.active.wrappedValue,
                             onChange: { toggle.active.wrappedValue = $0 }
                         )
+                    case .separator:
+                        .separator
                     case .submenu(let submenu):
                         .submenu(submenu.resolve())
                 }
@@ -96,8 +98,9 @@ extension Menu: TypeSafeView {
                     action: {}
                 )
             case .menuButton:
-                let menu = children.menu.flatMap { $0 as? Backend.Menu }
-                    ?? backend.createPopoverMenu() 
+                let menu =
+                    children.menu.flatMap { $0 as? Backend.Menu }
+                    ?? backend.createPopoverMenu()
                 children.menu = menu
                 backend.updateButton(
                     widget,
