@@ -263,7 +263,9 @@ public final class GtkBackend: AppBackend {
         actionNamespace: String,
         actionPrefix: String?
     ) -> GMenu {
-        let model = GMenu()
+        var currentSection = GMenu()
+        var previousSections: [GMenu] = []
+
         for (i, item) in menu.items.enumerated() {
             let actionName =
                 if let actionPrefix {
@@ -278,15 +280,27 @@ public final class GtkBackend: AppBackend {
                         actionMap.addAction(GSimpleAction(name: actionName, action: action))
                     }
 
-                    model.appendItem(label: label, actionName: "\(actionNamespace).\(actionName)")
+                    currentSection.appendItem(
+                        label: label,
+                        actionName: "\(actionNamespace).\(actionName)"
+                    )
                 case .toggle(let label, let value, let onChange):
                     actionMap.addAction(
                         GSimpleAction(name: actionName, state: value, action: onChange)
                     )
 
-                    model.appendItem(label: label, actionName: "\(actionNamespace).\(actionName)")
+                    currentSection.appendItem(
+                        label: label,
+                        actionName: "\(actionNamespace).\(actionName)"
+                    )
+                case .separator:
+                    // GTK[3] doesn't have explicit separators per se, but instead deals with
+                    // sections (actually quite similar to what you can do in SwiftUI with the
+                    // Section view). It'll automatically draw separators between sections.
+                    previousSections.append(currentSection)
+                    currentSection = GMenu()
                 case .submenu(let submenu):
-                    model.appendSubmenu(
+                    currentSection.appendSubmenu(
                         label: submenu.label,
                         content: renderMenu(
                             submenu.content,
@@ -297,7 +311,17 @@ public final class GtkBackend: AppBackend {
                     )
             }
         }
-        return model
+
+        if previousSections.isEmpty {
+            // There are no dividers; just return the current section to keep the menu tree flat.
+            return currentSection
+        } else {
+            let model = GMenu()
+            for section in previousSections + [currentSection] {
+                model.appendSection(label: nil, content: section)
+            }
+            return model
+        }
     }
 
     private func renderMenuBar(_ submenus: [ResolvedMenu.Submenu]) -> GMenu {
@@ -434,9 +458,9 @@ public final class GtkBackend: AppBackend {
         container.removeAllChildren()
     }
 
-    public func addChild(_ child: Widget, to container: Widget) {
+    public func insert(_ child: Widget, into container: Widget, at index: Int) {
         let container = container as! Fixed
-        container.put(child, x: 0, y: 0)
+        container.put(child, index: index, x: 0, y: 0)
     }
 
     public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
@@ -444,9 +468,20 @@ public final class GtkBackend: AppBackend {
         container.move(container.children[index], x: Double(position.x), y: Double(position.y))
     }
 
-    public func removeChild(_ child: Widget, from container: Widget) {
+    public func remove(childAt index: Int, from container: Widget) {
         let container = container as! Fixed
+        let child = container.children[index]
         container.remove(child)
+    }
+
+    public func swap(childAt firstIndex: Int, withChildAt secondIndex: Int, in container: Widget) {
+        // Gtk.Fixed doesn't let us rearrange children, so we just swap them in
+        // our own list so that at least everything works on the SCUI side. The
+        // only side effect of this approach is that overlapping widgets may
+        // end up with unexpected z ordering. If that becomes an issue we may
+        // have to make a custom replacement for Gtk.Fixed.
+        let container = container as! Fixed
+        container.children.swapAt(firstIndex, secondIndex)
     }
 
     public func createColorableRectangle() -> Widget {

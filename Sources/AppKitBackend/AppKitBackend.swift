@@ -167,6 +167,8 @@ public final class AppKitBackend: AppBackend {
                     renderedItem.target = wrappedAction
 
                     return renderedItem
+                case .separator:
+                    return NSCustomMenuItem.separator()
                 case .submenu(let submenu):
                     return renderSubmenu(submenu)
             }
@@ -395,53 +397,46 @@ public final class AppKitBackend: AppBackend {
 
     public func show(widget: Widget) {}
 
-    class NSContainerView: NSView {
-        var children: [NSView] = []
-
-        override func addSubview(_ view: NSView) {
-            children.append(view)
-            super.addSubview(view)
-        }
-
-        func removeSubview(_ view: NSView) {
-            children.removeAll { other in
-                view === other
-            }
-            view.removeFromSuperview()
-        }
-
-        func removeAllSubviews() {
-            for child in children {
-                child.removeFromSuperview()
-            }
-            children = []
-        }
-    }
-
     public func createContainer() -> Widget {
-        let container = NSContainerView()
+        let container = NSView()
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
     }
 
     public func removeAllChildren(of container: Widget) {
-        let container = container as! NSContainerView
-        container.removeAllSubviews()
+        container.subviews = []
     }
 
-    public func addChild(_ child: Widget, to container: Widget) {
-        container.addSubview(child)
+    public func insert(_ child: Widget, into container: Widget, at index: Int) {
+        container.subviews.insert(child, at: index)
         child.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
-        let container = container as! NSContainerView
-        guard container.children.indices.contains(index) else {
-            logger.warning("attempted to set position of non-existent container child")
-            return
-        }
+    public func swap(childAt firstIndex: Int, withChildAt secondIndex: Int, in container: NSView) {
+        assert(
+            container.subviews.indices.contains(firstIndex)
+            && container.subviews.indices.contains(secondIndex),
+            """
+            attempted to swap container child out of bounds; container count \
+            = \(container.subviews.count); firstIndex = \(firstIndex); \
+            secondIndex = \(secondIndex)
+            """
+        )
 
-        let child = container.children[index]
+        container.subviews.swapAt(firstIndex, secondIndex)
+    }
+
+    public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
+        assert(
+            container.subviews.indices.contains(index),
+            """
+            attempted to set position of non-existent container child; container \
+            count = \(container.subviews.count); index = \(index); position = \
+            \(position)
+            """
+        )
+
+        let child = container.subviews[index]
 
         var foundConstraint = false
         for constraint in container.constraints {
@@ -480,9 +475,8 @@ public final class AppKitBackend: AppBackend {
         }
     }
 
-    public func removeChild(_ child: Widget, from container: Widget) {
-        let container = container as! NSContainerView
-        container.removeSubview(child)
+    public func remove(childAt index: Int, from container: Widget) {
+        container.subviews.remove(at: index)
     }
 
     public func createColorableRectangle() -> Widget {

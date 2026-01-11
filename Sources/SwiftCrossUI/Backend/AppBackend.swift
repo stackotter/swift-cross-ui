@@ -363,30 +363,34 @@ public protocol AppBackend: Sendable {
     ///
     /// - Parameter container: The container to remove the children of.
     func removeAllChildren(of container: Widget)
-    /// Adds a child to a given container.
+    /// Inserts a child into a given container at a given index.
     ///
     /// - Parameters:
-    ///   - child: The widget to add.
-    ///   - container: The container to add the child to.
-    func addChild(_ child: Widget, to container: Widget)
+    ///   - child: The child to insert.
+    ///   - container: The container to insert the child into.
+    func insert(_ child: Widget, into container: Widget, at index: Int)
+    /// Swaps the child at firstIndex with the child at secondIndex.
+    /// 
+    /// May crash if either index is out of bounds.
+    ///
+    /// - Parameters:
+    ///   - firstIndex: The index of the first child to swap.
+    ///   - secondIndex: The index of the second child to swap.
+    ///   - container: The container holding the children.
+    func swap(childAt firstIndex: Int, withChildAt secondIndex: Int, in container: Widget)
     /// Sets the position of the specified child in a container.
     ///
     /// - Parameters:
     ///   - index: The index of the child to position.
     ///   - container: The container holding the child.
     ///   - position: The position to set.
-    func setPosition(
-        ofChildAt index: Int,
-        in container: Widget,
-        to position: SIMD2<Int>
-    )
-    /// Removes a child widget from a container (if the child is a direct child
-    /// of the container).
+    func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>)
+    /// Removes the child at the given index from the given container.
     ///
     /// - Parameters:
-    ///   - child: The child to remove.
+    ///   - index: The index of the child to remove.
     ///   - container: The container holding the child.
-    func removeChild(_ child: Widget, from container: Widget)
+    func remove(childAt index: Int, from container: Widget)
 
     /// Creates a rectangular widget with configurable color.
     ///

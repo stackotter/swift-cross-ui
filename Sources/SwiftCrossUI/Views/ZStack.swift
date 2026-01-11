@@ -30,8 +30,8 @@ public struct ZStack<Content: View>: View {
         backend: Backend
     ) -> Backend.Widget {
         let zStack = backend.createContainer()
-        for child in children.widgets(for: backend) {
-            backend.addChild(child, to: zStack)
+        for (index, child) in children.widgets(for: backend).enumerated() {
+            backend.insert(child, into: zStack, at: index)
         }
         return zStack
     }

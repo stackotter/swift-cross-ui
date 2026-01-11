@@ -53,7 +53,7 @@ public struct GeometryReader<Content: View>: TypeSafeView, View {
     }
 
     func computeLayout<Backend: AppBackend>(
-        _ widget: Backend.Widget,
+        _ container: Backend.Widget,
         children: GeometryReaderChildren<Content>,
         proposedSize: ProposedViewSize,
         environment: EnvironmentValues,
@@ -75,7 +75,7 @@ public struct GeometryReader<Content: View>: TypeSafeView, View {
             )
             children.node = contentNode
 
-            backend.addChild(contentNode.widget.into(), to: widget)
+            backend.insert(contentNode.widget.into(), into: container, at: 0)
         }
 
         let contentResult = contentNode.computeLayout(

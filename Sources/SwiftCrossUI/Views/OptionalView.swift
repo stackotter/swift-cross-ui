@@ -90,7 +90,7 @@ extension OptionalView: TypeSafeView {
         if children.hasToggled {
             backend.removeAllChildren(of: widget)
             if let node = children.node {
-                backend.addChild(node.widget.into(), to: widget)
+                backend.insert(node.widget.into(), into: widget, at: 0)
                 backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
             }
             children.hasToggled = false

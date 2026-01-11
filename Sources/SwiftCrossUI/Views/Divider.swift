@@ -4,7 +4,7 @@
 ///
 /// In dark mode it's white with 10% opacity, and in light mode it's black with
 /// 10% opacity.
-public struct Divider: View {
+public struct Divider: View, Sendable {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.layoutOrientation) var layoutOrientation
 

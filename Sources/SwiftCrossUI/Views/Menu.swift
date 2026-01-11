@@ -45,6 +45,8 @@ public struct Menu: Sendable {
                             toggle.active.wrappedValue,
                             onChange: { toggle.active.wrappedValue = $0 }
                         )
+                    case .separator:
+                        .separator
                     case .submenu(let submenu):
                         .submenu(submenu.resolve())
                 }

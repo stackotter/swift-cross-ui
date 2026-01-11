@@ -276,6 +276,8 @@ public final class WinUIBackend: AppBackend {
                         onChange(widget.isChecked)
                     }
                     return widget
+                case .separator:
+                    return MenuFlyoutSeparator()
                 case .submenu(let submenu):
                     let widget = MenuFlyoutSubItem()
                     widget.text = submenu.label
@@ -355,9 +357,28 @@ public final class WinUIBackend: AppBackend {
         container.children.clear()
     }
 
-    public func addChild(_ child: Widget, to container: Widget) {
+    public func insert(_ child: Widget, into container: Widget, at index: Int) {
         let container = container as! Canvas
-        container.children.append(child)
+        container.children.insertAt(UInt32(index), child)
+    }
+
+    public func swap(childAt firstIndex: Int, withChildAt secondIndex: Int, in container: Widget) {
+        // TODO: Find out if there's an efficient way to do this without WinUI
+        //   getting annoyed at us for having the same element in the list twice.
+        let container = container as! Canvas
+        let largerIndex = UInt32(max(firstIndex, secondIndex))
+        let smallerIndex = UInt32(min(firstIndex, secondIndex))
+        let element1 = container.children[Int(smallerIndex)]
+        let element2 = container.children[Int(largerIndex)]
+        container.children.removeAt(largerIndex)
+        container.children.removeAt(smallerIndex)
+        container.children.insertAt(smallerIndex, element2)
+        container.children.insertAt(largerIndex, element1)
+    }
+
+    public func remove(childAt index: Int, from container: Widget) {
+        let container = container as! Canvas
+        container.children.removeAt(UInt32(index))
     }
 
     public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
@@ -369,19 +390,6 @@ public final class WinUIBackend: AppBackend {
 
         Canvas.setTop(child, Double(position.y))
         Canvas.setLeft(child, Double(position.x))
-    }
-
-    public func removeChild(_ child: Widget, from container: Widget) {
-        let container = container as! Canvas
-        let count = container.children.size
-        for index in 0..<count {
-            if container.children.getAt(index) == child {
-                container.children.removeAt(index)
-                return
-            }
-        }
-
-        logger.warning("child to remove not found")
     }
 
     public func createColorableRectangle() -> Widget {
@@ -1384,7 +1392,7 @@ public final class WinUIBackend: AppBackend {
             fatalError("Unsupported gesture type \(gesture)")
         }
         let tapGestureTarget = TapGestureTarget()
-        addChild(child, to: tapGestureTarget)
+        insert(child, into: tapGestureTarget, at: 0)
         tapGestureTarget.child = child
 
         // Set a background so that the click target's entire area gets hit
@@ -1418,7 +1426,7 @@ public final class WinUIBackend: AppBackend {
 
     public func createHoverTarget(wrapping child: Widget) -> Widget {
         let hoverTarget = HoverGestureTarget()
-        addChild(child, to: hoverTarget)
+        insert(child, into: hoverTarget, at: 0)
         hoverTarget.child = child
 
         // Ensure the hover target covers the full area of the child.

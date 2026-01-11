@@ -175,9 +175,17 @@ class SplitViewChildren<Sidebar: View, Detail: View>: ViewGraphNodeChildren {
         self.paneChildren = children
 
         let leadingPaneContainer = backend.createContainer()
-        backend.addChild(paneChildren.child0.widget.into(), to: leadingPaneContainer)
+        backend.insert(
+            paneChildren.child0.widget.into(),
+            into: leadingPaneContainer,
+            at: 0
+        )
         let trailingPaneContainer = backend.createContainer()
-        backend.addChild(paneChildren.child1.widget.into(), to: trailingPaneContainer)
+        backend.insert(
+            paneChildren.child1.widget.into(),
+            into: trailingPaneContainer,
+            at: 0
+        )
 
         self.leadingPaneContainer = AnyWidget(leadingPaneContainer)
         self.trailingPaneContainer = AnyWidget(trailingPaneContainer)
