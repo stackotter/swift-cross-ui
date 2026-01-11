@@ -1,5 +1,4 @@
-import Foundation
-
+/// A scene's preferences. Propagated up the scene hierarchy automatically.
 public struct ScenePreferenceValues: Sendable {
     /// The default preferences.
     public static let `default` = ScenePreferenceValues(commands: .empty)

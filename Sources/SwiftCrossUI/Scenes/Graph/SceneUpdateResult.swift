@@ -1,5 +1,3 @@
-import Foundation
-
 /// The result of updating a scene.
 public struct SceneUpdateResult: Sendable {
     /// The preference values produced by the scene and its children.
@@ -12,7 +10,7 @@ public struct SceneUpdateResult: Sendable {
     /// Creates an update result by combining the preference values of a scene's
     /// children.
     public init(childResults: [SceneUpdateResult]) {
-        preferences = .init(merging: childResults.map(\.preferences))
+        preferences = ScenePreferenceValues(merging: childResults.map(\.preferences))
     }
 
     /// Creates the layout result of a leaf scene (one with no children and no

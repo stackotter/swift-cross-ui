@@ -29,6 +29,9 @@ class _App<AppRoot: App> {
     }
 
     func refreshSceneGraph() {
+        // TODO: Do we have to update dynamic properties on state changes?
+        //   We can probably get away with only doing it when the root
+        //   environment changes.
         dynamicPropertyUpdater.update(app, with: environment, previousValue: nil)
 
         if let sceneGraphRoot {
@@ -69,9 +72,6 @@ class _App<AppRoot: App> {
 
                 let cancellable =
                     value.didChange.observeAsUIUpdater(backend: backend) { [weak self] in
-                        // TODO: Do we have to update dynamic properties on state changes?
-                        //   We can probably get away with only doing it when the root
-                        //   environment changes.
                         self?.refreshSceneGraph()
                     }
                 cancellables.append(cancellable)
