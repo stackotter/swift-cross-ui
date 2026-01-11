@@ -228,7 +228,9 @@ public final class Gtk3Backend: AppBackend {
         actionNamespace: String,
         actionPrefix: String?
     ) -> GMenu {
-        let model = GMenu()
+        var currentSection = GMenu()
+        var previousSections: [GMenu] = []
+
         for (i, item) in menu.items.enumerated() {
             let actionName =
                 if let actionPrefix {
@@ -243,15 +245,27 @@ public final class Gtk3Backend: AppBackend {
                         actionMap.addAction(GSimpleAction(name: actionName, action: action))
                     }
 
-                    model.appendItem(label: label, actionName: "\(actionNamespace).\(actionName)")
+                    currentSection.appendItem(
+                        label: label,
+                        actionName: "\(actionNamespace).\(actionName)"
+                    )
                 case .toggle(let label, let value, let onChange):
                     actionMap.addAction(
                         GSimpleAction(name: actionName, state: value, action: onChange)
                     )
 
-                    model.appendItem(label: label, actionName: "\(actionNamespace).\(actionName)")
+                    currentSection.appendItem(
+                        label: label,
+                        actionName: "\(actionNamespace).\(actionName)"
+                    )
+                case .separator:
+                    // GTK[3] doesn't have explicit separators per se, but instead deals with
+                    // sections (actually quite similar to what you can do in SwiftUI with the
+                    // Section view). It'll automatically draw separators between sections.
+                    previousSections.append(currentSection)
+                    currentSection = GMenu()
                 case .submenu(let submenu):
-                    model.appendSubmenu(
+                    currentSection.appendSubmenu(
                         label: submenu.label,
                         content: renderMenu(
                             submenu.content,
@@ -262,7 +276,17 @@ public final class Gtk3Backend: AppBackend {
                     )
             }
         }
-        return model
+
+        if previousSections.isEmpty {
+            // There are no dividers; just return the current section to keep the menu tree flat.
+            return currentSection
+        } else {
+            let model = GMenu()
+            for section in previousSections + [currentSection] {
+                model.appendSection(label: nil, content: section)
+            }
+            return model
+        }
     }
 
     private func renderMenuBar(_ submenus: [ResolvedMenu.Submenu]) -> GMenu {
