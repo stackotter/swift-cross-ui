@@ -15,7 +15,6 @@ public protocol WidgetProtocol: UIResponder {
     var childWidgets: [any WidgetProtocol] { get set }
     var parentWidget: (any WidgetProtocol)? { get set }
 
-    func add(childWidget: some WidgetProtocol)
     func removeFromParentWidget()
 }
 
@@ -192,10 +191,28 @@ class BaseViewWidget: UIView, WidgetProtocolHelpers {
         childWidget.parentWidget = self
     }
 
+    func insert(_ childWidget: some WidgetProtocol, at index: Int) {
+        if childWidget.parentWidget === self { return }
+        childWidget.removeFromParentWidget()
+
+        let childController = childWidget.controller
+
+        insertSubview(childWidget.view, at: index)
+
+        if let controller, let childController {
+            controller.addChild(childController)
+            childController.didMove(toParent: controller)
+        }
+
+        childWidgets.insert(childWidget, at: index)
+        childWidget.parentWidget = self
+    }
+
     func removeFromParentWidget() {
         if let parentWidget {
             parentWidget.childWidgets.remove(
-                at: parentWidget.childWidgets.firstIndex { $0 === self }!)
+                at: parentWidget.childWidgets.firstIndex { $0 === self }!
+            )
             self.parentWidget = nil
         }
         removeFromSuperview()
@@ -283,6 +300,11 @@ class BaseControllerWidget: UIViewController, WidgetProtocolHelpers {
             removeFromParent()
         }
         view.removeFromSuperview()
+    }
+
+    override func viewDidLoad() {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        super.viewDidLoad()
     }
 }
 

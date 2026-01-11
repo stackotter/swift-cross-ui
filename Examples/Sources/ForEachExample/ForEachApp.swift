@@ -42,23 +42,24 @@ struct ForEachApp: App {
                     .padding(10)
 
                     ScrollView {
-                        ForEach(Array(items.enumerated()), id: \.element.id) { (index, item) in
-                            ItemRow(
-                                item: item,
-                                isFirst: index == 0,
-                                isLast: index == items.count - 1
-                            ) {
-                                items.remove(at: index)
-                            } moveUp: {
-                                guard index != items.startIndex else { return }
-                                items.swapAt(index, index - 1)
-                            } moveDown: {
-                                guard index != items.endIndex else { return }
-                                items.swapAt(index, index + 1)
+                        VStack(alignment: .trailing) {
+                            ForEach(Array(items.enumerated()), id: \.element.id) { (index, item) in
+                                ItemRow(
+                                    item: $items[index],
+                                    isFirst: index == 0,
+                                    isLast: index == items.count - 1
+                                ) {
+                                    items.remove(at: index)
+                                } moveUp: {
+                                    guard index != items.startIndex else { return }
+                                    items.swapAt(index, index - 1)
+                                } moveDown: {
+                                    guard index != items.endIndex else { return }
+                                    items.swapAt(index, index + 1)
+                                }
                             }
                         }
-                        .frame(maxWidth: .infinity)
-                    }
+                    }.padding()
                 }
             }
         }
@@ -67,7 +68,11 @@ struct ForEachApp: App {
 }
 
 struct ItemRow: View {
-    var item: Item
+    @Binding var item: Item
+
+    @State var isEditing = false
+    @State var value = ""
+
     let isFirst: Bool
     let isLast: Bool
     var remove: () -> Void
@@ -76,7 +81,26 @@ struct ItemRow: View {
 
     var body: some View {
         HStack {
-            Text(item.value)
+            if isEditing {
+                TextField("Value", text: $value)
+                    .frame(width: 100)
+                Spacer()
+                Button("Save") {
+                    item.value = value
+                    isEditing = false
+                }
+                Button("Cancel") {
+                    isEditing = false
+                }
+            } else {
+                Text(item.value)
+                    .frame(width: 100, alignment: .leading)
+                Spacer()
+                Button("Edit") {
+                    isEditing = true
+                    value = item.value
+                }
+            }
             Button("Delete") { remove() }
             Button("⌃") { moveUp() }
                 .disabled(isFirst)
