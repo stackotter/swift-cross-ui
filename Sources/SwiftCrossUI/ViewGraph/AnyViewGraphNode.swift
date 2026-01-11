@@ -78,6 +78,12 @@ public class AnyViewGraphNode<NodeView: View> {
 
     /// Computes a view's layout. Propagates to the view's children unless
     /// the given size proposal already has a cached result.
+    ///
+    /// - Parameters:
+    ///   - newView: The recomputed view.
+    ///   - proposedSize: The view's proposed size.
+    ///   - environment: The current environment.
+    /// - Returns: The result of computing the view's layout.
     public func computeLayout(
         with newView: NodeView?,
         proposedSize: ProposedViewSize,
@@ -93,14 +99,22 @@ public class AnyViewGraphNode<NodeView: View> {
     }
 
     /// Gets the node's wrapped view.
+    ///
+    /// - Returns: The node's wrapped view.
     public func getView() -> NodeView {
         _getNodeView()
     }
 
+    /// Gets the node's children.
+    ///
+    /// - Returns: The node's children.
     public func getChildren() -> any ViewGraphNodeChildren {
         _getNodeChildren()
     }
 
+    /// Gets the node's backend.
+    ///
+    /// - Returns: The node's backend.
     public func getBackend() -> any AppBackend {
         _getBackend()
     }

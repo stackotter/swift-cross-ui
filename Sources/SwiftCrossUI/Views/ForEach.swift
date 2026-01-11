@@ -13,6 +13,17 @@ public struct ForEach<Items: Collection, ID: Hashable, Child> {
 extension ForEach: TypeSafeView, View where Child: View {
     typealias Children = ForEachViewChildren<Items, ID, Child>
 
+    /// Creates a view that creates child views on demand based on a collection
+    /// of data.
+    ///
+    /// One instance of `child` will be rendered for every element in
+    /// `elements`.
+    ///
+    /// - Parameters:
+    ///   - elements: The collection to build an array of views from.
+    ///   - keyPath: A key path to the element type's ID.
+    ///   - child: A menu items builder that takes an element of `elements` and
+    ///     returns an appropriate list of menu items.
     public init(
         _ elements: Items,
         id keyPath: KeyPath<Items.Element, ID>,

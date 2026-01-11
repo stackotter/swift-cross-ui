@@ -20,7 +20,11 @@ public struct Slider: ElementaryView, View {
         self.init(value: value, in: minimum...maximum)
     }
 
-    /// Creates a slider to select a value between a minimum and maximum value.
+    /// Creates a slider to select a value in a range.
+    ///
+    /// - Parameters:
+    ///   - value: A binding to the current value.
+    ///   - range: The slider's range of values.
     public init<T: BinaryInteger>(value: Binding<T>? = nil, in range: ClosedRange<T>) {
         if let value {
             self.value = Binding<Double>(
@@ -36,7 +40,11 @@ public struct Slider: ElementaryView, View {
         decimalPlaces = 0
     }
 
-    /// Creates a slider to select a value between a minimum and maximum value.
+    /// Creates a slider to select a value in a range.
+    ///
+    /// - Parameters:
+    ///   - value: A binding to the current value.
+    ///   - range: The slider's range of values.
     public init<T: BinaryFloatingPoint>(value: Binding<T>? = nil, in range: ClosedRange<T>) {
         if let value {
             self.value = Binding<Double>(

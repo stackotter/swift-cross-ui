@@ -4,7 +4,7 @@ An adaptive backend which uses different backends under the hood depending on th
 
 ## Overview
 
-The beauty of SwiftCrossUI is that you can write your app once and have it look native everywhere. For this reason I recommend using DefaultBackend unless you've got particular constraints. It uses <doc:AppKitBackend> on macOS, <doc:WinUIBackend> on Window, <doc:GtkBackend> on Linux, and on <doc:UIKitBackend> on iOS/tvOS.
+The beauty of SwiftCrossUI is that you can write your app once and have it look native everywhere. For this reason I recommend using DefaultBackend unless you've got particular constraints. It uses <doc:AppKitBackend> on macOS, <doc:WinUIBackend> on Window, <doc:GtkBackend> on Linux, and <doc:UIKitBackend> on iOS/tvOS.
 
 > Tip: If you're using DefaultBackend, you can override the underlying backend during compilation by setting the `SCUI_DEFAULT_BACKEND` environment variable to the name of the desired backend. This is useful when you e.g. want to test the Gtk version of your app while using a Mac. Note that this only works for built-in backends and still requires the chosen backend to be compatible with your machine.
 

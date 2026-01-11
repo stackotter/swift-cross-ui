@@ -1,7 +1,11 @@
 /// A control for editing multiline text.
 public struct TextEditor: ElementaryView {
+    /// The editor's content.
     @Binding var text: String
 
+    /// Creates a text editor.
+    ///
+    /// - Parameter text: The editor's content.
     public init(text: Binding<String>) {
         _text = text
     }

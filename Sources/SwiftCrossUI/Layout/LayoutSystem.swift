@@ -91,8 +91,7 @@ public enum LayoutSystem {
         @MainActor
         public func computeLayout(
             proposedSize: ProposedViewSize,
-            environment: EnvironmentValues,
-            dryRun: Bool = false
+            environment: EnvironmentValues
         ) -> ViewLayoutResult {
             computeLayout(proposedSize, environment)
         }

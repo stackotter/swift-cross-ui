@@ -13,6 +13,12 @@ public struct Color: Sendable, Equatable, Hashable {
     public var alpha: Float
 
     /// Creates a color from its components with values between 0 and 1.
+    ///
+    /// - Parameters:
+    ///   - red: The red component.
+    ///   - green: The green component.
+    ///   - blue: The blue component.
+    ///   - alpha: The alpha component.
     public init(
         _ red: Float,
         _ green: Float,
@@ -26,9 +32,11 @@ public struct Color: Sendable, Equatable, Hashable {
     }
 
     /// Multiplies the opacity of the color by the given amount.
-    public consuming func opacity(
-        _ opacity: Float
-    ) -> Color {
+    ///
+    /// - Parameter opacity: The new opacity of the color, relative to its
+    ///   current opacity.
+    /// - Returns: A color with the opacity changed.
+    public consuming func opacity(_ opacity: Float) -> Color {
         self.alpha *= opacity
         return self
     }

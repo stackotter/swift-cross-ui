@@ -6,6 +6,8 @@ extension View {
     /// view's ``View/body`` and before the view appears on screen. Currently,
     /// if these docs have been kept up to date, the action gets called just
     /// before creating the view's widget.
+    ///
+    /// - Parameter action: The action to perform when this view appears.
     public func onAppear(perform action: @escaping @MainActor () -> Void) -> some View {
         OnAppearModifier(body: TupleView1(self), action: action)
     }

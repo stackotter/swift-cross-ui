@@ -24,6 +24,5 @@ The main two view composition primitives are ``VStack``, for vertical layouts, a
 - ``Group``
 - ``ScrollView``
 - ``Axis``
-- ``Axis.Set``
 - ``ProgressView``
 - ``AnyView``

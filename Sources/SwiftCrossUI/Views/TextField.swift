@@ -9,6 +9,10 @@ public struct TextField: ElementaryView, View {
     private var value: Binding<String>?
 
     /// Creates an editable text field with a given placeholder.
+    ///
+    /// - Parameters:
+    ///   - placeholder: The label to show when the field is empty.
+    ///   - text: The field's content.
     public init(_ placeholder: String = "", text: Binding<String>) {
         self.placeholder = placeholder
         self.value = text

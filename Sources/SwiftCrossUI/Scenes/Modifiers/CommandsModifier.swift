@@ -1,4 +1,10 @@
 extension Scene {
+    /// Adds menu commands to this scene.
+    ///
+    /// The commands will typically be displayed in the system's global menu bar
+    /// if it has one, or in individual windows' menu bars otherwise.
+    ///
+    /// - Parameter commands: The commands to add.
     public func commands(@CommandsBuilder _ commands: () -> Commands) -> some Scene {
         CommandsModifier(content: self, newCommands: commands())
     }

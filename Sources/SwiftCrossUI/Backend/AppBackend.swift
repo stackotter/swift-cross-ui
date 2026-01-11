@@ -8,10 +8,10 @@ import Foundation
 /// and are simply intended to allow incremental implementation of backends,
 /// not a production-ready fallback for views that cannot be represented by a
 /// given backend. The methods you need to implemented up-front (which don't
-/// have default implementations) are: ``AppBackend/createRootWindow(withDefaultSize:_:)``,
+/// have default implementations) are: ``AppBackend/createWindow(withDefaultSize:)``,
 /// ``AppBackend/setTitle(ofWindow:to:)``, ``AppBackend/setResizability(ofWindow:to:)``,
 /// ``AppBackend/setChild(ofWindow:to:)``, ``AppBackend/show(window:)``,
-/// ``AppBackend/runMainLoop()``, ``AppBackend/runInMainThread(action:)``,
+/// ``AppBackend/runMainLoop(_:)``, ``AppBackend/runInMainThread(action:)``,
 /// ``AppBackend/isWindowProgrammaticallyResizable(_:)``,
 /// ``AppBackend/show(widget:)``.
 /// Many of these can simply be given dummy implementations until you're ready
@@ -42,11 +42,17 @@ import Foundation
 /// and actually displaying the widget anyway).
 @MainActor
 public protocol AppBackend: Sendable {
+    /// The underlying window type. Can be a wrapper or subclass.
     associatedtype Window
+    /// The underlying widget type.
     associatedtype Widget
+    /// The underlying menu type. Can be a wrapper or subclass.
     associatedtype Menu
+    /// The underlying alert type. Can be a wrapper or subclass.
     associatedtype Alert
+    /// The underlying path type. Can be a wrapper or subclass.
     associatedtype Path
+    /// The underlying sheet type. Can be a wrapper or subclass.
     associatedtype Sheet
 
     /// Creates an instance of the backend.
@@ -56,18 +62,21 @@ public protocol AppBackend: Sendable {
     /// recommendation by the backend that SwiftCrossUI won't necessarily
     /// follow in all cases.
     var defaultTableRowContentHeight: Int { get }
-    /// The default vertical padding to apply to table cells. This is a
-    /// recommendation by the backend that SwiftCrossUI won't necessarily
-    /// follow in all cases. This is the amount of padding added above and
-    /// below each cell, not the total amount added along the vertical axis.
+    /// The default vertical padding to apply to table cells.
+    ///
+    /// This is the amount of padding added above and below each cell, not the
+    /// total amount added along the vertical axis. It's a recommendation by the
+    /// backend that SwiftCrossUI won't necessarily follow in all cases.
     var defaultTableCellVerticalPadding: Int { get }
-    /// The default amount of padding used when a user uses the ``View/padding(_:_:)``
+    /// The default amount of padding used when a user uses the``View/padding(_:_:)``
     /// modifier.
     var defaultPaddingAmount: Int { get }
-    /// Gets the layout width of a backend's scroll bars. Assumes that the width
-    /// is the same for both vertical and horizontal scroll bars (where the width
-    /// of a horizontal scroll bar is what pedants may call its height). If the
-    /// backend uses overlay scroll bars then this width should be 0.
+    /// Gets the layout width of a backend's scroll bars.
+    ///
+    /// Assumes that the width is the same for both vertical and horizontal
+    /// scroll bars (where the width of a horizontal scroll bar is what pedants
+    /// may call its height). If the backend uses overlay scroll bars then this
+    /// width should be 0.
     ///
     /// This value may make sense to have as a computed property for some backends
     /// such as `AppKitBackend` where plugging in a mouse can cause the default
@@ -75,7 +84,8 @@ public protocol AppBackend: Sendable {
     /// ensure that the configured root environment change handler gets called so
     /// that SwiftCrossUI can update the app's layout accordingly.
     var scrollBarWidth: Int { get }
-    /// If `true`, a toggle in the ``ToggleStyle/switch`` style grows to fill its parent container.
+    /// If `true`, a toggle in the ``ToggleStyle/switch`` style grows to fill
+    /// its parent container.
     var requiresToggleSwitchSpacer: Bool { get }
     /// If `true`, all images in a window will get updated when the window's
     /// scale factor changes (``EnvironmentValues/windowScaleFactor``).
@@ -86,29 +96,34 @@ public protocol AppBackend: Sendable {
     /// manually rescale the image meaning that it must get rescaled when the
     /// scale factor changes.
     var requiresImageUpdateOnScaleFactorChange: Bool { get }
-    /// How the backend handles rendering of menu buttons. Affects which menu-related methods
-    /// are called.
+    /// How the backend handles rendering of menu buttons.
+    ///
+    /// This affects which menu-related methods are called.
     var menuImplementationStyle: MenuImplementationStyle { get }
 
-    /// The class of device that the backend is currently running on. Used to
-    /// determine text sizing and other adaptive properties.
+    /// The class of device that the backend is currently running on.
+    ///
+    /// This is used to determine text sizing and other adaptive properties.
     var deviceClass: DeviceClass { get }
 
     /// Whether the backend can reveal files in the system file manager or not.
     /// Mobile backends generally can't.
     var canRevealFiles: Bool { get }
 
-    /// The supported date picker styles. Must include ``DatePickerStyle/automatic`` if date pickers
-    /// are supported at all.
+    /// The supported date picker styles.
+    /// 
+    /// Must include ``DatePickerStyle/automatic`` if date pickers are supported at all.
     nonisolated var supportedDatePickerStyles: [DatePickerStyle] { get }
 
+    /// Runs the backend's main run loop.
+    ///
+    /// The app will exit when this method returns. This wall always be the
+    /// first method called by SwiftCrossUI.
+    ///
     /// Often in UI frameworks (such as Gtk), code is run in a callback
     /// after starting the app, and hence this generic root window creation
     /// API must reflect that. This is always the first method to be called
     /// and is where boilerplate app setup should happen.
-    ///
-    /// Runs the backend's main run loop. The app will exit when this method
-    /// returns. This wall always be the first method called by SwiftCrossUI.
     ///
     /// The callback is where SwiftCrossUI will create windows, render
     /// initial views, start state handlers, etc. The setup action must be
@@ -116,103 +131,189 @@ public protocol AppBackend: Sendable {
     /// callback is ready.
     ///
     /// It is up to the backend to decide whether the callback runs before or
-    /// after the main loop starts. For example, some backends such as the `AppKit`
-    /// backend can create windows and widgets before the run loop starts, so it
-    /// makes the most sense to run the setup before the main run loop starts (it's
-    /// also not possible to run the setup function once the main run loop starts
-    /// anyway). On the other side is the `Gtk` backend which must be on the
-    /// main loop to create windows and widgets (because otherwise the root
-    /// window has not yet been created, which is essential in Gtk), so the
-    /// setup function is passed to `Gtk` as a callback to run once the main
-    /// run loop starts.
+    /// after the main loop starts. For example, some backends (such as
+    /// `AppKitBackend`) can create windows and widgets before the run loop
+    /// starts, so it makes the most sense to run the setup before the main run
+    /// loop starts (it's also not possible to run the setup function once the
+    /// main run loop starts anyway). On the other side is `GtkBackend` which
+    /// must be on the main loop to create windows and widgets (because
+    /// otherwise the root window has not yet been created, which is essential
+    /// in Gtk), so the setup function is passed to `Gtk` as a callback to run
+    /// once the main run loop starts.
+    ///
+    /// - Parameter callback: The callback to run.
     func runMainLoop(
         _ callback: @escaping @MainActor () -> Void
     )
-    /// Creates a new window. For some backends it may make sense for this
-    /// method to return the application's root window the first time its
-    /// called, and only create new windows on subsequent invocations.
+    /// Creates a new window.
     ///
-    /// The default size is a suggestion; for example some backends may choose
-    /// to restore the user's preferred window size from a previous session.
+    /// For some backends it may make sense for this method to return the
+    /// application's root window the first time its called, and only create new
+    /// windows on subsequent invocations.
     ///
     /// A window's content size has precendence over the default size. The
     /// window should always be at least the size of its content.
+    ///
+    /// - Parameter defaultSize: The default size of the window. This is only a
+    ///   suggestion; for example some backends may choose to restore the user's
+    ///   preferred window size from a previous session.
+    /// - Returns: The created window.
     func createWindow(withDefaultSize defaultSize: SIMD2<Int>?) -> Window
     /// Sets the title of a window.
+    ///
+    /// - Parameters:
+    ///   - window: The window to set the title of.
+    ///   - title: The new title.
     func setTitle(ofWindow window: Window, to title: String)
-    /// Sets the resizability of a window. Even if resizable, the window
-    /// shouldn't be allowed to become smaller than its content.
+    /// Sets the resizability of a window.
+    ///
+    /// Even if resizable, the window shouldn't be allowed to become smaller
+    /// than its content.
+    ///
+    /// - Parameters:
+    ///   - window: The window to set the resizability of.
+    ///   - resizable: Whether the window should be resizable.
     func setResizability(ofWindow window: Window, to resizable: Bool)
-    /// Sets the root child of a window (replaces the previous child if any).
+    /// Sets the root child of a window.
+    ///
+    /// This replaces the previous child if one exists.
+    ///
+    /// - Parameters:
+    ///   - window: The window to set the root child of.
+    ///   - child: The new root child.
     func setChild(ofWindow window: Window, to child: Widget)
     /// Gets the size of the given window in pixels.
+    ///
+    /// - Parameter window: The window to get the size of.
+    /// - Returns: The window's size in pixels.
     func size(ofWindow window: Window) -> SIMD2<Int>
-    /// Check whether a window is programmatically resizable. This value does not necessarily
-    /// reflect whether the window is resizable by the user.
+    /// Check whether a window is programmatically resizable.
+    ///
+    /// This value does not necessarily reflect whether the window is resizable
+    /// by the user.
+    ///
+    /// - Parameter window: The window to check.
+    /// - Returns: Whether the window is programmatically resizable.
     func isWindowProgrammaticallyResizable(_ window: Window) -> Bool
-    /// Sets the size of the given window in pixels.
+    /// Sets the size (in pixels) of the given window.
+    ///
+    /// - Parameters:
+    ///   - window: The window to set the size of.
+    ///   - newSize: The new size.
     func setSize(ofWindow window: Window, to newSize: SIMD2<Int>)
-    /// Sets the minimum width and height of the window. Prevents the user from making the
-    /// window any smaller than the given size.
+    /// Sets the minimum width and height of the window.
+    ///
+    /// Prevents the user from making the window any smaller than the given
+    /// size.
+    ///
+    /// - Parameters:
+    ///   - window: The window to set the minimum size of.
+    ///   - minimumSize: The new minimum size.
     func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>)
-    /// Sets the handler for the window's resizing events. `action` takes the proposed size
-    /// of the window and returns the final size for the window (which allows SwiftCrossUI
-    /// to implement features such as dynamic minimum window sizes based off the content's
-    /// minimum size). Setting the resize handler overrides any previous handler.
+    /// Sets the handler for the window's resizing events.
+    ///
+    /// Setting the resize handler overrides any previous handler.
+    ///
+    /// - Parameters:
+    ///   - window: The window to set the resize handler of.
+    ///   - action: The new resize handler. Takes the window's proposed size and
+    ///     returns its final size (which allows SwiftCrossUI to implement
+    ///     features such as dynamic minimum window sizes based off the
+    ///     content's minimum size).
     func setResizeHandler(
         ofWindow window: Window,
         to action: @escaping (_ newSize: SIMD2<Int>) -> Void
     )
     /// Shows a window after it has been created or updated (may be unnecessary
-    /// for some backends). Predominantly used by window-based ``Scene``
-    /// implementations after propagating updates.
+    /// for some backends).
+    ///
+    /// Predominantly used by window-based ``Scene`` implementations after
+    /// propagating updates.
+    ///
+    /// - Parameter window: The window to show.
     func show(window: Window)
-    /// Brings a window to the front if possible. Called when the window
-    /// receives an external URL or file to handle from the desktop environment.
-    /// May be used in other circumstances eventually.
+    /// Brings a window to the front if possible.
+    ///
+    /// Called when the window receives an external URL or file to handle from
+    /// the desktop environment. May be used in other circumstances eventually.
+    ///
+    /// - Parameter window: The window to activate.
     func activate(window: Window)
 
-    /// Sets the application's global menu. Some backends may make use of the host
-    /// platform's global menu bar (such as macOS's menu bar), and others may render their
-    /// own menu bar within the application.
+    /// Sets the application's global menu.
+    ///
+    /// Some backends may make use of the host platform's global menu bar
+    /// (such as macOS's menu bar), and others may render their own menu bar
+    /// within the application.
+    ///
+    /// - Parameter submenus: The submenus of the global menu.
     func setApplicationMenu(_ submenus: [ResolvedMenu.Submenu])
 
     /// Runs an action in the app's main thread if required to perform UI updates
-    /// by the backend. Predominantly used by ``Publisher`` to publish changes to a thread
-    /// compatible with dispatching UI updates. Can be synchronous or asynchronous (for now).
+    /// by the backend.
+    ///
+    /// Predominantly used by ``Publisher`` to publish changes to a thread
+    /// compatible with dispatching UI updates. Can be synchronous or
+    /// asynchronous (for now).
+    ///
+    /// - Parameter action: The action to run in the main thread.
     nonisolated func runInMainThread(action: @escaping @MainActor () -> Void)
 
-    /// Computes the root environment for an app (e.g. by checking the system's current
-    /// theme). May fall back on the provided defaults where reasonable.
+    /// Computes the root environment for an app (e.g. by checking the system's
+    /// current theme).
+    ///
+    /// May fall back on the provided defaults where reasonable.
+    ///
+    /// - Parameter defaultEnvironment: The default environment.
+    /// - Returns: The computed root environment.
     func computeRootEnvironment(defaultEnvironment: EnvironmentValues) -> EnvironmentValues
-    /// Sets the handler to be notified when the root environment may have to get
-    /// recomputed. This is intended to only be called once. Calling it more than once
-    /// may or may not override the previous handler.
+    /// Sets the handler to be notified when the root environment may need
+    /// recomputation.
+    ///
+    /// This is intended to only be called once. Calling it more than once may
+    /// or may not override the previous handler.
+    ///
+    /// - Parameter action: The root environment change handler.
     func setRootEnvironmentChangeHandler(to action: @escaping () -> Void)
 
     /// Resolves the given text style to concrete font properties.
     ///
     /// This method doesn't take ``EnvironmentValues`` because its result
-    /// should be consistent when given the same text style twice. Font modifiers
-    /// take effect later in the font resolution process.
+    /// should be consistent when given the same text style twice. Font
+    /// modifiers take effect later in the font resolution process.
     ///
     /// A default implementation is provided. It uses the backend's reported
     /// device class and looks up the text style in a lookup table derived
-    /// from Apple's typography guidelines. See ``TextStyle/resolve(for:)``.
+    /// from Apple's typography guidelines.
+    ///
+    /// - SeeAlso: ``Font/TextStyle/resolve(for:)``
+    ///
+    /// - Parameter textStyle: The unresolved text style.
+    /// - Returns: The resolved text style.
     func resolveTextStyle(_ textStyle: Font.TextStyle) -> Font.TextStyle.Resolved
 
-    /// Computes a window's environment based off the root environment. This may involve
-    /// updating ``EnvironmentValues/windowScaleFactor`` etc.
+    /// Computes a window's environment based off the root environment.
+    ///
+    /// This may involve updating ``EnvironmentValues/windowScaleFactor``, etc.
+    ///
+    /// - Parameters:
+    ///   - window: The window to compute the environment for.
+    ///   - rootEnvironment: The root environment.
+    /// - Returns: The computed window environment.
     func computeWindowEnvironment(
         window: Window,
         rootEnvironment: EnvironmentValues
     ) -> EnvironmentValues
     /// Sets the handler to be notified when the window's contribution to the
-    /// environment may have to be recomputed. Use this for things such as
-    /// updating a window's scale factor in the environment when the window
-    /// changes displays.
+    /// environment may have to be recomputed.
     ///
-    /// In future this may be useful for color space handling.
+    /// Use this for things such as updating a window's scale factor in the
+    /// environment when the window changes displays. In the future this may be
+    /// useful for color space handling.
+    ///
+    /// - Parameters:
+    ///   - window: The window to set the environment change handler of.
+    ///   - action: The window environment change handler.
     func setWindowEnvironmentChangeHandler(
         of window: Window,
         to action: @escaping () -> Void
@@ -220,58 +321,120 @@ public protocol AppBackend: Sendable {
 
     /// Sets the handler for URLs directed to the application (e.g. URLs
     /// associated with a custom URL scheme).
+    ///
+    /// - Parameter action: The incoming URL handler.
     func setIncomingURLHandler(to action: @escaping (URL) -> Void)
 
     /// Opens an external URL in the system browser or app registered for the
     /// URL's protocol.
+    ///
+    /// - Parameter url: The URL to open.
     func openExternalURL(_ url: URL) throws
 
-    /// Reveals a file in the system's file manager. This opens
-    /// the file's enclosing directory and highlighting the file.
+    /// Reveals a file in the system's file manager.
+    ///
+    /// This typically opens the file's enclosing directory and highlights the
+    /// file.
+    ///
+    /// - Parameter url: The URL of the file to reveal.
     func revealFile(_ url: URL) throws
 
-    /// Shows a widget after it has been created or updated (may be unnecessary
-    /// for some backends). Predominantly used by ``ViewGraphNode`` after
-    /// propagating updates.
+    /// Shows a widget after it has been created or updated.
+    ///
+    /// May be unnecessary for some backends. Predominantly used by
+    /// ``ViewGraphNode`` after propagating updates.
+    ///
+    /// - Parameter widget: The widget to show.
     func show(widget: Widget)
-    /// Adds a short tag to a widget to assist during debugging if the backend supports
-    /// such a feature. Some backends may only apply tags under particular conditions
-    /// such as when being built in debug mode.
+    /// Adds a short tag to a widget to assist during debugging, if the backend supports
+    /// such a feature.
+    ///
+    /// Some backends may only apply tags under particular conditions such as
+    /// when being built in debug mode.
+    ///
+    /// - Parameters:
+    ///   - widget: The widget to tag.
+    ///   - tag: The tag.
     func tag(widget: Widget, as tag: String)
 
     // MARK: Containers
 
-    /// Creates a container in which children can be layed out by SwiftCrossUI using exact
-    /// pixel positions.
+    /// Creates a container in which children can be laid out by SwiftCrossUI
+    /// using exact pixel positions.
+    ///
+    /// - Returns: A container widget.
     func createContainer() -> Widget
     /// Removes all children of the given container.
+    ///
+    /// - Parameter container: The container to remove the children of.
     func removeAllChildren(of container: Widget)
     /// Inserts a child into a given container at a given index.
+    ///
+    /// - Parameters:
+    ///   - child: The child to insert.
+    ///   - container: The container to insert the child into.
     func insert(_ child: Widget, into container: Widget, at index: Int)
-    /// Swaps the child at firstIndex with the child at secondIndex. May crash if either
-    /// index is out of bounds.
+    /// Swaps the child at firstIndex with the child at secondIndex.
+    /// 
+    /// May crash if either index is out of bounds.
+    ///
+    /// - Parameters:
+    ///   - firstIndex: The index of the first child to swap.
+    ///   - secondIndex: The index of the second child to swap.
+    ///   - container: The container holding the children.
     func swap(childAt firstIndex: Int, withChildAt secondIndex: Int, in container: Widget)
     /// Sets the position of the specified child in a container.
+    ///
+    /// - Parameters:
+    ///   - index: The index of the child to position.
+    ///   - container: The container holding the child.
+    ///   - position: The position to set.
     func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>)
     /// Removes the child at the given index from the given container.
+    ///
+    /// - Parameters:
+    ///   - index: The index of the child to remove.
+    ///   - container: The container holding the child.
     func remove(childAt index: Int, from container: Widget)
 
     /// Creates a rectangular widget with configurable color.
+    ///
+    /// - Returns: A colorable rectangle.
     func createColorableRectangle() -> Widget
     /// Sets the color of a colorable rectangle.
+    ///
+    /// - Parameters:
+    ///   - widget: The rectangle to set the color of.
+    ///   - color: The new color.
     func setColor(ofColorableRectangle widget: Widget, to color: Color)
 
     /// Sets the corner radius of a widget (any widget). Should affect the view's border radius
     /// as well.
+    ///
+    /// - Parameters:
+    ///   - widget: The widget to set the corner radius of.
+    ///   - radius: The corner radius.
     func setCornerRadius(of widget: Widget, to radius: Int)
 
-    /// Gets the natural size of a given widget. E.g. the natural size of a button may be the size
-    /// of the label (without line wrapping) plus a bit of padding and a border.
+    /// Gets the natural size of a given widget.
+    ///
+    /// E.g. the natural size of a button may be the size of the label (without
+    /// line wrapping) plus a bit of padding and a border.
+    ///
+    /// - Parameter widget: The widget to get the natural size of.
+    /// - Returns: The natural size of `widget`.
     func naturalSize(of widget: Widget) -> SIMD2<Int>
     /// Sets the size of a widget.
+    ///
+    /// - Parameters:
+    ///   - widget: The widget to set the size of.
+    ///   - size: The new size.
     func setSize(of widget: Widget, to size: SIMD2<Int>)
 
     /// Creates a scrollable single-child container wrapping the given widget.
+    ///
+    /// - Parameter child: The widget to wrap in a scroll container.
+    /// - Returns: A scroll container wrapping `child`.
     func createScrollContainer(for child: Widget) -> Widget
     /// Updates a scroll container with environment-specific values.
     ///
@@ -279,13 +442,21 @@ public protocol AppBackend: Sendable {
     /// that affect the scroll view’s behavior, such as keyboard dismissal mode.
     ///
     /// - Parameters:
-    ///   - scrollView: The scroll container widget previously created by `createScrollContainer(for:)`.
-    ///   - environment: The current `EnvironmentValues` to apply.
+    ///   - scrollView: The scroll container widget previously created by
+    ///     ``createScrollContainer(for:)-96edi.
+    ///   - environment: The current ``EnvironmentValues`` to apply.
     func updateScrollContainer(
         _ scrollView: Widget,
         environment: EnvironmentValues
     )
     /// Sets the presence of scroll bars along each axis of a scroll container.
+    ///
+    /// - Parameters:
+    ///   - scrollView: The scroll view.
+    ///   - hasVerticalScrollBar: Whether the scroll view has a vertical scroll
+    ///     bar.
+    ///   - hasHorizontalScrollBar: Whether the scroll view has a horizontal
+    ///     scroll bar.
     func setScrollBarPresence(
         ofScrollContainer scrollView: Widget,
         hasVerticalScrollBar: Bool,
@@ -293,45 +464,92 @@ public protocol AppBackend: Sendable {
     )
 
     /// Creates a list with selectable rows.
+    ///
+    /// - Returns: A list with selectable rows.
     func createSelectableListView() -> Widget
     /// Gets the amount of padding introduced by the backend around the content of
-    /// each row. Ideally backends should get rid of base padding so that SwiftCrossUI
-    /// can give developers more freedom, but this isn't always possible.
+    /// each row.
+    ///
+    /// Ideally backends should get rid of base padding so that SwiftCrossUI can
+    /// give developers more freedom, but this isn't always possible.
+    ///
+    /// - Parameter listView: The list view.
+    /// - Returns: An `EdgeInsets` instance describing the amount of base
+    ///   padding around `listView`'s items.
     func baseItemPadding(ofSelectableListView listView: Widget) -> EdgeInsets
-    /// Gets the minimum size for rows in the list view. This doesn't necessarily have to
-    /// be just for hard requirements enforced by the backend, it can also just be an
-    /// idiomatic minimum size for the platform.
+    /// Gets the minimum size for rows in the list view.
+    ///
+    /// This doesn't necessarily have to be just for hard requirements enforced
+    /// by the backend, it can also just be an idiomatic minimum size for the
+    /// platform.
+    ///
+    /// - Parameter listView: The list view.
+    /// - Returns: The minimum size for rows in the list view.
     func minimumRowSize(ofSelectableListView listView: Widget) -> SIMD2<Int>
-    /// Sets the items of a selectable list along with their heights. Row heights should
-    /// include base item padding (i.e. they should be the external height of the row rather
-    /// than the internal height).
+    /// Sets the items of a selectable list along with their heights.
+    ///
+    /// Row heights should include base item padding (i.e. they should be the
+    /// external height of the row rather than the internal height).
+    ///
+    /// - Parameters:
+    ///   - listView: The list view.
+    ///   - items: An array of widgets to add to `listView`.
+    ///   - rowHeights: The row heights of `items`.
     func setItems(
         ofSelectableListView listView: Widget,
         to items: [Widget],
         withRowHeights rowHeights: [Int]
     )
     /// Sets the action to perform when a user selects an item in the list.
+    ///
+    /// - Parameters:
+    ///   - listView: The list view.
+    ///   - action: The selection handler. Receives the selected item's index.
     func setSelectionHandler(
         forSelectableListView listView: Widget,
         to action: @escaping (_ selectedIndex: Int) -> Void
     )
     /// Sets the list's selected item by index.
-    func setSelectedItem(ofSelectableListView listView: Widget, toItemAt index: Int?)
+    ///
+    /// - Parameters:
+    ///   - listView: The list view.
+    ///   - index: The index of the item to select.
+    func setSelectedItem(
+        ofSelectableListView listView: Widget,
+        toItemAt index: Int?
+    )
 
     /// Creates a split view containing two children visible side by side.
     ///
-    /// If you need to modify the leading and trailing children after creation nest them
-    /// inside another container such as a VStack (avoiding update methods makes maintaining
-    /// a multitude of backends a bit easier).
+    /// If you need to modify the leading and trailing children after creation,
+    /// nest them inside another container such as a ``VStack`` (avoiding update
+    /// methods makes maintaining a multitude of backends a bit easier).
+    ///
+    /// - Parameters:
+    ///   - leadingChild: The widget to show in the sidebar.
+    ///   - trailingChild: The widget to show in the detail section.
     func createSplitView(leadingChild: Widget, trailingChild: Widget) -> Widget
     /// Sets the function to be called when the split view's panes get resized.
+    ///
+    /// - Parameters:
+    ///   - splitView: The split view.
+    ///   - action: The action to perform when the split view's panes are
+    ///     resized.
     func setResizeHandler(
         ofSplitView splitView: Widget,
         to action: @escaping () -> Void
     )
     /// Gets the width of a split view's sidebar.
+    ///
+    /// - Parameter splitView: The split view.
+    /// - Returns: The split view's sidebar width.
     func sidebarWidth(ofSplitView splitView: Widget) -> Int
     /// Sets the minimum and maximum width of a split view's sidebar.
+    ///
+    /// - Parameters:
+    ///   - splitView: The split view.
+    ///   - minimumWidth: The minimum width of the split view's sidebar.
+    ///   - maximumWidth: The maximum width of the split view's sidebar.
     func setSidebarWidthBounds(
         ofSplitView splitView: Widget,
         minimum minimumWidth: Int,
@@ -340,22 +558,32 @@ public protocol AppBackend: Sendable {
 
     // MARK: Passive views
 
-    /// Gets the size that the given text would have if it were layed out attempting to stay
-    /// within the proposed frame. The given text should be truncated/ellipsized to fit within
-    /// the proposal if possible.
+    /// Gets the size that the given text would have if it were laid out while
+    /// attempting to stay within the proposed frame.
     ///
-    /// The size returned by this function will be upheld by the layout
-    /// system; child views always get the final say on their own size, parents just choose how
-    /// the children get layed out. The text should get truncated to fit within the proposal if
-    /// possible.
+    /// The size returned by this function will be upheld by the layout system;
+    /// child views always get the final say on their own size, parents just
+    /// choose how the children get laid out. The given text should be
+    /// truncated/ellipsized to fit within the proposal if possible.
     ///
-    /// SwiftCrossUI will never supply zero as the proposed width or height, because some UI
-    /// frameworks handle that in special ways.
+    /// SwiftCrossUI will never supply zero as the proposed width or height,
+    /// because some UI frameworks handle that in special ways.
     ///
-    /// The target widget is supplied because some backends (such as Gtk) require a
-    /// reference to the target widget to get a text layout context.
+    /// Most backends only use the proposed width and ignore the proposed height.
     ///
-    /// Used by both ``SwiftCrossUI/Text`` and ``SwiftCrossUI/TextEditor``.
+    /// Used by both ``Text`` and ``TextEditor``.
+    ///
+    /// - Parameters:
+    ///   - text: The text to get the size of.
+    ///   - widget: The target widget. Some backends (such as GTK) require a
+    ///     reference to the target widget to get a text layout context.
+    ///   - proposedWidth: The proposed width of the text. If `nil`, the text
+    ///     should be laid out on a single line taking up as much width as it
+    ///     needs.
+    ///   - proposedHeight: The proposed height of the text.
+    ///   - environment: The current environment.
+    /// - Returns: The size of `text` if it were laid out while attempting to
+    ///   stay within `proposedFrame`.
     func size(
         of text: String,
         whenDisplayedIn widget: Widget,
@@ -364,37 +592,56 @@ public protocol AppBackend: Sendable {
         environment: EnvironmentValues
     ) -> SIMD2<Int>
 
-    /// Creates a non-editable text view with optional text wrapping. Predominantly used
-    /// by ``Text``.
+    /// Creates a non-editable text view with optional text wrapping.
     ///
-    /// The returned widget should truncate and ellipsize its content when given a size
-    /// which isn't big enough to fit the full content, as per
-    /// ``size(of:whenDisplayedIn:proposedWidth:proposedHeight:environment)``.
+    /// Predominantly used by ``Text``.
+    ///
+    /// The returned widget should truncate and ellipsize its content when
+    /// given a size which isn't big enough to fit the full content, as per
+    /// ``size(of:whenDisplayedIn:proposedWidth:proposedHeight:environment:)-757xh``.
+    ///
+    /// - Returns: A text view.
     func createTextView() -> Widget
     /// Sets the content and wrapping mode of a non-editable text view.
-    func updateTextView(_ textView: Widget, content: String, environment: EnvironmentValues)
+    ///
+    /// - Parameters:
+    ///   - textView: The text view.
+    ///   - content: The text view's content.
+    ///   - environment: The current environment.
+    func updateTextView(
+        _ textView: Widget,
+        content: String,
+        environment: EnvironmentValues
+    )
 
-    /// Creates an image view from an image file (specified by path). Predominantly used
-    /// by ``Image``.
+    /// Creates an image view from an image file (specified by path).
+    ///
+    /// Predominantly used by ``Image``.
+    ///
+    /// - Returns: An image view.
     func createImageView() -> Widget
     /// Sets the image data to be displayed.
+    ///
     /// - Parameters:
     ///   - imageView: The image view to update.
-    ///   - rgbaData: The pixel data (as rows of pixels concatenated into a flat array).
-    ///   - width: The width of the image in pixels (should only be used to interpret `rgbaData`, not
-    ///     to influence the size of the image on-screen).
-    ///   - height: The height of the image in pixels (should only be used to interpret `rgbaData`, not
-    ///     to influence the size of the image on-screen).
-    ///   - targetWidth: The width that the image must have on-screen. Guaranteed to match
-    ///     the width the widget will be given, so backends that don't have to manually
-    ///     scale the underlying pixel data can safely ignore this parameter.
-    ///   - targetHeight: the height that the image must have on-screen. Guaranteed to match
-    ///     the height the widget will be given, so backends that don't have to manually
-    ///     scale the underlying pixel data can safely ignore this parameter.
-    ///   - dataHasChanged: If `false`, then `rgbaData` hasn't changed since the last call,
-    ///     so backends that don't have to manually resize the image data don't have to do
-    ///     anything.
-    ///   - environment: The environment of the image view.
+    ///   - rgbaData: The pixel data, as rows of pixels concatenated into a
+    ///     flat array.
+    ///   - width: The width of the image in pixels. Should only be used to
+    ///     interpret `rgbaData`, _not_ to set the size of the image on-screen.
+    ///   - height: The height of the image in pixels. Should only be used to
+    ///     interpret `rgbaData`, _not_ to set the size of the image on-screen.
+    ///   - targetWidth: The width that the image must have on-screen.
+    ///     Guaranteed to match the width the widget will be given, so backends
+    ///     that don't have to manually scale the underlying pixel data can
+    ///     safely ignore this parameter.
+    ///   - targetHeight: The height that the image must have on-screen.
+    ///     Guaranteed to match the height the widget will be given, so backends
+    ///     that don't have to manually scale the underlying pixel data can
+    ///     safely ignore this parameter.
+    ///   - dataHasChanged: If `false`, then `rgbaData` hasn't changed since the
+    ///     last call, so backends that don't have to manually resize the image
+    ///     data don't have to do anything.
+    ///   - environment: The current environment.
     func updateImageView(
         _ imageView: Widget,
         rgbaData: [UInt8],
@@ -407,33 +654,77 @@ public protocol AppBackend: Sendable {
     )
 
     /// Creates an empty table.
-    func createTable() -> Widget
-    /// Sets the number of rows of a table. Existing rows outside of the new bounds should
-    /// be deleted.
-    func setRowCount(ofTable table: Widget, to rows: Int)
-    /// Sets the labels of a table's columns. Also sets the number of columns of the table to the
-    /// number of labels provided.
-    func setColumnLabels(ofTable table: Widget, to labels: [String], environment: EnvironmentValues)
-    /// Sets the contents of the table as a flat array of cells in order of and grouped by row. Also
-    /// sets the height of each row's content.
     ///
-    /// A nested array would have significantly more overhead, especially for large arrays.
-    func setCells(ofTable table: Widget, to cells: [Widget], withRowHeights rowHeights: [Int])
+    /// - Returns: A table.
+    func createTable() -> Widget
+    /// Sets the number of rows of a table.
+    ///
+    /// Existing rows outside of the new bounds should be deleted.
+    ///
+    /// - Parameters:
+    ///   - table: The table to set the row count of.
+    ///   - rows: The number of rows.
+    func setRowCount(ofTable table: Widget, to rows: Int)
+    /// Sets the labels of a table's columns. Also sets the number of columns of
+    /// the table to the number of labels provided.
+    ///
+    /// - Parameters:
+    ///   - table: The table.
+    ///   - labels: The column labels to set.
+    ///   - environment: The current environment.
+    func setColumnLabels(
+        ofTable table: Widget,
+        to labels: [String],
+        environment: EnvironmentValues
+    )
+    /// Sets the contents of the table as a flat array of cells in order of and
+    /// grouped by row. Also sets the height of each row's content.
+    ///
+    /// A nested array would have significantly more overhead, especially for
+    /// large arrays.
+    ///
+    /// - Parameters:
+    ///   - table: The table.
+    ///   - cells: The widgets to fill the table with.
+    ///   - rowHeights: The heights of the table's rows.
+    func setCells(
+        ofTable table: Widget,
+        to cells: [Widget],
+        withRowHeights rowHeights: [Int]
+    )
 
     // MARK: Controls
 
-    /// Creates a labelled button with an action triggered on click. Predominantly used
-    /// by ``Button``.
+    /// Creates a labelled button with an action triggered on click/tap.
+    ///
+    /// Predominantly used by ``Button``.
+    ///
+    /// - Returns: A button.
     func createButton() -> Widget
-    /// Sets a button's label and action. The action replaces any existing actions.
+    /// Sets a button's label and action.
+    ///
+    /// - Parameters:
+    ///   - button: The button to update.
+    ///   - label: The button's label.
+    ///   - environment: The current environment.
+    ///   - action: The action to perform when the button is clicked/tapped.
+    ///     This replaces any existing actions.
     func updateButton(
         _ button: Widget,
         label: String,
         environment: EnvironmentValues,
         action: @escaping () -> Void
     )
-    /// Sets a button's label and menu. Only used when ``menuImplementationStyle`` is
+    /// Sets a button's label and menu.
+    ///
+    /// Only used when ``menuImplementationStyle`` is
     /// ``MenuImplementationStyle/menuButton``.
+    ///
+    /// - Parameters:
+    ///   - button: The button to update.
+    ///   - label: The button's label.
+    ///   - menu: The menu to show when the button is clicked/tapped.
+    ///   - environment: The current environment.
     func updateButton(
         _ button: Widget,
         label: String,
@@ -442,48 +733,90 @@ public protocol AppBackend: Sendable {
     )
 
     /// Creates a labelled toggle that is either on or off.
+    ///
+    /// - Returns: A toggle.
     func createToggle() -> Widget
-    /// Sets the label and change handler of a toggle (replaces any existing change handlers).
-    /// The change handler is called whenever the button is toggled on or off.
+    /// Sets the label and change handler of a toggle.
+    ///
+    /// - Parameters:
+    ///   - toggle: The toggle to update.
+    ///   - label: The toggle's label.
+    ///   - environment: The current environment.
+    ///   - onChange: The action to perform when the button is toggled on or
+    ///     off. This replaces any existing change handlers.
     func updateToggle(
         _ toggle: Widget,
         label: String,
         environment: EnvironmentValues,
         onChange: @escaping (Bool) -> Void
     )
-    /// Sets the state of the button to active or not.
+    /// Sets the state of a toggle.
+    ///
+    /// - Parameters:
+    ///   - toggle: The toggle to set the state of.
+    ///   - state: The new state.
     func setState(ofToggle toggle: Widget, to state: Bool)
 
     /// Creates a switch that is either on or off.
+    ///
+    /// - Returns: A switch.
     func createSwitch() -> Widget
-    /// Sets the change handler of a switch (replaces any existing change handlers).
-    /// The change handler is called whenever the switch is toggled on or off.
+    /// Sets the change handler of a switch.
+    ///
+    /// - Parameters:
+    ///   - switchWidget: The switch to update.
+    ///   - environment: The current environment.
+    ///   - onChange: The action to perform when the switch is toggled on or
+    ///     off. This replaces any existing change handlers.
     func updateSwitch(
         _ switchWidget: Widget,
         environment: EnvironmentValues,
         onChange: @escaping (Bool) -> Void
     )
-    /// Sets the state of the switch to active or not.
+    /// Sets the state of a switch.
+    ///
+    /// - Parameters:
+    ///   - switchWidget: The switch to set the state of.
+    ///   - state: The new state.
     func setState(ofSwitch switchWidget: Widget, to state: Bool)
 
     /// Creates a checkbox that is either on or off.
+    ///
+    /// - Returns: A checkbox.
     func createCheckbox() -> Widget
-    /// Sets the change handler of a checkbox (replaces any existing change handlers).
-    /// The change handler is called whenever the checkbox is toggled on or off.
+    /// Sets the change handler of a checkbox.
+    ///
+    /// - Parameters:
+    ///   - checkboxWidget: The checkbox to update.
+    ///   - environment: The current environment.
+    ///   - onChange: The action to perform when the checkbox is toggled on or
+    ///     off. This replaces any existing change handlers.
     func updateCheckbox(
         _ checkboxWidget: Widget,
         environment: EnvironmentValues,
         onChange: @escaping (Bool) -> Void
     )
-    /// Sets the state of the checkbox to active or not.
+    /// Sets the state of a checkbox.
+    ///
+    /// - Parameters:
+    ///   - checkboxWidget: The checkbox to set the state of.
+    ///   - state: The new state.
     func setState(ofCheckbox checkboxWidget: Widget, to state: Bool)
 
     /// Creates a slider for choosing a numerical value from a range. Predominantly used
     /// by ``Slider``.
     func createSlider() -> Widget
-    /// Sets the minimum and maximum selectable value of a slider (inclusive), the number of decimal
-    /// places displayed by the slider, and the slider's change handler (replaces any existing
-    /// change handlers).
+    /// Sets the minimum and maximum selectable value of a slider, the number of
+    /// decimal places displayed by the slider, and the slider's change handler.
+    ///
+    /// - Parameters:
+    ///   - slider: The slider to update.
+    ///   - minimum: The minimum selectable value of the slider (inclusive).
+    ///   - maximum: The maximum selectable value of the slider (inclusive).
+    ///   - decimalPlaces: The number of decimal places displayed by the slider.
+    ///   - environment: The current environment.
+    ///   - onChange: The action to perform when the slider's value changes.
+    ///     This replaces any existing change handlers.
     func updateSlider(
         _ slider: Widget,
         minimum: Double,
@@ -493,19 +826,30 @@ public protocol AppBackend: Sendable {
         onChange: @escaping (Double) -> Void
     )
     /// Sets the selected value of a slider.
+    ///
+    /// - Parameters:
+    ///   - slider: The slider to set the value of.
+    ///   - value: The new value.
     func setValue(ofSlider slider: Widget, to value: Double)
 
-    /// Creates an editable text field with a placeholder label and change handler. The
-    /// change handler is called whenever the displayed value changes. Predominantly
-    /// used by ``TextField``.
-    func createTextField() -> Widget
-    /// Sets the placeholder label and change handler of an editable text field. The new
-    /// change handler replaces any existing change handlers, and is called whenever the
-    /// displayed value changes. `onSubmit` gets called when the user hits Enter/Return,
-    /// or whatever the backend decides counts as submission of the field.
+    /// Creates an editable text field with a placeholder label and change
+    /// handler.
     ///
-    /// The backend shouldn't wait until the user finishes typing to call the change handler;
-    /// it should allow live access to the value.
+    /// Predominantly used by ``TextField``.
+    ///
+    /// - Returns: A text field.
+    func createTextField() -> Widget
+    /// Sets the placeholder label and change handler of an editable text field.
+    ///
+    /// - Parameters:
+    ///   - textField: The text field to update.
+    ///   - placeholder: The text field's placeholder label.
+    ///   - environment: The current environment.
+    ///   - onChange: The action to perform when the text field's content
+    ///     changes. This replaces any existing change handlers, and is called
+    ///     whenever the displayed value changes.
+    ///   - onSubmit: The action to perform when the user hits Enter/Return,
+    ///     or whatever the backend decides counts as submission of the field.
     func updateTextField(
         _ textField: Widget,
         placeholder: String,
@@ -514,37 +858,73 @@ public protocol AppBackend: Sendable {
         onSubmit: @escaping () -> Void
     )
     /// Sets the value of an editable text field.
+    ///
+    /// - Parameters:
+    ///   - textField: The text field to set the content of.
+    ///   - content: The new content.
     func setContent(ofTextField textField: Widget, to content: String)
     /// Gets the value of an editable text field.
+    ///
+    /// - Parameter textField: The text field to get the content of.
+    /// - Returns: `textField`'s content.
     func getContent(ofTextField textField: Widget) -> String
 
     /// Creates an editable multi-line text editor with a placeholder label and change
-    /// handler. The change handler is called whenever the displayed value changes.
-    /// Predominantly used by ``TextEditor``.
-    func createTextEditor() -> Widget
-    /// Sets the placeholder label and change handler of an editable multi-line text editor.
-    /// The new change handler replaces any existing change handlers, and is called
-    /// whenever the displayed value changes.
+    /// handler.
     ///
-    /// The backend shouldn't wait until the user finishes typing to call the change
-    /// handler; it should allow live access to the value.
+    /// Predominantly used by ``TextEditor``.
+    ///
+    /// - Returns: A text editor.
+    func createTextEditor() -> Widget
+    /// Sets the placeholder label and change handler of an editable multi-line
+    /// text editor.
+    ///
+    /// The backend shouldn't wait until the user finishes typing to call the
+    /// change handler; it should allow live access to the value.
+    ///
+    /// - Parameters:
+    ///   - textEditor: The text editor to update.
+    ///   - environment: The current environment.
+    ///   - onChange: The action to perform when the text editor's content
+    ///     changes. This replaces any existing change handlers, and is called
+    ///     whenever the displayed value changes.
     func updateTextEditor(
         _ textEditor: Widget,
         environment: EnvironmentValues,
         onChange: @escaping (String) -> Void
     )
     /// Sets the value of an editable multi-line text editor.
+    ///
+    /// - Parameters:
+    ///   - textEditor: The text editor to set the content of.
+    ///   - content: The new content.
     func setContent(ofTextEditor textEditor: Widget, to content: String)
     /// Gets the value of an editable multi-line text editor.
+    ///
+    /// - Parameter textEditor: The text editor to get the content of.
+    /// - Returns: `textEditor`'s content.
     func getContent(ofTextEditor textEditor: Widget) -> String
 
     /// Creates a picker for selecting from a finite set of options (e.g. a radio button group,
-    /// a drop-down, a picker wheel). Predominantly used by ``Picker``. The change handler is
-    /// called whenever a selection is made (even if the same option is picked again).
+    /// a drop-down, a picker wheel).
+    ///
+    /// Predominantly used by ``Picker``.
+    ///
+    /// - Returns: A picker.
     func createPicker() -> Widget
     /// Sets the options for a picker to display, along with a change handler for when its
-    /// selected option changes. The change handler replaces any existing change handlers and
-    /// is called whenever a selection is made (even if the same option is picked again).
+    /// selected option changes.
+    ///
+    /// The change handler
+    ///
+    /// - Parameters:
+    ///   - picker: The picker to update.
+    ///   - options: The picker's options.
+    ///   - environment: The current environment.
+    ///   - onChange: The action to perform when the selected option changes.
+    ///     This handler replaces any existing change handlers and is called
+    ///     whenever a selection is made, even if the same option is picked
+    ///     again.
     func updatePicker(
         _ picker: Widget,
         options: [String],
@@ -552,6 +932,11 @@ public protocol AppBackend: Sendable {
         onChange: @escaping (Int?) -> Void
     )
     /// Sets the index of the selected option of a picker.
+    ///
+    /// - Parameters:
+    ///   - picker: The picker.
+    ///   - selectedOption: The index of the option to select. If `nil`, all
+    ///     options should be deselected.
     func setSelectedOption(ofPicker picker: Widget, to selectedOption: Int?)
 
     func createDatePicker() -> Widget
@@ -566,6 +951,8 @@ public protocol AppBackend: Sendable {
     )
 
     /// Creates an indeterminate progress spinner.
+    ///
+    /// - Returns: A progress spinner.
     func createProgressSpinner() -> Widget
 
     /// Sets the size of a progress spinner.
@@ -579,11 +966,17 @@ public protocol AppBackend: Sendable {
     )
 
     /// Creates a progress bar.
+    ///
+    /// - Returns: A progress bar.
     func createProgressBar() -> Widget
-    /// Updates a progress bar to reflect the given progress (between 0 and 1), and the
-    /// current view environment.
-    /// - Parameter progressFraction: If `nil`, then the bar should show an indeterminate
-    ///   animation if possible.
+    /// Updates a progress bar to reflect the given progress (between 0 and 1),
+    /// and the current view environment.
+    ///
+    /// - Parameters:
+    ///   - widget: The progress bar to update.
+    ///   - progressFraction: The current progress. If `nil`, then the bar
+    ///     should show an indeterminate animation if possible.
+    ///   - environment: The current environment.
     func updateProgressBar(
         _ widget: Widget,
         progressFraction: Double?,
@@ -591,16 +984,33 @@ public protocol AppBackend: Sendable {
     )
 
     /// Creates a popover menu (the sort you often see when right clicking on
-    /// apps). The menu won't be visible when first created.
+    /// apps).
+    ///
+    /// The menu won't be visible when first created.
+    ///
+    /// - Returns: A popover menu.
     func createPopoverMenu() -> Menu
     /// Updates a popover menu's content and appearance.
+    ///
+    /// - Parameters:
+    ///   - menu: The menu to update.
+    ///   - content: The menu content.
+    ///   - environment: The current environment.
     func updatePopoverMenu(
         _ menu: Menu,
         content: ResolvedMenu,
         environment: EnvironmentValues
     )
-    /// Shows the popover menu at a position relative to the given widget. Only used when
-    /// ``menuImplementationStyle`` is ``MenuImplementationStyle/dynamicPopover``.
+    /// Shows the popover menu at a position relative to the given widget.
+    ///
+    /// Only used when ``menuImplementationStyle`` is
+    /// ``MenuImplementationStyle/dynamicPopover``.
+    ///
+    /// - Parameters:
+    ///   - menu: The menu to show.
+    ///   - position: The position to show the menu at, relative to `widget`.
+    ///   - widget: The widget to attach `menu` to.
+    ///   - handleClose: The action performed when the menu is closed.
     func showPopoverMenu(
         _ menu: Menu,
         at position: SIMD2<Int>,
@@ -608,11 +1018,23 @@ public protocol AppBackend: Sendable {
         closeHandler handleClose: @escaping () -> Void
     )
 
-    /// Creates an alert object (without showing it yet). Alerts contain a
-    /// title, an optional body, and a set of action buttons. They also
-    /// prevent users from interacting with the parent window until dimissed.
+    /// Creates an alert object (without showing it).
+    ///
+    /// Alerts contain a title, an optional body, and a set of action buttons.
+    /// They prevent users from interacting with the parent window until
+    /// dimissed.
+    ///
+    /// - Returns: An alert.
     func createAlert() -> Alert
-    /// Updates the content and appearance of an alert. Can only be called once.
+    /// Updates the content and appearance of an alert.
+    ///
+    /// Can only be called once.
+    ///
+    /// - Parameters:
+    ///   - alert: The alert to update.
+    ///   - title: The title of the alert.
+    ///   - actionLabels: The labels of the alert's action buttons.
+    ///   - environment: The current environment.
     func updateAlert(
         _ alert: Alert,
         title: String,
@@ -620,60 +1042,80 @@ public protocol AppBackend: Sendable {
         environment: EnvironmentValues
     )
     /// Shows an alert as a modal on top of or within the given window.
+    ///
     /// Users should be unable to interact with the parent window until the
-    /// alert gets dismissed. `handleResponse` must get called once an action
-    /// button is selected, with its sole argument representing the index of
-    /// the action selected (as per the `actionLabels` array). The alert will
-    /// have been hidden by the time the response handler gets called.
+    /// alert is dismissed.
     ///
-    /// Must only get called once for any given alert.
+    /// Must only be called once for any given alert.
     ///
-    /// If `window` is `nil`, the backend can either make the alert a whole
-    /// app modal, a standalone window, or a modal for a window of its choosing.
+    /// - Parameters:
+    ///   - alert: The alert to show.
+    ///   - window: The window to attach the alert to. If `nil`, the backend can
+    ///     either make the alert a whole app modal, a standalone window, or a
+    ///     modal for a window of its choosing.
+    ///   - handleResponse: The code to run when an action is selected. Receives
+    ///     the index of the chosen action (as per the `actionLabels` array).
+    ///     The alert will have already been hidden by the time this gets
+    ///     called.
     func showAlert(
         _ alert: Alert,
         window: Window?,
         responseHandler handleResponse: @escaping (Int) -> Void
     )
     /// Dismisses an alert programmatically without invoking the response
-    /// handler. Must only be called after
-    /// ``showAlert(_:window:responseHandler:)``.
+    /// handler.
+    ///
+    /// Must only be called after ``showAlert(_:window:responseHandler:)-9iu82``.
+    ///
+    /// - Parameters:
+    ///   - alert: The alert to dismiss.
+    ///   - window: The window the alert is attached to, if any.
     func dismissAlert(_ alert: Alert, window: Window?)
 
-    /// Creates a sheet object (without showing it yet). Sheets contain view content.
-    /// They optionally execute provided code on dismiss and
-    /// prevent users from interacting with the parent window until dimissed.
+    /// Creates a sheet object (without showing it).
+    ///
+    /// Sheets contain view content. They prevent users from interacting with
+    /// the parent window until dimissed and can optionally execute a callback
+    /// on dismiss.
+    ///
+    /// - Parameter content: The content of the sheet.
+    /// - Returns: A sheet containing `content`.
     func createSheet(content: Widget) -> Sheet
 
     /// Updates the content, appearance and behaviour of a sheet.
+    ///
     /// - Parameters:
     ///   - sheet: The sheet to update.
     ///   - window: The root window that the sheet will be presented in. Used on
-    ///     platforms such as tvOS to compute layout constraints. The sheet
-    ///     shouldn't get attached to the window by updateSheet. That is handled
-    ///     by presentSheet which is guaranteed to be called exactly once (unlike
-    ///     updateSheet which gets called whenever preferences or sizing change).
-    ///   - environment: The environment that the sheet will be presented in. This
-    ///     differs from the environment passed to the sheet's content.
+    ///     platforms such as tvOS to compute layout constraints.
+    ///
+    ///     The sheet shouldn't be attached to the window by `updateSheet`. That
+    ///     is handled by ``presentSheet(_:window:parentSheet:)-5w3ko`` which is
+    ///     guaranteed to be called exactly once (unlike `updateSheet` which
+    ///     gets called whenever preferences or sizing change).
+    ///   - environment: The environment that the sheet will be presented in.
+    ///     This differs from the environment passed to the sheet's content.
+    ///   - size: The size of the sheet.
     ///   - onDismiss: An action to perform when the sheet gets dismissed by
-    ///     the user. Not triggered by programmatic dismissals. But is triggered
-    ///     by the implicit dismissals of nested sheets when their parent sheet
-    ///     is programmatically dismissed.
+    ///     the user. Not triggered by programmatic dismissals, but _is_
+    ///     triggered by the implicit dismissals of nested sheets when their
+    ///     parent sheet is programmatically dismissed.
     ///   - cornerRadius: The radius of the sheet. If `nil`, the platform
-    ///     default should be used. Not all backends can support this (e.g. macOS
-    ///     doesn't support custom window corner radii).
+    ///     default should be used. Not all backends can support this (e.g.
+    ///     macOS doesn't support custom window corner radii).
     ///   - detents: An array of sizes that the sheet should snap to. This is
     ///     generally only a thing on mobile where sheets can be dragged up
     ///     and down.
     ///   - dragIndicatorVisibility: Whether the drag indicator should be shown.
     ///     Sheet drag indicators are generally only a thing on mobile, and
     ///     usually appear as a small horizontal bar at the top of the sheet.
-    ///   - backgroundColor: The background color to use for the sheet. If `nil`,
-    ///     the platform's default sheet background style should be used.
-    ///   - interactiveDismissDisabled: Whether to dismiss user-driven sheet
-    ///     dismissal. On mobile this disables swiping to dismiss a sheet, and on
-    ///     desktop this usually disabled dismissal shortcuts such as the escape
-    ///     key and/or removes system-provided close/cancel buttons from the sheet.
+    ///   - backgroundColor: The background color to use for the sheet. If
+    ///     `nil`, the platform's default sheet background style should be used.
+    ///   - interactiveDismissDisabled: Whether to disable user-driven sheet
+    ///     dismissal. On mobile this disables swiping to dismiss a sheet, and
+    ///     on desktop this usually disables dismissal shortcuts such as the
+    ///     escape key and/or removes system-provided close/cancel buttons from
+    ///     the sheet.
     func updateSheet(
         _ sheet: Sheet,
         window: Window,
@@ -687,9 +1129,10 @@ public protocol AppBackend: Sendable {
         interactiveDismissDisabled: Bool
     )
 
-    /// Presents a sheet as a modal on top of or within the given window. Sheets
-    /// should disable interaction with all content below them until they get
-    /// dismissed.
+    /// Presents a sheet as a modal on top of or within the given window.
+    ///
+    /// Sheets should disable interaction with all content below them until they
+    /// get dismissed.
     ///
     /// `onDismiss` only gets called once the sheet has been closed.
     ///
@@ -698,15 +1141,18 @@ public protocol AppBackend: Sendable {
     /// - Parameters:
     ///   - sheet: The sheet to present.
     ///   - window: The window to present the sheet on top of.
-    ///   - parentSheet: The sheet that the current sheet was presented from, if any.
+    ///   - parentSheet: The sheet that the current sheet was presented from,
+    ///     if any.
     func presentSheet(
         _ sheet: Sheet,
         window: Window,
         parentSheet: Sheet?
     )
 
-    /// Dismisses a sheet programmatically. Used by the ``View/sheet`` modifier
-    /// to close sheets.
+    /// Dismisses a sheet programmatically.
+    ///
+    /// Used by the ``View/sheet(isPresented:onDismiss:content:)`` modifier to
+    /// close sheets.
     ///
     /// - Parameters:
     ///   - sheet: The sheet to dismiss.
@@ -714,14 +1160,24 @@ public protocol AppBackend: Sendable {
     ///   - parentSheet: The sheet that presented the current sheet, if any.
     func dismissSheet(_ sheet: Sheet, window: Window, parentSheet: Sheet?)
 
-    /// Get the dimensions of a sheet
+    /// Get the size of a sheet.
+    ///
+    /// - Parameter sheet: The sheet to get the size of.
+    /// - Returns: The sheet's size.
     func size(ofSheet sheet: Sheet) -> SIMD2<Int>
 
     /// Presents an 'Open file' dialog to the user for selecting files or
     /// folders.
     ///
-    /// If `window` is `nil`, the backend can either make the dialog a whole
-    /// app modal, a standalone window, or a modal for a window of its choosing.
+    /// - Parameters:
+    ///   - fileDialogOptions: The general options for the file dialog.
+    ///   - openDialogOptions: The options specific to the open dialog.
+    ///   - window: The window to attach the dialog to. If `nil`, the backend
+    ///     can either make the dialog a whole app modal, a standalone window,
+    ///     or a modal for a window of its choosing.
+    ///   - handleResult: The action to perform when the user chooses an item
+    ///     (or multiple items) or cancels the dialog. Receives a
+    ///     `DialogResult<[URL]>`.
     func showOpenDialog(
         fileDialogOptions: FileDialogOptions,
         openDialogOptions: OpenDialogOptions,
@@ -732,8 +1188,14 @@ public protocol AppBackend: Sendable {
     /// Presents a 'Save file' dialog to the user for selecting a file save
     /// destination.
     ///
-    /// If `window` is `nil`, the backend can either make the dialog a whole
-    /// app modal, a standalone window, or a modal for a window of its choosing.
+    /// - Parameters:
+    ///   - fileDialogOptions: The general options for the file dialog.
+    ///   - saveDialogOptions: The options specific to the save dialog.
+    ///   - window: The window to attach the dialog to. If `nil`, the backend
+    ///     can either make the dialog a whole app modal, a standalone window,
+    ///     or a modal for a window of its choosing.
+    ///   - handleResult: The action to perform when the user chooses a
+    ///     destination or cancels the dialog. Receives a `DialogResult<URL>`.
     func showSaveDialog(
         fileDialogOptions: FileDialogOptions,
         saveDialogOptions: SaveDialogOptions,
@@ -741,12 +1203,25 @@ public protocol AppBackend: Sendable {
         resultHandler handleResult: @escaping (DialogResult<URL>) -> Void
     )
 
-    /// Wraps a view in a container that can receive tap gestures. Some
-    /// backends may not have to wrap the child, in which case they may
+    /// Wraps a view in a container that can receive tap gesture events.
+    ///
+    /// Some backends may not have to wrap the child, in which case they may
     /// just return the child as is.
+    ///
+    /// - Parameters:
+    ///   - child: The child to wrap.
+    ///   - gesture: The gesture to listen for.
+    /// - Returns: A widget that can receive tap gesture events.
     func createTapGestureTarget(wrapping child: Widget, gesture: TapGesture) -> Widget
-    /// Update the tap gesture target with a new action. Replaces the old
-    /// action.
+    /// Update the tap gesture target with a new action.
+    ///
+    /// The new action replaces the old action.
+    ///
+    /// - Parameters:
+    ///   - tapGestureTarget: The tap gesture target to update.
+    ///   - gesture: The gesture to listen for.
+    ///   - environment: The current environment.
+    ///   - action: The action to perform when a tap gesture occurs.
     func updateTapGestureTarget(
         _ tapGestureTarget: Widget,
         gesture: TapGesture,
@@ -754,12 +1229,23 @@ public protocol AppBackend: Sendable {
         action: @escaping () -> Void
     )
 
-    /// Wraps a view in a container that can receive mouse hover events. Some
-    /// backends may not have to wrap the child, in which case they may
-    /// just return the child as is.
+    /// Wraps a view in a container that can receive mouse hover events.
+    ///
+    /// Some backends may not have to wrap the child, in which case they may
+    /// just return the child as-is.
+    ///
+    /// - Parameter child: The child to wrap.
+    /// - Returns: A widget that can receive mouse hover events.
     func createHoverTarget(wrapping child: Widget) -> Widget
-    /// Update the hover target with a new action. Replaces the old
-    /// action.
+    /// Update the hover target with a new action.
+    ///
+    /// The new action replaces the old action.
+    ///
+    /// - Parameters:
+    ///   - hoverTarget: The hover target to update.
+    ///   - environment: The current environment.
+    ///   - action: The action to perform when the hover state changes. Receives
+    ///     a `Bool` indicating whether the hover has started or stopped.
     func updateHoverTarget(
         _ hoverTarget: Widget,
         environment: EnvironmentValues,
@@ -769,11 +1255,23 @@ public protocol AppBackend: Sendable {
     // MARK: Paths
 
     /// Create a widget that can contain a path.
+    ///
+    /// - Returns: A path widget.
     func createPathWidget() -> Widget
-    /// Create a path. It will not be shown until ``renderPath(_:container:)`` is called.
-    func createPath() -> Path
-    /// Update a path. The updates do not need to be visible before ``renderPath(_:container:)``
+    /// Create a path.
+    ///
+    /// The path will not be shown until
+    /// ``renderPath(_:container:strokeColor:fillColor:overrideStrokeStyle:)-2qfb0``
     /// is called.
+    ///
+    /// - Returns: A path.
+    func createPath() -> Path
+    /// Update a path.
+    ///
+    /// The updates do not need to be visible before
+    /// ``renderPath(_:container:strokeColor:fillColor:overrideStrokeStyle:)-2qfb0``
+    /// is called.
+    ///
     /// - Parameters:
     ///   - path: The path to be updated.
     ///   - source: The source to copy the path from.
@@ -791,13 +1289,14 @@ public protocol AppBackend: Sendable {
         environment: EnvironmentValues
     )
     /// Draw a path to the screen.
+    ///
     /// - Parameters:
     ///   - path: The path to be rendered.
-    ///   - container: The container widget that the path will render in. Created with
-    ///     ``createPathWidget()``.
+    ///   - container: The container widget that the path will render in.
+    ///     Created with ``createPathWidget()``.
     ///   - strokeColor: The color to draw the path's stroke.
     ///   - fillColor: The color to shade the path's fill.
-    ///   - overrideStrokeStyle: If present, a value to override the path's stroke style.
+    ///   - overrideStrokeStyle: A value to override the path's stroke style.
     func renderPath(
         _ path: Path,
         container: Widget,
@@ -809,15 +1308,26 @@ public protocol AppBackend: Sendable {
     // MARK: Web view
 
     /// Create a web view.
+    ///
+    /// - Returns: A web view.
     func createWebView() -> Widget
     /// Update a web view to reflect the given environment and use the given
     /// navigation handler.
+    ///
+    /// - Parameters:
+    ///   - webView: The web view.
+    ///   - environment: The current environment.
+    ///   - onNavigate: The action to perform when a navigation occurs.
     func updateWebView(
         _ webView: Widget,
         environment: EnvironmentValues,
         onNavigate: @escaping (URL) -> Void
     )
     /// Navigates a web view to a given URL.
+    ///
+    /// - Parameters:
+    ///   - webView: The web view.
+    ///   - url: The URL to navigate `webView` to.
     func navigateWebView(_ webView: Widget, to url: URL)
 }
 

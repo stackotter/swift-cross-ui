@@ -1,5 +1,13 @@
 extension View {
-    /// Positions this view within an invisible frame having the specified minimum size constraints.
+    /// Positions this view within an invisible frame having the specified
+    /// minimum size constraints.
+    ///
+    /// - Parameters:
+    ///   - width: The view's exact width. `nil` lets the view choose its own
+    ///     width instead.
+    ///   - height: The view's exact height. `nil` lets the view choose its own
+    ///     height instead.
+    ///   - alignment: How to align this view within its container.
     public func frame(
         width: Int? = nil,
         height: Int? = nil,
@@ -13,7 +21,23 @@ extension View {
         )
     }
 
-    /// Positions this view within an invisible frame having the specified minimum size constraints.
+    /// Positions this view within an invisible frame having the specified
+    /// minimum size constraints.
+    ///
+    /// - Parameters:
+    ///   - minWidth: The view's minimum width. `nil` means there is no minimum
+    ///     width.
+    ///   - idealWidth: The view's ideal width. `nil` lets the view choose its
+    ///     own width instead.
+    ///   - maxWidth: The view's maximum width. `nil` means there is no maximum
+    ///     width.
+    ///   - minHeight: The view's minimum height. `nil` means there is no
+    ///     minimum height.
+    ///   - idealHeight: The view's ideal height. `nil` lets the view choose its
+    ///     own height instead.
+    ///   - maxHeight: The view's maximum height. `nil` means there is no
+    ///     maximum height.
+    ///   - alignment: How to align this view within its container.
     public func frame(
         minWidth: Int? = nil,
         idealWidth: Int? = nil,

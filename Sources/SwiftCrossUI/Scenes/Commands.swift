@@ -1,4 +1,6 @@
+/// A set of menus to be displayed in a menu bar.
 public struct Commands: Sendable {
+    /// Represents an empty menu bar.
     public static let empty = Commands(menus: [])
 
     var menus: [CommandMenu]
@@ -7,6 +9,13 @@ public struct Commands: Sendable {
         self.menus = menus
     }
 
+    /// Overlays `newCommands` onto `self`.
+    ///
+    /// If top-level menus in `newCommands` and `self` have conflicting names,
+    /// the ones in `self` win out.
+    ///
+    /// - Parameter newCommands: The commands to overlay.
+    /// - Returns: The overlayed commands.
     public func overlayed(with newCommands: Commands) -> Commands {
         var newMenusByName: [String: Int] = [:]
         for (i, menu) in newCommands.menus.enumerated() {

@@ -10,8 +10,17 @@ public struct Table<RowValue, RowContent: TableRowContent<RowValue>>: TypeSafeVi
     /// ``Table/Row`` instances).
     private var columns: RowContent
 
-    /// Creates a table that computes its cell values based on a collection of rows.
-    public init(_ rows: [RowValue], @TableRowBuilder<RowValue> _ columns: () -> RowContent) {
+    /// Creates a table that computes its cell values based on a collection of
+    /// rows.
+    ///
+    /// - Parameters:
+    ///   - rows: The row data to display.
+    ///   - columns: The columns to display (which each compute their cell
+    ///     values when given `Row` instances).
+    public init(
+        _ rows: [RowValue],
+        @TableRowBuilder<RowValue> _ columns: () -> RowContent
+    ) {
         self.rows = rows
         self.columns = columns()
     }

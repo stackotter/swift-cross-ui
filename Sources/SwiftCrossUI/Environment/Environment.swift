@@ -1,8 +1,10 @@
-/// A property wrapper used to access environment values within a `View` or
-/// `App`. Must not be used before the view graph accesses the view or app's
-/// `body` (i.e. don't access it from an initializer).
+/// A property wrapper used to access environment values within a ``View`` or
+/// ``App``.
 ///
-/// ```
+/// Must not be used before the view graph accesses the view or app's `body`
+/// (so, don't access it from an initializer).
+///
+/// ```swift
 /// struct ContentView: View {
 ///     @Environment(\.colorScheme) var colorScheme
 ///
@@ -16,7 +18,7 @@
 /// The environment also contains UI-related actions, such as the
 /// ``EnvironmentValues/chooseFile`` action used to present 'Open file' dialogs.
 ///
-/// ```
+/// ```swift
 /// struct ContentView: View {
 ///     @Environment(\.chooseFile) var chooseFile
 ///
@@ -36,7 +38,11 @@
 /// ```
 @propertyWrapper
 public struct Environment<Value>: DynamicProperty {
+    /// A key path to the enviornment value to access.
     var keyPath: KeyPath<EnvironmentValues, Value>
+    /// The underlying value.
+    ///
+    /// `nil` if ``update(with:previousValue:)`` has not yet been called.
     var value: Box<Value?>
 
     public func update(
@@ -46,6 +52,7 @@ public struct Environment<Value>: DynamicProperty {
         value.value = environment[keyPath: keyPath]
     }
 
+    /// The environment value that this property refers to.
     public var wrappedValue: Value {
         guard let value = value.value else {
             fatalError(
@@ -59,6 +66,9 @@ public struct Environment<Value>: DynamicProperty {
         return value
     }
 
+    /// Initializes an ``Environment`` property wrapper.
+    ///
+    /// - Parameter keyPath: A key path to the enviornment value to access.
     public init(_ keyPath: KeyPath<EnvironmentValues, Value>) {
         self.keyPath = keyPath
         value = Box(value: nil)

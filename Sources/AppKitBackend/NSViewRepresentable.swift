@@ -60,6 +60,7 @@ public protocol NSViewRepresentable: View where Content == Never {
     ///
     /// This method is called after all AppKit lifecycle methods, such as
     /// `nsView.didMoveToSuperview()`. The default implementation does nothing.
+    ///
     /// - Parameters:
     ///   - nsView: The view being dismantled.
     ///   - coordinator: The coordinator.

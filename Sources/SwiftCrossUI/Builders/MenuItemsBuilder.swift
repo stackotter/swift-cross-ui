@@ -1,4 +1,4 @@
-/// A builder for ``[MenuItem]``.
+/// A result builder for `[MenuItem]`.
 @resultBuilder
 public struct MenuItemsBuilder {
     public static func buildBlock() -> [MenuItem] {
@@ -96,7 +96,7 @@ public struct MenuItemsBuilder {
         Block(items: component)
     }
 
-    /// An implementation detail of ``MenuItemBuilder``'s support for
+    /// An implementation detail of ``MenuItemsBuilder``'s support for
     /// `if`/`else if`/`else` blocks.
     public struct Block {
         var items: [MenuItem]

@@ -3,7 +3,9 @@ import ImageFormats
 
 /// A view that displays an image.
 public struct Image: Sendable {
+    /// Whether the image is resizable.
     private var isResizable = false
+    /// The source of the image.
     private var source: Source
 
     enum Source: Equatable {
@@ -11,16 +13,21 @@ public struct Image: Sendable {
         case image(ImageFormats.Image<RGBA>)
     }
 
-    /// Displays an image file. `png`, `jpg`, and `webp` are supported.
+    /// Creates an image view.
+    ///
+    /// `png`, `jpg`, and `webp` are supported.
+    ///
     /// - Parameters:
-    ///   - url: The url of the file to display.
-    ///   - useFileExtension: If `true`, the file extension is used to determine the file type,
-    ///     otherwise the first few ('magic') bytes of the file are used.
+    ///   - url: The URL of the file to display.
+    ///   - useFileExtension: If `true`, the file extension is used to determine
+    ///     the file type, otherwise the first few ('magic') bytes of the file
+    ///     are used.
     public init(_ url: URL, useFileExtension: Bool = true) {
         source = .url(url, useFileExtension: useFileExtension)
     }
 
     /// Displays an image from raw pixel data.
+    /// 
     /// - Parameter image: The image data to display.
     public init(_ image: ImageFormats.Image<RGBA>) {
         source = .image(image)

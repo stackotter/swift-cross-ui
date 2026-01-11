@@ -1,11 +1,28 @@
 import Foundation
 
-/// Presents a 'Save file' dialog fit for selecting a save destination. Returns
-/// `nil` if the user cancels the operation.
+/// Presents a 'Save file' dialog fit for selecting a save destination.
 public struct PresentFileSaveDialogAction: Sendable {
     let backend: any AppBackend
     let window: MainActorBox<Any?>
 
+    /// Presents a 'Save file' dialog fit for selecting a save destination.
+    ///
+    /// - Parameters:
+    ///   - title: The dialog's title. Defaults to "Save".
+    ///   - message: The dialog's message. Defaults to an empty string.
+    ///   - defaultButtonLabel: The label for the dialog's default button.
+    ///     Defaults to "Save".
+    ///   - initialDirectory: The directory to start the dialog in. Defaults
+    ///     to `nil`, which lets the backend choose (usually it'll be the
+    ///     app's current working directory and/or the directory where the
+    ///     previous dialog was dismissed in).
+    ///   - showHiddenFiles: Whether to show hidden files. Defaults to `false`.
+    ///   - nameFieldLabel: The placeholder label for the file name field.
+    ///     Defaults to `nil`, which uses the backend-specific default.
+    ///   - defaultFileName: The default file name. Defaults to `nil`, which
+    ///     uses the backend-specific default.
+    /// - Returns: The URL of the user's chosen save destination, or `nil` if
+    ///   the user cancelled the dialog. 
     public func callAsFunction(
         title: String = "Save",
         message: String = "",

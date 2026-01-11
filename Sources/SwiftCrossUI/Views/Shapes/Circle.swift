@@ -1,7 +1,12 @@
+/// A circle.
+///
+/// Circles have equal widths and heights; the `Circle` shape will take on the
+/// minimum of its proposed width and height.
 public struct Circle: Shape {
-    /// The ideal diameter of a Circle.
+    /// The ideal diameter of a `Circle`.
     static let idealDiameter = 10.0
 
+    /// Creates a ``Circle`` instance.
     public nonisolated init() {}
 
     public nonisolated func path(in bounds: Path.Rect) -> Path {

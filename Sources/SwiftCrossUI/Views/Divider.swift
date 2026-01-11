@@ -1,6 +1,9 @@
-/// A divider that expands along the minor axis of the containing stack layout
-/// (or horizontally otherwise). In dark mode it's white with 10% opacity, and
-/// in light mode it's black with 10% opacity.
+/// A divider that expands along the minor axis of the containing stack layout.
+///
+/// If not contained within a stack, this view expands horizontally.
+///
+/// In dark mode it's white with 10% opacity, and in light mode it's black with
+/// 10% opacity.
 public struct Divider: View, Sendable {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.layoutOrientation) var layoutOrientation
@@ -14,6 +17,7 @@ public struct Divider: View, Sendable {
         }
     }
 
+    /// Creates a divider.
     public init() {}
 
     public var body: some View {

@@ -1,10 +1,10 @@
 import Foundation
 
-/// A view which erases the type of its child. Useful in dynamic
-/// use-cases such as hot reloading, but not recommended if there
-/// are alternate strongly-typed solutions to your problem since
-/// ``AnyView`` has significantly more overhead than strongly
-/// typed views.
+/// A view which erases the type of its child.
+///
+/// Useful in dynamic use-cases such as hot reloading, but not recommended if
+/// there are alternate strongly-typed solutions to your problem since
+/// ``AnyView`` has significantly more overhead than strongly typed views.
 public struct AnyView: TypeSafeView {
     typealias Children = AnyViewChildren
 

@@ -9,7 +9,13 @@ public struct VStack<Content: View>: View {
     /// The alignment of the stack's children in the horizontal direction.
     private var alignment: HorizontalAlignment
 
-    /// Creates a horizontal stack with the given spacing.
+    /// Creates a vertical stack with the given spacing and alignment.
+    ///
+    /// - Parameters:
+    ///   - alignment: The alignment of the stack's children in the horizontal
+    ///     direction.
+    ///   - spacing: The amount of spacing to apply between children.
+    ///   - content: The content of this stack.
     public init(
         alignment: HorizontalAlignment = .center,
         spacing: Int? = nil,
@@ -18,6 +24,13 @@ public struct VStack<Content: View>: View {
         self.init(alignment: alignment, spacing: spacing, content: content())
     }
 
+    /// Creates a vertical stack with the given spacing and alignment.
+    ///
+    /// - Parameters:
+    ///   - alignment: The alignment of the stack's children in the horizontal
+    ///     direction.
+    ///   - spacing: The amount of spacing to apply between children.
+    ///   - content: The content of this stack.
     init(
         alignment: HorizontalAlignment = .center,
         spacing: Int? = nil,

@@ -1,13 +1,14 @@
-/// A 2-D shape that can be drawn as a view.
+/// A 2D shape that can be drawn as a view.
 ///
-/// If no stroke color or fill color is specified, the default is no stroke and a fill of the
-/// current foreground color.
+/// If no stroke color or fill color is specified, the default is no stroke and
+/// a fill of the current foreground color.
 public protocol Shape: View, Sendable where Content == EmptyView {
     /// Draw the path for this shape.
     ///
-    /// The bounds passed to a shape that is immediately drawn as a view will always have an
-    /// origin of (0, 0). However, you may pass a different bounding box to subpaths. For example,
-    /// this code draws a rectangle in the left half of the bounds and an ellipse in the right half:
+    /// The bounds passed to a shape that is immediately drawn as a view will
+    /// always have an origin of (0, 0). However, you may pass a different
+    /// bounding box to subpaths. For example, this code draws a rectangle in
+    /// the left half of the bounds and an ellipse in the right half:
     /// ```swift
     /// func path(in bounds: Path.Rect) -> Path {
     ///     Path()
@@ -33,11 +34,16 @@ public protocol Shape: View, Sendable where Content == EmptyView {
     ///         )
     /// }
     /// ```
+    ///
+    /// - Parameter bounds: The bounds of this shape.
     func path(in bounds: Path.Rect) -> Path
+
     /// Determine the ideal size of this shape given the proposed bounds.
     ///
     /// The default implementation accepts the proposal, replacing unspecified
-    /// dimensions with `10`.
+    /// dimensions with 10.
+    ///
+    /// - Parameter proposal: The proposed bounds of this shape.
     /// - Returns: The shape's size for the given proposal.
     func size(fitting proposal: ProposedViewSize) -> ViewSize
 }
