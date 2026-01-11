@@ -2,6 +2,10 @@
     import Foundation
 #endif
 
+#if canImport(UIKit)
+import UIKit
+#endif
+
 /// A scene that presents a group of identically structured windows. Currently
 /// only supports having a single instance of the window but will eventually
 /// support duplicating the window.
@@ -51,6 +55,18 @@ public struct WindowGroup<Content: View>: Scene {
     /// Sets the resizability of a window.
     public func windowResizability(_ resizability: WindowResizability) -> Self {
         var windowGroup = self
+        
+        // ``WindowResizability/contentSize`` currently only works
+        // correctly on backends where the backend sets the size of the window
+        // as it doesn't have an effect on full-screen operating systems like
+        // iOS and tvOS they are excluded from changing the resizability
+        //
+        // This might be a temporary fix and be moved to the layout system later
+#if canImport(UIKit)
+        if [.phone, .tv].contains(UIDevice.current.userInterfaceIdiom) {
+            return windowGroup
+        }
+#endif
         windowGroup.resizability = resizability
         return windowGroup
     }
