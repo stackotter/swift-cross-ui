@@ -53,7 +53,7 @@ struct FixedSizeModifier<Child: View>: TypeSafeView {
         }
         let childResult = children.child0.computeLayout(
             with: body.view0,
-            proposedSize: proposedSize,
+            proposedSize: childProposal,
             environment: environment
         )
 
