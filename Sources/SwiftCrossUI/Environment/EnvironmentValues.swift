@@ -195,6 +195,23 @@ public struct EnvironmentValues {
         )
     }
 
+    /// Opens a window with the specified ID.
+    @MainActor
+    public var openWindow: OpenWindowAction {
+        return OpenWindowAction(
+            backend: backend
+        )
+    }
+
+    /// Closes the enclosing window.
+    @MainActor
+    public var dismissWindow: DismissWindowAction {
+        return DismissWindowAction(
+            backend: backend,
+            window: .init(value: window)
+        )
+    }
+
     /// Reveals a file in the system's file manager. This opens
     /// the file's enclosing directory and highlighting the file.
     ///
@@ -207,6 +224,13 @@ public struct EnvironmentValues {
         )
     }
 
+    /// Whether the backend can have multiple windows open at once. Mobile
+    /// backends generally can't.
+    @MainActor
+    public var supportsMultipleWindows: Bool {
+        backend.supportsMultipleWindows
+    }
+  
     /// The current calendar that views should use when handling dates.
     public var calendar: Calendar
 
