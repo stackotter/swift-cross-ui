@@ -338,22 +338,21 @@ public final class DummyBackend: AppBackend {
         (container as! Container).children = []
     }
 
-    public func addChild(_ child: Widget, to container: Widget) {
-        (container as! Container).children.append((child, .zero))
+    public func insert(_ child: Widget, into container: Widget, at index: Int) {
+        (container as! Container).children.insert((child, .zero), at: index)
+    }
+
+    public func swap(childAt firstIndex: Int, withChildAt secondIndex: Int, in container: Widget) {
+        (container as! Container).children.swapAt(firstIndex, secondIndex)
     }
 
     public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
         (container as! Container).children[index].position = position
     }
 
-    public func removeChild(_ child: Widget, from container: Widget) {
+    public func remove(childAt index: Int, from container: Widget) {
         let container = container as! Container
-        let index = container.children.firstIndex { (widget, position) in
-            widget === child
-        }
-        if let index {
-            container.children.remove(at: index)
-        }
+        container.children.remove(at: index)
     }
 
     public func createColorableRectangle() -> Widget {

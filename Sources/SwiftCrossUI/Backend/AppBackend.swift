@@ -246,12 +246,15 @@ public protocol AppBackend: Sendable {
     func createContainer() -> Widget
     /// Removes all children of the given container.
     func removeAllChildren(of container: Widget)
-    /// Adds a child to a given container at an exact position.
-    func addChild(_ child: Widget, to container: Widget)
+    /// Inserts a child into a given container at a given index.
+    func insert(_ child: Widget, into container: Widget, at index: Int)
+    /// Swaps the child at firstIndex with the child at secondIndex. May crash if either
+    /// index is out of bounds.
+    func swap(childAt firstIndex: Int, withChildAt secondIndex: Int, in container: Widget)
     /// Sets the position of the specified child in a container.
     func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>)
-    /// Removes a child widget from a container (if the child is a direct child of the container).
-    func removeChild(_ child: Widget, from container: Widget)
+    /// Removes the child at the given index from the given container.
+    func remove(childAt index: Int, from container: Widget)
 
     /// Creates a rectangular widget with configurable color.
     func createColorableRectangle() -> Widget

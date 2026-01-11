@@ -25,6 +25,8 @@ public struct ResolvedMenu {
         ///   - value: The toggle's current state.
         ///   - onChange: Called whenever the user changes the toggle's state.
         case toggle(_ label: String, _ value: Bool, onChange: @MainActor (Bool) -> Void)
+        /// A section separator.
+        case separator
         /// A named submenu.
         case submenu(Submenu)
     }

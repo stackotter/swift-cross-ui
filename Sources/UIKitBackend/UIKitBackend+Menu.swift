@@ -16,20 +16,43 @@ extension UIKitBackend {
         label: String,
         identifier: UIMenu.Identifier? = nil
     ) -> UIMenu {
-        let children = content.items.map { (item) -> UIMenuElement in
+        var currentSection: [UIMenuElement] = []
+        var previousSections: [[UIMenuElement]] = []
+
+        for item in content.items {
             switch item {
                 case .button(let label, let action):
-                    if let action {
+                    let uiAction = if let action {
                         UIAction(title: label) { _ in action() }
                     } else {
                         UIAction(title: label, attributes: .disabled) { _ in }
                     }
+                    currentSection.append(uiAction)
                 case .toggle(let label, let value, let onChange):
-                    UIAction(title: label, state: value ? .on : .off) { action in
-                        onChange(!action.state.isOn)
-                    }
+                    currentSection.append(
+                        UIAction(title: label, state: value ? .on : .off) { action in
+                            onChange(!action.state.isOn)
+                        }
+                    )
+                case .separator:
+                    // UIKit doesn't have explicit separators per se, but instead deals with
+                    // sections (actually quite similar to what you can do in SwiftUI with the
+                    // Section view). It'll automatically draw separators between sections.
+                    previousSections.append(currentSection)
+                    currentSection = []
                 case .submenu(let submenu):
-                    buildMenu(content: submenu.content, label: submenu.label)
+                    currentSection.append(buildMenu(content: submenu.content, label: submenu.label))
+            }
+        }
+
+        let children = if previousSections.isEmpty {
+            // There are no dividers; just return the current section to keep the menu tree flat.
+            currentSection
+        } else {
+            // Create a list of submenus, each with the displayInline option set so that they
+            // display as sections with separators.
+            (previousSections + [currentSection]).map {
+                UIMenu(title: "", options: .displayInline, children: $0)
             }
         }
 
@@ -37,7 +60,9 @@ extension UIKitBackend {
     }
 
     public func updatePopoverMenu(
-        _ menu: Menu, content: ResolvedMenu, environment _: EnvironmentValues
+        _ menu: Menu,
+        content: ResolvedMenu,
+        environment _: EnvironmentValues
     ) {
         if #available(iOS 14, macCatalyst 14, tvOS 17, *) {
             menu.uiMenu = UIKitBackend.buildMenu(content: content, label: "")

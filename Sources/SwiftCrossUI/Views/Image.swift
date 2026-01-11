@@ -143,7 +143,11 @@ extension Image: TypeSafeView {
                     environment: environment
                 )
                 if children.isContainerEmpty {
-                    backend.addChild(children.imageWidget.into(), to: children.container.into())
+                    backend.insert(
+                        children.imageWidget.into(),
+                        into: children.container.into(),
+                        at: 0
+                    )
                     backend.setPosition(ofChildAt: 0, in: children.container.into(), to: .zero)
                 }
                 children.isContainerEmpty = false

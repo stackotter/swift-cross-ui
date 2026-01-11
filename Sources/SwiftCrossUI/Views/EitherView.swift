@@ -118,7 +118,7 @@ extension EitherView: TypeSafeView {
     ) {
         if children.hasSwitchedCase {
             backend.removeAllChildren(of: widget)
-            backend.addChild(children.node.widget.into(), to: widget)
+            backend.insert(children.node.widget.into(), into: widget, at: 0)
             backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
             children.hasSwitchedCase = false
         }

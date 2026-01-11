@@ -34,7 +34,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         let rootWidget = viewGraph.rootNode.concreteNode(for: Backend.self).widget
 
         let container = backend.createContainer()
-        backend.addChild(rootWidget, to: container)
+        backend.insert(rootWidget, into: container, at: 0)
         self.containerWidget = AnyWidget(container)
 
         backend.setChild(ofWindow: window, to: container)

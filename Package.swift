@@ -123,10 +123,6 @@ let package = Package(
             revision: "42c47f4e4129c8b5a5d9912f05e1168c924ac180"
         ),
         .package(
-            url: "https://github.com/apple/swift-collections.git",
-            .upToNextMinor(from: "1.2.1")
-        ),
-        .package(
             url: "https://github.com/stackotter/swift-benchmark",
             .upToNextMinor(from: "0.2.0")
         ),
@@ -154,7 +150,6 @@ let package = Package(
                 "HotReloadingMacrosPlugin",
                 .product(name: "ImageFormats", package: "swift-image-formats"),
                 .product(name: "Logging", package: "swift-log"),
-                .product(name: "OrderedCollections", package: "swift-collections"),
             ],
             exclude: [
                 "Builders/ViewBuilder.swift.gyb",
