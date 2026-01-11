@@ -101,6 +101,9 @@ public struct EnvironmentValues {
     /// The resizing behaviour of the current window.
     var windowResizability: WindowResizability
 
+    /// The menu ordering to use.
+    public var menuOrder: MenuOrder
+
     /// Backing storage for extensible subscript
     private var extraValues: [ObjectIdentifier: Any]
 
@@ -230,6 +233,7 @@ public struct EnvironmentValues {
         scrollDismissesKeyboardMode = .automatic
         isTextSelectionEnabled = false
         windowResizability = .automatic
+        menuOrder = .automatic
         allowLayoutCaching = false
     }
 

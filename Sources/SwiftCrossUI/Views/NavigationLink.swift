@@ -2,7 +2,7 @@
 //   some practical examples).
 /// A navigation primitive that appends a value to the current navigation path on click.
 ///
-/// Unlike Apples SwiftUI API a `NavigationLink` can be outside of a `NavigationStack`
+/// Unlike Apple's SwiftUI API, a `NavigationLink` can be outside of a `NavigationStack`
 /// as long as they share the same `NavigationPath`.
 public struct NavigationLink: View {
     public var body: some View {

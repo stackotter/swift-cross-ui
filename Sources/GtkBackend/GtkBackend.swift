@@ -318,13 +318,16 @@ public final class GtkBackend: AppBackend {
             switch item {
                 case .button(let label, let action):
                     if let action {
-                        actionMap.addAction(named: actionName, action: action)
+                        actionMap.addAction(GSimpleAction(name: actionName, action: action))
                     }
 
                     model.appendItem(label: label, actionName: "\(actionNamespace).\(actionName)")
                 case .toggle(let label, let value, let onChange):
-                    // FIXME: Implement
-                    logger.warning("menu toggles not implemented")
+                    actionMap.addAction(
+                        GSimpleAction(name: actionName, state: value, action: onChange)
+                    )
+
+                    model.appendItem(label: label, actionName: "\(actionNamespace).\(actionName)")
                 case .submenu(let submenu):
                     model.appendSubmenu(
                         label: submenu.label,

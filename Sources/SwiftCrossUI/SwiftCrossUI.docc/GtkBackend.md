@@ -108,6 +108,20 @@ Figure 8: *install the dependencies listed in your package manifest*
 
 > Warning: Replace the triplet with `arm64-windows` if you're on ARM64
 
+#### Troubleshooting vcpkg
+
+If vcpkg fails to build a package with an error along the lines of `ninja: error: manifest 'build.ninja' still dirty after 100 tries`, then some of your vcpkg installation may have been installed in the future according to Windows due to your VM's timezone being set incorrectly. This can be resolved by running the following commands in Git Bash;
+
+```
+cd C:\vcpkg
+find . -type f -exec touch {} +
+```
+Figure 9: *fix vcpkg file modified times*
+
+If you have a fix that doesn't require Git Bash, feel free to [open an issue](https://github.com/stackotter/swift-cross-ui/issues/new/choose) or pull request with your fix.
+
+If you face a different issue, please open an issue or pull request to update this troubleshooting section.
+
 ## Usage
 
 ```swift
@@ -129,7 +143,7 @@ let package = Package(
   ...
 )
 ```
-Figure 9: *adding `GtkBackend` to an executable target*
+Figure 10: *adding `GtkBackend` to an executable target*
 
 ```swift
 import SwiftCrossUI
@@ -156,4 +170,4 @@ struct YourApp: App {
   }
 }
 ```
-Figure 10: *using `GtkBackend`*
+Figure 11: *using `GtkBackend`*

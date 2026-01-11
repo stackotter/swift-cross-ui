@@ -59,7 +59,7 @@ struct AlertDemo: View {
 
         Button("Present error") {
             Task {
-                await presentAlert("Failed to succeed")
+                await presentAlert("Failed to succeed") {}
             }
         }
     }
@@ -162,6 +162,7 @@ struct SheetDemo: View {
 struct WindowingApp: App {
     @State var title = "My window"
     @State var resizable = true
+    @State var isAlertSceneShown = false
     @State var toggle = false
     @State var enforceMaxSize = true
     @State var closable = true
@@ -196,6 +197,9 @@ struct WindowingApp: App {
                     #endif
 
                     AlertDemo()
+                    Button("Show alert scene") {
+                        isAlertSceneShown = true
+                    }
 
                     Divider()
 
@@ -218,6 +222,9 @@ struct WindowingApp: App {
                 }
             }
         }
+
+        AlertScene("Alert scene", isPresented: $isAlertSceneShown) {}
+
         #if !(os(iOS) || os(tvOS) || os(Windows))
             WindowGroup("Secondary window") {
                 #hotReloadable {

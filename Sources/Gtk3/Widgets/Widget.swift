@@ -166,6 +166,39 @@ open class Widget: GObject {
         )
     }
 
+    public struct MeasureResult {
+        public var minimum: Int
+        public var natural: Int
+    }
+
+    public func measure(
+        orientation: Orientation,
+        forPerpendicularSize perpendicularSize: Int
+    ) -> MeasureResult {
+        var minimum: gint = 0
+        var natural: gint = 0
+        switch orientation {
+            case .horizontal:
+                gtk_widget_get_preferred_width_for_height(
+                    widgetPointer,
+                    gint(perpendicularSize),
+                    &minimum,
+                    &natural
+                )
+            case .vertical:
+                gtk_widget_get_preferred_height_for_width(
+                    widgetPointer,
+                    gint(perpendicularSize),
+                    &minimum,
+                    &natural
+                )
+        }
+        return MeasureResult(
+            minimum: Int(minimum),
+            natural: Int(natural)
+        )
+    }
+
     public func insertActionGroup(_ name: String, _ actionGroup: any GActionGroup) {
         gtk_widget_insert_action_group(
             widgetPointer,
