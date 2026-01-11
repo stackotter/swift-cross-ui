@@ -8,6 +8,10 @@
 /// # See Also
 /// - ``View/alert(_:isPresented:actions:)``
 public struct AlertAction: Sendable {
+    /// The default alert action.
+    ///
+    /// Consists of a button labeled "OK" with no action (other than dismissing
+    /// the alert, which is implicit).
     public static let `default` = AlertAction(label: "OK", action: {})
 
     /// The button's label.

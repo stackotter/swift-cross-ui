@@ -17,11 +17,17 @@ public struct ResolvedMenu {
 
     /// A menu item.
     public enum Item {
-        /// A button. A `nil` action means that the button is disabled.
+        /// A button.
+        ///
+        /// - Parameters:
+        ///   - label: The button's label.
+        ///   - action: The action to perform when the button is activated. `nil`
+        ///     means the button is disabled.
         case button(_ label: String, _ action: (@MainActor () -> Void)?)
         /// A toggle that manages boolean state.
         ///
         /// Usually appears as a checkbox.
+        ///
         /// - Parameters:
         ///   - label: The toggle's label.
         ///   - value: The toggle's current state.

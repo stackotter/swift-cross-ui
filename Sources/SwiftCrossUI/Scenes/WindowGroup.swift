@@ -2,9 +2,10 @@
     import Foundation
 #endif
 
-/// A scene that presents a group of identically structured windows. Currently
-/// only supports having a single instance of the window but will eventually
-/// support duplicating the window.
+/// A scene that presents a group of identically structured windows.
+///
+/// Currently only supports having a single instance of the window but will
+/// eventually support duplicating the window.
 public struct WindowGroup<Content: View>: Scene {
     public typealias Node = WindowGroupNode<Content>
 
@@ -22,8 +23,9 @@ public struct WindowGroup<Content: View>: Scene {
 
     /// The title of the window (shown in the title bar on most OSes).
     var title: String
-    /// The default size of the window (only has effect at time of creation). Defaults to
-    /// 900x450.
+    /// The default size of the window (only has effect at time of creation).
+    ///
+    /// Defaults to 900x450.
     var defaultSize: SIMD2<Int>
     /// The window's resizing behaviour.
     var resizability: WindowResizability

@@ -13,6 +13,7 @@ public struct PresentAlertAction {
     /// - Parameters:
     ///   - title: The title of the alert.
     ///   - actions: A list of actions the user can perform.
+    /// - Returns: The index of the chosen action.
     @discardableResult
     public func callAsFunction(
         _ title: String,
