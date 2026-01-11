@@ -33,7 +33,7 @@ struct FixedSizeModifier<Child: View>: TypeSafeView {
         backend: Backend
     ) -> Backend.Widget {
         let container = backend.createContainer()
-        backend.addChild(children.child0.widget.into(), to: container)
+        backend.insert(children.child0.widget.into(), into: container, at: 0)
         return container
     }
 

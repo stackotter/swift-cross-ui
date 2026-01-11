@@ -33,8 +33,8 @@ public struct VStack<Content: View>: View {
         backend: Backend
     ) -> Backend.Widget {
         let vStack = backend.createContainer()
-        for child in children.widgets(for: backend) {
-            backend.addChild(child, to: vStack)
+        for (index, child) in children.widgets(for: backend).enumerated() {
+            backend.insert(child, into: vStack, at: index)
         }
         return vStack
     }
