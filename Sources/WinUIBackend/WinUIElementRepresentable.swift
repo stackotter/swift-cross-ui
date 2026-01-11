@@ -79,19 +79,20 @@ extension WinUIElementRepresentable {
         // no-op
     }
 
+    @MainActor
     public func sizeThatFits(
         _ proposal: ProposedViewSize,
         winUIElement: WinUIElementType,
         context _: Context
     ) -> ViewSize {
-        let adjustment: SIMD2<Int> = WinUIBackend.sizeCorrection(for: winUIElement)
-
         let allocation = WindowsFoundation.Size(
             width: proposal.width.map(Float.init) ?? .infinity,
             height: proposal.height.map(Float.init) ?? .infinity
         )
         try! winUIElement.measure(allocation)
         let sizeThatFits = winUIElement.desiredSize
+
+        let adjustment: SIMD2<Int> = WinUIBackend.sizeCorrection(for: winUIElement)
 
         let idealWidth = Double(sizeThatFits.width) + Double(adjustment.x)
         let idealHeight = Double(sizeThatFits.height) + Double(adjustment.y)

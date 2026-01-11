@@ -39,6 +39,7 @@ public final class Gtk3Backend: AppBackend {
     public let canRevealFiles = true
     public let supportsMultipleWindows = true
     public let deviceClass = DeviceClass.desktop
+    public let supportedDatePickerStyles: [DatePickerStyle] = []
 
     var gtkApp: Application
 

@@ -1,0 +1,232 @@
+import CGtk3
+
+/// #GtkCalendar is a widget that displays a Gregorian calendar, one month
+/// at a time. It can be created with gtk_calendar_new().
+///
+/// The month and year currently displayed can be altered with
+/// gtk_calendar_select_month(). The exact day can be selected from the
+/// displayed month using gtk_calendar_select_day().
+///
+/// To place a visual marker on a particular day, use gtk_calendar_mark_day()
+/// and to remove the marker, gtk_calendar_unmark_day(). Alternative, all
+/// marks can be cleared with gtk_calendar_clear_marks().
+///
+/// The way in which the calendar itself is displayed can be altered using
+/// gtk_calendar_set_display_options().
+///
+/// The selected date can be retrieved from a #GtkCalendar using
+/// gtk_calendar_get_date().
+///
+/// Users should be aware that, although the Gregorian calendar is the
+/// legal calendar in most countries, it was adopted progressively
+/// between 1582 and 1929. Display before these dates is likely to be
+/// historically incorrect.
+open class Calendar: Widget {
+    /// Creates a new calendar, with the current date being selected.
+    public convenience init() {
+        self.init(
+            gtk_calendar_new()
+        )
+    }
+
+    open override func didMoveToParent() {
+        super.didMoveToParent()
+
+        addSignal(name: "day-selected") { [weak self] () in
+            guard let self else { return }
+            self.daySelected?(self)
+        }
+
+        addSignal(name: "day-selected-double-click") { [weak self] () in
+            guard let self else { return }
+            self.daySelectedDoubleClick?(self)
+        }
+
+        addSignal(name: "month-changed") { [weak self] () in
+            guard let self else { return }
+            self.monthChanged?(self)
+        }
+
+        addSignal(name: "next-month") { [weak self] () in
+            guard let self else { return }
+            self.nextMonth?(self)
+        }
+
+        addSignal(name: "next-year") { [weak self] () in
+            guard let self else { return }
+            self.nextYear?(self)
+        }
+
+        addSignal(name: "prev-month") { [weak self] () in
+            guard let self else { return }
+            self.prevMonth?(self)
+        }
+
+        addSignal(name: "prev-year") { [weak self] () in
+            guard let self else { return }
+            self.prevYear?(self)
+        }
+
+        let handler7:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::day", handler: gCallback(handler7)) {
+            [weak self] (param0: OpaquePointer) in
+            guard let self else { return }
+            self.notifyDay?(self, param0)
+        }
+
+        let handler8:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::detail-height-rows", handler: gCallback(handler8)) {
+            [weak self] (param0: OpaquePointer) in
+            guard let self else { return }
+            self.notifyDetailHeightRows?(self, param0)
+        }
+
+        let handler9:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::detail-width-chars", handler: gCallback(handler9)) {
+            [weak self] (param0: OpaquePointer) in
+            guard let self else { return }
+            self.notifyDetailWidthChars?(self, param0)
+        }
+
+        let handler10:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::month", handler: gCallback(handler10)) {
+            [weak self] (param0: OpaquePointer) in
+            guard let self else { return }
+            self.notifyMonth?(self, param0)
+        }
+
+        let handler11:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::no-month-change", handler: gCallback(handler11)) {
+            [weak self] (param0: OpaquePointer) in
+            guard let self else { return }
+            self.notifyNoMonthChange?(self, param0)
+        }
+
+        let handler12:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::show-day-names", handler: gCallback(handler12)) {
+            [weak self] (param0: OpaquePointer) in
+            guard let self else { return }
+            self.notifyShowDayNames?(self, param0)
+        }
+
+        let handler13:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::show-details", handler: gCallback(handler13)) {
+            [weak self] (param0: OpaquePointer) in
+            guard let self else { return }
+            self.notifyShowDetails?(self, param0)
+        }
+
+        let handler14:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::show-heading", handler: gCallback(handler14)) {
+            [weak self] (param0: OpaquePointer) in
+            guard let self else { return }
+            self.notifyShowHeading?(self, param0)
+        }
+
+        let handler15:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::show-week-numbers", handler: gCallback(handler15)) {
+            [weak self] (param0: OpaquePointer) in
+            guard let self else { return }
+            self.notifyShowWeekNumbers?(self, param0)
+        }
+
+        let handler16:
+            @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+                { _, value1, data in
+                    SignalBox1<OpaquePointer>.run(data, value1)
+                }
+
+        addSignal(name: "notify::year", handler: gCallback(handler16)) {
+            [weak self] (param0: OpaquePointer) in
+            guard let self else { return }
+            self.notifyYear?(self, param0)
+        }
+    }
+
+    /// Emitted when the user selects a day.
+    public var daySelected: ((Calendar) -> Void)?
+
+    /// Emitted when the user double-clicks a day.
+    public var daySelectedDoubleClick: ((Calendar) -> Void)?
+
+    /// Emitted when the user clicks a button to change the selected month on a
+    /// calendar.
+    public var monthChanged: ((Calendar) -> Void)?
+
+    /// Emitted when the user switched to the next month.
+    public var nextMonth: ((Calendar) -> Void)?
+
+    /// Emitted when user switched to the next year.
+    public var nextYear: ((Calendar) -> Void)?
+
+    /// Emitted when the user switched to the previous month.
+    public var prevMonth: ((Calendar) -> Void)?
+
+    /// Emitted when user switched to the previous year.
+    public var prevYear: ((Calendar) -> Void)?
+
+    public var notifyDay: ((Calendar, OpaquePointer) -> Void)?
+
+    public var notifyDetailHeightRows: ((Calendar, OpaquePointer) -> Void)?
+
+    public var notifyDetailWidthChars: ((Calendar, OpaquePointer) -> Void)?
+
+    public var notifyMonth: ((Calendar, OpaquePointer) -> Void)?
+
+    public var notifyNoMonthChange: ((Calendar, OpaquePointer) -> Void)?
+
+    public var notifyShowDayNames: ((Calendar, OpaquePointer) -> Void)?
+
+    public var notifyShowDetails: ((Calendar, OpaquePointer) -> Void)?
+
+    public var notifyShowHeading: ((Calendar, OpaquePointer) -> Void)?
+
+    public var notifyShowWeekNumbers: ((Calendar, OpaquePointer) -> Void)?
+
+    public var notifyYear: ((Calendar, OpaquePointer) -> Void)?
+}

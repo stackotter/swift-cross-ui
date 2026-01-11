@@ -249,6 +249,7 @@ public final class DummyBackend: AppBackend {
     public var deviceClass = DeviceClass.desktop
     public var canRevealFiles = false
     public let supportsMultipleWindows = true
+    public var supportedDatePickerStyles: [DatePickerStyle] = []
 
     public var incomingURLHandler: ((URL) -> Void)?
 

@@ -30,10 +30,7 @@ public struct PresentAlertAction {
                         } else {
                             nil
                         }
-                    backend.showAlert(
-                        alert,
-                        window: window
-                    ) { actionIndex in
+                    backend.showAlert(alert, window: window) { actionIndex in
                         actions[actionIndex].action()
                         continuation.resume(returning: actionIndex)
                     }

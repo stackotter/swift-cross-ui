@@ -46,7 +46,7 @@ public struct VStack<Content: View>: View {
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        if !(children is TupleViewChildren) {
+        if !(children is TupleViewChildren || children is EmptyViewChildren) {
             // TODO: Make layout caching a ViewGraphNode feature so that we can handle
             //   these edge cases without a second thought. Would also make introducing
             //   a port of SwiftUI's Layout protocol much easier.
