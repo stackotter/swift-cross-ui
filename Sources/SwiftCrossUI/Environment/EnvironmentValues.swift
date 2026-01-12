@@ -98,6 +98,9 @@ public struct EnvironmentValues {
     /// Whether the text should be selectable. Set by ``View/textSelectionEnabled(_:)``.
     public var isTextSelectionEnabled: Bool
 
+    /// The resizing behaviour of the current window.
+    var windowResizability: WindowResizability
+
     /// The menu ordering to use.
     public var menuOrder: MenuOrder
 
@@ -241,6 +244,7 @@ public struct EnvironmentValues {
         isEnabled = true
         scrollDismissesKeyboardMode = .automatic
         isTextSelectionEnabled = false
+        windowResizability = .automatic
         menuOrder = .automatic
         allowLayoutCaching = false
         calendar = .current

@@ -29,6 +29,29 @@ class WinUIApplication: SwiftApplication {
 }
 
 public final class WinUIBackend: AppBackend {
+    // Logging
+    private struct LogLocation: Hashable, Equatable {
+        let file: String
+        let line: Int
+        let column: Int
+    }
+
+    private var logsPerformed: Set<LogLocation> = []
+
+    func debugLogOnce(
+        _ message: String,
+        file: String = #file,
+        line: Int = #line,
+        column: Int = #column
+    ) {
+        #if DEBUG
+            let location = LogLocation(file: file, line: line, column: column)
+            if logsPerformed.insert(location).inserted {
+                logger.notice("\(message)")
+            }
+        #endif
+    }
+
     public typealias Window = CustomWindow
     public typealias Widget = WinUI.FrameworkElement
     public typealias Menu = Void
@@ -203,8 +226,12 @@ public final class WinUIBackend: AppBackend {
         try! window.appWindow.resizeClient(size)
     }
 
-    public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
-        missing("window minimum size")
+    public func setSizeLimits(
+        ofWindow window: Window,
+        minimum minimumSize: SIMD2<Int>,
+        maximum maximumSize: SIMD2<Int>?
+    ) {
+        debugLogOnce("\(#function) unimplemented")
     }
 
     public func setResizeHandler(
@@ -224,8 +251,15 @@ public final class WinUIBackend: AppBackend {
         window.title = title
     }
 
-    public func setResizability(ofWindow window: Window, to value: Bool) {
-        (window.appWindow.presenter as! OverlappedPresenter).isResizable = value
+    public func setBehaviors(
+        ofWindow window: Window,
+        closable: Bool,
+        minimizable: Bool,
+        resizable: Bool
+    ) {
+        // TODO: Set window closability (need to reach down to Win32 for this)
+        (window.appWindow.presenter as? OverlappedPresenter)?.isMinimizable = minimizable
+        (window.appWindow.presenter as? OverlappedPresenter)?.isResizable = resizable
     }
 
     public func setChild(ofWindow window: Window, to widget: Widget) {
@@ -255,10 +289,6 @@ public final class WinUIBackend: AppBackend {
     }
 
     public func show(widget _: Widget) {}
-
-    private func missing(_ message: String) {
-        // print("missing: \(message)")
-    }
 
     private func renderItems(_ items: [ResolvedMenu.Item]) -> [MenuFlyoutItemBase] {
         items.map { item in
@@ -668,7 +698,7 @@ public final class WinUIBackend: AppBackend {
         let block = textView as! TextBlock
         block.text = content
         block.isTextSelectionEnabled = environment.isTextSelectionEnabled
-        missing("font design handling (monospace vs normal)")
+        // TODO: Font design handling (monospace vs normal)
         environment.apply(to: block)
     }
 
@@ -932,8 +962,8 @@ public final class WinUIBackend: AppBackend {
             }
         }
 
-        missing("proper picker updating logic")
-        missing("picker font handling")
+        // TODO: Proper picker updating logic
+        // TODO: Picker font handling
 
         picker.options = options
     }
