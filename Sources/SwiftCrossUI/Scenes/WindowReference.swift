@@ -43,7 +43,6 @@ final class WindowReference<Content: View> {
         
         backend.setChild(ofWindow: window, to: container)
         backend.setTitle(ofWindow: window, to: info.title)
-        backend.setResizability(ofWindow: window, to: info.isResizable)
 
         self.window = window
         parentEnvironment = environment
@@ -77,7 +76,7 @@ final class WindowReference<Content: View> {
         }
 
         if updateImmediately {
-            self.update(nil, backend: backend, environment: environment)
+            _ = self.update(nil, backend: backend, environment: environment)
         }
     }
 
@@ -85,7 +84,7 @@ final class WindowReference<Content: View> {
         _ newInfo: WindowInfo<Content>?,
         backend: Backend,
         environment: EnvironmentValues
-    ) {
+    ) -> SceneUpdateResult {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
@@ -103,7 +102,7 @@ final class WindowReference<Content: View> {
             usedDefaultSize = false
         }
 
-        update(
+        return update(
             newInfo,
             proposedWindowSize: proposedWindowSize,
             needsWindowSizeCommit: usedDefaultSize,
@@ -136,7 +135,7 @@ final class WindowReference<Content: View> {
         backend: Backend,
         environment: EnvironmentValues,
         windowSizeIsFinal: Bool = false
-    ) {
+    ) -> SceneUpdateResult {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
@@ -150,7 +149,6 @@ final class WindowReference<Content: View> {
             // the default size changed would resize the window (which is incorrect
             // behaviour).
             backend.setTitle(ofWindow: window, to: newInfo.title)
-            backend.setResizability(ofWindow: window, to: newInfo.isResizable)
             info = newInfo
         }
         
@@ -161,7 +159,7 @@ final class WindowReference<Content: View> {
                 // TODO: Figure out whether this would still work if we didn't recompute the
                 //   scene's body. I have a vague feeling that it wouldn't work in all cases?
                 //   But I don't have the time to come up with a counterexample right now.
-                self.update(
+                _ = self.update(
                     self.info,
                     proposedWindowSize: backend.size(ofWindow: window),
                     needsWindowSizeCommit: false,
@@ -171,60 +169,62 @@ final class WindowReference<Content: View> {
             }
             .with(\.window, window)
 
-        let finalContentResult: ViewLayoutResult
-        if info.isResizable {
-            let minimumWindowSize = viewGraph.computeLayout(
-                with: newInfo?.content(),
-                proposedSize: .zero,
-                environment: environment.with(\.allowLayoutCaching, true)
-            ).size
+        let minimumWindowSize = viewGraph.computeLayout(
+            with: newInfo?.content(),
+            proposedSize: .zero,
+            environment: environment.with(\.allowLayoutCaching, true)
+        ).size
 
-            let clampedWindowSize = ViewSize(
-                max(minimumWindowSize.width, Double(proposedWindowSize.x)),
+        // With `.contentSize`, the window's maximum size is the maximum size of its
+        // content. With `.contentMinSize` (and `.automatic`), there is no maximum
+        // size.
+        let maximumWindowSize: ViewSize? = switch environment.windowResizability {
+            case .contentSize:
+                viewGraph.computeLayout(
+                    with: newInfo?.content(),
+                    proposedSize: .infinity,
+                    environment: environment.with(\.allowLayoutCaching, true)
+                ).size
+            case .automatic, .contentMinSize:
+                nil
+        }
+
+        let clampedWindowSize = ViewSize(
+            min(
+                maximumWindowSize?.width ?? .infinity,
+                max(minimumWindowSize.width, Double(proposedWindowSize.x))
+            ),
+            min(
+                maximumWindowSize?.height ?? .infinity,
                 max(minimumWindowSize.height, Double(proposedWindowSize.y))
             )
+        )
 
-            if clampedWindowSize.vector != proposedWindowSize && !windowSizeIsFinal {
-                // Restart the window update if the content has caused the window to
-                // change size.
-                update(
-                    info,
-                    proposedWindowSize: clampedWindowSize.vector,
-                    needsWindowSizeCommit: true,
-                    backend: backend,
-                    environment: environment,
-                    windowSizeIsFinal: true
-                )
-                return
-            }
-
-            // Set this even if the window isn't programmatically resizable
-            // because the window may still be user resizable.
-            backend.setMinimumSize(ofWindow: window, to: minimumWindowSize.vector)
-
-            finalContentResult = viewGraph.computeLayout(
-                proposedSize: ProposedViewSize(proposedWindowSize),
-                environment: environment
+        if clampedWindowSize.vector != proposedWindowSize && !windowSizeIsFinal {
+            // Restart the window update if the content has caused the window to
+            // change size.
+            return update(
+                info,
+                proposedWindowSize: clampedWindowSize.vector,
+                needsWindowSizeCommit: true,
+                backend: backend,
+                environment: environment,
+                windowSizeIsFinal: true
             )
-        } else {
-            let initialContentResult = viewGraph.computeLayout(
-                with: newInfo?.content(),
-                proposedSize: ProposedViewSize(proposedWindowSize),
-                environment: environment
-            )
-            if initialContentResult.size.vector != proposedWindowSize && !windowSizeIsFinal {
-                update(
-                    info,
-                    proposedWindowSize: initialContentResult.size.vector,
-                    needsWindowSizeCommit: true,
-                    backend: backend,
-                    environment: environment,
-                    windowSizeIsFinal: true
-                )
-                return
-            }
-            finalContentResult = initialContentResult
         }
+
+        // Set these even if the window isn't programmatically resizable
+        // because the window may still be user resizable.
+        backend.setSizeLimits(
+            ofWindow: window,
+            minimum: minimumWindowSize.vector,
+            maximum: maximumWindowSize?.vector
+        )
+
+        let finalContentResult = viewGraph.computeLayout(
+            proposedSize: ProposedViewSize(proposedWindowSize),
+            environment: environment
+        )
 
         viewGraph.commit()
 
@@ -237,11 +237,23 @@ final class WindowReference<Content: View> {
         if needsWindowSizeCommit {
             backend.setSize(ofWindow: window, to: proposedWindowSize)
         }
-        
+
+        backend.setBehaviors(
+            ofWindow: window,
+            closable:
+                finalContentResult.preferences.windowDismissBehavior?.isEnabled ?? true,
+            minimizable:
+                finalContentResult.preferences.preferredWindowMinimizeBehavior?.isEnabled ?? true,
+            resizable:
+                finalContentResult.preferences.windowResizeBehavior?.isEnabled ?? true
+        )
+
         if isFirstUpdate {
             backend.show(window: window)
             isFirstUpdate = false
         }
+
+        return .leafScene()
     }
 
     func activate<Backend: AppBackend>(backend: Backend) {

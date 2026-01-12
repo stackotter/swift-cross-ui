@@ -4,6 +4,9 @@ public enum WindowResizability: Sendable {
     /// on the type of scene. This currently means it'll just default to `contentMinSize`.
     case automatic
     /// The window is not resizable and its size is tied to the size of its content.
+    ///
+    /// This is not supported on GTK; it behaves identically to ``contentMinSize`` on
+    /// GtkBackend and Gtk3Backend.
     case contentSize
     /// The window is resizable but must be at least as big as its content.
     case contentMinSize

@@ -173,7 +173,18 @@ public final class GtkBackend: AppBackend {
         window.title = title
     }
 
-    public func setResizability(ofWindow window: Window, to resizable: Bool) {
+    public func setBehaviors(
+        ofWindow window: Window,
+        closable: Bool,
+        minimizable: Bool,
+        resizable: Bool
+    ) {
+        // FIXME: This doesn't seem to work on macOS at least
+        window.deletable = closable
+
+        // TODO: Figure out if there's some magic way to disable minimization
+        //   in a framework where the minimize button usually doesn't even exist
+
         window.resizable = resizable
     }
 
@@ -216,8 +227,18 @@ public final class GtkBackend: AppBackend {
         child.preemptAllocatedSize(allocatedWidth: newSize.x, allocatedHeight: newSize.y)
     }
 
-    public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
+    public func setSizeLimits(
+        ofWindow window: Window,
+        minimum minimumSize: SIMD2<Int>,
+        maximum maximumSize: SIMD2<Int>?
+    ) {
         window.setMinimumSize(to: Size(width: minimumSize.x, height: minimumSize.y))
+
+        // NB: GTK does not support setting maximum sizes for widgets. It just doesn't.
+        // https://discourse.gnome.org/t/how-to-build-fixed-size-windows-in-gtk-4/22807/10
+        if maximumSize != nil {
+            debugLogOnce("GTK does not support setting maximum window sizes")
+        }
     }
 
     public func setResizeHandler(

@@ -52,6 +52,28 @@ public final class Gtk3Backend: AppBackend {
     /// precreated window until it gets 'created' via `createWindow`.
     var windows: [Window] = []
 
+    private struct LogLocation: Hashable, Equatable {
+        let file: String
+        let line: Int
+        let column: Int
+    }
+
+    private var logsPerformed: Set<LogLocation> = []
+
+    func debugLogOnce(
+        _ message: String,
+        file: String = #file,
+        line: Int = #line,
+        column: Int = #column
+    ) {
+        #if DEBUG
+            let location = LogLocation(file: file, line: line, column: column)
+            if logsPerformed.insert(location).inserted {
+                logger.notice("\(message)")
+            }
+        #endif
+    }
+
     // A separate initializer to satisfy ``AppBackend``'s requirements.
     public convenience init() {
         self.init(appIdentifier: nil)
@@ -162,7 +184,18 @@ public final class Gtk3Backend: AppBackend {
         window.title = title
     }
 
-    public func setResizability(ofWindow window: Window, to resizable: Bool) {
+    public func setBehaviors(
+        ofWindow window: Window,
+        closable: Bool,
+        minimizable: Bool,
+        resizable: Bool
+    ) {
+        // FIXME: This doesn't seem to work on macOS at least
+        window.deletable = closable
+
+        // TODO: Figure out if there's some magic way to disable minimization
+        //   in a framework where the minimize button usually doesn't even exist
+
         window.resizable = resizable
     }
 
@@ -209,9 +242,19 @@ public final class Gtk3Backend: AppBackend {
         )
     }
 
-    public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
+    public func setSizeLimits(
+        ofWindow window: Window,
+        minimum minimumSize: SIMD2<Int>,
+        maximum maximumSize: SIMD2<Int>?
+    ) {
         let child = window.child! as! CustomRootWidget
         child.setMinimumSize(minimumWidth: minimumSize.x, minimumHeight: minimumSize.y)
+
+        // NB: GTK does not support setting maximum sizes for widgets. It just doesn't.
+        // https://discourse.gnome.org/t/how-to-build-fixed-size-windows-in-gtk-4/22807/10
+        if maximumSize != nil {
+            debugLogOnce("GTK does not support setting maximum window sizes")
+        }
     }
 
     public func setResizeHandler(

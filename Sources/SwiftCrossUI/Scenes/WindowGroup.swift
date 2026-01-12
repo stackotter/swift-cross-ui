@@ -36,15 +36,7 @@ public struct WindowGroup<Content: View>: Scene {
         self.windowInfo.defaultSize = SIMD2(width, height)
         return self
     }
-
-    /// Sets the resizability of a window.
-    public consuming func windowResizability(
-        _ resizability: WindowResizability
-    ) -> Self {
-        self.windowInfo.resizability = resizability
-        return self
-    }
-
+    
     /// Sets the default launch behavior of a window.
     public consuming func defaultLaunchBehavior(
         _ launchBehavior: SceneLaunchBehavior
