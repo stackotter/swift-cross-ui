@@ -71,18 +71,15 @@ private var swiftBundlerAppMetadata: AppMetadata?
 
 /// An error encountered when parsing Swift Bundler metadata.
 private enum SwiftBundlerMetadataError: LocalizedError {
-    case noExecutableURL
-    case failedToReadExecutable
+    case emptyMetadata
     case jsonNotDictionary(String)
     case missingAppIdentifier
     case missingAppVersion
 
     var errorDescription: String? {
         switch self {
-            case .noExecutableURL:
-                "no executable URL"
-            case .failedToReadExecutable:
-                "executable failed to read itself (to extract metadata)"
+            case .emptyMetadata:
+                "metadata found but was empty"
             case .jsonNotDictionary:
                 "root metadata JSON value wasn't an object"
             case .missingAppIdentifier:
@@ -148,49 +145,52 @@ extension App {
             )
         }
     }
+}
 
+// MARK: - Metadata extraction
+
+extension App {
     private static func extractSwiftBundlerMetadata() throws -> AppMetadata? {
-        guard let executable = Bundle.main.executableURL else {
-            throw SwiftBundlerMetadataError.noExecutableURL
-        }
+        #if SWIFT_BUNDLER_METADATA
+            @_extern(c, "_getSwiftBundlerMetadata")
+            func getSwiftBundlerMetadata() -> UnsafeRawPointer?
 
-        guard let data = try? Data(contentsOf: executable) else {
-            throw SwiftBundlerMetadataError.failedToReadExecutable
-        }
+            guard let pointer = getSwiftBundlerMetadata() else {
+                return nil
+            }
 
-        // Check if executable has Swift Bundler metadata magic bytes.
-        let bytes = Array(data)
-        guard bytes.suffix(8) == Array("SBUNMETA".utf8) else {
+            let datas = pointer.assumingMemoryBound(to: [[UInt8]].self).pointee
+            guard datas.count >= 1 else {
+                throw SwiftBundlerMetadataError.emptyMetadata
+            }
+
+            let jsonData = Data(datas[0])
+
+            // Manually parsed due to the `additionalMetadata` field (which would
+            // require a lot of boilerplate code to parse with Codable).
+            let jsonValue = try JSONSerialization.jsonObject(with: jsonData)
+            guard let json = jsonValue as? [String: Any] else {
+                throw SwiftBundlerMetadataError.jsonNotDictionary(String(describing: jsonValue))
+            }
+            guard let identifier = json["appIdentifier"] as? String else {
+                throw SwiftBundlerMetadataError.missingAppIdentifier
+            }
+            guard let version = json["appVersion"] as? String else {
+                throw SwiftBundlerMetadataError.missingAppVersion
+            }
+            let additionalMetadata =
+                json["additionalMetadata"].map { value in
+                    value as? [String: Any] ?? [:]
+                } ?? [:]
+
+            return AppMetadata(
+                identifier: identifier,
+                version: version,
+                additionalMetadata: additionalMetadata
+            )
+        #else
             return nil
-        }
-
-        let lengthStart = bytes.count - 16
-        let jsonLength = parseBigEndianUInt64(startingAt: lengthStart, in: bytes)
-        let jsonStart = lengthStart - Int(jsonLength)
-        let jsonData = Data(bytes[jsonStart..<lengthStart])
-
-        // Manually parsed due to the `additionalMetadata` field (which would
-        // require a lot of boilerplate code to parse with Codable).
-        let jsonValue = try JSONSerialization.jsonObject(with: jsonData)
-        guard let json = jsonValue as? [String: Any] else {
-            throw SwiftBundlerMetadataError.jsonNotDictionary(String(describing: jsonValue))
-        }
-        guard let identifier = json["appIdentifier"] as? String else {
-            throw SwiftBundlerMetadataError.missingAppIdentifier
-        }
-        guard let version = json["appVersion"] as? String else {
-            throw SwiftBundlerMetadataError.missingAppVersion
-        }
-        let additionalMetadata =
-            json["additionalMetadata"].map { value in
-                value as? [String: Any] ?? [:]
-            } ?? [:]
-
-        return AppMetadata(
-            identifier: identifier,
-            version: version,
-            additionalMetadata: additionalMetadata
-        )
+        #endif
     }
 
     private static func parseBigEndianUInt64(
