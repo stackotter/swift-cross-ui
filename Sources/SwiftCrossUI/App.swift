@@ -158,17 +158,16 @@ extension App {
             guard let pointer = getSwiftBundlerMetadata() else {
                 return nil
             }
+            defer { pointer.deallocate() }
 
             let datas = pointer.assumingMemoryBound(to: [[UInt8]].self).pointee
-            guard datas.count >= 1 else {
+            guard let jsonBytes = datas.first else {
                 throw SwiftBundlerMetadataError.emptyMetadata
             }
 
-            let jsonData = Data(datas[0])
-
             // Manually parsed due to the `additionalMetadata` field (which would
             // require a lot of boilerplate code to parse with Codable).
-            let jsonValue = try JSONSerialization.jsonObject(with: jsonData)
+            let jsonValue = try JSONSerialization.jsonObject(with: Data(jsonBytes))
             guard let json = jsonValue as? [String: Any] else {
                 throw SwiftBundlerMetadataError.jsonNotDictionary(String(describing: jsonValue))
             }
