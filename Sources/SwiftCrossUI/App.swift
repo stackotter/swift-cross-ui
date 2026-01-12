@@ -6,7 +6,12 @@ nonisolated(unsafe) private var _logger: Logger?
 
 /// The global logger.
 package var logger: Logger {
-    guard let _logger else { fatalError("logger not yet initialized") }
+    guard let _logger else {
+        let logger = Logger(label: "TestLogger")
+        logger.trace("logger used before initialization")
+        _logger = logger
+        return logger
+    }
     return _logger
 }
 

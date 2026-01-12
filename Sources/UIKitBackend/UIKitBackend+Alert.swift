@@ -2,17 +2,14 @@ import SwiftCrossUI
 import UIKit
 
 extension UIKitBackend {
-    public final class Alert {
-        let controller: UIAlertController
-        var handler: ((Int) -> Void)?
+    public typealias Alert = UIAlertController
 
-        init() {
-            self.controller = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        }
+    final class CustomAlertAction: UIAlertAction {
+        var handler: (() -> Void)?
     }
 
     public func createAlert() -> Alert {
-        Alert()
+        Alert(title: nil, message: nil, preferredStyle: .alert)
     }
 
     public func updateAlert(
@@ -21,15 +18,13 @@ extension UIKitBackend {
         actionLabels: [String],
         environment _: EnvironmentValues
     ) {
-        alert.controller.title = title
+        alert.title = title
 
-        for (i, actionLabel) in actionLabels.enumerated() {
-            let action = UIAlertAction(title: actionLabel, style: .default) {
-                [weak alert] _ in
-                guard let alert else { return }
-                alert.handler?(i)
+        for actionLabel in actionLabels {
+            let action = CustomAlertAction(title: actionLabel, style: .default) { action in
+                (action as! CustomAlertAction).handler?()
             }
-            alert.controller.addAction(action)
+            alert.addAction(action)
         }
     }
 
@@ -43,11 +38,13 @@ extension UIKitBackend {
             return
         }
 
-        alert.handler = handleResponse
-        window.rootViewController!.present(alert.controller, animated: false)
+        for (index, action) in alert.actions.enumerated() {
+            (action as! CustomAlertAction).handler = { handleResponse(index) }
+        }
+        window.rootViewController!.present(alert, animated: true)
     }
 
     public func dismissAlert(_ alert: Alert, window: Window?) {
-        alert.controller.dismiss(animated: false)
+        alert.dismiss(animated: true)
     }
 }

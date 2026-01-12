@@ -8,7 +8,10 @@ public struct PreferenceValues: Sendable {
         presentationCornerRadius: nil,
         presentationDragIndicatorVisibility: nil,
         presentationBackground: nil,
-        interactiveDismissDisabled: nil
+        interactiveDismissDisabled: nil,
+        windowDismissBehavior: nil,
+        preferredWindowMinimizeBehavior: nil,
+        windowResizeBehavior: nil
     )
 
     public var onOpenURL: (@Sendable @MainActor (URL) -> Void)?
@@ -27,6 +30,15 @@ public struct PreferenceValues: Sendable {
 
     /// Controls whether the user can interactively dismiss enclosing sheets.
     public var interactiveDismissDisabled: Bool?
+
+    /// Controls whether the user can close the enclosing window.
+    public var windowDismissBehavior: WindowInteractionBehavior?
+
+    /// Controls whether the user can minimize the enclosing window.
+    public var preferredWindowMinimizeBehavior: WindowInteractionBehavior?
+
+    /// Controls whether the user can resize the enclosing window.
+    public var windowResizeBehavior: WindowInteractionBehavior?
 }
 
 extension PreferenceValues {
@@ -50,5 +62,9 @@ extension PreferenceValues {
             }.first
         presentationBackground = children.compactMap { $0.presentationBackground }.first
         interactiveDismissDisabled = children.compactMap { $0.interactiveDismissDisabled }.first
+
+        windowDismissBehavior = children.compactMap { $0.windowDismissBehavior }.first
+        preferredWindowMinimizeBehavior = children.compactMap { $0.preferredWindowMinimizeBehavior }.first
+        windowResizeBehavior = children.compactMap { $0.windowResizeBehavior }.first
     }
 }

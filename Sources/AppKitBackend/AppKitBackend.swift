@@ -26,6 +26,7 @@ public final class AppKitBackend: AppBackend {
     public let menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public let canRevealFiles = true
     public let deviceClass = DeviceClass.desktop
+    public let supportedDatePickerStyles: [DatePickerStyle] = [.automatic, .graphical, .compact]
 
     public var scrollBarWidth: Int {
         // We assume that all scrollers have their controlSize set to `.regular` by default.
@@ -87,9 +88,18 @@ public final class AppKitBackend: AppBackend {
         window.setContentSize(NSSize(width: newSize.x, height: newSize.y))
     }
 
-    public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
-        window.contentMinSize.width = CGFloat(minimumSize.x)
-        window.contentMinSize.height = CGFloat(minimumSize.y)
+    public func setSizeLimits(
+        ofWindow window: Window,
+        minimum minimumSize: SIMD2<Int>,
+        maximum maximumSize: SIMD2<Int>?
+    ) {
+        window.contentMinSize = CGSize(width: minimumSize.x, height: minimumSize.y)
+        window.contentMaxSize =
+            if let maximumSize {
+                CGSize(width: maximumSize.x, height: maximumSize.y)
+            } else {
+                CGSize(width: Double.infinity, height: .infinity)
+            }
     }
 
     public func setResizeHandler(
@@ -103,7 +113,24 @@ public final class AppKitBackend: AppBackend {
         window.title = title
     }
 
-    public func setResizability(ofWindow window: Window, to resizable: Bool) {
+    public func setBehaviors(
+        ofWindow window: Window,
+        closable: Bool,
+        minimizable: Bool,
+        resizable: Bool
+    ) {
+        if closable {
+            window.styleMask.insert(.closable)
+        } else {
+            window.styleMask.remove(.closable)
+        }
+
+        if minimizable {
+            window.styleMask.insert(.miniaturizable)
+        } else {
+            window.styleMask.remove(.miniaturizable)
+        }
+
         if resizable {
             window.styleMask.insert(.resizable)
         } else {
@@ -167,6 +194,8 @@ public final class AppKitBackend: AppBackend {
                     renderedItem.target = wrappedAction
 
                     return renderedItem
+                case .separator:
+                    return NSCustomMenuItem.separator()
                 case .submenu(let submenu):
                     return renderSubmenu(submenu)
             }
@@ -368,6 +397,14 @@ public final class AppKitBackend: AppBackend {
             // Self.scrollBarWidth has changed
             action()
         }
+
+        NotificationCenter.default.addObserver(
+            forName: .NSSystemTimeZoneDidChange,
+            object: nil,
+            queue: .main
+        ) { _ in
+            action()
+        }
     }
 
     public func computeWindowEnvironment(
@@ -395,53 +432,46 @@ public final class AppKitBackend: AppBackend {
 
     public func show(widget: Widget) {}
 
-    class NSContainerView: NSView {
-        var children: [NSView] = []
-
-        override func addSubview(_ view: NSView) {
-            children.append(view)
-            super.addSubview(view)
-        }
-
-        func removeSubview(_ view: NSView) {
-            children.removeAll { other in
-                view === other
-            }
-            view.removeFromSuperview()
-        }
-
-        func removeAllSubviews() {
-            for child in children {
-                child.removeFromSuperview()
-            }
-            children = []
-        }
-    }
-
     public func createContainer() -> Widget {
-        let container = NSContainerView()
+        let container = NSView()
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
     }
 
     public func removeAllChildren(of container: Widget) {
-        let container = container as! NSContainerView
-        container.removeAllSubviews()
+        container.subviews = []
     }
 
-    public func addChild(_ child: Widget, to container: Widget) {
-        container.addSubview(child)
+    public func insert(_ child: Widget, into container: Widget, at index: Int) {
+        container.subviews.insert(child, at: index)
         child.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
-        let container = container as! NSContainerView
-        guard container.children.indices.contains(index) else {
-            logger.warning("attempted to set position of non-existent container child")
-            return
-        }
+    public func swap(childAt firstIndex: Int, withChildAt secondIndex: Int, in container: NSView) {
+        assert(
+            container.subviews.indices.contains(firstIndex)
+            && container.subviews.indices.contains(secondIndex),
+            """
+            attempted to swap container child out of bounds; container count \
+            = \(container.subviews.count); firstIndex = \(firstIndex); \
+            secondIndex = \(secondIndex)
+            """
+        )
 
-        let child = container.children[index]
+        container.subviews.swapAt(firstIndex, secondIndex)
+    }
+
+    public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
+        assert(
+            container.subviews.indices.contains(index),
+            """
+            attempted to set position of non-existent container child; container \
+            count = \(container.subviews.count); index = \(index); position = \
+            \(position)
+            """
+        )
+
+        let child = container.subviews[index]
 
         var foundConstraint = false
         for constraint in container.constraints {
@@ -480,9 +510,8 @@ public final class AppKitBackend: AppBackend {
         }
     }
 
-    public func removeChild(_ child: Widget, from container: Widget) {
-        let container = container as! NSContainerView
-        container.removeSubview(child)
+    public func remove(childAt index: Int, from container: Widget) {
+        container.subviews.remove(at: index)
     }
 
     public func createColorableRectangle() -> Widget {
@@ -1835,6 +1864,80 @@ public final class AppKitBackend: AppBackend {
         parent.endSheet(sheet)
         parent.nestedSheet = nil
     }
+
+    public func createDatePicker() -> NSView {
+        let datePicker = CustomDatePicker()
+        datePicker.delegate = datePicker.strongDelegate
+        return datePicker
+    }
+
+    // Depending on the calendar, era is either necessary or must be omitted. Making the wrong
+    // choice for the current calendar means the cursor position is reset after every keystroke. I
+    // know of no simple way to tell whether NSDatePicker requires or forbids eras for a given
+    // calendar, so in lieu of that I have hardcoded the calendar identifiers.
+    private let calendarsRequiringEra: Set<Calendar.Identifier> = [
+        .buddhist, .coptic, .ethiopicAmeteAlem, .ethiopicAmeteMihret, .indian, .islamic,
+        .islamicCivil, .islamicTabular, .islamicUmmAlQura, .japanese, .persian, .republicOfChina,
+    ]
+
+    public func updateDatePicker(
+        _ datePicker: NSView,
+        environment: EnvironmentValues,
+        date: Date,
+        range: ClosedRange<Date>,
+        components: DatePickerComponents,
+        onChange: @escaping (Date) -> Void
+    ) {
+        let datePicker = datePicker as! CustomDatePicker
+
+        datePicker.isEnabled = environment.isEnabled
+        datePicker.textColor = environment.suggestedForegroundColor.nsColor
+
+        // If the time zone is set to autoupdatingCurrent, then the cursor position is reset after
+        // every keystroke. Thanks Apple
+        datePicker.timeZone =
+            environment.timeZone == .autoupdatingCurrent ? .current : environment.timeZone
+
+        // A couple properties cause infinite update loops if we assign to them on every update, so
+        // check their values first.
+        if datePicker.calendar != environment.calendar {
+            datePicker.calendar = environment.calendar
+        }
+
+        if datePicker.dateValue != date {
+            datePicker.dateValue = date
+        }
+
+        var elementFlags: NSDatePicker.ElementFlags = []
+        if components.contains(.date) {
+            elementFlags.insert(.yearMonthDay)
+            if calendarsRequiringEra.contains(environment.calendar.identifier) {
+                elementFlags.insert(.era)
+            }
+        }
+        if components.contains(.hourMinuteAndSecond) {
+            elementFlags.insert(.hourMinuteSecond)
+        } else if components.contains(.hourAndMinute) {
+            elementFlags.insert(.hourMinute)
+        }
+
+        if datePicker.datePickerElements != elementFlags {
+            datePicker.datePickerElements = elementFlags
+        }
+
+        datePicker.strongDelegate.onChange = onChange
+
+        datePicker.minDate = range.lowerBound
+        datePicker.maxDate = range.upperBound
+
+        datePicker.datePickerStyle =
+            switch environment.datePickerStyle {
+                case .automatic, .compact:
+                    .textFieldAndStepper
+                case .graphical:
+                    .clockAndCalendar
+            }
+    }
 }
 
 public final class NSCustomSheet: NSCustomWindow, NSWindowDelegate {
@@ -2365,5 +2468,21 @@ final class CustomWKNavigationDelegate: NSObject, WKNavigationDelegate {
         }
 
         onNavigate?(url)
+    }
+}
+
+final class CustomDatePicker: NSDatePicker {
+    var strongDelegate = CustomDatePickerDelegate()
+}
+
+final class CustomDatePickerDelegate: NSObject, NSDatePickerCellDelegate {
+    var onChange: ((Date) -> Void)?
+
+    func datePickerCell(
+        _: NSDatePickerCell,
+        validateProposedDateValue proposedDateValue: AutoreleasingUnsafeMutablePointer<NSDate>,
+        timeInterval _: UnsafeMutablePointer<TimeInterval>?
+    ) {
+        onChange?(proposedDateValue.pointee as Date)
     }
 }

@@ -2,7 +2,7 @@ import Foundation
 
 @MainActor
 public struct ErasedViewGraphNode {
-    public var node: Any
+    public var node: AnyObject
 
     /// If the new view doesn't have the same type as the old view then the returned
     /// value will have `viewTypeMatched` set to `false`, allowing views such as `AnyView`

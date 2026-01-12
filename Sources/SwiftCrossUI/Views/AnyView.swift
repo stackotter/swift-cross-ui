@@ -44,7 +44,7 @@ public struct AnyView: TypeSafeView {
         backend: Backend
     ) -> Backend.Widget {
         let container = backend.createContainer()
-        backend.addChild(children.node.getWidget().into(), to: container)
+        backend.insert(children.node.getWidget().into(), into: container, at: 0)
         backend.setPosition(ofChildAt: 0, in: container, to: .zero)
         return container
     }
@@ -68,7 +68,7 @@ public struct AnyView: TypeSafeView {
         // If the new view's type doesn't match the old view's type then we need to create a new
         // view graph node for the new view.
         if !viewTypesMatched {
-            children.widgetToReplace = children.node.getWidget()
+            children.widgetNeedsReinsertion = true
             children.node = ErasedViewGraphNode(
                 for: child,
                 backend: backend,
@@ -95,11 +95,11 @@ public struct AnyView: TypeSafeView {
         environment: EnvironmentValues,
         backend: Backend
     ) {
-        if let widgetToReplace = children.widgetToReplace {
-            backend.removeChild(widgetToReplace.into(), from: widget)
-            backend.addChild(children.node.getWidget().into(), to: widget)
+        if children.widgetNeedsReinsertion {
+            backend.remove(childAt: 0, from: widget)
+            backend.insert(children.node.getWidget().into(), into: widget, at: 0)
             backend.setPosition(ofChildAt: 0, in: widget, to: .zero)
-            children.widgetToReplace = nil
+            children.widgetNeedsReinsertion = false
         }
 
         _ = children.node.commit()
@@ -111,8 +111,8 @@ public struct AnyView: TypeSafeView {
 class AnyViewChildren: ViewGraphNodeChildren {
     /// The erased underlying node.
     var node: ErasedViewGraphNode
-    /// If the displayed view changed during a dry-run update then this stores the widget of the replaced view.
-    var widgetToReplace: AnyWidget?
+    /// Stores whether or not the displayed view changed during computeLayout.
+    var widgetNeedsReinsertion = false
 
     var widgets: [AnyWidget] {
         return [node.getWidget()]

@@ -1,5 +1,5 @@
 {
-  "originHash" : "ddeec630632b0145da44c9ac6a3914e4fe12d2fdc9527164d01281076d0c497e",
+  "originHash" : "d67afda47318a1da55f159038bea8c95778993612dfd2e6dc54b4c35e9f98151",
   "pins" : [
     {
       "identity" : "jpeg",
@@ -31,7 +31,7 @@
     {
       "identity" : "swift-argument-parser",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser",
+      "location" : "https://github.com/apple/swift-argument-parser.git",
       "state" : {
         "revision" : "cdd0ef3755280949551dc26dee5de9ddeda89f54",
         "version" : "1.6.2"
@@ -44,15 +44,6 @@
       "state" : {
         "revision" : "45a7b500c24e7243da7b02e19cf436d0107a0c1b",
         "version" : "0.2.0"
-      }
-    },
-    {
-      "identity" : "swift-collections",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-collections.git",
-      "state" : {
-        "revision" : "8c0c0a8b49e080e54e5e328cc552821ff07cd341",
-        "version" : "1.2.1"
       }
     },
     {
@@ -122,7 +113,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-uwp",
       "state" : {
-        "revision" : "e3ff9c195775e16b404b82cf6886c5e81d73b6c1"
+        "revision" : "8128f6615b7c5b46ada289ab6d49d871ca1e13a5"
       }
     },
     {
@@ -130,7 +121,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-webview2core",
       "state" : {
-        "revision" : "c9911ca23455b9fcdb2429e98baa6f4d003b381c"
+        "revision" : "4396f5d94d6dfd1f95ab25e79de98141b7f4f183"
       }
     },
     {
@@ -138,7 +129,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-windowsappsdk",
       "state" : {
-        "revision" : "ba6f0ec377b70d8be835d253102ff665a0e47d99"
+        "revision" : "f1c50892f10c0f7f635d3c7a3d728fd634ad001a"
       }
     },
     {
@@ -154,7 +145,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-winui",
       "state" : {
-        "revision" : "1695ee3ea2b7a249f6504c7f1759e7ec7a38eb86"
+        "revision" : "42c47f4e4129c8b5a5d9912f05e1168c924ac180"
       }
     },
     {

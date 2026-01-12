@@ -17,8 +17,8 @@ public struct Group<Content: View>: View {
         backend: Backend
     ) -> Backend.Widget {
         let container = backend.createContainer()
-        for child in children.widgets(for: backend) {
-            backend.addChild(child, to: container)
+        for (index, child) in children.widgets(for: backend).enumerated() {
+            backend.insert(child, into: container, at: index)
         }
         return container
     }
@@ -30,7 +30,7 @@ public struct Group<Content: View>: View {
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        if !(children is TupleViewChildren) {
+        if !(children is TupleViewChildren || children is EmptyViewChildren) {
             logger.warning(
                 "Group will not function correctly with non-TupleView content",
                 metadata: ["childrenType": "\(type(of: children))"]

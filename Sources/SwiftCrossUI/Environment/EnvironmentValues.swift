@@ -98,6 +98,9 @@ public struct EnvironmentValues {
     /// Whether the text should be selectable. Set by ``View/textSelectionEnabled(_:)``.
     public var isTextSelectionEnabled: Bool
 
+    /// The resizing behaviour of the current window.
+    var windowResizability: WindowResizability
+
     /// The menu ordering to use.
     public var menuOrder: MenuOrder
 
@@ -207,6 +210,18 @@ public struct EnvironmentValues {
         )
     }
 
+    /// The current calendar that views should use when handling dates.
+    public var calendar: Calendar
+
+    /// The current time zone that views should use when handling dates.
+    public var timeZone: TimeZone
+
+    /// The display style used by ``DatePicker``.
+    public var datePickerStyle: DatePickerStyle
+
+    /// The display styles supported by ``DatePicker``. ``datePickerStyle`` must be one of these.
+    public let supportedDatePickerStyles: [DatePickerStyle]
+
     /// Creates the default environment.
     package init<Backend: AppBackend>(backend: Backend) {
         self.backend = backend
@@ -229,8 +244,19 @@ public struct EnvironmentValues {
         isEnabled = true
         scrollDismissesKeyboardMode = .automatic
         isTextSelectionEnabled = false
+        windowResizability = .automatic
         menuOrder = .automatic
         allowLayoutCaching = false
+        calendar = .current
+        timeZone = .current
+        datePickerStyle = .automatic
+
+        let supportedDatePickerStyles = backend.supportedDatePickerStyles
+        if supportedDatePickerStyles.isEmpty {
+            self.supportedDatePickerStyles = [.automatic]
+        } else {
+            self.supportedDatePickerStyles = supportedDatePickerStyles
+        }
     }
 
     /// Returns a copy of the environment with the specified property set to the

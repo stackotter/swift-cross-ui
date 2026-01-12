@@ -7,8 +7,11 @@ public final class DummyBackend: AppBackend {
 
         public var size: SIMD2<Int>
         public var minimumSize: SIMD2<Int> = .zero
+        public var maximumSize: SIMD2<Int>?
         public var title = "Window"
         public var resizable = true
+        public var closable = true
+        public var minimizable = true
         public var content: Widget?
         public var resizeHandler: ((SIMD2<Int>) -> Void)?
 
@@ -247,6 +250,7 @@ public final class DummyBackend: AppBackend {
     public var menuImplementationStyle = MenuImplementationStyle.dynamicPopover
     public var deviceClass = DeviceClass.desktop
     public var canRevealFiles = false
+    public var supportedDatePickerStyles: [DatePickerStyle] = []
 
     public var incomingURLHandler: ((URL) -> Void)?
 
@@ -264,7 +268,14 @@ public final class DummyBackend: AppBackend {
         window.title = title
     }
 
-    public func setResizability(ofWindow window: Window, to resizable: Bool) {
+    public func setBehaviors(
+        ofWindow window: Window,
+        closable: Bool,
+        minimizable: Bool,
+        resizable: Bool
+    ) {
+        window.closable = closable
+        window.minimizable = minimizable
         window.resizable = resizable
     }
 
@@ -284,8 +295,13 @@ public final class DummyBackend: AppBackend {
         window.size = newSize
     }
 
-    public func setMinimumSize(ofWindow window: Window, to minimumSize: SIMD2<Int>) {
+    public func setSizeLimits(
+        ofWindow window: Window,
+        minimum minimumSize: SIMD2<Int>,
+        maximum maximumSize: SIMD2<Int>?
+    ) {
         window.minimumSize = minimumSize
+        window.maximumSize = maximumSize
     }
 
     public func setResizeHandler(ofWindow window: Window, to action: @escaping (SIMD2<Int>) -> Void)
@@ -337,22 +353,21 @@ public final class DummyBackend: AppBackend {
         (container as! Container).children = []
     }
 
-    public func addChild(_ child: Widget, to container: Widget) {
-        (container as! Container).children.append((child, .zero))
+    public func insert(_ child: Widget, into container: Widget, at index: Int) {
+        (container as! Container).children.insert((child, .zero), at: index)
+    }
+
+    public func swap(childAt firstIndex: Int, withChildAt secondIndex: Int, in container: Widget) {
+        (container as! Container).children.swapAt(firstIndex, secondIndex)
     }
 
     public func setPosition(ofChildAt index: Int, in container: Widget, to position: SIMD2<Int>) {
         (container as! Container).children[index].position = position
     }
 
-    public func removeChild(_ child: Widget, from container: Widget) {
+    public func remove(childAt index: Int, from container: Widget) {
         let container = container as! Container
-        let index = container.children.firstIndex { (widget, position) in
-            widget === child
-        }
-        if let index {
-            container.children.remove(at: index)
-        }
+        container.children.remove(at: index)
     }
 
     public func createColorableRectangle() -> Widget {
