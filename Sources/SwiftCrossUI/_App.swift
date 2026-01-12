@@ -28,31 +28,33 @@ class _App<AppRoot: App> {
         dynamicPropertyUpdater = DynamicPropertyUpdater(for: app)
     }
 
-    func forceRefresh() {
+    func refreshSceneGraph() {
+        // TODO: Do we have to update dynamic properties on state changes?
+        //   We can probably get away with only doing it when the root
+        //   environment changes.
         dynamicPropertyUpdater.update(app, with: environment, previousValue: nil)
 
-        sceneGraphRoot?.update(
-            self.app.body,
-            backend: self.backend,
-            environment: environment
-        )
+        if let sceneGraphRoot {
+            let result = sceneGraphRoot.update(
+                app.body,
+                backend: backend,
+                environment: environment
+            )
+            backend.setApplicationMenu(result.preferences.commands.resolve())
+        }
     }
 
     /// Runs the app using the app's selected backend.
     func run() {
-        backend.runMainLoop {
-            let baseEnvironment = EnvironmentValues(backend: self.backend)
-            self.environment = self.backend.computeRootEnvironment(
+        backend.runMainLoop { [self] in
+            let baseEnvironment = EnvironmentValues(backend: backend)
+            environment = backend.computeRootEnvironment(
                 defaultEnvironment: baseEnvironment
             )
 
-            self.dynamicPropertyUpdater.update(
-                self.app,
-                with: self.environment,
-                previousValue: nil
-            )
+            dynamicPropertyUpdater.update(app, with: environment, previousValue: nil)
 
-            let mirror = Mirror(reflecting: self.app)
+            let mirror = Mirror(reflecting: app)
             for property in mirror.children {
                 if property.label == "state" && property.value is ObservableObject {
                     logger.warning(
@@ -68,55 +70,37 @@ class _App<AppRoot: App> {
                     continue
                 }
 
-                let cancellable = value.didChange.observeAsUIUpdater(backend: self.backend) {
-                    [weak self] in
-                    guard let self else { return }
-
-                    // TODO: Do we have to do this on state changes? Can probably get
-                    //   away with only doing it when the root environment changes.
-                    self.dynamicPropertyUpdater.update(
-                        self.app,
-                        with: self.environment,
-                        previousValue: nil
-                    )
-
-                    let body = self.app.body
-                    self.sceneGraphRoot?.update(
-                        body,
-                        backend: self.backend,
-                        environment: self.environment
-                    )
-
-                    self.backend.setApplicationMenu(body.commands.resolve())
-                }
-                self.cancellables.append(cancellable)
+                let cancellable =
+                    value.didChange.observeAsUIUpdater(backend: backend) { [weak self] in
+                        self?.refreshSceneGraph()
+                    }
+                cancellables.append(cancellable)
             }
 
-            let body = self.app.body
             let rootNode = AppRoot.Body.Node(
-                from: body,
-                backend: self.backend,
-                environment: self.environment
+                from: app.body,
+                backend: backend,
+                environment: environment
             )
 
-            self.backend.setRootEnvironmentChangeHandler {
+            backend.setRootEnvironmentChangeHandler {
                 self.environment = self.backend.computeRootEnvironment(
                     defaultEnvironment: baseEnvironment
                 )
-                self.forceRefresh()
+                self.refreshSceneGraph()
             }
 
-            // Update application-wide menu
-            self.backend.setApplicationMenu(body.commands.resolve())
-
-            rootNode.update(
+            let result = rootNode.update(
                 nil,
-                backend: self.backend,
-                environment: self.backend.computeRootEnvironment(
+                backend: backend,
+                environment: backend.computeRootEnvironment(
                     defaultEnvironment: baseEnvironment
                 )
             )
             self.sceneGraphRoot = rootNode
+
+            // Update application-wide menu
+            backend.setApplicationMenu(result.preferences.commands.resolve())
         }
     }
 }

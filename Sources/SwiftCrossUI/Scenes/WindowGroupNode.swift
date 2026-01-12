@@ -80,7 +80,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         _ newScene: WindowGroup<Content>?,
         backend: Backend,
         environment: EnvironmentValues
-    ) {
+    ) -> SceneUpdateResult {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
@@ -98,7 +98,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             usedDefaultSize = false
         }
 
-        _ = update(
+        return update(
             newScene,
             proposedWindowSize: proposedWindowSize,
             needsWindowSizeCommit: usedDefaultSize,
@@ -131,7 +131,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         backend: Backend,
         environment: EnvironmentValues,
         windowSizeIsFinal: Bool = false
-    ) -> ViewLayoutResult {
+    ) -> SceneUpdateResult {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
@@ -249,6 +249,6 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             isFirstUpdate = false
         }
 
-        return finalContentResult
+        return .leafScene()
     }
 }

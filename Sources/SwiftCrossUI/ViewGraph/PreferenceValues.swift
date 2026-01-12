@@ -1,6 +1,7 @@
 import Foundation
 
 public struct PreferenceValues: Sendable {
+    /// The default preferences.
     public static let `default` = PreferenceValues(
         onOpenURL: nil,
         presentationDetents: nil,
@@ -38,29 +39,9 @@ public struct PreferenceValues: Sendable {
 
     /// Controls whether the user can resize the enclosing window.
     public var windowResizeBehavior: WindowInteractionBehavior?
+}
 
-    init(
-        onOpenURL: (@Sendable @MainActor (URL) -> Void)?,
-        presentationDetents: [PresentationDetent]?,
-        presentationCornerRadius: Double?,
-        presentationDragIndicatorVisibility: Visibility?,
-        presentationBackground: Color?,
-        interactiveDismissDisabled: Bool?,
-        windowDismissBehavior: WindowInteractionBehavior?,
-        preferredWindowMinimizeBehavior: WindowInteractionBehavior?,
-        windowResizeBehavior: WindowInteractionBehavior?
-    ) {
-        self.onOpenURL = onOpenURL
-        self.presentationDetents = presentationDetents
-        self.presentationCornerRadius = presentationCornerRadius
-        self.presentationDragIndicatorVisibility = presentationDragIndicatorVisibility
-        self.presentationBackground = presentationBackground
-        self.interactiveDismissDisabled = interactiveDismissDisabled
-        self.windowDismissBehavior = windowDismissBehavior
-        self.preferredWindowMinimizeBehavior = preferredWindowMinimizeBehavior
-        self.windowResizeBehavior = windowResizeBehavior
-    }
-
+extension PreferenceValues {
     init(merging children: [PreferenceValues]) {
         let handlers = children.compactMap(\.onOpenURL)
 

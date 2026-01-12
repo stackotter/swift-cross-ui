@@ -12,16 +12,9 @@ public struct TupleScene${i}<${", ".join("Scene%d: Scene" % j for j in range(i))
     var scene${j}: Scene${j}
     %end
 
-    public var commands: Commands
-
     public init(${", ".join("_ scene%d: Scene%d" % (j, j) for j in range(i))}) {
         %for j in range(i):
         self.scene${j} = scene${j}
-        %end
-
-        commands = Commands.empty
-        %for j in range(i):
-            .overlayed(with: scene${j}.commands)
         %end
     }
 }
@@ -47,10 +40,14 @@ public final class TupleSceneNode${i}<${", ".join("Scene%d: Scene" % j for j in 
         _ newScene: NodeScene?,
         backend: Backend,
         environment: EnvironmentValues
-    ) {
-        %for j in range(i):
-        node${j}.update(newScene?.scene${j}, backend: backend, environment: environment)
-        %end
+    ) -> SceneUpdateResult {
+        return SceneUpdateResult(
+            childResults: [
+                %for j in range(i):
+                node${j}.update(newScene?.scene${j}, backend: backend, environment: environment),
+                %end
+            ]
+        )
     }
 }
 %end

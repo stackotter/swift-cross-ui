@@ -6,7 +6,4 @@
 public protocol Scene {
     /// The node type used to manage this scene in the scene graph.
     associatedtype Node: SceneGraphNode where Node.NodeScene == Self
-
-    /// The commands to be propagated up from the scene.
-    var commands: Commands { get }
 }
