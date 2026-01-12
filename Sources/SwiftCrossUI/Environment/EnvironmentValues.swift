@@ -98,7 +98,7 @@ public struct EnvironmentValues {
     /// Whether the text should be selectable. Set by ``View/textSelectionEnabled(_:)``.
     public var isTextSelectionEnabled: Bool
 
-    /// The resizing behaviour of the current window.
+    /// The resizing behaviour of the enclosing window.
     var windowResizability: WindowResizability
 
     /// The menu ordering to use.

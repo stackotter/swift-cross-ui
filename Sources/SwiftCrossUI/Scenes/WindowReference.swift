@@ -51,7 +51,7 @@ final class WindowReference<Content: View> {
 
         backend.setResizeHandler(ofWindow: window) { [weak self] newSize in
             guard let self else { return }
-            self.update(
+            _ = self.update(
                 self.info,
                 proposedWindowSize: newSize,
                 needsWindowSizeCommit: false,
@@ -64,7 +64,7 @@ final class WindowReference<Content: View> {
         
         backend.setWindowEnvironmentChangeHandler(of: window) { [weak self] in
             guard let self else { return }
-            self.update(
+            _ = self.update(
                 self.info,
                 proposedWindowSize: backend.size(ofWindow: window),
                 needsWindowSizeCommit: false,

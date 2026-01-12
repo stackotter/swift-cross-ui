@@ -29,14 +29,6 @@ public struct Window<Content: View>: Scene {
         return self
     }
 
-    /// Sets the resizability of a window.
-    public consuming func windowResizability(
-        _ resizability: WindowResizability
-    ) -> Self {
-        self.windowInfo.resizability = resizability
-        return self
-    }
-
     /// Sets the default launch behavior of a window.
     public consuming func defaultLaunchBehavior(
         _ launchBehavior: SceneLaunchBehavior
@@ -87,18 +79,18 @@ public final class WindowNode<Content: View>: SceneGraphNode {
         _ newScene: Window<Content>?,
         backend: Backend,
         environment: EnvironmentValues
-    ) {
+    ) -> SceneUpdateResult {
         if let newScene {
             self.scene = newScene
         }
 
-        windowReference?.update(
+        setOpenFunction(for: scene, backend: backend, environment: environment)
+
+        return windowReference?.update(
             newScene?.windowInfo,
             backend: backend,
             environment: environment
-        )
-
-        setOpenFunction(for: scene, backend: backend, environment: environment)
+        ) ?? .leafScene()
     }
 
     private func setOpenFunction<Backend: AppBackend>(

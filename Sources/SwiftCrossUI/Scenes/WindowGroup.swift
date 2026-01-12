@@ -50,7 +50,7 @@ public struct WindowGroup<Content: View>: Scene {
 public final class WindowGroupNode<Content: View>: SceneGraphNode {
     public typealias NodeScene = WindowGroup<Content>
 
-    /// The references to the underlying window objects, which also manages
+    /// The references to the underlying window objects, which also manage
     /// each window's view graph.
     ///
     /// Empty if there are currently no instances of the window.
@@ -90,20 +90,21 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         _ newScene: WindowGroup<Content>?,
         backend: Backend,
         environment: EnvironmentValues
-    ) {
+    ) -> SceneUpdateResult {
         if let newScene {
             self.scene = newScene
         }
 
-        for windowReference in windowReferences.values {
+        setOpenFunction(for: scene, backend: backend, environment: environment)
+
+        let results = windowReferences.values.map { windowReference in
             windowReference.update(
                 newScene?.windowInfo,
                 backend: backend,
                 environment: environment
             )
         }
-
-        setOpenFunction(for: scene, backend: backend, environment: environment)
+        return SceneUpdateResult(childResults: results)
     }
 
     private func setOpenFunction<Backend: AppBackend>(

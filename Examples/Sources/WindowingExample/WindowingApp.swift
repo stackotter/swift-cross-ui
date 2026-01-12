@@ -301,8 +301,8 @@ struct WindowingApp: App {
                 }
             }
             .defaultSize(width: 200, height: 200)
-            .windowResizability(.contentMinSize)
             .defaultLaunchBehavior(.suppressed)
+            .windowResizability(.contentMinSize)
 
             Window("Singleton window", id: "singleton-window") {
                 #hotReloadable {
