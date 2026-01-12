@@ -1,6 +1,6 @@
 public struct Circle: Shape {
     /// The ideal diameter of a Circle.
-    static let idealDiameter = 10.0
+    nonisolated static let idealDiameter = 10.0
 
     public nonisolated init() {}
 
@@ -14,7 +14,7 @@ public struct Circle: Shape {
         if let proposal = proposal.concrete {
             diameter = min(proposal.width, proposal.height)
         } else {
-            diameter = proposal.width ?? proposal.height ?? 10
+            diameter = proposal.width ?? proposal.height ?? Circle.idealDiameter
         }
 
         return ViewSize(diameter, diameter)
