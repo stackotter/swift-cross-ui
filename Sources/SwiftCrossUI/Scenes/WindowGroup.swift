@@ -1,6 +1,4 @@
-#if !os(WASI)
-    import Foundation
-#endif
+import Foundation
 
 /// A scene that presents a group of identically structured windows. Currently
 /// only supports having a single instance of the window but will eventually
