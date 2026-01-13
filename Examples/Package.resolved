@@ -1,5 +1,5 @@
 {
-  "originHash" : "65384913ac3693258b3d1dbca6b8529c0e58acc01322515c6b66911c1aa84578",
+  "originHash" : "c22e1aa4960044b7579ded8bbe6ebdfa6aa139507a426b27d502a49ec11219f4",
   "pins" : [
     {
       "identity" : "aexml",
@@ -150,7 +150,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackotter/swift-bundler",
       "state" : {
-        "revision" : "02cccab9050c0df9df032cd96756e890c570b653"
+        "revision" : "2dbcb92047148efbc20e9ed47f66bc2dfd93b3f7"
       }
     },
     {

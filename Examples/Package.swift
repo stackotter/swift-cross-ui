@@ -14,7 +14,7 @@ var hotReloadingDependencies: [Package.Dependency] = []
     hotReloadingDependencies = [
         .package(
             url: "https://github.com/stackotter/swift-bundler",
-            revision: "02cccab9050c0df9df032cd96756e890c570b653"
+            revision: "2dbcb92047148efbc20e9ed47f66bc2dfd93b3f7"
         )
     ]
     exampleDependencies.append(
