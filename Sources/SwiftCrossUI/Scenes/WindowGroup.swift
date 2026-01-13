@@ -8,11 +8,8 @@
 public struct WindowGroup<Content: View>: Scene {
     public typealias Node = WindowGroupNode<Content>
 
-    public var commands: Commands = .empty
-
     var windowInfo: WindowInfo<Content>
     var id: String?
-    var launchBehavior: SceneLaunchBehavior = .automatic
 
     /// Creates a window group optionally specifying a title and an ID. Window title
     /// defaults to `ProcessInfo.processInfo.processName`.
@@ -28,21 +25,6 @@ public struct WindowGroup<Content: View>: Scene {
         #endif
         self.id = id
         self.windowInfo = WindowInfo(title: title, content: content)
-    }
-
-    /// Sets the default size of a window (used when creating new instances of
-    /// the window).
-    public consuming func defaultSize(width: Int, height: Int) -> Self {
-        self.windowInfo.defaultSize = SIMD2(width, height)
-        return self
-    }
-    
-    /// Sets the default launch behavior of a window.
-    public consuming func defaultLaunchBehavior(
-        _ launchBehavior: SceneLaunchBehavior
-    ) -> Self {
-        self.launchBehavior = launchBehavior
-        return self
     }
 }
 
@@ -66,7 +48,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
     ) {
         self.scene = scene
 
-        let openOnAppLaunch = switch scene.launchBehavior {
+        let openOnAppLaunch = switch environment.defaultLaunchBehavior {
             case .automatic, .presented: true
             case .suppressed: false
         }

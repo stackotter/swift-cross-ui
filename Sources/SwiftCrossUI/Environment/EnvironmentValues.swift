@@ -100,6 +100,12 @@ public struct EnvironmentValues {
 
     /// The resizing behaviour of the enclosing window.
     var windowResizability: WindowResizability
+    /// The default launch behavior of the enclosing window.
+    var defaultLaunchBehavior: SceneLaunchBehavior
+    /// The default size of the enclosing window.
+    ///
+    /// Defaults to 900x450.
+    var defaultWindowSize: SIMD2<Int>
 
     /// The menu ordering to use.
     public var menuOrder: MenuOrder
@@ -269,6 +275,8 @@ public struct EnvironmentValues {
         scrollDismissesKeyboardMode = .automatic
         isTextSelectionEnabled = false
         windowResizability = .automatic
+        defaultLaunchBehavior = .automatic
+        defaultWindowSize = SIMD2(900, 450)
         menuOrder = .automatic
         allowLayoutCaching = false
         calendar = .current

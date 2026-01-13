@@ -8,9 +8,6 @@ public struct Window<Content: View>: Scene {
 
     var windowInfo: WindowInfo<Content>
     var id: String
-    var launchBehavior: SceneLaunchBehavior = .automatic
-
-    public var commands: Commands = .empty
 
     /// Creates a window scene specifying a title and an ID.
     public init(
@@ -20,21 +17,6 @@ public struct Window<Content: View>: Scene {
     ) {
         self.id = id
         self.windowInfo = WindowInfo(title: title, content: content)
-    }
-
-    /// Sets the default size of a window (used when creating new instances of
-    /// the window).
-    public consuming func defaultSize(width: Int, height: Int) -> Self {
-        self.windowInfo.defaultSize = SIMD2(width, height)
-        return self
-    }
-
-    /// Sets the default launch behavior of a window.
-    public consuming func defaultLaunchBehavior(
-        _ launchBehavior: SceneLaunchBehavior
-    ) -> Self {
-        self.launchBehavior = launchBehavior
-        return self
     }
 }
 
@@ -58,7 +40,7 @@ public final class WindowNode<Content: View>: SceneGraphNode {
     ) {
         self.scene = scene
 
-        let openOnAppLaunch = switch scene.launchBehavior {
+        let openOnAppLaunch = switch environment.defaultLaunchBehavior {
             case .presented: true
             case .automatic, .suppressed: false
         }

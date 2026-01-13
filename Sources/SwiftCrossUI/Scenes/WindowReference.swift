@@ -28,7 +28,7 @@ final class WindowReference<Content: View> {
         updateImmediately: Bool = false
     ) {
         self.info = info
-        let window = backend.createWindow(withDefaultSize: info.defaultSize)
+        let window = backend.createWindow(withDefaultSize: environment.defaultWindowSize)
 
         viewGraph = ViewGraph(
             for: info.content(),
@@ -95,7 +95,7 @@ final class WindowReference<Content: View> {
         let proposedWindowSize: SIMD2<Int>
         let usedDefaultSize: Bool
         if isFirstUpdate && isProgramaticallyResizable {
-            proposedWindowSize = (newInfo ?? info).defaultSize
+            proposedWindowSize = environment.defaultWindowSize
             usedDefaultSize = true
         } else {
             proposedWindowSize = backend.size(ofWindow: window)
@@ -112,9 +112,9 @@ final class WindowReference<Content: View> {
         )
     }
 
-    /// Updates the WindowGroupNode.
+    /// Updates the `WindowReference`.
     /// - Parameters:
-    ///   - newInfo: The scene's body if recomputed.
+    ///   - newInfo: The scene's content. `nil` if this is the first update.
     ///   - proposedWindowSize: The proposed window size.
     ///   - needsWindowSizeCommit: Whether the proposed window size matches the
     ///     windows current size (or imminent size in the case of a window
