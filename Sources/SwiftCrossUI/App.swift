@@ -158,7 +158,6 @@ extension App {
             guard let pointer = getSwiftBundlerMetadata() else {
                 return nil
             }
-            defer { pointer.deallocate() }
 
             let datas = pointer.assumingMemoryBound(to: [[UInt8]].self).pointee
             guard let jsonBytes = datas.first else {
