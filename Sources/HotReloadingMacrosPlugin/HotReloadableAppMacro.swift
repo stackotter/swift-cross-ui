@@ -20,6 +20,7 @@ extension HotReloadableAppMacro: PeerMacro {
                 var hotReloadingImportedEntryPoint: (@convention(c) (UnsafeRawPointer, Int) -> Any)? = nil
                 """,
                 """
+                @MainActor
                 @_cdecl("body")
                 public func hotReloadingExportedEntryPoint(app: UnsafeRawPointer, viewId: Int) -> Any {
                     hotReloadingHasConnectedToServer = true
@@ -62,6 +63,7 @@ extension HotReloadableAppMacro: MemberMacro {
     public static func expansion(
         of node: AttributeSyntax,
         providingMembersOf declaration: some DeclSyntaxProtocol,
+        conformingTo protocols: [TypeSyntax],
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         guard let structDecl = Decl(declaration).asStruct else {
@@ -104,7 +106,7 @@ extension HotReloadableAppMacro: MemberMacro {
 
                     if !hotReloadingHasConnectedToServer {
                         hotReloadingHasConnectedToServer = true
-                        Task { @MainActor
+                        Task { @MainActor in
                             do {
                                 var client = try await HotReloadingClient()
                                 print("Hot reloading: received new dylib")
