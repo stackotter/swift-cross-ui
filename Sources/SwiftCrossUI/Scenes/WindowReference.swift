@@ -1,10 +1,10 @@
 /// Holds the view graph and window handle for a single window.
 @MainActor
-final class WindowReference<Content: View> {
-    /// The window info.
-    private var info: WindowInfo<Content>
+final class WindowReference<SceneType: WindowingScene> {
+    /// The scene.
+    private var scene: SceneType
     /// The view graph of the window's root view.
-    private let viewGraph: ViewGraph<Content>
+    private let viewGraph: ViewGraph<SceneType.Content>
     /// The window being rendered in.
     private let window: Any
     /// `false` after the first scene update.
@@ -21,17 +21,17 @@ final class WindowReference<Content: View> {
     ///     after performing setup. Set this to `true` if opening as a result of
     ///     ``EnvironmentValues/openWindow``.
     init<Backend: AppBackend>(
-        info: WindowInfo<Content>,
+        scene: SceneType,
         backend: Backend,
         environment: EnvironmentValues,
         onClose: @escaping @Sendable @MainActor () -> Void,
         updateImmediately: Bool = false
     ) {
-        self.info = info
+        self.scene = scene
         let window = backend.createWindow(withDefaultSize: environment.defaultWindowSize)
 
         viewGraph = ViewGraph(
-            for: info.content(),
+            for: scene.content(),
             backend: backend,
             environment: environment.with(\.window, window)
         )
@@ -42,7 +42,7 @@ final class WindowReference<Content: View> {
         self.containerWidget = AnyWidget(container)
         
         backend.setChild(ofWindow: window, to: container)
-        backend.setTitle(ofWindow: window, to: info.title)
+        backend.setTitle(ofWindow: window, to: scene.title)
 
         self.window = window
         parentEnvironment = environment
@@ -52,7 +52,7 @@ final class WindowReference<Content: View> {
         backend.setResizeHandler(ofWindow: window) { [weak self] newSize in
             guard let self else { return }
             _ = self.update(
-                self.info,
+                self.scene,
                 proposedWindowSize: newSize,
                 needsWindowSizeCommit: false,
                 backend: backend,
@@ -65,7 +65,7 @@ final class WindowReference<Content: View> {
         backend.setWindowEnvironmentChangeHandler(of: window) { [weak self] in
             guard let self else { return }
             _ = self.update(
-                self.info,
+                self.scene,
                 proposedWindowSize: backend.size(ofWindow: window),
                 needsWindowSizeCommit: false,
                 backend: backend,
@@ -81,7 +81,7 @@ final class WindowReference<Content: View> {
     }
 
     func update<Backend: AppBackend>(
-        _ newInfo: WindowInfo<Content>?,
+        _ newScene: SceneType?,
         backend: Backend,
         environment: EnvironmentValues
     ) -> SceneUpdateResult {
@@ -103,7 +103,7 @@ final class WindowReference<Content: View> {
         }
 
         return update(
-            newInfo,
+            newScene,
             proposedWindowSize: proposedWindowSize,
             needsWindowSizeCommit: usedDefaultSize,
             backend: backend,
@@ -114,7 +114,7 @@ final class WindowReference<Content: View> {
 
     /// Updates the `WindowReference`.
     /// - Parameters:
-    ///   - newInfo: The scene's content. `nil` if this is the first update.
+    ///   - newScene: The scene. `nil` if this is the first update.
     ///   - proposedWindowSize: The proposed window size.
     ///   - needsWindowSizeCommit: Whether the proposed window size matches the
     ///     windows current size (or imminent size in the case of a window
@@ -128,8 +128,8 @@ final class WindowReference<Content: View> {
     ///   - windowSizeIsFinal: If true, no further resizes can/will be made. This
     ///     is true on platforms that don't support programmatic window resizing,
     ///     and when a window is full screen.
-    func update<Backend: AppBackend>(
-        _ newInfo: WindowInfo<Content>?,
+    private func update<Backend: AppBackend>(
+        _ newScene: SceneType?,
         proposedWindowSize: SIMD2<Int>,
         needsWindowSizeCommit: Bool,
         backend: Backend,
@@ -142,14 +142,14 @@ final class WindowReference<Content: View> {
         
         parentEnvironment = environment
 
-        if let newInfo {
+        if let newScene {
             // Don't set default size even if it has changed. We only set that once
             // at window creation since some backends don't have a concept of
             // 'default' size which would mean that setting the default size every time
             // the default size changed would resize the window (which is incorrect
             // behaviour).
-            backend.setTitle(ofWindow: window, to: newInfo.title)
-            info = newInfo
+            backend.setTitle(ofWindow: window, to: newScene.title)
+            scene = newScene
         }
         
         let environment =
@@ -160,7 +160,7 @@ final class WindowReference<Content: View> {
                 //   scene's body. I have a vague feeling that it wouldn't work in all cases?
                 //   But I don't have the time to come up with a counterexample right now.
                 _ = self.update(
-                    self.info,
+                    self.scene,
                     proposedWindowSize: backend.size(ofWindow: window),
                     needsWindowSizeCommit: false,
                     backend: backend,
@@ -170,7 +170,7 @@ final class WindowReference<Content: View> {
             .with(\.window, window)
 
         let minimumWindowSize = viewGraph.computeLayout(
-            with: newInfo?.content(),
+            with: newScene?.content(),
             proposedSize: .zero,
             environment: environment.with(\.allowLayoutCaching, true)
         ).size
@@ -181,7 +181,7 @@ final class WindowReference<Content: View> {
         let maximumWindowSize: ViewSize? = switch environment.windowResizability {
             case .contentSize:
                 viewGraph.computeLayout(
-                    with: newInfo?.content(),
+                    with: newScene?.content(),
                     proposedSize: .infinity,
                     environment: environment.with(\.allowLayoutCaching, true)
                 ).size
@@ -204,7 +204,7 @@ final class WindowReference<Content: View> {
             // Restart the window update if the content has caused the window to
             // change size.
             return update(
-                info,
+                scene,
                 proposedWindowSize: clampedWindowSize.vector,
                 needsWindowSizeCommit: true,
                 backend: backend,

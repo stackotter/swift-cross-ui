@@ -5,11 +5,17 @@
 /// A scene that presents a group of identically structured windows. Currently
 /// only supports having a single instance of the window but will eventually
 /// support duplicating the window.
-public struct WindowGroup<Content: View>: Scene {
+public struct WindowGroup<Content: View>: WindowingScene {
     public typealias Node = WindowGroupNode<Content>
 
-    var windowInfo: WindowInfo<Content>
-    var id: String?
+    /// The title of the window (shown in the title bar on most OSes).
+    var title: String
+    /// The window's content.
+    var content: () -> Content
+    /// The window's ID.
+    ///
+    /// This should never change after creation.
+    let id: String?
 
     /// Creates a window group optionally specifying a title and an ID. Window title
     /// defaults to `ProcessInfo.processInfo.processName`.
@@ -24,7 +30,8 @@ public struct WindowGroup<Content: View>: Scene {
             let title = title ?? ProcessInfo.processInfo.processName
         #endif
         self.id = id
-        self.windowInfo = WindowInfo(title: title, content: content)
+        self.title = title
+        self.content = content
     }
 }
 
@@ -36,7 +43,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
     /// each window's view graph.
     ///
     /// Empty if there are currently no instances of the window.
-    private var windowReferences: [UUID: WindowReference<Content>] = [:]
+    private var windowReferences: [UUID: WindowReference<WindowGroup<Content>>] = [:]
 
     /// The underlying scene.
     private var scene: WindowGroup<Content>
@@ -57,15 +64,13 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             let windowID = UUID()
             self.windowReferences = [
                 windowID: WindowReference(
-                    info: scene.windowInfo,
+                    scene: scene,
                     backend: backend,
                     environment: environment,
                     onClose: { self.windowReferences[windowID] = nil }
                 )
             ]
         }
-
-        setOpenFunction(for: scene, backend: backend, environment: environment)
     }
 
     public func update<Backend: AppBackend>(
@@ -77,30 +82,13 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
             self.scene = newScene
         }
 
-        setOpenFunction(for: scene, backend: backend, environment: environment)
-
-        let results = windowReferences.values.map { windowReference in
-            windowReference.update(
-                newScene?.windowInfo,
-                backend: backend,
-                environment: environment
-            )
-        }
-        return SceneUpdateResult(childResults: results)
-    }
-
-    private func setOpenFunction<Backend: AppBackend>(
-        for scene: WindowGroup<Content>,
-        backend: Backend,
-        environment: EnvironmentValues
-    ) {
         if let id = scene.id {
             OpenWindowAction.openFunctionsByID[id] = { [weak self] in
                 guard let self else { return }
 
                 let windowID = UUID()
                 windowReferences[windowID] = WindowReference(
-                    info: scene.windowInfo,
+                    scene: scene,
                     backend: backend,
                     environment: environment,
                     onClose: { self.windowReferences[windowID] = nil },
@@ -108,5 +96,14 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                 )
             }
         }
+
+        let results = windowReferences.values.map { windowReference in
+            windowReference.update(
+                newScene,
+                backend: backend,
+                environment: environment
+            )
+        }
+        return SceneUpdateResult(childResults: results)
     }
 }
