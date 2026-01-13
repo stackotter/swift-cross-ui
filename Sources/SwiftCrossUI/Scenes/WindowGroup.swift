@@ -8,8 +8,6 @@
 public struct WindowGroup<Content: View>: Scene {
     public typealias Node = WindowGroupNode<Content>
 
-    public var commands: Commands = .empty
-
     /// Storing the window group contents lazily allows us to recompute the view
     /// when the window size changes without having to recompute the whole app.
     /// This allows the window group contents to remain linked to the app state
@@ -25,8 +23,6 @@ public struct WindowGroup<Content: View>: Scene {
     /// The default size of the window (only has effect at time of creation). Defaults to
     /// 900x450.
     var defaultSize: SIMD2<Int>
-    /// The window's resizing behaviour.
-    var resizability: WindowResizability
 
     /// Creates a window group optionally specifying a title. Window title defaults
     /// to `ProcessInfo.processInfo.processName`.
@@ -37,7 +33,6 @@ public struct WindowGroup<Content: View>: Scene {
         #else
             self.title = title ?? ProcessInfo.processInfo.processName
         #endif
-        resizability = .automatic
         defaultSize = SIMD2(900, 450)
     }
 
@@ -45,13 +40,6 @@ public struct WindowGroup<Content: View>: Scene {
     public func defaultSize(width: Int, height: Int) -> Self {
         var windowGroup = self
         windowGroup.defaultSize = SIMD2(width, height)
-        return windowGroup
-    }
-
-    /// Sets the resizability of a window.
-    public func windowResizability(_ resizability: WindowResizability) -> Self {
-        var windowGroup = self
-        windowGroup.resizability = resizability
         return windowGroup
     }
 }

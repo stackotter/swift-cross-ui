@@ -119,7 +119,7 @@ extension App {
         let _app = _App(app)
         _forceRefresh = {
             app.backend.runInMainThread {
-                _app.forceRefresh()
+                _app.refreshSceneGraph()
             }
         }
         _app.run()

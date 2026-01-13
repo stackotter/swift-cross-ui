@@ -1,13 +1,17 @@
 import Foundation
 
 public struct PreferenceValues: Sendable {
+    /// The default preferences.
     public static let `default` = PreferenceValues(
         onOpenURL: nil,
         presentationDetents: nil,
         presentationCornerRadius: nil,
         presentationDragIndicatorVisibility: nil,
         presentationBackground: nil,
-        interactiveDismissDisabled: nil
+        interactiveDismissDisabled: nil,
+        windowDismissBehavior: nil,
+        preferredWindowMinimizeBehavior: nil,
+        windowResizeBehavior: nil
     )
 
     public var onOpenURL: (@Sendable @MainActor (URL) -> Void)?
@@ -27,22 +31,17 @@ public struct PreferenceValues: Sendable {
     /// Controls whether the user can interactively dismiss enclosing sheets.
     public var interactiveDismissDisabled: Bool?
 
-    init(
-        onOpenURL: (@Sendable @MainActor (URL) -> Void)?,
-        presentationDetents: [PresentationDetent]?,
-        presentationCornerRadius: Double?,
-        presentationDragIndicatorVisibility: Visibility?,
-        presentationBackground: Color?,
-        interactiveDismissDisabled: Bool?
-    ) {
-        self.onOpenURL = onOpenURL
-        self.presentationDetents = presentationDetents
-        self.presentationCornerRadius = presentationCornerRadius
-        self.presentationDragIndicatorVisibility = presentationDragIndicatorVisibility
-        self.presentationBackground = presentationBackground
-        self.interactiveDismissDisabled = interactiveDismissDisabled
-    }
+    /// Controls whether the user can close the enclosing window.
+    public var windowDismissBehavior: WindowInteractionBehavior?
 
+    /// Controls whether the user can minimize the enclosing window.
+    public var preferredWindowMinimizeBehavior: WindowInteractionBehavior?
+
+    /// Controls whether the user can resize the enclosing window.
+    public var windowResizeBehavior: WindowInteractionBehavior?
+}
+
+extension PreferenceValues {
     init(merging children: [PreferenceValues]) {
         let handlers = children.compactMap(\.onOpenURL)
 
@@ -63,5 +62,9 @@ public struct PreferenceValues: Sendable {
             }.first
         presentationBackground = children.compactMap { $0.presentationBackground }.first
         interactiveDismissDisabled = children.compactMap { $0.interactiveDismissDisabled }.first
+
+        windowDismissBehavior = children.compactMap { $0.windowDismissBehavior }.first
+        preferredWindowMinimizeBehavior = children.compactMap { $0.preferredWindowMinimizeBehavior }.first
+        windowResizeBehavior = children.compactMap { $0.windowResizeBehavior }.first
     }
 }
