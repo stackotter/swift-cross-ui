@@ -13,7 +13,7 @@ var hotReloadingDependencies: [Package.Dependency] = []
 #if compiler(>=6.0)
     hotReloadingDependencies = [
         .package(
-            url: "https://github.com/stackotter/swift-bundler",
+            url: "https://github.com/moreSwift/swift-bundler",
             revision: "2dbcb92047148efbc20e9ed47f66bc2dfd93b3f7"
         )
     ]
