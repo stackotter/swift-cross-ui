@@ -3,21 +3,24 @@ extension Color {
     ///
     /// This is only `public` so backends can use it; it's not actually
     /// stable API.
-    public enum Representation: Sendable, Equatable, Hashable {
+    enum Representation: Sendable, Equatable, Hashable {
+        /// An RGB color.
         case rgb(red: Float, green: Float, blue: Float)
-        case adaptive(Adaptive)
+        /// An adaptive color that uses the same colors on all platforms.
+        case scuiAdaptive(Adaptive)
+        /// An adaptive color that uses platform-specific colors.
+        case systemAdaptive(Adaptive)
+    }
 
-        public enum Adaptive: Sendable, Equatable, Hashable {
-            case black
-            case blue
-            case brown
-            case gray
-            case green
-            case orange
-            case purple
-            case red
-            case yellow
-            case white
-        }
+    /// An adaptive color.
+    public enum Adaptive: Sendable, Equatable, Hashable {
+        case blue
+        case brown
+        case gray
+        case green
+        case orange
+        case purple
+        case red
+        case yellow
     }
 }

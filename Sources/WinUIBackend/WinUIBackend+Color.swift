@@ -10,14 +10,13 @@ import WindowsFoundation
 
 extension WinUIBackend {
     public func resolveAdaptiveColor(
-        _ color: SwiftCrossUI.Color.Representation.Adaptive,
+        _ color: SwiftCrossUI.Color.Adaptive,
         in environment: EnvironmentValues
     ) -> SwiftCrossUI.Color.Resolved {
         // Source: https://storybooks.fluentui.dev/react/?path=/docs/theme-colors--docs
         switch environment.colorScheme {
             case .light:
                 switch color {
-                    case .black: .init(red: 0.0, green: 0.0, blue: 0.0)
                     case .blue: .init(red: 0.0, green: 0.471, blue: 0.831)  // colorPaletteBlueBorderActive
                     case .brown: .init(red: 0.557, green: 0.337, blue: 0.18)  // colorPaletteBrownBorderActive
                     case .gray: .init(red: 0.478, green: 0.459, blue: 0.455) // colorPaletteBeigeBorderActive
@@ -26,11 +25,9 @@ extension WinUIBackend {
                     case .purple: .init(red: 0.686, green: 0.2, blue: 0.631)  // colorPaletteBerryForeground1
                     case .red: .init(red: 0.737, green: 0.184, blue: 0.196)  // colorPaletteRedForeground1
                     case .yellow: .init(red: 0.992, green: 0.89, blue: 0.0)  // colorPaletteYellowForeground3
-                    case .white: .init(red: 1.0, green: 1.0, blue: 1.0)
                 }
             case .dark:
                 switch color {
-                    case .black: .init(red: 0.0, green: 0.0, blue: 0.0)
                     case .blue: .init(red: 0.361, green: 0.667, blue: 0.898)  // colorPaletteBlueBorderActive
                     case .brown: .init(red: 0.733, green: 0.561, blue: 0.435)  // colorPaletteBrownBorderActive
                     case .gray: .init(red: 0.686, green: 0.671, blue: 0.667) // colorPaletteBeigeBorderActive
@@ -39,7 +36,6 @@ extension WinUIBackend {
                     case .purple: .init(red: 0.855, green: 0.494, blue: 0.816)  // colorPaletteBerryForeground1
                     case .red: .init(red: 0.89, green: 0.49, blue: 0.502)  // colorPaletteRedForeground1
                     case .yellow: .init(red: 0.992, green: 0.918, blue: 0.239)  // colorPaletteYellowForeground3
-                    case .white: .init(red: 1.0, green: 1.0, blue: 1.0)
                 }
         }
     }

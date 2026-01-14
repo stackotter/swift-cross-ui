@@ -224,8 +224,10 @@ public protocol AppBackend: Sendable {
     func resolveTextStyle(_ textStyle: Font.TextStyle) -> Font.TextStyle.Resolved
 
     /// Resolves the given adaptive color to a concrete color given the current environment.
+    ///
+    /// The default implementation uses Apple's adaptive colors.
     func resolveAdaptiveColor(
-        _ color: Color.Representation.Adaptive,
+        _ color: Color.Adaptive,
         in environment: EnvironmentValues
     ) -> Color.Resolved
 
@@ -854,6 +856,13 @@ extension AppBackend {
         _ textStyle: Font.TextStyle
     ) -> Font.TextStyle.Resolved {
         textStyle.resolve(for: deviceClass)
+    }
+
+    public func resolveAdaptiveColor(
+        _ color: Color.Adaptive,
+        in environment: EnvironmentValues
+    ) -> Color.Resolved {
+        Color(representation: .scuiAdaptive(color)).resolve(in: environment)
     }
 
     public func tag(widget: Widget, as tag: String) {

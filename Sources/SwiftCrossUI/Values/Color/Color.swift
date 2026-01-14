@@ -4,10 +4,10 @@ public struct Color: Sendable, Equatable, Hashable {
     /// The ideal size of a color view.
     private static let idealSize = ViewSize(10, 10)
 
-    package var representation: Representation
-    package var opacity: Float
+    var representation: Representation
+    var opacity: Float
 
-    package init(representation: Representation, opacity: Float = 1) {
+    init(representation: Representation, opacity: Float = 1) {
         self.representation = representation
         self.opacity = opacity
     }
@@ -29,42 +29,65 @@ public struct Color: Sendable, Equatable, Hashable {
         return self
     }
 
-    /// An adaptive black color.
-    public static let black = Color(representation: .adaptive(.black))
-    /// An adaptive blue color.
-    public static let blue = Color(representation: .adaptive(.blue))
-    /// An adaptive brown color.
-    public static let brown = Color(representation: .adaptive(.brown))
+    /// A pure black color.
+    public static let black = Color(0.00, 0.00, 0.00, 1.00)
+    /// A pure white color.
+    public static let white = Color(1.00, 1.00, 1.00, 1.00)
     /// A completely clear color.
     public static let clear = Color(0.50, 0.50, 0.50, 0.00)
+
+    /// An adaptive blue color.
+    ///
+    /// This uses the same colors on all platforms. To use colors tailored for
+    /// each platform, use ``system(_:)`` instead.
+    public static let blue = Color(representation: .scuiAdaptive(.blue))
+    /// An adaptive brown color.
+    ///
+    /// This uses the same colors on all platforms. To use colors tailored for
+    /// each platform, use ``system(_:)`` instead.
+    public static let brown = Color(representation: .scuiAdaptive(.brown))
     /// An adaptive gray color.
-    public static let gray = Color(representation: .adaptive(.gray))
+    ///
+    /// This uses the same colors on all platforms. To use colors tailored for
+    /// each platform, use ``system(_:)`` instead.
+    public static let gray = Color(representation: .scuiAdaptive(.gray))
     /// An adaptive green color.
-    public static let green = Color(representation: .adaptive(.green))
+    ///
+    /// This uses the same colors on all platforms. To use colors tailored for
+    /// each platform, use ``system(_:)`` instead.
+    public static let green = Color(representation: .scuiAdaptive(.green))
     /// An adaptive orange color.
-    public static let orange = Color(representation: .adaptive(.orange))
+    ///
+    /// This uses the same colors on all platforms. To use colors tailored for
+    /// each platform, use ``system(_:)`` instead.
+    public static let orange = Color(representation: .scuiAdaptive(.orange))
     /// An adaptive purple color.
-    public static let purple = Color(representation: .adaptive(.purple))
+    ///
+    /// This uses the same colors on all platforms. To use colors tailored for
+    /// each platform, use ``system(_:)`` instead.
+    public static let purple = Color(representation: .scuiAdaptive(.purple))
     /// An adaptive red color.
-    public static let red = Color(representation: .adaptive(.red))
+    ///
+    /// This uses the same colors on all platforms. To use colors tailored for
+    /// each platform, use ``system(_:)`` instead.
+    public static let red = Color(representation: .scuiAdaptive(.red))
     /// An adaptive yellow color.
-    public static let yellow = Color(representation: .adaptive(.yellow))
-    /// An adaptive white color.
-    public static let white = Color(representation: .adaptive(.white))
+    ///
+    /// This uses the same colors on all platforms. To use colors tailored for
+    /// each platform, use ``system(_:)`` instead.
+    public static let yellow = Color(representation: .scuiAdaptive(.yellow))
+
+    /// Creates an adaptive color tailored for each platform.
+    ///
+    /// - Parameter color: The color.
+    /// - Returns: An adaptive color tailored for each platform.
+    public static func system(_ color: Adaptive) -> Color {
+        Color(representation: .systemAdaptive(color))
+    }
 
     public init(_ resolved: Color.Resolved) {
         self.representation = .rgb(red: resolved.red, green: resolved.green, blue: resolved.blue)
         self.opacity = resolved.opacity
-    }
-
-    @MainActor
-    public func resolve(in environment: EnvironmentValues) -> Color.Resolved {
-        switch representation {
-            case .rgb(let red, let green, let blue):
-                Color.Resolved(red: red, green: green, blue: blue, opacity: opacity)
-            case .adaptive(let adaptive):
-                environment.backend.resolveAdaptiveColor(adaptive, in: environment)
-        }
     }
 }
 

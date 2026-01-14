@@ -14,29 +14,29 @@ struct ColorsApp: App {
         WindowGroup("ColorsExample") {
             #hotReloadable {
                 VStack {
-                    Text("First column is .dark, second column is .light, third column is the system scheme")
-                    HStack(spacing: 5) {
-                        let colorStack = VStack(spacing: 5) {
-                            Color.black
-                            Color.blue
-                            Color.brown
-                            Color.gray
-                            Color.green
-                            Color.orange
-                            Color.purple
-                            Color.red
-                            Color.yellow
-                            Color.white
-                        }
+                    Text("First row is .dark, second row is .light, third row is the system scheme")
 
-                        colorStack.preferredColorScheme(.dark)
-                        colorStack.preferredColorScheme(.light)
-                        colorStack
+                    ScrollView(.horizontal) {
+                        VStack(spacing: 5) {
+                            let colorStack = HStack(spacing: 5) {
+                                Color.system(.blue).aspectRatio(1, contentMode: .fill)
+                                Color.system(.brown).aspectRatio(1, contentMode: .fill)
+                                Color.system(.gray).aspectRatio(1, contentMode: .fill)
+                                Color.system(.green).aspectRatio(1, contentMode: .fill)
+                                Color.system(.orange).aspectRatio(1, contentMode: .fill)
+                                Color.system(.purple).aspectRatio(1, contentMode: .fill)
+                                Color.system(.red).aspectRatio(1, contentMode: .fill)
+                                Color.system(.yellow).aspectRatio(1, contentMode: .fill)
+                            }
+
+                            colorStack.preferredColorScheme(.dark)
+                            colorStack.preferredColorScheme(.light)
+                            colorStack
+                        }
                     }
                 }
                 .padding()
             }
         }
-        .defaultSize(width: 200, height: 400)
     }
 }
