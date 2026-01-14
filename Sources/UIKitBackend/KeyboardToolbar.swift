@@ -169,7 +169,7 @@ struct FixedWidthSpacerItem: ToolbarItem {
 @available(visionOS, unavailable)
 struct ColoredToolbarItem<Base: ToolbarItem>: ToolbarItem {
     var base: Base
-    var color: Color
+    var color: Color.Resolved
 
     func createBarButtonItem() -> Base.ItemType {
         let item = base.createBarButtonItem()
@@ -201,7 +201,7 @@ extension ToolbarItem {
     }
 
     /// A toolbar item with the specified foreground color.
-    public func foregroundColor(_ color: Color) -> some ToolbarItem {
+    public func foregroundColor(_ color: Color.Resolved) -> some ToolbarItem {
         ColoredToolbarItem(base: self, color: color)
     }
 }

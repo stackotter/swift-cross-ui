@@ -1,4 +1,8 @@
 extension Color {
+    /// The internal representation of a ``Color``.
+    ///
+    /// This is only `public` so backends can use it; it's not actually
+    /// stable API.
     public enum Representation: Sendable, Equatable, Hashable {
         case rgb(red: Float, green: Float, blue: Float)
         case adaptive(Adaptive)
@@ -7,16 +11,11 @@ extension Color {
             case black
             case blue
             case brown
-            case cyan
             case gray
             case green
-            case indigo
-            case mint
             case orange
-            case pink
             case purple
             case red
-            case teal
             case yellow
             case white
         }

@@ -9,68 +9,32 @@ extension AppKitBackend {
         // NB: From what I can tell, a lookup table is by far the simplest way
         // to go about this.
         // Source: https://developer.apple.com/design/human-interface-guidelines/color#System-colors
-        let colors: [Color.Representation.Adaptive: (light: NSColor, dark: NSColor)] = [
-            .black: (light: .black, dark: .black),
-            .blue: (
-                light: NSColor(red: 0/255, green: 136/255, blue: 255/255, alpha: 1),
-                dark: NSColor(red: 0/255, green: 145/255, blue: 255/255, alpha: 1)
-            ),
-            .brown: (
-                light: NSColor(red: 172/255, green: 127/255, blue: 94/255, alpha: 1),
-                dark: NSColor(red: 183/255, green: 138/255, blue: 102/255, alpha: 1)
-            ),
-            .cyan: (
-                light: NSColor(red: 0/255, green: 192/255, blue: 232/255, alpha: 1),
-                dark: NSColor(red: 60/255, green: 211/255, blue: 254/255, alpha: 1)
-            ),
-            .gray: (
-                light: NSColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 1),
-                dark: NSColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 1)
-            ),
-            .green: (
-                light: NSColor(red: 52/255, green: 199/255, blue: 89/255, alpha: 1),
-                dark: NSColor(red: 48/255, green: 209/255, blue: 88/255, alpha: 1)
-            ),
-            .indigo: (
-                light: NSColor(red: 97/255, green: 85/255, blue: 245/255, alpha: 1),
-                dark: NSColor(red: 109/255, green: 124/255, blue: 255/255, alpha: 1)
-            ),
-            .mint: (
-                light: NSColor(red: 0/255, green: 200/255, blue: 179/255, alpha: 1),
-                dark: NSColor(red: 0/255, green: 218/255, blue: 195/255, alpha: 1)
-            ),
-            .orange: (
-                light: NSColor(red: 255/255, green: 141/255, blue: 40/255, alpha: 1),
-                dark: NSColor(red: 255/255, green: 146/255, blue: 48/255, alpha: 1)
-            ),
-            .pink: (
-                light: NSColor(red: 255/255, green: 45/255, blue: 85/255, alpha: 1),
-                dark: NSColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)
-            ),
-            .purple: (
-                light: NSColor(red: 203/255, green: 48/255, blue: 224/255, alpha: 1),
-                dark: NSColor(red: 219/255, green: 52/255, blue: 242/255, alpha: 1)
-            ),
-            .red: (
-                light: NSColor(red: 255/255, green: 56/255, blue: 60/255, alpha: 1),
-                dark: NSColor(red: 255/255, green: 66/255, blue: 69/255, alpha: 1)
-            ),
-            .teal: (
-                light: NSColor(red: 0/255, green: 195/255, blue: 208/255, alpha: 1),
-                dark: NSColor(red: 0/255, green: 210/255, blue: 224/255, alpha: 1)
-            ),
-            .yellow: (
-                light: NSColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1),
-                dark: NSColor(red: 255/255, green: 214/255, blue: 0/255, alpha: 1)
-            ),
-            .white: (light: .white, dark: .white),
-        ]
-
-        let nsColor = switch environment.colorScheme {
-            case .light: colors[color]!.light
-            case .dark: colors[color]!.dark
+        switch environment.colorScheme {
+            case .light: switch color {
+                case .black: .init(red: 0.0, green: 0.0, blue: 0.0)
+                case .blue: .init(red: 0.0, green: 0.533, blue: 1.0)
+                case .brown: .init(red: 0.675, green: 0.498, blue: 0.369)
+                case .gray: .init(red: 0.557, green: 0.557, blue: 0.576)
+                case .green: .init(red: 0.204, green: 0.78, blue: 0.349)
+                case .orange: .init(red: 1.0, green: 0.553, blue: 0.157)
+                case .purple: .init(red: 0.796, green: 0.188, blue: 0.878)
+                case .red: .init(red: 1.0, green: 0.219, blue: 0.235)
+                case .yellow: .init(red: 1.0, green: 0.839, blue: 0.0)
+                case .white: .init(red: 1.0, green: 1.0, blue: 1.0)
+            }
+            case .dark: switch color {
+                case .black: .init(red: 0.0, green: 0.0, blue: 0.0)
+                case .blue: .init(red: 0.0, green: 0.569, blue: 1.0)
+                case .brown: .init(red: 0.718, green: 0.541, blue: 0.4)
+                case .gray: .init(red: 0.557, green: 0.557, blue: 0.576)
+                case .green: .init(red: 0.188, green: 0.819, blue: 0.345)
+                case .orange: .init(red: 1.0, green: 0.573, blue: 0.188)
+                case .purple: .init(red: 0.859, green: 0.204, blue: 0.949)
+                case .red: .init(red: 1.0, green: 0.259, blue: 0.271)
+                case .yellow: .init(red: 1.0, green: 0.8, blue: 0.0)
+                case .white: .init(red: 1.0, green: 1.0, blue: 1.0)
+            }
         }
-        return Color.Resolved(nsColor)
     }
 }
 

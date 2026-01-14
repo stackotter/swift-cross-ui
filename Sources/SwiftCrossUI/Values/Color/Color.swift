@@ -1,4 +1,5 @@
-/// An RGBA representation of a color.
+/// A color, which can be a simple RGBA color or a color that adapts
+/// to light/dark and high contrast modes.
 public struct Color: Sendable, Equatable, Hashable {
     /// The ideal size of a color view.
     private static let idealSize = ViewSize(10, 10)
@@ -28,37 +29,27 @@ public struct Color: Sendable, Equatable, Hashable {
         return self
     }
 
-    /// Pure black.
+    /// An adaptive black color.
     public static let black = Color(representation: .adaptive(.black))
-    /// Pure blue.
+    /// An adaptive blue color.
     public static let blue = Color(representation: .adaptive(.blue))
-    /// Pure brown.
+    /// An adaptive brown color.
     public static let brown = Color(representation: .adaptive(.brown))
-    /// Completely clear.
+    /// A completely clear color.
     public static let clear = Color(0.50, 0.50, 0.50, 0.00)
-    /// Pure cyan.
-    public static let cyan = Color(representation: .adaptive(.cyan))
-    /// Pure gray.
+    /// An adaptive gray color.
     public static let gray = Color(representation: .adaptive(.gray))
-    /// Pure green.
+    /// An adaptive green color.
     public static let green = Color(representation: .adaptive(.green))
-    /// Pure indigo.
-    public static let indigo = Color(representation: .adaptive(.indigo))
-    /// Pure mint.
-    public static let mint = Color(representation: .adaptive(.mint))
-    /// Pure orange.
+    /// An adaptive orange color.
     public static let orange = Color(representation: .adaptive(.orange))
-    /// Pure pink.
-    public static let pink = Color(representation: .adaptive(.pink))
-    /// Pure purple.
+    /// An adaptive purple color.
     public static let purple = Color(representation: .adaptive(.purple))
-    /// Pure red.
+    /// An adaptive red color.
     public static let red = Color(representation: .adaptive(.red))
-    /// Pure teal.
-    public static let teal = Color(representation: .adaptive(.teal))
-    /// Pure yellow.
+    /// An adaptive yellow color.
     public static let yellow = Color(representation: .adaptive(.yellow))
-    /// Pure white.
+    /// An adaptive white color.
     public static let white = Color(representation: .adaptive(.white))
 
     public init(_ resolved: Color.Resolved) {

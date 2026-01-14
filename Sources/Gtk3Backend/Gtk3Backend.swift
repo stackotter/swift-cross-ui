@@ -11,15 +11,6 @@ extension App {
     }
 }
 
-extension SwiftCrossUI.Color {
-    public var gtkColor: Gtk3.Color {
-        switch representation {
-            case .rgb(let red, let green, let blue):
-                Gtk3.Color(Double(red), Double(green), Double(blue), Double(opacity))
-        }
-    }
-}
-
 public final class Gtk3Backend: AppBackend {
     public typealias Window = Gtk3.ApplicationWindow
     public typealias Widget = Gtk3.Widget
@@ -562,7 +553,7 @@ public final class Gtk3Backend: AppBackend {
 
     public func setColor(
         ofColorableRectangle widget: Widget,
-        to color: SwiftCrossUI.Color
+        to color: SwiftCrossUI.Color.Resolved
     ) {
         widget.css.set(property: .backgroundColor(color.gtkColor))
         widget.css.set(property: CSSProperty(key: "background-clip", value: "border-box"))
@@ -1365,8 +1356,8 @@ public final class Gtk3Backend: AppBackend {
     public func renderPath(
         _ path: Path,
         container: Widget,
-        strokeColor: SwiftCrossUI.Color,
-        fillColor: SwiftCrossUI.Color,
+        strokeColor: SwiftCrossUI.Color.Resolved,
+        fillColor: SwiftCrossUI.Color.Resolved,
         overrideStrokeStyle: StrokeStyle?
     ) {
         let drawingArea = container as! Gtk3.DrawingArea
@@ -1416,28 +1407,22 @@ public final class Gtk3Backend: AppBackend {
 
             self.renderPathActions(path.actions, to: cairo)
 
-            let fillPattern = switch fillColor.representation {
-                case .rgb(let red, let green, let blue):
-                    cairo_pattern_create_rgba(
-                        Double(red),
-                        Double(green),
-                        Double(blue),
-                        Double(fillColor.opacity)
-                    )
-            }
+            let fillPattern = cairo_pattern_create_rgba(
+                Double(fillColor.red),
+                Double(fillColor.green),
+                Double(fillColor.blue),
+                Double(fillColor.opacity)
+            )
             cairo_set_source(cairo, fillPattern)
             cairo_fill_preserve(cairo)
             cairo_pattern_destroy(fillPattern)
 
-            let strokePattern = switch strokeColor.representation {
-                case .rgb(let red, let green, let blue):
-                    cairo_pattern_create_rgba(
-                        Double(red),
-                        Double(green),
-                        Double(blue),
-                        Double(strokeColor.opacity)
-                    )
-            }
+            let strokePattern = cairo_pattern_create_rgba(
+                Double(strokeColor.red),
+                Double(strokeColor.green),
+                Double(strokeColor.blue),
+                Double(strokeColor.opacity)
+            )
             cairo_set_source(cairo, strokePattern)
             cairo_stroke(cairo)
             cairo_pattern_destroy(strokePattern)
@@ -1547,7 +1532,11 @@ public final class Gtk3Backend: AppBackend {
         isControl: Bool = false
     ) -> [CSSProperty] {
         var properties: [CSSProperty] = []
-        properties.append(.foregroundColor(environment.suggestedForegroundColor.gtkColor))
+        properties.append(
+            .foregroundColor(
+                environment.suggestedForegroundColor.resolve(in: environment).gtkColor
+            )
+        )
         let font = environment.resolvedFont
         switch font.identifier.kind {
             case .system:
