@@ -13,7 +13,10 @@ extension App {
 
 extension SwiftCrossUI.Color {
     public var gtkColor: Gtk3.Color {
-        return Gtk3.Color(Double(red), Double(green), Double(blue), Double(alpha))
+        switch representation {
+            case .rgb(let red, let green, let blue):
+                Gtk3.Color(Double(red), Double(green), Double(blue), Double(opacity))
+        }
     }
 }
 
@@ -1413,22 +1416,28 @@ public final class Gtk3Backend: AppBackend {
 
             self.renderPathActions(path.actions, to: cairo)
 
-            let fillPattern = cairo_pattern_create_rgba(
-                Double(fillColor.red),
-                Double(fillColor.green),
-                Double(fillColor.blue),
-                Double(fillColor.alpha)
-            )
+            let fillPattern = switch fillColor.representation {
+                case .rgb(let red, let green, let blue):
+                    cairo_pattern_create_rgba(
+                        Double(red),
+                        Double(green),
+                        Double(blue),
+                        Double(fillColor.opacity)
+                    )
+            }
             cairo_set_source(cairo, fillPattern)
             cairo_fill_preserve(cairo)
             cairo_pattern_destroy(fillPattern)
 
-            let strokePattern = cairo_pattern_create_rgba(
-                Double(strokeColor.red),
-                Double(strokeColor.green),
-                Double(strokeColor.blue),
-                Double(strokeColor.alpha)
-            )
+            let strokePattern = switch strokeColor.representation {
+                case .rgb(let red, let green, let blue):
+                    cairo_pattern_create_rgba(
+                        Double(red),
+                        Double(green),
+                        Double(blue),
+                        Double(strokeColor.opacity)
+                    )
+            }
             cairo_set_source(cairo, strokePattern)
             cairo_stroke(cairo)
             cairo_pattern_destroy(strokePattern)

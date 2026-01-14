@@ -1908,12 +1908,15 @@ public final class WinUIBackend: AppBackend {
 
 extension SwiftCrossUI.Color {
     var uwpColor: UWP.Color {
-        UWP.Color(
-            a: UInt8((alpha * Float(UInt8.max)).rounded()),
-            r: UInt8((red * Float(UInt8.max)).rounded()),
-            g: UInt8((green * Float(UInt8.max)).rounded()),
-            b: UInt8((blue * Float(UInt8.max)).rounded())
-        )
+        switch representation {
+            case .rgb(let red, let green, let blue):
+                UWP.Color(
+                    a: UInt8((opacity * Float(UInt8.max)).rounded()),
+                    r: UInt8((red * Float(UInt8.max)).rounded()),
+                    g: UInt8((green * Float(UInt8.max)).rounded()),
+                    b: UInt8((blue * Float(UInt8.max)).rounded())
+                )
+        }
     }
 
     init(uwpColor: UWP.Color) {

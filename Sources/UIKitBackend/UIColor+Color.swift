@@ -3,12 +3,15 @@ import UIKit
 
 extension UIColor {
     convenience init(color: Color) {
-        self.init(
-            red: CGFloat(color.red),
-            green: CGFloat(color.green),
-            blue: CGFloat(color.blue),
-            alpha: CGFloat(color.alpha)
-        )
+        switch color.representation {
+            case .rgb(let red, let green, let blue):
+                self.init(
+                    red: CGFloat(red),
+                    green: CGFloat(green),
+                    blue: CGFloat(blue),
+                    alpha: CGFloat(color.opacity)
+                )
+        }
     }
 }
 
@@ -29,11 +32,14 @@ extension Color {
     }
 
     var cgColor: CGColor {
-        CGColor(
-            red: CGFloat(red),
-            green: CGFloat(green),
-            blue: CGFloat(blue),
-            alpha: CGFloat(alpha)
-        )
+        switch representation {
+            case .rgb(let red, let green, let blue):
+                CGColor(
+                    red: CGFloat(red),
+                    green: CGFloat(green),
+                    blue: CGFloat(blue),
+                    alpha: CGFloat(opacity)
+                )
+        }
     }
 }
