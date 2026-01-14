@@ -14,26 +14,29 @@ struct ColorsApp: App {
         WindowGroup("ColorsExample") {
             #hotReloadable {
                 VStack {
-                    Text("First row is .dark, second row is .light, third row is the system scheme")
+                    Text("First column is .dark, second column is .light, third column is the system scheme")
+                    HStack(spacing: 5) {
+                        let colorStack = VStack(spacing: 5) {
+                            Color.black
+                            Color.blue
+                            Color.brown
+                            Color.gray
+                            Color.green
+                            Color.orange
+                            Color.purple
+                            Color.red
+                            Color.yellow
+                            Color.white
+                        }
 
-                    let colorStack = HStack {
-                        Color.black
-                        Color.blue
-                        Color.brown
-                        Color.gray
-                        Color.green
-                        Color.orange
-                        Color.purple
-                        Color.red
-                        Color.yellow
-                        Color.white
+                        colorStack.preferredColorScheme(.dark)
+                        colorStack.preferredColorScheme(.light)
+                        colorStack
                     }
-
-                    colorStack.preferredColorScheme(.dark)
-                    colorStack.preferredColorScheme(.light)
-                    colorStack
                 }
+                .padding()
             }
         }
+        .defaultSize(width: 200, height: 400)
     }
 }
