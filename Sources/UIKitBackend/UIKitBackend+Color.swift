@@ -6,23 +6,25 @@ extension UIKitBackend {
         _ color: Color.Representation.Adaptive,
         in environment: EnvironmentValues
     ) -> Color.Resolved {
-        let uiColor: UIColor = switch color {
-            case .black: .black
-            case .blue: .systemBlue
-            case .brown: .systemBrown
-            case .gray: .systemGray
-            case .green: .systemGreen
-            case .orange: .systemOrange
-            case .purple: .systemPurple
-            case .red: .systemRed
-            case .yellow: .systemYellow
-            case .white: .white
-        }
+        let uiColor: UIColor =
+            switch color {
+                case .black: .black
+                case .blue: .systemBlue
+                case .brown: .systemBrown
+                case .gray: .systemGray
+                case .green: .systemGreen
+                case .orange: .systemOrange
+                case .purple: .systemPurple
+                case .red: .systemRed
+                case .yellow: .systemYellow
+                case .white: .white
+            }
 
-        let traitCollection = switch environment.colorScheme {
-            case .light: UITraitCollection(userInterfaceStyle: .light)
-            case .dark: UITraitCollection(userInterfaceStyle: .dark)
-        }
+        let traitCollection =
+            switch environment.colorScheme {
+                case .light: UITraitCollection(userInterfaceStyle: .light)
+                case .dark: UITraitCollection(userInterfaceStyle: .dark)
+            }
         let resolvedColor = uiColor.resolvedColor(with: traitCollection)
         return Color.Resolved(resolvedColor)
     }
