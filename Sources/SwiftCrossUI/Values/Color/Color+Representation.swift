@@ -26,11 +26,11 @@ extension Color {
 
 extension Color {
     /// A pure black color.
-    public static let black = Color(red: 0.0, green: 0.0, blue: 0.0)
+    public static let black = Color(white: 0.0)
     /// A pure white color.
-    public static let white = Color(red: 1.0, green: 1.0, blue: 1.0)
+    public static let white = Color(white: 1.0)
     /// A completely clear color.
-    public static let clear = Color(red: 0.5, green: 0.5, blue: 0.5, opacity: 0.0)
+    public static let clear = Color(white: 0.5, opacity: 0.0)
 
     // NB: For consistency, SCUI uses AppKit's adaptive colors on all platforms.
 

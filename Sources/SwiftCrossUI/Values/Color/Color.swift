@@ -23,6 +23,15 @@ public struct Color: Sendable, Equatable, Hashable {
         self.opacity = opacity
     }
 
+    /// Creates a color from a brightness value between 0 and 1.
+    public init(
+        white: Double,
+        opacity: Double = 1
+    ) {
+        self.representation = .rgb(red: white, green: white, blue: white)
+        self.opacity = opacity
+    }
+
     /// Creates an adaptive color tailored for each platform.
     ///
     /// - Parameter color: The color.
