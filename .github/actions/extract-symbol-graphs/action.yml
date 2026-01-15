@@ -57,7 +57,7 @@ runs:
         # so.
         xcodebuild -skipMacroValidation -scheme "$TARGET" -destination "$destination" \
           -derivedDataPath /tmp/data docbuild \
-          "OTHER_DOCC_FLAGS=--transform-for-static-hosting --hosting-base-path swift-cross-ui --source-service github --source-service-base-url https://github.com/stackotter/swift-cross-ui/blob/main --checkout-path ." \
+          "OTHER_DOCC_FLAGS=--transform-for-static-hosting --hosting-base-path swift-cross-ui --source-service github --source-service-base-url https://github.com/moreSwift/swift-cross-ui/blob/main --checkout-path ." \
           | xcbeautify --renderer github-actions
 
         # Locate relevant symbol graphs and copy them to the target-specific

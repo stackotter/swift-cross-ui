@@ -116,7 +116,7 @@ Swift Bundler's [documentation](https://swiftbundler.dev/documentation/swift-bun
 First we'll clone and build Swift Bundler locally. Make sure to do this in a location that you're ok with keeping around.
 
 ```sh
-git clone https://github.com/stackotter/swift-bundler
+git clone https://github.com/moreSwift/swift-bundler
 cd swift-bundler
 swift build -c release
 ```

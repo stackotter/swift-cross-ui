@@ -12,7 +12,7 @@ Due to limitations of Swift Package Manager and the way this project is structur
 
 ## How to do something useful
 
-1. Look through [the issues on GitHub](https://github.com/stackotter/swift-cross-ui/issues) and
+1. Look through [the issues on GitHub](https://github.com/moreSwift/swift-cross-ui/issues) and
    choose an issue to work on (or open one if you have an idea)
 2. Leave a comment on the issue to let people know that you're working on it
 3. Make necessary changes to the codebase

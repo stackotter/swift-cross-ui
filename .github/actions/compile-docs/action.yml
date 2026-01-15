@@ -49,7 +49,7 @@ runs:
           --hosting-base-path swift-cross-ui \
           --output-path "$TARGET.doccarchive" \
           --source-service github \
-          --source-service-base-url https://github.com/stackotter/swift-cross-ui/blob/main \
+          --source-service-base-url https://github.com/moreSwift/swift-cross-ui/blob/main \
           --checkout-path $(pwd) \
           --verbose
       shell: bash
@@ -90,7 +90,7 @@ runs:
           --hosting-base-path swift-cross-ui \
           --output-path "$TARGET.doccarchive" \
           --source-service github \
-          --source-service-base-url https://github.com/stackotter/swift-cross-ui/blob/main \
+          --source-service-base-url https://github.com/moreSwift/swift-cross-ui/blob/main \
           --checkout-path .
       env:
         TARGET: ${{ inputs.target }}
