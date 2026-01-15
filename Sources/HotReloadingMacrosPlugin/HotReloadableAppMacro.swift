@@ -17,6 +17,7 @@ extension HotReloadableAppMacro: PeerMacro {
         #if HOT_RELOADING_ENABLED
             return [
                 """
+                @MainActor
                 var hotReloadingImportedEntryPoint: (@convention(c) (UnsafeRawPointer, Int) -> Any)? = nil
                 """,
                 """
@@ -31,6 +32,7 @@ extension HotReloadableAppMacro: PeerMacro {
                 }
                 """,
                 """
+                @MainActor
                 var hotReloadingHasConnectedToServer = false
                 """,
             ]
@@ -110,13 +112,15 @@ extension HotReloadableAppMacro: MemberMacro {
                             do {
                                 var client = try await HotReloadingClient()
                                 print("Hot reloading: received new dylib")
-                                try await client.handlePackets { dylib in
-                                    guard let symbol = dylib.symbol(named: "body", ofType: (@convention(c) (UnsafeRawPointer, Int) -> Any).self) else {
-                                        print("Hot reloading: Missing 'body' symbol")
-                                        return
+                                try await client.handlePackets { @Sendable dylib in
+                                    Task { @MainActor in
+                                        guard let symbol = dylib.symbol(named: "body", ofType: (@convention(c) (UnsafeRawPointer, Int) -> Any).self) else {
+                                            print("Hot reloading: Missing 'body' symbol")
+                                            return
+                                        }
+                                        hotReloadingImportedEntryPoint = symbol
+                                        _forceRefresh()
                                     }
-                                    hotReloadingImportedEntryPoint = symbol
-                                    _forceRefresh()
                                 }
                             } catch {
                                 print("Hot reloading: \\(error)")
