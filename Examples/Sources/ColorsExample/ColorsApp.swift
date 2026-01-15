@@ -18,15 +18,28 @@ struct ColorsApp: App {
 
                     ScrollView(.horizontal) {
                         VStack(spacing: 5) {
+                            let colors: [Color.Adaptive] = [
+                                .blue,
+                                .brown,
+                                .gray,
+                                .green,
+                                .orange,
+                                .purple,
+                                .red,
+                                .yellow,
+                            ]
+
                             let colorStack = HStack(spacing: 5) {
-                                Color.system(.blue).aspectRatio(1, contentMode: .fill)
-                                Color.system(.brown).aspectRatio(1, contentMode: .fill)
-                                Color.system(.gray).aspectRatio(1, contentMode: .fill)
-                                Color.system(.green).aspectRatio(1, contentMode: .fill)
-                                Color.system(.orange).aspectRatio(1, contentMode: .fill)
-                                Color.system(.purple).aspectRatio(1, contentMode: .fill)
-                                Color.system(.red).aspectRatio(1, contentMode: .fill)
-                                Color.system(.yellow).aspectRatio(1, contentMode: .fill)
+                                ForEach(colors, id: \.self) { color in
+                                    VStack {
+                                        Color.system(color)
+                                            .aspectRatio(1, contentMode: .fill)
+
+                                        #if os(tvOS)
+                                            Button("focus this") {}
+                                        #endif
+                                    }
+                                }
                             }
 
                             colorStack.preferredColorScheme(.dark)

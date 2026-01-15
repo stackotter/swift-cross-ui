@@ -1907,6 +1907,7 @@ public final class WinUIBackend: AppBackend {
 }
 
 extension EnvironmentValues {
+    @MainActor
     var winUIForegroundBrush: WinUI.Brush {
         let brush = SolidColorBrush()
         brush.color = suggestedForegroundColor.resolve(in: self).uwpColor
