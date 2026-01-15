@@ -18,7 +18,7 @@ struct ColorsApp: App {
 
                     ScrollView(.horizontal) {
                         VStack(spacing: 5) {
-                            let colors: [Color.Adaptive] = [
+                            let colors: [Color.SystemAdaptive] = [
                                 .blue,
                                 .brown,
                                 .gray,

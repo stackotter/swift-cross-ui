@@ -37,12 +37,10 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
 
     var textEditorBackground: Color {
-        switch colorScheme {
-            case .light:
-                Color(0.8, 0.8, 0.8)
-            case .dark:
-                Color(0.18, 0.18, 0.18)
-        }
+        Color.adaptive(
+            light: Color(red: 0.8, green: 0.8, blue: 0.8),
+            dark: Color(red: 0.18, green: 0.18, blue: 0.18)
+        )
     }
 
     @State var notes: [Note] = [

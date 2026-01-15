@@ -227,7 +227,7 @@ public protocol AppBackend: Sendable {
     ///
     /// The default implementation uses Apple's adaptive colors.
     func resolveAdaptiveColor(
-        _ color: Color.Adaptive,
+        _ adaptiveColor: Color.SystemAdaptive,
         in environment: EnvironmentValues
     ) -> Color.Resolved
 
@@ -859,10 +859,21 @@ extension AppBackend {
     }
 
     public func resolveAdaptiveColor(
-        _ color: Color.Adaptive,
+        _ adaptiveColor: Color.SystemAdaptive,
         in environment: EnvironmentValues
     ) -> Color.Resolved {
-        Color(representation: .scuiAdaptive(color)).resolve(in: environment)
+        let color: Color = switch adaptiveColor {
+            case .blue: .blue
+            case .brown: .brown
+            case .gray: .gray
+            case .green: .green
+            case .orange: .orange
+            case .purple: .purple
+            case .red: .red
+            case .yellow: .yellow
+        }
+
+        return color.resolve(in: environment)
     }
 
     public func tag(widget: Widget, as tag: String) {
