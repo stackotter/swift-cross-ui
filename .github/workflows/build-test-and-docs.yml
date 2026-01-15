@@ -73,10 +73,10 @@ jobs:
           - TV
           - Vision
     steps:
-    - name: Setup Xcode 16.3 (Swift 6.1)
+    - name: Setup Xcode 16.4 (Swift 6.1.2)
       uses: maxim-lobanov/setup-xcode@v1.6.0
       with:
-        xcode-version: '16.3'
+        xcode-version: '16.4'
 
     - name: Swift version
       run: swift --version
@@ -143,10 +143,10 @@ jobs:
   uikit-catalyst:
     runs-on: macos-15
     steps:
-    - name: Setup Xcode 16.3 (Swift 6.1)
+    - name: Setup Xcode 16.4 (Swift 6.1)
       uses: maxim-lobanov/setup-xcode@v1.6.0
       with:
-        xcode-version: '16.3'
+        xcode-version: '16.4'
 
     - name: Swift version
       run: swift --version
