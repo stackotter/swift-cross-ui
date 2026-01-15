@@ -42,8 +42,8 @@ struct ColorsApp: App {
                                 }
                             }
 
-                            colorStack.preferredColorScheme(.dark)
-                            colorStack.preferredColorScheme(.light)
+                            colorStack.colorScheme(.dark)
+                            colorStack.colorScheme(.light)
                             colorStack
                         }
                     }
