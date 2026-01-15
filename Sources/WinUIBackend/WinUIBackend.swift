@@ -146,7 +146,7 @@ public final class WinUIBackend: AppBackend {
             //   let pv: __ABI_Windows_Foundation.IPropertyValue = try! iinspectable.QueryInterface()
             //   let value = try! pv.GetDoubleImpl()
 
-            self.measurementTextBlock = self.createTextView() as! TextBlock
+            self.measurementTextBlock = (self.createTextView() as! TextBlock)
 
             callback()
         }

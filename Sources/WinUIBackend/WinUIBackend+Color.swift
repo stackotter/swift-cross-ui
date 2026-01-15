@@ -41,25 +41,22 @@ extension WinUIBackend {
     }
 }
 
-extension SwiftCrossUI.Color {
+extension SwiftCrossUI.Color.Resolved {
     var uwpColor: UWP.Color {
-        switch representation {
-            case .rgb(let red, let green, let blue):
-                UWP.Color(
-                    a: UInt8((opacity * Float(UInt8.max)).rounded()),
-                    r: UInt8((red * Float(UInt8.max)).rounded()),
-                    g: UInt8((green * Float(UInt8.max)).rounded()),
-                    b: UInt8((blue * Float(UInt8.max)).rounded())
-                )
-        }
+        UWP.Color(
+            a: UInt8((opacity * Float(UInt8.max)).rounded()),
+            r: UInt8((red * Float(UInt8.max)).rounded()),
+            g: UInt8((green * Float(UInt8.max)).rounded()),
+            b: UInt8((blue * Float(UInt8.max)).rounded())
+        )
     }
 
     init(uwpColor: UWP.Color) {
         self.init(
-            Float(uwpColor.r) / Float(UInt8.max),
-            Float(uwpColor.g) / Float(UInt8.max),
-            Float(uwpColor.b) / Float(UInt8.max),
-            Float(uwpColor.a) / Float(UInt8.max)
+            red: Float(uwpColor.r) / Float(UInt8.max),
+            green: Float(uwpColor.g) / Float(UInt8.max),
+            blue: Float(uwpColor.b) / Float(UInt8.max),
+            opacity: Float(uwpColor.a) / Float(UInt8.max)
         )
     }
 }
