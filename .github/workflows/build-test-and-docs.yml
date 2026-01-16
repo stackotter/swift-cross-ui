@@ -333,6 +333,9 @@ jobs:
     needs: [macos, uikit, windows, linux]
     if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
 
+    permissions:
+      contents: write
+
     steps:
     - name: Setup Xcode version
       uses: maxim-lobanov/setup-xcode@v1.6.0
