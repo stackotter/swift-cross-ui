@@ -55,31 +55,7 @@ extension UIKitBackend {
         setPresentationDragIndicatorVisibility(
             of: sheet, to: dragIndicatorVisibility, detents: detents)
 
-        let defaultColor: UIColor?
-        #if targetEnvironment(macCatalyst)
-            defaultColor = nil
-        #else
-            // These values were obtained by measuring the colors on my Mac, so they
-            // are likely not completely accurate (these are just how they appeared
-            // in my Mac's color space).
-            switch environment.colorScheme {
-                case .light:
-                    defaultColor = UIColor(
-                        red: 1, green: 1, blue: 1, alpha: 1
-                    )
-                case .dark:
-                    #if os(tvOS)
-                        defaultColor = UIColor(
-                            red: 15 / 255, green: 15 / 255, blue: 15 / 255, alpha: 1
-                        )
-                    #else
-                        defaultColor = UIColor(
-                            red: 28 / 255, green: 28 / 255, blue: 30 / 255, alpha: 1
-                        )
-                    #endif
-            }
-        #endif
-        sheet.view.backgroundColor = backgroundColor?.uiColor ?? defaultColor
+        sheet.view.backgroundColor = backgroundColor?.uiColor ?? .systemBackground
 
         // From the UIKit docs for isModalInPresentation:
         //   When you set it to true, UIKit ignores events outside the view controller’s

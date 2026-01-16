@@ -93,8 +93,8 @@ extension Color {
     /// This uses the same colors on all platforms. To use colors tailored for
     /// each platform, use ``system(_:)`` instead.
     public static let red = Color.adaptive(
-        light: Color(red: 1.0, green: 0.839, blue: 0.0),
-        dark: Color(red: 1.0, green: 0.8, blue: 0.0)
+        light: Color(red: 1.0, green: 0.219, blue: 0.235),
+        dark: Color(red: 1.0, green: 0.259, blue: 0.271)
     )
 
     /// An adaptive yellow color.
@@ -102,7 +102,7 @@ extension Color {
     /// This uses the same colors on all platforms. To use colors tailored for
     /// each platform, use ``system(_:)`` instead.
     public static let yellow = Color.adaptive(
-        light: Color(red: 1.0, green: 0.219, blue: 0.235),
-        dark: Color(red: 1.0, green: 0.259, blue: 0.271)
+        light: Color(red: 1.0, green: 0.839, blue: 0.0),
+        dark: Color(red: 1.0, green: 0.8, blue: 0.0)
     )
 }
