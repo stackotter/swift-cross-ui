@@ -27,6 +27,17 @@ extension UIKitBackend {
 }
 
 extension Color.Resolved {
+    init(_ uiColor: UIColor) {
+        let ciColor = CIColor(color: uiColor)
+
+        self.init(
+            red: Float(ciColor.red),
+            green: Float(ciColor.green),
+            blue: Float(ciColor.blue),
+            opacity: Float(ciColor.alpha)
+        )
+    }
+
     var uiColor: UIColor {
         UIColor(
             red: CGFloat(red),
