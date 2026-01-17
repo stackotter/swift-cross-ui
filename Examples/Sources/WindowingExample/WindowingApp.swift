@@ -89,7 +89,7 @@ struct SheetDemo: View {
         } content: {
             SheetBody()
                 .presentationDetents([.height(250), .medium, .large])
-                .presentationBackground(.green)
+                .presentationBackground(.system(.green))
         }
         .sheet(isPresented: $isEphemeralSheetPresented) {
             ephemeralSheetDismissalTask?.cancel()
@@ -98,7 +98,7 @@ struct SheetDemo: View {
                 .padding(20)
                 .presentationDetents([.medium])
                 .presentationCornerRadius(10)
-                .presentationBackground(.red)
+                .presentationBackground(.system(.red))
         }
     }
 
