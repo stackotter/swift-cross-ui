@@ -81,7 +81,9 @@ extension UIKitBackend {
             window = UIWindow()
         }
 
+        #if !os(tvOS)
         window.backgroundColor = .systemBackground
+        #endif
 
         window.rootViewController = RootViewController(backend: self)
         return window
