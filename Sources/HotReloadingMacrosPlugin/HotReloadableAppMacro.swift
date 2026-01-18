@@ -17,9 +17,11 @@ extension HotReloadableAppMacro: PeerMacro {
         #if HOT_RELOADING_ENABLED
             return [
                 """
+                @MainActor
                 var hotReloadingImportedEntryPoint: (@convention(c) (UnsafeRawPointer, Int) -> Any)? = nil
                 """,
                 """
+                @MainActor
                 @_cdecl("body")
                 public func hotReloadingExportedEntryPoint(app: UnsafeRawPointer, viewId: Int) -> Any {
                     hotReloadingHasConnectedToServer = true
@@ -30,6 +32,7 @@ extension HotReloadableAppMacro: PeerMacro {
                 }
                 """,
                 """
+                @MainActor
                 var hotReloadingHasConnectedToServer = false
                 """,
             ]
@@ -62,6 +65,7 @@ extension HotReloadableAppMacro: MemberMacro {
     public static func expansion(
         of node: AttributeSyntax,
         providingMembersOf declaration: some DeclSyntaxProtocol,
+        conformingTo protocols: [TypeSyntax],
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         guard let structDecl = Decl(declaration).asStruct else {
@@ -104,17 +108,19 @@ extension HotReloadableAppMacro: MemberMacro {
 
                     if !hotReloadingHasConnectedToServer {
                         hotReloadingHasConnectedToServer = true
-                        Task { @MainActor
+                        Task { @MainActor in
                             do {
                                 var client = try await HotReloadingClient()
                                 print("Hot reloading: received new dylib")
-                                try await client.handlePackets { dylib in
-                                    guard let symbol = dylib.symbol(named: "body", ofType: (@convention(c) (UnsafeRawPointer, Int) -> Any).self) else {
-                                        print("Hot reloading: Missing 'body' symbol")
-                                        return
+                                try await client.handlePackets { @Sendable dylib in
+                                    Task { @MainActor in
+                                        guard let symbol = dylib.symbol(named: "body", ofType: (@convention(c) (UnsafeRawPointer, Int) -> Any).self) else {
+                                            print("Hot reloading: Missing 'body' symbol")
+                                            return
+                                        }
+                                        hotReloadingImportedEntryPoint = symbol
+                                        _forceRefresh()
                                     }
-                                    hotReloadingImportedEntryPoint = symbol
-                                    _forceRefresh()
                                 }
                             } catch {
                                 print("Hot reloading: \\(error)")

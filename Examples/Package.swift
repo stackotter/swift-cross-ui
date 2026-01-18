@@ -3,26 +3,35 @@
 import Foundation
 import PackageDescription
 
-let exampleDependencies: [Target.Dependency] = [
+var exampleDependencies: [Target.Dependency] = [
     .product(name: "SwiftCrossUI", package: "swift-cross-ui"),
     .product(name: "DefaultBackend", package: "swift-cross-ui"),
-    .product(
-        name: "SwiftBundlerRuntime",
-        package: "swift-bundler",
-        condition: .when(platforms: [.macOS, .linux])
-    ),
 ]
+var hotReloadingDependencies: [Package.Dependency] = []
+
+// The Swift Bundler runtime requires Swift >=6.0
+#if compiler(>=6.0)
+    hotReloadingDependencies = [
+        .package(
+            url: "https://github.com/moreSwift/swift-bundler",
+            revision: "5d2ecbc11df78e56afeab0621c43d8e898dae98e"
+        )
+    ]
+    exampleDependencies.append(
+        .product(
+            name: "SwiftBundlerRuntime",
+            package: "swift-bundler",
+            condition: .when(platforms: [.macOS, .linux])
+        )
+    )
+#endif
 
 let package = Package(
     name: "Examples",
     platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .macCatalyst(.v13)],
     dependencies: [
         .package(name: "swift-cross-ui", path: ".."),
-        .package(
-            url: "https://github.com/stackotter/swift-bundler",
-            revision: "d42d7ffda684cfed9edcfd3581b8127f1dc55c2e"
-        ),
-    ],
+    ] + hotReloadingDependencies,
     targets: [
         .executableTarget(
             name: "ControlsExample",
