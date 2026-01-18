@@ -131,6 +131,17 @@ extension UIKitBackend {
         window.makeKeyAndVisible()
     }
 
+    public func close(window: Window) {
+        print("UIKitBackend: ignoring \(#function) call")
+    }
+
+    public func setCloseHandler(
+        ofWindow window: Window,
+        to action: @escaping () -> Void
+    ) {
+        print("UIKitBackend: ignoring \(#function) call")
+    }
+
     public func isWindowProgrammaticallyResizable(_ window: Window) -> Bool {
         #if os(visionOS)
             true

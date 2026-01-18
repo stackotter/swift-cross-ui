@@ -84,16 +84,10 @@ open class Window: Widget {
 
     public func present() {
         gtk_window_present(castedPointer())
+    }
 
-        addSignal(name: "close-request") { [weak self] () in
-            guard let self else { return }
-            self.onCloseRequest?(self)
-        }
-
-        addSignal(name: "destroy") { [weak self] () in
-            guard let self else { return }
-            self.onDestroy?(self)
-        }
+    public func close() {
+        gtk_window_close(castedPointer())
     }
 
     public func setEscapeKeyPressedHandler(to handler: (() -> Void)?) {
@@ -112,8 +106,24 @@ open class Window: Widget {
 
     private var escapeKeyEventController: EventControllerKey?
 
-    public var onCloseRequest: ((Window) -> Void)?
-    public var onDestroy: ((Window) -> Void)?
+    public var onCloseRequest: ((Window) -> Void)? {
+        didSet {
+            addSignal(name: "close-request") { [weak self] () in
+                guard let self else { return }
+                self.onCloseRequest?(self)
+            }
+        }
+    }
+
+    public var onDestroy: ((Window) -> Void)? {
+        didSet {
+            addSignal(name: "destroy") { [weak self] () in
+                guard let self else { return }
+                self.onDestroy?(self)
+            }
+        }
+    }
+
     public var escapeKeyPressed: (() -> Void)?
 }
 
