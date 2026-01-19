@@ -1,4 +1,4 @@
-// swift-tools-version:5.10
+// swift-tools-version:6.1
 
 import CompilerPluginSupport
 import Foundation
@@ -82,6 +82,7 @@ let package = Package(
         .library(name: "WinUIBackend", type: libraryType, targets: ["WinUIBackend"]),
         .library(name: "DefaultBackend", type: libraryType, targets: ["DefaultBackend"]),
         .library(name: "UIKitBackend", type: libraryType, targets: ["UIKitBackend"]),
+        .library(name: "AndroidBackend", type: libraryType, targets: ["AndroidBackend"]),
         .library(name: "Gtk", type: libraryType, targets: ["Gtk"]),
         .library(name: "Gtk3", type: libraryType, targets: ["Gtk3"]),
         .executable(name: "GtkExample", targets: ["GtkExample"]),
@@ -129,6 +130,10 @@ let package = Package(
         .package(
             url: "https://github.com/apple/swift-log.git",
             exact: "1.6.4"
+        ),
+        .package(
+            url: "https://github.com/moreSwift/AndroidKit",
+            revision: "5825000272d7f65d94b2a4c7bb65a76ce6c668e1"
         ),
         // .package(
         //     url: "https://github.com/stackotter/TermKit",
@@ -185,6 +190,10 @@ let package = Package(
                 .target(
                     name: "UIKitBackend",
                     condition: .when(platforms: [.iOS, .tvOS, .macCatalyst, .visionOS])
+                ),
+                .target(
+                    name: "AndroidBackend",
+                    condition: .when(platforms: [.android])
                 ),
             ]
         ),
@@ -288,6 +297,15 @@ let package = Package(
             swiftSettings: layoutPerformanceSwiftSettings
         ),
 
+        .target(
+            name: "AndroidBackend",
+            dependencies: [
+                "SwiftCrossUI",
+                "AndroidBackendShim",
+                "AndroidKit",
+            ]
+        ),
+        .target(name: "AndroidBackendShim"),
         // .target(
         //     name: "CursesBackend",
         //     dependencies: ["SwiftCrossUI", "TermKit"]

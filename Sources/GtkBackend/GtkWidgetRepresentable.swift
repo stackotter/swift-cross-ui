@@ -2,6 +2,7 @@ import Gtk
 import SwiftCrossUI
 
 /// The context associated with an instance of ``Representable``.
+@MainActor
 public struct GtkWidgetRepresentableContext<Representable: GtkWidgetRepresentable> {
     public let coordinator: Representable.Coordinator
     public internal(set) var environment: EnvironmentValues
@@ -217,7 +218,9 @@ final class RepresentingWidget<Representable: GtkWidgetRepresentable>: Gtk.Fixed
 
     deinit {
         if let context, let child {
-            Representable.dismantleGtkWidget(child, coordinator: context.coordinator)
+            Task { @MainActor in
+                Representable.dismantleGtkWidget(child, coordinator: context.coordinator)
+            }
         }
     }
 }

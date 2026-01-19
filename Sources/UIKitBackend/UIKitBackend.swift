@@ -146,7 +146,7 @@ public final class UIKitBackend: AppBackend {
         return environment
     }
 
-    public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
+    public func setRootEnvironmentChangeHandler(to action: @escaping @Sendable @MainActor () -> Void) {
         onTraitCollectionChange = action
         if timeZoneObserver == nil {
             timeZoneObserver = NotificationCenter.default.addObserver(

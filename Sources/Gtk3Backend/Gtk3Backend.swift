@@ -479,7 +479,7 @@ public final class Gtk3Backend: AppBackend {
         defaultEnvironment
     }
 
-    public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
+    public func setRootEnvironmentChangeHandler(to action: @escaping @Sendable @MainActor () -> Void) {
         // TODO: React to theme changes
     }
 
