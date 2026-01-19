@@ -161,7 +161,8 @@ let package = Package(
                 "Scenes/TupleScene.swift.gyb",
             ],
             swiftSettings: [
-                .enableUpcomingFeature("StrictConcurrency")
+                .enableUpcomingFeature("StrictConcurrency"),
+                .enableExperimentalFeature("Extern"),
             ]
         ),
         .testTarget(
