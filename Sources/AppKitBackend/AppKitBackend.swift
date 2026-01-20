@@ -430,6 +430,14 @@ public final class AppKitBackend: AppBackend {
         }
     }
 
+    public func persistData(_ data: Data, forKey key: String) {
+        UserDefaults.standard.set(data, forKey: key)
+    }
+
+    public func retrieveData(forKey key: String) -> Data? {
+        UserDefaults.standard.data(forKey: key)
+    }
+
     public func show(widget: Widget) {}
 
     public func createContainer() -> Widget {
