@@ -253,12 +253,12 @@ public protocol AppBackend: Sendable {
     func revealFile(_ url: URL) throws
 
     /// Persists some data to the disk, using the given key to identify it.
-    func persistData(_ data: Data, forKey key: String)
+    nonisolated func persistData(_ data: Data, forKey key: String)
 
     /// Retrieves some persisted data for the given key.
     ///
     /// Returns `nil` if there is no data for `key`.
-    func retrieveData(forKey key: String) -> Data?
+    nonisolated func retrieveData(forKey key: String) -> Data?
 
     /// Shows a widget after it has been created or updated (may be unnecessary
     /// for some backends). Predominantly used by ``ViewGraphNode`` after

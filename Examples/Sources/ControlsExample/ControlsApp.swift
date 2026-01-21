@@ -9,19 +9,19 @@ import SwiftCrossUI
 @main
 @HotReloadable
 struct ControlsApp: App {
-    @State var count = 0
-    @State var exampleButtonState = false
-    @State var exampleSwitchState = false
-    @State var exampleCheckboxState = false
-    @State var sliderValue = 5.0
-    @State var text = ""
-    @State var flavor: String? = nil
-    @State var enabled = true
-    @State var date = Date()
+    @AppStorage("count") var count = 0
+    @AppStorage("exampleButtonState") var exampleButtonState = false
+    @AppStorage("exampleSwitchState") var exampleSwitchState = false
+    @AppStorage("exampleCheckboxState") var exampleCheckboxState = false
+    @AppStorage("sliderValue") var sliderValue = 5.0
+    @AppStorage("text") var text = ""
+    @AppStorage("flavor") var flavor: String? = nil
+    @AppStorage("enabled") var enabled = true
+    @AppStorage("date") var date = Date()
     @State var datePickerStyle: DatePickerStyle? = .automatic
-    @State var menuToggleState = false
-    @State var progressViewSize: Int = 10
-    @State var isProgressViewResizable = true
+    @AppStorage("menuToggleState") var menuToggleState = false
+    @AppStorage("progressViewSize") var progressViewSize: Int = 10
+    @AppStorage("isProgressViewResizable") var isProgressViewResizable = true
 
     @Environment(\.supportedDatePickerStyles) var supportedDatePickerStyles: [DatePickerStyle]
 
