@@ -2,72 +2,9 @@ import Foundation
 
 private nonisolated(unsafe) var appStorageCache: [String: any Codable] = [:]
 
-private class AppStorageCache<Value: Codable> {
-    let key: String
-    let defaultValue: Value
-    var backend: (any AppBackend)?
-
-    init(key: String, defaultValue: Value, backend: (any AppBackend)? = nil) {
-        self.key = key
-        self.defaultValue = defaultValue
-        self.backend = backend
-    }
-
-    var value: Value {
-        get {
-            guard let backend else { fatalError("backend not yet set") }
-
-            guard let value = appStorageCache[key] else {
-                // check if it's encoded on disk
-                if let data = backend.retrieveData(forKey: key),
-                    let decoded = try? JSONDecoder().decode(Value.self, from: data)
-                {
-                    appStorageCache[key] = decoded
-                    return decoded
-                }
-
-                return defaultValue
-            }
-
-            guard let value = value as? Value else {
-                logger.warning(
-                    "'@AppStorage' property is of the wrong type; using default value",
-                    metadata: [
-                        "key": "\(key)",
-                        "providedType": "\(Value.self)",
-                        "actualType": "\(type(of: value))",
-                    ]
-                )
-                return defaultValue
-            }
-
-            return value
-        }
-
-        set {
-            guard let backend else { fatalError("backend not yet set") }
-
-            appStorageCache[key] = newValue
-
-            do {
-                let data = try JSONEncoder().encode(newValue)
-                backend.persistData(data, forKey: key)
-            } catch {
-                logger.warning(
-                    "failed to encode '@AppStorage' data",
-                    metadata: [
-                        "value": "\(newValue)",
-                        "error": "\(error)",
-                    ]
-                )
-            }
-        }
-    }
-}
-
 @propertyWrapper
 public struct AppStorage<Value: Codable>: ObservableProperty {
-    private class Storage {
+    class Storage {
         // This inner box is what stays constant between view updates. The
         // outer box (Storage) is used so that we can assign this box to
         // future state instances from the non-mutating
@@ -77,17 +14,68 @@ public struct AppStorage<Value: Codable>: ObservableProperty {
         var box: InnerBox
 
         class InnerBox {
+            let key: String
+            let defaultValue: Value
             let didChange = Publisher()
             var downstreamObservation: Cancellable?
-            var cache: AppStorageCache<Value>
-
-            var value: Value {
-                get { cache.value }
-                set { cache.value = newValue }
-            }
+            var backend: (any AppBackend)?
 
             init(key: String, defaultValue: Value) {
-                self.cache = AppStorageCache(key: key, defaultValue: defaultValue)
+                self.key = key
+                self.defaultValue = defaultValue
+            }
+
+            var value: Value {
+                get {
+                    // If this is the very first time we're reading from this key, it won't
+                    // be in the cache yet. In that case, we return the already-persisted value
+                    // if it exists, or the default value otherwise; either way, we add it to the
+                    // cache so subsequent accesses of `value` won't have to read from disk again.
+                    guard let cachedValue = appStorageCache[key] else {
+                        let value =
+                        if let data = backend?.retrieveData(forKey: key),
+                           let decoded = try? JSONDecoder().decode(Value.self, from: data)
+                        {
+                            decoded
+                        } else {
+                            defaultValue
+                        }
+
+                        appStorageCache[key] = value
+                        return value
+                    }
+
+                    // Make sure that we have the right type.
+                    guard let cachedValue = cachedValue as? Value else {
+                        logger.warning(
+                            "'@AppStorage' property is of the wrong type; using default value",
+                            metadata: [
+                                "key": "\(key)",
+                                "providedType": "\(Value.self)",
+                                "actualType": "\(type(of: cachedValue))",
+                            ]
+                        )
+                        return defaultValue
+                    }
+
+                    return cachedValue
+                }
+
+                set {
+                    appStorageCache[key] = newValue
+                    do {
+                        let data = try JSONEncoder().encode(newValue)
+                        backend?.persistData(data, forKey: key)
+                    } catch {
+                        logger.warning(
+                            "failed to encode '@AppStorage' data",
+                            metadata: [
+                                "value": "\(newValue)",
+                                "error": "\(error)",
+                            ]
+                        )
+                    }
+                }
             }
 
             /// Call this to publish an observation to all observers after
@@ -119,7 +107,7 @@ public struct AppStorage<Value: Codable>: ObservableProperty {
         }
     }
 
-    private let storage: Storage
+    let storage: Storage
     let defaultValue: Value
     let key: String
 
@@ -174,18 +162,8 @@ public struct AppStorage<Value: Codable>: ObservableProperty {
             storage.box = previousValue.storage.box
         }
 
-        if storage.box.cache.backend == nil {
-            storage.box.cache.backend = environment.backend
+        if storage.box.backend == nil {
+            storage.box.backend = environment.backend
         }
-    }
-
-    public func tryRestoreFromSnapshot(_ snapshot: Data) {
-        if let state = try? JSONDecoder().decode(Value.self, from: snapshot) {
-            storage.box.value = state
-        }
-    }
-
-    public func snapshot() throws -> Data? {
-        try JSONEncoder().encode(storage.box.value)
     }
 }

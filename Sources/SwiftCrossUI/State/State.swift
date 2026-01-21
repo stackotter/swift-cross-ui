@@ -5,7 +5,7 @@ import Foundation
 // - It supports ObservableObject
 // - It supports Optional<ObservableObject>
 @propertyWrapper
-public struct State<Value>: ObservableProperty {
+public struct State<Value>: SnapshottableProperty {
     class Storage {
         // This inner box is what stays constant between view updates. The
         // outer box (Storage) is used so that we can assign this box to
