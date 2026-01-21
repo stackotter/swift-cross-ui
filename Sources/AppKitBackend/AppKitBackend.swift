@@ -431,11 +431,13 @@ public final class AppKitBackend: AppBackend {
     }
 
     public func persistData(_ data: Data, forKey key: String) {
+        logger.debug("persisting \(data) to \(key)")
         UserDefaults.standard.set(data, forKey: key)
     }
 
     public func retrieveData(forKey key: String) -> Data? {
-        UserDefaults.standard.data(forKey: key)
+        logger.debug("reading from \(key)")
+        return UserDefaults.standard.data(forKey: key)
     }
 
     public func show(widget: Widget) {}

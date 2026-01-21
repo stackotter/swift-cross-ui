@@ -1,60 +1,74 @@
 import Foundation
 
 @propertyWrapper
-public struct AppStorage<Value: Codable>: ObservableProperty {
+public struct AppStorage<Value: Codable & Equatable>: ObservableProperty {
     class Storage {
-        var value: Value
-        var didChange = Publisher()
-        var downstreamObservation: Cancellable?
-        var backend: (any AppBackend)?
+        // This inner box is what stays constant between view updates. The
+        // outer box (Storage) is used so that we can assign this box to
+        // future state instances from the non-mutating
+        // `update(with:previousValue:)` method. It's vital that the inner
+        // box remains the same so that bindings can be stored across view
+        // updates.
+        var box: InnerBox
 
-        init(_ value: Value) {
-            self.value = value
+        class InnerBox {
+            var value: Value
+            let didChange = Publisher()
+            var downstreamObservation: Cancellable?
+            var backend: (any AppBackend)?
+
+            init(value: Value) {
+                self.value = value
+            }
+
+            /// Call this to publish an observation to all observers after
+            /// setting a new value. This isn't in a didSet property accessor
+            /// because we want more granular control over when it does and
+            /// doesn't trigger.
+            ///
+            /// Additionally updates the downstream observation if the
+            /// wrapped value is an Optional<some ObservableObject> and the
+            /// current case has toggled.
+            func postSet() {
+                // If the wrapped value is an Optional<some ObservableObject>
+                // then we need to observe/unobserve whenever the optional
+                // toggles between `.some` and `.none`.
+                if let value = value as? OptionalObservableObject {
+                    if let innerDidChange = value.didChange, downstreamObservation == nil {
+                        downstreamObservation = didChange.link(toUpstream: innerDidChange)
+                    } else if value.didChange == nil, let observation = downstreamObservation {
+                        observation.cancel()
+                        downstreamObservation = nil
+                    }
+                }
+                didChange.send()
+            }
         }
 
-        /// Call this to publish an observation to all observers after
-        /// setting a new value. This isn't in a didSet property accessor
-        /// because we want more granular control over when it does and
-        /// doesn't trigger.
-        ///
-        /// Additionally updates the downstream observation if the
-        /// wrapped value is an Optional<some ObservableObject> and the
-        /// current case has toggled.
-        func postSet() {
-            // If the wrapped value is an Optional<some ObservableObject>
-            // then we need to observe/unobserve whenever the optional
-            // toggles between `.some` and `.none`.
-            if let value = value as? OptionalObservableObject {
-                if let innerDidChange = value.didChange, downstreamObservation == nil {
-                    downstreamObservation = didChange.link(toUpstream: innerDidChange)
-                } else if value.didChange == nil, let observation = downstreamObservation {
-                    observation.cancel()
-                    downstreamObservation = nil
-                }
-            }
-            didChange.send()
+        init(_ value: Value) {
+            self.box = InnerBox(value: value)
         }
     }
 
-    var storage: Storage
+    let storage: Storage
     let defaultValue: Value
     let key: String
 
     public var didChange: Publisher {
-        storage.didChange
+        storage.box.didChange
     }
 
     public var wrappedValue: Value {
         get {
-            storage.value
+            storage.box.value
         }
         nonmutating set {
-            storage.value = newValue
-            if let data = try? JSONEncoder().encode(newValue) {
-                storage.backend?.persistData(data, forKey: key)
+            if storage.box.value != newValue, let data = try? JSONEncoder().encode(newValue) {
+                storage.box.backend?.persistData(data, forKey: key)
             }
 
-            storage.postSet()
+            storage.box.value = newValue
+            storage.box.postSet()
         }
     }
 
@@ -76,42 +90,49 @@ public struct AppStorage<Value: Codable>: ObservableProperty {
         if Value.self is ObservableObject.Type,
             let defaultValue = defaultValue as? ObservableObject
         {
-            storage.downstreamObservation = didChange.link(toUpstream: defaultValue.didChange)
+            storage.box.downstreamObservation = didChange.link(toUpstream: defaultValue.didChange)
         } else if let defaultValue = defaultValue as? OptionalObservableObject,
             let innerDidChange = defaultValue.didChange
         {
             // If we have an Optional<some ObservableObject>.some, then observe its
             // inner value's publisher.
-            storage.downstreamObservation = didChange.link(toUpstream: innerDidChange)
+            storage.box.downstreamObservation = didChange.link(toUpstream: innerDidChange)
         }
     }
 
-    public init<T: Codable>(_ key: String) where Value == T? {
+    public init<T>(_ key: String) where Value == T? {
         self.init(wrappedValue: nil, key)
     }
 
     public func update(with environment: EnvironmentValues, previousValue: AppStorage<Value>?) {
-        storage.backend = environment.backend
+        if let previousValue {
+            storage.box = previousValue.storage.box
+        }
 
-        storage.value =
-            if let data = storage.backend!.retrieveData(forKey: key),
-               let decoded = try? JSONDecoder().decode(Value.self, from: data)
-            {
-                decoded
-            } else {
-                defaultValue
-            }
-        storage.postSet()
+        // if we haven't set the backend yet, this is the first update
+        if storage.box.backend == nil {
+            storage.box.backend = environment.backend
+
+            storage.box.value =
+                if let data = storage.box.backend!.retrieveData(forKey: key),
+                    let decoded = try? JSONDecoder().decode(Value.self, from: data)
+                {
+                    decoded
+                } else {
+                    defaultValue
+                }
+            storage.box.postSet()
+        }
     }
 
     public func tryRestoreFromSnapshot(_ snapshot: Data) {
         guard let state = try? JSONDecoder().decode(Value.self, from: snapshot) else {
             return
         }
-        storage.value = state
+        storage.box.value = state
     }
 
     public func snapshot() throws -> Data? {
-        try JSONEncoder().encode(storage.value)
+        try JSONEncoder().encode(storage.box.value)
     }
 }

@@ -483,6 +483,15 @@ public final class GtkBackend: AppBackend {
         }
     }
 
+    public func persistData(_ data: Data, forKey key: String) {
+        logger.warning("\(#function) not implemented")
+    }
+
+    public func retrieveData(forKey key: String) -> Data? {
+        logger.warning("\(#function) not implemented")
+        return nil
+    }
+
     public func show(widget: Widget) {
         widget.show()
     }

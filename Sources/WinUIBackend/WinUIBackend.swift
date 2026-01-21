@@ -381,6 +381,15 @@ public final class WinUIBackend: AppBackend {
         logger.warning("\(#function) not implemented")
     }
 
+    public func persistData(_ data: Data, forKey key: String) {
+        logger.warning("\(#function) not implemented")
+    }
+
+    public func retrieveData(forKey key: String) -> Data? {
+        logger.warning("\(#function) not implemented")
+        return nil
+    }
+
     public func createContainer() -> Widget {
         Canvas()
     }
