@@ -509,12 +509,19 @@ public final class Gtk3Backend: AppBackend {
     }
 
     public func persistData(_ data: Data, forKey key: String) {
-        logger.warning("\(#function) not implemented")
+        // NB: GSettings requires you to provide a schema ahead of time, and you
+        // can't create one programmatically. UserDefaults works cross-platform,
+        // so we just use that instead.
+        //
+        // On Linux and Windows, UserDefaults doesn't automatically synchronize
+        // to disk, so we need to do that ourselves.
+        // https://github.com/swiftlang/swift-corelibs-foundation/issues/4837
+        UserDefaults.standard.set(data, forKey: key)
+        UserDefaults.standard.synchronize()
     }
 
     public func retrieveData(forKey key: String) -> Data? {
-        logger.warning("\(#function) not implemented")
-        return nil
+        UserDefaults.standard.data(forKey: key)
     }
 
     public func show(widget: Widget) {
