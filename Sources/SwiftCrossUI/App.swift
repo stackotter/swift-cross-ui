@@ -33,6 +33,10 @@ public protocol App {
     /// The application's backend.
     var backend: Backend { get }
 
+    /// The application's app storage provider, used for persisting ``AppStorage``
+    /// data to disk.
+    var appStorageProvider: any AppStorageProvider { get }
+
     /// The content of the app.
     @SceneBuilder var body: Body { get }
 
@@ -113,6 +117,14 @@ extension App {
         metadataProvider: Logger.MetadataProvider?
     ) -> any LogHandler {
         StreamLogHandler.standardError(label: label)
+    }
+
+    /// The default app storage provider for apps which don't specify a
+    /// custom one.
+    ///
+    /// This uses `UserDefaults` on all platforms.
+    var appStorageProvider: any AppStorageProvider {
+        UserDefaultsAppStorageProvider()
     }
 
     /// Runs the application.

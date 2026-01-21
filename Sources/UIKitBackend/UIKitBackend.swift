@@ -186,14 +186,6 @@ public final class UIKitBackend: AppBackend {
     public func openExternalURL(_ url: URL) throws {
         UIApplication.shared.open(url)
     }
-
-    public func persistData(_ data: Data, forKey key: String) {
-        UserDefaults.standard.set(data, forKey: key)
-    }
-
-    public func retrieveData(forKey key: String) -> Data? {
-        return UserDefaults.standard.data(forKey: key)
-    }
 }
 
 extension App {

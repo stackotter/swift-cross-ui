@@ -381,22 +381,6 @@ public final class WinUIBackend: AppBackend {
         logger.warning("\(#function) not implemented")
     }
 
-    public func persistData(_ data: Data, forKey key: String) {
-        // NB: GSettings requires you to provide a schema ahead of time, and you
-        // can't create one programmatically. UserDefaults works cross-platform,
-        // so we just use that instead.
-        //
-        // On Linux and Windows, UserDefaults doesn't automatically synchronize
-        // to disk, so we need to do that ourselves.
-        // https://github.com/swiftlang/swift-corelibs-foundation/issues/4837
-        UserDefaults.standard.set(data, forKey: key)
-        UserDefaults.standard.synchronize()
-    }
-
-    public func retrieveData(forKey key: String) -> Data? {
-        UserDefaults.standard.data(forKey: key)
-    }
-
     public func createContainer() -> Widget {
         Canvas()
     }

@@ -104,6 +104,9 @@ public struct EnvironmentValues {
     /// The menu ordering to use.
     public var menuOrder: MenuOrder
 
+    /// The app storage provider to use for `@AppStorage` property wrappers.
+    public let appStorageProvider: any AppStorageProvider
+
     /// Backing storage for extensible subscript
     private var extraValues: [ObjectIdentifier: Any]
 
@@ -145,7 +148,7 @@ public struct EnvironmentValues {
     /// exposed to users.
     package var sheet: Any?
     /// The backend in use. Mustn't change throughout the app's lifecycle.
-    let backend: any AppBackend
+    public let backend: any AppBackend
 
     /// Presents an 'Open file' dialog fit for selecting a single file. Some
     /// backends only allow selecting either files or directories but not both
@@ -223,8 +226,9 @@ public struct EnvironmentValues {
     public let supportedDatePickerStyles: [DatePickerStyle]
 
     /// Creates the default environment.
-    package init<Backend: AppBackend>(backend: Backend) {
+    init<Backend: AppBackend>(backend: Backend, appStorageProvider: AppStorageProvider) {
         self.backend = backend
+        self.appStorageProvider = appStorageProvider
 
         onResize = { _ in }
         layoutOrientation = .vertical

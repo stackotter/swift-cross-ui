@@ -18,7 +18,7 @@ public struct AppStorage<Value: Codable>: ObservableProperty {
             let defaultValue: Value
             let didChange = Publisher()
             var downstreamObservation: Cancellable?
-            var backend: (any AppBackend)?
+            var provider: (any AppStorageProvider)?
 
             init(key: String, defaultValue: Value) {
                 self.key = key
@@ -33,14 +33,7 @@ public struct AppStorage<Value: Codable>: ObservableProperty {
                     // cache so subsequent accesses of `value` won't have to read from disk again.
                     guard let cachedValue = appStorageCache[key] else {
                         let value =
-                        if let data = backend?.retrieveData(forKey: key),
-                           let decoded = try? JSONDecoder().decode(Value.self, from: data)
-                        {
-                            decoded
-                        } else {
-                            defaultValue
-                        }
-
+                            provider?.retrieve(type: Value.self, forKey: key) ?? defaultValue
                         appStorageCache[key] = value
                         return value
                     }
@@ -64,8 +57,7 @@ public struct AppStorage<Value: Codable>: ObservableProperty {
                 set {
                     appStorageCache[key] = newValue
                     do {
-                        let data = try JSONEncoder().encode(newValue)
-                        backend?.persistData(data, forKey: key)
+                        try provider?.persist(value: newValue, forKey: key)
                     } catch {
                         logger.warning(
                             "failed to encode '@AppStorage' data",
@@ -161,9 +153,6 @@ public struct AppStorage<Value: Codable>: ObservableProperty {
         if let previousValue {
             storage.box = previousValue.storage.box
         }
-
-        if storage.box.backend == nil {
-            storage.box.backend = environment.backend
-        }
+        storage.box.provider = environment.appStorageProvider
     }
 }
