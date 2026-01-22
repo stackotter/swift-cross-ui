@@ -3,7 +3,7 @@
 class Box<V> {
     var value: V
 
-    init(value: V) {
+    init(_ value: V) {
         self.value = value
     }
 }

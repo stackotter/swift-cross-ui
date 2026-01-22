@@ -61,6 +61,6 @@ public struct Environment<Value>: DynamicProperty {
 
     public init(_ keyPath: KeyPath<EnvironmentValues, Value>) {
         self.keyPath = keyPath
-        value = Box(value: nil)
+        value = Box(nil)
     }
 }
