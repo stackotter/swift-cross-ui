@@ -123,7 +123,7 @@ extension App {
     /// custom one.
     ///
     /// This uses `UserDefaults` on all platforms.
-    var appStorageProvider: any AppStorageProvider {
+    public var appStorageProvider: any AppStorageProvider {
         UserDefaultsAppStorageProvider()
     }
 

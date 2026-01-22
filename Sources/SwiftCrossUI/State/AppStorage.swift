@@ -57,6 +57,7 @@ public struct AppStorage<Value: Codable>: ObservableProperty {
                 set {
                     appStorageCache[key] = newValue
                     do {
+                        // TODO: Add some debouncing here
                         try provider?.persist(value: newValue, forKey: key)
                     } catch {
                         logger.warning(
@@ -155,4 +156,21 @@ public struct AppStorage<Value: Codable>: ObservableProperty {
         }
         storage.box.provider = environment.appStorageProvider
     }
+}
+
+// MARK: - AppStorageKey
+
+extension AppStorage {
+    public init<Key: AppStorageKey<Value>>(_: Key.Type) {
+        self.init(wrappedValue: Key.defaultValue, Key.name)
+    }
+}
+
+public protocol AppStorageKey<Value> {
+    associatedtype Value: Codable
+
+    /// The name to use when persisting the key.
+    static var name: String { get }
+    /// The default value for the key.
+    static var defaultValue: Value { get }
 }

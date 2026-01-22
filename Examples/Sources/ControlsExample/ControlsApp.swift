@@ -13,7 +13,7 @@ struct ControlsApp: App {
     @State var exampleButtonState = false
     @State var exampleSwitchState = false
     @State var exampleCheckboxState = false
-    @AppStorage("sliderValue") var sliderValue = 5.0
+    @State var sliderValue = 5.0
     @State var text = ""
     @State var flavor: String? = nil
     @State var enabled = true
@@ -23,7 +23,7 @@ struct ControlsApp: App {
     @State var progressViewSize: Int = 10
     @State var isProgressViewResizable = true
 
-    @Environment(\.supportedDatePickerStyles) var supportedDatePickerStyles: [DatePickerStyle]
+    @Environment(\.supportedDatePickerStyles) var supportedDatePickerStyles
 
     var body: some Scene {
         WindowGroup("ControlsApp") {
@@ -31,7 +31,7 @@ struct ControlsApp: App {
                 ScrollView {
                     VStack(spacing: 30) {
                         VStack {
-                            Text("Button")
+                            Text("Button (persisted)")
                             Button("Click me!") {
                                 count += 1
                             }
