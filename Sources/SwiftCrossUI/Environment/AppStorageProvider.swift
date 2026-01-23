@@ -1,7 +1,7 @@
 import Foundation
 
 /// A type that can be used to persist ``AppStorage`` values to disk.
-public protocol AppStorageProvider {
+public protocol AppStorageProvider: Sendable {
     /// Persists the given value.
     ///
     /// - Parameters:
