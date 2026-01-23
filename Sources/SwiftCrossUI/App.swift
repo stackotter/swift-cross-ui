@@ -1,18 +1,21 @@
 import Foundation
 import Logging
+import Mutex
 
 /// Backing storage for `logger`.
-nonisolated(unsafe) private var _logger: Logger?
+private let _logger: Mutex<Logger?> = Mutex(nil)
 
 /// The global logger.
 package var logger: Logger {
-    guard let _logger else {
-        let logger = Logger(label: "TestLogger")
-        logger.trace("logger used before initialization")
-        _logger = logger
-        return logger
+    _logger.withLock { _logger in
+        guard let _logger else {
+            let logger = Logger(label: "TestLogger")
+            logger.trace("logger used before initialization")
+            _logger = logger
+            return logger
+        }
+        return _logger
     }
-    return _logger
 }
 
 /// An application.
@@ -147,10 +150,12 @@ extension App {
             swiftBundlerAppMetadata = try extractSwiftBundlerMetadata()
         }
 
-        _logger = Logger(label: "SwiftCrossUI", factory: logHandler(label:metadataProvider:))
-        #if DEBUG
-            _logger!.logLevel = .debug
-        #endif
+        _logger.withLock {
+            $0 = Logger(label: "SwiftCrossUI", factory: logHandler(label:metadataProvider:))
+            #if DEBUG
+                $0!.logLevel = .debug
+            #endif
+        }
 
         // Check for an error once the logger is ready.
         if case .failure(let error) = result {

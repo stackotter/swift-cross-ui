@@ -1,14 +1,14 @@
 import Dispatch
 import Foundation
+import Mutex
 
-// FIXME: Make this concurrency-safe
-private nonisolated(unsafe) var appStorageCache: [String: any Codable] = [:]
+private let appStorageCache: Mutex<[String: any Codable & Sendable]> = Mutex([:])
 
 /// The debounce timeout for persisting to disk, in seconds.
 private let persistDebounceTimeout: Double = 0.5
 
 @propertyWrapper
-public struct AppStorage<Value: Codable>: ObservableProperty {
+public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
     private final class Storage {
         let key: String
         let defaultValue: Value
@@ -28,10 +28,10 @@ public struct AppStorage<Value: Codable>: ObservableProperty {
                 // be in the cache yet. In that case, we return the already-persisted value
                 // if it exists, or the default value otherwise; either way, we add it to the
                 // cache so subsequent accesses of `value` won't have to read from disk again.
-                guard let cachedValue = appStorageCache[key] else {
+                guard let cachedValue = appStorageCache.withLock({ $0[key] }) else {
                     let value =
                         provider?.retrieve(type: Value.self, forKey: key) ?? defaultValue
-                    appStorageCache[key] = value
+                    appStorageCache.withLock { $0[key] = value }
                     return value
                 }
 
@@ -52,7 +52,7 @@ public struct AppStorage<Value: Codable>: ObservableProperty {
             }
 
             set {
-                appStorageCache[key] = newValue
+                appStorageCache.withLock { $0[key] = newValue }
 
                 // In order to avoid writing to disk on every update, we perform some basic
                 // debouncing. We schedule a `DispatchWorkItem` to be executed
@@ -75,7 +75,6 @@ public struct AppStorage<Value: Codable>: ObservableProperty {
                         )
                     }
                 }
-
                 persistWorkItem = workItem
                 DispatchQueue.main.asyncAfter(
                     deadline: .now() + persistDebounceTimeout,
@@ -107,7 +106,7 @@ public struct AppStorage<Value: Codable>: ObservableProperty {
             didChange.send()
         }
     }
-    
+
     /// The inner `Storage` is what stays constant between view updates.
     /// The wrapping box is used so that we can assign the storage to future
     /// state instances from the non-mutating ``update(with:previousValue:)``
