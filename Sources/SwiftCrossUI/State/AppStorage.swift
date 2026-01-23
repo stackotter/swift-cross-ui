@@ -4,9 +4,6 @@ import Mutex
 private let appStorageCache: Mutex<[String: any Codable & Sendable]> = Mutex([:])
 private let appStoragePublisherCache: Mutex<[String: Publisher]> = Mutex([:])
 
-/// The debounce timeout for persisting to disk, in seconds.
-private let persistDebounceTimeout: Double = 0.25
-
 /// Like ``State``, but persists its value to disk so that it survives betweeen
 /// app launches.
 @propertyWrapper
@@ -38,14 +35,23 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
 
         var value: Value {
             get {
-                appStorageCache.withLock { cache in
+                guard let provider else {
+                    fatalError(
+                        """
+                        @AppStorage value with key '\(key)' used before initialization. \
+                        Don't use @AppStorage properties before SwiftCrossUI requests the \
+                        view's body.
+                        """
+                    )
+                }
+
+                return appStorageCache.withLock { cache in
                     // If this is the very first time we're reading from this key, it won't
                     // be in the cache yet. In that case, we return the already-persisted value
                     // if it exists, or the default value otherwise; either way, we add it to the
                     // cache so subsequent accesses of `value` won't have to read from disk again.
                     guard let cachedValue = cache[key] else {
-                        let value =
-                        provider?.retrieve(type: Value.self, forKey: key) ?? defaultValue
+                        let value = provider.retrieve(type: Value.self, forKey: key) ?? defaultValue
                         cache[key] = value
                         return value
                     }
@@ -68,6 +74,16 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
             }
 
             set {
+                guard let provider else {
+                    fatalError(
+                        """
+                        @AppStorage value with key '\(key)' used before initialization. \
+                        Don't use @AppStorage properties before SwiftCrossUI requests the \
+                        view's body.
+                        """
+                    )
+                }
+
                 appStorageCache.withLock { $0[key] = newValue }
 
                 // In order to avoid writing to disk on every update, we perform some simple
@@ -76,14 +92,14 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
                 // before that happens, the task is cancelled (causing `sleep` to throw) and
                 // a new one is started. This means changes will only be persisted if no updates
                 // occur for at least `persistDebounceTimeout` seconds.
-
                 persistTask?.cancel()
                 persistTask = Task { [key, newValue, provider] in
                     do {
                         try await Task.sleep(
-                            nanoseconds: UInt64(persistDebounceTimeout * 1_000_000_000)
+                            nanoseconds: UInt64(provider.debounceTimeout * 1_000_000_000)
                         )
-                        try provider?.persist(value: newValue, forKey: key)
+                        logger.debug("persisting '\(newValue)' for '\(key)'")
+                        try provider.persist(value: newValue, forKey: key)
                     } catch is CancellationError {
                         // If the task is cancelled before the call to `sleep` returns, it'll throw
                         // a CancellationError and skip the rest of the code, which is precisely

@@ -18,6 +18,16 @@ public protocol AppStorageProvider: Sendable {
     /// - Returns: The persisted value for `key`, if it exists and is of the
     ///   expected type; otherwise, `nil`.
     func retrieve<Value: Codable>(type: Value.Type, forKey key: String) -> Value?
+
+    /// The timeout used to debounce calls to ``persist(value:forKey:)``.
+    ///
+    /// This is measured in seconds, like all `TimeInterval` instances. The
+    /// default is 0.25 seconds.
+    var debounceTimeout: TimeInterval { get }
+}
+
+extension AppStorageProvider {
+    public var debounceTimeout: TimeInterval { 0.25 }
 }
 
 /// A simple app storage provider that uses `UserDefaults` to persist
