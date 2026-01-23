@@ -2,6 +2,7 @@ import Foundation
 import Mutex
 
 private let appStorageCache: Mutex<[String: any Codable & Sendable]> = Mutex([:])
+private let appStoragePublisherCache: Mutex<[String: Publisher]> = Mutex([:])
 
 /// The debounce timeout for persisting to disk, in seconds.
 private let persistDebounceTimeout: Double = 0.25
@@ -15,7 +16,6 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
     private final class Storage {
         let key: String
         let defaultValue: Value
-        let didChange = Publisher()
         var downstreamObservation: Cancellable?
         var provider: (any AppStorageProvider)?
         var persistTask: Task<Void, Never>?
@@ -25,33 +25,46 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
             self.defaultValue = defaultValue
         }
 
+        var didChange: Publisher {
+            appStoragePublisherCache.withLock { cache in
+                guard let publisher = cache[key] else {
+                    let newPublisher = Publisher()
+                    cache[key] = newPublisher
+                    return newPublisher
+                }
+                return publisher
+            }
+        }
+
         var value: Value {
             get {
-                // If this is the very first time we're reading from this key, it won't
-                // be in the cache yet. In that case, we return the already-persisted value
-                // if it exists, or the default value otherwise; either way, we add it to the
-                // cache so subsequent accesses of `value` won't have to read from disk again.
-                guard let cachedValue = appStorageCache.withLock({ $0[key] }) else {
-                    let value =
+                appStorageCache.withLock { cache in
+                    // If this is the very first time we're reading from this key, it won't
+                    // be in the cache yet. In that case, we return the already-persisted value
+                    // if it exists, or the default value otherwise; either way, we add it to the
+                    // cache so subsequent accesses of `value` won't have to read from disk again.
+                    guard let cachedValue = cache[key] else {
+                        let value =
                         provider?.retrieve(type: Value.self, forKey: key) ?? defaultValue
-                    appStorageCache.withLock { $0[key] = value }
-                    return value
-                }
+                        cache[key] = value
+                        return value
+                    }
 
-                // Make sure that we have the right type.
-                guard let cachedValue = cachedValue as? Value else {
-                    logger.warning(
-                        "'@AppStorage' property is of the wrong type; using default value",
-                        metadata: [
-                            "key": "\(key)",
-                            "providedType": "\(Value.self)",
-                            "actualType": "\(type(of: cachedValue))",
-                        ]
-                    )
-                    return defaultValue
-                }
+                    // Make sure that we have the right type.
+                    guard let cachedValue = cachedValue as? Value else {
+                        logger.warning(
+                            "'@AppStorage' property is of the wrong type; using default value",
+                            metadata: [
+                                "key": "\(key)",
+                                "providedType": "\(Value.self)",
+                                "actualType": "\(type(of: cachedValue))",
+                            ]
+                        )
+                        return defaultValue
+                    }
 
-                return cachedValue
+                    return cachedValue
+                }
             }
 
             set {
@@ -74,7 +87,7 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
                     } catch is CancellationError {
                         // If the task is cancelled before the call to `sleep` returns, it'll throw
                         // a CancellationError and skip the rest of the code, which is precisely
-                        // what we want here.
+                        // what we want here. So we just swallow the error.
                     } catch {
                         logger.warning(
                             "failed to encode '@AppStorage' data",
