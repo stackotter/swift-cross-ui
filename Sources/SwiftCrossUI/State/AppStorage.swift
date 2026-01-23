@@ -7,8 +7,12 @@ private let appStorageCache: Mutex<[String: any Codable & Sendable]> = Mutex([:]
 /// The debounce timeout for persisting to disk, in seconds.
 private let persistDebounceTimeout: Double = 0.5
 
+/// Like ``State``, but persists its value to disk so that it survives betweeen
+/// app launches.
 @propertyWrapper
 public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
+    // TODO: Observe changes to persisted values made by external processes
+
     private final class Storage {
         let key: String
         let defaultValue: Value
@@ -113,7 +117,11 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
     /// method. It's vital that the inner storage remains the same so that
     /// bindings can be stored across view updates.
     private let box: Box<Storage>
+
+    /// The default value, used when no value has been persisted yet.
     let defaultValue: Value
+
+    /// The key used to access the persisted value.
     let key: String
 
     public var didChange: Publisher {
