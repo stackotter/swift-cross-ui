@@ -25,7 +25,8 @@ public protocol AppStorageProvider: Sendable {
 public struct UserDefaultsAppStorageProvider: AppStorageProvider {
     public func persist<Value: Codable>(value: Value, forKey key: String) throws {
         let jsonData = try JSONEncoder().encode(value)
-        UserDefaults.standard.setValue(jsonData, forKey: key)
+        let jsonString = String.init(data: jsonData, encoding: .utf8)
+        UserDefaults.standard.setValue(jsonString, forKey: key)
 
         // NB: The UserDefaults store isn't automatically synced to disk on
         // Linux and Windows.
@@ -36,7 +37,8 @@ public struct UserDefaultsAppStorageProvider: AppStorageProvider {
     }
 
     public func retrieve<Value: Codable>(type _: Value.Type, forKey key: String) -> Value? {
-        guard let data = UserDefaults.standard.data(forKey: key),
+        guard let string = UserDefaults.standard.string(forKey: key),
+            let data = string.data(using: .utf8),
             let value = try? JSONDecoder().decode(Value.self, from: data)
         else {
             return nil
