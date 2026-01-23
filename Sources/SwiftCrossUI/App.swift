@@ -127,7 +127,7 @@ extension App {
     ///
     /// This uses `UserDefaults` on all platforms.
     public var appStorageProvider: any AppStorageProvider {
-        UserDefaultsAppStorageProvider()
+        DefaultAppStorageProvider()
     }
 
     /// Runs the application.

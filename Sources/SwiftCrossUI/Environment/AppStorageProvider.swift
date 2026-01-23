@@ -1,5 +1,7 @@
 import Foundation
 
+package typealias DefaultAppStorageProvider = UserDefaultsAppStorageProvider
+
 /// A type that can be used to persist ``AppStorage`` values to disk.
 public protocol AppStorageProvider: Sendable {
     /// Persists the given value.
