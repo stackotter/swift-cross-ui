@@ -6,7 +6,7 @@ import Foundation
 // - It supports Optional<ObservableObject>
 @propertyWrapper
 public struct State<Value>: SnapshottableProperty {
-    private class Storage {
+    private final class Storage {
         var value: Value
         var didChange = Publisher()
         var downstreamObservation: Cancellable?

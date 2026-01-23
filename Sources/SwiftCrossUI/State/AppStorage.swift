@@ -1,16 +1,21 @@
+import Dispatch
 import Foundation
 
 // FIXME: Make this concurrency-safe
 private nonisolated(unsafe) var appStorageCache: [String: any Codable] = [:]
 
+/// The debounce timeout for persisting to disk, in seconds.
+private let persistDebounceTimeout: Double = 0.5
+
 @propertyWrapper
 public struct AppStorage<Value: Codable>: ObservableProperty {
-    private class Storage {
+    private final class Storage {
         let key: String
         let defaultValue: Value
         let didChange = Publisher()
         var downstreamObservation: Cancellable?
         var provider: (any AppStorageProvider)?
+        var persistWorkItem: DispatchWorkItem?
 
         init(key: String, defaultValue: Value) {
             self.key = key
@@ -48,18 +53,34 @@ public struct AppStorage<Value: Codable>: ObservableProperty {
 
             set {
                 appStorageCache[key] = newValue
-                do {
-                    // TODO: Add some debouncing here
-                    try provider?.persist(value: newValue, forKey: key)
-                } catch {
-                    logger.warning(
-                        "failed to encode '@AppStorage' data",
-                        metadata: [
-                            "value": "\(newValue)",
-                            "error": "\(error)",
-                        ]
-                    )
+
+                // In order to avoid writing to disk on every update, we perform some basic
+                // debouncing. We schedule a `DispatchWorkItem` to be executed
+                // `persistDebounceTimeout` seconds from now; if this setter is called again
+                // before that happens, the work item is cancelled and a new one is scheduled.
+                // This means changes will only be persisted if no updates occur for at least
+                // `persistDebounceTimeout` seconds.
+                persistWorkItem?.cancel()
+                let workItem = DispatchWorkItem { [weak self] in
+                    guard let self else { return }
+                    do {
+                        try provider?.persist(value: newValue, forKey: key)
+                    } catch {
+                        logger.warning(
+                            "failed to encode '@AppStorage' data",
+                            metadata: [
+                                "value": "\(newValue)",
+                                "error": "\(error)",
+                            ]
+                        )
+                    }
                 }
+
+                persistWorkItem = workItem
+                DispatchQueue.main.asyncAfter(
+                    deadline: .now() + persistDebounceTimeout,
+                    execute: workItem
+                )
             }
         }
 
