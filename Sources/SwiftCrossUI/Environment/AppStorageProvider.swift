@@ -38,7 +38,7 @@ public struct UserDefaultsAppStorageProvider: AppStorageProvider {
     public func persist<Value: Codable>(value: Value, forKey key: String) throws {
         let jsonData = try JSONEncoder().encode(value)
         let jsonString = String.init(data: jsonData, encoding: .utf8)
-        UserDefaults.standard.setValue(jsonString, forKey: key)
+        UserDefaults.standard.set(jsonString, forKey: key)
 
         // NB: The UserDefaults store isn't automatically synced to disk on
         // Linux and Windows.
