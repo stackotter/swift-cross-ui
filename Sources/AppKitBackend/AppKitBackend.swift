@@ -411,7 +411,9 @@ public final class AppKitBackend: AppBackend {
         window: Window,
         rootEnvironment: EnvironmentValues
     ) -> EnvironmentValues {
-        rootEnvironment.with(\.windowScaleFactor, window.backingScaleFactor)
+        window.lastBackingScaleFactor = window.backingScaleFactor
+
+        return rootEnvironment.with(\.windowScaleFactor, window.backingScaleFactor)
     }
 
     public func setWindowEnvironmentChangeHandler(
@@ -424,7 +426,11 @@ public final class AppKitBackend: AppBackend {
             object: window,
             queue: .main
         ) { notification in
-            action()
+            let backingScaleFactorChanged = window.lastBackingScaleFactor != window.backingScaleFactor
+			
+            if backingScaleFactorChanged {
+                action()
+            }
         }
     }
 
@@ -2394,6 +2400,7 @@ public class NSCustomWindow: NSWindow {
     /// nested sheet gets stored as the sheet's nestedSheet, and so on.
     var nestedSheet: NSCustomSheet?
 
+    var lastBackingScaleFactor: CGFloat?
     /// Allows the backing scale factor to be overridden. Useful for keeping
     /// UI tests consistent across devices.
     ///
