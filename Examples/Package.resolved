@@ -1,5 +1,5 @@
 {
-  "originHash" : "e6fea19cc72c1752f9d84acaf7941d3e9aa60df7a8bc00887939d6caacfe5ae6",
+  "originHash" : "a741ba9b0974bd4d32fe773a1f31510a5ff7c1ddeeda4ca8a19dfed676959986",
   "pins" : [
     {
       "identity" : "aexml",
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swhitty/FlyingFox",
       "state" : {
-        "revision" : "f9d9a180fca7a1783f4da30a4f0a73533a75b4fd",
-        "version" : "0.26.1"
+        "revision" : "de38230104cf63ef4843cb569ba11c13f8165685",
+        "version" : "0.26.2"
       }
     },
     {
@@ -85,7 +85,7 @@
     {
       "identity" : "pathkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/kylef/PathKit.git",
+      "location" : "https://github.com/kylef/PathKit",
       "state" : {
         "revision" : "3bfd2737b700b9a36565a8c94f4ad2b050a5e574",
         "version" : "1.0.1"
@@ -200,7 +200,7 @@
     {
       "identity" : "swift-filestreamer",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/sersoft-gmbh/swift-filestreamer",
+      "location" : "https://github.com/sersoft-gmbh/swift-filestreamer.git",
       "state" : {
         "revision" : "b01ff214cc629718a8729f33d2a8b88e47532dbd",
         "version" : "0.6.0"
@@ -247,8 +247,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "4a9a97111099376854a7f8f0f9f88b9d61f52eff",
-        "version" : "2.92.2"
+        "revision" : "233f61bc2cfbb22d0edeb2594da27a20d2ce514e",
+        "version" : "2.93.0"
       }
     },
     {
