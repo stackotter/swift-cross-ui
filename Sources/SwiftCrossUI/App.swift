@@ -73,6 +73,7 @@ private var swiftBundlerAppMetadata: AppMetadata?
 private enum SwiftBundlerMetadataError: LocalizedError {
     case noExecutableURL
     case failedToReadExecutable
+    case emptyMetadata
     case jsonNotDictionary(String)
     case missingAppIdentifier
     case missingAppVersion
@@ -83,6 +84,8 @@ private enum SwiftBundlerMetadataError: LocalizedError {
                 "no executable URL"
             case .failedToReadExecutable:
                 "executable failed to read itself (to extract metadata)"
+            case .emptyMetadata:
+                "metadata found but was empty"
             case .jsonNotDictionary:
                 "root metadata JSON value wasn't an object"
             case .missingAppIdentifier:
@@ -148,26 +151,54 @@ extension App {
             )
         }
     }
+}
 
+// MARK: - Metadata extraction
+
+#if SWIFT_BUNDLER_METADATA
+    import SwiftCrossUIMetadataSupport
+#endif
+
+extension App {
     private static func extractSwiftBundlerMetadata() throws -> AppMetadata? {
-        guard let executable = Bundle.main.executableURL else {
-            throw SwiftBundlerMetadataError.noExecutableURL
-        }
+        // If we know for a fact we've been compiled using swift-bundler's new metadata
+        // insertion method, try that; otherwise, fall back to the old method, which
+        // is safe to try even if we weren't compiled with swift-bundler at all.
+        #if SWIFT_BUNDLER_METADATA
+            guard let pointer = _getSwiftBundlerMetadata() else { return nil }
+            let datas = pointer.assumingMemoryBound(to: [[UInt8]].self).pointee
+            guard let jsonBytes = datas.first else {
+                throw SwiftBundlerMetadataError.emptyMetadata
+            }
+            let jsonData = Data(jsonBytes)
+        #else
+            func parseBigEndianUInt64(
+                startingAt startIndex: Int,
+                in data: Data
+            ) -> UInt64 {
+                data[startIndex..<(startIndex + 8)].withUnsafeBytes { pointer in
+                    let bigEndianValue = pointer.assumingMemoryBound(to: UInt64.self)
+                        .baseAddress!.pointee
+                    return UInt64(bigEndian: bigEndianValue)
+                }
+            }
 
-        guard let data = try? Data(contentsOf: executable) else {
-            throw SwiftBundlerMetadataError.failedToReadExecutable
-        }
+            guard let executable = Bundle.main.executableURL else {
+                throw SwiftBundlerMetadataError.noExecutableURL
+            }
 
-        // Check if executable has Swift Bundler metadata magic bytes.
-        let bytes = Array(data)
-        guard bytes.suffix(8) == Array("SBUNMETA".utf8) else {
-            return nil
-        }
+            guard let data = try? Data(contentsOf: executable) else {
+                throw SwiftBundlerMetadataError.failedToReadExecutable
+            }
 
-        let lengthStart = bytes.count - 16
-        let jsonLength = parseBigEndianUInt64(startingAt: lengthStart, in: bytes)
-        let jsonStart = lengthStart - Int(jsonLength)
-        let jsonData = Data(bytes[jsonStart..<lengthStart])
+            // Check if executable has Swift Bundler metadata magic bytes.
+            guard data.suffix(8) == Array("SBUNMETA".utf8) else { return nil }
+
+            let lengthStart = data.count - 16
+            let jsonLength = parseBigEndianUInt64(startingAt: lengthStart, in: data)
+            let jsonStart = lengthStart - Int(jsonLength)
+            let jsonData = data[jsonStart..<lengthStart]
+        #endif
 
         // Manually parsed due to the `additionalMetadata` field (which would
         // require a lot of boilerplate code to parse with Codable).
@@ -181,26 +212,12 @@ extension App {
         guard let version = json["appVersion"] as? String else {
             throw SwiftBundlerMetadataError.missingAppVersion
         }
-        let additionalMetadata =
-            json["additionalMetadata"].map { value in
-                value as? [String: Any] ?? [:]
-            } ?? [:]
+        let additionalMetadata = json["additionalMetadata"] as? [String: Any] ?? [:]
 
         return AppMetadata(
             identifier: identifier,
             version: version,
             additionalMetadata: additionalMetadata
         )
-    }
-
-    private static func parseBigEndianUInt64(
-        startingAt startIndex: Int,
-        in bytes: [UInt8]
-    ) -> UInt64 {
-        bytes[startIndex..<(startIndex + 8)].withUnsafeBytes { pointer in
-            let bigEndianValue = pointer.assumingMemoryBound(to: UInt64.self)
-                .baseAddress!.pointee
-            return UInt64(bigEndian: bigEndianValue)
-        }
     }
 }
