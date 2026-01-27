@@ -862,7 +862,7 @@ extension AppBackend {
         _ adaptiveColor: Color.SystemAdaptive,
         in environment: EnvironmentValues
     ) -> Color.Resolved {
-        let color: Color = switch adaptiveColor {
+        let color: Color = switch adaptiveColor.kind {
             case .blue: .blue
             case .brown: .brown
             case .gray: .gray

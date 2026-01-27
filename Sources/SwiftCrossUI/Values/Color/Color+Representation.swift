@@ -9,16 +9,30 @@ extension Color {
         case system(SystemAdaptive)
     }
 
-    /// A platform-specific adaptive color.
-    public enum SystemAdaptive: Sendable, Equatable, Hashable {
-        case blue
-        case brown
-        case gray
-        case green
-        case orange
-        case purple
-        case red
-        case yellow
+    /// An adaptive color that follows the design guidelines of the target platform.
+    public struct SystemAdaptive: Sendable, Equatable, Hashable {
+        package enum Kind: Sendable, Equatable, Hashable {
+            case blue
+            case brown
+            case gray
+            case green
+            case orange
+            case purple
+            case red
+            case yellow
+        }
+
+        package var kind: Kind
+        package init(kind: Kind) { self.kind = kind }
+
+        public static let blue = Self(kind: .blue)
+        public static let brown = Self(kind: .brown)
+        public static let gray = Self(kind: .gray)
+        public static let green = Self(kind: .green)
+        public static let orange = Self(kind: .orange)
+        public static let purple = Self(kind: .purple)
+        public static let red = Self(kind: .red)
+        public static let yellow = Self(kind: .yellow)
     }
 }
 
