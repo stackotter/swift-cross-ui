@@ -1,21 +1,23 @@
 import Foundation
 import Logging
-import Mutex
 
 /// Backing storage for `logger`.
-private let _logger: Mutex<Logger?> = Mutex(nil)
+///
+/// ## Safety
+/// This is only ever mutated once, almost immediately after the app is launched and
+/// well before we do any concurrency shenanigans. Subsequent reads are always safe
+/// since `Logger` is `Sendable`.
+nonisolated(unsafe) private var _logger: Logger?
 
 /// The global logger.
 package var logger: Logger {
-    _logger.withLock { _logger in
-        guard let _logger else {
-            let logger = Logger(label: "TestLogger")
-            logger.trace("logger used before initialization")
-            _logger = logger
-            return logger
-        }
-        return _logger
+    guard let _logger else {
+        let logger = Logger(label: "TestLogger")
+        logger.trace("logger used before initialization")
+        _logger = logger
+        return logger
     }
+    return _logger
 }
 
 /// An application.
