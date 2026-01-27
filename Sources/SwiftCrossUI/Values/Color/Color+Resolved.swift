@@ -50,7 +50,7 @@ extension Color {
                 environment.backend.resolveAdaptiveColor(systemColor, in: environment)
         }
 
-        resolvedColor.opacity *= Float(self.opacity)
+        resolvedColor.opacity *= Float(self.opacityMultiplier)
         return resolvedColor
     }
 }

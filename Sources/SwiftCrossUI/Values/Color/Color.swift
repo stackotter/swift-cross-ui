@@ -5,11 +5,11 @@ public struct Color: Sendable, Equatable, Hashable {
     private static let idealSize = ViewSize(10, 10)
 
     var representation: Representation
-    var opacity: Double
+    var opacityMultiplier: Double
 
-    init(representation: Representation, opacity: Double = 1) {
+    init(representation: Representation, opacityMultiplier: Double = 1) {
         self.representation = representation
-        self.opacity = opacity
+        self.opacityMultiplier = opacityMultiplier
     }
 
     /// Creates a color from its components with values between 0 and 1.
@@ -20,7 +20,7 @@ public struct Color: Sendable, Equatable, Hashable {
         opacity: Double = 1
     ) {
         self.representation = .rgb(red: red, green: green, blue: blue)
-        self.opacity = opacity
+        self.opacityMultiplier = opacity
     }
 
     /// Creates a color from a brightness value between 0 and 1.
@@ -29,10 +29,10 @@ public struct Color: Sendable, Equatable, Hashable {
         opacity: Double = 1
     ) {
         self.representation = .rgb(red: white, green: white, blue: white)
-        self.opacity = opacity
+        self.opacityMultiplier = opacity
     }
 
-    /// Creates an adaptive color tailored for each platform.
+    /// Creates an adaptive color tailored to each platform's design guidelines.
     ///
     /// - Parameter color: The color.
     /// - Returns: An adaptive color tailored for each platform.
@@ -51,8 +51,8 @@ public struct Color: Sendable, Equatable, Hashable {
     }
 
     /// Multiplies the opacity of the color by the given amount.
-    public consuming func opacity(_ opacity: Double) -> Color {
-        self.opacity *= opacity
+    public consuming func opacity(_ opacityMultiplier: Double) -> Color {
+        self.opacityMultiplier *= opacityMultiplier
         return self
     }
 
@@ -62,7 +62,7 @@ public struct Color: Sendable, Equatable, Hashable {
             green: Double(resolved.green),
             blue: Double(resolved.blue)
         )
-        self.opacity = Double(resolved.opacity)
+        self.opacityMultiplier = Double(resolved.opacity)
     }
 }
 

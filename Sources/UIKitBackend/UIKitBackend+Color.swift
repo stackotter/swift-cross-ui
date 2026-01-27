@@ -7,7 +7,7 @@ extension UIKitBackend {
         in environment: EnvironmentValues
     ) -> Color.Resolved {
         let uiColor: UIColor =
-            switch adaptiveColor {
+            switch adaptiveColor.kind {
                 case .blue: .systemBlue
                 case .brown: .systemBrown
                 case .gray: .systemGray
