@@ -15,21 +15,25 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
         let defaultValue: Value
         var downstreamObservation: Cancellable?
         var provider: (any AppStorageProvider)?
-        var persistTask: Task<Void, Never>?
 
         init(key: String, defaultValue: Value) {
             self.key = key
             self.defaultValue = defaultValue
         }
 
+        private var _didChange: Publisher?
         var didChange: Publisher {
-            appStoragePublisherCache.withLock { cache in
-                guard let publisher = cache[key] else {
-                    let newPublisher = Publisher()
-                    cache[key] = newPublisher
-                    return newPublisher
+            if let _didChange {
+                _didChange
+            } else {
+                appStoragePublisherCache.withLock { cache in
+                    guard let publisher = cache[key] else {
+                        let newPublisher = Publisher()
+                        cache[key] = newPublisher
+                        return newPublisher
+                    }
+                    return publisher
                 }
-                return publisher
             }
         }
 
@@ -51,7 +55,7 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
                     // if it exists, or the default value otherwise; either way, we add it to the
                     // cache so subsequent accesses of `value` won't have to read from disk again.
                     guard let cachedValue = cache[key] else {
-                        let value = provider.retrieve(type: Value.self, forKey: key) ?? defaultValue
+                        let value = provider.retrieveValue(Value.self, forKey: key) ?? defaultValue
                         cache[key] = value
                         return value
                     }
@@ -85,31 +89,14 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
                 }
 
                 appStorageCache.withLock { $0[key] = newValue }
-
-                // In order to avoid writing to disk on every update, we perform some simple
-                // debouncing. We spin up a `Task` which immediately sleeps for
-                // `persistDebounceTimeout` seconds from; if this setter is called again
-                // before that happens, the task is cancelled (causing `sleep` to throw) and
-                // a new one is started. This means changes will only be persisted if no updates
-                // occur for at least `persistDebounceTimeout` seconds.
-                persistTask?.cancel()
-                persistTask = Task { [key, newValue, provider] in
-                    do {
-                        try await Task.sleep(
-                            nanoseconds: UInt64(provider.debounceTimeout * 1_000_000_000)
-                        )
-                        logger.debug("persisting '\(newValue)' for '\(key)'")
-                        try provider.persist(value: newValue, forKey: key)
-                    } catch is CancellationError {
-                        // If the task is cancelled before the call to `sleep` returns, it'll throw
-                        // a CancellationError and skip the rest of the code, which is precisely
-                        // what we want here. So we just swallow the error.
-                    } catch {
-                        logger.warning(
-                            "failed to encode '@AppStorage' data",
-                            metadata: ["value": "\(newValue)", "error": "\(error)"]
-                        )
-                    }
+                do {
+                    logger.debug("persisting '\(newValue)' for '\(key)'")
+                    try provider.persistValue(newValue, forKey: key)
+                } catch {
+                    logger.warning(
+                        "failed to encode '@AppStorage' data",
+                        metadata: ["value": "\(newValue)", "error": "\(error)"]
+                    )
                 }
             }
         }
@@ -140,7 +127,7 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
 
     /// The inner `Storage` is what stays constant between view updates.
     /// The wrapping box is used so that we can assign the storage to future
-    /// state instances from the non-mutating ``update(with:previousValue:)``
+    /// `AppStorage` instances from the non-mutating ``update(with:previousValue:)``
     /// method. It's vital that the inner storage remains the same so that
     /// bindings can be stored across view updates.
     private let box: Box<Storage>
@@ -221,6 +208,8 @@ extension AppStorage {
     }
 }
 
+/// A type safe key for ``AppStorage`` properties, similar in spirit
+/// to ``EnvironmentKey``.
 public protocol AppStorageKey<Value> {
     associatedtype Value: Codable
 

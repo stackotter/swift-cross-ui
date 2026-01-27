@@ -25,6 +25,8 @@ package var logger: Logger {
 public protocol App {
     /// The backend used to render the app.
     associatedtype Backend: AppBackend
+    /// The app storage provider used to persist state annotated with ``AppStorage``.
+    associatedtype StorageProvider: AppStorageProvider
     /// The type of scene representing the content of the app.
     associatedtype Body: Scene
 
@@ -40,7 +42,7 @@ public protocol App {
 
     /// The application's app storage provider, used for persisting ``AppStorage``
     /// data to disk.
-    var appStorageProvider: any AppStorageProvider { get }
+    var appStorageProvider: StorageProvider { get }
 
     /// The content of the app.
     @SceneBuilder var body: Body { get }
@@ -152,12 +154,10 @@ extension App {
             swiftBundlerAppMetadata = try extractSwiftBundlerMetadata()
         }
 
-        _logger.withLock {
-            $0 = Logger(label: "SwiftCrossUI", factory: logHandler(label:metadataProvider:))
-            #if DEBUG
-                $0!.logLevel = .debug
-            #endif
-        }
+        _logger = Logger(label: "SwiftCrossUI", factory: logHandler(label:metadataProvider:))
+        #if DEBUG
+            _logger!.logLevel = .debug
+        #endif
 
         // Check for an error once the logger is ready.
         if case .failure(let error) = result {
