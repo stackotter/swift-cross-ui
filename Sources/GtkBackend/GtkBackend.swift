@@ -456,7 +456,7 @@ public final class GtkBackend: AppBackend {
         defaultEnvironment
     }
 
-    public func setRootEnvironmentChangeHandler(to action: @escaping () -> Void) {
+    public func setRootEnvironmentChangeHandler(to action: @escaping @Sendable @MainActor () -> Void) {
         // TODO: React to theme changes
     }
 

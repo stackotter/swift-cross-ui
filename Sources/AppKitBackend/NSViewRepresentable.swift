@@ -2,6 +2,7 @@ import AppKit
 import SwiftCrossUI
 
 /// The context associated with an instance of ``Representable``.
+@MainActor
 public struct NSViewRepresentableContext<Representable: NSViewRepresentable> {
     public let coordinator: Representable.Coordinator
     public internal(set) var environment: EnvironmentValues
@@ -152,7 +153,7 @@ extension View where Self: NSViewRepresentable {
 
         let size = representingWidget.representable.sizeThatFits(
             proposedSize,
-            nsView: representingWidget.subview,
+            nsView: representingWidget.view,
             context: representingWidget.context!
         )
 
@@ -194,26 +195,33 @@ final class RepresentingWidget<Representable: NSViewRepresentable>: NSView {
         fatalError("init(coder:) is not used for this view")
     }
 
-    lazy var subview: Representable.NSViewType = {
-        let view = representable.makeNSView(context: context!)
+    var subview: Representable.NSViewType?
 
-        self.addSubview(view)
+    var view: Representable.NSViewType {
+        if let subview {
+            return subview
+        } else {
+            let view = representable.makeNSView(context: context!)
 
-        view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            view.topAnchor.constraint(equalTo: self.topAnchor),
-            view.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            view.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-        ])
+            self.addSubview(view)
 
-        return view
-    }()
+            view.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                view.topAnchor.constraint(equalTo: self.topAnchor),
+                view.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                view.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+                view.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            ])
+
+            subview = view
+            return view
+        }
+    }
 
     func update(with environment: EnvironmentValues) {
         if var context {
             context.environment = environment
-            representable.updateNSView(subview, context: context)
+            representable.updateNSView(view, context: context)
             self.context = context
         } else {
             let context = Representable.Context(
@@ -221,13 +229,15 @@ final class RepresentingWidget<Representable: NSViewRepresentable>: NSView {
                 environment: environment
             )
             self.context = context
-            representable.updateNSView(subview, context: context)
+            representable.updateNSView(view, context: context)
         }
     }
 
     deinit {
-        if let context {
-            Representable.dismantleNSView(subview, coordinator: context.coordinator)
+        if let context, let subview {
+            Task { @MainActor in
+                Representable.dismantleNSView(subview, coordinator: context.coordinator)
+            }
         }
     }
 }
