@@ -1,5 +1,5 @@
 {
-  "originHash" : "a741ba9b0974bd4d32fe773a1f31510a5ff7c1ddeeda4ca8a19dfed676959986",
+  "originHash" : "dd63f095d6a2b7b6ab3aff17c27568510af59a6b664b9279065e23edc63cc6ed",
   "pins" : [
     {
       "identity" : "aexml",
@@ -150,7 +150,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/moreSwift/swift-bundler",
       "state" : {
-        "revision" : "2dbcb92047148efbc20e9ed47f66bc2dfd93b3f7"
+        "revision" : "5d2ecbc11df78e56afeab0621c43d8e898dae98e"
       }
     },
     {
