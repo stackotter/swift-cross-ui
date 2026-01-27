@@ -1,7 +1,7 @@
 /// An action that closes the enclosing window.
 ///
-/// Use the `dismissWindow` environment value to get an instance of this action,
-/// then call it to close the enclosing window.
+/// Use the ``EnvironmentValues/dismissWindow`` environment value to get an instance
+/// of this action, then call it to close the enclosing window.
 ///
 /// Example usage:
 /// ```swift

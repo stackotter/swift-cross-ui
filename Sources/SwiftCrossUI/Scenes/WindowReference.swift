@@ -15,17 +15,13 @@ final class WindowReference<SceneType: WindowingScene> {
     private let containerWidget: AnyWidget
 
     /// - Parameters:
-    ///   - onClose: The action to perform when the window is closed. Should
+    ///   - closeHandler: The action to perform when the window is closed. Should
     ///     dispose of the scene's reference to this `WindowReference`.
-    ///   - updateImmediately: Whether to call `update(_:backend:environment:)`
-    ///     after performing setup. Set this to `true` if opening as a result of
-    ///     ``EnvironmentValues/openWindow``.
     init<Backend: AppBackend>(
         scene: SceneType,
         backend: Backend,
         environment: EnvironmentValues,
-        onClose: @escaping @Sendable @MainActor () -> Void,
-        updateImmediately: Bool = false
+        onClose closeHandler: @escaping @Sendable @MainActor () -> Void
     ) {
         self.scene = scene
         let window = backend.createWindow(withDefaultSize: environment.defaultWindowSize)
@@ -36,18 +32,18 @@ final class WindowReference<SceneType: WindowingScene> {
             environment: environment.with(\.window, window)
         )
         let rootWidget = viewGraph.rootNode.concreteNode(for: Backend.self).widget
-        
+
         let container = backend.createContainer()
         backend.insert(rootWidget, into: container, at: 0)
         self.containerWidget = AnyWidget(container)
-        
+
         backend.setChild(ofWindow: window, to: container)
         backend.setTitle(ofWindow: window, to: scene.title)
 
         self.window = window
         parentEnvironment = environment
 
-        backend.setCloseHandler(ofWindow: window, to: onClose)
+        backend.setCloseHandler(ofWindow: window, to: closeHandler)
 
         backend.setResizeHandler(ofWindow: window) { [weak self] newSize in
             guard let self else { return }
@@ -61,7 +57,7 @@ final class WindowReference<SceneType: WindowingScene> {
                     !backend.isWindowProgrammaticallyResizable(window)
             )
         }
-        
+
         backend.setWindowEnvironmentChangeHandler(of: window) { [weak self] in
             guard let self else { return }
             _ = self.update(
@@ -73,10 +69,6 @@ final class WindowReference<SceneType: WindowingScene> {
                 windowSizeIsFinal:
                     !backend.isWindowProgrammaticallyResizable(window)
             )
-        }
-
-        if updateImmediately {
-            _ = self.update(nil, backend: backend, environment: environment)
         }
     }
 
@@ -139,7 +131,7 @@ final class WindowReference<SceneType: WindowingScene> {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
-        
+
         parentEnvironment = environment
 
         if let newScene {
@@ -151,9 +143,9 @@ final class WindowReference<SceneType: WindowingScene> {
             backend.setTitle(ofWindow: window, to: newScene.title)
             scene = newScene
         }
-        
+
         let environment =
-        backend.computeWindowEnvironment(window: window, rootEnvironment: environment)
+            backend.computeWindowEnvironment(window: window, rootEnvironment: environment)
             .with(\.onResize) { [weak self] _ in
                 guard let self else { return }
                 // TODO: Figure out whether this would still work if we didn't recompute the
@@ -178,16 +170,17 @@ final class WindowReference<SceneType: WindowingScene> {
         // With `.contentSize`, the window's maximum size is the maximum size of its
         // content. With `.contentMinSize` (and `.automatic`), there is no maximum
         // size.
-        let maximumWindowSize: ViewSize? = switch environment.windowResizability {
-            case .contentSize:
-                viewGraph.computeLayout(
-                    with: newScene?.content(),
-                    proposedSize: .infinity,
-                    environment: environment.with(\.allowLayoutCaching, true)
-                ).size
-            case .automatic, .contentMinSize:
-                nil
-        }
+        let maximumWindowSize: ViewSize? =
+            switch environment.windowResizability {
+                case .contentSize:
+                    viewGraph.computeLayout(
+                        with: newScene?.content(),
+                        proposedSize: .infinity,
+                        environment: environment.with(\.allowLayoutCaching, true)
+                    ).size
+                case .automatic, .contentMinSize:
+                    nil
+            }
 
         let clampedWindowSize = ViewSize(
             min(
@@ -260,7 +253,7 @@ final class WindowReference<SceneType: WindowingScene> {
         guard let window = window as? Backend.Window else {
             fatalError("Scene updated with a backend incompatible with the window it was given")
         }
-        
+
         backend.activate(window: window)
     }
 }

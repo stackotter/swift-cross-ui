@@ -1,8 +1,6 @@
 import Foundation
 
-/// A scene that presents a group of identically structured windows. Currently
-/// only supports having a single instance of the window but will eventually
-/// support duplicating the window.
+/// A scene that presents a group of identically structured windows.
 public struct WindowGroup<Content: View>: WindowingScene {
     public typealias Node = WindowGroupNode<Content>
 
@@ -53,10 +51,11 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
     ) {
         self.scene = scene
 
-        let openOnAppLaunch = switch environment.defaultLaunchBehavior {
-            case .automatic, .presented: true
-            case .suppressed: false
-        }
+        let openOnAppLaunch =
+            switch environment.defaultLaunchBehavior {
+                case .automatic, .presented: true
+                case .suppressed: false
+            }
 
         if openOnAppLaunch {
             let windowID = UUID()
@@ -89,8 +88,12 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                     scene: scene,
                     backend: backend,
                     environment: environment,
-                    onClose: { self.windowReferences[windowID] = nil },
-                    updateImmediately: true
+                    onClose: { self.windowReferences[windowID] = nil }
+                )
+                _ = windowReferences[windowID]!.update(
+                    nil,
+                    backend: backend,
+                    environment: environment
                 )
             }
         }

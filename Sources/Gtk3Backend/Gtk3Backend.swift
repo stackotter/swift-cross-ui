@@ -371,7 +371,6 @@ public final class Gtk3Backend: AppBackend {
 
     public func close(window: Window) {
         window.close()
-        window.destroy()
 
         // NB: It seems GTK3 won't automatically signal `::delete-event` if
         // the window is closed programmatically.

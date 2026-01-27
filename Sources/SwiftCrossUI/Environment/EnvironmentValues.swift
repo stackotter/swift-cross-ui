@@ -98,13 +98,19 @@ public struct EnvironmentValues {
     /// Whether the text should be selectable. Set by ``View/textSelectionEnabled(_:)``.
     public var isTextSelectionEnabled: Bool
 
-    /// The resizing behaviour of the enclosing window.
+    /// The resizing behaviour of windows.
+    ///
+    /// Set by ``Window/windowResizability(_:)->Scene``.
     var windowResizability: WindowResizability
     /// The default launch behavior of the enclosing window.
+    ///
+    /// Set by ``Window/defaultLaunchBehavior(_:)->Scene``.
     var defaultLaunchBehavior: SceneLaunchBehavior
     /// The default size of the enclosing window.
     ///
     /// Defaults to 900x450.
+    ///
+    /// Set by ``Window/defaultSize(width:height:)->Scene``.
     var defaultWindowSize: SIMD2<Int>
 
     /// The menu ordering to use.

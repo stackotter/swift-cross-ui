@@ -83,8 +83,12 @@ public final class WindowNode<Content: View>: SceneGraphNode {
                     scene: scene,
                     backend: backend,
                     environment: environment,
-                    onClose: { self.windowReference = nil },
-                    updateImmediately: true
+                    onClose: { self.windowReference = nil }
+                )
+                _ = windowReference!.update(
+                    nil,
+                    backend: backend,
+                    environment: environment
                 )
             }
         }
