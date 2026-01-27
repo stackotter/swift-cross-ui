@@ -335,7 +335,7 @@ extension UIKitBackend {
                 let toolbar =
                     (textFieldWidget.child.inputAccessoryView as? KeyboardToolbar)
                     ?? KeyboardToolbar()
-                updateToolbar(toolbar)
+                updateToolbar(toolbar, environment)
                 textFieldWidget.child.inputAccessoryView = toolbar
             } else {
                 textFieldWidget.child.inputAccessoryView = nil
@@ -383,7 +383,7 @@ extension UIKitBackend {
                 let toolbar =
                     (textEditorWidget.child.inputAccessoryView as? KeyboardToolbar)
                     ?? KeyboardToolbar()
-                updateToolbar(toolbar)
+                updateToolbar(toolbar, environment)
                 textEditorWidget.child.inputAccessoryView = toolbar
             } else {
                 textEditorWidget.child.inputAccessoryView = nil
