@@ -411,15 +411,27 @@ public final class AppKitBackend: AppBackend {
         window: Window,
         rootEnvironment: EnvironmentValues
     ) -> EnvironmentValues {
-        // TODO: Record window scale factor in here
-        rootEnvironment
+        window.lastBackingScaleFactor = window.backingScaleFactor
+
+        return rootEnvironment.with(\.windowScaleFactor, window.backingScaleFactor)
     }
 
     public func setWindowEnvironmentChangeHandler(
         of window: Window,
         to action: @escaping () -> Void
     ) {
-        // TODO: Notify when window scale factor changes
+        // For updating window scale factor
+        NotificationCenter.default.addObserver(
+            forName: NSWindow.didChangeBackingPropertiesNotification,
+            object: window,
+            queue: .main
+        ) { notification in
+            let backingScaleFactorChanged = window.lastBackingScaleFactor != window.backingScaleFactor
+			
+            if backingScaleFactorChanged {
+                action()
+            }
+        }
     }
 
     public func setIncomingURLHandler(to action: @escaping (URL) -> Void) {
@@ -2388,6 +2400,7 @@ public class NSCustomWindow: NSWindow {
     /// nested sheet gets stored as the sheet's nestedSheet, and so on.
     var nestedSheet: NSCustomSheet?
 
+    var lastBackingScaleFactor: CGFloat?
     /// Allows the backing scale factor to be overridden. Useful for keeping
     /// UI tests consistent across devices.
     ///
@@ -2403,6 +2416,13 @@ public class NSCustomWindow: NSWindow {
 
         func setHandler(_ resizeHandler: @escaping (SIMD2<Int>) -> Void) {
             self.resizeHandler = resizeHandler
+        }
+
+        func windowWillClose(_ notification: Notification) {
+            guard let window = notification.object as? NSCustomWindow else { return }
+
+            // Not sure if this is actually needed
+            NotificationCenter.default.removeObserver(window)
         }
 
         func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
