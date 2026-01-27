@@ -263,7 +263,6 @@ public final class GtkBackend: AppBackend {
 
     public func close(window: Window) {
         window.close()
-        window.destroy()
     }
 
     public func setCloseHandler(

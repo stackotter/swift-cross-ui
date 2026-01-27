@@ -7,6 +7,7 @@ import CGtk3
 open class Window: Bin {
     public convenience init() {
         self.init(gtk_window_new(GTK_WINDOW_TOPLEVEL))
+        registerSignals()
     }
 
     @GObjectProperty(named: "title") public var title: String?
@@ -14,6 +15,8 @@ open class Window: Bin {
     @GObjectProperty(named: "deletable") public var deletable: Bool
     @GObjectProperty(named: "modal") public var isModal: Bool
     @GObjectProperty(named: "decorated") public var isDecorated: Bool
+
+    public var onCloseRequest: ((Window) -> Void)?
 
     public func setTransient(for other: Window) {
         gtk_window_set_transient_for(castedPointer(), other.castedPointer())
@@ -78,19 +81,17 @@ open class Window: Bin {
         gtk_window_set_position(castedPointer(), position.toGtk())
     }
 
-    public var onCloseRequest: ((Window) -> Void)? {
-        didSet {
-            let handler:
-                @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
-                { _, value1, data in
-                    SignalBox1<OpaquePointer>.run(data, value1)
-                }
+    public override func registerSignals() {
+        let handler:
+        @convention(c) (UnsafeMutableRawPointer, OpaquePointer, UnsafeMutableRawPointer) -> Void =
+        { _, value1, data in
+            SignalBox1<OpaquePointer>.run(data, value1)
+        }
 
-            addSignal(name: "delete-event", handler: gCallback(handler)) {
-                [weak self] (_: OpaquePointer) in
-                guard let self else { return }
-                self.onCloseRequest?(self)
-            }
+        addSignal(name: "delete-event", handler: gCallback(handler)) {
+            [weak self] (_: OpaquePointer) in
+            guard let self else { return }
+            self.onCloseRequest?(self)
         }
     }
 }
