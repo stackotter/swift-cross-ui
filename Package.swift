@@ -147,6 +147,7 @@ let package = Package(
         .target(
             name: "SwiftCrossUI",
             dependencies: [
+                "SwiftCrossUIMetadataSupport",
                 "HotReloadingMacrosPlugin",
                 .product(name: "ImageFormats", package: "swift-image-formats"),
                 .product(name: "Logging", package: "swift-log"),
@@ -160,10 +161,7 @@ let package = Package(
                 "Views/TableRowContent.swift.gyb",
                 "Scenes/TupleScene.swift.gyb",
             ],
-            swiftSettings: [
-                .enableUpcomingFeature("StrictConcurrency"),
-                .enableExperimentalFeature("Extern"),
-            ]
+            swiftSettings: [.enableUpcomingFeature("StrictConcurrency")]
         ),
         .testTarget(
             name: "SwiftCrossUITests",
@@ -173,6 +171,7 @@ let package = Package(
                 .target(name: "AppKitBackend", condition: .when(platforms: [.macOS])),
             ]
         ),
+        .target(name: "SwiftCrossUIMetadataSupport"),
         .target(
             name: "DefaultBackend",
             dependencies: [

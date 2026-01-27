@@ -155,22 +155,34 @@ extension App {
 
 // MARK: - Metadata extraction
 
+#if SWIFT_BUNDLER_METADATA
+    import SwiftCrossUIMetadataSupport
+#endif
+
 extension App {
     private static func extractSwiftBundlerMetadata() throws -> AppMetadata? {
         // If we know for a fact we've been compiled using swift-bundler's new metadata
         // insertion method, try that; otherwise, fall back to the old method, which
         // is safe to try even if we weren't compiled with swift-bundler at all.
         #if SWIFT_BUNDLER_METADATA
-            @_extern(c, "_getSwiftBundlerMetadata")
-            func getSwiftBundlerMetadata() -> UnsafeRawPointer?
-
-            guard let pointer = getSwiftBundlerMetadata() else { return nil }
+            guard let pointer = _getSwiftBundlerMetadata() else { return nil }
             let datas = pointer.assumingMemoryBound(to: [[UInt8]].self).pointee
             guard let jsonBytes = datas.first else {
                 throw SwiftBundlerMetadataError.emptyMetadata
             }
             let jsonData = Data(jsonBytes)
         #else
+            func parseBigEndianUInt64(
+                startingAt startIndex: Int,
+                in data: Data
+            ) -> UInt64 {
+                data[startIndex..<(startIndex + 8)].withUnsafeBytes { pointer in
+                    let bigEndianValue = pointer.assumingMemoryBound(to: UInt64.self)
+                        .baseAddress!.pointee
+                    return UInt64(bigEndian: bigEndianValue)
+                }
+            }
+
             guard let executable = Bundle.main.executableURL else {
                 throw SwiftBundlerMetadataError.noExecutableURL
             }
@@ -207,16 +219,5 @@ extension App {
             version: version,
             additionalMetadata: additionalMetadata
         )
-    }
-
-    private static func parseBigEndianUInt64(
-        startingAt startIndex: Int,
-        in data: Data
-    ) -> UInt64 {
-        data[startIndex..<(startIndex + 8)].withUnsafeBytes { pointer in
-            let bigEndianValue = pointer.assumingMemoryBound(to: UInt64.self)
-                .baseAddress!.pointee
-            return UInt64(bigEndian: bigEndianValue)
-        }
     }
 }
