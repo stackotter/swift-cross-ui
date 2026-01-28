@@ -9,6 +9,7 @@ public class ApplicationWindow: Window {
         self.init(
             gtk_application_window_new(application.applicationPointer)
         )
+        registerSignals()
 
         let handler2:
             @convention(c) (
