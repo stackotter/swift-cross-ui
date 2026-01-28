@@ -414,6 +414,7 @@ jobs:
 
         cd gh-pages
         cp google5d79e0866e2627dd.html docs/google5d79e0866e2627dd.html
+        cp CNAME docs/CNAME
         git add docs
 
         if [ -n "$(git status --porcelain)" ]; then
