@@ -90,7 +90,7 @@ public struct ObservableMacro: MemberAttributeMacro, ExtensionMacro {
     }
 }
 
-struct ObservationIgnoredMacro: AccessorMacro {
+public struct ObservationIgnoredMacro: AccessorMacro {
     public static func expansion(
         of node: SwiftSyntax.AttributeSyntax,
         providingAccessorsOf declaration: some SwiftSyntax.DeclSyntaxProtocol,

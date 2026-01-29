@@ -4,6 +4,6 @@ import SwiftSyntaxMacros
 @main
 struct SCUIMacrosPlugin: CompilerPlugin {
     let providingMacros: [any Macro.Type] = [
-        ObservableMacro.self
+        ObservableMacro.self, ObservationIgnoredMacro.self,
     ]
 }

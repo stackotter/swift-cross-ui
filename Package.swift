@@ -170,6 +170,9 @@ let package = Package(
             dependencies: [
                 "SwiftCrossUI",
                 "DummyBackend",
+                "SCUIMacrosPlugin",
+                .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
+                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
                 .target(name: "AppKitBackend", condition: .when(platforms: [.macOS])),
             ]
         ),

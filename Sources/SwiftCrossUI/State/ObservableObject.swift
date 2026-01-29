@@ -102,8 +102,8 @@ extension Optional: OptionalObservableObject where Wrapped: ObservableObject {
     }
 }
 
-/*@available(*, deprecated, message: "Replace Observable with ObservableObject")
-public typealias Observable = ObservableObject*/
+@available(*, deprecated, message: "Replace Observable with ObservableObject")
+public typealias Observable = ObservableObject
 
 /// Automatically observes all public noncomputed variables with public getter and setter
 @attached(memberAttribute)
