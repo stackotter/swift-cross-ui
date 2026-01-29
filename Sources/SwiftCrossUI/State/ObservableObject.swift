@@ -102,5 +102,23 @@ extension Optional: OptionalObservableObject where Wrapped: ObservableObject {
     }
 }
 
-@available(*, deprecated, message: "Replace Observable with ObservableObject")
-public typealias Observable = ObservableObject
+/*@available(*, deprecated, message: "Replace Observable with ObservableObject")
+public typealias Observable = ObservableObject*/
+
+/// Automatically observes all public noncomputed variables with public getter and setter
+@attached(memberAttribute)
+@attached(extension, conformances: ObservableObject)
+public macro Observable() =
+    #externalMacro(
+        module: "SCUIMacrosPlugin",
+        type: "ObservableMacro"
+    )
+
+/// Apply to a member inside your `@Observable` class to  opt out of observation
+// This macro is just used as a flage for `@Observable` to ignore a specific property
+@attached(accessor)
+public macro ObservationIgnored() =
+    #externalMacro(
+        module: "SCUIMacrosPlugin",
+        type: "ObservationIgnoredMacro"
+    )

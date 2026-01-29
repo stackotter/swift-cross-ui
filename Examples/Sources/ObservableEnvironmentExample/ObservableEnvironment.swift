@@ -43,12 +43,12 @@ struct ContentView: View {
     }
 }
 
-class Observation: SwiftCrossUI.ObservableObject {
-    @SwiftCrossUI.Published
+@Observable
+class Observation {
     var text: String
-    
+
     let id: Int
-    
+
     init(text: String, id: Int) {
         self.text = text
         self.id = id

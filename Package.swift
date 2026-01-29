@@ -148,6 +148,7 @@ let package = Package(
             name: "SwiftCrossUI",
             dependencies: [
                 "HotReloadingMacrosPlugin",
+                "SCUIMacrosPlugin",
                 .product(name: "ImageFormats", package: "swift-image-formats"),
                 .product(name: "Logging", package: "swift-log"),
             ],
@@ -286,6 +287,15 @@ let package = Package(
             ] + additionalLayoutPerformanceBenchmarkDependencies,
             path: "Benchmarks/LayoutPerformanceBenchmark",
             swiftSettings: layoutPerformanceSwiftSettings
+        ),
+        .macro(
+            name: "SCUIMacrosPlugin",
+            dependencies: [
+                .product(name: "SwiftSyntax", package: "swift-syntax"),
+                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
+                .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
+                .product(name: "MacroToolkit", package: "swift-macro-toolkit"),
+            ]
         ),
 
         // .target(
