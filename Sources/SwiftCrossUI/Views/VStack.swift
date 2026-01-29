@@ -54,7 +54,7 @@ public struct VStack<Content: View>: View {
                 "VStack will not function correctly with non-TupleView content",
                 metadata: [
                     "childrenType": "\(type(of: children))",
-                    "contentType": "\(Content.self)"
+                    "contentType": "\(Content.self)",
                 ]
             )
         }

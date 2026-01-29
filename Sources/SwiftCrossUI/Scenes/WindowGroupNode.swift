@@ -174,16 +174,17 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         // With `.contentSize`, the window's maximum size is the maximum size of its
         // content. With `.contentMinSize` (and `.automatic`), there is no maximum
         // size.
-        let maximumWindowSize: ViewSize? = switch environment.windowResizability {
-            case .contentSize:
-                viewGraph.computeLayout(
-                    with: newScene?.body,
-                    proposedSize: .infinity,
-                    environment: environment.with(\.allowLayoutCaching, true)
-                ).size
-            case .automatic, .contentMinSize:
-                nil
-        }
+        let maximumWindowSize: ViewSize? =
+            switch environment.windowResizability {
+                case .contentSize:
+                    viewGraph.computeLayout(
+                        with: newScene?.body,
+                        proposedSize: .infinity,
+                        environment: environment.with(\.allowLayoutCaching, true)
+                    ).size
+                case .automatic, .contentMinSize:
+                    nil
+            }
 
         let clampedWindowSize = ViewSize(
             min(

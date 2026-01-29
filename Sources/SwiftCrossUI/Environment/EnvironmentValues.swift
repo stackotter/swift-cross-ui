@@ -125,6 +125,15 @@ public struct EnvironmentValues {
         }
     }
 
+    public subscript<T: ObservableObject>(observable key: T.Type) -> T? {
+        get {
+            extraValues[ObjectIdentifier(T.self)] as! T?
+        }
+        set {
+            extraValues[ObjectIdentifier(T.self)] = newValue
+        }
+    }
+
     /// Brings the current window forward, not guaranteed to always bring
     /// the window to the top (due to focus stealing prevention).
     @MainActor

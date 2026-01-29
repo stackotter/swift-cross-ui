@@ -1,5 +1,5 @@
 {
-  "originHash" : "dd63f095d6a2b7b6ab3aff17c27568510af59a6b664b9279065e23edc63cc6ed",
+  "originHash" : "18b77d9642b1a945f56419a1a256fcaf6c77f88634144224f2e005a3c837514a",
   "pins" : [
     {
       "identity" : "aexml",
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swhitty/FlyingFox",
       "state" : {
-        "revision" : "f9d9a180fca7a1783f4da30a4f0a73533a75b4fd",
-        "version" : "0.26.1"
+        "revision" : "de38230104cf63ef4843cb569ba11c13f8165685",
+        "version" : "0.26.2"
       }
     },
     {
@@ -247,8 +247,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "4a9a97111099376854a7f8f0f9f88b9d61f52eff",
-        "version" : "2.92.2"
+        "revision" : "5e72fc102906ebe75a3487595a653e6f43725552",
+        "version" : "2.94.0"
       }
     },
     {

@@ -61,4 +61,13 @@ extension View {
             environment.with(keyPath, newValue)
         }
     }
+
+    /// Modifies the environment of the View its applied to
+    public func environment<T: ObservableObject>(_ object: T) -> some View {
+        EnvironmentModifier(self) { environment in
+            var environment = environment
+            environment[observable: T.self] = object
+            return environment
+        }
+    }
 }

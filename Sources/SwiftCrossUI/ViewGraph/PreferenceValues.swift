@@ -64,7 +64,8 @@ extension PreferenceValues {
         interactiveDismissDisabled = children.compactMap { $0.interactiveDismissDisabled }.first
 
         windowDismissBehavior = children.compactMap { $0.windowDismissBehavior }.first
-        preferredWindowMinimizeBehavior = children.compactMap { $0.preferredWindowMinimizeBehavior }.first
+        preferredWindowMinimizeBehavior =
+            children.compactMap { $0.preferredWindowMinimizeBehavior }.first
         windowResizeBehavior = children.compactMap { $0.windowResizeBehavior }.first
     }
 }
