@@ -8,7 +8,7 @@
 
 ## Running tests
 
-Due to limitations of Swift Package Manager and the way this project is structured, running tests is a little more annoying than just running `swift test`. Luckily, there's a handy [test.sh](test.sh) script which performs the required workaround. To run the tests, just run `./test.sh` in the root of the repository.
+Due to limitations of Swift Package Manager and the way this project is structured, running tests is a little more annoying than just running `swift test`. Luckily, there's a handy [test.sh](Scripts/test.sh) script which performs the required workaround. To run the tests, just run `./Scripts/test.sh` in the root of the repository.
 
 ## How to do something useful
 
