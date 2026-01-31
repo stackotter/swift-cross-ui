@@ -62,8 +62,8 @@ public struct Slider: ElementaryView, View {
         environment: EnvironmentValues,
         backend: Backend
     ) -> ViewLayoutResult {
-        // TODO: Don't rely on naturalSize for minimum size so that we can get
-        //   Slider sizes without relying on the widget.
+        // TODO: Don't rely on naturalSize for minimum size so that we can get Slider sizes without
+        //   relying on the widget.
         let naturalSize = backend.naturalSize(of: widget)
 
         let size = ViewSize(

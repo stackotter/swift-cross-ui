@@ -77,6 +77,8 @@ extension Image: TypeSafeView {
         if source != children.cachedImageSource {
             switch source {
                 case .url(let url, let useFileExtension):
+                    // TODO: Propagate these errors somewhere. Maybe even just as trace
+                    //   log messages.
                     if let data = try? Data(contentsOf: url) {
                         let bytes = Array(data)
                         if useFileExtension {
@@ -152,7 +154,9 @@ extension Image: TypeSafeView {
                 }
                 children.isContainerEmpty = false
             } else {
-                backend.removeAllChildren(of: children.container.into())
+                if !children.isContainerEmpty {
+                    backend.removeAllChildren(of: children.container.into())
+                }
                 children.isContainerEmpty = true
             }
             children.imageChanged = false

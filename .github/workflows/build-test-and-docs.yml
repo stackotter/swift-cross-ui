@@ -58,7 +58,8 @@ jobs:
         swift build --target NotesExample && \
         swift build --target PathsExample && \
         swift build --target WebViewExample && \
-        swift build --target AdvancedCustomizationExample
+        swift build --target AdvancedCustomizationExample && \
+        swift build --target MusicPlayerExample
 
     - name: Test
       run: swift test --test-product swift-cross-uiPackageTests
@@ -114,6 +115,7 @@ jobs:
             buildtarget PathsExample
             buildtarget WebViewExample
             buildtarget AdvancedCustomizationExample
+            buildtarget MusicPlayerExample
 
             if [ $device_type != TV ]; then
               # Slider is not implemented for tvOS
@@ -179,6 +181,7 @@ jobs:
         buildtarget RandomNumberGeneratorExample
         buildtarget WebViewExample
         buildtarget AdvancedCustomizationExample
+        buildtarget MusicPlayerExample
         # TODO test whether this works on Catalyst
         # buildtarget SplitExample
 
@@ -323,7 +326,8 @@ jobs:
         swift build --target SpreadsheetExample && \
         swift build --target NotesExample && \
         swift build --target PathsExample && \
-        swift build --target AdvancedCustomizationExample
+        swift build --target AdvancedCustomizationExample && \
+        swift build --target MusicPlayerExample
 
     - name: Test
       run: swift test --test-product swift-cross-uiPackageTests
