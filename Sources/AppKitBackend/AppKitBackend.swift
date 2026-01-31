@@ -2441,6 +2441,8 @@ public class NSCustomWindow: NSWindow {
         }
       
         func windowWillClose(_ notification: Notification) {
+            closeHandler?()
+
             guard let window = notification.object as? NSCustomWindow else { return }
 
             // Not sure if this is actually needed
@@ -2466,10 +2468,6 @@ public class NSCustomWindow: NSWindow {
             )
 
             return frameSize
-        }
-
-        func windowWillClose(_ notification: Notification) {
-            closeHandler?()
         }
 
         func windowWillReturnUndoManager(_ window: NSWindow) -> UndoManager? {
