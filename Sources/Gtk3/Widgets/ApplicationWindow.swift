@@ -10,15 +10,19 @@ public class ApplicationWindow: Window {
             gtk_application_window_new(application.applicationPointer)
         )
         registerSignals()
+    }
+
+    public override func registerSignals() {
+        super.registerSignals()
 
         let handler2:
-            @convention(c) (
-                UnsafeMutableRawPointer,
-                gint,
-                UnsafeMutableRawPointer
-            ) -> Void = { _, value1, data in
-                SignalBox1<gint>.run(data, value1)
-            }
+        @convention(c) (
+            UnsafeMutableRawPointer,
+            gint,
+            UnsafeMutableRawPointer
+        ) -> Void = { _, value1, data in
+            SignalBox1<gint>.run(data, value1)
+        }
 
         addSignal(
             name: "notify::scale-factor",

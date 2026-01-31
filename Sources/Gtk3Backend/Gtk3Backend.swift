@@ -373,8 +373,15 @@ public final class Gtk3Backend: AppBackend {
         window.close()
 
         // NB: It seems GTK3 won't automatically signal `::delete-event` if
-        // the window is closed programmatically.
-        window.onCloseRequest?(window)
+        // the window is closed programmatically. Since the close handler
+        // calls `window.destroy()`, we avoid calling that ourselves to avoid
+        // a double-free; however, if the handler isn't set, we _do_ call
+        // `destroy()` to avoid leaking the window.
+        if let onCloseRequest = window.onCloseRequest {
+            onCloseRequest(window)
+        } else {
+            window.destroy()
+        }
     }
 
     public func setCloseHandler(

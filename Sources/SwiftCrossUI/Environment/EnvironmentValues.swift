@@ -102,11 +102,11 @@ public struct EnvironmentValues {
     ///
     /// Set by ``Window/windowResizability(_:)->Scene``.
     var windowResizability: WindowResizability
-    /// The default launch behavior of the enclosing window.
+    /// The default launch behavior of windows.
     ///
     /// Set by ``Window/defaultLaunchBehavior(_:)->Scene``.
     var defaultLaunchBehavior: SceneLaunchBehavior
-    /// The default size of the enclosing window.
+    /// The default size of windows.
     ///
     /// Defaults to 900x450.
     ///

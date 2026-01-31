@@ -79,13 +79,15 @@ public final class WindowNode<Content: View>: SceneGraphNode {
                 windowReference.activate(backend: backend)
             } else {
                 // the window is not open: create a new instance
-                windowReference = WindowReference(
+                let reference = WindowReference(
                     scene: scene,
                     backend: backend,
                     environment: environment,
                     onClose: { self.windowReference = nil }
                 )
-                _ = windowReference!.update(
+
+                windowReference = reference
+                _ = reference.update(
                     nil,
                     backend: backend,
                     environment: environment

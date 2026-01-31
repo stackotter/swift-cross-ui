@@ -84,13 +84,15 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                 guard let self else { return }
 
                 let windowID = UUID()
-                windowReferences[windowID] = WindowReference(
+                let reference = WindowReference(
                     scene: scene,
                     backend: backend,
                     environment: environment,
                     onClose: { self.windowReferences[windowID] = nil }
                 )
-                _ = windowReferences[windowID]!.update(
+
+                windowReferences[windowID] = reference
+                _ = reference.update(
                     nil,
                     backend: backend,
                     environment: environment
