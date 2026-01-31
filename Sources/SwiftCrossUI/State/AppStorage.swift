@@ -10,7 +10,7 @@ private let appStoragePublisherCache: Mutex<[String: Publisher]> = Mutex([:])
 public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
     // TODO: Observe changes to persisted values made by external processes
 
-    private final class Storage {
+    private final class Storage: StateStorageProtocol {
         let key: String
         let defaultValue: Value
         var downstreamObservation: Cancellable?
@@ -40,13 +40,9 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
         var value: Value {
             get {
                 guard let provider else {
-                    fatalError(
-                        """
-                        @AppStorage value with key '\(key)' used before initialization. \
-                        Don't use @AppStorage properties before SwiftCrossUI requests the \
-                        view's body.
-                        """
-                    )
+                    // NB: We used to call `fatalError` here, but since `StateImpl` accesses this
+                    // property on initialization, we're returning the default value instead.
+                    return defaultValue
                 }
 
                 return appStorageCache.withLock { cache in
@@ -88,49 +84,24 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
                     )
                 }
 
-                appStorageCache.withLock { $0[key] = newValue }
-                do {
-                    logger.debug("persisting '\(newValue)' for '\(key)'")
-                    try provider.persistValue(newValue, forKey: key)
-                } catch {
-                    logger.warning(
-                        "failed to encode '@AppStorage' data",
-                        metadata: ["value": "\(newValue)", "error": "\(error)"]
-                    )
+                appStorageCache.withLock { cache in
+                    cache[key] = newValue
+                    do {
+                        logger.debug("persisting '\(newValue)' for '\(key)'")
+                        try provider.persistValue(newValue, forKey: key)
+                    } catch {
+                        logger.warning(
+                            "failed to encode '@AppStorage' data",
+                            metadata: ["value": "\(newValue)", "error": "\(error)"]
+                        )
+                    }
                 }
             }
-        }
-
-        /// Call this to publish an observation to all observers after
-        /// setting a new value. This isn't in a didSet property accessor
-        /// because we want more granular control over when it does and
-        /// doesn't trigger.
-        ///
-        /// Additionally updates the downstream observation if the
-        /// wrapped value is an Optional<some ObservableObject> and the
-        /// current case has toggled.
-        func postSet() {
-            // If the wrapped value is an Optional<some ObservableObject>
-            // then we need to observe/unobserve whenever the optional
-            // toggles between `.some` and `.none`.
-            if let value = value as? OptionalObservableObject {
-                if let innerDidChange = value.didChange, downstreamObservation == nil {
-                    downstreamObservation = didChange.link(toUpstream: innerDidChange)
-                } else if value.didChange == nil, let observation = downstreamObservation {
-                    observation.cancel()
-                    downstreamObservation = nil
-                }
-            }
-            didChange.send()
         }
     }
 
-    /// The inner `Storage` is what stays constant between view updates.
-    /// The wrapping box is used so that we can assign the storage to future
-    /// `AppStorage` instances from the non-mutating ``update(with:previousValue:)``
-    /// method. It's vital that the inner storage remains the same so that
-    /// bindings can be stored across view updates.
-    private let box: Box<Storage>
+    private let implementation: StateImpl<Storage>
+    private var storage: Storage { implementation.box.value }
 
     /// The default value, used when no value has been persisted yet.
     let defaultValue: Value
@@ -138,54 +109,19 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
     /// The key used to access the persisted value.
     let key: String
 
-    public var didChange: Publisher {
-        box.value.didChange
-    }
+    public var didChange: Publisher { storage.didChange }
 
     public var wrappedValue: Value {
-        get {
-            box.value.value
-        }
-        nonmutating set {
-            box.value.value = newValue
-            box.value.postSet()
-        }
+        get { implementation.wrappedValue }
+        nonmutating set { implementation.wrappedValue = newValue }
     }
 
-    public var projectedValue: Binding<Value> {
-        // Specifically link the binding to the inner storage instead of the
-        // outer box which changes with each view update.
-        let storage = box.value
-        return Binding(
-            get: {
-                storage.value
-            },
-            set: { newValue in
-                storage.value = newValue
-                storage.postSet()
-            }
-        )
-    }
+    public var projectedValue: Binding<Value> { implementation.projectedValue }
 
     public init(wrappedValue defaultValue: Value, _ key: String) {
         self.key = key
         self.defaultValue = defaultValue
-        box = Box(Storage(key: key, defaultValue: defaultValue))
-
-        // Before casting the value we check the type, because casting an optional
-        // to protocol Optional doesn't conform to can still succeed when the value
-        // is `.some` and the wrapped type conforms to the protocol.
-        if Value.self is ObservableObject.Type,
-            let defaultValue = defaultValue as? ObservableObject
-        {
-            box.value.downstreamObservation = didChange.link(toUpstream: defaultValue.didChange)
-        } else if let defaultValue = defaultValue as? OptionalObservableObject,
-            let innerDidChange = defaultValue.didChange
-        {
-            // If we have an Optional<some ObservableObject>.some, then observe its
-            // inner value's publisher.
-            box.value.downstreamObservation = didChange.link(toUpstream: innerDidChange)
-        }
+        implementation = StateImpl(initialStorage: Storage(key: key, defaultValue: defaultValue))
     }
 
     public init<T>(_ key: String) where Value == T? {
@@ -193,10 +129,8 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
     }
 
     public func update(with environment: EnvironmentValues, previousValue: AppStorage<Value>?) {
-        if let previousValue {
-            box.value = previousValue.box.value
-        }
-        box.value.provider = environment.appStorageProvider
+        implementation.update(with: environment, previousValue: previousValue?.implementation)
+        storage.provider = environment.appStorageProvider
     }
 }
 
