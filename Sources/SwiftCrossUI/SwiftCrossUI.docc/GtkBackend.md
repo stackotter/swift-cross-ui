@@ -118,7 +118,7 @@ find . -type f -exec touch {} +
 ```
 Figure 9: *fix vcpkg file modified times*
 
-If you have a fix that doesn't require Git Bash, feel free to [open an issue](https://github.com/stackotter/swift-cross-ui/issues/new/choose) or pull request with your fix.
+If you have a fix that doesn't require Git Bash, feel free to [open an issue](https://github.com/moreSwift/swift-cross-ui/issues/new/choose) or pull request with your fix.
 
 If you face a different issue, please open an issue or pull request to update this troubleshooting section.
 

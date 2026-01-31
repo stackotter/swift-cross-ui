@@ -8,11 +8,11 @@
 
 ## Running tests
 
-Due to limitations of Swift Package Manager and the way this project is structured, running tests is a little more annoying than just running `swift test`. Luckily, there's a handy [test.sh](test.sh) script which performs the required workaround. To run the tests, just run `./test.sh` in the root of the repository.
+Due to limitations of Swift Package Manager and the way this project is structured, running tests is a little more annoying than just running `swift test`. Luckily, there's a handy [test.sh](Scripts/test.sh) script which performs the required workaround. To run the tests, just run `./Scripts/test.sh` in the root of the repository.
 
 ## How to do something useful
 
-1. Look through [the issues on GitHub](https://github.com/stackotter/swift-cross-ui/issues) and
+1. Look through [the issues on GitHub](https://github.com/moreSwift/swift-cross-ui/issues) and
    choose an issue to work on (or open one if you have an idea)
 2. Leave a comment on the issue to let people know that you're working on it
 3. Make necessary changes to the codebase
