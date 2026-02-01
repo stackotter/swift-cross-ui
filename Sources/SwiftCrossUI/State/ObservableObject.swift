@@ -104,3 +104,21 @@ extension Optional: OptionalObservableObject where Wrapped: ObservableObject {
 
 @available(*, deprecated, message: "Replace Observable with ObservableObject")
 public typealias Observable = ObservableObject
+
+/// Automatically observes all public noncomputed variables with public getter and setter
+@attached(memberAttribute)
+@attached(extension, conformances: ObservableObject)
+public macro ObservableObject() =
+    #externalMacro(
+        module: "SwiftCrossUIMacrosPlugin",
+        type: "ObservableObjectMacro"
+    )
+
+/// Apply to a member inside your `@ObservableObject` class to  opt out of observation
+// This macro is just used as a flage for `@ObservableObject` to ignore a specific property
+@attached(accessor)
+public macro ObservationIgnored() =
+    #externalMacro(
+        module: "SwiftCrossUIMacrosPlugin",
+        type: "ObservationIgnoredMacro"
+    )

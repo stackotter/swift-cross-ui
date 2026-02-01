@@ -36,19 +36,20 @@ extension Color {
     /// - Returns: The resolved color.
     @MainActor
     public func resolve(in environment: EnvironmentValues) -> Resolved {
-        var resolvedColor = switch representation {
-            case .rgb(let red, let green, let blue):
-                Resolved(red: Float(red), green: Float(green), blue: Float(blue))
+        var resolvedColor =
+            switch representation {
+                case .rgb(let red, let green, let blue):
+                    Resolved(red: Float(red), green: Float(green), blue: Float(blue))
 
-            case .adaptive(let light, let dark):
-                switch environment.colorScheme {
-                    case .light: light.resolve(in: environment)
-                    case .dark: dark.resolve(in: environment)
-                }
+                case .adaptive(let light, let dark):
+                    switch environment.colorScheme {
+                        case .light: light.resolve(in: environment)
+                        case .dark: dark.resolve(in: environment)
+                    }
 
-            case .system(let systemColor):
-                environment.backend.resolveAdaptiveColor(systemColor, in: environment)
-        }
+                case .system(let systemColor):
+                    environment.backend.resolveAdaptiveColor(systemColor, in: environment)
+            }
 
         resolvedColor.opacity *= Float(self.opacityMultiplier)
         return resolvedColor

@@ -82,7 +82,7 @@ extension UIKitBackend {
         }
 
         #if !os(tvOS)
-        window.backgroundColor = .systemBackground
+            window.backgroundColor = .systemBackground
         #endif
 
         window.rootViewController = RootViewController(backend: self)

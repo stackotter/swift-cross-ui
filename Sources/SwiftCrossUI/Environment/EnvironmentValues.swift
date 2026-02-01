@@ -107,6 +107,9 @@ public struct EnvironmentValues {
     /// Backing storage for extensible subscript
     private var extraValues: [ObjectIdentifier: Any]
 
+    /// Backing storage for observable subscript
+    private var observableObjects: [ObjectIdentifier: any ObservableObject]
+
     /// An internal environment value used to control whether layout caching is
     /// enabled or not. This is set to true when computing non-final layouts. E.g.
     /// when a stack computes the minimum and maximum sizes of its children, it
@@ -122,6 +125,21 @@ public struct EnvironmentValues {
         }
         set {
             extraValues[ObjectIdentifier(T.self)] = newValue
+        }
+    }
+
+    public subscript<T: ObservableObject>(observable key: T.Type) -> T? {
+        get {
+            guard let value = observableObjects[ObjectIdentifier(T.self)] as? T? else {
+                let message =
+                    "EnvironmentValues type mismatch: value for key '\(T.self).self' doesn't match expected type '\(T.self)'"
+                logger.critical("\(message)")
+                fatalError(message)
+            }
+            return value
+        }
+        set {
+            observableObjects[ObjectIdentifier(T.self)] = newValue
         }
     }
 
@@ -239,6 +257,7 @@ public struct EnvironmentValues {
         textContentType = .text
         window = nil
         extraValues = [:]
+        observableObjects = [:]
         listStyle = .default
         toggleStyle = .button
         isEnabled = true

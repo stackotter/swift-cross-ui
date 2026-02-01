@@ -924,7 +924,8 @@ public final class WinUIBackend: AppBackend {
 
         picker.onChangeSelection = onChange
         environment.apply(to: picker)
-        picker.actualForegroundColor = environment.suggestedForegroundColor.resolve(in: environment).uwpColor
+        picker.actualForegroundColor =
+            environment.suggestedForegroundColor.resolve(in: environment).uwpColor
 
         // Only update options past this point, otherwise the early return
         // will cause issues.
