@@ -95,5 +95,9 @@ let package = Package(
             dependencies: exampleDependencies,
             resources: [.copy("Banner.png")]
         ),
+        .executableTarget(
+            name: "ColorsExample",
+            dependencies: exampleDependencies
+        )
     ]
 )

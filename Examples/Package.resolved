@@ -85,7 +85,7 @@
     {
       "identity" : "pathkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/kylef/PathKit.git",
+      "location" : "https://github.com/kylef/PathKit",
       "state" : {
         "revision" : "3bfd2737b700b9a36565a8c94f4ad2b050a5e574",
         "version" : "1.0.1"
@@ -200,7 +200,7 @@
     {
       "identity" : "swift-filestreamer",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/sersoft-gmbh/swift-filestreamer",
+      "location" : "https://github.com/sersoft-gmbh/swift-filestreamer.git",
       "state" : {
         "revision" : "b01ff214cc629718a8729f33d2a8b88e47532dbd",
         "version" : "0.6.0"
