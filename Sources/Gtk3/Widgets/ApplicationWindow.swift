@@ -16,13 +16,13 @@ public class ApplicationWindow: Window {
         super.registerSignals()
 
         let handler2:
-        @convention(c) (
-            UnsafeMutableRawPointer,
-            gint,
-            UnsafeMutableRawPointer
-        ) -> Void = { _, value1, data in
-            SignalBox1<gint>.run(data, value1)
-        }
+            @convention(c) (
+                UnsafeMutableRawPointer,
+                gint,
+                UnsafeMutableRawPointer
+            ) -> Void = { _, value1, data in
+                SignalBox1<gint>.run(data, value1)
+            }
 
         addSignal(
             name: "notify::scale-factor",
