@@ -80,7 +80,7 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
         }
 
         if let id = scene.id {
-            OpenWindowAction.openFunctionsByID[id] = { [weak self] in
+            environment.openWindowFunctionsByID.value[id] = { [weak self] in
                 guard let self else { return }
 
                 let windowID = UUID()
@@ -90,8 +90,8 @@ public final class WindowGroupNode<Content: View>: SceneGraphNode {
                     environment: environment,
                     onClose: { self.windowReferences[windowID] = nil }
                 )
-
                 windowReferences[windowID] = reference
+
                 _ = reference.update(
                     nil,
                     backend: backend,

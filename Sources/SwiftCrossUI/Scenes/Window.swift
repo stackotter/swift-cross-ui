@@ -71,7 +71,7 @@ public final class WindowNode<Content: View>: SceneGraphNode {
             self.scene = newScene
         }
 
-        OpenWindowAction.openFunctionsByID[scene.id] = { [weak self] in
+        environment.openWindowFunctionsByID.value[scene.id] = { [weak self] in
             guard let self else { return }
 
             if let windowReference {
@@ -85,8 +85,8 @@ public final class WindowNode<Content: View>: SceneGraphNode {
                     environment: environment,
                     onClose: { self.windowReference = nil }
                 )
-
                 windowReference = reference
+                
                 _ = reference.update(
                     nil,
                     backend: backend,

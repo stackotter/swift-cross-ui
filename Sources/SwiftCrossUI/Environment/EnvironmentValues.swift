@@ -119,6 +119,9 @@ public struct EnvironmentValues {
     /// Backing storage for extensible subscript
     private var extraValues: [ObjectIdentifier: Any]
 
+    /// A mapping of window IDs to functions that open the corresponding windows.
+    var openWindowFunctionsByID: Box<[String: @MainActor () -> Void]>
+
     /// An internal environment value used to control whether layout caching is
     /// enabled or not. This is set to true when computing non-final layouts. E.g.
     /// when a stack computes the minimum and maximum sizes of its children, it
@@ -169,9 +172,9 @@ public struct EnvironmentValues {
     @MainActor
     @available(tvOS, unavailable, message: "tvOS does not provide file system access")
     public var chooseFile: PresentSingleFileOpenDialogAction {
-        return PresentSingleFileOpenDialogAction(
+        PresentSingleFileOpenDialogAction(
             backend: backend,
-            window: .init(value: window)
+            window: MainActorBox(value: window)
         )
     }
 
@@ -183,9 +186,9 @@ public struct EnvironmentValues {
     /// its chooosing).
     @MainActor
     public var chooseFileSaveDestination: PresentFileSaveDialogAction {
-        return PresentFileSaveDialogAction(
+        PresentFileSaveDialogAction(
             backend: backend,
-            window: .init(value: window)
+            window: MainActorBox(value: window)
         )
     }
 
@@ -195,9 +198,7 @@ public struct EnvironmentValues {
     /// window of its choosing).
     @MainActor
     public var presentAlert: PresentAlertAction {
-        return PresentAlertAction(
-            environment: self
-        )
+        PresentAlertAction(environment: self)
     }
 
     /// Opens a URL with the default application. May present an application
@@ -205,25 +206,21 @@ public struct EnvironmentValues {
     /// protocol.
     @MainActor
     public var openURL: OpenURLAction {
-        return OpenURLAction(
-            backend: backend
-        )
+        OpenURLAction(backend: backend)
     }
 
     /// Opens a window with the specified ID.
     @MainActor
     public var openWindow: OpenWindowAction {
-        return OpenWindowAction(
-            backend: backend
-        )
+        OpenWindowAction(environment: self)
     }
 
     /// Closes the enclosing window.
     @MainActor
     public var dismissWindow: DismissWindowAction {
-        return DismissWindowAction(
+        DismissWindowAction(
             backend: backend,
-            window: .init(value: window)
+            window: MainActorBox(value: window)
         )
     }
 
@@ -234,9 +231,7 @@ public struct EnvironmentValues {
     /// iOS.
     @MainActor
     public var revealFile: RevealFileAction? {
-        return RevealFileAction(
-            backend: backend
-        )
+        RevealFileAction(backend: backend)
     }
 
     /// Whether the backend can have multiple windows open at once. Mobile
@@ -288,6 +283,7 @@ public struct EnvironmentValues {
         calendar = .current
         timeZone = .current
         datePickerStyle = .automatic
+        openWindowFunctionsByID = Box(value: [:])
 
         let supportedDatePickerStyles = backend.supportedDatePickerStyles
         if supportedDatePickerStyles.isEmpty {
