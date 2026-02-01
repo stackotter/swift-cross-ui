@@ -51,7 +51,7 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
                     // if it exists, or the default value otherwise; either way, we add it to the
                     // cache so subsequent accesses of `value` won't have to read from disk again.
                     guard let cachedValue = cache[key] else {
-                        let value = provider.retrieveValue(Value.self, forKey: key) ?? defaultValue
+                        let value = provider.retrieveValue(ofType: Value.self, forKey: key) ?? defaultValue
                         cache[key] = value
                         return value
                     }
@@ -79,7 +79,7 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
                         """
                         @AppStorage value with key '\(key)' used before initialization. \
                         Don't use @AppStorage properties before SwiftCrossUI requests the \
-                        view's body.
+                        body of the enclosing 'App' or 'View'.
                         """
                     )
                 }
@@ -92,7 +92,10 @@ public struct AppStorage<Value: Codable & Sendable>: ObservableProperty {
                     } catch {
                         logger.warning(
                             "failed to encode '@AppStorage' data",
-                            metadata: ["value": "\(newValue)", "error": "\(error)"]
+                            metadata: [
+                                "value": "\(newValue)",
+                                "error": "\(error.localizedDescription)"
+                            ]
                         )
                     }
                 }

@@ -17,7 +17,7 @@ public protocol AppStorageProvider: Sendable {
     ///   - key: The key to retrieve the value from.
     /// - Returns: The persisted value for `key`, if it exists and is of the
     ///   expected type; otherwise, `nil`.
-    func retrieveValue<Value: Codable>(_ type: Value.Type, forKey key: String) -> Value?
+    func retrieveValue<Value: Codable>(ofType type: Value.Type, forKey key: String) -> Value?
 }
 
 /// A simple app storage provider that uses `UserDefaults` to persist
@@ -38,7 +38,7 @@ public struct UserDefaultsAppStorageProvider: AppStorageProvider {
         #endif
     }
 
-    public func retrieveValue<Value: Codable>(_: Value.Type, forKey key: String) -> Value? {
+    public func retrieveValue<Value: Codable>(ofType: Value.Type, forKey key: String) -> Value? {
         guard let string = UserDefaults.standard.string(forKey: key),
             let data = string.data(using: .utf8),
             let value = try? JSONDecoder().decode(Value.self, from: data)
