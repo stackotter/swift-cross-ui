@@ -77,6 +77,7 @@ private enum SwiftBundlerMetadataError: LocalizedError {
     case jsonNotDictionary(String)
     case missingAppIdentifier
     case missingAppVersion
+    case badMetadataPointer
 
     var errorDescription: String? {
         switch self {
@@ -92,6 +93,14 @@ private enum SwiftBundlerMetadataError: LocalizedError {
                 "missing 'appIdentifier' (of type String)"
             case .missingAppVersion:
                 "missing 'appVersion' (of type String)"
+            case .badMetadataPointer:
+                """
+                bad metadata pointer returned by injected metadata function; \
+                this causes segfaults on some systems so metadata parsing has \
+                been skipped. update to a version of Swift Bundler newer than \
+                commit 7b9c6a45fa5d0266985d45a3d12bc8d9fd729b84 to restore \
+                metadata parsing
+                """
         }
     }
 }
@@ -146,8 +155,7 @@ extension App {
         // Check for an error once the logger is ready.
         if case .failure(let error) = result {
             logger.error(
-                "failed to extract swift-bundler metadata",
-                metadata: ["error": "\(error.localizedDescription)"]
+                "failed to extract swift-bundler metadata: \(error.localizedDescription)"
             )
         }
     }
@@ -166,6 +174,26 @@ extension App {
         // is safe to try even if we weren't compiled with swift-bundler at all.
         #if SWIFT_BUNDLER_METADATA
             guard let pointer = _getSwiftBundlerMetadata() else { return nil }
+
+            // Make a best-effort attempt to detect whether `pointer` points to
+            // something on the stack. If it does then the metadata was injected
+            // by a version of Swift Bundler from before PR #129, which resolved
+            // a segfault caused by accidentally returning a temporary stack
+            // pointer rather than a pointer to the global metadata variable
+            // itself. We exit early to avoid the segfault.
+            let dummy = 0
+            try withUnsafePointer(to: dummy) { stackPointer in
+                // The 0x1000 threshold is kind of arbitrary. It just has to be
+                // big enough that it includes this stack frame and the next
+                // while not including anything that isn't the stack. In theory
+                // the value could probably be much higher, but it doesn't have
+                // to be so it's safer not to imo.
+                let diff = UnsafeRawPointer(stackPointer) - pointer
+                if abs(diff) < 0x1000 {
+                    throw SwiftBundlerMetadataError.badMetadataPointer
+                }
+            }
+
             let datas = pointer.assumingMemoryBound(to: [[UInt8]].self).pointee
             guard let jsonBytes = datas.first else {
                 throw SwiftBundlerMetadataError.emptyMetadata
