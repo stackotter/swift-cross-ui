@@ -108,17 +108,17 @@ public typealias Observable = ObservableObject
 /// Automatically observes all public noncomputed variables with public getter and setter
 @attached(memberAttribute)
 @attached(extension, conformances: ObservableObject)
-public macro Observable() =
+public macro ObservableObject() =
     #externalMacro(
-        module: "SCUIMacrosPlugin",
-        type: "ObservableMacro"
+        module: "SwiftCrossUIMacrosPlugin",
+        type: "ObservableObjectMacro"
     )
 
-/// Apply to a member inside your `@Observable` class to  opt out of observation
-// This macro is just used as a flage for `@Observable` to ignore a specific property
+/// Apply to a member inside your `@ObservableObject` class to  opt out of observation
+// This macro is just used as a flage for `@ObservableObject` to ignore a specific property
 @attached(accessor)
 public macro ObservationIgnored() =
     #externalMacro(
-        module: "SCUIMacrosPlugin",
+        module: "SwiftCrossUIMacrosPlugin",
         type: "ObservationIgnoredMacro"
     )

@@ -95,9 +95,5 @@ let package = Package(
             dependencies: exampleDependencies,
             resources: [.copy("Banner.png")]
         ),
-        .executableTarget (
-            name: "ObservableEnvironmentExample",
-            dependencies: exampleDependencies
-        )
     ]
 )

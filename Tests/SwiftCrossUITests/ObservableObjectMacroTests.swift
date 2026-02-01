@@ -3,21 +3,21 @@ import SwiftSyntaxMacrosTestSupport
 import SwiftSyntaxMacros
 
 #if canImport(SCUIMacrosPlugin)
-import SCUIMacrosPlugin
+import SwiftCrossUIMacrosPlugin
 
 let testMacros: [String: Macro.Type] = [
-    "Observable": ObservableMacro.self,
+    "ObservableObject": ObservableObjectMacro.self,
     "ObservationIgnored": ObservationIgnoredMacro.self
 ]
 #endif
 
-@Suite("Testing @Observable Macro")
+@Suite("Testing @ObservableObject Macro")
 struct ObservableTests {
     @Test("Stored property gets Published")
     func testStoredPropertyGetsAttribute() {
         assertMacroExpansion(
             """
-            @Observable
+            @ObservableObject
             class ViewModel {
                 var name: String = ""
             }
@@ -39,7 +39,7 @@ struct ObservableTests {
     func testComputedPropertyIsIgnored() {
         assertMacroExpansion(
             """
-            @Observable
+            @ObservableObject
             class ViewModel {
                 var computed: Int { 1 + 1 }
                 var explicitGet: Int { get { 0 } }
@@ -62,7 +62,7 @@ struct ObservableTests {
     func testPropertyWithObserversGetsAttribute() {
         assertMacroExpansion(
             """
-            @Observable
+            @ObservableObject
             class ViewModel {
                 var observed: String = "" {
                     didSet { print("changed") }
@@ -88,7 +88,7 @@ struct ObservableTests {
     func testPrivateAndStaticAreIgnored() {
         assertMacroExpansion(
             """
-            @Observable
+            @ObservableObject
             class ViewModel {
                 private var secret = "shh"
                 static var shared = "info"
@@ -113,7 +113,7 @@ struct ObservableTests {
     func testObservationIgnoredIsHonored() {
         assertMacroExpansion(
             """
-            @Observable
+            @ObservableObject
             class ViewModel {
                 @ObservationIgnored var skipMe = false
             }
@@ -134,7 +134,7 @@ struct ObservableTests {
     func testMultipleBindingsThrowError() {
         assertMacroExpansion(
             """
-            @Observable
+            @ObservableObject
             class ViewModel {
                 var a, b: String
             }
@@ -149,7 +149,7 @@ struct ObservableTests {
             """,
             diagnostics: [
                 DiagnosticSpec(
-                    message: "@Observable only supports single variables. Split up your variable declaration or ignore it with @ObservationIgnored",
+                    message: "@ObservableObject only supports single variables. Split up your variable declaration or ignore it with @ObservationIgnored",
                     line: 3,
                     column: 5
                 )

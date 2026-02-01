@@ -3,45 +3,41 @@ import SwiftSyntax
 import SwiftSyntaxMacroExpansion
 import SwiftSyntaxMacros
 
-public struct ObservableMacro: MemberAttributeMacro, ExtensionMacro {
+public struct ObservableObjectMacro: MemberAttributeMacro, ExtensionMacro {
     public static func expansion(
         of node: AttributeSyntax,
         attachedTo declaration: some DeclGroupSyntax,
         providingAttributesFor member: some DeclSyntaxProtocol,
         in context: some MacroExpansionContext
     ) throws -> [AttributeSyntax] {
-        guard let classDecl = ClassDeclSyntax(declaration) else {
+        guard ClassDeclSyntax(declaration) != nil else {
             throw MacroError("@Observable can only be applied to classes")
         }
 
         guard
-            let variable = member.as(VariableDeclSyntax.self),
+            let variable = Decl(member).asVariable,
             // only fully visible members
-            !variable.modifiers.contains(where: { modifier in
+            !variable._syntax.modifiers.contains(where: { modifier in
                 let kind = modifier.name.tokenKind
 
                 return
                     kind == .keyword(.static) || kind == .keyword(.private)
                     || kind == .keyword(.fileprivate)
             }),
-            // only variables
-            variable.bindingSpecifier.text == "var",
-            // only not yet observed and not opt out members
+            // Only include variables
+            variable._syntax.bindingSpecifier.text == "var",
+            // Only include not yet observed and not opt out members
             !variable.attributes.contains(where: { attr in
-                let trimmedDescription = attr.as(AttributeSyntax.self)?
-                    .attributeName
-                    .trimmedDescription
                 return
-                    trimmedDescription == "Published"
-                    || trimmedDescription == "SwiftCrossUI.Published"
-                    || trimmedDescription == "ObservationIgnored"
-                    || trimmedDescription == "SwiftCrossUI.ObservationIgnored"
+                    [
+                        "Published",
+                        "SwiftCrossUI.Published",
+                        "ObservationIgnored",
+                        "SwiftCrossUI.ObservationIgnored",
+                    ].contains(attr.attribute?.name.name)
             }),
-            // only non computed properties
-            !variable.bindings.contains(where: {
-                guard let accessor = $0.accessorBlock else { return false }
-                return indicatesComputed(accessor: accessor)
-            })
+            // Only include properties without accessors
+            variable.isStoredProperty
         else {
             return []
         }
@@ -62,7 +58,7 @@ public struct ObservableMacro: MemberAttributeMacro, ExtensionMacro {
         conformingTo protocols: [SwiftSyntax.TypeSyntax],
         in context: some MacroExpansionContext
     ) throws -> [ExtensionDeclSyntax] {
-        guard let classDecl = ClassDeclSyntax(declaration) else {
+        guard ClassDeclSyntax(declaration) != nil else {
             throw MacroError("@Observable can only be applied to classes")
         }
 
@@ -73,20 +69,6 @@ public struct ObservableMacro: MemberAttributeMacro, ExtensionMacro {
         )
 
         return [extensionDecl]
-    }
-
-    private static func indicatesComputed(accessor: AccessorBlockSyntax) -> Bool {
-        switch accessor.accessors {
-            case .accessors(let list):
-                // willSet/didSet alone don't make it computed
-                return list.contains(where: {
-                    let kind = $0.accessorSpecifier.tokenKind
-                    return kind == .keyword(.get) || kind == .keyword(.set)
-                })
-            case .getter:
-                // e.g. 'var x: Int { 0 }'
-                return true
-        }
     }
 }
 

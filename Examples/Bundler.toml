@@ -74,8 +74,3 @@ version = '0.1.0'
 identifier = 'dev.swiftcrossui.AdvancedCustomizationExample'
 product = 'AdvancedCustomizationExample'
 version = '0.1.0'
-
-[apps.ObservableEnvironmentExample]
-identifier = 'dev.swiftcrossui.ObservableEnvironmentExample'
-product = 'ObservableEnvironmentExample'
-version = '0.1.0'

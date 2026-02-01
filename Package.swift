@@ -147,8 +147,7 @@ let package = Package(
         .target(
             name: "SwiftCrossUI",
             dependencies: [
-                "HotReloadingMacrosPlugin",
-                "SCUIMacrosPlugin",
+                "SwiftCrossUIMacrosPlugin",
                 .product(name: "ImageFormats", package: "swift-image-formats"),
                 .product(name: "Logging", package: "swift-log"),
             ],
@@ -170,7 +169,7 @@ let package = Package(
             dependencies: [
                 "SwiftCrossUI",
                 "DummyBackend",
-                "SCUIMacrosPlugin",
+                "SwiftCrossUIMacrosPlugin",
                 .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
                 .target(name: "AppKitBackend", condition: .when(platforms: [.macOS])),
@@ -254,16 +253,6 @@ let package = Package(
             name: "Gtk3CustomWidgets",
             dependencies: ["CGtk3"]
         ),
-        .macro(
-            name: "HotReloadingMacrosPlugin",
-            dependencies: [
-                .product(name: "SwiftSyntax", package: "swift-syntax"),
-                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
-                .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
-                .product(name: "MacroToolkit", package: "swift-macro-toolkit"),
-            ],
-            swiftSettings: swiftSettings
-        ),
         .target(name: "UIKitBackend", dependencies: ["SwiftCrossUI"]),
         .target(
             name: "WinUIBackend",
@@ -292,13 +281,14 @@ let package = Package(
             swiftSettings: layoutPerformanceSwiftSettings
         ),
         .macro(
-            name: "SCUIMacrosPlugin",
+            name: "SwiftCrossUIMacrosPlugin",
             dependencies: [
                 .product(name: "SwiftSyntax", package: "swift-syntax"),
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
                 .product(name: "MacroToolkit", package: "swift-macro-toolkit"),
-            ]
+            ],
+            swiftSettings: swiftSettings
         ),
 
         // .target(
