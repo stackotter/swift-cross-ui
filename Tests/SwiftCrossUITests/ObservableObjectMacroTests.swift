@@ -1,15 +1,12 @@
 import Testing
 import SwiftSyntaxMacrosTestSupport
 import SwiftSyntaxMacros
-
-#if canImport(SCUIMacrosPlugin)
 import SwiftCrossUIMacrosPlugin
 
 let testMacros: [String: Macro.Type] = [
     "ObservableObject": ObservableObjectMacro.self,
     "ObservationIgnored": ObservationIgnoredMacro.self
 ]
-#endif
 
 @Suite("Testing @ObservableObject Macro")
 struct ObservableTests {
